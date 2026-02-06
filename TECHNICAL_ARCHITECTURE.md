@@ -435,7 +435,101 @@ Ongoing:    Community submissions, partnership with publishers
 
 ---
 
-## 8. Security & Fair Play
+## 8. AI Cost Model & Revenue Sustainability
+
+The core tension: every AI call costs money, but heavy AI usage is what makes the game special. The architecture must minimize cost-per-session without degrading the experience.
+
+### 8.1 Cost Breakdown Per Game Session (4 players, 3 rounds)
+
+| AI Call | When | Model Tier | Est. Cost | Frequency |
+|---------|------|-----------|-----------|-----------|
+| Mystery generation (skeleton) | Game start | Large (Claude/GPT-4) | $0.08-0.15 | 1x per game |
+| Mystery validation (2nd pass) | Game start | Large | $0.05-0.10 | 1x per game |
+| Incident video generation | Game start | Video (Runway/Sora) | $0.10-0.50 | 1x per game |
+| Avatar generation | Setup | Image (SDXL/DALL-E) | $0.02-0.04 | 4x per game |
+| NPC interrogation responses | Each "Talk to Witness" turn | Small (Haiku/4o-mini) | $0.002-0.01 | ~4-8x per game |
+| Clue/scene descriptions | Each "Look for Clues" turn | Small | $0.001-0.005 | ~4-8x per game |
+| Research results | Each "Do Research" turn | Small | $0.001-0.005 | ~2-4x per game |
+| Solution reveal cinematic | Game end | Large + Video | $0.10-0.30 | 1x per game |
+
+**Estimated total AI cost per game session: $0.50 - $1.50**
+
+### 8.2 Cost Optimization Strategies
+
+**Pre-generation (the biggest lever):**
+- The mystery skeleton, all NPC backstories, all clue descriptions, and all possible interrogation responses can be generated ONCE at game start
+- NPC dialogue doesn't need to be real-time generative for every message — the engine pre-generates a **response matrix**: what each NPC says based on which evidence the player has shown them
+- This converts many small real-time LLM calls into one larger upfront call
+
+```
+INSTEAD OF:                          DO THIS:
+  12 real-time LLM calls             1 large generation call at start
+  during gameplay                    that pre-computes all responses
+  ($0.01 each = $0.12)              ($0.15 once)
+  + latency per turn                 + instant responses during play
+```
+
+**Smart model routing:**
+- Use large models (Claude Sonnet/Opus, GPT-4) only for generation and validation
+- Use small models (Claude Haiku, GPT-4o-mini) for any real-time dialogue that can't be pre-generated
+- Use deterministic code (not AI) for evidence chain logic, timeline checks, and scoring
+
+**Caching and reuse:**
+- Scene descriptions for common settings (temple, marketplace) can be cached and lightly varied
+- Character portrait styles can use preset bases with minor AI customization
+- Common forensic analysis results can be templated
+
+**The video question:**
+- AI video generation is the most expensive single item ($0.10-0.50 per clip)
+- Consider: is the incident video worth the cost, or could an illustrated slideshow with narration achieve 80% of the effect at 10% of the cost?
+- Option A: Full AI video (premium experience, high cost)
+- Option B: AI-generated still images + text narration (lower cost, still immersive)
+- Option C: Video for paid tier, stills for free tier (if freemium model)
+
+### 8.3 Revenue Model Options
+
+At $19.99 one-time purchase with ~$1.00 AI cost per session:
+
+| Sessions played | AI cost | Revenue | Margin |
+|----------------|---------|---------|--------|
+| 5 sessions | $5.00 | $19.99 | 75% |
+| 20 sessions | $20.00 | $19.99 | 0% (breakeven) |
+| 50 sessions | $50.00 | $19.99 | -150% (loss) |
+
+**The one-time purchase model breaks down if players play frequently.** Alternatives:
+
+**Option A: Freemium + Mystery Packs**
+- Free: 2-3 curated mysteries (no AI generation cost)
+- $4.99/pack: 5 AI-generated mystery sessions
+- Effectively $1.00/session to the player, covering AI costs with margin
+
+**Option B: Subscription**
+- $4.99/month: Unlimited mysteries
+- Works if average player plays 3-4x/month (cost ~$4, revenue $5)
+- Risk: power users who play 15x/month
+
+**Option C: Hybrid Purchase + Credits**
+- $9.99 one-time: Game + 10 AI mystery credits
+- $2.99 for 5 additional credits
+- Players who play casually never pay more; frequent players buy credits
+
+**Option D: Ad-supported free tier**
+- Free with ads between rounds
+- Premium ($9.99) removes ads + adds video cinematics + premium avatars
+
+### 8.4 Cost Trajectory
+
+AI costs are dropping rapidly. Architecture decisions made today should account for:
+- LLM inference costs dropping ~50% per year
+- Image generation costs dropping ~40% per year
+- Video generation still maturing — costs will drop significantly as competition increases
+- What costs $1.00/session today may cost $0.25/session in 2 years
+
+**Recommendation:** Launch with a credit/session-based model that covers costs now, with the expectation of transitioning to a more generous model as costs decrease.
+
+---
+
+## 9. Security & Fair Play
 
 - Mystery solutions are **never sent to the client** - all validation happens server-side
 - Player guesses are submitted as sealed commitments (hashed) to prevent cheating in multiplayer

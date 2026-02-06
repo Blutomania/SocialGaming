@@ -109,42 +109,62 @@ After the video, all players receive:
 ### Step 6: Investigation Phase (Turn-Based)
 **Actor:** One user at a time, starting with User 1
 
-Each player's turn is a private investigation session. Other players cannot see what the active player is doing. On their turn, a player can perform a set number of actions (e.g., 3-5 actions per turn):
+Each player's turn consists of **one prime action**. The active player's turn is semi-private — other players receive a broadcast of *what* the active player is doing, but not the details of what they learn.
 
-#### Available Actions:
+#### Prime Actions (choose one per turn):
 
-**A. Investigate a Location**
-- Choose from available locations (museum, marketplace, docks, etc.)
-- Search for clues — interactive UI reveals evidence items
-- Each location may yield 1-3 clues per visit
-- Some locations unlock after certain evidence is found
+| Action | What it does | What others see |
+|--------|-------------|-----------------|
+| **Chase a Lead** | Follow up on a clue or tip to a new location or person | *"Inspector Nikos is chasing a lead at the docks"* |
+| **Talk to a Witness** | Interrogate an NPC — AI-powered conversation | *"Inspector Nikos is talking to Athena, a witness"* |
+| **Look for Clues** | Search a location for physical evidence | *"Inspector Nikos has found a clue!"* |
+| **Do Research** | Analyze evidence, cross-reference alibis, forensics | *"Inspector Nikos is doing research at the archive"* |
+| **Solve the Crime** | Make an accusation (see Step 8) | *"Inspector Nikos thinks he's solved it..."* |
 
-**B. Interrogate an NPC**
-- Select a witness, suspect, or bystander from the cast list
-- Real-time AI-powered conversation (text chat with the NPC)
-- NPCs have personalities, secrets, and breaking points
-- The right questions + the right evidence = deeper reveals
-- NPCs may lie, deflect, or reveal information depending on approach
+#### What Other Players See (The Broadcast)
 
-**C. Research / Forensics**
-- Analyze collected evidence for deeper insight
-- Cross-reference alibis and timelines
-- Request forensic analysis (takes 1 action, results come back next turn or immediately depending on type)
+While waiting, other players see a real-time activity feed:
 
-**D. Review Case Board**
-- View all personal evidence (private + shared from others)
-- Organize notes, tag suspects, build theories
-- No action cost — can be done freely during turn
+```
++---------------------------------------------------+
+|  LIVE FEED                                        |
+|                                                    |
+|  Inspector Nikos is talking to Athena,            |
+|  a witness at the Temple...                       |
+|                                                    |
+|  [Animated avatar of Nikos shown in conversation] |
+|                                                    |
+|  Meanwhile, review your case board:               |
+|  [ VIEW CASE BOARD ]  [ REVIEW SHARED EVIDENCE ]  |
++---------------------------------------------------+
+```
+
+Players know the *type* of action and the *target* (which NPC, which location) but NOT:
+- What the witness said
+- What specific clue was found
+- What the research revealed
+
+This keeps spectators engaged and gives them meta-information (who is Nikos suspicious of?) without revealing the substance.
 
 #### Example Turn (User 1):
 
 ```
-Action 1: Search the Museum entrance     --> Finds: torn crimson fabric
-Action 2: Interrogate the night guard     --> Learns: guard heard two voices
-Action 3: Analyze the crimson fabric      --> Result: expensive dye, merchant class
+Prime Action: Talk to a Witness — the night guard
+
+  Others see: "Inspector Nikos is talking to the Night Guard"
+
+  Nikos learns (privately):
+  - Guard heard two voices before the theft
+  - Guard was drugged, not knocked out
+  - Guard noticed crimson fabric on the floor
 ```
 
 User 1's turn ends. Before passing, they hit the **Information Sharing** step.
+
+#### Free Actions (no turn cost):
+- Review your case board at any time (during your turn or while waiting)
+- Read shared evidence from other players
+- Add personal notes and annotations
 
 ---
 
@@ -219,7 +239,7 @@ They must provide:
 ```
 
 **If correct:** Game ends. That player wins.
-**If wrong:** Player is eliminated from winning (can still play and share info, but cannot make another accusation). Game continues for remaining players.
+**If wrong:** Player **loses their next turn** as a penalty. They remain in the game and can still win, but skip one turn of investigation. They can attempt another accusation on a future turn (at the same risk).
 
 #### Option B: End of Round 3 (Forced Resolution)
 If no one has made a correct accusation after 3 rounds, ALL remaining players must simultaneously submit their accusations:
@@ -268,7 +288,7 @@ If no one has made a correct accusation after 3 rounds, ALL remaining players mu
 | Step 2-3: Invite & Join | 1-3 minutes |
 | Step 4: Avatar Creation | 2-3 minutes (simultaneous) |
 | Step 5: Incident Video | 30-60 seconds |
-| Step 6-7: Each Player Turn | 3-5 minutes |
-| Full Round (4 players) | 12-20 minutes |
-| Full Game (3 rounds) | 40-65 minutes |
-| **Total Session** | **~45-75 minutes** |
+| Step 6-7: Each Player Turn (1 prime action + sharing) | 2-4 minutes |
+| Full Round (4 players) | 8-16 minutes |
+| Full Game (3 rounds) | 30-50 minutes |
+| **Total Session** | **~35-60 minutes** |
