@@ -1,0 +1,138 @@
+{
+  "title": "The Locked Room Mystery",
+  "source_url": "demo://sample-mystery",
+  "source_type": "novel",
+  "full_text": "\nTHE LOCKED ROOM MYSTERY\nBy A. Sample Author (Public Domain)\n\nChapter I: The Discovery\n\nThe body of Lord Ashworth was discovered at precisely 8:17 AM by his butler, \nJenkins, who had brought the morning tea. The door to the study was locked \nfrom the inside, and the windows were sealed shut. There was no possible way \nfor anyone to have entered or exited the room.\n\nLord Ashworth had been stabbed through the heart with an ornate letter opener\nthat belonged to his own desk. The murder weapon bore ...",
+  "crime_type": "murder",
+  "setting_location": "English manor house",
+  "setting_time_period": "victorian",
+  "setting_environment": "mansion",
+  "characters": [
+    {
+      "name": "Lord Ashworth",
+      "role": "victim",
+      "description": "Wealthy aristocrat, recently paranoid",
+      "archetype": "aristocrat",
+      "motive": null,
+      "key_quotes": [
+        "I know someone is trying to poison me!"
+      ]
+    },
+    {
+      "name": "Dr. Richard Sterling",
+      "role": "suspect",
+      "description": "Lord Ashworth's physician and weekend guest",
+      "archetype": "professional_rival",
+      "motive": "Prevent medical research foundation that would benefit his rival",
+      "key_quotes": [
+        "I've been treating Lord Ashworth's nerves for weeks."
+      ]
+    },
+    {
+      "name": "Lady Margaret Ashworth",
+      "role": "suspect",
+      "description": "Lord Ashworth's wife, in her chambers during the murder",
+      "archetype": "spouse",
+      "motive": "Disinherited by the new will",
+      "key_quotes": [
+        "My husband had become impossible to live with."
+      ]
+    },
+    {
+      "name": "Miss Elizabeth Hart",
+      "role": "suspect",
+      "description": "Lord Ashworth's niece from London",
+      "archetype": "relative",
+      "motive": "Discovered she was cut from the will",
+      "key_quotes": [
+        "I only learned about the will by accident!"
+      ]
+    },
+    {
+      "name": "Jenkins",
+      "role": "witness",
+      "description": "The butler who discovered the body",
+      "archetype": "butler",
+      "motive": null,
+      "key_quotes": [
+        "The door was locked from the inside, sir."
+      ]
+    },
+    {
+      "name": "Inspector Morrison",
+      "role": "detective",
+      "description": "Investigating detective",
+      "archetype": "investigator",
+      "motive": null,
+      "key_quotes": []
+    }
+  ],
+  "evidence": [
+    {
+      "description": "Ornate letter opener with no fingerprints",
+      "evidence_type": "physical",
+      "relevance": "critical",
+      "discovery_context": "Found in victim's chest, murder weapon"
+    },
+    {
+      "description": "Door locked from inside",
+      "evidence_type": "physical",
+      "relevance": "red_herring",
+      "discovery_context": "Appeared to be impossible crime, but was staged"
+    },
+    {
+      "description": "Sealed windows",
+      "evidence_type": "physical",
+      "relevance": "red_herring",
+      "discovery_context": "No escape route apparent"
+    },
+    {
+      "description": "Changed will cutting out family members",
+      "evidence_type": "testimonial",
+      "relevance": "supporting",
+      "discovery_context": "Discovered by Miss Hart the previous day"
+    },
+    {
+      "description": "Fibers from jacket caught in keyhole",
+      "evidence_type": "physical",
+      "relevance": "critical",
+      "discovery_context": "Found during forensic examination"
+    },
+    {
+      "description": "Traces of sedative in victim's system",
+      "evidence_type": "physical",
+      "relevance": "critical",
+      "discovery_context": "Chemical analysis post-mortem"
+    },
+    {
+      "description": "String mechanism for manipulating lock",
+      "evidence_type": "physical",
+      "relevance": "critical",
+      "discovery_context": "Demonstrated by Inspector Morrison"
+    },
+    {
+      "description": "Dr. Sterling's knowledge of forensic science",
+      "evidence_type": "testimonial",
+      "relevance": "supporting",
+      "discovery_context": "Background research on suspect"
+    },
+    {
+      "description": "Lord Ashworth's paranoia about poisoning",
+      "evidence_type": "testimonial",
+      "relevance": "supporting",
+      "discovery_context": "Lady Ashworth's testimony"
+    }
+  ],
+  "plot_summary": "Lord Ashworth is found stabbed in his locked study. The locked room mystery seems impossible until Inspector Morrison discovers the door lock can be manipulated from outside. Dr. Sterling, the victim's physician, committed the murder to prevent a will change that would fund his rival's medical research. Evidence includes fibers in the keyhole and sedatives in the victim's system.",
+  "solution": "Dr. Richard Sterling murdered Lord Ashworth using a string-through-keyhole trick to stage a locked room mystery. His motive: preventing the medical research foundation that would benefit his rival. He sedated the victim first, stabbed him with the letter opener, then locked the door from outside using the string method.",
+  "genre_tags": [
+    "locked_room",
+    "cozy",
+    "victorian",
+    "manor_house"
+  ],
+  "author": "A. Sample Author",
+  "publication_year": 1895,
+  "license_type": "public_domain",
+  "processed_date": "2026-02-09T03:01:34.734116"
+}

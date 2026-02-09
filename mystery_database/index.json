@@ -1,0 +1,21 @@
+[
+  {
+    "id": "the_locked_room_mystery",
+    "title": "The Locked Room Mystery",
+    "crime_type": "murder",
+    "setting": {
+      "location": "English manor house",
+      "time_period": "victorian",
+      "environment": "mansion"
+    },
+    "author": "A. Sample Author",
+    "genre_tags": [
+      "locked_room",
+      "cozy",
+      "victorian",
+      "manor_house"
+    ],
+    "character_count": 6,
+    "evidence_count": 9
+  }
+]
