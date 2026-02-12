@@ -7,13 +7,20 @@ If true, investing in deeper pipeline extraction pays off through faster, cheape
 and more consistent game sessions.
 
 This variant extracts MAXIMUM depth: everything the baseline extracts plus
-dialogue samples, emotional states, character backstories, atmosphere cues,
-multiple solution paths (partial credit), and a difficulty rating. Uses 8+ LLM
+dialogue mechanics (setting-agnostic patterns for how characters deliver info,
+deceive, and crack), emotional states, character backstories, atmosphere cues,
+multiple solution paths (partial credit), and a difficulty rating. Uses 8 LLM
 calls per text to go deep on every dimension.
+
+NOTE: We do NOT extract dialogue samples or canonical lines. Players choose
+arbitrary settings ("An Art Theft in Ancient Athens") so source-specific dialogue
+is irrelevant. Instead we extract dialogue MECHANICS -- how a character delivers
+clues, deceives, deflects, and breaks under pressure. The game-time LLM handles
+setting-appropriate speech naturally.
 
 WHAT THIS TESTS:
 - Does richer pre-extracted data measurably improve gameplay?
-- Do dialogue samples help the game-time LLM stay in character better?
+- Do dialogue mechanics help the game-time LLM run better interrogations?
 - Do multiple solution paths make the game more forgiving/fun?
 - Is the extra pipeline cost worth it?
 
@@ -65,7 +72,7 @@ class RichCrimeIncident:
 
 @dataclass
 class RichCharacter:
-    """Deep character model with dialogue samples and emotional arc."""
+    """Deep character model with dialogue mechanics and emotional arc."""
     name: str
     role: str  # victim, suspect, witness, bystander
     is_culprit: bool = False
@@ -82,9 +89,14 @@ class RichCharacter:
     # Rich additions
     backstory: str = ""  # 2-3 sentences of background
     emotional_state: str = ""  # how they feel right now (grieving, panicked, calm, etc.)
-    dialogue_samples: List[str] = field(default_factory=list)  # 3-5 example lines in their voice
     tells_when_lying: str = ""  # behavioral cue when this character is being deceptive
     pressure_points: List[str] = field(default_factory=list)  # topics that make them crack or slip up
+    # Dialogue mechanics (setting-agnostic -- HOW they communicate, not specific lines)
+    info_delivery_method: str = ""  # how they reveal clues: reluctant admission, accidental slip, bragging, embedded in anecdote
+    deception_technique: str = ""  # how they lie: deflection, half-truths, confident denial, emotional manipulation, answering a different question
+    evasion_pattern: str = ""  # how they dodge questions: changing subject, getting emotional, invoking privacy, turning it around
+    cracking_pattern: str = ""  # how they break: gradual inconsistency, emotional outburst, overexplaining, Freudian slip
+    verbal_tics_when_stressed: str = ""  # setting-agnostic behavioral cues: becomes terse, rambles, repeats themselves, gets formal
 
 
 @dataclass
@@ -283,8 +295,8 @@ class RichProcessor:
         characters = self._extract_characters(sample)
         llm_calls += 1
 
-        print("    [4/8] Generating dialogue samples...")
-        characters = self._add_dialogue_samples(sample, characters)
+        print("    [4/8] Extracting dialogue mechanics...")
+        characters = self._extract_dialogue_mechanics(sample, characters)
         llm_calls += 1
 
         print("    [5/8] Extracting clues with connections...")
@@ -384,7 +396,7 @@ JSON array. Each character:
   "is_culprit": <true for exactly ONE>,
   "description": "<brief description>",
   "personality_traits": ["<3-5 traits>"],
-  "speech_style": "<how they talk>",
+  "speech_style": "<how they talk -- describe the PATTERN not the dialect, e.g. 'terse and guarded' not 'Victorian English'>",
   "motive": "<why they could be the culprit>",
   "relationship_to_victim": "<connection>",
   "relationship_to_others": ["<connections to other characters>"],
@@ -424,20 +436,27 @@ RULES: 1 victim, 1 culprit, 2+ suspects with motives, 1+ witness."""
             print(f"    Warning: character extraction failed ({e})")
             return []
 
-    def _add_dialogue_samples(self, text, characters):
-        """Separate LLM call to generate dialogue samples for each character."""
+    def _extract_dialogue_mechanics(self, text, characters):
+        """
+        Extract setting-agnostic dialogue MECHANICS for each character.
+
+        These describe HOW a character communicates (delivers info, deceives,
+        evades, cracks) -- not what they literally say. The game-time LLM uses
+        these patterns to generate setting-appropriate dialogue on the fly.
+        """
         if not characters:
             return characters
 
         char_descriptions = "\n".join(
-            f"- {c.name} ({c.role}): {c.speech_style}. Traits: {', '.join(c.personality_traits)}"
+            f"- {c.name} ({c.role}): Traits: {', '.join(c.personality_traits)}. "
+            f"Hides: {c.what_they_hide}. Interrogation behavior: {c.interrogation_behavior}"
             for c in characters if c.role != 'victim'
         )
 
-        prompt = f"""Based on this mystery text and these character profiles, generate
-3-5 example dialogue lines for each character. These lines should capture their
-unique voice and be usable as reference for an AI playing this character in an
-interrogation game.
+        prompt = f"""Analyze how each character in this mystery COMMUNICATES during
+questioning. Do NOT write specific dialogue lines -- instead describe the abstract
+MECHANICS of how each character handles conversation. These patterns must work
+in ANY setting (Victorian London, Ancient Athens, a Mars colony, etc.)
 
 TEXT EXCERPT:
 {text[:5000]}
@@ -445,27 +464,29 @@ TEXT EXCERPT:
 CHARACTERS:
 {char_descriptions}
 
-Respond with a JSON object mapping character names to arrays of dialogue lines:
+For each character, respond with a JSON object:
 {{
-  "<character name>": [
-    "<example line in their voice>",
-    "<another example line>"
-  ]
-}}
-
-Lines should include a mix of:
-- Evasive/deflective responses
-- Emotional reactions
-- Providing information (truthfully or deceptively)
-- Reacting to accusations"""
+  "<character name>": {{
+    "info_delivery_method": "<how they reveal key information: reluctant admission, accidental slip, bragging, embedded in anecdote, matter-of-fact, trades info for sympathy>",
+    "deception_technique": "<how they lie: deflection, half-truths, confident denial, emotional manipulation, answering a different question, mixing truth with fiction, feigning ignorance>",
+    "evasion_pattern": "<how they dodge uncomfortable questions: changes subject, gets emotional, invokes privacy, turns it around on questioner, claims poor memory, appeals to authority>",
+    "cracking_pattern": "<how they eventually break: gradual inconsistency, emotional outburst, overexplaining, Freudian slip, exhaustion from maintaining lies, confronted with undeniable evidence>",
+    "verbal_tics_when_stressed": "<setting-agnostic behavioral cues: becomes terse, rambles, repeats themselves, gets overly formal, nervous laughter, long pauses, speaks faster>"
+  }}
+}}"""
 
         try:
             data = _parse_json(_call_claude(self.client, prompt, 4000))
             for char in characters:
                 if char.name in data:
-                    char.dialogue_samples = data[char.name]
+                    mechanics = data[char.name]
+                    char.info_delivery_method = mechanics.get('info_delivery_method', '')
+                    char.deception_technique = mechanics.get('deception_technique', '')
+                    char.evasion_pattern = mechanics.get('evasion_pattern', '')
+                    char.cracking_pattern = mechanics.get('cracking_pattern', '')
+                    char.verbal_tics_when_stressed = mechanics.get('verbal_tics_when_stressed', '')
         except (json.JSONDecodeError, KeyError) as e:
-            print(f"    Warning: dialogue generation failed ({e})")
+            print(f"    Warning: dialogue mechanics extraction failed ({e})")
 
         return characters
 
