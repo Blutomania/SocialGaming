@@ -1,87 +1,152 @@
 """
-Choose Your Mystery - Data Extraction POC
-==========================================
+Choose Your Mystery - Data Extraction Pipeline
+================================================
 
-This script demonstrates the core pipeline for acquiring and processing mystery content.
+Extracts structured mystery game data from public domain texts.
+See MYSTERY_EXTRACTION_REQUIREMENTS.md for the full data specification.
+
+The extracted data powers an AI party game where players investigate crime scenes,
+interrogate AI-driven NPCs, and compete to name the culprit first. Locations are
+chosen by the player at game time -- this pipeline extracts characters, crimes,
+clues, and timelines that can be transplanted into any setting.
 
 Requirements:
-    pip install requests beautifulsoup4 spacy anthropic psycopg2-binary python-dotenv
-    python -m spacy download en_core_web_sm
+    pip install requests beautifulsoup4 anthropic python-dotenv
 """
 
 import os
 import re
 import json
+import uuid
+import time
 import requests
 from bs4 import BeautifulSoup
 from typing import Dict, List, Optional
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, field, asdict
 from datetime import datetime
 import anthropic
 from dotenv import load_dotenv
 
 load_dotenv()
 
+
 # ============================================================================
 # DATA MODELS
 # ============================================================================
 
 @dataclass
-class Character:
-    """Represents a character extracted from a mystery"""
-    name: str
-    role: str  # victim, suspect, detective, witness, bystander
-    description: str = ""
-    archetype: Optional[str] = None  # butler, spouse, business_partner, etc.
-    motive: Optional[str] = None
-    key_quotes: List[str] = None
-    
-    def __post_init__(self):
-        if self.key_quotes is None:
-            self.key_quotes = []
+class CrimeIncident:
+    """The core crime that drives the mystery."""
+    crime_type: str  # murder, theft, fraud, kidnapping, disappearance, sabotage
+    victim_name: str
+    victim_description: str
+    what_happened: str
+    how_it_happened: str
+    discovery_scenario: str
+    surface_observations: List[str] = field(default_factory=list)
+    hidden_details: List[str] = field(default_factory=list)
 
 
 @dataclass
-class Evidence:
-    """Represents a piece of evidence"""
+class Character:
+    """An NPC that players can interrogate during the game."""
+    name: str
+    role: str  # victim, suspect, witness, bystander
+    is_culprit: bool = False
+    description: str = ""
+    personality_traits: List[str] = field(default_factory=list)
+    speech_style: str = ""
+    motive: str = ""
+    relationship_to_victim: str = ""
+    relationship_to_others: List[str] = field(default_factory=list)
+    knowledge_about_crime: str = ""
+    knowledge_that_helps_solve: str = ""
+    what_they_hide: str = ""
+    interrogation_behavior: str = ""
+
+
+@dataclass
+class PhysicalClue:
+    """A clue found through scene investigation."""
     description: str
-    evidence_type: str  # physical, testimonial, circumstantial
-    relevance: str  # critical, supporting, red_herring
-    discovery_context: str = ""
+    what_it_implies: str
+    is_red_herring: bool = False
+    # Red herring details (populated only when is_red_herring is True)
+    false_conclusion: str = ""
+    why_misleading: str = ""
+    what_disproves_it: str = ""
+
+
+@dataclass
+class TestimonialRevelation:
+    """A piece of information extracted from an NPC during interrogation."""
+    description: str
+    source_character: str
+    what_it_implies: str
+    is_red_herring: bool = False
+    # Red herring details (populated only when is_red_herring is True)
+    false_conclusion: str = ""
+    why_misleading: str = ""
+    what_disproves_it: str = ""
+
+
+@dataclass
+class SolutionStep:
+    """One step in the logical chain that proves the culprit's guilt."""
+    step_number: int
+    clue_reference: str
+    reasoning: str
+
+
+@dataclass
+class TimelineEvent:
+    """A single event in the ground-truth chronology of the crime."""
+    order: int
+    time: str
+    event: str
+    actors: List[str] = field(default_factory=list)
+    witnesses: List[str] = field(default_factory=list)
 
 
 @dataclass
 class MysteryScenario:
-    """Complete mystery scenario structure"""
-    title: str
-    source_url: str
-    source_type: str  # novel, screenplay, court_transcript
-    full_text: str
-    crime_type: str  # murder, theft, fraud, kidnapping, etc.
-    setting_location: str
-    setting_time_period: str
-    setting_environment: str  # mansion, ship, space_station, etc.
-    
-    characters: List[Character] = None
-    evidence: List[Evidence] = None
-    plot_summary: str = ""
-    solution: str = ""
-    genre_tags: List[str] = None
-    
-    # Metadata
+    """Complete extracted mystery scenario, ready for the game engine."""
+    # Identity
+    scenario_id: str = ""
+    title: str = ""
+
+    # Core crime
+    crime: CrimeIncident = None
+
+    # Mystery classification
+    mystery_type: str = ""  # whodunit, locked_room, cozy, procedural, espionage, heist
+    secondary_tags: List[str] = field(default_factory=list)
+
+    # Characters
+    characters: List[Character] = field(default_factory=list)
+
+    # Clues and revelations
+    physical_clues: List[PhysicalClue] = field(default_factory=list)
+    testimonial_revelations: List[TestimonialRevelation] = field(default_factory=list)
+
+    # Solution
+    solution_chain: List[SolutionStep] = field(default_factory=list)
+
+    # Timeline
+    timeline: List[TimelineEvent] = field(default_factory=list)
+
+    # Source metadata
     author: str = "Unknown"
     publication_year: Optional[int] = None
+    source_url: str = ""
+    source_type: str = ""  # novel, screenplay, true_crime
     license_type: str = "unknown"
-    processed_date: str = None
-    
+    processed_date: str = ""
+
     def __post_init__(self):
-        if self.characters is None:
-            self.characters = []
-        if self.evidence is None:
-            self.evidence = []
-        if self.genre_tags is None:
-            self.genre_tags = []
-        if self.processed_date is None:
+        if not self.scenario_id:
+            self.scenario_id = uuid.uuid4().hex[:12]
+        if not self.processed_date:
             self.processed_date = datetime.now().isoformat()
 
 
@@ -90,98 +155,87 @@ class MysteryScenario:
 # ============================================================================
 
 class GutenbergScraper:
-    """Scrape public domain mysteries from Project Gutenberg"""
-    
+    """Scrape public domain mysteries from Project Gutenberg."""
+
     BASE_URL = "https://www.gutenberg.org"
     SEARCH_URL = f"{BASE_URL}/ebooks/search/"
-    
+    REQUEST_DELAY = 2  # seconds between requests to respect rate limits
+
     def __init__(self):
         self.session = requests.Session()
         self.session.headers.update({
             'User-Agent': 'ChooseYourMystery-DataAcquisition/1.0 (Research Project)'
         })
-    
+
     def search_mysteries(self, query: str = "detective mystery", limit: int = 10) -> List[Dict]:
-        """
-        Search for mystery books on Project Gutenberg
-        
-        Why separate search from download: Rate limiting and selective processing
-        """
+        """Search for mystery books on Project Gutenberg."""
         params = {
             'query': query,
             'submit_search': 'Go!',
         }
-        
+
         response = self.session.get(self.SEARCH_URL, params=params)
+        response.raise_for_status()
         soup = BeautifulSoup(response.content, 'html.parser')
-        
+
         books = []
         for item in soup.select('.booklink')[:limit]:
             book_id = item.get('href', '').split('/')[-1]
             title = item.get_text(strip=True)
-            
+
             if book_id.isdigit():
                 books.append({
                     'id': book_id,
                     'title': title,
                     'url': f"{self.BASE_URL}/ebooks/{book_id}"
                 })
-        
+
         return books
-    
+
     def download_book_text(self, book_id: str) -> Optional[Dict]:
-        """
-        Download full text and metadata for a book
-        
-        Why use plain text format: Easier to process, no formatting artifacts
-        """
-        # Get metadata page
+        """Download full text and metadata for a book."""
+        time.sleep(self.REQUEST_DELAY)
+
         metadata_url = f"{self.BASE_URL}/ebooks/{book_id}"
         response = self.session.get(metadata_url)
+        response.raise_for_status()
         soup = BeautifulSoup(response.content, 'html.parser')
-        
-        # Extract metadata
+
         metadata = {
             'id': book_id,
             'title': self._extract_title(soup),
             'author': self._extract_author(soup),
             'publication_year': self._extract_year(soup),
         }
-        
-        # Download plain text version
-        text_url = f"{self.BASE_URL}/files/{book_id}/{book_id}-0.txt"
-        try:
-            text_response = self.session.get(text_url)
-            text_response.raise_for_status()
-            metadata['full_text'] = text_response.text
-            metadata['source_url'] = text_url
-            return metadata
-        except requests.RequestException:
-            # Try alternative format
-            text_url = f"{self.BASE_URL}/files/{book_id}/{book_id}.txt"
+
+        time.sleep(self.REQUEST_DELAY)
+
+        # Try primary text URL, then fallback
+        for url_template in [
+            f"{self.BASE_URL}/files/{book_id}/{book_id}-0.txt",
+            f"{self.BASE_URL}/files/{book_id}/{book_id}.txt",
+        ]:
             try:
-                text_response = self.session.get(text_url)
+                text_response = self.session.get(url_template)
                 text_response.raise_for_status()
                 metadata['full_text'] = text_response.text
-                metadata['source_url'] = text_url
+                metadata['source_url'] = url_template
                 return metadata
-            except requests.RequestException as e:
-                print(f"Failed to download book {book_id}: {e}")
-                return None
-    
+            except requests.RequestException:
+                continue
+
+        print(f"Failed to download book {book_id}: no valid text URL found")
+        return None
+
     def _extract_title(self, soup: BeautifulSoup) -> str:
-        """Extract book title from metadata page"""
         title_elem = soup.select_one('h1[itemprop="name"]')
         return title_elem.get_text(strip=True) if title_elem else "Unknown"
-    
+
     def _extract_author(self, soup: BeautifulSoup) -> str:
-        """Extract author name"""
         author_elem = soup.select_one('a[itemprop="creator"]')
         return author_elem.get_text(strip=True) if author_elem else "Unknown"
-    
+
     def _extract_year(self, soup: BeautifulSoup) -> Optional[int]:
-        """Extract publication year"""
-        # This is simplified - actual extraction may vary
         year_pattern = r'\b(1[789]\d{2}|20\d{2})\b'
         text = soup.get_text()
         match = re.search(year_pattern, text)
@@ -189,218 +243,383 @@ class GutenbergScraper:
 
 
 # ============================================================================
+# HELPERS
+# ============================================================================
+
+def _strip_markdown_fences(text: str) -> str:
+    """Remove markdown code fences from LLM JSON responses."""
+    text = text.strip()
+    text = re.sub(r'^```\w*\n?', '', text)
+    text = re.sub(r'\n?```$', '', text)
+    return text.strip()
+
+
+def _call_claude(client: anthropic.Anthropic, prompt: str, max_tokens: int = 4000) -> str:
+    """Send a prompt to Claude and return the raw text response."""
+    message = client.messages.create(
+        model="claude-sonnet-4-20250514",
+        max_tokens=max_tokens,
+        messages=[{"role": "user", "content": prompt}]
+    )
+    return message.content[0].text
+
+
+def _parse_json_response(raw: str) -> any:
+    """Parse a JSON response from Claude, stripping markdown fences."""
+    cleaned = _strip_markdown_fences(raw)
+    return json.loads(cleaned)
+
+
+# ============================================================================
 # DATA PROCESSING - AI-POWERED EXTRACTION
 # ============================================================================
 
 class MysteryProcessor:
-    """Process raw mystery text into structured data using Claude"""
-    
+    """Extract structured game data from raw mystery text using Claude."""
+
     def __init__(self, api_key: str = None):
-        """
-        Initialize with Anthropic API key
-        
-        Why Claude: Superior reasoning for complex literary analysis
-        """
         self.client = anthropic.Anthropic(
             api_key=api_key or os.environ.get("ANTHROPIC_API_KEY")
         )
-    
+
     def process_mystery(self, raw_text: str, metadata: Dict) -> MysteryScenario:
         """
-        Convert raw text into structured MysteryScenario
-        
-        Why AI processing: Manual extraction is impractical at scale
-        Why structured output: Enables programmatic mystery generation
+        Full extraction pipeline: classify, extract crime, characters,
+        clues, timeline, and solution chain from raw text.
         """
-        
-        # Step 1: Basic classification
-        classification = self._classify_mystery(raw_text)
-        
-        # Step 2: Extract characters
-        characters = self._extract_characters(raw_text)
-        
-        # Step 3: Extract evidence and clues
-        evidence = self._extract_evidence(raw_text)
-        
-        # Step 4: Get plot summary and solution
-        summary_data = self._extract_plot_summary(raw_text)
-        
-        # Combine into MysteryScenario
+        # Use a generous sample -- first ~15k chars covers most short stories
+        # and the critical opening/middle of novels
+        sample = raw_text[:15000]
+
+        print("    [1/6] Classifying mystery type...")
+        classification = self._classify_mystery(sample)
+
+        print("    [2/6] Extracting core crime/incident...")
+        crime = self._extract_crime(sample)
+
+        print("    [3/6] Extracting characters...")
+        characters = self._extract_characters(sample)
+
+        print("    [4/6] Extracting clues and revelations...")
+        clues_data = self._extract_clues(sample)
+
+        print("    [5/6] Reconstructing timeline...")
+        timeline = self._extract_timeline(sample)
+
+        print("    [6/6] Building solution chain...")
+        solution_chain = self._extract_solution_chain(sample)
+
         scenario = MysteryScenario(
             title=metadata.get('title', 'Unknown'),
-            source_url=metadata.get('source_url', ''),
-            source_type='novel',
-            full_text=raw_text[:10000],  # Store first 10k chars for reference
-            crime_type=classification.get('crime_type', 'unknown'),
-            setting_location=classification.get('location', 'unknown'),
-            setting_time_period=classification.get('time_period', 'unknown'),
-            setting_environment=classification.get('environment', 'unknown'),
+            crime=crime,
+            mystery_type=classification.get('mystery_type', 'whodunit'),
+            secondary_tags=classification.get('secondary_tags', []),
             characters=characters,
-            evidence=evidence,
-            plot_summary=summary_data.get('summary', ''),
-            solution=summary_data.get('solution', ''),
-            genre_tags=classification.get('tags', []),
+            physical_clues=clues_data.get('physical_clues', []),
+            testimonial_revelations=clues_data.get('testimonial_revelations', []),
+            solution_chain=solution_chain,
+            timeline=timeline,
             author=metadata.get('author', 'Unknown'),
             publication_year=metadata.get('publication_year'),
-            license_type='public_domain'
+            source_url=metadata.get('source_url', ''),
+            source_type='novel',
+            license_type='public_domain',
         )
-        
+
         return scenario
-    
+
+    # ------------------------------------------------------------------
+    # Extraction step 1: Classify mystery type
+    # ------------------------------------------------------------------
+
     def _classify_mystery(self, text: str) -> Dict:
-        """
-        Use Claude to classify the mystery type and setting
-        
-        Why separate classification step: Enables early filtering/categorization
-        """
-        # Truncate text for API efficiency
-        sample_text = text[:4000]
-        
-        prompt = f"""Analyze this mystery story excerpt and classify it:
+        prompt = f"""Analyze this mystery text and classify it.
 
-{sample_text}
+TEXT:
+{text}
 
-Provide a JSON response with:
-- crime_type: (murder, theft, fraud, kidnapping, disappearance, etc.)
-- location: Geographic/setting location
-- time_period: (victorian, modern, future, etc.)
-- environment: (mansion, ship, train, island, city, space_station, etc.)
-- tags: Array of genre tags (locked_room, cozy, noir, procedural, etc.)
+Respond with ONLY a JSON object:
+{{
+  "mystery_type": "<one of: whodunit, locked_room, cozy, procedural, espionage, heist>",
+  "secondary_tags": ["<2-5 flavor tags, e.g. noir, historical, high_society, revenge, inheritance>"]
+}}"""
 
-Respond ONLY with valid JSON, no other text."""
-
-        message = self.client.messages.create(
-            model="claude-sonnet-4-20250514",
-            max_tokens=1000,
-            messages=[{"role": "user", "content": prompt}]
-        )
-        
         try:
-            response_text = message.content[0].text
-            # Clean up response if Claude adds markdown
-            response_text = response_text.strip('```json\n').strip('```')
-            return json.loads(response_text)
-        except json.JSONDecodeError:
-            print("Failed to parse classification JSON")
-            return {
-                'crime_type': 'unknown',
-                'location': 'unknown',
-                'time_period': 'unknown',
-                'environment': 'unknown',
-                'tags': []
-            }
-    
+            raw = _call_claude(self.client, prompt, max_tokens=500)
+            return _parse_json_response(raw)
+        except (json.JSONDecodeError, KeyError) as e:
+            print(f"    Warning: classification parse failed ({e}), using defaults")
+            return {"mystery_type": "whodunit", "secondary_tags": []}
+
+    # ------------------------------------------------------------------
+    # Extraction step 2: Core crime/incident
+    # ------------------------------------------------------------------
+
+    def _extract_crime(self, text: str) -> CrimeIncident:
+        prompt = f"""Analyze this mystery text and extract the core crime/incident.
+
+TEXT:
+{text}
+
+Respond with ONLY a JSON object:
+{{
+  "crime_type": "<murder, theft, fraud, kidnapping, disappearance, or sabotage>",
+  "victim_name": "<name of the victim>",
+  "victim_description": "<who the victim is -- role, status, key relationships>",
+  "what_happened": "<1-3 sentence description of the crime>",
+  "how_it_happened": "<the actual method/mechanism -- the ground truth of how the crime was committed>",
+  "discovery_scenario": "<how and when the crime was discovered; what investigators initially walk into>",
+  "surface_observations": ["<3-5 things immediately obvious at the scene>"],
+  "hidden_details": ["<3-5 things only careful investigation or expertise would reveal>"]
+}}"""
+
+        try:
+            raw = _call_claude(self.client, prompt, max_tokens=2000)
+            data = _parse_json_response(raw)
+            return CrimeIncident(
+                crime_type=data.get('crime_type', 'unknown'),
+                victim_name=data.get('victim_name', 'Unknown'),
+                victim_description=data.get('victim_description', ''),
+                what_happened=data.get('what_happened', ''),
+                how_it_happened=data.get('how_it_happened', ''),
+                discovery_scenario=data.get('discovery_scenario', ''),
+                surface_observations=data.get('surface_observations', []),
+                hidden_details=data.get('hidden_details', []),
+            )
+        except (json.JSONDecodeError, KeyError) as e:
+            print(f"    Warning: crime extraction failed ({e})")
+            return CrimeIncident(
+                crime_type='unknown', victim_name='Unknown',
+                victim_description='', what_happened='',
+                how_it_happened='', discovery_scenario='',
+            )
+
+    # ------------------------------------------------------------------
+    # Extraction step 3: Characters (NPCs for interrogation)
+    # ------------------------------------------------------------------
+
     def _extract_characters(self, text: str) -> List[Character]:
-        """
-        Extract key characters with their roles and motives
-        
-        Why character extraction: Core to mystery generation
-        """
-        sample_text = text[:6000]
-        
-        prompt = f"""Analyze this mystery and extract the key characters.
+        prompt = f"""Analyze this mystery text and extract 4-8 main characters.
 
-{sample_text}
+These characters will be AI-driven NPCs in a mystery party game. Players will
+interrogate them, so each character needs enough depth to sustain a conversation.
 
-For each character provide:
-- name
-- role: (victim, suspect, detective, witness, bystander)
-- description: Brief character description
-- archetype: (butler, spouse, business_partner, rival, etc.)
-- motive: If they're a suspect, what's their motive?
+TEXT:
+{text}
 
-Respond with a JSON array of characters. Keep to 5-8 main characters."""
+For EACH character, respond with a JSON array of objects. Each object must have:
+{{
+  "name": "<full name>",
+  "role": "<victim | suspect | witness | bystander>",
+  "is_culprit": <true for exactly ONE suspect, false for all others>,
+  "description": "<brief physical/social description>",
+  "personality_traits": ["<3-5 traits, e.g. evasive under pressure, charmingly deflective>"],
+  "speech_style": "<how they talk: formal, colloquial, nervous, curt, verbose, etc.>",
+  "motive": "<why this character could plausibly be the culprit -- required for all suspects>",
+  "relationship_to_victim": "<their connection: spouse, business partner, rival, employee, etc.>",
+  "relationship_to_others": ["<key connections to other characters, e.g. 'secretly dating Alice'>"],
+  "knowledge_about_crime": "<what they know: alibi, what they saw/heard, their whereabouts>",
+  "knowledge_that_helps_solve": "<specific info this character has that helps a player solve the mystery>",
+  "what_they_hide": "<what they deflect on, lie about, or refuse to discuss>",
+  "interrogation_behavior": "<how they behave under questioning: cooperative, hostile, tearful, evasive, etc.>"
+}}
 
-        message = self.client.messages.create(
-            model="claude-sonnet-4-20250514",
-            max_tokens=2000,
-            messages=[{"role": "user", "content": prompt}]
-        )
-        
+IMPORTANT:
+- Exactly 1 character must be the victim (role=victim, is_culprit=false)
+- Exactly 1 suspect must have is_culprit=true
+- At least 2 suspects must have plausible motives (including the culprit)
+- At least 1 witness
+- Respond with ONLY the JSON array, no other text."""
+
         try:
-            response_text = message.content[0].text.strip('```json\n').strip('```')
-            char_data = json.loads(response_text)
+            raw = _call_claude(self.client, prompt, max_tokens=6000)
+            char_list = _parse_json_response(raw)
             return [
                 Character(
                     name=c.get('name', 'Unknown'),
                     role=c.get('role', 'bystander'),
+                    is_culprit=c.get('is_culprit', False),
                     description=c.get('description', ''),
-                    archetype=c.get('archetype'),
-                    motive=c.get('motive')
+                    personality_traits=c.get('personality_traits', []),
+                    speech_style=c.get('speech_style', ''),
+                    motive=c.get('motive', ''),
+                    relationship_to_victim=c.get('relationship_to_victim', ''),
+                    relationship_to_others=c.get('relationship_to_others', []),
+                    knowledge_about_crime=c.get('knowledge_about_crime', ''),
+                    knowledge_that_helps_solve=c.get('knowledge_that_helps_solve', ''),
+                    what_they_hide=c.get('what_they_hide', ''),
+                    interrogation_behavior=c.get('interrogation_behavior', ''),
                 )
-                for c in char_data
+                for c in char_list
             ]
         except (json.JSONDecodeError, KeyError) as e:
-            print(f"Failed to extract characters: {e}")
+            print(f"    Warning: character extraction failed ({e})")
             return []
-    
-    def _extract_evidence(self, text: str) -> List[Evidence]:
-        """Extract key pieces of evidence"""
-        sample_text = text[:6000]
-        
-        prompt = f"""List the key pieces of evidence in this mystery:
 
-{sample_text}
+    # ------------------------------------------------------------------
+    # Extraction step 4: Clues and revelations
+    # ------------------------------------------------------------------
 
-For each piece of evidence:
-- description: What is it?
-- evidence_type: (physical, testimonial, circumstantial)
-- relevance: (critical, supporting, red_herring)
-- discovery_context: How/when was it found?
+    def _extract_clues(self, text: str) -> Dict:
+        prompt = f"""Analyze this mystery and extract the key clues and revelations.
 
-Respond with JSON array of evidence. Focus on 5-10 key pieces."""
+These clues are the atomic units of information in a mystery party game. Players
+discover them by investigating scenes or interrogating NPCs, then choose which
+to share (75%) and which to withhold (25%) from other players.
 
-        message = self.client.messages.create(
-            model="claude-sonnet-4-20250514",
-            max_tokens=2000,
-            messages=[{"role": "user", "content": prompt}]
-        )
-        
+TEXT:
+{text}
+
+Respond with ONLY a JSON object containing two arrays:
+
+{{
+  "physical_clues": [
+    {{
+      "description": "<what the clue is, e.g. 'a broken watch stopped at 2:15 AM'>",
+      "what_it_implies": "<what this clue suggests or proves>",
+      "is_red_herring": <true or false>,
+      "false_conclusion": "<if red herring: what wrong answer it points toward>",
+      "why_misleading": "<if red herring: why it seems convincing but is wrong>",
+      "what_disproves_it": "<if red herring: what other clue exposes it>"
+    }}
+  ],
+  "testimonial_revelations": [
+    {{
+      "description": "<the piece of information revealed>",
+      "source_character": "<which character reveals this when questioned>",
+      "what_it_implies": "<what this revelation suggests or proves>",
+      "is_red_herring": <true or false>,
+      "false_conclusion": "<if red herring: what wrong answer it points toward>",
+      "why_misleading": "<if red herring: why it seems convincing but is wrong>",
+      "what_disproves_it": "<if red herring: what other clue exposes it>"
+    }}
+  ]
+}}
+
+IMPORTANT:
+- Include 4-8 physical clues and 4-8 testimonial revelations
+- At least 2 total items should be red herrings
+- For non-red-herring items, leave false_conclusion/why_misleading/what_disproves_it as empty strings
+- Each clue must be self-contained (understandable on its own)"""
+
         try:
-            response_text = message.content[0].text.strip('```json\n').strip('```')
-            evidence_data = json.loads(response_text)
+            raw = _call_claude(self.client, prompt, max_tokens=6000)
+            data = _parse_json_response(raw)
+
+            physical = [
+                PhysicalClue(
+                    description=c.get('description', ''),
+                    what_it_implies=c.get('what_it_implies', ''),
+                    is_red_herring=c.get('is_red_herring', False),
+                    false_conclusion=c.get('false_conclusion', ''),
+                    why_misleading=c.get('why_misleading', ''),
+                    what_disproves_it=c.get('what_disproves_it', ''),
+                )
+                for c in data.get('physical_clues', [])
+            ]
+
+            testimonial = [
+                TestimonialRevelation(
+                    description=t.get('description', ''),
+                    source_character=t.get('source_character', ''),
+                    what_it_implies=t.get('what_it_implies', ''),
+                    is_red_herring=t.get('is_red_herring', False),
+                    false_conclusion=t.get('false_conclusion', ''),
+                    why_misleading=t.get('why_misleading', ''),
+                    what_disproves_it=t.get('what_disproves_it', ''),
+                )
+                for t in data.get('testimonial_revelations', [])
+            ]
+
+            return {'physical_clues': physical, 'testimonial_revelations': testimonial}
+        except (json.JSONDecodeError, KeyError) as e:
+            print(f"    Warning: clue extraction failed ({e})")
+            return {'physical_clues': [], 'testimonial_revelations': []}
+
+    # ------------------------------------------------------------------
+    # Extraction step 5: Timeline
+    # ------------------------------------------------------------------
+
+    def _extract_timeline(self, text: str) -> List[TimelineEvent]:
+        prompt = f"""Analyze this mystery and reconstruct the ground-truth timeline
+of events -- what ACTUALLY happened in chronological order.
+
+This timeline is the source of truth that the game engine uses to validate player
+theories and drive NPC responses. It is NOT shown to the player.
+
+TEXT:
+{text}
+
+Respond with ONLY a JSON array of events in chronological order:
+[
+  {{
+    "order": 1,
+    "time": "<when this occurred, e.g. '11:45 PM' or '2 hours before discovery'>",
+    "event": "<what happened>",
+    "actors": ["<who was involved>"],
+    "witnesses": ["<who observed this, and what they actually saw -- empty if unwitnessed>"]
+  }}
+]
+
+Include 5-10 events covering the key moments from before the crime through discovery."""
+
+        try:
+            raw = _call_claude(self.client, prompt, max_tokens=4000)
+            events = _parse_json_response(raw)
             return [
-                Evidence(
-                    description=e.get('description', ''),
-                    evidence_type=e.get('evidence_type', 'physical'),
-                    relevance=e.get('relevance', 'supporting'),
-                    discovery_context=e.get('discovery_context', '')
+                TimelineEvent(
+                    order=e.get('order', i + 1),
+                    time=e.get('time', ''),
+                    event=e.get('event', ''),
+                    actors=e.get('actors', []),
+                    witnesses=e.get('witnesses', []),
                 )
-                for e in evidence_data
+                for i, e in enumerate(events)
             ]
         except (json.JSONDecodeError, KeyError) as e:
-            print(f"Failed to extract evidence: {e}")
+            print(f"    Warning: timeline extraction failed ({e})")
             return []
-    
-    def _extract_plot_summary(self, text: str) -> Dict:
-        """Extract plot summary and solution"""
-        # For longer texts, use more content
-        sample_text = text[:8000]
-        
-        prompt = f"""Provide a plot summary and solution for this mystery:
 
-{sample_text}
+    # ------------------------------------------------------------------
+    # Extraction step 6: Solution chain
+    # ------------------------------------------------------------------
 
-Respond with JSON containing:
-- summary: 3-5 sentence plot summary
-- solution: Who committed the crime and how (if revealed in excerpt)
+    def _extract_solution_chain(self, text: str) -> List[SolutionStep]:
+        prompt = f"""Analyze this mystery and define the solution chain -- the ordered
+logical sequence of clues and reasoning that proves who the culprit is and how
+the crime was committed.
 
-If solution isn't in excerpt, say "solution_not_available"."""
+This is what the game engine checks against when a player "names the culprit."
 
-        message = self.client.messages.create(
-            model="claude-sonnet-4-20250514",
-            max_tokens=1500,
-            messages=[{"role": "user", "content": prompt}]
-        )
-        
+TEXT:
+{text}
+
+Respond with ONLY a JSON array of 3-8 steps:
+[
+  {{
+    "step_number": 1,
+    "clue_reference": "<which physical clue or testimonial revelation this step uses>",
+    "reasoning": "<how this step connects to the next, building the case>"
+  }}
+]
+
+The chain should start with an initial suspicious observation and end with the
+definitive proof of the culprit's identity and method."""
+
         try:
-            response_text = message.content[0].text.strip('```json\n').strip('```')
-            return json.loads(response_text)
-        except json.JSONDecodeError:
-            return {
-                'summary': '',
-                'solution': 'solution_not_available'
-            }
+            raw = _call_claude(self.client, prompt, max_tokens=3000)
+            steps = _parse_json_response(raw)
+            return [
+                SolutionStep(
+                    step_number=s.get('step_number', i + 1),
+                    clue_reference=s.get('clue_reference', ''),
+                    reasoning=s.get('reasoning', ''),
+                )
+                for i, s in enumerate(steps)
+            ]
+        except (json.JSONDecodeError, KeyError) as e:
+            print(f"    Warning: solution chain extraction failed ({e})")
+            return []
 
 
 # ============================================================================
@@ -409,118 +628,104 @@ If solution isn't in excerpt, say "solution_not_available"."""
 
 class MysteryDatabase:
     """
-    Simple JSON-based storage for POC
-    Production should use PostgreSQL with pgvector
-    
-    Why JSON for POC: No setup required, easy to inspect
-    Why PostgreSQL for production: Relational queries + vector search
+    JSON-based storage for extracted mystery scenarios.
+
+    Production should use PostgreSQL with pgvector for vector search.
     """
-    
+
     def __init__(self, storage_path: str = "./mystery_database"):
-        """Initialize storage directory"""
         self.storage_path = storage_path
-        os.makedirs(storage_path, exist_ok=True)
-        
-        # Create subdirectories
         os.makedirs(f"{storage_path}/scenarios", exist_ok=True)
-        os.makedirs(f"{storage_path}/raw_texts", exist_ok=True)
-        
-        # Initialize index file
+
         self.index_file = f"{storage_path}/index.json"
         if not os.path.exists(self.index_file):
             with open(self.index_file, 'w') as f:
                 json.dump([], f)
-    
+
     def save_scenario(self, scenario: MysteryScenario) -> str:
-        """
-        Save a processed mystery scenario
-        
-        Returns: scenario_id for reference
-        """
-        # Generate ID from title (in production, use UUID)
-        scenario_id = re.sub(r'[^a-z0-9]+', '_', scenario.title.lower())
-        
-        # Save scenario data
-        scenario_file = f"{self.storage_path}/scenarios/{scenario_id}.json"
+        """Save a processed mystery scenario. Returns the scenario_id."""
+        scenario_file = f"{self.storage_path}/scenarios/{scenario.scenario_id}.json"
         with open(scenario_file, 'w') as f:
-            # Convert dataclass to dict, handling nested objects
-            scenario_dict = asdict(scenario)
-            json.dump(scenario_dict, f, indent=2)
-        
-        # Update index
-        self._update_index(scenario_id, scenario)
-        
-        print(f"Saved scenario: {scenario_id}")
-        return scenario_id
-    
-    def _update_index(self, scenario_id: str, scenario: MysteryScenario):
-        """
-        Update the searchable index
-        
-        Why maintain index: Enables fast lookup without loading all scenarios
-        """
+            json.dump(asdict(scenario), f, indent=2)
+
+        self._update_index(scenario)
+
+        print(f"  Saved scenario: {scenario.scenario_id}")
+        return scenario.scenario_id
+
+    def _update_index(self, scenario: MysteryScenario):
+        """Update the searchable index."""
         with open(self.index_file, 'r') as f:
             index = json.load(f)
-        
-        # Add or update entry
+
+        crime_type = scenario.crime.crime_type if scenario.crime else 'unknown'
+
         entry = {
-            'id': scenario_id,
+            'id': scenario.scenario_id,
             'title': scenario.title,
-            'crime_type': scenario.crime_type,
-            'setting': {
-                'location': scenario.setting_location,
-                'time_period': scenario.setting_time_period,
-                'environment': scenario.setting_environment
-            },
+            'mystery_type': scenario.mystery_type,
+            'crime_type': crime_type,
+            'secondary_tags': scenario.secondary_tags,
             'author': scenario.author,
-            'genre_tags': scenario.genre_tags,
             'character_count': len(scenario.characters),
-            'evidence_count': len(scenario.evidence)
+            'physical_clue_count': len(scenario.physical_clues),
+            'testimonial_count': len(scenario.testimonial_revelations),
+            'has_solution_chain': len(scenario.solution_chain) > 0,
+            'has_timeline': len(scenario.timeline) > 0,
         }
-        
-        # Remove old entry if exists
-        index = [e for e in index if e['id'] != scenario_id]
+
+        index = [e for e in index if e['id'] != scenario.scenario_id]
         index.append(entry)
-        
+
         with open(self.index_file, 'w') as f:
             json.dump(index, f, indent=2)
-    
+
     def search_scenarios(self, **criteria) -> List[Dict]:
         """
-        Search for scenarios matching criteria
-        
-        Example: search_scenarios(crime_type='murder', setting_environment='mansion')
+        Search for scenarios matching criteria.
+
+        Supported keys: mystery_type, crime_type, author.
+        Any key not in the index entry is ignored.
         """
         with open(self.index_file, 'r') as f:
             index = json.load(f)
-        
+
         results = []
         for entry in index:
-            match = True
-            for key, value in criteria.items():
-                if key == 'crime_type' and entry.get('crime_type') != value:
-                    match = False
-                elif key == 'setting_environment' and entry['setting'].get('environment') != value:
-                    match = False
-                # Add more search criteria as needed
-            
-            if match:
+            if all(entry.get(k) == v for k, v in criteria.items() if k in entry):
                 results.append(entry)
-        
+
         return results
-    
+
     def load_scenario(self, scenario_id: str) -> Optional[MysteryScenario]:
-        """Load a full scenario by ID"""
+        """Load a full scenario by ID, reconstructing nested dataclasses."""
         scenario_file = f"{self.storage_path}/scenarios/{scenario_id}.json"
-        
+
         if not os.path.exists(scenario_file):
             return None
-        
+
         with open(scenario_file, 'r') as f:
             data = json.load(f)
-        
-        # Reconstruct dataclass (simplified - production needs recursive reconstruction)
-        return MysteryScenario(**data)
+
+        # Reconstruct nested dataclasses from dicts
+        crime_data = data.pop('crime', None)
+        crime = CrimeIncident(**crime_data) if crime_data else None
+
+        characters = [Character(**c) for c in data.pop('characters', [])]
+        physical_clues = [PhysicalClue(**c) for c in data.pop('physical_clues', [])]
+        testimonials = [TestimonialRevelation(**t) for t in data.pop('testimonial_revelations', [])]
+        solution_chain = [SolutionStep(**s) for s in data.pop('solution_chain', [])]
+        timeline = [TimelineEvent(**e) for e in data.pop('timeline', [])]
+
+        return MysteryScenario(
+            crime=crime,
+            characters=characters,
+            physical_clues=physical_clues,
+            testimonial_revelations=testimonials,
+            solution_chain=solution_chain,
+            timeline=timeline,
+            **data,
+        )
 
 
 # ============================================================================
@@ -528,73 +733,65 @@ class MysteryDatabase:
 # ============================================================================
 
 def run_acquisition_pipeline(num_books: int = 5):
-    """
-    Complete pipeline: Acquire → Process → Store
-    
-    Why pipeline approach: Modular, testable, resumable if errors occur
-    """
-    
+    """Complete pipeline: Acquire -> Process -> Store."""
+
     print("=== Choose Your Mystery - Data Acquisition Pipeline ===\n")
-    
-    # Initialize components
+
     scraper = GutenbergScraper()
     processor = MysteryProcessor()
     database = MysteryDatabase()
-    
-    # Step 1: Search for mysteries
+
     print(f"Searching for {num_books} mystery books on Project Gutenberg...")
     books = scraper.search_mysteries(query="sherlock holmes", limit=num_books)
     print(f"Found {len(books)} books\n")
-    
-    # Step 2: Download and process each book
+
     for i, book in enumerate(books, 1):
         print(f"[{i}/{len(books)}] Processing: {book['title']}")
-        
-        # Download
-        print("  - Downloading text...")
+
+        print("  Downloading text...")
         book_data = scraper.download_book_text(book['id'])
-        
+
         if not book_data or not book_data.get('full_text'):
-            print("  - Download failed, skipping\n")
+            print("  Download failed, skipping\n")
             continue
-        
-        # Process with AI
-        print("  - Extracting structured data with Claude...")
+
+        print("  Extracting structured data with Claude...")
         try:
             scenario = processor.process_mystery(
                 book_data['full_text'],
                 book_data
             )
-            
-            # Save
-            print("  - Saving to database...")
+
+            print("  Saving to database...")
             scenario_id = database.save_scenario(scenario)
-            
-            print(f"  - ✓ Complete! (ID: {scenario_id})")
-            print(f"    Characters: {len(scenario.characters)}, Evidence: {len(scenario.evidence)}\n")
-            
+
+            suspects = [c for c in scenario.characters if c.role == 'suspect']
+            culprit = next((c for c in scenario.characters if c.is_culprit), None)
+
+            print(f"  Complete! (ID: {scenario_id})")
+            print(f"    Characters: {len(scenario.characters)} "
+                  f"({len(suspects)} suspects)")
+            print(f"    Physical clues: {len(scenario.physical_clues)}, "
+                  f"Testimonials: {len(scenario.testimonial_revelations)}")
+            print(f"    Timeline events: {len(scenario.timeline)}, "
+                  f"Solution steps: {len(scenario.solution_chain)}")
+            if culprit:
+                print(f"    Culprit: {culprit.name}")
+            print()
+
         except Exception as e:
-            print(f"  - ✗ Processing failed: {e}\n")
+            print(f"  Processing failed: {e}\n")
             continue
-    
-    # Step 3: Show summary
-    print("\n=== Pipeline Complete ===")
+
+    print("=== Pipeline Complete ===")
     print(f"Check ./mystery_database/ for results")
     print(f"Index file: ./mystery_database/index.json")
 
 
 if __name__ == "__main__":
-    """
-    Usage:
-    1. Set ANTHROPIC_API_KEY environment variable
-    2. Run: python mystery_data_acquisition.py
-    """
-    
-    # Check for API key
     if not os.environ.get("ANTHROPIC_API_KEY"):
         print("ERROR: Please set ANTHROPIC_API_KEY environment variable")
         print("Get your API key at: https://console.anthropic.com/")
         exit(1)
-    
-    # Run pipeline
-    run_acquisition_pipeline(num_books=3)  # Start small for testing
+
+    run_acquisition_pipeline(num_books=3)
