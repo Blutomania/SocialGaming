@@ -5,9 +5,16 @@ Choose Your Mystery - Extraction Experiment Runner
 Downloads source texts ONCE, then runs all four extraction variants against
 the same corpus. Outputs go to separate directories for side-by-side comparison.
 
+Supports two corpus sources:
+  - Gutenberg: Scrapes Project Gutenberg by search query (default)
+  - Hugging Face: Uses AlekseyKorshuk/mystery-crime-books dataset (359 books)
+
 Usage:
-    # Download corpus and run all variants
+    # Download corpus and run all variants (Gutenberg)
     python run_experiment.py
+
+    # Use the Hugging Face mystery corpus instead (359 pre-curated books)
+    python run_experiment.py --source huggingface --limit 10
 
     # Download corpus only (skip processing)
     python run_experiment.py --download-only
@@ -18,11 +25,12 @@ Usage:
     # Run specific variants
     python run_experiment.py --variants lean,rich
 
-    # Use a different search query or limit
-    python run_experiment.py --query "agatha christie" --limit 5
+    # Use a different Gutenberg search query or limit
+    python run_experiment.py --source gutenberg --query "agatha christie" --limit 5
 
 Requirements:
     pip install requests beautifulsoup4 anthropic python-dotenv
+    pip install datasets  # only needed for --source huggingface
 """
 
 import os
@@ -208,10 +216,105 @@ class CorpusManager:
 
         return corpus
 
-    def force_download(self, query: str, limit: int) -> List[Dict]:
+    def download_huggingface_corpus(self, limit: int = 20) -> List[Dict]:
+        """
+        Download mystery texts from the AlekseyKorshuk/mystery-crime-books
+        Hugging Face dataset (359 full-text mystery/crime books).
+
+        This is a better source than Gutenberg scraping -- it's pre-curated
+        for the mystery/crime genre, so every entry is relevant.
+
+        Requirements: pip install datasets
+        """
+        if os.path.exists(CORPUS_INDEX):
+            index = self._load_index()
+            if index and index[0].get('_source') == 'huggingface':
+                print(f"HuggingFace corpus already cached at {CORPUS_DIR}/")
+                print("Loading cached corpus (use --force-download to re-download)\n")
+                return index
+            # Different source -- warn and re-download
+            print("Existing corpus is from a different source. Re-downloading.\n")
+
+        try:
+            from datasets import load_dataset
+        except ImportError:
+            print("ERROR: 'datasets' library not installed.")
+            print("Run: pip install datasets")
+            sys.exit(1)
+
+        print(f"Downloading AlekseyKorshuk/mystery-crime-books from Hugging Face...")
+        print(f"Limiting to first {limit} of 359 books\n")
+
+        ds = load_dataset("AlekseyKorshuk/mystery-crime-books", split="train")
+        print(f"Dataset loaded: {len(ds)} total books")
+
+        corpus = []
+        for i, entry in enumerate(ds):
+            if i >= limit:
+                break
+
+            text = entry.get("text", "")
+            if not text or len(text) < 1000:
+                continue
+
+            # Extract a title from the first few lines if possible
+            lines = text[:2000].split('\n')
+            title = "Unknown"
+            for line in lines[:20]:
+                stripped = line.strip()
+                if stripped and len(stripped) > 5 and len(stripped) < 200:
+                    # Skip common boilerplate
+                    if not any(skip in stripped.lower() for skip in
+                               ['project gutenberg', 'utf-8', 'encoding',
+                                'copyright', '***', 'ebook', 'e-book']):
+                        title = stripped
+                        break
+
+            book_id = f"hf_{i:04d}"
+            text_file = f"book_{book_id}.txt"
+
+            # Cache text to file
+            with open(f"{CORPUS_DIR}/{text_file}", 'w', encoding='utf-8') as f:
+                f.write(text)
+
+            metadata = {
+                'id': book_id,
+                'title': title,
+                'author': 'Unknown',  # dataset doesn't include author metadata
+                'publication_year': None,
+                'source_url': 'https://huggingface.co/datasets/AlekseyKorshuk/mystery-crime-books',
+                'text_file': text_file,
+                'full_text': text,
+                '_source': 'huggingface',
+                '_hf_index': i,
+            }
+            corpus.append(metadata)
+            print(f"  [{i+1}/{min(limit, len(ds))}] {title[:60]}... ({len(text)} chars)")
+
+        # Save corpus index
+        index_entries = []
+        for entry in corpus:
+            index_entry = {k: v for k, v in entry.items() if k != 'full_text'}
+            index_entries.append(index_entry)
+
+        with open(CORPUS_INDEX, 'w') as f:
+            json.dump({
+                'source': 'huggingface',
+                'dataset': 'AlekseyKorshuk/mystery-crime-books',
+                'download_date': datetime.now().isoformat(),
+                'book_count': len(corpus),
+                'books': index_entries,
+            }, f, indent=2)
+
+        print(f"\nCorpus downloaded: {len(corpus)} mystery books cached")
+        return corpus
+
+    def force_download(self, query: str, limit: int, source: str = "gutenberg") -> List[Dict]:
         """Re-download corpus even if cache exists."""
         if os.path.exists(CORPUS_INDEX):
             os.remove(CORPUS_INDEX)
+        if source == "huggingface":
+            return self.download_huggingface_corpus(limit)
         return self.download_corpus(query, limit)
 
 
@@ -386,6 +489,10 @@ def main():
     parser = argparse.ArgumentParser(
         description="Run extraction experiments against a shared corpus"
     )
+    parser.add_argument("--source", default="gutenberg",
+                        choices=["gutenberg", "huggingface"],
+                        help="Corpus source: 'gutenberg' (scrape) or 'huggingface' "
+                             "(AlekseyKorshuk/mystery-crime-books, 359 books)")
     parser.add_argument("--query", default="sherlock holmes",
                         help="Gutenberg search query (default: 'sherlock holmes')")
     parser.add_argument("--limit", type=int, default=3,
@@ -415,7 +522,9 @@ def main():
             sys.exit(1)
         corpus = manager._load_index()
     elif args.force_download:
-        corpus = manager.force_download(args.query, args.limit)
+        corpus = manager.force_download(args.query, args.limit, args.source)
+    elif args.source == "huggingface":
+        corpus = manager.download_huggingface_corpus(args.limit)
     else:
         corpus = manager.download_corpus(args.query, args.limit)
 
