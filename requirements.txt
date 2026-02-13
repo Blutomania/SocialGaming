@@ -2,9 +2,10 @@
 
 # Core dependencies
 anthropic>=0.18.0           # Claude API for AI-powered extraction and generation
-requests>=2.31.0            # HTTP requests for web scraping
+requests>=2.31.0            # HTTP requests for web scraping and corpus download
 beautifulsoup4>=4.12.0      # HTML parsing for Project Gutenberg
 python-dotenv>=1.0.0        # Environment variable management
+pyarrow>=14.0.0             # Parquet file reading for GitHub corpus (--source github)
 
 # NLP and text processing
 spacy>=3.7.0                # Natural language processing (optional for future use)

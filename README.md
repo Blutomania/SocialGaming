@@ -4,8 +4,8 @@
 
 This repository contains the data acquisition and processing pipeline for building a mystery game database. The system:
 
-1. **Acquires** public domain mystery content from Project Gutenberg
-2. **Processes** raw text into structured data using Claude AI
+1. **Acquires** mystery content from a curated GitHub corpus or Project Gutenberg
+2. **Processes** raw text into structured data using Claude AI (four extraction variants)
 3. **Stores** mysteries in a searchable database
 4. **Generates** new mystery scenarios by combining patterns from the database
 
@@ -20,23 +20,34 @@ python --version
 # Install dependencies
 pip install -r requirements.txt
 
-# Download NLP model
-python -m spacy download en_core_web_sm
-
 # Set up API key
 export ANTHROPIC_API_KEY="your-api-key-here"
 ```
 
 ### Step 1: Acquire Mystery Data
 
+The recommended approach uses the **experiment runner** with the pre-curated GitHub corpus (359 mystery/crime books from [Blutomania/mystery-crime-books](https://github.com/Blutomania/mystery-crime-books)):
+
 ```bash
-# This will download and process 3 Sherlock Holmes stories
+# Download 10 mystery books from the curated corpus and run all extraction variants
+python run_experiment.py --source github --limit 10
+
+# Or just download the corpus without processing
+python run_experiment.py --source github --limit 20 --download-only
+
+# Alternatively, scrape Project Gutenberg directly
+python run_experiment.py --source gutenberg --query "sherlock holmes" --limit 3
+```
+
+You can also run the standalone acquisition script:
+
+```bash
+# This will download and process 3 Sherlock Holmes stories from Gutenberg
 python mystery_data_acquisition.py
 ```
 
 **What this does:**
-- Searches Project Gutenberg for mystery books
-- Downloads full text
+- Downloads full-text mystery books (from GitHub corpus or Project Gutenberg)
 - Extracts characters, evidence, motives using Claude AI
 - Saves structured data to `./mystery_database/`
 
@@ -130,17 +141,54 @@ MysteryScenario
 ## File Structure
 
 ```
-mystery-database/
-├── mystery_data_acquisition.py   # Acquire & process mysteries
-├── mystery_generator.py           # Generate new mysteries
-├── mystery_database_plan.md       # Comprehensive strategy doc
-├── requirements.txt               # Python dependencies
-├── README.md                      # This file
-└── mystery_database/              # Data storage
+choose-your-mystery/
+├── run_experiment.py                # Experiment runner (download + all variants)
+├── mystery_data_acquisition.py      # Baseline extraction (6 LLM calls)
+├── mystery_extraction_lean.py       # Lean extraction (1 LLM call)
+├── mystery_extraction_rich.py       # Rich extraction (8 LLM calls)
+├── mystery_extraction_templates.py  # Template extraction (6 LLM calls)
+├── mystery_generator.py             # Generate new mysteries via RAG
+├── gameplay_validator.py            # Validate mystery solvability
+├── scenario_assembler.py            # Assemble scenarios from extractions
+├── scenario_presenter.py            # Present scenarios for review
+├── demo_acquisition.py              # Demo (no API/network needed)
+├── mystery_database_plan.md         # Comprehensive strategy doc
+├── MYSTERY_EXTRACTION_REQUIREMENTS.md  # Extraction field spec
+├── GETTING_STARTED.md               # Getting started guide
+├── requirements.txt                 # Python dependencies
+├── README.md                        # This file
+├── mystery_corpus/                  # Downloaded source texts (cached)
+└── mystery_database/                # Processed output
     ├── index.json
     ├── scenarios/
     ├── generated/
     └── raw_texts/
+```
+
+## Corpus Sources
+
+| Source | Flag | Description |
+|--------|------|-------------|
+| **GitHub corpus** | `--source github` | 359 pre-curated mystery/crime books from [Blutomania/mystery-crime-books](https://github.com/Blutomania/mystery-crime-books). Recommended. |
+| **Project Gutenberg** | `--source gutenberg` | Search-based scraping. Use `--query` to specify terms. |
+
+## Extraction Variants
+
+The experiment runner (`run_experiment.py`) supports four extraction strategies:
+
+| Variant | LLM Calls | Description |
+|---------|-----------|-------------|
+| `baseline` | 6 | Moderate detail, balanced cost/quality |
+| `lean` | 1 | Single-call sparse seed, cheapest |
+| `rich` | 8 | Maximum depth, most expensive |
+| `template` | 6 | Reusable patterns and archetypes |
+
+```bash
+# Run specific variants
+python run_experiment.py --source github --limit 5 --variants lean,rich
+
+# Run all variants for comparison
+python run_experiment.py --source github --limit 3 --variants baseline,lean,rich,template
 ```
 
 ## Usage Examples
@@ -187,24 +235,34 @@ print(f"Characters: {len(scenario.characters)}")
 
 ### Batch Processing
 
-```python
-from mystery_data_acquisition import GutenbergScraper, MysteryProcessor, MysteryDatabase
+The recommended way to batch-process books is through the experiment runner:
 
-scraper = GutenbergScraper()
+```bash
+# Process 20 books from the curated GitHub corpus with the lean variant
+python run_experiment.py --source github --limit 20 --variants lean
+
+# Process 10 books from Gutenberg with all variants for comparison
+python run_experiment.py --source gutenberg --query "agatha christie" --limit 10
+```
+
+Or programmatically:
+
+```python
+from mystery_data_acquisition import MysteryProcessor, MysteryDatabase
+
 processor = MysteryProcessor()
 db = MysteryDatabase()
 
-# Process multiple books
-books = scraper.search_mysteries(query="agatha christie", limit=10)
+# Process books from the cached corpus
+import json
+with open("mystery_corpus/corpus_index.json") as f:
+    index = json.load(f)
 
-for book in books:
-    book_data = scraper.download_book_text(book['id'])
-    if book_data:
-        scenario = processor.process_mystery(
-            book_data['full_text'],
-            book_data
-        )
-        db.save_scenario(scenario)
+for book in index["books"]:
+    with open(f"mystery_corpus/{book['text_file']}") as f:
+        text = f.read()
+    scenario = processor.process_mystery(text, book)
+    db.save_scenario(scenario)
 ```
 
 ## Configuration
@@ -268,15 +326,16 @@ When scaling beyond POC:
 
 ### Current Sources (Safe)
 
-✅ Project Gutenberg - Public domain (pre-1928)
-✅ Court transcripts - Public records
-✅ Creative Commons content - Licensed
+- Project Gutenberg - Public domain (pre-1928)
+- GitHub corpus (Blutomania/mystery-crime-books) - Public domain books
+- Court transcripts - Public records
+- Creative Commons content - Licensed
 
 ### To Avoid
 
-❌ Copyrighted novels without permission
-❌ Recent screenplays (most are copyrighted)
-❌ Podcast transcripts (usually copyrighted)
+- Copyrighted novels without permission
+- Recent screenplays (most are copyrighted)
+- Podcast transcripts (usually copyrighted)
 
 ### Fair Use vs. Training Data
 
@@ -290,7 +349,9 @@ When scaling beyond POC:
 
 ### Phase 1: POC (Current)
 - ✅ Basic data acquisition from Gutenberg
-- ✅ AI-powered extraction with Claude
+- ✅ Curated GitHub corpus (359 mystery/crime books)
+- ✅ AI-powered extraction with Claude (4 extraction variants)
+- ✅ Experiment runner for side-by-side variant comparison
 - ✅ JSON storage and search
 - ✅ Mystery generation from prompts
 
@@ -390,7 +451,7 @@ class PlayerKnowledge:
 **"Download failed" for Gutenberg books**
 - Cause: Not all books have plain text format
 - Solution: Code tries multiple formats, but some may fail
-- Fix: Skip or manually download problematic books
+- Fix: Use `--source github` instead for the curated corpus, or skip problematic books
 
 **"Processing very slow"**
 - Cause: API calls are sequential
@@ -413,10 +474,10 @@ python mystery_data_acquisition.py
 
 ### Adding New Data Sources
 
-1. Create new scraper class (follow `GutenbergScraper` pattern)
-2. Ensure proper rate limiting (respect robots.txt)
-3. Document licensing/copyright status
-4. Add to `run_acquisition_pipeline()`
+1. Add a new `download_*_corpus()` method to `CorpusManager` in `run_experiment.py`
+2. Register the source as a `--source` choice in the CLI argument parser
+3. Ensure proper rate limiting (respect robots.txt for scraped sources)
+4. Document licensing/copyright status
 
 ### Improving Extraction
 

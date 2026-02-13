@@ -5,8 +5,9 @@
 You now have a **complete mystery database system** with three core components:
 
 ### 1. Data Acquisition Pipeline
-- **File:** `mystery_data_acquisition.py`
-- **Purpose:** Scrapes Project Gutenberg, uses Claude AI to extract structured data
+- **Entry point:** `run_experiment.py` (experiment runner with corpus download + 4 extraction variants)
+- **Standalone:** `mystery_data_acquisition.py` (baseline Gutenberg scraper)
+- **Corpus:** 359 pre-curated mystery/crime books from [Blutomania/mystery-crime-books](https://github.com/Blutomania/mystery-crime-books)
 - **Output:** Database of mysteries with characters, evidence, motives, solutions
 
 ### 2. Mystery Generator
@@ -74,7 +75,7 @@ By storing structured patterns (not just raw text):
 cd your-project-directory
 
 # Install dependencies
-pip install requests beautifulsoup4 anthropic python-dotenv
+pip install -r requirements.txt
 
 # Set your API key
 export ANTHROPIC_API_KEY="your-key-here"
@@ -82,8 +83,23 @@ export ANTHROPIC_API_KEY="your-key-here"
 
 ### Step 2: Build Your Database (1-2 hours)
 
+The fastest way is using the experiment runner with the curated GitHub corpus:
+
 ```bash
-# Start small - process 5 mysteries
+# Download 10 mystery books from the curated corpus and extract with all variants
+python run_experiment.py --source github --limit 10
+
+# Or download only (no API key needed)
+python run_experiment.py --source github --limit 20 --download-only
+
+# Or run just one extraction variant to save API costs
+python run_experiment.py --source github --limit 10 --variants lean
+```
+
+Alternatively, use the standalone Gutenberg scraper:
+
+```bash
+# Start small - process 5 mysteries from Gutenberg
 python mystery_data_acquisition.py
 
 # This will:
@@ -201,30 +217,39 @@ Strategic decision:
 ## Files You Have
 
 ### Core System
-1. **mystery_data_acquisition.py** - Full production pipeline
-2. **mystery_generator.py** - Mystery generation with RAG
-3. **gameplay_validator.py** - Gameplay quality assurance
-4. **requirements.txt** - Python dependencies
+1. **run_experiment.py** - Experiment runner (corpus download + all 4 extraction variants)
+2. **mystery_data_acquisition.py** - Baseline extraction pipeline (6 LLM calls)
+3. **mystery_extraction_lean.py** - Lean extraction (1 LLM call, sparse seed)
+4. **mystery_extraction_rich.py** - Rich extraction (8 LLM calls, maximum depth)
+5. **mystery_extraction_templates.py** - Template extraction (6 LLM calls, reusable patterns)
+6. **mystery_generator.py** - Mystery generation with RAG
+7. **gameplay_validator.py** - Gameplay quality assurance
+8. **scenario_assembler.py** - Assemble scenarios from extractions
+9. **scenario_presenter.py** - Present scenarios for review
+10. **requirements.txt** - Python dependencies
 
 ### Documentation
-5. **README.md** - Complete usage guide
-6. **mystery_database_plan.md** - Comprehensive strategy
-7. **this file** - Getting started guide
+11. **README.md** - Complete usage guide
+12. **mystery_database_plan.md** - Comprehensive strategy
+13. **MYSTERY_EXTRACTION_REQUIREMENTS.md** - Extraction field specification
+14. **this file** - Getting started guide
 
 ### Demo Files (For Testing)
-8. **demo_acquisition.py** - No API/network needed demo
-9. **mystery_database/** - Sample output
+15. **demo_acquisition.py** - No API/network needed demo
+16. **mystery_database/** - Sample output
+17. **mystery_corpus/** - Cached downloaded source texts
 
 ## Common Questions
 
 ### Q: Do I need to process 100s of mysteries?
-**A:** No. Start with 20-50 high-quality mysteries. Quality > quantity.
+**A:** No. Start with 20-50 high-quality mysteries. Quality > quantity. The GitHub corpus has 359 books to choose from.
 
 ### Q: What about copyright?
 **A:** Stick to:
-- ✅ Project Gutenberg (public domain)
-- ✅ Creative Commons content
-- ⚠️ Consult lawyer before commercial launch
+- Project Gutenberg (public domain)
+- GitHub corpus / Blutomania/mystery-crime-books (public domain books)
+- Creative Commons content
+- Consult lawyer before commercial launch
 
 ### Q: Can I use this with GPT-4 instead of Claude?
 **A:** Yes, but you'll need to modify the API calls. Claude is recommended for:
@@ -299,12 +324,13 @@ Process 50 source mysteries (one time)
 ### This Week
 1. ✅ Run demo (completed!)
 2. ⬜ Set up on your local machine
-3. ⬜ Process 5 Project Gutenberg mysteries
-4. ⬜ Generate 3 test mysteries with different prompts
-5. ⬜ Run validation on all outputs
+3. ⬜ Download corpus: `python run_experiment.py --source github --limit 10 --download-only`
+4. ⬜ Run extraction variants: `python run_experiment.py --source github --limit 5`
+5. ⬜ Generate 3 test mysteries with different prompts
+6. ⬜ Run validation on all outputs
 
 ### Next Week
-1. ⬜ Process 20-30 high-quality mysteries
+1. ⬜ Process 20-30 books from the GitHub corpus with preferred variant
 2. ⬜ Test mystery generation with 10+ prompts
 3. ⬜ Manual playtest 3-5 generated mysteries
 4. ⬜ Refine prompts based on results

@@ -4,6 +4,7 @@
 
 ### A. Public Domain Mystery Novels
 **Primary Sources:**
+- **GitHub corpus** ([Blutomania/mystery-crime-books](https://github.com/Blutomania/mystery-crime-books)) - 359 pre-curated mystery/crime books in parquet format. This is the recommended source for bulk acquisition.
 - Project Gutenberg (gutenberg.org) - 70,000+ free books, many mysteries
 - Internet Archive (archive.org) - Millions of texts, searchable by genre
 - Wikisource - Curated public domain texts
@@ -17,7 +18,8 @@
 - G.K. Chesterton
 
 **Collection Method:**
-- API access (Gutenberg has metadata API)
+- GitHub corpus download via `run_experiment.py --source github` (recommended, fastest)
+- Project Gutenberg scraping via `run_experiment.py --source gutenberg`
 - Bulk download via rsync
 - Web scraping with rate limiting (respect robots.txt)
 
@@ -246,18 +248,18 @@ Output: Complete mystery scenario
    - Document your intended use case clearly
 
 2. **Proof of Concept**
-   - Manually process 5-10 public domain mysteries
-   - Create database schema for these examples
-   - Test generation with Claude API using these as context
+   - Download corpus: `python run_experiment.py --source github --limit 10 --download-only`
+   - Run extraction variants: `python run_experiment.py --source github --limit 5`
+   - Compare variant output quality across baseline, lean, rich, and template
 
 3. **Tool Setup**
-   - Set up PostgreSQL database
-   - Create Python environment with spaCy, LangChain
-   - Get API keys (Anthropic Claude, OpenAI for embeddings)
+   - Install dependencies: `pip install -r requirements.txt`
+   - Get API key (Anthropic Claude)
+   - Optional: Set up PostgreSQL for future migration
 
-4. **First Extraction Script**
-   - Build scraper for Project Gutenberg
-   - Process one Sherlock Holmes story end-to-end
+4. **First Extraction Run**
+   - Process 5-10 books from the GitHub corpus
+   - Compare extraction variants to choose preferred approach
    - Validate data quality manually
 
 
