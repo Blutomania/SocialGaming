@@ -7,14 +7,14 @@ the same corpus. Outputs go to separate directories for side-by-side comparison.
 
 Supports two corpus sources:
   - Gutenberg: Scrapes Project Gutenberg by search query (default)
-  - Hugging Face: Uses AlekseyKorshuk/mystery-crime-books dataset (359 books)
+  - GitHub: Downloads Blutomania/mystery-crime-books parquet dataset (359 books)
 
 Usage:
     # Download corpus and run all variants (Gutenberg)
     python run_experiment.py
 
-    # Use the Hugging Face mystery corpus instead (359 pre-curated books)
-    python run_experiment.py --source huggingface --limit 10
+    # Use the GitHub mystery corpus instead (359 pre-curated books)
+    python run_experiment.py --source github --limit 10
 
     # Download corpus only (skip processing)
     python run_experiment.py --download-only
@@ -29,8 +29,7 @@ Usage:
     python run_experiment.py --source gutenberg --query "agatha christie" --limit 5
 
 Requirements:
-    pip install requests beautifulsoup4 anthropic python-dotenv
-    pip install datasets  # only needed for --source huggingface
+    pip install requests beautifulsoup4 anthropic python-dotenv pyarrow
 """
 
 import os
@@ -216,44 +215,56 @@ class CorpusManager:
 
         return corpus
 
-    def download_huggingface_corpus(self, limit: int = 20) -> List[Dict]:
+    GITHUB_PARQUET_URL = (
+        "https://raw.githubusercontent.com/Blutomania/mystery-crime-books"
+        "/main/train-00000-of-00001.parquet"
+    )
+
+    def download_github_corpus(self, limit: int = 20) -> List[Dict]:
         """
-        Download mystery texts from the AlekseyKorshuk/mystery-crime-books
-        Hugging Face dataset (359 full-text mystery/crime books).
+        Download mystery texts from the Blutomania/mystery-crime-books
+        GitHub repo (parquet file with ~359 mystery/crime books).
 
         This is a better source than Gutenberg scraping -- it's pre-curated
         for the mystery/crime genre, so every entry is relevant.
 
-        Requirements: pip install datasets
+        Requirements: pip install pyarrow
         """
         if os.path.exists(CORPUS_INDEX):
             index = self._load_index()
-            if index and index[0].get('_source') == 'huggingface':
-                print(f"HuggingFace corpus already cached at {CORPUS_DIR}/")
+            if index and index[0].get('_source') == 'github':
+                print(f"GitHub corpus already cached at {CORPUS_DIR}/")
                 print("Loading cached corpus (use --force-download to re-download)\n")
                 return index
             # Different source -- warn and re-download
             print("Existing corpus is from a different source. Re-downloading.\n")
 
         try:
-            from datasets import load_dataset
+            import pyarrow.parquet as pq
         except ImportError:
-            print("ERROR: 'datasets' library not installed.")
-            print("Run: pip install datasets")
+            print("ERROR: 'pyarrow' library not installed.")
+            print("Run: pip install pyarrow")
             sys.exit(1)
 
-        print(f"Downloading AlekseyKorshuk/mystery-crime-books from Hugging Face...")
-        print(f"Limiting to first {limit} of 359 books\n")
+        parquet_path = f"{CORPUS_DIR}/_train.parquet"
 
-        ds = load_dataset("AlekseyKorshuk/mystery-crime-books", split="train")
-        print(f"Dataset loaded: {len(ds)} total books")
+        # Download the parquet file
+        print("Downloading mystery-crime-books parquet from GitHub...")
+        response = self.session.get(self.GITHUB_PARQUET_URL, stream=True)
+        response.raise_for_status()
+
+        with open(parquet_path, 'wb') as f:
+            for chunk in response.iter_content(chunk_size=8192):
+                f.write(chunk)
+
+        table = pq.read_table(parquet_path)
+        total_rows = table.num_rows
+        print(f"Parquet loaded: {total_rows} total books")
+        print(f"Limiting to first {limit} books\n")
 
         corpus = []
-        for i, entry in enumerate(ds):
-            if i >= limit:
-                break
-
-            text = entry.get("text", "")
+        for i in range(min(limit, total_rows)):
+            text = table.column("text")[i].as_py()
             if not text or len(text) < 1000:
                 continue
 
@@ -263,33 +274,31 @@ class CorpusManager:
             for line in lines[:20]:
                 stripped = line.strip()
                 if stripped and len(stripped) > 5 and len(stripped) < 200:
-                    # Skip common boilerplate
                     if not any(skip in stripped.lower() for skip in
                                ['project gutenberg', 'utf-8', 'encoding',
                                 'copyright', '***', 'ebook', 'e-book']):
                         title = stripped
                         break
 
-            book_id = f"hf_{i:04d}"
+            book_id = f"gh_{i:04d}"
             text_file = f"book_{book_id}.txt"
 
-            # Cache text to file
             with open(f"{CORPUS_DIR}/{text_file}", 'w', encoding='utf-8') as f:
                 f.write(text)
 
             metadata = {
                 'id': book_id,
                 'title': title,
-                'author': 'Unknown',  # dataset doesn't include author metadata
+                'author': 'Unknown',
                 'publication_year': None,
-                'source_url': 'https://huggingface.co/datasets/AlekseyKorshuk/mystery-crime-books',
+                'source_url': 'https://github.com/Blutomania/mystery-crime-books',
                 'text_file': text_file,
                 'full_text': text,
-                '_source': 'huggingface',
-                '_hf_index': i,
+                '_source': 'github',
+                '_gh_index': i,
             }
             corpus.append(metadata)
-            print(f"  [{i+1}/{min(limit, len(ds))}] {title[:60]}... ({len(text)} chars)")
+            print(f"  [{i+1}/{min(limit, total_rows)}] {title[:60]}... ({len(text)} chars)")
 
         # Save corpus index
         index_entries = []
@@ -299,8 +308,8 @@ class CorpusManager:
 
         with open(CORPUS_INDEX, 'w') as f:
             json.dump({
-                'source': 'huggingface',
-                'dataset': 'AlekseyKorshuk/mystery-crime-books',
+                'source': 'github',
+                'repo': 'Blutomania/mystery-crime-books',
                 'download_date': datetime.now().isoformat(),
                 'book_count': len(corpus),
                 'books': index_entries,
@@ -313,8 +322,8 @@ class CorpusManager:
         """Re-download corpus even if cache exists."""
         if os.path.exists(CORPUS_INDEX):
             os.remove(CORPUS_INDEX)
-        if source == "huggingface":
-            return self.download_huggingface_corpus(limit)
+        if source == "github":
+            return self.download_github_corpus(limit)
         return self.download_corpus(query, limit)
 
 
@@ -490,9 +499,9 @@ def main():
         description="Run extraction experiments against a shared corpus"
     )
     parser.add_argument("--source", default="gutenberg",
-                        choices=["gutenberg", "huggingface"],
-                        help="Corpus source: 'gutenberg' (scrape) or 'huggingface' "
-                             "(AlekseyKorshuk/mystery-crime-books, 359 books)")
+                        choices=["gutenberg", "github"],
+                        help="Corpus source: 'gutenberg' (scrape) or 'github' "
+                             "(Blutomania/mystery-crime-books, ~359 books)")
     parser.add_argument("--query", default="sherlock holmes",
                         help="Gutenberg search query (default: 'sherlock holmes')")
     parser.add_argument("--limit", type=int, default=3,
@@ -523,8 +532,8 @@ def main():
         corpus = manager._load_index()
     elif args.force_download:
         corpus = manager.force_download(args.query, args.limit, args.source)
-    elif args.source == "huggingface":
-        corpus = manager.download_huggingface_corpus(args.limit)
+    elif args.source == "github":
+        corpus = manager.download_github_corpus(args.limit)
     else:
         corpus = manager.download_corpus(args.query, args.limit)
 
