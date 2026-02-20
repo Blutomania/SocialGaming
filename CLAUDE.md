@@ -1,279 +1,174 @@
-# CLAUDE.md — AI Assistant Guide for SocialGaming/Choose Your Mystery
+# CLAUDE.md
 
-This file provides guidance for AI assistants working on this codebase. Read it fully before starting any task.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ---
 
 ## Project Overview
 
-**Choose Your Mystery** is a Python-based system for acquiring, processing, generating, and validating mystery game scenarios. It powers a social deduction game where players share clues under a 75% sharing rule (players must share 75% of discovered information and may hide 25%).
+**Choose Your Mystery** is a Python-based system for acquiring, processing, generating, and validating mystery game scenarios. It powers a social deduction game where players share clues under a **75% sharing rule** — players must share 75% of discovered information and may hide 25%.
 
-The system uses Claude (Anthropic) as its AI backbone for content extraction and generation, and Project Gutenberg as its primary source of public domain mystery texts.
+The system uses Claude (Anthropic) as its AI backbone and Project Gutenberg as its primary source of public domain mystery texts.
 
 **Current Phase:** Proof of Concept → Early Production
 
 ---
 
-## Repository Structure
-
-```
-/home/user/SocialGaming/
-├── mystery_data_acquisition.py   # Data pipeline: scrape + AI-extract mysteries (600 lines)
-├── mystery_generator.py          # RAG-based mystery generation via Claude (432 lines)
-├── gameplay_validator.py         # Gameplay quality validation (366 lines)
-├── demo_acquisition.py           # Demo pipeline with mock data, no API required (493 lines)
-├── requirements.txt              # Python dependencies
-├── README.md                     # Full usage guide and architecture overview
-├── GETTING_STARTED.md            # Quick start guide
-├── mystery_database_plan.md      # Database strategy and roadmap
-├── tasks/
-│   ├── todo.md                   # Task tracking (create if absent)
-│   └── lessons.md                # Self-improvement log (create if absent)
-└── mystery_database/             # Runtime output (generated)
-    ├── index.json
-    ├── scenarios/
-    ├── generated/
-    └── raw_texts/
-```
-
----
-
-## Source Modules
-
-### `mystery_data_acquisition.py`
-Acquires public domain mystery texts and uses Claude to extract structured data.
-
-**Key classes:**
-- `Character` — dataclass: name, role, archetype, motive, quotes
-- `Evidence` — dataclass: description, type, relevance, context
-- `MysteryScenario` — complete mystery structure (characters, evidence, solution)
-- `GutenbergScraper` — scrapes Project Gutenberg for mystery books
-- `MysteryProcessor` — calls Claude to extract structured JSON from raw text
-- `MysteryDatabase` — JSON-file storage with index maintenance
-
-**Pipeline flow:**
-```
-Search Gutenberg → Download Text → Claude Extraction (4 steps) → Save to JSON
-```
-
-### `mystery_generator.py`
-Generates new mystery scenarios using RAG (Retrieval Augmented Generation).
-
-**Key class:** `MysteryGenerator`
-
-**RAG pipeline:**
-```
-User Prompt → Theme Extraction → DB Retrieval → Pattern Extraction → Claude Generation → Mystery
-```
-
-### `gameplay_validator.py`
-Validates mysteries for playability before use in the game.
-
-**Validation checks:**
-1. Solvability — critical evidence count, motive coverage, red herring balance
-2. Information sharing — confirms the 75% sharing mechanic creates strategic depth
-3. Difficulty estimation — EASY / MEDIUM / HARD
-4. Playtime estimation
-
-### `demo_acquisition.py`
-Fully self-contained demo. Uses `MockMysteryProcessor` instead of real Claude calls.
-No `ANTHROPIC_API_KEY` or network access required. Use this to validate data structures.
-
----
-
-## Environment Setup
+## Running the Code
 
 ```bash
-# 1. Install dependencies
+# Install dependencies
 pip install -r requirements.txt
 
-# 2. (Optional) Download spaCy model
-python -m spacy download en_core_web_sm
-
-# 3. Set required environment variable
+# Set API key (required for real Claude calls)
 export ANTHROPIC_API_KEY="your-key-here"
 
-# 4. Optional overrides
-export DATABASE_PATH="./mystery_database"   # default
-export LOG_LEVEL="INFO"                     # default
+# Demo pipelines — no API key needed, validate data structures first
+python demo_acquisition.py                  # Original pipeline demo (MysteryScenario schema)
+python pull_script_03_causal_chain.py       # Causal chain demo (PlayableMystery schema)
+
+# Real pipelines (require ANTHROPIC_API_KEY)
+python mystery_data_acquisition.py          # Scrape Gutenberg + Claude extraction
+python mystery_generator.py                 # RAG-based mystery generation
+python gameplay_validator.py                # Validate a scenario file
+python pull_script_03_causal_chain.py --real  # Causal chain extraction with Claude
 ```
 
-**Running the pipeline:**
-```bash
-python demo_acquisition.py          # No API needed — verify data structures
-python mystery_data_acquisition.py  # Acquires and processes real mysteries
-python mystery_generator.py         # Generates a new mystery scenario
-python gameplay_validator.py        # Validates gameplay quality
+No test framework exists yet — manual verification via the demo scripts is the current standard.
+
+---
+
+## Two-Schema Architecture
+
+The codebase has two distinct data schemas serving different purposes:
+
+### 1. `MysteryScenario` (source schema)
+Defined in `mystery_data_acquisition.py`. Represents a mystery as extracted from raw literary text — setting-specific, named characters, flat evidence list. Stored under `mystery_database/scenarios/`.
+
+### 2. `PlayableMystery` (target schema)
+Defined in `pull_script_03_causal_chain.py`. The canonical output format for all pull scripts. Represents a mystery as a **causal clue graph** with abstract roles (not named characters), optimised for game evaluation. Stored under `causal_chain_output/`.
+
+The **pull scripts** (`pull_script_03_causal_chain.py`, and future scripts 1, 2, 4–7) each take source text and produce a `PlayableMystery` JSON. They differ in extraction strategy; all output the same schema.
+
+**Data flow:**
+```
+Raw text (Gutenberg / dataset)
+    → mystery_data_acquisition.py  →  MysteryScenario (mystery_database/)
+    → pull_script_0N_*.py          →  PlayableMystery (causal_chain_output/)
+                                              ↓
+                                    PlayabilityCalculator
+                                    (MCD · RSE · UST · score)
 ```
 
 ---
 
-## Dependencies
+## Playability Metrics (PlayableMystery)
 
-| Package | Version | Purpose |
-|---|---|---|
-| `anthropic` | >=0.18.0 | Claude API — all AI processing |
-| `requests` | >=2.31.0 | HTTP for web scraping |
-| `beautifulsoup4` | >=4.12.0 | HTML parsing (Gutenberg) |
-| `python-dotenv` | >=1.0.0 | Environment variable management |
-| `spacy` | >=3.7.0 | NLP (optional, future use) |
-| `psycopg2-binary` | >=2.9.9 | PostgreSQL (optional, production) |
+These metrics live in `PlayabilityCalculator` inside `pull_script_03_causal_chain.py`:
 
-**Future/optional (commented in requirements.txt):** `pgvector`, `sentence-transformers`, `aiohttp`, `pytest`, `black`, `flake8`
+| Metric | Target | Description |
+|--------|--------|-------------|
+| **MCD** (Minimum Clue Depth) | 4–8 clues | BFS over the clue graph — fewest clues needed to uniquely identify the culprit |
+| **RSE** (Round-to-Solution Estimate) | ≤4 rounds | Monte Carlo simulation (200 trials) of N-player gameplay with 75% sharing |
+| **UST** (Unique Solution Test) | Pass | All real clues → exactly one valid culprit |
+| **RHR** (Red Herring Ratio) | 20–40% | Fraction of clues that misdirect |
+| **Playability Score** | 0.0–1.0 | Weighted composite: UST (0.4) + MCD (0.3) + RSE (0.2) + RHR (0.1). UST failure → 0.0 |
+
+The 75% sharing rule is **core to gameplay** — any change touching clue sharing, `shareable` flags, or `PlayabilityCalculator._rse()` must preserve this mechanic.
+
+---
+
+## Key Classes
+
+### `mystery_data_acquisition.py`
+- `Character`, `Evidence`, `MysteryScenario` — source schema dataclasses
+- `GutenbergScraper` — scrapes Project Gutenberg search + downloads plain text
+- `MysteryProcessor` — 4-step Claude extraction: classify → characters → evidence → summary
+- `MysteryDatabase` — JSON storage at `mystery_database/`, maintains `index.json`
+
+### `mystery_generator.py`
+- `MysteryGenerator` — RAG pipeline: extract themes → retrieve DB examples → extract patterns → generate with Claude. Requires `mystery_database/` to exist (run acquisition first).
+
+### `gameplay_validator.py`
+- `MysteryGameplayValidator` — validates a `MysteryScenario` JSON file. Checks solvability, information-sharing depth, and estimates difficulty/playtime. Operates on the **source schema**, not `PlayableMystery`.
+
+### `pull_script_03_causal_chain.py`
+- `PlayableClue`, `PlayableCharacter`, `PlayableMystery` — target schema dataclasses
+- `CausalChainExtractor` — 3-step Claude extraction: characters → clue graph → solution
+- `MockCausalChainExtractor` — deterministic demo, no API needed
+- `PlayabilityCalculator` — computes MCD (BFS), RSE (simulation), UST, score
+- `CausalChainDatabase` — saves `PlayableMystery` JSON to `causal_chain_output/`
+
+### `demo_acquisition.py`
+- `MockMysteryProcessor` — stand-in for `MysteryProcessor`, no API calls, validates source schema
 
 ---
 
 ## Coding Conventions
 
-Follow these patterns throughout the codebase:
-
-**Type hints everywhere:**
+**Type hints on every function:**
 ```python
 def search_mysteries(self, query: str = "detective mystery", limit: int = 10) -> List[Dict]:
 ```
 
-**Dataclasses for data models:**
-```python
-@dataclass
-class Character:
-    name: str
-    role: str
-    description: str = ""
-    archetype: Optional[str] = None
-```
+**Dataclasses for all data models** — use `field(default_factory=list)` for mutable defaults.
 
-**Docstrings explain the "Why", not just the "What":**
+**Docstrings explain the "Why":**
 ```python
 """
-Extract key themes from user prompt
-
-Why extract themes first: Enables better database retrieval by narrowing
-the search space before pattern matching.
+Why BFS: We want the minimum number of clues, not the first path found.
+BFS guarantees the shortest path in an unweighted graph.
 """
 ```
 
-**Error handling with fallback JSON:**
-```python
-try:
-    return json.loads(response_text)
-except json.JSONDecodeError:
-    return {'crime_type': 'unknown', ...}
-```
+**Claude API pattern** — all Claude calls follow: send prompt → strip markdown fences → `json.loads()` → fallback dict on `JSONDecodeError`.
 
-**File section headers:**
+**Section headers:**
 ```python
 # ============================================================
 # DATA MODELS
 # ============================================================
 ```
 
-**Naming:**
-- `snake_case` — functions and variables
-- `PascalCase` — classes
-- `UPPER_CASE` — constants
-- Descriptive names: `MysteryProcessor`, `GutenbergScraper`
+**JSON storage:** Always `indent=2`. Source schema → `mystery_database/`. Target schema → `causal_chain_output/`.
 
-**JSON storage:** Always use `indent=2` for readability.
+**Model to use:** `claude-sonnet-4-6` (some older files still reference `claude-sonnet-4-20250514` — update when touching those files).
 
 ---
 
 ## Architecture Patterns
 
-1. **Pipeline Pattern** — sequential steps with error handling: Acquire → Process → Store
-2. **RAG** — retrieval-augmented generation for mystery creation
-3. **Dataclasses** — typed, immutable data models
-4. **Strategy Pattern** — scrapers and processors are swappable
-5. **Validator Pattern** — quality checks are isolated from generation logic
-
----
-
-## Workflow Orchestration
-
-### 1. Plan Mode Default
-
-- Enter plan mode for **any non-trivial task** (3+ steps or architectural decisions)
-- If something goes sideways, **STOP and re-plan immediately** — don't keep pushing
-- Use plan mode for verification steps, not just building
-- Write detailed specs upfront to reduce ambiguity
-
-### 2. Subagent Strategy
-
-Keep the main context window clean:
-- Offload research, exploration, and parallel analysis to subagents
-- For complex problems, throw more compute at it via subagents
-- One focused task per subagent
-
-### 3. Self-Improvement Loop
-
-- After **any correction from the user**: update `tasks/lessons.md` with the pattern
-- Write rules that prevent the same mistake from recurring
-- Ruthlessly iterate on these lessons until mistake rate drops
-- Review `tasks/lessons.md` at session start for relevant context
-
-### 4. Verification Before Done
-
-- **Never mark a task complete without proving it works**
-- Diff behavior between main and your changes when relevant
-- Ask: "Would a staff engineer approve this?"
-- Run tests, check logs, demonstrate correctness
-
-### 5. Demand Elegance (Balanced)
-
-- For non-trivial changes: pause and ask "is there a more elegant way?"
-- If a fix feels hacky: "Knowing everything I know now, implement the elegant solution"
-- Skip for simple, obvious fixes — don't over-engineer
-- Challenge your own work before presenting it
-
-### 6. Autonomous Bug Fixing
-
-- When given a bug report: **just fix it** — no hand-holding needed
-- Point at logs, errors, failing tests → then resolve them
-- Zero context switching required from the user
-- Go fix failing CI tests without being told how
+- **Pipeline Pattern** — sequential steps with per-step error handling and fallbacks
+- **Strategy Pattern** — `MockMysteryProcessor` / `CausalChainExtractor` are swappable; add new extractors without changing the pipeline runner
+- **Graph evaluation** — `PlayableMystery.clue_chain` is a DAG; `PlayabilityCalculator` walks it with BFS for MCD and Monte Carlo for RSE
+- **RAG** — `MysteryGenerator` retrieves real examples before generating, ensuring structural authenticity
 
 ---
 
 ## Task Management
 
-### Workflow
+Track work in `tasks/todo.md` and capture lessons in `tasks/lessons.md`.
 
-1. **Plan First** — Write plan to `tasks/todo.md` with checkable items
-2. **Verify Plan** — Check in before starting implementation for significant changes
-3. **Track Progress** — Mark items complete as you go (one `in_progress` at a time)
-4. **Explain Changes** — High-level summary at each step
-5. **Document Results** — Add outcome summary to `tasks/todo.md`
-6. **Capture Lessons** — Update `tasks/lessons.md` after any corrections
-
-### `tasks/todo.md` format
-
+**`tasks/todo.md` format:**
 ```markdown
 ## Task: <name>
-
-- [ ] Step 1
-- [ ] Step 2
-- [x] Step 3 (completed)
+- [ ] Step
+- [x] Done step
 
 ## Results
-<summary of what was done and verified>
+<verified outcome>
 ```
 
-### `tasks/lessons.md` format
-
+**`tasks/lessons.md` format:**
 ```markdown
-## Lesson: <short title>
+## Lesson: <title>
 **Date:** YYYY-MM-DD
 **Mistake:** What went wrong
 **Correction:** What the user said
 **Rule:** Going forward, always/never...
 ```
 
----
-
-## Core Principles
-
-- **Simplicity First** — Make every change as simple as possible. Impact minimal code.
-- **No Laziness** — Find root causes. No temporary fixes. Senior developer standards.
-- **Minimal Impact** — Only touch what's necessary. Avoid introducing unintended side effects.
+Review `tasks/lessons.md` at session start. Update it after any correction.
 
 ---
 
@@ -281,58 +176,13 @@ Keep the main context window clean:
 
 **Location:** https://github.com/Blutomania/mystery-crime-books
 
-This is the canonical test dataset for the project. It is a HuggingFace-style dataset containing:
-
-| File | Purpose |
-|---|---|
-| `dataset_infos.json` | Dataset metadata and schema description |
-| `train-00000-of-00001.parquet` | Mystery/crime book data in columnar Parquet format |
-
-**Usage guidance:**
-- Use this dataset as the reference input when testing the data acquisition and processing pipeline
-- Do not commit processed outputs back to this repo — it is read-only test data
-- When validating changes to `mystery_data_acquisition.py` or `mystery_generator.py`, use records from this dataset as source material
-- The `.parquet` file can be read with `pandas` or `pyarrow`: `pd.read_parquet("train-00000-of-00001.parquet")`
+HuggingFace-style dataset with `train-00000-of-00001.parquet` (mystery/crime book data). Use as reference input when testing the acquisition and processing pipeline. Read with `pd.read_parquet(...)`. Do not commit processed outputs back.
 
 ---
 
-## Key Files Quick Reference
+## Notes
 
-| File | Lines | Role |
-|---|---|---|
-| `mystery_data_acquisition.py` | 600 | Scraping + Claude extraction pipeline |
-| `mystery_generator.py` | 432 | RAG-based mystery generation |
-| `gameplay_validator.py` | 366 | Playability quality checks |
-| `demo_acquisition.py` | 493 | Self-contained demo, no API needed |
-| `requirements.txt` | — | Python dependencies |
-| `tasks/todo.md` | — | Current task tracking |
-| `tasks/lessons.md` | — | Self-improvement log |
-
----
-
-## Cost Estimates (Claude API)
-
-| Operation | Cost per unit | Notes |
-|---|---|---|
-| Process one mystery | ~$0.25 | 4-step Claude extraction |
-| Generate one mystery | ~$0.15 | RAG + generation |
-| 100 mysteries total | ~$40 | Full MVP dataset |
-
----
-
-## Roadmap (from `mystery_database_plan.md`)
-
-- **Phase 1** ✅ — POC: JSON storage, Gutenberg scraping, Claude extraction
-- **Phase 2** — PostgreSQL + pgvector for semantic search at scale
-- **Phase 3** — Async processing, batch API calls
-- **Phase 4** — Full game backend integration
-
----
-
-## Notes for AI Assistants
-
-- Always run `demo_acquisition.py` first to validate data structures before touching the real pipeline
-- The 75% sharing rule is **core to gameplay** — any change touching evidence/character sharing must preserve this mechanic
-- Claude API calls in `MysteryProcessor` and `MysteryGenerator` follow a consistent pattern: send prompt → parse JSON → fallback on error
-- JSON storage is intentional for POC — do not migrate to a database unless explicitly requested
-- No CI/CD or test framework exists yet — manual verification via demo script is the current standard
+- Always run the relevant demo script first (`demo_acquisition.py` or `pull_script_03_causal_chain.py` without `--real`) to validate data structures before touching the real pipeline.
+- JSON storage is intentional for POC — do not migrate to a database unless explicitly requested.
+- `gameplay_validator.py` operates on `MysteryScenario` (source schema). `PlayabilityCalculator` in `pull_script_03_causal_chain.py` is the equivalent for the target schema — they are parallel, not interchangeable.
+- Roadmap: Phase 2 = PostgreSQL + pgvector, Phase 3 = async/batch, Phase 4 = game backend integration.
