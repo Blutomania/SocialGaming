@@ -277,6 +277,25 @@ Keep the main context window clean:
 
 ---
 
+## Test Dataset
+
+**Location:** https://github.com/Blutomania/mystery-crime-books
+
+This is the canonical test dataset for the project. It is a HuggingFace-style dataset containing:
+
+| File | Purpose |
+|---|---|
+| `dataset_infos.json` | Dataset metadata and schema description |
+| `train-00000-of-00001.parquet` | Mystery/crime book data in columnar Parquet format |
+
+**Usage guidance:**
+- Use this dataset as the reference input when testing the data acquisition and processing pipeline
+- Do not commit processed outputs back to this repo — it is read-only test data
+- When validating changes to `mystery_data_acquisition.py` or `mystery_generator.py`, use records from this dataset as source material
+- The `.parquet` file can be read with `pandas` or `pyarrow`: `pd.read_parquet("train-00000-of-00001.parquet")`
+
+---
+
 ## Key Files Quick Reference
 
 | File | Lines | Role |
