@@ -44,6 +44,46 @@ load_dotenv()
 # Every pull script must produce a PlayableMystery JSON.
 # ============================================================
 
+# Canonical vocabulary for investigation topics.
+#
+# Every entry in PlayableCharacter.interrogation_topics and every
+# PlayableClue.topic_tag must be a key from this dict.
+# The values are human-readable display labels shown to players
+# before they type their interrogation question.
+#
+# Character interrogation topics (ask a person):
+#   alibi               — Whereabouts & alibi
+#   relationship_with_victim — Relationship with victim
+#   motive              — Motive & grievances
+#   witness_account     — What they saw or heard
+#   expertise_and_access — Specialist knowledge or access
+#   victim_behaviour    — Victim's recent behaviour
+#   knowledge_of_others — Knowledge of others present
+#   evidence_observed   — Evidence they personally observed
+#
+# Location examination topics (search a place):
+#   scene_condition     — State of the scene
+#   entry_exit          — Entry & exit points
+#   physical_trace      — Physical traces & objects
+#   documents_records   — Documents & records
+INVESTIGATION_TOPICS: Dict[str, str] = {
+    # Character interrogation
+    "alibi":                    "Whereabouts & alibi",
+    "relationship_with_victim": "Relationship with victim",
+    "motive":                   "Motive & grievances",
+    "witness_account":          "What they saw or heard",
+    "expertise_and_access":     "Specialist knowledge or access",
+    "victim_behaviour":         "Victim's recent behaviour",
+    "knowledge_of_others":      "Knowledge of others present",
+    "evidence_observed":        "Evidence they personally observed",
+    # Location examination
+    "scene_condition":          "State of the scene",
+    "entry_exit":               "Entry & exit points",
+    "physical_trace":           "Physical traces & objects",
+    "documents_records":        "Documents & records",
+}
+
+
 @dataclass
 class PlayableClue:
     """
@@ -76,7 +116,7 @@ class PlayableClue:
 
     # Interrogation routing — used by ScriptedNPCResponder during gameplay
     discoverable_from: str = ""              # character_id or location_id that surfaces this clue
-    topic_tag: str = ""                      # maps to one entry in the source character's interrogation_topics
+    topic_tag: str = ""                      # must be a key in INVESTIGATION_TOPICS
     discovery_hints: List[str] = field(default_factory=list)  # example questions that unlock this clue
 
 
@@ -98,7 +138,7 @@ class PlayableCharacter:
     alibi: str = ""
     alibi_valid: bool = True
     revealing_clues: List[str] = field(default_factory=list)  # clue_ids that expose this character
-    interrogation_topics: List[str] = field(default_factory=list)  # topic anchors shown to players before they ask a question
+    interrogation_topics: List[str] = field(default_factory=list)  # keys from INVESTIGATION_TOPICS; shown as menu before player types their question
 
 
 @dataclass
@@ -199,10 +239,18 @@ For each character return a JSON object with:
 - motive_description: 1 sentence, or empty string if not applicable
 - alibi: their claimed alibi, or empty string
 - alibi_valid: true if alibi holds up, false if it breaks down
-- interrogation_topics: list of 3–5 short snake_case topic labels covering what this character
-  can meaningfully speak to (e.g. ["alibi_evening", "relationship_with_victim", "forensic_knowledge"]).
-  Use an empty list for deceased characters. Topics should match the subject areas of the clues
-  this character can reveal.
+- interrogation_topics: list of 3–5 keys from the canonical INVESTIGATION_TOPICS vocabulary below.
+  Use an empty list for deceased characters. Only include topics this character can genuinely speak to.
+
+  Valid topic keys (character interrogation):
+    alibi                 — Whereabouts & alibi
+    relationship_with_victim — Relationship with victim
+    motive                — Motive & grievances
+    witness_account       — What they saw or heard
+    expertise_and_access  — Specialist knowledge or access
+    victim_behaviour      — Victim's recent behaviour
+    knowledge_of_others   — Knowledge of others present
+    evidence_observed     — Evidence they personally observed
 
 Respond ONLY with a JSON array of these objects. Include 4–8 characters."""
 
@@ -260,10 +308,16 @@ For each clue return a JSON object with:
 - shareable: true if players would naturally share this, false if they might withhold it
 - discoverable_from: the character_id or location_id (use "location_<name>" for physical locations)
   that a player must interrogate or examine to surface this clue
-- topic_tag: a short snake_case label matching one entry in that character's interrogation_topics
-  (e.g. "alibi_evening", "forensic_results") — this is the topic anchor shown to players
+- topic_tag: must be a key from the canonical vocabulary below matching the source's topic list
 - discovery_hints: list of 2–3 example questions a player could ask to discover this clue,
   phrased naturally as a player would speak them (e.g. "Were there fingerprints on the weapon?")
+
+  Valid topic_tag keys for characters:
+    alibi | relationship_with_victim | motive | witness_account |
+    expertise_and_access | victim_behaviour | knowledge_of_others | evidence_observed
+
+  Valid topic_tag keys for locations (discoverable_from starts with "location_"):
+    scene_condition | entry_exit | physical_trace | documents_records
 
 Return ONLY a JSON array of these objects. Include all meaningful clues (aim for 6–12).
 Clues should form a connected graph leading to the solution."""
@@ -366,10 +420,10 @@ class MockCausalChainExtractor:
                 alibi_valid=False,
                 revealing_clues=["c5_fibers", "c6_sedative"],
                 interrogation_topics=[
-                    "movements_evening_of_murder",
-                    "relationship_with_victim",
-                    "forensic_and_medical_expertise",
-                    "reason_for_guest_invitation",
+                    "alibi",                    # movements that evening
+                    "relationship_with_victim",  # why he was invited/trusted
+                    "expertise_and_access",      # forensic/medical knowledge
+                    "victim_behaviour",          # victim's fear and why he was called
                 ],
             ),
             PlayableCharacter(
@@ -382,10 +436,10 @@ class MockCausalChainExtractor:
                 alibi_valid=True,
                 revealing_clues=["c3_will_change"],
                 interrogation_topics=[
-                    "alibi_evening",
-                    "will_change",
-                    "marriage_relationship",
-                    "knowledge_of_guests",
+                    "alibi",                    # where she was
+                    "relationship_with_victim",  # marriage dynamics
+                    "victim_behaviour",          # husband's paranoia / why physician was invited
+                    "knowledge_of_others",       # who else was present / their movements
                 ],
             ),
             PlayableCharacter(
@@ -398,10 +452,10 @@ class MockCausalChainExtractor:
                 alibi_valid=True,
                 revealing_clues=["c3_will_change"],
                 interrogation_topics=[
-                    "alibi_evening",
-                    "legal_document_sighting",
-                    "family_tensions",
-                    "knowledge_of_estate",
+                    "alibi",             # was in the library
+                    "documents_records", # saw the will document
+                    "motive",            # family tension / disinheritance
+                    "knowledge_of_others",
                 ],
             ),
             PlayableCharacter(
@@ -412,10 +466,8 @@ class MockCausalChainExtractor:
                 alibi="Heard nothing unusual",
                 alibi_valid=True,
                 interrogation_topics=[
-                    "discovery_of_body",
-                    "evening_observations",
-                    "household_routine",
-                    "guest_behaviour",
+                    "witness_account",   # found the body; observations that evening
+                    "knowledge_of_others",  # household routine; guest movements
                 ],
             ),
             PlayableCharacter(
@@ -424,10 +476,9 @@ class MockCausalChainExtractor:
                 archetype="detective",
                 motive_type=None,
                 interrogation_topics=[
-                    "crime_scene_findings",
-                    "locked_room_mechanism",
-                    "forensic_results",
-                    "suspect_interviews",
+                    "evidence_observed",    # forensic results and crime scene analysis
+                    "expertise_and_access", # locked-room mechanism reconstruction
+                    "knowledge_of_others",  # suspect interview findings
                 ],
             ),
         ]
@@ -462,7 +513,7 @@ class MockCausalChainExtractor:
                 round_weight=1,
                 shareable=True,
                 discoverable_from="char_witness",
-                topic_tag="discovery_of_body",
+                topic_tag="witness_account",
                 discovery_hints=[
                     "What did you find when you entered the study this morning?",
                     "Can you describe exactly what you saw when you discovered the body?",
@@ -481,7 +532,7 @@ class MockCausalChainExtractor:
                 round_weight=1,
                 shareable=True,
                 discoverable_from="location_study",
-                topic_tag="crime_scene_findings",
+                topic_tag="physical_trace",
                 discovery_hints=[
                     "Were there any fingerprints on the murder weapon?",
                     "What does the condition of the letter opener tell you?",
@@ -500,7 +551,7 @@ class MockCausalChainExtractor:
                 round_weight=1,
                 shareable=True,
                 discoverable_from="char_relative",
-                topic_tag="legal_document_sighting",
+                topic_tag="documents_records",
                 discovery_hints=[
                     "Did you see any legal documents belonging to the deceased?",
                     "Were there recent changes to the estate arrangements?",
@@ -519,7 +570,7 @@ class MockCausalChainExtractor:
                 round_weight=2,
                 shareable=True,
                 discoverable_from="char_spouse",
-                topic_tag="marriage_relationship",
+                topic_tag="victim_behaviour",
                 discovery_hints=[
                     "Had your husband been acting differently before his death?",
                     "Why was the physician invited to stay at the house?",
@@ -538,7 +589,7 @@ class MockCausalChainExtractor:
                 round_weight=3,
                 shareable=True,
                 discoverable_from="location_study",
-                topic_tag="crime_scene_findings",
+                topic_tag="physical_trace",
                 discovery_hints=[
                     "Was any trace evidence found near the keyhole or entry point?",
                     "Were there any fibres or material left behind by the killer?",
@@ -557,7 +608,7 @@ class MockCausalChainExtractor:
                 round_weight=3,
                 shareable=False,   # The investigator might withhold this pending lab confirmation
                 discoverable_from="char_investigator",
-                topic_tag="forensic_results",
+                topic_tag="evidence_observed",
                 discovery_hints=[
                     "What did the toxicology report reveal?",
                     "Was there any evidence the victim had been drugged?",
@@ -577,7 +628,7 @@ class MockCausalChainExtractor:
                 round_weight=3,
                 shareable=True,
                 discoverable_from="char_investigator",
-                topic_tag="locked_room_mechanism",
+                topic_tag="expertise_and_access",
                 discovery_hints=[
                     "Is it actually possible to lock the door from outside?",
                     "How could the killer have created the locked-room illusion?",
@@ -597,7 +648,7 @@ class MockCausalChainExtractor:
                 round_weight=1,
                 shareable=True,
                 discoverable_from="location_study",
-                topic_tag="crime_scene_findings",
+                topic_tag="scene_condition",
                 discovery_hints=[
                     "How was access to the room restricted?",
                     "Is there any way someone could have entered from outside?",
@@ -616,7 +667,7 @@ class MockCausalChainExtractor:
                 round_weight=1,
                 shareable=True,
                 discoverable_from="location_study",
-                topic_tag="crime_scene_findings",
+                topic_tag="scene_condition",
                 discovery_hints=[
                     "What was the state of the windows?",
                     "Could anyone have entered through a window?",

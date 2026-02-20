@@ -67,21 +67,62 @@ This means **no AI calls happen during gameplay** for interrogation. See Section
 
 ## 4. Schema Additions (PlayableMystery)
 
-Two additions are required to support topic-anchored interrogation:
-
 ### `PlayableCharacter`
 ```python
 interrogation_topics: List[str]
-# e.g. ["alibi_9_to_11pm", "relationship_with_victim", "forensic_knowledge", "recent_prescription"]
+# Keys from INVESTIGATION_TOPICS (see Section 4.1).
+# Only includes topics this character can genuinely speak to.
+# Deceased characters get [].
 # Populated by CausalChainExtractor at mystery-creation time.
 ```
 
 ### `PlayableClue`
 ```python
-discoverable_from: str          # character_id or location_id that reveals this clue
-topic_tag: str                  # maps to one entry in the character's interrogation_topics
-discovery_hints: List[str]      # example questions Claude used to pre-generate scripted responses
+discoverable_from: str          # character_id or "location_<name>"
+topic_tag: str                  # key from INVESTIGATION_TOPICS; must appear in source character's interrogation_topics
+discovery_hints: List[str]      # 2–3 example questions that unlock this clue (used as scripted NPC responses)
 ```
+
+---
+
+## 4.1 Canonical Topic Vocabulary (`INVESTIGATION_TOPICS`)
+
+All `interrogation_topics` entries and all `topic_tag` values **must** be keys from this table. No free-form strings.
+
+### Character interrogation topics
+
+| Key | Display label | Ask this when you want... |
+|-----|---------------|---------------------------|
+| `alibi` | Whereabouts & alibi | To know where they were and what they were doing |
+| `relationship_with_victim` | Relationship with victim | To understand how they knew the victim and how they got along |
+| `motive` | Motive & grievances | To surface reasons they might have acted against the victim |
+| `witness_account` | What they saw or heard | Sensory observations — what they perceived directly |
+| `expertise_and_access` | Specialist knowledge or access | Skills, tools, or permissions that could enable or explain the crime |
+| `victim_behaviour` | Victim's recent behaviour | How the victim was acting in the days before the crime |
+| `knowledge_of_others` | Knowledge of others present | What they know about other people's whereabouts and behaviour |
+| `evidence_observed` | Evidence they personally observed | Physical or documentary findings they can report (e.g. forensic results) |
+
+### Location examination topics
+
+| Key | Display label | Examine for... |
+|-----|---------------|----------------|
+| `scene_condition` | State of the scene | Overall state — locked, disturbed, staged, etc. |
+| `entry_exit` | Entry & exit points | Doors, windows, passages — how someone could have entered or left |
+| `physical_trace` | Physical traces & objects | Material evidence: fibres, fingerprints, weapons, stains |
+| `documents_records` | Documents & records | Written or recorded evidence: wills, letters, logs, receipts |
+
+### Character archetype → natural topic subset
+
+Different character roles have natural default topic sets. These aren't enforced by the schema, but serve as a guide for `CausalChainExtractor` and for pull script authors:
+
+| Archetype | Natural topics |
+|-----------|---------------|
+| Witness | `witness_account`, `knowledge_of_others` |
+| Suspect | `alibi`, `relationship_with_victim`, `motive`, `knowledge_of_others` |
+| Culprit | `alibi` (false), `relationship_with_victim`, `expertise_and_access`, `victim_behaviour` |
+| Intimate (spouse/relative) | `alibi`, `relationship_with_victim`, `victim_behaviour`, `documents_records` |
+| Expert (physician/detective) | `expertise_and_access`, `evidence_observed`, `knowledge_of_others` |
+| Victim | `[]` (deceased — not interrogatable) |
 
 ---
 

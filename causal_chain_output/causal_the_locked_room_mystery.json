@@ -33,10 +33,10 @@
         "c6_sedative"
       ],
       "interrogation_topics": [
-        "movements_evening_of_murder",
+        "alibi",
         "relationship_with_victim",
-        "forensic_and_medical_expertise",
-        "reason_for_guest_invitation"
+        "expertise_and_access",
+        "victim_behaviour"
       ]
     },
     {
@@ -51,10 +51,10 @@
         "c3_will_change"
       ],
       "interrogation_topics": [
-        "alibi_evening",
-        "will_change",
-        "marriage_relationship",
-        "knowledge_of_guests"
+        "alibi",
+        "relationship_with_victim",
+        "victim_behaviour",
+        "knowledge_of_others"
       ]
     },
     {
@@ -69,10 +69,10 @@
         "c3_will_change"
       ],
       "interrogation_topics": [
-        "alibi_evening",
-        "legal_document_sighting",
-        "family_tensions",
-        "knowledge_of_estate"
+        "alibi",
+        "documents_records",
+        "motive",
+        "knowledge_of_others"
       ]
     },
     {
@@ -85,10 +85,8 @@
       "alibi_valid": true,
       "revealing_clues": [],
       "interrogation_topics": [
-        "discovery_of_body",
-        "evening_observations",
-        "household_routine",
-        "guest_behaviour"
+        "witness_account",
+        "knowledge_of_others"
       ]
     },
     {
@@ -101,10 +99,9 @@
       "alibi_valid": true,
       "revealing_clues": [],
       "interrogation_topics": [
-        "crime_scene_findings",
-        "locked_room_mechanism",
-        "forensic_results",
-        "suspect_interviews"
+        "evidence_observed",
+        "expertise_and_access",
+        "knowledge_of_others"
       ]
     }
   ],
@@ -127,7 +124,7 @@
       "round_weight": 1,
       "shareable": true,
       "discoverable_from": "char_witness",
-      "topic_tag": "discovery_of_body",
+      "topic_tag": "witness_account",
       "discovery_hints": [
         "What did you find when you entered the study this morning?",
         "Can you describe exactly what you saw when you discovered the body?",
@@ -151,7 +148,7 @@
       "round_weight": 1,
       "shareable": true,
       "discoverable_from": "location_study",
-      "topic_tag": "crime_scene_findings",
+      "topic_tag": "physical_trace",
       "discovery_hints": [
         "Were there any fingerprints on the murder weapon?",
         "What does the condition of the letter opener tell you?",
@@ -178,7 +175,7 @@
       "round_weight": 1,
       "shareable": true,
       "discoverable_from": "char_relative",
-      "topic_tag": "legal_document_sighting",
+      "topic_tag": "documents_records",
       "discovery_hints": [
         "Did you see any legal documents belonging to the deceased?",
         "Were there recent changes to the estate arrangements?",
@@ -209,7 +206,7 @@
       "round_weight": 2,
       "shareable": true,
       "discoverable_from": "char_spouse",
-      "topic_tag": "marriage_relationship",
+      "topic_tag": "victim_behaviour",
       "discovery_hints": [
         "Had your husband been acting differently before his death?",
         "Why was the physician invited to stay at the house?",
@@ -237,7 +234,7 @@
       "round_weight": 3,
       "shareable": true,
       "discoverable_from": "location_study",
-      "topic_tag": "crime_scene_findings",
+      "topic_tag": "physical_trace",
       "discovery_hints": [
         "Was any trace evidence found near the keyhole or entry point?",
         "Were there any fibres or material left behind by the killer?",
@@ -265,7 +262,7 @@
       "round_weight": 3,
       "shareable": false,
       "discoverable_from": "char_investigator",
-      "topic_tag": "forensic_results",
+      "topic_tag": "evidence_observed",
       "discovery_hints": [
         "What did the toxicology report reveal?",
         "Was there any evidence the victim had been drugged?",
@@ -292,7 +289,7 @@
       "round_weight": 3,
       "shareable": true,
       "discoverable_from": "char_investigator",
-      "topic_tag": "locked_room_mechanism",
+      "topic_tag": "expertise_and_access",
       "discovery_hints": [
         "Is it actually possible to lock the door from outside?",
         "How could the killer have created the locked-room illusion?",
@@ -314,7 +311,7 @@
       "round_weight": 1,
       "shareable": true,
       "discoverable_from": "location_study",
-      "topic_tag": "crime_scene_findings",
+      "topic_tag": "scene_condition",
       "discovery_hints": [
         "How was access to the room restricted?",
         "Is there any way someone could have entered from outside?"
@@ -335,7 +332,7 @@
       "round_weight": 1,
       "shareable": true,
       "discoverable_from": "location_study",
-      "topic_tag": "crime_scene_findings",
+      "topic_tag": "scene_condition",
       "discovery_hints": [
         "What was the state of the windows?",
         "Could anyone have entered through a window?"
@@ -351,5 +348,5 @@
   },
   "unique_solution_test": true,
   "playability_score": 0.95,
-  "extraction_timestamp": "2026-02-20T22:48:26.557607"
+  "extraction_timestamp": "2026-02-20T22:55:05.478627"
 }
