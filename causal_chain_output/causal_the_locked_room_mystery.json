@@ -1,0 +1,263 @@
+{
+  "mystery_id": "causal_the_locked_room_mystery",
+  "source_id": "sample_locked_room",
+  "extraction_method": "causal_chain",
+  "crime_type": "murder",
+  "crime_description": "A prominent figure is found stabbed in a study locked from the inside.",
+  "victim_id": "char_victim",
+  "culprit_id": "char_culprit",
+  "solution_motive_type": "jealousy",
+  "solution_method": "Sedation followed by stabbing; locked-room illusion created with string-through-keyhole technique.",
+  "characters": [
+    {
+      "character_id": "char_victim",
+      "role": "victim",
+      "archetype": "aristocrat",
+      "motive_type": null,
+      "motive_description": "",
+      "alibi": "",
+      "alibi_valid": true,
+      "revealing_clues": []
+    },
+    {
+      "character_id": "char_culprit",
+      "role": "culprit",
+      "archetype": "physician",
+      "motive_type": "jealousy",
+      "motive_description": "Preventing a rival from benefiting from a research foundation",
+      "alibi": "Claims he was in his guest room all evening",
+      "alibi_valid": false,
+      "revealing_clues": [
+        "c5_fibers",
+        "c6_sedative"
+      ]
+    },
+    {
+      "character_id": "char_spouse",
+      "role": "suspect",
+      "archetype": "spouse",
+      "motive_type": "greed",
+      "motive_description": "Disinherited by will change",
+      "alibi": "Claims she was in her chambers",
+      "alibi_valid": true,
+      "revealing_clues": [
+        "c3_will_change"
+      ]
+    },
+    {
+      "character_id": "char_relative",
+      "role": "suspect",
+      "archetype": "relative",
+      "motive_type": "greed",
+      "motive_description": "Discovered exclusion from will",
+      "alibi": "Was in the library",
+      "alibi_valid": true,
+      "revealing_clues": [
+        "c3_will_change"
+      ]
+    },
+    {
+      "character_id": "char_witness",
+      "role": "witness",
+      "archetype": "butler",
+      "motive_type": null,
+      "motive_description": "",
+      "alibi": "Heard nothing unusual",
+      "alibi_valid": true,
+      "revealing_clues": []
+    },
+    {
+      "character_id": "char_investigator",
+      "role": "investigator",
+      "archetype": "detective",
+      "motive_type": null,
+      "motive_description": "",
+      "alibi": "",
+      "alibi_valid": true,
+      "revealing_clues": []
+    }
+  ],
+  "clue_chain": [
+    {
+      "clue_id": "c1_body_discovered",
+      "description": "The victim is found dead in a locked room with no apparent entry or exit.",
+      "evidence_type": "physical",
+      "is_red_herring": false,
+      "prerequisite_clues": [],
+      "leads_to": [
+        "c2_weapon_clean",
+        "rh1_locked_door",
+        "rh2_sealed_windows",
+        "c3_will_change"
+      ],
+      "implicates": [],
+      "eliminates": [],
+      "disprovable_by": null,
+      "round_weight": 1,
+      "shareable": true
+    },
+    {
+      "clue_id": "c2_weapon_clean",
+      "description": "The murder weapon bears no fingerprints, suggesting deliberate staging by someone knowledgeable.",
+      "evidence_type": "physical",
+      "is_red_herring": false,
+      "prerequisite_clues": [
+        "c1_body_discovered"
+      ],
+      "leads_to": [
+        "c4_victim_paranoia"
+      ],
+      "implicates": [],
+      "eliminates": [],
+      "disprovable_by": null,
+      "round_weight": 1,
+      "shareable": true
+    },
+    {
+      "clue_id": "c3_will_change",
+      "description": "The victim recently changed their will to exclude family members in favor of a professional cause.",
+      "evidence_type": "testimonial",
+      "is_red_herring": false,
+      "prerequisite_clues": [
+        "c1_body_discovered"
+      ],
+      "leads_to": [
+        "c4_victim_paranoia"
+      ],
+      "implicates": [
+        "char_spouse",
+        "char_relative"
+      ],
+      "eliminates": [],
+      "disprovable_by": null,
+      "round_weight": 1,
+      "shareable": true
+    },
+    {
+      "clue_id": "c4_victim_paranoia",
+      "description": "The victim had been increasingly fearful and had specifically invited a trusted specialist to stay.",
+      "evidence_type": "testimonial",
+      "is_red_herring": false,
+      "prerequisite_clues": [
+        "c3_will_change"
+      ],
+      "leads_to": [
+        "c5_fibers",
+        "c6_sedative",
+        "c7_string_trick"
+      ],
+      "implicates": [
+        "char_culprit"
+      ],
+      "eliminates": [
+        "char_spouse",
+        "char_relative"
+      ],
+      "disprovable_by": null,
+      "round_weight": 2,
+      "shareable": true
+    },
+    {
+      "clue_id": "c5_fibers",
+      "description": "Fabric fibers from a distinctive garment are found lodged at the point of forced entry, uniquely identifying the perpetrator.",
+      "evidence_type": "physical",
+      "is_red_herring": false,
+      "prerequisite_clues": [
+        "c4_victim_paranoia"
+      ],
+      "leads_to": [],
+      "implicates": [
+        "char_culprit"
+      ],
+      "eliminates": [
+        "char_spouse",
+        "char_relative",
+        "char_witness"
+      ],
+      "disprovable_by": null,
+      "round_weight": 3,
+      "shareable": true
+    },
+    {
+      "clue_id": "c6_sedative",
+      "description": "Chemical analysis shows the victim was sedated before death \u2014 a method only someone with medical expertise could execute undetected.",
+      "evidence_type": "physical",
+      "is_red_herring": false,
+      "prerequisite_clues": [
+        "c4_victim_paranoia"
+      ],
+      "leads_to": [],
+      "implicates": [
+        "char_culprit"
+      ],
+      "eliminates": [
+        "char_spouse",
+        "char_relative",
+        "char_witness"
+      ],
+      "disprovable_by": null,
+      "round_weight": 3,
+      "shareable": false
+    },
+    {
+      "clue_id": "c7_string_trick",
+      "description": "The 'locked from inside' condition is shown to be reproducible from outside using a simple mechanical technique known to specialists.",
+      "evidence_type": "physical",
+      "is_red_herring": false,
+      "prerequisite_clues": [
+        "c4_victim_paranoia"
+      ],
+      "leads_to": [],
+      "implicates": [
+        "char_culprit"
+      ],
+      "eliminates": [
+        "char_spouse",
+        "char_relative"
+      ],
+      "disprovable_by": null,
+      "round_weight": 3,
+      "shareable": true
+    },
+    {
+      "clue_id": "rh1_locked_door",
+      "description": "The crime scene appears to be an impossible locked room \u2014 no way in or out.",
+      "evidence_type": "physical",
+      "is_red_herring": true,
+      "prerequisite_clues": [
+        "c1_body_discovered"
+      ],
+      "leads_to": [],
+      "implicates": [],
+      "eliminates": [],
+      "disprovable_by": "c7_string_trick",
+      "round_weight": 1,
+      "shareable": true
+    },
+    {
+      "clue_id": "rh2_sealed_windows",
+      "description": "All windows are sealed shut, reinforcing the impossibility of external entry.",
+      "evidence_type": "physical",
+      "is_red_herring": true,
+      "prerequisite_clues": [
+        "c1_body_discovered"
+      ],
+      "leads_to": [],
+      "implicates": [],
+      "eliminates": [],
+      "disprovable_by": "c7_string_trick",
+      "round_weight": 1,
+      "shareable": true
+    }
+  ],
+  "minimum_clue_depth": 3,
+  "red_herring_ratio": 0.22,
+  "rounds_to_solve": {
+    "3_players": 3,
+    "4_players": 3,
+    "5_players": 3
+  },
+  "unique_solution_test": true,
+  "playability_score": 0.95,
+  "extraction_timestamp": "2026-02-20T22:01:54.032056"
+}
