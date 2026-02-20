@@ -17,7 +17,8 @@
       "motive_description": "",
       "alibi": "",
       "alibi_valid": true,
-      "revealing_clues": []
+      "revealing_clues": [],
+      "interrogation_topics": []
     },
     {
       "character_id": "char_culprit",
@@ -30,6 +31,12 @@
       "revealing_clues": [
         "c5_fibers",
         "c6_sedative"
+      ],
+      "interrogation_topics": [
+        "movements_evening_of_murder",
+        "relationship_with_victim",
+        "forensic_and_medical_expertise",
+        "reason_for_guest_invitation"
       ]
     },
     {
@@ -42,6 +49,12 @@
       "alibi_valid": true,
       "revealing_clues": [
         "c3_will_change"
+      ],
+      "interrogation_topics": [
+        "alibi_evening",
+        "will_change",
+        "marriage_relationship",
+        "knowledge_of_guests"
       ]
     },
     {
@@ -54,6 +67,12 @@
       "alibi_valid": true,
       "revealing_clues": [
         "c3_will_change"
+      ],
+      "interrogation_topics": [
+        "alibi_evening",
+        "legal_document_sighting",
+        "family_tensions",
+        "knowledge_of_estate"
       ]
     },
     {
@@ -64,7 +83,13 @@
       "motive_description": "",
       "alibi": "Heard nothing unusual",
       "alibi_valid": true,
-      "revealing_clues": []
+      "revealing_clues": [],
+      "interrogation_topics": [
+        "discovery_of_body",
+        "evening_observations",
+        "household_routine",
+        "guest_behaviour"
+      ]
     },
     {
       "character_id": "char_investigator",
@@ -74,7 +99,13 @@
       "motive_description": "",
       "alibi": "",
       "alibi_valid": true,
-      "revealing_clues": []
+      "revealing_clues": [],
+      "interrogation_topics": [
+        "crime_scene_findings",
+        "locked_room_mechanism",
+        "forensic_results",
+        "suspect_interviews"
+      ]
     }
   ],
   "clue_chain": [
@@ -94,7 +125,14 @@
       "eliminates": [],
       "disprovable_by": null,
       "round_weight": 1,
-      "shareable": true
+      "shareable": true,
+      "discoverable_from": "char_witness",
+      "topic_tag": "discovery_of_body",
+      "discovery_hints": [
+        "What did you find when you entered the study this morning?",
+        "Can you describe exactly what you saw when you discovered the body?",
+        "Was the door locked when you arrived?"
+      ]
     },
     {
       "clue_id": "c2_weapon_clean",
@@ -111,7 +149,14 @@
       "eliminates": [],
       "disprovable_by": null,
       "round_weight": 1,
-      "shareable": true
+      "shareable": true,
+      "discoverable_from": "location_study",
+      "topic_tag": "crime_scene_findings",
+      "discovery_hints": [
+        "Were there any fingerprints on the murder weapon?",
+        "What does the condition of the letter opener tell you?",
+        "Is there any sign the crime scene was staged?"
+      ]
     },
     {
       "clue_id": "c3_will_change",
@@ -131,7 +176,14 @@
       "eliminates": [],
       "disprovable_by": null,
       "round_weight": 1,
-      "shareable": true
+      "shareable": true,
+      "discoverable_from": "char_relative",
+      "topic_tag": "legal_document_sighting",
+      "discovery_hints": [
+        "Did you see any legal documents belonging to the deceased?",
+        "Were there recent changes to the estate arrangements?",
+        "What did you find in the library that evening?"
+      ]
     },
     {
       "clue_id": "c4_victim_paranoia",
@@ -155,7 +207,14 @@
       ],
       "disprovable_by": null,
       "round_weight": 2,
-      "shareable": true
+      "shareable": true,
+      "discoverable_from": "char_spouse",
+      "topic_tag": "marriage_relationship",
+      "discovery_hints": [
+        "Had your husband been acting differently before his death?",
+        "Why was the physician invited to stay at the house?",
+        "Was your husband afraid of something or someone?"
+      ]
     },
     {
       "clue_id": "c5_fibers",
@@ -176,7 +235,14 @@
       ],
       "disprovable_by": null,
       "round_weight": 3,
-      "shareable": true
+      "shareable": true,
+      "discoverable_from": "location_study",
+      "topic_tag": "crime_scene_findings",
+      "discovery_hints": [
+        "Was any trace evidence found near the keyhole or entry point?",
+        "Were there any fibres or material left behind by the killer?",
+        "Can the entry point tell us anything about who was there?"
+      ]
     },
     {
       "clue_id": "c6_sedative",
@@ -197,7 +263,14 @@
       ],
       "disprovable_by": null,
       "round_weight": 3,
-      "shareable": false
+      "shareable": false,
+      "discoverable_from": "char_investigator",
+      "topic_tag": "forensic_results",
+      "discovery_hints": [
+        "What did the toxicology report reveal?",
+        "Was there any evidence the victim had been drugged?",
+        "Could someone without medical training have done this?"
+      ]
     },
     {
       "clue_id": "c7_string_trick",
@@ -217,7 +290,14 @@
       ],
       "disprovable_by": null,
       "round_weight": 3,
-      "shareable": true
+      "shareable": true,
+      "discoverable_from": "char_investigator",
+      "topic_tag": "locked_room_mechanism",
+      "discovery_hints": [
+        "Is it actually possible to lock the door from outside?",
+        "How could the killer have created the locked-room illusion?",
+        "What specialist knowledge would be needed to fake an inside lock?"
+      ]
     },
     {
       "clue_id": "rh1_locked_door",
@@ -232,7 +312,13 @@
       "eliminates": [],
       "disprovable_by": "c7_string_trick",
       "round_weight": 1,
-      "shareable": true
+      "shareable": true,
+      "discoverable_from": "location_study",
+      "topic_tag": "crime_scene_findings",
+      "discovery_hints": [
+        "How was access to the room restricted?",
+        "Is there any way someone could have entered from outside?"
+      ]
     },
     {
       "clue_id": "rh2_sealed_windows",
@@ -247,7 +333,13 @@
       "eliminates": [],
       "disprovable_by": "c7_string_trick",
       "round_weight": 1,
-      "shareable": true
+      "shareable": true,
+      "discoverable_from": "location_study",
+      "topic_tag": "crime_scene_findings",
+      "discovery_hints": [
+        "What was the state of the windows?",
+        "Could anyone have entered through a window?"
+      ]
     }
   ],
   "minimum_clue_depth": 3,
@@ -259,5 +351,5 @@
   },
   "unique_solution_test": true,
   "playability_score": 0.95,
-  "extraction_timestamp": "2026-02-20T22:01:54.032056"
+  "extraction_timestamp": "2026-02-20T22:48:26.557607"
 }

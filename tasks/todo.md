@@ -39,12 +39,19 @@ and `MockCausalChainExtractor` to populate them.
 
 See `docs/game_design.md` Section 4 for field definitions.
 
-- [ ] Add fields to `PlayableClue` dataclass
-- [ ] Add `interrogation_topics` to `PlayableCharacter` dataclass
-- [ ] Update `MockCausalChainExtractor` to populate new fields with demo data
-- [ ] Update `CausalChainExtractor` prompt to extract and return new fields
-- [ ] Verify via demo run — topics display correctly per character
-- [ ] Commit and push
+- [x] Add fields to `PlayableClue` dataclass
+- [x] Add `interrogation_topics` to `PlayableCharacter` dataclass
+- [x] Update `MockCausalChainExtractor` to populate new fields with demo data
+- [x] Update `CausalChainExtractor` prompt to extract and return new fields
+- [x] Verify via demo run — topics display correctly per character
+- [x] Commit and push
+
+## Results
+Verified via `python pull_script_03_causal_chain.py` (demo mode):
+- All 6 characters have interrogation_topics populated (victim correctly has [])
+- All 9 clues have discoverable_from, topic_tag, and discovery_hints
+- topic_tags align with their source character's interrogation_topics list
+- Playability metrics unchanged: UST PASS, MCD 3, RHR 22%, Score 0.950
 
 ---
 
