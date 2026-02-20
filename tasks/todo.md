@@ -11,7 +11,7 @@ game playability via MCD, RSE, and UST metrics.
 - [x] Implement MockCausalChainExtractor (demo, no API)
 - [x] Implement PlayabilityCalculator (MCD, RSE, UST, composite score)
 - [x] Write demo __main__ block and verify output
-- [ ] Commit and push
+- [x] Commit and push
 
 ## Metrics Defined
 
@@ -28,3 +28,40 @@ Verified via `python pull_script_03_causal_chain.py` (demo mode, no API needed):
 - UST: PASS | MCD: 3 | RHR: 22% | RSE: 3 rounds (3/4/5 players)
 - Playability score: 0.950 — EXCELLENT
 - Output saved to: causal_chain_output/causal_the_locked_room_mystery.json
+
+---
+
+## Task: PlayableMystery Schema — Interrogation Fields
+
+Goal: Add `interrogation_topics` to `PlayableCharacter` and `discoverable_from`,
+`topic_tag`, `discovery_hints` to `PlayableClue`. Update `CausalChainExtractor`
+and `MockCausalChainExtractor` to populate them.
+
+See `docs/game_design.md` Section 4 for field definitions.
+
+- [ ] Add fields to `PlayableClue` dataclass
+- [ ] Add `interrogation_topics` to `PlayableCharacter` dataclass
+- [ ] Update `MockCausalChainExtractor` to populate new fields with demo data
+- [ ] Update `CausalChainExtractor` prompt to extract and return new fields
+- [ ] Verify via demo run — topics display correctly per character
+- [ ] Commit and push
+
+---
+
+## Task: Text-Only Prototype — ConsoleGameRunner
+
+Goal: Build `game_engine/` with the layered architecture from `docs/game_design.md`.
+Implements core game loop (round timer, action budget, topic-anchored interrogation,
+75% sharing enforcement, win condition) using text-only stubs.
+
+- [ ] Create `game_engine/` package with `__init__.py`
+- [ ] Define abstract base classes: `CrimeEventBase`, `AvatarBase`, `NPCResponderBase`, `GameRunnerBase`
+- [ ] Implement `TextCrimeEvent` — prints scenario description
+- [ ] Implement `TextAvatar` — assigns text role to player name
+- [ ] Implement `ScriptedNPCResponder` — looks up `discovery_hints` from PlayableMystery
+- [ ] Implement `RoundManager` — tracks round count, action budget (2 per player), timer
+- [ ] Implement `SharingEngine` — enforces 75% share at round end
+- [ ] Implement `ConsoleGameRunner` — orchestrates full loop with `input()` prompts
+- [ ] Write `demo_game.py` to run a full game against the Locked Room Mystery (demo mode)
+- [ ] Verify: game is solvable, sharing enforced, win condition reached
+- [ ] Commit and push
