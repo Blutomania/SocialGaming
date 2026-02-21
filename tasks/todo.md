@@ -55,6 +55,31 @@ Verified via `python pull_script_03_causal_chain.py` (demo mode):
 
 ---
 
+## Task: PlayableCharacter — Setting-Agnostic Archetypes
+
+Goal: Replace `archetype: str` (setting-specific job title) with a two-field design:
+`archetype_class` (canonical, from a fixed 9-class vocabulary) and
+`archetype_label` (free text, setting-specific, shown to players).
+
+- [x] Add `ARCHETYPE_CLASSES` constant dict (9 classes, default_topics per class)
+- [x] Update `PlayableCharacter` dataclass: replace `archetype` with `archetype_class` + `archetype_label`
+- [x] Update `MockCausalChainExtractor` — all 6 characters use new fields
+- [x] Update `CausalChainExtractor._extract_characters()` prompt + constructor call
+- [x] Update CLAUDE.md — new "Character Archetypes" section, Key Classes entry
+- [x] Update tasks/todo.md and tasks/lessons.md
+
+## Results
+Implemented two-field archetype split. MockCausalChainExtractor locked-room demo:
+- char_victim: authority / "Nobleman"
+- char_culprit: professional / "Physician"
+- char_spouse: intimate_partner / "Spouse"
+- char_relative: family / "Niece"
+- char_witness: worker / "Butler"
+- char_investigator: investigator / "Inspector"
+archetype_class survives setting transplants; archetype_label changes with setting.
+
+---
+
 ## Task: Text-Only Prototype — ConsoleGameRunner
 
 Goal: Build `game_engine/` with the layered architecture from `docs/game_design.md`.

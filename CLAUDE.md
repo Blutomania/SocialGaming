@@ -94,6 +94,7 @@ The 75% sharing rule is **core to gameplay** — any change touching clue sharin
 
 ### `pull_script_03_causal_chain.py`
 - `PlayableClue`, `PlayableCharacter`, `PlayableMystery` — target schema dataclasses
+- `ARCHETYPE_CLASSES` — canonical dict of 9 setting-agnostic character classes (see below)
 - `CausalChainExtractor` — 3-step Claude extraction: characters → clue graph → solution
 - `MockCausalChainExtractor` — deterministic demo, no API needed
 - `PlayabilityCalculator` — computes MCD (BFS), RSE (simulation), UST, score
@@ -133,6 +134,35 @@ BFS guarantees the shortest path in an unweighted graph.
 **JSON storage:** Always `indent=2`. Source schema → `mystery_database/`. Target schema → `causal_chain_output/`.
 
 **Model to use:** `claude-sonnet-4-6` (some older files still reference `claude-sonnet-4-20250514` — update when touching those files).
+
+---
+
+## Character Archetypes (`ARCHETYPE_CLASSES`)
+
+`PlayableCharacter` stores two archetype fields instead of one:
+
+| Field | Purpose | Changes with setting? |
+|-------|---------|----------------------|
+| `archetype_class` | Canonical key from `ARCHETYPE_CLASSES`; drives game logic and default topic suggestions | **Never** |
+| `archetype_label` | Free-text display name shown to players | **Yes** — matches setting tone |
+
+Example: same `archetype_class="worker"` → `"Butler"` (Victorian manor) or `"Life Support Technician"` (Mars colony).
+
+**Nine canonical classes:**
+
+| Class | Social function | Default interrogation topics |
+|-------|----------------|------------------------------|
+| `intimate_partner` | Romantic/spousal relation to victim | alibi, relationship_with_victim, victim_behaviour, knowledge_of_others |
+| `family` | Blood or legal relation | alibi, relationship_with_victim, motive, documents_records |
+| `rival` | Direct competitor or antagonist | alibi, relationship_with_victim, motive, knowledge_of_others |
+| `authority` | Person with power, status, or command | alibi, witness_account, knowledge_of_others |
+| `professional` | Person with specialist knowledge or skills | alibi, expertise_and_access, evidence_observed, knowledge_of_others |
+| `worker` | Person employed in service or labour | alibi, witness_account, knowledge_of_others |
+| `associate` | Peer with no close personal tie to victim | alibi, witness_account, knowledge_of_others |
+| `investigator` | Person whose role involves uncovering truth | evidence_observed, expertise_and_access, knowledge_of_others |
+| `criminal_associate` | Person with ties to criminal activity | alibi, motive, knowledge_of_others |
+
+`interrogation_topics` on a character may be overridden per-character by the extractor — `default_topics` from `ARCHETYPE_CLASSES` are a starting point, not a constraint. Deceased characters always get `[]`.
 
 ---
 

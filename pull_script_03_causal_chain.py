@@ -83,6 +83,91 @@ INVESTIGATION_TOPICS: Dict[str, str] = {
     "documents_records":        "Documents & records",
 }
 
+# Canonical archetype classes — setting-agnostic social function categories.
+#
+# archetype_class drives game logic (default topic suggestions, role heuristics).
+# archetype_label is free text shown to players (e.g. "Butler", "Colony Medic",
+# "Grand Vizier") — it changes with the setting, the class does not.
+#
+# Nine classes covering the investigative space:
+#   intimate_partner  — romantic/spousal relation to victim
+#   family            — blood or legal relation
+#   rival             — direct competitor or antagonist
+#   authority         — person with power, status, or command
+#   professional      — person with specialist knowledge or skills
+#   worker            — person employed in service or labour
+#   associate         — peer with no close personal tie to the victim
+#   investigator      — person whose role involves uncovering truth
+#   criminal_associate — person with ties to criminal activity
+#
+# default_topics: suggested interrogation_topics for a character of this class.
+# These are starting points — CausalChainExtractor may override per character.
+ARCHETYPE_CLASSES: Dict[str, Dict] = {
+    "intimate_partner": {
+        "label": "Intimate Partner",
+        "description": "Romantic or spousal relationship to the victim",
+        "default_topics": [
+            "alibi", "relationship_with_victim", "victim_behaviour", "knowledge_of_others",
+        ],
+    },
+    "family": {
+        "label": "Family Member",
+        "description": "Blood or legal relation to the victim",
+        "default_topics": [
+            "alibi", "relationship_with_victim", "motive", "documents_records",
+        ],
+    },
+    "rival": {
+        "label": "Rival",
+        "description": "Direct competitor or antagonist",
+        "default_topics": [
+            "alibi", "relationship_with_victim", "motive", "knowledge_of_others",
+        ],
+    },
+    "authority": {
+        "label": "Authority Figure",
+        "description": "Person with power, high status, or command",
+        "default_topics": [
+            "alibi", "witness_account", "knowledge_of_others",
+        ],
+    },
+    "professional": {
+        "label": "Professional",
+        "description": "Person with specialist knowledge or skills",
+        "default_topics": [
+            "alibi", "expertise_and_access", "evidence_observed", "knowledge_of_others",
+        ],
+    },
+    "worker": {
+        "label": "Worker",
+        "description": "Person employed in service or labour",
+        "default_topics": [
+            "alibi", "witness_account", "knowledge_of_others",
+        ],
+    },
+    "associate": {
+        "label": "Associate",
+        "description": "Peer with no close personal tie to the victim",
+        "default_topics": [
+            "alibi", "witness_account", "knowledge_of_others",
+        ],
+    },
+    "investigator": {
+        "label": "Investigator",
+        "description": "Person whose role involves uncovering truth",
+        "default_topics": [
+            "evidence_observed", "expertise_and_access", "knowledge_of_others",
+        ],
+    },
+    "criminal_associate": {
+        "label": "Criminal Associate",
+        "description": "Person with ties to criminal activity",
+        "default_topics": [
+            "alibi", "motive", "knowledge_of_others",
+        ],
+    },
+}
+
 
 @dataclass
 class PlayableClue:
@@ -129,10 +214,19 @@ class PlayableCharacter:
         "Dr. Sterling" can become "the colony medic" on Mars or
         "the apothecary" in 1920s Paris. The role and motive_type
         survive the transplant; the name and costume do not.
+
+    archetype_class vs archetype_label:
+        archetype_class is canonical (from ARCHETYPE_CLASSES) and drives game
+        logic — default topic suggestions, role heuristics. It never changes
+        across setting transplants.
+        archetype_label is free text shown to players. It changes with the
+        setting: "Butler" on Earth → "Life Support Technician" on Mars →
+        "Grand Chamberlain" in 1400s Byzantium.
     """
     character_id: str
     role: str                      # culprit | victim | witness | suspect | investigator
-    archetype: str                 # physician | spouse | rival | butler | relative …
+    archetype_class: str           # key from ARCHETYPE_CLASSES (e.g. "professional", "worker")
+    archetype_label: str           # setting-specific display name (e.g. "Physician", "Butler")
     motive_type: Optional[str]     # greed | revenge | fear | jealousy | ideology | love | None
     motive_description: str = ""
     alibi: str = ""
@@ -227,6 +321,7 @@ class CausalChainExtractor:
 
     def _extract_characters(self, text: str) -> List[PlayableCharacter]:
         """Extract characters as abstract roles, not setting-specific names."""
+        archetype_classes = " | ".join(ARCHETYPE_CLASSES.keys())
         prompt = f"""Analyze this mystery and extract each key character.
 
 {text[:5000]}
@@ -234,7 +329,14 @@ class CausalChainExtractor:
 For each character return a JSON object with:
 - character_id: short snake_case identifier (e.g. "char_culprit", "char_victim")
 - role: one of culprit | victim | witness | suspect | investigator
-- archetype: functional label (e.g. physician, spouse, rival, butler, relative, detective)
+- archetype_class: the character's social function — must be one of:
+    {archetype_classes}
+  Choose based on their relationship to the victim and social role, not their job title.
+  This value must survive a setting transplant (the same class applies whether the
+  mystery is Victorian, futuristic, or medieval).
+- archetype_label: a setting-specific display label shown to players
+  (e.g. "Physician", "Butler", "Colony Medic", "Grand Vizier", "Rival Scholar").
+  This should match the mystery's setting and tone.
 - motive_type: one of greed | revenge | fear | jealousy | ideology | love | null
 - motive_description: 1 sentence, or empty string if not applicable
 - alibi: their claimed alibi, or empty string
@@ -266,7 +368,8 @@ Respond ONLY with a JSON array of these objects. Include 4–8 characters."""
                 PlayableCharacter(
                     character_id=c.get("character_id", f"char_{i}"),
                     role=c.get("role", "suspect"),
-                    archetype=c.get("archetype", "unknown"),
+                    archetype_class=c.get("archetype_class", "associate"),
+                    archetype_label=c.get("archetype_label", c.get("archetype_class", "Unknown")),
                     motive_type=c.get("motive_type"),
                     motive_description=c.get("motive_description", ""),
                     alibi=c.get("alibi", ""),
@@ -404,7 +507,8 @@ class MockCausalChainExtractor:
             PlayableCharacter(
                 character_id="char_victim",
                 role="victim",
-                archetype="aristocrat",
+                archetype_class="authority",
+                archetype_label="Nobleman",
                 motive_type=None,
                 alibi="",
                 alibi_valid=True,
@@ -413,7 +517,8 @@ class MockCausalChainExtractor:
             PlayableCharacter(
                 character_id="char_culprit",
                 role="culprit",
-                archetype="physician",
+                archetype_class="professional",
+                archetype_label="Physician",
                 motive_type="jealousy",
                 motive_description="Preventing a rival from benefiting from a research foundation",
                 alibi="Claims he was in his guest room all evening",
@@ -429,7 +534,8 @@ class MockCausalChainExtractor:
             PlayableCharacter(
                 character_id="char_spouse",
                 role="suspect",
-                archetype="spouse",
+                archetype_class="intimate_partner",
+                archetype_label="Spouse",
                 motive_type="greed",
                 motive_description="Disinherited by will change",
                 alibi="Claims she was in her chambers",
@@ -445,7 +551,8 @@ class MockCausalChainExtractor:
             PlayableCharacter(
                 character_id="char_relative",
                 role="suspect",
-                archetype="relative",
+                archetype_class="family",
+                archetype_label="Niece",
                 motive_type="greed",
                 motive_description="Discovered exclusion from will",
                 alibi="Was in the library",
@@ -461,19 +568,21 @@ class MockCausalChainExtractor:
             PlayableCharacter(
                 character_id="char_witness",
                 role="witness",
-                archetype="butler",
+                archetype_class="worker",
+                archetype_label="Butler",
                 motive_type=None,
                 alibi="Heard nothing unusual",
                 alibi_valid=True,
                 interrogation_topics=[
-                    "witness_account",   # found the body; observations that evening
+                    "witness_account",      # found the body; observations that evening
                     "knowledge_of_others",  # household routine; guest movements
                 ],
             ),
             PlayableCharacter(
                 character_id="char_investigator",
                 role="investigator",
-                archetype="detective",
+                archetype_class="investigator",
+                archetype_label="Inspector",
                 motive_type=None,
                 interrogation_topics=[
                     "evidence_observed",    # forensic results and crime scene analysis

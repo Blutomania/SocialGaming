@@ -20,6 +20,12 @@
 **Decision:** Generative AI in the production game is limited to exactly two touchpoints: (1) the crime event intro video (generated once per mystery), and (2) player avatars (generated once per session per player). All other gameplay — including NPC interrogation responses — uses scripted data generated at mystery-creation time by the pull scripts.
 **Rule:** Do not add Claude API calls inside the gameplay loop. NPC responses come from `discovery_hints` in the PlayableMystery data. Real-time AI during gameplay is out of scope unless explicitly approved.
 
+## Lesson: Archetypes Must Be Setting-Agnostic
+**Date:** 2026-02-21
+**Mistake:** `PlayableCharacter.archetype` was a job-title string (e.g. "butler", "physician") — vocabulary that only makes sense in Victorian-era or similar settings. On Mars or in medieval Byzantium, those labels break down.
+**Correction:** User identified this and requested general, flexible archetypes.
+**Rule:** Always separate social *function* (archetype_class — canonical, never changes) from setting-specific *label* (archetype_label — free text, changes with setting). The nine canonical classes (intimate_partner, family, rival, authority, professional, worker, associate, investigator, criminal_associate) cover the investigative space without assuming any era or setting.
+
 ## Lesson: Architecture Must Support Text → Graphic Expansion Without Rewriting Core Logic
 **Date:** 2026-02-20
 **Decision:** The prototype is text-only (console). Production adds a graphic web UI and generative media. These are separate layers (Presentation, Generation) that sit above the Core game logic. The core never changes.
