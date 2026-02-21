@@ -9,6 +9,21 @@ This repository contains the data acquisition and processing pipeline for buildi
 3. **Stores** mysteries in a searchable database
 4. **Generates** new mystery scenarios by combining patterns from the database
 
+## Test Data Source
+
+**Primary test dataset:** [https://github.com/Blutomania/mystery-crime-books](https://github.com/Blutomania/mystery-crime-books)
+
+- **Format:** Hugging Face dataset (Parquet)
+- **Size:** 359 mystery/crime books
+- **Fields:** `url` (string), `text` (string)
+- **File:** `train-00000-of-00001.parquet`
+
+This dataset is the current source library for the mystery versioning system. Each book in the dataset serves as source material whose components (mystery type, culprit, motive, suspects, red herrings, etc.) are indexed and recombined to generate new mysteries.
+
+> Once the core engine is working, the goal is to expand to as much public domain mystery content as possible (Project Gutenberg, Internet Archive, etc.).
+
+---
+
 ## Quick Start
 
 ### Prerequisites

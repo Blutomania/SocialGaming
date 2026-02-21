@@ -1,5 +1,17 @@
 # Choose Your Mystery - Getting Started Guide
 
+## Test Data Source
+
+**Primary test dataset:** [https://github.com/Blutomania/mystery-crime-books](https://github.com/Blutomania/mystery-crime-books)
+
+- **Format:** Hugging Face dataset (Parquet) — `train-00000-of-00001.parquet`
+- **Size:** 359 mystery/crime books
+- **Fields per entry:** `url` (string), `text` (string)
+
+This is the dataset to use during development. Do not ask for it again — it lives here.
+
+---
+
 ## What We Just Built
 
 You now have a **complete mystery database system** with three core components:
