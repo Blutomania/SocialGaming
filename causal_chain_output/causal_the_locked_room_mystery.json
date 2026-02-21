@@ -12,7 +12,8 @@
     {
       "character_id": "char_victim",
       "role": "victim",
-      "archetype": "aristocrat",
+      "archetype_class": "authority",
+      "archetype_label": "Nobleman",
       "motive_type": null,
       "motive_description": "",
       "alibi": "",
@@ -23,7 +24,8 @@
     {
       "character_id": "char_culprit",
       "role": "culprit",
-      "archetype": "physician",
+      "archetype_class": "professional",
+      "archetype_label": "Physician",
       "motive_type": "jealousy",
       "motive_description": "Preventing a rival from benefiting from a research foundation",
       "alibi": "Claims he was in his guest room all evening",
@@ -42,7 +44,8 @@
     {
       "character_id": "char_spouse",
       "role": "suspect",
-      "archetype": "spouse",
+      "archetype_class": "intimate_partner",
+      "archetype_label": "Spouse",
       "motive_type": "greed",
       "motive_description": "Disinherited by will change",
       "alibi": "Claims she was in her chambers",
@@ -60,7 +63,8 @@
     {
       "character_id": "char_relative",
       "role": "suspect",
-      "archetype": "relative",
+      "archetype_class": "family",
+      "archetype_label": "Niece",
       "motive_type": "greed",
       "motive_description": "Discovered exclusion from will",
       "alibi": "Was in the library",
@@ -78,7 +82,8 @@
     {
       "character_id": "char_witness",
       "role": "witness",
-      "archetype": "butler",
+      "archetype_class": "worker",
+      "archetype_label": "Butler",
       "motive_type": null,
       "motive_description": "",
       "alibi": "Heard nothing unusual",
@@ -92,7 +97,8 @@
     {
       "character_id": "char_investigator",
       "role": "investigator",
-      "archetype": "detective",
+      "archetype_class": "investigator",
+      "archetype_label": "Inspector",
       "motive_type": null,
       "motive_description": "",
       "alibi": "",
@@ -348,5 +354,5 @@
   },
   "unique_solution_test": true,
   "playability_score": 0.95,
-  "extraction_timestamp": "2026-02-20T22:55:05.478627"
+  "extraction_timestamp": "2026-02-21T00:20:16.081129"
 }
