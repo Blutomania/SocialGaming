@@ -207,7 +207,7 @@ Rationale:
 | `era` | prehistoric, ancient, medieval, renaissance, industrial, victorian, modern, near_future, far_future |
 | `genre_modifier` | steampunk, cyberpunk, biopunk, gothic, space_opera, solarpunk, postapocalyptic, supernatural, weird_west |
 | `environment` | urban, rural, wilderness, ocean, arctic, jungle, desert, court_or_palace, estate_or_manor, ship_or_submarine, space_station, underground, laboratory, factory |
-| `crime_category` | murder, theft, heist, forgery, fraud, sabotage, blackmail, kidnapping, disappearance, impersonation, mysterious_event |
+| `crime_category` | murder, theft, heist, forgery, fraud, sabotage, blackmail, kidnapping, disappearance, impersonation |
 | `macguffin` | artifact, information, identity, technology, person, land, resource, reputation |
 | `motive` | greed, revenge, power, survival, ideology, love, jealousy, loyalty, obsession |
 | `twist_type` | false_culprit, victim_is_culprit, hidden_victim, multiple_culprits, double_cross, unreliable_narrator, no_crime_at_all |
