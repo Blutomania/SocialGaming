@@ -200,23 +200,128 @@ Rationale:
 
 #### Enum Reference
 
+> **Revised values** — see *Enum Rationale* section below for the reasoning behind each change.
+
 | Axis | Values |
 |---|---|
-| `era` | prehistoric, ancient, medieval, renaissance, industrial, victorian, edwardian, modern, near_future, far_future, alternate_history |
-| `genre_modifier` | realistic, steampunk, cyberpunk, gothic, noir, space_opera, fantasy_adjacent, solarpunk |
-| `biome` | ocean, jungle, arctic, desert, space, underground, urban, court, rural, submarine |
-| `crime_category` | murder, theft, forgery, sabotage, heist, disappearance, blackmail, identity_crime, signal_anomaly |
-| `macguffin` | artifact, data, identity, formula, land_or_resource, person, signal, currency |
-| `motive` | greed, revenge, power, survival, ideology, love, jealousy, self_preservation |
-| `twist_type` | false_culprit, hidden_victim, impossible_crime, double_cross, unreliable_narrator, no_crime_at_all |
-| `crime_structure` | locked_room, open_field, institutional, theft_trail, identity_swap, impossible_crime, vanishing_act |
+| `era` | prehistoric, ancient, medieval, renaissance, industrial, victorian, modern, near_future, far_future |
+| `genre_modifier` | steampunk, cyberpunk, biopunk, gothic, space_opera, solarpunk, postapocalyptic, supernatural, weird_west |
+| `environment` | urban, rural, wilderness, ocean, arctic, jungle, desert, court_or_palace, estate_or_manor, ship_or_submarine, space_station, underground, laboratory, factory |
+| `crime_category` | murder, theft, heist, forgery, fraud, sabotage, blackmail, kidnapping, disappearance, impersonation, mysterious_event |
+| `macguffin` | artifact, information, identity, technology, person, land, resource, reputation |
+| `motive` | greed, revenge, power, survival, ideology, love, jealousy, loyalty, obsession |
+| `twist_type` | false_culprit, victim_is_culprit, hidden_victim, multiple_culprits, double_cross, unreliable_narrator, no_crime_at_all |
+| `crime_structure` | locked_room, open_suspect_pool, institutional, conspiracy, theft_trail, identity_swap, impossible_crime, vanishing_act |
+
+**Note:** `tone` is **not** a version-hash axis — it lives in the Session Config layer (see below).
+
+---
+
+#### Enum Rationale
+
+**`era`**
+- Removed `alternate_history` — this is a *world-physics modifier*, not a time period. It belongs in `genre_modifier`.
+- Removed `edwardian` — a 10-year sliver that blurs into `victorian`. Absorbed.
+- `industrial` and `victorian` kept separate: `industrial` = Gilded Age America / Continental Europe; `victorian` = British Empire cultural context. Distinction is load-bearing for cast archetypes.
+
+**`genre_modifier`**
+- Removed `realistic` — the absence of a modifier. Represented as `null`.
+- Removed `noir` — this is **tone**, not world-physics. A cyberpunk story can be noir. A Victorian story can be noir. Moved to Session Config `tone` axis.
+- Removed `fantasy_adjacent` — too vague. Replaced by `supernatural` (magic/ghosts/curses explicitly real) and `weird_west` (frontier + supernatural).
+- Added `biopunk` — genetic editing as dominant technology. Distinct from cyberpunk (neural implants + megacorps). Needed for Genetic Identity Heist query.
+- Added `postapocalyptic` — civilization collapse changes world-physics fundamentally (no institutions, no forensics infrastructure).
+
+**`environment`** *(renamed from `biome`)*
+- Renamed: the old `biome` mixed natural landscapes with built environments and location types inconsistently.
+- Added built environments: `court_or_palace`, `estate_or_manor`, `ship_or_submarine`, `space_station`, `laboratory`, `factory`.
+- Removed `space` and `submarine` as standalone values — `space_station` and `ship_or_submarine` are more precise.
+
+**`crime_category`**
+- Removed `signal_anomaly` — too narrow (derived from one query). Absorbed into `mysterious_event`.
+- Renamed `identity_crime` → `impersonation` — more specific and unambiguous.
+- Added `fraud` — distinct from `forgery` (forgery = fake object; fraud = fake transaction/scheme).
+- Added `kidnapping` — distinct from `disappearance` (kidnapping implies a known demand; disappearance is ambiguous).
+
+**`macguffin`**
+- Collapsed `formula`, `signal`, `data` → `information` — all three are information in different containers.
+- Split `land_or_resource` → `land` + `resource` — two distinct things with different legal/social weight.
+- Absorbed `currency` into `resource`.
+- Added `technology` — a machine, blueprint, or capability (distinct from information *about* the technology).
+- Added `reputation` — the central object in blackmail mysteries; worth making explicit.
+
+**`motive`**
+- Removed `self_preservation` — duplicate of `survival`. One kept.
+- Added `loyalty` — acting on behalf of a group, family, nation, or code. Common in institutional and historical mysteries.
+- Added `obsession` — pathological fixation on a person, object, or idea. Distinct from love.
+
+**`twist_type`**
+- Removed `impossible_crime` — already covered by `crime_structure`. Duplication removed.
+- Added `victim_is_culprit` — faked death, self-orchestration. A staple (Agatha Christie device).
+- Added `multiple_culprits` — everyone did it (Orient Express pattern). Distinct from double_cross.
+
+**`crime_structure`**
+- Renamed `open_field` → `open_suspect_pool` — clarifies what this actually means (many suspects, no access constraint).
+- Added `conspiracy` — crime is part of a larger coordinated plot. Distinct in investigation frame from all others.
+- `impossible_crime` kept here (removed from `twist_type`). This is the right home: it describes the *structure* of the crime, not the reveal.
+
+---
+
+## Session Architecture: Two-Layer Design
+
+The system separates **what the mystery is** from **how it is experienced**. These are two distinct layers with different mutability and control.
+
+### Layer 1 — Version Hash (locked at game start)
+
+Encodes the mystery's logical content. Deterministic, shareable, reproducible. Defined by all Schema B axes:
+
+```
+era + genre_modifier + environment + crime_category + macguffin + motive + twist_type + crime_structure
+```
+
+The version string is generated at game creation and **cannot be changed during play**. Changing the version = starting a new game.
+
+### Layer 2 — Session Config (host-controlled, adjustable during play)
+
+Defines how the mystery content is *expressed* — narration style, atmosphere, difficulty. Same mystery, different surface.
+
+| Setting | Default | Options |
+|---|---|---|
+| `tone` | `neutral` | `neutral \| noir \| cozy \| thriller \| horror \| comedic \| dramatic` |
+| `rating` | `teen` | `family \| teen \| mature` |
+| `difficulty` | `medium` | `easy \| medium \| hard \| expert` |
+| `pacing` | `host_driven` | `host_driven \| timed` |
+
+**Defaults are intentionally middle-ground** — most sessions will never touch these settings. The system is *reactive, not proactive*: no preference prompts at game start, settings change only when someone asks.
+
+### Role-Based Control
+
+| Role | Can do |
+|---|---|
+| **Host** (game organizer) | Set version at game creation; adjust any Session Config setting mid-game |
+| **Player** | Interact with mystery content only — no settings access |
+
+**Rationale:** Prompting all players for preferences interrupts game flow. The host has the mental model of a DM or room owner (familiar from Jackbox, Among Us, tabletop). Players trust them to calibrate the experience.
+
+### How Mid-Game Config Changes Work
+
+- Host issues a quiet command (e.g., `/tone cozy`, `/difficulty easy`)
+- Other players are not interrupted
+- Changes apply at the **next natural scene transition** (next clue reveal, next scene) — never mid-sentence
+- Optionally, the narration can absorb the shift: *"The atmosphere grows lighter..."*
+
+### What Cannot Change Mid-Game
+
+- The mystery version (version hash)
+- Who the culprit is, what the crime was, what the twist is
+- Any axis from Layer 1
 
 ---
 
 ## Next Steps
 
-1. Update `MysteryScenario` dataclass in `mystery_data_acquisition.py` to use Schema B structure
+1. Update `MysteryScenario` dataclass in `mystery_data_acquisition.py` to use Schema B structure with revised enums
 2. Write an extraction prompt that pulls these axes from raw book text
 3. Run extraction against the 359 books in `https://github.com/Blutomania/mystery-crime-books`
 4. Validate: check that era, crime_category, and macguffin can be extracted reliably (target: >85% accuracy)
 5. Build the combinatorial engine that assembles `A(WORLD) + B(CRIME) + C(CAST) + D(PLOT)` into a coherent mystery
+6. Implement Session Config layer with host-only controls and the 4 settings above
