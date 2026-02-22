@@ -1,0 +1,13 @@
+# Secrets
+.env
+
+# Pipeline output
+mystery_schema_b/
+mystery_database/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
