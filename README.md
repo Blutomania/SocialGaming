@@ -93,49 +93,89 @@ python mystery_generator.py
 
 ## Architecture
 
-### Data Flow
+### End-to-End Pipeline
 
 ```
-User Prompt: "A murder on Mars"
+PIPELINE PHASE               TOOL                          OUTPUT
+─────────────────────────────────────────────────────────────────────
+1. Acquire corpus             run_experiment.py             mystery_corpus/
+2. Extract structured data    extraction variants           mystery_database*/scenarios/
+3. Assemble playable game     scenario_assembler.py         active_games/<id>.json
+4. Present to players         scenario_presenter.py         verbal narration or visual briefs
+```
+
+### Scenario Assembly Flow (scenario_assembler.py)
+
+```
+Player Prompt: "An Art Theft in Ancient Athens"
     ↓
-[1] Theme Extraction
-    Extract: sci-fi setting, murder, closed environment
+[1] Parse Prompt (LLM)
+    Extract: crime_type=theft, setting=Ancient Athens, era=ancient
     ↓
-[2] Database Retrieval
-    Find similar: "Orient Express", "Submarine mystery", "Space station"
+[2] Select Mystery from Database
+    Find compatible crime structures, score by type + era affinity
     ↓
-[3] Pattern Extraction  
-    Extract: Character archetypes, motive types, evidence patterns
+[3] Assemble Diverse Cast
+    Culprit from selected mystery + suspects/witnesses from OTHER texts
+    Rule: no single source > 50% of cast
     ↓
-[4] AI Generation (Claude)
-    Combine: User prompt + Retrieved patterns + Creative generation
+[4] Rebuild for Setting (LLM)
+    Transform characters into Ancient Athens: new names, occupations,
+    relationships — mystery functions preserved (motive, knowledge, dialogue)
     ↓
-Complete Mystery Scenario
+active_games/<game_id>.json — fully playable GameScenario
+```
+
+### Scenario Presentation (scenario_presenter.py)
+
+Two delivery modes for presenting the assembled game to players:
+
+| Mode | Cost | Use case | Output |
+|------|------|----------|--------|
+| **Verbal** | Free | Dev/testing | Text narration for each game phase |
+| **Visual** | API cost | Production | Prompts for AI video/image generation (Runway, Sora, etc.) |
+
+Both modes cover three game phases: **Crime Scene** (opening reveal), **Crime Board** (suspects and evidence layout), and **Chase Leads** (investigation prompts).
+
+```bash
+# Verbal mode (dev/testing — no API cost)
+python scenario_presenter.py verbal ./active_games/abc123.json
+
+# Visual mode (generates prompts for video API)
+python scenario_presenter.py visual ./active_games/abc123.json
 ```
 
 ### Data Model
 
+**Extracted Scenario** (output of extraction pipeline):
 ```
 MysteryScenario
 ├── Metadata (title, author, source, license)
-├── Classification (crime type, setting, genre tags)
+├── Crime (crime_type, what_happened, how_it_happened, discovery)
 ├── Characters[]
-│   ├── name, role (victim/suspect/witness)
-│   ├── archetype (butler, spouse, rival)
-│   ├── motive, alibi, secrets
-│   └── personality, relationships
-├── Evidence[]
-│   ├── description, type, relevance
-│   ├── location, what_it_reveals
-│   └── analysis requirements
-├── Solution
-│   ├── culprit, method, motive
-│   ├── key evidence, timeline
-│   └── deduction path
-└── Gameplay Data
-    ├── investigation locations
-    ├── difficulty, playtime
-    └── strategic tips
+│   ├── name, role (victim/suspect/witness/bystander)
+│   ├── motive, relationship_to_victim
+│   ├── knowledge_about_crime, knowledge_that_helps_solve
+│   ├── what_they_hide, interrogation_behavior
+│   └── dialogue mechanics (info_delivery, deception, evasion, cracking)
+├── Clues[] (physical + testimonial, with red herrings)
+├── Solution Chain (ordered steps proving culprit)
+└── Timeline (ground truth, not shown to players)
+```
+
+**Game Scenario** (output of scenario assembler, saved to `active_games/`):
+```
+GameScenario
+├── Game identity (game_id, player_prompt, setting, era)
+├── Crime (rebuilt for player's setting)
+├── GameCharacters[] (diverse cast from multiple source texts)
+│   ├── Setting identity (name, occupation, description)
+│   ├── Mystery function (preserved: motive, knowledge, what_they_hide)
+│   ├── Dialogue mechanics (preserved: deception, evasion, cracking patterns)
+│   └── Provenance (source_title, source_character_name)
+├── GameClues[] (rebuilt for setting, physical + testimonial)
+├── Solution chain + Timeline
+└── Character sources (list of source texts that contributed to cast)
 ```
 
 ## File Structure
@@ -158,11 +198,16 @@ choose-your-mystery/
 ├── requirements.txt                 # Python dependencies
 ├── README.md                        # This file
 ├── mystery_corpus/                  # Downloaded source texts (cached)
-└── mystery_database/                # Processed output
-    ├── index.json
-    ├── scenarios/
-    ├── generated/
-    └── raw_texts/
+├── mystery_database/                # Processed output (baseline)
+│   ├── index.json
+│   ├── scenarios/
+│   ├── generated/
+│   └── raw_texts/
+├── mystery_database_lean/           # Lean variant output
+├── mystery_database_rich/           # Rich variant output
+├── mystery_database_templates/      # Template variant output
+└── active_games/                    # Assembled playable games
+    └── <game_id>.json               # GameScenario ready for play
 ```
 
 ## Corpus Sources
@@ -193,7 +238,62 @@ python run_experiment.py --source github --limit 3 --variants baseline,lean,rich
 
 ## Usage Examples
 
-### Custom Mystery Generation
+### Step 1: Assemble a Playable Game
+
+The scenario assembler is the primary way to go from extracted data to a playable game:
+
+```bash
+# Assemble a game from a player prompt (requires extracted database)
+python scenario_assembler.py "An Art Theft in Ancient Athens"
+
+# Output: ./active_games/<game_id>.json
+```
+
+```python
+from scenario_assembler import assemble_game
+
+# Full pipeline: prompt → mystery selection → cast assembly → setting rebuild
+game = assemble_game("A Murder on a Mars Colony")
+
+# The GameScenario is ready for play
+print(f"Game ID: {game.game_id}")
+print(f"Setting: {game.setting}")
+print(f"Characters: {len(game.characters)}")
+print(f"Clues: {len(game.clues)}")
+print(f"Culprit: {[c.name for c in game.characters if c.is_culprit]}")
+
+# Characters come from multiple source texts for diversity
+print(f"Source texts used: {game.character_sources}")
+```
+
+### Step 2: Present the Game to Players
+
+```bash
+# Verbal mode — text narration, no API cost (dev/testing)
+python scenario_presenter.py verbal ./active_games/<game_id>.json
+
+# Visual mode — generate prompts for AI video/image APIs (production)
+python scenario_presenter.py visual ./active_games/<game_id>.json
+```
+
+```python
+from scenario_presenter import present_verbal, present_visual, print_verbal
+
+import json
+with open("./active_games/<game_id>.json") as f:
+    scenario = json.load(f)
+
+# Verbal: three narrations (crime scene, crime board, chase leads)
+package = present_verbal(scenario)
+print_verbal(package)
+
+# Visual: three video/image briefs with prompts, camera direction,
+# historical accuracy notes, and negative prompts
+package = present_visual(scenario)
+# Feed each phase's visual_prompt to Runway/Sora/Pika
+```
+
+### Custom Mystery Generation (Standalone)
 
 ```python
 from mystery_generator import MysteryGenerator
@@ -215,24 +315,6 @@ print(f"Culprit: {mystery['solution']['culprit']}")
 generator.save_generated_mystery(mystery)
 ```
 
-### Database Search
-
-```python
-from mystery_data_acquisition import MysteryDatabase
-
-db = MysteryDatabase()
-
-# Find all murder mysteries in mansions
-results = db.search_scenarios(
-    crime_type='murder',
-    setting_environment='mansion'
-)
-
-# Load a specific scenario
-scenario = db.load_scenario('the_hound_of_the_baskervilles')
-print(f"Characters: {len(scenario.characters)}")
-```
-
 ### Batch Processing
 
 The recommended way to batch-process books is through the experiment runner:
@@ -243,26 +325,6 @@ python run_experiment.py --source github --limit 20 --variants lean
 
 # Process 10 books from Gutenberg with all variants for comparison
 python run_experiment.py --source gutenberg --query "agatha christie" --limit 10
-```
-
-Or programmatically:
-
-```python
-from mystery_data_acquisition import MysteryProcessor, MysteryDatabase
-
-processor = MysteryProcessor()
-db = MysteryDatabase()
-
-# Process books from the cached corpus
-import json
-with open("mystery_corpus/corpus_index.json") as f:
-    index = json.load(f)
-
-for book in index["books"]:
-    with open(f"mystery_corpus/{book['text_file']}") as f:
-        text = f.read()
-    scenario = processor.process_mystery(text, book)
-    db.save_scenario(scenario)
 ```
 
 ## Configuration
@@ -354,6 +416,8 @@ When scaling beyond POC:
 - ✅ Experiment runner for side-by-side variant comparison
 - ✅ JSON storage and search
 - ✅ Mystery generation from prompts
+- ✅ Scenario assembler (diverse cast from multiple sources, setting rebuild)
+- ✅ Scenario presenter (verbal narration + visual video/image briefs)
 
 ### Phase 2: Quality & Scale
 - [ ] Process 100+ quality mysteries
@@ -380,32 +444,29 @@ When scaling beyond POC:
 ```python
 # In your game server
 
-from mystery_generator import MysteryGenerator
-
-generator = MysteryGenerator()
+from scenario_assembler import assemble_game
+from scenario_presenter import present_verbal, present_visual
 
 @app.route('/api/create-game', methods=['POST'])
 def create_game():
-    # User submits prompt
+    # Player submits prompt
     data = request.json
-    prompt = data['prompt']  # "A murder on Mars"
-    num_players = data['num_players']
-    
-    # Generate mystery
-    mystery = generator.generate_mystery(prompt, num_players)
-    
-    # Store in game session
-    game_session = GameSession(
-        mystery=mystery,
-        players=[...],
-        current_phase='investigation'
-    )
-    
+    prompt = data['prompt']  # "An Art Theft in Ancient Athens"
+
+    # Assemble: selects mystery, builds diverse cast, rebuilds for setting
+    game = assemble_game(prompt)
+
+    # Present: generate narration for crime scene opening
+    presentation = present_verbal(asdict(game))
+    # Or for production: present_visual(asdict(game))
+
     return {
-        'game_id': game_session.id,
-        'mystery_title': mystery['title'],
-        'characters': mystery['characters'],
-        # Don't send solution to players yet!
+        'game_id': game.game_id,
+        'setting': game.setting,
+        'characters': [{'name': c.name, 'occupation': c.occupation, 'role': c.role}
+                       for c in game.characters if c.role != 'victim'],
+        'opening': presentation.phases[0]['narration'],
+        # Solution, culprit identity, and timeline stay server-side
     }
 ```
 

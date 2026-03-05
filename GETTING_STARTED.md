@@ -15,7 +15,19 @@ You now have a **complete mystery database system** with three core components:
 - **Purpose:** Takes prompts like "Murder on Mars" and generates complete mysteries
 - **Method:** RAG - retrieves similar mysteries, extracts patterns, generates new content
 
-### 3. Gameplay Validator
+### 3. Scenario Assembler
+- **File:** `scenario_assembler.py`
+- **Purpose:** Takes a player prompt (e.g. "An Art Theft in Ancient Athens") and assembles a fully playable mystery
+- **Method:** Selects a compatible crime structure from the database, builds a diverse cast from multiple source texts, then uses the LLM to rebuild everything in the player's chosen setting
+- **Output:** `./active_games/<game_id>.json` — a complete `GameScenario`
+
+### 4. Scenario Presenter
+- **File:** `scenario_presenter.py`
+- **Purpose:** Delivers the assembled game to players in two modes
+- **Verbal mode:** Text narration for each game phase (crime scene, crime board, chase leads). Free, for dev/testing.
+- **Visual mode:** Generates structured prompts for AI video/image generation (Runway, Sora, Pika). For production.
+
+### 5. Gameplay Validator
 - **File:** `gameplay_validator.py`
 - **Purpose:** Validates mysteries are solvable, balanced, and create strategic depth
 - **Checks:** Solvability, difficulty, 75% sharing mechanic effectiveness
@@ -109,21 +121,32 @@ python mystery_data_acquisition.py
 # 4. Cost: ~$1.25 in API credits (5 mysteries × $0.25 each)
 ```
 
-### Step 3: Generate Your First Mystery (2 minutes)
+### Step 3: Assemble a Playable Game (2 minutes)
 
 ```bash
-# Generate a mystery from your prompt
-python mystery_generator.py
+# Assemble a game from a player prompt (uses the extracted database)
+python scenario_assembler.py "An Art Theft in Ancient Athens"
 
 # Try different prompts:
-# - "A murder on a Mars colony"
-# - "An art theft in Renaissance Venice"  
-# - "A robbery in a steampunk airship"
-# 
-# Cost: ~$0.15 per mystery
+# - "A Murder on a Mars Colony"
+# - "A Kidnapping in Victorian London"
+# - "A Heist in Renaissance Florence"
+#
+# Output: ./active_games/<game_id>.json
+# Cost: ~$0.15 per game (2 LLM calls)
 ```
 
-### Step 4: Validate Gameplay (instant)
+### Step 4: Present the Game (instant)
+
+```bash
+# Verbal mode — read the narration aloud or display as text (free)
+python scenario_presenter.py verbal ./active_games/<game_id>.json
+
+# Visual mode — generate prompts for AI video/image APIs
+python scenario_presenter.py visual ./active_games/<game_id>.json
+```
+
+### Step 5: Validate Gameplay (instant)
 
 ```bash
 # Check if your mystery creates good gameplay
@@ -179,24 +202,34 @@ As your database grows:
 
 ### Current Flow (What You Have)
 ```
-User Prompt → Generate Mystery → Save JSON
+1. Player enters prompt: "An Art Theft in Ancient Athens"
+2. scenario_assembler.py:
+   - Parses prompt (crime type, setting, era)
+   - Selects compatible mystery from database
+   - Assembles diverse cast from multiple source texts
+   - Rebuilds everything for the player's setting via LLM
+   - Saves to ./active_games/<game_id>.json
+3. scenario_presenter.py:
+   - Verbal mode: text narration for each game phase (free)
+   - Visual mode: video/image prompts for AI generation (production)
 ```
 
 ### Game Integration (Next Phase)
 ```
-1. Player enters prompt: "Murder on Mars"
-2. Backend calls MysteryGenerator
-3. Generator returns complete mystery JSON
-4. Game server creates session:
+1. Player enters prompt: "An Art Theft in Ancient Athens"
+2. Backend calls scenario_assembler.assemble_game()
+3. Assembler returns GameScenario with diverse cast, clues, solution
+4. Backend calls scenario_presenter for opening narration/video
+5. Game server creates session:
    - Assigns players to suspects
    - Distributes initial clues
    - Tracks what each player knows
-5. Players investigate:
-   - Interrogate NPCs (AI-powered dialogues)
+6. Players investigate:
+   - Interrogate NPCs (AI-powered dialogues using character dialogue mechanics)
    - Collect evidence
    - Share 75% of findings
-6. Players make accusations
-7. Game reveals solution
+7. Players make accusations
+8. Game reveals solution
 ```
 
 ### The 75% Sharing Mechanic
@@ -345,7 +378,9 @@ Process 50 source mysteries (one time)
 ## You're Ready!
 
 You now have:
-- ✅ Complete data acquisition system
+- ✅ Complete data acquisition system (GitHub corpus + 4 extraction variants)
+- ✅ Scenario assembler (diverse cast from multiple sources, setting rebuild)
+- ✅ Scenario presenter (verbal narration + visual video/image briefs)
 - ✅ Mystery generation with RAG
 - ✅ Gameplay validation
 - ✅ Working demo with real output
