@@ -1,366 +1,458 @@
 """
-Mystery Gameplay Validator
-===========================
+Choose Your Mystery - Gameplay Validator
+=========================================
 
-This demonstrates how structured mystery data enables GAMEPLAY VALIDATION.
+Validates that a generated mystery creates fair, solvable, strategic gameplay.
 
-Using the same RAG approach:
-1. Check if mystery is solvable with available evidence
-2. Validate difficulty level
-3. Ensure 75% sharing mechanic creates strategic depth
-4. Verify red herrings don't make mystery impossible
+Validation checks:
+  1. Solvability      — enough critical clues, all suspects have motives,
+                        red herring ratio balanced, solution references real clue IDs,
+                        exactly one culprit character
+  2. Red herring fairness — every red herring has what_disproves_it populated
+  3. Setting coherence — evidence categories valid for the world's tech level
+  4. Interrogation coverage — critical testimonials have trigger conditions,
+                              each suspect's knowledge_that_helps_solve is populated
+  5. Info sharing (75/25) — enough total clues for meaningful withholding decisions
+  6. Difficulty scoring — calibrated from suspect count, red herrings, evidence clarity
+
+The 75/25 Sharing Rule
+-----------------------
+Each round, players must share 75% of what they've discovered, keeping 25% private.
+For this to create meaningful decisions:
+  - Total clues (physical + testimonial) should be >= 8
+  - At least one critical clue should require active investigation to obtain
+    (analysis_required=True, or a testimonial with a non-trivial trigger_condition)
+
+Usage
+-----
+    from gameplay_validator import MysteryGameplayValidator
+    v = MysteryGameplayValidator("./mystery_database/scenarios/the_locked_room_mystery.json")
+    print(v.generate_full_report(num_players=4))
+
+Or run directly:
+    python gameplay_validator.py
 """
 
 import json
 from typing import Dict, List
 
+
+VALID_CATEGORIES = {
+    'pre_industrial': {'physical', 'chemical', 'documentary', 'testimonial', 'environmental'},
+    'industrial':     {'physical', 'chemical', 'documentary', 'testimonial', 'environmental'},
+    'contemporary':   {'physical', 'chemical', 'documentary', 'testimonial', 'environmental', 'digital'},
+    'advanced':       {'physical', 'biological', 'chemical', 'documentary', 'testimonial', 'environmental', 'digital'},
+    'sci_fi':         {'physical', 'biological', 'chemical', 'documentary', 'testimonial', 'environmental', 'digital'},
+}
+
+
 class MysteryGameplayValidator:
-    """
-    Validates that a mystery scenario will create good gameplay
-    
-    Why this matters: AI can generate mysteries that are:
-    - Unsolvable (missing critical evidence)
-    - Too easy (obvious culprit)
-    - Unfair (too many red herrings)
-    - Boring (no strategic depth in information sharing)
-    """
-    
+
     def __init__(self, scenario_path: str):
-        """Load a mystery scenario"""
         with open(scenario_path, 'r') as f:
             self.mystery = json.load(f)
-    
+
+    # -------------------------------------------------------------------------
+
     def validate_solvability(self) -> Dict:
-        """
-        Check if the mystery is solvable with the given evidence
-        
-        Returns validation report with issues
-        """
         issues = []
         warnings = []
-        
-        # Rule 1: Must have critical evidence pointing to culprit
-        critical_evidence = [
-            e for e in self.mystery['evidence'] 
-            if e['relevance'] == 'critical'
-        ]
-        
-        if len(critical_evidence) < 2:
+
+        physical_clues = self.mystery.get('physical_clues', [])
+        testimonials = self.mystery.get('testimonial_revelations', [])
+        characters = self.mystery.get('characters', [])
+        solution_steps = self.mystery.get('solution_steps', [])
+        culprit_name = self.mystery.get('culprit_name', '')
+
+        # Rule 1: At least 2 critical physical clues
+        critical_physical = [c for c in physical_clues if c.get('relevance') == 'critical']
+        if len(critical_physical) < 2:
+            issues.append(f"Only {len(critical_physical)} critical physical clue(s). Need at least 2.")
+
+        # Rule 2: At least 1 critical testimonial
+        critical_testimonial = [t for t in testimonials if t.get('relevance') == 'critical']
+        if len(critical_testimonial) < 1:
+            warnings.append("No critical testimonial revelations. Interrogation may feel unrewarding.")
+
+        # Rule 3: All suspects have motives
+        suspects = [c for c in characters if c.get('role') == 'suspect']
+        missing_motive = [c['name'] for c in suspects if not c.get('motive')]
+        if missing_motive:
+            issues.append(f"Suspects without motives: {missing_motive}")
+
+        # Rule 4: Red herring ratio 20-50% of total clues
+        all_clues = physical_clues + testimonials
+        total = len(all_clues)
+        red_herrings = [c for c in all_clues if c.get('relevance') == 'red_herring']
+        rh_ratio = len(red_herrings) / total if total > 0 else 0
+        if rh_ratio > 0.5:
+            warnings.append(f"{int(rh_ratio * 100)}% red herrings — may frustrate players.")
+        elif rh_ratio < 0.2 and total > 0:
+            warnings.append(f"Only {int(rh_ratio * 100)}% red herrings — mystery may be too easy.")
+
+        # Rule 5: Culprit exists and matches exactly one character with is_culprit=True
+        culprit_flagged = [c for c in characters if c.get('is_culprit')]
+        if len(culprit_flagged) == 0:
+            issues.append("No character has is_culprit=True.")
+        elif len(culprit_flagged) > 1:
+            issues.append(f"Multiple characters have is_culprit=True: {[c['name'] for c in culprit_flagged]}")
+        elif culprit_flagged[0]['name'] != culprit_name:
             issues.append(
-                "CRITICAL: Only " + str(len(critical_evidence)) + " critical evidence. "
-                "Need at least 2 pieces to solve mystery."
+                f"culprit_name '{culprit_name}' does not match the character "
+                f"with is_culprit=True ('{culprit_flagged[0]['name']}')."
             )
-        elif len(critical_evidence) < 3:
-            warnings.append(
-                "Warning: Only " + str(len(critical_evidence)) + " critical evidence. "
-                "Consider adding more for better gameplay."
-            )
-        
-        # Rule 2: Must have suspects with motives
-        suspects = [
-            c for c in self.mystery['characters'] 
-            if c['role'] == 'suspect'
-        ]
-        
-        suspects_with_motives = [s for s in suspects if s.get('motive')]
-        
-        if len(suspects_with_motives) < len(suspects):
-            issues.append(
-                f"CRITICAL: {len(suspects) - len(suspects_with_motives)} suspects "
-                f"without motives. All suspects need plausible motives."
-            )
-        
-        # Rule 3: Check red herring balance
-        red_herrings = [
-            e for e in self.mystery['evidence']
-            if e['relevance'] == 'red_herring'
-        ]
-        
-        total_evidence = len(self.mystery['evidence'])
-        red_herring_ratio = len(red_herrings) / total_evidence if total_evidence > 0 else 0
-        
-        if red_herring_ratio > 0.5:
-            warnings.append(
-                f"Warning: {int(red_herring_ratio*100)}% of evidence are red herrings. "
-                f"Too many may frustrate players."
-            )
-        elif red_herring_ratio < 0.2:
-            warnings.append(
-                f"Warning: Only {int(red_herring_ratio*100)}% red herrings. "
-                f"Mystery may be too easy."
-            )
-        
-        # Rule 4: Solution must reference available evidence
-        solution = self.mystery.get('solution', '')
-        if not solution:
-            issues.append("CRITICAL: No solution provided.")
-        
+
+        # Rule 6: Solution steps reference real clue IDs
+        all_clue_ids = {c.get('id') for c in physical_clues} | {t.get('id') for t in testimonials}
+        for step in solution_steps:
+            bad_refs = [cid for cid in step.get('clue_ids', []) if cid not in all_clue_ids]
+            if bad_refs:
+                issues.append(f"Solution step {step.get('step_number')} references unknown IDs: {bad_refs}")
+
+        if not solution_steps:
+            warnings.append("No solution_steps defined. Validator cannot score partial solutions.")
+
         return {
             'solvable': len(issues) == 0,
             'issues': issues,
             'warnings': warnings,
-            'critical_evidence_count': len(critical_evidence),
-            'red_herring_ratio': red_herring_ratio,
-            'suspect_count': len(suspects)
+            'critical_physical_count': len(critical_physical),
+            'critical_testimonial_count': len(critical_testimonial),
+            'red_herring_count': len(red_herrings),
+            'red_herring_ratio': rh_ratio,
+            'suspect_count': len(suspects),
+            'total_clues': total
         }
-    
-    def validate_information_sharing(self, num_players: int = 4) -> Dict:
-        """
-        Validate that the 75% sharing mechanic creates strategic gameplay
-        
-        The 75% rule: Players must share 75% of evidence, keep 25% private
-        This creates tension between cooperation and competition
-        """
-        
-        total_evidence = len(self.mystery['evidence'])
-        total_characters = len(self.mystery['characters'])
-        
-        # Estimate information per player per turn
-        avg_evidence_per_turn = 2  # Player interrogates 1 character, finds ~2 evidence
-        
-        # After 3 turns, player has ~6 pieces of information
-        items_after_3_turns = avg_evidence_per_turn * 3
-        must_share = int(items_after_3_turns * 0.75)  # 75% = ~4-5 items
-        can_hide = items_after_3_turns - must_share    # 25% = ~1-2 items
-        
-        strategic_depth = "Unknown"
-        notes = []
-        
-        if total_evidence < 6:
-            strategic_depth = "LOW"
-            notes.append(
-                "With only " + str(total_evidence) + " total evidence, "
-                "not enough for strategic withholding."
+
+    def validate_red_herring_fairness(self) -> Dict:
+        """Every red herring must have what_disproves_it populated."""
+        issues = []
+        warnings = []
+
+        physical_clues = self.mystery.get('physical_clues', [])
+        testimonials = self.mystery.get('testimonial_revelations', [])
+        all_clue_ids = {c.get('id') for c in physical_clues} | {t.get('id') for t in testimonials}
+
+        unfair = []
+        for clue in physical_clues + testimonials:
+            if clue.get('relevance') == 'red_herring':
+                disproves = clue.get('what_disproves_it')
+                if not disproves:
+                    unfair.append(clue.get('id', '?'))
+                elif disproves not in all_clue_ids:
+                    warnings.append(
+                        f"Red herring '{clue.get('id')}' references unknown disproof: '{disproves}'"
+                    )
+
+        if unfair:
+            issues.append(
+                f"Red herrings without what_disproves_it (unfair): {unfair}"
             )
-        elif total_evidence < 10:
-            strategic_depth = "MEDIUM"
-            notes.append(
-                "Adequate evidence for strategic play. "
-                "Players will have meaningful choices about what to share."
-            )
-        else:
-            strategic_depth = "HIGH"
-            notes.append(
-                "Rich evidence landscape allows complex strategic decisions."
-            )
-        
-        # Check for evidence that should DEFINITELY be withheld
-        smoking_gun = [
-            e for e in self.mystery['evidence']
-            if 'critical' in e['relevance'] and 
-               'culprit' in e['description'].lower()
-        ]
-        
-        if smoking_gun:
-            notes.append(
-                "Mystery has 'smoking gun' evidence - "
-                "players will compete to withhold this!"
-            )
-        
+
         return {
-            'strategic_depth': strategic_depth,
-            'total_evidence': total_evidence,
+            'fair': len(issues) == 0,
+            'issues': issues,
+            'warnings': warnings,
+            'unfair_red_herrings': unfair
+        }
+
+    def validate_setting_coherence(self) -> Dict:
+        """Evidence categories must be valid for the world's tech_level."""
+        issues = []
+        warnings = []
+
+        tech_level = self.mystery.get('world_tech_level', 'contemporary')
+        physical_clues = self.mystery.get('physical_clues', [])
+        valid = VALID_CATEGORIES.get(tech_level, set())
+
+        incoherent = []
+        for clue in physical_clues:
+            cat = clue.get('category', 'physical')
+            if valid and cat not in valid:
+                incoherent.append(f"'{clue.get('name', clue.get('id'))}' ({cat})")
+
+        if incoherent:
+            issues.append(
+                f"Evidence categories invalid for tech_level='{tech_level}': {incoherent}"
+            )
+
+        if not self.mystery.get('world_physics_constraints'):
+            era = self.mystery.get('world_era', '')
+            if era not in ('modern', 'near_future', 'far_future'):
+                warnings.append(
+                    f"No world_physics_constraints defined for era='{era}'. "
+                    "Historical settings should document investigation limits."
+                )
+
+        return {
+            'coherent': len(issues) == 0,
+            'issues': issues,
+            'warnings': warnings,
+            'tech_level': tech_level,
+            'incoherent_evidence': incoherent
+        }
+
+    def validate_interrogation_coverage(self) -> Dict:
+        """
+        Check that interrogation mechanics are properly set up:
+        - Critical testimonials have trigger conditions
+        - Each suspect has knowledge_that_helps_solve populated
+        - Characters have interrogation_behavior populated
+        """
+        issues = []
+        warnings = []
+
+        testimonials = self.mystery.get('testimonial_revelations', [])
+        characters = self.mystery.get('characters', [])
+        suspects = [c for c in characters if c.get('role') == 'suspect']
+
+        # Critical testimonials must have trigger conditions
+        for t in testimonials:
+            if t.get('relevance') == 'critical' and not t.get('trigger_condition'):
+                issues.append(
+                    f"Critical testimonial '{t.get('id')}' has no trigger_condition. "
+                    "Players need to know how to unlock it."
+                )
+
+        # Suspects should have knowledge_that_helps_solve
+        suspects_without_knowledge = [
+            c['name'] for c in suspects
+            if not c.get('knowledge_that_helps_solve')
+        ]
+        if suspects_without_knowledge:
+            warnings.append(
+                f"Suspects without knowledge_that_helps_solve: {suspects_without_knowledge}. "
+                "Interrogating these characters will feel unrewarding."
+            )
+
+        # Characters should have interrogation_behavior
+        missing_behavior = [
+            c['name'] for c in characters
+            if not c.get('interrogation_behavior') and c.get('role') != 'victim'
+        ]
+        if missing_behavior:
+            warnings.append(
+                f"Characters without interrogation_behavior: {missing_behavior}"
+            )
+
+        return {
+            'adequate': len(issues) == 0,
+            'issues': issues,
+            'warnings': warnings
+        }
+
+    def validate_information_sharing(self, num_players: int = 4) -> Dict:
+        """Check that the 75/25 sharing mechanic creates meaningful decisions."""
+        physical_clues = self.mystery.get('physical_clues', [])
+        testimonials = self.mystery.get('testimonial_revelations', [])
+        total = len(physical_clues) + len(testimonials)
+
+        avg_per_turn = 2
+        items_after_3_turns = avg_per_turn * 3
+        must_share = int(items_after_3_turns * 0.75)
+        can_hide = items_after_3_turns - must_share
+
+        if total < 6:
+            depth = "LOW"
+            note = f"Only {total} total clues — not enough for meaningful withholding."
+        elif total < 10:
+            depth = "MEDIUM"
+            note = "Adequate clues for strategic decisions."
+        else:
+            depth = "HIGH"
+            note = "Rich evidence landscape creates complex strategic choices."
+
+        # Any clue that requires active effort to obtain is worth withholding
+        active_clues = [c for c in physical_clues if c.get('analysis_required')]
+        gated_testimonials = [
+            t for t in testimonials
+            if t.get('trigger_condition') and
+               t.get('relevance') in ('critical', 'supporting') and
+               'second' in t.get('trigger_condition', '').lower()
+        ]
+
+        return {
+            'strategic_depth': depth,
+            'total_clues': total,
+            'physical_clues': len(physical_clues),
+            'testimonials': len(testimonials),
             'items_per_player_estimate': items_after_3_turns,
             'must_share_count': must_share,
             'can_hide_count': can_hide,
-            'notes': notes
+            'active_investigation_clues': len(active_clues) + len(gated_testimonials),
+            'note': note
         }
-    
+
     def estimate_difficulty(self) -> Dict:
         """
-        Estimate mystery difficulty for players
-        
-        Factors:
-        - Number of suspects
-        - Red herring ratio
-        - Complexity of solution
-        - Evidence clarity
+        Three-factor difficulty score (3-9 → EASY/MEDIUM/HARD):
+          1. Suspect count
+          2. Red herring ratio
+          3. Critical clue clarity
         """
-        
-        suspects = [c for c in self.mystery['characters'] if c['role'] == 'suspect']
-        critical_evidence = [e for e in self.mystery['evidence'] if e['relevance'] == 'critical']
-        red_herrings = [e for e in self.mystery['evidence'] if e['relevance'] == 'red_herring']
-        
-        difficulty_score = 0
+        characters = self.mystery.get('characters', [])
+        physical_clues = self.mystery.get('physical_clues', [])
+        testimonials = self.mystery.get('testimonial_revelations', [])
+        all_clues = physical_clues + testimonials
+
+        suspects = [c for c in characters if c.get('role') == 'suspect']
+        critical = [c for c in all_clues if c.get('relevance') == 'critical']
+        red_herrings = [c for c in all_clues if c.get('relevance') == 'red_herring']
+        total = len(all_clues)
+
+        score = 0
         factors = []
-        
-        # Factor 1: Number of suspects (more = harder)
+
         if len(suspects) <= 3:
-            difficulty_score += 1
+            score += 1
             factors.append("Few suspects (easy)")
         elif len(suspects) <= 5:
-            difficulty_score += 2
-            factors.append("Moderate suspects (medium)")
+            score += 2
+            factors.append("Moderate suspect pool (medium)")
         else:
-            difficulty_score += 3
-            factors.append("Many suspects (hard)")
-        
-        # Factor 2: Red herring ratio
-        total_evidence = len(self.mystery['evidence'])
-        rh_ratio = len(red_herrings) / total_evidence if total_evidence > 0 else 0
-        
+            score += 3
+            factors.append("Large suspect pool (hard)")
+
+        rh_ratio = len(red_herrings) / total if total > 0 else 0
         if rh_ratio < 0.25:
-            difficulty_score += 1
+            score += 1
             factors.append("Few red herrings (easy)")
-        elif rh_ratio < 0.4:
-            difficulty_score += 2
+        elif rh_ratio < 0.40:
+            score += 2
             factors.append("Balanced misdirection (medium)")
         else:
-            difficulty_score += 3
+            score += 3
             factors.append("Heavy misdirection (hard)")
-        
-        # Factor 3: Critical evidence clarity
-        if len(critical_evidence) >= 4:
-            difficulty_score += 1
+
+        if len(critical) >= 4:
+            score += 1
             factors.append("Clear evidence trail (easy)")
-        elif len(critical_evidence) >= 2:
-            difficulty_score += 2
-            factors.append("Moderate evidence (medium)")
+        elif len(critical) >= 2:
+            score += 2
+            factors.append("Moderate evidence trail (medium)")
         else:
-            difficulty_score += 3
-            factors.append("Scarce evidence (hard)")
-        
-        # Map score to difficulty
-        if difficulty_score <= 4:
-            difficulty = "EASY"
-        elif difficulty_score <= 6:
-            difficulty = "MEDIUM"
-        else:
-            difficulty = "HARD"
-        
+            score += 3
+            factors.append("Scarce critical clues (hard)")
+
+        difficulty = "EASY" if score <= 4 else "MEDIUM" if score <= 6 else "HARD"
+
         return {
             'difficulty': difficulty,
-            'difficulty_score': difficulty_score,
+            'score': score,
             'max_score': 9,
             'factors': factors,
             'estimated_playtime': self._estimate_playtime(difficulty, len(suspects))
         }
-    
+
     def _estimate_playtime(self, difficulty: str, suspect_count: int) -> str:
-        """Estimate how long the mystery will take to play"""
-        base_minutes = 20 + (suspect_count * 5)
-        
-        if difficulty == "EASY":
-            return f"{base_minutes}-{base_minutes + 15} minutes"
-        elif difficulty == "MEDIUM":
-            return f"{base_minutes + 10}-{base_minutes + 30} minutes"
-        else:
-            return f"{base_minutes + 20}-{base_minutes + 45} minutes"
-    
+        base = 20 + (suspect_count * 5)
+        return {
+            "EASY":   f"{base}-{base + 15} minutes",
+            "MEDIUM": f"{base + 10}-{base + 30} minutes",
+            "HARD":   f"{base + 20}-{base + 45} minutes"
+        }[difficulty]
+
     def generate_full_report(self, num_players: int = 4) -> str:
-        """Generate a complete gameplay validation report"""
-        
         solvability = self.validate_solvability()
+        fairness = self.validate_red_herring_fairness()
+        coherence = self.validate_setting_coherence()
+        interrogation = self.validate_interrogation_coverage()
         sharing = self.validate_information_sharing(num_players)
         difficulty = self.estimate_difficulty()
-        
-        report = []
-        report.append("="*70)
-        report.append("MYSTERY GAMEPLAY VALIDATION REPORT")
-        report.append("="*70)
-        report.append("")
-        report.append(f"Mystery: {self.mystery['title']}")
-        report.append(f"For {num_players} players")
-        report.append("")
-        
-        # Solvability
-        report.append("SOLVABILITY CHECK")
-        report.append("-" * 70)
-        status = "✅ PASS" if solvability['solvable'] else "❌ FAIL"
-        report.append(f"Status: {status}")
-        
-        if solvability['issues']:
-            report.append("\nCritical Issues:")
-            for issue in solvability['issues']:
-                report.append(f"  ❌ {issue}")
-        
-        if solvability['warnings']:
-            report.append("\nWarnings:")
-            for warning in solvability['warnings']:
-                report.append(f"  ⚠️  {warning}")
-        
-        report.append(f"\nCritical Evidence: {solvability['critical_evidence_count']}")
-        report.append(f"Red Herring Ratio: {int(solvability['red_herring_ratio']*100)}%")
-        report.append(f"Suspects: {solvability['suspect_count']}")
-        report.append("")
-        
-        # Information Sharing
-        report.append("INFORMATION SHARING MECHANICS")
-        report.append("-" * 70)
-        report.append(f"Strategic Depth: {sharing['strategic_depth']}")
-        report.append(f"Total Evidence: {sharing['total_evidence']} pieces")
-        report.append(f"\nPer Player (estimated after 3 turns):")
-        report.append(f"  - Total information: ~{sharing['items_per_player_estimate']} items")
-        report.append(f"  - Must share (75%): ~{sharing['must_share_count']} items")
-        report.append(f"  - Can withhold (25%): ~{sharing['can_hide_count']} items")
-        
-        if sharing['notes']:
-            report.append("\nNotes:")
-            for note in sharing['notes']:
-                report.append(f"  • {note}")
-        report.append("")
-        
-        # Difficulty
-        report.append("DIFFICULTY ASSESSMENT")
-        report.append("-" * 70)
-        report.append(f"Difficulty: {difficulty['difficulty']}")
-        report.append(f"Score: {difficulty['difficulty_score']}/{difficulty['max_score']}")
-        report.append(f"Estimated Playtime: {difficulty['estimated_playtime']}")
-        report.append("\nFactors:")
-        for factor in difficulty['factors']:
-            report.append(f"  • {factor}")
-        report.append("")
-        
-        # Overall recommendation
-        report.append("RECOMMENDATION")
-        report.append("-" * 70)
-        if not solvability['solvable']:
-            report.append("❌ Mystery has critical issues. Fix before using in game.")
-        elif solvability['warnings']:
-            report.append("⚠️  Mystery is playable but could be improved.")
+
+        sep = "=" * 70
+        lines = [
+            sep,
+            "MYSTERY GAMEPLAY VALIDATION REPORT",
+            sep,
+            "",
+            f"Mystery:     {self.mystery.get('title', 'Unknown')}",
+            f"Period:      {self.mystery.get('world_specific_period', '?')}",
+            f"Tech Level:  {self.mystery.get('world_tech_level', '?')}",
+            f"Crime:       {self.mystery.get('crime_type', '?')} / {self.mystery.get('mystery_type', '?')}",
+            f"Stakes:      {self.mystery.get('stakes', '?')}",
+            f"Players:     {num_players}",
+            "",
+        ]
+
+        def section(title, result, pass_key=None):
+            lines.append(title)
+            lines.append("-" * 70)
+            if pass_key is not None:
+                lines.append("PASS" if result.get(pass_key) else "FAIL")
+            if result.get('issues'):
+                lines.append("\nCritical Issues:")
+                lines.extend(f"  [!] {i}" for i in result['issues'])
+            if result.get('warnings'):
+                lines.append("\nWarnings:")
+                lines.extend(f"  [~] {w}" for w in result['warnings'])
+            lines.append("")
+
+        section("SOLVABILITY", solvability, 'solvable')
+        lines[-1:] = [
+            f"Critical physical clues:  {solvability['critical_physical_count']}",
+            f"Critical testimonials:    {solvability['critical_testimonial_count']}",
+            f"Red herring ratio:        {int(solvability['red_herring_ratio'] * 100)}%",
+            f"Suspects:                 {solvability['suspect_count']}",
+            ""
+        ]
+
+        section("RED HERRING FAIRNESS", fairness, 'fair')
+        section("SETTING COHERENCE", coherence, 'coherent')
+        section("INTERROGATION COVERAGE", interrogation, 'adequate')
+
+        lines += [
+            "INFORMATION SHARING (75/25 Rule)",
+            "-" * 70,
+            f"Strategic Depth:          {sharing['strategic_depth']}",
+            f"Total Clues:              {sharing['total_clues']} ({sharing['physical_clues']} physical + {sharing['testimonials']} testimonial)",
+            f"Active investigation:     {sharing['active_investigation_clues']} clues require effort to obtain",
+            f"Per player after 3 turns: ~{sharing['items_per_player_estimate']} items",
+            f"  Must share (75%):       ~{sharing['must_share_count']}",
+            f"  Can withhold:           ~{sharing['can_hide_count']}",
+            f"  {sharing['note']}",
+            ""
+        ]
+
+        lines += [
+            "DIFFICULTY ASSESSMENT",
+            "-" * 70,
+            f"Difficulty:        {difficulty['difficulty']}",
+            f"Score:             {difficulty['score']}/{difficulty['max_score']}",
+            f"Estimated Playtime: {difficulty['estimated_playtime']}",
+            "\nFactors:",
+        ]
+        lines.extend(f"  - {f}" for f in difficulty['factors'])
+        lines.append("")
+
+        all_issues = (
+            solvability['issues'] + fairness['issues'] +
+            coherence['issues'] + interrogation['issues']
+        )
+        all_warnings = (
+            solvability['warnings'] + fairness['warnings'] +
+            coherence['warnings'] + interrogation['warnings']
+        )
+
+        lines += ["RECOMMENDATION", "-" * 70]
+        if all_issues:
+            lines.append("FAIL — Fix critical issues before use:")
+            lines.extend(f"  [!] {i}" for i in all_issues)
+        elif all_warnings:
+            lines.append("PASS with warnings — Playable but could be improved.")
         else:
-            report.append("✅ Mystery is ready for gameplay!")
-        
-        report.append("")
-        report.append("="*70)
-        
-        return "\n".join(report)
+            lines.append("PASS — Mystery is ready for gameplay.")
 
+        lines += ["", sep]
+        return "\n".join(lines)
 
-# ============================================================================
-# DEMO: Validate the sample mystery
-# ============================================================================
 
 if __name__ == "__main__":
-    print("\n🔍 MYSTERY GAMEPLAY VALIDATION DEMO\n")
-    
-    validator = MysteryGameplayValidator(
-        "./mystery_database/scenarios/the_locked_room_mystery.json"
-    )
-    
-    report = validator.generate_full_report(num_players=4)
-    print(report)
-    
-    print("\n💡 HOW THIS HELPS YOUR GAME:")
-    print("-" * 70)
-    print("1. QUALITY ASSURANCE")
-    print("   - Automatically validates mysteries before players see them")
-    print("   - Catches unsolvable or unfair mysteries")
-    print("")
-    print("2. DIFFICULTY TUNING")
-    print("   - Estimates difficulty so you can match to player skill")
-    print("   - Helps create balanced mystery sets (easy/medium/hard)")
-    print("")
-    print("3. STRATEGIC DEPTH VALIDATION")
-    print("   - Ensures 75% sharing mechanic creates real decisions")
-    print("   - Verifies mysteries support competitive play")
-    print("")
-    print("4. PLAYTESTING PREDICTIONS")
-    print("   - Estimates playtime before actual testing")
-    print("   - Predicts player behavior patterns")
-    print("")
-    print("5. RAG ENHANCEMENT")
-    print("   - Can use this validation data to IMPROVE generation")
-    print("   - Example: 'Generate a MEDIUM difficulty mystery like X'")
-    print("")
-    print("="*70)
+    import os
+    path = "./mystery_database/scenarios/the_locked_room_mystery.json"
+    if not os.path.exists(path):
+        print(f"Demo scenario not found: {path}")
+        print("Run demo_acquisition.py first.")
+        exit(1)
+    validator = MysteryGameplayValidator(path)
+    print(validator.generate_full_report(num_players=4))

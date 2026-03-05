@@ -1,311 +1,267 @@
-# Choose Your Mystery - Data Acquisition Plan
+# Choose Your Mystery — Strategic Plan
 
-## Phase 1: Content Sources & Collection (Weeks 1-4)
+## Current Status (2026-03-05)
 
-### A. Public Domain Mystery Novels
-**Primary Sources:**
-- Project Gutenberg (gutenberg.org) - 70,000+ free books, many mysteries
-- Internet Archive (archive.org) - Millions of texts, searchable by genre
-- Wikisource - Curated public domain texts
-- Standard Ebooks - High-quality formatted public domain books
+### Complete (POC)
+- Full schema with `PhysicalClue` / `TestimonialRevelation` split
+- `mystery_data_acquisition.py`: Gutenberg scraper + Claude extraction
+- `mystery_generator.py`: RAG-based generator from prompts
+- `gameplay_validator.py`: Automated quality checks
+- `demo_acquisition.py`: No-API demo (Victorian locked room)
+- Six test query definitions in `test_queries/`
+- `MYSTERY_EXTRACTION_REQUIREMENTS.md`: Canonical schema spec
+- `CLAUDE.md`: Session continuity guide
 
-**Target Authors (Pre-1928):**
-- Arthur Conan Doyle (Sherlock Holmes)
-- Agatha Christie (early works)
-- Edgar Allan Poe
-- Wilkie Collins
-- G.K. Chesterton
+### In Progress
+- Testing the six canonical queries through the full pipeline
+- Manual review of generator output quality
 
-**Collection Method:**
-- API access (Gutenberg has metadata API)
-- Bulk download via rsync
-- Web scraping with rate limiting (respect robots.txt)
+### Not Yet Started
+- Parquet dataset parsing (source not yet confirmed)
+- PostgreSQL + pgvector migration
+- Game server integration
+- NPC dialogue generation
+- Player knowledge tracking (75/25 sharing interface)
 
-### B. Public Court Transcripts
-**Sources:**
-- PACER (US Federal Court records) - paid access
-- State court archives (varies by state)
-- Famous trial transcripts (Scopes, OJ Simpson publicly available)
+---
 
-**Legal Note:** Court records are public but republication may have restrictions
+## Phase 1: POC Validation (Current)
 
-### C. Creative Commons Mystery Content
-**Sources:**
-- Wattpad (filter by CC license)
-- Archive of Our Own (AO3) - fan fiction, some CC licensed
-- Reddit writing prompts (/r/WritingPrompts)
-- NaNoWriMo community stories
+**Goal:** Confirm the schema works for all six test queries.
 
-### D. Screenplay Databases
-**Sources:**
-- Internet Movie Script Database (IMSDb)
-- The Script Lab
-- Drew's Script-O-Rama
+**Steps:**
+1. Run `demo_acquisition.py` → validate with `gameplay_validator.py`
+2. Process 3-5 Gutenberg mysteries to seed the RAG database
+3. Generate all six test queries
+4. Validate each generated output
+5. Manual review: do the mysteries hold logical water?
+6. Identify and fix schema gaps revealed by testing
 
-**Legal Note:** Many screenplays posted are "for educational use" - verify licensing
+**Success criteria:**
+- All six test queries produce mysteries that pass `gameplay_validator.py`
+- Generated mysteries pass human review for logical coherence
+- Validator pass rate > 80% before manual fixes
 
+---
 
-## Phase 2: Database Schema Design (Weeks 3-5)
+## Phase 2: Quality & Scale (Next 4-8 Weeks)
 
-### Core Entity Structure
+**Goal:** Build a high-quality RAG database of 50-100 processed mysteries.
 
+**Steps:**
+1. Process 50-100 Gutenberg mysteries (prioritize diverse settings and crime types)
+2. Manual spot-check 10-20 extractions for quality
+3. Tune Claude extraction prompts based on common failure modes
+4. Build genre diversity into the corpus:
+   - At least 10 different eras represented
+   - At least 5 different crime types
+   - At least 3 different mystery types (whodunit, locked_room, procedural)
+
+**Target distribution:**
+- By mystery type: 40% whodunit, 30% locked_room, 20% procedural, 10% other
+- By difficulty: 30% easy, 50% medium, 20% hard
+
+---
+
+## Phase 3: Production Infrastructure
+
+When scaling beyond ~1,000 mysteries or adding multiple simultaneous users.
+
+### Database Migration: PostgreSQL + pgvector
+
+**Why:**
+- JSON files: O(n) search; limited query capabilities
+- PostgreSQL: relational queries + vector similarity search
+
+**Schema (PostgreSQL):**
+```sql
+CREATE TABLE scenarios (
+    scenario_id UUID PRIMARY KEY,
+    title TEXT,
+    crime_type TEXT,
+    mystery_type TEXT,
+    world_era TEXT,
+    world_tech_level TEXT,
+    stakes TEXT,
+    embedding VECTOR(1536),
+    full_data JSONB,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE INDEX ON scenarios (crime_type, world_era, world_tech_level);
+CREATE INDEX ON scenarios USING ivfflat (embedding vector_cosine_ops);
+
+CREATE TABLE character_patterns (
+    id UUID PRIMARY KEY,
+    scenario_id UUID REFERENCES scenarios,
+    archetype TEXT,
+    role TEXT,
+    faction TEXT,
+    motive_type TEXT
+);
+
+CREATE TABLE clue_patterns (
+    id UUID PRIMARY KEY,
+    scenario_id UUID REFERENCES scenarios,
+    category TEXT,
+    relevance TEXT,
+    analysis_required BOOLEAN,
+    tech_level TEXT
+);
 ```
-MYSTERY_SCENARIOS
-├── scenario_id (UUID)
-├── title
-├── source_text (full text)
-├── genre_tags []
-├── setting (time_period, location, environment_type)
-├── crime_type (murder, theft, fraud, etc.)
-└── metadata (author, year, source_url, license)
 
-CHARACTERS
-├── character_id (UUID)
-├── scenario_id (FK)
-├── name
-├── role (victim, suspect, witness, detective, red_herring)
-├── archetype (butler, jealous_spouse, business_partner, etc.)
-├── personality_traits []
-├── motive (if suspect)
-└── key_dialogue_samples []
+**Migration steps:**
+1. Export existing JSON scenarios to SQL
+2. Generate embeddings (Claude or sentence-transformers)
+3. Migrate retrieval in `mystery_generator.py` to vector search
+4. Keep JSON export for backward compatibility
 
-EVIDENCE
-├── evidence_id (UUID)
-├── scenario_id (FK)
-├── type (physical, testimonial, circumstantial)
-├── description
-├── relevance_to_solution (critical, supporting, red_herring)
-└── discovery_context
+### Caching: Redis
+- Cache generated mysteries (avoid regenerating identical prompts)
+- TTL: 24 hours for generated mysteries
 
-MOTIVES
-├── motive_id (UUID)
-├── motive_type (greed, revenge, jealousy, self_preservation, etc.)
-├── description
-└── frequency_in_dataset
+### Async Processing
+- Current: sequential API calls (~30s per mystery)
+- With asyncio: parallel extraction passes (~10s per mystery)
+- 3x speedup for batch processing
 
-PLOT_BEATS
-├── beat_id (UUID)
-├── scenario_id (FK)
-├── sequence_order
-├── beat_type (crime_discovery, first_clue, revelation, twist, solution)
-└── description
-```
+---
 
-### Recommended Database Technology
+## Phase 4: Game Integration
 
-**Option 1: PostgreSQL + Vector Extension (pgvector)**
-- Pros: Relational structure + semantic search capability
-- Use Case: Store structured data + embeddings for similarity search
-- Why: You need both precise queries (get all "murder on spaceship" scenarios) AND semantic matching ("find mysteries with betrayal themes")
-
-**Option 2: MongoDB + Pinecone/Weaviate**
-- Pros: Flexible schema for varying story structures
-- Use Case: Rapid prototyping, changing requirements
-- Why: Mystery structures vary wildly; NoSQL allows flexibility
-
-**Recommendation:** Start with PostgreSQL + pgvector
-- Better for your structured data needs
-- Can add vector search later
-- More mature tooling
-- Better for team collaboration
-
-
-## Phase 3: Data Processing Pipeline (Weeks 4-8)
-
-### Extraction Pipeline
+### API Endpoint
 
 ```python
-# Conceptual flow - not production code
+@app.route('/api/generate-mystery', methods=['POST'])
+def generate_mystery():
+    data = request.json
+    mystery = generator.generate_mystery(data['prompt'], data['num_players'])
+    validation = validator.validate(mystery)
 
-1. RAW TEXT INGESTION
-   ├── Download from source
-   ├── Convert to standardized format (UTF-8 text)
-   ├── Metadata extraction (author, year, source)
-   └── Store raw text
-
-2. NLP PROCESSING
-   ├── Entity extraction (characters, locations)
-   ├── Scene segmentation
-   ├── Dialogue extraction
-   └── Action/description separation
-
-3. STRUCTURAL ANALYSIS
-   ├── Identify crime type and method
-   ├── Map character relationships
-   ├── Extract evidence mentions
-   ├── Timeline construction
-   └── Solution pathway identification
-
-4. SEMANTIC ENRICHMENT
-   ├── Generate embeddings (OpenAI, Cohere, or open-source)
-   ├── Topic modeling
-   ├── Motive classification
-   └── Archetype tagging
-
-5. QUALITY VALIDATION
-   ├── Completeness check (has crime, suspects, solution?)
-   ├── Coherence scoring
-   ├── Duplicate detection
-   └── Manual review flagging
+    return {
+        'mystery_id': mystery['scenario_id'],
+        'title': mystery['title'],
+        'discovery_scenario': mystery['discovery_scenario'],
+        'surface_observations': mystery['surface_observations'],
+        # Do NOT send: solution, culprit_name, is_culprit, hidden_details
+    }
 ```
 
-### Tools & Technologies
+### Player Knowledge Tracking
 
-**Text Processing:**
-- spaCy or NLTK for NLP
-- LangChain for LLM integration
-- Anthropic Claude for intelligent extraction
+```python
+class PlayerKnowledge:
+    def __init__(self, player_id: str):
+        self.known_clues: List[str] = []        # clue_XXX IDs
+        self.known_testimonies: List[str] = []   # testimony_XXX IDs
 
-**Data Ingestion:**
-- BeautifulSoup4 for web scraping
-- Playwright for dynamic sites
-- requests for API access
-
-**Storage:**
-- PostgreSQL for structured data
-- S3/MinIO for raw text storage
-- Redis for caching
-
-
-## Phase 4: AI Integration Strategy (Weeks 6-12)
-
-### Option A: Fine-Tuning Approach
-- Requires large dataset (1000+ quality mysteries)
-- Higher cost, higher quality
-- Best for: Custom model behavior
-
-### Option B: RAG (Retrieval Augmented Generation)
-- Works with smaller dataset (100+ quality mysteries)
-- Lower cost, more flexible
-- Best for: Your use case (dynamic mystery generation)
-
-### Option C: Hybrid Approach (RECOMMENDED)
-1. Store structured patterns (motives, archetypes, plot beats) in database
-2. Use RAG to retrieve relevant examples
-3. Prompt engineer with retrieved context
-4. Generate new mystery scenarios
-
-**Example Flow:**
-```
-User Prompt: "Murder on Mars colony"
-    ↓
-Retrieve similar scenarios: 
-  - Closed environment mysteries (submarine, space station, island)
-  - Sci-fi settings
-  - Murder mysteries with limited suspects
-    ↓
-Extract patterns:
-  - Character archetypes (scientist, engineer, commander)
-  - Common motives (resource scarcity, secrets, mission sabotage)
-  - Evidence types (technical logs, surveillance, alibis)
-    ↓
-Generate new mystery using:
-  - Retrieved examples as context
-  - Structured templates from database
-  - Claude API for creative generation
-    ↓
-Output: Complete mystery scenario
+    def get_sharing_decision(self):
+        """Player must share 75% each round."""
+        all_items = self.known_clues + self.known_testimonies
+        num_to_share = max(1, int(len(all_items) * 0.75))
+        return {
+            'all_items': all_items,
+            'must_share': num_to_share,
+            'can_withhold': len(all_items) - num_to_share
+        }
 ```
 
+### NPC Dialogue Generation (Future)
 
-## Phase 5: Legal & Ethical Considerations
+Each `TestimonialRevelation` has a `trigger_condition`. Use Claude to generate
+NPC dialogue in response to player questions:
 
-### Copyright Compliance
-- ✅ Public domain (pre-1928 in US)
-- ✅ Creative Commons licensed content
-- ✅ Fair use for analysis (extracting patterns, not reproduction)
-- ❌ Copyrighted full-text republication
-- ⚠️ Court transcripts (public but verify republication rights)
+- If question matches `trigger_condition` → reveal the testimony
+- If no match → generate in-character deflection using `interrogation_behavior`
 
-### Best Practices
-1. Keep source attribution metadata
-2. Document licensing for each source
-3. Don't reproduce full copyrighted texts
-4. Extract patterns/structures, not verbatim content
-5. Consult legal counsel before launch
+---
 
+## Content Source Strategy
+
+### Current: Project Gutenberg (Public Domain)
+
+✅ Legal for extraction and pattern use
+✅ Rich variety of mystery styles
+⚠️ Mostly pre-1928, mostly Western, mostly English
+
+**Target authors for initial corpus:**
+- Arthur Conan Doyle (Sherlock Holmes — procedural, Victorian)
+- Agatha Christie (early works — cozy, whodunit)
+- G.K. Chesterton (Father Brown — moral/philosophical)
+- Edgar Allan Poe (gothic, early detective)
+- Wilkie Collins (sensation, Victorian)
+
+### Gap: Non-Western, Historical, Sci-Fi Settings
+
+The six test queries require settings not covered by Gutenberg.
+
+**Option A: Synthetic generation**
+Use Claude to generate training mysteries for underrepresented settings.
+- Pro: No legal issues, perfect schema compliance
+- Con: Less authentic
+
+**Option B: Manual pattern injection**
+Write 5-10 high-quality examples per underrepresented setting type.
+- Pro: High quality, game-specific
+- Con: Labor intensive
+
+**Recommendation:** Option B for the six test query categories.
+
+---
+
+## Parquet Dataset Integration
+
+If a parquet dataset of mystery scenarios becomes available:
+
+1. Confirm dataset schema (column names, data types)
+2. Create `parquet_ingestion.py`:
+   ```python
+   import pandas as pd
+   from mystery_data_acquisition import MysteryDatabase
+
+   def ingest_parquet(file_path: str):
+       df = pd.read_parquet(file_path)
+       db = MysteryDatabase()
+       for _, row in df.iterrows():
+           scenario = row_to_mystery_scenario(row)  # map columns to schema
+           db.save_scenario(scenario)
+   ```
+3. Run through `gameplay_validator.py` after ingestion
+
+---
 
 ## Success Metrics
 
-### Data Quality Metrics
-- Completeness rate: % of mysteries with all required elements
-- Coherence score: AI-evaluated logical consistency
-- Diversity score: Variety of settings, motives, methods
-- Usability score: Can generate playable mystery from this data?
+| Metric | Target |
+|--------|--------|
+| Validator pass rate (generated) | >90% |
+| All 6 test queries pass validation | 100% |
+| Difficulty distribution | 30/50/20% E/M/H |
+| Human review rating | >4/5 |
+| Generation time | <30s |
 
-### Dataset Goals
-- **Phase 1 Target:** 100 fully processed, high-quality mysteries
-- **Phase 2 Target:** 500 mysteries with automated processing
-- **Phase 3 Target:** 1000+ mysteries with quality validation
+---
 
+## Budget
 
-## Immediate Next Steps (This Week)
+| Activity | Cost |
+|----------|------|
+| Process 100 Gutenberg mysteries | ~$25 |
+| Generate 200 test mysteries | ~$30 |
+| Production API costs | ~$50-200/month |
+| Production database hosting | ~$50-100/month |
+| **MVP total (one-time)** | **~$55** |
 
-1. **Legal Review**
-   - Consult with IP lawyer about fair use vs. licensing
-   - Document your intended use case clearly
+For comparison: human mystery writers charge $100-300 per mystery.
 
-2. **Proof of Concept**
-   - Manually process 5-10 public domain mysteries
-   - Create database schema for these examples
-   - Test generation with Claude API using these as context
+---
 
-3. **Tool Setup**
-   - Set up PostgreSQL database
-   - Create Python environment with spaCy, LangChain
-   - Get API keys (Anthropic Claude, OpenAI for embeddings)
+## Legal
 
-4. **First Extraction Script**
-   - Build scraper for Project Gutenberg
-   - Process one Sherlock Holmes story end-to-end
-   - Validate data quality manually
+✅ Project Gutenberg content: Public domain (pre-1928)
+✅ Pattern extraction (not full text reproduction): Generally acceptable
+⚠️ AI-generated content for commercial use: Consult Anthropic's terms
+❌ Copyrighted novels without permission
+❌ Full text reproduction of copyrighted works
 
-
-## Budget Considerations
-
-### One-Time Costs
-- Legal consultation: $1,000-3,000
-- Developer time (if outsourcing): $5,000-15,000
-- Computing resources (cloud): $500-1,000
-
-### Ongoing Costs
-- API costs (Claude, embeddings): $200-500/month during processing
-- Database hosting: $50-200/month
-- Storage: $20-50/month
-
-
-## Risk Mitigation
-
-### Top Risks
-1. **Legal liability** → Strict licensing compliance, legal review
-2. **Data quality issues** → Manual validation of first 100 entries
-3. **Insufficient data** → Start with smaller, high-quality dataset
-4. **Technical complexity** → Build MVP with manual processing first
-5. **Cost overruns** → Use open-source tools, cloud credits, staged approach
-
-
-## Alternative Approaches to Consider
-
-### Alternative 1: Synthetic Data Generation
-- Use Claude to generate training mysteries from scratch
-- Pros: No legal issues, perfect structure
-- Cons: Less authentic, may lack variety
-- Hybrid: Generate 50%, collect 50%
-
-### Alternative 2: Crowdsourced Content
-- Commission mystery writers on Fiverr/Upwork
-- Pros: Custom content, full rights
-- Cons: Expensive, time-consuming
-- Cost: ~$100-300 per mystery
-
-### Alternative 3: Licensing Existing Libraries
-- Contact mystery publishers for licensing
-- Pros: High quality, large quantity
-- Cons: Expensive, may not allow AI training
-- Cost: Potentially $10,000-100,000+
-
-### Alternative 4: Pattern-Only Extraction
-- Don't store full texts, only structural patterns
-- Pros: Minimal legal risk, efficient storage
-- Cons: Less rich for generation
-- Best for: MVP approach
+**Before commercial launch:** IP attorney review recommended.

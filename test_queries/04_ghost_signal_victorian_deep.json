@@ -1,0 +1,70 @@
+{
+  "query": "The Ghost-Signal of the Victorian Deep",
+  "query_number": 4,
+  "status": "pending_generation",
+
+  "world": {
+    "era": "victorian",
+    "specific_period": "Victorian England, 1887 — deep sea research vessel",
+    "tech_level": "industrial",
+    "environment": "submarine / deep-sea vessel",
+    "cultural_context": "Victorian naval hierarchy on an experimental submarine. Officers and crew maintain strict class structure. The 'ghost signal' — a mysterious telegraph code received from nowhere — has unnerved the crew. The crime is a disappearance, with the ghost signal potentially being a cover story, a genuine unexplained phenomenon, or a clue. Victorian scientific rationalism vs. superstition is a theme.",
+    "physics_constraints": [
+      "Cannot surface quickly — rising too fast is fatal",
+      "No wireless communication — telegraph line was severed",
+      "Confined quarters — all suspects are present and cannot leave",
+      "Victorian class norms: officers will not accept questioning from enlisted crew",
+      "No forensic laboratory — Scotland Yard is not reachable"
+    ],
+    "flavor_tags": ["victorian", "gothic", "locked_room", "nautical", "isolated"]
+  },
+
+  "crime": {
+    "crime_type": "disappearance",
+    "mystery_type": "locked_room",
+    "secondary_tags": ["possible_murder", "nautical", "gothic"],
+    "stakes": "personal"
+  },
+
+  "valid_evidence_categories": [
+    "physical",
+    "chemical",
+    "documentary",
+    "testimonial",
+    "environmental"
+  ],
+
+  "expected_factions": [
+    "Officers (Captain, First Officer, Engineer)",
+    "Scientific Expedition Team (researchers who chartered the vessel)",
+    "Enlisted Crew"
+  ],
+
+  "character_archetype_hints": [
+    "ship's captain (suspect or investigator — ultimate authority)",
+    "expedition scientist (suspect — the disappearance may relate to a discovery)",
+    "first officer (suspect — has motive related to command authority)",
+    "telegraph operator (key witness — received the ghost signal)",
+    "ship's surgeon (suspect or resource — medical knowledge)"
+  ],
+
+  "key_clue_type_hints": [
+    "documentary: the ship's log entries and the ghost signal transcript (what did it actually say?)",
+    "physical: missing personal effects, disturbed quarters, a hatch that shouldn't be open",
+    "environmental: unusual gauge readings or pressure anomalies at the time of disappearance",
+    "chemical: residue in an unexpected location",
+    "testimonial: a crew member who heard something but hesitates to speak against an officer"
+  ],
+
+  "interrogation_mechanic_notes": "Victorian class structure creates interrogation asymmetry: officers can be questioned politely, enlisted crew can be more directly questioned. Scientists sit outside the hierarchy and may be more cooperative. The ghost signal is a red herring, a genuine mystery, OR the actual method of the crime (murder disguised as supernatural disappearance).",
+
+  "validator_expectations": {
+    "min_critical_clues": 2,
+    "forbidden_evidence_categories": ["biological", "digital"],
+    "requires_faction_definition": true,
+    "red_herring_ratio_target": "25-50%",
+    "note": "The ghost signal itself should be a red herring or supporting clue — not the core solution mechanism. The mystery should be ultimately rational."
+  },
+
+  "generation_notes": "The ambiguity of the crime (disappearance — death? escape? abduction?) is a feature, not a problem. The solution should resolve this ambiguity definitively. The ghost signal should play a role in the misdirection, not be left unexplained."
+}

@@ -1,0 +1,69 @@
+{
+  "query": "The Alchemical Forgery of the Abbasid Court",
+  "query_number": 3,
+  "status": "pending_generation",
+
+  "world": {
+    "era": "medieval",
+    "specific_period": "Abbasid Caliphate, Baghdad, approximately 910 CE",
+    "tech_level": "pre_industrial",
+    "environment": "royal court / House of Wisdom (Bayt al-Hikma)",
+    "cultural_context": "The Abbasid Caliphate at its intellectual peak. The House of Wisdom is a center of scholarship, translation, and alchemical research. The Caliph's authority is absolute; direct accusation of a court official requires extraordinary evidence. Islamic legal tradition (Sharia) governs what constitutes admissible proof. Scholars, merchants, court officials, and military commanders each have distinct social roles and access rights.",
+    "physics_constraints": [
+      "No modern chemistry — alchemy is the peak of chemical knowledge",
+      "No fingerprinting — physical evidence is observable only (color, texture, weight, reaction)",
+      "Social hierarchy strictly limits who investigators can question directly",
+      "Accusation without witnesses (shahada) is inadmissible — testimony protocol matters"
+    ],
+    "flavor_tags": ["historical", "political", "procedural", "non-western", "court_intrigue"]
+  },
+
+  "crime": {
+    "crime_type": "forgery",
+    "mystery_type": "procedural",
+    "secondary_tags": ["political", "intellectual_property", "court_intrigue"],
+    "stakes": "political"
+  },
+
+  "valid_evidence_categories": [
+    "physical",
+    "chemical",
+    "documentary",
+    "testimonial",
+    "environmental"
+  ],
+
+  "expected_factions": [
+    "Court Scholars (House of Wisdom)",
+    "Merchant Guild (those who trade in manuscripts and alchemical supplies)",
+    "Military Faction (who benefit from the forgery's contents)",
+    "Caliph's Inner Circle (political advisors)"
+  ],
+
+  "character_archetype_hints": [
+    "senior court alchemist (suspect — possesses the knowledge and materials)",
+    "rival scholar (suspect — would benefit from the forger's disgrace)",
+    "manuscript merchant (suspect — could supply forged materials for profit)",
+    "court scribe (witness — saw documents pass through official channels)",
+    "junior student/apprentice (witness — observed the alchemist's behavior)"
+  ],
+
+  "key_clue_type_hints": [
+    "chemical: ink composition analysis (different plant sources indicate wrong period/region)",
+    "chemical: parchment aging tests (artificial aging techniques leave residue)",
+    "documentary: anachronistic terminology or scribal conventions not used in claimed period",
+    "physical: tool marks or binding techniques inconsistent with stated origin",
+    "testimonial: a scribe who handled the document and noticed something odd — requires careful questioning within social protocol"
+  ],
+
+  "interrogation_mechanic_notes": "Players cannot directly confront senior officials — they must build a case through lower-status witnesses first, then present evidence through the proper court hierarchy. A junior student may have crucial knowledge but fear reprisal from their master. Islamic legal testimony requirements (two male witnesses, or equivalent) shape what can be brought before the Caliph.",
+
+  "validator_expectations": {
+    "min_critical_clues": 2,
+    "forbidden_evidence_categories": ["biological", "digital"],
+    "requires_faction_definition": true,
+    "red_herring_ratio_target": "25-40%"
+  },
+
+  "generation_notes": "This is the most historically specific query. The generator must not use anachronistic evidence types (no fingerprinting, no microscopy, no DNA). Chemical evidence should be phrased in period-appropriate terms (alchemical analysis, reagent testing). Court hierarchy must constrain the investigation mechanics — not just serve as flavor."
+}

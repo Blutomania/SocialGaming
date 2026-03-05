@@ -1,443 +1,246 @@
-# Choose Your Mystery - Database Development Guide
+# Choose Your Mystery — Development Guide
 
-## Overview
+AI-powered mystery game database and generation system.
 
-This repository contains the data acquisition and processing pipeline for building a mystery game database. The system:
+Players submit a prompt ("Murder on Mars", "Art Theft in Amazonia"). The system
+generates a complete, validated mystery scenario ready for gameplay.
 
-1. **Acquires** public domain mystery content from Project Gutenberg
-2. **Processes** raw text into structured data using Claude AI
-3. **Stores** mysteries in a searchable database
-4. **Generates** new mystery scenarios by combining patterns from the database
+---
 
 ## Quick Start
 
-### Prerequisites
-
 ```bash
-# Python 3.8+
-python --version
-
 # Install dependencies
-pip install -r requirements.txt
+pip install requests beautifulsoup4 anthropic python-dotenv
 
-# Download NLP model
-python -m spacy download en_core_web_sm
+# Set API key
+export ANTHROPIC_API_KEY=your-key
 
-# Set up API key
-export ANTHROPIC_API_KEY="your-api-key-here"
-```
+# Run the demo (no API needed)
+python demo_acquisition.py
 
-### Step 1: Acquire Mystery Data
+# Validate the demo mystery
+python gameplay_validator.py
 
-```bash
-# This will download and process 3 Sherlock Holmes stories
-python mystery_data_acquisition.py
-```
-
-**What this does:**
-- Searches Project Gutenberg for mystery books
-- Downloads full text
-- Extracts characters, evidence, motives using Claude AI
-- Saves structured data to `./mystery_database/`
-
-**Output:**
-```
-mystery_database/
-├── index.json                    # Searchable index
-├── scenarios/                    # Processed mysteries
-│   ├── the_hound_of_the_baskervilles.json
-│   ├── a_study_in_scarlet.json
-│   └── ...
-└── raw_texts/                    # Original source texts
-```
-
-### Step 2: Generate New Mysteries
-
-```bash
-# This generates a "Murder on Mars" mystery
+# Generate from a prompt (requires API key + database)
 python mystery_generator.py
 ```
 
-**What this does:**
-- Analyzes your prompt ("A murder on Mars")
-- Retrieves similar mysteries from database
-- Extracts patterns (character types, motives, evidence structures)
-- Uses Claude to generate a complete new mystery
-- Saves to `./mystery_database/generated/`
-
-**Output:**
-```json
-{
-  "title": "Red Planet Requiem",
-  "setting": {
-    "location": "Meridian Colony, Mars",
-    "environment": "Research station dome",
-    ...
-  },
-  "characters": [...],
-  "evidence": [...],
-  "solution": {...}
-}
-```
+---
 
 ## Architecture
 
-### Data Flow
-
 ```
-User Prompt: "A murder on Mars"
+User Prompt: "Murder on Mars"
     ↓
 [1] Theme Extraction
-    Extract: sci-fi setting, murder, closed environment
+    era=near_future, tech_level=sci_fi, crime_type=murder
     ↓
 [2] Database Retrieval
-    Find similar: "Orient Express", "Submarine mystery", "Space station"
+    Find similar mysteries by crime type, era, tech level
     ↓
-[3] Pattern Extraction  
-    Extract: Character archetypes, motive types, evidence patterns
+[3] Pattern Extraction
+    Character archetypes, motive types, clue structures
     ↓
-[4] AI Generation (Claude)
-    Combine: User prompt + Retrieved patterns + Creative generation
+[4] Generation (Claude)
+    Prompt + patterns → complete MysteryScenario JSON
     ↓
-Complete Mystery Scenario
+[5] Validation
+    Solvability, fairness, setting coherence, difficulty
+    ↓
+Ready for gameplay
 ```
 
-### Data Model
+---
 
+## The Schema
+
+See `MYSTERY_EXTRACTION_REQUIREMENTS.md` for full field documentation.
+
+### Evidence: Two Types, Not One
+
+Evidence is split by how it's discovered — because these map to two distinct
+gameplay actions:
+
+**`PhysicalClue`** — found by examining locations:
+```python
+category: physical | biological | digital | chemical | documentary | environmental
+relevance: critical | supporting | red_herring
+analysis_required: bool
+analysis_method: "Toxicology lab" | "Gene sequencer" | "Alchemical reagents"
+# Red herrings MUST have:
+false_conclusion: str
+why_misleading: str
+what_disproves_it: "clue_id that disproves this"
 ```
-MysteryScenario
-├── Metadata (title, author, source, license)
-├── Classification (crime type, setting, genre tags)
-├── Characters[]
-│   ├── name, role (victim/suspect/witness)
-│   ├── archetype (butler, spouse, rival)
-│   ├── motive, alibi, secrets
-│   └── personality, relationships
-├── Evidence[]
-│   ├── description, type, relevance
-│   ├── location, what_it_reveals
-│   └── analysis requirements
-├── Solution
-│   ├── culprit, method, motive
-│   ├── key evidence, timeline
-│   └── deduction path
-└── Gameplay Data
-    ├── investigation locations
-    ├── difficulty, playtime
-    └── strategic tips
+
+**`TestimonialRevelation`** — extracted from NPC interrogation:
+```python
+providing_character: str
+trigger_condition: "What question unlocks this"
+relevance: critical | supporting | red_herring
 ```
+
+### Tech Level Gates Evidence Categories
+
+`world_tech_level` determines which `PhysicalClue.category` values are valid:
+
+| Tech Level | Valid Categories |
+|------------|-----------------|
+| pre_industrial | physical, chemical, documentary, testimonial, environmental |
+| industrial | same as pre_industrial |
+| contemporary | + digital |
+| advanced / sci_fi | + biological |
+
+Validator checks this and fails incoherent mysteries.
+
+### Characters — Designed for Interrogation
+
+```python
+is_culprit: bool          # Exactly ONE character per mystery
+interrogation_behavior    # How they respond under questioning
+what_they_hide            # What they actively conceal (everyone hides something)
+knowledge_about_crime     # Their account of their own movements
+knowledge_that_helps_solve  # Clue atoms players extract from them
+```
+
+### Solution Is an Ordered Chain
+
+```python
+solution_steps: [
+    SolutionStep(
+        step_number=1,
+        clue_ids=["clue_005", "clue_006"],   # must reference real IDs
+        logical_inference="...",
+        conclusion="..."
+    )
+]
+```
+
+---
+
+## The Six Test Queries
+
+The canonical test set. Any schema change must work for all six.
+
+| # | Query | Era | Tech Level | Crime |
+|---|-------|-----|-----------|-------|
+| 1 | Murder on Mars | near_future | sci_fi | murder |
+| 2 | Art Theft in Amazonia | modern | contemporary | theft |
+| 3 | Alchemical Forgery of the Abbasid Court | medieval | pre_industrial | forgery |
+| 4 | Ghost-Signal of the Victorian Deep | victorian | industrial | disappearance |
+| 5 | A Steampunk Sabotage | alternate_history | industrial | sabotage |
+| 6 | Genetic Identity Heist of New Tokyo | near_future | sci_fi | identity_theft |
+
+See `test_queries/` for per-query world context, expected faction structures,
+evidence type hints, and validator expectations.
+
+---
 
 ## File Structure
 
 ```
-mystery-database/
-├── mystery_data_acquisition.py   # Acquire & process mysteries
-├── mystery_generator.py           # Generate new mysteries
-├── mystery_database_plan.md       # Comprehensive strategy doc
-├── requirements.txt               # Python dependencies
-├── README.md                      # This file
-└── mystery_database/              # Data storage
+SocialGaming/
+├── mystery_data_acquisition.py      # Pipeline + all schema dataclasses
+├── mystery_generator.py             # RAG-based generator from prompts
+├── gameplay_validator.py            # Automated quality validation
+├── demo_acquisition.py              # No-API demo (Victorian locked room)
+│
+├── MYSTERY_EXTRACTION_REQUIREMENTS.md  # Canonical schema spec
+├── mystery_database_plan.md            # Strategic roadmap
+├── CLAUDE.md                           # Session context for Claude sessions
+├── README.md                           # This file
+├── GETTING_STARTED.md                  # Quickstart
+├── requirements.txt
+│
+├── test_queries/                    # Six test query definitions
+│   ├── README.md
+│   ├── 01_murder_on_mars.json
+│   ├── 02_art_theft_amazonia.json
+│   ├── 03_alchemical_forgery_abbasid.json
+│   ├── 04_ghost_signal_victorian_deep.json
+│   ├── 05_steampunk_sabotage.json
+│   └── 06_genetic_identity_heist_new_tokyo.json
+│
+└── mystery_database/               # Generated at runtime
     ├── index.json
     ├── scenarios/
-    ├── generated/
-    └── raw_texts/
+    └── generated/
 ```
 
-## Usage Examples
+---
 
-### Custom Mystery Generation
+## Validation Rules
 
-```python
-from mystery_generator import MysteryGenerator
+`gameplay_validator.py` enforces:
 
-generator = MysteryGenerator()
+| Check | Rule |
+|-------|------|
+| Solvability | ≥2 critical physical clues, ≥1 critical testimonial |
+| Culprit | Exactly 1 character with `is_culprit=True` matching `culprit_name` |
+| Red herring fairness | Every red herring has `what_disproves_it` referencing a real clue ID |
+| Setting coherence | All `PhysicalClue.category` values valid for `world_tech_level` |
+| Interrogation coverage | Critical testimonials have `trigger_condition` |
+| Motives | All suspects have `motive` populated |
+| 75/25 rule | Total clues ≥8 for MEDIUM strategic depth |
 
-# Generate mystery for different prompts
-mystery = generator.generate_mystery(
-    user_prompt="An art theft in Renaissance Venice",
-    num_players=6
-)
+---
 
-# Access structured data
-print(f"Title: {mystery['title']}")
-print(f"Suspects: {len([c for c in mystery['characters'] if c['role'] == 'suspect'])}")
-print(f"Culprit: {mystery['solution']['culprit']}")
+## The 75/25 Sharing Rule
 
-# Save for game use
-generator.save_generated_mystery(mystery)
-```
+Each round, players must share 75% of what they discovered, keeping 25% private.
 
-### Database Search
+After 3 investigation turns (~6 items found):
+- Must share: ~4-5 items
+- Can withhold: ~1-2 items
 
-```python
-from mystery_data_acquisition import MysteryDatabase
+This makes every clue a strategic decision: is this worth withholding to be
+first to the solution, or worth sharing to get cooperation?
 
-db = MysteryDatabase()
+Mysteries need enough clues (≥8) and active-investigation clues (clues that
+require effort to obtain) for this to be meaningful.
 
-# Find all murder mysteries in mansions
-results = db.search_scenarios(
-    crime_type='murder',
-    setting_environment='mansion'
-)
+---
 
-# Load a specific scenario
-scenario = db.load_scenario('the_hound_of_the_baskervilles')
-print(f"Characters: {len(scenario.characters)}")
-```
+## API Costs
 
-### Batch Processing
+| Operation | Cost (Claude Sonnet) |
+|-----------|---------------------|
+| Process 1 Gutenberg mystery | ~$0.25 |
+| Generate 1 new mystery | ~$0.15 |
+| 50 processed + 50 generated | ~$20 |
 
-```python
-from mystery_data_acquisition import GutenbergScraper, MysteryProcessor, MysteryDatabase
+---
 
-scraper = GutenbergScraper()
-processor = MysteryProcessor()
-db = MysteryDatabase()
+## Production Roadmap
 
-# Process multiple books
-books = scraper.search_mysteries(query="agatha christie", limit=10)
+See `mystery_database_plan.md` for full detail.
 
-for book in books:
-    book_data = scraper.download_book_text(book['id'])
-    if book_data:
-        scenario = processor.process_mystery(
-            book_data['full_text'],
-            book_data
-        )
-        db.save_scenario(scenario)
-```
+| Phase | Status | Description |
+|-------|--------|-------------|
+| POC | Complete | JSON storage, Gutenberg scraper, RAG generator, validator |
+| Quality | Next | Process 50+ mysteries, manual review, prompt tuning |
+| Production | Future | PostgreSQL + pgvector, semantic search, API endpoint |
+| Advanced | Future | NPC dialogue generation, player knowledge tracking |
 
-## Configuration
+---
 
-### Environment Variables
+## Legal
 
-```bash
-# Required
-ANTHROPIC_API_KEY=sk-ant-...
+**Source content:**
+- Project Gutenberg: Public domain (pre-1928) — safe
+- Generated mysteries: Check Anthropic's terms for commercial use
 
-# Optional
-DATABASE_PATH=./mystery_database    # Storage location
-LOG_LEVEL=INFO                      # Logging verbosity
-```
+**Before commercial launch:** Consult IP attorney regarding AI-generated content rights.
 
-### API Costs (Estimate)
+---
 
-Processing 1 mystery book (50,000 words):
-- Input tokens: ~15,000 tokens
-- Output tokens: ~3,000 tokens
-- Cost per book: ~$0.25 with Claude Sonnet
+## Common Issues
 
-Generating 1 new mystery:
-- Input tokens: ~5,000 tokens  
-- Output tokens: ~4,000 tokens
-- Cost per generation: ~$0.15 with Claude Sonnet
+**"No database found"** → Run `demo_acquisition.py` or `mystery_data_acquisition.py` first
 
-**Budget for 100 processed mysteries + 50 generated:** ~$33
+**"API key not found"** → `export ANTHROPIC_API_KEY=your-key`
 
-## Performance Considerations
+**Validator FAIL: red herring fairness** → Every red herring needs `what_disproves_it`
 
-### Current Implementation (POC)
-
-- **Storage:** JSON files (easy to inspect, no setup)
-- **Search:** Linear scan of index (O(n))
-- **Suitable for:** < 1,000 mysteries
-
-### Production Recommendations
-
-When scaling beyond POC:
-
-1. **Database:** Migrate to PostgreSQL + pgvector
-   - Relational queries for exact matches
-   - Vector search for semantic similarity
-   - Example: "Find mysteries similar to prompt X"
-
-2. **Caching:** Add Redis for frequently accessed scenarios
-   - Cache generated mysteries
-   - Cache pattern extractions
-
-3. **Processing:** Batch processing with async/parallel
-   - Use asyncio for API calls
-   - Process multiple books simultaneously
-   - Estimated: 5x speedup
-
-4. **Embeddings:** Generate vector embeddings for search
-   - Use sentence-transformers or OpenAI embeddings
-   - Enable semantic search: "mysterious butler characters"
-
-## Legal Considerations
-
-### Current Sources (Safe)
-
-✅ Project Gutenberg - Public domain (pre-1928)
-✅ Court transcripts - Public records
-✅ Creative Commons content - Licensed
-
-### To Avoid
-
-❌ Copyrighted novels without permission
-❌ Recent screenplays (most are copyrighted)
-❌ Podcast transcripts (usually copyrighted)
-
-### Fair Use vs. Training Data
-
-- **Extracting patterns** (motives, structures): Generally acceptable
-- **Storing full text**: Requires proper licensing
-- **AI training**: Consult legal counsel for commercial use
-
-**Recommendation:** For commercial launch, consult IP attorney
-
-## Roadmap
-
-### Phase 1: POC (Current)
-- ✅ Basic data acquisition from Gutenberg
-- ✅ AI-powered extraction with Claude
-- ✅ JSON storage and search
-- ✅ Mystery generation from prompts
-
-### Phase 2: Quality & Scale
-- [ ] Process 100+ quality mysteries
-- [ ] Manual validation of extractions
-- [ ] Improved pattern extraction
-- [ ] Better search/retrieval
-
-### Phase 3: Production Ready
-- [ ] PostgreSQL + pgvector migration
-- [ ] Vector embeddings for semantic search
-- [ ] API endpoint for game integration
-- [ ] Automated quality scoring
-
-### Phase 4: Advanced Features
-- [ ] Multi-language support
-- [ ] Custom mystery templates
-- [ ] Community mystery submissions
-- [ ] Difficulty tuning
-
-## Integration with Game
-
-### Game Flow Integration
-
-```python
-# In your game server
-
-from mystery_generator import MysteryGenerator
-
-generator = MysteryGenerator()
-
-@app.route('/api/create-game', methods=['POST'])
-def create_game():
-    # User submits prompt
-    data = request.json
-    prompt = data['prompt']  # "A murder on Mars"
-    num_players = data['num_players']
-    
-    # Generate mystery
-    mystery = generator.generate_mystery(prompt, num_players)
-    
-    # Store in game session
-    game_session = GameSession(
-        mystery=mystery,
-        players=[...],
-        current_phase='investigation'
-    )
-    
-    return {
-        'game_id': game_session.id,
-        'mystery_title': mystery['title'],
-        'characters': mystery['characters'],
-        # Don't send solution to players yet!
-    }
-```
-
-### Information Sharing Mechanism
-
-The 75% sharing rule requires tracking what each player knows:
-
-```python
-class PlayerKnowledge:
-    def __init__(self, player_id, mystery):
-        self.player_id = player_id
-        self.known_evidence = []
-        self.interrogation_transcripts = []
-    
-    def add_evidence(self, evidence_id):
-        self.known_evidence.append(evidence_id)
-    
-    def get_shareable_items(self):
-        """Player must select 75% of their knowledge to share"""
-        all_items = self.known_evidence + self.interrogation_transcripts
-        num_to_share = int(len(all_items) * 0.75)
-        return {
-            'all_items': all_items,
-            'must_share': num_to_share
-        }
-```
-
-## Troubleshooting
-
-### Common Issues
-
-**"No database found" error**
-- Solution: Run `mystery_data_acquisition.py` first
-
-**"API key not found"**
-- Solution: `export ANTHROPIC_API_KEY=your-key-here`
-
-**"Failed to parse JSON from Claude"**
-- Cause: Claude sometimes adds markdown formatting
-- Solution: Code strips ```json``` markers, but edge cases exist
-- Fix: Add better error handling and retry logic
-
-**"Download failed" for Gutenberg books**
-- Cause: Not all books have plain text format
-- Solution: Code tries multiple formats, but some may fail
-- Fix: Skip or manually download problematic books
-
-**"Processing very slow"**
-- Cause: API calls are sequential
-- Solution: For POC, acceptable. For production, use async
-- Optimization: Batch process with asyncio
-
-### Debug Mode
-
-```python
-# Add at top of script
-import logging
-logging.basicConfig(level=logging.DEBUG)
-
-# Or set environment variable
-export LOG_LEVEL=DEBUG
-python mystery_data_acquisition.py
-```
-
-## Contributing
-
-### Adding New Data Sources
-
-1. Create new scraper class (follow `GutenbergScraper` pattern)
-2. Ensure proper rate limiting (respect robots.txt)
-3. Document licensing/copyright status
-4. Add to `run_acquisition_pipeline()`
-
-### Improving Extraction
-
-1. Update prompts in `MysteryProcessor` methods
-2. Test on sample mysteries
-3. Compare output quality
-4. Iterate on prompt engineering
-
-## Support
-
-For questions or issues:
-1. Check the comprehensive plan: `mystery_database_plan.md`
-2. Review code comments (extensive "why" explanations)
-3. File issue with example prompt/error
-
-## License
-
-This codebase: MIT License
-
-Mystery content: Varies by source
-- Project Gutenberg content: Public domain
-- Generated mysteries: Check terms of AI provider
-
-**Important:** Verify licensing before commercial use
+**Validator FAIL: setting coherence** → Check `PhysicalClue.category` against tech level matrix

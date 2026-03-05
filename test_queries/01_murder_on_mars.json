@@ -1,0 +1,70 @@
+{
+  "query": "Murder on Mars",
+  "query_number": 1,
+  "status": "pending_generation",
+
+  "world": {
+    "era": "near_future",
+    "specific_period": "Mars Colony, 2157",
+    "tech_level": "sci_fi",
+    "environment": "enclosed habitat / colony dome",
+    "cultural_context": "Earth-colonist tensions under corporate governance. The colony is run by Helios Corp. Earth liaison holds political authority but little operational control. Colonists form tight-knit communities but distrust corp management.",
+    "physics_constraints": [
+      "Cannot leave the habitat — all suspects are on site",
+      "Communication delay with Earth (20 minutes each way)",
+      "Life support systems log all movement and oxygen consumption",
+      "No external forensic authority — investigation is internal"
+    ],
+    "flavor_tags": ["sci-fi", "locked_room", "political", "isolated"]
+  },
+
+  "crime": {
+    "crime_type": "murder",
+    "mystery_type": "locked_room",
+    "secondary_tags": ["corporate_espionage", "closed_environment"],
+    "stakes": "political"
+  },
+
+  "valid_evidence_categories": [
+    "physical",
+    "biological",
+    "digital",
+    "chemical",
+    "documentary",
+    "testimonial",
+    "environmental"
+  ],
+
+  "expected_factions": [
+    "Helios Corp Management",
+    "Colonial Workers Union",
+    "Earth Diplomatic Liaison"
+  ],
+
+  "character_archetype_hints": [
+    "corporate administrator (suspect)",
+    "union representative (suspect)",
+    "Earth liaison (investigator or suspect)",
+    "colony engineer (witness)",
+    "medical officer (suspect — has access to sedatives or toxins)"
+  ],
+
+  "key_clue_type_hints": [
+    "digital: habitat life support logs showing movement",
+    "digital: airlock access records",
+    "biological: unusual compounds in victim's bloodstream (sci_fi equivalent of toxicology)",
+    "environmental: oxygen consumption anomaly in suspect's quarters",
+    "physical: tool or instrument inconsistent with stated location"
+  ],
+
+  "interrogation_mechanic_notes": "The isolated colony means all suspects know each other and the victim well. Factions create loyalty conflicts: union members won't easily incriminate each other; corp management won't cooperate with Earth liaison.",
+
+  "validator_expectations": {
+    "min_critical_clues": 2,
+    "requires_digital_evidence": true,
+    "requires_faction_definition": true,
+    "red_herring_ratio_target": "20-40%"
+  },
+
+  "generation_notes": "The locked-room aspect should come from an airlock, sealed module, or pressure door — not a literal locked study. The corporate vs. worker tension should drive at least two suspects' motives."
+}

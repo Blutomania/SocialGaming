@@ -1,0 +1,67 @@
+{
+  "query": "Art Theft in Amazonia",
+  "query_number": 2,
+  "status": "pending_generation",
+
+  "world": {
+    "era": "modern",
+    "specific_period": "Contemporary, Amazon Basin",
+    "tech_level": "contemporary",
+    "environment": "remote jungle research camp / river outpost",
+    "cultural_context": "International team of researchers, indigenous community, and suspected traffickers in a remote location. Satellite communication is limited. The stolen artifact has deep cultural significance to the local indigenous community and commercial value to the international art market.",
+    "physics_constraints": [
+      "No reliable cell signal — satellite phone only",
+      "Jungle terrain limits movement; nearest town is hours by boat",
+      "No law enforcement presence — investigation must be conducted by the group"
+    ],
+    "flavor_tags": ["adventure", "heist", "contemporary", "international", "cultural_property"]
+  },
+
+  "crime": {
+    "crime_type": "theft",
+    "mystery_type": "heist",
+    "secondary_tags": ["cultural_property", "international_trafficking", "remote_location"],
+    "stakes": "political"
+  },
+
+  "valid_evidence_categories": [
+    "physical",
+    "chemical",
+    "documentary",
+    "testimonial",
+    "environmental",
+    "digital"
+  ],
+
+  "expected_factions": [
+    "Research Expedition Team",
+    "Indigenous Community",
+    "Art Trafficking Network (background — one or more suspects are connected)"
+  ],
+
+  "character_archetype_hints": [
+    "lead archaeologist (suspect — knows the artifact's value)",
+    "indigenous guide (witness — knows the terrain)",
+    "expedition funder (suspect — financial motive)",
+    "young researcher (suspect or witness)",
+    "boat captain / logistics person (suspect — could have enabled extraction)"
+  ],
+
+  "key_clue_type_hints": [
+    "physical: disturbed soil or vegetation showing movement through specific jungle paths",
+    "digital: satellite phone records or camera metadata",
+    "documentary: shipping manifests or contact list found in personal items",
+    "environmental: footprints, water disturbance, weight marks inconsistent with stated alibis",
+    "testimonial: indigenous guide's knowledge of who was where — trigger: ask in their own language"
+  ],
+
+  "interrogation_mechanic_notes": "Cultural and language barriers complicate interrogation. Indigenous characters may reveal information only under specific respectful conditions. Researchers may be protective of the expedition's reputation.",
+
+  "validator_expectations": {
+    "min_critical_clues": 2,
+    "requires_faction_definition": true,
+    "red_herring_ratio_target": "25-40%"
+  },
+
+  "generation_notes": "The 'Amazonia' setting should use jungle terrain actively — not just as backdrop. At least one clue should require physical tracking through the environment. The cultural property angle (who has rightful claim to the artifact) should complicate motive."
+}

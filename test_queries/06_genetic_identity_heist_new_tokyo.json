@@ -1,0 +1,73 @@
+{
+  "query": "The Genetic Identity Heist of New Tokyo",
+  "query_number": 6,
+  "status": "pending_generation",
+
+  "world": {
+    "era": "near_future",
+    "specific_period": "New Tokyo, 2089",
+    "tech_level": "sci_fi",
+    "environment": "megacity — corporate arcology / genetic registry district",
+    "cultural_context": "In 2089, genetic identity has replaced passwords, documents, and fingerprints. Your genome IS your identity — it unlocks bank accounts, grants building access, and establishes legal personhood. Megacorporations (Zaibatsu) maintain private genetic registries that governments rely on. A genetic identity heist means someone has copied and is impersonating another person's genome. This is the equivalent of stealing an entire person's existence. Japanese corporate culture: hierarchy is absolute, face-saving is paramount, whistleblowing is career suicide.",
+    "physics_constraints": [
+      "Genetic evidence can be synthetically fabricated — provenance matters",
+      "Corporate privacy shields legally block access to genetic records without a warrant",
+      "All movement through the arcology is logged via genetic scanners",
+      "Counter-forensics tools can scrub biological traces"
+    ],
+    "flavor_tags": ["sci-fi", "cyberpunk", "heist", "near-future", "corporate", "non-western"]
+  },
+
+  "crime": {
+    "crime_type": "identity_theft",
+    "mystery_type": "heist",
+    "secondary_tags": ["corporate_espionage", "genetic_crime", "impersonation"],
+    "stakes": "corporate"
+  },
+
+  "valid_evidence_categories": [
+    "physical",
+    "biological",
+    "digital",
+    "chemical",
+    "documentary",
+    "testimonial",
+    "environmental"
+  ],
+
+  "expected_factions": [
+    "Zaibatsu (megacorp — the victim works for them, their genetic registry was breached)",
+    "Black Market Surgeons (underground genetic modification clinic that enabled the heist)",
+    "Government Genetic Registry Authority (competing regulatory body — has its own agenda)",
+    "Resistance / Anti-Zaibatsu activists (politically motivated, but did they do this specific crime?)"
+  ],
+
+  "character_archetype_hints": [
+    "senior genetic registry official (victim — their identity was stolen, or they are the thief using a stolen identity)",
+    "genetic engineer (suspect — has technical capability for synthesis)",
+    "corporate security investigator (investigator character)",
+    "black market contact (suspect — sold the synthesis kit)",
+    "a person claiming to be the victim (is this the real person or the impersonator?)"
+  ],
+
+  "key_clue_type_hints": [
+    "biological: epigenetic markers that survive gene synthesis — small inconsistencies in methylation patterns",
+    "digital: arcology scanner logs showing two genomic matches at the same time in different locations (the impossibility that reveals the heist)",
+    "biological: synthesis residue — the specific reagents used to fabricate a genome leave a chemical signature",
+    "documentary: corporate financial transfers to an unknown party for 'genomic services'",
+    "testimonial: a black market surgeon willing to talk only if granted immunity from corporate prosecution"
+  ],
+
+  "interrogation_mechanic_notes": "Japanese corporate hierarchy means employees will not speak against superiors without extraordinary pressure. The 'face-saving' norm means suspects deny everything until confronted with definitive evidence. The black market contact requires a specific approach — threatening prosecution vs. offering protection. The ambiguity of 'which person is real' creates an interrogation where player must determine if who they are talking to is the victim or the impersonator.",
+
+  "validator_expectations": {
+    "min_critical_clues": 2,
+    "requires_biological_evidence": true,
+    "requires_digital_evidence": true,
+    "requires_faction_definition": true,
+    "red_herring_ratio_target": "20-35%",
+    "note": "The resistance faction should be a significant red herring — obvious political motive, but the actual crime is corporate."
+  },
+
+  "generation_notes": "The central mechanic of 'which person is real' should make at least two characters genuinely ambiguous until the critical biological evidence is analyzed. The synthesis residue clue is the equivalent of the fiber-in-keyhole from the Victorian mystery — the technical proof that breaks the case."
+}

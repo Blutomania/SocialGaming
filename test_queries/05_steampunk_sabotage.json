@@ -1,0 +1,68 @@
+{
+  "query": "A Steampunk Sabotage",
+  "query_number": 5,
+  "status": "pending_generation",
+
+  "world": {
+    "era": "alternate_history",
+    "specific_period": "Alternate 1890s — steampunk industrialized city",
+    "tech_level": "industrial",
+    "environment": "steam-powered factory / airship dock / guild hall",
+    "cultural_context": "A world where steam technology advanced faster and further. Mechanical automatons assist workers. Aetheric telegraphs connect cities. The Inventors' Guild controls the patents that power civilization. A Luddite resistance movement sabotages Guild infrastructure. The crime is sabotage of a steam core that killed a senior Guild engineer — but was it really an accident, a political attack, or targeted murder disguised as sabotage?",
+    "physics_constraints": [
+      "No digital technology — mechanical computation only",
+      "Evidence can be destroyed by steam blast or fire",
+      "Automaton witnesses exist but their testimony is not legally admissible"
+    ],
+    "flavor_tags": ["steampunk", "alternate_history", "political", "whodunit", "industrial"]
+  },
+
+  "crime": {
+    "crime_type": "sabotage",
+    "mystery_type": "whodunit",
+    "secondary_tags": ["possible_murder", "political", "industrial"],
+    "stakes": "corporate"
+  },
+
+  "valid_evidence_categories": [
+    "physical",
+    "chemical",
+    "documentary",
+    "testimonial",
+    "environmental"
+  ],
+
+  "expected_factions": [
+    "Inventors' Guild (establishment, controls technology patents)",
+    "Luddite Resistance (saboteurs, politically opposed to mechanization)",
+    "Factory Workers (caught between — some sympathize with resistance, some loyal to Guild)"
+  ],
+
+  "character_archetype_hints": [
+    "Guild patent holder (suspect — may have faked sabotage to eliminate a rival)",
+    "Luddite organizer (suspect — politically motivated, but did they actually do this specific act?)",
+    "factory floor foreman (witness — knows the technical details)",
+    "automaton maintenance engineer (suspect — had access to the steam core)",
+    "Guild inspector (investigator or suspect — has authority but possible conflict of interest)"
+  ],
+
+  "key_clue_type_hints": [
+    "physical: deliberate mechanical failure vs. accidental — tool marks, worn components that shouldn't be worn",
+    "chemical: accelerant residue indicating the explosion was set, not accidental",
+    "documentary: patent documents or financial records showing who benefits from the victim's death",
+    "environmental: timing of the explosion relative to shifts — who had access when",
+    "testimonial: a factory worker who saw someone near the steam core at the wrong time — but fears Guild retaliation for speaking"
+  ],
+
+  "interrogation_mechanic_notes": "Guild hierarchy is rigid — workers won't easily contradict Guild officials. The Luddite organizer is a suspect but may also be an ally in uncovering a Guild conspiracy. Automaton witnesses are available but legally non-admissible — they can still provide leads.",
+
+  "validator_expectations": {
+    "min_critical_clues": 2,
+    "forbidden_evidence_categories": ["biological", "digital"],
+    "requires_faction_definition": true,
+    "red_herring_ratio_target": "25-40%",
+    "note": "The Luddite connection is the obvious red herring. The actual motive should be more personal — rivalry within the Guild."
+  },
+
+  "generation_notes": "The steampunk technology should be evidence-active, not just decorative. Mechanical failure analysis, steam pressure logs, aetheric telegraph records — these are the tech-appropriate equivalents of forensic investigation. The alternate history should feel like 'plausible 1890s with more steam' not 'Victorian with magic.'"
+}
