@@ -763,10 +763,30 @@ def get_protocol(protocol_id: str) -> Protocol:
     return PROTOCOLS[key]
 
 
+def _sample_text(text: str, max_chars: int) -> str:
+    """
+    Sample beginning + middle + end of a long text rather than truncating.
+    For short texts (<= max_chars), returns the text unchanged.
+    This ensures the crime, resolution, and setting are all represented
+    even for full-length novels (e.g. 377k chars).
+    """
+    if len(text) <= max_chars:
+        return text
+    third = max_chars // 3
+    mid = len(text) // 2
+    return (
+        text[:third]
+        + "\n\n[... middle of text ...]\n\n"
+        + text[mid : mid + third]
+        + "\n\n[... end of text ...]\n\n"
+        + text[-third:]
+    )
+
+
 def extraction_prompt(
     protocol_id: str,
     source_text: str,
-    max_text_chars: int = 6000,
+    max_text_chars: int = 18000,
 ) -> str:
     """
     Build a Claude extraction prompt for a given protocol and source text.
@@ -780,13 +800,13 @@ def extraction_prompt(
     Args:
         protocol_id:     "P1", "P2", "P3", or "P4"
         source_text:     raw mystery text to extract from
-        max_text_chars:  truncation limit for the source (API cost control)
+        max_text_chars:  total chars sampled (beginning + middle + end thirds)
 
     Returns:
         Formatted prompt string ready to send to Claude
     """
     protocol = get_protocol(protocol_id)
-    truncated = source_text[:max_text_chars]
+    truncated = _sample_text(source_text, max_text_chars)
 
     parts_spec = "\n".join(
         f'  "{p.json_key}": {{\n'
@@ -819,7 +839,7 @@ If an element is absent from the source, set "value" to null and "confidence" to
 def combined_prompt(
     protocol_ids: List[str],
     source_text: str,
-    max_text_chars: int = 8000,
+    max_text_chars: int = 24000,
 ) -> str:
     """
     Build a single Claude prompt that extracts across multiple protocols at once.
@@ -828,7 +848,7 @@ def combined_prompt(
     Args:
         protocol_ids:    e.g. ["P1", "P2"]
         source_text:     raw mystery text
-        max_text_chars:  truncation limit
+        max_text_chars:  total chars sampled (beginning + middle + end thirds)
 
     Returns:
         Formatted multi-protocol prompt string
@@ -837,7 +857,7 @@ def combined_prompt(
     for pid in protocol_ids:
         all_parts.extend(get_protocol(pid).parts)
 
-    truncated = source_text[:max_text_chars]
+    truncated = _sample_text(source_text, max_text_chars)
     protocol_label = " + ".join(
         f"{pid} ({PROTOCOLS[pid.upper()].name})" for pid in protocol_ids
     )
