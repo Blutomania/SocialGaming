@@ -5,6 +5,24 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 3 — March 7, 2026
+**Branch:** `claude/document-research-findings-LdlIV`
+**Latest commit:** d39a3ca
+**Status:** Complete
+
+### What was done
+- Fixed `corpus_loader.py` — two bugs blocking `python3 cli.py extract --protocol P1P2 --end 10`:
+  1. Error message pointed to wrong clone URL (GitHub `Blutomania/mystery-crime-books` has no parquet); corrected to HuggingFace `AlekseyKorshuk/mystery-crime-books`
+  2. HuggingFace clones nest the parquet under `data/` subdirectory; loader now checks `data/` first, falls back to repo root
+- Extraction pipeline confirmed working — `--end 10` run completed successfully
+
+### Next steps
+- Inspect 10 extracted JSON files for P1/P2 field quality before full corpus run
+- If quality is good: `python3 cli.py extract --protocol P1P2` (full 359-book run)
+- Check API credit balance at console.anthropic.com before full run
+
+---
+
 ## Session 2 — March 7, 2026
 **Branch:** `claude/document-research-findings-LdlIV`
 **Status:** Active
