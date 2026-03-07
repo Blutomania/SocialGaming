@@ -3,7 +3,7 @@ Corpus Loader
 =============
 
 Loads the mystery-crime-books Parquet corpus from a local clone of:
-    https://github.com/Blutomania/mystery-crime-books
+    https://huggingface.co/datasets/AlekseyKorshuk/mystery-crime-books
 
 The dataset has 359 rows, each with:
     - url   : source URL of the book text
@@ -50,7 +50,12 @@ class CorpusLoader:
 
     def __init__(self, corpus_dir: str = "./mystery-crime-books"):
         self.corpus_dir = Path(corpus_dir)
-        self.parquet_path = self.corpus_dir / PARQUET_FILENAME
+        # HuggingFace dataset clones nest the parquet under data/
+        data_subdir = self.corpus_dir / "data"
+        if (data_subdir / PARQUET_FILENAME).exists():
+            self.parquet_path = data_subdir / PARQUET_FILENAME
+        else:
+            self.parquet_path = self.corpus_dir / PARQUET_FILENAME
         self._df: Optional[pd.DataFrame] = None
 
     # ------------------------------------------------------------------
@@ -69,7 +74,7 @@ class CorpusLoader:
             raise FileNotFoundError(
                 f"Parquet file not found at: {self.parquet_path}\n"
                 f"Clone the corpus repo first:\n"
-                f"  git clone https://github.com/Blutomania/mystery-crime-books.git"
+                f"  git clone https://huggingface.co/datasets/AlekseyKorshuk/mystery-crime-books"
             )
 
         print(f"Loading corpus from: {self.parquet_path}")
