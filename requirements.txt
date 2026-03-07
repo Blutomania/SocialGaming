@@ -1,7 +1,8 @@
 # Choose Your Mystery - Database System Requirements
 
 # Core dependencies
-anthropic>=0.18.0           # Claude API for AI-powered extraction and generation
+anthropic>=0.40.0           # Claude API for AI-powered extraction and generation
+streamlit>=1.35.0           # Web UI framework
 requests>=2.31.0            # HTTP requests for web scraping
 beautifulsoup4>=4.12.0      # HTML parsing for Project Gutenberg
 python-dotenv>=1.0.0        # Environment variable management
