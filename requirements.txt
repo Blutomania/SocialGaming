@@ -25,6 +25,9 @@ psycopg2-binary>=2.9.9      # PostgreSQL adapter (optional for now)
 # aiohttp>=3.9.0            # Async HTTP requests
 # asyncio                   # Built-in, for concurrent processing
 
+# Terminal UI (CLI)
+rich>=13.0.0                # Rich terminal output: panels, tables, spinners, colour
+
 # Development tools
 # pytest>=7.4.0             # Testing framework
 # black>=23.0.0             # Code formatting
