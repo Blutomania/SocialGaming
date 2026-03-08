@@ -5,6 +5,35 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 4 — March 8, 2026
+**Branch:** `claude/document-research-findings-LdlIV`
+**Latest commit:** 5e45b91
+**Status:** Wrap-up / housekeeping
+
+### What was done
+- Validated API key and Anthropic credit balance — pipeline is unblocked and ready
+- Diagnosed "no credit" false alarm: was a terminal caching issue; restarting Terminal resolved it
+- Confirmed working tree clean, branch up to date with remote — no code changes needed
+- No corpus data locally (parquet corpus lives on HuggingFace, not cloned)
+- `mystery_database/` is fully synced to git (1 generated mystery + 48-part registry committed)
+
+### Data sync status
+| Data | Location | Status |
+|---|---|---|
+| Code + registry | `claude/document-research-findings-LdlIV` | ✅ Pushed |
+| Part taxonomy | `extraction_protocols.py`, `part_registry.py` | ✅ In git |
+| Generated mysteries | `mystery_database/generated/` | ✅ Committed (1 file) |
+| Corpus (359 books) | HuggingFace `AlekseyKorshuk/mystery-crime-books` | Remote-only, not cloned |
+| Extraction outputs (--end 10 run) | Not saved — session ended before commit | ⚠️ Re-run needed |
+
+### Next steps (resume here)
+1. Re-run `python3 cli.py extract --protocol P1P2 --end 10` and inspect JSON output quality
+2. If quality OK → full run: `python3 cli.py extract --protocol P1P2` (359 books, ~700 new parts)
+3. Wire `app.py` to `part_registry.py` (replace freeform LLM generation with part registry RAG)
+4. Deploy `app.py` to HuggingFace Spaces
+
+---
+
 ## Session 3 — March 7, 2026
 **Branch:** `claude/document-research-findings-LdlIV`
 **Latest commit:** d39a3ca
