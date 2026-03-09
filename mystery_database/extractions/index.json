@@ -3091,17 +3091,6 @@
     "text_len": 24691
   },
   {
-    "file": "0354_ebook_ellen_g_white_apocalypse.json",
-    "corpus_index": 354,
-    "url": "https://www.bookrix.com/_ebook-ellen-g-white-apocalypse/",
-    "title": "ebook ellen g white apocalypse",
-    "protocols": [
-      "P1",
-      "P2"
-    ],
-    "text_len": 1325225
-  },
-  {
     "file": "0355_ebook_i_nard_transitions_in_red.json",
     "corpus_index": 355,
     "url": "https://www.bookrix.com/_ebook-i-nard-transitions-in-red/",
@@ -3111,17 +3100,6 @@
       "P2"
     ],
     "text_len": 3241
-  },
-  {
-    "file": "0356_ebook_ellen_g_white_armageddon.json",
-    "corpus_index": 356,
-    "url": "https://www.bookrix.com/_ebook-ellen-g-white-armageddon/",
-    "title": "ebook ellen g white armageddon",
-    "protocols": [
-      "P1",
-      "P2"
-    ],
-    "text_len": 1325342
   },
   {
     "file": "0357_ebook_khb2d349d4c9cf5_1607059451.4713439.json",
