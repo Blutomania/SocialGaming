@@ -1,0 +1,113 @@
+{
+  "mystery_id": "F",
+  "title": "The Genetic Identity Heist of New Tokyo",
+  "protocols": [
+    "P1",
+    "P2"
+  ],
+  "source_text": "Title: The Genetic Identity Heist of New Tokyo\nCrime Type: identity_theft\nSetting: New Tokyo megacity (far_future)\nEnvironment: cyberpunk_megacity\nGenres: cyberpunk, bio-crime, corporate_thriller\n\nSummary:\nIn a city where genetic identity is the only currency that matters, a biotech executive's genetic signature has been stolen and used to authorize a series of illegal transactions. The executive is dead \u2014 killed in a way that looks natural \u2014 and their DNA clone is already living their life. Unraveling the heist means understanding who benefits from an identity that no longer belongs to a living person.\n\nStructural Elements Present:\n  - crime_type\n  - setting_element\n  - motive\n  - suspect_archetype\n  - red_herring\n  - reveal_mechanic\n  - social_dynamic\n  - evidence_type\n",
+  "extracted": {
+    "crime": {
+      "protocol": "P1",
+      "part": "C1 \u2014 The Crime",
+      "value": "Genetic identity theft: a biotech executive's genetic signature was stolen and used to authorize illegal transactions; the executive was murdered in a way designed to appear natural.",
+      "confidence": "high",
+      "quote": "a biotech executive's genetic signature has been stolen and used to authorize a series of illegal transactions"
+    },
+    "victim": {
+      "protocol": "P1",
+      "part": "C2 \u2014 The Victim",
+      "value": "A biotech executive whose genetic identity was stolen, killed by means made to look natural, and replaced by a DNA clone now living their life.",
+      "confidence": "high",
+      "quote": "The executive is dead \u2014 killed in a way that looks natural \u2014 and their DNA clone is already living their life."
+    },
+    "closed_world": {
+      "protocol": "P1",
+      "part": "C3 \u2014 The Closed World",
+      "value": "New Tokyo megacity, a far-future cyberpunk environment where genetic identity functions as the sole currency and foundation of social and corporate power.",
+      "confidence": "high",
+      "quote": "In a city where genetic identity is the only currency that matters"
+    },
+    "culprit_and_motive": {
+      "protocol": "P1",
+      "part": "C4 \u2014 The Culprit and Motive",
+      "value": "Implied to be a party who benefits from assuming or exploiting the executive's identity \u2014 likely a corporate rival, insider, or entity seeking access to the executive's authorizations and assets. Motive is financial and power-driven gain through identity usurpation.",
+      "confidence": "medium",
+      "quote": "Unraveling the heist means understanding who benefits from an identity that no longer belongs to a living person."
+    },
+    "resolution": {
+      "protocol": "P1",
+      "part": "C5 \u2014 The Resolution",
+      "value": "Not explicitly stated; resolution is framed as a process of uncovering who benefits from the stolen identity, suggesting an investigative unmasking of the perpetrator and the criminal network behind the heist.",
+      "confidence": "low",
+      "quote": "Unraveling the heist means understanding who benefits from an identity that no longer belongs to a living person."
+    },
+    "investigator": {
+      "protocol": "P1",
+      "part": "C6 \u2014 The Investigator",
+      "value": "Not explicitly named or described in the source text.",
+      "confidence": "low",
+      "quote": null
+    },
+    "suspect_architecture": {
+      "protocol": "P2",
+      "part": "M1 \u2014 Suspect Architecture",
+      "value": "The text references a 'suspect_archetype' structural element, situated within a corporate thriller framework. Suspects likely include corporate insiders, biotech rivals, and those with access to the executive's genetic data and authorization systems.",
+      "confidence": "medium",
+      "quote": "Genres: cyberpunk, bio-crime, corporate_thriller"
+    },
+    "red_herring": {
+      "protocol": "P2",
+      "part": "M2 \u2014 The Red Herring",
+      "value": "The natural appearance of the executive's death serves as a red herring, designed to mask murder and delay the investigation by making the death appear non-criminal.",
+      "confidence": "high",
+      "quote": "killed in a way that looks natural"
+    },
+    "clue_fairness": {
+      "protocol": "P2",
+      "part": "M3 \u2014 Clue Fairness",
+      "value": "The text identifies 'evidence_type' as a structural element present, suggesting clues are embedded in biological or genetic evidence; however, specific fair-play clue distribution is not detailed.",
+      "confidence": "low",
+      "quote": "evidence_type"
+    },
+    "social_world": {
+      "protocol": "P2",
+      "part": "M4 \u2014 The Social World",
+      "value": "A far-future cyberpunk megacity where genetic identity is the foundation of social hierarchy, financial transactions, and corporate power \u2014 a society stratified by biological authenticity.",
+      "confidence": "high",
+      "quote": "In a city where genetic identity is the only currency that matters"
+    },
+    "alibi": {
+      "protocol": "P2",
+      "part": "M5 \u2014 The Alibi",
+      "value": "The DNA clone living the executive's life functions as a structural alibi mechanism \u2014 the perpetrator's tracks are covered by a biological impostor who passes all identity verification.",
+      "confidence": "medium",
+      "quote": "their DNA clone is already living their life"
+    },
+    "reveal_mechanic": {
+      "protocol": "P2",
+      "part": "M6 \u2014 The Reveal Mechanic",
+      "value": "The reveal mechanic is listed as a structural element present; it likely involves exposing the DNA clone as an impostor and tracing who engineered and deployed the genetic replica.",
+      "confidence": "medium",
+      "quote": "reveal_mechanic"
+    },
+    "media_and_audience": {
+      "protocol": "P2",
+      "part": "M7 \u2014 Media and Audience",
+      "value": "Not explicitly addressed in the source text; no media figures, public audience, or press coverage are mentioned.",
+      "confidence": "low",
+      "quote": null
+    },
+    "investigator_wound": {
+      "protocol": "P2",
+      "part": "M8 \u2014 The Investigator's Wound",
+      "value": "Not present in the source text; no investigator is named and no personal trauma or wound is described.",
+      "confidence": "low",
+      "quote": null
+    }
+  },
+  "usage": {
+    "input_tokens": 1394,
+    "output_tokens": 1410
+  }
+}
