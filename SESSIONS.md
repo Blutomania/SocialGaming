@@ -5,6 +5,48 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session — March 09, 2026 at 17:26
+**Branch:** `claude/upload-corpus-extraction-3uTq5`
+**Latest commit:** `3cf2d54`
+
+### Files changed this session
+- `extract_test_mysteries.py` — Untracked
+- `mystery_database/extractions/test_a_p1p2.json` — Untracked
+- `mystery_database/extractions/test_b_p1p2.json` — Untracked
+- `mystery_database/extractions/test_c_p1p2.json` — Untracked
+- `mystery_database/extractions/test_d_p1p2.json` — Untracked
+- `mystery_database/extractions/test_e_p1p2.json` — Untracked
+- `mystery_database/extractions/test_f_p1p2.json` — Untracked
+
+### Commits this session
+```
+3cf2d54 Remove Ellen G. White non-mystery books (Apocalypse, Armageddon) from corpus
+105039f Retry extraction #326: rachel-davis-shard (API 500 resolved)
+7927804 Add full corpus extraction: 285 books extracted, extractions + registry
+eb66ac9 Add Session 4 wrap-up: API validated, data sync status documented
+5e45b91 Add Session 3 summary: corpus loader fixes and extraction unblocked
+fa19bec Fix corpus clone URL: point to HuggingFace, not GitHub
+8f01231 Add automatic session summary system
+358c706 Add SESSIONS.md: consolidated session log and master to-do list
+2431ae4 Add Streamlit UI app with Claude integration and mystery taxonomy
+f78a6ff Add writer-grounded mystery taxonomy research findings
+fbf93de Fix extraction truncation: sample beginning+middle+end instead of head-only
+fd0b320 Add .gitignore and commit mystery_database output
+b78bfd6 Add CLI entry point and part-level atomization system
+60d2379 Add corpus pipeline: loader, extraction runner, updated requirements
+6281f71 Add extraction_protocols.py: four-level mystery part taxonomy
+1019a27 Add canonical test mystery corpus (A-F)
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
 ## Session 4 — March 8, 2026
 **Branch:** `claude/document-research-findings-LdlIV`
 **Latest commit:** 5e45b91
