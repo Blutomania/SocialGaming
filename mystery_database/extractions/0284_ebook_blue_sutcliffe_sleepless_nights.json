@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Brutal murder of Amanda Geralds, aged 24, body jammed into vending machine with coils through her body",
+    "confidence": "high",
+    "quote": "The woman was loosely jammed into the vending machine, the coils which previously held confectionary now jammed"
+  },
+  "victim": {
+    "value": "Amanda Geralds, age 24, university student from small town near bay-side trade area",
+    "confidence": "medium",
+    "quote": "Amanda Geralds, age 24. Studying at Kieilla University. Lives in a small town called Mori"
+  },
+  "closed_world": {
+    "value": "The floating islands called 'the whispers' inhabited by native priests called the Kogai",
+    "confidence": "medium",
+    "quote": "the whispers are the famous floating islands of Terra and are inhabited by the native priests called the Kogai"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Jackson, a detective/investigator working with partner Charles and consultant Frank",
+    "confidence": "high",
+    "quote": "Jackson slipped the files out from beneath his arm"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Frank's mysterious past and dismissal from the force may be misdirection from the true threat",
+    "confidence": "medium",
+    "quote": "Newer than the fact that your allowed to help us after what you pulled?"
+  },
+  "clue_fairness": {
+    "value": "Reader sees Amanda's profile and crime scene details alongside Jackson's investigation",
+    "confidence": "medium",
+    "quote": "Amanda Geralds, age 24. Studying at Kieilla University. Lives in a small town called Mori"
+  },
+  "social_world": {
+    "value": "Police hierarchy with tension between Jackson, Charles, and consultant Frank after Frank's dismissal",
+    "confidence": "medium",
+    "quote": "your making friends at every"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Supernatural element through Kogai priests who can communicate with the dead victim Amanda",
+    "confidence": "medium",
+    "quote": "the occupants can talk to the dead which are held here by their god"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Charles requires containment shield suggesting he's affected by supernatural forces during investigation",
+    "confidence": "medium",
+    "quote": "Charles climbed into the containment shield"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-blue-sutcliffe-sleepless-nights/",
+    "corpus_index": 284,
+    "text_len": 9250,
+    "title": "ebook blue sutcliffe sleepless nights",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder by poisoning - Derues killed victims and disposed of their bodies, with the central question being how he concealed the murders through elaborate deception",
+    "confidence": "high",
+    "quote": "he was now compelled to follow that fatal law of crime which demands that blood must be effaced with blood"
+  },
+  "victim": {
+    "value": "Madame de Lamotte and her son Edouard - they were killable because they possessed property/wealth that Derues coveted and could access through his business relationship with them",
+    "confidence": "high",
+    "quote": "Edouard de Lamotte, loving his mother as much as she loved him, became uneasy at receiving no visits"
+  },
+  "closed_world": {
+    "value": "The social and business circles of 18th century France, bounded by Derues' network of acquaintances, properties, and the limited communication methods of the era",
+    "confidence": "medium",
+    "quote": "she has been at Versailles, endeavouring to obtain your admission as a royal page"
+  },
+  "culprit_and_motive": {
+    "value": "Derues committed the murders for financial gain - to steal property and wealth from the Lamotte family through fraudulent business dealings",
+    "confidence": "high",
+    "quote": "that fatal law of crime which demands that blood must be effaced with blood"
+  },
+  "resolution": {
+    "value": "Derues was captured, tried, and executed by being broken on the wheel, then burned - justice restored through official legal proceedings",
+    "confidence": "high",
+    "quote": "the executioner gave the signal. One would have thought a very few blows would have finished so frail a being"
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": "Single primary perpetrator (Derues) with wife as accomplice - crimes span multiple victims (Madame de Lamotte, her son Edouard) with elaborate deception rather than multiple suspects with competing motives",
+    "confidence": "high",
+    "quote": "In 1777, Madame Derues was sentenced to perpetual imprisonment, and confined at the Salpetriere."
+  },
+  "red_herring": {
+    "value": "Derues' elaborate deception about Madame de Lamotte arranging for her son to become a royal page at Versailles - a complete fabrication to explain her absence after murder",
+    "confidence": "high",
+    "quote": "for the last ten days has been at Versailles, endeavouring to obtain your admission as a royal page"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Religious educational hierarchy (reverend fathers, black-cassocked overseers) and aristocratic connections (royal pages, bishops, Hotel de Ville) - institutional power structures that Derues exploits for credibility",
+    "confidence": "medium",
+    "quote": "you will there see the bishop, on whom I had the honour of waiting when I was there last"
+  },
+  "alibi": {
+    "value": "Derues constructs elaborate false narrative about victim's whereabouts - claiming she is at Versailles on official business when she is actually dead",
+    "confidence": "high",
+    "quote": "she wished to have the pleasure of telling you herself. Therefore, once again, when you see her"
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Public spectacle of execution with crowd participation - people applauding during proceedings and buying bone fragments as lottery talismans afterward",
+    "confidence": "high",
+    "quote": "While the execution was proceeding the people applauded. On the morrow they bought up the fragments"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-derues/",
+    "corpus_index": 270,
+    "text_len": 245477,
+    "title": "ebook alexandre dumas pere derues",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

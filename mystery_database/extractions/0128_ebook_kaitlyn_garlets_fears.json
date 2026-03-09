@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Previous family's son who committed suicide in the house",
+    "confidence": "medium",
+    "quote": "their son had committed suicide. That was five years ago."
+  },
+  "closed_world": {
+    "value": "The haunted Sands house and small unmapped town",
+    "confidence": "medium",
+    "quote": "stupid small town that isn't even on a single map"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Mia, the teenage protagonist experiencing supernatural events",
+    "confidence": "medium",
+    "quote": "Mr. Bee? Do you know a boy named Lucas? I don't know his last name, but he's about my age."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Supernatural haunting used to mask or distract from human agency - ghost boy Lucas appears to guide rather than threaten",
+    "confidence": "medium",
+    "quote": "I believe what other peope say about it being haunted and everything."
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Small town secrecy and institutional knowledge - teacher knows house history that family doesn't, community keeps secrets",
+    "confidence": "medium",
+    "quote": "the family wanted it to be kept a secret and that you can come and talk to me anytime"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Local folklore and reputation management - haunted house stories circulate while official narrative suppressed",
+    "confidence": "medium",
+    "quote": "I believe what other peope say about it being haunted"
+  },
+  "investigator_wound": {
+    "value": "Protagonist's displacement and loss of stability - forced move, separated from boyfriend, questioning fundamental reality",
+    "confidence": "medium",
+    "quote": "She wasn't even sure if Humans existed."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-kaitlyn-garlets-fears/",
+    "corpus_index": 128,
+    "text_len": 85663,
+    "title": "ebook kaitlyn garlets fears",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

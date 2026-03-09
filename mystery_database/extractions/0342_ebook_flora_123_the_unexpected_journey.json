@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of Emily's grandmother by a shape-shifting creature",
+    "confidence": "high",
+    "quote": "Your granny has been dead for seven years... Do you want to hear the funny part, I killed her."
+  },
+  "victim": {
+    "value": "Emily's grandmother, killed while knitting in her room by the escaped shape shifter",
+    "confidence": "high",
+    "quote": "she was in your room, knitting and I just managed to escape, I was hungry"
+  },
+  "closed_world": {
+    "value": "The isolated grandmother's house in the middle of nowhere with restricted access",
+    "confidence": "medium",
+    "quote": "she lives in the middle of nowhere... Emily isn't allowed in that room even if a meteor was about to hit"
+  },
+  "culprit_and_motive": {
+    "value": "The Shape Shifter killed the grandmother out of hunger after escaping containment",
+    "confidence": "high",
+    "quote": "I am the Shape Shifter... she was in your room, knitting and I just managed to escape, I was hungry"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Emily, a high school student who discovers the truth accidentally during her visit",
+    "confidence": "medium",
+    "quote": "Emily walked further in and she saw something laying down behind the sofa, it was her granny."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial presentation of granny as eccentric but harmless living person, when she has been dead for seven years",
+    "confidence": "high",
+    "quote": "Your granny has been dead for seven years...Do you want to hear the funny part, I killed her."
+  },
+  "clue_fairness": {
+    "value": "House appearing much larger inside than outside, granny's restricted room access, and identical menu repetition",
+    "confidence": "medium",
+    "quote": "house is long, on the outside it looks so small but it is brobdingnagian on the inside, like a mansion"
+  },
+  "social_world": {
+    "value": "Family dynamics of parents sending Emily away during house move, grandmother living in isolation",
+    "confidence": "medium",
+    "quote": "my parents say it's because I haven't seen her in ages but I know the real reason"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Shape shifter's confession revealing true identity and admission of murdering the real grandmother",
+    "confidence": "high",
+    "quote": "I'm the thing you fear most...I am the Shape Shifter and I am going to...get...you...too."
+  },
+  "media_and_audience": {
+    "value": "Folkloric framing through fairy tale monster archetype and supernatural threat presentation",
+    "confidence": "medium",
+    "quote": "the thing in fairy tales, the thing that keeps you up at night, the thing that drives people into mental hospitals"
+  },
+  "investigator_wound": {
+    "value": "Emily's abandonment by parents and forced isolation making her vulnerable to deception about family care",
+    "confidence": "medium",
+    "quote": "they don't want me in the way...she doesn't even care about me"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-flora-123-the-unexpected-journey/",
+    "corpus_index": 342,
+    "text_len": 22193,
+    "title": "ebook flora 123 the unexpected journey",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

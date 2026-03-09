@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Narrator shot by a woman they had a relationship with",
+    "confidence": "medium",
+    "quote": "I looked in her eyes and remembered all the time we had spent together and the times we laughed the love the hate then"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "A woman who had a past relationship with the narrator, motive unclear",
+    "confidence": "low",
+    "quote": "she pulled the trigger, there was a loud bang, then nothing"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Working-class service environment with established hierarchies between staff and customers, boss-employee relationships",
+    "confidence": "medium",
+    "quote": "sorry i do that sometimes...Waitress introduction that the boss had drilled into all of us the first day on the job"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Narrator traumatized by being shot by someone they trusted and loved, experiencing apparent death/near-death experience",
+    "confidence": "medium",
+    "quote": "I looked in her eyes and remembered all the time we had spent together...then, she pulled the trigger"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-mackenzie-herrst-every-hundred-years/",
+    "corpus_index": 200,
+    "text_len": 30312,
+    "title": "ebook mackenzie herrst every hundred years",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Two middle-aged women murdered in Blood Brook, weapon unknown, possibly connected to historical murder of Holocaust survivor",
+    "confidence": "high",
+    "quote": "investigate and solve the murders of two, middle age women in a place called, Blood Brook"
+  },
+  "victim": {
+    "value": "Two middle-aged women (Greta Shoemaker, Dorothy Timberlake), connection to victims unclear from excerpt",
+    "confidence": "medium",
+    "quote": "Chapter One.....Greta Shoemaker Chapter Two.....Dorothy Timberlake"
+  },
+  "closed_world": {
+    "value": "Blood Brook area, geographically bounded location with historical significance",
+    "confidence": "medium",
+    "quote": "murders of two, middle age women in a place called, Blood Brook"
+  },
+  "culprit_and_motive": {
+    "value": "Unknown perpetrator, possibly connected to victims personally rather than serial killer, motive unclear",
+    "confidence": "low",
+    "quote": "I don't think this guy is a serial killer. Instead, I believe he's finished killing"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Police Captain Robert Wallace, assigned to County Prosecutor's Office for homicide investigation",
+    "confidence": "high",
+    "quote": "Police Captain Robert Wallace requests sixty vacation days"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Serial killer theory deliberately constructed but then dismissed - investigators conclude killer is finished and has personal connection to victims",
+    "confidence": "medium",
+    "quote": "I don't think this guy is a serial killer. Instead, I believe he's finished killing"
+  },
+  "clue_fairness": {
+    "value": "Historical research about Emanuel Weiss, Jewish refugee murdered with pitchfork at Blood Brook, shared with reader as Wallace receives it",
+    "confidence": "medium",
+    "quote": "I found a small article about a chicken farmer named Emanuel Weiss who was stabbed to death with a pitchfork"
+  },
+  "social_world": {
+    "value": "Police hierarchy with Captain Wallace reporting to County Prosecutor's Office, showing institutional power structures controlling investigation",
+    "confidence": "medium",
+    "quote": "His request is denied when he is assigned to the County Prosecutor's Office to investigate"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Unknown murder weapon central to solution - investigators repeatedly mention inability to identify the weapon used",
+    "confidence": "medium",
+    "quote": "Like you, I can't figure out what the heck the murder weapon can be"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Wallace's inexperience with violence and homicide investigation, creating psychological vulnerability to the brutal nature of the crimes",
+    "confidence": "medium",
+    "quote": "As you know this is my first homicide investigation. I'm not use to blood, dead bodies and violence"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-blood-brook/",
+    "corpus_index": 34,
+    "text_len": 127072,
+    "title": "ebook robert f clifton blood brook",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

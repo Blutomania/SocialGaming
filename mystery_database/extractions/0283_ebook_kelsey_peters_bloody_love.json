@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder by thrown knives in an alley during a date",
+    "confidence": "high",
+    "quote": "He threw knives as sharp as needles and as fast as lightning. Thud. Then Derik fell. Three. Three knives."
+  },
+  "victim": {
+    "value": "Derik, a 19-year-old on a first date, seemingly random target",
+    "confidence": "medium",
+    "quote": "That's all it took. to kill him.i wanted to scream bloody murder. (cause it was)."
+  },
+  "closed_world": {
+    "value": "Dark alley as shortcut to pizza palace, isolated location",
+    "confidence": "medium",
+    "quote": "We started down a street to the ally, a short cut to the pizza palace."
+  },
+  "culprit_and_motive": {
+    "value": "Unknown knife-thrower seeking a sapphire necklace called 'heart of the ocean'",
+    "confidence": "high",
+    "quote": "shhhhhhhhh. Where is your sapphire?"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Kelsey Peters, the surviving victim/witness narrating her experience",
+    "confidence": "high",
+    "quote": "I'm apparently VERY far from home. Good. I'm away from that creep."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Narrator's lie about sapphire location - claiming it's in purse when it's actually around her neck",
+    "confidence": "medium",
+    "quote": "\"its in my purse.\"I lied It was around my neck."
+  },
+  "clue_fairness": {
+    "value": "Reader knows narrator is lying about sapphire location when she tells the attacker",
+    "confidence": "medium",
+    "quote": "\"its in my purse.\"I lied It was around my neck."
+  },
+  "social_world": {
+    "value": "Dating culture and family expectations - young adults navigating romantic relationships and parental introductions",
+    "confidence": "low",
+    "quote": "\"I want to meet your parents.\" \"Cause I want to get to know you better.\""
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Narrator's trauma from parents' deaths - mother's skiing accident and father's subsequent suicide",
+    "confidence": "high",
+    "quote": "By the time we found her, she was dead, buried in snow, and drenched in her own blood."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-kelsey-peters-bloody-love/",
+    "corpus_index": 283,
+    "text_len": 5263,
+    "title": "ebook kelsey peters bloody love",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

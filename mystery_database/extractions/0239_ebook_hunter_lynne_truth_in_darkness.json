@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder/assault of Aunt Gloria found in destroyed study with deep chest wound and silver knife",
+    "confidence": "high",
+    "quote": "lying on the floor covered in blood, was Aunt Gloria. A deep gash across her chest and a long, silver knife"
+  },
+  "victim": {
+    "value": "Aunt Gloria - reason for targeting unclear from excerpt",
+    "confidence": "medium",
+    "quote": "Right in the middle of the room, lying on thew floor covered in blood, was Aunt Gloria."
+  },
+  "closed_world": {
+    "value": "Family home and immediate neighborhood - limited suspect pool of family members and acquaintances",
+    "confidence": "medium",
+    "quote": "Go get your stuff and don't come back until we call you."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Tess, the younger sister who discovers the body and experiences events through first-person narration",
+    "confidence": "high",
+    "quote": "I gasped. The room was destoyed... Right in the middle of the room, lying on thew floor covered in blood"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Lucan's betrayal presented as major emotional wound but then dismissed by Christain as unimportant",
+    "confidence": "medium",
+    "quote": "Oh, the one I called a brother before he betrayed me. Well, he did some things I can't even explain."
+  },
+  "clue_fairness": {
+    "value": "Physical evidence presented to reader: destroyed study, blood, deep gash, silver knife in victim's hand",
+    "confidence": "high",
+    "quote": "A deep gash across her chest and a long, silver knife in her hand."
+  },
+  "social_world": {
+    "value": "Family hierarchy with protective older brother, parental authority, and neighborhood commercial establishment",
+    "confidence": "medium",
+    "quote": "I have just returned from Romatech Industries,a grocery store in our local neighborhood."
+  },
+  "alibi": {
+    "value": "Christain's whereabouts during the murder unclear - he was in the tree, then house, but timeline vague",
+    "confidence": "medium",
+    "quote": "He leaped from the branch and landed right where I was standing."
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Tess traumatized by discovering bloody corpse of Aunt Gloria, creating emotional vulnerability",
+    "confidence": "high",
+    "quote": "I screamed and screamed until Christain burst into the room."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-hunter-lynne-truth-in-darkness/",
+    "corpus_index": 239,
+    "text_len": 7274,
+    "title": "ebook hunter lynne truth in darkness",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

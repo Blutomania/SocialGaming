@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of Major Conrad Parker",
+    "confidence": "high",
+    "quote": "the investigation into the murder of Major Parker is a joint project"
+  },
+  "victim": {
+    "value": "Major Conrad Parker, red-haired soldier who killed Native Americans including Charles Lean Bear's mother",
+    "confidence": "high",
+    "quote": "Conrad Parker is dead. In a way your mother's death is revenged"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Someone Parker offended, motive of revenge for past wrongs",
+    "confidence": "medium",
+    "quote": "not by you, but by someone who Parker also offended"
+  },
+  "resolution": {
+    "value": "McKenzie identifies Parker through photograph confirmation with witness Charles Lean Bear",
+    "confidence": "medium",
+    "quote": "It is him. Is he the one that is dead, the one the one you asked me about months ago?"
+  },
+  "investigator": {
+    "value": "Alan McKenzie, working jointly with Detective Sergeant Patrick O'Malley",
+    "confidence": "high",
+    "quote": "Back in Washington McKenzie reported on what had transpired with the New York Police Department"
+  },
+  "suspect_architecture": {
+    "value": "Two primary suspects mentioned: Henderson (being actively pursued) and an unnamed perpetrator who killed Parker for personal offense",
+    "confidence": "medium",
+    "quote": "Right now, I have two, possible suspects. Let's have another coffee and dessert and I'll bring you up to date"
+  },
+  "red_herring": {
+    "value": "Charles Lean Bear/Avanaco appears positioned as false suspect due to revenge motive for mother's death",
+    "confidence": "medium",
+    "quote": "It is him. Is he the one that is dead, the one the one you asked me about months ago?"
+  },
+  "clue_fairness": {
+    "value": "Photograph with hair color discrepancy provided as evidence - Parker's red hair appears black in newspaper photo",
+    "confidence": "high",
+    "quote": "In the picture his hair and beard appear black. I know it as red, bright red, but still it is him."
+  },
+  "social_world": {
+    "value": "Military hierarchy with Colonel Willett overseeing investigation, joint police cooperation between federal and local authorities",
+    "confidence": "high",
+    "quote": "Back in Washington McKenzie reported on what had transpired with the New York Police Department"
+  },
+  "alibi": {
+    "value": "Henderson's location tracked to Dallas boarding house, establishing whereabouts investigation",
+    "confidence": "medium",
+    "quote": "I thought you said he was in Dallas. I hope he still is."
+  },
+  "reveal_mechanic": {
+    "value": "Visual identification through photograph comparison revealing hair color discrepancy as key evidence",
+    "confidence": "high",
+    "quote": "McKenzie reached into his jacket pocket and removed a newspaper clipping which contained the photograph"
+  },
+  "media_and_audience": {
+    "value": "Newspaper coverage connecting the hearing with Parker's murder, requiring official response about joint investigation",
+    "confidence": "high",
+    "quote": "your hearing along with Parker's murder will be connected and the story will appear in the newspapers"
+  },
+  "investigator_wound": {
+    "value": "McKenzie's personal investment in providing closure to Charles Lean Bear for his mother's death at Washita River",
+    "confidence": "medium",
+    "quote": "I came here Charles to show this and hopefully to give you peace. Conrad Parker is dead."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-warrior-song/",
+    "corpus_index": 53,
+    "text_len": 150012,
+    "title": "ebook robert f clifton warrior song",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of Gina Dane in her hotel room",
+    "confidence": "high",
+    "quote": "But now Gina was dead. Found in her hotel room. Murdered they said."
+  },
+  "victim": {
+    "value": "Gina Dane, woman who had dinner with Nick after being stood up by her date",
+    "confidence": "medium",
+    "quote": "She was waiting for her date, who never showed up."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Nick Alero, the prime suspect who maintains his innocence",
+    "confidence": "medium",
+    "quote": "All Nick knew was that he did not kill Gina Dane."
+  },
+  "suspect_architecture": {
+    "value": "Single primary suspect (Nick) with implied unknown perpetrator - the unnamed date who stood Gina up, or another man she met later",
+    "confidence": "medium",
+    "quote": "She must have come on to another man somewhere else. Or her date called and she met up with him."
+  },
+  "red_herring": {
+    "value": "Missing wedding ring creates false impression Nick is unmarried and deliberately concealing marital status",
+    "confidence": "high",
+    "quote": "I took it off in the airport security line, someone must have taking it."
+  },
+  "clue_fairness": {
+    "value": "Restaurant witnesses and Nick's lack of alibi are established facts available to reader",
+    "confidence": "medium",
+    "quote": "Restaurant employees and other patrons recalled seeing Nick with the woman when questioned by police."
+  },
+  "social_world": {
+    "value": "Suburban middle-class privilege - successful career, beautiful wife, four kids, nice house, new car defining Nick's status",
+    "confidence": "medium",
+    "quote": "Content at home, beautiful wife of twenty years. Four great kids, a successful career, a nice house"
+  },
+  "alibi": {
+    "value": "Nick has no alibi for the time after dinner - he was alone for the remainder of the evening",
+    "confidence": "high",
+    "quote": "Nick had no alibi, as he was alone the remainder of the evening."
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Police investigation focusing on Nick as primary suspect based on witness testimony",
+    "confidence": "medium",
+    "quote": "He would be there only suspect. She was last seem with him. So he looked guilty."
+  },
+  "investigator_wound": {
+    "value": "Nick's weakness for beautiful women and temptation to cheat threatens his perfect family life",
+    "confidence": "high",
+    "quote": "Nick darling, a beautiful woman was involved here, and I know you're weakness for beautiful women"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-scott-wampler-lucky-guy/",
+    "corpus_index": 12,
+    "text_len": 5259,
+    "title": "ebook scott wampler lucky guy",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

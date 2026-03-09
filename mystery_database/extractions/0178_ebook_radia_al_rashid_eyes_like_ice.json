@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Multiple incidents including attempted murder by suffocation and Richard's death, with Zac as suspected killer",
+    "confidence": "medium",
+    "quote": "My face feels the pressure of a pillow and I black out."
+  },
+  "victim": {
+    "value": "Richard, who apparently discovered the killer's identity before being killed",
+    "confidence": "medium",
+    "quote": "he told me on the phone that he had something important to talk about and he'd talk to me after getting home"
+  },
+  "closed_world": {
+    "value": "A neighborhood where the crimes occur, described as having become a 'crime-spot'",
+    "confidence": "low",
+    "quote": "This house has become a full-blown crime-spot."
+  },
+  "culprit_and_motive": {
+    "value": "Zac appears to be the killer, though specific motive is unclear from excerpt",
+    "confidence": "low",
+    "quote": "maybe he doubted Zac from the beginning"
+  },
+  "resolution": {
+    "value": "Zac has been sent to jail, though questions remain about what Richard discovered",
+    "confidence": "low",
+    "quote": "the psychotic monster won't be able to escape"
+  },
+  "investigator": {
+    "value": "Evelyn Lawrence, first-person narrator experiencing and investigating the crimes",
+    "confidence": "high",
+    "quote": "Miss Evelyn Lawrence? The doctor is here to check on you."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Medical equipment malfunction initially appears to be natural causes before pillow suffocation attempt is revealed",
+    "confidence": "medium",
+    "quote": "The blipping of the machines becomes absolutely deafening... My face feels the pressure of a pillow and I black out."
+  },
+  "clue_fairness": {
+    "value": "Reader experiences the pillow suffocation attempt simultaneously with protagonist - hand movement and pillow pressure described",
+    "confidence": "medium",
+    "quote": "I find my right hand reaching out to the pillow beside me... I clearly am not the one who is moving it."
+  },
+  "social_world": {
+    "value": "Family care structure with medical/hospital authority figures and neighborhood surveillance dynamics",
+    "confidence": "medium",
+    "quote": "I cannot afford to lose anyone of the family anymore Eve... Promise me you'll live."
+  },
+  "alibi": {
+    "value": "Aron seen running from backyard the previous night, establishing timeline and location evidence",
+    "confidence": "medium",
+    "quote": "Mr. Sanchez said how he saw Aron the previous night running away from his backyard."
+  },
+  "reveal_mechanic": {
+    "value": "Richard had evidence about the killer's identity before being sent to jail, creating deferred revelation structure",
+    "confidence": "medium",
+    "quote": "he told me on the phone that he had something important to talk about and he'd talk to me after getting home."
+  },
+  "media_and_audience": {
+    "value": "House characterized as crime scene requiring relocation for mental peace and fresh start",
+    "confidence": "low",
+    "quote": "This house has become a full-blown crime-spot... you guys have to move to a new house, new neighborhood"
+  },
+  "investigator_wound": {
+    "value": "Protagonist's guilt over sending Richard to jail before he could reveal crucial information about the killer",
+    "confidence": "high",
+    "quote": "Guess I ruined that with my own hand inviting all those tortures for later."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-radia-al-rashid-eyes-like-ice/",
+    "corpus_index": 178,
+    "text_len": 240873,
+    "title": "ebook radia al rashid eyes like ice",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

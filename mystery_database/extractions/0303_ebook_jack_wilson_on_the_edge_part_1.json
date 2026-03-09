@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder by serial killer Jack Wilson",
+    "confidence": "medium",
+    "quote": "Yes, i was there, i killed him..."
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Jack Wilson, former police detective turned serial killer - motive unknown",
+    "confidence": "medium",
+    "quote": "I'm Jack Wilson, former police detective, current serial killer"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Fred Reynolds, writer researching crime novel",
+    "confidence": "medium",
+    "quote": "Im writer and im working on my new crime novel"
+  },
+  "suspect_architecture": {
+    "value": "Two-person dynamic: Jack Wilson (self-confessed serial killer, former police detective) and Fred Reynolds (writer seeking material). Jack is primary suspect with explicit confession, Fred becomes reluctant accomplice through blackmail reversal",
+    "confidence": "high",
+    "quote": "I'm Jack Wilson, former police detective, current serial killer, are you happy now?"
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": "Phone confession overheard by witness - reader gets same information as Fred simultaneously when Jack says 'Yes, i was there, i killed him...' on cellphone",
+    "confidence": "medium",
+    "quote": "Yes, i was there, i killed him..."
+  },
+  "social_world": {
+    "value": "Power reversal dynamic: former police detective turned criminal, civilian writer gaining leverage through blackmail threat, institutional authority (police) as external threat both characters navigate",
+    "confidence": "medium",
+    "quote": "I'm Jack Wilson, former police detective, current serial killer"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Writer character explicitly seeking to document and narrativize criminal experience for crime novel, representing how criminal acts become commodified stories",
+    "confidence": "medium",
+    "quote": "Im writer and im working on my new crime novel, so i was thinking that it would be great to come with you"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-jack-wilson-on-the-edge-part-1/",
+    "corpus_index": 303,
+    "text_len": 2782,
+    "title": "ebook jack wilson on the edge part 1",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

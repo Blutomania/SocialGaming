@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Multiple stab wounds murder at a high school bonfire",
+    "confidence": "high",
+    "quote": "Matty had multiple stab wounds, there was blood everywhere."
+  },
+  "victim": {
+    "value": "Matty, a high school senior who was manipulated into attending the bonfire",
+    "confidence": "medium",
+    "quote": "\"She said that?\" He asked. \"Thats what i thought, I will pick you up at 8,\" said Jackson."
+  },
+  "closed_world": {
+    "value": "Senior bonfire gathering with limited group of friends from middle school",
+    "confidence": "medium",
+    "quote": "\"we have all been friends since middle school\""
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Police conducting interrogation of the friend group as suspects",
+    "confidence": "medium",
+    "quote": "\"It seems to appear that one of you are responsible for Mathew Devells death\""
+  },
+  "suspect_architecture": {
+    "value": "Four friends from a tight social group: Jackson (manipulator with access to both victims), Amber (protective of group dynamics), Mitch (evasive about relationship status), plus unnamed 10th grader who 'discovered' body",
+    "confidence": "medium",
+    "quote": "It seems to appear that one of you are responsible for Mathew Devells death"
+  },
+  "red_herring": {
+    "value": "Jackson's romantic manipulation setup - he lies to both Matty and Kaylee about the other wanting them at the bonfire, creating false romantic motive",
+    "confidence": "medium",
+    "quote": "Well, dont tell him I told you but, Matty Said he was hoping you were going to be there"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "High school senior friend group with established hierarchy - Amber as protective gatekeeper of group dynamics, Jackson as social manipulator, underlying tensions about romantic relationships threatening group stability",
+    "confidence": "high",
+    "quote": "we have all been friends since middle school, and I dont want you guys screwing it up"
+  },
+  "alibi": {
+    "value": "Jackson has timeline control - he picks up multiple people at different times (Matty at 8, Kaylee at 7, Mitch at 7:30) giving him opportunity to manipulate whereabouts",
+    "confidence": "medium",
+    "quote": "Pick me up at 7:30"
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-wesley-drew-invader/",
+    "corpus_index": 318,
+    "text_len": 4655,
+    "title": "ebook wesley drew invader",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

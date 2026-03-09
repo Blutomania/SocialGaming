@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Vegas Showgirl Murders (specific crime details not provided in excerpt)",
+    "confidence": "low",
+    "quote": "Bob Moats Vegas Showgirl Murders - book2"
+  },
+  "victim": {
+    "value": "Showgirls (victims not detailed in excerpt)",
+    "confidence": "low",
+    "quote": "Vegas Showgirl Murders"
+  },
+  "closed_world": {
+    "value": "Las Vegas entertainment/casino world",
+    "confidence": "medium",
+    "quote": "Maria took both of them to her show and got them front row seats"
+  },
+  "culprit_and_motive": {
+    "value": "Possibly Nicky - suspected of involvement with pregnant girlfriend while cheating",
+    "confidence": "low",
+    "quote": "A pregnant girl friend while he's cheating on another, good cause for a crime"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Jim Richards - private investigator working with police contacts",
+    "confidence": "high",
+    "quote": "I had to go to Metro police to say hi to a few names on Trapper's list"
+  },
+  "suspect_architecture": {
+    "value": "Multiple suspects emerging around Nicky: pregnant girlfriend, California girlfriend, local girlfriend Lisa, drug connections",
+    "confidence": "medium",
+    "quote": "A pregnant girl friend while he's cheating on another, good cause for a crime"
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": "Information about Nicky's romantic entanglements and drug activities shared with reader through Jim's recollections",
+    "confidence": "medium",
+    "quote": "I remember all the Viagra bottles he had around his bedroom, and he'd be in a panic when he ran out"
+  },
+  "social_world": {
+    "value": "Las Vegas showbiz hierarchy and police connections through Jim's law enforcement background and Trapper's network",
+    "confidence": "medium",
+    "quote": "I asked for the first name on the list, a Captain Weber... we were mutual friends of Will Trapper"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Jim's personal history with Vegas and prior relationship with suspect Nicky creates emotional investment",
+    "confidence": "medium",
+    "quote": "I said to call anytime, I missed all the guys"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-bob-moats-vegas-showgirl-murders-book2/",
+    "corpus_index": 23,
+    "text_len": 80696,
+    "title": "ebook bob moats vegas showgirl murders book2",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

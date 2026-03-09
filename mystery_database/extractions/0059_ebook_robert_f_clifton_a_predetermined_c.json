@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Homicide of a young Black girl found at a city dump, with evidence including fingerprints, hair sample, and tire imprints",
+    "confidence": "high",
+    "quote": "the dead body of a young Black girl"
+  },
+  "victim": {
+    "value": "Ethel Lamb, a mentally handicapped young Black girl from poor circumstances who was vulnerable due to her condition",
+    "confidence": "high",
+    "quote": "Mentally handicapped children more so. Handicapped children are vulnerable to adults."
+  },
+  "closed_world": {
+    "value": "Nautilus Beach, New Jersey - a community separated from the mainland by salt meadows",
+    "confidence": "medium",
+    "quote": "salt Meadows that separated Nautilus Beach, New Jersey from the mainland"
+  },
+  "culprit_and_motive": {
+    "value": "Ellsworth Perkins - motive not clearly stated in excerpt but appears to involve exploitation of vulnerable victim",
+    "confidence": "medium",
+    "quote": "the arrest of Ellsworth Perkins would have been sooner rather than later"
+  },
+  "resolution": {
+    "value": "Police investigation using forensic evidence (fingerprints, hair samples, tire imprints) leading to arrest of Perkins",
+    "confidence": "medium",
+    "quote": "Latent prints, a hair sample, tire imprint at the crime scene"
+  },
+  "investigator": {
+    "value": "Captain Robert Wallace, Commanding Officer of the Major Crime Squad, with Sergeant Woodson assisting",
+    "confidence": "high",
+    "quote": "Captain Robert Wallace, Commanding Officer of the police departments Major Crime Squad"
+  },
+  "suspect_architecture": {
+    "value": "Single identified suspect: Ellsworth Perkins, with implied delayed arrest suggesting investigative focus narrowed to him as primary perpetrator",
+    "confidence": "medium",
+    "quote": "the arrest of Ellsworth Perkins would have been sooner rather than later"
+  },
+  "red_herring": {
+    "value": "Initial lead suggesting suspect name 'El' or beginning with 'L' - misdirection that eventually led to correct suspect Ellsworth",
+    "confidence": "low",
+    "quote": "a small lead on a potential suspect with the name El or with a name beginning with L"
+  },
+  "clue_fairness": {
+    "value": "Physical evidence presented to reader: latent prints, hair sample, tire imprint at crime scene matching suspect's vehicle",
+    "confidence": "medium",
+    "quote": "Latent prints, a hair sample, tire imprint at the crime scene"
+  },
+  "social_world": {
+    "value": "Police hierarchy under community pressure; racial dynamics with Black community demanding justice; systemic failures across welfare, education, and juvenile justice",
+    "confidence": "high",
+    "quote": "delegation of people from the Black community wanting to know how much progress we're making"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "VIN number investigation linking suspect's vehicle to tire cast evidence from crime scene",
+    "confidence": "medium",
+    "quote": "She might have found the suspects car and the tire that matches the cast"
+  },
+  "media_and_audience": {
+    "value": "Community pressure on police leadership; institutional accountability across multiple systems blamed for victim's vulnerability",
+    "confidence": "medium",
+    "quote": "Think of all the times when you as an individual was asked to donate time as a volunteer"
+  },
+  "investigator_wound": {
+    "value": "Captain Wallace's admission of professional failure - being 'lax in reviewing work' and missing mistakes that delayed justice",
+    "confidence": "high",
+    "quote": "As the commanding officer...I was lax in reviewing the work of the members of the squad"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-a-predetermined-course-of-events/",
+    "corpus_index": 59,
+    "text_len": 133929,
+    "title": "ebook robert f clifton a predetermined course of events",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

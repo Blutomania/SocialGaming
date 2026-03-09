@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Stabbing murder of politician Paul Venus",
+    "confidence": "high",
+    "quote": "she shoved the knife upwards into the man's stomach gutting him like a fish"
+  },
+  "victim": {
+    "value": "Paul Venus, politician who raped and murdered a teenage girl",
+    "confidence": "high",
+    "quote": "I raped her! Then.....I-...I c-c-cut h...er up good!"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Amaranth Sivige killed Venus as vigilante justice for his rape and murder of a teenager",
+    "confidence": "high",
+    "quote": "tonight she decided to become an avenging angel"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Political corruption and vigilante justice - politician Venus as respected public figure hiding criminal behavior, underground assassination organization recruiting killers",
+    "confidence": "medium",
+    "quote": "Venus was a well known politician, business man, and family man. No one knew the dark secret"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Public reputation management - politician's dark secrets hidden from public knowledge, threat of exposure as leverage",
+    "confidence": "medium",
+    "quote": "Expose to the world what you really are. Bet your parents would be real proud."
+  },
+  "investigator_wound": {
+    "value": "Amaranth's need for control and independence conflicts with forced recruitment into organization she cannot escape",
+    "confidence": "medium",
+    "quote": "I pick my victims, who I want, when I want, and I don't take orders."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sin-c-beautiful-killers/",
+    "corpus_index": 212,
+    "text_len": 12180,
+    "title": "ebook sin c beautiful killers",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

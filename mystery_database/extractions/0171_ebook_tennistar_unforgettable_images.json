@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of lawyer Carly on Judd Street, stabbed with a knife; question: why was she lured there by a fake shortcut sign?",
+    "confidence": "high",
+    "quote": "They had just been told that their mom, Carly, was murdered. Carly was a lawyer and often had to work late."
+  },
+  "victim": {
+    "value": "Carly, a lawyer who worked late hours, making her vulnerable to being lured to dangerous locations",
+    "confidence": "medium",
+    "quote": "Carly was a lawyer and often had to work late."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Kristy, the victim's daughter with perfect memory who notices evidence the police miss",
+    "confidence": "high",
+    "quote": "Kristy walked over to a police man... 'I think I found some evidence,' Kristy replied, pointing at the sign."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Fake shortcut sign planted with sharpie to misdirect investigation",
+    "confidence": "medium",
+    "quote": "Was totally fake and was with written with sharpie, Kristy analyzed"
+  },
+  "clue_fairness": {
+    "value": "Physical evidence shown to reader through protagonist's observations - fake sign and knife examination",
+    "confidence": "medium",
+    "quote": "The police officers haven't even noticed the sign. They were too busy analyzing the dead body"
+  },
+  "social_world": {
+    "value": "Legal profession hierarchy - both parents lawyers, father takes over mother's practice",
+    "confidence": "medium",
+    "quote": "Since Dad was a lawyer too, he worked late. At first he was doctor but he took over Mom's job"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Protagonist's perfect memory ability used to analyze physical evidence and recognize inconsistencies",
+    "confidence": "medium",
+    "quote": "A person who remebers everything? ...remembering the time she used sharpie to make her poster"
+  },
+  "media_and_audience": {
+    "value": "Crime scene recognized from news coverage, establishing public awareness of local murders",
+    "confidence": "medium",
+    "quote": "A lot of people have been murdered here, Kristy thought, recognizing the street from the news"
+  },
+  "investigator_wound": {
+    "value": "Protagonist investigating her own mother's murder while maintaining emotional distance",
+    "confidence": "high",
+    "quote": "Kristy wanted to go comfort them, but first she had to tell the police the pure evidence"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-tennistar-unforgettable-images/",
+    "corpus_index": 171,
+    "text_len": 7929,
+    "title": "ebook tennistar unforgettable images",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

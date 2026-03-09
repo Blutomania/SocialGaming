@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Elizabethan Court setting with suitors present for St Valentine's Ball",
+    "confidence": "medium",
+    "quote": "All three suitors are now at Court, ready for tomorrow."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Lady Grace Cavendish, Maid of Honour, writing in first person diary format",
+    "confidence": "high",
+    "quote": "It can be a book about me, Lady Grace Cavendish, Maid of Honour."
+  },
+  "suspect_architecture": {
+    "value": "Three suitors selected by the Queen as potential husbands for Grace, positioned at Court for the St Valentine's Ball",
+    "confidence": "medium",
+    "quote": "All three suitors are now at Court, ready for tomorrow."
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Elizabethan court hierarchy with Queen's authority over marriage arrangements, Mrs Champernowne as supervisor, and obligations of heiresses versus commoners",
+    "confidence": "high",
+    "quote": "being an heiress, I must - though if I were commoner I could wait until I was as old as five and twenty!"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Grace's forced marriage situation and loss of autonomy, compounded by being motherless and under royal authority",
+    "confidence": "medium",
+    "quote": "I wish I didn't have to marry. I feel far too young to do so"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-grace-cavendish-fabiha-zaman-the-lady-grace-mysteries/",
+    "corpus_index": 43,
+    "text_len": 2271,
+    "title": "ebook grace cavendish fabiha zaman the lady grace mysteries",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

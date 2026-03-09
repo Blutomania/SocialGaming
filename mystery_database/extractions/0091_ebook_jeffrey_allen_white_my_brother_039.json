@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Vehicular homicide while driving under the influence",
+    "confidence": "high",
+    "quote": "This guy just killed a man and doesn't even know it yet."
+  },
+  "victim": {
+    "value": "Unknown male killed in motor vehicle accident",
+    "confidence": "medium",
+    "quote": "He may be but that other guy isn't."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Mark Owens driving while intoxicated (blood alcohol 2.1), no clear motive beyond drunk driving",
+    "confidence": "medium",
+    "quote": "He has a blood alcohol level of two point one"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Mark Owens appears to be both perpetrator and POV character discovering his crime",
+    "confidence": "medium",
+    "quote": "What? I killed a man? What is happening? Can anyone hear me?"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial framing suggests Mark is the perpetrator of a vehicular homicide, but his confused state and memory gaps may misdirect from true culpability",
+    "confidence": "medium",
+    "quote": "This guy just killed a man and doesn't even know it yet."
+  },
+  "clue_fairness": {
+    "value": "Blood alcohol level of 2.1 disclosed to reader simultaneously with Mark's awakening - key evidence presented fairly",
+    "confidence": "medium",
+    "quote": "He has a blood alcohol level of two point one"
+  },
+  "social_world": {
+    "value": "Medical/legal authority structure - ER doctors, nurses, police officer hold power over helpless, restrained patient",
+    "confidence": "medium",
+    "quote": "Mark thrashed about of the table. The ER doctors were evaluating his status."
+  },
+  "alibi": {
+    "value": "Mark's memory loss and confusion about timeline creates uncertain alibi - he cannot account for his actions during critical period",
+    "confidence": "medium",
+    "quote": "Of course. It is..."
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Mark himself appears to be both victim and potential perpetrator, creating psychological vulnerability through guilt and memory loss",
+    "confidence": "medium",
+    "quote": "What? I killed a man? What is happening? Can anyone hear me?"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-jeffrey-allen-white-my-brother-039-s-keeper/",
+    "corpus_index": 91,
+    "text_len": 2592,
+    "title": "ebook jeffrey allen white my brother 039 s keeper",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

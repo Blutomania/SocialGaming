@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Violent assault with torture elements - victim experiences physical pain and screaming",
+    "confidence": "medium",
+    "quote": "something warm and wet. A coppery smell filled her nostrils as a searing pain snaked its way up her neck"
+  },
+  "victim": {
+    "value": "Female victim targeted for unknown reasons, experiences deliberate torture",
+    "confidence": "low",
+    "quote": "To his delight, the screams began."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Male perpetrator who derives pleasure from victim's suffering",
+    "confidence": "low",
+    "quote": "To his delight, the screams began."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Detective Lou Donovan - homicide detective with institutional authority",
+    "confidence": "high",
+    "quote": "Detective Lou Donovan stood four feet from the flat screen television staring, highly annoyed."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Modern social hierarchy based on fiscal power rather than natural order, where position determines access and behavior",
+    "confidence": "high",
+    "quote": "Whether your name is on the V.I.P. list or you are required to wait in line behind the velvet rope with everyone else"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Detective Lou Donovan's identity struggle between family expectations and professional demands as fifth-generation cop",
+    "confidence": "medium",
+    "quote": "It was well known among the ranks that this fifth generation cop was all bus"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-mell-corcoran-shadows-of-doubt/",
+    "corpus_index": 291,
+    "text_len": 11450,
+    "title": "ebook mell corcoran shadows of doubt",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

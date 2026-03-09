@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Disappearance of Susana May from a limousine crash scene",
+    "confidence": "high",
+    "quote": "Susana May disappeared."
+  },
+  "victim": {
+    "value": "Susana May, a model with a scandalous public image and secrets",
+    "confidence": "medium",
+    "quote": "There were naked pictures of Susana May which the whole world had seen already, articles about her getting drunk"
+  },
+  "closed_world": {
+    "value": "Small British town where Ella works as a journalist",
+    "confidence": "medium",
+    "quote": "Lukas was the American boy in a British small town"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Ella, a Dutch journalist who specializes in crime reporting",
+    "confidence": "high",
+    "quote": "As a journalist, she saw herself as a writer in first place... she loved the crime reports"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Celebrity scandal interview used as misdirection from actual disappearance/crime",
+    "confidence": "medium",
+    "quote": "Dick had gone when she'd started to talk to Mr. Jefferson. She decided to do some more researches about Susana May."
+  },
+  "clue_fairness": {
+    "value": "Physical evidence shared with reader: muscular man with barbed wire neck tattoo carrying unconscious victim",
+    "confidence": "high",
+    "quote": "He was a big guy, tons of muscles. And he had a tattoo around his neck, barbed wire, I'd say."
+  },
+  "social_world": {
+    "value": "Media hierarchy with exploitative editor prioritizing sensationalism over truth; journalist-source power dynamics",
+    "confidence": "high",
+    "quote": "Not that he cared about how true the information she collected was."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Celebrity culture distorting crime coverage; editor demands sensational story over factual reporting of disappearance",
+    "confidence": "high",
+    "quote": "I just told you that a young somehow famous woman disappeared and you still want to publish more naked pictures"
+  },
+  "investigator_wound": {
+    "value": "Journalist's integrity compromised by exploitative media environment; tension between truth-telling mission and employer demands",
+    "confidence": "high",
+    "quote": "She saw herself as a writer in first place. It was her mission to write stories, real life stories"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-amber-black-partner-in-crime/",
+    "corpus_index": 118,
+    "text_len": 16691,
+    "title": "ebook amber black partner in crime",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

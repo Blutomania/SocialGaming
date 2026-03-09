@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Kidnapping of baby Delanie from car seat at preschool",
+    "confidence": "high",
+    "quote": "Panic filled the atmosphere as she realized that the car seat in which Delanie had been sleeping was empty."
+  },
+  "victim": {
+    "value": "Baby Delanie Claymore, targeted because her family had prior conflict with the perpetrator Kyle",
+    "confidence": "medium",
+    "quote": "It had been two months since the Claymores had caught sight of Kyle."
+  },
+  "closed_world": {
+    "value": "Preschool parking area and surrounding vicinity where parents drop off children",
+    "confidence": "medium",
+    "quote": "They questioned her and Miss Gina, but neither could tell the police anything useful."
+  },
+  "culprit_and_motive": {
+    "value": "Kyle Bucher kidnapped the baby, motive appears related to previous conflict with the Claymore family",
+    "confidence": "medium",
+    "quote": "Jason told the police all about Kyle Bucher, and his description of Kyle matched the description"
+  },
+  "resolution": {
+    "value": "Elaina shoots Kyle in the leg during confrontation, he is arrested and imprisoned",
+    "confidence": "high",
+    "quote": "You shut Kyle in the leg... Now, Kyle's rotting away in jail, and he's never gonna hurt you again."
+  },
+  "investigator": {
+    "value": "Elaina (the mother/victim) serves as primary investigative perspective, with police involvement",
+    "confidence": "medium",
+    "quote": "Trying to remain calm, she held on to her baby and ran."
+  },
+  "suspect_architecture": {
+    "value": "Single identified perpetrator: Kyle Bucher with clear motive (stalking/obsession), means (physical access), and opportunity (unguarded moments)",
+    "confidence": "high",
+    "quote": "Kyle was the most likey suspect, but no one new of his whereabouts."
+  },
+  "red_herring": {
+    "value": "Initial misdirection about baby's disappearance from car seat, later revealed as staging for Kyle's ambush",
+    "confidence": "medium",
+    "quote": "She almost fainted when she saw her baby sitting there. Before she could even question how she had gotten there"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Young family unit isolated from broader support systems, vulnerable to external threats due to social isolation",
+    "confidence": "medium",
+    "quote": "No one cared for her, and she cared for no one."
+  },
+  "alibi": {
+    "value": "Kyle's whereabouts unknown to police during surveillance period, allowing him to stage the car trunk ambush",
+    "confidence": "medium",
+    "quote": "but after three hours, there was still no sign of Kyle"
+  },
+  "reveal_mechanic": {
+    "value": "Physical confrontation and gunshot wound proving Kyle's guilt through direct action rather than deductive reasoning",
+    "confidence": "high",
+    "quote": "You shut Kyle in the leg, but before you fired, he managed to shove you down."
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Elaina's maternal vulnerability and fear of losing her children, exploited by Kyle's targeting of her baby",
+    "confidence": "high",
+    "quote": "She was so worried that he wouldn't like it, or even worse, the other kids wouldn't like him."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-valerie-ziegler-life-of-a-reformed-wild-child/",
+    "corpus_index": 184,
+    "text_len": 27366,
+    "title": "ebook valerie ziegler life of a reformed wild child",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

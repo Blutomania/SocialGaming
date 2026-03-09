@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Double murder by decapitation with severed ears sent as a package to victim's sister",
+    "confidence": "high",
+    "quote": "I got past it and got one in with my stick that crushed his head like an egg"
+  },
+  "victim": {
+    "value": "Alec Fairbairn and his lover, targeted due to adultery that destroyed the perpetrator's marriage",
+    "confidence": "high",
+    "quote": "she threw her arms round him, crying out to him, and calling him 'Alec.'"
+  },
+  "closed_world": {
+    "value": "Maritime setting where perpetrator had access to victims on a boat in isolated waters",
+    "confidence": "medium",
+    "quote": "Then I tied the bodies into the boat, stove a plank, and stood by until they had sunk"
+  },
+  "culprit_and_motive": {
+    "value": "Jealous husband seeking revenge for adultery that broke up his marriage and turned his wife against him",
+    "confidence": "high",
+    "quote": "I would have spared her, perhaps, for all my madness, but she threw her arms round him"
+  },
+  "resolution": {
+    "value": "Holmes deduces the solution and provides the criminal's name to Lestrade for arrest",
+    "confidence": "high",
+    "quote": "I have found out everything! A shocking crime has been committed, and I think I have now laid bare every detail"
+  },
+  "investigator": {
+    "value": "Sherlock Holmes, consulting detective who solves the case through deductive reasoning",
+    "confidence": "high",
+    "quote": "In choosing a few typical cases which illustrate the remarkable mental qualities of my friend, Sherlock Holmes"
+  },
+  "suspect_architecture": {
+    "value": "Limited cast revealed: Jim Browner (perpetrator), Sarah Cushing (instigator), Alec Fairbairn (victim), Mary (victim). Clear motives: jealousy, revenge, adultery.",
+    "confidence": "high",
+    "quote": "I struck again, and she lay stretched beside him. I was like a wild beast then that had tasted blood."
+  },
+  "red_herring": {
+    "value": "The cardboard box delivery mechanism creates false impression of random targeting rather than specific revenge plot.",
+    "confidence": "medium",
+    "quote": "That night I made up the packet for Sarah Cushing, and next day I sent it from Belfast."
+  },
+  "clue_fairness": {
+    "value": "Holmes claims complete solution but reader only receives confession afterward. Solution process not fully shared with reader.",
+    "confidence": "medium",
+    "quote": "I have found out everything! A shocking crime has been committed, and I think I have now laid bare every detail"
+  },
+  "social_world": {
+    "value": "Maritime working class dynamics, family tensions, and colonial service backgrounds shape the crime's social context.",
+    "confidence": "medium",
+    "quote": "my term of service in India had trained me to stand heat better than cold"
+  },
+  "alibi": {
+    "value": "Browner's ship-based alibi initially conceals his ability to commit murders then return undetected to his vessel.",
+    "confidence": "high",
+    "quote": "I cleaned myself up, got back to land, and joined my ship without a soul having a suspicion"
+  },
+  "reveal_mechanic": {
+    "value": "Solution delivered through perpetrator's written confession rather than deductive demonstration, breaking from typical Holmes format.",
+    "confidence": "high",
+    "quote": "There you have the whole truth of it. You can hang me, or do what you like with me"
+  },
+  "media_and_audience": {
+    "value": "Watson frames case as deliberately choosing non-sensational crimes, though acknowledging impossibility of separating sensation from crime.",
+    "confidence": "high",
+    "quote": "I have endeavoured, as far as possible, to select those which presented the minimum of sensationalism"
+  },
+  "investigator_wound": {
+    "value": "Holmes's philosophical despair over meaningless cycles of violence and suffering, questioning universal purpose.",
+    "confidence": "high",
+    "quote": "What object is served by this circle of misery and violence and fear? It must tend to some end"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-adventure-of-the-cardboard-box/",
+    "corpus_index": 127,
+    "text_len": 46293,
+    "title": "ebook sir arthur conan doyle the adventure of the cardboard box",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

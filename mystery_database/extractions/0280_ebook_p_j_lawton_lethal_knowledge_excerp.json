@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Three armed men (leader, Kong, and machete man) killed in self-defense during confrontation",
+    "confidence": "medium",
+    "quote": "I glanced toward the four bodies leaking fluids into the parched earth."
+  },
+  "closed_world": {
+    "value": "Remote location with ruined temple, isolated enough for armed confrontation",
+    "confidence": "low",
+    "quote": "if ugly was a brick, you'd be that ruined temple over there."
+  },
+  "culprit_and_motive": {
+    "value": "Armed men seeking 'the girl' and targeting Simon specifically, motive unclear",
+    "confidence": "medium",
+    "quote": "They were here for the girl and for me! I was pretty sure I wasn't supposed to leave here alive."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Simon, first-person narrator who becomes involved in violent confrontation",
+    "confidence": "high",
+    "quote": "So, Mister Big-Shot- Simon, not so big now, huh"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial assumption this was a random bandit stickup masks the fact they specifically targeted Simon and the girl",
+    "confidence": "medium",
+    "quote": "A jolt ran through my body as I realized this was no bandit stickup. They were here for the girl and for me!"
+  },
+  "clue_fairness": {
+    "value": "The antagonist's knowledge of Simon's name is revealed to both Simon and reader simultaneously",
+    "confidence": "medium",
+    "quote": "So, Mister Big-Shot- Simon, not so big now, huh"
+  },
+  "social_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "The leader's specific knowledge of Simon's name reveals this is a targeted operation, not random crime",
+    "confidence": "medium",
+    "quote": "How did he know my name? What was going on here?"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Simon experiences guilt and psychological burden from killing even in self-defense situations",
+    "confidence": "medium",
+    "quote": "Sometimes, even that didn't ease the pangs of guilt."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-p-j-lawton-lethal-knowledge-excerpt/",
+    "corpus_index": 280,
+    "text_len": 5702,
+    "title": "ebook p j lawton lethal knowledge excerpt",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

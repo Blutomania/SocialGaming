@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder by stabbing of Star Tucker and killing of unnamed man who fell down stairs",
+    "confidence": "high",
+    "quote": "Rufus found Star dead in the bedroom from a stab wound"
+  },
+  "victim": {
+    "value": "Star Tucker, wife of Blake who had hidden gambling winnings that dangerous people wanted back",
+    "confidence": "medium",
+    "quote": "The guys Blake won the money from wanted their money back, even though Blake won it fair and square"
+  },
+  "closed_world": {
+    "value": "Southern Arms Hotel and surrounding neighborhood including Pinky's bar",
+    "confidence": "medium",
+    "quote": "Star and Blake lived on the third floor of the Southern Arms Hotel. Pinky's bar was just around the corner"
+  },
+  "culprit_and_motive": {
+    "value": "Unnamed man killed Star to get the money Blake had hidden, but died accidentally fleeing the scene",
+    "confidence": "medium",
+    "quote": "A man came out and limped to the stairway to go down... he fell and was killed instantly"
+  },
+  "resolution": {
+    "value": "No formal resolution - Rufus takes money as payment and lets Blake escape with remaining cash",
+    "confidence": "high",
+    "quote": "Blake pulled out 5,000 dollars and laid the bag on the ground, Blake turned and walked away"
+  },
+  "investigator": {
+    "value": "Rufus Hancock, retired police detective turned private investigator hired by Star Tucker",
+    "confidence": "high",
+    "quote": "Rufus was a detective for twenty one years for the city. Now retired, Rufus worked as a Private Investigator"
+  },
+  "suspect_architecture": {
+    "value": "Limited suspect pool: Blake Tucker (missing husband, gambling debts), unnamed crippled man (letter courier, dies accidentally), Star Tucker (victim). Motives center on gambling winnings and debt collection rather than traditional means/motive/opportunity spread.",
+    "confidence": "medium",
+    "quote": "The guys Blake won the money from wanted their money back, even though Blake won it fair and square."
+  },
+  "red_herring": {
+    "value": "Blake's disappearance initially presented as mysterious vanishing, misdirecting from the real issue of gambling debts and hiding from creditors.",
+    "confidence": "medium",
+    "quote": "Star said her husband had never been gone this long. The last time Star saw Blake he was writing a letter."
+  },
+  "clue_fairness": {
+    "value": "The bloody letter's contents are revealed to the reader when Rufus reads it, providing the same information about the hidden money and secret location.",
+    "confidence": "high",
+    "quote": "It read there is 10,000 dollars in our secret place. I may be already dead when you get this in the mail"
+  },
+  "social_world": {
+    "value": "Working-class milieu of hotel residents, bar regulars, and gambling debts. Social hierarchy between retired detective turned PI and his clients.",
+    "confidence": "medium",
+    "quote": "Star and Blake lived on the third floor of the Southern Arms Hotel. Pinky's bar was just around the corner."
+  },
+  "alibi": {
+    "value": "Blake's alibi of being missing/possibly dead is false - he was hiding from gambling creditors while planning to retrieve money and flee.",
+    "confidence": "high",
+    "quote": "Blake had been hiding out until he could get home to get the money."
+  },
+  "reveal_mechanic": {
+    "value": "Physical discovery of hidden safe behind medicine cabinet, opened using Blake's mother's name as combination, revealing the gambling winnings.",
+    "confidence": "high",
+    "quote": "when he tried Blake's mother, SNAP went a sound and Rufus easily pulled the door open."
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Rufus's corruption/greed - he decides to steal the money rather than pursue justice, rationalizing it as payment for his work.",
+    "confidence": "high",
+    "quote": "Rufus convinced himself that the money would not be missed and was payment for the work he had done"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-daniel-books-the-bloody-letter-secret/",
+    "corpus_index": 95,
+    "text_len": 10175,
+    "title": "ebook daniel books the bloody letter secret",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

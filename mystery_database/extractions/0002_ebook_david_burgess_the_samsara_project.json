@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Serial killings connected to Jack the Ripper, including Emma Smith's brutal attack in 1888 and modern murder of Suzie Reeves",
+    "confidence": "high",
+    "quote": "The attack when it happened was as swift as it was brutal. The attacker hit"
+  },
+  "victim": {
+    "value": "Emma Smith, 17-year-old prostitute in Victorian Whitechapel, and Suzie Reeves in modern times - vulnerable women targeted by same killer",
+    "confidence": "high",
+    "quote": "Emma Smith was 17 years old when this picture was taken and like many young women living in Victorian London"
+  },
+  "closed_world": {
+    "value": "Whitechapel district where the historical crimes occurred, and modern investigation team's limited circle of suspects",
+    "confidence": "medium",
+    "quote": "she made her living as a prostitute in the Whitechapel district of London"
+  },
+  "culprit_and_motive": {
+    "value": "Jack the Ripper, possibly Jacqueline/Jacque Dupree, with motive unclear but connected to targeting vulnerable women across time periods",
+    "confidence": "medium",
+    "quote": "he was looking straight into the eyes of Jack the Ripper"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "John Reynolds, researcher/author investigating Jack the Ripper case with partner Andrew, seeking to solve both historical and modern murders",
+    "confidence": "high",
+    "quote": "John Reynolds stood behind the podium facing his audience"
+  },
+  "suspect_architecture": {
+    "value": "Multiple suspects across time periods: historical Jack the Ripper connection, surveillance agents tracking investigation, Jacqueline Dupree as contemporary JTR identity",
+    "confidence": "medium",
+    "quote": "Andrew said he was almost certain of JTR's identity and that he would explain it all to him tomorrow."
+  },
+  "red_herring": {
+    "value": "Historical Jack the Ripper presentation misdirects from contemporary killer using same identity/methods",
+    "confidence": "medium",
+    "quote": "Emma Smith was 17 years old when this picture was taken and like many young women living in Victorian London"
+  },
+  "clue_fairness": {
+    "value": "Reader sees surveillance team intercept John's password and email before John discovers Andrew's findings about JTR identity",
+    "confidence": "high",
+    "quote": "Thank you very much, whispered a voice in the back of a van parked down the road."
+  },
+  "social_world": {
+    "value": "Professional surveillance network with numbered agents, academic/journalistic investigation structure, class dynamics of Victorian prostitution",
+    "confidence": "medium",
+    "quote": "A four person team was led by 'Agent one' the other three members being assigned numbers two to four"
+  },
+  "alibi": {
+    "value": "Jacqueline's casual encounter with Geoffrey appears coincidental but may be constructed to establish innocent contact",
+    "confidence": "medium",
+    "quote": "It's a small world, quipped Geoffrey. What part of France did you say you lived in? she asked."
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Academic presentation to Ladies Society frames historical context; Daily Herald newspaper investigation suggests media involvement in case",
+    "confidence": "medium",
+    "quote": "John Reynolds stood behind the podium facing his audience; He involuntarily cleared his throat"
+  },
+  "investigator_wound": {
+    "value": "John's sleeplessness and anxiety over unsolved case, personal investment in proving connection between historical and contemporary murders",
+    "confidence": "medium",
+    "quote": "For John it was going to be another long, sleepless night."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-david-burgess-the-samsara-project/",
+    "corpus_index": 2,
+    "text_len": 614646,
+    "title": "ebook david burgess the samsara project",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

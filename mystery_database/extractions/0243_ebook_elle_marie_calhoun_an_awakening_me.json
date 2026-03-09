@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Marianna, an 18-year-old who lost her memory in a car crash, possibly targeted by supernatural forces",
+    "confidence": "low",
+    "quote": "There was a shadowy figure near the bridge, it was as I could see through it. That is what distracted me"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Marianna herself, recovering her memories to investigate what caused her accident",
+    "confidence": "medium",
+    "quote": "We need to find out who made the call to the ambulance and who the driver of that truck was."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Car crash presented as accident, but supernatural distraction (shadowy figure/ghost) suggests deliberate misdirection from true cause",
+    "confidence": "medium",
+    "quote": "There was a shadowy figure near the bridge, it was as I could see through it. That is what distracted me"
+  },
+  "clue_fairness": {
+    "value": "Memory fragments and physical evidence (wetsuit triggering flashback) are presented to reader simultaneously with protagonist's discovery",
+    "confidence": "medium",
+    "quote": "I opened a cabinet and found a swimsuit and wetsuit. I held up the wetsuit and something hit me."
+  },
+  "social_world": {
+    "value": "Medical institutional authority (doctor controlling information flow) and romantic relationship power dynamics",
+    "confidence": "low",
+    "quote": "I need everybody out so I can give her a full rundown."
+  },
+  "alibi": {
+    "value": "Joseph's account of car crash details withheld - potential concealment of true circumstances",
+    "confidence": "medium",
+    "quote": "I will, but right now just isn't the time. I promise I will tell you though."
+  },
+  "reveal_mechanic": {
+    "value": "Memory recovery through physical trigger (wetsuit) and location revisit breaking psychological 'void' to reveal truth",
+    "confidence": "high",
+    "quote": "As I walked, the sense got stronger, like I was reaching some strange void. If I could break that void"
+  },
+  "media_and_audience": {
+    "value": "Supernatural explanation ('ghost') used to rationalize unexplained distraction that caused crash",
+    "confidence": "medium",
+    "quote": "Well\u2026 I think it might have been like a ghost."
+  },
+  "investigator_wound": {
+    "value": "Amnesia creates fundamental vulnerability - investigator cannot trust own memory or distinguish between supporters and threats",
+    "confidence": "high",
+    "quote": "Having amnesia is going to really stink and already does."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-elle-marie-calhoun-an-awakening-memory/",
+    "corpus_index": 243,
+    "text_len": 17967,
+    "title": "ebook elle marie calhoun an awakening memory",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

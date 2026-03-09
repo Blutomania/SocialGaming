@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Keith and Jaqueline Perry, who befriended Mr Shaw for his money rather than genuine friendship",
+    "confidence": "medium",
+    "quote": "they were not real friends at all, they were just befriending him for his money"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Mr Shaw (the ghost tourist) seeking to decide whether to forgive Keith and Jaqueline for their deception",
+    "confidence": "medium",
+    "quote": "Could he forgive them though? he had asked himself... he began to appear to them as a tourist"
+  },
+  "resolution": {
+    "value": "Mr Shaw decides to forgive them, indicated by a snake with 'FORGIVEN' written on it",
+    "confidence": "high",
+    "quote": "written on the serpent in bold white lettering was the word: 'FORGIVEN'"
+  },
+  "investigator": {
+    "value": "Keith and Jaqueline Perry observing and eventually confronting the mysterious tourist",
+    "confidence": "medium",
+    "quote": "Keith and Jaqueline looked at each other, then at him, then began to walk towards him"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "The mysterious tourist appearing across multiple locations creates false supernatural mystery when the truth is personal guilt",
+    "confidence": "medium",
+    "quote": "trying to work it out"
+  },
+  "clue_fairness": {
+    "value": "All clues available to Keith and Jaqueline are shown to reader: tourist appearances, identical clothing, weather immunity",
+    "confidence": "medium",
+    "quote": "nobody else was looking at him"
+  },
+  "social_world": {
+    "value": "Wealthy benefactor Mr Shaw and false friends exploiting his generosity for inheritance money",
+    "confidence": "high",
+    "quote": "they were not real friends at all, they were just befriending him for his money"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Supernatural confrontation in ice cave where Mr Shaw reveals his identity and makes forgiveness decision",
+    "confidence": "high",
+    "quote": "In the ice cave in the arctic, he made his decision"
+  },
+  "media_and_audience": {
+    "value": "Story presents as supernatural mystery to both characters and readers until final revelation",
+    "confidence": "medium",
+    "quote": "There was nothing to say. They knew they would never see the tourist again"
+  },
+  "investigator_wound": {
+    "value": "Keith and Jaqueline's guilt over exploiting Mr Shaw's friendship for financial gain",
+    "confidence": "high",
+    "quote": "Could he forgive them though? he had asked himself"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-john-jones-the-sunseeker/",
+    "corpus_index": 347,
+    "text_len": 11002,
+    "title": "ebook john jones the sunseeker",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

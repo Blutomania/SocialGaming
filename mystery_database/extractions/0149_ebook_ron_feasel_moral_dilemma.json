@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Serial killing - a killer dressed as a priest murders women who resemble his mother, with four victims mentioned",
+    "confidence": "high",
+    "quote": "It would be the fourth victim in the cleansing. Today would be the climax of his psychotic thoughts."
+  },
+  "victim": {
+    "value": "Mrs. Templer, a married woman without children targeted because she resembles the killer's 'whoring mother'",
+    "confidence": "high",
+    "quote": "she was married without children. She resembled his whoring mother who had shamed and emasculated him."
+  },
+  "closed_world": {
+    "value": "Lake Powell in Arizona where the killer works as a patrol boat officer for the Corps of Engineers",
+    "confidence": "medium",
+    "quote": "He googled Lake Powell and it had to be the lake in Arizona."
+  },
+  "culprit_and_motive": {
+    "value": "A Lake Powell patrol officer killing women who remind him of his mother to 'cleanse' the world of such 'vermin'",
+    "confidence": "high",
+    "quote": "The world would be rid of such vermin. It would be the fourth victim in the cleansing."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Larry, a police officer with psychic visions who uses his visions to track and stop killers during vacation time",
+    "confidence": "high",
+    "quote": "Larry only used his vacation time to hunt his deadly prey."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Priest disguise used by killer to gain entry, creating false religious association",
+    "confidence": "medium",
+    "quote": "He was dressed as a priest because the mission was blessed. He rang the door bell."
+  },
+  "clue_fairness": {
+    "value": "Larry's psychic visions provide clues about killer's location and methods available to reader",
+    "confidence": "medium",
+    "quote": "The vision revealed a large lake. The killer was in a patrol boat of some kind with the name Lake Powell Patrol"
+  },
+  "social_world": {
+    "value": "Police department hierarchy and professional courtesy between law enforcement officers",
+    "confidence": "medium",
+    "quote": "The officer's attitude changed when the gold badge catching the Sun's rays flashed in his eyes."
+  },
+  "alibi": {
+    "value": "Killer uses employment as Lake Powell patrolman as cover for stalking victims on the lake",
+    "confidence": "medium",
+    "quote": "he was an employee of the Corp, of Engineers for Lake Powell as a patrolman"
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Jack's Navy injuries and disability pension, Larry's debilitating psychic visions causing migraines",
+    "confidence": "high",
+    "quote": "After his injuries while on a secret mission for the Navy he quit and took his disability pension"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-ron-feasel-moral-dilemma/",
+    "corpus_index": 149,
+    "text_len": 26830,
+    "title": "ebook ron feasel moral dilemma",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

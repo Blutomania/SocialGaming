@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of Mackenzie - body disposal in river",
+    "confidence": "high",
+    "quote": "She tugged until she had him midstream, then gave Mack a final pat. 'Goodbye, Mackenzie.'"
+  },
+  "victim": {
+    "value": "Mackenzie - killed in connection to Dominic and Nicholas",
+    "confidence": "medium",
+    "quote": "Unfortunately, it also meant traces that might tie back to Dominic and Nicholas."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Raven killed Mackenzie, seeking revenge against Dominic and Nicholas",
+    "confidence": "medium",
+    "quote": "'If it's the last thing I do, I'll get them.' Her words floated away"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Arnold threatens Beth and her father as deliberate misdirection from true perpetrator",
+    "confidence": "medium",
+    "quote": "Make no mistake, I intend to get to the bottom of it . . . and I'm not above using you to do it."
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Family dysfunction and abandonment - mother's depression, father figure Julien leaving, parental neglect",
+    "confidence": "high",
+    "quote": "She just cries and tells Charleigh to go away. She has been like this ever since the fight with Julien"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Physical evidence disposal in river - body wrapped in shower curtain, deliberate destruction of traces",
+    "confidence": "high",
+    "quote": "She tugged until she had him midstream, then gave Mack a final pat. 'Goodbye, Mackenzie.'"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Beth's grief and trauma from mother's death affecting her perception and ability to cope",
+    "confidence": "high",
+    "quote": "Grief did that. It messed with perceptions, distorting things, and caused life to tip on its side"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-michelle-kidd-anybody-039-s-child/",
+    "corpus_index": 61,
+    "text_len": 194023,
+    "title": "ebook michelle kidd anybody 039 s child",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

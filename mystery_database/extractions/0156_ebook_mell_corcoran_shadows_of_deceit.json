@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Silent alarm triggered at mansion, blackout of security cameras, crime scene with multiple bodies requiring forensic investigation",
+    "confidence": "high",
+    "quote": "silent alarm triggered at one of the multimillion dollar mansions... camera feed to their monitoring facilities were blacked out"
+  },
+  "victim": {
+    "value": "Multiple unidentified bodies found at property leased by Casius Arcano",
+    "confidence": "medium",
+    "quote": "They also needed to find out who the hell those bodies were."
+  },
+  "closed_world": {
+    "value": "Ultra-posh Oakridge Estates with multiple security gates, isolated ridge location, limited access points",
+    "confidence": "high",
+    "quote": "ultra-posh Oakridge Estates... miles of back canyon and up the ridge that separated the community from basically everything"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Forensic analysis of jet fuel residue and full spectrum photographs to prove stealth helicopter theory",
+    "confidence": "medium",
+    "quote": "forensics was going to find jet fuel residue on the plants... full spectrum photographs were going to pull a signature"
+  },
+  "investigator": {
+    "value": "Detective Vinny and newcomer Detective Dillon Cole, with Dillon having military/specialized aircraft background",
+    "confidence": "high",
+    "quote": "I personally have flown such aircraft... meet me over at Lost Hills and you can start making your calls"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Paparazzi or raccoon alarm triggers suggested as likely causes while stealth helicopter theory emerges as true possibility",
+    "confidence": "medium",
+    "quote": "It was not uncommon, however, for an alarm to be triggered by a raccoon wandering in through a doggie door"
+  },
+  "clue_fairness": {
+    "value": "Camera feeds blacked out, dirt tracking by previous detectives, potential jet fuel residue on plants described to reader",
+    "confidence": "medium",
+    "quote": "the alarm company had relayed to dispatch that the camera feed to their monitoring facilities were blacked out"
+  },
+  "social_world": {
+    "value": "Ultra-posh Oakridge Estates with multimillion dollar mansions, high-profile residents, private security teams, and paparazzi concerns",
+    "confidence": "high",
+    "quote": "ultra-posh Oakridge Estates where they were responding to what is known as a code 2115"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Forensics will find jet fuel residue on plants and full spectrum photographs will show helicopter landing signature",
+    "confidence": "high",
+    "quote": "forensics was going to find jet fuel residue on the plants out back and those full spectrum photographs"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Dillon knows his stealth helicopter theory sounds far-fetched and risks being dismissed as candidate number eight",
+    "confidence": "medium",
+    "quote": "he knew it was going to be goodbye candidate number eight"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-mell-corcoran-shadows-of-deceit/",
+    "corpus_index": 156,
+    "text_len": 63704,
+    "title": "ebook mell corcoran shadows of deceit",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

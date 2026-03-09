@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Attempted murder by stabbing - the Chevalier stabbed the Marquise multiple times with his sword",
+    "confidence": "high",
+    "quote": "the chevalier had drawn his sword, which was very short, and using it as a dagger, had struck her in the breast"
+  },
+  "victim": {
+    "value": "The Marquise de Ganges - targeted by her own brother-in-law despite her pleas for mercy and family affection",
+    "confidence": "high",
+    "quote": "Chevalier, my dear brother, will you not have pity upon me, who have always had so much affection for you"
+  },
+  "closed_world": {
+    "value": "The private room where the Marquise met alone with the Chevalier while ladies waited in an adjacent room",
+    "confidence": "medium",
+    "quote": "Scarcely were they alone, when the marquise, joining her hands, knelt to him"
+  },
+  "culprit_and_motive": {
+    "value": "The Chevalier (brother-in-law) - motive unclear from excerpt but involves family conflict",
+    "confidence": "medium",
+    "quote": "the chevalier had drawn his sword, which was very short, and using it as a dagger, had struck her"
+  },
+  "resolution": {
+    "value": "The Chevalier was allowed to return to France after traveling abroad for two years, suggesting official resolution",
+    "confidence": "medium",
+    "quote": "he was allowed, after travelling for two years in Italy and in Germany, to return undisturbed to France"
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": "Two primary conspirators: Chevalier de Bouillon (brother-in-law, motive: inheritance/control) and Abb\u00e9 de Ganges (brother-in-law, religious authority), plus enablers like Madame d'Urban who later commits separate violence",
+    "confidence": "high",
+    "quote": "the chevalier had drawn his sword, which was very short, and using it as a dagger, had struck her in the breast"
+  },
+  "red_herring": {
+    "value": "The midwife consultation and occult s\u00e9ance setting initially suggests supernatural or medical motives, misdirecting from the family inheritance conspiracy",
+    "confidence": "medium",
+    "quote": "To consult the spirit, replied the woman of the sweet and tremulous voice."
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "French aristocratic hierarchy where Cardinal de Bouillon's influence can pacify victims' families with money, and royal letters-de-cachet control justice, showing institutional protection of nobility",
+    "confidence": "high",
+    "quote": "Two hundred pistoles, given by the Cardinal de Bouillon, pacified the family of the unfortunate pastry-cook"
+  },
+  "alibi": {
+    "value": "The pastry-cook death was reframed as 'apoplectic stroke' after family withdrew complaints, creating false narrative to protect Chevalier de Bouillon",
+    "confidence": "high",
+    "quote": "gave out that they had taken action too hastily on the strength of a story told in joke"
+  },
+  "reveal_mechanic": {
+    "value": "The marquise's direct testimony and physical evidence of seven sword wounds, plus the broken sword fragment embedded in her shoulder",
+    "confidence": "high",
+    "quote": "indeed, he had struck with such force that the fragment remained embedded in her shoulder"
+  },
+  "media_and_audience": {
+    "value": "The crimes become theatrical and literary material, with playwrights and novelists repeatedly adapting the marquise's story while ignoring the children's fates",
+    "confidence": "high",
+    "quote": "the playwright or the novelist calls up the pale and bloodstained figure of the marquise to appear"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-marquise-de-ganges/",
+    "corpus_index": 276,
+    "text_len": 119542,
+    "title": "ebook alexandre dumas pere marquise de ganges",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

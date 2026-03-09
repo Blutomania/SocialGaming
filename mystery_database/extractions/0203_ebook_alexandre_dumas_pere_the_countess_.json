@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Infant substitution/kidnapping conspiracy to steal inheritance and title",
+    "confidence": "high",
+    "quote": "Louise Goillard was installed in the chateau... The plots of the marquis and Madame de Bouille thus throve"
+  },
+  "victim": {
+    "value": "The Countess de Saint-Geran and her newborn heir, targeted for their wealth and noble inheritance",
+    "confidence": "high",
+    "quote": "The countess, who played the part of the true mother in the Bible, had the case so much to heart"
+  },
+  "closed_world": {
+    "value": "The chateau and its household staff during the countess's confinement and childbirth",
+    "confidence": "medium",
+    "quote": "Louise Goillard was installed in the chateau... At the cries of a footman all the household was astir"
+  },
+  "culprit_and_motive": {
+    "value": "The marquis and Madame de Bouille conspiring with midwife Louise Goillard to steal the inheritance",
+    "confidence": "high",
+    "quote": "The plots of the marquis and Madame de Bouille thus throve with most baneful success"
+  },
+  "resolution": {
+    "value": "Legal proceedings result in judgment recognizing the true heir and condemning conspirators",
+    "confidence": "high",
+    "quote": "la Pigoreau... is condemned to be hung and strangled at a gallows erected in the Place de Greve"
+  },
+  "investigator": {
+    "value": "Legal system and courts investigating the inheritance dispute through formal proceedings",
+    "confidence": "medium",
+    "quote": "Possibly a more obstinate legal contest was never waged, on both sides"
+  },
+  "suspect_architecture": {
+    "value": "Multiple conspirators with clear hierarchical roles: Marquis de Saint-Maixent (mastermind with inheritance motive), Madame de Bouille (accomplice with shared interest), Louise Goillard/la Pigoreau (hired operative for child substitution), plus various servants and accomplices differentiated by level of involvement and culpability",
+    "confidence": "high",
+    "quote": "The plots of the marquis and Madame de Bouille thus throve with most baneful success"
+  },
+  "red_herring": {
+    "value": "The accidental fall of the countess catching her foot in carpet, presented as potential disaster that could prevent the crime, but actually serving as distraction from the deliberate child substitution plot",
+    "confidence": "medium",
+    "quote": "an accident happened which threatened to nullify them, and, by causing a great disaster, to prevent a crime"
+  },
+  "clue_fairness": {
+    "value": "Legal documentation and court records explicitly presented to reader, including detailed judgment with dates, names, and legal findings that reveal the true parentage and inheritance rights",
+    "confidence": "high",
+    "quote": "Claude Alexandre de Guiche is declared to be the lawful son of Claude de la Guiche and Suzanne de Longaunay"
+  },
+  "social_world": {
+    "value": "French aristocratic hierarchy with inheritance laws, noble titles, and property rights creating clear power structures where legitimacy of birth determines wealth and status, with servants dependent on noble patrons",
+    "confidence": "high",
+    "quote": "in possession and enjoyment of the name and arms of the house of Guiche, and of all the goods left by Claude"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Legal proceeding with formal court judgment that definitively establishes true parentage and inheritance rights through judicial process, condemning the perpetrator to death by hanging",
+    "confidence": "high",
+    "quote": "she, arraigned and convicted of the offences imputed to her, is condemned to be hung and strangled"
+  },
+  "media_and_audience": {
+    "value": "Village gossip and public curiosity about the prisoner's importance, with local speculation about the young nobleman's crime and status creating public narrative around the case",
+    "confidence": "medium",
+    "quote": "No, more doubt could be entertained that he was a prisoner of importance, and all kinds of conjectures were made"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-the-countess-of-saint-geran/",
+    "corpus_index": 203,
+    "text_len": 100959,
+    "title": "ebook alexandre dumas pere the countess of saint geran",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

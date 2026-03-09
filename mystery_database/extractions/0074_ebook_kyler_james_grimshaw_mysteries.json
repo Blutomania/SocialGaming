@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of young blonde woman in alley, appearing as robbery gone wrong",
+    "confidence": "medium",
+    "quote": "A small handbag lays discarded next to her, its contents scattered, a clear sign of a robbery gone dreadfully wrong."
+  },
+  "victim": {
+    "value": "Young, beautiful blonde woman found dead in alley",
+    "confidence": "low",
+    "quote": "Long wavy locks of golden blonde hair frames a heart shaped face, culminated by full pink lips."
+  },
+  "closed_world": {
+    "value": "Haven - a dystopian city with class separation between slums and upper areas",
+    "confidence": "medium",
+    "quote": "When Haven made sense, before the separation of the so called classes. The poor bastards barely surviving in the slums"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Kyler James Grimshaw - experienced detective with world-weary demeanor",
+    "confidence": "high",
+    "quote": "Eyes that reflect a lifetime of experiences, good and bad. Mostly bad."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Robbery gone wrong - handbag scattered contents suggest false motive while true killer remains hidden",
+    "confidence": "medium",
+    "quote": "A small handbag lays discarded next to her, its contents scattered, a clear sign of a robbery gone dreadfully wrong."
+  },
+  "clue_fairness": {
+    "value": "Physical evidence presented to reader - scattered handbag, victim's serene expression, crime scene details",
+    "confidence": "medium",
+    "quote": "She lays wide eyed and starring, fixed in her last moments, although her expression seems serene."
+  },
+  "social_world": {
+    "value": "Class-divided Haven - technological tyranny of wealthy over slum dwellers, border controls, survival hierarchy",
+    "confidence": "high",
+    "quote": "The poor bastards barely surviving in the slums, living under the technological tyranny of better men."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Press scavengers arrive immediately, cameras flashing, treating beautiful victim as spectacle",
+    "confidence": "high",
+    "quote": "The first of the night's scavengers have arrived to feast at the carrion, pushing and shoving, cameras flashing"
+  },
+  "investigator_wound": {
+    "value": "Grimshaw's physical illness, isolation, death wish, and haunting memories of past cases",
+    "confidence": "high",
+    "quote": "No more bitter lonely nights, with nothing but a bottle of scotch to cure the insomnia, to make the ghosts"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-kyler-james-grimshaw-mysteries/",
+    "corpus_index": 74,
+    "text_len": 10059,
+    "title": "ebook kyler james grimshaw mysteries",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

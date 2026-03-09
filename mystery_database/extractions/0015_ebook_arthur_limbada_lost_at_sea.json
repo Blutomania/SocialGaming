@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Multiple murders at pharmacies with theft of chemicals/pills, and disappearance of a mineral",
+    "confidence": "medium",
+    "quote": "over the past few months, there have been four murders in this area of Bermuda...all of these murders were done at or around, pharmacies"
+  },
+  "victim": {
+    "value": "Multiple pharmacy-related victims and possibly Gerald (shot by sniper)",
+    "confidence": "low",
+    "quote": "He shot from the top story, story four. It was the second from the left"
+  },
+  "closed_world": {
+    "value": "Bermuda Triangle area - a crime-free region where unusual events are contained",
+    "confidence": "medium",
+    "quote": "four murders in this area of Bermuda. This is very interesting since it is genuinely crime free"
+  },
+  "culprit_and_motive": {
+    "value": "Albert Guss as murderer, possibly connected to Henry Downing, motive related to chemical theft",
+    "confidence": "medium",
+    "quote": "Albert Guss had a lot of chemicals and pills around his house...he already killed someone"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "I.D.I. agents Andrew and Gerald investigating the crimes",
+    "confidence": "high",
+    "quote": "Andrew and Gerald ran into the hotel lobby, there I.D.I. cards flashing ahead of them"
+  },
+  "suspect_architecture": {
+    "value": "Multiple suspects across connected crimes: Albert Guss (direct murderer), Henry Downing (potential influence/mastermind), plus unknown perpetrators of four pharmacy murders with similar M.O.",
+    "confidence": "medium",
+    "quote": "What I mainly want to know is that supposing Albert Guss killed all these people, if Henry Downing influenced"
+  },
+  "red_herring": {
+    "value": "The Bermuda Triangle mystery framing may be misdirection from pharmaceutical theft pattern - investigators worry they're chasing a red herring",
+    "confidence": "medium",
+    "quote": "We might just be chasing a red herring for all we know. Hopefully this is not so"
+  },
+  "clue_fairness": {
+    "value": "Chemical evidence at Albert Guss's house available to reader before investigators analyze connection to pharmacy murders",
+    "confidence": "medium",
+    "quote": "I noticed that Albert Guss had a lot of chemicals and pills around his house"
+  },
+  "social_world": {
+    "value": "Law enforcement hierarchy: I.D.I. agents coordinating with local police, Crime Scene Investigators, institutional jurisdictions",
+    "confidence": "medium",
+    "quote": "Andrew and Gerald ran into the hotel lobby, there I.D.I. cards flashing ahead of them"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Physical evidence analysis pending from Crime Scene Investigators to link pharmaceutical thefts to mineral disappearance",
+    "confidence": "low",
+    "quote": "It will take some time still till the Crime Scene Investigators will be able to tell us if they found any"
+  },
+  "media_and_audience": {
+    "value": "Bermuda Triangle folklore provides supernatural framework for interpreting disappearances in genuinely crime-free area",
+    "confidence": "medium",
+    "quote": "four murders in this area of Bermuda. This is very interesting since it is genuinely crime free"
+  },
+  "investigator_wound": {
+    "value": "Financial desperation and health issues affecting Joseph Farrow's judgment and physical capability during investigation",
+    "confidence": "medium",
+    "quote": "His large amount of doctor's bills was actually the main reason he was out here tonight, sleeping in his boat"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-arthur-limbada-lost-at-sea/",
+    "corpus_index": 15,
+    "text_len": 100973,
+    "title": "ebook arthur limbada lost at sea",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

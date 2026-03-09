@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Sabrina, haunted by a ghost named Jessica who physically harms her and kills her dog",
+    "confidence": "medium",
+    "quote": "she took a knife and carved a J into my arm. It was horribly painful"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Jessica the ghost, motive unclear - possibly seeking attention or connection",
+    "confidence": "low",
+    "quote": "When she cry's, it is blood. Her tears are made of blood."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Sabrina herself, the victim trying to understand why she's being haunted",
+    "confidence": "medium",
+    "quote": "I still haven't figured out why I see her or why she haunts me."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Mother's disbelief and assumption that self-harm explains the supernatural evidence",
+    "confidence": "medium",
+    "quote": "Since I used to be a cutter, she thinks I carved the J into my skin."
+  },
+  "clue_fairness": {
+    "value": "Physical evidence presented to reader: blood on floor, carved J, dog's death, broken window",
+    "confidence": "medium",
+    "quote": "she asked me where all the blood came from"
+  },
+  "social_world": {
+    "value": "Mother-daughter power dynamic where adult authority dismisses child's experience",
+    "confidence": "medium",
+    "quote": "my mother doesn't even believe me. She thinks that I'm faking everything."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Medical/psychiatric framework used to explain supernatural events as mental illness",
+    "confidence": "medium",
+    "quote": "she took me to the doctor for anti-depressant"
+  },
+  "investigator_wound": {
+    "value": "Narrator's history of self-harm and suicidal ideation makes her unreliable witness to her own experience",
+    "confidence": "high",
+    "quote": "Since I used to be a cutter, she thinks I carved the J into my skin."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sabrina-crowder-jessica/",
+    "corpus_index": 133,
+    "text_len": 5828,
+    "title": "ebook sabrina crowder jessica",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

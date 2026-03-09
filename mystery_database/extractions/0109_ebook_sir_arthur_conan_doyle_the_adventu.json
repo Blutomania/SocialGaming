@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of Aloysius Garcia at Wisteria Lodge, with mysterious disappearance of host and household",
+    "confidence": "high",
+    "quote": "One of them is dead. Did his companions follow him and kill him?"
+  },
+  "victim": {
+    "value": "Aloysius Garcia, likely targeted due to his connection to San Pedro political conspiracy",
+    "confidence": "medium",
+    "quote": "The man was a primitive savage from the backwoods of San Pedro"
+  },
+  "closed_world": {
+    "value": "Wisteria Lodge house and its immediate grounds where the crime occurred",
+    "confidence": "medium",
+    "quote": "some very strange people with some very strange ways in this house"
+  },
+  "culprit_and_motive": {
+    "value": "Garcia's companions from San Pedro, motivated by political conspiracy or betrayal",
+    "confidence": "medium",
+    "quote": "Did his companions follow him and kill him? If they did we should have them, for every port is watched"
+  },
+  "resolution": {
+    "value": "Holmes solves the case through deduction and research into voodoo practices, explaining the ritual elements",
+    "confidence": "high",
+    "quote": "I spent a morning in the British Museum reading up on that and other points"
+  },
+  "investigator": {
+    "value": "Sherlock Holmes as the primary detective, with Watson as narrator and Inspector Baynes as official police",
+    "confidence": "high",
+    "quote": "Holmes smiled and rubbed his hands. 'I must congratulate you, Inspector, on handling so distinctive'"
+  },
+  "suspect_architecture": {
+    "value": "Mulatto cook (primary suspect with means/motive/opportunity), mysterious companions who fled, Scott Eccles (false suspect with alibi), Inspector Baynes working competing theory",
+    "confidence": "medium",
+    "quote": "One of them is dead. Did his companions follow him and kill him? If they did we should have them"
+  },
+  "red_herring": {
+    "value": "Scott Eccles positioned as initial suspect with his 'grotesque experience' and connection to the house, deflecting from the real culprits",
+    "confidence": "medium",
+    "quote": "Have just had most incredible and grotesque experience. May I consult you?"
+  },
+  "clue_fairness": {
+    "value": "Physical evidence presented equally to reader and Holmes - charred bones, blood, torn bird, voodoo ritual elements described in detail",
+    "confidence": "high",
+    "quote": "Then from the table he took a platter heaped with small pieces of charred bone"
+  },
+  "social_world": {
+    "value": "Colonial power dynamics - primitive savage from San Pedro backwoods vs British institutional authority, exotic otherness as threat",
+    "confidence": "high",
+    "quote": "The man was a primitive savage from the backwoods of San Pedro, and this was his fetish"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Academic research validation - Holmes consults British Museum and quotes Eckermann's text on voodoo practices to decode ritual evidence",
+    "confidence": "high",
+    "quote": "I spent a morning in the British Museum reading up on that and other points"
+  },
+  "media_and_audience": {
+    "value": "Grotesque framed as stepping stone to horrible - public fascination with exotic supernatural practices domesticated through scholarly explanation",
+    "confidence": "medium",
+    "quote": "It is grotesque, Watson, but there is but one step from the grotesque to the horrible"
+  },
+  "investigator_wound": {
+    "value": "Holmes's intellectual boredom and racing mind seeking stimulation - vulnerability to cases that promise mental engagement over routine",
+    "confidence": "medium",
+    "quote": "My mind is like a racing engine, tearing itself to pieces because it is not connected up with the work"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-adventure-of-wisteria-lodge/",
+    "corpus_index": 109,
+    "text_len": 62895,
+    "title": "ebook sir arthur conan doyle the adventure of wisteria lodge",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

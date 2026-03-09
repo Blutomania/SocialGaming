@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Barry, the building janitor who has been sweeping dust for eleven years",
+    "confidence": "high",
+    "quote": "I can't believe he's... he's gone."
+  },
+  "closed_world": {
+    "value": "A building with a square room and mysterious locked black door",
+    "confidence": "medium",
+    "quote": "A wide black door taunts me from the other end of the room."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Barry, the building janitor experiencing events from first person perspective",
+    "confidence": "high",
+    "quote": "My name's Barry... I sweep this building every morning."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "The locked black door with crimson stains suggests murder scene, but reveals George who makes dust legitimately",
+    "confidence": "medium",
+    "quote": "The crimson stains near the handle only heighten my curiosity. I'll bet that room has something to do with the floor"
+  },
+  "clue_fairness": {
+    "value": "Daily dust accumulation pattern and crimson door stains presented to reader before Barry investigates",
+    "confidence": "medium",
+    "quote": "I arrive every morning to the floor of this square room completely covered with dust."
+  },
+  "social_world": {
+    "value": "Employment hierarchy between Barry (custodian) and mysterious building operations he's excluded from knowing",
+    "confidence": "high",
+    "quote": "Eleven years on the job has taught me two things. The first, and most important, don't ask questions."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Supernatural revelation through death experience - Barry realizes he has died and the mystery was his own fate",
+    "confidence": "high",
+    "quote": "I can't believe he's... he's gone. My guess is assured at that statement. I've died."
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Barry's compulsive need to understand his mundane work environment despite being told never to ask questions",
+    "confidence": "high",
+    "quote": "don't ask questions. This is also the easiest rule to follow... but I regain my composure as fury burns up my chest"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-austin-c-drake-dream-of-the-dead/",
+    "corpus_index": 248,
+    "text_len": 5524,
+    "title": "ebook austin c drake dream of the dead",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

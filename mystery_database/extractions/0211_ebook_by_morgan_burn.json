@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of Lucy involving torture by burning hands and feet, carving a cross on chest, and removing half her heart",
+    "confidence": "high",
+    "quote": "They used a knife of some sort to carve a cross out on the middle of her chest, then they took half of her heart"
+  },
+  "victim": {
+    "value": "Lucy, the narrator's cousin who was like a sister to both brothers",
+    "confidence": "medium",
+    "quote": "she was our only cousin, we were like brother and sister"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Someone the brothers know personally, but specific identity and motive not revealed in excerpt",
+    "confidence": "medium",
+    "quote": "were dealign with some one we know"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Sam, the narrator and Lucy's cousin, telling the story in first person",
+    "confidence": "high",
+    "quote": "She was murdered, James i know this is a bad time but-"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial suggestion that this is a serial killer when James reveals it's someone they know",
+    "confidence": "medium",
+    "quote": "were dealign with some one we know"
+  },
+  "clue_fairness": {
+    "value": "Specific details about Lucy's murder methods (burns, carved cross, removed heart) revealed to reader",
+    "confidence": "medium",
+    "quote": "They used a knife of some sort to carve a cross out on the middle of her chest, then they took half of her heart"
+  },
+  "social_world": {
+    "value": "Family dynamics between siblings Sam and James, with shared trauma from mother's death",
+    "confidence": "medium",
+    "quote": "i told him about mum when she died when i was only 19 and he 16"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "James's immediate recognition based on the specific murder details triggers his certainty about the killer's identity",
+    "confidence": "medium",
+    "quote": "I know who did it"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Sam's role as bearer of tragic news, repeating childhood trauma of informing James about their mother's death",
+    "confidence": "high",
+    "quote": "it was a look i wished not to see again"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-by-morgan-burn/",
+    "corpus_index": 211,
+    "text_len": 7194,
+    "title": "ebook by morgan burn",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

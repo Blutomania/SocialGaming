@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Serial murder by marriage fraud - multiple husbands/victims killed for inheritance money",
+    "confidence": "high",
+    "quote": "it's my understanding that Edward Denbre's death will be investigated as a criminal homicide"
+  },
+  "victim": {
+    "value": "Edward Denbre, wealthy con artist who became victim of his own mark Joyce, who was more dangerous than he realized",
+    "confidence": "high",
+    "quote": "a man of wealth and at an age where he could have enjoyed a worry free life, killed himself"
+  },
+  "closed_world": {
+    "value": "High-stakes casino gambling circuit in Atlantic City and Vegas where wealthy marks and predators intersect",
+    "confidence": "medium",
+    "quote": "Her favorite place is the high roller tables in casino's. She prefers the high stake baccarat tables"
+  },
+  "culprit_and_motive": {
+    "value": "Joyce Denbre, serial killer who marries wealthy men then murders them for inheritance money",
+    "confidence": "high",
+    "quote": "she's looking for the long run, a marriage to a rich guy who when he's dead leaves everything to her"
+  },
+  "resolution": {
+    "value": "Private investigator gathers evidence linking Joyce to multiple suspicious deaths, leading to criminal investigation",
+    "confidence": "medium",
+    "quote": "Should that be done and Joyce Denbre is arrested and convicted"
+  },
+  "investigator": {
+    "value": "Private investigator working for Henrietta Thornton's heir to recover stolen inheritance",
+    "confidence": "medium",
+    "quote": "the desire of my client is that Henrietta Thornton's funds from her estate be taken away from Joyce Denbre"
+  },
+  "suspect_architecture": {
+    "value": "Serial killer Joyce Denbre as primary suspect with pattern of murdering wealthy husbands; multiple victims (Howard Palmer, Donald Cummings, Edward Denbre) differentiated by method - drowning, electrocution, suicide staging",
+    "confidence": "high",
+    "quote": "She prefers the high stake baccarat tables in Vegas and Atlantic City. Sometimes, she'll sleep with a rich guy"
+  },
+  "red_herring": {
+    "value": "Edward Denbre's apparent suicide staging - made to look like self-inflicted death when actually murder by Joyce",
+    "confidence": "medium",
+    "quote": "Lastly is the suicide of Edward Denbre, a man of wealth and at an age where he could have enjoyed a worry free life"
+  },
+  "clue_fairness": {
+    "value": "Pattern of suspicious deaths around Joyce revealed through investigation - insurance payouts, accidental deaths, wealthy victims all disclosed to reader",
+    "confidence": "medium",
+    "quote": "Her operation is to stalk rich men. Her favorite place is the high roller tables in casino's"
+  },
+  "social_world": {
+    "value": "Wealthy casino culture and high society - Joyce exploits class dynamics, targeting rich widowed men at exclusive gambling venues and charity events",
+    "confidence": "high",
+    "quote": "I intend to attend a lavish garden party being held to raise funds for UNESCO"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Detective investigation connecting pattern of deaths across multiple jurisdictions, revealing Joyce's systematic targeting of wealthy men",
+    "confidence": "medium",
+    "quote": "Edward Denbre's death will be investigated as a criminal homicide"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-the-wives-of-edward-denbre/",
+    "corpus_index": 87,
+    "text_len": 138951,
+    "title": "ebook robert f clifton the wives of edward denbre",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

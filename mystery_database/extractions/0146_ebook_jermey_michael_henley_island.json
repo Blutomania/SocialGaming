@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Survivors stranded on a mysterious island after cruise ship hits rocks and suffers hull damage",
+    "confidence": "high",
+    "quote": "stranded on some island in the middle of the Atlantic, that evidently no one has ever heard of"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Jonathan, retired Navy Master Chief Petty Officer and Marine who becomes reluctant leader of survivors",
+    "confidence": "medium",
+    "quote": "he was a retired Master chief Petty Officer, for Christ' sake"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "The island appearing 'deserted' when it contains hidden inhabitants with dig spots and dart weapons",
+    "confidence": "medium",
+    "quote": "This \"deserted\" island, was not as deserted as they believed."
+  },
+  "clue_fairness": {
+    "value": "Reader sees the dig spots and dart attack simultaneously with Jonathan's discovery",
+    "confidence": "medium",
+    "quote": "He stumbled uopn a few dig spots. He knelt down to get a closer look at them."
+  },
+  "social_world": {
+    "value": "Military hierarchy with Jonathan (Navy/Marines) asserting command over other service members and civilians",
+    "confidence": "high",
+    "quote": "And how about your entire lifetime, I spent in the Navy AND Marines. Is that good enough?"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Island folklore from military sources describing it as demonic and dangerous",
+    "confidence": "medium",
+    "quote": "Full of demons, and if anyone ever found themselves deserted on it, they should go ahead and expect the absolute worse"
+  },
+  "investigator_wound": {
+    "value": "Jonathan's traumatic military connection to this specific island from 1985 commanding officer's warnings",
+    "confidence": "high",
+    "quote": "He thought about the last time he had seen this island. His commanding officer, in the spring of 1985"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-jermey-michael-henley-island/",
+    "corpus_index": 146,
+    "text_len": 9977,
+    "title": "ebook jermey michael henley island",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

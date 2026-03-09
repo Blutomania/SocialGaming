@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder by stabbing - Matt killed his grandfather Johnsen with a knife on a boat in the middle of Dead Mans Lake",
+    "confidence": "high",
+    "quote": "he pulled out his knife and started stabbing Johnsen over and over again in the chest"
+  },
+  "victim": {
+    "value": "Johnsen (grandfather) who was apparently attempting to harm or kill Matt during a nighttime boat trip",
+    "confidence": "medium",
+    "quote": "As Johnsen was about to throw Matt over he pulled out his knife"
+  },
+  "closed_world": {
+    "value": "Dead Mans Lake and the associated cave system - a forbidden location with supernatural elements",
+    "confidence": "medium",
+    "quote": "It's forbidden for any one to go there"
+  },
+  "culprit_and_motive": {
+    "value": "Matt killed his grandfather Johnsen in self-defense when Johnsen tried to throw him overboard",
+    "confidence": "high",
+    "quote": "Matt realized what Johnsen was going to try to do"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "No clear investigator present - the narrative reveals the crime through Matt's perspective and supernatural encounters",
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": "Single perpetrator (Matt) with family victims - grandfather Johnsen (murdered), sister Marla (threatened). Limited cast with helper characters (Steve, Alex, Nate) who lack suspect differentiation.",
+    "confidence": "medium",
+    "quote": "Matt had killed him, but of course no one knew that either. Not even his sister Marla."
+  },
+  "red_herring": {
+    "value": "The supernatural legend of ol' Johnsen's ghost - deliberate misdirection from the true killer being Matt, his own grandson.",
+    "confidence": "high",
+    "quote": "The legend says that one black and stormy night an old man went out to sea"
+  },
+  "clue_fairness": {
+    "value": "Matt's possession of the knife is revealed to reader before any investigation begins, along with his guilt and motive.",
+    "confidence": "high",
+    "quote": "Matt remembered his knife, 'better if I take it along' thought Matt to himself"
+  },
+  "social_world": {
+    "value": "Family power dynamics - abusive grandfather exploiting vulnerable child, small town community with shared folklore and legends.",
+    "confidence": "medium",
+    "quote": "Johnsen grabbed Matt by the arm and yelled 'GO GET DRESSED!!!'"
+  },
+  "alibi": {
+    "value": "Matt's implicit alibi is that no one would suspect a 10-year-old boy of murder, allowing him to hide in plain sight for years.",
+    "confidence": "high",
+    "quote": "After all who would suspect a 10 year old boy?"
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Local folklore transforms the crime into supernatural legend, with community creating ghost story to explain Johnsen's disappearance and mysterious reappearance.",
+    "confidence": "high",
+    "quote": "People called him ol' Johnsen... the girl was gone and ol' Johnsen was sitting on a rock whistling"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-bethany-r-porter-billowing-in-the-distance/",
+    "corpus_index": 255,
+    "text_len": 4157,
+    "title": "ebook bethany r porter billowing in the distance",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

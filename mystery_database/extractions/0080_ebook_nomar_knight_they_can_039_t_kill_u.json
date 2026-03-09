@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "A cockroach narrator killed by a human with a sandal",
+    "confidence": "high",
+    "quote": "As I lie there helpless on the tiles, only my antennae moving slowly, I cry for my babies"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Human kills cockroach out of disgust/revulsion",
+    "confidence": "high",
+    "quote": "Yuck! Disgusting Cockroaches!"
+  },
+  "resolution": {
+    "value": "Cockroach is killed but declares species will survive through reproduction",
+    "confidence": "medium",
+    "quote": "My babies will have babies and they'll have others and no matter how hard you try to erase us"
+  },
+  "investigator": {
+    "value": "The cockroach victim serves as first-person narrator",
+    "confidence": "high",
+    "quote": "I stand frozen, hiding in the shadows, aware of my misstep."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "The narrative misdirects readers to see giant mythical creatures when the 'gods' are revealed to be ordinary humans in a shower",
+    "confidence": "high",
+    "quote": "I swear these creatures are gods. They possess gargantuan size, incredible strength, and somehow they make light appear"
+  },
+  "clue_fairness": {
+    "value": "All clues about the true scale are present: tiles, antennae, the reveal of cockroach perspective available throughout",
+    "confidence": "high",
+    "quote": "As I lie there helpless on the tiles, only my antennae moving slowly"
+  },
+  "social_world": {
+    "value": "Hierarchical species warfare with humans as dominant oppressors and cockroaches as survival-focused underclass",
+    "confidence": "high",
+    "quote": "Our deep hatred for each others species began with their total disregard with our right to exist"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Perspective shift revelation through physical details: tiles, antennae, and human speech expose the cockroach narrator",
+    "confidence": "high",
+    "quote": "Yuck! Disgusting Cockroaches!"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Parental desperation driving the narrator to risk death searching for missing mate and food for offspring",
+    "confidence": "medium",
+    "quote": "Putting my children's safety before my own, I began my journey only to find my life hanging in the balance"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-nomar-knight-they-can-039-t-kill-us-all/",
+    "corpus_index": 80,
+    "text_len": 4363,
+    "title": "ebook nomar knight they can 039 t kill us all",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

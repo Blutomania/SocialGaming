@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "High school setting where CIA-trained protagonist is placed undercover",
+    "confidence": "medium",
+    "quote": "\"It's your lucky day. Your going to high school,\" Paul said with a smile on his face."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "CIA-trained protagonist Celia (undercover as different identity) placed in civilian setting",
+    "confidence": "medium",
+    "quote": "Working in the CIA was a part of me that stuck like a piece of gum."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "CIA compound hierarchy with Paul as handler controlling protagonist's missions and identity",
+    "confidence": "medium",
+    "quote": "Working in the CIA was a part of me that stuck like a piece of gum. Everytime you try to walk away it just keeps following you."
+  },
+  "alibi": {
+    "value": "Identity transformation with new appearance and name to avoid recognition during school mission",
+    "confidence": "medium",
+    "quote": "My once dark brown hair was now dark red along with my eyebrows. My hazel eyes were transformed into a dark green."
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Abandonment trauma and forced premature maturation creating emotional isolation",
+    "confidence": "high",
+    "quote": "I never knew my parents. They kicked me to the f*cking curb. Literally."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-faith-harper-bitter-affection/",
+    "corpus_index": 202,
+    "text_len": 28950,
+    "title": "ebook faith harper bitter affection",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

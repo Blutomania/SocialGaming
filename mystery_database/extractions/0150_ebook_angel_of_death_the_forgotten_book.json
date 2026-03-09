@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Maria Tate, a babysitter who encountered 'the man with the bloody hand' and was stabbed",
+    "confidence": "medium",
+    "quote": "He drove the knife into me and yanked it out again. I looked down to see my blood gush out."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "The man with the bloody hand, supernatural entity with unclear motive for targeting victims",
+    "confidence": "low",
+    "quote": "All who read this beware for you will be my next victim."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial suggestion that prank callers are responsible, when supernatural threat is real",
+    "confidence": "medium",
+    "quote": "At this point I came to the conclusion that it was a prank caller."
+  },
+  "clue_fairness": {
+    "value": "All supernatural manifestations (bloody hand, blood from tap, phone calls) witnessed by reader through Maria's POV",
+    "confidence": "high",
+    "quote": "The letter box opened and a bloody hand covered in bandages appeared."
+  },
+  "social_world": {
+    "value": "Working class young women (babysitters, students) as vulnerable targets in domestic spaces",
+    "confidence": "medium",
+    "quote": "I told him of course I could and that my rates were \u00a33.50 an hour."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Supernatural entity continues pattern by targeting reader of the account",
+    "confidence": "high",
+    "quote": "Hello Isis I believe you read my story. I am the man with the bloody hand and I'm at the door."
+  },
+  "media_and_audience": {
+    "value": "Written warning disguised as fiction, with police dismissal of supernatural evidence",
+    "confidence": "medium",
+    "quote": "The police thoroughly checked the house but couldn't find a drop of blood"
+  },
+  "investigator_wound": {
+    "value": "Isis's isolation as newcomer to town makes her vulnerable to same pattern",
+    "confidence": "medium",
+    "quote": "She had just moved to the town and didn't know why she had gotten the apartment so dirt cheap."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-angel-of-death-the-forgotten-book/",
+    "corpus_index": 150,
+    "text_len": 9665,
+    "title": "ebook angel of death the forgotten book",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

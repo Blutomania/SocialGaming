@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Attempted murder by poison using a deadly spring-loaded box device",
+    "confidence": "high",
+    "quote": "where the sharp spring like a viper's tooth emerges as you open it"
+  },
+  "victim": {
+    "value": "Sherlock Holmes, targeted because he posed a threat to Smith's criminal activities",
+    "confidence": "medium",
+    "quote": "It was clear to me, however, that by pretending that he had really succeeded in his design"
+  },
+  "closed_world": {
+    "value": "Holmes's Baker Street rooms and Smith's residence, connected by Watson's movements",
+    "confidence": "medium",
+    "quote": "Before the apologetic butler had delivered his message I had pushed past him and was in the room"
+  },
+  "culprit_and_motive": {
+    "value": "Smith, who wanted to eliminate Holmes to protect himself from exposure of his criminal schemes",
+    "confidence": "high",
+    "quote": "Knowing his vindictive nature, I was perfectly certain that he would come to look upon his handiwork"
+  },
+  "resolution": {
+    "value": "Holmes reveals his deception, exposes Smith's guilt through confession, and hands him to police",
+    "confidence": "high",
+    "quote": "When we have finished at the police-station I think that something nutritious at Simpson's would not be out of place"
+  },
+  "investigator": {
+    "value": "Sherlock Holmes, master detective who solves the case by feigning his own death",
+    "confidence": "high",
+    "quote": "That pretence I have carried out with the thoroughness of the true artist"
+  },
+  "suspect_architecture": {
+    "value": "Single primary suspect: Culverton Smith with means (poisoned ivory box), motive (inheritance - removing Savage who stood between him and reversion), and opportunity (sending packages to victims)",
+    "confidence": "high",
+    "quote": "It was by some such device that poor Savage, who stood between this monster and a reversion, was done to death"
+  },
+  "red_herring": {
+    "value": "Holmes's apparent deadly illness from tropical disease - elaborately staged deception including fasting, makeup, and theatrical symptoms to lure the real killer",
+    "confidence": "high",
+    "quote": "Three days of absolute fast does not improve one's beauty, Watson. For the rest, there is nothing which a sponge may not cure"
+  },
+  "clue_fairness": {
+    "value": "The poisoned ivory box mechanism is revealed to Watson (and reader) after the confession, showing the spring-loaded tooth device used for murder",
+    "confidence": "medium",
+    "quote": "You can just see if you look at it sideways where the sharp spring like a viper's tooth emerges as you open it"
+  },
+  "social_world": {
+    "value": "Victorian domestic hierarchy with landlady Mrs. Hudson in awe of Holmes despite his outrageous behavior, and professional medical/detective authority structures",
+    "confidence": "medium",
+    "quote": "The landlady stood in the deepest awe of him and never dared to interfere with him, however outrageous his proceedings"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Holmes's feigned illness draws out Smith's confession by making him believe his murder attempt succeeded, combined with technical demonstration of the poisoned box mechanism",
+    "confidence": "high",
+    "quote": "It was clear to me, however, that by pretending that he had really succeeded in his design I might surprise a confession"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Watson's medical compassion and loyalty to Holmes is exploited - his genuine distress at Holmes's apparent illness makes the deception convincing to the real killer",
+    "confidence": "medium",
+    "quote": "Can you ask, my dear Watson? Do you imagine that I have no respect for your medical talents?"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-adventure-of-the-dying-detective/",
+    "corpus_index": 88,
+    "text_len": 32127,
+    "title": "ebook sir arthur conan doyle the adventure of the dying detective",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

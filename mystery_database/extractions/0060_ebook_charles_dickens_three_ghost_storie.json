@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder (in 'The Trial For Murder' story)",
+    "confidence": "medium",
+    "quote": "which I call by the name of the murdered man look at the Murderer"
+  },
+  "victim": {
+    "value": "Murdered man who appears as ghost during trial",
+    "confidence": "medium",
+    "quote": "The murdered man at that time stood directly opposite the Jury-box"
+  },
+  "closed_world": {
+    "value": "Courtroom during murder trial",
+    "confidence": "medium",
+    "quote": "We retired to consider, at seven minutes before ten at night"
+  },
+  "culprit_and_motive": {
+    "value": "The defendant on trial, motive unclear from excerpt",
+    "confidence": "low",
+    "quote": "As I gave in our verdict, \"Guilty,\" the veil collapsed"
+  },
+  "resolution": {
+    "value": "Jury verdict of guilty, ghost disappears when justice served",
+    "confidence": "medium",
+    "quote": "As I gave in our verdict, \"Guilty,\" the veil collapsed, all was gone"
+  },
+  "investigator": {
+    "value": "Jury foreman who sees the murdered man's ghost",
+    "confidence": "high",
+    "quote": "BEFORE I WAS TAKEN, HE SOMEHOW GOT TO MY BEDSIDE IN THE NIGHT, WOKE ME, AND PUT A ROPE ROUND MY NECK"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Floating rumours about hooded lady, owl, Master B., ghost with round table, and impalpable Jackass serve as deliberate supernatural misdirection",
+    "confidence": "medium",
+    "quote": "I then recounted the floating rumours concerning the hooded lady, the owl, and Master B."
+  },
+  "clue_fairness": {
+    "value": "The murdered man's supernatural presence and behavior during trial are shown to reader as narrator experiences them",
+    "confidence": "medium",
+    "quote": "The murdered man at that time stood directly opposite the Jury-box, on the other side of the Court."
+  },
+  "social_world": {
+    "value": "Victorian judicial system with formal court hierarchy, jury structure, and press coverage of criminal proceedings",
+    "confidence": "medium",
+    "quote": "The idiotic vestryman and his two parochial parasites gave us so much trouble"
+  },
+  "alibi": {
+    "value": "Murderer's claim of supernatural visitation before arrest serves as metaphysical alibi or explanation for his doom",
+    "confidence": "low",
+    "quote": "BEFORE I WAS TAKEN, HE SOMEHOW GOT TO MY BEDSIDE IN THE NIGHT, WOKE ME, AND PUT A ROPE ROUND MY NECK."
+  },
+  "reveal_mechanic": {
+    "value": "Supernatural revelation through murdered victim's ghostly presence dissolving when justice is served",
+    "confidence": "high",
+    "quote": "As I gave in our verdict, \"Guilty,\" the veil collapsed, all was gone, and his place was empty."
+  },
+  "media_and_audience": {
+    "value": "Press dismisses murderer's supernatural claims as rambling incoherence, contrasting with narrator's true experience",
+    "confidence": "high",
+    "quote": "described in the leading newspapers of the following day as \"a few rambling, incoherent, and half-audible words\""
+  },
+  "investigator_wound": {
+    "value": "Juror-narrator's supernatural sensitivity makes him uniquely burdened with seeing the murdered man's ghost throughout trial",
+    "confidence": "medium",
+    "quote": "Again and again I wondered, \"Why does he not?\" But he never did."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-charles-dickens-three-ghost-stories/",
+    "corpus_index": 60,
+    "text_len": 116165,
+    "title": "ebook charles dickens three ghost stories",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

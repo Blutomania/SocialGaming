@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Kidnapping and attempted murder by burial alive in an oversized coffin",
+    "confidence": "high",
+    "quote": "They rushed in and overpowered her with their chloroform, carried her down, poured more into the coffin"
+  },
+  "victim": {
+    "value": "Lady Frances Carfax, targeted for her valuable jewelry and wealth",
+    "confidence": "high",
+    "quote": "He has begun to pawn the jewels. We should get him now."
+  },
+  "closed_world": {
+    "value": "London pawnshop network and criminal underworld where the perpetrators operate",
+    "confidence": "medium",
+    "quote": "It is possible that he will go to some other pawnbroker in the future"
+  },
+  "culprit_and_motive": {
+    "value": "The Shlessingers (ex-missionary couple) motivated by theft of Lady Frances's jewelry",
+    "confidence": "high",
+    "quote": "If our ex-missionary friends escape the clutches of Lestrade"
+  },
+  "resolution": {
+    "value": "Holmes deduces the oversized coffin was meant for two bodies and stops the burial in time",
+    "confidence": "high",
+    "quote": "Why so large a coffin for so small a body? To leave room for another body."
+  },
+  "investigator": {
+    "value": "Sherlock Holmes as the primary detective with Watson as narrator",
+    "confidence": "high",
+    "quote": "But why Turkish?' asked Mr. Sherlock Holmes"
+  },
+  "suspect_architecture": {
+    "value": "Primary suspects are the Shlessingers (ex-missionary couple) - husband who pawns jewelry and wife who delivers items. Secondary figure is the undertaker complicit in coffin scheme. Clear means (chloroform, oversized coffin), motive (theft), opportunity (isolated victim)",
+    "confidence": "high",
+    "quote": "It was the wife, this time, but the pendant she brought was the fellow of the other. She is a tall, pale woman"
+  },
+  "red_herring": {
+    "value": "The focus on conventional murder methods and locations while the true scheme involves live burial in an oversized coffin under false death certificate",
+    "confidence": "medium",
+    "quote": "Why so large a coffin for so small a body? To leave room for another body. Both would be buried under the one certificate"
+  },
+  "clue_fairness": {
+    "value": "The undertaker's wife's remark about the coffin being 'out of the ordinary' and taking longer is presented to reader through Philip Green's report before Holmes interprets its significance",
+    "confidence": "high",
+    "quote": "It should be there before now. It took longer, being out of the ordinary"
+  },
+  "social_world": {
+    "value": "Upper class vulnerability (Lady Frances), military connections (Admiral Green's son Philip), professional networks (pawnbrokers, undertakers), and ex-colonial missionary background of perpetrators",
+    "confidence": "medium",
+    "quote": "the son of the famous admiral of that name who commanded the Sea of Azof fleet in the Crimean War"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Physical demonstration through the oversized coffin dimensions and the undertaker's timing comment, plus the pattern of jewelry pawning that leads to tracking the perpetrators",
+    "confidence": "high",
+    "quote": "Then in an instant I remembered the deep sides, and the little wasted figure at the bottom"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Holmes experiences self-doubt about missing obvious clues, haunted by the thought that he dismissed important observations too easily",
+    "confidence": "medium",
+    "quote": "My night was haunted by the thought that somewhere a clue, a strange sentence, a curious observation, had come"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-disappearance-of-lady-frances-carfax/",
+    "corpus_index": 106,
+    "text_len": 42586,
+    "title": "ebook sir arthur conan doyle the disappearance of lady frances carfax",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

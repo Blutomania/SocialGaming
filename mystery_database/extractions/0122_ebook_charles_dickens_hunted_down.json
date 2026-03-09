@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Insurance fraud through systematic poisoning of multiple victims",
+    "confidence": "high",
+    "quote": "he broke into a crooked run, leap, start, - I have no name for the spasm, - and fell, with a dull weight"
+  },
+  "victim": {
+    "value": "Young women who were systematically poisoned, including Margaret's sister who wasted away slowly",
+    "confidence": "high",
+    "quote": "The sister had wasted away very slowly, and wild and terrible fantasies had come over her toward the end"
+  },
+  "closed_world": {
+    "value": "Life insurance office investigation with limited suspects known to the victims",
+    "confidence": "medium",
+    "quote": "In my capacity as Chief Manager of a Life Assurance Office, I think I have within the last thirty years"
+  },
+  "culprit_and_motive": {
+    "value": "The miscreant who poisoned victims for insurance money, confronted by Meltham who promised to haunt him",
+    "confidence": "high",
+    "quote": "You shall see me once again in the spirit, when the cord is round your neck, and the crowd are crying"
+  },
+  "resolution": {
+    "value": "The criminal dies by his own poison after being confronted, ending his crimes through poetic justice",
+    "confidence": "high",
+    "quote": "the room was filled with a new and powerful odour, and, almost at the same instant, he broke into a crooked"
+  },
+  "investigator": {
+    "value": "Mr. Sampson, Chief Manager of a Life Assurance Office, narrating his experiences with insurance fraud",
+    "confidence": "high",
+    "quote": "In my capacity as Chief Manager of a Life Assurance Office, I think I have within the last thirty years"
+  },
+  "suspect_architecture": {
+    "value": "Single primary suspect (Slinkton) with elaborate false identity, plus secondary figures including accomplice Beckwith and victims Margaret/Alice",
+    "confidence": "high",
+    "quote": "When we saw that he was dead, we drew away from the room, and Meltham, giving me his hand, said"
+  },
+  "red_herring": {
+    "value": "Slinkton's caring devotion persona - praised by Margaret for his 'care of her dead sister' and 'untiring devotion'",
+    "confidence": "high",
+    "quote": "she praised him to me, for his care of her dead sister, and for his untiring devotion in her last illness"
+  },
+  "clue_fairness": {
+    "value": "Physiognomy principle established early - narrator's skill at reading faces presented as investigative method available to reader",
+    "confidence": "medium",
+    "quote": "There is nothing truer than physiognomy, taken in connection with manner"
+  },
+  "social_world": {
+    "value": "Life insurance industry hierarchy with Chief Manager narrator having institutional authority and access to financial records/patterns",
+    "confidence": "high",
+    "quote": "In my capacity as Chief Manager of a Life Assurance Office, I think I have within the last thirty years seen more"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Poison suicide - perpetrator takes his own poison when confronted, demonstrated through 'new and powerful odour' and immediate death",
+    "confidence": "high",
+    "quote": "the room was filled with a new and powerful odour, and, almost at the same instant, he broke into a crooked run"
+  },
+  "media_and_audience": {
+    "value": "Insurance industry insider perspective frames crimes as 'romances' - professional distance transforms sordid murders into narrative",
+    "confidence": "medium",
+    "quote": "Most of us see some romances in life. In my capacity as Chief Manager of a Life Assurance Office"
+  },
+  "investigator_wound": {
+    "value": "Meltham's guilt over failing to save his beloved - 'he might have saved her, he said; he had not saved her' leads to his death",
+    "confidence": "high",
+    "quote": "He might have saved her, he said; he had not saved her, and he reproached himself; he had lost her"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-charles-dickens-hunted-down/",
+    "corpus_index": 122,
+    "text_len": 47535,
+    "title": "ebook charles dickens hunted down",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

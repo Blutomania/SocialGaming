@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of Farmer Thatcher in 1965, preceded by theft of his prize sheep",
+    "confidence": "high",
+    "quote": "they both killed him. Max's Auntie told him all this days before the show"
+  },
+  "victim": {
+    "value": "Farmer Thatcher, popular village supplier whose wife was having an affair, making him a target for revenge",
+    "confidence": "high",
+    "quote": "his father was in a relationship with Madeline Thatcher"
+  },
+  "closed_world": {
+    "value": "Small village community where Farmer Thatcher supplied meat and dairy, with known local relationships",
+    "confidence": "medium",
+    "quote": "This field was distant from everywhere else with in the small village"
+  },
+  "culprit_and_motive": {
+    "value": "Mr Morrison and Mrs Thatcher killed Farmer Thatcher after he beat his wife in anger over her affair",
+    "confidence": "high",
+    "quote": "So then they plotted to kill the sheep to get vengeance but Mr Morrison was still so angry"
+  },
+  "resolution": {
+    "value": "Cold case team in 2011 solved the 1965 murder through witness testimony from Max Morrison",
+    "confidence": "high",
+    "quote": "Max agreed to be a witness. He had told Lennon that his father and his Uncle had gone to the farm"
+  },
+  "investigator": {
+    "value": "Cold Case Team member Lennon investigating the decades-old murder",
+    "confidence": "high",
+    "quote": "2011-07-04. Cold Case Team. London. Just when everyone thought disaster, a new lead was brought in"
+  },
+  "suspect_architecture": {
+    "value": "Three primary suspects with family connections: Mr Morrison (romantic rival with motive), Mrs Thatcher (accomplice with means), Max Morrison (witness/informant), plus secondary figures like Uncle",
+    "confidence": "medium",
+    "quote": "his father was in a relationship with Madeline Thatcher...they both killed him"
+  },
+  "red_herring": {
+    "value": "The sheep theft as primary crime - deliberately planted to distract from the real motive of adultery and romantic rivalry",
+    "confidence": "medium",
+    "quote": "They were going to fly to Gretna Green to get married"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Rural farming community with collective barn-building project, where Farmer Thatcher holds respected position as village supplier",
+    "confidence": "high",
+    "quote": "Farmer Thatcher supplied the village with meat and dairy products...the villagers often helped him"
+  },
+  "alibi": {
+    "value": "Morrison and Uncle's cover story of airport pickup for elopement breaks down when witness Max reveals the true sequence of events",
+    "confidence": "medium",
+    "quote": "His Uncle was to pick her up and drive them both to the airport"
+  },
+  "reveal_mechanic": {
+    "value": "Witness testimony from Max Morrison after TV show prompts him to reveal family secrets about the murder plot",
+    "confidence": "high",
+    "quote": "Max agreed to be a witness. He had told Lennon that his father and his Uncle had gone to the farm"
+  },
+  "media_and_audience": {
+    "value": "Cold case TV show creates public platform that pressures witness to come forward with crucial testimony",
+    "confidence": "medium",
+    "quote": "Max's Auntie told him all this days before the show"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-megan-lewis-sheep-snatcher-thief-catcher-what-8217-s-the-good-in-that-old-thatcher/",
+    "corpus_index": 131,
+    "text_len": 12046,
+    "title": "ebook megan lewis sheep snatcher thief catcher what 8217 s the good in that old thatcher",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

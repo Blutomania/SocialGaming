@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Raffles Haw, wealthy recluse with mysterious chemical operations who dies of apparent broken heart",
+    "confidence": "medium",
+    "quote": "Was it suicide, sir? Was it suicide? No, he answered; I think it was a broken heart."
+  },
+  "closed_world": {
+    "value": "The New Hall estate where Raffles Haw conducts secret experiments in isolation",
+    "confidence": "medium",
+    "quote": "it was one of his whims that no one should ever cross the threshold of that outlying building"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Death appears natural - broken heart - with no criminal investigation or solution provided",
+    "confidence": "medium",
+    "quote": "I think it was a broken heart."
+  },
+  "investigator": {
+    "value": "Robert McIntyre, artist and acquaintance who discovers the body and explains the death",
+    "confidence": "medium",
+    "quote": "Was it suicide, sir? Was it suicide? broke in the policeman as Robert put the note in his pocket"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial suggestion that Raffles Haw's mysterious laboratory work and secretive chemical experiments are sinister, when they are actually alchemical gold creation",
+    "confidence": "medium",
+    "quote": "it was one of his whims that no one...should ever cross the threshold of that outlying building"
+  },
+  "clue_fairness": {
+    "value": "Haw's physical exhaustion after laboratory sessions and the machinery sounds are presented to reader before the gold-making secret is revealed",
+    "confidence": "medium",
+    "quote": "Day after day he vanished into it, to reappear hours afterwards pale and exhausted"
+  },
+  "social_world": {
+    "value": "Victorian class structure where sudden wealth disrupts established hierarchies - the McIntyres' genteel poverty versus Haw's mysterious fortune",
+    "confidence": "high",
+    "quote": "It is from Lady Morsley, asking me to the Lord-Lieutenant's ball. I cannot possibly accept"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "The chemical demonstration of gold creation through Haw's unorthodox alchemical methods in his private laboratory",
+    "confidence": "medium",
+    "quote": "teach you something of my chemical methods, which I may say differ considerably from those of the orthodox school"
+  },
+  "media_and_audience": {
+    "value": "Village gossip and local speculation about the mysterious wealthy newcomer and the eventual transformation of his estate into a commercial establishment",
+    "confidence": "medium",
+    "quote": "So runs the gossip of the village, and in small places such gossip is seldom wrong"
+  },
+  "investigator_wound": {
+    "value": "Robert McIntyre becomes obsessed with rediscovering Haw's lost alchemical secret, abandoning his art and becoming 'moody and irritable'",
+    "confidence": "high",
+    "quote": "Robert McIntyre is a moody and irritable man, for ever pursuing a quest which will always evade him"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-doings-of-raffles-haw/",
+    "corpus_index": 112,
+    "text_len": 206447,
+    "title": "ebook sir arthur conan doyle the doings of raffles haw",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

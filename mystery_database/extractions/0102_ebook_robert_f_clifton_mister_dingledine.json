@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder by poisoning - Herbert Dingledine's wife Ethel died from alleged botulism, but police suspect murder",
+    "confidence": "high",
+    "quote": "What do you mean? It's been said that his wife died from a case of botulism."
+  },
+  "victim": {
+    "value": "Ethel Dingledine, Herbert's wife who was 'killable' because her husband wanted her dead and was pursuing another woman",
+    "confidence": "high",
+    "quote": "I will admit that I wanted her dead, but I didn't kill her."
+  },
+  "closed_world": {
+    "value": "The local school faculty and social circle where Herbert worked and conducted his affair",
+    "confidence": "medium",
+    "quote": "He is a member of the faculty. All of us eat at the same time."
+  },
+  "culprit_and_motive": {
+    "value": "Herbert Dingledine is convicted and executed for murdering his wife, motivated by desire for Alberta",
+    "confidence": "high",
+    "quote": "he did attempt to woo me... due to the fact that he was a married man I resisted his advances."
+  },
+  "resolution": {
+    "value": "Herbert is convicted through legal proceedings, sentenced to death, and executed by hanging",
+    "confidence": "high",
+    "quote": "Wait, I'm falling, falling. CRACK!"
+  },
+  "investigator": {
+    "value": "Sergeant Bernhardt of the Philadelphia Police Department conducting the murder investigation",
+    "confidence": "high",
+    "quote": "Your tea and crumpet is being paid for by the Philadelphia Police Department."
+  },
+  "suspect_architecture": {
+    "value": "Primary suspect Herbert Dingledine (husband with motive: unhappy marriage, means: access to poison, opportunity: domestic access). Secondary suspect Alberta (romantic rival with motive: wanted married man free, means: unknown, opportunity: regular contact). Investigation suggests focused suspect pool around victim's immediate circle.",
+    "confidence": "medium",
+    "quote": "Well, the fact that you and Herbert Dingledine had meetings at the public library on certain Saturdays"
+  },
+  "red_herring": {
+    "value": "Botulism as cause of death appears to be deliberate misdirection - presented as accepted fact early in investigation but questioned by police sergeant, suggesting the actual murder method differs from public understanding.",
+    "confidence": "medium",
+    "quote": "What do you mean? It's been said that his wife died from a case of botulism."
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "School faculty hierarchy and small-town social dynamics. Herbert as married teacher pursuing unmarried colleague Alberta creates scandal potential. Social respectability and reputation crucial - Alberta emphasizes being 'a respectable, young lady' and 'a lady' when questioned about inappropriate relationship.",
+    "confidence": "high",
+    "quote": "He is a member of the faculty. All of us eat at the same time."
+  },
+  "alibi": {
+    "value": "Alberta's alibi centers on claiming platonic faculty relationship - denies romantic involvement while admitting Herbert 'attempted to woo' her. Her alibi is that propriety prevented inappropriate relationship, but police questioning suggests public evidence contradicts her claims of distance.",
+    "confidence": "medium",
+    "quote": "Platonic at best"
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Public narrative frames death as botulism case, but police investigation operates on different understanding. Community gossip about Herbert and Alberta's relationship becomes evidence. The case proceeds through formal legal system with prosecution, defense, and public execution as final spectacle.",
+    "confidence": "medium",
+    "quote": "I know what's been said."
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-mister-dingledine/",
+    "corpus_index": 102,
+    "text_len": 142609,
+    "title": "ebook robert f clifton mister dingledine",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

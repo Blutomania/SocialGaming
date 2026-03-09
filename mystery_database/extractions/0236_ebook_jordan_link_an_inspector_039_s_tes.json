@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Mansion robbery disguised as detective services - theft of antiques, jewelry, and valuables from wealthy clients",
+    "confidence": "high",
+    "quote": "I went through several other rooms throughout the day, methodically. I opened safe upon safe, dusting for fingerprints"
+  },
+  "victim": {
+    "value": "The Lawrence family and other wealthy clients who hired Inspector X, made vulnerable by their desperation and paranoia",
+    "confidence": "high",
+    "quote": "I have come to the aid of many desperate, paranoid, pathetic fools in the past"
+  },
+  "closed_world": {
+    "value": "The Lawrence mansion during the family's supposed absence, creating isolated opportunity for the crime",
+    "confidence": "medium",
+    "quote": "Everyone knew that the Lawrence family was diving deep into the clear ocean waves"
+  },
+  "culprit_and_motive": {
+    "value": "Inspector X (fake detective) motivated by greed - poses as investigator to gain access to wealthy homes for robbery",
+    "confidence": "high",
+    "quote": "I also rob the riches right from their hands. You might call me a philanthropist, yes. I believe I am, in a twisted way"
+  },
+  "resolution": {
+    "value": "Inspector X caught in elaborate police trap set by the Lawrence family, who were actually law enforcement officers",
+    "confidence": "high",
+    "quote": "The Lawrence family consisted of several more intelligent policemen and women who had tracked this so-called Inspector"
+  },
+  "investigator": {
+    "value": "Inspector X himself - the criminal narrator confessing from prison, providing first-person perspective of the crimes",
+    "confidence": "high",
+    "quote": "This is my written testimonial, to record and confess to the events that took place on the 4th of July"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Inspector persona and ghost/supernatural elements used to mask theft operation",
+    "confidence": "high",
+    "quote": "I refused to believe that the cause of these strange, spontaneous events was spiritual. I did not believe in ghosts"
+  },
+  "clue_fairness": {
+    "value": "All clues present in narration - ticking sounds, lack of security, fake inspector identity",
+    "confidence": "medium",
+    "quote": "Something was ticking nearby me, and instantly I froze. Wild, unrealistic thoughts began to pop into my crowded mind"
+  },
+  "social_world": {
+    "value": "Wealthy Lawrence family vs. anonymous criminal exploiting class assumptions about authority",
+    "confidence": "medium",
+    "quote": "This was my first multi-millionaire client, and I had to be amused at their lack of security"
+  },
+  "alibi": {
+    "value": "False Bahamas vacation story and fake inspector credentials as cover for the setup",
+    "confidence": "high",
+    "quote": "Everyone knew that the Lawrence family was diving deep into the clear ocean waves to explore coral reefs"
+  },
+  "reveal_mechanic": {
+    "value": "Criminal's confession reveals the inspector was the thief and the family were actually police",
+    "confidence": "high",
+    "quote": "The Lawrence family consisted of several more intelligent policemen and women who had tracked this so-called Inspector"
+  },
+  "media_and_audience": {
+    "value": "Criminal's testimonial format and 'X' unknown identity becoming police terminology",
+    "confidence": "medium",
+    "quote": "when I had departed with their riches the police referred to me as an 'X' criminal\u2014the 'X' being the unknown identity"
+  },
+  "investigator_wound": {
+    "value": "Criminal's overconfidence and need for recognition leading to capture",
+    "confidence": "medium",
+    "quote": "I will always know, no matter what anyone tells me, that I was one of the most successful, clever criminals"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-jordan-link-an-inspector-039-s-testimonial/",
+    "corpus_index": 236,
+    "text_len": 5741,
+    "title": "ebook jordan link an inspector 039 s testimonial",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Hit-and-run vehicular homicide - Darshan kills Manekba in a car accident and flees the scene",
+    "confidence": "high",
+    "quote": "\u0a95\u0abe\u0ab0 \u0aae\u0acb\u0a9f\u0abe \u0a89\u0aa6\u0acd\u0aaf\u0acb\u0a97\u0aaa\u0aa4\u0abf \u0aa8\u0ac0 \u0a9b\u0ac7 \u0a85\u0aa8\u0ac7 \u0a8f \u0aa6\u0abf\u0ab5\u0ab8\u0ac7 \u0a8f \u0a8f\u0a9c \u0a95\u0abe\u0ab0\u0aae\u0abe\u0a82 \u0ab9\u0aa4\u0acb \u0a9c\u0aaf\u0abe\u0ab0\u0ac7 \u0aae\u0abe\u0aa3\u0ac7\u0a95\u0aac\u0abe \u0aa8\u0ac7 \u0a85\u0a95\u0ab8\u0acd\u0aae\u0abe\u0aa4 \u0aa5\u0aaf\u0ac7\u0ab2\u0acb"
+  },
+  "victim": {
+    "value": "Manekba - wife of Madhavsinh, mother of martyred soldier Govindasinh, vulnerable pedestrian",
+    "confidence": "high",
+    "quote": "\u0aae\u0abe\u0aa3\u0ac7\u0a95\u0aac\u0abe \u0aab\u0ac2\u0a9f\u0aaa\u0abe\u0aa5 \u0aaa\u0abe\u0ab0 \u0a9a\u0abe\u0ab2\u0ac0 \u0ab0\u0ab9\u0acd\u0aaf\u0abe \u0ab9\u0aa4\u0abe \u0a8f\u0ab5\u0abe \u0aae\u0abe\u0a82 \u0a85\u0a9a\u0abe\u0aa8\u0a95 \u0aaa\u0abe\u0a9b\u0ab3 \u0aa5\u0ac0 \u0a8f\u0a95 \u0a95\u0abe\u0ab0 \u0a8f\u0a95\u0aa6\u0aae \u0ab8\u0acd\u0aaa\u0ac0\u0aa1 \u0aae\u0abe\u0a82 \u0a86\u0ab5\u0ac0"
+  },
+  "closed_world": {
+    "value": "Urban setting with limited witnesses who are systematically silenced through bribery by wealthy industrialist",
+    "confidence": "medium",
+    "quote": "\u0a8f\u0a95\u0ac7\u0aa4\u0acb \u0aae\u0abe\u0aa7\u0ab5\u0ab8\u0abf\u0a82\u0ab9 \u0aa8\u0ac7 \u0a9a\u0acb\u0a96\u0acd\u0a96\u0ac1\u0a82 \u0a95\u0a88 \u0aa6\u0ac0\u0aa7\u0ac1\u0a82 \u0a95\u0ac7 \u0a85\u0aae\u0aa8\u0ac7 \u0aa2\u0a97\u0ab2\u0acb \u0aaa\u0ac8\u0ab8\u0abe \u0aae\u0ab3\u0acd\u0aaf\u0abe \u0a9b\u0ac7 \u0aae\u0acb\u0aa2\u0ac1\u0a82 \u0aac\u0a82\u0aa7 \u0ab0\u0abe\u0a96\u0ab5\u0abe\u0aa8\u0abe"
+  },
+  "culprit_and_motive": {
+    "value": "Darshan, spoiled son of wealthy industrialist Ramanikal, commits hit-and-run due to reckless driving",
+    "confidence": "high",
+    "quote": "\u0a85\u0a82\u0aa6\u0ab0 \u0aa5\u0ac0 \u0aa6\u0ab0\u0acd\u0ab6\u0aa8 \u0aa8\u0ac0\u0a95\u0ab3\u0ac0 \u0a85\u0aa8\u0ac7 \u0aad\u0abe\u0a97\u0acd\u0aaf\u0acb \u0ab9\u0aa4\u0acb.\u0a86 \u0a98\u0a9f\u0aa8\u0abe \u0aac\u0ab0\u0abe\u0aac\u0ab0 \u0aa6\u0ac7\u0a96\u0abe\u0a88 \u0ab0\u0ab9\u0ac0 \u0ab9\u0aa4\u0ac0 \u0a85\u0aa8\u0ac7 \u0aa6\u0ab0\u0acd\u0ab6\u0aa8 \u0aaa\u0aa3 \u0a8f\u0a95\u0aa6\u0aae \u0ab8\u0acd\u0aaa\u0ab7\u0acd\u0a9f"
+  },
+  "resolution": {
+    "value": "CCTV footage from bank ATM machine proves Darshan's guilt; video goes viral leading to arrest and death sentence",
+    "confidence": "high",
+    "quote": "\u0a8f \u0ab5\u0abf\u0aa1\u0abf\u0a93 \u0aa8\u0ac0 \u0a95\u0acb\u0aaa\u0ac0 \u0ab8\u0acb\u0ab6\u0acd\u0aaf\u0abf\u0ab2 \u0aae\u0ac0\u0aa1\u0abf\u0aaf\u0abe \u0aaa\u0ab0 \u0aaa\u0acb\u0ab8\u0acd\u0a9f \u0a95\u0ab0\u0ac0 \u0aa5\u0acb\u0aa1\u0ac0 \u0ab5\u0abe\u0ab0 \u0aae\u0abe\u0a82 \u0a8f \u0ab5\u0abf\u0aa1\u0abf\u0a93 \u0ab5\u0abe\u0aaf\u0ab0\u0ab2 \u0aa5\u0aaf\u0acb"
+  },
+  "investigator": {
+    "value": "Madhavsinh - grieving husband and father of martyred soldier, seeking justice for his wife's death",
+    "confidence": "high",
+    "quote": "\u0aae\u0abe\u0aa7\u0ab5\u0ab8\u0abf\u0a82\u0ab9\u0ac7 \u0aa4\u0acb \u0aa8\u0a95\u0acd\u0a95\u0ac0 \u0a95\u0ab0\u0ac0 \u0ab2\u0ac0\u0aa7\u0ac1\u0a82 \u0ab9\u0aa4\u0ac1\u0a82 \u0a95\u0ac7 \u0a8f \u0aa6\u0ab0\u0acd\u0ab6\u0aa8 \u0ab5\u0abf\u0ab0\u0ac1\u0aa6\u0acd\u0aa7 \u0aaa\u0ac1\u0ab0\u0abe\u0ab5\u0abe\u0a93 \u0aad\u0ac7\u0a97\u0abe \u0a95\u0ab0\u0ab6\u0ac7 \u0a85\u0aa8\u0ac7 \u0a95\u0acb\u0ab0\u0acd\u0a9f \u0aa5\u0ac0 \u0a8f\u0aa8\u0ac7 \u0ab8\u0a9c\u0abe \u0a95\u0ab0\u0abe\u0ab5\u0ab6\u0ac7"
+  },
+  "suspect_architecture": {
+    "value": "Single clear suspect (Darshan, wealthy industrialist's son) with obvious means/motive/opportunity - hit-and-run driver with family wealth enabling cover-up",
+    "confidence": "high",
+    "quote": "\u0a95\u0abe\u0ab0 \u0aae\u0acb\u0a9f\u0abe \u0a89\u0aa6\u0acd\u0aaf\u0acb\u0a97\u0aaa\u0aa4\u0abf \u0aa8\u0ac0 \u0a9b\u0ac7 \u0a85\u0aa8\u0ac7 \u0a8f \u0aa6\u0abf\u0ab5\u0ab8\u0ac7 \u0a8f \u0a8f\u0a9c \u0a95\u0abe\u0ab0\u0aae\u0abe\u0a82 \u0ab9\u0aa4\u0acb \u0a9c\u0aaf\u0abe\u0ab0\u0ac7 \u0aae\u0abe\u0aa3\u0ac7\u0a95\u0aac\u0abe \u0aa8\u0ac7 \u0a85\u0a95\u0ab8\u0acd\u0aae\u0abe\u0aa4 \u0aa5\u0aaf\u0ac7\u0ab2\u0acb"
+  },
+  "red_herring": {
+    "value": "Media narrative shift blaming victim for negligence rather than driver - witnesses disappearing after being paid off",
+    "confidence": "high",
+    "quote": "\u0aa8\u0acd\u0aaf\u0ac1\u0a9d \u0a9a\u0ac7\u0aa8\u0ab2 \u0aae\u0abe\u0a82 \u0a86\u0ab5\u0ac0 \u0ab0\u0ab9\u0acd\u0aaf\u0ac1\u0a82 \u0ab9\u0aa4\u0ac1\u0a82 \u0a95\u0ac7 \u0aae\u0abe\u0aa3\u0ac7\u0a95\u0aac\u0abe \u0aa8\u0ac0 \u0a97\u0aab\u0ab2\u0aa4 \u0aa8\u0abe \u0ab2\u0ac0\u0aa7\u0ac7 \u0a85\u0a95\u0ab8\u0acd\u0aae\u0abe\u0aa4 \u0aa5\u0aaf\u0acb \u0a9b\u0ac7"
+  },
+  "clue_fairness": {
+    "value": "CCTV footage from bank ATM clearly showing Darshan exiting driver's side and fleeing - evidence available to both investigator and reader",
+    "confidence": "high",
+    "quote": "\u0a95\u0abe\u0ab0 \u0aa8\u0acb \u0a86\u0a97\u0ab3 \u0aa8\u0acb \u0aa1\u0acd\u0ab0\u0abe\u0a88\u0ab5\u0ab0 \u0ab8\u0abe\u0a88\u0aa1 \u0aa8\u0acb \u0aa6\u0ab0\u0ab5\u0abe\u0a9c\u0acb \u0a96\u0ac1\u0ab2\u0acd\u0aaf\u0acb \u0a85\u0aa8\u0ac7 \u0a85\u0a82\u0aa6\u0ab0 \u0aa5\u0ac0 \u0aa6\u0ab0\u0acd\u0ab6\u0aa8 \u0aa8\u0ac0\u0a95\u0ab3\u0ac0 \u0a85\u0aa8\u0ac7 \u0aad\u0abe\u0a97\u0acd\u0aaf\u0acb \u0ab9\u0aa4\u0acb"
+  },
+  "social_world": {
+    "value": "Wealth-based power structure where industrialist family can buy witness silence and manipulate media narrative against grieving father",
+    "confidence": "high",
+    "quote": "\u0a85\u0aae\u0aa8\u0ac7 \u0aa2\u0a97\u0ab2\u0acb \u0aaa\u0ac8\u0ab8\u0abe \u0aae\u0ab3\u0acd\u0aaf\u0abe \u0a9b\u0ac7 \u0aae\u0acb\u0aa2\u0ac1\u0a82 \u0aac\u0a82\u0aa7 \u0ab0\u0abe\u0a96\u0ab5\u0abe\u0aa8\u0abe \u0aa4\u0acb \u0a95\u0ac7\u0aae \u0a96\u0acb\u0ab2\u0ac0\u0aaf\u0ac7"
+  },
+  "alibi": {
+    "value": "Implicit false alibi through witness corruption and media manipulation - no direct alibi presented but systematic cover-up attempted",
+    "confidence": "medium",
+    "quote": "\u0aa5\u0acb\u0aa1\u0abe\u0a9c \u0aa6\u0abf\u0ab5\u0ab8\u0acb \u0aae\u0abe\u0a82 \u0a8f \u0aa8\u0a9c\u0ab0\u0ac7 \u0a9c\u0acb\u0aa8\u0abe\u0ab0\u0abe\u0a93 \u0a97\u0abe\u0aaf\u0aac \u0aa5\u0a87 \u0a97\u0aaf\u0abe"
+  },
+  "reveal_mechanic": {
+    "value": "Bank CCTV footage definitively identifying Darshan as driver, posted on social media leading to viral exposure and arrest",
+    "confidence": "high",
+    "quote": "\u0aae\u0aa6\u0ab5\u0ab8\u0abf\u0a82\u0ab9\u0ac7 \u0a8f \u0ab5\u0abf\u0aa1\u0abf\u0a93 \u0aa8\u0ac0 \u0a95\u0acb\u0aaa\u0ac0 \u0ab8\u0acb\u0ab6\u0acd\u0aaf\u0abf\u0ab2 \u0aae\u0ac0\u0aa1\u0abf\u0aaf\u0abe \u0aaa\u0ab0 \u0aaa\u0acb\u0ab8\u0acd\u0a9f \u0a95\u0ab0\u0ac0 \u0aa5\u0acb\u0aa1\u0ac0 \u0ab5\u0abe\u0ab0 \u0aae\u0abe\u0a82 \u0a8f \u0ab5\u0abf\u0aa1\u0abf\u0a93 \u0ab5\u0abe\u0aaf\u0ab0\u0ab2 \u0aa5\u0aaf\u0acb"
+  },
+  "media_and_audience": {
+    "value": "News channels initially reporting eyewitness accounts, then shifting to blame victim, finally public outcry after viral video leads to justice",
+    "confidence": "high",
+    "quote": "\u0ab2\u0acb\u0a95\u0acb \u0aac\u0ac0\u0a9c\u0abe \u0aa6\u0abf\u0ab5\u0ab8\u0ac7 \u0ab0\u0ab8\u0acd\u0aa4\u0abe \u0aaa\u0ab0 \u0a86\u0ab5\u0ac0 \u0a97\u0aaf\u0abe \u0a85\u0aa8\u0ac7 \u0a8f\u0a95 \u0aa6\u0abf\u0ab5\u0ab8\u0ac7 \u0aa6\u0ab0\u0acd\u0ab6\u0aa8 \u0aa8\u0ac0 \u0aa7\u0aa1\u0aaa\u0a95\u0aa1 \u0a95\u0ab0\u0ac0"
+  },
+  "investigator_wound": {
+    "value": "Father who lost both his martyred soldier son and wife to violence - investigating to honor both their memories and find justice",
+    "confidence": "high",
+    "quote": "\u0a8f \u0aa8\u0ab9\u0aa4\u0abe \u0a87\u0a9a\u0acd\u0a9b\u0aa4\u0abe \u0a8f \u0a8f\u0aae\u0aa8\u0abe \u0a85\u0aae\u0ab0 \u0aa6\u0ac0\u0a95\u0ab0\u0abe \u0aa8\u0ac7 \u0aac\u0aa7\u0abe \u0a8f\u0a95 \u0a96\u0ac2\u0aa8\u0ac0 \u0aa8\u0abe \u0aa6\u0ac0\u0a95\u0ab0\u0abe \u0aa4\u0ab0\u0ac0\u0a95\u0ac7 \u0a93\u0ab3\u0a96\u0ac7"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-yagnesh-chokasi-god-is-watching-everything/",
+    "corpus_index": 258,
+    "text_len": 7772,
+    "title": "ebook yagnesh chokasi god is watching everything",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

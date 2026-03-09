@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Kidnapping/disappearance of 6-year-old Madeline Shultz from her bedroom; question: how did she vanish and who took her?",
+    "confidence": "high",
+    "quote": "their 6 year old daughter, Madeline Shultz, was taken on December 22nd by an unknown assailant"
+  },
+  "victim": {
+    "value": "Madeline Shultz, 6-year-old daughter of wealthy couple, targeted due to mistaken identity - resembles another missing child",
+    "confidence": "high",
+    "quote": "Mara and Madeline look almost identical, with the exception of the mole right next to Madeline's right eye"
+  },
+  "closed_world": {
+    "value": "The Shultz household and estate with secret tunnels, limited to family members and household staff",
+    "confidence": "medium",
+    "quote": "stay in the secrete tunnels, only coming out when Madeline knew it was safe"
+  },
+  "culprit_and_motive": {
+    "value": "Charlotte (the maid) kidnapped Madeline believing she was her own missing daughter Mara due to their identical appearance",
+    "confidence": "high",
+    "quote": "You thought that the Shultz had taken your daughter when they came home from Paris and lied"
+  },
+  "resolution": {
+    "value": "Alice Bellicose deduces the truth through investigation and confronts Charlotte, revealing both girls were hiding together",
+    "confidence": "high",
+    "quote": "Alice said. 'Right then. That's enough drama for one day. It's almost Christmas!'"
+  },
+  "investigator": {
+    "value": "Alice Bellicose, amateur detective who takes over the case from the official Detective Greene",
+    "confidence": "high",
+    "quote": "Oscar Quinces sat the newspaper down on the table and looked over at his friend, Alice Bellicose"
+  },
+  "suspect_architecture": {
+    "value": "Five household suspects with varied access: Charlotte the maid (motive: mistaken identity of daughter), Pierre the groundskeeper (key holder), Grover (key access), Frances the cook (kitchen access), plus Detective Greene as official investigator",
+    "confidence": "high",
+    "quote": "Charlotte said honestly. \"Well, we've done all we can here,\" Alice said, and without warning"
+  },
+  "red_herring": {
+    "value": "The open window and traditional kidnapping theory - Charlotte admits leaving window open and closing it before officials arrived, misdirecting from the truth that Madeline hid voluntarily in secret tunnels",
+    "confidence": "high",
+    "quote": "\"I left her window open,\" \"Yes, I closed it because I was afraid to admit what I had done,\""
+  },
+  "clue_fairness": {
+    "value": "Missing bread rolls mentioned early (Frances made three, gone by morning), Charlotte's familiar appearance to Alice, and the physical similarity between Madeline and Mara all presented before solution",
+    "confidence": "medium",
+    "quote": "\"I made three, fresh rolls of bread,\" Frances said \"And they were no longer there\""
+  },
+  "social_world": {
+    "value": "Wealthy employer-servant hierarchy in 1950s London household - the Shultz family as employers with staff including maid, cook, groundskeeper, creating access patterns and power dynamics around the missing child",
+    "confidence": "medium",
+    "quote": "\"I was afraid Mrs. Shultz would hate me,\" \"Oh, don't tell her,\" Charlotte pleaded"
+  },
+  "alibi": {
+    "value": "Pierre claims he never saw Grover and has his own engraved keys, Frances was in kitchen all day until 7:54 p.m., Charlotte admits to opening/closing window but hides true motive",
+    "confidence": "high",
+    "quote": "\"I can prove it is mine for I engrave all of my possessions with my initials, PI.\""
+  },
+  "reveal_mechanic": {
+    "value": "Physical resemblance recognition - Alice notices Charlotte looks familiar, leading to discovery that Charlotte mistook Madeline for her own missing daughter Mara due to their near-identical appearance except for a mole",
+    "confidence": "high",
+    "quote": "\"You look familiar,\" Alice said to Charlotte. \"Have we met?\""
+  },
+  "media_and_audience": {
+    "value": "Newspaper coverage frames it as tragic Christmas kidnapping, Detective Greene takes public credit for solving the case despite Alice actually solving it, shaping public perception of both crime and resolution",
+    "confidence": "medium",
+    "quote": "\"Detective Greene took the credit, of course, for the finding of Madeline Shultz and Mara.\""
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-ren-willi-the-dissappearance-fo-madeline-shultz/",
+    "corpus_index": 183,
+    "text_len": 17043,
+    "title": "ebook ren willi the dissappearance fo madeline shultz",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder under Brooklyn bridge, potentially connected to serial killer Anna's escape demands",
+    "confidence": "medium",
+    "quote": "Then back at the crime scene detective sapphire AKA Kim and candleston drove to the crime scene under the Brooklyn bridge"
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Police investigation constrained by 48-hour deadline and Anna's hostage situation",
+    "confidence": "medium",
+    "quote": "You got forty eight hours to let me go and put the actual criminal behind bars or watch you and your partner's family"
+  },
+  "culprit_and_motive": {
+    "value": "Potentially connected to someone working with Anna, motive unclear but involves forcing Anna's release",
+    "confidence": "low",
+    "quote": "Something tells me this thing is not working alone"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Detective Macy, primary investigator working with Detective Mason and Kim/Sapphire",
+    "confidence": "high",
+    "quote": "Macy Watched The Eleven o Clock news at night before she goes to bed. She was finally happy in capturing Anna"
+  },
+  "suspect_architecture": {
+    "value": "Multiple suspects with family connections: Ana (serial killer), Ashley (evidence thief with knife obsession), Sam (Ashley's mother with hunting knife collection), unnamed brother (knife collector). Each has different means/motives relating to knives and violence.",
+    "confidence": "medium",
+    "quote": "My brother collects knives i borrow them just in case i have to kill a deer"
+  },
+  "red_herring": {
+    "value": "Ashley's knife theft from crime scene presented as evidence tampering but revealed as trauma response to mother's knife obsession rather than criminal conspiracy.",
+    "confidence": "medium",
+    "quote": "I took the hunting knife from the crime scene cause it reminns me of my mother who was addicted to knives"
+  },
+  "clue_fairness": {
+    "value": "Limited fairness - confession described as 'clue' form but actual clue content not revealed to reader when available to investigators.",
+    "confidence": "low",
+    "quote": "We got a confession but it's in a form of a clue"
+  },
+  "social_world": {
+    "value": "Police hierarchy and legal system power dynamics - detectives vs. high-powered defense attorney Sophia Santiago who 'won millions of cases and gives you the best deal possible'.",
+    "confidence": "medium",
+    "quote": "she won millions of cases and gives you the best deal possible"
+  },
+  "alibi": {
+    "value": "Sam's alibi for knife possession - claims hunting use borrowed from brother's collection rather than criminal intent.",
+    "confidence": "medium",
+    "quote": "My brother collects knives i borrow them just in case i have to kill a deer"
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Live-streamed hostage situation broadcast on TV creating public pressure and 48-hour deadline for investigators.",
+    "confidence": "high",
+    "quote": "turn on the tv as she saw what appeared to be a live streaming security camera with a family in a cell"
+  },
+  "investigator_wound": {
+    "value": "Macy's personal history with Ana ('you known me macy since i was five years old') creates emotional vulnerability and family hostage leverage.",
+    "confidence": "high",
+    "quote": "you known me macy since i was five years old that i don't play"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-terrex-corbin-who-is-mr-code/",
+    "corpus_index": 179,
+    "text_len": 6870,
+    "title": "ebook terrex corbin who is mr code",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

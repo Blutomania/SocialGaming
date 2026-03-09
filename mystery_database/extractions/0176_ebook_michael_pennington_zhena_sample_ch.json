@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Military submarine/naval base community",
+    "confidence": "medium",
+    "quote": "Susan lived in government housing, so everyone was somehow connected to the military."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Susan, a navy wife experiencing strange thoughts/mental programming",
+    "confidence": "medium",
+    "quote": "Stay on target. The mission comes first."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Construction noise and DSL interference suggested as mundane explanations for Susan's strange mental episodes",
+    "confidence": "medium",
+    "quote": "Maybe it was that construction up the street? You could be right. Now we don't even have phones to complain with."
+  },
+  "clue_fairness": {
+    "value": "Susan's internal mission-focused thoughts are presented directly to reader as they occur",
+    "confidence": "high",
+    "quote": "Stay on target. The mission comes first. She had to get these thoughts out of head"
+  },
+  "social_world": {
+    "value": "Military hierarchy and naval officer culture, with government housing creating insular community structure",
+    "confidence": "high",
+    "quote": "Susan lived in government housing, so everyone was somehow connected to the military."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Programming or conditioning triggered by specific audio frequencies, revealed through Susan's involuntary responses",
+    "confidence": "medium",
+    "quote": "people responding strangely to different combinations of light and sounds"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-michael-pennington-zhena-sample-chapters/",
+    "corpus_index": 176,
+    "text_len": 28753,
+    "title": "ebook michael pennington zhena sample chapters",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

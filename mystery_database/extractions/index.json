@@ -1,0 +1,3126 @@
+[
+  {
+    "file": "0000_ebook_sir_arthur_conan_doyle_the_adventu.json",
+    "corpus_index": 0,
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-adventures-of-sherlock-holmes/",
+    "title": "ebook sir arthur conan doyle the adventures of sherlock holmes",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 562489
+  },
+  {
+    "file": "0001_ebook_bob_moats_classmate_murders.json",
+    "corpus_index": 1,
+    "url": "https://www.bookrix.com/_ebook-bob-moats-classmate-murders/",
+    "title": "ebook bob moats classmate murders",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 269515
+  },
+  {
+    "file": "0002_ebook_david_burgess_the_samsara_project.json",
+    "corpus_index": 2,
+    "url": "https://www.bookrix.com/_ebook-david-burgess-the-samsara-project/",
+    "title": "ebook david burgess the samsara project",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 614646
+  },
+  {
+    "file": "0003_ebook_sir_arthur_conan_doyle_the_hound_o.json",
+    "corpus_index": 3,
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-hound-of-the-baskervilles-1/",
+    "title": "ebook sir arthur conan doyle the hound of the baskervilles 1",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 318732
+  },
+  {
+    "file": "0005_ebook_edited_by_julian_hawthorne_library.json",
+    "corpus_index": 5,
+    "url": "https://www.bookrix.com/_ebook-edited-by-julian-hawthorne-library-of-the-world-039-s-best-mystery-and-detective-stories/",
+    "title": "ebook edited by julian hawthorne library of the world 039 s best mystery and detective stories",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 564412
+  },
+  {
+    "file": "0006_ebook_robert_f_clifton_the_house_on_timb.json",
+    "corpus_index": 6,
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-the-house-on-timber-lane/",
+    "title": "ebook robert f clifton the house on timber lane",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 236848
+  },
+  {
+    "file": "0008_ebook_agatha_christie_murder_on_the_orie.json",
+    "corpus_index": 8,
+    "url": "https://www.bookrix.com/_ebook-agatha-christie-murder-on-the-orient-express/",
+    "title": "ebook agatha christie murder on the orient express",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 377779
+  },
+  {
+    "file": "0009_ebook_sir_arthur_conan_doyle_the_return_.json",
+    "corpus_index": 9,
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-return-of-sherlock-holmes/",
+    "title": "ebook sir arthur conan doyle the return of sherlock holmes",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 614275
+  },
+  {
+    "file": "0010_ebook_robert_f_clifton_garwood_village.json",
+    "corpus_index": 10,
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-garwood-village/",
+    "title": "ebook robert f clifton garwood village",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 238471
+  },
+  {
+    "file": "0011_ebook_kelly_abell_haunted_destiny.json",
+    "corpus_index": 11,
+    "url": "https://www.bookrix.com/_ebook-kelly-abell-haunted-destiny/",
+    "title": "ebook kelly abell haunted destiny",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 18464
+  },
+  {
+    "file": "0012_ebook_scott_wampler_lucky_guy.json",
+    "corpus_index": 12,
+    "url": "https://www.bookrix.com/_ebook-scott-wampler-lucky-guy/",
+    "title": "ebook scott wampler lucky guy",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 5259
+  },
+  {
+    "file": "0013_ebook_robert_f_clifton_the_case_of_the_m.json",
+    "corpus_index": 13,
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-the-case-of-the-missing-bride/",
+    "title": "ebook robert f clifton the case of the missing bride",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 111416
+  },
+  {
+    "file": "0014_ebook_david_stacey_doss_the_coffee_shop_.json",
+    "corpus_index": 14,
+    "url": "https://www.bookrix.com/_ebook-david-stacey-doss-the-coffee-shop-murder/",
+    "title": "ebook david stacey doss the coffee shop murder",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 12039
+  },
+  {
+    "file": "0015_ebook_arthur_limbada_lost_at_sea.json",
+    "corpus_index": 15,
+    "url": "https://www.bookrix.com/_ebook-arthur-limbada-lost-at-sea/",
+    "title": "ebook arthur limbada lost at sea",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 100973
+  },
+  {
+    "file": "0016_ebook_robert_f_clifton_rip_tide.json",
+    "corpus_index": 16,
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-rip-tide/",
+    "title": "ebook robert f clifton rip tide",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 271991
+  },
+  {
+    "file": "0017_ebook_robert_f_clifton_gifts_from_the_ka.json",
+    "corpus_index": 17,
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-gifts-from-the-kasbah/",
+    "title": "ebook robert f clifton gifts from the kasbah",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 264803
+  },
+  {
+    "file": "0018_ebook_erin_clerity_death_before_dishonor.json",
+    "corpus_index": 18,
+    "url": "https://www.bookrix.com/_ebook-erin-clerity-death-before-dishonor/",
+    "title": "ebook erin clerity death before dishonor",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 9934
+  },
+  {
+    "file": "0019_ebook_alyza_in_plain_sight.json",
+    "corpus_index": 19,
+    "url": "https://www.bookrix.com/_ebook-alyza-in-plain-sight/",
+    "title": "ebook alyza in plain sight",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 23352
+  },
+  {
+    "file": "0020_ebook_d_b_reynolds_brush_creek_charlie.json",
+    "corpus_index": 20,
+    "url": "https://www.bookrix.com/_ebook-d-b-reynolds-brush-creek-charlie/",
+    "title": "ebook d b reynolds brush creek charlie",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 676050
+  },
+  {
+    "file": "0021_ebook_sir_arthur_conan_doyle_a_study_in_.json",
+    "corpus_index": 21,
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-a-study-in-scarlet/",
+    "title": "ebook sir arthur conan doyle a study in scarlet",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 241533
+  },
+  {
+    "file": "0022_ebook_robert_f_clifton_the_medusa_file.json",
+    "corpus_index": 22,
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-the-medusa-file/",
+    "title": "ebook robert f clifton the medusa file",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 154692
+  },
+  {
+    "file": "0023_ebook_bob_moats_vegas_showgirl_murders_b.json",
+    "corpus_index": 23,
+    "url": "https://www.bookrix.com/_ebook-bob-moats-vegas-showgirl-murders-book2/",
+    "title": "ebook bob moats vegas showgirl murders book2",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 80696
+  },
+  {
+    "file": "0024_ebook_robert_f_clifton_counter_blow.json",
+    "corpus_index": 24,
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-counter-blow/",
+    "title": "ebook robert f clifton counter blow",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 130235
+  },
+  {
+    "file": "0025_ebook_ross_mac_duncan_the_beano_murders.json",
+    "corpus_index": 25,
+    "url": "https://www.bookrix.com/_ebook-ross-mac-duncan-the-beano-murders/",
+    "title": "ebook ross mac duncan the beano murders",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 115159
+  },
+  {
+    "file": "0026_ebook_sir_arthur_conan_doyle_the_memoirs.json",
+    "corpus_index": 26,
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-memoirs-of-sherlock-holmes/",
+    "title": "ebook sir arthur conan doyle the memoirs of sherlock holmes",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 477327
+  },
+  {
+    "file": "0027_ebook_fyodor_dostoyevsky_crime_and_punis.json",
+    "corpus_index": 27,
+    "url": "https://www.bookrix.com/_ebook-fyodor-dostoyevsky-crime-and-punishment/",
+    "title": "ebook fyodor dostoyevsky crime and punishment",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 1143118
+  },
+  {
+    "file": "0028_ebook_katherine_angela_yeboah_lucid_samp.json",
+    "corpus_index": 28,
+    "url": "https://www.bookrix.com/_ebook-katherine-angela-yeboah-lucid-sample-chapters/",
+    "title": "ebook katherine angela yeboah lucid sample chapters",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 33559
+  },
+  {
+    "file": "0029_ebook_sir_arthur_conan_doyle_the_captain.json",
+    "corpus_index": 29,
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-captain-of-the-polestar/",
+    "title": "ebook sir arthur conan doyle the captain of the polestar",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 464317
+  },
+  {
+    "file": "0031_ebook_c_m_albrecht_the_sand_bluff_murder.json",
+    "corpus_index": 31,
+    "url": "https://www.bookrix.com/_ebook-c-m-albrecht-the-sand-bluff-murders/",
+    "title": "ebook c m albrecht the sand bluff murders",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 16014
+  },
+  {
+    "file": "0032_ebook_c_m_albrecht_evidence.json",
+    "corpus_index": 32,
+    "url": "https://www.bookrix.com/_ebook-c-m-albrecht-evidence/",
+    "title": "ebook c m albrecht evidence",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 27923
+  },
+  {
+    "file": "0033_ebook_becca_a_the_hidden.json",
+    "corpus_index": 33,
+    "url": "https://www.bookrix.com/_ebook-becca-a-the-hidden/",
+    "title": "ebook becca a the hidden",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 16586
+  },
+  {
+    "file": "0034_ebook_robert_f_clifton_blood_brook.json",
+    "corpus_index": 34,
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-blood-brook/",
+    "title": "ebook robert f clifton blood brook",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 127072
+  },
+  {
+    "file": "0035_ebook_regi_s_riddle.json",
+    "corpus_index": 35,
+    "url": "https://www.bookrix.com/_ebook-regi-s-riddle/",
+    "title": "ebook regi s riddle",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 11754
+  },
+  {
+    "file": "0036_ebook_robert_f_clifton_mckenna.json",
+    "corpus_index": 36,
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-mckenna/",
+    "title": "ebook robert f clifton mckenna",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 161056
+  },
+  {
+    "file": "0037_ebook_kelly_abell_sealed_in_lies.json",
+    "corpus_index": 37,
+    "url": "https://www.bookrix.com/_ebook-kelly-abell-sealed-in-lies/",
+    "title": "ebook kelly abell sealed in lies",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 20902
+  },
+  {
+    "file": "0038_ebook_alexandre_dumas_pere_the_borgias.json",
+    "corpus_index": 38,
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-the-borgias/",
+    "title": "ebook alexandre dumas pere the borgias",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 474002
+  },
+  {
+    "file": "0039_ebook_sir_arthur_conan_doyle_the_valley_.json",
+    "corpus_index": 39,
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-valley-of-fear/",
+    "title": "ebook sir arthur conan doyle the valley of fear",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 312808
+  },
+  {
+    "file": "0040_ebook_robert_f_clifton_the_case_of_the_b.json",
+    "corpus_index": 40,
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-the-case-of-the-barefoot-boys/",
+    "title": "ebook robert f clifton the case of the barefoot boys",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 137696
+  },
+  {
+    "file": "0041_ebook_sir_arthur_conan_doyle_the_mystery.json",
+    "corpus_index": 41,
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-mystery-of-cloomber/",
+    "title": "ebook sir arthur conan doyle the mystery of cloomber",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 266535
+  },
+  {
+    "file": "0042_ebook_mysterious_6_who_039_s_the_murdere.json",
+    "corpus_index": 42,
+    "url": "https://www.bookrix.com/_ebook-mysterious-6-who-039-s-the-murderer/",
+    "title": "ebook mysterious 6 who 039 s the murderer",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 3537
+  },
+  {
+    "file": "0043_ebook_grace_cavendish_fabiha_zaman_the_l.json",
+    "corpus_index": 43,
+    "url": "https://www.bookrix.com/_ebook-grace-cavendish-fabiha-zaman-the-lady-grace-mysteries/",
+    "title": "ebook grace cavendish fabiha zaman the lady grace mysteries",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 2271
+  },
+  {
+    "file": "0044_ebook_c_m_albrecht_tape.json",
+    "corpus_index": 44,
+    "url": "https://www.bookrix.com/_ebook-c-m-albrecht-tape/",
+    "title": "ebook c m albrecht tape",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 10121
+  },
+  {
+    "file": "0045_ebook_tasha_m_the_mystery_of_tifton_geor.json",
+    "corpus_index": 45,
+    "url": "https://www.bookrix.com/_ebook-tasha-m-the-mystery-of-tifton-georgia/",
+    "title": "ebook tasha m the mystery of tifton georgia",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 5421
+  },
+  {
+    "file": "0046_ebook_nikki_miller_death_to_all.json",
+    "corpus_index": 46,
+    "url": "https://www.bookrix.com/_ebook-nikki-miller-death-to-all/",
+    "title": "ebook nikki miller death to all",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 12929
+  },
+  {
+    "file": "0048_ebook_daisy_graham_the_perfect_spy.json",
+    "corpus_index": 48,
+    "url": "https://www.bookrix.com/_ebook-daisy-graham-the-perfect-spy/",
+    "title": "ebook daisy graham the perfect spy",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 7370
+  },
+  {
+    "file": "0049_ebook_c_mari_abby.json",
+    "corpus_index": 49,
+    "url": "https://www.bookrix.com/_ebook-c-mari-abby/",
+    "title": "ebook c mari abby",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 38897
+  },
+  {
+    "file": "0050_ebook_redkite_intoxication.json",
+    "corpus_index": 50,
+    "url": "https://www.bookrix.com/_ebook-redkite-intoxication/",
+    "title": "ebook redkite intoxication",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 52730
+  },
+  {
+    "file": "0051_ebook_elle_marie_calhoun_aaron_wilson_su.json",
+    "corpus_index": 51,
+    "url": "https://www.bookrix.com/_ebook-elle-marie-calhoun-aaron-wilson-superspy-extrodinare/",
+    "title": "ebook elle marie calhoun aaron wilson superspy extrodinare",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 19917
+  },
+  {
+    "file": "0052_ebook_james_mad_monk_death_comes.json",
+    "corpus_index": 52,
+    "url": "https://www.bookrix.com/_ebook-james-mad-monk-death-comes/",
+    "title": "ebook james mad monk death comes",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 15763
+  },
+  {
+    "file": "0053_ebook_robert_f_clifton_warrior_song.json",
+    "corpus_index": 53,
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-warrior-song/",
+    "title": "ebook robert f clifton warrior song",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 150012
+  },
+  {
+    "file": "0055_ebook_shelby_alexander_flashbacks.json",
+    "corpus_index": 55,
+    "url": "https://www.bookrix.com/_ebook-shelby-alexander-flashbacks/",
+    "title": "ebook shelby alexander flashbacks",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 53593
+  },
+  {
+    "file": "0056_ebook_sir_arthur_conan_doyle_tales_of_te.json",
+    "corpus_index": 56,
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-tales-of-terror-and-mystery/",
+    "title": "ebook sir arthur conan doyle tales of terror and mystery",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 415096
+  },
+  {
+    "file": "0057_ebook_angely_mercado_local_woman_stabbed.json",
+    "corpus_index": 57,
+    "url": "https://www.bookrix.com/_ebook-angely-mercado-local-woman-stabbed-as-turbulent-past-comes-to-light/",
+    "title": "ebook angely mercado local woman stabbed as turbulent past comes to light",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 3171
+  },
+  {
+    "file": "0059_ebook_robert_f_clifton_a_predetermined_c.json",
+    "corpus_index": 59,
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-a-predetermined-course-of-events/",
+    "title": "ebook robert f clifton a predetermined course of events",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 133929
+  },
+  {
+    "file": "0060_ebook_charles_dickens_three_ghost_storie.json",
+    "corpus_index": 60,
+    "url": "https://www.bookrix.com/_ebook-charles-dickens-three-ghost-stories/",
+    "title": "ebook charles dickens three ghost stories",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 116165
+  },
+  {
+    "file": "0061_ebook_michelle_kidd_anybody_039_s_child.json",
+    "corpus_index": 61,
+    "url": "https://www.bookrix.com/_ebook-michelle-kidd-anybody-039-s-child/",
+    "title": "ebook michelle kidd anybody 039 s child",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 194023
+  },
+  {
+    "file": "0062_ebook_sir_arthur_conan_doyle_the_adventu.json",
+    "corpus_index": 62,
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-adventure-of-the-devil-039-s-foot/",
+    "title": "ebook sir arthur conan doyle the adventure of the devil 039 s foot",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 55981
+  },
+  {
+    "file": "0063_ebook_robert_f_clifton_counterpart.json",
+    "corpus_index": 63,
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-counterpart/",
+    "title": "ebook robert f clifton counterpart",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 139902
+  },
+  {
+    "file": "0064_ebook_monkwalk_the_other_me.json",
+    "corpus_index": 64,
+    "url": "https://www.bookrix.com/_ebook-monkwalk-the-other-me/",
+    "title": "ebook monkwalk the other me",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 30735
+  },
+  {
+    "file": "0065_ebook_jay_wilson_the_murder_of_cherry_cr.json",
+    "corpus_index": 65,
+    "url": "https://www.bookrix.com/_ebook-jay-wilson-the-murder-of-cherry-creek/",
+    "title": "ebook jay wilson the murder of cherry creek",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 33239
+  },
+  {
+    "file": "0066_ebook_quincy_moore_decisions.json",
+    "corpus_index": 66,
+    "url": "https://www.bookrix.com/_ebook-quincy-moore-decisions/",
+    "title": "ebook quincy moore decisions",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 60309
+  },
+  {
+    "file": "0067_ebook_sir_arthur_conan_doyle_the_sign_of.json",
+    "corpus_index": 67,
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-sign-of-the-four/",
+    "title": "ebook sir arthur conan doyle the sign of the four",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 233395
+  },
+  {
+    "file": "0069_ebook_rebekah_shimer_silence.json",
+    "corpus_index": 69,
+    "url": "https://www.bookrix.com/_ebook-rebekah-shimer-silence/",
+    "title": "ebook rebekah shimer silence",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 258600
+  },
+  {
+    "file": "0070_ebook_madison_williams_love_peace_and_mu.json",
+    "corpus_index": 70,
+    "url": "https://www.bookrix.com/_ebook-madison-williams-love-peace-and-murder/",
+    "title": "ebook madison williams love peace and murder",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 10284
+  },
+  {
+    "file": "0071_ebook_crimson_skye_dating_a_geek.json",
+    "corpus_index": 71,
+    "url": "https://www.bookrix.com/_ebook-crimson-skye-dating-a-geek/",
+    "title": "ebook crimson skye dating a geek",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 260424
+  },
+  {
+    "file": "0072_ebook_brianna_jones_born_to_lie.json",
+    "corpus_index": 72,
+    "url": "https://www.bookrix.com/_ebook-brianna-jones-born-to-lie/",
+    "title": "ebook brianna jones born to lie",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 44809
+  },
+  {
+    "file": "0073_ebook_alexandre_dumas_pere_massacres_of_.json",
+    "corpus_index": 73,
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-massacres-of-the-south-1551-1815/",
+    "title": "ebook alexandre dumas pere massacres of the south 1551 1815",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 519177
+  },
+  {
+    "file": "0074_ebook_kyler_james_grimshaw_mysteries.json",
+    "corpus_index": 74,
+    "url": "https://www.bookrix.com/_ebook-kyler-james-grimshaw-mysteries/",
+    "title": "ebook kyler james grimshaw mysteries",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 10059
+  },
+  {
+    "file": "0075_ebook_jeffrey_allen_white_a_difficult_au.json",
+    "corpus_index": 75,
+    "url": "https://www.bookrix.com/_ebook-jeffrey-allen-white-a-difficult-autumn/",
+    "title": "ebook jeffrey allen white a difficult autumn",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 26886
+  },
+  {
+    "file": "0076_ebook_robert_f_clifton_basham.json",
+    "corpus_index": 76,
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-basham/",
+    "title": "ebook robert f clifton basham",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 149720
+  },
+  {
+    "file": "0077_ebook_marion_smith_the_adventure_of_the_.json",
+    "corpus_index": 77,
+    "url": "https://www.bookrix.com/_ebook-marion-smith-the-adventure-of-the-posthumous-apparition/",
+    "title": "ebook marion smith the adventure of the posthumous apparition",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 51382
+  },
+  {
+    "file": "0078_ebook_kelemen_a_picnic_039_s_murder.json",
+    "corpus_index": 78,
+    "url": "https://www.bookrix.com/_ebook-kelemen-a-picnic-039-s-murder/",
+    "title": "ebook kelemen a picnic 039 s murder",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 4794
+  },
+  {
+    "file": "0079_ebook_ilike_jellybabies_riddles.json",
+    "corpus_index": 79,
+    "url": "https://www.bookrix.com/_ebook-ilike-jellybabies-riddles/",
+    "title": "ebook ilike jellybabies riddles",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 20379
+  },
+  {
+    "file": "0080_ebook_nomar_knight_they_can_039_t_kill_u.json",
+    "corpus_index": 80,
+    "url": "https://www.bookrix.com/_ebook-nomar-knight-they-can-039-t-kill-us-all/",
+    "title": "ebook nomar knight they can 039 t kill us all",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 4363
+  },
+  {
+    "file": "0081_ebook_shruthi_viswanathan_the_toystore_m.json",
+    "corpus_index": 81,
+    "url": "https://www.bookrix.com/_ebook-shruthi-viswanathan-the-toystore-murder/",
+    "title": "ebook shruthi viswanathan the toystore murder",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 14229
+  },
+  {
+    "file": "0082_ebook_scotty_hicks_the_beast.json",
+    "corpus_index": 82,
+    "url": "https://www.bookrix.com/_ebook-scotty-hicks-the-beast/",
+    "title": "ebook scotty hicks the beast",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 8660
+  },
+  {
+    "file": "0083_ebook_robert_f_clifton_la_danza_morte_03.json",
+    "corpus_index": 83,
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-la-danza-morte-039/",
+    "title": "ebook robert f clifton la danza morte 039",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 153664
+  },
+  {
+    "file": "0085_ebook_robert_f_clifton_the_case_of_the_b.json",
+    "corpus_index": 85,
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-the-case-of-the-bog-bodies/",
+    "title": "ebook robert f clifton the case of the bog bodies",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 150130
+  },
+  {
+    "file": "0086_ebook_robert_f_clifton_the_case_of_the_b.json",
+    "corpus_index": 86,
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-the-case-of-the-berkshire-hog/",
+    "title": "ebook robert f clifton the case of the berkshire hog",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 118667
+  },
+  {
+    "file": "0087_ebook_robert_f_clifton_the_wives_of_edwa.json",
+    "corpus_index": 87,
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-the-wives-of-edward-denbre/",
+    "title": "ebook robert f clifton the wives of edward denbre",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 138951
+  },
+  {
+    "file": "0088_ebook_sir_arthur_conan_doyle_the_adventu.json",
+    "corpus_index": 88,
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-adventure-of-the-dying-detective/",
+    "title": "ebook sir arthur conan doyle the adventure of the dying detective",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 32127
+  },
+  {
+    "file": "0089_ebook_john_kendrick_bangs_r_holmes_co.json",
+    "corpus_index": 89,
+    "url": "https://www.bookrix.com/_ebook-john-kendrick-bangs-r-holmes-co/",
+    "title": "ebook john kendrick bangs r holmes co",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 185326
+  },
+  {
+    "file": "0090_ebook_aaron_redfern_mad_like_a_simile.json",
+    "corpus_index": 90,
+    "url": "https://www.bookrix.com/_ebook-aaron-redfern-mad-like-a-simile/",
+    "title": "ebook aaron redfern mad like a simile",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 17975
+  },
+  {
+    "file": "0091_ebook_jeffrey_allen_white_my_brother_039.json",
+    "corpus_index": 91,
+    "url": "https://www.bookrix.com/_ebook-jeffrey-allen-white-my-brother-039-s-keeper/",
+    "title": "ebook jeffrey allen white my brother 039 s keeper",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 2592
+  },
+  {
+    "file": "0092_ebook_honore_de_balzac_an_historical_mys.json",
+    "corpus_index": 92,
+    "url": "https://www.bookrix.com/_ebook-honore-de-balzac-an-historical-mystery/",
+    "title": "ebook honore de balzac an historical mystery",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 434856
+  },
+  {
+    "file": "0094_ebook_robert_barr_jennie_baxter_journali.json",
+    "corpus_index": 94,
+    "url": "https://www.bookrix.com/_ebook-robert-barr-jennie-baxter-journalist/",
+    "title": "ebook robert barr jennie baxter journalist",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 378880
+  },
+  {
+    "file": "0095_ebook_daniel_books_the_bloody_letter_sec.json",
+    "corpus_index": 95,
+    "url": "https://www.bookrix.com/_ebook-daniel-books-the-bloody-letter-secret/",
+    "title": "ebook daniel books the bloody letter secret",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 10175
+  },
+  {
+    "file": "0096_ebook_confusedalarms_the_business.json",
+    "corpus_index": 96,
+    "url": "https://www.bookrix.com/_ebook-confusedalarms-the-business/",
+    "title": "ebook confusedalarms the business",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 48845
+  },
+  {
+    "file": "0098_ebook_amber_rae_a_rae_of_sunshine.json",
+    "corpus_index": 98,
+    "url": "https://www.bookrix.com/_ebook-amber-rae-a-rae-of-sunshine/",
+    "title": "ebook amber rae a rae of sunshine",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 12641
+  },
+  {
+    "file": "0099_ebook_hans_bernard_the_perfect_murder.json",
+    "corpus_index": 99,
+    "url": "https://www.bookrix.com/_ebook-hans-bernard-the-perfect-murder/",
+    "title": "ebook hans bernard the perfect murder",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 28261
+  },
+  {
+    "file": "0100_ebook_jacob_long_jacky_hazardous.json",
+    "corpus_index": 100,
+    "url": "https://www.bookrix.com/_ebook-jacob-long-jacky-hazardous/",
+    "title": "ebook jacob long jacky hazardous",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 25907
+  },
+  {
+    "file": "0102_ebook_robert_f_clifton_mister_dingledine.json",
+    "corpus_index": 102,
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-mister-dingledine/",
+    "title": "ebook robert f clifton mister dingledine",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 142609
+  },
+  {
+    "file": "0103_ebook_gabby_estrada_a_k_a_trixie_delight.json",
+    "corpus_index": 103,
+    "url": "https://www.bookrix.com/_ebook-gabby-estrada-a-k-a-trixie-delight-the-night-my-daddy-murdered-me/",
+    "title": "ebook gabby estrada a k a trixie delight the night my daddy murdered me",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 7968
+  },
+  {
+    "file": "0106_ebook_sir_arthur_conan_doyle_the_disappe.json",
+    "corpus_index": 106,
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-disappearance-of-lady-frances-carfax/",
+    "title": "ebook sir arthur conan doyle the disappearance of lady frances carfax",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 42586
+  },
+  {
+    "file": "0107_ebook_sir_arthur_conan_doyle_my_friend_t.json",
+    "corpus_index": 107,
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-my-friend-the-murderer/",
+    "title": "ebook sir arthur conan doyle my friend the murderer",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 38777
+  },
+  {
+    "file": "0108_ebook_bs_murthy_prey_on_the_prowl_a_crim.json",
+    "corpus_index": 108,
+    "url": "https://www.bookrix.com/_ebook-bs-murthy-prey-on-the-prowl-a-crime-novel/",
+    "title": "ebook bs murthy prey on the prowl a crime novel",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 218380
+  },
+  {
+    "file": "0109_ebook_sir_arthur_conan_doyle_the_adventu.json",
+    "corpus_index": 109,
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-adventure-of-wisteria-lodge/",
+    "title": "ebook sir arthur conan doyle the adventure of wisteria lodge",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 62895
+  },
+  {
+    "file": "0110_ebook_the_general_himself_death_come_swi.json",
+    "corpus_index": 110,
+    "url": "https://www.bookrix.com/_ebook-the-general-himself-death-come-swiftly/",
+    "title": "ebook the general himself death come swiftly",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 11756
+  },
+  {
+    "file": "0111_ebook_brooke_l_private_eye.json",
+    "corpus_index": 111,
+    "url": "https://www.bookrix.com/_ebook-brooke-l-private-eye/",
+    "title": "ebook brooke l private eye",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 16343
+  },
+  {
+    "file": "0112_ebook_sir_arthur_conan_doyle_the_doings_.json",
+    "corpus_index": 112,
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-doings-of-raffles-haw/",
+    "title": "ebook sir arthur conan doyle the doings of raffles haw",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 206447
+  },
+  {
+    "file": "0113_ebook_quailycat_the_six_fingered_doll.json",
+    "corpus_index": 113,
+    "url": "https://www.bookrix.com/_ebook-quailycat-the-six-fingered-doll/",
+    "title": "ebook quailycat the six fingered doll",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 4127
+  },
+  {
+    "file": "0114_ebook_mary_mccausland_anny_039_s_clover.json",
+    "corpus_index": 114,
+    "url": "https://www.bookrix.com/_ebook-mary-mccausland-anny-039-s-clover/",
+    "title": "ebook mary mccausland anny 039 s clover",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 9740
+  },
+  {
+    "file": "0115_ebook_harshavardhan_c_after_death_an_ult.json",
+    "corpus_index": 115,
+    "url": "https://www.bookrix.com/_ebook-harshavardhan-c-after-death-an-ultimate-truth/",
+    "title": "ebook harshavardhan c after death an ultimate truth",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 208755
+  },
+  {
+    "file": "0116_ebook_ameera_butt_what_039_s_hidden_with.json",
+    "corpus_index": 116,
+    "url": "https://www.bookrix.com/_ebook-ameera-butt-what-039-s-hidden-within-me/",
+    "title": "ebook ameera butt what 039 s hidden within me",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 119955
+  },
+  {
+    "file": "0118_ebook_amber_black_partner_in_crime.json",
+    "corpus_index": 118,
+    "url": "https://www.bookrix.com/_ebook-amber-black-partner-in-crime/",
+    "title": "ebook amber black partner in crime",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 16691
+  },
+  {
+    "file": "0119_ebook_alexandre_dumas_pere_mary_stuart.json",
+    "corpus_index": 119,
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-mary-stuart/",
+    "title": "ebook alexandre dumas pere mary stuart",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 411378
+  },
+  {
+    "file": "0120_ebook_crazykoolaidwriter_search_rescue_s.json",
+    "corpus_index": 120,
+    "url": "https://www.bookrix.com/_ebook-crazykoolaidwriter-search-rescue-solve/",
+    "title": "ebook crazykoolaidwriter search rescue solve",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 13996
+  },
+  {
+    "file": "0121_ebook_meaghan_larson_cheer_before_fear.json",
+    "corpus_index": 121,
+    "url": "https://www.bookrix.com/_ebook-meaghan-larson-cheer-before-fear/",
+    "title": "ebook meaghan larson cheer before fear",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 34605
+  },
+  {
+    "file": "0122_ebook_charles_dickens_hunted_down.json",
+    "corpus_index": 122,
+    "url": "https://www.bookrix.com/_ebook-charles-dickens-hunted-down/",
+    "title": "ebook charles dickens hunted down",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 47535
+  },
+  {
+    "file": "0124_ebook_laurie_comeaux_the_shadow_in_the_h.json",
+    "corpus_index": 124,
+    "url": "https://www.bookrix.com/_ebook-laurie-comeaux-the-shadow-in-the-hall/",
+    "title": "ebook laurie comeaux the shadow in the hall",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 10970
+  },
+  {
+    "file": "0126_ebook_sir_arthur_conan_doyle_the_adventu.json",
+    "corpus_index": 126,
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-adventure-of-the-red-circle/",
+    "title": "ebook sir arthur conan doyle the adventure of the red circle",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 40128
+  },
+  {
+    "file": "0127_ebook_sir_arthur_conan_doyle_the_adventu.json",
+    "corpus_index": 127,
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-adventure-of-the-cardboard-box/",
+    "title": "ebook sir arthur conan doyle the adventure of the cardboard box",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 46293
+  },
+  {
+    "file": "0128_ebook_kaitlyn_garlets_fears.json",
+    "corpus_index": 128,
+    "url": "https://www.bookrix.com/_ebook-kaitlyn-garlets-fears/",
+    "title": "ebook kaitlyn garlets fears",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 85663
+  },
+  {
+    "file": "0129_ebook_just_us_friendz_blind_ambition.json",
+    "corpus_index": 129,
+    "url": "https://www.bookrix.com/_ebook-just-us-friendz-blind-ambition/",
+    "title": "ebook just us friendz blind ambition",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 71991
+  },
+  {
+    "file": "0130_ebook_robi_crusoe_it_all_started_at_four.json",
+    "corpus_index": 130,
+    "url": "https://www.bookrix.com/_ebook-robi-crusoe-it-all-started-at-four-corners/",
+    "title": "ebook robi crusoe it all started at four corners",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 29088
+  },
+  {
+    "file": "0131_ebook_megan_lewis_sheep_snatcher_thief_c.json",
+    "corpus_index": 131,
+    "url": "https://www.bookrix.com/_ebook-megan-lewis-sheep-snatcher-thief-catcher-what-8217-s-the-good-in-that-old-thatcher/",
+    "title": "ebook megan lewis sheep snatcher thief catcher what 8217 s the good in that old thatcher",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 12046
+  },
+  {
+    "file": "0132_ebook_m_m_k_and_aaron_kelley_within_the_.json",
+    "corpus_index": 132,
+    "url": "https://www.bookrix.com/_ebook-m-m-k-and-aaron-kelley-within-the-forest/",
+    "title": "ebook m m k and aaron kelley within the forest",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 4305
+  },
+  {
+    "file": "0133_ebook_sabrina_crowder_jessica.json",
+    "corpus_index": 133,
+    "url": "https://www.bookrix.com/_ebook-sabrina-crowder-jessica/",
+    "title": "ebook sabrina crowder jessica",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 5828
+  },
+  {
+    "file": "0134_ebook_anzy_irani_the_case_of_the_missing.json",
+    "corpus_index": 134,
+    "url": "https://www.bookrix.com/_ebook-anzy-irani-the-case-of-the-missing-scientist/",
+    "title": "ebook anzy irani the case of the missing scientist",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 21661
+  },
+  {
+    "file": "0135_ebook_sara_hansen_who_am_i.json",
+    "corpus_index": 135,
+    "url": "https://www.bookrix.com/_ebook-sara-hansen-who-am-i/",
+    "title": "ebook sara hansen who am i",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 52078
+  },
+  {
+    "file": "0136_ebook_k_darley_dancing_on_strings.json",
+    "corpus_index": 136,
+    "url": "https://www.bookrix.com/_ebook-k-darley-dancing-on-strings/",
+    "title": "ebook k darley dancing on strings",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 14631
+  },
+  {
+    "file": "0137_ebook_m_jade_glock_it_takes_two_to_murde.json",
+    "corpus_index": 137,
+    "url": "https://www.bookrix.com/_ebook-m-jade-glock-it-takes-two-to-murder/",
+    "title": "ebook m jade glock it takes two to murder",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 9577
+  },
+  {
+    "file": "0138_ebook_robi_crusoe_hope_is_a_very_mysteri.json",
+    "corpus_index": 138,
+    "url": "https://www.bookrix.com/_ebook-robi-crusoe-hope-is-a-very-mysterious-thing/",
+    "title": "ebook robi crusoe hope is a very mysterious thing",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 8784
+  },
+  {
+    "file": "0139_ebook_charles_dickens_the_mystery_of_edw.json",
+    "corpus_index": 139,
+    "url": "https://www.bookrix.com/_ebook-charles-dickens-the-mystery-of-edwin-drood/",
+    "title": "ebook charles dickens the mystery of edwin drood",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 536757
+  },
+  {
+    "file": "0140_ebook_chris_harris_grimshaw_amp_mortimer.json",
+    "corpus_index": 140,
+    "url": "https://www.bookrix.com/_ebook-chris-harris-grimshaw-amp-mortimer-the-case-book/",
+    "title": "ebook chris harris grimshaw amp mortimer the case book",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 25697
+  },
+  {
+    "file": "0141_ebook_kimba_sue_the_killer_at_the_librar.json",
+    "corpus_index": 141,
+    "url": "https://www.bookrix.com/_ebook-kimba-sue-the-killer-at-the-library/",
+    "title": "ebook kimba sue the killer at the library",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 13915
+  },
+  {
+    "file": "0143_ebook_alexandre_dumas_pere_vaninka.json",
+    "corpus_index": 143,
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-vaninka/",
+    "title": "ebook alexandre dumas pere vaninka",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 118743
+  },
+  {
+    "file": "0144_ebook_j_m_burlock_the_burning_of_books.json",
+    "corpus_index": 144,
+    "url": "https://www.bookrix.com/_ebook-j-m-burlock-the-burning-of-books/",
+    "title": "ebook j m burlock the burning of books",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 7106
+  },
+  {
+    "file": "0146_ebook_jermey_michael_henley_island.json",
+    "corpus_index": 146,
+    "url": "https://www.bookrix.com/_ebook-jermey-michael-henley-island/",
+    "title": "ebook jermey michael henley island",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 9977
+  },
+  {
+    "file": "0147_ebook_by_daniella_willey_the_black_butte.json",
+    "corpus_index": 147,
+    "url": "https://www.bookrix.com/_ebook-by-daniella-willey-the-black-butterfly/",
+    "title": "ebook by daniella willey the black butterfly",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 11972
+  },
+  {
+    "file": "0149_ebook_ron_feasel_moral_dilemma.json",
+    "corpus_index": 149,
+    "url": "https://www.bookrix.com/_ebook-ron-feasel-moral-dilemma/",
+    "title": "ebook ron feasel moral dilemma",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 26830
+  },
+  {
+    "file": "0150_ebook_angel_of_death_the_forgotten_book.json",
+    "corpus_index": 150,
+    "url": "https://www.bookrix.com/_ebook-angel-of-death-the-forgotten-book/",
+    "title": "ebook angel of death the forgotten book",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 9665
+  },
+  {
+    "file": "0152_ebook_aaron_wise_untrace_able_chapter_1.json",
+    "corpus_index": 152,
+    "url": "https://www.bookrix.com/_ebook-aaron-wise-untrace-able-chapter-1/",
+    "title": "ebook aaron wise untrace able chapter 1",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 8604
+  },
+  {
+    "file": "0153_ebook_sir_arthur_conan_doyle_his_last_bo.json",
+    "corpus_index": 153,
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-his-last-bow/",
+    "title": "ebook sir arthur conan doyle his last bow",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 33815
+  },
+  {
+    "file": "0154_ebook_natalie_wood_saving_alex_storm.json",
+    "corpus_index": 154,
+    "url": "https://www.bookrix.com/_ebook-natalie-wood-saving-alex-storm/",
+    "title": "ebook natalie wood saving alex storm",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 2941
+  },
+  {
+    "file": "0155_ebook_katie_r_jamison_the_mystery_of_hav.json",
+    "corpus_index": 155,
+    "url": "https://www.bookrix.com/_ebook-katie-r-jamison-the-mystery-of-haverlin-manor-in-progress/",
+    "title": "ebook katie r jamison the mystery of haverlin manor in progress",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 4017
+  },
+  {
+    "file": "0156_ebook_mell_corcoran_shadows_of_deceit.json",
+    "corpus_index": 156,
+    "url": "https://www.bookrix.com/_ebook-mell-corcoran-shadows-of-deceit/",
+    "title": "ebook mell corcoran shadows of deceit",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 63704
+  },
+  {
+    "file": "0157_ebook_alexandre_dumas_pere_joan_of_naple.json",
+    "corpus_index": 157,
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-joan-of-naples/",
+    "title": "ebook alexandre dumas pere joan of naples",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 220566
+  },
+  {
+    "file": "0158_ebook_sola_luna_the_case_of_the_quot_dea.json",
+    "corpus_index": 158,
+    "url": "https://www.bookrix.com/_ebook-sola-luna-the-case-of-the-quot-dear-diary-killer-quot/",
+    "title": "ebook sola luna the case of the quot dear diary killer quot",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 2882
+  },
+  {
+    "file": "0159_ebook_legacy_jackson_akatsuki_no_kuruma.json",
+    "corpus_index": 159,
+    "url": "https://www.bookrix.com/_ebook-legacy-jackson-akatsuki-no-kuruma/",
+    "title": "ebook legacy jackson akatsuki no kuruma",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 11124
+  },
+  {
+    "file": "0160_ebook_alexandre_dumas_pere_urbain_grandi.json",
+    "corpus_index": 160,
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-urbain-grandier/",
+    "title": "ebook alexandre dumas pere urbain grandier",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 212555
+  },
+  {
+    "file": "0161_ebook_michelle_kidd_timeless_moments.json",
+    "corpus_index": 161,
+    "url": "https://www.bookrix.com/_ebook-michelle-kidd-timeless-moments/",
+    "title": "ebook michelle kidd timeless moments",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 40936
+  },
+  {
+    "file": "0163_ebook_redhead16_mlm_the_cheating_thief.json",
+    "corpus_index": 163,
+    "url": "https://www.bookrix.com/_ebook-redhead16-mlm-the-cheating-thief/",
+    "title": "ebook redhead16 mlm the cheating thief",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 6294
+  },
+  {
+    "file": "0164_ebook_dreoilin_seven_sins.json",
+    "corpus_index": 164,
+    "url": "https://www.bookrix.com/_ebook-dreoilin-seven-sins/",
+    "title": "ebook dreoilin seven sins",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 2538
+  },
+  {
+    "file": "0165_ebook_kareca_shadowless.json",
+    "corpus_index": 165,
+    "url": "https://www.bookrix.com/_ebook-kareca-shadowless/",
+    "title": "ebook kareca shadowless",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 81882
+  },
+  {
+    "file": "0166_ebook_angel_ortiz_the_disappearance.json",
+    "corpus_index": 166,
+    "url": "https://www.bookrix.com/_ebook-angel-ortiz-the-disappearance/",
+    "title": "ebook angel ortiz the disappearance",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 6309
+  },
+  {
+    "file": "0168_ebook_megan_stringfellow_27_kills.json",
+    "corpus_index": 168,
+    "url": "https://www.bookrix.com/_ebook-megan-stringfellow-27-kills/",
+    "title": "ebook megan stringfellow 27 kills",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 6569
+  },
+  {
+    "file": "0170_ebook_jk_irving_mystic_flower.json",
+    "corpus_index": 170,
+    "url": "https://www.bookrix.com/_ebook-jk-irving-mystic-flower/",
+    "title": "ebook jk irving mystic flower",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 59145
+  },
+  {
+    "file": "0171_ebook_tennistar_unforgettable_images.json",
+    "corpus_index": 171,
+    "url": "https://www.bookrix.com/_ebook-tennistar-unforgettable-images/",
+    "title": "ebook tennistar unforgettable images",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 7929
+  },
+  {
+    "file": "0172_ebook_danielle_white_hidden.json",
+    "corpus_index": 172,
+    "url": "https://www.bookrix.com/_ebook-danielle-white-hidden/",
+    "title": "ebook danielle white hidden",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 8968
+  },
+  {
+    "file": "0173_ebook_soumya_sarkar_the_film.json",
+    "corpus_index": 173,
+    "url": "https://www.bookrix.com/_ebook-soumya-sarkar-the-film/",
+    "title": "ebook soumya sarkar the film",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 4875
+  },
+  {
+    "file": "0174_ebook_kyler_james_grimshaw_mysteries_2.json",
+    "corpus_index": 174,
+    "url": "https://www.bookrix.com/_ebook-kyler-james-grimshaw-mysteries-2/",
+    "title": "ebook kyler james grimshaw mysteries 2",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 5094
+  },
+  {
+    "file": "0175_ebook_sir_arthur_conan_doyle_the_adventu.json",
+    "corpus_index": 175,
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-adventure-of-bruce-partington-plans/",
+    "title": "ebook sir arthur conan doyle the adventure of bruce partington plans",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 59779
+  },
+  {
+    "file": "0176_ebook_michael_pennington_zhena_sample_ch.json",
+    "corpus_index": 176,
+    "url": "https://www.bookrix.com/_ebook-michael-pennington-zhena-sample-chapters/",
+    "title": "ebook michael pennington zhena sample chapters",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 28753
+  },
+  {
+    "file": "0177_ebook_redhead16_mlm_mysterious.json",
+    "corpus_index": 177,
+    "url": "https://www.bookrix.com/_ebook-redhead16-mlm-mysterious/",
+    "title": "ebook redhead16 mlm mysterious",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 15955
+  },
+  {
+    "file": "0178_ebook_radia_al_rashid_eyes_like_ice.json",
+    "corpus_index": 178,
+    "url": "https://www.bookrix.com/_ebook-radia-al-rashid-eyes-like-ice/",
+    "title": "ebook radia al rashid eyes like ice",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 240873
+  },
+  {
+    "file": "0179_ebook_terrex_corbin_who_is_mr_code.json",
+    "corpus_index": 179,
+    "url": "https://www.bookrix.com/_ebook-terrex-corbin-who-is-mr-code/",
+    "title": "ebook terrex corbin who is mr code",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 6870
+  },
+  {
+    "file": "0180_ebook_xxkyliexx123_who_am_i.json",
+    "corpus_index": 180,
+    "url": "https://www.bookrix.com/_ebook-xxkyliexx123-who-am-i/",
+    "title": "ebook xxkyliexx123 who am i",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 24942
+  },
+  {
+    "file": "0181_ebook_legacy_jackson_akatsuki_no_kuruma_.json",
+    "corpus_index": 181,
+    "url": "https://www.bookrix.com/_ebook-legacy-jackson-akatsuki-no-kuruma-1/",
+    "title": "ebook legacy jackson akatsuki no kuruma 1",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 11125
+  },
+  {
+    "file": "0182_ebook_zema_zuruki_the_sad_end.json",
+    "corpus_index": 182,
+    "url": "https://www.bookrix.com/_ebook-zema-zuruki-the-sad-end/",
+    "title": "ebook zema zuruki the sad end",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 3769
+  },
+  {
+    "file": "0183_ebook_ren_willi_the_dissappearance_fo_ma.json",
+    "corpus_index": 183,
+    "url": "https://www.bookrix.com/_ebook-ren-willi-the-dissappearance-fo-madeline-shultz/",
+    "title": "ebook ren willi the dissappearance fo madeline shultz",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 17043
+  },
+  {
+    "file": "0184_ebook_valerie_ziegler_life_of_a_reformed.json",
+    "corpus_index": 184,
+    "url": "https://www.bookrix.com/_ebook-valerie-ziegler-life-of-a-reformed-wild-child/",
+    "title": "ebook valerie ziegler life of a reformed wild child",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 27366
+  },
+  {
+    "file": "0185_ebook_j_n_taylor_echo.json",
+    "corpus_index": 185,
+    "url": "https://www.bookrix.com/_ebook-j-n-taylor-echo/",
+    "title": "ebook j n taylor echo",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 27043
+  },
+  {
+    "file": "0187_ebook_kenzie_stone_appalachian_arsenic.json",
+    "corpus_index": 187,
+    "url": "https://www.bookrix.com/_ebook-kenzie-stone-appalachian-arsenic/",
+    "title": "ebook kenzie stone appalachian arsenic",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 25661
+  },
+  {
+    "file": "0188_ebook_c_kelemen_the_winter_mill_murder.json",
+    "corpus_index": 188,
+    "url": "https://www.bookrix.com/_ebook-c-kelemen-the-winter-mill-murder/",
+    "title": "ebook c kelemen the winter mill murder",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 4204
+  },
+  {
+    "file": "0190_ebook_alexandre_dumas_pere_la_constantin.json",
+    "corpus_index": 190,
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-la-constantin/",
+    "title": "ebook alexandre dumas pere la constantin",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 138407
+  },
+  {
+    "file": "0191_ebook_confusedalarms_scenes_from_a_memor.json",
+    "corpus_index": 191,
+    "url": "https://www.bookrix.com/_ebook-confusedalarms-scenes-from-a-memory/",
+    "title": "ebook confusedalarms scenes from a memory",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 12250
+  },
+  {
+    "file": "0192_ebook_anastasia_timmons_the_girl_who_dis.json",
+    "corpus_index": 192,
+    "url": "https://www.bookrix.com/_ebook-anastasia-timmons-the-girl-who-disappeared/",
+    "title": "ebook anastasia timmons the girl who disappeared",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 10776
+  },
+  {
+    "file": "0193_ebook_paula_louise_shene_the_face_of_evi.json",
+    "corpus_index": 193,
+    "url": "https://www.bookrix.com/_ebook-paula-louise-shene-the-face-of-evil/",
+    "title": "ebook paula louise shene the face of evil",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 6093
+  },
+  {
+    "file": "0194_ebook_kirsten_lott_his_golden_tears.json",
+    "corpus_index": 194,
+    "url": "https://www.bookrix.com/_ebook-kirsten-lott-his-golden-tears/",
+    "title": "ebook kirsten lott his golden tears",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 15206
+  },
+  {
+    "file": "0195_ebook_m_j_garrett_first_chance_last_chan.json",
+    "corpus_index": 195,
+    "url": "https://www.bookrix.com/_ebook-m-j-garrett-first-chance-last-chance/",
+    "title": "ebook m j garrett first chance last chance",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 23925
+  },
+  {
+    "file": "0196_ebook_callele_lyvance_fetiche.json",
+    "corpus_index": 196,
+    "url": "https://www.bookrix.com/_ebook-callele-lyvance-fetiche/",
+    "title": "ebook callele lyvance fetiche",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 10360
+  },
+  {
+    "file": "0197_ebook_tyler_lace_thief_in_the_shadows.json",
+    "corpus_index": 197,
+    "url": "https://www.bookrix.com/_ebook-tyler-lace-thief-in-the-shadows/",
+    "title": "ebook tyler lace thief in the shadows",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 34075
+  },
+  {
+    "file": "0198_ebook_lharissa_charles_sad_mother.json",
+    "corpus_index": 198,
+    "url": "https://www.bookrix.com/_ebook-lharissa-charles-sad-mother/",
+    "title": "ebook lharissa charles sad mother",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 2030
+  },
+  {
+    "file": "0200_ebook_mackenzie_herrst_every_hundred_yea.json",
+    "corpus_index": 200,
+    "url": "https://www.bookrix.com/_ebook-mackenzie-herrst-every-hundred-years/",
+    "title": "ebook mackenzie herrst every hundred years",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 30312
+  },
+  {
+    "file": "0202_ebook_faith_harper_bitter_affection.json",
+    "corpus_index": 202,
+    "url": "https://www.bookrix.com/_ebook-faith-harper-bitter-affection/",
+    "title": "ebook faith harper bitter affection",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 28950
+  },
+  {
+    "file": "0203_ebook_alexandre_dumas_pere_the_countess_.json",
+    "corpus_index": 203,
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-the-countess-of-saint-geran/",
+    "title": "ebook alexandre dumas pere the countess of saint geran",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 100959
+  },
+  {
+    "file": "0204_ebook_abby_moran_geraldo.json",
+    "corpus_index": 204,
+    "url": "https://www.bookrix.com/_ebook-abby-moran-geraldo/",
+    "title": "ebook abby moran geraldo",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 76390
+  },
+  {
+    "file": "0205_ebook_scathach_danu_sweet_caroline.json",
+    "corpus_index": 205,
+    "url": "https://www.bookrix.com/_ebook-scathach-danu-sweet-caroline/",
+    "title": "ebook scathach danu sweet caroline",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 2095
+  },
+  {
+    "file": "0206_ebook_bookworm7979_cadena_my_killer.json",
+    "corpus_index": 206,
+    "url": "https://www.bookrix.com/_ebook-bookworm7979-cadena-my-killer/",
+    "title": "ebook bookworm7979 cadena my killer",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 3088
+  },
+  {
+    "file": "0207_ebook_sydney_st_fleur_ashes_and_diamonds.json",
+    "corpus_index": 207,
+    "url": "https://www.bookrix.com/_ebook-sydney-st-fleur-ashes-and-diamonds/",
+    "title": "ebook sydney st fleur ashes and diamonds",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 31754
+  },
+  {
+    "file": "0208_ebook_the_general_himself_death_from_the.json",
+    "corpus_index": 208,
+    "url": "https://www.bookrix.com/_ebook-the-general-himself-death-from-the-past/",
+    "title": "ebook the general himself death from the past",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 11954
+  },
+  {
+    "file": "0209_ebook_brady_h_the_ransacked_building.json",
+    "corpus_index": 209,
+    "url": "https://www.bookrix.com/_ebook-brady-h-the-ransacked-building/",
+    "title": "ebook brady h the ransacked building",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 5860
+  },
+  {
+    "file": "0211_ebook_by_morgan_burn.json",
+    "corpus_index": 211,
+    "url": "https://www.bookrix.com/_ebook-by-morgan-burn/",
+    "title": "ebook by morgan burn",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 7194
+  },
+  {
+    "file": "0212_ebook_sin_c_beautiful_killers.json",
+    "corpus_index": 212,
+    "url": "https://www.bookrix.com/_ebook-sin-c-beautiful-killers/",
+    "title": "ebook sin c beautiful killers",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 12180
+  },
+  {
+    "file": "0213_ebook_matteo_castro_the_great_revange.json",
+    "corpus_index": 213,
+    "url": "https://www.bookrix.com/_ebook-matteo-castro-the-great-revange/",
+    "title": "ebook matteo castro the great revange",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 4719
+  },
+  {
+    "file": "0215_ebook_amy_lockhart_shhh_the_name_of_this.json",
+    "corpus_index": 215,
+    "url": "https://www.bookrix.com/_ebook-amy-lockhart-shhh-the-name-of-this-book-is-classified/",
+    "title": "ebook amy lockhart shhh the name of this book is classified",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 2501
+  },
+  {
+    "file": "0216_ebook_elle_marie_calhoun_the_mystery_dia.json",
+    "corpus_index": 216,
+    "url": "https://www.bookrix.com/_ebook-elle-marie-calhoun-the-mystery-diaries/",
+    "title": "ebook elle marie calhoun the mystery diaries",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 6262
+  },
+  {
+    "file": "0217_ebook_odessa_mcniel_clarissa_odele_and_t.json",
+    "corpus_index": 217,
+    "url": "https://www.bookrix.com/_ebook-odessa-mcniel-clarissa-odele-and-the-case-of-the-slain-newlyweds/",
+    "title": "ebook odessa mcniel clarissa odele and the case of the slain newlyweds",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 16796
+  },
+  {
+    "file": "0218_ebook_alexandre_dumas_pere_karl_ludwig_s.json",
+    "corpus_index": 218,
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-karl-ludwig-sand/",
+    "title": "ebook alexandre dumas pere karl ludwig sand",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 126715
+  },
+  {
+    "file": "0220_ebook_melissa_pollard_taking_revenge.json",
+    "corpus_index": 220,
+    "url": "https://www.bookrix.com/_ebook-melissa-pollard-taking-revenge/",
+    "title": "ebook melissa pollard taking revenge",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 11062
+  },
+  {
+    "file": "0222_ebook_c_kelemen_the_lively_glow_of_death.json",
+    "corpus_index": 222,
+    "url": "https://www.bookrix.com/_ebook-c-kelemen-the-lively-glow-of-death/",
+    "title": "ebook c kelemen the lively glow of death",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 2213
+  },
+  {
+    "file": "0225_ebook_florence_hazel_call_1800_234_dead.json",
+    "corpus_index": 225,
+    "url": "https://www.bookrix.com/_ebook-florence-hazel-call-1800-234-dead/",
+    "title": "ebook florence hazel call 1800 234 dead",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 14930
+  },
+  {
+    "file": "0228_ebook_kattie_huang_i_039_m_here.json",
+    "corpus_index": 228,
+    "url": "https://www.bookrix.com/_ebook-kattie-huang-i-039-m-here/",
+    "title": "ebook kattie huang i 039 m here",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 16079
+  },
+  {
+    "file": "0229_ebook_crimson_rose_children_surrender.json",
+    "corpus_index": 229,
+    "url": "https://www.bookrix.com/_ebook-crimson-rose-children-surrender/",
+    "title": "ebook crimson rose children surrender",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 9668
+  },
+  {
+    "file": "0230_ebook_natalie_m_wood_the_other_side_of_m.json",
+    "corpus_index": 230,
+    "url": "https://www.bookrix.com/_ebook-natalie-m-wood-the-other-side-of-me/",
+    "title": "ebook natalie m wood the other side of me",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 2203
+  },
+  {
+    "file": "0231_ebook_h_l_w_handle_bars.json",
+    "corpus_index": 231,
+    "url": "https://www.bookrix.com/_ebook-h-l-w-handle-bars/",
+    "title": "ebook h l w handle bars",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 10193
+  },
+  {
+    "file": "0232_ebook_c_m_albrecht_the_albemarle_affair.json",
+    "corpus_index": 232,
+    "url": "https://www.bookrix.com/_ebook-c-m-albrecht-the-albemarle-affair/",
+    "title": "ebook c m albrecht the albemarle affair",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 21852
+  },
+  {
+    "file": "0234_ebook_ej_patterson_saving_maggie.json",
+    "corpus_index": 234,
+    "url": "https://www.bookrix.com/_ebook-ej-patterson-saving-maggie/",
+    "title": "ebook ej patterson saving maggie",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 7531
+  },
+  {
+    "file": "0235_ebook_amaris_the_mystery_girl.json",
+    "corpus_index": 235,
+    "url": "https://www.bookrix.com/_ebook-amaris-the-mystery-girl/",
+    "title": "ebook amaris the mystery girl",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 5176
+  },
+  {
+    "file": "0236_ebook_jordan_link_an_inspector_039_s_tes.json",
+    "corpus_index": 236,
+    "url": "https://www.bookrix.com/_ebook-jordan-link-an-inspector-039-s-testimonial/",
+    "title": "ebook jordan link an inspector 039 s testimonial",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 5741
+  },
+  {
+    "file": "0238_ebook_kimba_sue_this_cannot_be_happening.json",
+    "corpus_index": 238,
+    "url": "https://www.bookrix.com/_ebook-kimba-sue-this-cannot-be-happening-again/",
+    "title": "ebook kimba sue this cannot be happening again",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 9844
+  },
+  {
+    "file": "0239_ebook_hunter_lynne_truth_in_darkness.json",
+    "corpus_index": 239,
+    "url": "https://www.bookrix.com/_ebook-hunter-lynne-truth-in-darkness/",
+    "title": "ebook hunter lynne truth in darkness",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 7274
+  },
+  {
+    "file": "0241_ebook_elvira_frankenheim_the_evil_within.json",
+    "corpus_index": 241,
+    "url": "https://www.bookrix.com/_ebook-elvira-frankenheim-the-evil-within/",
+    "title": "ebook elvira frankenheim the evil within",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 14875
+  },
+  {
+    "file": "0243_ebook_elle_marie_calhoun_an_awakening_me.json",
+    "corpus_index": 243,
+    "url": "https://www.bookrix.com/_ebook-elle-marie-calhoun-an-awakening-memory/",
+    "title": "ebook elle marie calhoun an awakening memory",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 17967
+  },
+  {
+    "file": "0244_ebook_bronte_shepherd_time.json",
+    "corpus_index": 244,
+    "url": "https://www.bookrix.com/_ebook-bronte-shepherd-time/",
+    "title": "ebook bronte shepherd time",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 20652
+  },
+  {
+    "file": "0245_ebook_jonelle_patrick_fallen_angel_an_on.json",
+    "corpus_index": 245,
+    "url": "https://www.bookrix.com/_ebook-jonelle-patrick-fallen-angel-an-only-in-tokyo-mystery/",
+    "title": "ebook jonelle patrick fallen angel an only in tokyo mystery",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 3385
+  },
+  {
+    "file": "0247_ebook_shady_larry_civil_being.json",
+    "corpus_index": 247,
+    "url": "https://www.bookrix.com/_ebook-shady-larry-civil-being/",
+    "title": "ebook shady larry civil being",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 5757
+  },
+  {
+    "file": "0248_ebook_austin_c_drake_dream_of_the_dead.json",
+    "corpus_index": 248,
+    "url": "https://www.bookrix.com/_ebook-austin-c-drake-dream-of-the-dead/",
+    "title": "ebook austin c drake dream of the dead",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 5524
+  },
+  {
+    "file": "0250_ebook_k_m_montoya_who_am_i_really.json",
+    "corpus_index": 250,
+    "url": "https://www.bookrix.com/_ebook-k-m-montoya-who-am-i-really/",
+    "title": "ebook k m montoya who am i really",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 7476
+  },
+  {
+    "file": "0251_ebook_sherlet8_robin.json",
+    "corpus_index": 251,
+    "url": "https://www.bookrix.com/_ebook-sherlet8-robin/",
+    "title": "ebook sherlet8 robin",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 7571
+  },
+  {
+    "file": "0253_ebook_the_general_himself_the_face_keepe.json",
+    "corpus_index": 253,
+    "url": "https://www.bookrix.com/_ebook-the-general-himself-the-face-keeper/",
+    "title": "ebook the general himself the face keeper",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 9474
+  },
+  {
+    "file": "0254_ebook_c_kelemen_the_birth_of_death.json",
+    "corpus_index": 254,
+    "url": "https://www.bookrix.com/_ebook-c-kelemen-the-birth-of-death/",
+    "title": "ebook c kelemen the birth of death",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 2328
+  },
+  {
+    "file": "0255_ebook_bethany_r_porter_billowing_in_the_.json",
+    "corpus_index": 255,
+    "url": "https://www.bookrix.com/_ebook-bethany-r-porter-billowing-in-the-distance/",
+    "title": "ebook bethany r porter billowing in the distance",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 4157
+  },
+  {
+    "file": "0256_ebook_alexandre_dumas_pere_murat.json",
+    "corpus_index": 256,
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-murat/",
+    "title": "ebook alexandre dumas pere murat",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 81968
+  },
+  {
+    "file": "0258_ebook_yagnesh_chokasi_god_is_watching_ev.json",
+    "corpus_index": 258,
+    "url": "https://www.bookrix.com/_ebook-yagnesh-chokasi-god-is-watching-everything/",
+    "title": "ebook yagnesh chokasi god is watching everything",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 7772
+  },
+  {
+    "file": "0259_ebook_g_j_prager_039_the_lesson_plan_039.json",
+    "corpus_index": 259,
+    "url": "https://www.bookrix.com/_ebook-g-j-prager-039-the-lesson-plan-039/",
+    "title": "ebook g j prager 039 the lesson plan 039",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 8090
+  },
+  {
+    "file": "0261_ebook_brewcris_tears_of_the_forgotten.json",
+    "corpus_index": 261,
+    "url": "https://www.bookrix.com/_ebook-brewcris-tears-of-the-forgotten/",
+    "title": "ebook brewcris tears of the forgotten",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 3643
+  },
+  {
+    "file": "0267_ebook_wintersk18_the_diary_the_twins_on_.json",
+    "corpus_index": 267,
+    "url": "https://www.bookrix.com/_ebook-wintersk18-the-diary-the-twins-on-the-other-vally/",
+    "title": "ebook wintersk18 the diary the twins on the other vally",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 19783
+  },
+  {
+    "file": "0269_ebook_melinda_dawn_mardars_satifaction_g.json",
+    "corpus_index": 269,
+    "url": "https://www.bookrix.com/_ebook-melinda-dawn-mardars-satifaction-guaranteed/",
+    "title": "ebook melinda dawn mardars satifaction guaranteed",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 10529
+  },
+  {
+    "file": "0270_ebook_alexandre_dumas_pere_derues.json",
+    "corpus_index": 270,
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-derues/",
+    "title": "ebook alexandre dumas pere derues",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 245477
+  },
+  {
+    "file": "0271_ebook_alexandre_dumas_pere_nisida.json",
+    "corpus_index": 271,
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-nisida/",
+    "title": "ebook alexandre dumas pere nisida",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 88491
+  },
+  {
+    "file": "0272_ebook_nathan_knox_unknown_stranger.json",
+    "corpus_index": 272,
+    "url": "https://www.bookrix.com/_ebook-nathan-knox-unknown-stranger/",
+    "title": "ebook nathan knox unknown stranger",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 2765
+  },
+  {
+    "file": "0273_ebook_michael_ridgley_the_riddler_in_the.json",
+    "corpus_index": 273,
+    "url": "https://www.bookrix.com/_ebook-michael-ridgley-the-riddler-in-the-lost-phone/",
+    "title": "ebook michael ridgley the riddler in the lost phone",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 3837
+  },
+  {
+    "file": "0274_ebook_sailorsenshi_a_k_a_ss_the_mystery_.json",
+    "corpus_index": 274,
+    "url": "https://www.bookrix.com/_ebook-sailorsenshi-a-k-a-ss-the-mystery-at-dorson-all-boys-academy/",
+    "title": "ebook sailorsenshi a k a ss the mystery at dorson all boys academy",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 17158
+  },
+  {
+    "file": "0275_ebook_ranz_ulanday_red_ops.json",
+    "corpus_index": 275,
+    "url": "https://www.bookrix.com/_ebook-ranz-ulanday-red-ops/",
+    "title": "ebook ranz ulanday red ops",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 4815
+  },
+  {
+    "file": "0276_ebook_alexandre_dumas_pere_marquise_de_g.json",
+    "corpus_index": 276,
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-marquise-de-ganges/",
+    "title": "ebook alexandre dumas pere marquise de ganges",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 119542
+  },
+  {
+    "file": "0277_ebook_enzo_a_almario_it_039_s_not_me.json",
+    "corpus_index": 277,
+    "url": "https://www.bookrix.com/_ebook-enzo-a-almario-it-039-s-not-me/",
+    "title": "ebook enzo a almario it 039 s not me",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 7930
+  },
+  {
+    "file": "0280_ebook_p_j_lawton_lethal_knowledge_excerp.json",
+    "corpus_index": 280,
+    "url": "https://www.bookrix.com/_ebook-p-j-lawton-lethal-knowledge-excerpt/",
+    "title": "ebook p j lawton lethal knowledge excerpt",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 5702
+  },
+  {
+    "file": "0281_ebook_isabelle_silvermist_changed.json",
+    "corpus_index": 281,
+    "url": "https://www.bookrix.com/_ebook-isabelle-silvermist-changed/",
+    "title": "ebook isabelle silvermist changed",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 2533
+  },
+  {
+    "file": "0282_ebook_bethlee_out_of_the_darkness.json",
+    "corpus_index": 282,
+    "url": "https://www.bookrix.com/_ebook-bethlee-out-of-the-darkness/",
+    "title": "ebook bethlee out of the darkness",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 24392
+  },
+  {
+    "file": "0283_ebook_kelsey_peters_bloody_love.json",
+    "corpus_index": 283,
+    "url": "https://www.bookrix.com/_ebook-kelsey-peters-bloody-love/",
+    "title": "ebook kelsey peters bloody love",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 5263
+  },
+  {
+    "file": "0284_ebook_blue_sutcliffe_sleepless_nights.json",
+    "corpus_index": 284,
+    "url": "https://www.bookrix.com/_ebook-blue-sutcliffe-sleepless-nights/",
+    "title": "ebook blue sutcliffe sleepless nights",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 9250
+  },
+  {
+    "file": "0286_ebook_marisa_redhead16_beg.json",
+    "corpus_index": 286,
+    "url": "https://www.bookrix.com/_ebook-marisa-redhead16-beg/",
+    "title": "ebook marisa redhead16 beg",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 3565
+  },
+  {
+    "file": "0287_ebook_shaelyn_ray_fetching_kendra.json",
+    "corpus_index": 287,
+    "url": "https://www.bookrix.com/_ebook-shaelyn-ray-fetching-kendra/",
+    "title": "ebook shaelyn ray fetching kendra",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 5825
+  },
+  {
+    "file": "0288_ebook_c_j_the_fugitive_files.json",
+    "corpus_index": 288,
+    "url": "https://www.bookrix.com/_ebook-c-j-the-fugitive-files/",
+    "title": "ebook c j the fugitive files",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 11033
+  },
+  {
+    "file": "0289_ebook_brian_hesse_the_m1_theory.json",
+    "corpus_index": 289,
+    "url": "https://www.bookrix.com/_ebook-brian-hesse-the-m1-theory/",
+    "title": "ebook brian hesse the m1 theory",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 154210
+  },
+  {
+    "file": "0291_ebook_mell_corcoran_shadows_of_doubt.json",
+    "corpus_index": 291,
+    "url": "https://www.bookrix.com/_ebook-mell-corcoran-shadows-of-doubt/",
+    "title": "ebook mell corcoran shadows of doubt",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 11450
+  },
+  {
+    "file": "0292_ebook_c_keelemen_the_fall_from_darkness.json",
+    "corpus_index": 292,
+    "url": "https://www.bookrix.com/_ebook-c-keelemen-the-fall-from-darkness/",
+    "title": "ebook c keelemen the fall from darkness",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 7290
+  },
+  {
+    "file": "0293_ebook_redhead16_marisa_to_love_a_pretty_.json",
+    "corpus_index": 293,
+    "url": "https://www.bookrix.com/_ebook-redhead16-marisa-to-love-a-pretty-girl/",
+    "title": "ebook redhead16 marisa to love a pretty girl",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 3616
+  },
+  {
+    "file": "0295_ebook_rebecca_anderson_me_sometimes.json",
+    "corpus_index": 295,
+    "url": "https://www.bookrix.com/_ebook-rebecca-anderson-me-sometimes/",
+    "title": "ebook rebecca anderson me sometimes",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 4229
+  },
+  {
+    "file": "0297_ebook_blackrock_hearts_starring_black_da.json",
+    "corpus_index": 297,
+    "url": "https://www.bookrix.com/_ebook-blackrock-hearts-starring-black-day-light/",
+    "title": "ebook blackrock hearts starring black day light",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 17589
+  },
+  {
+    "file": "0298_ebook_nick_venom_accomplice.json",
+    "corpus_index": 298,
+    "url": "https://www.bookrix.com/_ebook-nick-venom-accomplice/",
+    "title": "ebook nick venom accomplice",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 63266
+  },
+  {
+    "file": "0299_ebook_ayrin_southworth_catch_me_if_you_c.json",
+    "corpus_index": 299,
+    "url": "https://www.bookrix.com/_ebook-ayrin-southworth-catch-me-if-you-can/",
+    "title": "ebook ayrin southworth catch me if you can",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 5422
+  },
+  {
+    "file": "0300_ebook_ellen_jackson_killer_on_the_run.json",
+    "corpus_index": 300,
+    "url": "https://www.bookrix.com/_ebook-ellen-jackson-killer-on-the-run/",
+    "title": "ebook ellen jackson killer on the run",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 2929
+  },
+  {
+    "file": "0301_ebook_isaiah_turner_the_playground.json",
+    "corpus_index": 301,
+    "url": "https://www.bookrix.com/_ebook-isaiah-turner-the-playground/",
+    "title": "ebook isaiah turner the playground",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 7345
+  },
+  {
+    "file": "0302_ebook_evelyn_j_steward_trial_of_terror.json",
+    "corpus_index": 302,
+    "url": "https://www.bookrix.com/_ebook-evelyn-j-steward-trial-of-terror/",
+    "title": "ebook evelyn j steward trial of terror",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 6458
+  },
+  {
+    "file": "0303_ebook_jack_wilson_on_the_edge_part_1.json",
+    "corpus_index": 303,
+    "url": "https://www.bookrix.com/_ebook-jack-wilson-on-the-edge-part-1/",
+    "title": "ebook jack wilson on the edge part 1",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 2782
+  },
+  {
+    "file": "0304_ebook_shadowknight22_travels.json",
+    "corpus_index": 304,
+    "url": "https://www.bookrix.com/_ebook-shadowknight22-travels/",
+    "title": "ebook shadowknight22 travels",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 5201
+  },
+  {
+    "file": "0307_ebook_lubos_borik_human_source_code.json",
+    "corpus_index": 307,
+    "url": "https://www.bookrix.com/_ebook-lubos-borik-human-source-code/",
+    "title": "ebook lubos borik human source code",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 3253
+  },
+  {
+    "file": "0308_ebook_alexandre_dumas_pere_martin_guerre.json",
+    "corpus_index": 308,
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-martin-guerre/",
+    "title": "ebook alexandre dumas pere martin guerre",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 96484
+  },
+  {
+    "file": "0310_ebook_alexandria_r_deckelman_eviscerate.json",
+    "corpus_index": 310,
+    "url": "https://www.bookrix.com/_ebook-alexandria-r-deckelman-eviscerate/",
+    "title": "ebook alexandria r deckelman eviscerate",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 13821
+  },
+  {
+    "file": "0315_ebook_debbie_adam_listen_to_the_water.json",
+    "corpus_index": 315,
+    "url": "https://www.bookrix.com/_ebook-debbie-adam-listen-to-the-water/",
+    "title": "ebook debbie adam listen to the water",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 2258
+  },
+  {
+    "file": "0316_ebook_morgana_raffa_psychopath.json",
+    "corpus_index": 316,
+    "url": "https://www.bookrix.com/_ebook-morgana-raffa-psychopath/",
+    "title": "ebook morgana raffa psychopath",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 6734
+  },
+  {
+    "file": "0317_ebook_tara_krueger_halloween_story_pt_1.json",
+    "corpus_index": 317,
+    "url": "https://www.bookrix.com/_ebook-tara-krueger-halloween-story-pt-1/",
+    "title": "ebook tara krueger halloween story pt 1",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 7626
+  },
+  {
+    "file": "0318_ebook_wesley_drew_invader.json",
+    "corpus_index": 318,
+    "url": "https://www.bookrix.com/_ebook-wesley-drew-invader/",
+    "title": "ebook wesley drew invader",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 4655
+  },
+  {
+    "file": "0320_ebook_lyric_river_dee.json",
+    "corpus_index": 320,
+    "url": "https://www.bookrix.com/_ebook-lyric-river-dee/",
+    "title": "ebook lyric river dee",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 13629
+  },
+  {
+    "file": "0322_ebook_radia_al_rashid_frozen_in_time.json",
+    "corpus_index": 322,
+    "url": "https://www.bookrix.com/_ebook-radia-al-rashid-frozen-in-time/",
+    "title": "ebook radia al rashid frozen in time",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 188074
+  },
+  {
+    "file": "0323_ebook_alexandre_dumas_pere_cenci.json",
+    "corpus_index": 323,
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-cenci/",
+    "title": "ebook alexandre dumas pere cenci",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 70695
+  },
+  {
+    "file": "0324_ebook_martina_rocha_changes.json",
+    "corpus_index": 324,
+    "url": "https://www.bookrix.com/_ebook-martina-rocha-changes/",
+    "title": "ebook martina rocha changes",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 4283
+  },
+  {
+    "file": "0325_ebook_mahmood_ul_hassan_the_letters.json",
+    "corpus_index": 325,
+    "url": "https://www.bookrix.com/_ebook-mahmood-ul-hassan-the-letters/",
+    "title": "ebook mahmood ul hassan the letters",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 19723
+  },
+  {
+    "file": "0327_ebook_glary_woods_blood_thirsty_two_face.json",
+    "corpus_index": 327,
+    "url": "https://www.bookrix.com/_ebook-glary-woods-blood-thirsty-two-faced-medical-examiner-1/",
+    "title": "ebook glary woods blood thirsty two faced medical examiner 1",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 32742
+  },
+  {
+    "file": "0328_ebook_cookiebaby_baby_framed_flower.json",
+    "corpus_index": 328,
+    "url": "https://www.bookrix.com/_ebook-cookiebaby-baby-framed-flower/",
+    "title": "ebook cookiebaby baby framed flower",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 14286
+  },
+  {
+    "file": "0329_ebook_sarah_cornett_posioned.json",
+    "corpus_index": 329,
+    "url": "https://www.bookrix.com/_ebook-sarah-cornett-posioned/",
+    "title": "ebook sarah cornett posioned",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 2909
+  },
+  {
+    "file": "0330_ebook_jonelle_patrick_nightshade_an_only.json",
+    "corpus_index": 330,
+    "url": "https://www.bookrix.com/_ebook-jonelle-patrick-nightshade-an-only-in-tokyo-mystery/",
+    "title": "ebook jonelle patrick nightshade an only in tokyo mystery",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 2916
+  },
+  {
+    "file": "0331_ebook_me_tommorow_never_comes.json",
+    "corpus_index": 331,
+    "url": "https://www.bookrix.com/_ebook-me-tommorow-never-comes/",
+    "title": "ebook me tommorow never comes",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 14436
+  },
+  {
+    "file": "0333_ebook_alexandre_dumas_pere_marquise_brin.json",
+    "corpus_index": 333,
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-marquise-brinvillier/",
+    "title": "ebook alexandre dumas pere marquise brinvillier",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 153236
+  },
+  {
+    "file": "0337_ebook_meghnaa_sonkar_coveted_pearl.json",
+    "corpus_index": 337,
+    "url": "https://www.bookrix.com/_ebook-meghnaa-sonkar-coveted-pearl/",
+    "title": "ebook meghnaa sonkar coveted pearl",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 2675
+  },
+  {
+    "file": "0338_ebook_anonymous_cow_colors.json",
+    "corpus_index": 338,
+    "url": "https://www.bookrix.com/_ebook-anonymous-cow-colors/",
+    "title": "ebook anonymous cow colors",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 4010
+  },
+  {
+    "file": "0340_ebook_sreekanth_thattikota_bit_scepticis.json",
+    "corpus_index": 340,
+    "url": "https://www.bookrix.com/_ebook-sreekanth-thattikota-bit-scepticism/",
+    "title": "ebook sreekanth thattikota bit scepticism",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 2218
+  },
+  {
+    "file": "0341_ebook_great_a_footprint_made_of_code.json",
+    "corpus_index": 341,
+    "url": "https://www.bookrix.com/_ebook-great-a-footprint-made-of-code/",
+    "title": "ebook great a footprint made of code",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 4513
+  },
+  {
+    "file": "0342_ebook_flora_123_the_unexpected_journey.json",
+    "corpus_index": 342,
+    "url": "https://www.bookrix.com/_ebook-flora-123-the-unexpected-journey/",
+    "title": "ebook flora 123 the unexpected journey",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 22193
+  },
+  {
+    "file": "0344_ebook_john_jones_cuckoo_in_the_nests.json",
+    "corpus_index": 344,
+    "url": "https://www.bookrix.com/_ebook-john-jones-cuckoo-in-the-nests/",
+    "title": "ebook john jones cuckoo in the nests",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 22009
+  },
+  {
+    "file": "0345_ebook_john_jones_game_over.json",
+    "corpus_index": 345,
+    "url": "https://www.bookrix.com/_ebook-john-jones-game-over/",
+    "title": "ebook john jones game over",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 12547
+  },
+  {
+    "file": "0347_ebook_john_jones_the_sunseeker.json",
+    "corpus_index": 347,
+    "url": "https://www.bookrix.com/_ebook-john-jones-the-sunseeker/",
+    "title": "ebook john jones the sunseeker",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 11002
+  },
+  {
+    "file": "0349_ebook_gaby_hamacher_mr_winterbottom_und_.json",
+    "corpus_index": 349,
+    "url": "https://www.bookrix.com/_ebook-gaby-hamacher-mr-winterbottom-und-die-seele-der-nacht-1/",
+    "title": "ebook gaby hamacher mr winterbottom und die seele der nacht 1",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 26362
+  },
+  {
+    "file": "0350_ebook_john_jones_tuned_in.json",
+    "corpus_index": 350,
+    "url": "https://www.bookrix.com/_ebook-john-jones-tuned-in/",
+    "title": "ebook john jones tuned in",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 6649
+  },
+  {
+    "file": "0351_ebook_khb2d349d4c9cf5_1607062368.0187220.json",
+    "corpus_index": 351,
+    "url": "https://www.bookrix.com/_ebook-khb2d349d4c9cf5_1607062368.0187220573/",
+    "title": "ebook khb2d349d4c9cf5 1607062368.0187220573",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 52162
+  },
+  {
+    "file": "0352_ebook_andrew_wilsey_the_mystery_of_the_c.json",
+    "corpus_index": 352,
+    "url": "https://www.bookrix.com/_ebook-andrew-wilsey-the-mystery-of-the-cabin/",
+    "title": "ebook andrew wilsey the mystery of the cabin",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 3223
+  },
+  {
+    "file": "0353_ebook_jalal_nono_the_king_south_east.json",
+    "corpus_index": 353,
+    "url": "https://www.bookrix.com/_ebook-jalal-nono-the-king-south-east/",
+    "title": "ebook jalal nono the king south east",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 24691
+  },
+  {
+    "file": "0354_ebook_ellen_g_white_apocalypse.json",
+    "corpus_index": 354,
+    "url": "https://www.bookrix.com/_ebook-ellen-g-white-apocalypse/",
+    "title": "ebook ellen g white apocalypse",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 1325225
+  },
+  {
+    "file": "0355_ebook_i_nard_transitions_in_red.json",
+    "corpus_index": 355,
+    "url": "https://www.bookrix.com/_ebook-i-nard-transitions-in-red/",
+    "title": "ebook i nard transitions in red",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 3241
+  },
+  {
+    "file": "0356_ebook_ellen_g_white_armageddon.json",
+    "corpus_index": 356,
+    "url": "https://www.bookrix.com/_ebook-ellen-g-white-armageddon/",
+    "title": "ebook ellen g white armageddon",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 1325342
+  },
+  {
+    "file": "0357_ebook_khb2d349d4c9cf5_1607059451.4713439.json",
+    "corpus_index": 357,
+    "url": "https://www.bookrix.com/_ebook-khb2d349d4c9cf5_1607059451.4713439941/",
+    "title": "ebook khb2d349d4c9cf5 1607059451.4713439941",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 10413
+  }
+]

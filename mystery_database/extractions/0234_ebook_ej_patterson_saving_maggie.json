@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Abduction of multiple girls by an unknown perpetrator with a missing middle finger",
+    "confidence": "high",
+    "quote": "He had snatched her with his dark, cut up hands. I remember destictly to this day the absence of his middle finger."
+  },
+  "victim": {
+    "value": "Maggie and two other girls, abducted while walking at night despite known dangers",
+    "confidence": "medium",
+    "quote": "Three girls lay, slumped, on a kitchen table; a crop of brown curly hair atop the head of the girl closest to the door."
+  },
+  "closed_world": {
+    "value": "Rural area with cobblestone roads and marshy hills where bandits and criminals are known to roam at night",
+    "confidence": "medium",
+    "quote": "our mothers and fathers have cautioned us about bandits and theives and criminals roaming the dusty road at midnight"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "First-person narrator, Maggie's best friend, who witnesses the abduction and pursues the perpetrator",
+    "confidence": "high",
+    "quote": "I was going to find her, and nothing was going to stop me."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "The narrator's focus on the missing middle finger and 'it' as the abductor may be misdirection from human perpetrator",
+    "confidence": "medium",
+    "quote": "I remember destictly to this day the absence of his middle finger."
+  },
+  "clue_fairness": {
+    "value": "Physical details shared with reader: missing middle finger, cobblestone path, marshy hills location, lantern-lit hut",
+    "confidence": "medium",
+    "quote": "I remember destictly to this day the absence of his middle finger."
+  },
+  "social_world": {
+    "value": "Community with parental authority warning children about nighttime dangers from bandits and criminals",
+    "confidence": "medium",
+    "quote": "our mothers and fathers have cautioned us about bandits and theives and criminals roaming the dusty road"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Local folklore about dangerous nighttime criminals shapes community perception of the threat",
+    "confidence": "medium",
+    "quote": "our mothers and fathers have cautioned us about bandits and theives and criminals roaming the dusty road"
+  },
+  "investigator_wound": {
+    "value": "Narrator's guilt and trauma from failing to protect best friend Maggie drives desperate rescue attempt",
+    "confidence": "high",
+    "quote": "She had been taken away from me. He had snatched her with his dark, cut up hands."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-ej-patterson-saving-maggie/",
+    "corpus_index": 234,
+    "text_len": 7531,
+    "title": "ebook ej patterson saving maggie",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

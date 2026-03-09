@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Baby animals dying from temperature exposure after hatching",
+    "confidence": "medium",
+    "quote": "They weren't surviving the temperature they came out to. The poor tortoise watched as all the babies died"
+  },
+  "closed_world": {
+    "value": "The mill that comes alive at night",
+    "confidence": "medium",
+    "quote": "It was like the mill and machinery in it, had their own minds. As if at night the mill came alive."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "First-person narrator experiencing supernatural events in the mill",
+    "confidence": "high",
+    "quote": "I guess that happens though when you're holding up a piece of heavy machinery for about an hour."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Supernatural mill machinery appearing to have its own mind, misdirecting from actual mystery elements",
+    "confidence": "medium",
+    "quote": "It was like the mill and machinery in it, had their own minds. As if at night the mill came alive."
+  },
+  "clue_fairness": {
+    "value": "Tortoise delivers first clue, glowing spots appear above machine and switch as guidance markers",
+    "confidence": "medium",
+    "quote": "to the real tortoise, who tells the first clue"
+  },
+  "social_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Supernatural shimmer reveals itself as death personified through visual manifestation",
+    "confidence": "medium",
+    "quote": "It was the innocence of a child, the whisper of the wind, the breath of death, and the shimmer of a life."
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Physical exhaustion and emotional vulnerability from witnessing mass death of newborn creatures",
+    "confidence": "medium",
+    "quote": "The poor tortoise watched as all the babies died before her. I could no longer just stand and watch."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-c-kelemen-the-birth-of-death/",
+    "corpus_index": 254,
+    "text_len": 2328,
+    "title": "ebook c kelemen the birth of death",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

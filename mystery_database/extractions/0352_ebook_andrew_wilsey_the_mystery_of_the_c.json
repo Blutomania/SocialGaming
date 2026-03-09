@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Multiple murders including shooting, burning, and stabbing in a mansion during a business party",
+    "confidence": "high",
+    "quote": "The lights turn on the reval the maid with a bullet in her head"
+  },
+  "victim": {
+    "value": "Multiple victims including coworkers, maid, house owner, and narrator - no clear targeting rationale given",
+    "confidence": "medium",
+    "quote": "both of the coworkers were on fire! They were screaming in pain"
+  },
+  "closed_world": {
+    "value": "Large mansion where business party attendees are isolated during the murders",
+    "confidence": "medium",
+    "quote": "That is the biggest house I have ever seen"
+  },
+  "culprit_and_motive": {
+    "value": "Friend and mysterious masked man working together, but motive unclear",
+    "confidence": "low",
+    "quote": "She pulls out a knife and stabs him repeatitly"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Young narrator who becomes victim, tells story in first person but dies before investigating",
+    "confidence": "medium",
+    "quote": "My vision slowly fading. Untill complete darkness."
+  },
+  "suspect_architecture": {
+    "value": "Limited suspect pool: friend (accomplice with knife), mystery man in black (shooter), possibly mother's coworkers before elimination",
+    "confidence": "medium",
+    "quote": "She pulls out a knife and stabs him repeatitly"
+  },
+  "red_herring": {
+    "value": "Electrical malfunction suggested as cause before revealing orchestrated murders",
+    "confidence": "low",
+    "quote": "suddenly the lights go out with a loud POP !"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Business hierarchy: mother's coworkers, house owner, maid - corporate power structure gathering",
+    "confidence": "medium",
+    "quote": "my moms business party"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Direct witness testimony from victim narrator - first-person observation of murders",
+    "confidence": "high",
+    "quote": "in the flicking I can see my friend walking up to the owner"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Child narrator's betrayal by trusted friend - vulnerability through friendship",
+    "confidence": "high",
+    "quote": "It's not what it looks like"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-andrew-wilsey-the-mystery-of-the-cabin/",
+    "corpus_index": 352,
+    "text_len": 3223,
+    "title": "ebook andrew wilsey the mystery of the cabin",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

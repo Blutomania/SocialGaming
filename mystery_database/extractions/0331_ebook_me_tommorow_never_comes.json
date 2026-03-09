@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of Katrina Givossi by gunshot",
+    "confidence": "high",
+    "quote": "Who was the one who pulled the trigger,who was it,I said sternly. ...Roger,he whispered"
+  },
+  "victim": {
+    "value": "Katrina Givossi, who was having an affair and betrayed her fianc\u00e9 Roger",
+    "confidence": "high",
+    "quote": "Tipper knew Katrina,they were like brother and sister,so who was the first person to tell when she wanted to get her affair"
+  },
+  "closed_world": {
+    "value": "Limited social circle of friends and family around Katrina - Roger, Tipper, Sampson, Hayley, and Gidd",
+    "confidence": "medium",
+    "quote": "Roger deserved more than her,he whispered,possibly to himself"
+  },
+  "culprit_and_motive": {
+    "value": "Roger Demillo killed Katrina for revenge after discovering she was having an affair with his friend Tipper",
+    "confidence": "high",
+    "quote": "Roger Demillo,you are under arrest for the murder of Katrina Givossi"
+  },
+  "resolution": {
+    "value": "Detective interrogates suspects until Sampson confesses Roger pulled the trigger, leading to Roger's arrest",
+    "confidence": "high",
+    "quote": "Who was the one who pulled the trigger...Roger,he whispered,barely audible and slumped into the chair"
+  },
+  "investigator": {
+    "value": "Female detective Keiran working with partner Ryles to solve the murder through interrogation",
+    "confidence": "high",
+    "quote": "Oh c'mon Keiran,is being in an enclosed space with me so terrible.Yes,I replied"
+  },
+  "suspect_architecture": {
+    "value": "Five suspects with interconnected relationships: Tipper (alleged lover/friend), Sampson (graphic designer/forger), Hayley (alibi provider), Gidd (father with motive), Roger (ex-fianc\u00e9/actual killer). Each has means through access, motives through betrayal/revenge, opportunities through planned meetings.",
+    "confidence": "high",
+    "quote": "Roger deserved more than her,he whispered,possibly to himself."
+  },
+  "red_herring": {
+    "value": "Fabricated cheating photos created by Sampson to frame Tipper as Katrina's affair partner, deliberately constructed to misdirect from the real motive of revenge for broken friendship and cancelled wedding.",
+    "confidence": "high",
+    "quote": "Did you make those fluff cheating photos for Gidd,you do have use of programs on the computor"
+  },
+  "clue_fairness": {
+    "value": "The list of missing items and Roger's evasive response about their location, plus his failure to specify which 'buddy' provided his alibi - both clues available to reader before the revelation.",
+    "confidence": "medium",
+    "quote": "Yes when Roger said he was out at a buddy's place,he never mentioned who,Ryles said suspiciously."
+  },
+  "social_world": {
+    "value": "Male friendship network where loyalty trumps honesty - Sampson protects Roger by creating false evidence, friends conspire against perceived betrayers, and masculine bonds justify deception and ultimately murder.",
+    "confidence": "high",
+    "quote": "Did Gidd pay you enough to bury your childhood friendship with Roger,I asked."
+  },
+  "alibi": {
+    "value": "Tipper's alibi verified through Hayley Ross as his date at club NeNo, but Roger's alibi of being 'at a buddy's place' deliberately vague and ultimately false - he was planning murder with Sampson.",
+    "confidence": "high",
+    "quote": "I was at club NeNo on thursday night,ask Hayley Ross,she was my date,he explained."
+  },
+  "reveal_mechanic": {
+    "value": "Confession extracted through systematic interrogation revealing the conspiracy: Sampson admits to photo forgery, then reveals Roger as the actual killer under pressure about their planned revenge meeting.",
+    "confidence": "medium",
+    "quote": "Who was the one who pulled the trigger,who was it,I said sternly....Roger,he whispered,barely audible"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Keiran's frustration with infidelity cases due to personal moral standards about cheating, creating emotional investment that could cloud professional judgment in a case involving alleged affairs.",
+    "confidence": "medium",
+    "quote": "Cases like these ones really pissed me off.Oh,I love them,but I can cheat,Hell no."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-me-tommorow-never-comes/",
+    "corpus_index": 331,
+    "text_len": 14436,
+    "title": "ebook me tommorow never comes",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

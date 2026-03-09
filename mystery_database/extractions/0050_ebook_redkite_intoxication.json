@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Multiple poisoning deaths - several people die from apparent heart attacks after receiving threatening letters",
+    "confidence": "medium",
+    "quote": "Why would someone want to murder and innocent little girl?"
+  },
+  "victim": {
+    "value": "Multiple victims including an innocent little girl and others who received anonymous death threat letters",
+    "confidence": "medium",
+    "quote": "At exactly six o'clock on Thursday 9th November 1891, the world as you know it will end."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Katriona DeLeon, a female detective inspired by Sherlock Holmes, assisted by Arthur Strand",
+    "confidence": "high",
+    "quote": "I have a good idea. replied Katriona."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Supernatural threat letter suggesting death at exactly six o'clock, masking actual poisoning method",
+    "confidence": "medium",
+    "quote": "At exactly six o'clock on Thursday 9th November 1891, the world as you know it will end. Enjoy your last day alive."
+  },
+  "clue_fairness": {
+    "value": "Detective withholds deductions from reader - 'I have a good idea' but doesn't share reasoning",
+    "confidence": "medium",
+    "quote": "Davises died?' 'I have a good idea.' replied Katriona."
+  },
+  "social_world": {
+    "value": "Victorian Yorkshire setting with London/countryside class dynamics and professional hierarchies",
+    "confidence": "medium",
+    "quote": "I'm an accountant,' he replied. Katriona smiled to herself. Of course, you could hardly get more everyday"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Murder of innocent child creates community shock and questioning of motive",
+    "confidence": "medium",
+    "quote": "Why would someone want to murder and innocent little girl?"
+  },
+  "investigator_wound": {
+    "value": "Katriona compared to Sherlock Holmes, suggesting pressure to live up to legendary detective's reputation",
+    "confidence": "medium",
+    "quote": "I am sure that the day you meet Sherlock Holmes will be the day the Great Detective meets his match."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-redkite-intoxication/",
+    "corpus_index": 50,
+    "text_len": 52730,
+    "title": "ebook redkite intoxication",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

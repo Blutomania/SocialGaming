@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Kidnapping and sexual assault of teenage girl Gina by six men at a party",
+    "confidence": "high",
+    "quote": "they took her to a cave and tied her up and raped her"
+  },
+  "victim": {
+    "value": "Gina, a 15-year-old popular girl with a secret about how she gets straight A's, making her vulnerable",
+    "confidence": "medium",
+    "quote": "one thing nobody knew about Gina she did what she had to do to get them straight A's"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Six men at Carly's party, motive appears to be sexual assault and control",
+    "confidence": "medium",
+    "quote": "the 6 guys went inside of the house and got a flash light"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": "Six male perpetrators - group crime with shared means (physical force), motive (sexual assault), and opportunity (isolated victim)",
+    "confidence": "high",
+    "quote": "the 6 guys went inside of the house and got a flash light and put on some different shoes"
+  },
+  "red_herring": {
+    "value": "Initial suggestion that Gina simply 'fell and couldn't get up' as explanation for her disappearance",
+    "confidence": "medium",
+    "quote": "They said she had fallen and couldn't get up"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "High school social hierarchy with distinct cliques - popular kids, geeks, gangstas, etc. Gina's status tied to boyfriend's football success",
+    "confidence": "high",
+    "quote": "their were the cliques. The first clique was Jazz Band, then you had the geeks, then you had the wanna be gangstas"
+  },
+  "alibi": {
+    "value": "The six perpetrators provide false explanation that Gina had fallen and couldn't get up to cover their crime",
+    "confidence": "high",
+    "quote": "They said she had fallen and couldn't get up"
+  },
+  "reveal_mechanic": {
+    "value": "Gina's confession to Johnny about the rape and pregnancy serves as the revelation of what actually happened",
+    "confidence": "medium",
+    "quote": "your friends raped me and they didn't stop... the baby isn't yours either"
+  },
+  "media_and_audience": {
+    "value": "Mother's public plea for information about missing daughter, creating community awareness and police involvement",
+    "confidence": "medium",
+    "quote": "So if anybody finds out what had happen to my baby girl please let me know im scared for her"
+  },
+  "investigator_wound": {
+    "value": "Johnny's betrayal by his own friends and the violation of his girlfriend creates deep personal trauma and relationship destruction",
+    "confidence": "high",
+    "quote": "i need to be alone so don't text me and don't talk to me i will when i get over the issue I'm having"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-anastasia-timmons-the-girl-who-disappeared/",
+    "corpus_index": 192,
+    "text_len": 10776,
+    "title": "ebook anastasia timmons the girl who disappeared",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

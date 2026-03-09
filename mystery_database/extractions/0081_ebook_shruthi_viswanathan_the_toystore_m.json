@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of high school girl Ann by stabbing, body planted in toy store storage room to frame the owners",
+    "confidence": "high",
+    "quote": "It was the body of a high school girl named Ann. It was there in the closet. She had been stabbed."
+  },
+  "victim": {
+    "value": "High school girl named Ann who was stabbed to death",
+    "confidence": "low",
+    "quote": "It was the body of a high school girl named Ann. It was there in the closet. She had been stabbed."
+  },
+  "closed_world": {
+    "value": "Mary's toyshop - a locked two-story toy store with limited access points and duplicate keys",
+    "confidence": "high",
+    "quote": "We locked all the doors and windows at night. We don't even have a duplicate key"
+  },
+  "culprit_and_motive": {
+    "value": "A wanted criminal who disguised himself as a customer to plant the body and frame the toy store owners",
+    "confidence": "medium",
+    "quote": "Remember that pale man with the huge black suitcase who bought a talking doll for his niece. It was him."
+  },
+  "resolution": {
+    "value": "Sam deduces the criminal disguised himself as a customer with a suitcase containing the body; police catch him",
+    "confidence": "high",
+    "quote": "The police caught him finally. They told you to come and collect your bounty from the police station later"
+  },
+  "investigator": {
+    "value": "Sam, a college student and neighbor who solves the case through logical deduction",
+    "confidence": "high",
+    "quote": "I was a normal college student with an over-enthusiastic and a little unconventional neighbor"
+  },
+  "suspect_architecture": {
+    "value": "Limited suspect pool: Anthony (rival shop owner with clear motive), mysterious pale man customer, and implicitly the shop owners themselves who are suspected by police",
+    "confidence": "medium",
+    "quote": "My shop is so much better. I have the best toys. But they still steal all my customers. I wish that their shop would close down"
+  },
+  "red_herring": {
+    "value": "Anthony the rival shop owner is presented as the obvious suspect with clear motive and animosity, misdirecting from the true perpetrator",
+    "confidence": "medium",
+    "quote": "He always thinks of us as his rivals but we think of him as our friend"
+  },
+  "clue_fairness": {
+    "value": "The pale man with the huge black suitcase is described to the reader when he appears as a customer, providing fair access to the key clue",
+    "confidence": "high",
+    "quote": "Remember that pale man with the huge black suitcase who bought a talking doll for his niece. It was him."
+  },
+  "social_world": {
+    "value": "Small business rivalry between toy shops, family-owned establishment vs. corporate competitor, with community loyalty dynamics",
+    "confidence": "medium",
+    "quote": "Everyone here knows that Mary's toyshop is the biggest rival of Anthony's Toy world"
+  },
+  "alibi": {
+    "value": "The murderer creates an alibi by appearing as an innocent customer making a purchase, using the shopping transaction as cover",
+    "confidence": "high",
+    "quote": "Then he came down and pretended to be an innocent customer. He bought that doll and cooked up a story"
+  },
+  "reveal_mechanic": {
+    "value": "Logical reconstruction of the timeline and method: disguised entry during business hours with body concealed in suitcase, not nighttime break-in",
+    "confidence": "high",
+    "quote": "He came with the body in that big black box. He went to the third floor where there was no one"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Sam is reluctantly drawn into investigation of neighbors he cares about, conflicted between wanting to help and wanting to avoid involvement",
+    "confidence": "medium",
+    "quote": "I was just thinking how I had managed to get myself into this girlishness"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-shruthi-viswanathan-the-toystore-murder/",
+    "corpus_index": 81,
+    "text_len": 14229,
+    "title": "ebook shruthi viswanathan the toystore murder",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

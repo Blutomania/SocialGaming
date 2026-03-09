@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Ashton, a 20-year-old private investigator specializing in murders, going on vacation to Ireland",
+    "confidence": "medium",
+    "quote": "Her work, private investigator, was mostly sitting in her cubicle, looking through endless piles of evidence"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Private investigator workplace hierarchy with division head promotion potential",
+    "confidence": "medium",
+    "quote": "her boss had hinted on becoming head of the division"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Inability to disconnect from work even during vacation",
+    "confidence": "medium",
+    "quote": "It seemed to her that she couldn't forget about it, even on her vacation"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-shadowknight22-travels/",
+    "corpus_index": 304,
+    "text_len": 5201,
+    "title": "ebook shadowknight22 travels",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

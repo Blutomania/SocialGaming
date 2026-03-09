@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Hit-and-run vehicular homicide using a semi truck to kill three men at a wrecking yard, disguised as an accident",
+    "confidence": "high",
+    "quote": "the trailer drives up and over the 66 pontiac GTO, the driver keeps on driving"
+  },
+  "victim": {
+    "value": "Ray Richardson (primary target) who was embezzling money from Richard; Jack London and Mike London were unintended victims",
+    "confidence": "high",
+    "quote": "you found out that ray was ripping you off, he owed you lots of money"
+  },
+  "closed_world": {
+    "value": "Small city of Victor Idaho and connected locations (New York City, Butte Montana) with limited suspects",
+    "confidence": "medium",
+    "quote": "This small city of Victor Idaho"
+  },
+  "culprit_and_motive": {
+    "value": "Richard (Jack's brother, east coast mobster) killed Ray Richardson for embezzling money from him",
+    "confidence": "high",
+    "quote": "I'm arresting you, for the murder of Jack London, Mike London, and Ray Richardson"
+  },
+  "resolution": {
+    "value": "Detective John Lewis solves the case through investigation, linking Richard to the truck purchase and disguise elements",
+    "confidence": "high",
+    "quote": "you bought a black ken worth in Butte Montana, paid cash for it, used the name Mike Henderson to buy it"
+  },
+  "investigator": {
+    "value": "Detective John Lewis, an official police detective with institutional authority investigating the hit-and-run",
+    "confidence": "high",
+    "quote": "I want Detective John"
+  },
+  "suspect_architecture": {
+    "value": "Primary suspect Richard (east coast mobster brother), with victims Jack London (lawyer), Mike London, Ray Richardson (con-man who owed money). Richard has clear motive (financial betrayal), means (resources to buy truck/equipment), and opportunity (traveled to scene).",
+    "confidence": "high",
+    "quote": "Richard the big time east coast mobster...ray was ripping you off, he owed you lots of money"
+  },
+  "red_herring": {
+    "value": "The supernatural devil/demonic truck driver with glowing red eyes and 'I have come for you' mud flaps, designed to misdirect from the actual human perpetrator using theatrical props.",
+    "confidence": "high",
+    "quote": "black ken worth ,with eerie red glowing head lights. The driver has red glowing eyes, and a black hood"
+  },
+  "clue_fairness": {
+    "value": "Key evidence is presented to reader: cash purchase under false name Mike Henderson, stolen trailers, custom glowing headlights from Tom Howard, red contact lenses, and Richard's overly helpful behavior during investigation.",
+    "confidence": "medium",
+    "quote": "used the name Mike Henderson to buy it,riped off two semi trailers, went to Tom Howard"
+  },
+  "social_world": {
+    "value": "Small town Victor Idaho police department with clear hierarchy (Police Chief Sam, Detective John), mayor oversight, and connections to big city organized crime through Richard's east coast mob ties.",
+    "confidence": "medium",
+    "quote": "the police chief Sam Croft ford...Ted the mayor...richard the big time east coast mobster"
+  },
+  "alibi": {
+    "value": "Richard's false alibi of being uninvolved collapses when John proves he was 'too helpful' during the investigation and traces the truck purchase, equipment modifications, and financial motive.",
+    "confidence": "medium",
+    "quote": "you played like, you didn't know what happen, you even acted like you, were helping me out"
+  },
+  "reveal_mechanic": {
+    "value": "John demonstrates the solution through reconstructing Richard's elaborate preparation: truck purchase under false identity, trailer theft, custom prop creation (glowing lights/contacts), establishing the staged supernatural appearance.",
+    "confidence": "high",
+    "quote": "bought a black ken worth in Butte Montana, paid cash for it, used the name Mike Henderson"
+  },
+  "media_and_audience": {
+    "value": "The crime is initially perceived through supernatural lens - witnesses and police chief reference 'the devil' driving the truck, creating public narrative of demonic intervention rather than calculated murder.",
+    "confidence": "medium",
+    "quote": "what don't tell me that, the devil was driving the semi truck, get out of my office"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-james-mad-monk-death-comes/",
+    "corpus_index": 52,
+    "text_len": 15763,
+    "title": "ebook james mad monk death comes",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

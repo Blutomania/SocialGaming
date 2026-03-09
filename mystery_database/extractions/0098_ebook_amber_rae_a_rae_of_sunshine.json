@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Kidnapping of a young girl named Amber",
+    "confidence": "high",
+    "quote": "hands knotted with deteriorating rope, and swollen scabbed over rope burns beneath it"
+  },
+  "victim": {
+    "value": "Amber, a young girl who appears to be a volleyball player, but unclear why she was targeted",
+    "confidence": "medium",
+    "quote": "Someone, someone grabbed me\u2026 But who? My memories were still hazy, like someone flushed water over them."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "A man with black eyes who kidnapped Amber, but motive is unclear",
+    "confidence": "low",
+    "quote": "Black. His eyes were like black slits in his stubbly face."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Amber herself, narrating her own kidnapping and escape attempt",
+    "confidence": "high",
+    "quote": "Under my duct tape, I mumbled the phrase"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Dream sequence misdirection - victim wakes in pink bed suggesting rescue, but still captive",
+    "confidence": "medium",
+    "quote": "A sudden burst of blinding light, made her awake suddenly. She was lying in a small pink bed."
+  },
+  "clue_fairness": {
+    "value": "Physical evidence available to reader: black eyes, stubbly face, voice described for identification",
+    "confidence": "medium",
+    "quote": "Black. His eyes were like black slits in his stubbly face."
+  },
+  "social_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Memory loss/fragmentation affecting victim's ability to identify original abductor",
+    "confidence": "medium",
+    "quote": "My memories were still hazy, like someone flushed water over them."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-amber-rae-a-rae-of-sunshine/",
+    "corpus_index": 98,
+    "text_len": 12641,
+    "title": "ebook amber rae a rae of sunshine",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

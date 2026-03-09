@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Kidnapping of Professor Albert for ransom and his inventions",
+    "confidence": "high",
+    "quote": "P-P-Professor Albert has gone mi-mi- missing"
+  },
+  "victim": {
+    "value": "Professor Albert, targeted for his valuable inventions, particularly a camera that predicts the future",
+    "confidence": "high",
+    "quote": "The camera that tells you what will happen in the same spot in 24 hours"
+  },
+  "closed_world": {
+    "value": "Limited group of suspects known to the detective: twins Rebecca and Alice, Richard, and Pat",
+    "confidence": "medium",
+    "quote": "I thought of everyone that could've kidnapped him. The twins? Maybe... Richard? Possibly... Pat? Hmm..."
+  },
+  "culprit_and_motive": {
+    "value": "Pat (the police officer) orchestrated the kidnapping, working with Richard and the twins for money and Albert's inventions",
+    "confidence": "high",
+    "quote": "He was the one who kidnapped me!! Vaughn I see you have a terrible bleed on your leg."
+  },
+  "resolution": {
+    "value": "The detective rescues Albert during the final exchange, though the criminals escape with some items",
+    "confidence": "medium",
+    "quote": "Richard, Rebecca, Alice and Pat have left!!"
+  },
+  "investigator": {
+    "value": "Vaughn, a blind detective who uses a walking cane and relies on other senses to solve crimes",
+    "confidence": "high",
+    "quote": "Why did you call the greatest detective at 4 in the morning?"
+  },
+  "suspect_architecture": {
+    "value": "Four suspects with clear differentiation: twins Rebecca/Alice (kidnappers for hire), Richard (mastermind with financial motive), Pat (inside accomplice with access), each with distinct roles in the kidnapping scheme",
+    "confidence": "high",
+    "quote": "Richard, Rebecca, Alice and Pat have left!! ... Pat was the one who kidnapped me!!"
+  },
+  "red_herring": {
+    "value": "Monopoly money substitution - Pat deliberately uses fake money in the ransom exchange while claiming to follow detective's instructions, misdirecting from his true complicity",
+    "confidence": "medium",
+    "quote": "did you remember to put monopoly money in the suitcase? Yes sir. ... 3 unopened monopoly games in his rooms"
+  },
+  "clue_fairness": {
+    "value": "The Braille wanted poster describing the suspects is presented to the reader exactly as the blind detective reads it, providing fair access to suspect descriptions",
+    "confidence": "high",
+    "quote": "identical female twins. Age: 14, Hair: Long and brown, Eyes: Brown ... Male Age: 26 ... Name: Richard"
+  },
+  "social_world": {
+    "value": "Detective-assistant power dynamic where Pat exploits his trusted position and the detective's blindness-induced dependency to orchestrate the inside betrayal",
+    "confidence": "high",
+    "quote": "Ever since I have been blind, I have never opened the door ... Pat was the one who kidnapped me!!"
+  },
+  "alibi": {
+    "value": "Pat maintains false presence as helpful assistant throughout the investigation while secretly coordinating with kidnappers and providing inside information",
+    "confidence": "medium",
+    "quote": "W-we have s-s-searched everywhere for h-him, but he has not been f-found ... Pat was involved in this"
+  },
+  "reveal_mechanic": {
+    "value": "Physical evidence of Pat's deception discovered at the crime scene - the missing safe key and camera, plus surplus monopoly games revealing the money switch",
+    "confidence": "medium",
+    "quote": "the key of our safe was missing and Albert's camera was missing as well ... 3 unopened monopoly games"
+  },
+  "media_and_audience": {
+    "value": "Public mockery of the blind detective by teenagers reflects social attitudes that the criminals likely exploit in underestimating his capabilities",
+    "confidence": "low",
+    "quote": "Hey there's that blind guy talking to himself again!! Go get some real friends!"
+  },
+  "investigator_wound": {
+    "value": "The detective's blindness creates vulnerability to betrayal by trusted assistants, exploited when Pat uses his position of trust to orchestrate the inside job",
+    "confidence": "high",
+    "quote": "Ever since I have been blind, I have never opened the door. This was the 1st time."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-anzy-irani-the-case-of-the-missing-scientist/",
+    "corpus_index": 134,
+    "text_len": 21661,
+    "title": "ebook anzy irani the case of the missing scientist",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

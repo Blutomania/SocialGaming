@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Double murder of Mallory's parents",
+    "confidence": "medium",
+    "quote": "As she hided and watched as her parents die a painful death."
+  },
+  "victim": {
+    "value": "Mallory's parents, killed two years ago while Mallory hid and watched",
+    "confidence": "medium",
+    "quote": "It had been 2 years since her parents death."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Oliver, a killer who has been searching for Mallory for years, motive unclear but involves her demonic nature",
+    "confidence": "medium",
+    "quote": "After so many years of searching I found her"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial misdirection suggesting aunt as threat when Mallory screams 'bloody murder thinking it was the person that killed her parents'",
+    "confidence": "medium",
+    "quote": "Mallory screamed bloody murder thinking it was the person that killed her parents. only to see her aunt."
+  },
+  "clue_fairness": {
+    "value": "Reader learns Mallory witnessed parents' murder and that killer has been searching for her for years",
+    "confidence": "medium",
+    "quote": "As she hided and watched as her parents die a painful death"
+  },
+  "social_world": {
+    "value": "Military aunt as guardian, school hierarchy where Mallory is 'the schools bad Ass', church/therapy institutional control",
+    "confidence": "medium",
+    "quote": "her aunt was very up tite! Probably becaus She's in the military"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Supernatural element - Mallory revealed as 'The powerful demons daughter' unknown to military aunt",
+    "confidence": "medium",
+    "quote": "she took in what she hated the most, what she was trained to kill, she took in a demon"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Mallory's survivor guilt and self-hatred for hiding while parents were killed",
+    "confidence": "high",
+    "quote": "She hated her self for hiding, mabe if she didn't hide the killer would of jest killed her and not her parents"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-bookworm7979-cadena-my-killer/",
+    "corpus_index": 206,
+    "text_len": 3088,
+    "title": "ebook bookworm7979 cadena my killer",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

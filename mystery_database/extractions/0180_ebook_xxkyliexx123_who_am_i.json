@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Daniel Grind-Hall, football team captain who went on a date with Amy and was presumably killed by her",
+    "confidence": "medium",
+    "quote": "The best part of that date was the dessert, of course Daniel won't think so but others do."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Amy, a vampire who killed Daniel to feed on his blood during their date",
+    "confidence": "medium",
+    "quote": "Finally I'm home. That date was horrible. Well some of it anyway."
+  },
+  "resolution": {
+    "value": "Amy is executed by police using holy water and fire after attacking a police officer",
+    "confidence": "high",
+    "quote": "they poured holy water onto me, which will take 10 minutes for me to die in pain"
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "The supernatural vampire transformation serves as misdirection from any underlying crime or mystery structure",
+    "confidence": "medium",
+    "quote": "I'm not normal I don't know who I am anymore, or what I am."
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "High school social hierarchy with clear divisions between popular athletes and academic outcasts",
+    "confidence": "high",
+    "quote": "I'm in the science team, he's in the football team, I'm a geek, he's a hunk, I'm a loner, he's popular."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Physical transformation and supernatural abilities demonstrate the protagonist's vampire nature",
+    "confidence": "medium",
+    "quote": "my eyes turned yellow, my teeth stuck out and I broke out of my white jumpsuit"
+  },
+  "media_and_audience": {
+    "value": "Police and authority figures frame the protagonist as a dangerous criminal rather than supernatural being",
+    "confidence": "medium",
+    "quote": "The police man kept making snide comments about me I got so angry I hissed at him"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-xxkyliexx123-who-am-i/",
+    "corpus_index": 180,
+    "text_len": 24942,
+    "title": "ebook xxkyliexx123 who am i",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of the Duke of Gandia",
+    "confidence": "medium",
+    "quote": "the Duke of Gandia's death"
+  },
+  "victim": {
+    "value": "Duke of Gandia, whose death was never mentioned again by his family",
+    "confidence": "medium",
+    "quote": "His name was not once spoken, and neither on that day nor afterwards was there ever again any mention"
+  },
+  "closed_world": {
+    "value": "Papal court and Vatican society in Rome",
+    "confidence": "low",
+    "quote": "he proceeded to the Vatican, where His Holiness was sitting"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Marriage dissolution used as cover for the real motive of accessing D'jem's body worth 300,000 ducats",
+    "confidence": "medium",
+    "quote": "the marriage of Sforza and Lucrezia was dissolved on a pretext of nullity. Then Frederic authorised the exhumation"
+  },
+  "clue_fairness": {
+    "value": "The Duke of Gandia's name never being mentioned again after Caesar's return serves as an available clue",
+    "confidence": "medium",
+    "quote": "His name was not once spoken, and neither on that day nor afterwards was there ever again any mention"
+  },
+  "social_world": {
+    "value": "Papal hierarchy with Caesar becoming second in command, controlling Roman society through church power structures",
+    "confidence": "high",
+    "quote": "he became the man who was all-powerful after the pope; but when he was second in command"
+  },
+  "alibi": {
+    "value": "Caesar's diplomatic mission to the new king provides extended absence covering three months after the murder",
+    "confidence": "high",
+    "quote": "he returned an the 5th of September,--that is, nearly three months after the Duke of Gandia's death"
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Public ceremonial reception masks private family conspiracy, with official protocols concealing the crime",
+    "confidence": "medium",
+    "quote": "according to custom, the cardinals and the Spanish and Venetian ambassadors were awaiting him on horseback"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-the-borgias/",
+    "corpus_index": 38,
+    "text_len": 474002,
+    "title": "ebook alexandre dumas pere the borgias",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

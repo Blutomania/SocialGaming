@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Attempted murder at hospital",
+    "confidence": "medium",
+    "quote": "I am DCI Milton and I am investigating attempted murder"
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Eastfield Hospital 3rd floor",
+    "confidence": "medium",
+    "quote": "a murder was about to take place in Eastfield's Hospital on the 3rd floor"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "DCI Milton - official detective investigating the case",
+    "confidence": "high",
+    "quote": "I am DCI Milton and I am investigating attempted murder"
+  },
+  "suspect_architecture": {
+    "value": "Hospital-based cast including Elissa Lang (nurse protagonist), Angela Griffin (Sister in Charge), Mildred Coulton (Matron), with institutional hierarchy creating differentiated access and motives around hospital policy violations",
+    "confidence": "medium",
+    "quote": "Nurse Lang, we need to have a serious word with you about violating hospital policy!"
+  },
+  "red_herring": {
+    "value": "Initial misdirection about the nature of the emergency - Elissa's call for 'urgent assistance' appears unrelated to the separate murder tip received by police for the same location",
+    "confidence": "medium",
+    "quote": "I never called to report a murder"
+  },
+  "clue_fairness": {
+    "value": "Reader shares Elissa's perspective throughout, including her confusion about the murder investigation and her direct observations of hospital events",
+    "confidence": "low",
+    "quote": "I shook my head and raised my shoulders in response."
+  },
+  "social_world": {
+    "value": "Hospital hierarchy with clear power structures - Matron asserting authority over nurses, challenging police jurisdiction, creating institutional barriers to investigation",
+    "confidence": "high",
+    "quote": "You have no authority here at this stage"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "DCI Milton shows subtle vulnerability in personal interactions, particularly when smiling at child and being perceived as attractive, suggesting emotional guardedness",
+    "confidence": "low",
+    "quote": "That man should smile more often, I thought, being aware of how attractive it made the stern detective look."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-quincy-moore-decisions/",
+    "corpus_index": 66,
+    "text_len": 60309,
+    "title": "ebook quincy moore decisions",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

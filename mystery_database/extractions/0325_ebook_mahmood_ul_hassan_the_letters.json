@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Attempted murder by husband with dissociative identity disorder, believing himself to be Lt. Luke Palmer",
+    "confidence": "high",
+    "quote": "Lt. Luke Palmer kills his wife. Which was exactly what Ben tried to do."
+  },
+  "victim": {
+    "value": "Lillia, newlywed wife targeted due to husband's mental illness and obsession with fictional character",
+    "confidence": "high",
+    "quote": "He was obsessed with the character of Lt. Luke Palmer."
+  },
+  "closed_world": {
+    "value": "The newlyweds' house where they moved a month after marriage",
+    "confidence": "medium",
+    "quote": "Lillia and Ben shifted in this house a month ago, right after they got married."
+  },
+  "culprit_and_motive": {
+    "value": "Ben, suffering from dissociative identity disorder, attempts to kill his wife while believing he is Lt. Luke Palmer",
+    "confidence": "high",
+    "quote": "He has Dissociative identity disorder. He wasn't him when it happened."
+  },
+  "resolution": {
+    "value": "Janice calls 911 after witnessing Ben in British army dress, Ben is institutionalized in asylum",
+    "confidence": "high",
+    "quote": "that was when I called 911"
+  },
+  "investigator": {
+    "value": "Janice, the friend who discovers the truth and protects Lillia",
+    "confidence": "medium",
+    "quote": "I was in your house, to know what is he gonna do."
+  },
+  "suspect_architecture": {
+    "value": "Three suspects: Ben (husband with dissociative identity disorder), Janice (friend with access and knowledge), and initially Luke Palmer (mysterious letter sender who doesn't exist)",
+    "confidence": "high",
+    "quote": "He has Dissociative identity disorder. He wasn't him when it happened. He was obsessed with the character of Lt. Luke Palmer."
+  },
+  "red_herring": {
+    "value": "Luke Palmer as external threat - mysterious letters from unknown sender misdirect from the real danger being Ben's split personality",
+    "confidence": "high",
+    "quote": "Do we know any 'Luke Palmer'? Lillia asked Ben while looking at the envelope. 'No, I don't think so.'"
+  },
+  "clue_fairness": {
+    "value": "Book about Lt. Luke Palmer visible to reader in Ben's study, Ben's behavior changes, and his obsession with the character are all shown before revelation",
+    "confidence": "medium",
+    "quote": "my eyes caught this name 'Luke Palmer'. So I read it, everything was just like the way we read in letter."
+  },
+  "social_world": {
+    "value": "Newlywed couple isolated in countryside house, with friend as only social connection - insular domestic world with limited external authority",
+    "confidence": "medium",
+    "quote": "Lillia and Ben shifted in this house a month ago, right after they got married. They were from the same countryside"
+  },
+  "alibi": {
+    "value": "Ben's alibi of getting food collapses when Janice witnesses him in British army dress at midnight planning the murder",
+    "confidence": "high",
+    "quote": "Then around midnight, I saw him coming out of the study in the dress which was used was Bristish army"
+  },
+  "reveal_mechanic": {
+    "value": "Psychological diagnosis of dissociative identity disorder explains how Ben became Luke Palmer, demonstrated by his costume and behavior",
+    "confidence": "high",
+    "quote": "He has Dissociative identity disorder. He wasn't him when it happened. He was obsessed with the character"
+  },
+  "media_and_audience": {
+    "value": "Police investigation and institutionalization - crime processed through medical/psychiatric framework rather than purely criminal",
+    "confidence": "medium",
+    "quote": "Right after cop investigated me... I called 911... as she parked the car in front of an asylum"
+  },
+  "investigator_wound": {
+    "value": "Lillia must confront that her new husband tried to kill her, testing her capacity for love and forgiveness in marriage",
+    "confidence": "medium",
+    "quote": "Nothing love, you just had an accident, you will be alright.' Lillia said and hugged him"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-mahmood-ul-hassan-the-letters/",
+    "corpus_index": 325,
+    "text_len": 19723,
+    "title": "ebook mahmood ul hassan the letters",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

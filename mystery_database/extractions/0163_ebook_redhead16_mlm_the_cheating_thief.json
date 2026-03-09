@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Unauthorized submission of someone else's story to a school contest under their name",
+    "confidence": "high",
+    "quote": "someone had entered in a story under her name without her knowledge or permission"
+  },
+  "victim": {
+    "value": "Gabby McFee, whose reputation and academic standing are at risk from the unauthorized submission",
+    "confidence": "high",
+    "quote": "Gabby McFee had not turned in anything for the contest"
+  },
+  "closed_world": {
+    "value": "The high school environment where only students, faculty, and those with access could submit entries",
+    "confidence": "medium",
+    "quote": "The entire school board, faculty, and student council had read Gabby's report/story"
+  },
+  "culprit_and_motive": {
+    "value": "Unknown culprit with suspected motives ranging from helping Gabby to sabotaging her",
+    "confidence": "medium",
+    "quote": "She topped the list of suspects right away. On everyone's list."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Gabby McFee herself, investigating who submitted her story without permission",
+    "confidence": "high",
+    "quote": "She has something to do with it.' Gabby told Stacy"
+  },
+  "suspect_architecture": {
+    "value": "Multiple suspects with varied motives: Chad (ex-boyfriend guilt/redemption), Marv Martin (academic rivalry), Perry Tore (unrequited love/protection), plus unnamed others who could access Gabby's story",
+    "confidence": "medium",
+    "quote": "She noticed Marv Martin proceeding to give her an evil smile. More evil than usual. She topped the list of suspects"
+  },
+  "red_herring": {
+    "value": "Marv Martin's obvious suspicious behavior and evil smiles designed to draw suspicion away from the true submitter",
+    "confidence": "medium",
+    "quote": "She noticed Marv smirking at Gabby. She topped the list of suspects right away. On everyone's list."
+  },
+  "clue_fairness": {
+    "value": "Perry's role as deciding factor on the school board and his knowledge of the story's personal meaning to Gabby are revealed to reader",
+    "confidence": "medium",
+    "quote": "Perry had read it, and had been the deciding factor. It conveyed a message, a lesson that Gabby had learned"
+  },
+  "social_world": {
+    "value": "High school hierarchy with wealthy popular students, academic rivals, and social dynamics around beauty, intelligence, and family wealth",
+    "confidence": "high",
+    "quote": "Gabby was hotter, and everyone knew it. Stacy was smarter than her. Gabby's house was classified as a mansion"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "School assembly as public forum where the story contest winner is announced, creating institutional validation and public exposure",
+    "confidence": "medium",
+    "quote": "Principal Nguey ordered. This is important. Mrs. Fleeuy and I are proud to announce the winner"
+  },
+  "investigator_wound": {
+    "value": "Gabby's vulnerability around her writing being exposed without consent, tied to her lesson about fame and media addiction",
+    "confidence": "medium",
+    "quote": "It was a sci-fi/drama about an alien girl being sucked into the media and becoming addicted to fame and fortune"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-redhead16-mlm-the-cheating-thief/",
+    "corpus_index": 163,
+    "text_len": 6294,
+    "title": "ebook redhead16 mlm the cheating thief",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

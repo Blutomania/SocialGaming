@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Multiple murders - Kane stabs Sam in the woods and kills Alex by breaking his neck in mental hospital",
+    "confidence": "high",
+    "quote": "he turned around and got a knife to the chest he fell to the ground"
+  },
+  "victim": {
+    "value": "Sam and Alex - Sam follows Kane into woods despite her violent reputation, Alex is Kane's roommate at mental hospital",
+    "confidence": "high",
+    "quote": "It's your fault to follow a crazy kid into the woods you slave!"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Kane commits murders, appears to kill for psychological satisfaction/thrill rather than rational motive",
+    "confidence": "high",
+    "quote": "she left him looking dead on the floor, she got on the other bed and took a nap happy with herself"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Police officers who question Kane and take her to mental hospital, but no sustained investigation shown",
+    "confidence": "medium",
+    "quote": "What do you mean?'' The policeman scowled."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Kane's initial misdirection about seeing blood due to 'girl thing/puberty' when questioned by police about her unusual reaction",
+    "confidence": "medium",
+    "quote": "It's a.... a..... a girl thing! Yes a girl thing, you know, puberty..... puberty, and stuff?"
+  },
+  "clue_fairness": {
+    "value": "Kane's disturbing creative writing story foreshadows her actual murderous behavior - both reader and characters witness this early clue",
+    "confidence": "medium",
+    "quote": "I ate a sandwich and I went outside to go kill my friend because she's a big brat, so I killed her"
+  },
+  "social_world": {
+    "value": "Institutional authority structures: school expulsions, parental control, police intervention, and mental hospital confinement",
+    "confidence": "high",
+    "quote": "Kane this is the 8th school you got kicked out of, what is it this time"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Physical evidence and Kane's own behavioral inconsistencies expose her guilt - her unusual blood tolerance and nervous responses",
+    "confidence": "medium",
+    "quote": "Well, I see blood a lot so... Kane paused and started to sweat, she wasn't thinking about what she was saying"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-cookiebaby-baby-framed-flower/",
+    "corpus_index": 328,
+    "text_len": 14286,
+    "title": "ebook cookiebaby baby framed flower",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

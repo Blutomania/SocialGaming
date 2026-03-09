@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder by stabbing on a train - Ratchett killed in his compartment despite being guarded",
+    "confidence": "high",
+    "quote": "I did travel by the same train, and in spite of me, somebody did get him."
+  },
+  "victim": {
+    "value": "Ratchett - a man who had received threatening letters and was involved in child kidnappings including Daisy's death",
+    "confidence": "high",
+    "quote": "he was responsible for my daughter's death and her child's and that of the other child"
+  },
+  "closed_world": {
+    "value": "The Orient Express train - a confined space where passengers are trapped together during the journey",
+    "confidence": "high",
+    "quote": "The only way a thug could come was through the rear-end door to the platform, or along the train from the rear"
+  },
+  "culprit_and_motive": {
+    "value": "Multiple passengers acting together in revenge for Ratchett's role in child kidnappings and deaths",
+    "confidence": "high",
+    "quote": "Society had condemned him - we were only carrying out the sentence."
+  },
+  "resolution": {
+    "value": "Poirot solves the case and offers two theories, with authorities choosing to accept the simpler explanation",
+    "confidence": "high",
+    "quote": "having placed my solution before you, I have the honour to retire from the case."
+  },
+  "investigator": {
+    "value": "Hercule Poirot - the famous Belgian detective who investigates the murder on the train",
+    "confidence": "high",
+    "quote": "To which the stranger (by name M. Hercule Poirot) had made a fitting reply"
+  },
+  "suspect_architecture": {
+    "value": "Multiple passengers on Orient Express, each with connection to kidnapped Daisy - including family, servants, and associates seeking justice against Ratchett",
+    "confidence": "high",
+    "quote": "All these good faithful souls - and poor Michel - and Mary and Colonel Arbuthnot - they love each other..."
+  },
+  "red_herring": {
+    "value": "Description of small, dark man with womanish voice as potential assassin to misdirect from multiple conspirators",
+    "confidence": "medium",
+    "quote": "A small man - dark - with a womanish kind of voice. That's what the old man said."
+  },
+  "clue_fairness": {
+    "value": "Physical evidence and testimonies presented to reader alongside Poirot's investigation, including compartment positions and timeline",
+    "confidence": "medium",
+    "quote": "The only way a thug could come was through the rear-end door to the platform, or along the train from the rear"
+  },
+  "social_world": {
+    "value": "French military hierarchy and railway company authority structure, with General's power and railway director's influence over investigation",
+    "confidence": "high",
+    "quote": "You have saved the honour of the French Army - you have averted much bloodshed!"
+  },
+  "alibi": {
+    "value": "Detective Hardman's strategic positioning in berth No. 16 creates supposed surveillance that fails, questioning his alibi and competence",
+    "confidence": "medium",
+    "quote": "it seemed to me that No. 16 was a pretty good strategic position"
+  },
+  "reveal_mechanic": {
+    "value": "Poirot presents alternative theory to railway officials who choose to accept false solution over truth to avoid scandal",
+    "confidence": "high",
+    "quote": "the first theory you put forward was the correct one - decidedly so"
+  },
+  "media_and_audience": {
+    "value": "Railway company and authorities conspire to present false narrative to Jugo-Slavian police to protect institutional interests",
+    "confidence": "high",
+    "quote": "I suggest that that is the solution we offer to the Jugo-Slavian police when they arrive"
+  },
+  "investigator_wound": {
+    "value": "Poirot faces moral dilemma between legal justice and natural justice, questioning his role when victims seek righteous vengeance",
+    "confidence": "medium",
+    "quote": "Society had condemned him - we were only carrying out the sentence."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-agatha-christie-murder-on-the-orient-express/",
+    "corpus_index": 8,
+    "text_len": 377779,
+    "title": "ebook agatha christie murder on the orient express",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

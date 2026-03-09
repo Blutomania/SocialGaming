@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "First-person narrator with claimed supernatural sight",
+    "confidence": "medium",
+    "quote": "I feel that I have a gift, or something else that allows me to see things that not many or no one else can."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "The focus on 2012 as end times and hurricane signs deflects from the true spiritual battle between good and evil",
+    "confidence": "medium",
+    "quote": "A lot of people say that the years 2012 will be when this world comes to an end. What they are not taking in is"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Cosmic hierarchy of God, angels, demons, and humanity with explicit power structures and allegiances",
+    "confidence": "medium",
+    "quote": "The chose to serve with the Devil will give you power and glory until the battle takes place"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Biblical cross and scripture cause supernatural sensations to cease, demonstrating spiritual warfare reality",
+    "confidence": "medium",
+    "quote": "when I pull out my Bible or hold me cross that I carry around my neck that feeling goes away"
+  },
+  "media_and_audience": {
+    "value": "Public dismissal of supernatural experiences as mental illness while news media reports increasing evil openly",
+    "confidence": "medium",
+    "quote": "I know that sounds like a bunch of non scene and that it is all in my head"
+  },
+  "investigator_wound": {
+    "value": "Narrator's burden of supernatural sight isolates him and causes others to question his sanity",
+    "confidence": "high",
+    "quote": "I have seen things in the dark and light that would make most people loose their minds"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-scotty-hicks-the-beast/",
+    "corpus_index": 82,
+    "text_len": 8660,
+    "title": "ebook scotty hicks the beast",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

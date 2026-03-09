@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Tina, Mark's wife who cheated on him five weeks after marriage",
+    "confidence": "medium",
+    "quote": "Cheated on me with a black dude five weeks after we got married. I found her at a sleazy motel, getting f"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Mark seeking revenge against his cheating wife Tina with help from supernatural entity Edward",
+    "confidence": "medium",
+    "quote": "I'm very angry and I want to make her pay. So are you going to help me or not?"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Early misdirection toward random crime - beautiful woman in alley suggests sexual violence, but actual plot involves supernatural revenge deal",
+    "confidence": "medium",
+    "quote": "Women this beautiful rarely came to alleys like this, unless, of course, they were freshly caught whores"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Working class resentment and anti-establishment sentiment - protagonist despises conventional morality and 'righteous path' followers",
+    "confidence": "medium",
+    "quote": "Didn't they see there was no point in what they called 'following the righteous path'?"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Mark's betrayal trauma from wife's infidelity drives him to supernatural revenge - wounded by marital betrayal after five weeks",
+    "confidence": "high",
+    "quote": "Cheated on me with a black dude five weeks after we got married. I found her at a sleazy motel"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-confusedalarms-the-business/",
+    "corpus_index": 96,
+    "text_len": 48845,
+    "title": "ebook confusedalarms the business",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

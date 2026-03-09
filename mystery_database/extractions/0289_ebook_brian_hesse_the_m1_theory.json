@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Serial killings of teenage daughters, possibly connected to fathers who lost their daughters",
+    "confidence": "medium",
+    "quote": "All three had teenage daughters that met a terrible end."
+  },
+  "victim": {
+    "value": "Multiple teenage daughters including Becky Marlow who had a bright future and was accepted to music school",
+    "confidence": "medium",
+    "quote": "She was accepted into a prestigious music school, and according to people around town, was the apple of her Father's eye."
+  },
+  "closed_world": {
+    "value": "Small town where Sandra is investigating connected cases through police files",
+    "confidence": "low",
+    "quote": "according to people around town"
+  },
+  "culprit_and_motive": {
+    "value": "Thomas Lorey appears to be targeting fathers through their daughters, motivated by his own traumatic past",
+    "confidence": "medium",
+    "quote": "The Thomas Lorey, the loving Thomas, died after the final beating given by his alcoholic Father."
+  },
+  "resolution": {
+    "value": "Sandra shoots Eric (presumably Thomas Lorey) and chooses to leave police work behind",
+    "confidence": "medium",
+    "quote": "I shot you in the stomach, as far left as I possibly could."
+  },
+  "investigator": {
+    "value": "Sandra, a police officer investigating the connected cases of dead teenage daughters",
+    "confidence": "high",
+    "quote": "She was already on the burner for tramping on people's civil rights."
+  },
+  "suspect_architecture": {
+    "value": "Multiple suspects with daughters who died violently: three men from files, including Jack Marlow (daughter Becky killed by Eric Drew), plus Thomas Lorey as psychological suspect",
+    "confidence": "medium",
+    "quote": "files of the remaining three men on the list. All three had teenage daughters that met a terrible end."
+  },
+  "red_herring": {
+    "value": "Thomas Lorey's father's apparent suicide after attempting to kill Thomas - official report vs. Sandra's instincts that something isn't right",
+    "confidence": "medium",
+    "quote": "The official report was an attempt on his life, and the subsequent suicide of his Father."
+  },
+  "clue_fairness": {
+    "value": "Black and grey rose tattoo on Becky Marlow's thigh revealed through autopsy photos that Sandra examines",
+    "confidence": "medium",
+    "quote": "Her eyes widened as she noticed a black and grey rose tattoo, on the outside thigh of her left leg."
+  },
+  "social_world": {
+    "value": "Academic hierarchy at Pennsylvania State University, police institutional power structures, and Sandra's conflict with civil rights violations",
+    "confidence": "medium",
+    "quote": "She was already on the burner for tramping on people's civil rights."
+  },
+  "alibi": {
+    "value": "Eric Drew's account that Becky 'just came out of nowhere' when he hit her with his car - he stopped and explained to police",
+    "confidence": "medium",
+    "quote": "He stopped and explained to the police that she just came out of nowhere."
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Public perception of crimes as domestic violence and accidents, with official police reports shaping narrative",
+    "confidence": "low",
+    "quote": "Both girls died at the hands of jealous boyfriends, with ego's too masculine to accept the ending"
+  },
+  "investigator_wound": {
+    "value": "Sandra's professional vulnerability from civil rights violations and her emotional attachment to Eric Drew creating conflict between duty and love",
+    "confidence": "high",
+    "quote": "she could not think of a happy life without him"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-brian-hesse-the-m1-theory/",
+    "corpus_index": 289,
+    "text_len": 154210,
+    "title": "ebook brian hesse the m1 theory",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

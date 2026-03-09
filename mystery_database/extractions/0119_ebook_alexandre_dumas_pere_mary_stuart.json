@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": "Historical documents and certificates presented directly to reader as evidence",
+    "confidence": "medium",
+    "quote": "This manuscript, on which was fixed the last gaze of the Queen of Scotland, is a duodecimo, written in the Gothic"
+  },
+  "social_world": {
+    "value": "Scottish nobility and regency power structure - lords forcing royal abdication through intimidation",
+    "confidence": "high",
+    "quote": "take care, for our patience is at an end, and we could easily end by breaking what would not bend."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Physical evidence of coercion - violet marks on arm from steel gauntlet prove forced abdication",
+    "confidence": "high",
+    "quote": "raising her sleeve and showing the violet marks made on her arm by Lord Lindsay's steel gauntlet"
+  },
+  "media_and_audience": {
+    "value": "Historical narrative framing royal misfortune as predetermined fate - 'unlucky name' mythology",
+    "confidence": "high",
+    "quote": "Some royal names are predestined to misfortune: in France, there is the name \"Henry\""
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-mary-stuart/",
+    "corpus_index": 119,
+    "text_len": 411378,
+    "title": "ebook alexandre dumas pere mary stuart",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

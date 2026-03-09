@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Serial murders targeting people who escaped conviction for serious crimes",
+    "confidence": "high",
+    "quote": "This is the third murder in two months. There's a killer around here."
+  },
+  "victim": {
+    "value": "People who were tried but not convicted for murder, rape, and child abuse",
+    "confidence": "high",
+    "quote": "Michael killed a women, Jacob raped and murdered his wife, and William was a child rapist."
+  },
+  "closed_world": {
+    "value": "Local community/town where killer operates in plain sight among known people",
+    "confidence": "medium",
+    "quote": "It's someone we see everyday. Someone that's friends with some of us."
+  },
+  "culprit_and_motive": {
+    "value": "Unknown vigilante seeking justice against those who escaped legal consequences",
+    "confidence": "medium",
+    "quote": "The killer has some sort of list. A list of people to kill."
+  },
+  "resolution": {
+    "value": "Police plan to identify next target from trial records and set trap for killer",
+    "confidence": "low",
+    "quote": "If we can find the next person on that list and beat the killer to wherever that person is."
+  },
+  "investigator": {
+    "value": "Hailey, a teenager whose father is a police detective, assists with case analysis",
+    "confidence": "high",
+    "quote": "Tell 'em.' I gulped and nodded, 'Well, whoever this guy is, he going after people that weren't convicted'"
+  },
+  "suspect_architecture": {
+    "value": "Multiple peer suspects in school setting - Rebecca, Ashley, Ethan, Matthew (boyfriend), plus broader community members including unnamed students and adults who could be the serial killer 'in plain sight'",
+    "confidence": "medium",
+    "quote": "It's someone we see everyday. Someone that's friends with some of us."
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": "Pattern revealed to reader through protagonist's analysis - serial killer targets people who escaped conviction despite likely guilt",
+    "confidence": "medium",
+    "quote": "whoever this guy is, he going after people that weren't convicted for the things they did"
+  },
+  "social_world": {
+    "value": "High school social hierarchy with clear power dynamics - popular students, outcasts ('schools slut'), family structures, police institutional authority",
+    "confidence": "medium",
+    "quote": "The schools slut, Rebecca asked so casually"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Database investigation methodology - systematic review of court records to identify pattern and predict next victim",
+    "confidence": "medium",
+    "quote": "look back 10 years, narrow down the search by looking to see who was on trial but not convicted"
+  },
+  "media_and_audience": {
+    "value": "News media coverage creating public awareness and fear, school community discussing murders casually, official police response",
+    "confidence": "medium",
+    "quote": "It's on the news, right?"
+  },
+  "investigator_wound": {
+    "value": "Protagonist Hailey's emotional trauma connected to someone named Andrew, creating personal vulnerability that affects her investigation",
+    "confidence": "medium",
+    "quote": "I'm really sorry for bringing up Andrew. I didn't mean too."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-alyza-in-plain-sight/",
+    "corpus_index": 19,
+    "text_len": 23352,
+    "title": "ebook alyza in plain sight",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

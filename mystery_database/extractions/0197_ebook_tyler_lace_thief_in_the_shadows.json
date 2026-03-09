@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Art theft from a public exhibition hall",
+    "confidence": "high",
+    "quote": "He looked at the empty easel, standing next to him. He yelled in frustration"
+  },
+  "victim": {
+    "value": "Art owner/exhibitor whose painting was stolen during public display",
+    "confidence": "medium",
+    "quote": "The man stopped and looked at the empty easel, standing next to him. He yelled in frustration"
+  },
+  "closed_world": {
+    "value": "Port town with exhibition hall, underground tunnels, and limited escape routes",
+    "confidence": "medium",
+    "quote": "The hall was large and every word echoed. Outside birds circled in the air and waves crashed against the port"
+  },
+  "culprit_and_motive": {
+    "value": "Tyler/the boy - motive unclear from excerpt",
+    "confidence": "medium",
+    "quote": "The boy gathered himself and stood on top of the chandelier, holding the picture of swirls and splashes"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Guards pursuing the thief, possibly Azad and Vafa as secondary investigators",
+    "confidence": "low",
+    "quote": "two guards, holding swords, looked up at the swinging chandelier"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Criminal underground with hierarchies - guards, crowds, authority figures pursuing thieves through formal venues",
+    "confidence": "medium",
+    "quote": "more guards flooding into the halls. The crowds ran, screaming and calling to one and another."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Vafa's trauma from sister's betrayal and blood ritual creates vulnerability around trust and emotional ties",
+    "confidence": "medium",
+    "quote": "ties are not good. They're like labels, they don't matter. Truth is I saw my sister again in the markets"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-tyler-lace-thief-in-the-shadows/",
+    "corpus_index": 197,
+    "text_len": 34075,
+    "title": "ebook tyler lace thief in the shadows",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

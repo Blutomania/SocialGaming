@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Multiple infanticide - bodies of newborn babies found buried in bog, with additional remains in fireplace and furnace",
+    "confidence": "high",
+    "quote": "These are modern and they are the bodies of baby's. They appear to have been new born"
+  },
+  "victim": {
+    "value": "Multiple newborn infants, likely born to unwed mothers during wartime when such pregnancies carried social stigma",
+    "confidence": "high",
+    "quote": "during those years a woman being pregnant out of wed lock was looked upon as a lost woman"
+  },
+  "closed_world": {
+    "value": "The village of Hesterton and Rose Moss Bog area, with a limited group of suspects connected to wartime events",
+    "confidence": "medium",
+    "quote": "I need you to come up here... Up to Hesterton?"
+  },
+  "culprit_and_motive": {
+    "value": "Anthony Manno (possibly with Charles Fields) - motive appears to be eliminating evidence of illegitimate births during wartime",
+    "confidence": "medium",
+    "quote": "That leaves Anthony Manno... Or Charles Fields"
+  },
+  "resolution": {
+    "value": "Basham provides investigative profile and theory to Inspector Godwin, recommends questioning Elizabeth Garrick for cooperation",
+    "confidence": "medium",
+    "quote": "I suggest you question Elizabeth Garrick and soon before she dies and takes many answers with her"
+  },
+  "investigator": {
+    "value": "Alistair Basham (consulting detective/profiler) working with Inspector Godwin and archaeologist Joyce",
+    "confidence": "high",
+    "quote": "Alistair Basham sat in his favorite chair in his study"
+  },
+  "suspect_architecture": {
+    "value": "Multiple suspects with differentiated motives: Anthony Manno, Charles Fields, Elizabeth Garrick (ruled out due to physical inability), Margaret Ainsworth. Suspects span family members, associates, with motives ranging from covering up infanticide to protecting family secrets.",
+    "confidence": "medium",
+    "quote": "That leaves Anthony Manno,' said Basham. ' Or Charles Fields,' said Godwin."
+  },
+  "red_herring": {
+    "value": "The initial assumption that the bog bodies were ancient archaeological finds (neolithic or Roman period) when they were actually modern infant murders, deliberately misdirecting from contemporary crime to historical discovery.",
+    "confidence": "high",
+    "quote": "Because the bodies are not from the neolithic or Roman period. These are modern and they are the bodies of baby's."
+  },
+  "clue_fairness": {
+    "value": "Physical evidence presented to reader simultaneously with investigators: eyeglasses frames identified by witness, skeletal remains indicating victim height, evidence from fireplace and furnace all described as discovered.",
+    "confidence": "medium",
+    "quote": "Inspector Godwin removed the silver frame containing one lens from a paper bag and handed it to the woman."
+  },
+  "social_world": {
+    "value": "WWII-era social stigma around unmarried pregnancy creating conditions for infanticide. Class dynamics between family members, wartime displacement, and social shame driving criminal behavior and cover-ups.",
+    "confidence": "high",
+    "quote": "during those years a woman being pregnant out of wed lock was looked upon as a lost woman. She would have been seen as a whore"
+  },
+  "alibi": {
+    "value": "Competing theories about Edna's fate: married the American soldier and went to America versus local murder. Elizabeth Garrick's physical limitations provide natural alibi against physical assault charges.",
+    "confidence": "medium",
+    "quote": "Some believe that she married the Yank and he sent her to America. I doubt that very much"
+  },
+  "reveal_mechanic": {
+    "value": "Physical evidence analysis through optometrist records for eyeglasses identification, skeletal height measurements to eliminate suspects, and archaeological/forensic methods to distinguish modern from ancient remains.",
+    "confidence": "medium",
+    "quote": "I can tell by the frames. I was with her at the optometrist shop when she had her examination."
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Basham's academic detachment conflicting with personal involvement as he must provide profile and theory but withdraw before final resolution, leaving unresolved questions about unknown victim's identity.",
+    "confidence": "low",
+    "quote": "We probably may never know who that unfortunate woman was. Perhaps you will learn who she is as you continue"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-the-case-of-the-bog-bodies/",
+    "corpus_index": 85,
+    "text_len": 150130,
+    "title": "ebook robert f clifton the case of the bog bodies",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Death of Eliza's husband, circumstances unknown",
+    "confidence": "medium",
+    "quote": "I received a phone call from Eliza Browne, announcing that her husband had been found dead."
+  },
+  "victim": {
+    "value": "Eliza Browne's husband, reasons for targeting unknown",
+    "confidence": "low",
+    "quote": "her husband had been found dead"
+  },
+  "closed_world": {
+    "value": "Small Appalachian mountain town with only five houses on the peak",
+    "confidence": "high",
+    "quote": "There were a total of five houses on the particular peak I lived on, one being my own."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Kenzie Stone, journalist and narrator who receives the death announcement",
+    "confidence": "high",
+    "quote": "as a journalist, I spent a lot of time on my laptop at home typing"
+  },
+  "suspect_architecture": {
+    "value": "Small mountain community with five houses - neighbors Eliza Browne (pregnant wife of victim), Benji (dinner companion with alibi timing), Agatha (apple-giver), plus isolated narrator as potential suspect",
+    "confidence": "medium",
+    "quote": "There were a total of five houses on the particular peak I lived on"
+  },
+  "red_herring": {
+    "value": "Apple allergy detail - narrator's specific allergy to apples from Agatha's basket may misdirect from real murder method",
+    "confidence": "low",
+    "quote": "I can't, I sighed. The apples looked nearly perfect. I'm allergic."
+  },
+  "clue_fairness": {
+    "value": "Precise timing established - narrator's whereabouts with Benji until late, exact time of death call at 2:13 AM creates verifiable timeline",
+    "confidence": "medium",
+    "quote": "At exactly 2:13 a.m., I received a phone call from Eliza Browne"
+  },
+  "social_world": {
+    "value": "Isolated mountain community with informal social bonds - inherited property, neighborly exchanges, journalist outsider status",
+    "confidence": "medium",
+    "quote": "I lived alone in the house that my Great Aunt Ida had left for me to inherit"
+  },
+  "alibi": {
+    "value": "Narrator has dinner alibi with Benji, but timing creates opportunity window - left late, alone when death call came",
+    "confidence": "medium",
+    "quote": "I think I should probably get going, I did eventually say"
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Narrator's isolation and father loss - lived alone by choice, father died when 13, closer to Great Aunt than family",
+    "confidence": "medium",
+    "quote": "Her death affected me more greatly than my father's, who passed away when I was 13"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-kenzie-stone-appalachian-arsenic/",
+    "corpus_index": 187,
+    "text_len": 25661,
+    "title": "ebook kenzie stone appalachian arsenic",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Double murder of newlywed couple during honeymoon; throats cut with evidence of struggle",
+    "confidence": "high",
+    "quote": "A newlywed couple was murdered last weekend, a week into their honeymoon. Their throats were cut"
+  },
+  "victim": {
+    "value": "Newlywed couple killed during their honeymoon at Mable hotel",
+    "confidence": "medium",
+    "quote": "A newlywed couple was murdered last weekend, a week into their honeymoon"
+  },
+  "closed_world": {
+    "value": "Mable hotel where the murders took place",
+    "confidence": "medium",
+    "quote": "They were killed in the Mable hotel"
+  },
+  "culprit_and_motive": {
+    "value": "Dylan, the protagonist's former lover, committed the murders (motive unclear from excerpt)",
+    "confidence": "medium",
+    "quote": "your minion shot me and my partner, and then you tried to shoot my boss! Dylan, you've changed."
+  },
+  "resolution": {
+    "value": "Dylan is arrested, tried, and sentenced to ten years in prison with bail",
+    "confidence": "high",
+    "quote": "Dylan's trial went by faster than i thought, and he got ten years in prison with bail."
+  },
+  "investigator": {
+    "value": "Jenna Tyler, professional investigator working for an agency led by Marco",
+    "confidence": "high",
+    "quote": "I woke up to my phone ringing at three in the morning... said my boss, Marco."
+  },
+  "suspect_architecture": {
+    "value": "Single suspect Dylan (ex-lover) with clear motive (jealousy/betrayal), means (sniper/gun), opportunity (hotel access). No differentiated suspect pool or red herrings.",
+    "confidence": "medium",
+    "quote": "Dylan, you've changed...your minion shot me and my partner, and then you tried to shoot my boss!"
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": "Poor clue fairness - Dylan's identity revealed suddenly without prior evidence shared with reader. No systematic clue presentation.",
+    "confidence": "high",
+    "quote": "I looked up at the sniper, and i gasped when i saw who it was. It was Dylan"
+  },
+  "social_world": {
+    "value": "Police agency hierarchy with Marco as boss directing team assignments. Downtown precinct and hotel investigation structure.",
+    "confidence": "medium",
+    "quote": "this is the biggest case we have ever taken on, and we need all hands on board for it"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Visual identification of sniper during shooting - immediate recognition rather than deductive revelation.",
+    "confidence": "high",
+    "quote": "I looked up at the sniper, and i gasped when i saw who it was. It was Dylan"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Jenna's romantic vulnerability - betrayed by ex-lover Dylan, then struggles with new romance with Marco due to occupational dangers.",
+    "confidence": "high",
+    "quote": "i have hurt too many people, and i don't want to ever have a relationship in fear that my lover would get hurt"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-crazykoolaidwriter-search-rescue-solve/",
+    "corpus_index": 120,
+    "text_len": 13996,
+    "title": "ebook crazykoolaidwriter search rescue solve",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

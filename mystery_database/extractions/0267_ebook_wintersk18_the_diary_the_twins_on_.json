@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Dagger dies from heart attack and seizure after diamond exposure allergic reaction",
+    "confidence": "medium",
+    "quote": "Then her sieger stopped but still have the heart attack...After the CPR Dagger's rib snapped, and now she died."
+  },
+  "closed_world": {
+    "value": "Underground location where the four twins are trapped after falling",
+    "confidence": "medium",
+    "quote": "Day 8: out of the ground use-to-be-parents situation on chasing the twins (Angis, Dagger, Flip, and Herb are still underground)"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Angis Anginkiss, the diary narrator and twin sister",
+    "confidence": "high",
+    "quote": "Hello, I am Angis Anginkiss. Welcome to Horse valley I will be writing everything that happens in this Diary."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "The twins' alien origin presented as extraordinary when they are revealed to be from planet Occs",
+    "confidence": "medium",
+    "quote": "I was saying you gave me and Ms.A 2 sets of alien twins."
+  },
+  "clue_fairness": {
+    "value": "Diamond allergy clue established before underground crisis",
+    "confidence": "medium",
+    "quote": "Because she is allergic to diamonds"
+  },
+  "social_world": {
+    "value": "Earth authority structure with President Marshall coordinating with parents, contrasted with alien King Fosii's military hierarchy",
+    "confidence": "medium",
+    "quote": "Men, we must practice, we have to travel for a new planet to roam over"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Phone conversation reveals twins' true alien nature through overheard parental discussion with president",
+    "confidence": "medium",
+    "quote": "I was saying you gave me and Ms.A 2 sets of alien twins."
+  },
+  "media_and_audience": {
+    "value": "Story framed as diary entries creating intimate first-person documentation of extraordinary events",
+    "confidence": "high",
+    "quote": "Hello, I am Angis Anginkiss. Welcome to Horse valley I will be writing everything that happens in this Diary."
+  },
+  "investigator_wound": {
+    "value": "Narrator's loss of twin sister Dagger creates emotional vulnerability driving the quest for resurrection/cloning",
+    "confidence": "medium",
+    "quote": "Make a clone or a robot if you want your friends back"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-wintersk18-the-diary-the-twins-on-the-other-vally/",
+    "corpus_index": 267,
+    "text_len": 19783,
+    "title": "ebook wintersk18 the diary the twins on the other vally",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

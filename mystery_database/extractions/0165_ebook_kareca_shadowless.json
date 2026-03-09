@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "An unspecified incident involving the narrator's boyfriend that others dismiss as an accident",
+    "confidence": "low",
+    "quote": "They call it an accident and shove it off like it happens everyday"
+  },
+  "victim": {
+    "value": "The narrator, who was harmed by someone she refers to as evil and monstrous",
+    "confidence": "medium",
+    "quote": "I feel as though I am the only person who knows the truth"
+  },
+  "closed_world": {
+    "value": "A small town where the narrator attends school and where incidents are covered up",
+    "confidence": "medium",
+    "quote": "this town cover's things up to well"
+  },
+  "culprit_and_motive": {
+    "value": "The narrator's boyfriend, described as evil and monstrous, motive unclear",
+    "confidence": "low",
+    "quote": "I know he is there, waiting for me... He is waiting for me to act like nothing happened"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "The narrator, a first-person protagonist who begins investigating by searching newspaper archives",
+    "confidence": "high",
+    "quote": "Well I should take my first step into investigating"
+  },
+  "suspect_architecture": {
+    "value": "Limited suspect pool centered on boyfriend figure described as 'evil' and 'monster' with others potentially complicit in cover-up",
+    "confidence": "low",
+    "quote": "I know he is there, waiting for me... He is waiting for me to act like nothing happened."
+  },
+  "red_herring": {
+    "value": "Supernatural monster misdirection - narrator wishes boyfriend was 'vampire or werewolf' but states he's 'pure human brute'",
+    "confidence": "medium",
+    "quote": "I could only wish that he was some supernatural force, or some monster like a vampire or werewolf"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Small town conspiracy of silence where authorities dismiss crimes as accidents and community enables cover-ups",
+    "confidence": "medium",
+    "quote": "They call it an accident and shove it off like it happens everyday... this town cover's things up to well"
+  },
+  "alibi": {
+    "value": "Benji provides detailed account of finding narrator unconscious, carrying her to safety, and treating her wounds",
+    "confidence": "medium",
+    "quote": "I carried you from there to my car... I carried you up to my room. Then I bandaged you up"
+  },
+  "reveal_mechanic": {
+    "value": "Newspaper archives investigation - narrator seeks evidence in historical records stored in library upper floor",
+    "confidence": "low",
+    "quote": "The newspapers however might just give me some information. Any small incidents, a picture something"
+  },
+  "media_and_audience": {
+    "value": "Official narrative labels incident as accident while narrator believes truth is being suppressed by institutional indifference",
+    "confidence": "medium",
+    "quote": "They call it an accident and shove it off like it happens everyday"
+  },
+  "investigator_wound": {
+    "value": "Narrator's severe depression and trauma from recent incident creates emotional vulnerability and isolation from community",
+    "confidence": "high",
+    "quote": "I hate this depression. It is like a cloud cover has come over and darkness is all I can see"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-kareca-shadowless/",
+    "corpus_index": 165,
+    "text_len": 81882,
+    "title": "ebook kareca shadowless",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

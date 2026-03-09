@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of Wilson Sharp found dead in bed, discovered after a break-in at the Dainsbury house",
+    "confidence": "high",
+    "quote": "Allie cried, 'My God, Wil's dead!' and she ran to the phone and dialed 911."
+  },
+  "victim": {
+    "value": "Wilson Sharp, described as a go-getter and hustler, found dead in bed",
+    "confidence": "medium",
+    "quote": "He was a hustler, that man. Maybe I'm a little slow, but death just didn't occur to me at first."
+  },
+  "closed_world": {
+    "value": "The Colonial house where the murder occurred and break-in took place",
+    "confidence": "medium",
+    "quote": "she saw the forced rear mud room door"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Detective Gertz conducting interviews with witnesses Lauren Olsen and others",
+    "confidence": "high",
+    "quote": "Gertz nodded, jotting in her notebook. 'And then what happened? Your sister went upstairs?'"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial burglary setup with Artis and Leon discovering the body creates false trail of robbery gone wrong",
+    "confidence": "medium",
+    "quote": "We don't know nothing, and we sure don't want to get messed up in no white people's troubles."
+  },
+  "clue_fairness": {
+    "value": "Door lock status established fairly - locked when sister arrived, requiring key to enter",
+    "confidence": "medium",
+    "quote": "Why, it was locked, of course... Yes, of course she did. I remember because she dropped her keys"
+  },
+  "social_world": {
+    "value": "Class and racial dynamics - working class burglars afraid of white authority, Hispanic housekeeper trusted by employers",
+    "confidence": "medium",
+    "quote": "the Dainsburys like my work and they know they can trust me"
+  },
+  "alibi": {
+    "value": "Burglars' mutual alibi of never being there, sister's account of locked door and key use",
+    "confidence": "medium",
+    "quote": "We were never there, Leon. Remember that."
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-c-m-albrecht-evidence/",
+    "corpus_index": 32,
+    "text_len": 27923,
+    "title": "ebook c m albrecht evidence",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

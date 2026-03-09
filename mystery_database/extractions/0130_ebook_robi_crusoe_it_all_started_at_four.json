@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Store robbery/heist by the Moriarty gang",
+    "confidence": "high",
+    "quote": "The crew began to collect the riches from the cash register, the safe, and the other somewhat hidden places"
+  },
+  "victim": {
+    "value": "Shop/store owner (implied victim of robbery)",
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "The Moriarty gang robbing for money, Drake abandoned Addison during the heist",
+    "confidence": "medium",
+    "quote": "Drake stopped, turned his head slightly, and sighed. 'I'm sorry, Addi.' he said. Then he walked away"
+  },
+  "resolution": {
+    "value": "Addison lets Drake go but warns him she'll arrest him if caught stealing again",
+    "confidence": "medium",
+    "quote": "just this once, I will let you go free. Though, if I ever catch you stealing again, I will turn you in"
+  },
+  "investigator": {
+    "value": "Addison Carter, former criminal turned junior detective under Detective Connor Doyle",
+    "confidence": "high",
+    "quote": "I became a private investigator. My goal is to help people, instead of hurt them, as I once did."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": "Detective training includes magnifying glass discovery and problem-solving education visible to reader",
+    "confidence": "medium",
+    "quote": "I see you were exploring your room. This is very good, Ms. Carter, very good indeed!"
+  },
+  "social_world": {
+    "value": "Criminal gang hierarchy with leader Jamieson, loyalty betrayals, and detective mentorship structure",
+    "confidence": "high",
+    "quote": "Drake stopped, turned his head slightly, and sighed. 'I'm sorry, Addi.' he said."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Story framed as case files for public consumption with investigator directly addressing readers",
+    "confidence": "high",
+    "quote": "To everyone reading my case files, this is Addison Carter, Junior Detective, signing off."
+  },
+  "investigator_wound": {
+    "value": "Former criminal past and abandonment trauma driving redemptive detective work",
+    "confidence": "high",
+    "quote": "My goal is to help people, instead of hurt them, as I once did."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-robi-crusoe-it-all-started-at-four-corners/",
+    "corpus_index": 130,
+    "text_len": 29088,
+    "title": "ebook robi crusoe it all started at four corners",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Supernatural imprisonment/kidnapping - trapping victims in a living room that feeds on souls",
+    "confidence": "high",
+    "quote": "This room. It's...alive, and requires a spirit or soul to use as a kind of...battery."
+  },
+  "victim": {
+    "value": "Jason Lamborne, a call center worker - targeted as a random replacement soul for the supernatural trap",
+    "confidence": "high",
+    "quote": "Somebody needs to replace me, and if you can convince somebody to come and let you out, then you'll be free"
+  },
+  "closed_world": {
+    "value": "The supernatural room itself - a locked, living space that imprisons souls and broadcasts them online",
+    "confidence": "high",
+    "quote": "He got up and rushed to the metal door, only to find it impossible to open."
+  },
+  "culprit_and_motive": {
+    "value": "Raoul - motivated by self-preservation, needing to escape his own imprisonment by trapping a replacement",
+    "confidence": "high",
+    "quote": "Sorry my friend. This room. It's...alive, and requires a spirit or soul to use as a kind of...battery."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "The internet video appears to be random entertainment, masking its true nature as a supernatural trap mechanism",
+    "confidence": "medium",
+    "quote": "Around and around it went, chasing its tail, the dog spun, and Jason Lamborne laughed at the video"
+  },
+  "clue_fairness": {
+    "value": "Raoul's desperate appearance and knowledge of the building layout are shown to reader before the trap is revealed",
+    "confidence": "medium",
+    "quote": "His face was reddened with eyes wide and hands clasped, pleading"
+  },
+  "social_world": {
+    "value": "Call-centre workplace hierarchy with managers in separate offices and clear employee-boss power dynamics",
+    "confidence": "high",
+    "quote": "This is one of my bosses rooms. I'm not going in there"
+  },
+  "alibi": {
+    "value": "Raoul claims to be trapped and needing rescue, concealing his role as the predator in the supernatural cycle",
+    "confidence": "high",
+    "quote": "I need you to come and let me out. I'm locked in here"
+  },
+  "reveal_mechanic": {
+    "value": "The supernatural room's true nature revealed through Raoul's explanation of the soul-battery mechanism",
+    "confidence": "high",
+    "quote": "This room. It's...alive, and requires a spirit or soul to use as a kind of...battery"
+  },
+  "media_and_audience": {
+    "value": "Internet video platform serves as both the lure and the prison, creating unwitting audience participation",
+    "confidence": "high",
+    "quote": "You're live on the internet, and when someone watches, you'll see them on there"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-john-jones-tuned-in/",
+    "corpus_index": 350,
+    "text_len": 6649,
+    "title": "ebook john jones tuned in",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}
