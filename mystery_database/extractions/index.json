@@ -2871,6 +2871,17 @@
     "text_len": 19723
   },
   {
+    "file": "0326_ebook_rachel_davis_shard.json",
+    "corpus_index": 326,
+    "url": "https://www.bookrix.com/_ebook-rachel-davis-shard/",
+    "title": "ebook rachel davis shard",
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "text_len": 3142
+  },
+  {
     "file": "0327_ebook_glary_woods_blood_thirsty_two_face.json",
     "corpus_index": 327,
     "url": "https://www.bookrix.com/_ebook-glary-woods-blood-thirsty-two-faced-medical-examiner-1/",
