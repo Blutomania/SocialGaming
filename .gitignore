@@ -8,13 +8,12 @@ venv/
 
 # Corpus and large data files
 # NOTE: mystery_database/extractions/ (small JSONs) IS tracked in git
-# NOTE: the one corpus parquet IS tracked (14MB, under GitHub 100MB limit)
+# NOTE: corpus parquet lives in GitHub LFS via user's local push — not tracked here
+mystery-crime-books/
 *.parquet
 *.arrow
 *.pkl
 *.bin
-!mystery-crime-books/train-00000-of-00001.parquet
-!mystery-crime-books/data/train-00000-of-00001.parquet
 
 # HuggingFace / model caches
 .cache/
