@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# Corpus and large data files — store separately, not in git
+mystery-crime-books/
+mystery_database/extractions/
+*.parquet
+*.arrow
+*.pkl
+*.bin
+
+# HuggingFace / model caches
+.cache/
+*.safetensors
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.idea/
+.vscode/
+*.swp
