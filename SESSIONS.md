@@ -231,3 +231,32 @@ Christie, P.D. James, Ronald Knox, Raymond Chandler, Tana French, Gillian Flynn,
 ### Architecture
 - [ ] Merge `claude/mystery-versioning-system-TPblK` into working branch once Step 6/7 validated
 - [ ] Evaluate PostgreSQL + pgvector migration path (trigger: >1,000 mysteries in registry)
+
+---
+
+## Session 7 — March 11, 2026
+**Branch:** `claude/review-changes-mmmec1tknjh846kb-08C3q`
+**Latest commit:** `501641c`
+
+### What was done
+- Deployed `app.py` to HuggingFace Spaces at `huggingface.co/spaces/blutomania/SocialGaming`
+- Resolved HTTPS git auth failure — switched to SSH (`git@hf.co`) after protocol errors
+- Created clean `hf-deploy` orphan branch (no PDF history) to satisfy HF binary file restrictions
+- Removed `MysterySolver/` embedded git repo from tracking; added to `.gitignore`
+- Added HuggingFace Space YAML metadata block to `README.md`
+- Removed `sdk_version` pin from metadata (was causing streamlit version conflict in build)
+
+### Files modified
+- `README.md` — Added HF Space metadata header; removed sdk_version pin
+- `.gitignore` — Added `MysterySolver/`
+
+### Decisions
+- SSH over HTTPS for HF remote pushes (HTTPS protocol.version errors on this machine)
+- `hf-deploy` orphan branch as the HF deployment branch (keeps PDF-free history)
+- No `sdk_version` in metadata — let HF resolve streamlit version automatically
+
+### Next steps
+1. **Verify the Space builds and runs** — check `huggingface.co/spaces/blutomania/SocialGaming`
+2. **Add `ANTHROPIC_API_KEY` secret** in HF Space settings (Settings → Variables and secrets)
+3. Wire `app.py` to `part_registry.py` (marked in to-do above — partially done in `f205194`)
+4. When pushing future fixes to HF: `git cherry-pick <commit>` onto `hf-deploy`, then `git push hf hf-deploy:main --force`
