@@ -18,6 +18,9 @@ mystery-crime-books/
 .cache/
 *.safetensors
 
+# Third-party reference apps (downloaded for UI inspiration only, not our code)
+MysterySolver/
+
 # OS
 .DS_Store
 Thumbs.db
