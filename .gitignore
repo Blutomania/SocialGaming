@@ -7,8 +7,8 @@ venv/
 .env
 
 # Corpus and large data files — store separately, not in git
+# NOTE: mystery_database/extractions/ (small JSONs) IS tracked in git
 mystery-crime-books/
-mystery_database/extractions/
 *.parquet
 *.arrow
 *.pkl
