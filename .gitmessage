@@ -1,0 +1,20 @@
+# Title: imperative mood, ≤72 chars, no period
+# Example: Add gameplay validator for mystery solvability checks
+#
+# Body (optional): explain WHAT and WHY, not HOW. Wrap at 72 chars.
+# Leave a blank line between title and body.
+#
+# ─── Good title examples ────────────────────────────────────────────
+#   Add mystery generator with RAG pipeline
+#   Fix missing API key startup error
+#   Remove duplicate data model definitions
+#   Update requirements to mark optional dependencies
+#   Rename demo output directory to match production path
+#
+# ─── Rules ──────────────────────────────────────────────────────────
+#   • Start with a capital verb: Add, Fix, Remove, Update, Rename,
+#     Refactor, Extract, Move, Document, Test, Wire, Validate
+#   • No "Add files via upload" — describe what the files do
+#   • Body answers: why this change? what problem does it solve?
+#   • Reference issues/PRs at the bottom: Closes #12, See #34
+#

@@ -1,32 +1,28 @@
 # Python
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
+*.py[cod]
 *.egg-info/
-dist/
-build/
-.eggs/
-
-# Environment
-.env
 .venv/
 venv/
-env/
+.env
 
-# IDE
-.vscode/
-.idea/
-*.swp
+# Corpus and large data files — store separately, not in git
+# NOTE: mystery_database/extractions/ (small JSONs) IS tracked in git
+mystery-crime-books/
+*.parquet
+*.arrow
+*.pkl
+*.bin
+
+# HuggingFace / model caches
+.cache/
+*.safetensors
 
 # OS
 .DS_Store
 Thumbs.db
 
-# Pipeline state
-pipeline_checkpoint.json
-
-# Corpus data (large binary)
-mystery-crime-books/
-*.parquet
+# Editor
+.idea/
+.vscode/
+*.swp
