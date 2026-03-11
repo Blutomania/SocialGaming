@@ -316,6 +316,75 @@ Process 50 source mysteries (one time)
 4. ⬜ Implement player knowledge tracking
 5. ⬜ Build 75% sharing UI
 
+## Contributing — Commit Messages
+
+We use **imperative-style** commit messages: short title, optional explanatory body.
+
+### Format
+
+```
+<Verb> <what and where>, ≤72 chars
+
+Optional body: explain WHY this change was needed and what problem
+it solves. Wrap lines at 72 characters. Leave a blank line between
+the title and body.
+
+Closes #12   ← reference issues/PRs at the bottom
+```
+
+### Title verbs to use
+
+| Verb | Use for |
+|------|---------|
+| `Add` | new files, features, dependencies |
+| `Fix` | bug fixes |
+| `Remove` | deleting files, features, dead code |
+| `Update` | changing existing behaviour or content |
+| `Rename` | moving or renaming files/symbols |
+| `Refactor` | restructuring without behaviour change |
+| `Extract` | pulling code into its own module |
+| `Document` | docs, comments, README changes |
+| `Test` | adding or updating tests |
+| `Wire` | connecting components together |
+
+### Examples
+
+```
+Add mystery generator with RAG pipeline
+
+Retrieves similar scenarios from the local database and uses
+Claude to synthesize new mystery content. Supports configurable
+player counts (default: 4).
+```
+
+```
+Fix missing API key error being swallowed at startup
+```
+
+```
+Remove duplicate Character/Evidence models from demo script
+
+Both scripts defined the same dataclasses. Extracted to models.py
+so changes only need to be made in one place.
+```
+
+### What to avoid
+
+- `Add files via upload` — describe what the files *do*, not how they arrived
+- `Fixed stuff` — be specific about what broke and where
+- Committing unrelated changes together — one logical change per commit
+
+### Setup (already done for this repo)
+
+The template loads automatically when you run `git commit`. If you
+clone fresh, re-run:
+
+```bash
+git config commit.template .gitmessage
+```
+
+---
+
 ## You're Ready!
 
 You now have:
