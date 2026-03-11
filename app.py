@@ -1,6 +1,7 @@
 import streamlit as st
 import os
 from anthropic import Anthropic
+from part_registry import load_registry, PART_TYPE_NAMES
 
 # -------------------------
 # Page Config
@@ -22,6 +23,15 @@ if not ANTHROPIC_API_KEY:
 client = Anthropic(api_key=ANTHROPIC_API_KEY)
 
 # -------------------------
+# Load Part Registry (cached — loaded once per session)
+# -------------------------
+@st.cache_resource
+def get_registry():
+    return load_registry("./mystery_database")
+
+registry = get_registry()
+
+# -------------------------
 # LLM Helper
 # -------------------------
 def llm(prompt, system="You are a creative mystery game engine. Never reveal the culprit unless explicitly asked in the solution phase."):
@@ -37,28 +47,52 @@ def llm(prompt, system="You are a creative mystery game engine. Never reveal the
         return f"Error: {e}"
 
 # -------------------------
-# Mystery Generation — P1 Skeleton Protocol
+# Mystery Generation — Registry-backed RAG
 # -------------------------
 def generate_mystery(user_prompt):
-    return llm(f"""
+    """
+    Sample compatible parts from the registry, then ask Claude to assemble
+    them into a coherent mystery narrative. The parts act as structured
+    constraints — Claude fleshes out the prose but cannot invent a different
+    crime, motive, or red herring from scratch.
+    """
+    parts, recipe = registry.sample_for_generation(target_setting=user_prompt)
+
+    # Build a structured part brief for Claude
+    part_lines = []
+    for part in parts:
+        part_lines.append(f"- {part.part_type.replace('_', ' ').upper()} [{part.source_id}({part.part_index})]: {part.content}")
+    parts_brief = "\n".join(part_lines)
+
+    mystery_text = llm(f"""
 You are generating a mystery scenario for a detective party game.
 
 Player prompt: "{user_prompt}"
 
-Generate the mystery using this structure:
+You have been given the following mystery components drawn from real published mystery fiction.
+USE THESE COMPONENTS — do not invent replacements. Adapt them to fit the player's setting,
+but preserve the essence of each element.
 
-C1 - THE CRIME: Describe the crime, its method, and the central question it poses.
-C2 - THE VICTIM: Who are they and what made them a target? Establish why this person had enemies.
-C3 - THE CLOSED WORLD: Define the bounded setting and introduce the circle of 3-4 suspects.
-C5 - THE INVESTIGATION PATH: Plant 2-3 visible clues and at least one red herring.
-C6 - THE DETECTIVE ROLE: Address the player directly — they are the investigator entering this scene.
+MYSTERY COMPONENTS:
+{parts_brief}
 
-Write this as an engaging narrative the player reads at the start of the game.
-Do NOT reveal the culprit. Make the setting vivid and the suspects memorable.
+Write the mystery as an engaging narrative the player reads at the start of the game.
+Structure it as follows:
+
+THE CRIME: What happened, how, and what question it poses.
+THE VICTIM: Who they are and why they had enemies.
+THE SETTING: The closed world — where this takes place and why no one can simply leave.
+THE SUSPECTS: Introduce 3-4 suspects drawn from the components above. Make each memorable.
+YOUR ROLE: Address the player directly — they are the investigator entering this scene.
+
+Do NOT reveal the culprit. Plant the red herring naturally. Make the setting vivid.
 """)
 
+    return mystery_text, recipe
+
+
 # -------------------------
-# Suspect Extraction — P2 Architecture Protocol (M1)
+# Suspect Extraction
 # -------------------------
 def extract_suspects(mystery):
     return llm(f"""
@@ -70,7 +104,7 @@ Mystery:
 """)
 
 # -------------------------
-# Solution Generation — P2 Architecture Protocol (M1, M2, M5, M6)
+# Solution Generation
 # -------------------------
 def generate_solution(mystery, user_prompt):
     return llm(f"""
@@ -80,10 +114,10 @@ Mystery:
 {mystery}
 
 Identify the following and return a structured solution:
-- M1 (Culprit): Who did it, and their means, motive, and opportunity
-- M2 (Red Herrings): Which clues or characters were planted to mislead
-- M5 (Alibi): What false alibi the culprit used
-- M6 (Reveal): What single piece of evidence definitively breaks the case
+- CULPRIT: Who did it, and their means, motive, and opportunity
+- RED HERRINGS: Which clues or characters were planted to mislead
+- ALIBI: What false alibi the culprit used
+- REVEAL: What single piece of evidence definitively breaks the case
 
 Be precise. This is the game engine's internal solution vault.
 """, system="You are the mystery game engine's internal solution vault. Be precise and logical.")
@@ -95,6 +129,7 @@ defaults = {
     "mystery": "",
     "suspects": [],
     "solution": "",
+    "recipe": None,
     "generated": False,
 }
 for k, v in defaults.items():
@@ -118,14 +153,15 @@ user_prompt = st.text_input(
 )
 
 if st.button("Generate Mystery", disabled=not user_prompt.strip()):
-    with st.spinner("Building your case..."):
-        story = generate_mystery(user_prompt)
-        st.session_state.mystery = story
+    with st.spinner("Building your case from the archives..."):
+        mystery_text, recipe = generate_mystery(user_prompt)
+        st.session_state.mystery = mystery_text
+        st.session_state.recipe = recipe.to_dict()
 
-        suspects_raw = extract_suspects(story)
+        suspects_raw = extract_suspects(mystery_text)
         st.session_state.suspects = [s.strip() for s in suspects_raw.split("\n") if s.strip()]
 
-        solution = generate_solution(story, user_prompt)
+        solution = generate_solution(mystery_text, user_prompt)
         st.session_state.solution = solution
 
         st.session_state.generated = True
@@ -145,6 +181,16 @@ if st.session_state.generated:
     with left_col:
         st.subheader("The Case")
         st.markdown(st.session_state.mystery)
+
+        # Provenance expander — shows which registry parts were used
+        if st.session_state.recipe:
+            with st.expander("Mystery DNA (part provenance)", expanded=False):
+                st.caption(f"Recipe: `{st.session_state.recipe['recipe']}`")
+                for slot in st.session_state.recipe["slots"]:
+                    st.caption(
+                        f"**{slot['part_type'].replace('_', ' ').title()}** — "
+                        f"source `{slot['source_id']}`, part {slot['part_index']}"
+                    )
 
     # -------------------------
     # Right: Suspects + Interrogation + Coming Soon
@@ -223,4 +269,4 @@ else:
 # Footer
 # -------------------------
 st.markdown("---")
-st.caption("Powered by Claude AI (Anthropic)")
+st.caption("Powered by Claude AI · mysteries sourced from the archive")
