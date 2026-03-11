@@ -88,9 +88,10 @@ Claude API calls are the primary cost driver. Default strategies:
 - **Batch before prompting**: assemble all parts for a generation request before calling Claude, not incrementally
 - **Dry-run first**: all pipeline scripts should support `--dry-run` to validate logic without API calls
 
-## Current To-Do (as of March 9, 2026)
+## Current To-Do (as of March 11, 2026)
 See `SESSIONS.md` for the full prioritized list. Top items:
-1. Add real corpus parquet (14MB, user has locally) to repo so full corpus extraction can run
-2. Full corpus run: `python cli.py extract --protocol P1P2` (359 books → ~700 new parts)
-3. Wire `app.py` to `part_registry.py`
-4. Deploy `app.py` to HuggingFace Spaces
+1. **[NEXT SESSION — START HERE]** Add `ANTHROPIC_API_KEY` secret to HuggingFace Space settings
+2. **Quality: Validate sample mysteries** — generate 5–10 mysteries, confirm they draw from 1,469-part registry and no longer default to generic Victorian template
+3. **Quality: P1 coherence validator** — check crime → victim → closed_world → culprit → resolution chain before mystery is output; flag/block incoherent output
+4. Full corpus run: `python cli.py extract --protocol P1P2` (359 books → ~700 new parts)
+5. Merge `claude/mystery-versioning-system-TPblK` once quality items above are validated
