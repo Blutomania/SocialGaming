@@ -327,11 +327,23 @@ class PartRegistry:
     # ------------------------------------------------------------------
 
     def populate_from_test_corpus(self):
-        """Load all 6 × 8 = 48 parts from the canonical test mysteries."""
-        from test_mysteries import TEST_MYSTERIES
+        """Load all 6 × 8 = 48 parts from the canonical test mysteries.
 
-        for mystery_id, mystery in TEST_MYSTERIES.items():
-            contents = PART_CONTENT.get(mystery_id, [])
+        Uses PART_CONTENT (already embedded in this module) — does not depend
+        on the shape of test_mysteries.TEST_MYSTERIES.
+        """
+        # Titles for the 6 test mysteries, keyed by single-letter ID
+        TEST_TITLES = {
+            "A": "Murder on Mars",
+            "B": "Art Theft in Amazonia",
+            "C": "The Alchemical Forgery of the Abbasid Court",
+            "D": "The Ghost-Signal of the Victorian Deep",
+            "E": "A Steampunk Sabotage",
+            "F": "The Genetic Identity Heist of New Tokyo",
+        }
+
+        for mystery_id, contents in PART_CONTENT.items():
+            title = TEST_TITLES.get(mystery_id, mystery_id)
             for idx_0, part_type in enumerate(PART_TYPE_NAMES):
                 part_index = idx_0 + 1  # 1-based
                 content = contents[idx_0] if idx_0 < len(contents) else ""
@@ -351,12 +363,12 @@ class PartRegistry:
                     part_index=part_index,
                     part_type=part_type,
                     content=content,
-                    source_title=mystery["title"],
+                    source_title=title,
                     setting_tags=tags,
                 )
                 self.parts.append(part)
 
-    def load_extractions(self, limit: int = 50):
+    def load_extractions(self, limit: int = 10000):
         """Add parts from saved corpus extraction JSONs."""
         extractions_dir = self.db_dir / "extractions"
         if not extractions_dir.exists():
@@ -367,6 +379,9 @@ class PartRegistry:
             try:
                 with open(f) as fp:
                     data = json.load(fp)
+                # test_*_p1p2.json files nest fields under "extracted" key
+                if "extracted" in data:
+                    data = data["extracted"]
                 source_id = f"corpus_{f.stem[:8]}"
                 title = data.get("_meta", {}).get("title", source_id)
                 self._atomize_extraction(data, source_id, title)
@@ -376,21 +391,37 @@ class PartRegistry:
         return added
 
     def _atomize_extraction(self, extraction: dict, source_id: str, source_title: str):
-        """Convert a corpus extraction dict into MysteryPart entries."""
-        # Map extraction JSON keys to part indices
+        """Convert a corpus extraction dict into MysteryPart entries.
+
+        Handles two formats:
+        - Corpus JSONs: top-level keys, each value is {"value": str, "confidence": str, ...}
+        - Test JSONs (after unwrapping "extracted"): same structure
+        """
+        # Map extraction JSON keys to part indices (matches actual extraction output)
         KEY_TO_IDX = {
-            "crime": 1,
-            "setting": 2,
-            "motive": 3,
-            "culprit": 4,
-            "red_herring": 5,
-            "reveal": 6,
-            "social_dynamic": 7,
-            "evidence": 8,
+            "crime":             1,
+            "closed_world":      2,
+            "culprit_and_motive": 3,
+            "suspect_architecture": 4,
+            "red_herring":       5,
+            "reveal_mechanic":   6,
+            "social_world":      7,
+            "alibi":             8,
         }
         for key, idx in KEY_TO_IDX.items():
-            content = extraction.get(key, "")
-            if not content or not isinstance(content, str) or len(content) < 10:
+            raw = extraction.get(key)
+            if not raw:
+                continue
+            # Each field is either a plain string or a dict with a "value" key
+            if isinstance(raw, dict):
+                content = raw.get("value", "")
+                confidence = raw.get("confidence", "")
+                # Skip low-confidence extractions — not useful as parts
+                if confidence == "low":
+                    continue
+            else:
+                content = str(raw)
+            if not content or len(content) < 10:
                 continue
             part_type = PART_TYPE_NAMES[idx - 1]
             tags = self._infer_tags(content)
