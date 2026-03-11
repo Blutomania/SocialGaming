@@ -243,6 +243,7 @@ def cmd_generate(args):
 
     # ── Sample parts ──────────────────────────────────────────────────
     from part_registry import PART_TYPE_NAMES
+    from coherence_validator import check_parts, check_mystery, rich_panels
 
     with _spinner("Sampling parts (diversity-constrained)..."):
         selected_parts, recipe = registry.sample_for_generation(
@@ -250,6 +251,42 @@ def cmd_generate(args):
             target_setting=setting,
             max_per_source=max_per_source,
         )
+
+    # ── Pre-generation coherence check (free — no API call) ───────────
+    parts_report = check_parts(selected_parts)
+    if parts_report.part_issues:
+        if HAS_RICH:
+            for content, title, border in rich_panels(parts_report):
+                console.print(Panel(content, title=title, border_style=border))
+        else:
+            _print(parts_report.format_text("PRE-GENERATION PART CHECK"))
+
+        # Attempt targeted re-samples for blocking part issues
+        blocking_types = [
+            i.code.split(".")[-1]          # e.g. "parts.missing.evidence_type" → "evidence_type"
+            for i in parts_report.part_issues
+            if i.severity == "blocking" and i.code.startswith("parts.missing.")
+        ]
+        if blocking_types:
+            _print(f"\n[yellow]Re-sampling missing part types: {blocking_types}[/yellow]")
+            extra, extra_recipe = registry.sample_for_generation(
+                part_types=blocking_types,
+                target_setting=setting,
+                max_per_source=max_per_source,
+            )
+            # Merge: replace slots of matching part_type
+            existing_by_type = {p.part_type: p for p in selected_parts}
+            for p in extra:
+                existing_by_type[p.part_type] = p
+            selected_parts = list(existing_by_type.values())
+            # Re-run to confirm fix
+            parts_report2 = check_parts(selected_parts)
+            if parts_report2.blocking_count == 0:
+                _print("[green]Re-sample resolved blocking part issues.[/green]")
+            else:
+                _print("[red]Some part issues remain after re-sample; proceeding anyway.[/red]")
+    else:
+        _print("[dim]Pre-generation part check: OK[/dim]")
 
     # ── Show selected parts ───────────────────────────────────────────
     if HAS_RICH:
@@ -291,6 +328,31 @@ def cmd_generate(args):
     if not mystery:
         _print("[red]Generation failed.[/red]")
         return
+
+    # ── Post-generation coherence check ──────────────────────────────
+    mystery_report = check_mystery(mystery)
+    if HAS_RICH:
+        for content, title, border in rich_panels(mystery_report):
+            console.print(Panel(content, title=title, border_style=border))
+    else:
+        _print(mystery_report.format_text("POST-GENERATION COHERENCE CHECK"))
+
+    if not mystery_report.passed:
+        _print(
+            "[red]Mystery has BLOCKING coherence issues.[/red] "
+            "Review the report above. The mystery has been saved for inspection "
+            "but should not be used in gameplay until fixed."
+        )
+    # Attach coherence report to saved output for traceability
+    mystery["_coherence"] = {
+        "passed": mystery_report.passed,
+        "blocking": mystery_report.blocking_count,
+        "warnings": mystery_report.warning_count,
+        "witness_gaps": [
+            {"name": g.character_name, "role": g.role, "missing": g.missing}
+            for g in mystery_report.witness_gaps
+        ],
+    }
 
     recipe.generated_title = mystery.get("title", "Untitled")
     _display_mystery(mystery, recipe)
@@ -679,6 +741,36 @@ copy them verbatim.
 SELECTED PARTS:
 {parts_block}
 
+QUALITY REQUIREMENTS — every generated mystery MUST satisfy these or it fails validation:
+
+SETTING:
+  - description must explicitly explain why suspects cannot simply leave (isolation mechanic).
+
+CHARACTERS (include 1 victim, 3–4 suspects, optionally 1–2 witnesses):
+  - alibi: SPECIFIC — state where the person was, with whom or doing what. Never "—" or vague.
+    Good: "Was supervising the night shift in the boiler room with two apprentices until dawn."
+    Bad: "Was elsewhere." or "—"
+  - secret: CONCRETE FACT (≥ 2 sentences) that anchors interrogation questions like
+    "Why were you near the victim?" or "Why didn't you report what you saw?"
+    Good: "Had borrowed money from the victim six months ago and had not repaid it; was seen
+           arguing with them the evening before in the garden."
+    Bad: "Has a dark past."
+  - motive (suspects): specific stake — financial, relational, reputational, or political.
+    Never "—" for suspects.
+  - occupation: always present; must logically place the character in the closed world.
+
+EVIDENCE (include at least 6 items total):
+  - At least 2 items with type "physical" — objects or traces found at the scene.
+  - At least 1 item with relevance "red_herring" and type "physical" or "documentary"
+    so players find a misleading clue during scene investigation, not only from dialogue.
+  - At least 2 items with relevance "critical".
+  - description: ≥ 2 sentences; state what the item is, where it was found, and what it
+    initially suggests to an investigator.
+
+SOLUTION:
+  - key_evidence must list at least 2 evidence IDs that, together, prove the culprit's guilt.
+  - how_to_deduce: step-by-step logic chain (3+ steps), not a single sentence.
+
 Generate a complete mystery JSON with this exact structure:
 {{
   "title": "string",
@@ -686,7 +778,7 @@ Generate a complete mystery JSON with this exact structure:
     "location": "string",
     "time_period": "string",
     "environment": "string",
-    "description": "2–3 sentence atmospheric description"
+    "description": "2–3 sentence atmospheric description including why suspects cannot leave"
   }},
   "crime": {{
     "type": "string",
@@ -698,10 +790,10 @@ Generate a complete mystery JSON with this exact structure:
     {{
       "name": "string",
       "role": "victim | suspect | detective | witness",
-      "occupation": "string",
-      "motive": "string or —",
-      "alibi": "string or —",
-      "secret": "string"
+      "occupation": "string (explains their presence in the closed world)",
+      "motive": "string — specific stake; never — for suspects",
+      "alibi": "string — specific location, activity, and corroborating person/detail",
+      "secret": "string — concrete 2-sentence fact anchoring why-were-you-there questions"
     }}
   ],
   "evidence": [
