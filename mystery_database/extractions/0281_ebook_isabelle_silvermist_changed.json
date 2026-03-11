@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Planned assassination/murder of Princess Jetlyn on her sixteenth birthday",
+    "confidence": "medium",
+    "quote": "On her birthday is when we will take care of her for once and all"
+  },
+  "victim": {
+    "value": "Princess Jetlyn, targeted because her beauty makes her more beloved than the jealous Queen",
+    "confidence": "high",
+    "quote": "The only reason the Queen didn't like Jetlyn was because the Princess's beauty was the fairest"
+  },
+  "closed_world": {
+    "value": "Royal court/palace setting with limited access during formal events",
+    "confidence": "low",
+    "quote": "They go into a private room that no one knows about"
+  },
+  "culprit_and_motive": {
+    "value": "Evil stepmother Queen Sylvia, motivated by jealousy of Jetlyn's beauty and popularity",
+    "confidence": "high",
+    "quote": "Sylvia was so jealous!"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": "Evil stepmother Queen Sylvia with clear motive (jealousy of Princess's beauty), two loyal guards as accomplices",
+    "confidence": "medium",
+    "quote": "The only reason the Queen didn't like Jetlyn was because the Princess's beauty was the fairest of the town"
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": "Secret room and assassination plot revealed to reader immediately when discovered",
+    "confidence": "medium",
+    "quote": "They go into a private room that no one knows about. 'On her birthday is when we will take care of her'"
+  },
+  "social_world": {
+    "value": "Royal hierarchy with King, evil stepmother Queen, Princess, and loyal guards serving Queen's orders",
+    "confidence": "high",
+    "quote": "'As you wish, my highness,' one of the guards say as they both bow"
+  },
+  "alibi": {
+    "value": "Queen disappears during ball festivities when everyone is distracted by the Princess",
+    "confidence": "medium",
+    "quote": "The Queen dissapears from the room not that anyone notice they are too busy looking at the princess"
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Public adoration of Princess creates cover for Queen's jealousy-driven plot",
+    "confidence": "medium",
+    "quote": "Everyone adored her to death and would protect her with their lifes. Sylvia was so jealous!"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-isabelle-silvermist-changed/",
+    "corpus_index": 281,
+    "text_len": 2533,
+    "title": "ebook isabelle silvermist changed",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

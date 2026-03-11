@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of a seventeen-year-old boy named Vincent in a forest, stabbed and buried",
+    "confidence": "high",
+    "quote": "he placed the cool knife against his heaving chest. I had made him beautiful all over again, covered in such a lush red."
+  },
+  "victim": {
+    "value": "Vincent, a seventeen-year-old boy who was targeted for his youth and beauty, entered forest on a dare while drunk",
+    "confidence": "high",
+    "quote": "His only fault, was being beautiful. Youth is a gift... Seventeen was his targeted age"
+  },
+  "closed_world": {
+    "value": "Dense forest beyond crowded roads, isolated from the bustling town where people go about their daily lives unaware",
+    "confidence": "medium",
+    "quote": "Somewhere beyond the crowded roads lies a forest with dense white fog settling low to the ground."
+  },
+  "culprit_and_motive": {
+    "value": "An unnamed killer motivated by preserving youth and beauty before it can fade, believing he provides 'salvation'",
+    "confidence": "high",
+    "quote": "he is the salvation of all youth... If all beauty is wiped out, than it can never fade."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "A boy who witnesses the crime through nightmares/visions, waking from what he wishes was just a dream",
+    "confidence": "medium",
+    "quote": "a boy wakes from his nightmare, gasping... The boy only wished it had been a nightmare"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial forest setting and mysterious figure suggest external threat, but revelation shows it's a boy's nightmare/vision",
+    "confidence": "medium",
+    "quote": "A deer hangs in mid leap, ants freeze on the leaf strewn ground... as a boy wakes from his nightmare"
+  },
+  "clue_fairness": {
+    "value": "Reader experiences the murder scene directly, seeing all details the narrator-boy sees in his vision",
+    "confidence": "medium",
+    "quote": "The azure eyes of the dead stare up at him, and their glassy stare gives him a thrill"
+  },
+  "social_world": {
+    "value": "Contrast between oblivious urban normalcy and hidden forest violence - city dwellers vs. predatory outsider",
+    "confidence": "medium",
+    "quote": "The people on the busy city streets... do not know what has taken place in the forest"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Reality shifts from objective third-person narrative to revealed subjective nightmare/vision experience",
+    "confidence": "high",
+    "quote": "Colors merge to form a black abyss as a boy wakes from his nightmare, gasping"
+  },
+  "media_and_audience": {
+    "value": "Forest positioned as keeper of secrets unknown to conventional society - nature as silent witness",
+    "confidence": "medium",
+    "quote": "The only witnesses are the silent trees and the frightened deer"
+  },
+  "investigator_wound": {
+    "value": "Boy-narrator traumatized by violent visions he wishes were mere nightmares but knows are true",
+    "confidence": "high",
+    "quote": "The boy only wished it had been a nightmare, one awful dream that would never be true"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-m-m-k-and-aaron-kelley-within-the-forest/",
+    "corpus_index": 132,
+    "text_len": 4305,
+    "title": "ebook m m k and aaron kelley within the forest",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

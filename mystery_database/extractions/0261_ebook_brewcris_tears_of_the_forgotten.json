@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of the protagonist's father",
+    "confidence": "high",
+    "quote": "My daddy was murdered just hours ago."
+  },
+  "victim": {
+    "value": "The protagonist's father, reason for targeting unknown",
+    "confidence": "medium",
+    "quote": "The hand had my daddy's watch on; the hand was my daddy's."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Seven-year-old child protagonist witnessing the aftermath",
+    "confidence": "medium",
+    "quote": "I may have been seven, but I wasn't stupid. My daddy was murdered just hours ago."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Child welfare system and police authority structure - officer overrules co-worker's offer to care for orphaned child",
+    "confidence": "medium",
+    "quote": "No, I think it best if she gets out of this town of a while instead of being stuck with her past memories."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Crime scene spectacle with standard police procedural elements - yellow tape, body bags, emergency vehicles",
+    "confidence": "medium",
+    "quote": "the yellow tape they use on crime scenes bordered my yard"
+  },
+  "investigator_wound": {
+    "value": "Seven-year-old trauma survivor forced to witness father's murder scene, orphaned and displaced",
+    "confidence": "high",
+    "quote": "The last thing I remember was a silent tear falling down my frozen face"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-brewcris-tears-of-the-forgotten/",
+    "corpus_index": 261,
+    "text_len": 3643,
+    "title": "ebook brewcris tears of the forgotten",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

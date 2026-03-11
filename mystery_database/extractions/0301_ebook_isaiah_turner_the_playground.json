@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Everything was revealed to be a coma dream/hallucination from a football injury",
+    "confidence": "high",
+    "quote": "You were in a coma for 13 months said John you got hit pretty hard when you were playing football"
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": "Two primary suspects: Ben (predatory stranger in red pickup truck) and corrupt heavy-set police officer (later revealed as Ben)",
+    "confidence": "medium",
+    "quote": "Call me Ben. Then Ben slid his hand through Harrys hair... Heavy set man got out and opened the door for harry"
+  },
+  "red_herring": {
+    "value": "The school bullies who locked Harry out appear as initial threat, misdirecting from the real predator Ben",
+    "confidence": "medium",
+    "quote": "Some boys locked me out of the school... the bully and his friends ran faster and shut the door"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "School hierarchy (bullies vs victims), family protective structures, police authority that becomes corrupted threat",
+    "confidence": "medium",
+    "quote": "you can sit at the cool kid table at lunch... My mom said not to talk to strangers... squad car pulled up"
+  },
+  "alibi": {
+    "value": "Ben poses as helpful stranger offering safety, later masquerades as police officer providing legitimate protection",
+    "confidence": "high",
+    "quote": "Its ok kid im just going to take you somewhere safer... heavy set man got out and opened the door for harry"
+  },
+  "reveal_mechanic": {
+    "value": "Picture evidence reveals Ben and the corrupt officer are the same person, demonstrated through physical photograph",
+    "confidence": "high",
+    "quote": "It was a picture of a fat police man, and on the back was 'BEN'"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Harry's childhood innocence and trust in authority figures exploited by predator using protective roles as cover",
+    "confidence": "medium",
+    "quote": "My mom said not to talk to strangers. Its ok kid im just going to take you somewhere safer"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-isaiah-turner-the-playground/",
+    "corpus_index": 301,
+    "text_len": 7345,
+    "title": "ebook isaiah turner the playground",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

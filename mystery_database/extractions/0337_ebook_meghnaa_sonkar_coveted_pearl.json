@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Forest clearing accessible from town",
+    "confidence": "medium",
+    "quote": "Soon, she came to a clearing in the forest she had never seen before."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Rosanna investigating mysterious howl",
+    "confidence": "medium",
+    "quote": "But, she could surely find out!"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Strange howl that initially sounds like a wolf but transforms into different sounds, misdirecting Rosanna's investigation",
+    "confidence": "medium",
+    "quote": "It sounded like that of a wolf, and yet, it seemed as if to pierce through the dark forests with a purpose."
+  },
+  "clue_fairness": {
+    "value": "The howl's changing nature and its purposeful quality are presented to the reader as Rosanna experiences them",
+    "confidence": "medium",
+    "quote": "For a second she felt like she could hear the roar of a lion. But it was not until she had walked"
+  },
+  "social_world": {
+    "value": "Economic disparity between poor family and the coveted pearl that natives have known about for centuries",
+    "confidence": "medium",
+    "quote": "Her parents were too poor to pay for even the most meager expense. No flirty dress. No lace. No Satin."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Native folklore surrounding the coveted pearl that no one knew how to extract from the deep river",
+    "confidence": "medium",
+    "quote": "The natives had known about it for centuries. However, no one ever knew how to extract it"
+  },
+  "investigator_wound": {
+    "value": "Rosanna's isolation and lack of family support driving her to seek adventure and escape her circumstances",
+    "confidence": "medium",
+    "quote": "We are at a point in Rosanna's life when she hardly had any support from her family."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-meghnaa-sonkar-coveted-pearl/",
+    "corpus_index": 337,
+    "text_len": 2675,
+    "title": "ebook meghnaa sonkar coveted pearl",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

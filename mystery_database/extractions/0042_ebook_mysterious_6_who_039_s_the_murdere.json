@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder by blunt force trauma in apartment; question: which of three suspects killed Julia?",
+    "confidence": "high",
+    "quote": "she had been hit with something very heavy because there was blood everywhere"
+  },
+  "victim": {
+    "value": "Julia, a painter who discovered her friend's betrayal and was having an affair",
+    "confidence": "high",
+    "quote": "She is a bastard. I couldn't believe it when I heard it the first time"
+  },
+  "closed_world": {
+    "value": "Julia's second flat with limited access - three known suspects with different entry methods",
+    "confidence": "medium",
+    "quote": "Julia's brother climbed through the window into the flat"
+  },
+  "culprit_and_motive": {
+    "value": "Tom (the husband) killed Julia after she revealed her affair, losing control of his temper",
+    "confidence": "high",
+    "quote": "When Julia told him last night that she had an affair with Tom's attractive best friend, he lost control"
+  },
+  "resolution": {
+    "value": "Logical deduction eliminates other suspects through evidence analysis - fingerprints and circumstances",
+    "confidence": "high",
+    "quote": "Linda can't have killed Julia because she is allergic to orange juice"
+  },
+  "investigator": {
+    "value": "Police officer conducting the investigation with input from the husband Tom",
+    "confidence": "high",
+    "quote": "What do you think has happened here?' asked Tom the police officer"
+  },
+  "suspect_architecture": {
+    "value": "Three suspects with distinct motives: Linda (betrayal/ripping off), Julia's brother (drug addiction/money), Tom (hidden motive revealed as affair)",
+    "confidence": "high",
+    "quote": "Linda ripped off Julia... Julia's brother because he is a drug addict... Tom would be a good actor"
+  },
+  "red_herring": {
+    "value": "Orange juice allergy eliminates Linda as suspect; drug bag implicates brother but purse still full of money contradicts robbery",
+    "confidence": "high",
+    "quote": "Linda can't have killed Julia because she is allergic to orange juice... why is the purse not empty?"
+  },
+  "clue_fairness": {
+    "value": "All key clues presented to reader: fingerprints on cup, spilled orange juice, open window, drug bag, full purse, Linda's allergy",
+    "confidence": "medium",
+    "quote": "There are fingerprints on it... somebody had spilt some orange juice... she is allergic to orange juice"
+  },
+  "social_world": {
+    "value": "Domestic relationships and dependencies: marriage, friendship betrayal, sibling financial dependence, drug addiction hierarchy",
+    "confidence": "medium",
+    "quote": "Julia's best friend Linda... He often comes to borrow money from my wife"
+  },
+  "alibi": {
+    "value": "Tom's implicit alibi of being away while Julia painted all night, but he's revealed as the actual murderer present at scene",
+    "confidence": "medium",
+    "quote": "Tom was on his way to the flat to see his wife because she wanted to paint all night long"
+  },
+  "reveal_mechanic": {
+    "value": "Process of elimination through physical evidence: allergy rules out Linda, full purse rules out brother, leaving Tom as killer",
+    "confidence": "high",
+    "quote": "So Linda can't have killed Julia... why is the purse not empty? So who is the murderer?"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-mysterious-6-who-039-s-the-murderer/",
+    "corpus_index": 42,
+    "text_len": 3537,
+    "title": "ebook mysterious 6 who 039 s the murderer",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

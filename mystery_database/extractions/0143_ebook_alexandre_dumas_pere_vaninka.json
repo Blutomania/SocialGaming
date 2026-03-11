@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of a priest during confession",
+    "confidence": "high",
+    "quote": "The priest having violated what should have been inviolable, the secrets of the confessional"
+  },
+  "victim": {
+    "value": "A priest who violated the sanctity of confession by revealing secrets",
+    "confidence": "high",
+    "quote": "The priest having violated what should have been inviolable, the secrets of the confessional"
+  },
+  "closed_world": {
+    "value": "Russian imperial court and General Tchermayloff's household",
+    "confidence": "medium",
+    "quote": "in Russia the emperor's wish is an order, and from the moment that it is expressed, no subject would oppose it"
+  },
+  "culprit_and_motive": {
+    "value": "Vaninka killed the priest to prevent him from revealing her secrets",
+    "confidence": "high",
+    "quote": "the whole terrible story, which Vaninka, crushed by her long struggle, had at last revealed to him"
+  },
+  "resolution": {
+    "value": "Emperor Paul judges the case after the general confesses the truth, leaving Vaninka's punishment to her conscience",
+    "confidence": "high",
+    "quote": "I leave her punishment in her own hands. If I understand her character, if any feeling of dignity remains"
+  },
+  "investigator": {
+    "value": "The narrative reveals the crime through the general's confession to Emperor Paul",
+    "confidence": "medium",
+    "quote": "the general, at the feet of Paul, recounted to him, as his sovereign and judge, the whole terrible story"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "The priest's violation of confessional secrets initially appears as the primary transgression, misdirecting from Vaninka's crime",
+    "confidence": "medium",
+    "quote": "The priest having violated what should have been inviolable, the secrets of the confessional"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Imperial Russian autocracy where the emperor's wish is absolute law, military hierarchy, and noble privilege structure the narrative",
+    "confidence": "high",
+    "quote": "in Russia the emperor's wish is an order, and from the moment that it is expressed, no subject would oppose it"
+  },
+  "alibi": {
+    "value": "Foedor claims Vaninka was ignorant of his proposal and feelings to protect her from her father's suspicion",
+    "confidence": "medium",
+    "quote": "Foedor answered, as he had promised, that Vaninka was ignorant of everything"
+  },
+  "reveal_mechanic": {
+    "value": "Vaninka's confession extracted through psychological pressure after the church scene, revealed through her father's account",
+    "confidence": "high",
+    "quote": "Vaninka, crushed by her long struggle, had at last revealed to him, at night, after the scene in the church"
+  },
+  "media_and_audience": {
+    "value": "Public spectacle of punishment draws crowds, torture as public entertainment in St. Petersburg society",
+    "confidence": "high",
+    "quote": "Although this kind of punishment was a common enough sight in St. Petersburg, it nevertheless attracted all passers-by"
+  },
+  "investigator_wound": {
+    "value": "General Tchermayloff's paternal love conflicts with his duty, mourning the destruction of his daughter",
+    "confidence": "high",
+    "quote": "I mourn with him for the deadly blow which has struck him"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-vaninka/",
+    "corpus_index": 143,
+    "text_len": 118743,
+    "title": "ebook alexandre dumas pere vaninka",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

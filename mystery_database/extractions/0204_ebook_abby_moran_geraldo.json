@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Child murder under bridge; knife left at scene but killer wore gloves making fingerprinting useless",
+    "confidence": "high",
+    "quote": "A young child was murdered under the bridge and his body was left to float upon the water."
+  },
+  "victim": {
+    "value": "Geraldo, not even six years old, nephew of narrator Jim; killed by Lewis Mackson in revenge for affair",
+    "confidence": "high",
+    "quote": "The child was not even six years old... his name was Geraldo and he was not even six yet."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Lewis Mackson killed Geraldo in revenge after discovering Mike's affair with his wife; Mike then kills Mackson",
+    "confidence": "high",
+    "quote": "The man I wronged was Lewis Mackson... He took it into his own hands to kill my child and attack me, so I killed him."
+  },
+  "resolution": {
+    "value": "Mike confesses guilt in court and explains the chain of revenge to provide closure for Mackson's daughter",
+    "confidence": "medium",
+    "quote": "For the murder of Lewis J. Mackson, how do you plead? Guilty."
+  },
+  "investigator": {
+    "value": "Jim, the narrator and brother of victim's father Mike; witnesses original crime and becomes accomplice to revenge",
+    "confidence": "high",
+    "quote": "Yesterday I witnessed the unspeakable... his father was my brother."
+  },
+  "suspect_architecture": {
+    "value": "Limited suspect pool: Mike (the vengeful father/perpetrator), Lewis Mackson (the original child killer/victim), unnamed bar patron (minor accomplice). Story reveals Mike as both suspect and confessor.",
+    "confidence": "medium",
+    "quote": "For the murder of Lewis J. Mackson, how do you plead? Guilty."
+  },
+  "red_herring": {
+    "value": "Mike's initial claim about seeking revenge for his son's murder misdirects from the revealed adultery motive - Mackson killed Mike's child born from an affair.",
+    "confidence": "medium",
+    "quote": "I cheated on my newlywed wife and also became the reason why a woman cheated on her husband"
+  },
+  "clue_fairness": {
+    "value": "Reader learns alongside narrator Jim about Mike's revenge plan, the bar distraction scheme, and courtroom revelation of the affair backstory.",
+    "confidence": "medium",
+    "quote": "I just said I thought it would be funny if he distracted the cop and that if he did I'd give him a twenty"
+  },
+  "social_world": {
+    "value": "Family dynamics between estranged brothers, marital infidelity networks, and legal/police institutional authority during investigation and trial.",
+    "confidence": "medium",
+    "quote": "I'd probably be too loud for his wife"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Courtroom confession reveals the true motive - adultery and retribution rather than random child murder - through Mike's final statement.",
+    "confidence": "high",
+    "quote": "He took it into his own hands to kill my child and attack me, so I killed him"
+  },
+  "media_and_audience": {
+    "value": "Legal proceedings as public theater, with Mike's statement directed at his daughter in the courtroom audience rather than for legal defense.",
+    "confidence": "medium",
+    "quote": "it could make his daughter understand why her second father wouldn't come home. That was worth it."
+  },
+  "investigator_wound": {
+    "value": "Narrator Jim's guilt over family estrangement and complicity in Mike's revenge plot, torn between loyalty and moral responsibility.",
+    "confidence": "high",
+    "quote": "I knew it was wrong but I ran out of there with Mike"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-abby-moran-geraldo/",
+    "corpus_index": 204,
+    "text_len": 76390,
+    "title": "ebook abby moran geraldo",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

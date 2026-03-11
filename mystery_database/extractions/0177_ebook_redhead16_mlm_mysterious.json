@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Poisoning death of Andrew - mix of nitroglycerin and hair bleach, unclear if suicide, accident, or homicide",
+    "confidence": "high",
+    "quote": "A mix of nitroglycerin and bleach. Not household bleach, hair bleach."
+  },
+  "victim": {
+    "value": "Andrew - found dead with poison in his system and evidence of sexual activity with both a man and woman",
+    "confidence": "medium",
+    "quote": "Andrew's pale body lay on a slab. His wound was still visible."
+  },
+  "closed_world": {
+    "value": "High school setting where everyone knows each other and word travels fast",
+    "confidence": "medium",
+    "quote": "This was a big school, but word got around fast."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Trian Laurents - student who has access to medical files and is helping Adair investigate his brother's death",
+    "confidence": "high",
+    "quote": "I need more evidence to figure out who killed your brother."
+  },
+  "suspect_architecture": {
+    "value": "High school social hierarchy with multiple suspects: Kennedy (false rape accuser), Elena (secretive plotter), Adair (victim's brother), Mr. Gammer (inappropriate teacher), Samuel (rival), plus unnamed others connected to Andrew's death",
+    "confidence": "medium",
+    "quote": "After all, he'd been accused of raping Kennedy Harding, the most popular girl in school"
+  },
+  "red_herring": {
+    "value": "Kennedy's false rape accusation against Trian appears to be deliberate misdirection from the actual murder case involving Andrew's poisoning",
+    "confidence": "medium",
+    "quote": "Truth be told, that was a false report. Kennedy had been so afraid of losing her status"
+  },
+  "clue_fairness": {
+    "value": "Physical evidence is revealed to reader: poison composition (nitroglycerin and hair bleach), foreign blood and bodily fluids found in victim, indicating sexual activity before death",
+    "confidence": "high",
+    "quote": "A mix of nitroglycerin and bleach. Not household bleach, hair bleach."
+  },
+  "social_world": {
+    "value": "High school caste system with Popular/Goth cliques, institutional power abuse by teacher Mr. Gammer, and secret tunnels suggesting hidden school activities",
+    "confidence": "high",
+    "quote": "Kennedy Harding had changed her look from Popular to Goth"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Forensic analysis of poison composition and bodily fluids, plus discovery of hidden tunnel system and money on card table suggesting gambling or other illicit activities",
+    "confidence": "medium",
+    "quote": "he came across a pile of money on top of a card playing table"
+  },
+  "media_and_audience": {
+    "value": "School gossip network rapidly spreading rumors about both the rape accusation and Andrew's death, creating public perception pressure",
+    "confidence": "medium",
+    "quote": "This was a big school, but word got around fast"
+  },
+  "investigator_wound": {
+    "value": "Trian is psychologically vulnerable due to false rape accusation destroying his reputation and social standing, making him desperate to prove innocence through solving the murder",
+    "confidence": "high",
+    "quote": "He was sure everyone was staring at him. After all, he'd been accused of raping Kennedy Harding"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-redhead16-mlm-mysterious/",
+    "corpus_index": 177,
+    "text_len": 15955,
+    "title": "ebook redhead16 mlm mysterious",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

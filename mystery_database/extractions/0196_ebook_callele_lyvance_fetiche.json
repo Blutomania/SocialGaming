@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Serial murder for fashion materials - killing people to harvest their skin for luxury clothing production",
+    "confidence": "high",
+    "quote": "you don't do it on an animal...you must be sure that the 'someone' you get it from, will not be missed"
+  },
+  "victim": {
+    "value": "The interviewer - targeted for having beautiful skin and no living relatives to miss them",
+    "confidence": "high",
+    "quote": "You have a very beautiful skin...So tell me. Do you have any living relatives?"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Alayna Clou - fashion designer killing people to create her signature 'F\u00e9tiche Skin' fabric for haute couture",
+    "confidence": "high",
+    "quote": "I scrape the fats, muscles and hair off the skin...Those are my favorite parts"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "The interviewer - journalist conducting what becomes a victim's perspective horror revelation",
+    "confidence": "medium",
+    "quote": "This was...the first time that she let anyone outside her company see her in person"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Fashion industry charitable work and fabric innovation presented as legitimate business to mask serial killing for materials",
+    "confidence": "high",
+    "quote": "This was after her visit to the Caring Shelter, one of the many homes around the world that Clou's charity foundation"
+  },
+  "clue_fairness": {
+    "value": "Alayna's obsessive focus on interviewer's skin quality and her admission about needing victims who won't be missed",
+    "confidence": "high",
+    "quote": "You have a very beautiful skin... Very beautiful skin you have... Do you have any living relatives?"
+  },
+  "social_world": {
+    "value": "High fashion elite with exclusive access, targeting homeless and isolated individuals who lack social protection",
+    "confidence": "high",
+    "quote": "homes around the world that Clou's charity foundation called Un F\u00e9tiche \u00e0 Aider put up to help the homeless drifters"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Gradual revelation through fabric production process description culminating in admission that skin comes from humans",
+    "confidence": "high",
+    "quote": "Only, you don't do it on an animal... you must be sure that the 'someone' you get it from, will not be missed"
+  },
+  "media_and_audience": {
+    "value": "Fashion industry celebrity status and exclusive interview format legitimizes and conceals the horrific truth",
+    "confidence": "medium",
+    "quote": "This is the first time that Clou herself spoke up... first time that she let anyone outside her company see her"
+  },
+  "investigator_wound": {
+    "value": "Interviewer's professional admiration and personal vulnerability as isolated potential victim",
+    "confidence": "medium",
+    "quote": "She wasn't as intimidating as she seemed in the magazines... Do you have any living relatives?"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-callele-lyvance-fetiche/",
+    "corpus_index": 196,
+    "text_len": 10360,
+    "title": "ebook callele lyvance fetiche",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

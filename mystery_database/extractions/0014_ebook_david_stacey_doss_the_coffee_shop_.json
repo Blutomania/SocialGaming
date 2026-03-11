@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder by poison in coffee shop; method: poisoned sugar packet; question: who among the limited suspects had means and motive",
+    "confidence": "high",
+    "quote": "David suggested jokingly that he could be the killer, and 'do the deed' via poison in a sugar packet."
+  },
+  "victim": {
+    "value": "Laz, a designer/writer who stole ideas and business from competitors, made enemies through harsh criticism and plagiarism",
+    "confidence": "high",
+    "quote": "Laz was stealing ideas and business from David, who needed the extra funds for his wife, who is currently in the hospital."
+  },
+  "closed_world": {
+    "value": "Small coffee shop during rainstorm with limited customers - older couple, writer, waitress, and a few others",
+    "confidence": "high",
+    "quote": "There were only a few; an older couple sat two tables away to his left, engaged in a subdued, yet heated discussion."
+  },
+  "culprit_and_motive": {
+    "value": "David killed Laz for financial reasons - Laz was stealing his design ideas and David needed money for his hospitalized wife",
+    "confidence": "high",
+    "quote": "Money. Laz was stealing ideas and business from David, who needed the extra funds for his wife"
+  },
+  "resolution": {
+    "value": "Patrick the investigator solves the case through deductive reasoning and David confesses to bringing poisoned sugar packet",
+    "confidence": "high",
+    "quote": "David was arrested for the murder, and confessed that he'd brought the poison in a sugar packet."
+  },
+  "investigator": {
+    "value": "Patrick, apparently an official investigator who interviews suspects and pieces together the evidence methodically",
+    "confidence": "medium",
+    "quote": "Patrick leaned back. 'Interesting. Thanks, Val. Please send Beth to me.'"
+  },
+  "suspect_architecture": {
+    "value": "Four suspects within Bookrix writing community: Val (critical reviews motive), Rick (contest jealousy), Beth (financial exploitation), David (business theft/wife's medical needs)",
+    "confidence": "high",
+    "quote": "Rick's been bumped from the top ten at the last moment by Laz's books in the last three contests"
+  },
+  "red_herring": {
+    "value": "Multiple suspects presented with apparent motives (Val's criticism frustration, Rick's contest jealousy, Beth's cover art debt) to misdirect from true killer David",
+    "confidence": "medium",
+    "quote": "What would drive Val to kill Laz?"
+  },
+  "clue_fairness": {
+    "value": "David's prophetic joke comment about being killer via poison sugar packet shown to reader before reveal, along with his quiet behavior pattern",
+    "confidence": "high",
+    "quote": "David suggested jokingly that he could be the killer, and 'do the deed' via poison in a sugar packet"
+  },
+  "social_world": {
+    "value": "Bookrix online writing community with contest rankings, critique relationships, cover art business, and competitive creative economy dynamics",
+    "confidence": "high",
+    "quote": "You've seen his posts on Bookrix. Rick's been bumped from the top ten at the last moment"
+  },
+  "alibi": {
+    "value": "David maintains quiet, unobtrusive presence during coffee shop gathering, avoiding direct contact with victim's cup to prevent fingerprint evidence",
+    "confidence": "medium",
+    "quote": "David did not touch Laz's cup, keeping his fingerprints from the murder weapon, so to speak"
+  },
+  "reveal_mechanic": {
+    "value": "Pre-planned poison delivery via sugar packet method, with David's own manuscript page revealing the solution as meta-fictional element",
+    "confidence": "high",
+    "quote": "David was arrested for the murder, and confessed that he'd brought the poison in a sugar packet"
+  },
+  "media_and_audience": {
+    "value": "Bookrix community context frames crime as creative competition gone wrong, with meta-fictional manuscript revealing solution",
+    "confidence": "medium",
+    "quote": "The title, The Coffee Shop Murder, glowed in the light of the lamp hanging above the door"
+  },
+  "investigator_wound": {
+    "value": "Patrick loses a friend (Laz) and must solve case involving his own creative community, creating personal investment and loss",
+    "confidence": "medium",
+    "quote": "I'm sorry you lost a friend, but am glad this case is solved"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-david-stacey-doss-the-coffee-shop-murder/",
+    "corpus_index": 14,
+    "text_len": 12039,
+    "title": "ebook david stacey doss the coffee shop murder",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

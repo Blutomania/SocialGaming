@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Unitah, Utah - a mysterious small town where strange phenomena occur",
+    "confidence": "medium",
+    "quote": "I now live in Unitah, Utah. This is one of the most mysterious places in America."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Jen Connors, 16-year-old new student interested in investigating mysterious phenomena",
+    "confidence": "high",
+    "quote": "My name is Jen Connors... Mysterious things intrigue me. They always have."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Railroad sounds and mutations presented as supernatural phenomena may be misdirection from actual mystery",
+    "confidence": "medium",
+    "quote": "railroad sounds that you can hear under the ground when nothing is there and the crazy mutations"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "High school social hierarchy with established relationships and newcomer integration dynamics",
+    "confidence": "medium",
+    "quote": "He's a bit of a tough guy but deep down he's actually really nice"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Invisible ink recipe discovery suggests hidden information will be revealed through chemical means",
+    "confidence": "medium",
+    "quote": "I found this recipe online on how to make invisible ink"
+  },
+  "media_and_audience": {
+    "value": "Local folklore and reputation frame Unitah as mysterious place with supernatural occurrences",
+    "confidence": "high",
+    "quote": "This is one of the most mysterious places in America"
+  },
+  "investigator_wound": {
+    "value": "Protagonist's displacement and need to belong drives investigation into dangerous local mysteries",
+    "confidence": "medium",
+    "quote": "Mysterious things intrigue me. They always have."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-elle-marie-calhoun-the-mystery-diaries/",
+    "corpus_index": 216,
+    "text_len": 6262,
+    "title": "ebook elle marie calhoun the mystery diaries",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

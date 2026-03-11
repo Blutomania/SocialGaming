@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Serial poisoning by the Marquise de Brinvilliers, who poisoned her father and others using chemical compounds",
+    "confidence": "high",
+    "quote": "the Marquise de Brinvilliers poisoned her father"
+  },
+  "victim": {
+    "value": "The Marquise's father and other victims, targeted for personal/financial gain within family relationships",
+    "confidence": "medium",
+    "quote": "the Marquise de Brinvilliers poisoned her father"
+  },
+  "closed_world": {
+    "value": "17th century French aristocratic society and the domestic spaces where the poisonings occurred",
+    "confidence": "medium",
+    "quote": "the castle where the Marquise de Brinvilliers poisoned her father"
+  },
+  "culprit_and_motive": {
+    "value": "The Marquise de Brinvilliers, working with Sainte-Croix, committed poisoning for apparent personal motives",
+    "confidence": "high",
+    "quote": "the poisons of Sainte-Croix and Madame de Brinvilliers"
+  },
+  "resolution": {
+    "value": "The Marquise was executed by burning, with her ashes scattered; justice was achieved through legal proceedings",
+    "confidence": "high",
+    "quote": "taking the body under one arm, all dressed as it was, and the head in his other hand...threw both upon the faggots"
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": "Historical poisoning case with primary suspects: Marquise de Brinvilliers (perpetrator), Chevalier Gaudin de Sainte-Croix (accomplice/supplier), with victims including her father and others through systematic poisoning",
+    "confidence": "high",
+    "quote": "Are you the Chevalier Gaudin de Sainte-Croix? Captain of the Tracy, regiment? Then I arrest you in the king's name."
+  },
+  "red_herring": {
+    "value": "The concealed woman in the carriage creates initial misdirection about who the primary target of arrest is, suggesting she might be the main criminal",
+    "confidence": "medium",
+    "quote": "She was wrapped in cloak and veil, and judging by the precautions she, had taken to hide her face from every eye"
+  },
+  "clue_fairness": {
+    "value": "Physical evidence of the poison laboratory discovered in 1814 provides concrete proof of the methods used, with detailed description of furnaces, instruments, and chemical substances",
+    "confidence": "high",
+    "quote": "they found a large closet like a laboratory, containing furnaces, chemical instruments, phials hermetically sealed"
+  },
+  "social_world": {
+    "value": "17th century French aristocratic society with police authority, religious confessional power, and class privilege allowing crimes to persist within noble circles",
+    "confidence": "high",
+    "quote": "I arrest you in the king's name. What powers have you? This warrant."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Chemical analysis potential of the discovered laboratory materials, though the opportunity was lost when the substances were destroyed rather than tested",
+    "confidence": "medium",
+    "quote": "instead of submitting the ingredients to the tests of modern science, they made away with them all"
+  },
+  "media_and_audience": {
+    "value": "Public spectacle and religious interpretation of the execution, with people seeking her bones believing she was a saint despite her crimes",
+    "confidence": "high",
+    "quote": "The next day, people were looking for the charred bones of Madame de Brinvilliers, because they said she was a saint."
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-marquise-brinvillier/",
+    "corpus_index": 333,
+    "text_len": 153236,
+    "title": "ebook alexandre dumas pere marquise brinvillier",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

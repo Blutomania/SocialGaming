@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Poisoning murder - John Demeo was killed by poisoned tea",
+    "confidence": "high",
+    "quote": "Mrs. Demeo finally confessed to poisoning John Demeo"
+  },
+  "victim": {
+    "value": "John Demeo, a senior student who had recently asked Joanie out and was competing for Melissa's attention",
+    "confidence": "medium",
+    "quote": "He brought me in there so he could ask me out on a date. I said no."
+  },
+  "closed_world": {
+    "value": "The tea party/gathering at Mrs. Demeo's house where the poisoned tea was served",
+    "confidence": "medium",
+    "quote": "It was okay tea, but it definitely wasn't as good as Mrs. Demeo's"
+  },
+  "culprit_and_motive": {
+    "value": "Mrs. Demeo (stepmother) poisoned John, possibly related to inheritance since she wasn't his 'favorite thing'",
+    "confidence": "high",
+    "quote": "I wouldn't be surprised if she'd killed the old man too, only to find out that she wasn't his favorite thing"
+  },
+  "resolution": {
+    "value": "Police interrogation leads to confession, though Mrs. Demeo later flees the country after posting bail",
+    "confidence": "high",
+    "quote": "During interrogation, Mrs. Demeo finally confessed to poisoning John Demeo"
+  },
+  "investigator": {
+    "value": "Jacky, a junior student who analyzes the situation and presents the theory to Detective Stern",
+    "confidence": "high",
+    "quote": "Detective Stern put an end to Jacky's theorizing"
+  },
+  "suspect_architecture": {
+    "value": "Three suspects with distinct motives: Mrs. Demeo (stepmother with inheritance/hatred motive), Joanie (romantic rejection), and John himself (suicide possibility). Each has clear differentiation in relationship to victim.",
+    "confidence": "high",
+    "quote": "Mrs. Demeo finally confessed to poisoning John Demeo"
+  },
+  "red_herring": {
+    "value": "The romantic triangle between John, Joanie, and potential dating conflicts serves as misdirection from the family inheritance motive that drives the actual murder.",
+    "confidence": "medium",
+    "quote": "He brought me in there so he could ask me out on a date. I said no."
+  },
+  "clue_fairness": {
+    "value": "The tea taste difference is presented to the reader through Jacky's direct observation - he notices Mrs. Demeo's tea lacks the almond aftertaste, foreshadowing the poisoning method.",
+    "confidence": "high",
+    "quote": "It didn't have that almond aftertaste."
+  },
+  "social_world": {
+    "value": "Military academy hierarchy with seniors/juniors, family inheritance structures, and institutional authority (Detective Stern, military funeral protocols) shape the power dynamics.",
+    "confidence": "high",
+    "quote": "I'm a senior. Do you really think Melissa would go out with a Junior?"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "The poisoned tea is revealed through taste comparison - Jacky notices the missing almond aftertaste in the tea, providing the technical evidence that demonstrates the murder method.",
+    "confidence": "medium",
+    "quote": "It definitely wasn't as good as Mrs. Demeo's. It didn't have that almond aftertaste."
+  },
+  "media_and_audience": {
+    "value": "Military funeral ceremony with full honors, orphanage institutional response, and legal system processing (bail, lawyer defenses) show how institutions package and respond to the crime.",
+    "confidence": "medium",
+    "quote": "the Army afforded him a full military burial. It was complete with the twenty-one gun salute"
+  },
+  "investigator_wound": {
+    "value": "Jacky's romantic feelings for Melissa create emotional vulnerability as he investigates a case involving romantic triangles and rejection, mirroring his own unrequited situation.",
+    "confidence": "medium",
+    "quote": "You like Melissa, don't you?"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-jacob-long-jacky-hazardous/",
+    "corpus_index": 100,
+    "text_len": 25907,
+    "title": "ebook jacob long jacky hazardous",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

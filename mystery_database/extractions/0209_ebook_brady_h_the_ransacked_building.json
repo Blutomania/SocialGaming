@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Breaking and entering into abandoned building; question: what was the intruder seeking?",
+    "confidence": "medium",
+    "quote": "We have a possible 211. Im going to search the rest of the building"
+  },
+  "victim": {
+    "value": "Ricky, former gang partner shot by Eddie; targeted due to past criminal relationship and attempt to recruit Eddie back",
+    "confidence": "high",
+    "quote": "Before Ricky could pull the trigger, he already had two bullet holes in his chest."
+  },
+  "closed_world": {
+    "value": "Abandoned building across the street from Billy's house",
+    "confidence": "medium",
+    "quote": "old abandoned building, Reynolds got out of his vehicle and slowly walked up to the doorstep"
+  },
+  "culprit_and_motive": {
+    "value": "Detective Eddie Reynolds kills Ricky in self-defense and revenge for stealing his college girlfriend",
+    "confidence": "high",
+    "quote": "And thats for taking my girlfriend in college"
+  },
+  "resolution": {
+    "value": "Eddie shoots Ricky in self-defense when threatened at gunpoint; no investigation follows",
+    "confidence": "medium",
+    "quote": "Eddie slept like a baby slept like a baby that night."
+  },
+  "investigator": {
+    "value": "Detective Eddie Reynolds, official police investigator who becomes both perpetrator and victim",
+    "confidence": "high",
+    "quote": "This is Detective Reynolds. What seems to be the problem?"
+  },
+  "suspect_architecture": {
+    "value": "Two-person dynamic: Eddie Reynolds (detective/former gang member) and Ricky (former gang partner turned antagonist). Limited cast with clear personal history and opposing trajectories.",
+    "confidence": "high",
+    "quote": "His old gang partner back when he was in college. He became a detective to clear his name."
+  },
+  "red_herring": {
+    "value": "The ransacked building and break-in investigation misleads both detective and reader - the real purpose is personal confrontation, not burglary.",
+    "confidence": "high",
+    "quote": "What was he looking for. Reynolds could see the intruder in front of him with his back to Reynolds."
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Police institutional structure with detective attempting to legitimize himself after criminal past. College gang background versus current law enforcement role.",
+    "confidence": "medium",
+    "quote": "He became a detective to clear his name... Im surprised i even was able to become a cop with my record"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Personal recognition and confrontation - Eddie identifies Ricky through direct encounter, leading to confession of motive and final violent resolution.",
+    "confidence": "medium",
+    "quote": "He knew exactley who this man was. His old gang partner back when he was in college."
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Eddie's criminal past and guilt over previous gang activities, exploited by Ricky's attempt to pull him back into criminal life.",
+    "confidence": "high",
+    "quote": "That was a long time ago. What we did was stupid and childish... You became soft."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-brady-h-the-ransacked-building/",
+    "corpus_index": 209,
+    "text_len": 5860,
+    "title": "ebook brady h the ransacked building",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

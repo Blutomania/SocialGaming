@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Isolated cottage in the forest where the ghostly girl lives alone",
+    "confidence": "medium",
+    "quote": "She lived alone in the wooden one roomed cottage...in the middle of the forest"
+  },
+  "culprit_and_motive": {
+    "value": "Jezzal seeking revenge for her father's infidelity",
+    "confidence": "medium",
+    "quote": "someone had to pay like her dad had too play for what he had done"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "The White Crow book with misplaced family photograph creates false connection to protagonist's story",
+    "confidence": "medium",
+    "quote": "the pictue did not belong there, in fact it had nothing to do with the book."
+  },
+  "clue_fairness": {
+    "value": "White rose connects cottage setting to anniversary memory - both elements presented to reader",
+    "confidence": "medium",
+    "quote": "there was only one thing that made it like a home and that was a white rose"
+  },
+  "social_world": {
+    "value": "Traditional family hierarchy with parents delegating childcare to eldest daughter Jezzal",
+    "confidence": "medium",
+    "quote": "Don't worry about that I will get Jezzal to do that when she comes down"
+  },
+  "alibi": {
+    "value": "Father's location questioned when laughter heard upstairs - alibi places him in dining room",
+    "confidence": "medium",
+    "quote": "your farther is in the dinning room with the other guessed"
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Jezzal's isolation and family trauma - living alone in cottage, haunted by family memories",
+    "confidence": "medium",
+    "quote": "She lived alone in the wooden one roomed cottage"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-by-daniella-willey-the-black-butterfly/",
+    "corpus_index": 147,
+    "text_len": 11972,
+    "title": "ebook by daniella willey the black butterfly",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of Giovanni",
+    "confidence": "medium",
+    "quote": "completing the investigation of Giovanni's murder"
+  },
+  "victim": {
+    "value": "Giovanni - appears to be connected to organized crime figures",
+    "confidence": "low",
+    "quote": "completing the investigation of Giovanni's murder"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Unknown - investigation was hindered by criminal types and legal obstacles",
+    "confidence": "low",
+    "quote": "criminal types aided by loopholes in the law and outside influences prevented you to arrest those responsible"
+  },
+  "resolution": {
+    "value": "Investigation appears incomplete - case unsolved through official channels, hints at unofficial resolution",
+    "confidence": "low",
+    "quote": "for every blow in life, there is a counter blow"
+  },
+  "investigator": {
+    "value": "Captain Robert Wallace - police investigator who conducted the murder investigation",
+    "confidence": "high",
+    "quote": "Captain, how nice to see you again"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Criminal organization hierarchy with wealthy patron Gargiulo commanding respect and resources, contrasted with working-class liquor store owner and frustrated police captain",
+    "confidence": "medium",
+    "quote": "This place must have cost a million dollars\" he said to Lambraca. \" Actually it cost over two million"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Captain Wallace's frustrated investigation hindered by obstacles, losing key witness, and inability to arrest those responsible despite knowing the truth",
+    "confidence": "medium",
+    "quote": "I am well aware of the obstacles that you ran into hindering your investigation"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-counter-blow/",
+    "corpus_index": 24,
+    "text_len": 130235,
+    "title": "ebook robert f clifton counter blow",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

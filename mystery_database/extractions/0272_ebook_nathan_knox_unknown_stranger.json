@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Friend named Ferb killed by police while walking to a bar",
+    "confidence": "medium",
+    "quote": "they killed my friend Ferb. He was a nice friend. I can't believe how they killed him."
+  },
+  "closed_world": {
+    "value": "Killer Lane town with 14 remaining residents under police control",
+    "confidence": "medium",
+    "quote": "only 14 people live here now because all the people kept stealing 4 loaves each day"
+  },
+  "culprit_and_motive": {
+    "value": "Stone Running police killing residents for minor crimes like bread theft",
+    "confidence": "medium",
+    "quote": "The Stone Running police killed with a dead ray gun. It is a deadly weapon."
+  },
+  "resolution": {
+    "value": "Springfield destroys Killer Lane and kills all the police",
+    "confidence": "high",
+    "quote": "Springfield blew up the whole part of Killer Lane And killed all the police."
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Authoritarian police state with extreme punishment for minor crimes, creating terror-based social control",
+    "confidence": "high",
+    "quote": "The police Has strangled over 400 people. That is why you call our town Killer Lane."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Town reputation as dangerous place spreads through word-of-mouth testimonials and survivor accounts",
+    "confidence": "medium",
+    "quote": "One of my friends visited it. And got killed in it"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-nathan-knox-unknown-stranger/",
+    "corpus_index": 272,
+    "text_len": 2765,
+    "title": "ebook nathan knox unknown stranger",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

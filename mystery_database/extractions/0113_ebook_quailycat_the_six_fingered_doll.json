@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder by supernatural doll bite to the neck at midnight on victim's birthday",
+    "confidence": "high",
+    "quote": "Alice made a swift bite to Mary's neck, jumped off Mary, put her hand over where Mary's heart should be"
+  },
+  "victim": {
+    "value": "Mary, a 6-year-old girl who turned six on January 13th, 1886, making her 'killable' due to matching the doll's finger count",
+    "confidence": "high",
+    "quote": "Best of all, she has her hands in the shape of the number six! I'm turning six tommorow!"
+  },
+  "closed_world": {
+    "value": "Mary's bedroom during the night, with the doll as the only possible perpetrator present",
+    "confidence": "medium",
+    "quote": "Mary was fast asleep, dreaming of the presents that she would receive. Alice, her doll, blinked."
+  },
+  "culprit_and_motive": {
+    "value": "Alice the supernatural doll, motivated by an evil nature that compels her to kill children matching her finger count annually",
+    "confidence": "high",
+    "quote": "she was definitly not alive for a good cause, but for death, and not her death, but anothers."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial misdirection toward human perpetrator through conventional murder scene staging",
+    "confidence": "medium",
+    "quote": "Mary's mother, who cried out: 'Mary! Oh, my darling, daughter! Who did this to you?'"
+  },
+  "clue_fairness": {
+    "value": "Six-finger detail presented as birthday significance before revealing its true meaning as age-targeting mechanism",
+    "confidence": "high",
+    "quote": "Best of all, she has her hands in the shape of the number six! I'm turning six tommorow!"
+  },
+  "social_world": {
+    "value": "Victorian-era child vulnerability within domestic/commercial power structures",
+    "confidence": "medium",
+    "quote": "Mary peered through the glass of her favourite shop, Tracy and Pods"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Physical transformation evidence - pulse monitoring and progressive finger accumulation per victim age",
+    "confidence": "high",
+    "quote": "Seventy bpm, the normal pulse rate, fifty bpm, thirty bpm, ten bpm, and then... zero."
+  },
+  "media_and_audience": {
+    "value": "Folkloric framing as cautionary tale with direct reader address as potential victim",
+    "confidence": "high",
+    "quote": "The main question is: Where is Alice, when will she strike next, and... Are you her next victim?"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-quailycat-the-six-fingered-doll/",
+    "corpus_index": 113,
+    "text_len": 4127,
+    "title": "ebook quailycat the six fingered doll",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

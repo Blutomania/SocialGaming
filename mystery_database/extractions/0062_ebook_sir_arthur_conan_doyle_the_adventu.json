@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Poisoning deaths by exotic plant toxin - multiple family members died in terror, then brother died alone with same symptoms",
+    "confidence": "high",
+    "quote": "Mr. Mortimer Tregennis died during the night, and with exactly the same symptoms as the rest of his family."
+  },
+  "victim": {
+    "value": "Mortimer Tregennis, whose brother had wronged Dr. Sterndale's beloved woman, making him a target for revenge",
+    "confidence": "high",
+    "quote": "my heart was flint, for he endured nothing which my innocent darling had not felt before him"
+  },
+  "closed_world": {
+    "value": "Remote Cornish village and vicarage lodgings where the deaths occurred, limiting access to the victims",
+    "confidence": "medium",
+    "quote": "The lodger occupied two rooms at the vicarage, which were in an angle by themselves"
+  },
+  "culprit_and_motive": {
+    "value": "Dr. Sterndale, who poisoned Mortimer Tregennis in revenge for harm done to a woman he loved",
+    "confidence": "high",
+    "quote": "if you loved a woman, you would have done as much yourself. At any rate, I am in your hands."
+  },
+  "resolution": {
+    "value": "Holmes deduces the method through physical evidence (gravel, lamp, powder) but chooses not to prosecute due to moral sympathy",
+    "confidence": "high",
+    "quote": "it is not a case in which we are called upon to interfere. Our investigation has been independent"
+  },
+  "investigator": {
+    "value": "Sherlock Holmes with Dr. Watson as narrator, official consulting detectives called in by the local vicar",
+    "confidence": "high",
+    "quote": "We are devil-ridden, Mr. Holmes! My poor parish is devil-ridden!"
+  },
+  "suspect_architecture": {
+    "value": "Limited cast centered on Dr. Sterndale as primary suspect with clear motive (revenge for beloved's death), means (access to African poison), and opportunity (local presence). Mortimer Tregennis initially appears as potential suspect before becoming victim.",
+    "confidence": "high",
+    "quote": "There is my story, Mr. Holmes. Perhaps, if you loved a woman, you would have done as much yourself."
+  },
+  "red_herring": {
+    "value": "Supernatural/diabolic explanation deliberately emphasized through vicar's hysteria and atmospheric description to misdirect from scientific poison method.",
+    "confidence": "high",
+    "quote": "We are devil-ridden, Mr. Holmes! My poor parish is devil-ridden! Satan himself is loose in it!"
+  },
+  "clue_fairness": {
+    "value": "Physical evidence presented to reader simultaneously with Holmes: gravel on window-sill, lamp burning in daylight, powder remains on shield - all described as Watson observes them.",
+    "confidence": "high",
+    "quote": "The gravel upon the window-sill was, of course, the starting-point of my research."
+  },
+  "social_world": {
+    "value": "Victorian colonial hierarchy with explorer/scientist Dr. Sterndale operating outside normal social constraints, parish structure with vicar as local authority figure.",
+    "confidence": "medium",
+    "quote": "I had intended to bury myself in central Africa. My work there is but half finished."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Scientific demonstration through matching physical evidence: gravel from cottage matching window-sill sample, technical explanation of poison delivery method.",
+    "confidence": "medium",
+    "quote": "Only when my attention had been drawn to Dr. Sterndale and his cottage did I find its counterpart."
+  },
+  "media_and_audience": {
+    "value": "Local community interprets deaths through supernatural lens, vicar as voice of religious/folkloric explanation competing with Holmes's scientific method.",
+    "confidence": "medium",
+    "quote": "We are given over into his hands! He danced about in his agitation, a ludicrous object"
+  },
+  "investigator_wound": {
+    "value": "Holmes's health vulnerability established at opening, case occurs during prescribed rest period, final acknowledgment of emotional limitation regarding love and revenge.",
+    "confidence": "high",
+    "quote": "I have never loved, Watson, but if I did and if the woman I loved had met such an end, I might act"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-adventure-of-the-devil-039-s-foot/",
+    "corpus_index": 62,
+    "text_len": 55981,
+    "title": "ebook sir arthur conan doyle the adventure of the devil 039 s foot",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

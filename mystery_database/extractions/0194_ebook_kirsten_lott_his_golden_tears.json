@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Ty's death outside a coffee shop",
+    "confidence": "medium",
+    "quote": "all I could see was his pale body\u2026 his pale, lifeless body. No breathe. No heart beat."
+  },
+  "victim": {
+    "value": "Ty, a young man with close relationships to Katherine and Phillip",
+    "confidence": "medium",
+    "quote": "his beautiful blonde hair, now crimson red, his deep green eyes, now pale and gray"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Possibly Shelby, who appeared happy upon seeing Ty's death and is being avoided",
+    "confidence": "low",
+    "quote": "she looked happy, even when she saw Ty, dead, on the ground"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Katherine, the deceased's girlfriend who witnesses the aftermath and seeks answers",
+    "confidence": "medium",
+    "quote": "I stared at Ty for a long time trying to remember good times I had had with him"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Shelby's suspicious behavior and timing creates misdirection from the true circumstances of Ty's death",
+    "confidence": "medium",
+    "quote": "Hey, Kat. Did Ty die or somethin'? ...she looked happy, even when she saw Ty, dead, on the ground"
+  },
+  "clue_fairness": {
+    "value": "Precise timestamps and locations are consistently provided to reader for each scene",
+    "confidence": "medium",
+    "quote": "Sunday, 11:28 pm. outside the coffee shop...Sunday, 11:30 pm. outside the coffee shop"
+  },
+  "social_world": {
+    "value": "High school social hierarchy with popular/smart students and friendship dynamics",
+    "confidence": "medium",
+    "quote": "my best friend, the smartest, most popular girl in school"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Katherine's grief and loss of her boyfriend Ty makes her vulnerable and dependent on others for support",
+    "confidence": "high",
+    "quote": "I leaned into his hug and smiled knowing somebody was finally here to help me through this"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-kirsten-lott-his-golden-tears/",
+    "corpus_index": 194,
+    "text_len": 15206,
+    "title": "ebook kirsten lott his golden tears",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

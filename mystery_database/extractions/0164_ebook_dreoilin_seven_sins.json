@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Sierra Canyon private school in Los Angeles and wealthy social circle",
+    "confidence": "medium",
+    "quote": "I go to a mostly private school called Sierra Canyon in Los Angeles"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Pracilla, wealthy privileged student narrator",
+    "confidence": "medium",
+    "quote": "We are the richest people on the block. My father is a lawyer, and my mother is a model"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Missing party binder creates false panic - initially thought forgotten by maid but found in backseat",
+    "confidence": "medium",
+    "quote": "Alisa, my personal maid, hasn't packed my party binder... I find it sitting in the backseat"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Elite private school hierarchy with wealth-based status distinctions and competitive social positioning",
+    "confidence": "high",
+    "quote": "We are the richest people on the block... I know people are jealous of me and everything I have"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Social reputation management through controlled narrative - narrator shapes perception of herself and others",
+    "confidence": "medium",
+    "quote": "Girls who are jealous of her call her a slut, but she is the cleanest slut in the whole school"
+  },
+  "investigator_wound": {
+    "value": "Narcissistic perfectionism and need for control - vulnerability to having flawless image disrupted",
+    "confidence": "medium",
+    "quote": "In my family, anything less is unacceptable... anyone with standards lesser than mine are underachievers"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-dreoilin-seven-sins/",
+    "corpus_index": 164,
+    "text_len": 2538,
+    "title": "ebook dreoilin seven sins",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

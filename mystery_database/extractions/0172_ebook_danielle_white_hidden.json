@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder by gunshot - mother shot three times (twice in chest, once in neck) in bathroom",
+    "confidence": "high",
+    "quote": "She had two gunshot holes through her chest and one through her neck."
+  },
+  "victim": {
+    "value": "The narrator's mother, found dead in bathroom",
+    "confidence": "medium",
+    "quote": "I came home and found my mother on the bathroom tile floor."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Unknown killers (referred to as 'them pricks') - motive unclear, continuing to threaten narrator",
+    "confidence": "low",
+    "quote": "I'm gonna hunt you down and bury you under neath my home"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "The victim's daughter (narrator) who discovered the body, working with police officers",
+    "confidence": "high",
+    "quote": "I came home and found my mother on the bathroom tile floor."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": "Basic clues provided - phone threat content, timeline of discovery, narrator's alibi at park during murder",
+    "confidence": "medium",
+    "quote": "i was at the park for my mourning jog. They did a background check and realized i was telling the truth."
+  },
+  "social_world": {
+    "value": "Police protection hierarchy with officers Dave and Detective John managing witness protection protocols",
+    "confidence": "medium",
+    "quote": "They let me go home after they let me stay at a hotel for free wile my home got cleaned."
+  },
+  "alibi": {
+    "value": "Narrator claims to have been at park jogging during mother's murder, verified by police background check",
+    "confidence": "high",
+    "quote": "i was at the park for my mourning jog. They did a background check and realized i was telling the truth."
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Narrator is victim's daughter, making her both witness and bereaved family member seeking justice",
+    "confidence": "high",
+    "quote": "I came home and found my mother on the bathroom tile floor. She had two gunshot holes through her chest"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-danielle-white-hidden/",
+    "corpus_index": 172,
+    "text_len": 8968,
+    "title": "ebook danielle white hidden",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Fatal gunfight/mutual killing between Wolf Tone Maloney and Thomas Grimthorpe (Tattooed Tom)",
+    "confidence": "high",
+    "quote": "Shots were exchanged, and both were badly wounded, only surviving a few minutes."
+  },
+  "victim": {
+    "value": "Wolf Tone Maloney, former murderer and government informant with many enemies from his criminal past",
+    "confidence": "high",
+    "quote": "On Friday evening he encountered an old enemy, Thomas Grimthorpe, commonly known as Tattooed Tom"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Thomas Grimthorpe killed Maloney in revenge as an 'old enemy', likely related to Maloney's past betrayals",
+    "confidence": "medium",
+    "quote": "he encountered an old enemy, Thomas Grimthorpe"
+  },
+  "resolution": {
+    "value": "Natural conclusion through mutual destruction - both men died in the gunfight, ending the conflict",
+    "confidence": "high",
+    "quote": "both were badly wounded, only surviving a few minutes"
+  },
+  "investigator": {
+    "value": "Prison doctor who befriended Maloney and heard his confession before death",
+    "confidence": "high",
+    "quote": "Give the doc my share, for he's as good"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial misdirection suggests Maloney is reformed citizen and bar owner, concealing his true identity as mass murderer",
+    "confidence": "medium",
+    "quote": "W. T. Maloney, a well-know citizen of New Montrose, and proprietor of the Yellow Boy gambling saloon"
+  },
+  "clue_fairness": {
+    "value": "All details of Maloney's criminal past are revealed through his own confession to the doctor-narrator",
+    "confidence": "medium",
+    "quote": "That man's story's worth listening to if you could get him to tell it"
+  },
+  "social_world": {
+    "value": "Prison hierarchy with doctor, warders, and numbered convicts; colonial Australian frontier justice and vigilante law",
+    "confidence": "high",
+    "quote": "Number 481 is no better, doctor, said the head-warder, in a slightly reproachful accent"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Truth revealed through dying confession and corroborated by newspaper account of the fatal gunfight",
+    "confidence": "high",
+    "quote": "I cannot conclude without borrowing the account of the fatal quarrel which appeared in the column"
+  },
+  "media_and_audience": {
+    "value": "Newspaper transforms wholesale murderer into respectable citizen, sanitizing his criminal history for public consumption",
+    "confidence": "high",
+    "quote": "W. T. Maloney, a well-know citizen of New Montrose, and proprietor of the Yellow Boy gambling saloon"
+  },
+  "investigator_wound": {
+    "value": "Prison doctor's professional isolation and curiosity about his patients' hidden histories",
+    "confidence": "medium",
+    "quote": "coming back every night as tired as a dog, and you talk about finding an excuse for doing more work"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-my-friend-the-murderer/",
+    "corpus_index": 107,
+    "text_len": 38777,
+    "title": "ebook sir arthur conan doyle my friend the murderer",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

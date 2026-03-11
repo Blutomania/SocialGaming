@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Police department and connected urban criminal network",
+    "confidence": "medium",
+    "quote": "Bodie, was a good cop. He could see the streets like no one could; not unless you grew up in them."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Disgraced police officer investigating corruption involving his ex-partner and ex-wife",
+    "confidence": "high",
+    "quote": "Senior Corporal Bodie, the man reading, brought me through my police training. 15 years later, one by one, he's driving"
+  },
+  "suspect_architecture": {
+    "value": "Three primary suspects from protagonist's past: Bodie (ex-partner/trainer with secrets), Lucy (cheating ex-wife), and Chief Bale (authority figure with disdain). Each has different relationship dynamics and potential motives.",
+    "confidence": "medium",
+    "quote": "Senior Corporal Bodie, the man reading, brought me through my police training... Bodie, my ex-partner, always had his hands in something"
+  },
+  "red_herring": {
+    "value": "The Blue Bayou location appears to be deliberate misdirection - presented as both a closed club downtown and a street in 'the deep' with trailer parks and meth houses",
+    "confidence": "medium",
+    "quote": "The Blue Bayou used to be a club downtown, but it's been closed for several years now. There is also a street called Blue Bayou"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Police department hierarchy with Internal Affairs board, ranks from Senior Corporal to Chief, old partnerships and loyalties creating power networks and protected secrets",
+    "confidence": "high",
+    "quote": "Sitting there in their pristine uniforms with badges and medals, gold stripes and bars on their collars"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Internal Affairs board hearing serves as institutional judgment mechanism, with formal charges being read publicly within the department structure",
+    "confidence": "medium",
+    "quote": "an officer from Internal Affairs reads off the charges from my past and present transgressions"
+  },
+  "investigator_wound": {
+    "value": "Disgraced cop facing career termination, betrayed by his trainer/mentor, abandoned by cheating wife, stripped of status and identity - institutional loyalty destroyed",
+    "confidence": "high",
+    "quote": "15 years later, one by one, he's driving the nails in my career coffin"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-m-j-garrett-first-chance-last-chance/",
+    "corpus_index": 195,
+    "text_len": 23925,
+    "title": "ebook m j garrett first chance last chance",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

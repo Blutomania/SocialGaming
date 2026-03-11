@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Assassination by stabbing - Karl-Ludwig Sand stabs Kotzebue to the heart in his home",
+    "confidence": "high",
+    "quote": "Sand at once stabbed him to the heart; Kotzebue gave one cry, staggered, and fell back into an arm-chair: he was dead."
+  },
+  "victim": {
+    "value": "Kotzebue - targeted for his political views or writings that made him an enemy to Sand's cause",
+    "confidence": "medium",
+    "quote": "recognise him by the description. Kotzebue chanced to take another path."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Karl-Ludwig Sand committed premeditated assassination - motive appears political/ideological based on his methodical planning",
+    "confidence": "high",
+    "quote": "Sand then performed the drama which he had rehearsed upon his friend"
+  },
+  "resolution": {
+    "value": "Sand is captured after failed suicide attempt and later executed - justice served through legal process",
+    "confidence": "medium",
+    "quote": "asked leave to have a new scaffold made at his own expense, so that no other criminal might be executed"
+  },
+  "investigator": {
+    "value": "Historical narrator/chronicler - Dumas presenting the case as historical true crime rather than detective story",
+    "confidence": "medium",
+    "quote": "Our readers will judge better from this anecdote than from anything more we could say"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": "Sand's movements and preparations are documented transparently - his notebook entries, timing, and reconnaissance attempts",
+    "confidence": "medium",
+    "quote": "Left Wanheim at five in the morning, came in sight of Mannheim at a quarter-past nine."
+  },
+  "social_world": {
+    "value": "German student political hierarchy and academic social structures - Sand as student revolutionary targeting established authority",
+    "confidence": "medium",
+    "quote": "wearing the dress of a German student, which consists of a short frock-coat with silk braiding"
+  },
+  "alibi": {
+    "value": "Sand's open movements provide no alibi - he dines publicly, makes multiple visits, maintains visible presence before the act",
+    "confidence": "high",
+    "quote": "he dined with an appearance of such calmness, and even of such happiness, that his conversation...was remarked"
+  },
+  "reveal_mechanic": {
+    "value": "The assassination is revealed through direct dramatic performance - Sand 'performed the drama which he had rehearsed'",
+    "confidence": "high",
+    "quote": "Sand then performed the drama which he had rehearsed upon his friend"
+  },
+  "media_and_audience": {
+    "value": "Sand becomes martyred figure - scaffold wood becomes shrine, pilgrims visit, handkerchiefs collect blood as relics",
+    "confidence": "high",
+    "quote": "cottage became a shrine for pilgrims...those who wiped the blood from the scaffold with their handkerchiefs"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-karl-ludwig-sand/",
+    "corpus_index": 218,
+    "text_len": 126715,
+    "title": "ebook alexandre dumas pere karl ludwig sand",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

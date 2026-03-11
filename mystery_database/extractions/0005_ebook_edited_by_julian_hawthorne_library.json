@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Castanier commits embezzlement/theft driven by his relationship with Mme. de la Garde",
+    "confidence": "medium",
+    "quote": "There, on the second floor of a block of buildings which looked out upon some gardens, lived the unconscious cause"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Blanca's mysterious departure creates false trail - appears to be abandonment but may conceal deeper deception",
+    "confidence": "medium",
+    "quote": "She went away without even leaving a line for me, without telling me whither she was going."
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Rigid class hierarchy where beauty and wealth determine marriage prospects; clerks versus distinguished society",
+    "confidence": "high",
+    "quote": "She had no dowry, no expectations, no means of being known, understood, loved, wedded, by any rich"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Stories presented as curated collection of 'World's Best Mystery' - institutional literary authority packaging",
+    "confidence": "medium",
+    "quote": "Edited by Julian Hawthorne Library of the World's Best Mystery and Detective Stories"
+  },
+  "investigator_wound": {
+    "value": "Castanier's rough social origins and inability to fit in society driving his criminal desperation",
+    "confidence": "medium",
+    "quote": "The old dragoon was too rough and homely to make his way in society"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-edited-by-julian-hawthorne-library-of-the-world-039-s-best-mystery-and-detective-stories/",
+    "corpus_index": 5,
+    "text_len": 564412,
+    "title": "ebook edited by julian hawthorne library of the world 039 s best mystery and detective stories",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

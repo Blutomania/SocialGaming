@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Destiny's family (mother, father, baby brother Elijah) killed in car accident, but unclear if criminal",
+    "confidence": "low",
+    "quote": "Rose Donaldson lost her son-in-law, daughter, and baby grandson a little less than a week ago"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Small-town class divide between wealthy estate owners and trailer park residents, with historical family prominence",
+    "confidence": "medium",
+    "quote": "her father, the Honorable Judge Frost, was one of the most prominent men in town"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Destiny's trauma from witnessing family's death creates psychological vulnerability to supernatural experiences",
+    "confidence": "medium",
+    "quote": "I keep seeing Mom's severed head lying in the street looking at me like she wants me to do something"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-kelly-abell-haunted-destiny/",
+    "corpus_index": 11,
+    "text_len": 18464,
+    "title": "ebook kelly abell haunted destiny",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

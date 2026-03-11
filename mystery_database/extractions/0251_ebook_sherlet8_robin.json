@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "School hierarchy with principal-student power structure, family connections through grandmother's friendship network",
+    "confidence": "medium",
+    "quote": "Robin recognized that he was Mr. Lucas, the principal of the school. Robin knew him to be his grandma's friend"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Protagonist carrying unresolved trauma from parents' death, still psychologically vulnerable despite outward composure",
+    "confidence": "medium",
+    "quote": "Mr. Lucas could see that the girl hadn't still recovered from the shock of death of her parents"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sherlet8-robin/",
+    "corpus_index": 251,
+    "text_len": 7571,
+    "title": "ebook sherlet8 robin",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

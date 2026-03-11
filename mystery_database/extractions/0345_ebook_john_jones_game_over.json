@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Supernatural train with force-field that traps occupants permanently in carriages",
+    "confidence": "medium",
+    "quote": "The force-field wrapped around it would keep them inside, keep them prisoner."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Neil Parker, network administrator who discovers the hidden train while revisiting childhood fears",
+    "confidence": "medium",
+    "quote": "Neil walked across and shone the torch inside. The light caught something metallic"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "The marital discord and divorce thoughts presented as Neil's primary concern, distracting from the supernatural trap",
+    "confidence": "medium",
+    "quote": "The word 'divorce' was becoming more and more frequent in his mind, as though pervading his consciousness"
+  },
+  "clue_fairness": {
+    "value": "The boarded alcove with one entrance 'split and splintered' is shown before Neil discovers the trapped locomotive",
+    "confidence": "high",
+    "quote": "regularly spaced alcoves, each one boarded up, except one further along, its board split and splintered"
+  },
+  "social_world": {
+    "value": "Workplace hierarchy at hospital demanding Neil complete firewall monitoring of employee internet access",
+    "confidence": "medium",
+    "quote": "They had been asking him to basically get a move on, as they were impatient to monitor their employee's"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "The supernatural force-field trap explained through Neil's realization that occupants cannot leave and cannot age",
+    "confidence": "high",
+    "quote": "The force-field wrapped around it would keep them inside, keep them prisoner"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Neil's childhood fear of the tunnel, returning as an adult to face the same terror that paralyzed him at age eight",
+    "confidence": "high",
+    "quote": "The surge of fear came back to him, and he was glad nobody could see his reddening face"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-john-jones-game-over/",
+    "corpus_index": 345,
+    "text_len": 12547,
+    "title": "ebook john jones game over",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

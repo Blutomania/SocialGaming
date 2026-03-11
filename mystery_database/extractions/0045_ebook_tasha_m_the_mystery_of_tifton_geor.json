@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder by heart removal - Tarra found dead in creek with large hole in chest where heart should be",
+    "confidence": "high",
+    "quote": "I noticed a large whole in her chest where her heart should be. That's when I finally screamed bloody murder."
+  },
+  "victim": {
+    "value": "Tarra, the mayor's daughter who had fought with her mother and went for a walk alone",
+    "confidence": "medium",
+    "quote": "She and mom had a fight last night so she went for a walk but hasn't come back."
+  },
+  "closed_world": {
+    "value": "Small town of Tifton, Georgia with limited suspects from the neighborhood and local community",
+    "confidence": "medium",
+    "quote": "In the end we only had a few suspects... David's mother, my sister's boyfriend(Josh), and the chief of police."
+  },
+  "culprit_and_motive": {
+    "value": "Damien suspected as culprit - has history of murdering young girls and previously tried to kill narrator",
+    "confidence": "medium",
+    "quote": "He tried to kill me and rape me before he was arrested for murders of young girls. I was the only one to make it out alive."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Sasha, the narrator - newcomer to town who discovers the body and conducts amateur investigation",
+    "confidence": "high",
+    "quote": "I'm trying to find some suspects. So I figured we should look at everyone's criminal records."
+  },
+  "suspect_architecture": {
+    "value": "Four suspects identified: Damien (serial killer with history), David's mother, sister's boyfriend Josh, and chief of police",
+    "confidence": "medium",
+    "quote": "The others in that list were; David's mother, my sister's boyfriend(Josh), and the chief of police."
+  },
+  "red_herring": {
+    "value": "David's initial tenseness and explanation about Tarra's absence suggests potential misdirection about family dynamics",
+    "confidence": "low",
+    "quote": "He tensed up,'She and mom had a fight last night so she went for a walk but hasn't come back.'"
+  },
+  "clue_fairness": {
+    "value": "Blood trail discovery and heart removal detail provided to reader simultaneously with protagonist's discovery",
+    "confidence": "medium",
+    "quote": "as I got out I noticed a trail of blood...I noticed a large whole in her chest where her heart should be."
+  },
+  "social_world": {
+    "value": "Small town hierarchy with mayor's family, police authority, and newcomer/outsider dynamics creating power structures",
+    "confidence": "medium",
+    "quote": "I became friends with the Mayors son, David, and his daughter, Tarra."
+  },
+  "alibi": {
+    "value": "Damien's presence at welcome party establishes his proximity; narrator and David's joint discovery creates mutual alibi",
+    "confidence": "low",
+    "quote": "My sister's neighbor, Damien, kept to himself and stared at me the entire time"
+  },
+  "reveal_mechanic": {
+    "value": "Computer research revealing criminal backgrounds serves as investigative method for suspect identification",
+    "confidence": "low",
+    "quote": "I'm trying to find some suspects. So I figured we should look at everyone's criminal records."
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Protagonist's previous traumatic encounter with Damien in Louisiana creates personal vulnerability and connection to case",
+    "confidence": "high",
+    "quote": "He tried to kill me and rape me before he was arrested for murders of young girls. I was the only one to make it out alive."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-tasha-m-the-mystery-of-tifton-georgia/",
+    "corpus_index": 45,
+    "text_len": 5421,
+    "title": "ebook tasha m the mystery of tifton georgia",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

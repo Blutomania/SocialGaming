@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Theft of valuable rings from Egyptian Chamber display case; attendant found dead embracing mummy",
+    "confidence": "high",
+    "quote": "One of the cases containing valuable rings had been opened and rifled."
+  },
+  "victim": {
+    "value": "Museum attendant of uncertain age with eccentric habits and no living relations",
+    "confidence": "high",
+    "quote": "It is said that he was a man of uncertain age and eccentric habits, without any living relations"
+  },
+  "closed_world": {
+    "value": "The Louvre's Egyptian Chamber",
+    "confidence": "high",
+    "quote": "Yesterday morning a strange discovery was made in the principal Egyptian Chamber."
+  },
+  "culprit_and_motive": {
+    "value": "Sosra the Egyptian, seeking to reclaim ancient rings to restore his mortality after centuries of cursed life",
+    "confidence": "high",
+    "quote": "I shall at last be able to shake off that accursed health which has been worse to me than the foulest disease."
+  },
+  "resolution": {
+    "value": "Sosra successfully obtains the ring but dies in the attempt, found embracing the mummy; authorities misinterpret as theft",
+    "confidence": "high",
+    "quote": "So close was his embrace that it was only with the utmost difficulty that they were separated."
+  },
+  "investigator": {
+    "value": "Mr. John Vansittart Smith, who witnessed Sosra's confession and reads the official account in the newspaper",
+    "confidence": "high",
+    "quote": "It was on the second day after his return to London that Mr. John Vansittart Smith saw the following"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Egyptian supernatural curse narrative used to obscure theft of ancient elixir",
+    "confidence": "medium",
+    "quote": "The authorities are of opinion that the man was bearing away the mummy with some idea of selling it"
+  },
+  "clue_fairness": {
+    "value": "Crystal container and platinum testing method revealed to reader before resolution",
+    "confidence": "medium",
+    "quote": "A glance at the crystal has shown me that the liquid is indeed within it"
+  },
+  "social_world": {
+    "value": "Naval hierarchy and academic Egyptian studies creating access to restricted materials",
+    "confidence": "medium",
+    "quote": "There is considerable discontent among the crew, many of whom are anxious to get back home"
+  },
+  "alibi": {
+    "value": "Museum attendant's death staged as heart failure during robbery attempt",
+    "confidence": "medium",
+    "quote": "struck down in the very act by long-standing disease of the heart"
+  },
+  "reveal_mechanic": {
+    "value": "Chemical testing for platinum to identify correct ancient elixir container",
+    "confidence": "high",
+    "quote": "I had to test for the platinum to be sure of the one which I wanted"
+  },
+  "media_and_audience": {
+    "value": "Press narrative frames death as failed theft rather than successful ancient ritual",
+    "confidence": "high",
+    "quote": "Curious Occurrence in the Louvre.--Yesterday morning a strange discovery was made"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-captain-of-the-polestar/",
+    "corpus_index": 29,
+    "text_len": 464317,
+    "title": "ebook sir arthur conan doyle the captain of the polestar",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Potential break-in with bloodied glass shards found in apartment",
+    "confidence": "medium",
+    "quote": "Shards of glass lay shattered across the floor... stained red with what looked to be blood"
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Protagonist's apartment in LA where she lives alone",
+    "confidence": "medium",
+    "quote": "I was stuck in a crappy apartment... who needs peace and quiet when there is possibly a killer lurking in my home"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "First-person narrator, aspiring writer living alone who discovers the suspicious evidence",
+    "confidence": "high",
+    "quote": "I was an aspiring author living in LA... My mind was racing with possible scenarios"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial assumption that protagonist cut herself breaking a glass earlier",
+    "confidence": "medium",
+    "quote": "maybe I had knocked a glass earlier opening the cupboard and cut myself in the process"
+  },
+  "clue_fairness": {
+    "value": "Glass shards with blood drops presented directly to reader through protagonist's observation",
+    "confidence": "high",
+    "quote": "The shards were stained red with what looked to be blood, just a few drops but enough to be visible"
+  },
+  "social_world": {
+    "value": "Struggling writer in LA - economic vulnerability and social isolation",
+    "confidence": "medium",
+    "quote": "stuck in a crappy apartment, working at a job I hated for minimum wage"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Story framed through crime show consumption and genre awareness",
+    "confidence": "medium",
+    "quote": "SCREAM QUEENS (tommy), Sherlock, Elementary, Poirot, Miss Marple, CSI..., NCIS"
+  },
+  "investigator_wound": {
+    "value": "Writer's block and creative vulnerability disrupted by potential danger",
+    "confidence": "medium",
+    "quote": "I was just settling into a great mind set that was clearing my writers block, when I was suddenly distracted"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-rachel-davis-shard/",
+    "corpus_index": 326,
+    "text_len": 3142,
+    "title": "ebook rachel davis shard",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

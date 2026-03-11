@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Kidnapping and imprisonment of multiple women",
+    "confidence": "medium",
+    "quote": "Did you get the other girls?' I ask the medics. In reply, one of them points at the girls who look much better than me."
+  },
+  "victim": {
+    "value": "Evelyn and other women imprisoned by 'crazy she-devil'",
+    "confidence": "medium",
+    "quote": "You saved us, Eve.' Elle cries out. Behind her, two policemen are seen to drag the crazy she-devil out of the house."
+  },
+  "closed_world": {
+    "value": "A house where the women were trapped",
+    "confidence": "low",
+    "quote": "as they carry me out of the death trap"
+  },
+  "culprit_and_motive": {
+    "value": "Female perpetrator referred to as 'crazy she-devil', motive unclear",
+    "confidence": "low",
+    "quote": "two policemen are seen to drag the crazy she-devil out of the house. She keeps cursing me and the girls"
+  },
+  "resolution": {
+    "value": "Police rescue operation saves the imprisoned women",
+    "confidence": "medium",
+    "quote": "two policemen are seen to drag the crazy she-devil out of the house"
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Sarah's CEO-like appearance and successful corporate image creates false impression of her current status and relevance",
+    "confidence": "medium",
+    "quote": "She looked like a CEO or something; of course, she'd be one successful corporate lady"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Corporate workplace hierarchy with promotion politics, managerial committee dynamics, and power struggles between employee and boss",
+    "confidence": "high",
+    "quote": "He gave you a promotion. A great one... when I am in the managerial committee right now"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Physical rescue and capture scene where the antagonist is dragged away by police while victims are saved",
+    "confidence": "medium",
+    "quote": "two policemen are seen to drag the crazy she-devil out of the house"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Evelyn's emotional trauma from past relationship with Richard and her pattern of self-sacrifice for others",
+    "confidence": "medium",
+    "quote": "Such a drama queen you are... I'm such a fricking unsettling human being"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-radia-al-rashid-frozen-in-time/",
+    "corpus_index": 322,
+    "text_len": 188074,
+    "title": "ebook radia al rashid frozen in time",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

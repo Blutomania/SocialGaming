@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Kidnapping of a toddler (Kendra) and two teenagers by armed men who demand ransom",
+    "confidence": "high",
+    "quote": "Two men ran in,one with a gun and one holding a sleeping Kendra clutching her stuffed cat named Sweetie."
+  },
+  "victim": {
+    "value": "Kendra (toddler) and her sister Amy, plus friend - targeted apparently at random for ransom money",
+    "confidence": "medium",
+    "quote": "We've got your kid's and the other one too!We will send video's every day for a week and ask for a ransom"
+  },
+  "closed_world": {
+    "value": "Remote moss cabin deep in the woods where the kidnappers hold the victims",
+    "confidence": "high",
+    "quote": "It was about 11:56 p.m before we reached an old moss cabin deep in the woods."
+  },
+  "culprit_and_motive": {
+    "value": "Henry and Smokey - two men who kidnapped the children for ransom money",
+    "confidence": "high",
+    "quote": "I scribbled down 'Smokey and Henry' so I could remember the names of our kidnappers."
+  },
+  "resolution": {
+    "value": "The victims escape by stealing the kidnappers' van when sent to buy groceries, leaving captors weaponless",
+    "confidence": "high",
+    "quote": "We're going to escape!...they have no weapon or vehicle!We do!"
+  },
+  "investigator": {
+    "value": "The narrator (victim) who observes clues, remembers kidnapper names, and orchestrates the escape",
+    "confidence": "high",
+    "quote": "I took a piece of paper out of my pocket and a pen and scribbled down 'Smokey and Henry'"
+  },
+  "suspect_architecture": {
+    "value": "Two kidnappers (Henry and Smokey) as primary suspects with clear means (weapons, vehicle) and motive (ransom)",
+    "confidence": "high",
+    "quote": "Two men ran in,one with a gun and one holding a sleeping Kendra clutching her stuffed cat named Sweetie."
+  },
+  "red_herring": {
+    "value": "Initial misdirection that Kendra wandered off or hid somewhere in the house before revealing kidnapping",
+    "confidence": "medium",
+    "quote": "I checked her toy box,closet,under her crib,and in her bathroom.She wasn't anywhere I checked!"
+  },
+  "clue_fairness": {
+    "value": "The car sound heard earlier is presented to reader simultaneously with characters' realization of its significance",
+    "confidence": "high",
+    "quote": "I heard a car pull up and then drive away.That was weird...The car that we heard pull up!"
+  },
+  "social_world": {
+    "value": "Family structure with babysitting hierarchy - older sister responsible for younger, parents absent on date",
+    "confidence": "medium",
+    "quote": "Me and Amy,Kendra's big sister,were out in her backyard practising our cheer and gymnastics while her parent's were out"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Physical evidence through written note with kidnappers' names and recovery of weapons/vehicle as proof",
+    "confidence": "medium",
+    "quote": "I took a piece of paper out of my pocket and a pen and scribbled down 'Smokey and Henry'"
+  },
+  "media_and_audience": {
+    "value": "Explicit threat to avoid police/media involvement with death consequences for publicity",
+    "confidence": "high",
+    "quote": "DO NOT call the police or the kids DIE!"
+  },
+  "investigator_wound": {
+    "value": "Narrator's protective instinct and fear of authority figures, rejecting police help despite danger",
+    "confidence": "medium",
+    "quote": "NO!!!!!!!!!I shrieked.Let's just put the phone down and everything will be OK!"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-shaelyn-ray-fetching-kendra/",
+    "corpus_index": 287,
+    "text_len": 5825,
+    "title": "ebook shaelyn ray fetching kendra",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

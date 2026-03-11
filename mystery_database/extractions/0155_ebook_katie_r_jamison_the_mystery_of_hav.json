@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Shooting murder of Lord Haverly in his library, followed by murder of Lord Byron in his bed",
+    "confidence": "high",
+    "quote": "There was a loud bang, and Lord Haverly clutched at his chest as he fell onto the carpet."
+  },
+  "victim": {
+    "value": "Lord Haverly, who was about to reveal a discovery/secret that threatened the murderer",
+    "confidence": "medium",
+    "quote": "I just couldn't have you telling my little secret just yet."
+  },
+  "closed_world": {
+    "value": "Victorian English aristocratic society, centered around Haverlin Manor and London social circles",
+    "confidence": "medium",
+    "quote": "your grandmother insisted that we came for the Cortwell's summer soree"
+  },
+  "culprit_and_motive": {
+    "value": "Unknown man with a secret that Lord Haverly's discovery would expose",
+    "confidence": "medium",
+    "quote": "I just couldn't have you telling my little secret just yet."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Lady Evelyn, Lord Haverly's daughter, working with James to investigate her father's murder",
+    "confidence": "medium",
+    "quote": "Do you think he was the Lord B my father was writing to?"
+  },
+  "suspect_architecture": {
+    "value": "Limited cast established: mysterious shooter with secret connection to Lord Haverly, plus household staff (Darrens butler, Mrs. Middleton cook)",
+    "confidence": "medium",
+    "quote": "You should be grateful though, I atleast came when your wife and lovely daughter were in London."
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": "Reader knows key information: Lord Haverly was about to reveal a discovery, killer has a secret to protect, letter to Lord B connects murders",
+    "confidence": "medium",
+    "quote": "I feel we are getting closer and closer to making our discovery known."
+  },
+  "social_world": {
+    "value": "Victorian aristocratic hierarchy: Lord and Lady of manor, household staff with formal protocols, London society with soirees and titles",
+    "confidence": "high",
+    "quote": "My lord,there is a man here to see you."
+  },
+  "alibi": {
+    "value": "Killer ensures family is away in London during the murder, creating deliberate timing for the crime",
+    "confidence": "medium",
+    "quote": "I atleast came when your wife and lovely daughter were in London."
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Evelyn investigating her father's murder while missing the safety of home, forced into London society she dislikes",
+    "confidence": "medium",
+    "quote": "I just can't stand London after all the fresh air and wide open spaces of Haverlin Manor."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-katie-r-jamison-the-mystery-of-haverlin-manor-in-progress/",
+    "corpus_index": 155,
+    "text_len": 4017,
+    "title": "ebook katie r jamison the mystery of haverlin manor in progress",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

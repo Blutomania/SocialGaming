@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Death of Perry Hobbs by drowning in creek, possibly after being drugged",
+    "confidence": "high",
+    "quote": "Whether someone drugged him before his drowing him in the creek is only known by the murderer."
+  },
+  "victim": {
+    "value": "Perry Hobbs, a violent abusive man who beat his partners and terrorized the village",
+    "confidence": "high",
+    "quote": "Perry Hobbs moved to Springfield about six months ago and stole peace from the village."
+  },
+  "closed_world": {
+    "value": "Springfield village - a small community where everyone knows each other's business",
+    "confidence": "medium",
+    "quote": "Everybody in the village knew that he"
+  },
+  "culprit_and_motive": {
+    "value": "Implied to be Pastor Joshua Black, motivated by hatred of Hobbs' violence and abuse",
+    "confidence": "medium",
+    "quote": "But no one could even dare to assume to know how I hated Hobbs and wished him to go to hell."
+  },
+  "resolution": {
+    "value": "Case officially closed as accident by Sheriff Collister, true resolution left ambiguous",
+    "confidence": "medium",
+    "quote": "The death of Perry Hobbs was an accident, a perfect storm."
+  },
+  "investigator": {
+    "value": "Pastor Joshua Black as narrator/suspect and Sheriff Collister as official investigator",
+    "confidence": "high",
+    "quote": "I am under suspicion."
+  },
+  "suspect_architecture": {
+    "value": "Multiple suspects with distinct motives: Pastor Black (narrator under suspicion, hatred of victim), Mayor Murphy (illegitimate daughter connection), Sheriff Collister (wanted to teach victim a lesson, questioned alibi), plus village context of widespread relief at victim's death",
+    "confidence": "high",
+    "quote": "Janet Tanner\u00b4s child was his illegitimate daughter. He confessed that to me."
+  },
+  "red_herring": {
+    "value": "Drowning staged as accident with potential drug involvement - sheriff dismisses narcotic evidence and closes case as accidental death despite murder implications",
+    "confidence": "medium",
+    "quote": "I will play it down with the narcotic, just like the doping data at the Tour de France"
+  },
+  "clue_fairness": {
+    "value": "Reader given same information as investigator about suspects' motives, confessional secrets, and the narrator's own hatred of the victim",
+    "confidence": "medium",
+    "quote": "No one could read my thoughts."
+  },
+  "social_world": {
+    "value": "Religious hierarchy and village power structure - Pastor holds confessional secrets, Mayor has political position to protect, Sheriff controls investigation, domestic violence tolerated by community",
+    "confidence": "high",
+    "quote": "God sees everything, preached the unmarried Joshua Black with all passion to his church"
+  },
+  "alibi": {
+    "value": "Sheriff Collister's whereabouts questioned for midnight timeframe, though specific alibi details not provided in excerpt",
+    "confidence": "medium",
+    "quote": "And where exactly was Mr. Collister around midnight?"
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Village perception of victim as tyrant whose death brought freedom - public relief at Perry Hobbs' death shapes narrative around the crime",
+    "confidence": "medium",
+    "quote": "Many in the village are slightly happy, that Hobbs is dead"
+  },
+  "investigator_wound": {
+    "value": "Pastor Black as narrator-investigator struggles with his own hatred of the victim and moral complicity - his Christian beliefs conflict with his personal desires for the victim's demise",
+    "confidence": "high",
+    "quote": "no one could even dare to assume to know how I hated Hobbs and wished him to go to hell"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-elvira-frankenheim-the-evil-within/",
+    "corpus_index": 241,
+    "text_len": 14875,
+    "title": "ebook elvira frankenheim the evil within",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

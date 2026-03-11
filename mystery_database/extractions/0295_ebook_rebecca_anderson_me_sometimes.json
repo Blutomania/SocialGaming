@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of Asha's father",
+    "confidence": "medium",
+    "quote": "Asha's father is dead and his last words are find him. It's up to her and her ten year-old sister to find out who murdered him."
+  },
+  "victim": {
+    "value": "Asha's father, reason for targeting unclear",
+    "confidence": "low",
+    "quote": "My father is dying. His last words were fragile and clear. \"Find him.\""
+  },
+  "closed_world": {
+    "value": "War-torn area in 2012 with bombing sirens",
+    "confidence": "low",
+    "quote": "Its 2012, the world isn't burning by the sun. It's burning because we are the ones burning it with bombs."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Asha, 14-year-old daughter of the victim",
+    "confidence": "high",
+    "quote": "It's up to her and her ten year-old sister to find out what to do and who murdered him."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "The bombing/war context may be misdirection from the father's murder",
+    "confidence": "medium",
+    "quote": "We were at risk for being bombed... Its 2012, the world isn't burning by the sun. It's burning because we are the ones burning it"
+  },
+  "clue_fairness": {
+    "value": "Father's dying words 'Find him' given to reader through protagonist",
+    "confidence": "medium",
+    "quote": "His last words were fragile and clear. 'Find him.' Find him; I quoted it in my mind several times."
+  },
+  "social_world": {
+    "value": "Family structure disrupted by war/conflict, children left orphaned",
+    "confidence": "medium",
+    "quote": "My mother died a year after giving Elizabeth birth... My father is dying."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Body disappearance as potential reveal mechanism",
+    "confidence": "low",
+    "quote": "The body, it's gone!"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Protagonist traumatized by loss of both parents, responsible for younger sister",
+    "confidence": "high",
+    "quote": "I don't need anyone else died, not now or ever... After fourteen years of living in my world you learn how to pull these things off"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-rebecca-anderson-me-sometimes/",
+    "corpus_index": 295,
+    "text_len": 4229,
+    "title": "ebook rebecca anderson me sometimes",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

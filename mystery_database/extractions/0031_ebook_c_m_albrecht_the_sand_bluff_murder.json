@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder in alley behind Blu Lite bar - body found near dumpster",
+    "confidence": "high",
+    "quote": "I didn't even notice any blood until, you know \u2014 later."
+  },
+  "victim": {
+    "value": "Unknown male found dead near dumpster",
+    "confidence": "low",
+    "quote": "I just thought he had too much to drink. I didn't even notice any blood until, you know \u2014 later."
+  },
+  "closed_world": {
+    "value": "Small northern California city of Sand Bluff",
+    "confidence": "medium",
+    "quote": "When I came to Sand Bluff I was just thirty"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Detective Jonas McCleary - new detective in Sand Bluff police department",
+    "confidence": "high",
+    "quote": "My name is Jonas McCleary. When I came to Sand Bluff I was just thirty"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial assumption that victim was merely drunk rather than murdered",
+    "confidence": "medium",
+    "quote": "I told you, I didn't know he was dead. I just thought he had too much to drink."
+  },
+  "clue_fairness": {
+    "value": "Body position and lack of attention to parking lot details shared with reader through dialogue",
+    "confidence": "medium",
+    "quote": "about a foot from the dumpster back of the Blu Lite"
+  },
+  "social_world": {
+    "value": "Small-town police hierarchy with interpersonal tensions and territorial attitudes",
+    "confidence": "high",
+    "quote": "his superior 'I'm in charge' attitude and his belligerent way of getting a lot of insinuation"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Detective's insecurity about competence and desire to prove himself in new position",
+    "confidence": "medium",
+    "quote": "When I came to Sand Bluff I was just thirty so I still hoped to have a future."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-c-m-albrecht-the-sand-bluff-murders/",
+    "corpus_index": 31,
+    "text_len": 16014,
+    "title": "ebook c m albrecht the sand bluff murders",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

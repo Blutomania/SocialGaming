@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Stalking and attempted sexual assault by unknown perpetrator",
+    "confidence": "medium",
+    "quote": "she would bet her life that she just heard someone walking around her cabin"
+  },
+  "victim": {
+    "value": "London, a isolated young woman living alone in a cabin who previously survived an attack",
+    "confidence": "high",
+    "quote": "What was she going to do if someone was trying to hurt her again?"
+  },
+  "closed_world": {
+    "value": "London's isolated cabin and surrounding area",
+    "confidence": "medium",
+    "quote": "She was not going anywhere she never did."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "London herself as the victim experiencing and trying to understand the threat",
+    "confidence": "medium",
+    "quote": "She started to think who could it be?"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial peeping tom/voyeur misdirection before revealing serious assault threat",
+    "confidence": "medium",
+    "quote": "A teenager being a peeping tom or some weirdo with a sick fetish?"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Isolated female victim dependent on police protection and family support network",
+    "confidence": "medium",
+    "quote": "I will be finding this man that did this to my sister."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Victim's previous trauma creates terror of repeat victimization",
+    "confidence": "high",
+    "quote": "This Cannot Be Happening Again! What was she going to do if someone was trying to hurt her again?"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-kimba-sue-this-cannot-be-happening-again/",
+    "corpus_index": 238,
+    "text_len": 9844,
+    "title": "ebook kimba sue this cannot be happening again",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

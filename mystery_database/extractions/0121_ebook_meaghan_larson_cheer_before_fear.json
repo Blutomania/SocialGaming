@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Disappearance/possible murder of Makenzie Lewis, with false body identification and cover-up involving Mr. Black",
+    "confidence": "medium",
+    "quote": "the body that was found a week ago, appears not to be your daughter. We ran tests, and it shows that it was as 35 year old female"
+  },
+  "victim": {
+    "value": "Makenzie Lewis, 15-year-old cheerleader with plans for college and fitness career",
+    "confidence": "medium",
+    "quote": "Makenzie Lewis is 15 years old... She plans on being a professinal fitness trainer by time she is 24"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Someone connected to Mr. Black (Edward's father), who took cover for the actual murderer",
+    "confidence": "low",
+    "quote": "It also appears that Mr. Black took cover for the murderer. It seems that Mr. Black does in fact know about yout daughter"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Police officers conducting the investigation, with Mr. Brown as the primary contact",
+    "confidence": "medium",
+    "quote": "Mr and Mrs. Lewis the body that was found a week ago, appears not to be your daughter"
+  },
+  "suspect_architecture": {
+    "value": "Limited suspect pool: Edward Black (new student with connection to disappearance), Mr. Black (takes cover for actual murderer), unnamed actual murderer. Differentiated by direct involvement vs. complicity vs. unknown identity.",
+    "confidence": "medium",
+    "quote": "It also appears that Mr. Black took cover for the murderer. It seems that Mr. Black does in fact know about yout daughter."
+  },
+  "red_herring": {
+    "value": "Body initially identified as Makenzie Lewis but revealed to be a 35-year-old female, misdirecting investigation timeline and victim identity.",
+    "confidence": "high",
+    "quote": "the body that was found a week ago, appears not to be your daughter. We ran tests, and it shows that it was as 35 year old female."
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "High school social hierarchy with cheerleaders, athletes, family dynamics. Police institutional authority delivering information to concerned parents.",
+    "confidence": "medium",
+    "quote": "Makenzie has so much planned for her life and she's not letting anyone take that away from her. She plans on being a professinal fitness trainer"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Police forensic testing reveals body misidentification, but full solution mechanism not yet established in excerpt.",
+    "confidence": "low",
+    "quote": "We ran tests, and it shows that it was as 35 year old female."
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Parents' anguish and desperation for answers about their missing daughter, with father's anger at lack of progress.",
+    "confidence": "medium",
+    "quote": "I want answers, and I want answers now, damnit!"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-meaghan-larson-cheer-before-fear/",
+    "corpus_index": 121,
+    "text_len": 34605,
+    "title": "ebook meaghan larson cheer before fear",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

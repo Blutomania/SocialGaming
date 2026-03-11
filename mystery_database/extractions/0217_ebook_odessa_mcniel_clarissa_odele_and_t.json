@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Double murder of newlyweds - husband shot multiple times, wife hit by car then shot on road",
+    "confidence": "high",
+    "quote": "You're under arrest for the murders of Mr. and Mrs. Cizio."
+  },
+  "victim": {
+    "value": "Brandon and Sierra Cizio, newlyweds on honeymoon - targeted because Sierra married Brandon who was the killer's ex-husband",
+    "confidence": "high",
+    "quote": "I couldn't just let that bitch marry the love of my life."
+  },
+  "closed_world": {
+    "value": "Honeymoon lodge rental area in Banks - limited location constraining suspect pool",
+    "confidence": "medium",
+    "quote": "they had rented the lodge they were staying in for their honeymoon"
+  },
+  "culprit_and_motive": {
+    "value": "Alex Cizio (Brandon's ex-wife) killed them because she couldn't accept her ex-husband remarrying",
+    "confidence": "high",
+    "quote": "I couldn't just let that bitch marry the love of my life."
+  },
+  "resolution": {
+    "value": "Physical evidence (fingerprints on gun, tire tracks, gun permit) plus confession leads to arrest",
+    "confidence": "high",
+    "quote": "We knew that the prints we lifted from the gun belonged to her."
+  },
+  "investigator": {
+    "value": "Detective Odessa McNiel Clarissa Odele, official police detective leading the investigation",
+    "confidence": "high",
+    "quote": "Detective Odele speaking"
+  },
+  "suspect_architecture": {
+    "value": "Single suspect with personal motive: Alex Cizio, ex-wife of victim Brandon, driven by jealousy over his remarriage. No differentiated suspect pool - direct path to perpetrator.",
+    "confidence": "high",
+    "quote": "she was married to Brandon Cizio before he married Sierra"
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": "Physical evidence presented to reader alongside investigation: fingerprints on gun, tire tracks, gun permit registration, prior marriage connection all revealed as discovered.",
+    "confidence": "medium",
+    "quote": "the prints we lifted from the gun belonged to her. Then we matched the tire tracks"
+  },
+  "social_world": {
+    "value": "Police hierarchy and media pressure structure: Chief directing Detective Odele, media complications requiring leadership changes, institutional chain of command.",
+    "confidence": "medium",
+    "quote": "Marks is having himself a hell of a time with the media, and needs someone else to take things over"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Physical evidence accumulation leading to confession: fingerprints, tire tracks, gun registration, and marriage records create overwhelming case resulting in voluntary confession.",
+    "confidence": "high",
+    "quote": "I couldn't help myself. I couldn't just let that bitch marry the love of my life"
+  },
+  "media_and_audience": {
+    "value": "Media pressure complicating police work, requiring personnel reassignment to manage public/press attention at crime scene.",
+    "confidence": "medium",
+    "quote": "Marks is having himself a hell of a time with the media"
+  },
+  "investigator_wound": {
+    "value": "Personal connection to perpetrator: Detective Odele recognizes Alex Cizio as 'an old friend' whose marriage was previously 'crushed', creating emotional complexity.",
+    "confidence": "medium",
+    "quote": "immediately recognized the name of an old friend of mine, Alex Cizio"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-odessa-mcniel-clarissa-odele-and-the-case-of-the-slain-newlyweds/",
+    "corpus_index": 217,
+    "text_len": 16796,
+    "title": "ebook odessa mcniel clarissa odele and the case of the slain newlyweds",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

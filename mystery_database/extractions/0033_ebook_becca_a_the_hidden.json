@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of Sara's father by four armed men on a roadside in Mexico",
+    "confidence": "high",
+    "quote": "I look over my shoulder just in time to see my father being shot, and dropping to the ground, dead."
+  },
+  "victim": {
+    "value": "Sara's father - targeted by armed men who came specifically to kill him",
+    "confidence": "medium",
+    "quote": "Those men are going to kill me. Ill keep them busy enough for you to run."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Four armed men - motive unclear, appears to be targeted assassination",
+    "confidence": "low",
+    "quote": "there is four men comming twords our car, guns drawn"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Sara - the victim's daughter who witnessed the murder and is now on the run",
+    "confidence": "high",
+    "quote": "I run as fast as I can, but look over my shoulder just in time to see my father being shot"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Criminal organization with FBI pursuing protagonist; power imbalance between fugitive and authorities",
+    "confidence": "medium",
+    "quote": "Those men are going to kill me. Ill keep them busy enough for you to run. Dont trust anyaone.Stay hixddden."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Protagonist's childhood trauma from witnessing father's murder and subsequent torture creates psychological vulnerability",
+    "confidence": "high",
+    "quote": "I thought of that torchous month for years, and I thought I was over it now, apperently not."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-becca-a-the-hidden/",
+    "corpus_index": 33,
+    "text_len": 16586,
+    "title": "ebook becca a the hidden",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

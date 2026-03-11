@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Mysterious large building where Amelia is captured and discovers she's a spy",
+    "confidence": "medium",
+    "quote": "she saw it, a mysterious, large building. She walked further, getting closer and closer to the building."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Amelia/Aaron Wilson, who discovers she is a spy and begins training undercover",
+    "confidence": "medium",
+    "quote": "I'm Aaron Joyce Wilson. Now, take me to my training."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial mysterious building encounter presented as dangerous intrigue, but reveals family legacy rather than crime",
+    "confidence": "medium",
+    "quote": "She walked further, getting closer and closer to the building. She heard voices around the corner"
+  },
+  "clue_fairness": {
+    "value": "Identity revelation through accessible files - reader sees same information as protagonist simultaneously",
+    "confidence": "medium",
+    "quote": "Her whole name was Aaron Joyce Wilson. She was experienced in self-defense and had her father's computer intelligence."
+  },
+  "social_world": {
+    "value": "Secret agent hierarchy with undercover operations and institutional training structures",
+    "confidence": "high",
+    "quote": "She'll be undercover. Nobody has to know that she is an agent or have to leave."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Physical files containing photographs and documented evidence of true identity and family history",
+    "confidence": "high",
+    "quote": "There was a photo of Emily and Jason holding baby Aaron. Others included Aaron training, being like her parents."
+  },
+  "media_and_audience": {
+    "value": "Aaron Wilson treated as famous missing person within agency circles",
+    "confidence": "medium",
+    "quote": "Aaron Wilson? The Aaron Wilson, the one that went missing? What am I? Famous?"
+  },
+  "investigator_wound": {
+    "value": "Identity crisis - protagonist must abandon known life/name while maintaining facade with loved ones",
+    "confidence": "high",
+    "quote": "I'll have to leave my family won't I? So, let me get this straight. I will be undercover"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-elle-marie-calhoun-aaron-wilson-superspy-extrodinare/",
+    "corpus_index": 51,
+    "text_len": 19917,
+    "title": "ebook elle marie calhoun aaron wilson superspy extrodinare",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

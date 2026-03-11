@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder by blunt force trauma to the head",
+    "confidence": "high",
+    "quote": "the gaping wound located at the rear of the dead man's skull"
+  },
+  "victim": {
+    "value": "Frank Bitterman, connected to cases requiring investigation",
+    "confidence": "medium",
+    "quote": "the name, FRANK BITTERMAN in capital letters on the folder surface"
+  },
+  "closed_world": {
+    "value": "Mainland Township and the Flemington Hotel area",
+    "confidence": "medium",
+    "quote": "Entering the Township by passing over a low bridge he turned on to the main street"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Cases closed with arrests made, squad celebrating completion",
+    "confidence": "medium",
+    "quote": "we made the arrest's. The two cases are closed"
+  },
+  "investigator": {
+    "value": "Detective Sergeant Kevin McKenna, professional police detective",
+    "confidence": "high",
+    "quote": "Detective Sergeant Kevin McKenna knelt down on one knee next to the victim"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": "Physical evidence gathering delayed until proper conditions - detective waits for sunrise to examine crime scene thoroughly",
+    "confidence": "medium",
+    "quote": "It was still dark, making it difficult for him to see or gather evidence. He would wait. Sunrise was two hours away."
+  },
+  "social_world": {
+    "value": "Police institutional hierarchy and mentorship - detective shaped by father and godfather both in law enforcement",
+    "confidence": "medium",
+    "quote": "This and other things he had learned from his police officer father, Thomas McKenna and his godfather, Captain Robert Wallace."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Detective's emotional involvement with witness who lost her job for helping the investigation",
+    "confidence": "medium",
+    "quote": "Holtz fired me... For giving you the security camera video tapes... Hey, I'm sorry"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-mckenna/",
+    "corpus_index": 36,
+    "text_len": 161056,
+    "title": "ebook robert f clifton mckenna",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Domestic murder by stabbing - husband killed by wife in kitchen, body disposed of from bridge",
+    "confidence": "high",
+    "quote": "I plunged the knife into his unprotected throat. He went down, writhing and wiggling in garbled agony"
+  },
+  "victim": {
+    "value": "Felix - abusive husband who drank and hurt his wife, making him 'killable' due to his domestic violence",
+    "confidence": "high",
+    "quote": "Sometimes he'd hurt me but it wasn't his fault. If I would do what I was told, like he said, he wouldn't hurt me"
+  },
+  "closed_world": {
+    "value": "Domestic household setting - kitchen where murder occurred, isolated enough that screams weren't heard",
+    "confidence": "medium",
+    "quote": "No one had heard him scream from inside the house"
+  },
+  "culprit_and_motive": {
+    "value": "Wife (narrator) killed Felix to escape domestic abuse - motive was accumulated anger from being hurt",
+    "confidence": "high",
+    "quote": "I finally let out all the anger I kept bottled up for so long"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Police officers Grant and Maybel investigating the murder, questioning the widow",
+    "confidence": "medium",
+    "quote": "I'm Officer Grant...Ma'am I'm terribly sorry to tell you this, but your husband's been murdered"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "The nightmare framing - Chapter 1 appears to be real murder, Chapter 2 reveals it as a dream, misdirecting reader about reality",
+    "confidence": "high",
+    "quote": "I had had a horrible nightmare were I killed Felix. It had felt so...real."
+  },
+  "clue_fairness": {
+    "value": "Reader experiences all sensory details of the crime scene - bleach smell, blood description, disposal method",
+    "confidence": "medium",
+    "quote": "Remembering the heavy smell of bleach, my head swam. I cleaned off my dishes"
+  },
+  "social_world": {
+    "value": "Domestic abuse power structure - Felix controls and hurts Annie, she must obey to avoid violence",
+    "confidence": "high",
+    "quote": "Sometimes he'd hurt me but it wasn't his fault. If I would do what I was told, like he said, he wouldn't hurt me."
+  },
+  "alibi": {
+    "value": "Annie plans to claim Felix said he was going out at 9 PM and she was sleeping, with backstory of happy marriage",
+    "confidence": "high",
+    "quote": "I'll say that he said he was going out and would be back later at about nine P.M."
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Police present Felix's murder as external crime, seeking routine questions from grieving widow",
+    "confidence": "medium",
+    "quote": "Ma'am I'm terribly sorry to tell you this, but your husband's been murdered. We need to ask you a few questions"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-k-m-montoya-who-am-i-really/",
+    "corpus_index": 250,
+    "text_len": 7476,
+    "title": "ebook k m montoya who am i really",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

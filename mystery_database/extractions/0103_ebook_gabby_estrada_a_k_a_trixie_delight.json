@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Three-year-old child named Zack who suffers fatal abuse from his father",
+    "confidence": "high",
+    "quote": "My name is Zack,I am three, Tonight my daddy . . .murdered me."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Father who murders his three-year-old son, motive unclear but involves anger and abuse",
+    "confidence": "medium",
+    "quote": "What else could have made daddy so mad?"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Dysfunctional family power structure with abusive father as dominant authority figure over helpless child victim",
+    "confidence": "high",
+    "quote": "My name is Zack I am three... What else could have made daddy so mad?"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-gabby-estrada-a-k-a-trixie-delight-the-night-my-daddy-murdered-me/",
+    "corpus_index": 103,
+    "text_len": 7968,
+    "title": "ebook gabby estrada a k a trixie delight the night my daddy murdered me",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

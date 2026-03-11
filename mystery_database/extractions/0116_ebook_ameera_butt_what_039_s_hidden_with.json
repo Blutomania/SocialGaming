@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Lillian (Lilly), who died three days before the therapy session but somehow appeared to tell her story",
+    "confidence": "medium",
+    "quote": "Lilly died three days ago."
+  },
+  "closed_world": {
+    "value": "Therapy office where Faith conducts sessions with patients",
+    "confidence": "low",
+    "quote": "Your name?\" A loud half annoyed half-tired sounding old lady asks out sitting at the reception desk"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Faith Lockwood, the therapist who discovers her patient was already dead",
+    "confidence": "medium",
+    "quote": "Then who was the one that told me the ending of the story?\" She asks herself now being part of a mystery..."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Lionel presented as antagonist through traffic incident and vacation disruption, but appears as new therapy client at end",
+    "confidence": "medium",
+    "quote": "Lionel becomes the bad guy in your mind... 'Mity, Lionel Mity.' The new customer answers."
+  },
+  "clue_fairness": {
+    "value": "Reader given same information as therapist Faith - the complete vacation story and therapy sessions",
+    "confidence": "medium",
+    "quote": "So let me sum all this up. You decide to go on a vacation with your friends and your sister."
+  },
+  "social_world": {
+    "value": "Therapeutic relationship hierarchy between Faith (therapist) and Lillian (patient) with institutional medical setting",
+    "confidence": "medium",
+    "quote": "Well I am her therapist, Faith Lockwood, I was just wondering if I could talk to Lillian"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Phone call to mother reveals Lillian died three days ago, proving supernatural/impossible communication",
+    "confidence": "high",
+    "quote": "Yesterday? Are you sure you have called the right Lillian? Lilly died three days ago."
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Faith's professional identity shattered by impossible patient interaction, questioning reality of her therapeutic practice",
+    "confidence": "high",
+    "quote": "Then who was the one that told me the ending of the story? She asks herself now being part of a mystery..."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-ameera-butt-what-039-s-hidden-within-me/",
+    "corpus_index": 116,
+    "text_len": 119955,
+    "title": "ebook ameera butt what 039 s hidden within me",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

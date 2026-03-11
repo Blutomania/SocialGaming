@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of the Honourable Ronald Adair under unusual and inexplicable circumstances",
+    "confidence": "high",
+    "quote": "the murder of the Honourable Ronald Adair under most unusual and inexplicable circumstances"
+  },
+  "victim": {
+    "value": "The Honourable Ronald Adair, killed under mysterious circumstances that initially baffled investigators",
+    "confidence": "medium",
+    "quote": "the murder of the Honourable Ronald Adair under most unusual and inexplicable circumstances"
+  },
+  "closed_world": {
+    "value": "London society and the specific locations where the crimes occurred, including estates and Cambridge",
+    "confidence": "medium",
+    "quote": "all London was interested, and the fashionable world dismayed"
+  },
+  "culprit_and_motive": {
+    "value": "James, motivated by inheritance disputes and resentment over social laws preventing him from being heir",
+    "confidence": "high",
+    "quote": "he deeply resented those social laws which made it impossible"
+  },
+  "resolution": {
+    "value": "Voluntary confession by James after discovery of Heidegger's body and confrontation with evidence",
+    "confidence": "high",
+    "quote": "He made a complete voluntary confession"
+  },
+  "investigator": {
+    "value": "Sherlock Holmes, the consulting detective investigating these cases",
+    "confidence": "high",
+    "quote": "Well, well, he excites my curiosity, and I must really know more before I leave him."
+  },
+  "suspect_architecture": {
+    "value": "James (nephew with inheritance motive), Hayes (brutal accomplice), Dr. Armstrong (antagonistic physician withholding information)",
+    "confidence": "medium",
+    "quote": "James was eager that I should break the entail...He intended to make a bargain with me--to restore Arthur"
+  },
+  "red_herring": {
+    "value": "Dr. Armstrong's evasive behavior and taunting note designed to appear as obstruction while potentially protecting patient confidentiality",
+    "confidence": "medium",
+    "quote": "I can assure you that you are wasting your time in dogging my movements"
+  },
+  "clue_fairness": {
+    "value": "Heidegger's dead body discovery shared with reader before full implications revealed; James's confession details provided to reader",
+    "confidence": "medium",
+    "quote": "What brought all his wicked scheme to wreck was your discovery of this man Heidegger's dead body"
+  },
+  "social_world": {
+    "value": "Aristocratic inheritance laws and entailment system creating resentment; class dynamics between estate holders and servants",
+    "confidence": "high",
+    "quote": "he deeply resented those social laws which made it impossible...He was eager that I should break the entail"
+  },
+  "alibi": {
+    "value": "Dr. Armstrong's window-in-brougham revelation exposes his awareness of surveillance, undermining his claimed innocence",
+    "confidence": "medium",
+    "quote": "I have, as you discovered last night, a window at the back of my brougham"
+  },
+  "reveal_mechanic": {
+    "value": "Complete voluntary confession by James when confronted with circumstantial evidence, triggered by discovery of Heidegger's body",
+    "confidence": "high",
+    "quote": "I taxed him with the deed. He made a complete voluntary confession"
+  },
+  "media_and_audience": {
+    "value": "London society's interest and dismay at Ronald Adair murder; police investigation details selectively suppressed from public",
+    "confidence": "high",
+    "quote": "all London was interested, and the fashionable world dismayed...a good deal was suppressed upon that occasion"
+  },
+  "investigator_wound": {
+    "value": "Watson's emotional vulnerability regarding Holmes's return from presumed death, creating 'greatest shock and surprise of any event'",
+    "confidence": "high",
+    "quote": "sudden flood of joy, amazement, and incredulity which utterly submerged my mind"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-return-of-sherlock-holmes/",
+    "corpus_index": 9,
+    "text_len": 614275,
+    "title": "ebook sir arthur conan doyle the return of sherlock holmes",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Suspected murder disguised as suicide by drugging",
+    "confidence": "medium",
+    "quote": "'I think Liza was drugged.' 'I think it was murder.'"
+  },
+  "victim": {
+    "value": "Liza, a teenager who had a secret daughter and killed herself at a secluded alcove",
+    "confidence": "medium",
+    "quote": "the place where a teenager sought her final resting place months before"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Sarah, the victim's best friend who receives new information about the death",
+    "confidence": "medium",
+    "quote": "She wanted to tuck her phone away and ignore him, he deserved it. Frustrated, curiosity overcame her"
+  },
+  "suspect_architecture": {
+    "value": "Two primary suspects: Mark (romantic connection with motive and guilt) and potentially the mother (control/restriction issues)",
+    "confidence": "medium",
+    "quote": "Rage clouded her mind. She used to think of Mark as her brother. After all, he put her best friend through..."
+  },
+  "red_herring": {
+    "value": "Suicide assumption deliberately established to misdirect from murder theory",
+    "confidence": "medium",
+    "quote": "right before she killed herself"
+  },
+  "clue_fairness": {
+    "value": "Text message conversation and location details (lily pad incident, tree wishes) available to reader simultaneously",
+    "confidence": "high",
+    "quote": "When she texted me to ask about the 'lily pad' incident, she was probably staring out onto the lake"
+  },
+  "social_world": {
+    "value": "Parental control dynamics and teenage social restrictions affecting communication and intervention",
+    "confidence": "medium",
+    "quote": "If her mum hadn't harped on about her 'needing to socialise' with your cousins"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Drug evidence as physical proof to demonstrate murder over suicide",
+    "confidence": "medium",
+    "quote": "I think Liza was drugged"
+  },
+  "media_and_audience": {
+    "value": "Death publicly perceived and accepted as teenage suicide",
+    "confidence": "low",
+    "quote": "the place where a teenager sought her final resting place months before"
+  },
+  "investigator_wound": {
+    "value": "Survivor's guilt and sense of preventable loss through failed communication",
+    "confidence": "high",
+    "quote": "if her Mum hadn't taken her phone, could she have prevented this?"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-great-a-footprint-made-of-code/",
+    "corpus_index": 341,
+    "text_len": 4513,
+    "title": "ebook great a footprint made of code",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

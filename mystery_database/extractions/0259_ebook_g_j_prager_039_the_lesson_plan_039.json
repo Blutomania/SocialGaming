@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Apparent murder or assault of a blonde woman, with blood evidence but missing body",
+    "confidence": "medium",
+    "quote": "The floor was stained with blood and so were the walls, but the blonde was gone."
+  },
+  "victim": {
+    "value": "Blonde woman being tailed by the narrator, identity and background unknown",
+    "confidence": "low",
+    "quote": "I could see the blonde lying on the floor"
+  },
+  "closed_world": {
+    "value": "Three-unit condominium complex where the crime occurred",
+    "confidence": "medium",
+    "quote": "They were pretty-looking condos, three units in all."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "First-person narrator, a part-time teacher working as private detective",
+    "confidence": "high",
+    "quote": "teaching school by day and playing private detective at night"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Missing cat pretense used as investigative cover, misdirecting from the real surveillance purpose",
+    "confidence": "medium",
+    "quote": "Sorry to disturb you. I live across the street and I'm looking for my cat. A gray cat."
+  },
+  "clue_fairness": {
+    "value": "Door left ajar as observable clue available to both narrator and reader",
+    "confidence": "medium",
+    "quote": "I noticed her door was slightly ajar, which seemed odd"
+  },
+  "social_world": {
+    "value": "Economic disparity between corporate wealth in luxury cars versus working-class surveillance in cramped jalopy",
+    "confidence": "medium",
+    "quote": "all the money gathered around me, corporate hacks in luxury sedans...sitting lock-jawed in my cramped jalopy"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Millennial anxiety and apocalyptic media broadcasts creating atmospheric dread",
+    "confidence": "medium",
+    "quote": "News bulletins...about terrorists...All the talk about the new millennium was making me nervous"
+  },
+  "investigator_wound": {
+    "value": "Economic desperation driving career transition from teaching to private investigation despite inexperience",
+    "confidence": "high",
+    "quote": "teaching school by day and playing private detective at night...I wanted the outdoors and the feel of the chase"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-g-j-prager-039-the-lesson-plan-039/",
+    "corpus_index": 259,
+    "text_len": 8090,
+    "title": "ebook g j prager 039 the lesson plan 039",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

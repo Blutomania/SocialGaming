@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of pregnant woman by jealous lover who accused her of infidelity",
+    "confidence": "medium",
+    "quote": "one of the pregnant woman had been murdered by her jealous lover who had accused her of infidelity"
+  },
+  "victim": {
+    "value": "Pregnant squatter woman accused of infidelity by her jealous lover",
+    "confidence": "medium",
+    "quote": "one of the pregnant woman had been murdered by her jealous lover who had accused her of infidelity"
+  },
+  "closed_world": {
+    "value": "Isolated rental house built on unholy ground where squatters once lived",
+    "confidence": "medium",
+    "quote": "It's in the middle of nowhere... nothing for... What...? A mile on either side and nothing but woods"
+  },
+  "culprit_and_motive": {
+    "value": "Jealous lover killed pregnant woman believing she was unfaithful",
+    "confidence": "medium",
+    "quote": "one of the pregnant woman had been murdered by her jealous lover who had accused her of infidelity"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "The narrator telling her supernatural experience to Doctor Leo",
+    "confidence": "low",
+    "quote": "So, Doctor Leo, I still get chills from thinking about that encounter"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial supernatural explanation for events later revealed to have historical human cause",
+    "confidence": "medium",
+    "quote": "no one had died in the building. But Mom was not satisfied with that answer"
+  },
+  "clue_fairness": {
+    "value": "All supernatural manifestations described in detail as experienced by narrator",
+    "confidence": "medium",
+    "quote": "There was an evil face imprinted on that shade. I sat up all night, arms crossed and glared"
+  },
+  "social_world": {
+    "value": "Family hierarchy with mother as information broker and decision maker",
+    "confidence": "medium",
+    "quote": "I had my mother look into the history of the house"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Historical research reveals murder on the land where house was built",
+    "confidence": "high",
+    "quote": "pregnant woman had been murdered by her jealous lover who had accused her of infidelity"
+  },
+  "media_and_audience": {
+    "value": "Framed as testimony to Doctor Leo, positioning events as case study",
+    "confidence": "medium",
+    "quote": "One of the reasons,Doctor Leo, I remembered this episode so vividly"
+  },
+  "investigator_wound": {
+    "value": "Mother's protective instinct triggered by threat to her baby",
+    "confidence": "high",
+    "quote": "Leave my baby alone, for God's sake"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-paula-louise-shene-the-face-of-evil/",
+    "corpus_index": 193,
+    "text_len": 6093,
+    "title": "ebook paula louise shene the face of evil",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

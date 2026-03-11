@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Serial murders by throat slashing in residential area",
+    "confidence": "high",
+    "quote": "stream of dark red blood flowed out of the gaping wound in her throat"
+  },
+  "victim": {
+    "value": "Edna Fisher, murdered in her bedroom; part of multiple killings",
+    "confidence": "medium",
+    "quote": "Sounds came to Edna Fisher in the dark bedroom"
+  },
+  "closed_world": {
+    "value": "Garwood Village residential area in Nautilus Beach, New Jersey",
+    "confidence": "medium",
+    "quote": "those living in Garwood Village that he couldn't hit again"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Investigation appears successful as Wallace is later married and on honeymoon",
+    "confidence": "low",
+    "quote": "From now on you have to share everything with me"
+  },
+  "investigator": {
+    "value": "Captain Wallace, police detective leading the investigation",
+    "confidence": "high",
+    "quote": "Wallace answered. Progress? Maybe. We know the killer is a man. We know his blood type."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": "Blood type and personality profile clues shared with reader through investigator dialogue",
+    "confidence": "medium",
+    "quote": "We know the killer is a man. We know his blood type. Little by little we're putting together a personality profile"
+  },
+  "social_world": {
+    "value": "Police hierarchy with commissioner, captain, and press relations creating institutional pressure and accountability",
+    "confidence": "high",
+    "quote": "One, remove me from the case. Stiles can command the squad. At the same time you can satisfy the Press"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Press controls narrative and creates public pressure on police investigation through exclusive reporter relationship",
+    "confidence": "high",
+    "quote": "The trick commissioner is not to let them control the conversation... baffling them with bullshit"
+  },
+  "investigator_wound": {
+    "value": "Captain Wallace's professional vulnerability exposed by serial killer's ability to evade his security measures",
+    "confidence": "high",
+    "quote": "Then, the son of a bitch got through and killed once more"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-garwood-village/",
+    "corpus_index": 10,
+    "text_len": 238471,
+    "title": "ebook robert f clifton garwood village",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

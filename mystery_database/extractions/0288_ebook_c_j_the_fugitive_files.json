@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Police fugitive recovery team led by Sam Tully pursuing warrant suspects",
+    "confidence": "high",
+    "quote": "The three warrant officers entered with quickness and precision, clearing hallways and rooms"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Police department hierarchy with Internal Affairs investigating Banks for excessive force and rule violations",
+    "confidence": "high",
+    "quote": "Sgt. Banks had a much dreaded appointment with members of the Internal Affairs Bureau"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Banks facing Internal Affairs investigation for excessive force while trying to continue his fugitive pursuit duties",
+    "confidence": "medium",
+    "quote": "making forcible entry into residence without just cause and absent any exigent circumstances, also excessive force"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-c-j-the-fugitive-files/",
+    "corpus_index": 288,
+    "text_len": 11033,
+    "title": "ebook c j the fugitive files",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

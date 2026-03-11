@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of Thomas Jacks, town founder, shot and killed",
+    "confidence": "high",
+    "quote": "Tom's murderer would be hung, if not directly, indirectly for the killing"
+  },
+  "victim": {
+    "value": "Thomas Jacks, town founder who was making advances on the narrator's wife Ellie",
+    "confidence": "high",
+    "quote": "I saw my good friend, Thomas Jacks riding away from my house... This gave me a bad feeling"
+  },
+  "closed_world": {
+    "value": "Cherry Creek, a small isolated frontier town with about 30 families",
+    "confidence": "high",
+    "quote": "Cherry Creek wasn't the type of town where one would expect trouble. It was a small out of the way place"
+  },
+  "culprit_and_motive": {
+    "value": "Jacob Star (the narrator) killed Thomas Jacks because he believed Tom was having an affair with his wife",
+    "confidence": "high",
+    "quote": "I was content that Ellie never had to feel Tom's eyes on her again"
+  },
+  "resolution": {
+    "value": "The real killer goes unpunished as another man (Yates) will hang for a different crime, and Jacob is offered the sheriff position",
+    "confidence": "high",
+    "quote": "they wanted me to become the town sheriff, she smiled"
+  },
+  "investigator": {
+    "value": "Jacob Star, the actual murderer telling his own story in first person",
+    "confidence": "high",
+    "quote": "I too, was here for the peace... Now I played a role in the serenity of our little settlement"
+  },
+  "suspect_architecture": {
+    "value": "Single suspect architecture with false external culprit - narrator Jacob Star is the actual murderer while Yates becomes convenient scapegoat",
+    "confidence": "high",
+    "quote": "Simply put; our case was solved and the guilty man would hang. There would be no need for a trial."
+  },
+  "red_herring": {
+    "value": "The star drawn in sand by dying Thomas Jacks, interpreted as identifying external killer Yates rather than narrator Jacob Star",
+    "confidence": "high",
+    "quote": "they would put it together when they saw the star in the sand which Tom had drawn"
+  },
+  "clue_fairness": {
+    "value": "Star symbol clue presented fairly - reader sees both the physical evidence and learns narrator's surname is Star before the reveal",
+    "confidence": "high",
+    "quote": "Sheriff Jacob Star. I like the sound of that."
+  },
+  "social_world": {
+    "value": "Small frontier town hierarchy centered on Thomas Jacks as founding father and community leader, with narrator as respected law enforcement",
+    "confidence": "high",
+    "quote": "The residents regarded him as sort of the 'father of the town'. It seemed everything he did was for the town"
+  },
+  "alibi": {
+    "value": "Narrator's early return from Lexington business trip - meant to surprise wife but instead discovers Thomas Jacks leaving his house",
+    "confidence": "medium",
+    "quote": "I had been gone to Lexington to work on a deal to sell the army some beef"
+  },
+  "reveal_mechanic": {
+    "value": "Dramatic irony revelation where narrator's internal thoughts expose him as the killer while community mourns victim as hero",
+    "confidence": "high",
+    "quote": "My real thoughts were how justice had been served all the way around. Tom deserved to die"
+  },
+  "media_and_audience": {
+    "value": "Community narrative transforms Thomas Jacks into martyred founding father legend while true killer becomes celebrated sheriff",
+    "confidence": "high",
+    "quote": "Someday there might even be talk of a statue of old Tom put on the town square and I would vote in favor"
+  },
+  "investigator_wound": {
+    "value": "Suspected marital infidelity and betrayal by trusted community leader - Civil War trauma mentioned but adultery concern drives the crime",
+    "confidence": "high",
+    "quote": "This gave me a bad feeling as to the reason why a man was leaving my house and my wife in a suspicious manner"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-jay-wilson-the-murder-of-cherry-creek/",
+    "corpus_index": 65,
+    "text_len": 33239,
+    "title": "ebook jay wilson the murder of cherry creek",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

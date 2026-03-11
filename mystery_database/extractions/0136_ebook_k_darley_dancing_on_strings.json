@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Newport mansion during a high society fundraising party",
+    "confidence": "medium",
+    "quote": "the vibrant yellow lights of the Newport mansion illuminated the surrounding property"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Detective Reynolds called to Newport crime scene",
+    "confidence": "high",
+    "quote": "Detective Reynolds? C-Chief wants you down to Newport, Rhode Island as soon as you can."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Potential misdirection through Arthur's personal calls interrupting the case summons, suggesting non-professional distractions",
+    "confidence": "low",
+    "quote": "Wrong number."
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "East-coast elite fundraiser society with Wall Street investors and stockbrokers displaying wealth and status",
+    "confidence": "high",
+    "quote": "talk of wall-street investors and stock-markets hung in the air, the atmosphere was that of another successful east-coast fund-raiser"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Detective Reynolds torn between personal relationships and professional duty, shown through interrupted meeting with sister",
+    "confidence": "medium",
+    "quote": "Arthur shut the phone off and placed it in his jeans pocket. For a moment he pondered what it could be"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-k-darley-dancing-on-strings/",
+    "corpus_index": 136,
+    "text_len": 14631,
+    "title": "ebook k darley dancing on strings",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

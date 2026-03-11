@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Death of 6-year-old Pippa when medical equipment failed while mother was away",
+    "confidence": "medium",
+    "quote": "her BiPap stopped working and her Cannula came loose. And I couldn't help the poor 6-year-old girl."
+  },
+  "victim": {
+    "value": "6-year-old Pippa, medically dependent child left alone during routine errand",
+    "confidence": "high",
+    "quote": "She died when I left her. Not because of murder. But because her BiPap stopped working"
+  },
+  "closed_world": {
+    "value": "Asylum with poor security where narrator is confined after claiming to be dead",
+    "confidence": "medium",
+    "quote": "The asylum I lived in wasn't very good at keeping people in, per se, more at keeping people out."
+  },
+  "culprit_and_motive": {
+    "value": "Mother blames herself for leaving daughter alone, seeks death to reunite with her",
+    "confidence": "medium",
+    "quote": "But I killed my daughter, didn't I? That was when the horrible realization hit. I killed myself."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Mother Leah, unreliable narrator in asylum seeking supernatural reunion with dead daughter",
+    "confidence": "high",
+    "quote": "I wasn't ready for it when it happened. I thought I could handle him. I thought I could do it by myself."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial suggestion that daughter was murdered by porcelain doll, when actual cause was medical equipment failure",
+    "confidence": "medium",
+    "quote": "She died when I left her. Not because of murder. But because her BiPap stopped working and her Cannula came loose."
+  },
+  "clue_fairness": {
+    "value": "Medical equipment details (BiPap and Cannula) provided to reader before revelation of true cause of death",
+    "confidence": "medium",
+    "quote": "But because her BiPap stopped working and her Cannula came loose."
+  },
+  "social_world": {
+    "value": "Institutional power of asylum system - guards, rules about contact, patient confinement and monitoring",
+    "confidence": "medium",
+    "quote": "contact with the outside was barred. Phones were taken away once you entered."
+  },
+  "alibi": {
+    "value": "Mother's absence during daughter's death - left to get groceries when medical emergency occurred",
+    "confidence": "high",
+    "quote": "I left her at home to get the freaking groceries. GROCERIES! She died when I left her."
+  },
+  "reveal_mechanic": {
+    "value": "Psychological realization that narrator killed herself metaphorically through guilt over daughter's death",
+    "confidence": "medium",
+    "quote": "But I killed my daughter, didn't I? That was when the horrible realization hit. I killed myself."
+  },
+  "media_and_audience": {
+    "value": "Institutional narrative that frames grief and guilt as insanity requiring asylum confinement",
+    "confidence": "medium",
+    "quote": "Now they think I'm insane. Funny isn't it? The moment they see you've had a little revelation"
+  },
+  "investigator_wound": {
+    "value": "Mother's overwhelming guilt and trauma from failing to prevent daughter's death while absent",
+    "confidence": "high",
+    "quote": "I was a horrible mother. Horrible. And they say I went insane."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-anonymous-cow-colors/",
+    "corpus_index": 338,
+    "text_len": 4010,
+    "title": "ebook anonymous cow colors",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

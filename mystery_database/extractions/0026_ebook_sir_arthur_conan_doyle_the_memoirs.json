@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of horse trainer and disappearance of racehorse Silver Blaze",
+    "confidence": "high",
+    "quote": "the singular disappearance of the favorite for the Wessex Cup, and the tragic murder of its trainer"
+  },
+  "victim": {
+    "value": "Horse trainer (killed) and Silver Blaze racehorse (disappeared)",
+    "confidence": "medium",
+    "quote": "the tragic murder of its trainer"
+  },
+  "closed_world": {
+    "value": "King's Pyland racing stables and surrounding Dartmoor area",
+    "confidence": "medium",
+    "quote": "To Dartmoor; to King's Pyland"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Holmes solves the case through deductive analysis and reveals solution to Watson and Colonel",
+    "confidence": "medium",
+    "quote": "I am afraid that my explanation may disillusion you but it has always been my habit to hide none of my methods"
+  },
+  "investigator": {
+    "value": "Sherlock Holmes as consulting detective, with Dr. Watson as chronicler/companion",
+    "confidence": "high",
+    "quote": "Sherlock Holmes, with his sharp, eager face framed in his ear-flapped travelling-cap"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Letter from Meiringen presented as genuine summons but deliberately recognized as hoax to draw out Moriarty",
+    "confidence": "high",
+    "quote": "I was quite convinced that the letter from Meiringen was a hoax, and I allowed you to depart on that errand"
+  },
+  "clue_fairness": {
+    "value": "Holmes demonstrates his methods openly, showing the crumpled paper evidence and explaining his reasoning to all present",
+    "confidence": "medium",
+    "quote": "it has always been my habit to hide none of my methods, either from my friend Watson or from any one"
+  },
+  "social_world": {
+    "value": "Racing establishment with Colonel, trainer-owner dynamics, and criminal organization with numerous agents",
+    "confidence": "medium",
+    "quote": "the singular disappearance of the favorite for the Wessex Cup, and the tragic murder of its trainer"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Physical evidence demonstration using crumpled paper fragment and organized criminal evidence in pigeonhole system",
+    "confidence": "medium",
+    "quote": "He held up a little crumpled piece of paper. 'The remainder of the sheet!' cried the Inspector."
+  },
+  "media_and_audience": {
+    "value": "Case becomes national sensation with extensive newspaper coverage throughout England",
+    "confidence": "high",
+    "quote": "which was the one topic of conversation through the length and breadth of England"
+  },
+  "investigator_wound": {
+    "value": "Holmes faces career crisis and mortal confrontation, accepting death as congenial conclusion to his work",
+    "confidence": "high",
+    "quote": "my career had in any case reached its crisis, and that no possible conclusion to it could be more congenial"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-memoirs-of-sherlock-holmes/",
+    "corpus_index": 26,
+    "text_len": 477327,
+    "title": "ebook sir arthur conan doyle the memoirs of sherlock holmes",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

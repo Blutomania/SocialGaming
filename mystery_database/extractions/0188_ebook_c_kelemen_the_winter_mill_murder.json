@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of Katie at a mill, method unknown, question: how does the tortoise connect to the crime scene?",
+    "confidence": "medium",
+    "quote": "we have just found our first clue or piece of evidence to little Katie's death"
+  },
+  "victim": {
+    "value": "Katie, a child, reason for targeting unknown",
+    "confidence": "low",
+    "quote": "little Katie's death"
+  },
+  "closed_world": {
+    "value": "Mill and farmhouse property in West Virginia during winter",
+    "confidence": "medium",
+    "quote": "The winter in West Virginia was still getting colder. The tortoise crawled by the mill back to its home"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "First-person narrator, appears to be official investigator with partners Jim and Garry",
+    "confidence": "high",
+    "quote": "I pick him up. I call Jim and Garry over"
+  },
+  "suspect_architecture": {
+    "value": "Parents with suspicious reaction to child's death, plus unknown tortoise owner - limited suspect pool with concealed motives",
+    "confidence": "medium",
+    "quote": "when they heard of her death they cried for about a minute and then asked for the body to be buried"
+  },
+  "red_herring": {
+    "value": "Tortoise as evidence carrier - blood on shell suggests direct involvement but tortoise doesn't belong to farm",
+    "confidence": "medium",
+    "quote": "No tortoises lived there yet we found one, how peculiar."
+  },
+  "clue_fairness": {
+    "value": "Physical evidence presented to reader simultaneously with investigator - bloody tortoise shell and mill blood smear",
+    "confidence": "high",
+    "quote": "the smudge of blood on his shell went mostly off leaving just a nick from a weapon with someone's blood"
+  },
+  "social_world": {
+    "value": "Rural farming family structure with mill operation - agricultural hierarchy and family dynamics",
+    "confidence": "low",
+    "quote": "The tortoise crawled by the mill back to its home in the farmhouse"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Discovery of tortoise eggs in mill suggests breeding location reveals true crime scene",
+    "confidence": "medium",
+    "quote": "As I took a closer look I noticed the baby tortoise eggs"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Investigator trapped alone in mill at night, confronting danger - isolation and vulnerability theme",
+    "confidence": "medium",
+    "quote": "Unfortunately I ended up getting locked in the mill. The machines started to come to life"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-c-kelemen-the-winter-mill-murder/",
+    "corpus_index": 188,
+    "text_len": 4204,
+    "title": "ebook c kelemen the winter mill murder",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

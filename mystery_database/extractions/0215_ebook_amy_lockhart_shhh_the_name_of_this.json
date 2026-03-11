@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Big mansion with ghostly presence",
+    "confidence": "low",
+    "quote": "Right away you find yourself in a big mansion. \"I hope you find your stay here injoyable!\" you hear a ghostly voice say."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Second-person reader/protagonist",
+    "confidence": "medium",
+    "quote": "So you get up and wonder wich way to go, right or left?"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "The initial supernatural curse narrative misdirects from the choose-your-own-adventure structure",
+    "confidence": "medium",
+    "quote": "Certainly you want to close this book, for it can only bring you bad luck. How can you possibly stand this no good"
+  },
+  "clue_fairness": {
+    "value": "Reader receives same information as protagonist through direct second-person address and explicit choice points",
+    "confidence": "high",
+    "quote": "So you get up and wonder wich way to go, right or left? If you picked right, you run out of the house screaming"
+  },
+  "social_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Solution demonstrated through reader's cumulative choice-making success rather than deductive revelation",
+    "confidence": "medium",
+    "quote": "IF you got all the questions right you are an intelligent person with high expectations."
+  },
+  "media_and_audience": {
+    "value": "Self-aware narrative acknowledging its own fictional construction and audience participation",
+    "confidence": "medium",
+    "quote": "This book will not selfdestruct in 5 seconds so please share it to more people."
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-amy-lockhart-shhh-the-name-of-this-book-is-classified/",
+    "corpus_index": 215,
+    "text_len": 2501,
+    "title": "ebook amy lockhart shhh the name of this book is classified",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

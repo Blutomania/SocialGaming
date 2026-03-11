@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Class-conscious hotel hierarchy with security guard questioning Paige's legitimacy based on appearance",
+    "confidence": "medium",
+    "quote": "Sa dami nang tao dito, Miss. Sa tingin mo ba matatandaan pa kita?"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Physical wound on hand requiring assistance, creating vulnerability and dependence on Stephen",
+    "confidence": "medium",
+    "quote": "Ang hindi nalang nya magawa e yong magpalit ng benda ng sugat niya. Hindi kasi sya left-handed."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-crimson-skye-dating-a-geek/",
+    "corpus_index": 71,
+    "text_len": 260424,
+    "title": "ebook crimson skye dating a geek",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

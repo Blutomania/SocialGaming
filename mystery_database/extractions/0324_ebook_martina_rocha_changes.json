@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Sarah, former best friend who died under unclear circumstances",
+    "confidence": "medium",
+    "quote": "yesterday I got a call from her mom saying that Sarah died"
+  },
+  "closed_world": {
+    "value": "High school social environment where friendship deteriorated",
+    "confidence": "low",
+    "quote": "High school was fine for the first two months"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Emily, the narrator reflecting on her lost friendship with Sarah",
+    "confidence": "medium",
+    "quote": "I made a promise to myself that I would never forgive her"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "High school social hierarchy with 'popular' girls versus normal groups creating tension and exclusion dynamics",
+    "confidence": "medium",
+    "quote": "Sarah said that these girls were the 'popular ones' and these girls said that my group were not the 'nerds ones'"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Narrator's guilt over unforgiveness and feeling responsible for friend's death",
+    "confidence": "high",
+    "quote": "I felt so guilty when I saw her. She did not deserve to be in this place, in this situation."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-martina-rocha-changes/",
+    "corpus_index": 324,
+    "text_len": 4283,
+    "title": "ebook martina rocha changes",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

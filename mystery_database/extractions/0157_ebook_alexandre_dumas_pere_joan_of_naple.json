@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of Andre at Aversa - thrown from balcony",
+    "confidence": "high",
+    "quote": "the voice of Andre asking mercy from his murderers"
+  },
+  "victim": {
+    "value": "Andre - Joan's husband, about to be crowned, making him a threat to conspirators",
+    "confidence": "high",
+    "quote": "Andre, mounted on one of the most fiery of all the steeds he had tamed, galloped beside his wife"
+  },
+  "closed_world": {
+    "value": "The royal court and convent of St. Peter's at Majella in Aversa during the hunting expedition",
+    "confidence": "medium",
+    "quote": "the convent of St. Peter's at Majella was converted into a royal residence"
+  },
+  "culprit_and_motive": {
+    "value": "Joan and accomplices including Robert of Cabane and Bertrand of Artois - political conspiracy",
+    "confidence": "high",
+    "quote": "the moments of madness passed like a dream in the arms of Bertrand of Artois"
+  },
+  "resolution": {
+    "value": "Joan is eventually executed by Hungarian barons - justice through retribution",
+    "confidence": "high",
+    "quote": "This was the third corpse that was thrown over the balcony at Aversa."
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": "Multiple conspirators in Andre's murder including Joan (queen/wife with motive of freedom from unwanted marriage), Robert of Cabane, Bertrand of Artois (lover), and various accomplices who were later tortured",
+    "confidence": "high",
+    "quote": "the queen saw before her eyes the carts of infamy and the torture of her accomplices"
+  },
+  "red_herring": {
+    "value": "The hunting expedition to Aversa presented as innocent royal entertainment, masking the planned assassination location",
+    "confidence": "medium",
+    "quote": "Andre's intention was to spend several days hunting between Capua and Aversa"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Neapolitan royal court with complex hierarchies - crown officers, courtiers, nobles, religious figures like Friar Robert, and the power dynamics between Hungarian and Angevin claims to the throne",
+    "confidence": "high",
+    "quote": "officers of the crown were assembled regularly twice a day, and persons of importance"
+  },
+  "alibi": {
+    "value": "Charles claims he cannot attend the hunt because his wife is unwell, offering a falcon instead while giving the notary a 'petrifying glance'",
+    "confidence": "medium",
+    "quote": "it will be impossible for me to go to-morrow, for my wife is very unwell"
+  },
+  "reveal_mechanic": {
+    "value": "Joan's final recognition and acceptance of divine justice when shown the silk and gold cord - the murder weapon that connects all three deaths at Aversa",
+    "confidence": "high",
+    "quote": "one of the men showed her a cord of silk and gold"
+  },
+  "media_and_audience": {
+    "value": "The ringing of three hundred church bells announcing the king's death, demonstrating how royal events are publicly communicated and mourned throughout Naples",
+    "confidence": "medium",
+    "quote": "they were suddenly awakened by the bells of the three hundred churches"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-joan-of-naples/",
+    "corpus_index": 157,
+    "text_len": 220566,
+    "title": "ebook alexandre dumas pere joan of naples",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

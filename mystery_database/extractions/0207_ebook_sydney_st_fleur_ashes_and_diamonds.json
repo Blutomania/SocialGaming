@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Serial murders of young girls including strangulation and stabbing",
+    "confidence": "high",
+    "quote": "The attacker grabbed Claire by her neck once more and strangled her until she had no breath to spare."
+  },
+  "victim": {
+    "value": "Claire, a 14-year-old girl, and later her friend Sabrina - targeted due to their vulnerability as young girls",
+    "confidence": "high",
+    "quote": "She look into his eyes, so pathetic to kidnap such a young girl who's 14 years old."
+  },
+  "closed_world": {
+    "value": "School/dormitory environment where the victims and perpetrator are connected through family relationships",
+    "confidence": "medium",
+    "quote": "We walked to our dorm talking about all the times we embarrassed ourselves in public."
+  },
+  "culprit_and_motive": {
+    "value": "Amanda's father - motive appears to be serial predatory behavior targeting young girls",
+    "confidence": "high",
+    "quote": "DAD!!! Tear streamed down my cheeks like the flames of fires."
+  },
+  "resolution": {
+    "value": "The killer is caught by police after Amanda escapes and calls 911, though she is shot in the process",
+    "confidence": "high",
+    "quote": "The cops came immediately. And saw my dad. 'THERE HE IS GET HIM GET HIM!!'"
+  },
+  "investigator": {
+    "value": "Amanda, the victim's sister, who seeks revenge and justice for Claire's murder",
+    "confidence": "high",
+    "quote": "This is my chance to find the killer!!!!!!!!!"
+  },
+  "suspect_architecture": {
+    "value": "Limited suspect pool: Logan (party host with access to victims), unnamed attacker from flashback, father revealed as killer",
+    "confidence": "medium",
+    "quote": "DAD!!! Tear streamed down my cheeks like the flames of fires. How, How, How could you do this to me and Claire"
+  },
+  "red_herring": {
+    "value": "Logan positioned as romantic interest and party host to misdirect from family connection",
+    "confidence": "low",
+    "quote": "This is my chance to find the killer!!!!!!!!!! I gave him back the note. I whispered to him, 'Sure, I would love too.'"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "School/dormitory setting with parent-child authority structures and peer social dynamics",
+    "confidence": "medium",
+    "quote": "Maybe that's why Sabrina's mom was mad at Sabrina. Just because she was friends with me."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Direct confrontation with flashlight illumination revealing father's identity as the killer",
+    "confidence": "high",
+    "quote": "I ran off get a flashlight I saw earlier on the floor and picked it up and shined it on him. 'DAD!!!'"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Personal trauma from sister Claire's murder driving Amanda's investigation, family betrayal as ultimate wound",
+    "confidence": "high",
+    "quote": "Claire, my 14 year old sister died just two years ago, and they found her body ten days ago. She still haunts me"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sydney-st-fleur-ashes-and-diamonds/",
+    "corpus_index": 207,
+    "text_len": 31754,
+    "title": "ebook sydney st fleur ashes and diamonds",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

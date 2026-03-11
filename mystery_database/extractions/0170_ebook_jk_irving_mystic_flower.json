@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Child kidnapping and shooting during rescue attempt",
+    "confidence": "high",
+    "quote": "I raised the gun again and pointed at his chest and fired his face changed to an ashen colour"
+  },
+  "victim": {
+    "value": "Tony, who kidnapped the narrator's daughter Emma to raise as his own child",
+    "confidence": "high",
+    "quote": "Dont come looking for me Tony or I will kill you, next time find your own baby you are not haveing mine"
+  },
+  "closed_world": {
+    "value": "Tony's house where Emma was being held captive",
+    "confidence": "medium",
+    "quote": "I left them both tied up and went upstairs, I heard laughter in the middle room"
+  },
+  "culprit_and_motive": {
+    "value": "The narrator (Emma's mother) shoots Tony to rescue her kidnapped daughter",
+    "confidence": "high",
+    "quote": "I had not gone through all of this to lose my child"
+  },
+  "resolution": {
+    "value": "Mother successfully rescues daughter, flees to Spain to start new life, disposes of evidence",
+    "confidence": "high",
+    "quote": "I told her I had got rid of all evidence that linked me with Tony, the gun had gone in the river"
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "David initially appears as potential threat/antagonist but is revealed as victim of Tony's deception",
+    "confidence": "medium",
+    "quote": "I loved David and after the holiday we were closer than ever, the look of pain on his face was awful"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Domestic/familial power structures - custody battles, parental rights, family loyalty networks",
+    "confidence": "medium",
+    "quote": "my mum organised a flight to Benidorm, she booked me on a package holiday"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Physical confrontation and shooting reveal Tony's true character and resolve the custody conflict",
+    "confidence": "medium",
+    "quote": "I raised the gun again and pointed at his chest and fired his face changed to an ashen colour"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Maternal trauma - protagonist's vulnerability as mother whose child has been taken",
+    "confidence": "high",
+    "quote": "I had not gone through all of this to lose my child"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-jk-irving-mystic-flower/",
+    "corpus_index": 170,
+    "text_len": 59145,
+    "title": "ebook jk irving mystic flower",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

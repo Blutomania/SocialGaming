@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder with DNA evidence and eyewitnesses placing defendant at scene",
+    "confidence": "high",
+    "quote": "young man accused of murder. The Prosecutor for the State has eye witnesses that place the defendant at the crime scene"
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Courtroom legal proceedings and investigation boundaries",
+    "confidence": "medium",
+    "quote": "At eight forty-five AM on a hot, July, Monday, Adam Bader st"
+  },
+  "culprit_and_motive": {
+    "value": "Pearl (defendant) who posed as his twin brother, motive unclear",
+    "confidence": "medium",
+    "quote": "all the information about you posing as your twin brother"
+  },
+  "resolution": {
+    "value": "Mistrial declared, case to be retried with new evidence about twin deception",
+    "confidence": "high",
+    "quote": "I managed to get a mistrial. That means a tie so to speak. The prosecutor has already informed me that he's going to trial again"
+  },
+  "investigator": {
+    "value": "Adam Bader, public defender lawyer defending the accused",
+    "confidence": "high",
+    "quote": "Adam Bader is a young lawyer who as a Public Defender is assigned to defend a young man accused of murder"
+  },
+  "suspect_architecture": {
+    "value": "Single primary suspect (Pearl) with twin brother (Tyrone Lofton) as key element - DNA evidence places defendant at scene with eyewitnesses, but identical twin creates reasonable doubt",
+    "confidence": "high",
+    "quote": "Chapter Four....Tyrone Lofton Chapter Five.....Thaddeus Lofton"
+  },
+  "red_herring": {
+    "value": "Twin brother impersonation - Pearl posing as his twin brother, deliberately concealed from defense attorney until trial conclusion",
+    "confidence": "high",
+    "quote": "Someone else will have all the information about you posing as your twin brother"
+  },
+  "clue_fairness": {
+    "value": "DNA evidence and monozygotic twins information available through expert witness Dr. Kramer, though full twin impersonation withheld until end",
+    "confidence": "medium",
+    "quote": "I suggest that you question me on, DNA and Monozygotic or identical twins"
+  },
+  "social_world": {
+    "value": "Legal system hierarchy - Public Defender's office, prosecution, court system with plea bargaining and discovery rights structuring power dynamics",
+    "confidence": "medium",
+    "quote": "At eight forty-five AM on a hot, July, Monday, Adam Bader st"
+  },
+  "alibi": {
+    "value": "False identity alibi - defendant's twin brother connection creates confusion about who was actually present at crime scene",
+    "confidence": "high",
+    "quote": "The Prosecutor for the State has eye witnesses that place the defendant at the crime scene"
+  },
+  "reveal_mechanic": {
+    "value": "DNA analysis of identical twins - expert testimony on monozygotic twins and DNA evidence limitations as technical demonstration method",
+    "confidence": "medium",
+    "quote": "At the same time there is evidence of the man's DNA on the victim"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Defense attorney's ethical crisis - discovers client's deception after achieving mistrial, leading to resignation from criminal law practice",
+    "confidence": "high",
+    "quote": "I'm done. Walter can assign another lawyer to represent Pearl. Just as soon as I clean out my desk I'm resigning"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-counterpart/",
+    "corpus_index": 63,
+    "text_len": 139902,
+    "title": "ebook robert f clifton counterpart",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Alex, a young person killed by their abusive brother Andy in an alley",
+    "confidence": "high",
+    "quote": "Andy jumped on me, rolling me over to face the sky, and continued to smash at my face, my stomach, my everywhere."
+  },
+  "closed_world": {
+    "value": "Urban alley setting where the violence occurs",
+    "confidence": "medium",
+    "quote": "The ally was lit by the dim flicker of stars."
+  },
+  "culprit_and_motive": {
+    "value": "Brother Andy kills Alex in a rage over disobedience and perceived defiance",
+    "confidence": "high",
+    "quote": "You're such a fucking faggot, Alex! Get back in the apartment before I kick your ass!"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Dysfunctional family power dynamic with abusive older brother dominating younger sibling through violence and intimidation",
+    "confidence": "high",
+    "quote": "What the hell are you doing out here! I told you to stay inside!"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-natalie-wood-saving-alex-storm/",
+    "corpus_index": 154,
+    "text_len": 2941,
+    "title": "ebook natalie wood saving alex storm",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

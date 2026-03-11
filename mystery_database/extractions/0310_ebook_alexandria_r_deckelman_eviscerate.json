@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Serial murders with mutilation and evisceration",
+    "confidence": "high",
+    "quote": "intestine strewn from the mutilated the corpse to the other side of him, draped across his arms"
+  },
+  "victim": {
+    "value": "Multiple victims, including a mutilated corpse found at witness's property",
+    "confidence": "medium",
+    "quote": "intestine strewn from the mutilated the corpse to the other side of him"
+  },
+  "closed_world": {
+    "value": "Rural desert areas of Arizona and Nevada where the killer is being tracked",
+    "confidence": "medium",
+    "quote": "this person was most likely a man from around the canadian border"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Abend, a law enforcement officer or detective working with police",
+    "confidence": "high",
+    "quote": "You seem a little tense, Abend.' My dark eyes never moved from the seemingly endless expanse"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial car accident and eyeless corpse recognition creates false urgency while real threat emerges separately",
+    "confidence": "medium",
+    "quote": "Despite the eyeless sockets and slashed features... I recognized him. There was a yell and a crash"
+  },
+  "clue_fairness": {
+    "value": "Tracker device locations and Canadian border connection shared with reader as investigators discover them",
+    "confidence": "medium",
+    "quote": "according to the tracker in the car he was in Montello, Nevada... same place where the previous suspect was traced"
+  },
+  "social_world": {
+    "value": "Police-civilian investigative partnership with informal authority structures and weapon access hierarchies",
+    "confidence": "medium",
+    "quote": "this field of work can get a bit intense sometimes, Leon\" I replied to the policeman as he drove"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Medical diagnosis frames witness silence as trauma rather than potential complicity or crucial testimony",
+    "confidence": "medium",
+    "quote": "The doctor said she has post traumatic stress syndrome... no actual talking since a few days after the event"
+  },
+  "investigator_wound": {
+    "value": "Personal connection to Canadian border origin point shared with suspect creates identity vulnerability",
+    "confidence": "high",
+    "quote": "the same place where the previous suspect was traced back to. Also where I was from. I bit the inside of my cheek"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-alexandria-r-deckelman-eviscerate/",
+    "corpus_index": 310,
+    "text_len": 13821,
+    "title": "ebook alexandria r deckelman eviscerate",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

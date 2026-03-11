@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder at Birlstone Manor - elaborate killing designed to appear as something else, orchestrated by criminal mastermind",
+    "confidence": "high",
+    "quote": "This crime is from London, not from America... a great brain and a huge organization have been turned to the extinction"
+  },
+  "victim": {
+    "value": "Man connected to the Scowrers criminal organization who was targeted for elimination by Moriarty's network",
+    "confidence": "medium",
+    "quote": "From that moment their man was doomed... turned to the extinction of one man"
+  },
+  "closed_world": {
+    "value": "Birlstone Manor House and the criminal underworld of Vermissa Valley with its secret lodge network",
+    "confidence": "medium",
+    "quote": "You won't find the order more flourishing anywhere in the States than right here in Vermissa Valley"
+  },
+  "culprit_and_motive": {
+    "value": "Moriarty orchestrating the elimination of someone who threatened his criminal organization's operations",
+    "confidence": "high",
+    "quote": "I can tell a Moriarty when I see one... one whose whole unique position depends upon the fact that all he does must succeed"
+  },
+  "resolution": {
+    "value": "Holmes deduces the true mastermind behind the crime through analysis of the criminal methodology and warns of future danger",
+    "confidence": "medium",
+    "quote": "You heard me warn this man at Birlstone Manor House that the coming danger was greater than the past. Was I right?"
+  },
+  "investigator": {
+    "value": "Sherlock Holmes as the primary detective, working with Watson and local officials to solve the Birlstone Manor case",
+    "confidence": "high",
+    "quote": "Sherlock Holmes remarked impatiently... He leaned upon his hand, with his untasted breakfast before him"
+  },
+  "suspect_architecture": {
+    "value": "Two-layer structure: Birlstone locals (including Barker with access and concealment motive) versus the true architects - American Scowrers and Moriarty's organization operating through planted identity",
+    "confidence": "medium",
+    "quote": "This crime is from London, not from America... a great brain and a huge organization have been turned"
+  },
+  "red_herring": {
+    "value": "The apparent American criminal operation (sawed-off shotguns, Scowrers) designed to mask the sophisticated London mastermind behind the crime",
+    "confidence": "high",
+    "quote": "No case of sawed-off shot-guns and clumsy six-shooters... This crime is from London, not from America"
+  },
+  "clue_fairness": {
+    "value": "Holmes's deductive process about Porlock's handwriting and the coded message is demonstrated to Watson (and reader) through observable details",
+    "confidence": "medium",
+    "quote": "The Greek e with the peculiar top flourish is distinctive... he took the envelope itself, held it up"
+  },
+  "social_world": {
+    "value": "Multi-layered criminal hierarchy: Chicago Lodge 29, Vermissa Valley Lodge 341 with Bodymasters, underneath Moriarty's consulting criminal organization",
+    "confidence": "high",
+    "quote": "Brother John McMurdo, Lodge 29, Chicago. Bodymaster J. H. Scott... this great consultant in crime"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Holmes demonstrates Moriarty's involvement through pattern recognition - the crime's sophistication and systematic organization reveal the master criminal's signature style",
+    "confidence": "medium",
+    "quote": "You can tell an old master by the sweep of his brush. I can tell a Moriarty when I see one"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Holmes's ongoing battle with Moriarty - his recognition that this nemesis can orchestrate crimes from London while remaining untouchable",
+    "confidence": "medium",
+    "quote": "his eyes seemed to be looking far into the future... But you must give me time--you must give me time!"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-valley-of-fear/",
+    "corpus_index": 39,
+    "text_len": 312808,
+    "title": "ebook sir arthur conan doyle the valley of fear",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

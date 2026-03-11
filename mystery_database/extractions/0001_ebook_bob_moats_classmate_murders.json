@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Attempted murder/shooting targeting Penny",
+    "confidence": "medium",
+    "quote": "I really appreciate what you did for Penny, jumping in front of that bullet."
+  },
+  "victim": {
+    "value": "Penny - woman being hunted by a killer for undisclosed reasons",
+    "confidence": "medium",
+    "quote": "She didn't tell them she was hiding out from a killer"
+  },
+  "closed_world": {
+    "value": "Penny's house under police protection",
+    "confidence": "medium",
+    "quote": "She told them to just guard the house."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "First-person narrator - 60-year-old unemployed man romantically involved with Penny",
+    "confidence": "high",
+    "quote": "Turning 40 and then 50 years old didn't really bother me, but turning 60 was something I just couldn't accept."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Missing cat Shadow used as misdirection from main threat",
+    "confidence": "medium",
+    "quote": "Penny asked me if I had seen her cat? Shadow, was it's name. I said no, but it may have slipped out"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Police hierarchy and protocol - cops seeking favor with Sarge, institutional protection dynamics",
+    "confidence": "medium",
+    "quote": "We need to make some extra points with the Sarge, especially after letting that scumbag slip by us"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Television studio involvement - Penny mentions making good show when it's over",
+    "confidence": "medium",
+    "quote": "She didn't tell them she was hiding out from a killer, but it would make a good show when it was over"
+  },
+  "investigator_wound": {
+    "value": "Protagonist's age crisis and employment failure creating vulnerability and need for purpose",
+    "confidence": "high",
+    "quote": "Turning 40 and then 50 years old didn't really bother me, but turning 60 was something I just couldn't accept"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-bob-moats-classmate-murders/",
+    "corpus_index": 1,
+    "text_len": 269515,
+    "title": "ebook bob moats classmate murders",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

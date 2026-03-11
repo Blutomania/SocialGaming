@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Double murder of mother and young daughter, found bleeding on street",
+    "confidence": "high",
+    "quote": "there lieing on the cold hard tarmack floor was my mum and my little sistor edith both of them covered in blood"
+  },
+  "victim": {
+    "value": "Mother and young daughter Edith, ostracized by extended family on both sides",
+    "confidence": "medium",
+    "quote": "the rest of the faimly didnt want anything to do with us because they were apaled that my dad had married my mum"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Ellen, the surviving 16-year-old daughter seeking vengeance",
+    "confidence": "medium",
+    "quote": "who ever it was that killed my mum and sistor edith was going to die them selfs"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Ellen Jackson as perpetrator misdirection - opening suggests she's the killer before revealing she's the victim's daughter",
+    "confidence": "medium",
+    "quote": "Ellen Jackson killer on the run you wont get away"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Dysfunctional extended family dynamics with class prejudices and military-civilian tensions",
+    "confidence": "high",
+    "quote": "the rest of the faimly didnt want anything to do with us because they were apaled that my dad had married my mum"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Narrator is the victim's daughter seeking revenge, making her both investigator and emotionally compromised",
+    "confidence": "high",
+    "quote": "who ever it was that killed my mum and sistor edith was going to die them selfs"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-ellen-jackson-killer-on-the-run/",
+    "corpus_index": 300,
+    "text_len": 2929,
+    "title": "ebook ellen jackson killer on the run",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

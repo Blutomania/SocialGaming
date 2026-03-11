@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Multiple murders including shooting of Camille Dawn, and murder of Cassandra Martins (Dawn) and her husband; rape and stabbing",
+    "confidence": "high",
+    "quote": "BANG! Was the only sound Camille Dawn had heard the moment she opened the door to her loft."
+  },
+  "victim": {
+    "value": "Camille Dawn (shot at her loft) and Cassandra Martins/Dawn (Jack Dawn Sr.'s daughter, raped and stabbed with husband)",
+    "confidence": "high",
+    "quote": "Cassandra Martins, formaly known as Cassandra Dawn... He's Jack Dawn Sr.'s oldest daughter."
+  },
+  "closed_world": {
+    "value": "Bronx crime family territory - Dawn family connections limit suspects to those within organized crime circles",
+    "confidence": "medium",
+    "quote": "He's one of Bronx's top five crime mobsters out of twenty-seven in all of New York."
+  },
+  "culprit_and_motive": {
+    "value": "Italian-accented assassin working for unknown employer, motive unclear but connected to Dawn crime family",
+    "confidence": "medium",
+    "quote": "It's done... What do you want me to do with the body? - said with heavy gravely Italian accent"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Detective Dax, who has personal history with the Dawn family and dated Cassandra in high school",
+    "confidence": "high",
+    "quote": "I dated her in high school but it didn't last long... complications between are fathers"
+  },
+  "suspect_architecture": {
+    "value": "Italian hitman with accomplice executing organized hits; Dawn crime family with internal conflicts; missing child as potential witness",
+    "confidence": "medium",
+    "quote": "It's done. He says with a heavy gravely Italian accent. What do you want me to do with the body?"
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": "Blood trail and apartment door left open providing physical evidence accessible to both detective and reader",
+    "confidence": "medium",
+    "quote": "he realized the fourth door to the left open and he realized some blood on the wall across from the apartment"
+  },
+  "social_world": {
+    "value": "Bronx organized crime hierarchy with Jack Dawn Sr. as retired mobster, son Jack Jr. taking over weapons/drug business",
+    "confidence": "high",
+    "quote": "He's one of Bronx's top five crime mobsters out of twenty-seven in all of New York."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Detective Dax's personal connection to victims - dated Cassandra in high school, knows the Dawn family history",
+    "confidence": "high",
+    "quote": "Yeah, I did He opens the bottle and takes a gulp then spits the water onto the pavement."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-erin-clerity-death-before-dishonor/",
+    "corpus_index": 18,
+    "text_len": 9934,
+    "title": "ebook erin clerity death before dishonor",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

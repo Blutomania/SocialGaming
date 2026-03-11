@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Serial murders of young male adolescents (ages 16-18) found barefoot, killed by blows to the head",
+    "confidence": "high",
+    "quote": "each victim is a young, male, adolescent, ages between sixteen and eighteen. He also observes that each victim is found"
+  },
+  "victim": {
+    "value": "Young men aged 16-18 including Harry Lodell (17, Caucasian) - targeting pattern unclear from excerpt",
+    "confidence": "medium",
+    "quote": "Harry Lodell, Caucasian ,age seventeen"
+  },
+  "closed_world": {
+    "value": "Atlantic City, New Jersey area where the serial murders are occurring",
+    "confidence": "medium",
+    "quote": "homicide that took place in Atlantic City, New Jersey. As the killings increase"
+  },
+  "culprit_and_motive": {
+    "value": "Sass, motivated by searching for valuable pennies worth $71,000 total, killing to find them",
+    "confidence": "high",
+    "quote": "If Sass didn't find the pennies he would still keep looking for them and killing for them"
+  },
+  "resolution": {
+    "value": "Police detective Baxter arrests Sass after discovering the penny collection motive through investigation",
+    "confidence": "medium",
+    "quote": "I'm taking him off of the streets when I get back to the city"
+  },
+  "investigator": {
+    "value": "Alistair Basham, criminology professor at Princeton, consulted by Atlantic City Police for criminal profiling expertise",
+    "confidence": "high",
+    "quote": "Basham is contacted by the Atlantic City Police and asked for his expertise in constructing a criminal personality"
+  },
+  "suspect_architecture": {
+    "value": "Single identified suspect (Sass) motivated by valuable coin collection - serial killer targeting young males for rare pennies worth $71,000",
+    "confidence": "medium",
+    "quote": "If Sass didn't find the pennies he would still keep looking for them and killing for them"
+  },
+  "red_herring": {
+    "value": "Location pattern misdirection - first two victims found in alleyways, third in apartment vestibule breaking expected pattern",
+    "confidence": "low",
+    "quote": "No, not this time. It appears the murder was committed in the vestibule of the apartment building"
+  },
+  "clue_fairness": {
+    "value": "Consistent victim profile shared with reader - young males ages 16-18, all found barefoot, all killed by head trauma",
+    "confidence": "medium",
+    "quote": "each victim is a young, male, adolescent, ages between sixteen and eighteen... each victim is found with bare feet"
+  },
+  "social_world": {
+    "value": "Academic-police institutional cooperation - Princeton University criminologist consulted by Atlantic City Police for expertise",
+    "confidence": "medium",
+    "quote": "Basham is contacted by the Atlantic City Police and asked for his expertise in constructing a criminal personality profile"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Numismatic motive - rare coin collection worth $71,000 drives the killings, revealed through investigation of victim possessions",
+    "confidence": "low",
+    "quote": "Three coins $71,000.00 and we don't know how far it will go"
+  },
+  "media_and_audience": {
+    "value": "Press interviews leading to police consultation - media attention on expert brings official involvement in case",
+    "confidence": "medium",
+    "quote": "After being interviewed by press, Basham is contacted by the Atlantic City Police"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-the-case-of-the-barefoot-boys/",
+    "corpus_index": 40,
+    "text_len": 137696,
+    "title": "ebook robert f clifton the case of the barefoot boys",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

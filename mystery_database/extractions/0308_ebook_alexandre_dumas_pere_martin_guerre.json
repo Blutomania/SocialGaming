@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Identity theft and imposture - a man assumes the identity of Martin Guerre through deception",
+    "confidence": "high",
+    "quote": "confessed his imposture at great length"
+  },
+  "victim": {
+    "value": "Martin Guerre (the real one who died in battle) and Bertrande (his wife who was deceived)",
+    "confidence": "high",
+    "quote": "He saw him fall, carried him away, and then...excited his delirium to the utmost to obtain possession of his secrets"
+  },
+  "closed_world": {
+    "value": "The village of Artigues and its surrounding community where everyone knew Martin Guerre",
+    "confidence": "medium",
+    "quote": "the populace, collecting from the whole neighbourhood, had assembled before the parish church of Artigues"
+  },
+  "culprit_and_motive": {
+    "value": "An unnamed impostor who assumed Martin's identity after watching him die in battle, motivated by desire for his life and wife",
+    "confidence": "high",
+    "quote": "having returned from the camp in Picardy, he was addressed as Martin Guerre by several intimate friends"
+  },
+  "resolution": {
+    "value": "The impostor confesses, is executed, and justice is restored through legal proceedings and punishment",
+    "confidence": "high",
+    "quote": "the guilty man had just been executed in front of the house"
+  },
+  "investigator": {
+    "value": "Pierre Guerre (who made accusations) and the judge of Rieux who interrogated the impostor",
+    "confidence": "medium",
+    "quote": "he was interrogated in prison by the judge of Rieux"
+  },
+  "suspect_architecture": {
+    "value": "Two-layer deception: the impostor Arnaud du Tilh as primary perpetrator, with village community (including Pierre Guerre as accuser) forming secondary suspects through their complicity or opposition",
+    "confidence": "high",
+    "quote": "Pierre had made, her own observations which had confirmed it, all her grief and trouble"
+  },
+  "red_herring": {
+    "value": "Supernatural explanation - the suggestion that the devil or magical forces created the resemblance to deceive Bertrande, deliberately planted to misdirect from human imposture",
+    "confidence": "high",
+    "quote": "the Enemy himself could assume human form, and could borrow the semblance of a dead man"
+  },
+  "clue_fairness": {
+    "value": "Physical and behavioral inconsistencies in the impostor are presented to reader through Bertrande's observations before any formal investigation reveals the truth",
+    "confidence": "medium",
+    "quote": "her own observations which had confirmed it"
+  },
+  "social_world": {
+    "value": "Rural French village hierarchy with family patriarch Pierre Guerre holding authority to challenge identities, and community complicity in either accepting or rejecting the imposture",
+    "confidence": "medium",
+    "quote": "She asked if Pierre Guerre had been to see her, and found he had not been near the house"
+  },
+  "alibi": {
+    "value": "The impostor's constructed identity as the returning Martin Guerre, supported by intimate knowledge extracted from the dying real Martin in battle",
+    "confidence": "high",
+    "quote": "excited his delirium to the utmost in order to obtain possession of his secrets"
+  },
+  "reveal_mechanic": {
+    "value": "Confession under interrogation combined with explanation of the deception method - battlefield impersonation and extraction of personal secrets from the dying victim",
+    "confidence": "high",
+    "quote": "confessed his imposture at great length"
+  },
+  "media_and_audience": {
+    "value": "Public spectacle of penance and execution before the parish church with assembled populace, transforming private deception into community moral theater",
+    "confidence": "high",
+    "quote": "the populace, collecting from the whole neighbourhood, had assembled before the parish church"
+  },
+  "investigator_wound": {
+    "value": "Bertrande's impossible position as both victim and complicit party - she cannot expose the truth without destroying herself and her child",
+    "confidence": "high",
+    "quote": "she could not ruin him without ruining herself"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-martin-guerre/",
+    "corpus_index": 308,
+    "text_len": 96484,
+    "title": "ebook alexandre dumas pere martin guerre",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Case solved by police team led by Captain Wallace with forensic support",
+    "confidence": "medium",
+    "quote": "Thanks to all of you, Carol for a great job as lead investigator, Frank, dependable as usual, Tom good job"
+  },
+  "investigator": {
+    "value": "Captain Robert Wallace, police officer and former Director of Training",
+    "confidence": "high",
+    "quote": "Good evening Captain. Your party is in the private dining room, just as you requested"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Law enforcement hierarchy and professional class distinctions between investigators and working-class spouses",
+    "confidence": "medium",
+    "quote": "You use the word, profession. Right a way we have a difference. Qwen will have a profession. You will have a job."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Police work creates public visibility and newspaper coverage that affects personal relationships",
+    "confidence": "low",
+    "quote": "She'll have her photograph and name in newspapers while you're placing bottles of milk on back porches."
+  },
+  "investigator_wound": {
+    "value": "Recent divorce and personal isolation affecting the protagonist's emotional state",
+    "confidence": "medium",
+    "quote": "They were the divorce papers ending the marriage of one, Robert Wallace to one, Mary Wagner."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-rip-tide/",
+    "corpus_index": 16,
+    "text_len": 271991,
+    "title": "ebook robert f clifton rip tide",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

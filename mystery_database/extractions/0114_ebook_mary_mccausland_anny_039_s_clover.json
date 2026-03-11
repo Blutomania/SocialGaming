@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Drugging/poisoning at restaurant",
+    "confidence": "medium",
+    "quote": "The waiter! At the restaurant! He slipped something in our drinks! That's why we passed out!"
+  },
+  "victim": {
+    "value": "Anny and Matt, young couple on a date",
+    "confidence": "medium",
+    "quote": "Mine kinda tastes funny...Mine too! It's really tangy!"
+  },
+  "closed_world": {
+    "value": "Restaurant and immediate vicinity",
+    "confidence": "low",
+    "quote": "We got up from our table and left the once crowded resaurant. The parking lot was deserted"
+  },
+  "culprit_and_motive": {
+    "value": "Restaurant waiter, motive unclear",
+    "confidence": "low",
+    "quote": "Would you like refills on your drinks? It's on the house."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Anny, first-person narrator and victim",
+    "confidence": "high",
+    "quote": "I grabbed my phone from my purse and turned it on. Eleven messages!"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial assumption that drinks tasted off due to restaurant error rather than deliberate drugging",
+    "confidence": "medium",
+    "quote": "Hmmm...Mine kinda tastes funny,' I held up my Pepsi and examined it. It looked fine but it tasted sort of off."
+  },
+  "clue_fairness": {
+    "value": "Reader experiences the suspicious drink taste simultaneously with the characters",
+    "confidence": "medium",
+    "quote": "Mine too! It's really tangy!' Matt took another sip, made a face and put it down."
+  },
+  "social_world": {
+    "value": "Equestrian competition hierarchy with trainers, riders, and service staff power dynamics",
+    "confidence": "medium",
+    "quote": "My trainer, Sarah, stood next to me as we waited for my turn."
+  },
+  "alibi": {
+    "value": "The waiter's legitimate service role provides cover for poisoning drinks",
+    "confidence": "medium",
+    "quote": "Would you like refills on your drinks? It's on the house."
+  },
+  "reveal_mechanic": {
+    "value": "Retrospective realization connecting drink tampering to waiter's opportunity",
+    "confidence": "medium",
+    "quote": "The waiter! At the restaurant! He slipped something in our drinks!"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Protagonist's vulnerability through romantic attachment and trust in social situations",
+    "confidence": "low",
+    "quote": "He smiled and reached over the table and grabbed my hand. It tingled with our touch"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-mary-mccausland-anny-039-s-clover/",
+    "corpus_index": 114,
+    "text_len": 9740,
+    "title": "ebook mary mccausland anny 039 s clover",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

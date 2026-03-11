@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Cherry - woman with bruises and distress, fleeing from a pursuer",
+    "confidence": "medium",
+    "quote": "steadying her and peering at the smudged mascara under eyes still puffy from crying"
+  },
+  "closed_world": {
+    "value": "Host club where men aren't welcome - bounded social space",
+    "confidence": "medium",
+    "quote": "Men weren't welcome at host clubs; if her pursuer had managed to follow her, he wouldn't make it past"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Cherry's pursuer being positioned as potential threat while real danger may lie elsewhere in host club dynamics",
+    "confidence": "medium",
+    "quote": "if her pursuer had managed to follow her, he wouldn't make it past Taiyo"
+  },
+  "clue_fairness": {
+    "value": "Physical evidence clearly presented: bruises on arms, broken nail, limping, smudged makeup from crying",
+    "confidence": "high",
+    "quote": "hastily covered the bruises on her arms with her wrap"
+  },
+  "social_world": {
+    "value": "Host club hierarchy with paid emotional labor - hosts earning more than salarymen, customers paying for validation",
+    "confidence": "high",
+    "quote": "handsome and charming they could make as much in a month as a salaryman earned in a year"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Cherry's emotional vulnerability and dependence on paid companionship to escape her troubles",
+    "confidence": "medium",
+    "quote": "When everything became too hard, too complicated, she could always count on him to treat her like a princess"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-jonelle-patrick-fallen-angel-an-only-in-tokyo-mystery/",
+    "corpus_index": 245,
+    "text_len": 3385,
+    "title": "ebook jonelle patrick fallen angel an only in tokyo mystery",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Decapitation murder of teenage girl in apartment",
+    "confidence": "high",
+    "quote": "Caroline's head rolled off and she fell off the stool. The blood was everywhere."
+  },
+  "victim": {
+    "value": "Caroline, 15-year-old aspiring fashion designer, beloved by neighbors",
+    "confidence": "high",
+    "quote": "Only fifteen and she could already draw like an adult. Everyone loved Caroline"
+  },
+  "closed_world": {
+    "value": "Small run-down apartment building",
+    "confidence": "medium",
+    "quote": "the small apartment that they both hated so much"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial suggestion that poverty and circumstances might explain the tragedy, misdirecting from true cause",
+    "confidence": "medium",
+    "quote": "Maybe she finally got a real job. Maybe they could finally afford clothes, shoes, furniture"
+  },
+  "clue_fairness": {
+    "value": "The severed head reveal is presented to reader simultaneously with the mother's discovery",
+    "confidence": "high",
+    "quote": "Caroline's head rolled off and she fell off the stool. The blood was everywhere."
+  },
+  "social_world": {
+    "value": "Economic desperation - overworked mother, unpaid bills, run-down apartment, financial instability",
+    "confidence": "high",
+    "quote": "She was just tired and overworked... cursing herself for not paying the power company on time"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Physical discovery through touch - the shoulder contact that causes the severed head to roll",
+    "confidence": "high",
+    "quote": "her hand stretch forward and rest on her daughters shoulder. Caroline's head rolled off"
+  },
+  "media_and_audience": {
+    "value": "Story framed as psychiatric testimony from schizophrenic patient at hospital",
+    "confidence": "high",
+    "quote": "Only later Caroline would come to a schizophrenic little girl at her fourth hospital visit"
+  },
+  "investigator_wound": {
+    "value": "Mother's love and hope for her daughter's future destroyed by discovering the murder",
+    "confidence": "high",
+    "quote": "the one person she was sure she still loved was gone"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-scathach-danu-sweet-caroline/",
+    "corpus_index": 205,
+    "text_len": 2095,
+    "title": "ebook scathach danu sweet caroline",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

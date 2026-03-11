@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Blood poisoning murders - Marie Leroux (La Constantin) and Claude Perregaud poisoning victims",
+    "confidence": "high",
+    "quote": "the two deaths by blood-poisoning of Angelique de Querchi and Charlotte Boullenois"
+  },
+  "victim": {
+    "value": "Angelique de Querchi and Charlotte Boullenois - targets of an infamous criminal enterprise",
+    "confidence": "medium",
+    "quote": "the two deaths by blood-poisoning of Angelique de Querchi and Charlotte Boullenois"
+  },
+  "closed_world": {
+    "value": "Paris criminal underworld centered around tavern in rue Saint-Andre-des-Arts and associated locations",
+    "confidence": "medium",
+    "quote": "introduce the reader to a little tavern in Paris, situated in the rue Saint-Andre-des-Arts"
+  },
+  "culprit_and_motive": {
+    "value": "Marie Leroux (widow Constantin) and Claude Perregaud operating an infamous criminal calling for profit",
+    "confidence": "high",
+    "quote": "they had amassed immense fortunes in the exercise of their infamous calling"
+  },
+  "resolution": {
+    "value": "Parliamentary decree condemning criminals to death after exhumation proved guilt and revealed their operation",
+    "confidence": "high",
+    "quote": "They were condemned by parliamentary decree to be hanged by the neck till they were dead"
+  },
+  "investigator": {
+    "value": "Quennebert (the pretended chevalier) who exposed the crimes and provided key evidence",
+    "confidence": "medium",
+    "quote": "He produced the declarations made by Mademoiselle de Guerchi and the commander, and had the body exhumed"
+  },
+  "suspect_architecture": {
+    "value": "Multiple suspects with overlapping romantic/financial motives: Marie Leroux (widow Constantin), Claude Perregaud (accomplice), Chevalier de Moranges, Duc de Vitry, Commander, Treasurer - all connected through Angelique and criminal enterprise",
+    "confidence": "high",
+    "quote": "Three gentlemen... grew pale to the lips, and stood staring at the door with outstretched arms"
+  },
+  "red_herring": {
+    "value": "The duel between Chevalier and Duc de Vitry serves as misdirection from the real criminal enterprise of poisoning operated by La Constantin and Perregaud",
+    "confidence": "medium",
+    "quote": "Both drew at the same moment. Two shrieks followed, one in the room, the other behind the tapestry"
+  },
+  "clue_fairness": {
+    "value": "Book entries and exhumation evidence are presented to reader - sparse book records would reveal scandals in high places, body examination proves poisoning claims",
+    "confidence": "high",
+    "quote": "The entries in the books seized at their house, though sparse, would have led... to scandals"
+  },
+  "social_world": {
+    "value": "Post-Fronde French aristocracy with deep corruption across all classes, involving high-placed individuals whose scandals must be concealed to protect social hierarchy",
+    "confidence": "high",
+    "quote": "the low morals and deep corruption into which all classes of society had sunk at the termination"
+  },
+  "alibi": {
+    "value": "Quennebert's legal defense involves producing declarations from Mademoiselle de Guerchi and the commander to establish his innocence in Charlotte's death",
+    "confidence": "medium",
+    "quote": "He produced the declarations made by Mademoiselle de Guerchi and the commander"
+  },
+  "reveal_mechanic": {
+    "value": "Exhumation of the body provides physical proof that validates the seemingly extraordinary defense claims about blood-poisoning rather than natural death",
+    "confidence": "high",
+    "quote": "the exhumation proved the truth of his assertions... deaths by blood-poisoning"
+  },
+  "media_and_audience": {
+    "value": "Narrator explicitly addresses reader about withholding revolting details, shaping public consumption of crime narrative while protecting social sensibilities",
+    "confidence": "high",
+    "quote": "we must warn the reader... the healthy-minded reader will be grateful for our reticence"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-la-constantin/",
+    "corpus_index": 190,
+    "text_len": 138407,
+    "title": "ebook alexandre dumas pere la constantin",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

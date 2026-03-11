@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Assault on police officer - Detective Sergeant Maura Terrazzo's face was brutally cut up",
+    "confidence": "high",
+    "quote": "An Officer is down. Her face is so badly cut up, that her face looks like a T Subway-Rail Map."
+  },
+  "victim": {
+    "value": "Detective Sergeant Maura Terrazzo - police officer conducting an investigation",
+    "confidence": "medium",
+    "quote": "Detective Sergeant Maura Terrazzo... wanted to give details of what happened and what is going on in this investigation"
+  },
+  "closed_world": {
+    "value": "Boston police department and associated locations - Atlantic Avenue Entrance to South Station area",
+    "confidence": "medium",
+    "quote": "All hell has broken loose at the Atlantic Avenue Entrance to South Station."
+  },
+  "culprit_and_motive": {
+    "value": "Hispanic man and Caucasian male in his 50s with glasses - motive unclear from excerpt",
+    "confidence": "medium",
+    "quote": "composite showed an Hispanic Man and a Male Caucasian in his 50s. The one in his 50s wore glasses."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Southie O'Brien and Captain Jim Larkin - Boston police officers investigating the assault",
+    "confidence": "high",
+    "quote": "Southie got a call from Captain Jim Larkin... Meet me there."
+  },
+  "suspect_architecture": {
+    "value": "Two-perpetrator attack on Detective Terrazzo: Hispanic male and Caucasian male in 50s with glasses, differentiated by physical description and roles in assault",
+    "confidence": "medium",
+    "quote": "the composite showed an Hispanic Man and a Male Caucasian in his 50s. The one in his 50s wore glasses."
+  },
+  "red_herring": {
+    "value": "Soriano's false sexual deviant allegations against Larkin, O'Brien, and Lafferty to remove witnesses and investigators",
+    "confidence": "medium",
+    "quote": "Soriano released findings, making all 3 sound like Sexual Deviants"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Boston police department hierarchy with corrupt political interference, civil servants vs political types, institutional protection of wrongdoing",
+    "confidence": "high",
+    "quote": "Political Types are self promoters. They think that quantitative is the way to show that something has been done."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Police sketch artist composite drawing revealing two distinct perpetrators based on victim's testimony",
+    "confidence": "medium",
+    "quote": "Boston PD Sketch Artists were brought into her room to get a drawing of the assailant"
+  },
+  "media_and_audience": {
+    "value": "City becomes circus-like entertainment with rappers on Boston Common while crime rises and police effectiveness diminishes",
+    "confidence": "medium",
+    "quote": "Circus Et Panem Maximus style entertainment, in the form of Rappers on the Boston Common, the city was indeed a circus"
+  },
+  "investigator_wound": {
+    "value": "Southie's trauma from witnessing repeated violence and bloodshed around him, feeling drained by constant exposure to brutality",
+    "confidence": "medium",
+    "quote": "It's as if all he's seen is everybody's blood spilled around him. He went home, drained from all of this."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-ross-mac-duncan-the-beano-murders/",
+    "corpus_index": 25,
+    "text_len": 115159,
+    "title": "ebook ross mac duncan the beano murders",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

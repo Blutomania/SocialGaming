@@ -1,0 +1,113 @@
+{
+  "mystery_id": "C",
+  "title": "The Alchemical Forgery of the Abbasid Court",
+  "protocols": [
+    "P1",
+    "P2"
+  ],
+  "source_text": "Title: The Alchemical Forgery of the Abbasid Court\nCrime Type: forgery\nSetting: Baghdad, Abbasid Caliphate (medieval_islamic_golden_age)\nEnvironment: royal_court\nGenres: historical, political_intrigue, intellectual_mystery\n\nSummary:\nA sacred alchemical manuscript presented to the Caliph is exposed as a forgery \u2014 but the original has disappeared. The forger had access to the royal library and deep knowledge of medieval Arabic script. The crime implicates scholars, viziers, and rival court factions.\n\nStructural Elements Present:\n  - crime_type\n  - setting_element\n  - motive\n  - suspect_archetype\n  - red_herring\n  - reveal_mechanic\n  - social_dynamic\n  - evidence_type\n",
+  "extracted": {
+    "crime": {
+      "protocol": "P1",
+      "part": "C1 \u2014 The Crime",
+      "value": "Forgery of a sacred alchemical manuscript presented to the Caliph, with the original manuscript subsequently disappearing.",
+      "confidence": "high",
+      "quote": "A sacred alchemical manuscript presented to the Caliph is exposed as a forgery \u2014 but the original has disappeared."
+    },
+    "victim": {
+      "protocol": "P1",
+      "part": "C2 \u2014 The Victim",
+      "value": "The Caliph, as the recipient of the forged manuscript, is the primary victim of the deception; the broader victim is the integrity of the royal court and its scholarly institutions.",
+      "confidence": "medium",
+      "quote": "A sacred alchemical manuscript presented to the Caliph is exposed as a forgery"
+    },
+    "closed_world": {
+      "protocol": "P1",
+      "part": "C3 \u2014 The Closed World",
+      "value": "The Abbasid royal court in Baghdad, including its royal library \u2014 a restricted, hierarchical environment accessible only to scholars, viziers, and court insiders.",
+      "confidence": "high",
+      "quote": "The forger had access to the royal library and deep knowledge of medieval Arabic script."
+    },
+    "culprit_and_motive": {
+      "protocol": "P1",
+      "part": "C4 \u2014 The Culprit and Motive",
+      "value": "The culprit is implied to be among the scholars, viziers, or rival court factions, motivated by political intrigue, factional rivalry, or personal ambition within the court hierarchy.",
+      "confidence": "medium",
+      "quote": "The crime implicates scholars, viziers, and rival court factions."
+    },
+    "resolution": {
+      "protocol": "P1",
+      "part": "C5 \u2014 The Resolution",
+      "value": "Not explicitly described in the excerpt; resolution likely involves exposing the forger and recovering or accounting for the missing original manuscript.",
+      "confidence": "low",
+      "quote": null
+    },
+    "investigator": {
+      "protocol": "P1",
+      "part": "C6 \u2014 The Investigator",
+      "value": "Not explicitly named or described; implied to be a figure with scholarly or court access capable of navigating the intellectual and political dynamics of the Abbasid court.",
+      "confidence": "low",
+      "quote": null
+    },
+    "suspect_architecture": {
+      "protocol": "P2",
+      "part": "M1 \u2014 Suspect Architecture",
+      "value": "Suspects drawn from three overlapping groups: scholars (with manuscript knowledge and library access), viziers (with political motive and court power), and rival court factions (with ideological or strategic stakes).",
+      "confidence": "high",
+      "quote": "The crime implicates scholars, viziers, and rival court factions."
+    },
+    "red_herring": {
+      "protocol": "P2",
+      "part": "M2 \u2014 The Red Herring",
+      "value": "A red herring element is listed as structurally present, likely misdirecting suspicion toward one faction or scholar while the true forger operates from another angle.",
+      "confidence": "medium",
+      "quote": "Structural Elements Present: ... red_herring"
+    },
+    "clue_fairness": {
+      "protocol": "P2",
+      "part": "M3 \u2014 Clue Fairness",
+      "value": "Evidence type is listed as a structural element, suggesting clues are embedded in physical or documentary evidence (e.g., script analysis, ink, parchment aging) accessible to the reader.",
+      "confidence": "medium",
+      "quote": "Structural Elements Present: ... evidence_type"
+    },
+    "social_world": {
+      "protocol": "P2",
+      "part": "M4 \u2014 The Social World",
+      "value": "The medieval Islamic Golden Age Abbasid court, defined by intellectual prestige, factional power struggles, scholarly hierarchy, and the political weight of sacred knowledge.",
+      "confidence": "high",
+      "quote": "Baghdad, Abbasid Caliphate (medieval_islamic_golden_age) ... royal_court ... historical, political_intrigue, intellectual_mystery"
+    },
+    "alibi": {
+      "protocol": "P2",
+      "part": "M5 \u2014 The Alibi",
+      "value": "Not described in the excerpt; alibi details for specific suspects are absent.",
+      "confidence": "low",
+      "quote": null
+    },
+    "reveal_mechanic": {
+      "protocol": "P2",
+      "part": "M6 \u2014 The Reveal Mechanic",
+      "value": "A reveal mechanic is confirmed as structurally present; likely involves forensic or scholarly analysis of the manuscript's script, materials, or content to expose the forgery and identify the forger.",
+      "confidence": "medium",
+      "quote": "Structural Elements Present: ... reveal_mechanic ... deep knowledge of medieval Arabic script"
+    },
+    "media_and_audience": {
+      "protocol": "P2",
+      "part": "M7 \u2014 Media and Audience",
+      "value": "Historical mystery fiction targeting readers interested in the Islamic Golden Age, political intrigue, and intellectual/scholarly puzzles; genres listed as historical, political_intrigue, intellectual_mystery.",
+      "confidence": "high",
+      "quote": "Genres: historical, political_intrigue, intellectual_mystery"
+    },
+    "investigator_wound": {
+      "protocol": "P2",
+      "part": "M8 \u2014 The Investigator's Wound",
+      "value": "Not described in the excerpt; no personal flaw, trauma, or internal conflict for the investigator is mentioned.",
+      "confidence": "low",
+      "quote": null
+    }
+  },
+  "usage": {
+    "input_tokens": 1384,
+    "output_tokens": 1436
+  }
+}

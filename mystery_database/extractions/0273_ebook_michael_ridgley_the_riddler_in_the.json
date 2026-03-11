@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Brother John Hopewell hid the phone to help his sister make a friend who loves riddles",
+    "confidence": "high",
+    "quote": "I left the clues for in hope that you ask him for help and you would find a new friend"
+  },
+  "resolution": {
+    "value": "Riddle solver decodes underlined words in clues to locate the hidden phone",
+    "confidence": "medium",
+    "quote": "the words that are underlined un scramble them and they will say go my room red clock"
+  },
+  "investigator": {
+    "value": "Marvin Washington 'the Riddler', a riddle enthusiast who helps solve the puzzle",
+    "confidence": "high",
+    "quote": "Hi I'm Marvin Washington and I love riddles and that is how I got my nick name the riddler"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": "Reader directly addressed and given opportunity to solve puzzle alongside characters",
+    "confidence": "high",
+    "quote": "dear reader look back at the clues and see if you can see what I saw I will give you time"
+  },
+  "social_world": {
+    "value": "Neighborly community where newcomers seek help from local reputation-based specialists",
+    "confidence": "medium",
+    "quote": "I heard about a guy who loved riddles and I. know you love riddles so I left the clues"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Anagram solution using underlined words from sequential clues to spell location",
+    "confidence": "high",
+    "quote": "the words that are underlined un scramble them and they will say go my room red clock"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-michael-ridgley-the-riddler-in-the-lost-phone/",
+    "corpus_index": 273,
+    "text_len": 3837,
+    "title": "ebook michael ridgley the riddler in the lost phone",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

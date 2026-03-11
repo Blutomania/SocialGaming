@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Attempted kidnapping of a child",
+    "confidence": "high",
+    "quote": "they found Danny, Max's ex-boyfriend trying to kidnap Hayden"
+  },
+  "victim": {
+    "value": "Hayden, a young child who is Max's little cousin",
+    "confidence": "medium",
+    "quote": "Danny grabbed Hayden and jumped out the window \"Hayden!\" Max screamed"
+  },
+  "closed_world": {
+    "value": "Halloween night in a residential neighborhood during trick-or-treating",
+    "confidence": "medium",
+    "quote": "group of friends on Halloween who were trick-or-treating"
+  },
+  "culprit_and_motive": {
+    "value": "Danny, Max's ex-boyfriend; motive unclear but appears to target Max through her cousin",
+    "confidence": "medium",
+    "quote": "they found Danny, Max's ex-boyfriend trying to kidnap Hayden"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Max and her friends, with police involvement mentioned",
+    "confidence": "medium",
+    "quote": "the police are here and they need to ask you some questions"
+  },
+  "suspect_architecture": {
+    "value": "Single identified suspect: Danny (ex-boyfriend) with clear motive (past relationship with Max) and opportunity (access to house)",
+    "confidence": "medium",
+    "quote": "they found Danny, Max's ex-boyfriend trying to kidnap Hayden"
+  },
+  "red_herring": {
+    "value": "Initial focus on mysterious alley feeling and unknown house intruder before revealing known ex-boyfriend as perpetrator",
+    "confidence": "low",
+    "quote": "Max gets the weirdest feeling so she stops"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Teenage friend group hierarchy with protective dynamics around younger children and emerging romantic relationships",
+    "confidence": "medium",
+    "quote": "You like Alex!' Jenna said smiling"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Direct discovery through confrontation - characters walk in and catch perpetrator in the act of kidnapping",
+    "confidence": "high",
+    "quote": "when they opened the door they found Danny, Max's ex-boyfriend trying to kidnap Hayden"
+  },
+  "media_and_audience": {
+    "value": "Police involvement represents institutional response, but no broader media or public perception explored",
+    "confidence": "low",
+    "quote": "the police are here and they need to ask you some questions"
+  },
+  "investigator_wound": {
+    "value": "Max's vulnerability through past relationship with Danny (the perpetrator) creating personal stakes in the crime",
+    "confidence": "medium",
+    "quote": "Danny, Max's ex-boyfriend"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-tara-krueger-halloween-story-pt-1/",
+    "corpus_index": 317,
+    "text_len": 7626,
+    "title": "ebook tara krueger halloween story pt 1",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

@@ -1,0 +1,497 @@
+[
+  {
+    "source_id": "A",
+    "part_index": 1,
+    "part_type": "crime_type",
+    "content": "sealed-environment homicide inside a Martian colony dome",
+    "source_title": "Murder on Mars",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "A",
+    "part_index": 2,
+    "part_type": "setting_element",
+    "content": "isolated colony with no escape for 72 hours \u2014 every resident is suspect",
+    "source_title": "Murder on Mars",
+    "setting_tags": [
+      "near_future",
+      "far_future",
+      "space"
+    ]
+  },
+  {
+    "source_id": "A",
+    "part_index": 3,
+    "part_type": "motive",
+    "content": "suppressed scientific discovery; whistleblower silenced before reaching Earth",
+    "source_title": "Murder on Mars",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "A",
+    "part_index": 4,
+    "part_type": "suspect_archetype",
+    "content": "corporate saboteur disguised as trusted colleague",
+    "source_title": "Murder on Mars",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "A",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "life-support malfunction staged to look like an accident",
+    "source_title": "Murder on Mars",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "A",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "technical expertise turned against victim via manipulated environmental systems",
+    "source_title": "Murder on Mars",
+    "setting_tags": [
+      "near_future",
+      "far_future"
+    ]
+  },
+  {
+    "source_id": "A",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "group paranoia under extreme confinement \u2014 trust collapses hierarchically",
+    "source_title": "Murder on Mars",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "A",
+    "part_index": 8,
+    "part_type": "evidence_type",
+    "content": "environmental data log used as alibi-breaker; system timestamps contradict testimony",
+    "source_title": "Murder on Mars",
+    "setting_tags": [
+      "near_future",
+      "far_future"
+    ]
+  },
+  {
+    "source_id": "B",
+    "part_index": 1,
+    "part_type": "crime_type",
+    "content": "high-value artifact theft during a communications blackout",
+    "source_title": "Art Theft in Amazonia",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "B",
+    "part_index": 2,
+    "part_type": "setting_element",
+    "content": "geographic isolation in the Amazon; tropical storm cuts off all escape routes",
+    "source_title": "Art Theft in Amazonia",
+    "setting_tags": [
+      "contemporary",
+      "tropical"
+    ]
+  },
+  {
+    "source_id": "B",
+    "part_index": 3,
+    "part_type": "motive",
+    "content": "black-market sale or ideological repatriation of stolen cultural heritage",
+    "source_title": "Art Theft in Amazonia",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "B",
+    "part_index": 4,
+    "part_type": "suspect_archetype",
+    "content": "inside job by a trusted researcher who arranged their own access",
+    "source_title": "Art Theft in Amazonia",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "B",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "evidence planted to implicate the local guide \u2014 racial and class prejudice exploited",
+    "source_title": "Art Theft in Amazonia",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "B",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "artifact hidden in plain sight, disguised as a mundane object at the station",
+    "source_title": "Art Theft in Amazonia",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "B",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "clash between academic integrity and commercial exploitation of indigenous culture",
+    "source_title": "Art Theft in Amazonia",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "B",
+    "part_index": 8,
+    "part_type": "evidence_type",
+    "content": "photographic record with timestamp discrepancy exposes false alibi",
+    "source_title": "Art Theft in Amazonia",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "C",
+    "part_index": 1,
+    "part_type": "crime_type",
+    "content": "document forgery presented to the highest authority as authentic sacred text",
+    "source_title": "The Alchemical Forgery of the Abbasid Court",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "C",
+    "part_index": 2,
+    "part_type": "setting_element",
+    "content": "layered court hierarchy with restricted access to the royal library",
+    "source_title": "The Alchemical Forgery of the Abbasid Court",
+    "setting_tags": [
+      "medieval",
+      "historical",
+      "royal_court"
+    ]
+  },
+  {
+    "source_id": "C",
+    "part_index": 3,
+    "part_type": "motive",
+    "content": "political destabilization \u2014 discrediting a rival faction at the Caliph's court",
+    "source_title": "The Alchemical Forgery of the Abbasid Court",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "C",
+    "part_index": 4,
+    "part_type": "suspect_archetype",
+    "content": "brilliant scholar with a secret allegiance to a rival power",
+    "source_title": "The Alchemical Forgery of the Abbasid Court",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "C",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "suspicion cast on a foreign envoy to create a diplomatic incident",
+    "source_title": "The Alchemical Forgery of the Abbasid Court",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "C",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "anachronistic detail in the forged manuscript \u2014 language not yet coined at claimed date",
+    "source_title": "The Alchemical Forgery of the Abbasid Court",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "C",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "patronage network where loyalty is currency; debts owed determine who can be pressured",
+    "source_title": "The Alchemical Forgery of the Abbasid Court",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "C",
+    "part_index": 8,
+    "part_type": "evidence_type",
+    "content": "ink composition and material analysis of parchment reveals anachronism",
+    "source_title": "The Alchemical Forgery of the Abbasid Court",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "D",
+    "part_index": 1,
+    "part_type": "crime_type",
+    "content": "staged disappearance and faked death aboard a Victorian deep-sea vessel",
+    "source_title": "The Ghost-Signal of the Victorian Deep",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "D",
+    "part_index": 2,
+    "part_type": "setting_element",
+    "content": "maritime isolation \u2014 mid-ocean, Victorian technology, no communication once submerged",
+    "source_title": "The Ghost-Signal of the Victorian Deep",
+    "setting_tags": [
+      "victorian",
+      "maritime"
+    ]
+  },
+  {
+    "source_id": "D",
+    "part_index": 3,
+    "part_type": "motive",
+    "content": "blackmail silenced before the ship reached port and the victim could speak",
+    "source_title": "The Ghost-Signal of the Victorian Deep",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "D",
+    "part_index": 4,
+    "part_type": "suspect_archetype",
+    "content": "ship's officer with a secret past who had the most to lose from exposure",
+    "source_title": "The Ghost-Signal of the Victorian Deep",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "D",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "supernatural folklore of the deep exploited to explain the disappearance as 'the sea'",
+    "source_title": "The Ghost-Signal of the Victorian Deep",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "D",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "incriminating message encoded inside the victim's final Morse transmission",
+    "source_title": "The Ghost-Signal of the Victorian Deep",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "D",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "rigid naval hierarchy concealing complicity \u2014 rank protects the powerful",
+    "source_title": "The Ghost-Signal of the Victorian Deep",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "D",
+    "part_index": 8,
+    "part_type": "evidence_type",
+    "content": "Morse code log with deliberate errors forming a second message when decoded",
+    "source_title": "The Ghost-Signal of the Victorian Deep",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "E",
+    "part_index": 1,
+    "part_type": "crime_type",
+    "content": "industrial sabotage of a revolutionary invention at its public debut",
+    "source_title": "A Steampunk Sabotage",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "E",
+    "part_index": 2,
+    "part_type": "setting_element",
+    "content": "grand public exposition \u2014 high-stakes demonstration before investors and press",
+    "source_title": "A Steampunk Sabotage",
+    "setting_tags": [
+      "steampunk",
+      "victorian",
+      "exposition"
+    ]
+  },
+  {
+    "source_id": "E",
+    "part_index": 3,
+    "part_type": "motive",
+    "content": "patent theft and competitor elimination before the invention could be witnessed",
+    "source_title": "A Steampunk Sabotage",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "E",
+    "part_index": 4,
+    "part_type": "suspect_archetype",
+    "content": "rival inventor posing as an admirer and generous sponsor",
+    "source_title": "A Steampunk Sabotage",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "E",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "anarchist pamphlets found at the scene \u2014 political misdirection",
+    "source_title": "A Steampunk Sabotage",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "E",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "sabotage required pre-event access with a specific key only officials possessed",
+    "source_title": "A Steampunk Sabotage",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "E",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "investor pressure and financial desperation distorts everyone's loyalty",
+    "source_title": "A Steampunk Sabotage",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "E",
+    "part_index": 8,
+    "part_type": "evidence_type",
+    "content": "engineering diagram with unauthorized annotations in a different hand",
+    "source_title": "A Steampunk Sabotage",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "F",
+    "part_index": 1,
+    "part_type": "crime_type",
+    "content": "biometric identity theft \u2014 a genetic signature stolen and used to authorize transactions",
+    "source_title": "The Genetic Identity Heist of New Tokyo",
+    "setting_tags": [
+      "far_future",
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "F",
+    "part_index": 2,
+    "part_type": "setting_element",
+    "content": "surveillance state megacity where genetic identity is the only currency",
+    "source_title": "The Genetic Identity Heist of New Tokyo",
+    "setting_tags": [
+      "far_future",
+      "cyberpunk"
+    ]
+  },
+  {
+    "source_id": "F",
+    "part_index": 3,
+    "part_type": "motive",
+    "content": "inheritance seizure and corporate power grab enabled by the victim's death",
+    "source_title": "The Genetic Identity Heist of New Tokyo",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "F",
+    "part_index": 4,
+    "part_type": "suspect_archetype",
+    "content": "trusted biotech aide with deep biometric access and intimate knowledge of the victim",
+    "source_title": "The Genetic Identity Heist of New Tokyo",
+    "setting_tags": [
+      "far_future",
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "F",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "rival corporation framed via planted genetic data in the transaction logs",
+    "source_title": "The Genetic Identity Heist of New Tokyo",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "F",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "genetic anomaly in the clone's signature \u2014 a microscopic imperfection in the copy",
+    "source_title": "The Genetic Identity Heist of New Tokyo",
+    "setting_tags": [
+      "far_future",
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "F",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "loyalty networks within the corporate hierarchy; who owes their position to whom",
+    "source_title": "The Genetic Identity Heist of New Tokyo",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "F",
+    "part_index": 8,
+    "part_type": "evidence_type",
+    "content": "biometric transaction log with microsecond gaps indicating post-mortem authorization",
+    "source_title": "The Genetic Identity Heist of New Tokyo",
+    "setting_tags": [
+      "far_future",
+      "near_future"
+    ]
+  }
+]

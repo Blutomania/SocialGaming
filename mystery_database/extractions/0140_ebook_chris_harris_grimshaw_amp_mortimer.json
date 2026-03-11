@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder by hanging with additional mutilation - victim found hanged with slit wrists and 'KILLER' carved in forehead",
+    "confidence": "high",
+    "quote": "the man hanging from the ceiling in the centre of the room...six spiky letters carved in his forehead: KILLER"
+  },
+  "victim": {
+    "value": "Middle-aged man who was identified as one of Stangerson's suspects, possibly a killer himself targeted for vigilante justice",
+    "confidence": "medium",
+    "quote": "he was Stangerson's second suspect, the one in the photograph he showed me"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Vigilante killer targeting suspected criminals, motive appears to be dispensing justice to those who escaped it",
+    "confidence": "medium",
+    "quote": "You think we've got a vigilante running around?"
+  },
+  "resolution": {
+    "value": "Case handed over to Scotland Yard as investigators declare themselves out of their depth",
+    "confidence": "medium",
+    "quote": "Scotland Yard should take it further now...this case is closed"
+  },
+  "investigator": {
+    "value": "Grimshaw and Wesley Mortimer, amateur detective duo who examine crime scenes and evidence",
+    "confidence": "high",
+    "quote": "Don't touch it!...Evidence could be lost"
+  },
+  "suspect_architecture": {
+    "value": "Limited suspect pool: Stangerson's second suspect (murdered vigilante victim), implied vigilante killer, missing Henry Herman",
+    "confidence": "medium",
+    "quote": "this man...he was Stangerson's second suspect, the one in the photograph he showed me"
+  },
+  "red_herring": {
+    "value": "Vigilante justice misdirection - 'KILLER' carved in forehead suggests victim deserved death, obscuring true motive",
+    "confidence": "medium",
+    "quote": "maybe he deserved this. 'You think we've got a vigilante running around?'"
+  },
+  "clue_fairness": {
+    "value": "Physical evidence described to reader: skin in kettle, magnifying glass analysis, crime scene details, carved forehead",
+    "confidence": "medium",
+    "quote": "Grimshaw observed the small bubbling square of boiled skin he'd poured onto the plate"
+  },
+  "social_world": {
+    "value": "Detective partnership with Scotland Yard institutional hierarchy - cases handed off when 'out of depth'",
+    "confidence": "medium",
+    "quote": "Scotland Yard should take it further now...for us, Wesley, this case is closed"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Forensic analysis of boiled skin tissue and magnifying glass examination to identify victim Henry Herman",
+    "confidence": "medium",
+    "quote": "Grimshaw observed the small bubbling square of boiled skin he'd poured onto the plate"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Grimshaw's recognition of being fictional and out of depth - meta-awareness of limitations as detective characters",
+    "confidence": "medium",
+    "quote": "Are we fiction? I forget...it's not like it's real, anyway"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-chris-harris-grimshaw-amp-mortimer-the-case-book/",
+    "corpus_index": 140,
+    "text_len": 25697,
+    "title": "ebook chris harris grimshaw amp mortimer the case book",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

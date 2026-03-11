@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "The disappearance/suspected murder of Edwin Drood",
+    "confidence": "medium",
+    "quote": "The Mystery of Edwin Drood"
+  },
+  "victim": {
+    "value": "Edwin Drood - young man whose disappearance forms the central mystery",
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "The cathedral town of Cloisterham with its close-knit community centered around the Cathedral Close",
+    "confidence": "medium",
+    "quote": "the quiet Close with specks of light... all Cloisterham would have stood aghast"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Third-person omniscient narrator following multiple characters, particularly focusing on the suspicious John Jasper",
+    "confidence": "medium",
+    "quote": "Why does he move so softly to-night? No outward reason is apparent for it."
+  },
+  "suspect_architecture": {
+    "value": "Early establishment of Jasper as central suspicious figure with secretive nocturnal behavior, supported by secondary figures including Durdles and the opium den inhabitants",
+    "confidence": "medium",
+    "quote": "Why does he move so softly to-night? No outward reason is apparent for it. Can there be any sympathetic reason crouching darkly within him?"
+  },
+  "red_herring": {
+    "value": "The opium-induced Oriental fantasy sequence creates deliberate confusion about reality versus hallucination, misdirecting from the actual mystery mechanics",
+    "confidence": "medium",
+    "quote": "An ancient English Cathedral Tower? How can the ancient English Cathedral tower be here!"
+  },
+  "clue_fairness": {
+    "value": "Jasper's deliberate soft movement and secretive behavior with bottle and change of clothes presented directly to reader without interpretation",
+    "confidence": "medium",
+    "quote": "softly changes his coat for a pea-jacket, with a goodly wicker-cased bottle in its largest pocket"
+  },
+  "social_world": {
+    "value": "Cathedral hierarchy with Dean, choir master Jasper, and church officials like Tope establishing institutional power structures in Cloisterham",
+    "confidence": "high",
+    "quote": "the Dean withdraws to his dinner, Mr. Tope to his tea, and Mr. Jasper to his piano"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-charles-dickens-the-mystery-of-edwin-drood/",
+    "corpus_index": 139,
+    "text_len": 536757,
+    "title": "ebook charles dickens the mystery of edwin drood",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Mysterious disappearance of Neville St. Clair from opium den; question: what happened to him and where is he now?",
+    "confidence": "high",
+    "quote": "what Neville St. Clair was doing in the opium den, what happened to him when there, where is he now"
+  },
+  "victim": {
+    "value": "Neville St. Clair, apparently respectable man with secret connection to opium den, making him vulnerable",
+    "confidence": "medium",
+    "quote": "what Neville St. Clair was doing in the opium den"
+  },
+  "closed_world": {
+    "value": "The opium den and immediate vicinity where St. Clair was last seen, with known occupants including Hugh Boone",
+    "confidence": "medium",
+    "quote": "what Hugh Boone had to do with his disappearance"
+  },
+  "culprit_and_motive": {
+    "value": "Sir George Burnwell and Mary (niece), motivated by greed for gold coronet and romantic manipulation",
+    "confidence": "high",
+    "quote": "His wicked lust for gold kindled at the news, and he bent her to his will"
+  },
+  "resolution": {
+    "value": "Holmes deduces the truth through logical analysis and confronts the culprits with evidence of their scheme",
+    "confidence": "medium",
+    "quote": "When I had cleared it all up I had an interview with him, and finding that he would not tell me the story"
+  },
+  "investigator": {
+    "value": "Sherlock Holmes as official consulting detective, with Dr. Watson as narrator and companion",
+    "confidence": "high",
+    "quote": "While Sherlock Holmes had been detailing this singular series of events"
+  },
+  "suspect_architecture": {
+    "value": "Multiple suspects across cases: Irene Adler (blackmailer), Hugh Boone/Neville St. Clair (identity mystery), Sir George Burnwell and Mary (conspiracy theft)",
+    "confidence": "medium",
+    "quote": "Sir George Burnwell and your niece Mary. They have now fled together."
+  },
+  "red_herring": {
+    "value": "Hugh Boone as separate beggar when he is actually the missing Neville St. Clair in disguise",
+    "confidence": "high",
+    "quote": "He had for years been known as a professional beggar, but his life appeared to have been a very quiet"
+  },
+  "clue_fairness": {
+    "value": "Holmes shares his deductive process and evidence - footprints in snow, window access, character revelations",
+    "confidence": "medium",
+    "quote": "His footmarks had pressed right through the snow, so long had he stood there."
+  },
+  "social_world": {
+    "value": "Victorian class structures - banking family, professional beggars, dubious characters, marriage expectations and family loyalty",
+    "confidence": "high",
+    "quote": "He is one of the most dangerous men in England--a ruined gambler, an absolutely desperate villain"
+  },
+  "alibi": {
+    "value": "Mary's apparent innocence contradicted by secret meetings with Burnwell through the stable lane window",
+    "confidence": "high",
+    "quote": "slipped down and talked to her lover through the window which leads into the stable lane"
+  },
+  "reveal_mechanic": {
+    "value": "Holmes reconstructs the crime through physical evidence and psychological deduction, then confronts the suspects",
+    "confidence": "medium",
+    "quote": "I will show you the steps by which I reached it"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Holmes's emotional detachment challenged by Irene Adler, the one woman who affected his rational mind",
+    "confidence": "high",
+    "quote": "And yet there was but one woman to him, and that woman was the late Irene Adler"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-adventures-of-sherlock-holmes/",
+    "corpus_index": 0,
+    "text_len": 562489,
+    "title": "ebook sir arthur conan doyle the adventures of sherlock holmes",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

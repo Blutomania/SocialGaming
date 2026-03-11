@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Multiple murders by Jax using a knife, with accomplice luring victims to abandoned cabin",
+    "confidence": "high",
+    "quote": "He saw my knife, so\u2026 he had to die."
+  },
+  "victim": {
+    "value": "Multiple victims including bullies who targeted the narrator and a boy who discovered the mystery girl's knife",
+    "confidence": "high",
+    "quote": "He saw my knife, so\u2026 he had to die."
+  },
+  "closed_world": {
+    "value": "Torn Isaac High School and the abandoned cabin by the river where murders take place",
+    "confidence": "medium",
+    "quote": "We went to the same elementary and high school. Torn Isaac High School."
+  },
+  "culprit_and_motive": {
+    "value": "Jax commits murders to protect himself and the narrator from bullies and witnesses; motivated by his warped philosophy about murder",
+    "confidence": "high",
+    "quote": "What is murder? Can it really be defined? Murder in self-defense isn't considered murder, but accidental murder is?"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "The unnamed narrator who serves as Jax's accomplice and observes the crimes",
+    "confidence": "high",
+    "quote": "Jax and I. Murderer & Accomplice."
+  },
+  "suspect_architecture": {
+    "value": "Multiple killers across interconnected storylines: Jax (primary murderer), unnamed narrator (accomplice), mystery girl with knife, Bailey's mother coordinating military operatives",
+    "confidence": "high",
+    "quote": "Jax and I. Murderer & Accomplice."
+  },
+  "red_herring": {
+    "value": "Bailey appears to be set up as bait or false target while her mother orchestrates the real operation using military personnel",
+    "confidence": "medium",
+    "quote": "You're free today, Bailey. Enjoy your time."
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "School hierarchy enabling bullying and murder, military/paramilitary organization with family connections, government death penalty system questioned",
+    "confidence": "high",
+    "quote": "He believed that the government murdered their rivals and criminals through the death sentence"
+  },
+  "alibi": {
+    "value": "Jax claims no connection to missing bullies while narrator finds the bodies, creating false deniability",
+    "confidence": "medium",
+    "quote": "Jax would claim that he had no connection to them, but I found the bodies."
+  },
+  "reveal_mechanic": {
+    "value": "Red light on explosive device reveals the trap, physical evidence of C-4 demonstrates the murder method",
+    "confidence": "high",
+    "quote": "Red light. She muttered."
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Narrator trapped as unwilling accomplice, years of regret and sorrow from being controlled and forced to lure victims",
+    "confidence": "high",
+    "quote": "Years and years of blindly following his every order racked up regrets and sorrows."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-nick-venom-accomplice/",
+    "corpus_index": 298,
+    "text_len": 63266,
+    "title": "ebook nick venom accomplice",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder by poison (neriin) - two victims died after eating contaminated food",
+    "confidence": "high",
+    "quote": "trying to find out what the two victims ate that killed them"
+  },
+  "victim": {
+    "value": "Miss Kerr and another victim who consumed poisoned food, Kerr had eaten a salad containing tomatoes, lettuce and onion",
+    "confidence": "medium",
+    "quote": "It appears Miss Kerr ate a salad. I'm finding tomato's, lettuce and some onion"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Case appears to be solved by Wallace as he indicates confidence in solving the murder",
+    "confidence": "low",
+    "quote": "after I solve this murder and I will solve this murder"
+  },
+  "investigator": {
+    "value": "Robert Wallace, commanding officer of the Major Crime Squad investigating the homicide case",
+    "confidence": "high",
+    "quote": "commanding officer of the Major Crime Squad"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Missing evidence from victim's vomit could have revealed poison source but was not preserved by first responders",
+    "confidence": "medium",
+    "quote": "As a hot shot criminal investigator you didn't save what she splashed on the car floor mats"
+  },
+  "clue_fairness": {
+    "value": "Poison identification (neriin) and autopsy findings shared equally with reader and investigator",
+    "confidence": "medium",
+    "quote": "It appears Miss Kerr ate a salad. I'm finding tomato's, lettuce and some onion"
+  },
+  "social_world": {
+    "value": "Police jurisdictional hierarchy with state vs local authority creating institutional tension",
+    "confidence": "high",
+    "quote": "you really don't expect me to kiss some troopers ass to get permission to investigate a case of homicide"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Forensic autopsy analysis revealing specific food contents and poison traces",
+    "confidence": "medium",
+    "quote": "Had you done that, I might be able to tell you where the neriin came from"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Personal relationship loss coinciding with case resolution - romantic rejection affecting investigator's emotional state",
+    "confidence": "high",
+    "quote": "Robert Wallace opened his desk drawer and placed the black velvet covered ring box containing a one caret diamond"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-gifts-from-the-kasbah/",
+    "corpus_index": 17,
+    "text_len": 264803,
+    "title": "ebook robert f clifton gifts from the kasbah",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

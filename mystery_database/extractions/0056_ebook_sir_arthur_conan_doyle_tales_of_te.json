@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Theft and replacement of precious stones from the Jew's Breastplate",
+    "confidence": "high",
+    "quote": "That night I made my way into the museum, and I replaced four of the stones."
+  },
+  "victim": {
+    "value": "The museum and its collection of the urim and thummim breastplate",
+    "confidence": "medium",
+    "quote": "the greatest danger to which, since the destruction of the Temple, the urim and thummim has been exposed"
+  },
+  "closed_world": {
+    "value": "The museum with night security rounds by Simpson",
+    "confidence": "medium",
+    "quote": "When Simpson came round I always heard his footsteps, and concealed myself in the mummy-case."
+  },
+  "culprit_and_motive": {
+    "value": "Professor Andreas, motivated by love for his daughter and desire to save a man from criminal disgrace",
+    "confidence": "high",
+    "quote": "My own happiness, my daughter's future, the hopes of this man's regeneration, all depend upon your decision."
+  },
+  "resolution": {
+    "value": "Confession and agreement to repair the damage through expert goldsmith work",
+    "confidence": "high",
+    "quote": "Tomorrow the loose settings shall be tightened by an expert goldsmith"
+  },
+  "investigator": {
+    "value": "An unnamed narrator and his friend who discover the truth",
+    "confidence": "medium",
+    "quote": "Here is my hand, Professor Andreas, and I can only hope that under such difficult circumstances"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial assumption that Joyce-Armstrong Fragment is an elaborate practical joke designed to misdirect from true explanation",
+    "confidence": "medium",
+    "quote": "idea that the extraordinary narrative...is an elaborate practical joke...has now been abandoned"
+  },
+  "clue_fairness": {
+    "value": "Physical evidence (Joyce-Armstrong Fragment, railway reports) presented to reader simultaneously with investigator's access",
+    "confidence": "medium",
+    "quote": "The Joyce-Armstrong Fragment was found in the field which is called Lower Haycock"
+  },
+  "social_world": {
+    "value": "Industrial hierarchy of collieries, ironworks, and railway systems with abandoned vs. active operations creating access patterns",
+    "confidence": "medium",
+    "quote": "country is dotted with ironworks and collieries. Of these, some are being worked and some have been abandoned"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Systematic elimination through railway infrastructure analysis and physical evidence correlation",
+    "confidence": "medium",
+    "quote": "These four side lines may be eliminated from our inquiry, for...the rails nearest to the main line have been taken up"
+  },
+  "media_and_audience": {
+    "value": "Public perception shifts from dismissing supernatural narrative as hoax to forced acceptance of extraordinary danger",
+    "confidence": "high",
+    "quote": "forcing itself upon the general intelligence that they are true, and that we must readjust our ideas"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-tales-of-terror-and-mystery/",
+    "corpus_index": 56,
+    "text_len": 415096,
+    "title": "ebook sir arthur conan doyle tales of terror and mystery",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

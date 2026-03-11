@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Shooting of Michael; central question: did Amelia shoot him or is she being framed?",
+    "confidence": "high",
+    "quote": "I don't understand how they could say I shot Michael."
+  },
+  "victim": {
+    "value": "Michael, medical student in love with his best friend Amelia; targeted possibly due to his relationship with her",
+    "confidence": "medium",
+    "quote": "I'm in love with her"
+  },
+  "closed_world": {
+    "value": "Legal/judicial system with courthouse, jail, and limited cast of characters including judge, lawyers, and suspects",
+    "confidence": "medium",
+    "quote": "long after the courthouse had emptied and the street lights came on"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Michael's spirit/ghost observing events after his apparent death, trying to protect Amelia and uncover the truth",
+    "confidence": "high",
+    "quote": "Attempting to shield Amelia, I hovered in between them."
+  },
+  "suspect_architecture": {
+    "value": "Limited suspect pool visible: Sharolette (stepmother figure with sarcastic demeanor and suspicious timing), Mr. Crandoff (defense attorney with unclear motivations), Judge (conflicted about using Amelia as bait), Walter Joneson (unknown phone contact)",
+    "confidence": "medium",
+    "quote": "You sure have got yourself into a mess this time. And your daddy isn't around to rescue you."
+  },
+  "red_herring": {
+    "value": "Amelia being charged with shooting Michael appears to be misdirection - Michael's ghost narrator perspective suggests he knows she's innocent and there's a larger conspiracy involving using her as 'bait'",
+    "confidence": "medium",
+    "quote": "I don't understand how they could say I shot Michael."
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Medical school hierarchy (Michael as student), legal system power structure (judge, defense attorney), family/inheritance dynamics (Sharolette as promised caretaker after father's death), institutional conspiracy",
+    "confidence": "high",
+    "quote": "I always promised your father I would take care of you. You know\u2014if anything ever happened to him."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Supernatural revelation through Michael's ghost perspective - he can observe conversations and motivations invisible to living characters, including judge's phone calls about conspiracy",
+    "confidence": "high",
+    "quote": "What do you mean bait? Bait isn't safe! Bait ends up dead! Get her out of here, you moron!"
+  },
+  "media_and_audience": {
+    "value": "Legal system as public narrative mechanism - trial proceedings, jury verdict system, and institutional cover-up involving multiple parties coordinating Amelia's fate",
+    "confidence": "medium",
+    "quote": "The jury should deliver their verdict tomorrow. I guess it will tell us exactly how bad her situation is."
+  },
+  "investigator_wound": {
+    "value": "Michael's wound is his helpless love and inability to protect Amelia - dead but conscious, he can observe the conspiracy against her but cannot intervene or communicate",
+    "confidence": "high",
+    "quote": "How frustrating he couldn't hear me."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-bethlee-out-of-the-darkness/",
+    "corpus_index": 282,
+    "text_len": 24392,
+    "title": "ebook bethlee out of the darkness",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

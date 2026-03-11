@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Serial murders staged by corrupt police officer Harry Mason to frame innocent people",
+    "confidence": "high",
+    "quote": "You set the murders up. Was it every single one of them? Did any of them happen without you?"
+  },
+  "victim": {
+    "value": "Multiple victims killed by Harry Mason, plus the innocent people framed for the crimes",
+    "confidence": "medium",
+    "quote": "How many people had she had arrested? Some of them had even confessed to the killings."
+  },
+  "closed_world": {
+    "value": "Small town where Eddie Reynolds repeatedly investigates crimes, trapped in cyclical reality",
+    "confidence": "medium",
+    "quote": "this sad little town was always in mourning for someone or other"
+  },
+  "culprit_and_motive": {
+    "value": "Harry Mason (police officer) commits murders, motive unclear but involves controlling Eddie's investigations",
+    "confidence": "high",
+    "quote": "You did it, You killed all of those people."
+  },
+  "resolution": {
+    "value": "Eddie discovers ash evidence proving Harry's presence at crime scenes, but reality resets before justice",
+    "confidence": "medium",
+    "quote": "There was a discoloration in the ash. She studied the pattern of the blood across the carpet."
+  },
+  "investigator": {
+    "value": "Eddie Reynolds (Edwina), transgender detective who discovers the corruption in repeated cycles",
+    "confidence": "high",
+    "quote": "Eddie Reynolds? Like... Edward? Edwina, she said."
+  },
+  "suspect_architecture": {
+    "value": "Three suspects with distinct roles: Harry Mason (serial killer with means and opportunity), Dick (accomplice with access), unnamed kid cop (potential witness/unwitting participant)",
+    "confidence": "medium",
+    "quote": "Harry watched her from the window, impassive as a python with a full belly. Off to her left, Dick smirked"
+  },
+  "red_herring": {
+    "value": "Weekly pattern of cigar ash at crime scenes designed to implicate innocent suspects while concealing Harry's systematic murder setup",
+    "confidence": "high",
+    "quote": "Week after week, his discarded ash at the scene of every crime"
+  },
+  "clue_fairness": {
+    "value": "Blood crusted on top of ash reveals temporal sequence - ash placed before blood, indicating premeditation and scene staging",
+    "confidence": "high",
+    "quote": "There was a discoloration in the ash. She studied the pattern of the blood across the carpet"
+  },
+  "social_world": {
+    "value": "Police corruption network where authority figures manipulate investigations and coerce confessions from innocent people",
+    "confidence": "medium",
+    "quote": "Some of them had even confessed to the killings. After Harry had gotten through with them, mostly"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Physical evidence layering - blood deposited after ash proves the crime scene was pre-staged, demonstrating systematic deception",
+    "confidence": "high",
+    "quote": "It was soaked in, mostly, but some of it was crusted. On top of the ash"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Eddie's transgender identity and false imprisonment in repeated crime scenarios, with identity erasure and forced role-playing as punishment",
+    "confidence": "high",
+    "quote": "They had made her a man, or tried. In her past life, she had killed someone"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-aaron-redfern-mad-like-a-simile/",
+    "corpus_index": 90,
+    "text_len": 17975,
+    "title": "ebook aaron redfern mad like a simile",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

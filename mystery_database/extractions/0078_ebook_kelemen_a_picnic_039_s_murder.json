@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder by stabbing with plastic knife in back of neck during picnic; question: which of six girlfriends killed him?",
+    "confidence": "high",
+    "quote": "So, I threw a plastic knife into the back of his neck."
+  },
+  "victim": {
+    "value": "Mr. Sampson, a man secretly dating six women simultaneously, making him a target for betrayed lovers",
+    "confidence": "high",
+    "quote": "They found out that he was dating six women. They were Rita, Lauren, Peggy, Gail, Janice, and Elaine."
+  },
+  "closed_world": {
+    "value": "Limited to six known girlfriends of the victim, creating a bounded suspect pool",
+    "confidence": "medium",
+    "quote": "They found out that he was dating six women."
+  },
+  "culprit_and_motive": {
+    "value": "Elaine killed Sampson because he was cheating on her and laughed when she asked him to stop",
+    "confidence": "high",
+    "quote": "I knew he was cheating on me, so I asked him to stop. He laughed."
+  },
+  "resolution": {
+    "value": "Elaine confesses after inconsistencies emerge during investigation and interrogation",
+    "confidence": "high",
+    "quote": "she confessed to murdering Mr. Sampson."
+  },
+  "investigator": {
+    "value": "Kelsey, a pregnant detective working with her husband/partner Rian to solve the case",
+    "confidence": "high",
+    "quote": "shouted Rian, Kelsey's partner and husband, 'You are pregnant'"
+  },
+  "suspect_architecture": {
+    "value": "Six girlfriends of victim, each with distinct eliminating characteristics: Rita (no lipstick, rifle access), Lauren (tall, chemical access but flower allergy), Peggy (no lipstick, grape allergy), Gail (teacher, hates yellow), Janice (petite size 4, hair stylist), Elaine (size 5 feet, teacher, loves daisies)",
+    "confidence": "high",
+    "quote": "They found out that he was dating six women. They were Rita, Lauren, Peggy, Gail, Janice, and Elaine."
+  },
+  "red_herring": {
+    "value": "Rita's father owning a rifle range when murder weapon was actually a knife, misdirecting toward gunshot wound",
+    "confidence": "medium",
+    "quote": "When she learned that Rita's father owned a riffle range she called the forensics team"
+  },
+  "clue_fairness": {
+    "value": "Physical evidence presented to reader simultaneously with investigators: size 5 footprint, plastic knife, car treads from victim's car, lipstick smudges at scene",
+    "confidence": "high",
+    "quote": "the female footprint the found was size five, the car treads were from Mr. Sampson's car"
+  },
+  "social_world": {
+    "value": "Working class professional environment: florist, teacher, hair stylist, chemical supply house worker, basketball player - no significant power hierarchies explored",
+    "confidence": "low",
+    "quote": "She worked as a florist and seemed quite nice"
+  },
+  "alibi": {
+    "value": "Gail's aerobics class alibi at 7:30 PM on Friday, taught by Janice who was also there, creating mutual alibis for both suspects",
+    "confidence": "medium",
+    "quote": "like always she was at aerobics on Friday. The aerobics teacher was Janice"
+  },
+  "reveal_mechanic": {
+    "value": "Confession through psychological pressure and contradictory statements about not knowing each other - Janice and Elaine both claim never meeting despite living situation",
+    "confidence": "high",
+    "quote": "she said she never met Elaine... Elaine told them that she never met Janice"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Pregnant detective Kelsey working against medical orders, creating physical vulnerability and time pressure as she goes into labor during case resolution",
+    "confidence": "high",
+    "quote": "You are pregnant can't you wait at least a week after the baby is born to come back to work"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-kelemen-a-picnic-039-s-murder/",
+    "corpus_index": 78,
+    "text_len": 4794,
+    "title": "ebook kelemen a picnic 039 s murder",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

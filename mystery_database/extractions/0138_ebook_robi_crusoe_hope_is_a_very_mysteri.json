@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Attempted theft of the Hope Diamond and murder of the grandmother who protected it",
+    "confidence": "high",
+    "quote": "Nana got in my way, so she had to be disposed of."
+  },
+  "victim": {
+    "value": "Nana (grandmother) who was the guardian of the Hope Diamond and had to be eliminated to access it",
+    "confidence": "high",
+    "quote": "You must guard the Diamond with your life, just like I always have."
+  },
+  "closed_world": {
+    "value": "The Smithsonian Museum at night where the Hope Diamond is displayed",
+    "confidence": "medium",
+    "quote": "Quickly, Hanna ran through the dark hallways of the Smithsonian."
+  },
+  "culprit_and_motive": {
+    "value": "Hanna's mother, motivated by greed to steal the valuable Hope Diamond",
+    "confidence": "high",
+    "quote": "Hello, Hanna. Replied Hanna's mother, lifting up her mask so that Hanna could see her face."
+  },
+  "resolution": {
+    "value": "Hanna physically defeats her mother with a pipe and calls police to arrest the criminal",
+    "confidence": "high",
+    "quote": "I have a criminal here for you; she tried to steal the Hope Diamond."
+  },
+  "investigator": {
+    "value": "Hanna Brennan, the granddaughter who receives a mysterious note and must solve the truth about her grandmother's death",
+    "confidence": "high",
+    "quote": "I need your help. You must stop them from getting the Diamond."
+  },
+  "suspect_architecture": {
+    "value": "Single revealed suspect (mother) with clear motive (greed for Hope Diamond) and opportunity (museum access), but minimal differentiation or suspect pool",
+    "confidence": "medium",
+    "quote": "Hello, Hanna.' Replied Hanna's mother, lifting up her mask so that Hanna could see her face."
+  },
+  "red_herring": {
+    "value": "Historical curse of the Hope Diamond presented as supernatural explanation before human conspiracy is revealed",
+    "confidence": "high",
+    "quote": "Most people thought it was the curse of an Indian Goddess causing the strange occurences to happen."
+  },
+  "clue_fairness": {
+    "value": "Key clue 'Hope is a very mysterious thing' sign shown to reader when Hanna discovers it, allowing deduction of diamond identity",
+    "confidence": "high",
+    "quote": "Hope is a very mysterious thing.' 'What is that supposed to mean?' Hanna asked herself."
+  },
+  "social_world": {
+    "value": "Multi-generational criminal organization targeting wealthy diamond owners across centuries, with family inheritance of guardianship role",
+    "confidence": "medium",
+    "quote": "Only a group of horrible and malicious criminals would do something like that."
+  },
+  "alibi": {
+    "value": "Mother's absence during museum tour creates false impression of separation while positioning her for theft attempt",
+    "confidence": "medium",
+    "quote": "Hanna looked over for her mother, but found she was not in sight."
+  },
+  "reveal_mechanic": {
+    "value": "Physical confrontation and confession during attempted theft, with mother removing mask to reveal identity",
+    "confidence": "high",
+    "quote": "She was amazed when she saw who it was. Then she put the impossible into words. 'Mother?'"
+  },
+  "media_and_audience": {
+    "value": "Final scene shows reporters and photographers swarming for the story, with Hanna repeating the cryptic phrase to media",
+    "confidence": "high",
+    "quote": "Reporters and Photographers were closing in on all sides, trying to catch a glimpse of the Brennan family."
+  },
+  "investigator_wound": {
+    "value": "Hanna's grief over grandmother's death and inherited responsibility to protect the diamond with her life",
+    "confidence": "high",
+    "quote": "I promised Nana that I would protect the Diamond with my life. And I'm not planning on breaking that promise"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-robi-crusoe-hope-is-a-very-mysterious-thing/",
+    "corpus_index": 138,
+    "text_len": 8784,
+    "title": "ebook robi crusoe hope is a very mysterious thing",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

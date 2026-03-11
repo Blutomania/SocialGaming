@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Harry, a business partner in a disputed joint venture who may have died in a car crash",
+    "confidence": "medium",
+    "quote": "The car left the road and was, according to the laws of physics, in a position of no return."
+  },
+  "closed_world": {
+    "value": "Mountain road during nighttime with thick fog",
+    "confidence": "low",
+    "quote": "It's getting dark, the fog's thick, and this road is a nightmare."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "High-speed car crash staged to look like reckless driving accident when Harry was actually murdered or sabotaged",
+    "confidence": "medium",
+    "quote": "he car went straight. It did not stop but continued at high speed"
+  },
+  "clue_fairness": {
+    "value": "Tourist witnesses observe the crash details - car going too far right instead of left for the curve",
+    "confidence": "medium",
+    "quote": "the car was going too far to the right when it should be either slowing down or sticking to the left"
+  },
+  "social_world": {
+    "value": "Corporate power structure with Harry controlling board through nominees, excluding minority partner Randolph",
+    "confidence": "high",
+    "quote": "the board consists completely of your nominees, and I can't make my voice heard at all"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-lubos-borik-human-source-code/",
+    "corpus_index": 307,
+    "text_len": 3253,
+    "title": "ebook lubos borik human source code",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}
