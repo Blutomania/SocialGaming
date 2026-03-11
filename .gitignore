@@ -6,13 +6,15 @@ __pycache__/
 venv/
 .env
 
-# Corpus and large data files — store separately, not in git
+# Corpus and large data files
 # NOTE: mystery_database/extractions/ (small JSONs) IS tracked in git
-mystery-crime-books/
+# NOTE: the one corpus parquet IS tracked (14MB, under GitHub 100MB limit)
 *.parquet
 *.arrow
 *.pkl
 *.bin
+!mystery-crime-books/train-00000-of-00001.parquet
+!mystery-crime-books/data/train-00000-of-00001.parquet
 
 # HuggingFace / model caches
 .cache/
