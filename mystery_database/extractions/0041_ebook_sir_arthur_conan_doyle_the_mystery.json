@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Major-General J.B. Heatherstone, pursued by Eastern mystics, drowned as foretold",
+    "confidence": "medium",
+    "quote": "to fear, has been drowned."
+  },
+  "closed_world": {
+    "value": "Cloomber Hall and surrounding Scottish coast during a storm",
+    "confidence": "medium",
+    "quote": "HOW FOUR OF US CAME TO BE UNDER THE SHADOW OF CLOOMBER"
+  },
+  "culprit_and_motive": {
+    "value": "Eastern mystics with supernatural powers seeking revenge against Heatherstone",
+    "confidence": "medium",
+    "quote": "a school of philosophers and of savants who, working on different lines from his own"
+  },
+  "resolution": {
+    "value": "Narrator John West explains the supernatural pursuit and validates Eastern mystical powers",
+    "confidence": "medium",
+    "quote": "I, John Fothergill West, can confidently answer that science is wrong."
+  },
+  "investigator": {
+    "value": "John Fothergill West, law student and narrator documenting the events",
+    "confidence": "high",
+    "quote": "I John Fothergill West, student of law in the University of St. Andrews"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "The supernatural elements and Eastern mysticism appear to be misdirection from what may be more mundane explanations for the general's fears and death",
+    "confidence": "medium",
+    "quote": "Science will tell you that there are no such powers as those claimed by the Eastern mystics"
+  },
+  "clue_fairness": {
+    "value": "The narrator explicitly promises transparency and provides newspaper clippings as evidence available to readers",
+    "confidence": "high",
+    "quote": "My highest ambition is that those who know something of the matter should...indorse it without finding a single paragraph"
+  },
+  "social_world": {
+    "value": "Military hierarchy and colonial power structures - Major-General Heatherstone's fear of dark faces and Eastern pursuers reflects imperial anxieties",
+    "confidence": "medium",
+    "quote": "the general's fear of dark faces, of wandering men (not knowing how his pursuers might come after him)"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Multiple narrative perspectives including statements, day-books, and witness accounts to demonstrate the truth",
+    "confidence": "medium",
+    "quote": "STATEMENT OF ISRAEL STAKES...NARRATIVE OF JOHN EASTERLING...THE DAY-BOOK OF JOHN BERTHIER HEATHERSTONE"
+  },
+  "media_and_audience": {
+    "value": "Newspaper reports frame the general's death as drowning, contrasting with the supernatural explanation the narrator believes",
+    "confidence": "medium",
+    "quote": "I wonder if by chance there was any other human eye but mine which traced a connection between these paragraphs"
+  },
+  "investigator_wound": {
+    "value": "The narrator John West struggles between rational law training and belief in supernatural forces, creating internal conflict",
+    "confidence": "medium",
+    "quote": "I John Fothergill West, student of law in the University of St. Andrews...can confidently answer that science is wrong"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-mystery-of-cloomber/",
+    "corpus_index": 41,
+    "text_len": 266535,
+    "title": "ebook sir arthur conan doyle the mystery of cloomber",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

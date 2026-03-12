@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Assassination by poisoning - deadly venom added to drink at party",
+    "confidence": "high",
+    "quote": "pored the 20 ml of a very deadly venom on the chill"
+  },
+  "victim": {
+    "value": "Gadafi, described as a tyrant who ruled for over 40 years",
+    "confidence": "high",
+    "quote": "For everyone who tolerated the tyrant Gadafi for more than 40 years"
+  },
+  "closed_world": {
+    "value": "Gadafi's heavily guarded mansion during a private party",
+    "confidence": "medium",
+    "quote": "enormous party on his mansion"
+  },
+  "culprit_and_motive": {
+    "value": "Paco, hired assassin paid to kill the tyrant for the people",
+    "confidence": "high",
+    "quote": "Well Paco, will you do it? All right hand in the money, first kill Gadafi"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Heart attack diagnosis masks poisoning - medics provide false cause of death",
+    "confidence": "medium",
+    "quote": "All the medics told us that he had died because of a heart attack, but the only one who knew the truth was Paco."
+  },
+  "clue_fairness": {
+    "value": "Reader witnesses poison preparation and administration alongside perpetrator",
+    "confidence": "high",
+    "quote": "pored the 20 ml of a very deadly venom on the chill. He went walking to where Gadafi was talking to his friends"
+  },
+  "social_world": {
+    "value": "Tyrannical regime with security apparatus protecting dictator from oppressed populace",
+    "confidence": "high",
+    "quote": "For everyone who tolerated the tyrant Gadafi for more than 40 years."
+  },
+  "alibi": {
+    "value": "Butler disguise creates false identity and legitimate presence at party",
+    "confidence": "high",
+    "quote": "Hello, I'm a butler from the party I am so late because one of the top class guests Mr. Tahoka asked me"
+  },
+  "reveal_mechanic": {
+    "value": "Photographic evidence of death confirms mission completion",
+    "confidence": "medium",
+    "quote": "He rapidly took a picture from a long distance of the dead body"
+  },
+  "media_and_audience": {
+    "value": "Public celebration and national liberation narrative following tyrant's death",
+    "confidence": "high",
+    "quote": "All Libya exploded with emotion because the tyrant Gadafi was now dead."
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-matteo-castro-the-great-revange/",
+    "corpus_index": 213,
+    "text_len": 4719,
+    "title": "ebook matteo castro the great revange",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

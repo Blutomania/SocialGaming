@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Aircraft hijacking with passengers and crew held hostage",
+    "confidence": "medium",
+    "quote": "There were people of different religions and sects in the high jacked flight."
+  },
+  "victim": {
+    "value": "Passengers and crew of hijacked flight, including people of different religions and sects",
+    "confidence": "medium",
+    "quote": "There were people of different religions and sects in the high jacked flight."
+  },
+  "closed_world": {
+    "value": "Hijacked aircraft in flight",
+    "confidence": "medium",
+    "quote": "All the earthly emotions, inner feelings, debates and discussions, and reactions of the passengers on board"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Dr. Jinnah and Prof. Gandhi (mass communication professor/journalist)",
+    "confidence": "medium",
+    "quote": "the fearless and confident answers of Dr. Jinnah, were kept on live, connected to a popular English channel by Prof. Gandhi"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Religious and scientific debates used as misdirection from the core mystery of proving life after death",
+    "confidence": "medium",
+    "quote": "So also the educated, who totally depended on science couldn't believe it."
+  },
+  "clue_fairness": {
+    "value": "Scientific explanations about DNA and Panchaboothas provided to reader alongside the narrative",
+    "confidence": "medium",
+    "quote": "Gene families: A gene family is a group of genes that share important characteristics."
+  },
+  "social_world": {
+    "value": "Religious divisions and hierarchy between passengers of different faiths on hijacked flight",
+    "confidence": "medium",
+    "quote": "There were people of different religions and sects in the high jacked flight."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Scientific proof through DNA and soul travel faster than any object in universe",
+    "confidence": "medium",
+    "quote": "A poor doctor who challenged to prove that the soul would travel much faster than any object"
+  },
+  "media_and_audience": {
+    "value": "Live broadcast to English channel making the entire world witness the flight events",
+    "confidence": "high",
+    "quote": "kept on live, connected to a popular English channel by Prof. Gandhi"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-harshavardhan-c-after-death-an-ultimate-truth/",
+    "corpus_index": 115,
+    "text_len": 208755,
+    "title": "ebook harshavardhan c after death an ultimate truth",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

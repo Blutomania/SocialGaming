@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Mass murder of clan family members by sword/blade attack",
+    "confidence": "high",
+    "quote": "My Mom was killed and I couldn't save her, my sister was slaughtered and I couldn't protect her."
+  },
+  "victim": {
+    "value": "Aizen clan family (mother and sister) targeted for their clan heritage/bloodline",
+    "confidence": "medium",
+    "quote": "Your the heir of the clan? He asked."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Unknown masked killer targeting the Aizen clan, motive unclear but appears clan-related",
+    "confidence": "medium",
+    "quote": "He had a laugh so cold a laugh that would make anybody tremble in fear."
+  },
+  "resolution": {
+    "value": "Protagonist kills two attackers in black cloaks, continues quest for vengeance",
+    "confidence": "medium",
+    "quote": "I got the best of her and swayed my blade across her stomach... I pierced his chest will full power."
+  },
+  "investigator": {
+    "value": "Yoshimaru Aizen, surviving clan heir seeking vengeance for her murdered family",
+    "confidence": "high",
+    "quote": "For my name is Yoshimaru Aizen, The last remaining Heir!"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Clan hierarchy with heir, servants, and vows of protection creating clear power structures and obligations",
+    "confidence": "medium",
+    "quote": "Shishimaru was only a servant, he wasn't like me nor Hanatoro. He vowed to protect me, but with what power?"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Spiritual vision revealing the true nature of attackers and protagonist's destiny through deceased family members",
+    "confidence": "medium",
+    "quote": "I couldn't believe it but it was as if I was staring at a version of myself I didn't even recognize!"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Survivor's guilt and failure to protect family members, driving quest for vengeance despite personal cost",
+    "confidence": "high",
+    "quote": "I was supposed to protect her, and I failed. I remembered the chant the sang when she was born"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-legacy-jackson-akatsuki-no-kuruma-1/",
+    "corpus_index": 181,
+    "text_len": 11125,
+    "title": "ebook legacy jackson akatsuki no kuruma 1",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

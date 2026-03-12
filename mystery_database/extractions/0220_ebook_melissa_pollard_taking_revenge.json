@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder by throat slitting with a dirk",
+    "confidence": "high",
+    "quote": "The tip of the blade made contact with his throat, breaking the skin. Blood splattered across the wall"
+  },
+  "victim": {
+    "value": "Sir Chase, who broke a promise to return a token to the protagonist",
+    "confidence": "high",
+    "quote": "He dares to break a promise to me? I expected better from him"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Abigail/narrator, motivated by revenge for Sir Chase breaking his promise to return her token",
+    "confidence": "high",
+    "quote": "Taking revenge"
+  },
+  "resolution": {
+    "value": "Abigail frames herself as discovering the murder and reports it to authorities",
+    "confidence": "medium",
+    "quote": "Sir, Sir, there's been a murder! Sir Chase, he lays inside his home, his throat slit open!"
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "The dirk planted at the crime scene to implicate someone else while Abigail escapes suspicion",
+    "confidence": "high",
+    "quote": "This dirk was laying on the ground!' I held up the dirk, tears streaming down my cheeks."
+  },
+  "clue_fairness": {
+    "value": "Reader knows Abigail's revenge motive and sees her acquire the dirk before the murder occurs",
+    "confidence": "high",
+    "quote": "Taking revenge,' I lunged towards him, my arm swinging forward."
+  },
+  "social_world": {
+    "value": "Medieval/historical class hierarchy with knights, nobility, and servants; courtship customs and social expectations",
+    "confidence": "medium",
+    "quote": "Sir William has privately announced his attraction to you"
+  },
+  "alibi": {
+    "value": "Abigail creates false alibi by presenting herself as discoverer of the crime rather than perpetrator",
+    "confidence": "high",
+    "quote": "Sir, Sir, there's been a murder! Sir Chase, he lays inside his home, his throat slit open!"
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Abigail manipulates the knight's perception by staging herself as innocent witness to the crime",
+    "confidence": "medium",
+    "quote": "The knight took the dirk and raced his horse to the house"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-melissa-pollard-taking-revenge/",
+    "corpus_index": 220,
+    "text_len": 11062,
+    "title": "ebook melissa pollard taking revenge",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of prostitute Melissa Blundell, killed by stranger after being hired for services",
+    "confidence": "high",
+    "quote": "the letter was written in the victim's blood. I also found a DNA match already in the system."
+  },
+  "victim": {
+    "value": "Melissa Blundell, a prostitute who was targeted while working a new corner seeking wealthier clients",
+    "confidence": "high",
+    "quote": "She was told by Erica Hasley that rich guys tend to pick up there and she was hoping for a chance to make more money"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Unknown perpetrator connected to a three-year-old rape case, possibly seeking revenge related to a NYU criminology student",
+    "confidence": "medium",
+    "quote": "DNA matched a rape case from quite a few years back. The perp was never caught but we have his sperm in the system"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Detective Rowe and team (Verday, Gabrielsson, Fisher) investigating the murder, with Rowe having personal connection to NYU",
+    "confidence": "high",
+    "quote": "Rowe had a tiny flashback of his time as a professor in criminology at NYU"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "DNA match suggests family connection to old rape case, potentially misdirecting toward revenge motive",
+    "confidence": "medium",
+    "quote": "Maybe it's an angry relative looking to avenge their sibling"
+  },
+  "clue_fairness": {
+    "value": "DNA evidence and college connection revealed to reader simultaneously with investigators",
+    "confidence": "medium",
+    "quote": "the DNA matched a rape case from quite a few years back"
+  },
+  "social_world": {
+    "value": "Police department hierarchy with senior/junior dynamics, academic-criminal justice institutional overlap",
+    "confidence": "medium",
+    "quote": "Don't worry, I will never disregard your seniority"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "DNA matching system connecting current victim to historical rape case through family genetics",
+    "confidence": "high",
+    "quote": "the DNA matched a rape case from quite a few years back"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Rowe's guilt over past relationship with student, connection to NYU criminology department",
+    "confidence": "high",
+    "quote": "He was very upset for his decistion to leave her and ashamed of how he did it"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-regi-s-riddle/",
+    "corpus_index": 35,
+    "text_len": 11754,
+    "title": "ebook regi s riddle",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

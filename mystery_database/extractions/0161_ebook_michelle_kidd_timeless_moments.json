@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Imprisonment and abuse of a woman by Hunsdon, possibly involving drugging and psychological torture",
+    "confidence": "medium",
+    "quote": "He eased the glass to her mouth and helped her drink... careful of her injuries."
+  },
+  "victim": {
+    "value": "An unnamed woman described as beautiful, which Hunsdon considers her 'curse' that makes her a target",
+    "confidence": "medium",
+    "quote": "Beauty such as yours has been a curse to women since the days of Abraham."
+  },
+  "closed_world": {
+    "value": "A room or building where the woman is held captive, unable to escape",
+    "confidence": "low",
+    "quote": "But rapidly approaching footsteps outside her bedroom brought further speculation... to an abrupt halt."
+  },
+  "culprit_and_motive": {
+    "value": "Hunsdon, motivated by a twisted desire to 'save' beautiful women from their 'sinful nature' based on his abusive upbringing",
+    "confidence": "medium",
+    "quote": "Never fear, my darling, I will never let your soul be lost."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Jewel, who appears to be experiencing supernatural visions or memories while investigating or experiencing the mystery",
+    "confidence": "low",
+    "quote": "You see... nothing. He withdrew his hand and held it out for her inspection."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Supernatural elements (fire that burns for one character but not another) may be misdirection from human crime",
+    "confidence": "medium",
+    "quote": "He stooped, hesitated, and then put his hand right into the flame before turning to stare at her calmly."
+  },
+  "clue_fairness": {
+    "value": "Shared book as physical evidence available to both characters and reader",
+    "confidence": "medium",
+    "quote": "You're still holding the book. My book... It is something we can both see\u2014something that is exactly the same"
+  },
+  "social_world": {
+    "value": "Patriarchal power structure with religious justification for controlling women",
+    "confidence": "high",
+    "quote": "Father said I was a wayward boy... Father never gave up on her. Eventually, he broke her."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Physical interaction with supernatural elements as test of reality",
+    "confidence": "medium",
+    "quote": "He withdrew his hand and held it out for her inspection. Miraculously, it was unscathed."
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-michelle-kidd-timeless-moments/",
+    "corpus_index": 161,
+    "text_len": 40936,
+    "title": "ebook michelle kidd timeless moments",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

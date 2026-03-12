@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "St. Mysteri town",
+    "confidence": "low",
+    "quote": "A woman, a rather young looking one, is running quickly down the sidewalk in the town named St. Mysteri."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Sherry Lock, descendant of Sherlock Holmes, detective fresh out of college",
+    "confidence": "high",
+    "quote": "This girl is a descendant of Sherlock, but only got the sense of solving crimes from him."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Small town St. Mysteri known for business and commerce, with Sherry as outsider detective figure",
+    "confidence": "low",
+    "quote": "St. Mysteri is really known for it's well flourished business and all other sorts of things"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Town reputation affected by detective's presence, comedy-mystery genre expectations established",
+    "confidence": "low",
+    "quote": "This town is not well known due to this woman, whose name is Sherry Lock"
+  },
+  "investigator_wound": {
+    "value": "Sherry characterized as dense and slow, potentially undermining her detective abilities",
+    "confidence": "medium",
+    "quote": "Sherry is also kind of dense and slow at some things"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sola-luna-the-case-of-the-quot-dear-diary-killer-quot/",
+    "corpus_index": 158,
+    "text_len": 2882,
+    "title": "ebook sola luna the case of the quot dear diary killer quot",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

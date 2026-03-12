@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Diamond theft involving the Princess",
+    "confidence": "medium",
+    "quote": "JENNIE LEARNS ABOUT THE DIAMONDS OF THE PRINCESS"
+  },
+  "victim": {
+    "value": "The Princess (victim of diamond theft)",
+    "confidence": "low",
+    "quote": "JENNIE LEARNS ABOUT THE DIAMONDS OF THE PRINCESS"
+  },
+  "closed_world": {
+    "value": "European diplomatic circles and Vienna Court society",
+    "confidence": "medium",
+    "quote": "There is internal trouble of some kind at the Court of Vienna"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Jennie solves the diamond mystery through journalistic investigation",
+    "confidence": "medium",
+    "quote": "JENNIE SOLVES THE DIAMOND MYSTERY"
+  },
+  "investigator": {
+    "value": "Jennie Baxter, journalist acting as amateur detective",
+    "confidence": "high",
+    "quote": "Miss Jennie Baxter, with several final and dainty touches"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Rumoured dynamite explosion at Vienna palace used as misdirection from actual government conspiracy",
+    "confidence": "medium",
+    "quote": "there came a rumour from Vienna that an attempt had been made on the life of the Emperor"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Diplomatic hierarchy with ambassadors, ministers, and aristocratic connections concealing government secrets",
+    "confidence": "high",
+    "quote": "great turn-out of ambassadors and ministers, and their presence gave colour and dignity"
+  },
+  "alibi": {
+    "value": "Princess and Ambassador have conflicting recollections of conversations at the Duchess's ball",
+    "confidence": "medium",
+    "quote": "I was compelled to leave early. You should have come to me sooner"
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Society papers and official contradictions shape public perception of diplomatic incidents",
+    "confidence": "high",
+    "quote": "This was promptly contradicted, but we all know what official contradictions amount to"
+  },
+  "investigator_wound": {
+    "value": "Jennie's professional ambition to achieve European reputation through dangerous diplomatic exposure",
+    "confidence": "medium",
+    "quote": "such an article would give us a European reputation"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-robert-barr-jennie-baxter-journalist/",
+    "corpus_index": 94,
+    "text_len": 378880,
+    "title": "ebook robert barr jennie baxter journalist",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

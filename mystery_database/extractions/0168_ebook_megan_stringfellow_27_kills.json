@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Serial killer murdered parents with knife, left baby alive, now hunting the grown survivor",
+    "confidence": "high",
+    "quote": "I approached the sleeping parents cautiously, and slit their throats. Next for the child."
+  },
+  "victim": {
+    "value": "Parents killed apparently at random; now targeting Rence, the baby who survived and can identify him",
+    "confidence": "high",
+    "quote": "Wow, she actually remembers some. I am shocked no doubt, but now I got her name. One step closer."
+  },
+  "closed_world": {
+    "value": "Small town where killer and survivor now live in proximity",
+    "confidence": "medium",
+    "quote": "I am in the plaza of our small town when the paper caught my eye."
+  },
+  "culprit_and_motive": {
+    "value": "Serial killer with blood obsession, motivated by rage and desire to eliminate the witness who survived",
+    "confidence": "high",
+    "quote": "I'm no vampire, just a man with a blood desire."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "The killer himself narrates - first person perspective from the perpetrator",
+    "confidence": "high",
+    "quote": "This is all too easy. The parents knocked out on the couch, the child in it's crib oblivious"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Supernatural speculation about the killer's disappearance - 'magician' or 'warlock' theories in newspaper coverage",
+    "confidence": "medium",
+    "quote": "Is he a magican? A worlock? Reporting for you Jerry finsihelu!"
+  },
+  "clue_fairness": {
+    "value": "Victim's memory provides identifying details available to both killer and reader - black clothing, glove, knife, evil smile",
+    "confidence": "high",
+    "quote": "There was a man in all black, with a knife. He had a black rubber glove, and had a creepy evil smile on his face."
+  },
+  "social_world": {
+    "value": "Small town community structure with neighbors as witnesses and protectors, local newspaper as information conduit",
+    "confidence": "medium",
+    "quote": "Angry neighbors knocked in frustration, and the baby cried harder. A man tested the door knob"
+  },
+  "alibi": {
+    "value": "Killer creates false identity by blending into normal town life, concealing his past as the original perpetrator",
+    "confidence": "medium",
+    "quote": "I asked innocently"
+  },
+  "reveal_mechanic": {
+    "value": "Recognition through physical encounter - victim's growing awareness of familiar appearance during face-to-face meeting",
+    "confidence": "high",
+    "quote": "You look familier. Im not leaving until I find out how."
+  },
+  "media_and_audience": {
+    "value": "Local newspaper sensationalizes case with supernatural theories, inadvertently providing killer with victim's identity",
+    "confidence": "high",
+    "quote": "YOUNG GIRL REMEMBERS! The young girl who at age 0's parents who got murdered remembers!"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-megan-stringfellow-27-kills/",
+    "corpus_index": 168,
+    "text_len": 6569,
+    "title": "ebook megan stringfellow 27 kills",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

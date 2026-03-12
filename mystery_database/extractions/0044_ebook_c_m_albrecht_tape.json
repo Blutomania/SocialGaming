@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Small town setting with bus station, hardware store, and garage office",
+    "confidence": "low",
+    "quote": "A white prison van pulled up before the small bus station"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Izzy - aspiring detective operating from garage office",
+    "confidence": "medium",
+    "quote": "client comes to me, I find out what they want to know and give them satisfaction"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Prison system hierarchy and ex-convict marginalization - parolee struggling for legitimacy in conventional society",
+    "confidence": "medium",
+    "quote": "the waitress had already made him for a parolee, even though he had his sleeves rolled down to cover his mostly"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Self-doubt about professional competence and physical inadequacy - wannabe detective with no clients",
+    "confidence": "medium",
+    "quote": "god, his face did remind him of a weasel. Sharp thin features, lean to the point of boniness"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-c-m-albrecht-tape/",
+    "corpus_index": 44,
+    "text_len": 10121,
+    "title": "ebook c m albrecht tape",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

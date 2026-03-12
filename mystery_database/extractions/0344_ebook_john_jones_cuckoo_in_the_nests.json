@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Barbara Mullens - vulnerable woman living alone, heavily medicated with sleeping pills, unaware of being stalked",
+    "confidence": "medium",
+    "quote": "Barbara Mullens who was in the room, currently dreaming about blue frogs, was the only occupant of the large house"
+  },
+  "closed_world": {
+    "value": "Three terraced houses where Dale secretly lives in the lofts and moves between them",
+    "confidence": "high",
+    "quote": "in the loft, was where he lived"
+  },
+  "culprit_and_motive": {
+    "value": "Dale Chandler - 59-year-old man hiding from authorities, living parasitically in people's lofts for shelter and survival",
+    "confidence": "medium",
+    "quote": "His name was Dale Chandler, 59 years old"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Dale's elaborate pranks and food tampering designed to confuse the house occupants about mysterious activities",
+    "confidence": "medium",
+    "quote": "As one of his jokes, Dale would put food from the fridge in the cat bowl. Slices of bacon. Salted peanuts, carrots"
+  },
+  "clue_fairness": {
+    "value": "Dale's physical presence and activities are directly shown to the reader - his movements, spying, and three-year routine",
+    "confidence": "high",
+    "quote": "He had done it many times before, because in the loft, was where he lived."
+  },
+  "social_world": {
+    "value": "Isolated suburban housing with vulnerable single occupants - Barbara living alone, patterns of absence and routine",
+    "confidence": "medium",
+    "quote": "Barbara Mullens who was in the room, currently dreaming about blue frogs, was the only occupant of the large house"
+  },
+  "alibi": {
+    "value": "Dale's secret residence in the loft provides perfect concealment - occupants never suspect his presence",
+    "confidence": "high",
+    "quote": "She had never seen him. Never known about him. Yet he had been doing this several times a week for three years."
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "House sales and property showings suggest external investigation or aftermath of discovered crimes",
+    "confidence": "medium",
+    "quote": "in all of them there was a 'for-sale' sign, and it dawned on him that he would be getting new neighbours"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-john-jones-cuckoo-in-the-nests/",
+    "corpus_index": 344,
+    "text_len": 22009,
+    "title": "ebook john jones cuckoo in the nests",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

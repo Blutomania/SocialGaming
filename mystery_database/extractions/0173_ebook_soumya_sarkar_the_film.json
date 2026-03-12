@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Palash Datta, who died while acting in the film 'Ghost House'",
+    "confidence": "medium",
+    "quote": "Palash Datta has been dead for 2 weeks now"
+  },
+  "closed_world": {
+    "value": "Anjanpara bazaar and graveyard area where the film crew operates",
+    "confidence": "low",
+    "quote": "Go there and walk around"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Discovery that Palash Datta is dead, revealed by his gravestone",
+    "confidence": "medium",
+    "quote": "Palash Datta 1978-2012 Died while acting in the film 'Ghost House'"
+  },
+  "investigator": {
+    "value": "Nirmal Sen, an unwitting participant who discovers the supernatural truth",
+    "confidence": "medium",
+    "quote": "Nirmal failed to hear the last part of Chandrasekhar's question, for he was running to the tree."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "The entire ghost encounter and horror movie setup serves as elaborate misdirection from the supernatural truth that Palash Datta was actually dead",
+    "confidence": "high",
+    "quote": "Of course!' roared the director in laughter. 'When you are into your role, you need to be completely in it."
+  },
+  "clue_fairness": {
+    "value": "The reader receives the same information as Nirmal - Palash's instructions, the graveyard setting, and the reveal of his death simultaneously",
+    "confidence": "medium",
+    "quote": "Palash Datta has been dead for 2 weeks now \u2013 his grave is just beside that big banyan tree"
+  },
+  "social_world": {
+    "value": "Film industry hierarchy with director, crew, and actors; local bazaar community; workplace tensions between Nirmal and Adrik Mitra",
+    "confidence": "medium",
+    "quote": "Today was another day of hard work at office, ending with a phenomenon now common at his office"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Physical evidence of the tombstone inscription provides concrete proof that contradicts the rational film explanation",
+    "confidence": "high",
+    "quote": "Palash Datta 1978-2012 Died while acting in the film 'Ghost House' R.I.P"
+  },
+  "media_and_audience": {
+    "value": "The film crew exploits supernatural folklore and horror movie tropes to manipulate both Nirmal and the audience's expectations",
+    "confidence": "high",
+    "quote": "Suddenly the paraphernalia of horror moves became a fragment of reality"
+  },
+  "investigator_wound": {
+    "value": "Nirmal's skepticism about ghosts and his need to prove himself through accepting challenges makes him vulnerable to manipulation",
+    "confidence": "medium",
+    "quote": "This was Nirmal's firm belief that ghosts never did exist"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-soumya-sarkar-the-film/",
+    "corpus_index": 173,
+    "text_len": 4875,
+    "title": "ebook soumya sarkar the film",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

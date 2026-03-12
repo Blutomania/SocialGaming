@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of ballerina Gabriela Bunsdorff during ballet performance",
+    "confidence": "high",
+    "quote": "the murder of Gabriela Bunsdorff. It had happened years ago when the ballet, \"Sleeping Beauty\" performed"
+  },
+  "victim": {
+    "value": "Gabriela Bunsdorff, ballerina whose death allowed understudy to advance career",
+    "confidence": "medium",
+    "quote": "then Gabriela danced the death dance and the rest is history"
+  },
+  "closed_world": {
+    "value": "Baranovsky Ballet Company performing at Nautilus Beach Convention Center",
+    "confidence": "medium",
+    "quote": "when the ballet, \"Sleeping Beauty\" performed by the Baranovsky Ballet Company came to Nautilus Beach"
+  },
+  "culprit_and_motive": {
+    "value": "Natasha Dubcek (understudy who benefited from victim's death to advance ballet career)",
+    "confidence": "medium",
+    "quote": "you were just a dancer, an understudy, then Gabriela danced the death dance and the rest is history"
+  },
+  "resolution": {
+    "value": "Investigation involving forensic analysis of glass evidence from victim's dressing room",
+    "confidence": "medium",
+    "quote": "looking for one that hopefully contained the pieces of the broken glass taken from Gabriela's dressing room"
+  },
+  "investigator": {
+    "value": "Robert Wallace, former homicide detective now reflecting on past case",
+    "confidence": "high",
+    "quote": "Robert Wallace sat in his wheelchair thinking, remembering, the crime, the suspects and the investigation"
+  },
+  "suspect_architecture": {
+    "value": "Seven suspects from ballet company hierarchy: Doctor Edwards, Anthony Rogers, Natasha Dubcek (understudy/beneficiary), Margaret Helms, Harry Brummel, Viktor Baranovsky (company owner), Lester Cummings. Clear means/motive/opportunity spread across company roles.",
+    "confidence": "high",
+    "quote": "Chapter Two.....Doctor Edwards Chapter Three..Anthony Rogers Chapter Four....Natasha Dubcek"
+  },
+  "red_herring": {
+    "value": "Romantic subplot between Wallace and Natasha appears to be misdirection from her true motive - advancing career through Gabriela's death and marriage to company owner Viktor.",
+    "confidence": "medium",
+    "quote": "marriage to Viktor gives me forty per cent of the Barnaovsky Ballet Company"
+  },
+  "clue_fairness": {
+    "value": "Physical evidence search in dumpster for broken glass from victim's dressing room - clue available to reader when discovered by investigator.",
+    "confidence": "medium",
+    "quote": "he heard the tinkling sound of glass shards hitting one another. 'Bingo!', said Wallace"
+  },
+  "social_world": {
+    "value": "Ballet company hierarchy with clear power structure: Viktor Baranovsky as owner, principal dancers, understudies. Economic pressure from tourist trade and city fathers wanting quick resolution.",
+    "confidence": "high",
+    "quote": "The city fathers wanted the crime solved in a hurry and he was assigned to the case"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Glass evidence analysis through CSI Kevin English, combined with retrospective narrative structure as disabled Wallace remembers the case years later.",
+    "confidence": "medium",
+    "quote": "What I want you to do is examine each piece of glass for fingerprints"
+  },
+  "media_and_audience": {
+    "value": "Murder's negative impact on tourist trade creates external pressure; merchants and city fathers frame crime as economic threat to seaside resort reputation.",
+    "confidence": "high",
+    "quote": "The death of Gabriela Bunsdorff, ballerina, had an unfavorable impact on the tourist trade"
+  },
+  "investigator_wound": {
+    "value": "Wallace now wheelchair-bound, reflecting on past case, suggesting physical and emotional toll. Betrayal by Natasha who used him for protection while pursuing her own ambitions.",
+    "confidence": "medium",
+    "quote": "Robert Wallace sat in his wheelchair thinking, remembering, the crime, the suspects"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-la-danza-morte-039/",
+    "corpus_index": 83,
+    "text_len": 153664,
+    "title": "ebook robert f clifton la danza morte 039",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

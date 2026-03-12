@@ -1,0 +1,200 @@
+{
+  "title": "Levels of Betrayal",
+  "setting": {
+    "location": "Eko Pinnacle Arcology, Lagos, Nigeria \u2014 residential Tier 34, a self-contained living cluster",
+    "time_period": "2047, late rainy season",
+    "environment": "A vertical megastructure arcology housing 80,000 residents across 120 tiers. Tier 34 is a premium residential band with hydroponic gardens, communal plazas, and sealed corridors.",
+    "description": "A cascade failure in the arcology's central elevator grid has locked Tier 34 into emergency isolation: blast-rated bulkhead doors have sealed all vertical shafts and transit pods pending structural diagnostics, a process the building AI estimates will take twelve hours. Rain hammers the outer shell at 200 metres above ground, and the only law enforcement present is the arcology's own internal security team. No one on Tier 34 can leave, and no outside investigator can enter until the lockdown lifts."
+  },
+  "crime": {
+    "type": "Assassination by stabbing",
+    "what_happened": "Adaeze Nwosu, the newly appointed Tier Systems Coordinator, was found stabbed through the chest with a custom ceramic blade in her residential unit. The blade pierced her heart. Her apartment door was unlocked and her personal security AI was remotely disabled approximately four minutes before her body was discovered.",
+    "when": "Between 22:10 and 22:30 on the night of the elevator grid failure",
+    "initial_discovery": "Adaeze's assistant, Kwame Asante, arrived at her apartment at 22:34 to deliver a signed data-tablet she had requested. He found the door ajar, entered, and discovered her collapsed in the living module surrounded by a spreading blood pool. He triggered the emergency alert immediately."
+  },
+  "characters": [
+    {
+      "name": "Adaeze Nwosu",
+      "role": "victim",
+      "occupation": "Tier Systems Coordinator \u2014 oversees resource allocation, maintenance contracts, and resident data for Tier 34",
+      "motive": "N/A",
+      "alibi": "N/A",
+      "secret": "Adaeze had recently completed an audit revealing that maintenance contract payments on Tier 34 had been systematically inflated for three years, siphoning funds to a shell entity. She had not yet filed the report but had told one person she trusted completely."
+    },
+    {
+      "name": "Kwame Asante",
+      "role": "suspect",
+      "occupation": "Coordinator's Personal Assistant \u2014 manages Adaeze's schedule, correspondence, and access credentials on Tier 34",
+      "motive": "Kwame is the trusted insider who discovered the fraud Adaeze was investigating \u2014 because he was the architect of it. As her assistant he had full access to contract-management systems and had skimmed 1.4 million naira-credits over three years into accounts linked to his ailing mother's off-tier medical fund. Adaeze had confided in him that she was close to identifying the perpetrator, unknowingly alerting him.",
+      "alibi": "Claims he was in the Tier 34 administrative hub on sublevel 34-B from 21:50 until 22:30, processing overnight maintenance logs. The hub's occupancy sensor shows his biometric tag present, but the sensor can be spoofed by leaving one's ID chip on a desk.",
+      "secret": "Kwame had remotely borrowed Adaeze's security-AI override credentials two weeks earlier under the pretext of running a system drill \u2014 he never returned full administrative control to her. The evening of the murder he used those credentials to disable her apartment's security AI from a terminal in the administrative hub, which is why his biometric tag appears on-site while he was physically absent."
+    },
+    {
+      "name": "Folake Durojaiye",
+      "role": "suspect",
+      "occupation": "Hydroponic Garden Supervisor \u2014 manages Tier 34's food-production levels and employs a crew of twelve residents",
+      "motive": "Folake's daughter, Amara, died eight months ago after falling from an improperly maintained walkway on Tier 34. Adaeze, then deputy coordinator, signed off on the inspection report that cleared that walkway \u2014 a report Folake believes was falsified to protect the contractor. Folake has been collecting evidence to expose the cover-up and suspected Adaeze was complicit.",
+      "alibi": "Was in Hydroponic Bay 34-G with two night-shift technicians, Tunde Eze and Blessing Obi, running an emergency irrigation calibration triggered by the power fluctuation at 21:55. Both technicians confirm she was present and physically working alongside them until at least 22:45.",
+      "secret": "Folake had broken into Adaeze's external data archive three weeks ago using a cloned access card and copied maintenance inspection files. She found evidence of falsified contractor reports but also stumbled upon Kwame's inflated invoices \u2014 she kept quiet about the financial fraud because she feared it would muddy her wrongful-death case and get her arrested for the illegal data access."
+    },
+    {
+      "name": "Sergeant Olu Bankole",
+      "role": "detective",
+      "occupation": "Arcology Internal Security Sergeant \u2014 the senior law-enforcement officer on Tier 34 during the lockdown",
+      "motive": "N/A",
+      "alibi": "N/A",
+      "secret": "Bankole has a prior professional relationship with Kwame: they grew up in the same district-housing block and Bankole has accepted small favours from Kwame in the past \u2014 nothing criminal, but enough that he is unconsciously reluctant to press Kwame hard without clear evidence, mirroring a classic detective-assistant blind spot."
+    },
+    {
+      "name": "Dr. Emeka Nzekwe",
+      "role": "suspect",
+      "occupation": "Arcology Structural Engineer \u2014 posted to Tier 34 to oversee the elevator grid diagnostic during the lockdown",
+      "motive": "Nzekwe co-owns the shell maintenance company that has been receiving the inflated contract payments. He learned through a corporate tip-off that an internal audit was nearing completion and that the Tier Coordinator had physical documentation. He came to Tier 34 under the pretext of the elevator emergency \u2014 which he did not cause but was happy to exploit \u2014 intending to retrieve or destroy the audit files.",
+      "alibi": "Claims he was in the elevator machine room on sublevel 34-A from 21:30 onward, running grid diagnostics with two building-AI technicians. The technicians confirm his presence until 22:15, but the machine room is only a four-minute walk from Adaeze's apartment, leaving a window between 22:15 and 22:34.",
+      "secret": "Nzekwe entered Adaeze's apartment building using an engineering master-key issued to him for the lockdown emergency. He claims he used it only on sublevel 34-A, but the key's usage log \u2014 which he did not know was automatically recorded \u2014 shows it was scanned at Adaeze's residential corridor door at 22:09."
+    },
+    {
+      "name": "Blessing Obi",
+      "role": "witness",
+      "occupation": "Hydroponic Night-Shift Technician \u2014 employed under Folake in Bay 34-G",
+      "motive": "N/A",
+      "alibi": "Was working with Folake in Bay 34-G the entire evening; can confirm Folake's presence but also mentions seeing a man in an engineering vest near the residential corridor around 22:10.",
+      "secret": "Blessing saw Nzekwe in the residential corridor at approximately 22:10 but initially said nothing because she feared being questioned about the illegal after-hours access she routinely grants Folake to the archive room adjacent to the bay \u2014 she only reveals what she saw when pressed about the engineering vest sighting."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "Engineering Master-Key Usage Log",
+      "description": "A digital access record automatically generated by the arcology's door-sensor network, stored in the building AI's immutable ledger. It shows that the master-key issued to Dr. Emeka Nzekwe was scanned at the residential corridor door on sublevel 34-C at 22:09 \u2014 the same corridor where Adaeze's apartment is located \u2014 contradicting his claim that he never left sublevel 34-A.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E2",
+      "name": "Security-AI Override Credential Log",
+      "description": "A server-side log from Adaeze's apartment security AI showing that its deactivation at 22:06 was authorised using Adaeze's own administrator credentials, but the command originated from terminal 34-B-07 in the administrative hub \u2014 Kwame's primary workstation. The log timestamp is four minutes before Kwame claims he was still passively reviewing maintenance files at that same terminal, meaning he was actively issuing commands, not just present.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E3",
+      "name": "Ceramic Blade Fragment",
+      "description": "A shard of custom-printed ceramic approximately four centimetres long, recovered from beneath Adaeze's body during the initial scene examination. It is non-metallic and would not have triggered the arcology's standard metal-detector checkpoints, suggesting the weapon was specifically chosen for an environment with those security measures. A partial micro-engraving on the shard reads 'EK-NZ', consistent with a personalised fabrication code.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E4",
+      "name": "Bloody Boot Print",
+      "description": "A partial boot print in Adaeze's blood found just inside the apartment's entrance threshold, measuring size 43 with a distinctive hexagonal tread pattern used in standard arcology engineering-crew footwear. It initially points investigators toward any engineering personnel on Tier 34 during the lockdown, which includes Nzekwe but also several maintenance crew members.",
+      "type": "physical",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E5",
+      "name": "Folake's Cloned Access Card",
+      "description": "A thin polymer card found tucked inside Folake's tool-belt pouch during a precautionary search of all Tier 34 supervisory staff. The card is encoded with copied credentials matching the archive room adjacent to Hydroponic Bay 34-G. Its existence makes Folake appear far more deeply involved in covert activity than she initially admitted and briefly positions her as a primary suspect.",
+      "type": "physical",
+      "relevance": "red_herring"
+    },
+    {
+      "id": "E6",
+      "name": "Kwame's Biometric Tag Placement Record",
+      "description": "An occupancy-sensor report from the administrative hub showing Kwame's biometric ID chip was logged continuously in room 34-B-07 from 21:50 to 22:35. On the surface this appears to provide a solid alibi, but cross-referencing with the room's thermal-imaging auxiliary sensor \u2014 a secondary system \u2014 reveals only one person entered and left early; the biometric tag remained because Kwame left his chip-card on his desk, a deception tactic.",
+      "type": "circumstantial",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E7",
+      "name": "Audit Draft Document",
+      "description": "A partially completed data-file recovered from Adaeze's personal work-tablet found on her desk, its last edit timestamped 21:48 \u2014 approximately twenty minutes before her estimated time of death. The draft names the shell company receiving inflated payments and includes a column of transaction IDs. One notation in the margin reads 'confirm with K re: signatory' \u2014 suggesting Adaeze was still unaware that her trusted assistant Kwame was the perpetrator and planned to ask him to help verify the evidence against himself.",
+      "type": "documentary",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E8",
+      "name": "Blessing Obi's Eyewitness Statement",
+      "description": "A recorded statement given by Hydroponic technician Blessing Obi during a second round of questioning, in which she describes seeing a man in a grey engineering vest with a red tier-access stripe walking quickly through the residential corridor near Adaeze's apartment at approximately 22:10. She identifies the vest design as matching arcology structural-engineering staff. This statement was withheld by Blessing during initial questioning and only emerged when investigators noted inconsistencies in her first account.",
+      "type": "testimonial",
+      "relevance": "supporting"
+    }
+  ],
+  "solution": {
+    "culprit": "Dr. Emeka Nzekwe",
+    "method": "Nzekwe used his legitimately issued engineering master-key to access Adaeze's residential corridor at 22:09. He entered her apartment \u2014 whose security AI had been deactivated by Kwame moments earlier at 22:06, unknowingly creating a window Nzekwe exploited \u2014 and stabbed Adaeze with a custom-fabricated ceramic blade that bypassed the arcology's metal-detector checkpoints. He then returned to the elevator machine room before the body was discovered. He did not know the master-key's usage was logged by the building AI.",
+    "motive": "Nzekwe co-owns the shell maintenance company siphoning inflated contract payments from Tier 34. Adaeze's audit was days from completion and would have identified his company. He came to Tier 34 under cover of the elevator emergency specifically to eliminate her and destroy the audit files before she could file her report.",
+    "key_evidence": [
+      "E1",
+      "E3"
+    ],
+    "how_to_deduce": "Step 1 \u2014 Eliminate alibis with time-window analysis: Nzekwe's two technician witnesses confirm his presence in the machine room only until 22:15. The estimated time of death is between 22:10 and 22:30, and the machine room is four minutes from Adaeze's apartment, meaning Nzekwe had a physical opportunity that the continuously-logged-but-spoofed Kwame appears not to have. Step 2 \u2014 Confront the key log: Evidence E1 shows Nzekwe's master-key was scanned at Adaeze's residential corridor door at 22:09, directly contradicting his statement that he never left sublevel 34-A. This places him at the scene. Step 3 \u2014 Match the blade to Nzekwe: The ceramic blade fragment (E3) carries the micro-engraving 'EK-NZ'. Cross-referencing arcology fabrication-lab records shows that code matches a custom print job registered under the name Emeka Nzekwe eight days before the murder \u2014 he had the weapon made in advance, proving premeditation. Step 4 \u2014 Resolve the security-AI deactivation as a separate but parallel conspiracy: E2 confirms Kwame disabled Adaeze's security AI from his workstation, but this does not make Kwame the killer; it means Kwame was covering his own fraud trail by removing any chance Adaeze would record a conversation naming him, inadvertently providing Nzekwe a clean entry window \u2014 two guilty parties with overlapping but distinct crimes. Step 5 \u2014 Discount Folake: Her cloned access card (E5) is alarming but explains only her covert file-copying; her alibi is independently corroborated by two witnesses across the entire murder window, and nothing connects her to the blade, the corridor entry, or the security-AI deactivation."
+  },
+  "gameplay_notes": {
+    "difficulty": "HARD",
+    "estimated_playtime": "90\u2013120 minutes",
+    "key_twists": [
+      "Kwame genuinely disabled the security AI but is not the killer \u2014 players who focus on E2 will suspect the wrong insider and must recognise that two people had independent reasons to act against Adaeze the same night.",
+      "The biometric tag alibi for Kwame initially appears airtight but collapses when the thermal-imaging auxiliary data in E6 is cross-referenced, rewarding thorough evidence review.",
+      "Folake's possession of the cloned access card and her personal vendetta against Adaeze make her the most emotionally compelling suspect, but her alibi is the strongest of all \u2014 she functions as the scenario's primary red herring.",
+      "Blessing Obi's withheld eyewitness account only surfaces in a second round of questioning, simulating the real investigative dynamic of witnesses protecting themselves and requiring players to re-interview rather than accept first statements as complete."
+    ]
+  },
+  "_meta": {
+    "num_players": 4,
+    "setting_input": "Near-future Lagos, 2047, vertical megastructure arcology"
+  },
+  "_provenance": {
+    "recipe": "corpus_0218_ebo(1) + corpus_0325_ebo(2) + corpus_0091_ebo(3) + corpus_0289_ebo(4) + corpus_0061_ebo(5) + corpus_0297_ebo(6) + corpus_0134_ebo(7) + C(8)",
+    "slots": [
+      {
+        "source_id": "corpus_0218_ebo",
+        "part_index": 1,
+        "part_type": "crime_type"
+      },
+      {
+        "source_id": "corpus_0325_ebo",
+        "part_index": 2,
+        "part_type": "setting_element"
+      },
+      {
+        "source_id": "corpus_0091_ebo",
+        "part_index": 3,
+        "part_type": "motive"
+      },
+      {
+        "source_id": "corpus_0289_ebo",
+        "part_index": 4,
+        "part_type": "suspect_archetype"
+      },
+      {
+        "source_id": "corpus_0061_ebo",
+        "part_index": 5,
+        "part_type": "red_herring"
+      },
+      {
+        "source_id": "corpus_0297_ebo",
+        "part_index": 6,
+        "part_type": "reveal_mechanic"
+      },
+      {
+        "source_id": "corpus_0134_ebo",
+        "part_index": 7,
+        "part_type": "social_dynamic"
+      },
+      {
+        "source_id": "C",
+        "part_index": 8,
+        "part_type": "evidence_type"
+      }
+    ],
+    "target_setting": "Near-future Lagos, 2047, vertical megastructure arcology",
+    "generated_title": ""
+  },
+  "_coherence": {
+    "passed": true,
+    "blocking": 0,
+    "warnings": 0,
+    "witness_gaps": []
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "House fire killing family of four, officially ruled non-arson but potentially murder",
+    "confidence": "medium",
+    "quote": "Number 17, Hartley Road, Trowbridge burned down earlier this morning. The four members of the Carlton family have all died."
+  },
+  "victim": {
+    "value": "The Carlton family - wife attempting to leave abusive husband Harry Carlton",
+    "confidence": "medium",
+    "quote": "If she tries to leave me, I'll bloody kill 'em. All of 'em. Burn the whole bloody place down. She's my wife."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Harry Carlton killed his family to prevent his wife from leaving him and preserve his reputation",
+    "confidence": "medium",
+    "quote": "I'll kill 'em. If she tries to leave me, I'll bloody kill 'em. All of 'em. Burn the whole bloody place down."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Maggie, a telepathic young woman who can read minds and may investigate the Carlton family deaths",
+    "confidence": "medium",
+    "quote": "What Claire wasn't aware of was the relentless, everlasting struggle Maggie went through to ignore everyones thoughts"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Police ruling out arson while true perpetrator used mind reading to discover arson plan",
+    "confidence": "medium",
+    "quote": "Police have ruled out arson."
+  },
+  "clue_fairness": {
+    "value": "Reader given access to Harry Carlton's murderous thoughts before Maggie acts on the information",
+    "confidence": "high",
+    "quote": "I'll kill 'em. If she tries to leave me, I'll bloody kill 'em. All of 'em. Burn the whole bloody place down."
+  },
+  "social_world": {
+    "value": "University students with class distinctions, religious family constraints affecting friendship dynamics",
+    "confidence": "medium",
+    "quote": "sacrificing everything she was taught about the world by her restrained, religious parents"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Telepathic revelation of past crime through mental connection during train journey",
+    "confidence": "high",
+    "quote": "This morning... the news... family of four..."
+  },
+  "media_and_audience": {
+    "value": "Television news reports the Carlton family fire as accident, shaping public perception",
+    "confidence": "high",
+    "quote": "She saw it on the news. Number 17, Hartley Road, Trowbridge burned down earlier this morning."
+  },
+  "investigator_wound": {
+    "value": "Maggie's guilt over failing to prevent the Carlton family deaths despite having telepathic abilities",
+    "confidence": "high",
+    "quote": "That feeling was all too familiar. This morning... the news... family of four..."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-daisy-graham-the-perfect-spy/",
+    "corpus_index": 48,
+    "text_len": 7370,
+    "title": "ebook daisy graham the perfect spy",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

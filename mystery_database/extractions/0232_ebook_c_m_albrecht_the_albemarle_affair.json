@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Theft at Edie's restaurant",
+    "confidence": "medium",
+    "quote": "if the detectives were successful in handing over the perpetrator"
+  },
+  "victim": {
+    "value": "Ayoobi (restaurant owner/manager being stolen from)",
+    "confidence": "medium",
+    "quote": "if they caught the thief and put a stop to the theft within their allotted two weeks"
+  },
+  "closed_world": {
+    "value": "Edie's restaurant and its staff/customers",
+    "confidence": "low",
+    "quote": "Everybody around town knows Edie's"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Keely and Parker - detective duo taking their first case",
+    "confidence": "high",
+    "quote": "After all, this is our first case, Park. This is our chance to show what we've got"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Melodie's voices presented as possibly imaginary by doctor, but she believes they're real this time",
+    "confidence": "medium",
+    "quote": "She knew, well, that's what the doctor told her, they were just imaginary, but now. She felt sure they were real"
+  },
+  "clue_fairness": {
+    "value": "Reader hears the same fragmentary voices and words ('Tony') that Melodie hears from below",
+    "confidence": "medium",
+    "quote": "Tony! She clearly heard him yell 'Tony.' And then her voice. Not so loud, but sharper."
+  },
+  "social_world": {
+    "value": "Family betrayal dynamics - untrustworthy father figure (man of God), foster mother, older men with power over young woman",
+    "confidence": "medium",
+    "quote": "if she couldn't even trust her own father, a man of God! Maybe all old men were like that. And her foster mother"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "First-time detectives Keely and Parker taking their inaugural case with financial pressure and fear of failure",
+    "confidence": "medium",
+    "quote": "After all, this is our first case, Park. This is our chance to show what we've got"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-c-m-albrecht-the-albemarle-affair/",
+    "corpus_index": 232,
+    "text_len": 21852,
+    "title": "ebook c m albrecht the albemarle affair",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

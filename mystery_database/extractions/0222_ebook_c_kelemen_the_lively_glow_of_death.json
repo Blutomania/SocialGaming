@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Katie, a little girl who is dead, dressed in lavender with red stains",
+    "confidence": "medium",
+    "quote": "This was the little girl my whole investigation was on. She was dressed in a lavender dress with red stains"
+  },
+  "closed_world": {
+    "value": "A mill where the investigation takes place",
+    "confidence": "low",
+    "quote": "All was quite in the mill. The gear softly turning"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "First-person narrator conducting an investigation about Katie",
+    "confidence": "medium",
+    "quote": "This was the little girl my whole investigation was on"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Supernatural elements (ghosts, glowing figures) may be misdirecting from human agency in Katie's death",
+    "confidence": "medium",
+    "quote": "The shine was a tall teen that was around the age of fifteen maybe. The glow though was Katie."
+  },
+  "clue_fairness": {
+    "value": "Visual clues about Katie's appearance and death are presented directly to reader through narrator's observations",
+    "confidence": "medium",
+    "quote": "She was dressed in a lavender dress with red stains on it and her hair was up in two braids."
+  },
+  "social_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Supernatural manifestations appear to be the method of revealing truth about Katie's case",
+    "confidence": "medium",
+    "quote": "This was the little girl my whole investigation was on."
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Investigator appears emotionally affected by the case involving a dead child, showing vulnerability to the supernatural elements",
+    "confidence": "medium",
+    "quote": "To me she would have been the description of cute if there was not the part about her being dead."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-c-kelemen-the-lively-glow-of-death/",
+    "corpus_index": 222,
+    "text_len": 2213,
+    "title": "ebook c kelemen the lively glow of death",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "mystery_id": "E",
+  "title": "A Steampunk Sabotage",
+  "protocols": [
+    "P1",
+    "P2"
+  ],
+  "source_text": "Title: A Steampunk Sabotage\nCrime Type: sabotage\nSetting: A grand industrial exposition, alternate-history Europe (steampunk_alternate_victorian)\nEnvironment: exposition_hall\nGenres: steampunk, industrial_espionage, alternate_history\n\nSummary:\nOn the opening night of the Great Aetheric Exposition, the centerpiece invention \u2014 a revolutionary aether engine \u2014 is destroyed in a dramatic explosion. The inventor survives but is blamed. Someone with engineering knowledge sabotaged the device to steal the patent and eliminate the competition before the demonstration could be witnessed by investors.\n\nStructural Elements Present:\n  - crime_type\n  - setting_element\n  - motive\n  - suspect_archetype\n  - red_herring\n  - reveal_mechanic\n  - social_dynamic\n  - evidence_type\n",
+  "extracted": {
+    "crime": {
+      "protocol": "P1",
+      "part": "C1 \u2014 The Crime",
+      "value": "Sabotage of a revolutionary aether engine via deliberate explosion at the Great Aetheric Exposition's opening night.",
+      "confidence": "high",
+      "quote": "the centerpiece invention \u2014 a revolutionary aether engine \u2014 is destroyed in a dramatic explosion"
+    },
+    "victim": {
+      "protocol": "P1",
+      "part": "C2 \u2014 The Victim",
+      "value": "The inventor of the aether engine, who survives the explosion but is wrongly blamed for the destruction of their own work.",
+      "confidence": "high",
+      "quote": "The inventor survives but is blamed."
+    },
+    "closed_world": {
+      "protocol": "P1",
+      "part": "C3 \u2014 The Closed World",
+      "value": "A grand industrial exposition hall in alternate-history steampunk Europe, a bounded event space populated by inventors, engineers, investors, and exhibitors.",
+      "confidence": "high",
+      "quote": "A grand industrial exposition, alternate-history Europe (steampunk_alternate_victorian) ... exposition_hall"
+    },
+    "culprit_and_motive": {
+      "protocol": "P1",
+      "part": "C4 \u2014 The Culprit and Motive",
+      "value": "An individual with engineering knowledge who sabotaged the device to steal the patent and eliminate competition before investors could witness the demonstration.",
+      "confidence": "high",
+      "quote": "Someone with engineering knowledge sabotaged the device to steal the patent and eliminate the competition"
+    },
+    "resolution": {
+      "protocol": "P1",
+      "part": "C5 \u2014 The Resolution",
+      "value": "Not explicitly described in the excerpt; the resolution mechanics are implied but not detailed beyond the reveal of the true saboteur.",
+      "confidence": "low",
+      "quote": null
+    },
+    "investigator": {
+      "protocol": "P1",
+      "part": "C6 \u2014 The Investigator",
+      "value": "Not explicitly named or described in the excerpt; no investigator character is introduced.",
+      "confidence": "low",
+      "quote": null
+    },
+    "suspect_architecture": {
+      "protocol": "P2",
+      "part": "M1 \u2014 Suspect Architecture",
+      "value": "Suspects likely drawn from the exposition attendees with engineering expertise \u2014 rival inventors, industrial spies, or investor-aligned saboteurs. The suspect_archetype element is listed as present.",
+      "confidence": "medium",
+      "quote": "Structural Elements Present: ... suspect_archetype"
+    },
+    "red_herring": {
+      "protocol": "P2",
+      "part": "M2 \u2014 The Red Herring",
+      "value": "The inventor is falsely blamed for the explosion, serving as a primary red herring to misdirect suspicion away from the true saboteur.",
+      "confidence": "high",
+      "quote": "The inventor survives but is blamed. ... Structural Elements Present: ... red_herring"
+    },
+    "clue_fairness": {
+      "protocol": "P2",
+      "part": "M3 \u2014 Clue Fairness",
+      "value": "Evidence type is listed as a structural element, suggesting physical or technical clues (e.g., engineering signatures, sabotage mechanisms) are embedded for fair-play discovery.",
+      "confidence": "medium",
+      "quote": "Structural Elements Present: ... evidence_type"
+    },
+    "social_world": {
+      "protocol": "P2",
+      "part": "M4 \u2014 The Social World",
+      "value": "Steampunk alternate-Victorian Europe with industrial espionage dynamics; social strata include inventors, investors, engineers, and competing industrial factions.",
+      "confidence": "high",
+      "quote": "Genres: steampunk, industrial_espionage, alternate_history ... Structural Elements Present: ... social_dynamic"
+    },
+    "alibi": {
+      "protocol": "P2",
+      "part": "M5 \u2014 The Alibi",
+      "value": "Not explicitly described in the excerpt; no alibi structures or claims are detailed.",
+      "confidence": "low",
+      "quote": null
+    },
+    "reveal_mechanic": {
+      "protocol": "P2",
+      "part": "M6 \u2014 The Reveal Mechanic",
+      "value": "A reveal mechanic is confirmed as a structural element present; likely tied to engineering evidence or patent documentation exposing the saboteur's identity.",
+      "confidence": "medium",
+      "quote": "Structural Elements Present: ... reveal_mechanic"
+    },
+    "media_and_audience": {
+      "protocol": "P2",
+      "part": "M7 \u2014 Media and Audience",
+      "value": "Investors are present as a key audience for the exposition demonstration, making the public/witnessed nature of the sabotage central to its impact and stakes.",
+      "confidence": "medium",
+      "quote": "eliminate the competition before the demonstration could be witnessed by investors"
+    },
+    "investigator_wound": {
+      "protocol": "P2",
+      "part": "M8 \u2014 The Investigator's Wound",
+      "value": "Not present in the excerpt; no investigator is introduced, so no personal wound or flaw can be extracted.",
+      "confidence": "low",
+      "quote": null
+    }
+  },
+  "usage": {
+    "input_tokens": 1389,
+    "output_tokens": 1335
+  }
+}

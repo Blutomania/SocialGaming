@@ -1,0 +1,214 @@
+{
+  "title": "Neon Requiem at Club Sakura",
+  "setting": {
+    "location": "Club Sakura, a neon-lit hostess bar on the sixth floor of the Ginza Neon Building, Tokyo",
+    "time_period": "1980s, late autumn",
+    "environment": "A labyrinthine hostess bar of red velvet booths, mirrored walls, and cigarette haze. A private typhoon warning has triggered a building-wide lockdown \u2014 the sole elevator has been manually shut off by building management, the fire-exit stairwells are sealed by a police officer stationed at the ground-floor entrance following a separate street incident below, and the service stairs on the east wing are blocked by a collapsed shelving unit discovered minutes after the murder. No one may leave until the police lieutenant clears the floor."
+  },
+  "crime": {
+    "type": "Murder",
+    "what_happened": "Hiroshi Tanaka, the wealthy owner of Club Sakura, was found dead in his private back office with a lethal dose of thallium sulfate dissolved in his whisky. He had recently updated his will, cutting out his second wife in favor of his estranged daughter, and had privately informed his bar manager of this change earlier that evening. Someone ensured the bar's regular staff were sent home early and the security camera covering the back hallway was turned to face the wall before slipping into his office between 10:45 and 11:15 p.m.",
+    "when": "Between 22:45 and 23:15 on a Friday night in November",
+    "initial_discovery": "Yuki Mori, a hostess, found Tanaka slumped over his desk when she brought him his final whisky order at 23:20. He was still warm but unresponsive, with foam at the corner of his lips. She screamed, bringing the remaining occupants of the bar running."
+  },
+  "characters": [
+    {
+      "name": "Hiroshi Tanaka",
+      "role": "victim",
+      "occupation": "Owner of Club Sakura; habitually spent Friday nights in his back office reviewing weekly accounts",
+      "motive": "N/A",
+      "alibi": "N/A \u2014 was found dead in his private back office at 23:20",
+      "secret": "Tanaka had secretly amended his will three days before his death, removing his second wife Reiko as primary beneficiary and restoring his biological daughter Aiko as sole heir. He told only his bar manager, Kenji Oda, about the change, swearing him to silence."
+    },
+    {
+      "name": "Reiko Tanaka",
+      "role": "suspect",
+      "occupation": "Second wife of Hiroshi Tanaka; unofficial co-hostess and social face of Club Sakura, present every Friday to entertain VIP guests",
+      "motive": "Financial \u2014 stands to lose the entire inheritance of Tanaka's estate, estimated at 200 million yen, following the secret will amendment. She had already begun spending against her expected inheritance by taking a secret loan from a Ginza moneylender.",
+      "alibi": "Claims she was seated in Booth 3 entertaining the real-estate client Mr. Watanabe from 22:30 until 23:15, but Watanabe recalls she excused herself for 'at least twenty minutes' shortly after 22:45, saying she needed to fetch a special bottle from the back storeroom.",
+      "secret": "Reiko had discovered the will amendment two days earlier by bribing Tanaka's personal lawyer's secretary for a copy of the draft document. She had also purchased a small quantity of rat poison containing thallium sulfate from a hardware store in Shibuya five days before the murder, ostensibly claiming she had a rodent problem at home \u2014 the receipt is still in her coat pocket."
+    },
+    {
+      "name": "Kenji Oda",
+      "role": "suspect",
+      "occupation": "Bar manager of Club Sakura; responsible for staff scheduling, inventory, and the owner's private whisky orders",
+      "motive": "Reputational and financial \u2014 Tanaka had recently discovered that Kenji had been skimming approximately 500,000 yen per month from bar receipts over the past year and had told Kenji that morning he would be dismissed and prosecuted after the weekend accounts were reviewed.",
+      "alibi": "States he was behind the main bar counter mixing drinks continuously from 22:30 to 23:20, visible to the hostesses. However, hostess Yuki Mori recalls he disappeared into the back corridor for roughly ten minutes around 22:50, telling her he needed to restock the ice supply from the back storeroom.",
+      "secret": "Kenji was the person who physically turned the security camera in the back hallway to face the wall earlier that evening, claiming it had been knocked loose during afternoon cleaning. He also prepared Tanaka's private whisky glass himself that night, deviating from the usual practice of having Yuki deliver a sealed bottle."
+    },
+    {
+      "name": "Yuki Mori",
+      "role": "suspect",
+      "occupation": "Senior hostess at Club Sakura; employed for three years and trusted with the owner's personal service",
+      "motive": "Relational \u2014 Yuki had been conducting a secret affair with Tanaka for eighteen months and believed he would leave Reiko for her. When she discovered that week that Tanaka had instead arranged for his daughter Aiko to inherit everything and had told a colleague he planned to 'simplify his personal life,' she felt both betrayed and financially abandoned, as Tanaka had been subsidising her apartment rent.",
+      "alibi": "Claims she was at the bar's hostess lounge doing makeup touch-ups with colleague Fumiko Sato between 22:40 and 23:00 before returning to the floor. Fumiko confirms Yuki was present but admits she herself dozed off briefly and cannot account for every minute.",
+      "secret": "Yuki discovered a handwritten note in Tanaka's jacket pocket two weeks earlier \u2014 left there accidentally \u2014 in which he described his plan to end their arrangement 'after the accounts are settled in November.' She never confronted him about it. She also possesses a spare key to Tanaka's private office, given to her informally six months ago, which she has not disclosed to anyone."
+    },
+    {
+      "name": "Detective Sergeant Masa Fujimoto",
+      "role": "detective",
+      "occupation": "Tokyo Metropolitan Police detective; happened to be present in the bar's main lounge conducting an informal off-duty inquiry into a separate missing-persons case linked to the building",
+      "motive": "N/A",
+      "alibi": "Was seated in the main lounge nursing a beer and reviewing hand-written case notes when Yuki's scream alerted everyone at 23:20. Three bar patrons confirm he was visible and stationary from at least 22:30 onward.",
+      "secret": "Fujimoto had been investigating Club Sakura for suspected ties to a Ginza loan-sharking ring \u2014 the same ring that lent money to Reiko Tanaka. He had not yet obtained a warrant and was gathering informal intelligence, which is why he did not immediately identify himself as police when the lockdown began."
+    },
+    {
+      "name": "Fumiko Sato",
+      "role": "witness",
+      "occupation": "Junior hostess at Club Sakura; employed for eight months",
+      "motive": "N/A \u2014 no stake in the victim's death",
+      "alibi": "Was in the hostess lounge with Yuki Mori from approximately 22:40 until Yuki left to deliver the whisky at 23:15. Admits she fell asleep in her chair for an unknown period \u2014 possibly ten to fifteen minutes \u2014 and cannot firmly corroborate Yuki's presence the entire time.",
+      "secret": "Fumiko witnessed Kenji Oda enter the back corridor at approximately 22:50 and re-emerge around 23:00 carrying no ice bucket and appearing flustered. She did not mention this initially because Kenji had threatened to dock her pay if she 'caused trouble' \u2014 he had previously caught her taking home leftover champagne."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "Hardware Store Receipt",
+      "description": "A crumpled paper receipt from a Shibuya hardware store dated five days before the murder, found tucked inside the inner lining of Reiko Tanaka's fur coat hanging in the VIP cloakroom. It lists the purchase of one box of 'Nezumi Koroshi' brand rat poison, whose active ingredient is thallium sulfate. This directly connects Reiko to the substance used to kill her husband.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E2",
+      "name": "Whisky Glass with Residue",
+      "description": "Tanaka's crystal whisky glass, recovered from his desk, still containing a small amber pool of whisky at the bottom. A faint chalky white residue is visible along the inner rim above the liquid line. Forensic testing confirms the residue is thallium sulfate dissolved at lethal concentration, establishing the glass as the vehicle of poisoning.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E3",
+      "name": "Rotated Security Camera",
+      "description": "The wall-mounted security camera in the back corridor leading to the owner's office was found pointing directly at the bare plaster wall rather than down the hallway. A faint smear of bar-polish consistent with Kenji Oda's habitual hand cloth is visible on the camera housing. This suggests deliberate repositioning to eliminate footage of whoever entered Tanaka's office.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E4",
+      "name": "Amended Will Draft Copy",
+      "description": "A folded photocopy of Tanaka's amended will, found hidden beneath the false bottom of Reiko's designer handbag during the lockdown search. The document is stamped with the lawyer's office header and is dated three days before the murder, showing Aiko reinstated as sole heir. Handwritten annotations in pencil \u2014 matching Reiko's handwriting \u2014 circle the clause removing Reiko from inheritance and are followed by an expletive.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E5",
+      "name": "Spare Office Key",
+      "description": "A small brass key found in Yuki Mori's hostess locker during the lockdown search, bearing a tag scratched with the kanji for 'back room.' It matches the lock to Tanaka's private office. Yuki initially denied having any means of accessing the office independently, making the discovery of this key a significant contradiction of her stated alibi narrative.",
+      "type": "physical",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E6",
+      "name": "Skimming Ledger Fragment",
+      "description": "A torn page from a small notebook recovered from the waste bin under the bar counter, partially burned with a cigarette lighter. The surviving numbers, written in Kenji Oda's hand, list weekly cash amounts alongside the bar's official receipts \u2014 the discrepancies clearly indicate systematic skimming over the past year. This establishes Kenji's powerful motive to silence Tanaka before the weekend accounting review.",
+      "type": "documentary",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E7",
+      "name": "Empty Ice Bucket",
+      "description": "The bar's designated ice bucket for the back storeroom run was found sitting clean, dry, and unused on its shelf in the storeroom \u2014 contradicting Kenji Oda's stated reason for going into the back corridor at 22:50. It initially suggests Kenji is the poisoner, as his alibi collapses and he had the opportunity. However, the bucket's shelf also has a dusty outline showing it was not moved that evening.",
+      "type": "physical",
+      "relevance": "red_herring"
+    },
+    {
+      "id": "E8",
+      "name": "Fumiko Sato's Testimony",
+      "description": "Hostess Fumiko Sato's formal statement, given after Detective Fujimoto privately assured her she would not be penalized for the champagne incident, in which she describes seeing Kenji Oda enter the back corridor at 22:50 and return empty-handed at approximately 23:00, looking agitated. She also states that Yuki was absent from the hostess lounge during part of the time she was supposedly there doing her makeup \u2014 Fumiko noticed Yuki's makeup bag was still on the counter, unopened.",
+      "type": "testimonial",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E9",
+      "name": "Loan-Shark Debt Document",
+      "description": "A folded document bearing the insignia of the Ginza moneylending operation under Detective Fujimoto's investigation, found slipped into the pages of the bar's reservation book. It records a loan of 15 million yen issued to 'R. Tanaka' one month prior at punishing interest, with a handwritten warning note in the margin reading 'settlement expected before year end.' This establishes the financial desperation Reiko faced independent of the will.",
+      "type": "documentary",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E10",
+      "name": "Foreign Business Card in Victim's Hand",
+      "description": "A slightly crumpled business card from a Mr. Harold Bennett, described as a 'London Spirits Importer,' was found loosely held in Tanaka's left hand when his body was discovered. The card has a Mayfair telephone number and appears to be from a legitimate company. Initial investigators theorize Bennett may be a foreign conspirator or associate, but thorough checking reveals the card is simply from a whisky supplier Tanaka met at a trade expo the previous week and is completely unrelated to the murder.",
+      "type": "physical",
+      "relevance": "red_herring"
+    }
+  ],
+  "solution": {
+    "culprit": "Reiko Tanaka",
+    "method": "Reiko dissolved thallium sulfate \u2014 sourced from rat poison purchased five days earlier \u2014 into Tanaka's private whisky glass during her twenty-minute absence from Booth 3. She used her familiarity with the bar's back-of-house layout to enter the back corridor while Kenji Oda was also briefly there (providing mutual confusion), poured the poison into the glass already set on Tanaka's desk for the evening, and returned to her booth before Yuki delivered the drink. She had previously arranged with Kenji to send regular staff home early \u2014 not knowing Reiko's true purpose \u2014 by fabricating a story about Tanaka wanting a private evening.",
+    "motive": "Reiko stood to lose 200 million yen when Tanaka's amended will took legal effect. She had already borrowed 15 million yen from a loan shark against her expected inheritance and faced violent collection if she could not repay. Learning of the will change via the stolen draft copy, she acted within a narrow window before the will was formally witnessed and filed.",
+    "key_evidence": [
+      "E1",
+      "E2",
+      "E4"
+    ],
+    "how_to_deduce": "Step 1 \u2014 Establish the poison's origin: The hardware store receipt (E1) found in Reiko's coat lining confirms she purchased thallium sulfate-based rat poison five days before the murder. The whisky glass residue (E2) confirms thallium sulfate as the cause of death and the glass as the delivery method. Together these two items place the specific poison in Reiko's hands before the crime. Step 2 \u2014 Establish knowledge of motive: The annotated will draft (E4) found in Reiko's handbag proves she knew about the inheritance change and was emotionally volatile about it \u2014 the penciled expletive next to the disinheritance clause demonstrates intent. Combined with the loan-shark debt document (E9), players see she faced ruinous financial consequences imminently, elevating motive from abstract to urgent. Step 3 \u2014 Eliminate alternative suspects: Kenji Oda had opportunity (he was in the back corridor, E7, E8) and motive (the skimming ledger, E6), but the empty ice bucket (E7) is a red herring \u2014 Kenji went to the corridor to destroy the ledger page in the storeroom bin, not to poison Tanaka. He had no access to thallium and no receipt for poison. Yuki Mori had physical access via the spare key (E5) and emotional motive, but Fumiko's testimony (E8) reveals Yuki's makeup bag was never opened \u2014 suggesting Yuki was present in the lounge for most of the window, merely stepping out briefly, insufficient time to prepare and administer a carefully measured poison. Step 4 \u2014 Confirm Reiko's window of opportunity: Mr. Watanabe's recollection that Reiko was absent from Booth 3 for at least twenty minutes starting around 22:45 (corroborated by the timeline in E8) places her in the back area during the exact murder window. The redirected security camera (E3) ensured no footage exists, but Kenji's smear on the housing and his own confession under pressure reveals he turned the camera at Reiko's earlier request that afternoon, believing she simply wanted privacy for a personal conversation with her husband \u2014 he did not realize the true purpose until after the murder."
+  },
+  "gameplay_notes": {
+    "difficulty": "HARD",
+    "estimated_playtime": "75\u201390 minutes",
+    "key_twists": [
+      "The empty ice bucket initially makes Kenji Oda appear to be the prime suspect, as his alibi collapses and he was in the back corridor during the murder window \u2014 players must dig further to realise he went there for an entirely different guilty reason (destroying his skimming ledger).",
+      "The foreign business card in the victim's hand suggests an international conspiracy or foreign murderer, sending players on a false trail if they pursue the London importer angle before cross-referencing the trade expo records.",
+      "Detective Fujimoto's undisclosed police identity creates early suspicion that the 'off-duty drinker' is himself involved, until his loan-shark investigation notes reveal he was surveilling Reiko independently \u2014 he becomes an unlikely but important ally who can corroborate the debt document's authenticity.",
+      "Yuki's spare office key makes her appear most capable of a private poisoning, but the opened/unopened makeup bag detail in Fumiko's testimony is the precise clue that narrows her window of absence below what was needed."
+    ]
+  },
+  "_meta": {
+    "num_players": 4,
+    "setting_input": "Tokyo, 1980s, neon-lit hostess bar"
+  },
+  "_provenance": {
+    "recipe": "corpus_0138_ebo(1) + corpus_0127_ebo(2) + corpus_0100_ebo(3) + corpus_0274_ebo(4) + corpus_0092_ebo(5) + corpus_0352_ebo(6) + corpus_0273_ebo(7) + corpus_0155_ebo(8)",
+    "slots": [
+      {
+        "source_id": "corpus_0138_ebo",
+        "part_index": 1,
+        "part_type": "crime_type"
+      },
+      {
+        "source_id": "corpus_0127_ebo",
+        "part_index": 2,
+        "part_type": "setting_element"
+      },
+      {
+        "source_id": "corpus_0100_ebo",
+        "part_index": 3,
+        "part_type": "motive"
+      },
+      {
+        "source_id": "corpus_0274_ebo",
+        "part_index": 4,
+        "part_type": "suspect_archetype"
+      },
+      {
+        "source_id": "corpus_0092_ebo",
+        "part_index": 5,
+        "part_type": "red_herring"
+      },
+      {
+        "source_id": "corpus_0352_ebo",
+        "part_index": 6,
+        "part_type": "reveal_mechanic"
+      },
+      {
+        "source_id": "corpus_0273_ebo",
+        "part_index": 7,
+        "part_type": "social_dynamic"
+      },
+      {
+        "source_id": "corpus_0155_ebo",
+        "part_index": 8,
+        "part_type": "evidence_type"
+      }
+    ],
+    "target_setting": "Tokyo, 1980s, neon-lit hostess bar",
+    "generated_title": ""
+  },
+  "_coherence": {
+    "passed": true,
+    "blocking": 0,
+    "warnings": 1,
+    "witness_gaps": []
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of CIA Deputy Director Kent Larson during undercover operation",
+    "confidence": "high",
+    "quote": "Jack stared at the man who had taught him everything he knew, the honorable, Kent Larson, Deputy Director of the CIA."
+  },
+  "victim": {
+    "value": "Kent Larson, CIA Deputy Director, targeted due to his knowledge of assassination plot against President-Elect",
+    "confidence": "medium",
+    "quote": "Kent Larson, Deputy Director of the CIA"
+  },
+  "closed_world": {
+    "value": "Carlos's Colombian drug cartel compound during dinner party",
+    "confidence": "medium",
+    "quote": "We have hours yet before the dinner party."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Jack Weaver, undercover CIA operative using alias 'Raul'",
+    "confidence": "high",
+    "quote": "Jack responded to his undercover name. \"Si?\""
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Jack stages his own attack by stabbing himself and vomiting to make it appear he was also a victim of the assassin",
+    "confidence": "high",
+    "quote": "Somehow he had to make his men think he'd been attacked...Jack plunged the six-inch knife into his thigh"
+  },
+  "clue_fairness": {
+    "value": "The Emperor file discovered on Jack's laptop provides key information available to both Jack and the reader",
+    "confidence": "medium",
+    "quote": "It was on that very balcony, working on his laptop in the middle of the night, he found The Emperor file"
+  },
+  "social_world": {
+    "value": "Colombian drug cartel hierarchy with Carlos as leader, his security entourage, staff, and CIA institutional power structure",
+    "confidence": "high",
+    "quote": "bring down the largest and most dangerous drug cartel in Colombia...Carlos's entourage of security"
+  },
+  "alibi": {
+    "value": "Jack's constructed alibi of being attacked during the assassination, supported by his self-inflicted wound",
+    "confidence": "high",
+    "quote": "Somehow he had to make his men think he'd been attacked"
+  },
+  "reveal_mechanic": {
+    "value": "The revelation that the assassinated man is Kent Larson, Deputy Director of the CIA and Jack's mentor",
+    "confidence": "high",
+    "quote": "Jack stared at the man who had taught him everything he knew, the honorable, Kent Larson, Deputy Director"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Jack must kill his mentor and CIA superior Kent Larson, exploiting his loyalty conflict and training relationship",
+    "confidence": "high",
+    "quote": "the man who had taught him everything he knew, the honorable, Kent Larson"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-kelly-abell-sealed-in-lies/",
+    "corpus_index": 37,
+    "text_len": 20902,
+    "title": "ebook kelly abell sealed in lies",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

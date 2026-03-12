@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Apparent suicide pact of three people found dead in a Lexus at a Shinto shrine",
+    "confidence": "high",
+    "quote": "it looked like a garden-variety suicide pact, the kind that had become all too common"
+  },
+  "victim": {
+    "value": "Three people: middle-aged couple and young Goth-Lolita woman with unclear connection to the couple",
+    "confidence": "medium",
+    "quote": "A middle-aged man and woman in front, a young woman in back"
+  },
+  "closed_world": {
+    "value": "Tokyo Metropolitan Police jurisdiction, specifically the Shinto shrine location",
+    "confidence": "low",
+    "quote": "one of them had noticed the lone Lexus shortly after 7:30 a.m. and had called the police"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Tokyo Metropolitan Police Detective Kenji Nakamura, nearly one year on the job",
+    "confidence": "high",
+    "quote": "Kenji had been a detective for nearly a year, but these were the first suspicious deaths"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Apparent suicide pact setup designed to misdirect from murder investigation",
+    "confidence": "medium",
+    "quote": "it looked like a garden-variety suicide pact, the kind that had become all too common"
+  },
+  "clue_fairness": {
+    "value": "Blank suicide note and missing ID presented to reader as detective discovers them",
+    "confidence": "high",
+    "quote": "It was blank."
+  },
+  "social_world": {
+    "value": "Tokyo police hierarchy and Japanese cultural expectations around crime and confession",
+    "confidence": "medium",
+    "quote": "murder was rare, usually the work of drunken family members who dutifully turned themselves in"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Physical evidence contradicting suicide narrative - blank note, missing identification",
+    "confidence": "medium",
+    "quote": "No phone, no ID"
+  },
+  "media_and_audience": {
+    "value": "Internet-facilitated suicide pacts as cultural phenomenon shaping initial interpretation",
+    "confidence": "medium",
+    "quote": "Now that the Internet made it so convenient, the despairing could plan their final deadly get-togethers"
+  },
+  "investigator_wound": {
+    "value": "Inexperienced detective facing first suspicious deaths case",
+    "confidence": "high",
+    "quote": "Kenji had been a detective for nearly a year, but these were the first suspicious deaths"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-jonelle-patrick-nightshade-an-only-in-tokyo-mystery/",
+    "corpus_index": 330,
+    "text_len": 2916,
+    "title": "ebook jonelle patrick nightshade an only in tokyo mystery",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Kidnapping/assault of Auggie by attackers working with Ben",
+    "confidence": "medium",
+    "quote": "A hand clamped onto his left arm... A powerful electric shock jolted him from behind."
+  },
+  "victim": {
+    "value": "Auggie (August Anderson), blind CIA tech operative targeted due to romantic rivalry",
+    "confidence": "medium",
+    "quote": "Tech. Op. August Anderson... was about to become one of the central objects of his attention and hatred."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Ben and accomplices; motive is jealousy over Annie's affections for Auggie",
+    "confidence": "medium",
+    "quote": "Annie was his. He'd found her, claimed her, even killed for her."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": "Intelligence agency infiltration plot with Jacob Steinmann as Mossad double agent in CIA, Ben as terrorist operative pursuing Annie",
+    "confidence": "medium",
+    "quote": "it was decided to place double agents inside the Central Intelligence Agency. Jacob Steinmann was one of the 6 selected"
+  },
+  "red_herring": {
+    "value": "Ben's romantic pursuit of Annie masks his terrorist connections and surveillance of CIA operative Auggie",
+    "confidence": "medium",
+    "quote": "hadn't he caught hell from his terrorist bosses for that one"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "CIA operational hierarchy with intelligence agencies, kibbutz communal structure, terrorist networks intersecting",
+    "confidence": "medium",
+    "quote": "His parents were both Americans from devout Jewish families who had immigrated to the Biblical homeland"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Physical confrontation reveals Ben's coordination with attackers and terrorist connections through dialogue",
+    "confidence": "medium",
+    "quote": "a voice he knew said, 'Dammit, you fools! I told you he was dangerous.'"
+  },
+  "media_and_audience": {
+    "value": "9/11 attacks as backdrop justifying Mossad infiltration operations, with US intelligence failures as premise",
+    "confidence": "medium",
+    "quote": "When the United States seemingly ignored warnings from Mossad that terrorists were planning large scale attacks"
+  },
+  "investigator_wound": {
+    "value": "Auggie's blindness and disability status exploited by adversaries who underestimate his capabilities",
+    "confidence": "high",
+    "quote": "Surely, you're not falling for that pitiful half-man?"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-just-us-friendz-blind-ambition/",
+    "corpus_index": 129,
+    "text_len": 71991,
+    "title": "ebook just us friendz blind ambition",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

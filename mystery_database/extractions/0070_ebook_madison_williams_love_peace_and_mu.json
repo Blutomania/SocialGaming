@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Multiple murders of young women/girls in a city",
+    "confidence": "high",
+    "quote": "my daughter has been murdered... So far everyone who got murdered has been girls."
+  },
+  "victim": {
+    "value": "Young women including Jessica Starlight and Hannah McCarther, but their 'killability' is unclear",
+    "confidence": "medium",
+    "quote": "Her name was Jessica... It turns out that her daughter had been murdered to."
+  },
+  "closed_world": {
+    "value": "A city where Miranda operates her detective business",
+    "confidence": "low",
+    "quote": "For many weeks there had been peace in the city"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Miranda, a private detective who runs her own business",
+    "confidence": "high",
+    "quote": "I was just about to shut down my business when a lady came in with a supposedly \"big problem\"."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Little Jo-Jo appears as a suspicious child who claims to be lost but can't explain why she looked for Miranda on that specific street",
+    "confidence": "medium",
+    "quote": "Uhm..... because... I thought you might be here."
+  },
+  "clue_fairness": {
+    "value": "The cloaked figure's warning and the living shadow are presented to the reader simultaneously with Miranda's experience",
+    "confidence": "medium",
+    "quote": "It was like a shadow but it was alive at the same time, then it just vanished."
+  },
+  "social_world": {
+    "value": "Small-town community where mothers know each other and wave from porches, creating networks of observation and information",
+    "confidence": "medium",
+    "quote": "When i passed bye Hannah's house I saw her mom standing out on the porch. I waved to her and she waved back"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Miranda's business was failing and she was about to shut down when the case arrived, making her financially dependent on solving it",
+    "confidence": "medium",
+    "quote": "I was just about to shut down my business when a lady came in with a supposedly \"big problem\"."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-madison-williams-love-peace-and-murder/",
+    "corpus_index": 70,
+    "text_len": 10284,
+    "title": "ebook madison williams love peace and murder",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Cab ride with limited passengers",
+    "confidence": "low",
+    "quote": "As usual, I took a cab... The nonagenarian simply sat left to me."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Old woman's curiosity about narrator's gender resolved through direct questioning",
+    "confidence": "medium",
+    "quote": "She said I had a doubt that were U a boy or girl? Now my doubt had cleared."
+  },
+  "investigator": {
+    "value": "First-person narrator questioning the old woman's behavior",
+    "confidence": "medium",
+    "quote": "I started questioning myself who's this woman. What she wanted to ask me?"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial mystery setup about old woman's intentions misdirects from mundane gender confusion",
+    "confidence": "medium",
+    "quote": "I couldn't conceive of her as a mad witch"
+  },
+  "clue_fairness": {
+    "value": "Physical appearance clues presented to reader: long hair, suit concealing body shape",
+    "confidence": "medium",
+    "quote": "Strands were appearing like a puppy hair. And I wore a suit so she couldn't get my bodily integrity"
+  },
+  "social_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Direct confession reveals woman's actual concern about narrator's gender identity",
+    "confidence": "high",
+    "quote": "She said I had a doubt that were U a boy or girl? Now my doubt had cleared"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Narrator's project stress and self-neglect creates vulnerability to misperception",
+    "confidence": "medium",
+    "quote": "Due to project tension I couldn't have cut my hair for a long time"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sreekanth-thattikota-bit-scepticism/",
+    "corpus_index": 340,
+    "text_len": 2218,
+    "title": "ebook sreekanth thattikota bit scepticism",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

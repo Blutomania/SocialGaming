@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Theft of government submarine plans (Bruce-Partington plans) from a secure office safe, with murder of the thief",
+    "confidence": "high",
+    "quote": "The chief dead, Cadogan West dead, our papers stolen."
+  },
+  "victim": {
+    "value": "Cadogan West, government clerk with access to secret submarine plans, suspected of treason but actually murdered",
+    "confidence": "high",
+    "quote": "That West, of all men, should have done such a thing!"
+  },
+  "closed_world": {
+    "value": "Government office building requiring three keys for access, limited to few people with authorized entry",
+    "confidence": "high",
+    "quote": "he would need three keys, would he not, before he could reach the papers?"
+  },
+  "culprit_and_motive": {
+    "value": "Colonel Walter and foreign agent Oberstein - Walter for money, selling state secrets to European naval powers",
+    "confidence": "high",
+    "quote": "Oberstein, eager to complete the coup of his lifetime, came to the lure"
+  },
+  "resolution": {
+    "value": "Holmes sets a trap with fake advertisement, catches Oberstein, recovers the stolen plans from his trunk",
+    "confidence": "high",
+    "quote": "In his trunk were found the invaluable Bruce-Partington plans"
+  },
+  "investigator": {
+    "value": "Sherlock Holmes, consulting detective called in to solve the government security breach and murder",
+    "confidence": "high",
+    "quote": "It is fortunate for this community that I am not a criminal"
+  },
+  "suspect_architecture": {
+    "value": "Three main suspects with differentiated access: Cadogan West (trusted clerk with apparent motive), Colonel Walter (key holder with gambling debts), and Oberstein (foreign agent with means to orchestrate). Each has distinct relationship to the stolen plans.",
+    "confidence": "high",
+    "quote": "West, of all men, should have done such a thing!' 'You are sure of his guilt, then?' 'I can see no other way out of it.'"
+  },
+  "red_herring": {
+    "value": "Cadogan West framed as the obvious inside traitor - his body found with some plans, his apparent access to the safe, and his suspicious behavior with his fianc\u00e9e all designed to misdirect from the true perpetrator.",
+    "confidence": "high",
+    "quote": "That West, of all men, should have done such a thing!"
+  },
+  "clue_fairness": {
+    "value": "Key distribution explicitly detailed to reader - who has which keys, building security procedures, and the practical impossibility of West's supposed method are all laid out before Holmes's deduction.",
+    "confidence": "medium",
+    "quote": "he would need three keys, would he not, before he could reach the papers?"
+  },
+  "social_world": {
+    "value": "Government office hierarchy and naval security apparatus - the power structure of civil servants, senior clerks, and department heads that both enables and conceals the espionage operation.",
+    "confidence": "high",
+    "quote": "we were as efficient an office as any in the government service"
+  },
+  "alibi": {
+    "value": "The office closing procedures and key custody create alibis - Johnson as last man out, the watchman's rounds, and the fog providing cover all serve to establish and break alibis.",
+    "confidence": "medium",
+    "quote": "I am always the last man out."
+  },
+  "reveal_mechanic": {
+    "value": "The trap letter to Oberstein demonstrates the solution - using fake correspondence about missing plans to lure the true perpetrator into revealing himself through his greed to complete the sale.",
+    "confidence": "high",
+    "quote": "one essential detail is missing. I have a tracing which will make it complete."
+  },
+  "media_and_audience": {
+    "value": "The case exists in 'secret history of a nation' - the public will never know the true scope of the espionage, while institutional face-saving shapes the official narrative.",
+    "confidence": "high",
+    "quote": "secret history of a nation which is often so much more intimate and interesting than its public chronicles"
+  },
+  "investigator_wound": {
+    "value": "Holmes's enforced inactivity due to the fog - his 'impatient and active nature could endure this drab existence no longer' - makes him hungry for a case worthy of his abilities.",
+    "confidence": "medium",
+    "quote": "my comrade's impatient and active nature could endure this drab existence no longer"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-adventure-of-bruce-partington-plans/",
+    "corpus_index": 175,
+    "text_len": 59779,
+    "title": "ebook sir arthur conan doyle the adventure of bruce partington plans",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

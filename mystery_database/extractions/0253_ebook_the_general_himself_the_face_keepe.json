@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Multiple murders and mutilation - Face Keeper kills people and removes their faces for his collection",
+    "confidence": "high",
+    "quote": "it's said that the face keeper caught them and torn their face off to put in his collection"
+  },
+  "victim": {
+    "value": "Multiple victims including teenagers, police captain's daughter, and townspeople - targeted seemingly randomly",
+    "confidence": "medium",
+    "quote": "A group of teenagers went camping but never returned"
+  },
+  "closed_world": {
+    "value": "Small West Virginia town surrounded by woods where the Face Keeper lives",
+    "confidence": "high",
+    "quote": "Deep within the woods that seem to consume West Virgina lived a old man"
+  },
+  "culprit_and_motive": {
+    "value": "Jack Ryan (the Face Keeper) - escaped mental patient motivated by revenge against townspeople",
+    "confidence": "high",
+    "quote": "He told them that it was because of them that made him live in the woods for so long"
+  },
+  "resolution": {
+    "value": "Mayor shoots the Face Keeper, but his death triggers explosives that destroy the entire town with fire",
+    "confidence": "high",
+    "quote": "My heart monitor is linked to about fourteen charges on the main coal mines in this town"
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial misdirection that the Face Keeper is responsible for all disappearances when he's actually just a mental patient",
+    "confidence": "medium",
+    "quote": "everyone blamed the Face Keeper for it.They blamed him because the last time she was saw was going into the woods"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Small town power structure with police captain, mayor, judge, and townspeople - institutional breakdown after captain loses job",
+    "confidence": "medium",
+    "quote": "The captain lost his job because he shot a young man coming out of the woods,he thought it was the face keeper"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Heart monitor linked to explosive charges in coal mines - mechanical death trap revelation",
+    "confidence": "high",
+    "quote": "My heart monitor is linked to about fourteen charges on the main coal mines in this town"
+  },
+  "media_and_audience": {
+    "value": "Supernatural folklore of the Face Keeper used to explain disappearances and violence in the community",
+    "confidence": "high",
+    "quote": "He was said to be a metal patient that broke out of the insane silo about 20 years ago"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-the-general-himself-the-face-keeper/",
+    "corpus_index": 253,
+    "text_len": 9474,
+    "title": "ebook the general himself the face keeper",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

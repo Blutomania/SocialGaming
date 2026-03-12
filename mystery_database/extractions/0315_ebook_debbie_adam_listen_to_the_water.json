@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Missing person case - Kane Porry disappeared 5 years ago, presumed dead after 5 months",
+    "confidence": "high",
+    "quote": "The case of the missing Kane Porry."
+  },
+  "victim": {
+    "value": "Kane Porry, boyfriend who disappeared under mysterious circumstances",
+    "confidence": "medium",
+    "quote": "That horrible day when my boyfriend dissapeared."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Debbie Adam, 29-year-old detective investigating her missing boyfriend's case secretly",
+    "confidence": "high",
+    "quote": "Right now I am a sucessful dectective trying to solve many cases but I do this case secretly."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": "Water-related clue established early but meaning withheld from reader",
+    "confidence": "medium",
+    "quote": "\"Debbie listen closely to the water,\" stated Kane. \"I don't hear anything,\" I said. \"well in time you will my love\""
+  },
+  "social_world": {
+    "value": "Police institutional failure and workplace power dynamics",
+    "confidence": "medium",
+    "quote": "Those fuckers didn't even try to look for him. Right now I am a sucessful dectective"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Private case made public through personal narrative",
+    "confidence": "medium",
+    "quote": "Your all thinking why would I want to share something so private with world. I am now 29 and ready to share"
+  },
+  "investigator_wound": {
+    "value": "Detective investigating her own missing boyfriend's disappearance",
+    "confidence": "high",
+    "quote": "I am a 24 year old detective trying to find out the mystery of my missing boyfriend"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-debbie-adam-listen-to-the-water/",
+    "corpus_index": 315,
+    "text_len": 2258,
+    "title": "ebook debbie adam listen to the water",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

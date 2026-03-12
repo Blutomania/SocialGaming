@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Attempted rape and murder at Brush Creek; killing of dog Bolo",
+    "confidence": "high",
+    "quote": "The same night he killed Bolo and tried to rape and kill me"
+  },
+  "victim": {
+    "value": "Sandy, a woman walking her dog who survived the attack and is being stalked",
+    "confidence": "high",
+    "quote": "He's still after me. He didn't get the satisfaction of killing me that night I had Bolo with me"
+  },
+  "closed_world": {
+    "value": "Kansas City area, particularly Brush Creek location where attacks occur",
+    "confidence": "medium",
+    "quote": "Brush Creek is like my inner sanctum"
+  },
+  "culprit_and_motive": {
+    "value": "Charlie 'The Machete' Rastelli, Vietnam veteran; motive appears to be completing his failed attack on Sandy",
+    "confidence": "high",
+    "quote": "he's one of those killers whose ego is bigger than a stretched limousine"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Sandy, the survivor victim who is investigating her own case",
+    "confidence": "high",
+    "quote": "My first trip tomorrow will be to the Internal Revenue Service"
+  },
+  "suspect_architecture": {
+    "value": "Single primary suspect: Charles 'Charlie The Machete' Rastelli, Vietnam veteran with physical disabilities and violent intentions toward women. Victim Sandy survived previous attack and is now investigating.",
+    "confidence": "high",
+    "quote": "Charles 'Charlie The Machete' Rastelli casted a pair of evil eyes over towards what appeared to be his next easy target."
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": "Reader given same information as Sandy: Charlie's name, Vietnam veteran status, bad complexion, and his repeated appearances at public events where Sandy is present.",
+    "confidence": "medium",
+    "quote": "he mentioned the fact that this Charlie was a Vietnam War Veteran with a really bad complexion."
+  },
+  "social_world": {
+    "value": "Women's advocacy group S.A.V.E. organizing protests and self-defense education, contrasted with predatory male violence. Class dynamics around self-defense resources and community organizing.",
+    "confidence": "medium",
+    "quote": "We the women of S.A.V.E. stage this protest here in Brush Creek"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Investigation through IRS records and police department to identify Charlie using specific descriptive details and behavioral patterns.",
+    "confidence": "medium",
+    "quote": "My first trip tomorrow will be to the Internal Revenue Service. Once I get what I want from there, my next trip will be"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Sandy is a survivor of Charlie's previous attack who lost her dog Bolo in the assault, now driven by trauma and the killer's continued stalking to pursue justice.",
+    "confidence": "high",
+    "quote": "He didn't get the satisfaction of killing me that night I had Bolo with me down here in Brush Creek."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-d-b-reynolds-brush-creek-charlie/",
+    "corpus_index": 20,
+    "text_len": 676050,
+    "title": "ebook d b reynolds brush creek charlie",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

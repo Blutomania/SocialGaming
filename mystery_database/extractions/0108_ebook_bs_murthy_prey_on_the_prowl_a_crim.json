@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Multiple poisoning murders - Ranjit the realtor, Shakeel the Inspector, Pravar the criminal and Natya his accomplice all poisoned",
+    "confidence": "high",
+    "quote": "Who could have poisoned Ranjit the realtor, Shakeel the Inspector, Pravar the criminal and Natya his accomplice?"
+  },
+  "victim": {
+    "value": "Multiple victims including Ranjit (realtor), Shakeel (Inspector), Pravar (criminal), and Natya (accomplice) - targeted due to complex web of relationships, adultery, and revenge",
+    "confidence": "high",
+    "quote": "Who could have poisoned Ranjit the realtor, Shakeel the Inspector, Pravar the criminal and Natya his accomplice?"
+  },
+  "closed_world": {
+    "value": "Limited circle of interconnected suspects with overlapping relationships - spouses, lovers, criminals, and their associates",
+    "confidence": "medium",
+    "quote": "Could it be Radha under the scanner for her role in the death of her husband Madhu and his mistress Mala"
+  },
+  "culprit_and_motive": {
+    "value": "Radha - motivated by revenge and jealousy, eliminating those connected to her husband's death and affair, using slow-poisoning method",
+    "confidence": "high",
+    "quote": "It was Dilip's idea to eliminate Ashok and I went along with it... I worked out a plan to slow-poison Ashok"
+  },
+  "resolution": {
+    "value": "Confession and investigation by Dhruva leads to solving the murders, with Radha's detailed admission of her poisoning scheme",
+    "confidence": "medium",
+    "quote": "The rest as you know is mystery... breathing down my neck, you've charmed me with your mind as well"
+  },
+  "investigator": {
+    "value": "Dhruva - appears to be the detective/investigator who becomes personally involved with suspect Radha during the investigation",
+    "confidence": "high",
+    "quote": "As these deaths by poisoning puzzle Dhruva, Radha, who worms her way into his life"
+  },
+  "suspect_architecture": {
+    "value": "Multiple suspects with interconnected motives: Radha (husband's death, revenge), Kavya (Stockholm syndrome, spouse murder), Pravar and Natya (criminals, then victims), each with distinct relationships to victims",
+    "confidence": "high",
+    "quote": "Could it be Radha under the scanner for her role in the death of her husband Madhu and his mistress Mala"
+  },
+  "red_herring": {
+    "value": "Suspicion deliberately directed toward Pravar as the poisoner until he becomes a victim himself, misdirecting from the true perpetrator",
+    "confidence": "high",
+    "quote": "Well the needle of suspicion tilted towards Pravar that was till he perished with his mate, but then who was the one?"
+  },
+  "clue_fairness": {
+    "value": "Radha's confession reveals her methodology - slow-poisoning plan, train travel timing, and motive to eliminate both Ashok and Dilip",
+    "confidence": "medium",
+    "quote": "I worked out a plan to slow-poison Ashok, as and when he embarked on a journey by train"
+  },
+  "social_world": {
+    "value": "Complex web of marriage, adultery, real estate, criminal underworld, and law enforcement, with characters moving between legitimate and criminal spheres",
+    "confidence": "medium",
+    "quote": "Could it be Radha under the scanner for her role in the death of her husband Madhu and his mistress Mala"
+  },
+  "alibi": {
+    "value": "Radha's calculated alibi construction - avoiding spouse suspicion by eliminating her co-conspirator Dilip and timing murders around train travel",
+    "confidence": "high",
+    "quote": "in all suspicious deaths, the spouse would readily come under the scanner, so I realized that to save my skin"
+  },
+  "reveal_mechanic": {
+    "value": "Confession extracted through intimate manipulation - Radha reveals her crimes during post-coital vulnerability to the investigating officer",
+    "confidence": "high",
+    "quote": "I know what brought you into my bed, and as quid pro quo, I'll satisfy your curiosity"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Dhruva's professional and personal boundaries compromised through sexual entanglement with suspect, making him complicit and vulnerable to blackmail",
+    "confidence": "high",
+    "quote": "you are an abettor of the crime. Whatever, in the wake of the murders, breathing down my neck"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-bs-murthy-prey-on-the-prowl-a-crime-novel/",
+    "corpus_index": 108,
+    "text_len": 218380,
+    "title": "ebook bs murthy prey on the prowl a crime novel",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

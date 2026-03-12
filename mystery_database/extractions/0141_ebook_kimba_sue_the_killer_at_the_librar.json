@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of Angelina Norton in library, possibly connected to historical case she was researching",
+    "confidence": "medium",
+    "quote": "I saw the man come all the way into the room kneel down beside's Angelina and sniffed her dead body"
+  },
+  "victim": {
+    "value": "Angelina Norton, researcher investigating wrongful execution case of Gregory Pollicatius",
+    "confidence": "high",
+    "quote": "Sat at her desk, Angelina Norton was studying a file for an old murder case, for her next book"
+  },
+  "closed_world": {
+    "value": "Library after closing time with locked doors and blocked communication",
+    "confidence": "high",
+    "quote": "Looking around Angelina noticed that the lights had gone out. \"Damn,\" she thought, \"Patty must have forgotten\""
+  },
+  "culprit_and_motive": {
+    "value": "Mr. Pollicatius (presumably Gregory or related) seeking revenge/silencing researcher",
+    "confidence": "medium",
+    "quote": "Mr. Pollicatius was standing over her with his hand wrapped around her hair"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Patty Cross as witness/survivor perspective, no formal detective present",
+    "confidence": "medium",
+    "quote": "Patty started to gag and close her eyes when she felt someone wrap their hand in her hair"
+  },
+  "suspect_architecture": {
+    "value": "Primary suspect: Mr. Pollicatius (supposedly executed in 1960, now returned); accomplice described as dirt-covered man who displays necrophilic behavior",
+    "confidence": "medium",
+    "quote": "Mr. Pollicatius was standing over her with his hand wrapped around her hair"
+  },
+  "red_herring": {
+    "value": "The historical case suggests Pollicatius was wrongly executed for circumstantial evidence, implying supernatural return rather than survival",
+    "confidence": "low",
+    "quote": "electrocuted for a double murder in 1960, all evidence was circumstantial as no bodies were found"
+  },
+  "clue_fairness": {
+    "value": "Time sheet evidence from 1960 case presented to reader; current library setting mirrors original crime location",
+    "confidence": "medium",
+    "quote": "the only evidence against him, was a time sheet stamped a few minutes before the library closed"
+  },
+  "social_world": {
+    "value": "1960s Detroit anti-immigrant prejudice against Polish workers; economic desperation creating scapegoating of foreigners",
+    "confidence": "high",
+    "quote": "Being Polish and in Detroit in the 60s, meant too many bad feelings, so it was no surprise when the jury took only"
+  },
+  "alibi": {
+    "value": "Pollicatius's original alibi was electrical work in the library, which became evidence against him rather than exoneration",
+    "confidence": "medium",
+    "quote": "electrician by trade, which he was doing some re-wiring, which is why he was in the library that fated night"
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Historical case shaped by anti-immigrant sentiment and economic anxiety; Angelina researching for true crime book publication",
+    "confidence": "medium",
+    "quote": "Going through the old files it was obvious this was just another way of getting back at those foreigners"
+  },
+  "investigator_wound": {
+    "value": "Angelina Norton investigating a case of likely wrongful execution, making her vulnerable to the returned victim of injustice",
+    "confidence": "medium",
+    "quote": "Angelina Norton was studying a file for an old murder case, for her next book"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-kimba-sue-the-killer-at-the-library/",
+    "corpus_index": 141,
+    "text_len": 13915,
+    "title": "ebook kimba sue the killer at the library",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

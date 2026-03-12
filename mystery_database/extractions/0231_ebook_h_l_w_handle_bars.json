@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Missing person - Helen's son has been taken/kidnapped by the Horde",
+    "confidence": "medium",
+    "quote": "He know's where your son is, so if you tell me where he is then I will damn well find your son and bring him back"
+  },
+  "victim": {
+    "value": "Helen's son, targeted because he is a member of the Horde",
+    "confidence": "medium",
+    "quote": "that your son is still here. He's a member of the Horde, and that's what they do to us"
+  },
+  "closed_world": {
+    "value": "The Horde's operations and locations - a supernatural/zombie underworld with specific hideouts",
+    "confidence": "medium",
+    "quote": "down to the new location of the Horde. I had to be careful here, unless I wanted my head mounted above Hydra's"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Cicada - a zombie/former Horde member who promises to find the missing son",
+    "confidence": "high",
+    "quote": "I'll get your son back. I promise."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Hierarchical supernatural organization ('the Horde') with internal power struggles and loyalty conflicts between members",
+    "confidence": "medium",
+    "quote": "He's a member of the Horde, and that's what they do to us. Now Dante, he know's where your son is"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Protagonist's guilt over potentially killing someone she cares about, complicated by her supernatural nature",
+    "confidence": "medium",
+    "quote": "You're a liar, Cicada... If you had then maybe you wouldn't have killed me."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-h-l-w-handle-bars/",
+    "corpus_index": 231,
+    "text_len": 10193,
+    "title": "ebook h l w handle bars",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

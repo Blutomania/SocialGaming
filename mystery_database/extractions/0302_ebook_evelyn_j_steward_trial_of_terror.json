@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Kidnapping and murder - woman abducted from her apartment and left to die in abandoned waterfront building",
+    "confidence": "high",
+    "quote": "She never saw the shadow in her bedroom that moved only after she was fast asleep."
+  },
+  "victim": {
+    "value": "Julia Rein, tax assessor with no known enemies, taken by random predator who watched her habits",
+    "confidence": "high",
+    "quote": "taken her because her could. Taken her for his own vile purpose."
+  },
+  "closed_world": {
+    "value": "Abandoned waterfront building near disused harbor where victim was imprisoned",
+    "confidence": "medium",
+    "quote": "sheer accident several weeks later that a fire had swept the dock down at the disused harbour"
+  },
+  "culprit_and_motive": {
+    "value": "Unknown man who died in traffic accident day after abduction; motive appears to be random predatory behavior",
+    "confidence": "medium",
+    "quote": "matching one man in a fatal traffic accident to their view of who the abductor was"
+  },
+  "resolution": {
+    "value": "Fire reveals victim's body, dental records confirm identity, police theorize culprit died in accident",
+    "confidence": "medium",
+    "quote": "they called the police who identified her by her dental records"
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial focus on Julia's tax assessor job creating enemies when the real perpetrator was a stranger who watched her habits",
+    "confidence": "medium",
+    "quote": "Her job as a tax assessor might bring a few mingers down on her head from time to time, but that was all part of the job"
+  },
+  "clue_fairness": {
+    "value": "Physical evidence available to reader: silk nightgown gift from sister, dental records, location near water with specific smells",
+    "confidence": "medium",
+    "quote": "part of the silk nightgown which her sister had given her as a birthday gift a week before her abduction"
+  },
+  "social_world": {
+    "value": "Working professional environment - tax assessor with workplace connections, sister as family contact, company manager tracking attendance",
+    "confidence": "medium",
+    "quote": "her Company manager rang her to see why her sister had not been to work in all that time"
+  },
+  "alibi": {
+    "value": "Perpetrator's accidental alibi - died in traffic accident the day after abduction, establishing timeline through victim's work attendance",
+    "confidence": "high",
+    "quote": "That unforeseen accident happened the day after the abduction occurred, based on the fact that the woman was at work"
+  },
+  "reveal_mechanic": {
+    "value": "Dental records identification combined with physical evidence matching and timeline reconstruction through traffic accident records",
+    "confidence": "high",
+    "quote": "they called the police who identified her by her dental records and part of the silk nightgown"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Police officers' emotional response to divine justice - hardened professionals affected by the coincidental death of perpetrator",
+    "confidence": "medium",
+    "quote": "Many hardened officers on the case felt their hearts quicken at this revelation"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-evelyn-j-steward-trial-of-terror/",
+    "corpus_index": 302,
+    "text_len": 6458,
+    "title": "ebook evelyn j steward trial of terror",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

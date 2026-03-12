@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Espionage - German spy network stealing British naval secrets",
+    "confidence": "high",
+    "quote": "It was his talents which had first recommended him for the English mission, the most important mission of all"
+  },
+  "victim": {
+    "value": "British state/military - targeted for their naval intelligence and war preparations",
+    "confidence": "medium",
+    "quote": "stealing his private papers"
+  },
+  "closed_world": {
+    "value": "Von Bork's cliff-top house and immediate surroundings during wartime",
+    "confidence": "medium",
+    "quote": "Von Bork, like some wandering eagle, had perched himself four years before"
+  },
+  "culprit_and_motive": {
+    "value": "Von Bork - German agent stealing British secrets for Kaiser's war effort",
+    "confidence": "high",
+    "quote": "A remarkable man this Von Bork--a man who could hardly be matched among all the devoted agents of the Kaiser"
+  },
+  "resolution": {
+    "value": "Holmes captures Von Bork through deception, taking him to Scotland Yard",
+    "confidence": "high",
+    "quote": "you will go with us in a quiet, sensible fashion to Scotland Yard"
+  },
+  "investigator": {
+    "value": "Sherlock Holmes working undercover to expose the German spy network",
+    "confidence": "high",
+    "quote": "Absolutely,' said Holmes"
+  },
+  "suspect_architecture": {
+    "value": "Multiple German agents in a spy network: Von Bork (primary), Baron Von Herling (superior), plus compromised agents James, Hollis, Steiner",
+    "confidence": "high",
+    "quote": "Jack James... doing time in Portland... Then there was Hollis... Then... Steiner... they've got him"
+  },
+  "red_herring": {
+    "value": "Holmes disguised as American agent Altamont creates false identity to infiltrate German spy ring",
+    "confidence": "high",
+    "quote": "Well, so was Jack James an American citizen... It cuts no ice with a British copper"
+  },
+  "clue_fairness": {
+    "value": "Reader sees the systematic capture of German agents (James, Hollis, Steiner) before Von Bork realizes the pattern",
+    "confidence": "medium",
+    "quote": "Steiner is the fifth man you've lost since I signed on with you, and I know the name of the sixth"
+  },
+  "social_world": {
+    "value": "German diplomatic and espionage hierarchy vs British intelligence operations during wartime",
+    "confidence": "high",
+    "quote": "Baron Von Herling, the chief secretary of the legation... devoted agents of the Kaiser"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Holmes reveals his true identity after successfully completing his undercover operation as Altamont",
+    "confidence": "medium",
+    "quote": "Stand with me here upon the terrace... you are joining us with your old service"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Holmes facing what may be his final case as age and changing times threaten his relevance",
+    "confidence": "medium",
+    "quote": "Good old Watson! You are the one fixed point in a changing age... it may be the last quiet talk"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-his-last-bow/",
+    "corpus_index": 153,
+    "text_len": 33815,
+    "title": "ebook sir arthur conan doyle his last bow",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

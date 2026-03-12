@@ -1,0 +1,113 @@
+{
+  "mystery_id": "A",
+  "title": "Murder on Mars",
+  "protocols": [
+    "P1",
+    "P2"
+  ],
+  "source_text": "Title: Murder on Mars\nCrime Type: murder\nSetting: Mars (near_future)\nEnvironment: space_colony\nGenres: sci-fi, closed_circle, colony_thriller\n\nSummary:\nA murder occurs inside a sealed Martian colony dome. The victim is a senior terraforming engineer. With no way off-planet for 72 hours, every resident is both suspect and potential next victim. The killer exploited the life-support systems to manufacture an alibi.\n\nStructural Elements Present:\n  - crime_type\n  - setting_element\n  - motive\n  - suspect_archetype\n  - red_herring\n  - reveal_mechanic\n  - social_dynamic\n  - evidence_type\n",
+  "extracted": {
+    "crime": {
+      "protocol": "P1",
+      "part": "C1 \u2014 The Crime",
+      "value": "Murder inside a sealed Martian colony dome",
+      "confidence": "high",
+      "quote": "A murder occurs inside a sealed Martian colony dome."
+    },
+    "victim": {
+      "protocol": "P1",
+      "part": "C2 \u2014 The Victim",
+      "value": "A senior terraforming engineer",
+      "confidence": "high",
+      "quote": "The victim is a senior terraforming engineer."
+    },
+    "closed_world": {
+      "protocol": "P1",
+      "part": "C3 \u2014 The Closed World",
+      "value": "A sealed Martian colony dome with no way off-planet for 72 hours, trapping all residents",
+      "confidence": "high",
+      "quote": "With no way off-planet for 72 hours, every resident is both suspect and potential next victim."
+    },
+    "culprit_and_motive": {
+      "protocol": "P1",
+      "part": "C4 \u2014 The Culprit and Motive",
+      "value": "Culprit identity is not explicitly named; motive is listed as a structural element present but not detailed in the excerpt",
+      "confidence": "low",
+      "quote": "Structural Elements Present: - motive"
+    },
+    "resolution": {
+      "protocol": "P1",
+      "part": "C5 \u2014 The Resolution",
+      "value": "Not described in the excerpt; resolution details are absent",
+      "confidence": "low",
+      "quote": null
+    },
+    "investigator": {
+      "protocol": "P1",
+      "part": "C6 \u2014 The Investigator",
+      "value": "Not explicitly identified in the excerpt",
+      "confidence": "low",
+      "quote": null
+    },
+    "suspect_architecture": {
+      "protocol": "P2",
+      "part": "M1 \u2014 Suspect Architecture",
+      "value": "All colony residents are suspects, conforming to a closed-circle structure with a suspect_archetype element noted",
+      "confidence": "medium",
+      "quote": "every resident is both suspect and potential next victim"
+    },
+    "red_herring": {
+      "protocol": "P2",
+      "part": "M2 \u2014 The Red Herring",
+      "value": "A red herring is listed as a structural element present but its specific nature is not described in the excerpt",
+      "confidence": "medium",
+      "quote": "Structural Elements Present: - red_herring"
+    },
+    "clue_fairness": {
+      "protocol": "P2",
+      "part": "M3 \u2014 Clue Fairness",
+      "value": "Evidence type is listed as a structural element, suggesting clues exist, but specific fair-play details are not provided",
+      "confidence": "low",
+      "quote": "Structural Elements Present: - evidence_type"
+    },
+    "social_world": {
+      "protocol": "P2",
+      "part": "M4 \u2014 The Social World",
+      "value": "A near-future Martian space colony with its own social dynamics; social_dynamic is listed as a structural element",
+      "confidence": "medium",
+      "quote": "Structural Elements Present: - social_dynamic"
+    },
+    "alibi": {
+      "protocol": "P2",
+      "part": "M5 \u2014 The Alibi",
+      "value": "The killer manufactured a false alibi by exploiting the colony's life-support systems",
+      "confidence": "high",
+      "quote": "The killer exploited the life-support systems to manufacture an alibi."
+    },
+    "reveal_mechanic": {
+      "protocol": "P2",
+      "part": "M6 \u2014 The Reveal Mechanic",
+      "value": "Reveal mechanic is listed as a structural element present; likely tied to unmasking the life-support system manipulation",
+      "confidence": "medium",
+      "quote": "Structural Elements Present: - reveal_mechanic"
+    },
+    "media_and_audience": {
+      "protocol": "P2",
+      "part": "M7 \u2014 Media and Audience",
+      "value": "Not mentioned in the excerpt",
+      "confidence": "low",
+      "quote": null
+    },
+    "investigator_wound": {
+      "protocol": "P2",
+      "part": "M8 \u2014 The Investigator's Wound",
+      "value": "Not mentioned in the excerpt",
+      "confidence": "low",
+      "quote": null
+    }
+  },
+  "usage": {
+    "input_tokens": 1359,
+    "output_tokens": 1145
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Nuclear fallout shelter converted to tourist attraction",
+    "confidence": "medium",
+    "quote": "they were opening a new tourist attraction in an old nuclear fall out shelter"
+  },
+  "culprit_and_motive": {
+    "value": "John launches missile from fallout shelter (motive unclear)",
+    "confidence": "low",
+    "quote": "John ask him to just kill him and get it over with"
+  },
+  "resolution": {
+    "value": "Military jets shoot down the launched missile",
+    "confidence": "medium",
+    "quote": "Rick notified the pentagon and they had their fighter jets that were on stand by shoot it out of the sky"
+  },
+  "investigator": {
+    "value": "Rick Johnson, former military Lt General turned police officer",
+    "confidence": "high",
+    "quote": "Rick Johnson was Former Military and now was just a shell of what he use to be"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Tourist attraction cover story for nuclear fallout shelter masks true terrorist operation",
+    "confidence": "medium",
+    "quote": "He couldn't understand why in the hell someone would want to spend any amount of time in a place that had no windows"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Military hierarchy and police department power structures - Rick's military rank versus civilian authority",
+    "confidence": "high",
+    "quote": "Rick had a rank of a Lt General because he spend 95% of his life in there"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "News coverage of tourist attraction opening creates public perception that masks military threat",
+    "confidence": "medium",
+    "quote": "He was watching the news one night and saw that they were opening a new tourist attraction"
+  },
+  "investigator_wound": {
+    "value": "Rick's broken family life and military displacement - seeking redemption through dangerous mission",
+    "confidence": "high",
+    "quote": "his wife had left him right after he got out of the army after telling him that they would spend the rest of their lives together"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-the-general-himself-death-from-the-past/",
+    "corpus_index": 208,
+    "text_len": 11954,
+    "title": "ebook the general himself death from the past",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

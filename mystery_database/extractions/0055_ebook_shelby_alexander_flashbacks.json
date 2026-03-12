@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Hotel room homicide with slashed throat and beating",
+    "confidence": "high",
+    "quote": "three inch slash on her throat. The hotel room was in disarray. Tables knocked over, clothes and papers scattered"
+  },
+  "victim": {
+    "value": "Woman seeking fame, involved in affair at hotel",
+    "confidence": "medium",
+    "quote": "cheating wife in a hotel room with a man he doesn't even know"
+  },
+  "closed_world": {
+    "value": "Hotel room crime scene and mental institution",
+    "confidence": "medium",
+    "quote": "The hotel was one of the best in town"
+  },
+  "culprit_and_motive": {
+    "value": "Husband who murdered attorney and is institutionalized, motive unclear",
+    "confidence": "low",
+    "quote": "paper from 20 years ago stated that he had murdered that big shot attorney. Plead insane and won"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Investigators collecting evidence, but narrative perspective unclear",
+    "confidence": "low",
+    "quote": "The investigators picked up all the evidence, put the body in a body bag"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "The mysterious man in the suit appears to be supernatural misdirection from the actual psychological breakdown",
+    "confidence": "medium",
+    "quote": "Time froze yet again, and there was the man in the suit. The man sat on the desk looking a little amused."
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Small town religious conservatism creating violent persecution of LGBTQ+ individuals",
+    "confidence": "high",
+    "quote": "the town wasn't very pleased, they found out faster then she could ever imagine them finding out"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Mental institution records reveal the protagonist murdered an attorney 20 years ago and has been institutionalized",
+    "confidence": "medium",
+    "quote": "A paper from 20 years ago stated that he had murdered that big shot attorney. Plead insane and won."
+  },
+  "media_and_audience": {
+    "value": "Hotel murder becomes sensationalized news story, exploiting victim's desire for fame",
+    "confidence": "high",
+    "quote": "It was all over the news and of course they had all their own theories."
+  },
+  "investigator_wound": {
+    "value": "Protagonist's guilt over neglecting his marriage and driving his wife to infidelity",
+    "confidence": "high",
+    "quote": "He was never home, work always kept him late. She deserved someone better."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-shelby-alexander-flashbacks/",
+    "corpus_index": 55,
+    "text_len": 53593,
+    "title": "ebook shelby alexander flashbacks",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

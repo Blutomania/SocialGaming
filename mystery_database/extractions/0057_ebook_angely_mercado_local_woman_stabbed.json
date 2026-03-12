@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Stabbing of local woman Stacey Tucker, found wounded near a dumpster",
+    "confidence": "high",
+    "quote": "A few nights ago a local woman, Stacey Tucker was stabbed and found wounded near a dumpster."
+  },
+  "victim": {
+    "value": "Stacey Tucker, allegedly involved in drugs and accused of stealing another woman's boyfriend",
+    "confidence": "high",
+    "quote": "She deserved it. She is good for nothing and deceitful! And so is her boyfriend"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Brittany Phillips stabbed Tucker out of jealousy over her ex-boyfriend and past drug conflicts",
+    "confidence": "high",
+    "quote": "Brittany Phillips verified her son's suspicions and admitted to attacking her former friend."
+  },
+  "resolution": {
+    "value": "Confession obtained but no formal arrest made; suspect released to family custody pending investigation",
+    "confidence": "medium",
+    "quote": "Officer Jones was easily talked into letting her stay with me, until everything is figured out."
+  },
+  "investigator": {
+    "value": "Journalist conducting interviews with family members and authorities",
+    "confidence": "medium",
+    "quote": "Officer Jones, one of the people assigned to the Tucker stabbing case has stated that a witness has been found."
+  },
+  "suspect_architecture": {
+    "value": "Single confessed perpetrator (Brittany Phillips) with clear motive: romantic rivalry over ex-boyfriend now with victim, plus historical drug involvement",
+    "confidence": "high",
+    "quote": "Brittany Phillips verified her son's suspicions and admitted to attacking her former friend"
+  },
+  "red_herring": {
+    "value": "Initial lack of suspects creates false mystery when perpetrator has already confessed and been identified by family",
+    "confidence": "medium",
+    "quote": "Authorities state that no arrests have been made due to the lack of suspects"
+  },
+  "clue_fairness": {
+    "value": "All evidence presented transparently: knife and cash in bag, son's testimony, confession, motive clearly established",
+    "confidence": "high",
+    "quote": "he had looked into his mother's bag and saw a large knife and cash"
+  },
+  "social_world": {
+    "value": "Working-class community with drug problems, broken families, informal police arrangements, multi-generational dysfunction",
+    "confidence": "high",
+    "quote": "Officer Jones was easily talked into letting her stay with me, until everything is figured out"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Direct confession by perpetrator validates family testimony and physical evidence already presented",
+    "confidence": "high",
+    "quote": "B. Phillips stated that she was justified in her stabbing"
+  },
+  "media_and_audience": {
+    "value": "Local newspaper framing creates false mystery around solved case, emphasizing 'turbulent past' narrative over straightforward crime",
+    "confidence": "high",
+    "quote": "Local woman stabbed as a turbulent past comes to light"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-angely-mercado-local-woman-stabbed-as-turbulent-past-comes-to-light/",
+    "corpus_index": 57,
+    "text_len": 3171,
+    "title": "ebook angely mercado local woman stabbed as turbulent past comes to light",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

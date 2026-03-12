@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Sherlock Holmes as detective, with Dr. Watson as narrator and companion",
+    "confidence": "high",
+    "quote": "CHAPTER I. MR. SHERLOCK HOLMES."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": "Watson's narration provides reader access to Holmes' observations and deductions as they occur",
+    "confidence": "medium",
+    "quote": "Being a reprint from the reminiscences of JOHN H. WATSON, M.D."
+  },
+  "social_world": {
+    "value": "Military hierarchy and colonial power structures - Army Medical Department, regimental attachments, Indian campaign",
+    "confidence": "high",
+    "quote": "I was duly attached to the Fifth Northumberland Fusiliers as Assistant Surgeon. The regiment was stationed in India"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Watson's war trauma - wounded at Maiwand, weakened by enteric fever, physical and psychological vulnerability",
+    "confidence": "high",
+    "quote": "I was struck on the shoulder by a Jezail bullet, which shattered the bone and grazed the subclavian artery"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-a-study-in-scarlet/",
+    "corpus_index": 21,
+    "text_len": 241533,
+    "title": "ebook sir arthur conan doyle a study in scarlet",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

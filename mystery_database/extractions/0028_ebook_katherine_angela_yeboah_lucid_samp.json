@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "UFO abduction theories and paranormal explanations presented as potential causes for the strange dream experiences",
+    "confidence": "medium",
+    "quote": "UFO buffs who theorized about a link between vivid dreams and alien abductions"
+  },
+  "clue_fairness": {
+    "value": "Reader learns about lucid dreaming research alongside protagonist through web search results",
+    "confidence": "medium",
+    "quote": "she typed the words that had been skulking into her mind all day. Lucid dreaming."
+  },
+  "social_world": {
+    "value": "College student social hierarchy with casual relationships and academic pressures",
+    "confidence": "medium",
+    "quote": "Fellow sociology major Jamie, who was sprawled across the only armchair"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Research literature and online sources frame lucid dreaming through various perspectives from psychiatric to paranormal",
+    "confidence": "medium",
+    "quote": "research had been done on the subject, by everyone from psychiatrists to paranormal investigators"
+  },
+  "investigator_wound": {
+    "value": "Protagonist's vulnerability to isolation and fear, particularly around the unsettling neighbor Mr. Phillips",
+    "confidence": "medium",
+    "quote": "Made certain every lock, bolt and chain was ever so securely fastened"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-katherine-angela-yeboah-lucid-sample-chapters/",
+    "corpus_index": 28,
+    "text_len": 33559,
+    "title": "ebook katherine angela yeboah lucid sample chapters",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Interdimensional beings blend Alex into a timeline where she belongs with her family",
+    "confidence": "medium",
+    "quote": "the little figures watch her as she blends into the timeline almost seamlessly"
+  },
+  "investigator": {
+    "value": "Alex, an amnesiac woman trying to discover her identity and which reality is real",
+    "confidence": "high",
+    "quote": "So I find myself in front of a computer, head on the desk wondering how I got here"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Multiple false realities presented as potential truth - the business meeting scenario, the family scenario, and the mansion scenario all serve as misdirection from the dimensional manipulation reveal",
+    "confidence": "medium",
+    "quote": "What made her go upstairs before she woke up? She strained but could not remember anything before opening her eyes."
+  },
+  "clue_fairness": {
+    "value": "Reader experiences Alex's confusion and memory gaps simultaneously, with no hidden information withheld",
+    "confidence": "medium",
+    "quote": "So I find myself in front of a computer, head on the desk wondering how I got here."
+  },
+  "social_world": {
+    "value": "Academic/professional setting suggested by professor's office, family domestic hierarchy with Jim and children",
+    "confidence": "low",
+    "quote": "bookshelves full of books that look to be for a professor of some type"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Dimensional observers revealed as puppet masters manipulating reality and timelines, demonstrated through multiple parallel dimension scenarios",
+    "confidence": "high",
+    "quote": "the little figures watch her as she blends into the timeline almost seamlessly"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Complete memory loss and identity confusion - Alex cannot investigate because she doesn't know who she is or what reality she inhabits",
+    "confidence": "high",
+    "quote": "Wait, who am I? What is my name? This is not right, why is my mind so blank?"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sara-hansen-who-am-i/",
+    "corpus_index": 135,
+    "text_len": 52078,
+    "title": "ebook sara hansen who am i",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

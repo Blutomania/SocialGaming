@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Theft of $100,000 unregistered bonds by trustee; theft of General's pepper-pots",
+    "confidence": "high",
+    "quote": "next Tuesday he will be required to turn over $100,000 unregistered bonds to a young man about to come of age"
+  },
+  "victim": {
+    "value": "Young man coming of age owed trust funds; General Cox whose pepper-pots were stolen",
+    "confidence": "medium",
+    "quote": "turn over $100,000 unregistered bonds to a young man about to come of age, for whom he has been a trustee"
+  },
+  "closed_world": {
+    "value": "Urban setting centered around Raffles Holmes's apartment and the General's dining room",
+    "confidence": "low",
+    "quote": "proceed cautiously to the sideboard, and replace thereon these two souvenirs"
+  },
+  "culprit_and_motive": {
+    "value": "Trustee 'Grouch' attempting to steal bonds; Raffles Holmes stealing pepper-pots to return grandfather's wrongs",
+    "confidence": "high",
+    "quote": "Raffles Holmes atoned for at least one of the offences of his illustrious grandsire"
+  },
+  "resolution": {
+    "value": "Raffles Holmes prevents the bond theft and returns stolen pepper-pots with apology note",
+    "confidence": "high",
+    "quote": "Returned with thanks for their use and apologies for having kept them so long"
+  },
+  "investigator": {
+    "value": "Jenkins, narrator and companion to detective Raffles Holmes",
+    "confidence": "high",
+    "quote": "said I. 'You don't mean _the_ Mr. ----'"
+  },
+  "suspect_architecture": {
+    "value": "Single primary suspect - trustee 'Grouch' with clear financial motive ($100,000 bonds due Tuesday), means (access as trustee), opportunity (control of assets)",
+    "confidence": "high",
+    "quote": "next Tuesday he will be required to turn over $100,000 unregistered bonds to a young man about to come of age"
+  },
+  "red_herring": {
+    "value": "Raffles Holmes's criminal inheritance and dual nature as detective/cracksman misdirects from his actually heroic mission to return stolen items",
+    "confidence": "medium",
+    "quote": "Detective and Amateur Cracksman by Birth"
+  },
+  "clue_fairness": {
+    "value": "Reader learns alongside narrator Jenkins - Grouch's multiple visits, his true identity, the bond deadline, all revealed as Holmes discovers them",
+    "confidence": "high",
+    "quote": "I've had an anxious caller here five times already to-day"
+  },
+  "social_world": {
+    "value": "High society trustees managing inheritances for young heirs, with reputational stakes so high that 'eminent respectability' becomes a weapon",
+    "confidence": "high",
+    "quote": "a name of such eminent respectability that I fairly gasped"
+  },
+  "alibi": {
+    "value": "Holmes demonstrates alibi construction techniques to Jenkins, showing how witness testimony can be manipulated through strategic positioning",
+    "confidence": "high",
+    "quote": "an alibi if things go wrong with me. You'd have sworn I was in there just now, wouldn't you?"
+  },
+  "reveal_mechanic": {
+    "value": "Physical return of stolen pepper-pots with written note proves the case resolution, converting theft back to righteous restitution",
+    "confidence": "high",
+    "quote": "Returned with thanks for their use and apologies for having kept them so long"
+  },
+  "media_and_audience": {
+    "value": "Private gentleman's club gossip and speculation shapes perception of crimes, with social reputation as currency among the elite",
+    "confidence": "medium",
+    "quote": "Well, General, heard anything further about your pepper-pots yet?"
+  },
+  "investigator_wound": {
+    "value": "Holmes carries burden of criminal grandfather Raffles's legacy, must prove worthiness by undoing ancestral crimes rather than creating new ones",
+    "confidence": "high",
+    "quote": "Raffles Holmes atoned for at least one of the offences of his illustrious grandsire"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-john-kendrick-bangs-r-holmes-co/",
+    "corpus_index": 89,
+    "text_len": 185326,
+    "title": "ebook john kendrick bangs r holmes co",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

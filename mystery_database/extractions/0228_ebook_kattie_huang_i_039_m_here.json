@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder by stabbing in a school bathroom",
+    "confidence": "high",
+    "quote": "he ran to me and stab me in the stomach"
+  },
+  "victim": {
+    "value": "Nana Chan, a high school girl who witnessed her boyfriend assaulting another girl and was killed to prevent her from calling 911",
+    "confidence": "high",
+    "quote": "There was a boy that I really like killed me in the bathroom"
+  },
+  "closed_world": {
+    "value": "Tendo high school bathroom where the ghost is trapped",
+    "confidence": "medium",
+    "quote": "I can't leave the bathroom because that is the place where I die"
+  },
+  "culprit_and_motive": {
+    "value": "Nana's boyfriend killed her to prevent her from reporting his assault of another girl",
+    "confidence": "high",
+    "quote": "before I take out my phone, he ran to me and stab me in the stomach"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Nana Chan narrating as a ghost trapped in the bathroom",
+    "confidence": "high",
+    "quote": "My name is Nana Chan and I'm a highschool girl in Tendo high"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Missing person case disguised as elopement when actual murder occurred",
+    "confidence": "medium",
+    "quote": "it says that I elope with my boyfriend and both are missing"
+  },
+  "clue_fairness": {
+    "value": "Red diamond ring that allows ghost to become corporeal - key supernatural element revealed to reader",
+    "confidence": "medium",
+    "quote": "I wore the ring on my finger. My whole body shines and I can feel my feet touching the floor"
+  },
+  "social_world": {
+    "value": "High school social dynamics with boyfriend-girlfriend relationship power imbalance",
+    "confidence": "low",
+    "quote": "My name is Nana Chan and I'm a highschool girl in Tendo high"
+  },
+  "alibi": {
+    "value": "Narrator creates false explanations for supernatural symptoms (cold body, smell, stains)",
+    "confidence": "high",
+    "quote": "I have a cold body when I was young so....um..is just like that"
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Newspaper misrepresents murder as elopement, shaping public perception of disappearance",
+    "confidence": "high",
+    "quote": "In the newspaper, it says that I am missing...it says that I elope with my boyfriend"
+  },
+  "investigator_wound": {
+    "value": "Ghost narrator's isolation and inability to communicate truth about her own murder",
+    "confidence": "medium",
+    "quote": "I can't go see my families and friends now. I'm in the news paper and I can't explain what happen"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-kattie-huang-i-039-m-here/",
+    "corpus_index": 228,
+    "text_len": 16079,
+    "title": "ebook kattie huang i 039 m here",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

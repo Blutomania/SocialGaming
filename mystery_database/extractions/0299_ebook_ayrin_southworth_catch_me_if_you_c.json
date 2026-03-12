@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Double murder by stabbing; parents killed in their bedroom; question: will the daughter be caught?",
+    "confidence": "high",
+    "quote": "They were stabbed through the heart. Four times each, they bled out pretty quick."
+  },
+  "victim": {
+    "value": "Parents who apparently abused their daughter, making them targets for her revenge",
+    "confidence": "medium",
+    "quote": "I think about all the terrible things that happened to me in there."
+  },
+  "closed_world": {
+    "value": "Family home where the crime occurred, with limited suspects due to missing daughter",
+    "confidence": "medium",
+    "quote": "no one's heard or seen the daughter since yesterday."
+  },
+  "culprit_and_motive": {
+    "value": "The daughter killed her parents to escape abuse and gain freedom",
+    "confidence": "high",
+    "quote": "For the first time in my life, I look at them unafraid. My lips twist into a smile. I'm free."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Detective Tom Barton, official police investigator assigned to the case",
+    "confidence": "high",
+    "quote": "Detective Tom Barton walked into the precinct coffee in hand."
+  },
+  "suspect_architecture": {
+    "value": "Single primary suspect: daughter with clear means (knife), motive (abusive parents), and opportunity (living in house)",
+    "confidence": "high",
+    "quote": "no one's heard or seen the daughter since yesterday"
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": "Murder weapon location, time of death window, and missing daughter status all presented to reader when discovered",
+    "confidence": "medium",
+    "quote": "A CSI found the murder weapon in the bathroom sink"
+  },
+  "social_world": {
+    "value": "Dysfunctional family structure with apparent history of abuse creating power imbalance between parents and daughter",
+    "confidence": "medium",
+    "quote": "I think about all the terrible things that happened to me in there"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Detective Barton experiences unease and psychological discomfort from the dark atmosphere of the case",
+    "confidence": "medium",
+    "quote": "Something about this case gave him an uneasy feeling"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-ayrin-southworth-catch-me-if-you-can/",
+    "corpus_index": 299,
+    "text_len": 5422,
+    "title": "ebook ayrin southworth catch me if you can",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

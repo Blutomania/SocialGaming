@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Judge Pierpont shot and killed by masked gunman",
+    "confidence": "medium",
+    "quote": "the proof that he shot and killed Judge Pierpont. The only thing they can testify to is a masked man shot the Judge"
+  },
+  "victim": {
+    "value": "Judge Pierpont, killed for reasons connected to Vergasi case",
+    "confidence": "low",
+    "quote": "the proof that he shot and killed Judge Pierpont"
+  },
+  "closed_world": {
+    "value": "Nautilus Beach area where Wallace operates",
+    "confidence": "low",
+    "quote": "What I do have is a psychopath killer in Nautilus Beach"
+  },
+  "culprit_and_motive": {
+    "value": "Vergasi suspected of killing Judge Pierpont, motive unclear",
+    "confidence": "medium",
+    "quote": "What is important now is the arrest and conviction of Vergasi"
+  },
+  "resolution": {
+    "value": "Applewhite murder solved by Wallace, Judge Pierpont case ongoing",
+    "confidence": "medium",
+    "quote": "Robert, congratulations on solving the Applewhite murder"
+  },
+  "investigator": {
+    "value": "Captain Robert Wallace, police detective with philosophical tendencies",
+    "confidence": "high",
+    "quote": "Robert Wallace sat with his feet up on the desk... Captain Wallace?"
+  },
+  "suspect_architecture": {
+    "value": "Two primary suspects: Vernon Gray (potential murderer of wife Grace) and Vergasi (psychopath killer who shot Judge Pierpont). Gray has domestic motive, Vergasi has criminal pattern.",
+    "confidence": "medium",
+    "quote": "At this point Vernon Gray was only a potential murderer. Hopefully, at this time I have prevented the death of Grace"
+  },
+  "red_herring": {
+    "value": "The masked identity of the shooter serves as misdirection - witnesses can only testify to 'a masked man shot the Judge' rather than definitively identifying Vergasi.",
+    "confidence": "medium",
+    "quote": "The only thing they can testify to is a masked man shot the Judge."
+  },
+  "clue_fairness": {
+    "value": "Wallace's investigation methods and evidence gaps are transparently shared with reader - no weapon, no witnesses, only suspicion of Vergasi.",
+    "confidence": "medium",
+    "quote": "I have no weapon, the firearm used is now in all probability destroyed. What I do have is mere suspicion."
+  },
+  "social_world": {
+    "value": "Police hierarchy with Captain Wallace in authority position, restaurant ownership (Marty Hoffman), and judicial system (murdered Judge Pierpont).",
+    "confidence": "medium",
+    "quote": "Captain Wallace?' Wallace turned abruptly at the sound, spinning around in his high back desk chair."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Wallace's psychological profiling approach using academic texts on violence and biological determinism to understand criminal behavior patterns.",
+    "confidence": "medium",
+    "quote": "Man is an animal and has an inherited trait that causes violence. That trait in all probability comes from a gene"
+  },
+  "media_and_audience": {
+    "value": "Television coverage of solved cases creates public recognition - 'the story is all over the television' regarding the Applewhite murder solution.",
+    "confidence": "medium",
+    "quote": "Robert, congratulations on solving the Applewhite murder. The story is all over the television"
+  },
+  "investigator_wound": {
+    "value": "Wallace's isolation and pattern of failed relationships - described as a loner with no close friends who seduces then abandons women.",
+    "confidence": "high",
+    "quote": "I also see you as a loner. I've asked around about you. To my knowledge you have no close friends."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-the-house-on-timber-lane/",
+    "corpus_index": 6,
+    "text_len": 236848,
+    "title": "ebook robert f clifton the house on timber lane",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

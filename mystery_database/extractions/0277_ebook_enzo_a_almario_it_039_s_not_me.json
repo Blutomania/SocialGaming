@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of best friend witnessed by narrator",
+    "confidence": "medium",
+    "quote": "I saw the whole thing how my best friend was killed."
+  },
+  "victim": {
+    "value": "Narrator's best friend, reason for targeting unknown",
+    "confidence": "low",
+    "quote": "I saw the whole thing how my best friend was killed."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Laura, the narrator who witnessed the murder",
+    "confidence": "medium",
+    "quote": "I woke up with the sun's ray touching my skin and tears streaming down my cheeks."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Dream sequence misdirection - elaborate nightmare parallels reality, suggesting supernatural elements when story is psychological",
+    "confidence": "medium",
+    "quote": "I knew it! Everything was just a dream. A very bad dream."
+  },
+  "clue_fairness": {
+    "value": "Missing phone contacts reveal memory manipulation - reader sees same evidence as protagonist about deleted numbers",
+    "confidence": "medium",
+    "quote": "Sherri's number is not on my contacts and only my boyfriend's number, my number, my dad's number, my mom's number"
+  },
+  "social_world": {
+    "value": "Parent-child power dynamic - adult protagonist still subject to parental control despite claiming independence",
+    "confidence": "medium",
+    "quote": "I am already 18 years old. I can decide for myself! But still, I have so much respect for my parents."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Memory gaps and medication suggest unreliable narrator - protagonist cannot remember how she arrived in Oregon",
+    "confidence": "medium",
+    "quote": "I do not even remember how I got here from New York."
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Protagonist suffers from nightmares and memory loss, making her unreliable witness to her own experience",
+    "confidence": "medium",
+    "quote": "You need to take this medicine. To lessen your nightmares"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-enzo-a-almario-it-039-s-not-me/",
+    "corpus_index": 277,
+    "text_len": 7930,
+    "title": "ebook enzo a almario it 039 s not me",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

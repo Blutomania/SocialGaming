@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Supernatural/criminal conspiracy using a phantom hound to kill Baskerville heirs",
+    "confidence": "high",
+    "quote": "He could not hope to frighten Sir Henry to death as he had done the old uncle with his bogie hound."
+  },
+  "victim": {
+    "value": "The old Baskerville uncle, killed by fright from the hound; Sir Henry as intended next victim due to inheritance",
+    "confidence": "high",
+    "quote": "He could not hope to frighten Sir Henry to death as he had done the old uncle with his bogie hound."
+  },
+  "closed_world": {
+    "value": "The Baskerville estate and surrounding moors, with limited cast of local residents and visitors",
+    "confidence": "medium",
+    "quote": "Stapleton was the cause of the interruption. He was running wildly towards them"
+  },
+  "culprit_and_motive": {
+    "value": "Stapleton, motivated by claiming the Baskerville inheritance by eliminating heirs in the succession line",
+    "confidence": "high",
+    "quote": "If Stapleton came into the succession, how could he explain the fact that he, the heir, had been living"
+  },
+  "resolution": {
+    "value": "Holmes deduces Stapleton's method using a real savage hound to create the supernatural illusion and kill heirs",
+    "confidence": "high",
+    "quote": "The beast was savage and half-starved. If its appearance did not frighten its victim to death"
+  },
+  "investigator": {
+    "value": "Sherlock Holmes as the primary detective, with Dr. Watson as his assistant and narrator",
+    "confidence": "high",
+    "quote": "Well, Watson, what do you make of it?"
+  },
+  "suspect_architecture": {
+    "value": "Primary suspect Stapleton (motive: inheritance, means: trained hound, opportunity: local knowledge), secondary suspects implied but not fully detailed in excerpt",
+    "confidence": "medium",
+    "quote": "If Stapleton came into the succession, how could he explain the fact that he, the heir, had been living unannounced"
+  },
+  "red_herring": {
+    "value": "Stapleton's cover as naturalist with butterfly-net, appearing innocent while actually stalking victims",
+    "confidence": "medium",
+    "quote": "It was Stapleton with his butterfly-net. He was very much closer to the pair than I was"
+  },
+  "clue_fairness": {
+    "value": "Physical evidence of walking stick analyzed jointly by Holmes and Watson, with reasoning shown to reader",
+    "confidence": "high",
+    "quote": "Let me hear you reconstruct the man by an examination of it."
+  },
+  "social_world": {
+    "value": "Aristocratic inheritance system with landed gentry (baronet, succession rights) and professional medical hierarchy",
+    "confidence": "high",
+    "quote": "To James Mortimer, M.R.C.S., from his friends of the C.C.H."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Deductive reasoning from physical evidence - walking stick wear patterns reveal country practitioner's habits",
+    "confidence": "high",
+    "quote": "The thick-iron ferrule is worn down, so it is evident that he has done a great amount of walking"
+  },
+  "media_and_audience": {
+    "value": "Supernatural folklore of hound used to mask deliberate murder, exploiting local beliefs about family curse",
+    "confidence": "medium",
+    "quote": "He could not hope to frighten Sir Henry to death as he had done the old uncle with his bogie hound"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-hound-of-the-baskervilles-1/",
+    "corpus_index": 3,
+    "text_len": 318732,
+    "title": "ebook sir arthur conan doyle the hound of the baskervilles 1",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

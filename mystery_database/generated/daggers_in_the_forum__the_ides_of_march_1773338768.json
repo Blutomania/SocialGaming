@@ -1,0 +1,192 @@
+{
+  "title": "Daggers in the Forum: The Ides of March",
+  "setting": {
+    "location": "The Curia Hostilia and adjacent Portico of Pompey, Rome",
+    "time_period": "44 BC, the Ides of March, midday",
+    "environment": "The marble Senate chamber is thick with incense smoke and the murmur of two hundred senators; outside, the Portico of Pompey opens onto a courtyard sealed by Praetorian cordons after the act.",
+    "description": "The assassination of a prominent senator has thrown the entire complex into lockdown \u2014 Praetorian tribunes have sealed every gate on orders from the Consul, and no senator, slave, or freedman may depart until the perpetrators are identified. The midday sun blazes over bloodstained marble floors while panicked witnesses huddle in alcoves, each suspecting his neighbor and fearing accusation himself."
+  },
+  "crime": {
+    "type": "Politically motivated assassination",
+    "what_happened": "Senator Marcus Hortensius Calvus was stabbed seven times in the Portico of Pompey immediately following a full Senate session. Though multiple daggers were plunged into Caesar on this same day in history, Calvus's death is separate and far more calculated \u2014 he was lured from the chamber by a forged message, isolated in the portico, and murdered by a single assailant using a concealed pugio. The killing was designed to look like spillover chaos from the Caesar assassination to mask a deeply personal motive.",
+    "when": "Shortly after the third hour past midday, while the broader chaos of Caesar's assassination drew every eye toward the Theatre of Pompey steps",
+    "initial_discovery": "A Syrian water-bearer stumbled upon Calvus's body slumped against the base of Pompey's statue, a pool of blood spreading across the white travertine. He screamed loud enough to draw three senators and a Praetorian guard, who immediately ordered the entire complex sealed."
+  },
+  "characters": [
+    {
+      "name": "Marcus Hortensius Calvus",
+      "role": "victim",
+      "occupation": "Senior Senator and wealthy land-owner of the Aventine district",
+      "motive": "N/A \u2014 victim",
+      "alibi": "N/A \u2014 victim",
+      "secret": "Calvus had been systematically seizing the estates of deceased senators by bribing the quaestor responsible for probate records, enriching himself at the expense of widows and orphaned heirs over a period of eight years. He had recently expanded this scheme to target the estate of the late Senator Publius Servilius, whose daughter Livia is still alive and contesting the seizure."
+    },
+    {
+      "name": "Livia Servilia",
+      "role": "suspect",
+      "occupation": "Daughter and sole heir of the late Senator Publius Servilius; present in the Portico to petition senators on behalf of her inheritance claim",
+      "motive": "Calvus had fraudulently seized her father's entire estate through a forged probate document, leaving her destitute; she had publicly sworn before a temple of Vesta that she would see justice done before the next new moon",
+      "alibi": "Claims she was seated in the outer colonnade of the Portico dictating a petition letter to her personal scribe, Demetrios, during the entire window of the murder; Demetrios corroborates this but is her own freedman and thus considered a partial witness",
+      "secret": "Livia had secretly obtained a copy of the forged probate document from a corrupt quaestor's assistant three days prior, and had not reported it to any magistrate \u2014 she was planning to use it as leverage to blackmail Calvus rather than expose him legally. She was seen by a toga-seller in the Forum Boarium meeting an unknown man in dark wool the night before the murder."
+    },
+    {
+      "name": "Gaius Oppius Strabo",
+      "role": "suspect",
+      "occupation": "Tribune of the Treasury and long-standing political ally of Calvus; present in the Senate as a voting member",
+      "motive": "Oppius had been Calvus's partner in the estate-seizure scheme for four years and recently discovered that Calvus was preparing to denounce him to the new Consul to save himself from a separate bribery investigation \u2014 Calvus intended to sacrifice Oppius as a scapegoat",
+      "alibi": "States he remained inside the Curia Hostilia debating the aftermath of Caesar's death with six other senators, including the praetor Lucius Manilius, until a Praetorian entered and announced Calvus's body had been found",
+      "secret": "Oppius carries a personal pugio beneath his senatorial toga \u2014 a habit he acquired after a highway robbery three years ago \u2014 and at least two senators noticed its outline beneath his robes that morning. He also withdrew a significant sum in silver from the Temple of Saturn treasury two days ago with no recorded purpose, which he claims was for a private land purchase but for which he has no documentation."
+    },
+    {
+      "name": "Titus Flavius Brocchus",
+      "role": "suspect",
+      "occupation": "Freedman steward and personal secretary to the late Senator Publius Servilius, now serving Livia Servilia's household in the same capacity",
+      "motive": "Brocchus was himself owed back wages by Calvus from a period when he briefly served in Calvus's household before being dismissed without compensation; more critically, he is fanatically loyal to Livia and views her ruin as his own",
+      "alibi": "Claims he was running an errand to the grain market on the Tiber docks at the time of the murder on Livia's instructions, purchasing provisions for the household; a grain merchant named Apolonios can confirm he was at the docks \u2014 but only until slightly before the estimated time of death, leaving a gap of approximately forty minutes",
+      "secret": "Brocchus had served in the legions as a capsarius \u2014 a field medic trained in precise blade use for surgical amputation \u2014 before his manumission, giving him anatomical knowledge of exactly where and how to deliver fatal stab wounds rapidly and quietly. He has told no one in his current social circle about this past, presenting himself only as a literate steward."
+    },
+    {
+      "name": "Quintus Naevius",
+      "role": "witness",
+      "occupation": "Praetorian decurion assigned to guard the Portico of Pompey on the day of the Senate session",
+      "motive": "N/A \u2014 witness",
+      "alibi": "Was stationed at the eastern gate of the Portico complex for the full session; his post is confirmed by two fellow soldiers",
+      "secret": "Naevius accepted a bribe of four silver denarii from an unnamed hooded figure the previous evening to abandon his interior patrol of the Portico colonnade for thirty minutes during the midday hour \u2014 he told no one because it would mean flogging or execution; he did not see who paid him clearly but noticed the figure had ink-stained fingers on the right hand."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "The Forged Probate Scroll",
+      "description": "A tightly rolled papyrus scroll discovered inside Calvus's personal document satchel still strapped to his body, bearing the official seal of the quaestor's office but with ink of visibly different age on the signature line. It documents the legal transfer of the Servilius estate to Calvus's name and initially suggests Calvus was the architect of fraud \u2014 but close inspection reveals the corrections and insertions on the document are written in a hand consistent with a trained scribe, not a magistrate.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E2",
+      "name": "Pugio with Filed Inscription",
+      "description": "A standard Roman military dagger found wedged beneath the base of Pompey's statue, approximately two feet from the body, with fresh blood on the blade. The blade has a partially filed-down inscription on the tang that originally read a legionary cohort designation; the filing is recent, leaving bright metal scratches, suggesting someone attempted to remove identifying marks before or after the killing.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E3",
+      "name": "Ink-Stained Stylus Case",
+      "description": "A small bronze stylus case containing two reed pens, found on the ground ten paces from the body near a column base, with fresh black ink smeared on the exterior. It does not belong to Calvus and bears no identifying inscription, but the ink stain on the outside matches the color and consistency of the ink used for the corrections on the forged probate scroll.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E4",
+      "name": "Torn Corner of a Wax Tablet",
+      "description": "A small triangular fragment of a wax writing tablet found crushed underfoot near the portico entrance, bearing the partial imprint of the words '\u2026third column, below the statue\u2026' in neat, educated Latin script. It appears to be a fragment of the forged message that lured Calvus away from the Senate chamber, and initially directs suspicion toward whoever had access to writing materials \u2014 pointing investigators toward Livia's scribe Demetrios.",
+      "type": "physical",
+      "relevance": "red_herring"
+    },
+    {
+      "id": "E5",
+      "name": "Testimony of the Grain Merchant Apolonios",
+      "description": "A verbal account from Apolonios, a Greek grain dealer operating on the Tiber docks, who confirms that a man matching Brocchus's description purchased millet and spelt at his stall but departed well before the sixth hour \u2014 leaving a gap of at least forty minutes before Brocchus reappeared at Livia's household. Apolonios also recalls the man's hands were calloused in an unusual pattern across the palm, consistent with long sword or knife grip rather than writing or domestic work.",
+      "type": "testimonial",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E6",
+      "name": "Brocchus's Military Discharge Record",
+      "description": "A bronze tablet retrieved from the household records of Livia Servilia by investigators searching her premises, recording the military service of one Titus Flavius Brocchus in the Legio XII Fulminata as capsarius for six years prior to his manumission. The record explicitly notes his training in surgical blade techniques and lists his cohort designation \u2014 which matches the partially filed inscription on the murder weapon when the original etched letters are traced under angled lamplight.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E7",
+      "name": "Four Silver Denarii in a Linen Wrap",
+      "description": "Four silver coins found tucked into the belt-fold of the Praetorian decurion Quintus Naevius during a mandatory search of all personnel on the scene, wrapped in a scrap of undyed linen. The coins are freshly minted and still carry faint oil from handling, suggesting recent transfer; Naevius initially claimed they were his personal savings, but their presence prompts his eventual confession about abandoning his interior patrol, which establishes the window of opportunity for the murder.",
+      "type": "physical",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E8",
+      "name": "Testimony of Senator Lucius Manilius",
+      "description": "Senator Manilius confirms under questioning that Oppius Strabo was indeed present in the Curia Hostilia debating constitutional procedure with a group of senators from the moment the chaos of Caesar's assassination broke out until the Praetorian announced Calvus's death \u2014 fully corroborating Oppius's alibi. Manilius adds that Oppius appeared genuinely shocked and pale upon hearing the news, which is consistent with a man who feared his co-conspirator had been silenced before the denouncement could be stopped.",
+      "type": "testimonial",
+      "relevance": "supporting"
+    }
+  ],
+  "solution": {
+    "culprit": "Titus Flavius Brocchus",
+    "method": "Brocchus bribed the Praetorian Naevius the night before to abandon the interior colonnade patrol for thirty minutes at midday. He personally forged the message luring Calvus to the base of Pompey's statue \u2014 using his scribal training \u2014 then used his military blade skills to stab Calvus precisely and fatally in three rapid thrusts to the lungs and neck, ensuring death in under a minute with minimal struggle. He concealed the pugio beneath his tunic during his errand to the docks, deposited it under the statue after the killing, and returned to appear innocuously as a household steward. He acted out of obsessive loyalty to Livia and personal hatred of Calvus, exploiting the cover of the broader Caesar assassination chaos to ensure the death would be attributed to the general conspiratorial violence of the day.",
+    "motive": "Brocchus was fanatically devoted to Livia Servilia and the memory of her father, whose household Brocchus had served for decades. The theft of the Servilius estate by Calvus's fraud destroyed the family he considered his own. Brocchus also bore personal grievance from unpaid wages during a brief stint in Calvus's employ, but his primary drive was to restore Livia's honor and inheritance by eliminating the only man who could enforce the fraudulent claim \u2014 a motive simultaneously selfless in its loyalty and ruthless in its execution.",
+    "key_evidence": [
+      "E2",
+      "E6"
+    ],
+    "how_to_deduce": "Step 1 \u2014 Establish the window of opportunity: Testimony from grain merchant Apolonios (E5) proves Brocchus departed the docks forty minutes before he reappeared at the household, a gap large enough to reach the Portico of Pompey on foot and commit the murder. No other suspect has an unverified window: Livia is corroborated by her scribe, and Oppius is confirmed by Senator Manilius (E8). Step 2 \u2014 Connect the weapon to Brocchus specifically: The pugio (E2) bears a partially filed legionary cohort inscription. By tracing the original etching under lamplight, investigators recover the cohort designation, which matches exactly the one listed in Brocchus's military discharge record (E6). This is not circumstantial \u2014 the same blade Brocchus carried in the legions is the murder weapon. Step 3 \u2014 Confirm means through military training: The discharge record (E6) explicitly documents Brocchus's training as a capsarius with surgical blade expertise. The coroner's examination of Calvus's wounds shows three of the seven stab marks are anatomically precise \u2014 targeting the left lung, right subclavian artery, and larynx \u2014 wounds consistent with surgical knowledge rather than a panicked or politically theatrical attack. Ordinary senators or even soldiers do not stab in this pattern; a trained capsarius would. Step 4 \u2014 Tie the forged message to the same hand: The stylus case (E3) found near the body carries ink matching the corrections on the forged probate scroll (E1). Brocchus, as a trained literate steward and former military clerk, had both the writing materials and the skill to produce the luring message and the scroll corrections. The torn wax tablet fragment (E4) initially points toward Livia's scribe Demetrios, but Demetrios uses a different ink formulation \u2014 confirmed by examining his current work \u2014 making it a red herring that clears Livia's household publicly while Brocchus operated independently. Step 5 \u2014 The bribed guard confirms premeditation: Naevius's confession about the four silver coins (E7) proves the murder was planned at least a day in advance by someone who knew guard rotations \u2014 knowledge Brocchus had from accompanying Livia's petitions to the Senate multiple times over the preceding weeks."
+  },
+  "gameplay_notes": {
+    "difficulty": "HARD",
+    "estimated_playtime": "75\u201390 minutes",
+    "key_twists": [
+      "The torn wax tablet (E4) points strongly toward Livia's personal scribe Demetrios, causing players to pursue Livia as the prime suspect for most of the game before realizing Brocchus acted independently without her knowledge",
+      "Oppius Strabo's hidden dagger, suspicious treasury withdrawal, and clear motive make him the most obvious suspect, but his alibi is the most solidly verified of all three suspects",
+      "Brocchus presents as a meek, loyal steward with no apparent threat \u2014 his military past as a capsarius is entirely invisible unless players search household records, making him the least-suspected character until the final deduction",
+      "The Caesar assassination provides authentic historical cover: players must determine which violence of that day was conspiratorial chaos and which was a coldly premeditated personal killing dressed to look like political overflow"
+    ]
+  },
+  "_meta": {
+    "num_players": 4,
+    "setting_input": "Ancient Rome, 44 BC, Senate chamber and surrounding forums"
+  },
+  "_provenance": {
+    "recipe": "corpus_0229_ebo(1) + corpus_0010_ebo(2) + corpus_0163_ebo(3) + corpus_0287_ebo(4) + corpus_0089_ebo(5) + corpus_0087_ebo(6) + corpus_0269_ebo(7) + corpus_0351_ebo(8)",
+    "slots": [
+      {
+        "source_id": "corpus_0229_ebo",
+        "part_index": 1,
+        "part_type": "crime_type"
+      },
+      {
+        "source_id": "corpus_0010_ebo",
+        "part_index": 2,
+        "part_type": "setting_element"
+      },
+      {
+        "source_id": "corpus_0163_ebo",
+        "part_index": 3,
+        "part_type": "motive"
+      },
+      {
+        "source_id": "corpus_0287_ebo",
+        "part_index": 4,
+        "part_type": "suspect_archetype"
+      },
+      {
+        "source_id": "corpus_0089_ebo",
+        "part_index": 5,
+        "part_type": "red_herring"
+      },
+      {
+        "source_id": "corpus_0087_ebo",
+        "part_index": 6,
+        "part_type": "reveal_mechanic"
+      },
+      {
+        "source_id": "corpus_0269_ebo",
+        "part_index": 7,
+        "part_type": "social_dynamic"
+      },
+      {
+        "source_id": "corpus_0351_ebo",
+        "part_index": 8,
+        "part_type": "evidence_type"
+      }
+    ],
+    "target_setting": "Ancient Rome, 44 BC, Senate chamber and surrounding forums",
+    "generated_title": ""
+  },
+  "_coherence": {
+    "passed": true,
+    "blocking": 0,
+    "warnings": 0,
+    "witness_gaps": []
+  }
+}

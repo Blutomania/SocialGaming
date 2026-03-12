@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder by carriage - Christopher Helmsley killed the Duke's daughter by running her over with her own carriage",
+    "confidence": "high",
+    "quote": "Christopher Helmsley took the daughter of his employer, and ran her over in her own carriage."
+  },
+  "victim": {
+    "value": "The Duke of Norfolk's daughter - made vulnerable as the daughter of Christopher's employer, creating opportunity and access",
+    "confidence": "high",
+    "quote": "Christopher Helmsley took the daughter of his employer, and ran her over in her own carriage."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Christopher Helmsley killed his employer's daughter, though specific motive is not detailed in the text",
+    "confidence": "medium",
+    "quote": "Christopher Helmsley took the daughter of his employer, and ran her over in her own carriage. That really is depravity."
+  },
+  "resolution": {
+    "value": "Holmes solved the case by identifying the body in the mortuary as the missing Duke's daughter and determining Christopher was the killer",
+    "confidence": "high",
+    "quote": "I found their missing daughter... The body in the mortuary was the missing Duke's daughter"
+  },
+  "investigator": {
+    "value": "Sherlock Holmes as the primary detective, with Dr. Watson as narrator and assistant",
+    "confidence": "high",
+    "quote": "In all the years I had known Sherlock Holmes"
+  },
+  "suspect_architecture": {
+    "value": "Single deceased perpetrator (Christopher Helmsley) revealed posthumously - no living suspects to interrogate or differentiate",
+    "confidence": "medium",
+    "quote": "Christopher Helmsley took the daughter of his employer, and ran her over in her own carriage."
+  },
+  "red_herring": {
+    "value": "Holmes's apparent drunken incapacitation and disinterest masks his active investigation and disguised fieldwork",
+    "confidence": "high",
+    "quote": "Pretending to be drunk meant you would never expect me to leave."
+  },
+  "clue_fairness": {
+    "value": "Missing newspaper headline about Duke's daughter shown to reader when Watson reads it aloud to Holmes",
+    "confidence": "medium",
+    "quote": "Daughter of Duke missing, Detectives baffled."
+  },
+  "social_world": {
+    "value": "Aristocratic hierarchy - Duke/Duchess of Norfolk as employers of Christopher, with power to reward Holmes handsomely",
+    "confidence": "medium",
+    "quote": "The Duke and Duchess of Norfolk"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Body identification at mortuary connects missing Duke's daughter to Richard's wife, revealing the perpetrator's identity",
+    "confidence": "medium",
+    "quote": "The body in the mortuary was the missing Duke's daughter in the paper five months ago"
+  },
+  "media_and_audience": {
+    "value": "Newspaper coverage of missing Duke's daughter initially dismissed by Holmes, later proves central to case resolution",
+    "confidence": "medium",
+    "quote": "Daughter of Duke missing, Detectives baffled."
+  },
+  "investigator_wound": {
+    "value": "Holmes's addiction and psychological deterioration, exacerbated by memories of Irene Adler, affecting his investigative behavior",
+    "confidence": "high",
+    "quote": "I noticed the picture of Irene Adler, sitting pride of place on the table."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-marion-smith-the-adventure-of-the-posthumous-apparition/",
+    "corpus_index": 77,
+    "text_len": 51382,
+    "title": "ebook marion smith the adventure of the posthumous apparition",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

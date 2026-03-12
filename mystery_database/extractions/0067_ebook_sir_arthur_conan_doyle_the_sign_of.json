@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Theft involving the Agra treasure and pursuit of suspects via steam launch",
+    "confidence": "medium",
+    "quote": "witness the way in which she preserved that Agra plan from all the other papers of her father"
+  },
+  "victim": {
+    "value": "Miss Morstan's father, who possessed the Agra plan/treasure documents",
+    "confidence": "medium",
+    "quote": "she preserved that Agra plan from all the other papers of her father"
+  },
+  "closed_world": {
+    "value": "River Thames and connected waterways where the Aurora launch operates",
+    "confidence": "medium",
+    "quote": "I am going down the river; and if I should see anything of the Aurora I shall let him know"
+  },
+  "culprit_and_motive": {
+    "value": "Wooden-legged man and confederate Lal Rao the butler, motive unclear from excerpt",
+    "confidence": "medium",
+    "quote": "a confederate in the house, who could be none other than Lal Rao, the butler"
+  },
+  "resolution": {
+    "value": "Holmes solved the case through deduction, Jones gets official credit for arrests",
+    "confidence": "medium",
+    "quote": "Jones actually has the undivided honor of having caught one fish in his great haul"
+  },
+  "investigator": {
+    "value": "Sherlock Holmes as consulting detective, with Watson as narrator and participant",
+    "confidence": "high",
+    "quote": "I shall have the chance of studying your methods"
+  },
+  "suspect_architecture": {
+    "value": "Limited suspect pool established - wooden-legged man with distinctive voice, Lal Rao the butler as confederate, focus on identifying specific individuals rather than broad cast",
+    "confidence": "medium",
+    "quote": "a brown, monkey-faced chap that's called more'n once for my old man"
+  },
+  "red_herring": {
+    "value": "Aurora launch description misdirection - Holmes deliberately gets details wrong (green with yellow line vs black with red streaks) to test witness reliability",
+    "confidence": "medium",
+    "quote": "She's not that old green launch with a yellow line, very broad in the beam?"
+  },
+  "clue_fairness": {
+    "value": "Physical evidence shared with reader - wooden leg sound on stones, distinctive voice characteristics, launch visual details all presented to reader when Holmes receives them",
+    "confidence": "high",
+    "quote": "I could hear the wooden leg clackin' on the stones."
+  },
+  "social_world": {
+    "value": "Victorian class dynamics - Mrs. Smith's deference to Holmes's authority, working-class waterman culture, Holmes's casual manipulation of lower-class informants",
+    "confidence": "high",
+    "quote": "never to let them think that their information can be of the slightest importance to you"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Deductive reasoning demonstration - Holmes explains his interrogation technique and shows how he extracts reliable information through strategic deception",
+    "confidence": "medium",
+    "quote": "The main thing with people of that sort... is never to let them think that their information can be of the slightest importance"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Holmes's cocaine dependency and emotional detachment - his chemical escape from reality and stated opposition to emotional engagement conflicts with human connection",
+    "confidence": "high",
+    "quote": "love is an emotional thing, and whatever is emotional is opposed to that true cold reason"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-sign-of-the-four/",
+    "corpus_index": 67,
+    "text_len": 233395,
+    "title": "ebook sir arthur conan doyle the sign of the four",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

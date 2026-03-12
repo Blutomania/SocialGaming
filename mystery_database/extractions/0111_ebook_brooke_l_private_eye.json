@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Assassination of mayor by sniper from balcony; question: who was the shooter and why target the mayor?",
+    "confidence": "high",
+    "quote": "The mayor was getting out of his Rolls Royce when someone shot him from a balcony overhead."
+  },
+  "victim": {
+    "value": "The mayor (Pellistan) - target unclear from text, no specific motive for targeting him revealed",
+    "confidence": "low",
+    "quote": "I need you to figure out who shot the mayor last week."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Thomas Hinckly (FBI Section Chief) wanting John Henning's higher position, possibly with help from corrupt Deputy Director Charles Davids",
+    "confidence": "medium",
+    "quote": "Hinckly wanted Hennings's position, and decided to do something about it. He bribed Charles Davids"
+  },
+  "resolution": {
+    "value": "Private investigator deduces the conspiracy through research and calls police hotline to report findings",
+    "confidence": "medium",
+    "quote": "I called the information hotline number given on the news. 'Hello?' I said into the phone. 'I may know who killed the mayor.'"
+  },
+  "investigator": {
+    "value": "Brooke L, private investigator hired by supposed FBI agent to solve the case",
+    "confidence": "high",
+    "quote": "Being a private investigator, or PI, I was always ready for someone to trick me."
+  },
+  "suspect_architecture": {
+    "value": "Three primary suspects: Thomas Hinckly (FBI Section Chief with career motive), John Henning (superior officer), and Charles Davids (Deputy Director with bribery history). Professional hierarchy creates means/motive spread.",
+    "confidence": "medium",
+    "quote": "Hinckly was a Section Chief in the FBI, one rank below Henning. Right above Henning was the Deputy Director"
+  },
+  "red_herring": {
+    "value": "The anonymous FBI caller positioning himself as client rather than suspect, using the classic misdirection of the reporter never being considered the killer.",
+    "confidence": "high",
+    "quote": "Besides that, the man who reported the case is never thought to be the killer."
+  },
+  "clue_fairness": {
+    "value": "Physical evidence shared with reader: FBI badge authentication, tie-tack camera photos, certificate details, and news photo of killer's appearance all provided before PI's deduction.",
+    "confidence": "high",
+    "quote": "Inconspicuously, the 14-megapixel camera in my tie tack snapped a photograph of the medallion."
+  },
+  "social_world": {
+    "value": "FBI institutional hierarchy with corruption at Deputy Director level, where rank ambition and bribery networks enable crime and cover-up within law enforcement power structure.",
+    "confidence": "high",
+    "quote": "Davids had been in lots of trouble for taking bribes."
+  },
+  "alibi": {
+    "value": "Hinckly's implicit alibi as the FBI agent reporting the crime dissolves when physical evidence (news photo showing different appearance) contradicts his positioning as investigator rather than suspect.",
+    "confidence": "medium",
+    "quote": "He had black hair and tan skin. [The killer had] light brown hair and fair skin"
+  },
+  "reveal_mechanic": {
+    "value": "Visual comparison between news photograph of killer's physical appearance and suspect database photos reveals the deception through contradictory physical evidence.",
+    "confidence": "medium",
+    "quote": "The killer had light brown hair and fair skin, and was well built. He had black hair and tan skin."
+  },
+  "media_and_audience": {
+    "value": "News media coverage provides crucial evidence through released crime scene photos, while PI recognizes the institutional implications for public trust in FBI.",
+    "confidence": "medium",
+    "quote": "it would change the people's perspective on the FBI dramatically, and make them wonder how safe they really were"
+  },
+  "investigator_wound": {
+    "value": "PI's professional paranoia about being tricked by revenge-seeking criminals makes him vulnerable to the substantial bribe, compromising his investigative objectivity.",
+    "confidence": "medium",
+    "quote": "Being a private investigator, or PI, I was always ready for someone to trick me. People get caught because of me."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-brooke-l-private-eye/",
+    "corpus_index": 111,
+    "text_len": 16343,
+    "title": "ebook brooke l private eye",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

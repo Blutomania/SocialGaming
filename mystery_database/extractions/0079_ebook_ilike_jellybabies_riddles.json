@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Disappearance - Roxanne has gone missing from her workplace at the record shop",
+    "confidence": "high",
+    "quote": "So Roxanne was two hours late. Cassie frequently checked her text inbox, but she wasn't receiving any text messages."
+  },
+  "victim": {
+    "value": "Roxanne (Roxxie), a young woman working minimum wage at a failing record shop to support her family",
+    "confidence": "high",
+    "quote": "Roxxie had to work two shifts every weekday to get enough money for the groceries, as her dad never did anything"
+  },
+  "closed_world": {
+    "value": "Local neighborhood including the record shop, family home, and club venue where clues are being left",
+    "confidence": "medium",
+    "quote": "the local news had gotten a grasp on Roxxie's absence and notified the area"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Cassie, the younger sister of the missing person, following riddles left as clues",
+    "confidence": "high",
+    "quote": "She read the riddle constantly, trying to think of anything subliminal hidden in the text"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial focus on car accident parallel to mother's death creates false urgency about fatal outcome",
+    "confidence": "medium",
+    "quote": "her mum died in a car accident on her way back from a business trip in London"
+  },
+  "clue_fairness": {
+    "value": "Riddles and clues are presented to reader simultaneously with protagonist's discovery",
+    "confidence": "high",
+    "quote": "Well done, Cassie, You got the right place, you see, And though you can't see me yet, Behind the clouds it's lovely."
+  },
+  "social_world": {
+    "value": "Working-class family structure with absent father, minimum wage employment, and financial strain",
+    "confidence": "high",
+    "quote": "She worked at minimum wage, but never complained, which was unlike her. The sisters rarely saw their father"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Progressive riddle-solving through location-based clues hidden in specific places",
+    "confidence": "medium",
+    "quote": "folded bit of pink paper of some sort hiding under the writing, tucked behind the bulk of the dispenser"
+  },
+  "media_and_audience": {
+    "value": "Local news coverage frames disappearance as public concern, using graduation photo for identification",
+    "confidence": "high",
+    "quote": "the local news had gotten a grasp on Roxxie's absence and notified the area, providing the audience with a photograph"
+  },
+  "investigator_wound": {
+    "value": "Cassie's trauma from mother's sudden death drives obsessive fear of losing sister",
+    "confidence": "high",
+    "quote": "ever since Mum disappeared, I've been so scared of her going missing and now she has"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-ilike-jellybabies-riddles/",
+    "corpus_index": 79,
+    "text_len": 20379,
+    "title": "ebook ilike jellybabies riddles",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

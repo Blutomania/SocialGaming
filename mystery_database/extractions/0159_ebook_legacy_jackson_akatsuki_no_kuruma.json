@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Mass murder of a clan family - mother and sister slaughtered, method unclear",
+    "confidence": "medium",
+    "quote": "My Mom was killed and I couldn't save her, my sister was slaughtered and I couldn't protect her."
+  },
+  "victim": {
+    "value": "The Aizen clan, targeted as heir-bearing family by unknown assassin",
+    "confidence": "medium",
+    "quote": "Your the heir of the clan? He asked."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Unknown assassin with cold laugh, motive unclear but targets clan hierarchy",
+    "confidence": "low",
+    "quote": "He had a laugh so cold a laugh that would make anybody tremble in fear."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Yoshimaru Aizen, surviving clan heir seeking vengeance rather than investigating",
+    "confidence": "medium",
+    "quote": "For my name is Yoshimaru Aizen, The last remaining Heir!"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Clan hierarchy with heir inheritance system and servant-master relationships",
+    "confidence": "medium",
+    "quote": "Your the heir of the clan? He asked... Shishimaru was only a servant, he wasn't like me nor Hanatoro"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Protagonist's trauma from failing to protect family and survivor's guilt driving revenge quest",
+    "confidence": "high",
+    "quote": "I was supposed to protect her, and I failed... Our souls can't rest until you reach your goal"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-legacy-jackson-akatsuki-no-kuruma/",
+    "corpus_index": 159,
+    "text_len": 11124,
+    "title": "ebook legacy jackson akatsuki no kuruma",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

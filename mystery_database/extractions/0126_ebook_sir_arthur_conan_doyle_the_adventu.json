@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of Gorgiano, an Italian criminal who was tracking down victims",
+    "confidence": "high",
+    "quote": "he knew Gorgiano to be close upon him, and that, thank God! he was ready for him when he came"
+  },
+  "victim": {
+    "value": "Gorgiano, a dangerous Italian criminal with 'dreadful powers' who was hunting his targets",
+    "confidence": "high",
+    "quote": "Both Italy and America are full of stories of his dreadful powers"
+  },
+  "closed_world": {
+    "value": "The London boarding house and surrounding Howe Street area where the Italian couple was hiding",
+    "confidence": "medium",
+    "quote": "I saw two Italians watching the house, and I understood that in some way Gorgiano had found our retreat"
+  },
+  "culprit_and_motive": {
+    "value": "Gennaro killed Gorgiano in self-defense to protect himself and his wife from the pursuing criminal",
+    "confidence": "high",
+    "quote": "I would ask you whether we have anything to fear from the law...for what he has done?"
+  },
+  "resolution": {
+    "value": "Holmes deduces the truth through observation and the wife's confession; authorities likely to exonerate due to self-defense",
+    "confidence": "high",
+    "quote": "If what she says is corroborated, I do not think she or her husband has much to fear"
+  },
+  "investigator": {
+    "value": "Sherlock Holmes, consulting detective called in by the landlady Mrs. Warren about her mysterious lodger",
+    "confidence": "high",
+    "quote": "So spoke Sherlock Holmes and turned back to the great scrapbook"
+  },
+  "suspect_architecture": {
+    "value": "Limited suspect pool: Gennaro (the mysterious lodger), Gorgiano (the pursuer), with Mrs. Warren as concerned observer. Motive centers on Italian criminal vendetta and protection of wife.",
+    "confidence": "medium",
+    "quote": "Both Italy and America are full of stories of his dreadful powers. If ever they were exerted it would be now."
+  },
+  "red_herring": {
+    "value": "The mysterious behavior of the lodger appears criminal but is actually protective - hiding to shield his wife from danger rather than concealing guilt.",
+    "confidence": "high",
+    "quote": "What is he hiding for? What has he done? Except for the girl, I am all alone in the house with him"
+  },
+  "clue_fairness": {
+    "value": "Italian light signals decoded in real-time before reader: 'ATTENTA' (beware) and 'PERICOLO' (danger), with Holmes explaining the translation as he discovers it.",
+    "confidence": "high",
+    "quote": "it is Italian! The A means that it is addressed to a woman. 'Beware! Beware! Beware!' How's that, Watson?"
+  },
+  "social_world": {
+    "value": "Cross-Atlantic criminal networks spanning Italy and America, with law enforcement cooperation between British, American, and Italian police.",
+    "confidence": "medium",
+    "quote": "he wished to be free that he might communicate both with the American and with the Italian police"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Light signal decryption demonstrates the protective rather than criminal nature of the mysterious behavior, revealing the true threat comes from the pursuer.",
+    "confidence": "medium",
+    "quote": "Finally Gennaro told me, through the paper, that he would signal to me from a certain window"
+  },
+  "media_and_audience": {
+    "value": "Newspaper used as covert communication channel between separated spouses, with public perception shaped by fear of foreign criminal elements.",
+    "confidence": "medium",
+    "quote": "All that I learned was through the columns of a newspaper"
+  },
+  "investigator_wound": {
+    "value": "Holmes initially dismisses the case as unworthy of his time, but responds to flattery and appeals to his kindness, suggesting vulnerability to emotional manipulation.",
+    "confidence": "medium",
+    "quote": "Holmes was accessible upon the side of flattery, and also, to do him justice, upon the side of kindliness"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sir-arthur-conan-doyle-the-adventure-of-the-red-circle/",
+    "corpus_index": 126,
+    "text_len": 40128,
+    "title": "ebook sir arthur conan doyle the adventure of the red circle",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

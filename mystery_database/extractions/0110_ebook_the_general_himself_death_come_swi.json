@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Secret government bio-weapon research compound in the Rocky Mountains",
+    "confidence": "medium",
+    "quote": "top secret government bio-weapon research project in the middle of the rocky mountains"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Military missile strike destroys the city to contain the outbreak",
+    "confidence": "medium",
+    "quote": "The Military decided to lunch a missile strike of the whole city killing thousands but saving billions"
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial framing suggests research staff created the virus, but Jack (the Navy SEAL) may have been the actual source or catalyst",
+    "confidence": "medium",
+    "quote": "Johnson,the head of research and the one that had ordered the others to make this virus despite the affects of it"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Military-industrial complex with clear hierarchy: Pentagon/HQ commands, research staff obeys, SEAL teams execute orders",
+    "confidence": "high",
+    "quote": "The computer system announced that the Military as been notified of the problem and they are flying the seal team in"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Physical transformation and behavioral evidence - infected victims show enlarged teeth, blood covering, loss of humanity",
+    "confidence": "medium",
+    "quote": "They were covered in blood and their teeth were bigger than normal"
+  },
+  "media_and_audience": {
+    "value": "Military cover-up through missile strike, destroying evidence and sacrificing thousands to prevent larger catastrophe",
+    "confidence": "high",
+    "quote": "The Military decided to lunch a missile strike of the whole city killing thousands but saving billions of lives"
+  },
+  "investigator_wound": {
+    "value": "MD forced to kill his own infected brother, then commits suicide knowing he's been infected",
+    "confidence": "high",
+    "quote": "I'm the one who suggested that you be chosen to be put into this program"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-the-general-himself-death-come-swiftly/",
+    "corpus_index": 110,
+    "text_len": 11756,
+    "title": "ebook the general himself death come swiftly",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

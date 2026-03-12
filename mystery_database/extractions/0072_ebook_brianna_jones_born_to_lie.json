@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Identity theft/impersonation and potential kidnapping",
+    "confidence": "medium",
+    "quote": "a hand was placed over her mouth, and she was dragged behind the school, away from the cars"
+  },
+  "victim": {
+    "value": "Amber, who becomes vulnerable by impersonating her twin sister",
+    "confidence": "medium",
+    "quote": "She was probably in some real trouble"
+  },
+  "closed_world": {
+    "value": "The school and surrounding area where the twin switch occurs",
+    "confidence": "low",
+    "quote": "She looked around the empty hallways for a way out. A way out of the school"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Amber, who discovers her twin and investigates their connection",
+    "confidence": "high",
+    "quote": "It was a mystery she'd tried to solve ever since running across a picture of someone"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial assumption that twins were separated at birth when actually they switched places deliberately",
+    "confidence": "medium",
+    "quote": "It could be that they were seperated at birth. Or one twin died, leaving the other one alone."
+  },
+  "clue_fairness": {
+    "value": "Anonymous threatening text message with Joker image revealed to reader simultaneously with protagonist",
+    "confidence": "high",
+    "quote": "You're not fooling anyone. Convince me or else. See you soon...Amber."
+  },
+  "social_world": {
+    "value": "Foster care system versus wealthy biological family - class disparity between twins' environments",
+    "confidence": "high",
+    "quote": "despite what her foster mother had told her about the internet"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Facebook social media stalking enables the twin switch deception and identity research",
+    "confidence": "medium",
+    "quote": "she'd just gotten a facebook account despite what her foster mother had told her about the internet"
+  },
+  "investigator_wound": {
+    "value": "Amber's foster care abandonment issues drive obsessive need to connect with biological twin",
+    "confidence": "medium",
+    "quote": "It was a mystery she'd tried to solve ever since running across a picture of someone who looked exactly"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-brianna-jones-born-to-lie/",
+    "corpus_index": 72,
+    "text_len": 44809,
+    "title": "ebook brianna jones born to lie",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

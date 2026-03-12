@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Island during a violent storm, boats without rudders/sails/oars in tempest",
+    "confidence": "medium",
+    "quote": "Two boats, without rudders, sails, or oars, tossed by the waves, beaten by the winds, were whirling above the abyss"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Father kills son as sacrifice, acquitted by court with advocate's help",
+    "confidence": "medium",
+    "quote": "The sacrifice is fulfilled. God did not send His angel to stay the hand of Abraham."
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Neapolitan society with royal troops, wealthy displaying luxury, poor in rags, fishermen community, patriarchal family structure",
+    "confidence": "medium",
+    "quote": "the wealthy display their dazzling luxury, the poor drape themselves proudly in their rags"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Father's sacrificial act as divine judgment - Abraham and Isaac parallel with bloodied knife as proof",
+    "confidence": "medium",
+    "quote": "raising in one hand the reddened knife, said in a sublime voice, 'The sacrifice is fulfilled'"
+  },
+  "media_and_audience": {
+    "value": "Public triumph and legal vindication - crowd carries father triumphantly, celebrated advocate secures acquittal",
+    "confidence": "high",
+    "quote": "The crowd carried him in triumph!"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-nisida/",
+    "corpus_index": 271,
+    "text_len": 88491,
+    "title": "ebook alexandre dumas pere nisida",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

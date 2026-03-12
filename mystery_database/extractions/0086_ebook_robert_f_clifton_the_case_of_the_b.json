@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of Roger Fleming at his home on May 16, 1926, struck and killed with a wheel brush during payment dispute",
+    "confidence": "high",
+    "quote": "He went and opened it. . He was found dead the next day by one of his workers."
+  },
+  "victim": {
+    "value": "Roger Fleming, potato farmer who habitually cheated vendors by refusing to pay asking price after delivery",
+    "confidence": "high",
+    "quote": "Fleming was the type that would place an order and when it arrived refuse to pay the asking price."
+  },
+  "closed_world": {
+    "value": "Rural Essex farming community near Chelmsford, England in 1926",
+    "confidence": "medium",
+    "quote": "Roger Fleming a potato farmer in Essex, near Chelmsford, England"
+  },
+  "culprit_and_motive": {
+    "value": "Virgil Bascomb killed Fleming with a wheel brush during argument over payment for delivered goods",
+    "confidence": "high",
+    "quote": "after arguing over the price of a wheel brush, struck and killed Roger Fleming with the wheel brush."
+  },
+  "resolution": {
+    "value": "Detective Alistair Basham solves case through evidence analysis, clearing wrongly executed Silas Mercer",
+    "confidence": "high",
+    "quote": "my job was to either provide you with a profile of the criminal or with an identity. I believe I've done"
+  },
+  "investigator": {
+    "value": "Alistair Basham, criminologist hired by barrister Basil Morgan to clear Silas Mercer's name posthumously",
+    "confidence": "high",
+    "quote": "Morgan, aware of the reputation of Alistair Basham, Criminologist, contacts him about who really killed"
+  },
+  "suspect_architecture": {
+    "value": "Multiple suspects with differentiated motives: Silas Mercer (wrongly convicted neighbor), Albert Miller (money theft), Henry Bascomb (disabled brush maker), and Virgil Bascomb (actual killer with business dispute motive)",
+    "confidence": "high",
+    "quote": "Fleming was the type that would place an order and when it arrived refuse to pay the asking price"
+  },
+  "red_herring": {
+    "value": "Silas Mercer's conviction and execution serves as the primary misdirection - a neighboring pig farmer framed by circumstantial evidence including hog hairs at the crime scene",
+    "confidence": "high",
+    "quote": "Mercer was tried and convicted and later hanged for the crime"
+  },
+  "clue_fairness": {
+    "value": "The Berkshire hog hairs are presented with full forensic detail available to reader: three white hairs, three inches long, from snout area, professionally clipped for show purposes",
+    "confidence": "high",
+    "quote": "they were actually hairs from a Berkshire Hog...they had been cut, or clipped if you will"
+  },
+  "social_world": {
+    "value": "Rural English farming community hierarchy with power dynamics between potato farmers, pig farmers, and traveling craftsmen; legal system's class prejudices leading to wrongful execution",
+    "confidence": "medium",
+    "quote": "Roger Fleming a potato farmer in Essex, near Chelmsford, England"
+  },
+  "alibi": {
+    "value": "Henry Bascomb's physical disability (confined to crutches) serves as his alibi, while his father Virgil's movements during deliveries provide the actual killer's opportunity",
+    "confidence": "medium",
+    "quote": "Henry was confined to crutches the rest of his life after getting out of prison"
+  },
+  "reveal_mechanic": {
+    "value": "Forensic evidence of professionally groomed hog hair contradicts typical farm practices, pointing to brush-making trade rather than pig farming",
+    "confidence": "high",
+    "quote": "Farm shows where they show their prize animals"
+  },
+  "media_and_audience": {
+    "value": "The case exists in public memory through the Mercer children's decades-long fight to clear their father's name, creating ongoing institutional pressure",
+    "confidence": "medium",
+    "quote": "Over the years the children of Silas Mercer fought to prove the innocence of their father"
+  },
+  "investigator_wound": {
+    "value": "Alistair Basham's detachment from emotional investment - he refuses to attend the exoneration court proceedings, treating it as merely professional completion",
+    "confidence": "medium",
+    "quote": "my job was to either provide you with a profile of the criminal or with an identity...my job is done"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-the-case-of-the-berkshire-hog/",
+    "corpus_index": 86,
+    "text_len": 118667,
+    "title": "ebook robert f clifton the case of the berkshire hog",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

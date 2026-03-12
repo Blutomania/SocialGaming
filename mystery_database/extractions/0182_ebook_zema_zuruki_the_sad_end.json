@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Multiple murders including Alice's parents, butler, and eventually Alice and the Queen",
+    "confidence": "medium",
+    "quote": "both your parents were killed yesterday"
+  },
+  "victim": {
+    "value": "Alice (princess/royal heir) and her family members targeted for their royal status",
+    "confidence": "medium",
+    "quote": "you think this is how my father the real King would treat me!"
+  },
+  "closed_world": {
+    "value": "Royal household and castle environment with limited staff and access",
+    "confidence": "low",
+    "quote": "no one else was in the house"
+  },
+  "culprit_and_motive": {
+    "value": "The maid, motivated by unknown reasons to eliminate the royal family",
+    "confidence": "medium",
+    "quote": "The maid starring at there cold dead bodies and laughs"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": "Single primary suspect (the maid) with false misdirection toward multiple deaths appearing random",
+    "confidence": "medium",
+    "quote": "the crazy maid sneaked in though the top of the doorway"
+  },
+  "red_herring": {
+    "value": "Initial murder report of parents being killed, when they are actually alive",
+    "confidence": "high",
+    "quote": "both your parents were killed yesterday"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Royal hierarchy with King, Queen, Princess Alice, and servants (maid, butlers) in positions of service and access",
+    "confidence": "high",
+    "quote": "your father the real King would treat me"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Revelation through the maid's final presence at the death scene, laughing over the bodies",
+    "confidence": "medium",
+    "quote": "The maid starring at there cold dead bodies and laughs"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Alice as victim-investigator, psychologically vulnerable through amnesia and family trauma",
+    "confidence": "medium",
+    "quote": "Alice Sat up from her bed forgotten everything about the night before"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-zema-zuruki-the-sad-end/",
+    "corpus_index": 182,
+    "text_len": 3769,
+    "title": "ebook zema zuruki the sad end",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

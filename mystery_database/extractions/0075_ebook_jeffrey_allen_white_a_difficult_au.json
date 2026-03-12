@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Potential shooting incident - gun discharged when Irene fell unconscious, possibly hitting someone",
+    "confidence": "medium",
+    "quote": "I saw someone standing in front on me... the gun went off in my hands"
+  },
+  "victim": {
+    "value": "Unknown person possibly shot when gun discharged - identity and condition unclear",
+    "confidence": "low",
+    "quote": "I saw someone standing in front on me. I don't remember anything else"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Unclear - appears to be accidental discharge by frightened Irene Manning, though circumstances suspicious",
+    "confidence": "low",
+    "quote": "I must have been knocked out form a falling object and the gun went off in my hands"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Shep Shepherd, private investigator hired by Irene Manning to help with her situation",
+    "confidence": "high",
+    "quote": "Well for starters, call me Shep... Now what can I do to help you Mrs. Manning?"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Accidental shooting scenario - gun goes off when Irene falls, creating ambiguity about intentional murder",
+    "confidence": "medium",
+    "quote": "Something in the shelf fell and hit me on the head and I felt I was starting to pass out as I heard the gun go off"
+  },
+  "clue_fairness": {
+    "value": "Open terrace door as unexplained detail - Irene notices she didn't leave it open, suggesting intruder presence",
+    "confidence": "medium",
+    "quote": "I noticed the curtains flowing in the breeze from the terrace door. I did not leave the terrace door open."
+  },
+  "social_world": {
+    "value": "Class distinctions evident in Irene's expensive clothing and soft hands suggesting wealth/privilege vs working-class PI",
+    "confidence": "medium",
+    "quote": "This was no homemaker, he though, She had class and did not seem to do any menial labor."
+  },
+  "alibi": {
+    "value": "Irene's blackout/unconsciousness during shooting creates gap in her account of events",
+    "confidence": "high",
+    "quote": "I must have been knocked out form a falling object and the gun went off in my hands. I don't remember anything else"
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Physical pain (toothache/hangover) paralleling emotional vulnerability, making him susceptible to attractive client",
+    "confidence": "medium",
+    "quote": "Deep, ever-pounding pain erupts. Somewhere deep inside, pain is revealed through flashes of sharp arcs"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-jeffrey-allen-white-a-difficult-autumn/",
+    "corpus_index": 75,
+    "text_len": 26886,
+    "title": "ebook jeffrey allen white a difficult autumn",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

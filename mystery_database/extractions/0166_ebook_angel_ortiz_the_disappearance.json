@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Home invasion and kidnapping of 13-year-old Charlie by two masked men searching for something specific",
+    "confidence": "high",
+    "quote": "two masked mens looking for something. When one of the men turned around...pulls out a gun"
+  },
+  "victim": {
+    "value": "13-year-old Charlie, targeted because the burglars believe he knows what they're looking for",
+    "confidence": "medium",
+    "quote": "He might know for what we are looking for we should get him"
+  },
+  "closed_world": {
+    "value": "Charlie's neighborhood at 153 Elm Ave and surrounding area where investigation is taking place",
+    "confidence": "medium",
+    "quote": "A 13 year old boy named Charlie was home alone in 153 Elm ave"
+  },
+  "culprit_and_motive": {
+    "value": "Two masked men searching for an unspecified item they believe is connected to Charlie or his family",
+    "confidence": "low",
+    "quote": "two masked mens looking for something"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Officer Carder (Charlie's relative) and a Special Detective investigating the kidnapping",
+    "confidence": "medium",
+    "quote": "his realative Officer Carder wait for the Speciaal Detectives to come"
+  },
+  "suspect_architecture": {
+    "value": "Two masked burglars seeking unknown object, plus mysterious Special Detective with aggressive behavior and unclear motives",
+    "confidence": "medium",
+    "quote": "two masked mens looking for something"
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": "Note found in Charlie's room mentioned but contents not revealed to reader",
+    "confidence": "medium",
+    "quote": "They noticed a note... Charlies mom puts the note in her pocket"
+  },
+  "social_world": {
+    "value": "Police hierarchy with aggressive Special Detective berating Officer Carder, family connections (Officer Carder related to victims)",
+    "confidence": "high",
+    "quote": "Officer Carder how can you not see if anyone has seen anything!!! That is your job"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Officer Carder torn between professional duty and family loyalty, compromising investigation",
+    "confidence": "medium",
+    "quote": "my aunt needs me to confort her.. She needs all the confort that she can get"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-angel-ortiz-the-disappearance/",
+    "corpus_index": 166,
+    "text_len": 6309,
+    "title": "ebook angel ortiz the disappearance",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

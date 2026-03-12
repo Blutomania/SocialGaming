@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Missing child - 5-year-old Vincent Craxton has disappeared",
+    "confidence": "high",
+    "quote": "My son is missing"
+  },
+  "victim": {
+    "value": "Vincent Craxton, 5-year-old boy with blonde hair, described as his father's 'whole life'",
+    "confidence": "medium",
+    "quote": "My son is all I really have, he's my whole life!"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Unnamed female narrator, District Attorney assistant with 5 years experience, justice-focused professional",
+    "confidence": "high",
+    "quote": "I worked as an assistant for the District Attorney, Larissa Hardwicke. I've been an assistant for five years"
+  },
+  "suspect_architecture": {
+    "value": "Three suspects with family dynamics: Samuel Craxton (father, nervous behavior, delayed police report), Mrs. Craxton (stepmother, hostile, deflecting blame), and implicit third party (biological mother referenced but absent)",
+    "confidence": "medium",
+    "quote": "I-I haven't yet. No,' he said, appearing almost nervous... 'What the hell are you doing? Where's my stepson?'"
+  },
+  "red_herring": {
+    "value": "Father's suspicious delay in calling police and nervous behavior presented as potential guilt indicators",
+    "confidence": "low",
+    "quote": "I-I haven't yet. No,' he said, appearing almost nervous."
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Legal/law enforcement hierarchy with District Attorney office, police departments, and jurisdictional protocols governing missing persons cases",
+    "confidence": "medium",
+    "quote": "I worked as an assistant for the District Attorney... I called Missing Persons... went to Special Victims"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Amber Alert system activated for nationwide public notification of missing child case",
+    "confidence": "medium",
+    "quote": "sent out a nationwide Amber Alert"
+  },
+  "investigator_wound": {
+    "value": "Narrator's romantic attraction to the suspect father compromises professional judgment and creates conflict of interest",
+    "confidence": "high",
+    "quote": "I was in lust with Sam. Hard lust, a lust that I had never felt before"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-marisa-redhead16-beg/",
+    "corpus_index": 286,
+    "text_len": 3565,
+    "title": "ebook marisa redhead16 beg",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

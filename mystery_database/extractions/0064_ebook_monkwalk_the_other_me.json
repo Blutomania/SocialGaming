@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Serial murders disguised as suicides - 6 women killed and given charm bracelets spelling out the killer's name",
+    "confidence": "high",
+    "quote": "He had murdered 6 women then gave them charm bracelets with their initials which spell out his name"
+  },
+  "victim": {
+    "value": "Six women including Tom's wife Tara, targeted to spell out 'THOMAS' with their initials on charm bracelets",
+    "confidence": "high",
+    "quote": "Tara Jackson \u2013 T Hannah Fielding - H Olivia Johnson - O Melanie Jones - M Alice Hybri - A Susie Jack \u2013 S"
+  },
+  "closed_world": {
+    "value": "Tom Jackson's fractured psyche - the investigation is contained within his mental illness and dual personality",
+    "confidence": "medium",
+    "quote": "he was searching for a non existent killer, but the notes revealed that there indeed was a murderer"
+  },
+  "culprit_and_motive": {
+    "value": "Tom Jackson/Thomas Morgan (alternate personality) driven by schizophrenia and grief over his wife's death",
+    "confidence": "high",
+    "quote": "It was Thomas Jackson; you may say it was his alternate personality that he named Thomas Morgan"
+  },
+  "resolution": {
+    "value": "Tom discovers through his own investigation notes that he is the killer, then commits suicide by his wife's grave",
+    "confidence": "high",
+    "quote": "A note book was found in his hand, this note book revealed everything he had learnt about the cases"
+  },
+  "investigator": {
+    "value": "Tom Jackson, journalist investigating his own crimes without realizing he committed them",
+    "confidence": "high",
+    "quote": "Tom worked on the case of his wife's suicide alongside 4 other suicides before, and 1 after"
+  },
+  "suspect_architecture": {
+    "value": "Single perpetrator with split personality - Tom Jackson/Thomas Morgan, his alternate identity. No traditional suspect pool as the protagonist is both investigator and unknowing culprit.",
+    "confidence": "high",
+    "quote": "It was Thomas Jackson; you may say it was his alternate personality that he named Thomas Morgan"
+  },
+  "red_herring": {
+    "value": "The search for an external serial killer when the murders were committed by the investigator's alternate personality during schizophrenic episodes.",
+    "confidence": "high",
+    "quote": "some people thought he was searching for a non existent killer, but the notes revealed that there indeed was a murderer"
+  },
+  "clue_fairness": {
+    "value": "Charm bracelets with initials spelling 'THOMAS' - clue is present but significance not revealed until the solution.",
+    "confidence": "medium",
+    "quote": "then gave them charm bracelets with their initials which spell out his name"
+  },
+  "social_world": {
+    "value": "Journalism hierarchy with Tom as 'top journalist' reporting to boss Julia; institutional care system that failed Tom in childhood.",
+    "confidence": "medium",
+    "quote": "as my top journalist, I would like you to take on the story"
+  },
+  "alibi": {
+    "value": "Tom's work schedule provides unconscious alibi - wife's suicide occurred 'while he was at work', but this may be fabricated memory.",
+    "confidence": "medium",
+    "quote": "she committed suicide in the early hours of the morning while he was at work"
+  },
+  "reveal_mechanic": {
+    "value": "Notebook found in Tom's dead hand containing the acrostic pattern of victims' initials spelling his name, demonstrating the systematic nature.",
+    "confidence": "high",
+    "quote": "A note book was found in his hand, this note book revealed everything"
+  },
+  "media_and_audience": {
+    "value": "The story is framed as published journalism investigation, with Tom working for The Times newspaper covering the suicide cases.",
+    "confidence": "medium",
+    "quote": "becoming a journalist for The Times newspaper. Tom worked on the case of his wife's suicide"
+  },
+  "investigator_wound": {
+    "value": "Tom's schizophrenia and trauma from his wife's suicide, driving obsessive investigation behavior that masks his own dissociative episodes.",
+    "confidence": "high",
+    "quote": "On the 8th of March 2011, Tom tragically lost his wife, she committed suicide"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-monkwalk-the-other-me/",
+    "corpus_index": 64,
+    "text_len": 30735,
+    "title": "ebook monkwalk the other me",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

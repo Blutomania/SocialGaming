@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Mother's death (possibly murder) and father's death in house fire",
+    "confidence": "medium",
+    "quote": "It's all my fault, i'm the reason she's gone!"
+  },
+  "victim": {
+    "value": "Kora's mother, killed due to some conflict involving Kora; father died in house fire",
+    "confidence": "medium",
+    "quote": "I'm the one who fought with her, I'm the one who made her leave, I'm the one who just stood there as she was being killed"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Scratch and his men, motive unclear but connected to mother's death",
+    "confidence": "low",
+    "quote": "After all it's your fault she's dead!"
+  },
+  "resolution": {
+    "value": "No clear resolution - story ends with Kora and Romeo dying",
+    "confidence": "low",
+    "quote": "We then close our eyes for the final time."
+  },
+  "investigator": {
+    "value": "Kora herself, the protagonist trying to understand her mother's death",
+    "confidence": "medium",
+    "quote": "I try to think back to what happened to my mother, then it hits me."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "The mysterious savior who repeatedly rescues Kora appears supernatural but is revealed to be Romeo",
+    "confidence": "medium",
+    "quote": "I don't know why, it feels safe now knowing there is some mysterious person i have never met protecting me"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Father-daughter relationship broken by grief; criminal underworld with Scratch as authority figure",
+    "confidence": "medium",
+    "quote": "Father says nothing, he just sits there staring at nothing"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Kora's repressed memory surfaces under Scratch's interrogation, revealing her role in mother's death",
+    "confidence": "high",
+    "quote": "I try to think back to what happened to my mother, then it hits me. 'He's right.' I say to Romeo."
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Kora's guilt over her mother's death and her inability to save her father from grief",
+    "confidence": "high",
+    "quote": "It's all my fault, i'm the reason she's gone! If i wasn't so selfish she would still be alive."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-bronte-shepherd-time/",
+    "corpus_index": 244,
+    "text_len": 20652,
+    "title": "ebook bronte shepherd time",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

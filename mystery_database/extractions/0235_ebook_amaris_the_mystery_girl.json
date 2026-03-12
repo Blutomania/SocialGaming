@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Kidnapping of Taliyah, a girl with memory loss from being abandoned after head injury",
+    "confidence": "medium",
+    "quote": "The next day i turned on the tv just to see what happened in the morning and the weather man said Taliyah kidnapped"
+  },
+  "victim": {
+    "value": "Taliyah, vulnerable due to memory loss and being abandoned by friends after head injury",
+    "confidence": "medium",
+    "quote": "She lost her memory because she got hit by a rock playing with her friends and the rock came straight to her head"
+  },
+  "closed_world": {
+    "value": "School environment where narrator and Taliyah interact",
+    "confidence": "low",
+    "quote": "When i got there i looked for Taliyah. I saw her and handcuffed her to my hand so i can show her all the things"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": "TO BE COUNTINUED..............."
+  },
+  "investigator": {
+    "value": "Unnamed narrator who befriends Taliyah and learns about her past through news reports",
+    "confidence": "medium",
+    "quote": "I wanted to help her out because i am that type of person"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial focus on Taliyah as dangerous and threatening, when she is actually the victim needing help",
+    "confidence": "medium",
+    "quote": "she looked dangerous her name was Taliyah.ps{i really want to know her but she seems like she will brake one of my bones"
+  },
+  "clue_fairness": {
+    "value": "News reports provide information to both narrator and reader simultaneously about Taliyah's background",
+    "confidence": "medium",
+    "quote": "I turned on the tv and i saw the news and it said missing girl named Mary. Then it said there is a mystery girl"
+  },
+  "social_world": {
+    "value": "School environment with teacher-student dynamics and classroom partnerships as social structure",
+    "confidence": "low",
+    "quote": "our teacher Mr.bradshaw he set me up with the new mystery girl"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Television news broadcasts serve as the mechanism for revealing backstory and resolution",
+    "confidence": "medium",
+    "quote": "she lost her memory because she got hit by a rock playing with her friends and the rock came straight to her head"
+  },
+  "media_and_audience": {
+    "value": "Television news frames the mystery girl narrative and her disappearance for public consumption",
+    "confidence": "high",
+    "quote": "the weather man said Taliyah kidnapped and not found i was schoked when he said that"
+  },
+  "investigator_wound": {
+    "value": "Narrator's compulsive need to help others drives involvement despite personal discomfort and risk",
+    "confidence": "medium",
+    "quote": "I wanted to help her out because i am that type of person"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-amaris-the-mystery-girl/",
+    "corpus_index": 235,
+    "text_len": 5176,
+    "title": "ebook amaris the mystery girl",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

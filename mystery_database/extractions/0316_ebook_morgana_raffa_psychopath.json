@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Multiple murders - Lissi kills a rude neighbor and later Stan (a known serial killer)",
+    "confidence": "high",
+    "quote": "well what can I say ,he was rude so I took care of him"
+  },
+  "victim": {
+    "value": "Stan - a notorious serial killer who was rude to his new neighbors Lissi and Bob",
+    "confidence": "high",
+    "quote": "i am stan yournext door neibore i do not like noise or partys"
+  },
+  "closed_world": {
+    "value": "Suburban neighborhood where Lissi and Bob are new residents with limited neighbors",
+    "confidence": "medium",
+    "quote": "it was a warm summer day when they met stan as they were unpacking their stuff"
+  },
+  "culprit_and_motive": {
+    "value": "Lissi - kills Stan because he was rude to them when they moved in, driven by voices in her head",
+    "confidence": "high",
+    "quote": "NO HE DIDNT HE PRATICLY SCREAMED ATV YOU TO SHUT UP"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Bob - the husband who discovers his wife's crimes and follows her despite his fear",
+    "confidence": "medium",
+    "quote": "bob was tired but he didn't want to sleep he didn't feel compftebull"
+  },
+  "suspect_architecture": {
+    "value": "Two main suspects: Lissi (wife/murderer with psychological breakdown) and Bob (husband/accomplice under duress). Stan serves as secondary victim rather than suspect.",
+    "confidence": "high",
+    "quote": "bob watched his wife go up the stares and he followed her to the bathroom and said \"if nothing happened why are you covered in blood\""
+  },
+  "red_herring": {
+    "value": "Stan's reputation as a known dangerous person who police monitor daily creates false expectation he's the perpetrator rather than victim.",
+    "confidence": "medium",
+    "quote": "he was so renouned for it that even the police made him come to the police station every day so that they could keep an eye on him"
+  },
+  "clue_fairness": {
+    "value": "Reader sees Lissi's blood-covered state, her threatening Bob, the basement prohibition, and her emerging from Stan's house with gloves simultaneously with Bob's discovery.",
+    "confidence": "high",
+    "quote": "he saw lissi get out of stans house with gloves on"
+  },
+  "social_world": {
+    "value": "Suburban neighborhood dynamics where Stan asserts dominance over new neighbors, police institutional monitoring of known offenders.",
+    "confidence": "medium",
+    "quote": "i am stan yournext door neibore i do not like noise or partys or people exept... just keep the noise down"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Discovery of Stan's body by SWAT team in bathtub, fake passports revealing premeditated escape plan.",
+    "confidence": "medium",
+    "quote": "a swat member found stans cold dead body in the bath"
+  },
+  "media_and_audience": {
+    "value": "Police press conference warning public about dangerous Stan, creating ironic reversal when he's revealed as victim.",
+    "confidence": "high",
+    "quote": "i would like to warn evryone to be carefull for this man he is potentually dangerus if you see him call the police immidiatly"
+  },
+  "investigator_wound": {
+    "value": "Bob's psychological entrapment between love for his wife and horror at her crimes, forced complicity despite moral revulsion.",
+    "confidence": "high",
+    "quote": "he didn't feel like he had his wife next to him but a compleat stranger what had happened to his wife ?"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-morgana-raffa-psychopath/",
+    "corpus_index": 316,
+    "text_len": 6734,
+    "title": "ebook morgana raffa psychopath",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

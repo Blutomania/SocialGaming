@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Military hierarchy with clear command structure and roles",
+    "confidence": "medium",
+    "quote": "Elias the leader said \"let us stay here for a while\""
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Physical injury and separation from unit creates vulnerability",
+    "confidence": "medium",
+    "quote": "hesh Got hit in the foot and screamed like a Bird"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-ranz-ulanday-red-ops/",
+    "corpus_index": 275,
+    "text_len": 4815,
+    "title": "ebook ranz ulanday red ops",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

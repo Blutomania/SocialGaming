@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder by poisoning with cocaine laced with strychnine",
+    "confidence": "high",
+    "quote": "if the insured was murdered with a dose of cocain containing strychnine would that then result in your company"
+  },
+  "victim": {
+    "value": "Harry Nichols, insured person whose death triggers insurance investigation",
+    "confidence": "medium",
+    "quote": "The name that should be on the policy is Harry Nichols. I will have Mrs. Nichols contact you"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Case officially solved and closed, celebrated by the investigative team",
+    "confidence": "high",
+    "quote": "the case you called 'The Medusa File' is officially solved and closed"
+  },
+  "investigator": {
+    "value": "Sergeant Kevin McKenna, police detective investigating with Detective Cynthia Adams and Captain Carol Meyers",
+    "confidence": "high",
+    "quote": "Kevin McKenna looked at Robert Wallace and said, 'Uncle Bob you started the tradition'"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Drug overdose initially appears accidental, but cocaine contains strychnine suggesting murder",
+    "confidence": "medium",
+    "quote": "if the insured was murdered with a dose of cocain containing strychnine would that then result in your company"
+  },
+  "clue_fairness": {
+    "value": "Scopolamine detection in human hair after administration presented to reader alongside investigator's research",
+    "confidence": "medium",
+    "quote": "scopolamine can be detected in the human hair after it is either administered or ingested"
+  },
+  "social_world": {
+    "value": "Police department hierarchy with gendered role assignments and mentorship networks",
+    "confidence": "medium",
+    "quote": "female officers were assigned mostly to the Juvenile Bureau. It was you who went out of the way"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Forensic drug detection through hair analysis and insurance investigation convergence",
+    "confidence": "medium",
+    "quote": "scopolamine can be detected in the human hair after it is either administered or ingested"
+  },
+  "media_and_audience": {
+    "value": "Insurance company scrutiny affects case perception and potential financial outcomes",
+    "confidence": "medium",
+    "quote": "it might be a matter for our legal officers to examine and decide"
+  },
+  "investigator_wound": {
+    "value": "Captain Wallace's most difficult unsolved case that haunted his career, called 'The Medusa File'",
+    "confidence": "high",
+    "quote": "Wallace reveals the one, most difficult case of homicide that he investigated. He called it 'The Medusa File'"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-the-medusa-file/",
+    "corpus_index": 22,
+    "text_len": 154692,
+    "title": "ebook robert f clifton the medusa file",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

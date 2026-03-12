@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Disappearance of a bride during her wedding reception in 1800s",
+    "confidence": "high",
+    "quote": "sometime that late afternoon or evening Partheana disappeared."
+  },
+  "victim": {
+    "value": "Partheana, a bride who disappeared on her wedding day, wealthy family connection made her notable",
+    "confidence": "medium",
+    "quote": "Benjamin White and the White family were the riches people on the island"
+  },
+  "closed_world": {
+    "value": "Island location (Nautilus Beach) with limited access points, wedding reception at mansion",
+    "confidence": "medium",
+    "quote": "Benjamin White and the White family were the riches people on the island"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Police investigation concludes successfully, expenses presented to TV host who issued challenge",
+    "confidence": "medium",
+    "quote": "And by the way here is a list of the expenses occurred for the investigation"
+  },
+  "investigator": {
+    "value": "Police Captain Robert Wallace, official detective with institutional authority",
+    "confidence": "high",
+    "quote": "The Police Captain was there to answer any questions that Monahan might have trouble with"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Multiple false theories about Partheana's disappearance - drowning, abduction, running away - systematically eliminated to misdirect from true solution",
+    "confidence": "medium",
+    "quote": "That leaves abduction and run away as two choices. If Partheana was abducted no one produced a ransom note."
+  },
+  "clue_fairness": {
+    "value": "Physical evidence and logical deduction shared with reader - location of privies, lighting conditions, sound of orchestra all presented as accessible clues",
+    "confidence": "medium",
+    "quote": "The light from the candles or oil lamps would have been visible as it shined through the window glass."
+  },
+  "social_world": {
+    "value": "Wealth-based hierarchy on island - Benjamin White and White family as richest residents, Doctor Baker also wealthy, creating social stratification",
+    "confidence": "medium",
+    "quote": "Benjamin White and the White family were the riches people on the island. Doctor Phineas Baker was wealthy"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Television challenge format creates public spectacle of cold case investigation, with reporter Morton presenting historical mystery as entertainment",
+    "confidence": "high",
+    "quote": "He sat on a hard, wooden chair under hot glowing lights. He didn't want to be in the television studio"
+  },
+  "investigator_wound": {
+    "value": "Detective Wallace's general distrust and aversion to media despite being married to a reporter, creating internal conflict about public exposure",
+    "confidence": "medium",
+    "quote": "he had an aversion to newspaper, radio and television reporters, even though he was married to one."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-the-case-of-the-missing-bride/",
+    "corpus_index": 13,
+    "text_len": 111416,
+    "title": "ebook robert f clifton the case of the missing bride",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

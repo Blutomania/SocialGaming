@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "A girl with green eyes full of deep sadness, possibly deceased",
+    "confidence": "medium",
+    "quote": "(My place of death)"
+  },
+  "closed_world": {
+    "value": "Echo's Hill - a house preceded by a gated pathway with trees",
+    "confidence": "medium",
+    "quote": "(Echo's Hill)"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "First-person narrator experiencing recurring dreams, seeking hypnotherapy for answers",
+    "confidence": "high",
+    "quote": "I had been having them for around a month now, and they had gotten progressively longer and more vivid."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Dreams presented as supernatural/mystical experience when likely psychological trauma manifestation",
+    "confidence": "medium",
+    "quote": "(My place of death) Which is weird, b[...] someone is standing right next to me, whispering the words into my ear"
+  },
+  "clue_fairness": {
+    "value": "Dream details progressively revealed to reader as narrator remembers more each night",
+    "confidence": "medium",
+    "quote": "I began to remember more and more. Eventually I got to the point where I could remember it well enough to write"
+  },
+  "social_world": {
+    "value": "Domestic middle-class family structure with professional therapy/medical establishment",
+    "confidence": "medium",
+    "quote": "My wife had her job to get to. My son was preparing for his finals week"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Hypnotherapy session scheduled to unlock dream meaning and reveal truth",
+    "confidence": "medium",
+    "quote": "I felt like I was about to be rid of the dream that plagued me so, like I was about to find out what it meant"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Recurring traumatic dreams disrupting sleep and family life, compelling obsessive investigation",
+    "confidence": "high",
+    "quote": "Maybe it was the embarrassment of waking her up every night"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-confusedalarms-scenes-from-a-memory/",
+    "corpus_index": 191,
+    "text_len": 12250,
+    "title": "ebook confusedalarms scenes from a memory",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

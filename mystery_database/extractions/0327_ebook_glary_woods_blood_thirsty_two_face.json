@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Serial kidnapping and organ harvesting; method: home invasion with injections to incapacitate victims; question: who is the medical professional conducting these attacks",
+    "confidence": "high",
+    "quote": "he just broke into my house and put some injections to my parents"
+  },
+  "victim": {
+    "value": "Multiple families targeted seemingly at random; victims appear to be chosen for their organs rather than personal reasons",
+    "confidence": "medium",
+    "quote": "I take peoples body, remove their organs from them and sell it to other countries at high prices"
+  },
+  "closed_world": {
+    "value": "Medical facilities in specific city blocks (A through F) where the perpetrator must work to have access to medical equipment",
+    "confidence": "high",
+    "quote": "So he must either be working in Blocks E and F"
+  },
+  "culprit_and_motive": {
+    "value": "Medical examiner operating from St. Mary's hospital; motive: financial gain from illegal organ trafficking to other countries",
+    "confidence": "high",
+    "quote": "I take peoples body, remove their organs from them and sell it to other countries at high prices"
+  },
+  "resolution": {
+    "value": "Video footage evidence shows the perpetrator harvesting organs; confession obtained through interrogation; criminal sentenced to death",
+    "confidence": "high",
+    "quote": "video footage which showed that he was cutting the body, taking out the organs of the humans"
+  },
+  "investigator": {
+    "value": "Linda, a teenage civilian who becomes involved when victim Jenny seeks help, leads group of friends in amateur investigation",
+    "confidence": "high",
+    "quote": "Linda with a warm heart let her come inside, gave her a blanket and comforted her"
+  },
+  "suspect_architecture": {
+    "value": "Single primary suspect: medical examiner working at St. Mary's hospital in Block-E, initially misdirected as having Renfield's Syndrome/clinical vampirism, actually motivated by organ trafficking for money",
+    "confidence": "high",
+    "quote": "I don't suffer a disease I take peoples body, remove their organs from them and sell it to other countries"
+  },
+  "red_herring": {
+    "value": "Clinical vampirism/Renfield's Syndrome - perpetrator deliberately staged eating human flesh and timed attacks with moon phases to appear mentally ill rather than reveal organ trafficking motive",
+    "confidence": "high",
+    "quote": "I pretended to eat the flesh but I didn't eat it instead I threw it from the other side"
+  },
+  "clue_fairness": {
+    "value": "Video footage of organ removal and body dismemberment presented to both characters and reader simultaneously during interrogation",
+    "confidence": "medium",
+    "quote": "video footage which showed that he was cutting the body, taking out the organs of the humans"
+  },
+  "social_world": {
+    "value": "Medical institutional hierarchy with hospital staff having access to facilities and equipment for organ harvesting; international black market networks for organ sales",
+    "confidence": "medium",
+    "quote": "sell it to other countries at high prices"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Video surveillance footage showing actual organ harvesting operation, forcing confession when physical evidence contradicts the mental illness defense",
+    "confidence": "high",
+    "quote": "He was asked to give the answer to the video footage which showed that he was cutting the body"
+  },
+  "media_and_audience": {
+    "value": "Supernatural/medical folklore of vampirism used to mask criminal enterprise; higher judiciary and police officers as institutional audience for final revelation",
+    "confidence": "medium",
+    "quote": "It's a myth that the addiction increases on the new moon and full moon days"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-glary-woods-blood-thirsty-two-faced-medical-examiner-1/",
+    "corpus_index": 327,
+    "text_len": 32742,
+    "title": "ebook glary woods blood thirsty two faced medical examiner 1",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

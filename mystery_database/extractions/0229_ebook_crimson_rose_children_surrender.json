@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Mass shooting at a high school",
+    "confidence": "high",
+    "quote": "I ran at him, put the gun behind his neck, telling him to move it."
+  },
+  "victim": {
+    "value": "Multiple students at Johnson County Private High School, including Alicia and others",
+    "confidence": "high",
+    "quote": "People were running around like black spots on a broken TV screen. I grinned at the scene. Then, they went down. Bam. Bam. BAM!"
+  },
+  "closed_world": {
+    "value": "Johnson County Private High School for Boys and Girls - a small town school during lockdown",
+    "confidence": "high",
+    "quote": "They were trapped, and where ever he was, Sumio in this whole crowd, he was trapped too."
+  },
+  "culprit_and_motive": {
+    "value": "Guinevere, motivated by unrequited love for Sumio and bullying/mental illness",
+    "confidence": "high",
+    "quote": "I was diagnosed with schizophrenia... when I didn't get enough love, from my parents, from any of my peers, from anyone."
+  },
+  "resolution": {
+    "value": "Multiple alternative endings - suicide, new romantic beginning, or being shot by Sumio",
+    "confidence": "medium",
+    "quote": "I put the gun on the floor and embraced my new start..."
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Alicia presented as romantic rival/girlfriend, but Sumio claims no knowledge of her existence",
+    "confidence": "medium",
+    "quote": "Please don't kill me, but I've got no idea on who you're talking about\u2026"
+  },
+  "clue_fairness": {
+    "value": "Psychiatric history and hunting incident revealed through protagonist's own recollection",
+    "confidence": "medium",
+    "quote": "I remember what happened on that unforgettable hunting trip. I had nearly shot my dad, on purpose."
+  },
+  "social_world": {
+    "value": "Insular suburban community with social hierarchies between jocks and outcasts",
+    "confidence": "high",
+    "quote": "Where I live, people are nice and polite. Our daily lives are what a city person would call 'boring'"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Mental illness diagnosis (schizophrenia) explains distorted perceptions and motivations",
+    "confidence": "medium",
+    "quote": "The past, when I was diagnosed with schizophrenia."
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Protagonist's unrequited love and social isolation driving violent obsession",
+    "confidence": "high",
+    "quote": "Where I sat. Where I fell in love. Unexpected."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-crimson-rose-children-surrender/",
+    "corpus_index": 229,
+    "text_len": 9668,
+    "title": "ebook crimson rose children surrender",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

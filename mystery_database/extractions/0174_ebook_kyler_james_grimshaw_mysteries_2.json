@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Serial killer murders young blonde women, poses them with chess pieces, carves words into their forearms",
+    "confidence": "high",
+    "quote": "Always beautiful. Posed as though they'd drifted off while reading, head gently restiing on an arm"
+  },
+  "victim": {
+    "value": "19-year-old blonde woman found on Warren street with 'Perfidy' carved on her forearm, holding a Rook chess piece",
+    "confidence": "high",
+    "quote": "Blonde ; always blonde. 19 years of age ; always so young, some poor bastards baby."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Serial killer who judges victims based on perceived sins, using chess pieces as symbols and carving explanatory words",
+    "confidence": "medium",
+    "quote": "Normally one of the seven deadly sins, gluttony, sloth, envy."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Detective Kyler James Grimshaw, experienced but weakened investigator in hospital reviewing case files",
+    "confidence": "high",
+    "quote": "I roll over and lift the case file to read, my arms almost unable to lift it."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Serial killer chess piece pattern appears to have no discernible system - some pieces repeat, others never appear",
+    "confidence": "medium",
+    "quote": "The pieces have no pattern. Some pieces show up more than one or twice, some not at all."
+  },
+  "clue_fairness": {
+    "value": "Chess pieces and carved words presented directly to reader through case file examination",
+    "confidence": "high",
+    "quote": "Chess piece ....... The Rook. [...] Bishop. [...] Perfidy."
+  },
+  "social_world": {
+    "value": "Police hierarchy with aging detectives feeling inadequate against systematic killer",
+    "confidence": "medium",
+    "quote": "How are two cops, too long in the tooth, going to stop him now?"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Chess piece symbolism combined with carved words on victims' forearms as killer's communication system",
+    "confidence": "high",
+    "quote": "He always carves something into their forearms. [...] a word to explain why he took them."
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Aging detective physically failing while haunted by unsolved serial case and accumulated deaths",
+    "confidence": "high",
+    "quote": "More ghosts than this old soul can grieve. [...] Has it gotten this heavy, a thousand clues that point to nothing."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-kyler-james-grimshaw-mysteries-2/",
+    "corpus_index": 174,
+    "text_len": 5094,
+    "title": "ebook kyler james grimshaw mysteries 2",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

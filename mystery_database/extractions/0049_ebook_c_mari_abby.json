@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder by stabbing with glass - Luke killed during attack on Abby",
+    "confidence": "high",
+    "quote": "He killed Luke... he was stabbed with glass. There were a few small shards I was able to find inside his wound"
+  },
+  "victim": {
+    "value": "Luke Bulkski, young man dating Abby who was killed during attack",
+    "confidence": "medium",
+    "quote": "Luke Bulkski. He looks peaceful with his eyes closed... He looks young, too young to die"
+  },
+  "closed_world": {
+    "value": "Small Virginia town of Cats Bridge with sheriff's department",
+    "confidence": "medium",
+    "quote": "The entire police department of our small Virginia town knows me"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Sheriff's department officer who knows Abby and is investigating the case",
+    "confidence": "high",
+    "quote": "I look at the inside of the sheriff's department building... Pete and Tracy continue to question the group"
+  },
+  "suspect_architecture": {
+    "value": "Limited suspect pool with unclear differentiation - mysterious 'he' perpetrator mentioned by victim, plus romantic rivals Josiah and unnamed narrator competing for Abby's attention",
+    "confidence": "low",
+    "quote": "My mind stays on edge, waiting for anyone to mention the him that Abby told me about in the hospital."
+  },
+  "red_herring": {
+    "value": "The mysterious 'he' that Abby was certain committed the crime but whom no one else mentions during questioning",
+    "confidence": "medium",
+    "quote": "Abby appeared so sure that he was the one who did it. Maybe I was wrong."
+  },
+  "clue_fairness": {
+    "value": "Glass shards found in Luke's wounds, impulsive rather than premeditated attack suggested by lack of brought weapon",
+    "confidence": "medium",
+    "quote": "he was stabbed with glass. There were a few small shards I was able to find inside his wound"
+  },
+  "social_world": {
+    "value": "Small Virginia town where police department knows everyone personally, informal social networks based on dating history and friendships",
+    "confidence": "medium",
+    "quote": "The entire police department of our small Virginia town knows me because I once dated one of their own."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Physical evidence analysis through medical examiner's autopsy findings and crime scene investigation",
+    "confidence": "low",
+    "quote": "Maybe Pete will find the piece he used as his weapon. Whoever attacked them, he has to be sloppy"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Narrator's romantic jealousy and previous relationship with victim Abby creating emotional conflict with professional duty",
+    "confidence": "high",
+    "quote": "Two guys, Sal. I think I'm driving myself crazy with jealousy. She won't let me protect her."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-c-mari-abby/",
+    "corpus_index": 49,
+    "text_len": 38897,
+    "title": "ebook c mari abby",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

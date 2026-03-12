@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Witchcraft and making a pact with the devil to have power over women",
+    "confidence": "high",
+    "quote": "From hell came the tidings that by horrible sanctions I had made a pact with the devil to have power over women"
+  },
+  "victim": {
+    "value": "Urbain Grandier, a priest who was controversial and had both supporters and enemies in the town",
+    "confidence": "high",
+    "quote": "there was such difference of opinion that discussion on the subject between those who were on his side"
+  },
+  "closed_world": {
+    "value": "The town of Loudun and its religious institutions, particularly the convent",
+    "confidence": "medium",
+    "quote": "there was great excitement in the little town of Loudun"
+  },
+  "culprit_and_motive": {
+    "value": "Religious authorities and enemies seeking revenge against Grandier",
+    "confidence": "medium",
+    "quote": "Like her, I too fell a victim to revenge"
+  },
+  "resolution": {
+    "value": "Grandier was executed by burning at the stake based on testimony from supposed demonic possession",
+    "confidence": "high",
+    "quote": "In the trial which delivered me to torture and the stake, The demon who accused me invented and suggested the crime"
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": "Multiple suspects with varying motives: nuns claiming possession (Sister Jeanne, Sister Claire), ecclesiastical authorities seeking Grandier's downfall, political enemies exploiting religious accusations, and townspeople divided into supporters and opponents",
+    "confidence": "medium",
+    "quote": "there was such difference of opinion that discussion on the subject between those who were on his side"
+  },
+  "red_herring": {
+    "value": "Demonic possession as supernatural explanation deliberately staged to mask human conspiracy - nuns' theatrical exorcisms and claimed supernatural knowledge used to frame Grandier for witchcraft",
+    "confidence": "high",
+    "quote": "the demon who accused me invented and suggested the crime, And his testimony was the only proof against me"
+  },
+  "clue_fairness": {
+    "value": "The nuns' failed supernatural claims when tested - unable to correctly identify Grandier's location when asked by investigators, exposing the fraud",
+    "confidence": "high",
+    "quote": "She answered without the slightest hesitation that he was walking with the bailiff in the church of Sainte-Croix"
+  },
+  "social_world": {
+    "value": "Complex ecclesiastical and civil power structure: bailiff vs. ecclesiastical authorities, Parliament vs. Church jurisdiction, Bishop of Poitiers' selective silence, attorney-general's jurisdictional limitations",
+    "confidence": "high",
+    "quote": "the attorney-general replied that the matter being entirely ecclesiastical the Parliament was not competent"
+  },
+  "alibi": {
+    "value": "Grandier's verifiable whereabouts used to expose the nuns' false supernatural knowledge - when they claim he's at Sainte-Croix church, investigators find him elsewhere with the bailiff",
+    "confidence": "high",
+    "quote": "finding the church empty, went on to the palace, and saw the bailiff presiding at a court"
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Public divided into opposing factions, persecution inspiring journalists and poets, competing narratives of guilt vs. innocence, supernatural vs. conspiracy, with townspeople literally shutting doors or opening them based on allegiance",
+    "confidence": "high",
+    "quote": "some withdrew into their houses and shut their doors and darkened their windows, as if it were a day of mourning"
+  },
+  "investigator_wound": {
+    "value": "The bailiff's institutional vulnerability - torn between duty to investigate fairly and fear that ecclesiastical authorities will nullify his procedures due to jurisdictional limitations",
+    "confidence": "medium",
+    "quote": "he was afraid that the ecclesiastical authorities would nullify his procedure, on the ground that the convent"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-urbain-grandier/",
+    "corpus_index": 160,
+    "text_len": 212555,
+    "title": "ebook alexandre dumas pere urbain grandier",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

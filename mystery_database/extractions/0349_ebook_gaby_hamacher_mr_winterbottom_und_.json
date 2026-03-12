@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Serial murder of four women, stabbed in the heart with hearts removed, bodies placed under rose bushes with carved crosses on faces",
+    "confidence": "high",
+    "quote": "alle 4 Frauen waren erstochen worden, mitten ins Herz und das Herz war aus den K\u00f6rpern entfernt worden"
+  },
+  "victim": {
+    "value": "Four female victims found under rose bushes, but their identities and what made them targets is not specified",
+    "confidence": "low",
+    "quote": "Alle vier weiblichen Opfer waren auf einer Decke liegend in einem Garten unter einem Rosenbusch"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Victor Winterbottom, a psychologist who consults for Scotland Yard, called in by Henry Heavenly to solve the case",
+    "confidence": "high",
+    "quote": "Mr.Winterbottom war studierter Dr. der Psychologie...psychologischer Berater f\u00fcr das Scotland Yard"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": "Physical evidence shared with reader: ritual positioning, carved cross signature, missing hearts, garden locations",
+    "confidence": "medium",
+    "quote": "alle vier hatten auf der rechten Wange ein Kreuz, mit einem Messer in die Wange geritzt"
+  },
+  "social_world": {
+    "value": "Professional hierarchy: Winterbottom as psychological consultant to Scotland Yard, international expert called in",
+    "confidence": "medium",
+    "quote": "psychologischer Berater f\u00fcr das Scotland Yard in seiner Heimatstadt London"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Psychological profiling approach: ritualistic pattern analysis, signature behavior interpretation",
+    "confidence": "medium",
+    "quote": "F\u00fcr Heavenly sah es fast aus wie ein Ritualmord, ein Serienkiller der Herzen sammelte"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Geographic displacement: Winterbottom recently relocated from beloved London to Cologne, now called back",
+    "confidence": "medium",
+    "quote": "weg aus seinem geliebten London,weg von seinem geliebten alten Haus,weg von seinen Freunden"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-gaby-hamacher-mr-winterbottom-und-die-seele-der-nacht-1/",
+    "corpus_index": 349,
+    "text_len": 26362,
+    "title": "ebook gaby hamacher mr winterbottom und die seele der nacht 1",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

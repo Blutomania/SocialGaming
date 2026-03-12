@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Multiple murders committed by Emily Watson, including strangling her mother and killing other men and women",
+    "confidence": "high",
+    "quote": "One day she took her mother by the throat and strangled her to death."
+  },
+  "victim": {
+    "value": "Emily's mother and multiple other victims; mother was 'killable' due to her sexual abuse of Emily",
+    "confidence": "high",
+    "quote": "Even after the death of her husband the abuse was attempted. Finally, Emily snapped."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Emily Watson killed due to psychosis caused by sexual abuse trauma; males reminded her of abuse, women of her mother",
+    "confidence": "high",
+    "quote": "psychosis is caused by latent sexual issues in a person Psyche"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Alistair, who appears to be consulting with someone knowledgeable about the Emily Watson case",
+    "confidence": "medium",
+    "quote": "Good seeing you again Berty. Take care."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Emily Watson presented as pathological liar and primary killer, but extensive backstory may misdirect from current investigation",
+    "confidence": "medium",
+    "quote": "Emily Watson is a pathological liar"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Academic hierarchy with criminology lectures establishing theoretical framework for understanding criminal behavior and justice",
+    "confidence": "medium",
+    "quote": "Good morning gentlemen. I trust that all of you had a good night sleep in spite of the Luftwaffe"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Psychological case study methodology - Freudian analysis revealing sexual abuse as root cause of serial killing pattern",
+    "confidence": "medium",
+    "quote": "if you believe in Sigman Freud's theory, that psychosis is caused by latent sexual issues"
+  },
+  "media_and_audience": {
+    "value": "Historical context of WWII London bombing creates backdrop where mental hospital destruction allows patient escape and crimes",
+    "confidence": "medium",
+    "quote": "That night a one thousand pound bomb intended to hit the docks in north, London missed the target"
+  },
+  "investigator_wound": {
+    "value": "Academic investigator seeking understanding through criminological theory rather than direct investigation, possibly avoiding emotional engagement",
+    "confidence": "low",
+    "quote": "Ah excellent. Thank you my good man. You have no idea of how much I need this"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-robert-f-clifton-basham/",
+    "corpus_index": 76,
+    "text_len": 149720,
+    "title": "ebook robert f clifton basham",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

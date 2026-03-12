@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Small town of El Paso, Colorado with apartment building and police station",
+    "confidence": "medium",
+    "quote": "I looked out the window as the small town of El Paso, Colorado passed by my eyes."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Ms. Moravia, a young woman being questioned by police but not yet established as detective",
+    "confidence": "medium",
+    "quote": "After minutes of pleading and begging, I finally agreed to come back with them to the station."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Working-class apartment building with informal hierarchies - building secretary Mosey provides keys and social connection outside official rules",
+    "confidence": "medium",
+    "quote": "he was supposed to stop giving me replacement keys around six, but he still grinned"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Protagonist has history of supernatural encounters as child - learned about death and violence from ghosts, creating psychological vulnerability",
+    "confidence": "medium",
+    "quote": "I learned about murders and death from an offed mother of two named Martha"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-florence-hazel-call-1800-234-dead/",
+    "corpus_index": 225,
+    "text_len": 14930,
+    "title": "ebook florence hazel call 1800 234 dead",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

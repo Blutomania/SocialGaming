@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Poisoning murder of husband and housekeeper using spoiled mayonnaise; question: will Victoria's past crimes be discovered?",
+    "confidence": "high",
+    "quote": "she had taken a jar of mayonnaise and had opened it and left it out to spoil, then had mixed it in with the fresh"
+  },
+  "victim": {
+    "value": "Victoria Andrews, murderer of her husband George and housekeeper Hortense; 'killable' because she killed others for money",
+    "confidence": "high",
+    "quote": "now, he was dead and she was free, from the shriveled up old man. She couldn't believe how easy it had been"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Mr. Williams/Mr. Johnson and associates at fake 'Banatelli's' store; motive: justice/revenge for Dr. Reynolds and orphanage children",
+    "confidence": "high",
+    "quote": "Well ,our client, Dr. Reynolds and the children at the orphanage will be pleased"
+  },
+  "resolution": {
+    "value": "Victoria dies from black widow spider bite delivered via package; perpetrators leave no evidence, disappear",
+    "confidence": "high",
+    "quote": "And since there in no such place as, Banatelli's ,there are no clues to lead them to us. All they will find is an empty"
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Empty package with no contents - deliberate misdirection suggesting incomplete delivery rather than murder weapon",
+    "confidence": "high",
+    "quote": "when they finally find her body and look in the box they will find nothing there, just an empty package"
+  },
+  "clue_fairness": {
+    "value": "Victoria's deadly spider allergy revealed to reader before the fatal package opening",
+    "confidence": "medium",
+    "quote": "she was allergic to spiders ,deadly allergic"
+  },
+  "social_world": {
+    "value": "Charitable institutions (orphanage) vs. wealthy widow - power dynamics around inheritance and social obligation",
+    "confidence": "medium",
+    "quote": "our client, Dr. Reynolds and the children at the orphanage will be pleased"
+  },
+  "alibi": {
+    "value": "Assassination service operates from fake storefront with no traceable location",
+    "confidence": "high",
+    "quote": "since there in no such place as, Banatelli's ,there are no clues to lead them to us. All they will find is an empty warehouse"
+  },
+  "reveal_mechanic": {
+    "value": "Black widow spider hidden in packing material, exploiting victim's known deadly allergy",
+    "confidence": "high",
+    "quote": "A small black widow spider. 'No!' 'No!' she screamed, she was allergic to spiders ,deadly allergic"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-melinda-dawn-mardars-satifaction-guaranteed/",
+    "corpus_index": 269,
+    "text_len": 10529,
+    "title": "ebook melinda dawn mardars satifaction guaranteed",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

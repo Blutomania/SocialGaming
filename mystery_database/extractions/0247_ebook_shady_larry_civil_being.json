@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of Prince Louis in his sleep",
+    "confidence": "medium",
+    "quote": "I was killed in my sleep in the honest hours of the night."
+  },
+  "victim": {
+    "value": "Prince Louis, son of a cruel king overthrown by rioters",
+    "confidence": "medium",
+    "quote": "I was the prince of all of England. My father was a cruel king to his land so they started a riot to seize him."
+  },
+  "closed_world": {
+    "value": "Doncaster Mansion House where Louis haunts and Harry has moved",
+    "confidence": "low",
+    "quote": "I haunt the Doncaster Mansion House."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Ghost narrative potentially misdirects from real crime - Louis's murder presented as supernatural haunting",
+    "confidence": "medium",
+    "quote": "I tried to tell them to get out but they ignored me. I got out of bed only to look down at my transparent feet."
+  },
+  "clue_fairness": {
+    "value": "Eight thieves stealing from murdered prince's room - specific detail available to reader",
+    "confidence": "medium",
+    "quote": "I 'woke up' to find 8 rubbish looking men in my room stealing my things."
+  },
+  "social_world": {
+    "value": "Royal hierarchy and class conflict - cruel king's unfair rules to the poor triggered riot and violence",
+    "confidence": "high",
+    "quote": "My father was a cruel king to his land so they started a riot to seize him. His rules were unfair to the poor."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "House purchased 'abnormally low' - suggests concealed history or reputation affecting property value",
+    "confidence": "medium",
+    "quote": "it was abnormally low for a big house."
+  },
+  "investigator_wound": {
+    "value": "Harry's family separation trauma coincides with move to haunted mansion - emotional vulnerability",
+    "confidence": "medium",
+    "quote": "Me..and you father are separating."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-shady-larry-civil-being/",
+    "corpus_index": 247,
+    "text_len": 5757,
+    "title": "ebook shady larry civil being",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

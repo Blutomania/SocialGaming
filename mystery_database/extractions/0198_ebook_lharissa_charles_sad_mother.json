@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of Hailey by Emily (Garry's girlfriend)",
+    "confidence": "medium",
+    "quote": "she got killed by Garrys real girlfriend because Garry was also drunk the day they met each other"
+  },
+  "victim": {
+    "value": "Hailey, 20-year-old with drinking problem who unknowingly interfered with Emily's relationship",
+    "confidence": "medium",
+    "quote": "There once was this girl named Hailey she was 20 years old.She was always drunk driving"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Emily killed Hailey out of jealousy over Garry",
+    "confidence": "medium",
+    "quote": "she got killed by Garrys real girlfriend because Garry was also drunk"
+  },
+  "resolution": {
+    "value": "Emily was sent to jail for life",
+    "confidence": "low",
+    "quote": "emily was sent t jail for life"
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": "Three suspects with limited differentiation: Garry (met victim while drunk), Emily (jealous girlfriend with clear motive and means), and indirectly Hailey herself (self-destructive behavior)",
+    "confidence": "medium",
+    "quote": "Hailey got killed by Garrys real girlfriend because Garry was also drunk the day they met each other"
+  },
+  "red_herring": {
+    "value": "Emily's imprisonment for murder serves as misdirection from the actual cause of death - wolf attack in woods",
+    "confidence": "medium",
+    "quote": "emily was sent t jail for life...Hailey got attacked by a wolf and she died but no one knew she died this way"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Simple social dynamics: romantic triangles, family obligations, institutional authority (police, hospital, workplace)",
+    "confidence": "low",
+    "quote": "Haileys mom called the police and they arrived at her house"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Physical discovery of body reveals true cause of death - wolf attack rather than Emily's presumed murder",
+    "confidence": "medium",
+    "quote": "They looked in the woods and found her body and there she laid covered in blood"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Mother's desperate search and institutional failure - hospital loses patient, police provide incomplete information",
+    "confidence": "low",
+    "quote": "she started screaming like mad and the the nurses came in and found the window opened"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-lharissa-charles-sad-mother/",
+    "corpus_index": 198,
+    "text_len": 2030,
+    "title": "ebook lharissa charles sad mother",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

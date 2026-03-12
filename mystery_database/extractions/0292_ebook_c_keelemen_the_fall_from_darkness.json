@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Mill with locking doors that trap the protagonist inside",
+    "confidence": "medium",
+    "quote": "The last thing I remember was walking in here and the doors locking"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Investigation team finds protagonist through metal analysis matching evidence from turtle",
+    "confidence": "medium",
+    "quote": "the swab they had taken from the turtle when I first gave it to them matched from the metal here"
+  },
+  "investigator": {
+    "value": "Alexandra, a detective on her first case working with partners Garry and Jim",
+    "confidence": "high",
+    "quote": "Man my first case and I scare both, Garry, my brother and, Jim, my boyfriend"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Supernatural elements (ghosts, shadow) used to obscure the real explanation of events at the mill",
+    "confidence": "medium",
+    "quote": "I knew better than to reply ghosts so I played amnesia"
+  },
+  "clue_fairness": {
+    "value": "Physical evidence linking crime scene to victim - metal swab from turtle matches mill location",
+    "confidence": "high",
+    "quote": "the swab they had taken from the turtle when I first gave it to them matched from the metal here"
+  },
+  "social_world": {
+    "value": "Professional investigative team structure with personal relationships affecting the case dynamics",
+    "confidence": "medium",
+    "quote": "Man my first case and I scare both, Garry, my brother and, Jim, my boyfriend"
+  },
+  "alibi": {
+    "value": "Protagonist conceals true events by feigning amnesia about supernatural encounter",
+    "confidence": "high",
+    "quote": "I don't know. Why are you here? The last thing I remember was walking in here and the doors locking"
+  },
+  "reveal_mechanic": {
+    "value": "Forensic matching of physical evidence from victim's possession to crime scene location",
+    "confidence": "high",
+    "quote": "the swab they had taken from the turtle when I first gave it to them matched from the metal here"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "First case anxiety and fear of appearing incompetent, complicated by supernatural encounter",
+    "confidence": "medium",
+    "quote": "Man my first case and I scare both, Garry, my brother and, Jim, my boyfriend"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-c-keelemen-the-fall-from-darkness/",
+    "corpus_index": 292,
+    "text_len": 7290,
+    "title": "ebook c keelemen the fall from darkness",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

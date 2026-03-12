@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of narrator's mother, possibly arson/fire-related attack that also burned the father",
+    "confidence": "medium",
+    "quote": "He heard screams from the basement, he went down there and he he was burned... did he see who killed my mother"
+  },
+  "victim": {
+    "value": "The narrator's mother, a real estate agent who was killed in what appears to be a basement attack",
+    "confidence": "medium",
+    "quote": "I had a dream of me being a successful real estate agent just like my mother"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "First-person narrator, the son of the murder victim, investigating his mother's death",
+    "confidence": "high",
+    "quote": "I asked him what happened, did he see who killed my mother"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Intentionally wrong grade level on tardy slip to avoid detention and create false trail",
+    "confidence": "medium",
+    "quote": "I signed it putting my wrong grade level on purpose so that it would make it harder for them to find me"
+  },
+  "clue_fairness": {
+    "value": "Father's account of the fire incident - heard screams from basement, went down, was burned",
+    "confidence": "medium",
+    "quote": "He heard screams from the basement, he went down there and he he was burned."
+  },
+  "social_world": {
+    "value": "Family loyalty system with local business owner Peet receiving extra payment for preferential service",
+    "confidence": "medium",
+    "quote": "My family are loyal customers to Mr.Peet and would pay him extra for his service"
+  },
+  "alibi": {
+    "value": "Father's vague memory of fire incident - claims it was 'all a blur' when asked what happened",
+    "confidence": "medium",
+    "quote": "I asked him what happened, did he see who killed my mother. He told me it was all a blur."
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Protagonist's isolation and abandonment - losing mother, hospitalized father, romantic rejection by Ashley",
+    "confidence": "high",
+    "quote": "After realizing I had nobody, I started to cry in front of the nurse. I had started to cry again, I had NO ONE"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-j-n-taylor-echo/",
+    "corpus_index": 185,
+    "text_len": 27043,
+    "title": "ebook j n taylor echo",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

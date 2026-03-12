@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Poisoning of Sarah Cornett",
+    "confidence": "medium",
+    "quote": "Sarah Cornett Posioned"
+  },
+  "victim": {
+    "value": "Sarah Cornett (implied victim based on title)",
+    "confidence": "low",
+    "quote": "Sarah Cornett Posioned"
+  },
+  "closed_world": {
+    "value": "Crowded cruise boat",
+    "confidence": "medium",
+    "quote": "The light filtered through the small porthole on the crowded cruise boat"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Romantic tension between Indigo and Alex interrupted by scream creates misdirection from actual crime",
+    "confidence": "medium",
+    "quote": "He leaned in. Their lips touched. A scream ripped through the air."
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "High school social dynamics with twin sisters and best friend relationships on cruise ship setting",
+    "confidence": "medium",
+    "quote": "Both were seventeen years old and went to the same school."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sarah-cornett-posioned/",
+    "corpus_index": 329,
+    "text_len": 2909,
+    "title": "ebook sarah cornett posioned",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

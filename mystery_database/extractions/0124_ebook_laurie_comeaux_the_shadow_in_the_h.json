@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Kidnapping and imprisonment by drugging and abduction",
+    "confidence": "high",
+    "quote": "I brought her to the basement and put her carefully on the bed and tied up her ankle to the bed"
+  },
+  "victim": {
+    "value": "Jen/Jennett, 17-year-old girl targeted by her former teacher/boyfriend",
+    "confidence": "high",
+    "quote": "Baby do you really dont reconize me? Its me Clint Hood your old boyfriend?"
+  },
+  "closed_world": {
+    "value": "Underground basement where victim is held captive",
+    "confidence": "high",
+    "quote": "you can scream all you want but your under ground no ones going to hear you sweetheart"
+  },
+  "culprit_and_motive": {
+    "value": "Clint Hood (teacher) kidnapped Jen because he wants her to fall back in love with him",
+    "confidence": "high",
+    "quote": "im sure shell fall back in love with me"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Dual perspective: Jen as victim and Clint Hood as perpetrator",
+    "confidence": "medium",
+    "quote": "Jen's POV:"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial positioning as runaway case when victim was actually kidnapped by teacher",
+    "confidence": "medium",
+    "quote": "left her parents a note saying she ranaway and not to come looking for her"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Abusive family hierarchy with powerless teenager exploited by authority figures",
+    "confidence": "high",
+    "quote": "My mom isnt the nicest parent alive i cook, i clean, i do EVERYTHING and all i get in retern is being yelled at"
+  },
+  "alibi": {
+    "value": "Teacher uses mandatory piano lessons as cover for extended contact with victim",
+    "confidence": "high",
+    "quote": "your step dad said he wanted you to learn panio. So insted of taking the bus home I have to take you home"
+  },
+  "reveal_mechanic": {
+    "value": "Perpetrator reveals identity directly to victim in basement confrontation",
+    "confidence": "high",
+    "quote": "Baby do you really dont reconize me? Its me Clint Hood your old boyfriend?"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-laurie-comeaux-the-shadow-in-the-hall/",
+    "corpus_index": 124,
+    "text_len": 10970,
+    "title": "ebook laurie comeaux the shadow in the hall",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Stabbing murder in public space with knife attack",
+    "confidence": "high",
+    "quote": "The man shoves the knife into Ally's ribcage, her face a mask of horror, blood spills over her crisp white shirt"
+  },
+  "victim": {
+    "value": "Ally, the narrator's best friend and roommate",
+    "confidence": "medium",
+    "quote": "my best friend, whom thanks to much persuasion on my part, I was now living with in the cramped apartment"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Unknown figure with white eyes, motive unclear",
+    "confidence": "low",
+    "quote": "The figure shifts his gaze to mine and his eye are white, the type of white from the first frost"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Angel, the narrator and witness to the murder",
+    "confidence": "medium",
+    "quote": "Hands shake me awake, \"Angel! Hurry up you'll make us late again!\""
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Pooh Bear shirt as bad luck omen misdirects from real threat",
+    "confidence": "medium",
+    "quote": "it always gave me bad luck, but whatever. I didn't have time to change"
+  },
+  "clue_fairness": {
+    "value": "Knife glinting in overcast light shown to reader simultaneously with protagonist",
+    "confidence": "high",
+    "quote": "Something glints in the pale overcast light. It was a knife!"
+  },
+  "social_world": {
+    "value": "Young women sharing cramped apartment, economic constraints implied",
+    "confidence": "medium",
+    "quote": "the cramped apartment that we bought"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Attacker's distinctive white eyes as identifying feature",
+    "confidence": "medium",
+    "quote": "his eye are white, the type of white from the first frost over a freshly cut lawn"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Protagonist's trauma from witnessing best friend's murder creates psychological vulnerability",
+    "confidence": "high",
+    "quote": "I can't think, one word form through the fog. Gone. Gone. Gone. Gone. Gone. Gone."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-natalie-m-wood-the-other-side-of-me/",
+    "corpus_index": 230,
+    "text_len": 2203,
+    "title": "ebook natalie m wood the other side of me",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

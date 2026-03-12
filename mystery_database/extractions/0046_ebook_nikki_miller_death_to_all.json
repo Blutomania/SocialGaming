@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Serial kidnapping of young women/girls",
+    "confidence": "high",
+    "quote": "People are turning up missing. It is my job to find out what is happening to them."
+  },
+  "victim": {
+    "value": "Young women/girls who 'waste their childhood' according to perpetrator's twisted worldview",
+    "confidence": "medium",
+    "quote": "I had a bad childhood and they are wasting theirs."
+  },
+  "closed_world": {
+    "value": "New York city area with focus on specific locations like the station, club, and abandoned factory",
+    "confidence": "low",
+    "quote": "This is just what a typical day in New York looks like for me."
+  },
+  "culprit_and_motive": {
+    "value": "Cole Crooni, motivated by trauma from his sister's death and belief that girls are wasting their lives",
+    "confidence": "high",
+    "quote": "I had a bad childhood and they are wasting theirs."
+  },
+  "resolution": {
+    "value": "Detective talks down the kidnapper through empathy rather than force or investigation",
+    "confidence": "medium",
+    "quote": "I'm going to let you out. Promise not to run to the police even though you are the police?"
+  },
+  "investigator": {
+    "value": "Samantha Vernandez, professional detective investigating the missing persons cases",
+    "confidence": "high",
+    "quote": "People are turning up missing. It is my job to find out what is happening to them."
+  },
+  "suspect_architecture": {
+    "value": "Single perpetrator Cole Crooni revealed early, no traditional suspect pool with differentiated motives - architectural weakness",
+    "confidence": "high",
+    "quote": "Cole Crooni. What is yours? I'm surprised my sister didn't tell you. My name is Samantha Vernandez."
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": "Mixed fairness - witness description provided to reader, but kidnapper's identity and backstory revealed through direct confession",
+    "confidence": "medium",
+    "quote": "He has medium long dark brown hair with a dark magenta streak, blue eyes with green tints, and a tan complexion."
+  },
+  "social_world": {
+    "value": "Police institutional structure with detective protagonist, but minimal exploration of power dynamics or hierarchies",
+    "confidence": "medium",
+    "quote": "So far the police are trying to keep it quiet, but the missing people's families are getting worried."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Direct confession from perpetrator explaining childhood trauma and sister's death as motivation for kidnapping girls",
+    "confidence": "high",
+    "quote": "I wish I could go back in time so that I wouldn't snap at the teacher like I did."
+  },
+  "media_and_audience": {
+    "value": "Police attempting to keep disappearances quiet to avoid public panic and interference with investigation",
+    "confidence": "medium",
+    "quote": "So far the police are trying to keep it quiet, but the missing people's families are getting worried."
+  },
+  "investigator_wound": {
+    "value": "Detective's protective relationship with twin sister creates personal stakes when sister becomes involved in case",
+    "confidence": "medium",
+    "quote": "I wonder why she have to get involved with it. I always have protected her from everything. She is my twin."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-nikki-miller-death-to-all/",
+    "corpus_index": 46,
+    "text_len": 12929,
+    "title": "ebook nikki miller death to all",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

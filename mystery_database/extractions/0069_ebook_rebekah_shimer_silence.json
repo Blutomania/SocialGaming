@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of Delilah, body disposed of in lake",
+    "confidence": "high",
+    "quote": "They lay my body down and start to drag me from there...throws my body in the bone-chilling water."
+  },
+  "victim": {
+    "value": "Delilah - popular head cheerleader with seemingly perfect life",
+    "confidence": "high",
+    "quote": "She was smart, immensely beautiful, was head cheerleader, and had the perfect life."
+  },
+  "closed_world": {
+    "value": "High school community and associated social circle",
+    "confidence": "medium",
+    "quote": "Without Delilah, school almost seemed impossible to get through."
+  },
+  "culprit_and_motive": {
+    "value": "Bruce Johnson - motive unclear from excerpt",
+    "confidence": "medium",
+    "quote": "Bruce Johnson escapes from police custody."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Multiple perspectives including Audrey (best friend) and Logan (boyfriend)",
+    "confidence": "high",
+    "quote": "And then there was me, the true best friend who doesn't know what to do with herself anymore."
+  },
+  "suspect_architecture": {
+    "value": "Limited suspect pool in high school social circle: Logan (boyfriend with grief motive), Bruce (captured perpetrator), unnamed killer from prologue who may strike again",
+    "confidence": "medium",
+    "quote": "Her boyfriend Logan won't talk to anyone, won't text anyone back, and he won't even talk to his parents."
+  },
+  "red_herring": {
+    "value": "Bruce Johnson's apparent death in Lake Titan - authorities believe he drowned but protagonist knows he's alive and planning next target",
+    "confidence": "high",
+    "quote": "Detectives were searching for Johnson's body, but all they found were the handcuffs. They believe Johnson to be dead"
+  },
+  "clue_fairness": {
+    "value": "Reader given same supernatural perspective as Delilah's ghost observing her murder and body disposal, establishing the crime method",
+    "confidence": "medium",
+    "quote": "I see myself lying on a floor in a house I don't recognize. Someone grabs my now lifeless body"
+  },
+  "social_world": {
+    "value": "High school social hierarchy with Delilah as popular head cheerleader, creating dynamics of envy and false friendship among classmates",
+    "confidence": "medium",
+    "quote": "She was smart, immensely beautiful, was head cheerleader, and had the perfect life."
+  },
+  "alibi": {
+    "value": "Bruce's note claiming he went to the store provides cover story, but Logan's unauthorized entry into empty house creates vulnerability",
+    "confidence": "low",
+    "quote": "Hey mom and dad. I went to the store to get some things. I'll be back soon if you get home before I get back."
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Television news coverage of Bruce's escape shapes public perception, reporting false conclusion about his death in Lake Titan",
+    "confidence": "high",
+    "quote": "Bruce Johnson escapes from police custody... They believe Johnson to be dead in Lake Titan"
+  },
+  "investigator_wound": {
+    "value": "Audrey's grief over losing her true best friend Delilah, contrasted with fake mourners, driving her emotional investment in the case",
+    "confidence": "medium",
+    "quote": "And then there was me, the true best friend who doesn't know what to do with herself anymore."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-rebekah-shimer-silence/",
+    "corpus_index": 69,
+    "text_len": 258600,
+    "title": "ebook rebekah shimer silence",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

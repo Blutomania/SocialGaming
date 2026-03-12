@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of Caylor's mother in staged car accident, attempted murder of Caylor",
+    "confidence": "high",
+    "quote": "Dad had killed Mum in an attempt to create the perfect family with Mrs. Jane"
+  },
+  "victim": {
+    "value": "Caylor's mother, killed because she stood in the way of her husband's desire for a new family with Mrs. Jane",
+    "confidence": "high",
+    "quote": "Dad had killed Mum in an attempt to create the perfect family with Mrs. Jane"
+  },
+  "closed_world": {
+    "value": "The small town of Linkin Park and the lake area where the family had connections through engineering work",
+    "confidence": "medium",
+    "quote": "Kranie's dad had been an engineer who had helped my mom and Mrs. Jane build their many experiments"
+  },
+  "culprit_and_motive": {
+    "value": "Caylor's father killed her mother to start a new family with Mrs. Jane, who was complicit in the murder plot",
+    "confidence": "high",
+    "quote": "Dad had killed Mum in an attempt to create the perfect family with Mrs. Jane, and Mrs. Jane had let him"
+  },
+  "resolution": {
+    "value": "Caylor overhears the murderers planning to kill Kranie and warns everyone, exposing the truth",
+    "confidence": "medium",
+    "quote": "I jumped up really fast and ran with all my might to the house to warn everybody"
+  },
+  "investigator": {
+    "value": "Caylor, the victim's daughter and survivor of the staged accident, who uncovers the truth about her parents' deaths",
+    "confidence": "high",
+    "quote": "It all made sense, more this time than the last... My dad had framed Kranie"
+  },
+  "suspect_architecture": {
+    "value": "Three main suspects with clear motives: Dad (fake death, romantic motive with Mrs. Jane), Mrs. Jane (complicit in murder for love), Kranie (falsely framed as perpetrator)",
+    "confidence": "high",
+    "quote": "My dad had framed Kranie, and he had used Anora's own insanity to do it."
+  },
+  "red_herring": {
+    "value": "Ghost manifestations and supernatural folklore used to conceal mundane murder plot - the 'ghosts' are actually the living perpetrators",
+    "confidence": "high",
+    "quote": "We could not reach an agreement on why there might be a ghost in Linkin Park."
+  },
+  "clue_fairness": {
+    "value": "Pig squealing mentioned early as unexplained detail, later revealed as evidence of Dad's escape from car crash",
+    "confidence": "medium",
+    "quote": "Forget the pigs, they got what they deserved, almost ruining my plan with all that squealing"
+  },
+  "social_world": {
+    "value": "Guardian-ward power dynamic where Kranie's protective authority over Caylor is exploited by the real perpetrators",
+    "confidence": "medium",
+    "quote": "Kranie Morny, who had been driving behind us that night, was now my legal guardian."
+  },
+  "alibi": {
+    "value": "Dad's presumed death in car crash serves as ultimate alibi - he's not suspected because he's believed to be dead",
+    "confidence": "high",
+    "quote": "my dad's body was not found"
+  },
+  "reveal_mechanic": {
+    "value": "Eavesdropping on conspiracy conversation reveals the true plot and Dad's survival",
+    "confidence": "high",
+    "quote": "It all made sense, more this time than the last... My dad had framed Kranie"
+  },
+  "media_and_audience": {
+    "value": "Local ghost folklore and community supernatural beliefs used to mask and explain the criminal activity",
+    "confidence": "medium",
+    "quote": "The ghost just strolls around town chanting this stuff?"
+  },
+  "investigator_wound": {
+    "value": "Caylor's trauma from losing parents in the crash makes her vulnerable to trusting the very people who orchestrated it",
+    "confidence": "high",
+    "quote": "The crash took my parents, but Kranie , my godmother, adopted me rather quickly."
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-lyric-river-dee/",
+    "corpus_index": 320,
+    "text_len": 13629,
+    "title": "ebook lyric river dee",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

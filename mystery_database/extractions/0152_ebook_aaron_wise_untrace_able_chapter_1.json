@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Bank robbery of $6.5 million cash from New York City Bank",
+    "confidence": "high",
+    "quote": "Yeah foo, we got a big baby here, about 6.5 million in cash!"
+  },
+  "victim": {
+    "value": "New York City Bank (institutional victim of robbery)",
+    "confidence": "medium",
+    "quote": "As he passed the New York City Bank he noticed a mysterious blue truck parked a few feet away"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Donny White and gang members committed robbery for financial gain",
+    "confidence": "high",
+    "quote": "In the truck was Donny White and four other men"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Officer Randy Bright, 15-year veteran police officer on patrol",
+    "confidence": "medium",
+    "quote": "Officer Randy Bright, an officer who had served 15 years, was in his car patrolling the streets"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Criminal gang hierarchy with police authority structure - gang members answering to leader Donny, police patrol system",
+    "confidence": "medium",
+    "quote": "Officer Randy Bright, an officer who had served 15 years, was in his car patrolling the streets"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-aaron-wise-untrace-able-chapter-1/",
+    "corpus_index": 152,
+    "text_len": 8604,
+    "title": "ebook aaron wise untrace able chapter 1",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

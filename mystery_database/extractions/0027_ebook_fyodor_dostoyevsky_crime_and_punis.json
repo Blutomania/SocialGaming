@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Raskolnikov's erratic behavior and appearance leads bystanders to falsely assume he's a pickpocket or drunk beggar",
+    "confidence": "medium",
+    "quote": "A pickpocket I dare say. Pretending to be drunk, for sure, and getting under the wheels on purpose"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Russian class hierarchy evident in family dynamics, poverty, and social expectations around marriage and propriety",
+    "confidence": "medium",
+    "quote": "so poor that they lived with their five children in only two rooms"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Public perception shapes interpretation of events - crowd assumes Raskolnikov is criminal based on appearance",
+    "confidence": "medium",
+    "quote": "From his dress and appearance they might well have taken him for a beggar asking alms in the streets"
+  },
+  "investigator_wound": {
+    "value": "Raskolnikov's psychological torment and guilt manifest as physical and mental deterioration",
+    "confidence": "high",
+    "quote": "he suddenly felt someone thrust money into his hand. He looked... still looking angry and bewildered"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-fyodor-dostoyevsky-crime-and-punishment/",
+    "corpus_index": 27,
+    "text_len": 1143118,
+    "title": "ebook fyodor dostoyevsky crime and punishment",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

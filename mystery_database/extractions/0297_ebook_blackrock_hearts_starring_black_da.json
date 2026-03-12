@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Multiple murders committed by the narrator's alien sister",
+    "confidence": "medium",
+    "quote": "when he opened her room door all you seen was blood, guts and bones"
+  },
+  "victim": {
+    "value": "Multiple unnamed victims found as remains in the sister's room, plus a boy she lured away",
+    "confidence": "medium",
+    "quote": "all you seen was blood, guts and bones"
+  },
+  "closed_world": {
+    "value": "The family home where the alien sister lives and commits murders",
+    "confidence": "low",
+    "quote": "she came to this familly to kill and rule the house"
+  },
+  "culprit_and_motive": {
+    "value": "The narrator's alien sister who kills to take over and rule, with the father's apparent approval",
+    "confidence": "medium",
+    "quote": "he says that he is proud that he sees this then he hears foot steps coming behind him"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "The narrator (Mimmy), who becomes a ghost and discovers her sister's crimes",
+    "confidence": "high",
+    "quote": "I can now confirm that she is a murderer and that she came to this familly to kill"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Initial suggestion that sister is an alien murderer when narrator is actually the ghost/perpetrator",
+    "confidence": "medium",
+    "quote": "I would love to have a very beautiful emotion and hair color, plus its good to have a very nice helping out friend"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Family hierarchy with parents, siblings, and domestic power structures",
+    "confidence": "medium",
+    "quote": "my real parents would be dead and I would be alone, plus I would put other people in danger"
+  },
+  "alibi": {
+    "value": "Sister's whereabouts during violent incidents, narrator tracking her movements",
+    "confidence": "medium",
+    "quote": "I seen him leave and how she transformed and I knew that if she can do it so can I"
+  },
+  "reveal_mechanic": {
+    "value": "Discovery of bloody room with guts and bones revealing true nature of violence",
+    "confidence": "medium",
+    "quote": "when he opened her room door all you seen was blood, guts and bones"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Narrator's trauma from being killed/becoming ghost, seeking revenge against sister",
+    "confidence": "medium",
+    "quote": "I can't let any of this stuff happen, not after what she did to me"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-blackrock-hearts-starring-black-day-light/",
+    "corpus_index": 297,
+    "text_len": 17589,
+    "title": "ebook blackrock hearts starring black day light",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

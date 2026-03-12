@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Murder of Francesco Cenci, likely by hired assassins Marzio and Olympio",
+    "confidence": "high",
+    "quote": "Marzio and Olympio had been seen prowling round the castle, and that the Neapolitan police had received orders"
+  },
+  "victim": {
+    "value": "Francesco Cenci, whose character and relationship with his family made him a target",
+    "confidence": "medium",
+    "quote": "She was the daughter of Francesco Cenci"
+  },
+  "closed_world": {
+    "value": "The Cenci family circle and their associates in Rome and the castle",
+    "confidence": "medium",
+    "quote": "they were at first confined in the Cenci palace under a strong guard"
+  },
+  "culprit_and_motive": {
+    "value": "Beatrice, Lucrezia, Giacomo and Bernardo Cenci, who hired assassins to kill Francesco",
+    "confidence": "high",
+    "quote": "Warrants were immediately issued for the arrest of Giacomo, Bernardo, Lucrezia, and Beatrice"
+  },
+  "resolution": {
+    "value": "Torture-extracted confession from Marzio and bloodstained sheet evidence led to arrests and executions",
+    "confidence": "high",
+    "quote": "He was put to the torture, and confessed everything. His deposition was sent to Rome"
+  },
+  "investigator": {
+    "value": "Roman court authorities and Monsignor Guerra conducting the investigation",
+    "confidence": "medium",
+    "quote": "The evidence was sent to the Roman court"
+  },
+  "suspect_architecture": {
+    "value": "Four family conspirators: Giacomo (eldest brother), Bernardo (youngest brother), Lucrezia (stepmother), and Beatrice (daughter) - all with shared motive of escaping Francesco's tyranny, using hired assassins Marzio and Olympio as instruments",
+    "confidence": "high",
+    "quote": "Warrants were immediately issued for the arrest of Giacomo, Bernardo, Lucrezia, and Beatrice"
+  },
+  "red_herring": {
+    "value": "The initial focus on external bandits and robbers around the castle, when the true conspiracy was internal family members using hired assassins",
+    "confidence": "medium",
+    "quote": "No incriminating proofs, however, were found, except in the evidence of the laundress"
+  },
+  "clue_fairness": {
+    "value": "The bloodstained sheet given to the laundress - a physical clue available to both investigators and readers that contradicts the family's innocent explanations",
+    "confidence": "high",
+    "quote": "Beatrice had given her a bloodstained sheet to wash"
+  },
+  "social_world": {
+    "value": "Roman Catholic Church hierarchy and papal authority structure, with Monsignor Guerra as intermediary wielding ecclesiastical power to orchestrate cover-ups and eliminate witnesses",
+    "confidence": "high",
+    "quote": "Monsignor Guerra received private information that, shortly before the death of Francesco"
+  },
+  "alibi": {
+    "value": "The family's obstinate denial of complicity and claimed ignorance of the assassins despite evidence linking them to the hired killers",
+    "confidence": "high",
+    "quote": "they obstinately denied both any complicity in the crime and any knowledge of the assassin"
+  },
+  "reveal_mechanic": {
+    "value": "Torture-extracted confession from captured assassin Marzio, followed by direct confrontation between the confessing killer and the accused family members",
+    "confidence": "high",
+    "quote": "He was put to the torture, and confessed everything"
+  },
+  "media_and_audience": {
+    "value": "The tragic story transformed into artistic memorial - Beatrice's portrait in the Barberini Gallery and the narrative itself as historical chronicle preserving the 'sanguinary history'",
+    "confidence": "medium",
+    "quote": "pay a visit to the Barberini Gallery, where you will see, with five other masterpieces by Guido, the portrait of Beatrice"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-alexandre-dumas-pere-cenci/",
+    "corpus_index": 323,
+    "text_len": 70695,
+    "title": "ebook alexandre dumas pere cenci",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

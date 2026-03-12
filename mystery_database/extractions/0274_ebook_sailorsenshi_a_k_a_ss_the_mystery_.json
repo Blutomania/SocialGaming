@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Multiple student disappearances at boarding school",
+    "confidence": "medium",
+    "quote": "I bet it has something to do with those missing kids"
+  },
+  "victim": {
+    "value": "Missing students at Dorson All Boys Academy",
+    "confidence": "low",
+    "quote": "none of the others here know that we care about the disappearances"
+  },
+  "closed_world": {
+    "value": "Dorson All Boys Academy boarding school with high-tech security systems",
+    "confidence": "high",
+    "quote": "Why would you have an inadequate amount of lighting...but have a high tech lock system?!"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Gray Van der Waal, new transfer student who becomes curious about the disappearances",
+    "confidence": "high",
+    "quote": "Gray Van der Waal. He said casually."
+  },
+  "suspect_architecture": {
+    "value": "Multiple school figures including students and faculty - Naveed (insider knowledge of disappearances), missing students as potential victims/suspects, faculty members like Mr. McDonnall, and the mysterious female gym teacher",
+    "confidence": "medium",
+    "quote": "none of the others here know that we care about the disappearances"
+  },
+  "red_herring": {
+    "value": "The focus on Gray's disruptive behavior and school adjustment issues may be misdirection from the real mystery of student disappearances",
+    "confidence": "low",
+    "quote": "don't get me started on the missing studen--"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Elite all-boys boarding school hierarchy with strict codes of 'Respect and Obedience', wealthy student body, and institutional power structures that may be concealing student disappearances",
+    "confidence": "high",
+    "quote": "here at Dorson-- Respect and Obedience are held at the highest regard"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Institutional suppression of information about missing students, with characters having to hide their interest in the disappearances from others",
+    "confidence": "medium",
+    "quote": "I have to make sure that none of the others here know that we care about the disappearances"
+  },
+  "investigator_wound": {
+    "value": "Gray's history of being transferred between multiple schools and his outsider status at the elite academy, making him both vulnerable and uniquely positioned to see institutional problems",
+    "confidence": "medium",
+    "quote": "since he's been to so many different schools"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-sailorsenshi-a-k-a-ss-the-mystery-at-dorson-all-boys-academy/",
+    "corpus_index": 274,
+    "text_len": 17158,
+    "title": "ebook sailorsenshi a k a ss the mystery at dorson all boys academy",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Political conspiracy/treason involving exiled nobles and police surveillance",
+    "confidence": "medium",
+    "quote": "we might have seized your ci-devants any day for the last week; but we knew they were reinstated"
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "The commune of Cinq-Cygne and surrounding baronial estate under police surveillance",
+    "confidence": "medium",
+    "quote": "ordered to remain in the commune of Cinq-Cygne during the said two years"
+  },
+  "culprit_and_motive": {
+    "value": "Police agents Corentin and Peyrade tracking political exiles for state security",
+    "confidence": "medium",
+    "quote": "The police, like the Jesuits, have the one virtue of never abandoning their friends or their enemies"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Michu, the huntsman protecting the exiled nobles from police surveillance",
+    "confidence": "medium",
+    "quote": "I'd give something, cried Michu, to know how and by whom we have been sold"
+  },
+  "suspect_architecture": {
+    "value": "Police agents Corentin and Peyrade investigating/pursuing the young exiles and Michu; unclear total count but includes reinstated ci-devants under surveillance",
+    "confidence": "medium",
+    "quote": "we might have seized your ci-devants any day for the last week; but we knew they were reinstated"
+  },
+  "red_herring": {
+    "value": "The Parisian blacksmith who shoed horses in English fashion was actually a police spy, not just a craftsman",
+    "confidence": "high",
+    "quote": "So that rascally Parisian blacksmith who shoed the horses in the English fashion...was their spy!"
+  },
+  "clue_fairness": {
+    "value": "Horse tracks in damp ground revealed by examining horseshoes - clue available to reader when Peyrade explains it",
+    "confidence": "high",
+    "quote": "look at your horses' shoes, and you'll see that you betrayed yourselves"
+  },
+  "social_world": {
+    "value": "Post-Revolutionary French Empire with reinstated aristocrats (ci-devants) under police surveillance, Bonaparte's regime controlling former exiles",
+    "confidence": "high",
+    "quote": "they were to be under police surveillance for two years, obliged to present themselves at the prefecture"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Physical evidence of distinctive horseshoe tracks in damp ground leading police to the hiding place",
+    "confidence": "medium",
+    "quote": "They must have followed our tracks when the ground was damp"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-honore-de-balzac-an-historical-mystery/",
+    "corpus_index": 92,
+    "text_len": 434856,
+    "title": "ebook honore de balzac an historical mystery",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}

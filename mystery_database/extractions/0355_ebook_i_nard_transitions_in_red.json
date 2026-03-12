@@ -1,0 +1,82 @@
+{
+  "crime": {
+    "value": "Missing person case - Crystal Rogers disappeared in 2015",
+    "confidence": "medium",
+    "quote": "daughter,.Crystal.Rogers,.went.missing"
+  },
+  "victim": {
+    "value": "Crystal Rogers, daughter of Sherry Ballard",
+    "confidence": "medium",
+    "quote": "daughter,.Crystal.Rogers,.went.missing"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Boyfriend suspected, possibly Brooks Houck",
+    "confidence": "low",
+    "quote": "boyfriend.at.the.time"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Sherry Ballard (victim's mother) and possibly TV show investigators",
+    "confidence": "low",
+    "quote": "sherry/ballard"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Family tragedy involving police investigation and media attention around missing persons case",
+    "confidence": "medium",
+    "quote": "daughter,.Crystal.Rogers,.went.missing...boyfriend.at.the.time...shot.to.death.while.hunting"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Television mystery show covering unsolved cases with family seeking public awareness",
+    "confidence": "medium",
+    "quote": "oxygen/tv/the/in/while/for/tommy...mystery/year...unsolved...show"
+  },
+  "investigator_wound": {
+    "value": "Family member (Sherry Ballard) seeking answers for daughter's disappearance and husband's death",
+    "confidence": "medium",
+    "quote": "sherry/ballard...crystal/rogers...tommy...shot/to/death/while/hunting"
+  },
+  "_meta": {
+    "url": "https://www.bookrix.com/_ebook-i-nard-transitions-in-red/",
+    "corpus_index": 355,
+    "text_len": 3241,
+    "title": "ebook i nard transitions in red",
+    "protocols": [
+      "P1",
+      "P2"
+    ]
+  }
+}
