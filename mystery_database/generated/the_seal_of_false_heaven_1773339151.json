@@ -1,0 +1,201 @@
+{
+  "title": "The Seal of False Heaven",
+  "setting": {
+    "location": "Castle Kuroyama, mountain stronghold of Daimyo Matsunaga Hiroshi",
+    "time_period": "Autumn 1600, during the fragile peace negotiations following Sekigahara",
+    "environment": "A fortified mountain castle shrouded in early-morning mist, surrounded by steep cliffs and a single guarded bridge \u2014 the only passage sealed by order of the daimyo until negotiations conclude",
+    "description": "Kuroyama Castle clings to a granite peak above a gorge whose bridges are raised at nightfall and guarded by the daimyo's most loyal ashigaru, ensuring no one enters or leaves without written permission. The castle's inner chambers smell of pine resin and ink, hushed by the gravity of a treaty that could end a generation of war. A murderer and a forger walk among the peace delegation, and the mountain itself holds them all as prisoners until the crime is resolved."
+  },
+  "crime": {
+    "type": "Document forgery presented to the highest authority as authentic sacred treaty scroll, combined with the murder of the scribe who discovered the deception",
+    "what_happened": "Senior scribe Ogawa Kenji discovered that the official peace treaty scroll bearing the seal of the Tokugawa representatives had been secretly replaced with a forged copy \u2014 one that subtly altered territorial boundaries in favor of a rival clan. Before Kenji could report this to Daimyo Matsunaga, he was found dead in the Document Chamber, struck on the back of the skull with a heavy ink-stone. The forged scroll remains in the negotiation hall, presented the following dawn as authentic.",
+    "when": "Between the Hour of the Boar (9\u201311 PM) and the Hour of the Rat (11 PM\u20131 AM)",
+    "initial_discovery": "A maidservant delivering morning tea found Ogawa Kenji slumped over his writing desk in the Document Chamber, his ink-stone overturned and blood pooling on the tatami. She screamed, waking the entire inner keep."
+  },
+  "characters": [
+    {
+      "name": "Ogawa Kenji",
+      "role": "victim",
+      "occupation": "Senior treaty scribe employed by Daimyo Matsunaga to copy, authenticate, and safeguard official documents during negotiations",
+      "motive": "N/A \u2014 victim",
+      "alibi": "N/A \u2014 victim",
+      "secret": "Kenji had privately noticed a faint discrepancy in the territorial map notation three days earlier and recorded his suspicion in a personal cipher journal hidden beneath a floorboard in his sleeping quarters. He had confided his unease to only one person the evening before his death."
+    },
+    {
+      "name": "Tanaka Ryunosuke",
+      "role": "suspect",
+      "occupation": "Envoy of the Uesugi clan, present as an official observer to the peace negotiations",
+      "motive": "The forged treaty, if ratified, would secretly restore three contested river provinces to Uesugi territorial influence \u2014 a strategic and financial gain worth more than a decade of battle. Ryunosuke's clan has lost enormous revenue from those provinces since 1592.",
+      "alibi": "Claims he was in his guest chamber composing letters to his lord throughout the night, with his personal attendant Hideo sleeping on the threshold as custom requires. Hideo confirms this but cannot account for a period of roughly one hour when he himself stepped out to relieve himself.",
+      "secret": "Ryunosuke secretly trained as a calligrapher in his youth under Master Seiko of Echigo, a skill he has never disclosed in any official capacity. His traveling chest contains specialized pigment tools inconsistent with a diplomat's normal luggage."
+    },
+    {
+      "name": "Lady Shizuka",
+      "role": "suspect",
+      "occupation": "Senior lady-in-waiting to Daimyo Matsunaga's wife, responsible for managing access to the inner keep's private chambers and document archive",
+      "motive": "Lady Shizuka's younger brother was disinherited and exiled after a boundary dispute adjudicated under the original treaty terms. A forged treaty restoring those boundaries would rehabilitate her family name and secure her brother's return from exile.",
+      "alibi": "States she was attending the daimyo's wife with three other ladies until the Hour of the Rat, at which point she retired to her chamber alone. The three other ladies confirm her presence only until shortly before the Hour of the Boar ends, leaving a gap of approximately forty minutes.",
+      "secret": "Lady Shizuka holds a duplicate key to the Document Chamber \u2014 a key officially surrendered six months ago but secretly copied beforehand. She used her privileged access to the archive two days prior, claiming to retrieve a household inventory scroll, but no such scroll appears in the logbook."
+    },
+    {
+      "name": "Priest Dogan",
+      "role": "suspect",
+      "occupation": "Traveling Buddhist monk invited to perform purification rites over the treaty documents to lend them sacred legitimacy, granting him unrestricted access to the Document Chamber",
+      "motive": "Dogan is not a genuine monk but an agent hired by a rival lord who fears the peace will consolidate Tokugawa power and eliminate his patron's remaining autonomy. He has been paid a sum equivalent to a modest fief to ensure the treaty ratified is the forged one.",
+      "alibi": "Claims he spent the entire night in the castle's shrine hall in solitary meditation, which is consistent with his stated religious practice. However, the shrine hall shares a wall with the Document Chamber, and a monk's silence would attract no attention from guards.",
+      "secret": "Dogan arrived at the castle carrying letters of introduction bearing a temple seal, but the temple named \u2014 Kofukuji's eastern sub-temple \u2014 was destroyed by fire two years ago and no longer issues correspondence. He received payment in the form of gold coins minted by the rival lord's treasury, three of which remain in a hidden pouch sewn into his monk's robe."
+    },
+    {
+      "name": "Mori Setsuko",
+      "role": "witness",
+      "occupation": "Maidservant assigned to the inner keep's document and guest wing, responsible for delivering meals and morning tea",
+      "motive": "N/A \u2014 witness",
+      "alibi": "Was asleep in the servants' hall on the ground floor with four other maidservants from the Hour of the Dog (7\u20139 PM) onward, confirmed by all four companions. She woke before dawn to prepare the morning tea tray.",
+      "secret": "Setsuko overheard a hushed argument outside the Document Chamber the previous evening \u2014 a man's voice warning someone to 'ensure the old scribe does not reach morning.' She did not report it out of fear, but she recognized the voice as belonging to one of the castle's current guests."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "The Forged Treaty Scroll",
+      "description": "The official peace treaty scroll displayed in the negotiation hall, bearing what appears to be authentic Tokugawa seals and the signatures of all parties. Upon close inspection by an expert, three characters in the territorial boundary clause have been written with a slightly different ink viscosity than the surrounding text, and the brushstroke pressure in those characters matches the style of a trained Echigo calligraphy school rather than the Kyoto court hand used by the official Tokugawa scribes.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E2",
+      "name": "Ogawa Kenji's Cipher Journal",
+      "description": "A small personal notebook hidden beneath a loose floorboard in Kenji's sleeping quarters, written in a private cipher the scribe used for sensitive observations. Once decoded using the cipher key found in his writing desk, it reveals three entries noting specific suspicious anomalies in the treaty scroll and, crucially, records that he confided these suspicions to 'the envoy Tanaka' the evening before his death, requesting a private meeting to discuss them.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E3",
+      "name": "Calligrapher's Pigment Set in Tanaka's Chest",
+      "description": "A lacquered traveling box discovered inside Envoy Tanaka's luggage chest containing refined ink sticks, a set of graduated brushes, and two small ceramic pigment dishes with dried residue matching the ink color used in the forged characters of the treaty scroll. The box is worn with long use, suggesting it belongs to a practiced calligrapher rather than a casual scholar, and one brush shows fresh use within the past forty-eight hours.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E4",
+      "name": "Blood-Stained Ink-Stone",
+      "description": "The heavy rectangular ink-stone from Kenji's writing desk, found on the tatami floor beside the victim's slumped body with one corner showing a bloody impact mark consistent with a blow to the rear of the skull. The stone was Kenji's own tool and bears his personal inscription, but a faint smear of cedar oil on its underside does not match any product in the Document Chamber \u2014 cedar oil is commonly used to condition wooden weapon handles and lacquered boxes.",
+      "type": "physical",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E5",
+      "name": "Unauthorized Entry Mark in the Document Chamber Log",
+      "description": "The access logbook kept by the night guard outside the Document Chamber shows three recorded entries for the evening in question, but a fourth line has been scraped and re-inked with crude strokes inconsistent with the guard's hand, suggesting an entry was erased. The guard confirms he recorded only three visitors, yet the logbook shows evidence of a fourth erasure occurring between the second and third legitimate entries, during the window when Kenji was killed.",
+      "type": "documentary",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E6",
+      "name": "Scattered Ronin Sandal Prints Outside the Postern Gate",
+      "description": "Heavy rope-sandal prints of a large-footed individual found in the mud outside the castle's small rear postern gate, accompanied by a discarded straw rain-cape hanging on the gate's inner hook. The prints and cape initially suggest an external intruder \u2014 a wandering ronin or bandit \u2014 slipped inside during the night. However, closer examination reveals the prints lead only inward from the gate and never outward, and the postern's interior bolt was thrown from inside, making an external intruder impossible.",
+      "type": "physical",
+      "relevance": "red_herring"
+    },
+    {
+      "id": "E7",
+      "name": "Gold Coins in Priest Dogan's Robe",
+      "description": "Three gold coins stitched into a hidden interior pouch of Priest Dogan's traveling robe, discovered during a search of his belongings. The coins bear a mint mark belonging to Lord Kitagawa's domain treasury in the northern provinces \u2014 a rival lord with strong reason to sabotage Tokugawa peace consolidation. The coins confirm Dogan is a paid agent, though they do not directly link him to the forgery or the murder.",
+      "type": "physical",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E8",
+      "name": "Mori Setsuko's Testimony of the Overheard Argument",
+      "description": "Maidservant Setsuko's account, given under gentle questioning, that she heard a man's hushed but urgent voice outside the Document Chamber late in the evening saying words to the effect of 'the old scribe must not live to speak in the morning hall.' She identifies the voice as belonging to Envoy Tanaka Ryunosuke, whom she has heard speak on multiple occasions while serving meals to the delegation.",
+      "type": "testimonial",
+      "relevance": "critical"
+    },
+    {
+      "id": "E9",
+      "name": "Tanaka's Attendant Hideo's Admission of the Missing Hour",
+      "description": "Upon careful questioning, Tanaka's attendant Hideo admits under pressure that he was absent from the threshold of his lord's chamber for closer to ninety minutes, not the brief moment he initially described. He reveals he spent this time gambling with two kitchen servants, which the kitchen servants reluctantly confirm. This destroys Tanaka's alibi for the precise window in which Kenji was killed.",
+      "type": "testimonial",
+      "relevance": "supporting"
+    }
+  ],
+  "solution": {
+    "culprit": "Tanaka Ryunosuke",
+    "method": "Tanaka used his concealed calligraphy expertise to forge the three critical characters in the territorial boundary clause of the treaty scroll over the course of two nights, accessing the Document Chamber using a false pretext of reviewing the document as the Uesugi observer. When Kenji privately confided his suspicions to Tanaka \u2014 trusting a senior envoy to advise him \u2014 Tanaka realized the scribe would expose the forgery at the morning ratification ceremony. That night, Tanaka slipped out during his attendant's absence, entered the Document Chamber, and struck Kenji from behind with the ink-stone while the old man was bent over his desk re-examining the scroll.",
+    "motive": "Restoration of three contested river provinces to Uesugi clan influence, representing enormous territorial and financial recovery, achieved by substituting a fraudulent treaty that would be ratified under the daimyo's sacred authority before anyone detected the alteration.",
+    "key_evidence": [
+      "E1",
+      "E3",
+      "E2",
+      "E8"
+    ],
+    "how_to_deduce": "Step 1 \u2014 Establish the forgery: Examination of the treaty scroll (E1) reveals ink inconsistencies in the boundary clause written in Echigo calligraphy school style, proving the document was altered by someone trained in that tradition. This narrows the field to a forger with calligraphy expertise hiding among the delegation. Step 2 \u2014 Identify the forger: The specialized calligrapher's pigment set in Tanaka's chest (E3), with fresh ink residue matching the scroll's forged characters, directly connects him to the physical act of forgery. Cross-referencing with Kenji's cipher journal (E2) reveals that Kenji had already identified Tanaka as the person he suspected and confided in \u2014 placing Tanaka in possession of knowledge that Kenji was about to expose him. Step 3 \u2014 Eliminate alternative suspects: Lady Shizuka had access via her duplicate key but no calligraphy expertise and no recorded contact with Kenji that evening. Priest Dogan is a paid agent (E7) operating on behalf of a rival lord \u2014 a genuine conspirator in the broader plot, but his role was to legitimize the forged scroll with religious ceremony, not to create it; he had no motive to kill Kenji personally and no calligraphy skill in evidence. The planted ronin footprints (E6) are revealed as impossible due to the bolted postern, eliminating the external-intruder theory. Step 4 \u2014 Destroy the alibi and confirm the killer: Hideo's admission (E9) destroys Tanaka's alibi for the murder window. Setsuko's testimony (E8) places Tanaka's voice outside the Document Chamber with explicit murderous intent during that same window. Combined, the evidence chain proves Tanaka forged the document, discovered his exposure through Kenji's own misplaced trust, and committed the murder to silence the only witness who had seen through the deception before ratification."
+  },
+  "gameplay_notes": {
+    "difficulty": "HARD",
+    "estimated_playtime": "75\u201390 minutes",
+    "key_twists": [
+      "Priest Dogan is genuinely guilty of conspiracy (foreign agent, forged temple letters, bribe money) but is NOT the killer \u2014 players who arrest him first are wrong and must reconsider",
+      "The planted ronin footprints leading only inward serve as a deliberate false trail suggesting an outside assassin, but the locked postern reveals it as staged misdirection",
+      "The victim himself handed the killer a motive for murder by confiding his suspicions in the wrong man, making trust the instrument of Kenji's death",
+      "Tanaka's calligraphy skill \u2014 the real key to the forgery \u2014 is a secret he successfully concealed from all official records, meaning players must find the physical tools before the biographical evidence"
+    ]
+  },
+  "_meta": {
+    "num_players": 4,
+    "setting_input": "Feudal Japan, 1600, daimyo's castle during peace negotiations"
+  },
+  "_provenance": {
+    "recipe": "C(1) + corpus_0308_ebo(2) + corpus_0113_ebo(3) + corpus_0255_ebo(4) + corpus_0323_ebo(5) + corpus_0134_ebo(6) + corpus_0308_ebo(7) + corpus_0184_ebo(8)",
+    "slots": [
+      {
+        "source_id": "C",
+        "part_index": 1,
+        "part_type": "crime_type"
+      },
+      {
+        "source_id": "corpus_0308_ebo",
+        "part_index": 2,
+        "part_type": "setting_element"
+      },
+      {
+        "source_id": "corpus_0113_ebo",
+        "part_index": 3,
+        "part_type": "motive"
+      },
+      {
+        "source_id": "corpus_0255_ebo",
+        "part_index": 4,
+        "part_type": "suspect_archetype"
+      },
+      {
+        "source_id": "corpus_0323_ebo",
+        "part_index": 5,
+        "part_type": "red_herring"
+      },
+      {
+        "source_id": "corpus_0134_ebo",
+        "part_index": 6,
+        "part_type": "reveal_mechanic"
+      },
+      {
+        "source_id": "corpus_0308_ebo",
+        "part_index": 7,
+        "part_type": "social_dynamic"
+      },
+      {
+        "source_id": "corpus_0184_ebo",
+        "part_index": 8,
+        "part_type": "evidence_type"
+      }
+    ],
+    "target_setting": "Feudal Japan, 1600, daimyo's castle during peace negotiations",
+    "generated_title": ""
+  },
+  "_coherence": {
+    "passed": true,
+    "blocking": 0,
+    "warnings": 1,
+    "witness_gaps": []
+  }
+}

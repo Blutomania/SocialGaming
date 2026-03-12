@@ -1,0 +1,194 @@
+{
+  "title": "Dead Water",
+  "setting": {
+    "location": "Rig Valkyrie \u2014 a deep-sea oil platform 200 km off the Norwegian coast, North Sea",
+    "time_period": "Present day, January",
+    "environment": "A brutalist steel island battered by a Force 10 winter storm; ice-slicked gantries, howling wind tunnels between modules, and near-zero visibility outside",
+    "description": "Rig Valkyrie is a semi-submersible production platform housing a skeleton winter crew of four after the main workforce was evacuated ahead of the storm. The emergency helicopter landing pad has been locked down by wind speeds exceeding 90 knots, the supply vessel has retreated 40 kilometres to safe water, and satellite communications are limited to a single 20-minute uplink window per day \u2014 no one can leave, no rescue can arrive for at least 48 hours. The rig's steel corridors loop back on themselves like a labyrinth, and every exit to the exterior is sealed against the storm, making movement between modules traceable through electronically logged door-panel swipes."
+  },
+  "crime": {
+    "type": "Murder by sabotage \u2014 victim drowned in a flooded ballast-control room made to look like an accidental equipment failure",
+    "what_happened": "Senior Ballast Control Operator Rune Halvorsen was found face-down in 30 cm of seawater inside the locked Ballast Control Room (BCR) at 02:40. An inlet valve had been manually overridden to allow seawater to flood the compartment. A blunt-force wound on the back of Rune's skull \u2014 inconsistent with any fitting or surface in the room \u2014 confirms he was struck unconscious before the valve was opened, ruling out accident or suicide.",
+    "when": "Between 01:15 and 02:40 on the second night of the storm lockdown",
+    "initial_discovery": "Drilling Supervisor Marta Voss, responding to a low-level bilge alarm, swiped into the BCR at 02:40 and found Rune's body. She immediately secured the room and radioed the others."
+  },
+  "characters": [
+    {
+      "name": "Rune Halvorsen",
+      "role": "victim",
+      "occupation": "Senior Ballast Control Operator \u2014 responsible for maintaining the rig's stability systems, the only person authorised to override inlet valves manually",
+      "motive": "N/A",
+      "alibi": "N/A \u2014 victim",
+      "secret": "Rune had discovered a pattern of falsified flow-rate logs indicating that someone had been secretly siphoning condensate from the production line and encoding the thefts inside routine maintenance reports. He had written up his findings in a draft incident report saved on his personal tablet, which disappeared the night he died."
+    },
+    {
+      "name": "Marta Voss",
+      "role": "suspect",
+      "occupation": "Drilling Supervisor \u2014 commands day-to-day rig operations during the reduced storm crew, giving her master-level access to all electronic door locks and system overrides",
+      "motive": "Marta is the silent architect of the condensate-skimming scheme Rune uncovered; over 14 months she has diverted an estimated \u20ac340,000 worth of condensate to an unlicensed buyer. Exposure would end her career, trigger criminal prosecution, and destroy the financial cushion she has been building to pay for her mother's long-term care.",
+      "alibi": "Claims she was in the Monitoring Room on Deck 3 alone, reviewing storm-load telemetry from 00:30 until the bilge alarm sounded at 02:35 \u2014 no corroborating witness, but she points to her workstation login timestamps as proof",
+      "secret": "Marta's workstation timestamps can be spoofed using a macro she herself wrote for batch-processing log entries; a forensic examiner would find the batch-write flag in the metadata. She also accessed the BCR door-panel override console remotely from the Monitoring Room at 01:08, a log entry she believed she had deleted but which persists in a shadow audit file."
+    },
+    {
+      "name": "Dag S\u00f8rensen",
+      "role": "suspect",
+      "occupation": "Maintenance Engineer \u2014 responsible for mechanical integrity of valves, pumps, and hull fittings; he physically serviced the BCR inlet valve the afternoon before the murder",
+      "motive": "Dag is deeply in personal debt to Rune following a private loan of \u20ac22,000 made two years ago; Rune had recently issued a written demand for full repayment within 30 days and threatened to involve the company HR department, which would trigger a financial-vetting review that could cost Dag his offshore licence.",
+      "alibi": "States he was in the Workshop on Deck 2 completing a valve-packing replacement from 23:50 until approximately 02:00, then went directly to his bunk in Cabin 7; the Workshop log shows a torque-wrench check-out at 23:55 but no check-in until the following morning",
+      "secret": "Dag borrowed Rune's personal keycard two days earlier under the pretext of retrieving a tool from the BCR storage locker, and made a digital copy of the card's RFID signature using a cloning device he brought aboard hidden inside his tool bag \u2014 originally intended only to snoop on Rune's files, not to commit murder."
+    },
+    {
+      "name": "Priya Anand",
+      "role": "suspect",
+      "occupation": "Company Representative (corporate liaison from the operating company's Aberdeen office) \u2014 stationed on the rig to oversee an emergency production-compliance audit triggered by anomalies in quarterly condensate figures",
+      "motive": "Priya suspects Marta but has been conducting her own parallel investigation rather than reporting through official channels because she illegally accessed the rig's financial server without a court order; if her methods are exposed she faces dismissal and possible charges. She fears that Rune, who caught her in the server room, would have reported her before she could secure proof against Marta.",
+      "alibi": "Was in her cabin (Cabin 4) from 22:00, reading audit documents on her laptop; the rig's Wi-Fi router logs show sustained data traffic from her cabin IP between 22:10 and 01:45, after which the connection drops \u2014 she claims she fell asleep with the laptop running",
+      "secret": "Priya met Rune privately at 00:50 in the Galley \u2014 a meeting neither had disclosed \u2014 during which Rune showed her his draft incident report on the condensate theft and asked her to co-sign it for legal protection. She declined and left; she is the last known person to have seen Rune alive and said nothing to investigators because it would expose her own unauthorised server access."
+    },
+    {
+      "name": "Erik Nansen",
+      "role": "witness",
+      "occupation": "Radio and Communications Technician \u2014 manages the rig's satellite uplink schedule and CCTV infrastructure; during the storm lockdown he is also the de-facto safety coordinator",
+      "motive": "N/A \u2014 witness",
+      "alibi": "Was in the Radio Room on Deck 4 from 01:00 conducting the nightly satellite uplink diagnostic; the uplink telemetry log confirms continuous activity from 01:05 to 02:20, and he can demonstrate he was physically present because the procedure requires manual antenna-angle corrections every 15 minutes",
+      "secret": "Erik noticed at 01:09 that Camera 7 \u2014 the only camera covering the BCR corridor \u2014 had been set to loop a static 90-second recording, a technique he recognised from a corporate security training course. He did not report this immediately because he had been secretly copying personal footage from the CCTV archive for a private insurance claim related to a previous on-site injury, and examining the system would expose his own misuse of the cameras."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "Shadow Audit File \u2014 BCR Door Override Log",
+      "description": "A secondary audit log automatically maintained by the rig's ISO-compliant safety management system, separate from the primary door-access database that operators can edit. It records a remote unlock command issued to the BCR door panel at 01:08 from Monitoring Room terminal MT-03, the workstation assigned to Marta Voss. The entry was absent from the primary log, indicating a deliberate deletion, but the shadow file is read-only and write-protected by design.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E2",
+      "name": "Batch-Write Flag in Workstation Timestamp Metadata",
+      "description": "Forensic examination of Marta's Monitoring Room workstation reveals that the telemetry-review session timestamps used as her alibi carry a batch-write flag in the file metadata, meaning all the log entries were written simultaneously rather than accruing in real time. The macro code used to generate the batch write is saved in the workstation's script directory under Marta's user profile, proving she fabricated the appearance of continuous activity during the murder window.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E3",
+      "name": "RFID Clone Device in Dag's Tool Bag",
+      "description": "A compact RFID card-cloning unit, commercially available but prohibited on offshore installations, found concealed inside a hollowed-out handle of a pipe wrench in Dag's tool bag in the Workshop. The device's memory contains a saved clone of Rune Halvorsen's personal keycard signature, recorded two days before the murder. Its presence establishes that Dag had both the motive and a covert means to access restricted areas under Rune's identity, making him a credible suspect.",
+      "type": "physical",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E4",
+      "name": "Looped CCTV Feed on Camera 7",
+      "description": "The recording from Camera 7 \u2014 covering the 40-metre corridor leading to the BCR \u2014 shows an unchanging static image of an empty corridor from 01:06 to 02:42, a 96-minute loop of the same 90-second clip. Erik Nansen confirms this is a deliberate software override requiring administrator-level CCTV credentials, which only Marta Voss and Erik himself hold. Erik's presence in the Radio Room is confirmed by uplink telemetry, excluding him as the person who initiated the loop.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E5",
+      "name": "Blunt-Force Wound and Matching Steel Pipe Fragment",
+      "description": "The rig medic's examination of Rune's body identifies a single blunt-force impact to the occipital region consistent with a cylindrical steel object approximately 25 mm in diameter. A length of 25 mm scaffold tube, approximately 40 cm long, was recovered from the BCR bilge water; one end carries a faint transfer of hair and scalp tissue matching Rune's blood type. The tube belongs to a batch stored in a maintenance rack adjacent to the Workshop \u2014 the space where Dag S\u00f8rensen spent the early hours of the morning.",
+      "type": "physical",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E6",
+      "name": "Rune's Missing Tablet \u2014 Contents Recovered from Server Backup",
+      "description": "Rune's personal tablet cannot be located anywhere on the rig, suggesting it was taken by the killer to suppress evidence. However, Rune had enabled an automatic nightly cloud-sync to the rig's internal server; the backup captured at 23:30 the night of his death contains a 12-page draft incident report detailing 14 months of condensate-volume discrepancies, matching dates and volumes to Marta Voss's scheduled valve-maintenance windows and signed maintenance authorisations. The report names Marta as the probable perpetrator.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E7",
+      "name": "Priya's Galley Access Swipe at 00:50",
+      "description": "The door-panel swipe log for the Galley on Deck 2 records Priya Anand's keycard at 00:50 \u2014 contradicting her stated alibi of remaining in her cabin all night. A second swipe, consistent with Rune Halvorsen's card, follows at 00:51. The log suggests a pre-arranged meeting, casting suspicion on Priya as a person with opportunity and undisclosed contact with the victim shortly before his death.",
+      "type": "documentary",
+      "relevance": "red_herring"
+    },
+    {
+      "id": "E8",
+      "name": "Condensate Transfer Ledger \u2014 Coded Entries",
+      "description": "A printed spreadsheet found folded inside a fire-safety manual in the Monitoring Room \u2014 Marta's primary workspace \u2014 lists dates, volumes in barrels, and a string of six-digit codes beside each entry. Cross-referencing the dates against the official production records shows each entry corresponds to a day when reported condensate output was 3\u20135% below metered extraction. The six-digit codes match invoice reference numbers from an unlicensed intermediary flagged in Priya's audit working papers, directly linking Marta to the financial scheme Rune was documenting.",
+      "type": "documentary",
+      "relevance": "supporting"
+    }
+  ],
+  "solution": {
+    "culprit": "Marta Voss",
+    "method": "Marta used her CCTV administrator credentials to set Camera 7 to loop a static recording at 01:06, eliminating visual coverage of the BCR corridor. She then remotely unlocked the BCR door from the Monitoring Room terminal at 01:08 using her override access. She walked the interior route to the BCR (not covered by any active camera), entered using her own keycard under the false impression the override had erased the entry, struck Rune from behind with the scaffold tube as he worked at the control panel, opened the inlet valve manually to flood the room and stage the scene as a mechanical accident, took his tablet to destroy his report, and returned to the Monitoring Room, where she batch-wrote a fabricated set of telemetry-review timestamps to manufacture an alibi for the entire window.",
+    "motive": "Marta had been systematically skimming condensate from the production line for 14 months, accumulating approximately \u20ac340,000 to fund her mother's long-term care \u2014 a scheme Rune had fully documented and was on the verge of formally reporting. His report would have meant criminal prosecution, career destruction, and the collapse of the financial arrangement keeping her mother in care.",
+    "key_evidence": [
+      "E1",
+      "E2",
+      "E4",
+      "E6"
+    ],
+    "how_to_deduce": "Step 1 \u2014 Eliminate the staged accident: the blunt-force wound on Rune's skull (E5) proves he was incapacitated before drowning; this is murder, not a mechanical failure, focusing the investigation on who had motive and access to the BCR. Step 2 \u2014 Identify who controlled the evidence blackout: Camera 7's looped feed (E4) required CCTV administrator credentials held only by Marta Voss and Erik Nansen; uplink telemetry independently confirms Erik never left the Radio Room during the window, leaving Marta as the sole person capable of initiating the camera loop. Step 3 \u2014 Prove the alibi is fabricated: the batch-write flag in Marta's workstation metadata (E2) shows her alibi timestamps were generated simultaneously rather than in real time, meaning she was not continuously present at the terminal as claimed. Step 4 \u2014 Establish covert access to the BCR: the shadow audit file (E1) records a remote unlock command sent to the BCR door from Marta's Monitoring Room terminal at 01:08 \u2014 an entry she deleted from the primary log but could not erase from the read-only shadow file, placing her as the person who opened the BCR at the start of the murder window. Step 5 \u2014 Confirm motive with documentary proof: the server backup of Rune's draft incident report (E6) shows he had fully documented Marta's condensate-skimming scheme and was about to report her; the coded condensate ledger found in her workspace (E8) independently corroborates the scheme. The combination of fabricated alibi (E2), covert door access (E1), deliberate camera blackout (E4), and the victim's report naming her (E6) closes every alternative explanation and proves Marta Voss committed the murder to silence the only witness who could end her."
+  },
+  "gameplay_notes": {
+    "difficulty": "HARD",
+    "estimated_playtime": "75\u201390 minutes",
+    "key_twists": [
+      "Priya's suspicious Galley swipe (E7) and her undisclosed meeting with Rune make her the most obvious suspect for the first half of play, but her guilt evaporates once players realise she had no access to CCTV administrator credentials and her motive is self-protective concealment rather than murder.",
+      "Dag's RFID cloning device (E3) makes him appear to have a covert means of entering the BCR as Rune, but the shadow audit file (E1) shows the door was opened remotely from Marta's terminal \u2014 a method that renders the cloned card irrelevant to the actual crime.",
+      "Marta's alibi appears technically airtight (workstation timestamps) until players learn she herself wrote the macro that could fabricate those timestamps, turning her alibi into the most incriminating piece of evidence against her.",
+      "Erik's deliberate silence about the looped camera feed makes him appear complicit, but his motive is mundane insurance fraud unconnected to the murder \u2014 he is a witness protecting himself, not a co-conspirator."
+    ]
+  },
+  "_meta": {
+    "num_players": 4,
+    "setting_input": "Deep-sea oil platform, North Sea, winter storm"
+  },
+  "_provenance": {
+    "recipe": "corpus_0276_ebo(1) + corpus_0108_ebo(2) + corpus_0298_ebo(3) + corpus_0287_ebo(4) + corpus_0190_ebo(5) + corpus_0248_ebo(6) + corpus_0153_ebo(7) + corpus_0127_ebo(8)",
+    "slots": [
+      {
+        "source_id": "corpus_0276_ebo",
+        "part_index": 1,
+        "part_type": "crime_type"
+      },
+      {
+        "source_id": "corpus_0108_ebo",
+        "part_index": 2,
+        "part_type": "setting_element"
+      },
+      {
+        "source_id": "corpus_0298_ebo",
+        "part_index": 3,
+        "part_type": "motive"
+      },
+      {
+        "source_id": "corpus_0287_ebo",
+        "part_index": 4,
+        "part_type": "suspect_archetype"
+      },
+      {
+        "source_id": "corpus_0190_ebo",
+        "part_index": 5,
+        "part_type": "red_herring"
+      },
+      {
+        "source_id": "corpus_0248_ebo",
+        "part_index": 6,
+        "part_type": "reveal_mechanic"
+      },
+      {
+        "source_id": "corpus_0153_ebo",
+        "part_index": 7,
+        "part_type": "social_dynamic"
+      },
+      {
+        "source_id": "corpus_0127_ebo",
+        "part_index": 8,
+        "part_type": "evidence_type"
+      }
+    ],
+    "target_setting": "Deep-sea oil platform, North Sea, winter storm",
+    "generated_title": ""
+  },
+  "_coherence": {
+    "passed": true,
+    "blocking": 0,
+    "warnings": 0,
+    "witness_gaps": []
+  }
+}
