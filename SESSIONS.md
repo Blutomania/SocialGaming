@@ -5,6 +5,60 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session — March 12, 2026 at 23:09
+**Branch:** `claude/setup-api-and-mysteries-LRLQK`
+**Latest commit:** `badd150`
+
+### Files changed this session
+- `EADME.md` — Modified
+
+### Commits this session
+```
+badd150 Improve HuggingFace Space discoverability metadata
+9382fd7 Mark ANTHROPIC_API_KEY blocker as done
+ec93ef8 Record multiplayer design decisions and corpus run clarification
+6ea6b2a Update CLAUDE.md and SESSIONS.md for session 9
+d66657d Note feedback persistence idea on backlog (low priority, do not implement yet)
+f89b72e Surface evidence, gameplay notes, witnesses, crime timing; add viability rating
+212fa64 Update page subtitle to show Ultimately/Currently dual-line caption
+83e70ed Add scripts/browse_mysteries.py — rich terminal mystery browser
+1d80e3d Clarify session-end merge: remote blocks direct push to main, use PR instead
+a9b74e2 Update CLAUDE.md and GETTING_STARTED.md for current state
+edf1fb8 Localization caching: 3-tier strategy cuts token cost ~11x
+eab92af Add localization pass — character names/occupations adapt to setting
+51ec30d Add docs/WIRING.md and rewrite README — institutional memory for the wiring
+899c9d5 Add opt-in cinematic brief for video-gen engines
+5b4e584 Wire check_mystery into app.py — structured JSON generation + coherence badge
+37f8873 Add 9 more generated mysteries — all settings pass validator with 0 blocking issues
+efa73b0 Wire bearer token auth into cli.py generate; fix max_tokens truncation; run first 9 real mysteries
+7110dab Session 8 summary: coherence_validator + cli integration
+1f11171 Add coherence_validator.py and wire into generation pipeline
+330170a Update to-do: quality validation + P1 coherence validator as next priorities
+be75c7f Session 7 summary — HuggingFace Space deployment
+501641c Remove streamlit version pin from Space metadata
+83af149 Add HuggingFace Space metadata to README
+f205194 Wire part registry into app.py mystery generation
+4f6c246 Ignore mystery-crime-books/ dir — parquet lives in GitHub LFS via user push
+ce004c5 Remove parquet from this branch's index — already in GitHub LFS via user push
+b80528f Ingest 284 corpus extractions into part registry: 48 → 1,469 parts across 294 sources
+4b65d23 Allow corpus parquet through .gitignore (14MB, under GitHub limit)
+8c0bade Remove SESSION_STATE.md — superseded by SESSIONS.md and CLAUDE.md
+7662fe4 Sync full project state from upload-corpus branch: all 290 extractions, cli, app, part registry, research findings, session log
+d1b5922 Add MysterySolver to .gitignore — third-party HF reference app, not our code
+c63c789 Fix .gitignore — allow mystery_database/extractions/ JSONs in git
+c8b7991 Add session scaffolding: test mysteries, state doc, and sync script
+c50786a Add commit message template and contributing guide
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
 ## Session 9 — March 12, 2026
 **Branch:** `claude/setup-api-and-mysteries-LRLQK`
 **Latest commit:** `d66657d`
