@@ -129,8 +129,9 @@ Full list in `SESSIONS.md`. Top priorities:
 
 1. **[BLOCKER]** Add `ANTHROPIC_API_KEY` to HuggingFace Space secrets — nothing runs in production without it
 2. **Play-test** — generate 5–10 mysteries, verify coherence passes, rate them with the viability widget
-3. **Full corpus run**: `python cli.py extract --protocol P1P2` (359 books → ~700 new parts)
-4. **Merge `claude/mystery-versioning-system-TPblK`** (CLI + part registry) into main
-5. **Load saved mystery** — add dropdown to `app.py` to browse and reload past mysteries from disk
-6. **75% sharing mechanic** — the core multiplayer feature; no design started yet
-7. **[LOW PRIORITY]** Feedback persistence — save viability rating + behavioral signals back to mystery JSON; defer until after play-testing
+3. **Merge `claude/mystery-versioning-system-TPblK`** (CLI + part registry) into main
+4. **Load saved mystery** — add dropdown to `app.py` to browse and reload past mysteries from disk
+5. **Multiplayer invite mechanic** — shareable link + short game code (Jackbox model); global info sharing to start; see SESSIONS.md Session 9 design decision for full spec
+6. **[LOW PRIORITY]** Feedback persistence — save viability rating + behavioral signals back to mystery JSON; defer until after play-testing
+
+> **DO NOT re-run the corpus extraction pipeline.** Previous failures were due to source texts being too brief or not a mystery — re-running produces the same results. Expand the corpus only by adding new quality source texts.

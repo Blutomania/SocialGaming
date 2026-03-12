@@ -26,11 +26,21 @@ Use this file to onboard any new session without losing context.
 ### What is incomplete / next steps
 1. **[BLOCKER — START HERE]** Add `ANTHROPIC_API_KEY` to HuggingFace Space secrets so the app runs in production
 2. **Play-test** — generate mysteries in the UI, use the viability rating, verify the full output looks right
-3. Full corpus run: `python cli.py extract --protocol P1P2` (359 books → ~700 new parts)
+3. ~~Full corpus run~~ — **DO NOT re-run**. Corpus run failures were caused by source material that is too brief or not a mystery — re-running will produce the same failures. The 1,469-part registry is the corpus; expand it only by adding new quality source texts.
 4. Merge `claude/mystery-versioning-system-TPblK` (CLI + part registry) into main
 5. Add "Load saved mystery" dropdown to `app.py`
-6. 75% sharing mechanic — the core multiplayer feature; no design started yet
+6. **Multiplayer / invite mechanic** — see design decision below
 7. **[LOW PRIORITY — do not implement until owner asks]** Feedback persistence: auto-save mystery to disk on generation, write `_feedback.viability_rating` back into the JSON. Extend to behavioral signals (time-to-solve, interrogation patterns, first-accusation accuracy) when ready. Consider HuggingFace Datasets API for multi-user deployment.
+
+### Design decision — Multiplayer & invite mechanic
+**Agreed direction (March 12, 2026):**
+- The game is multi-player. The **initiator** creates and enters the mystery scenario.
+- **Information sharing is global** — all players see the same 75% of information. Simple to begin with; no per-player asymmetry yet.
+- **Invite mechanic:** use a **shareable link with a short game code** (e.g. `chooseyourmystery.com/game/XK7F2`). Host generates the mystery, gets a link/code, and shares it however they like (WhatsApp, text, email — host's choice). No email/SMS infrastructure needed on our side.
+  - This is the Jackbox / Skribbl.io model — lowest friction, works in any group-chat context.
+  - First-come-first-served on joining (no invite list to manage).
+  - If a gated invite list is needed later it can be added, but start without it.
+- **Do not implement yet** — design is captured here for the next session that picks up multiplayer work.
 
 ### Local sync steps (for owner)
 ```bash
