@@ -224,6 +224,7 @@ def _mystery_to_markdown(m: dict) -> str:
     chars = m.get("characters", [])
     victim = next((ch for ch in chars if ch.get("role") == "victim"), None)
     suspects = [ch for ch in chars if ch.get("role") == "suspect"]
+    witnesses = [ch for ch in chars if ch.get("role") == "witness"]
 
     lines = [
         f"## {m.get('title', 'Untitled Mystery')}",
@@ -234,6 +235,7 @@ def _mystery_to_markdown(m: dict) -> str:
         "",
         "### The Crime",
         c.get("what_happened", ""),
+        f"*When: {c.get('when', '—')}*",
         f"*Discovered: {c.get('initial_discovery', '')}*",
         "",
     ]
@@ -247,6 +249,11 @@ def _mystery_to_markdown(m: dict) -> str:
         lines.append("### The Suspects")
         for su in suspects:
             lines.append(f"**{su['name']}** — {su.get('occupation', '')}")
+        lines.append("")
+    if witnesses:
+        lines.append("### Witnesses")
+        for w in witnesses:
+            lines.append(f"**{w['name']}** — {w.get('occupation', '')}")
         lines.append("")
     lines.append("### Your Role")
     lines.append("You are the investigator. Question the suspects. Examine the evidence. Find the truth.")
@@ -263,6 +270,7 @@ defaults = {
     "recipe": None,
     "coherence": None,         # {"passed": bool, "blocking": int, "warnings": int}
     "cinematic_brief": None,   # video-gen optimized brief (opt-in)
+    "viability_rating": 5,     # creator-side 1–10 viability rating
     "generated": False,
 }
 for k, v in defaults.items():
@@ -308,10 +316,10 @@ if st.button("Generate Mystery", disabled=not user_prompt.strip()):
         st.session_state.mystery = _mystery_to_markdown(mystery_dict)
         st.session_state.recipe = recipe.to_dict()
 
-        # Extract suspects directly from structured characters — no extra LLM call
+        # Extract interrogatable characters (suspects + witnesses) — no extra LLM call
         chars = mystery_dict.get("characters", [])
         st.session_state.suspects = [
-            ch["name"] for ch in chars if ch.get("role") == "suspect"
+            ch["name"] for ch in chars if ch.get("role") in ("suspect", "witness")
         ]
 
         # Solution is already embedded in the dict — no extra LLM call
@@ -383,6 +391,34 @@ if st.session_state.generated:
                         f"source `{slot['source_id']}`, part {slot['part_index']}"
                     )
 
+        # Evidence section
+        md = st.session_state.mystery_dict
+        ev = md.get("evidence", []) if md else []
+        if ev:
+            relevance_tag = {
+                "critical":    "★ Critical",
+                "red_herring": "✗ Red herring",
+                "supporting":  "· Supporting",
+            }
+            with st.expander(f"Evidence — {len(ev)} items", expanded=True):
+                for e in ev:
+                    tag = relevance_tag.get(e.get("relevance", ""), e.get("relevance", ""))
+                    st.markdown(
+                        f"**[{e.get('id','?')}] {e.get('name','?')}** "
+                        f"&nbsp;`{e.get('type','')}`&nbsp; · {tag}"
+                    )
+                    st.caption(e.get("description", ""))
+
+        # Gameplay notes
+        notes = (md or {}).get("gameplay_notes", {})
+        if notes:
+            diff = notes.get("difficulty", "?")
+            playtime = notes.get("estimated_playtime", "?")
+            twists = notes.get("key_twists", [])
+            st.markdown(f"**Difficulty:** {diff} &nbsp;·&nbsp; **Estimated playtime:** {playtime}")
+            if twists:
+                st.markdown("**Key twists:** " + " · ".join(twists))
+
         # Cinematic brief expander — only shown when opted in
         brief = st.session_state.cinematic_brief
         if brief:
@@ -412,7 +448,7 @@ if st.session_state.generated:
         st.subheader("Suspects")
 
         if st.session_state.suspects:
-            selected_suspect = st.selectbox("Select a suspect to interrogate:", st.session_state.suspects)
+            selected_suspect = st.selectbox("Select a character to interrogate:", st.session_state.suspects)
             question = st.text_input("Your question:")
 
             if st.button("Interrogate"):
@@ -458,6 +494,33 @@ Detective's question: {question}
   <p style='color:#cccccc; margin:4px 0;'>🧬 &nbsp;Gen AI avatars</p>
 </div>
 """, unsafe_allow_html=True)
+
+    # -------------------------
+    # Mystery Viability Rating
+    # -------------------------
+    st.divider()
+    st.subheader("Rate This Mystery")
+    st.caption("As the creator / reviewer — how viable is this mystery for actual play?")
+    viability = st.radio(
+        "Viability (1 = unplayable, 10 = ready to play):",
+        options=list(range(1, 11)),
+        horizontal=True,
+        index=4,  # default: 5
+        key="viability_rating",
+    )
+    rating_labels = {
+        1: "Incoherent — do not use",
+        2: "Major logical gaps",
+        3: "Needs significant rework",
+        4: "Playable with heavy GM prep",
+        5: "Workable with some prep",
+        6: "Good with minor tweaks",
+        7: "Solid — minor polish only",
+        8: "Strong — nearly ready",
+        9: "Excellent — use as-is",
+        10: "Perfect — publish it",
+    }
+    st.caption(f"_{rating_labels.get(viability, '')}_")
 
     # -------------------------
     # Final Accusation
