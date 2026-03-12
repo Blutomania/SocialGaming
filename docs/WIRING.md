@@ -140,9 +140,50 @@ Every generated mystery is a dict with these top-level keys:
 
 ## Localization pass
 
-**Function:** `localize_mystery(mystery_dict)` in both `app.py` and `cli.py`
+**Module:** `localization.py` — shared by `app.py` and `cli.py`
 
 **Always runs** — it's a quality fix, not an opt-in. Anachronistic names are immersion-breaking.
+
+### Three-tier caching strategy
+
+| Tier | Condition | API calls | Token cost |
+|---|---|---|---|
+| **Skip** | Modern / contemporary setting | 0 | 0 |
+| **Cache hit** | Era rules already on disk | 1 (compact) | ~900 tokens |
+| **Cache miss** | First mystery for this era | 1 (derives + applies rules) | ~1,200 tokens |
+
+vs. the old approach (full JSON round-trip): ~10,000 tokens every time.
+
+**Compact mapping approach** — instead of asking Claude to rewrite the full mystery JSON
+(~5,000 tokens in, ~5,000 tokens out), Claude returns only a name mapping:
+```json
+{"name_map": [{"old": "Dr. Pemberton", "new": "Alexios the Physician", "old_occ": "Doctor", "new_occ": "Physician"}]}
+```
+Python does the substitution (`localization._apply_name_map`), using word-boundary regex
+and longest-name-first ordering to prevent substring collisions.
+
+**Era ruleset cache** — stored in `mystery_database/localization_cache/<era_key>.json`:
+```json
+{
+  "name_examples": {"male": ["Gaius", "Marcus"], "female": ["Livia", "Claudia"]},
+  "occupation_map": {"doctor": "physician", "lawyer": "advocate"},
+  "forbidden_titles": ["Mr.", "Ms.", "Dr."],
+  "allowed_titles": ["Senator", "Tribune", "Consul"],
+  "pun_style": "Latin-ified descriptive names (Vidiomnius, Mendaximus)",
+  "notes": "Aristocrats: nomen+cognomen. Commoners: single name."
+}
+```
+Generated on first use of a setting, loaded on all subsequent uses. The cache grows
+automatically as more settings are explored — zero maintenance required.
+
+**Modern-era skip** — if `setting.time_period` contains "present day", "2020s",
+"near future", etc., the localization call is skipped entirely (modern English names
+are already appropriate). Detected by `localization._is_modern(setting)`.
+
+**UI / CLI feedback** — the spinner label tells you which tier fired:
+- `"Localization: modern setting — skipped"`
+- `"Localizing names (era rules cached)..."`
+- `"Localizing names and occupations (building era cache)..."`
 
 **What it changes:**
 - Character names → era/culture appropriate (no "Dr. Pemberton" in Ancient Athens)

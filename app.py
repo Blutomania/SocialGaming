@@ -4,6 +4,7 @@ import os
 from anthropic import Anthropic
 from part_registry import load_registry, PART_TYPE_NAMES
 from coherence_validator import check_mystery
+from localization import localize_mystery as _localize_mystery, cache_stats as _loc_cache_stats
 
 # -------------------------
 # Page Config
@@ -156,65 +157,8 @@ Return only valid JSON. No commentary outside the JSON block."""
 
 
 def localize_mystery(mystery_dict: dict) -> dict:
-    """
-    Post-generation localization pass — one Claude call.
-    Rewrites all character names, occupations, titles, and embedded
-    dialogue/text so they fit the setting's time period and culture.
-    Preserves the full JSON structure; only surface text changes.
-    Licensed to be playful: a Roman witness can be WhatICius, etc.
-    """
-    s = mystery_dict.get("setting", {})
-    location = s.get("location", "")
-    time_period = s.get("time_period", "")
-
-    prompt = f"""\
-You are localizing a mystery game script for historical/cultural authenticity and fun.
-
-SETTING: {location} — {time_period}
-
-The mystery was generated with placeholder names that may be anachronistic
-(e.g. "Dr. Pemberton" in Ancient Rome, "CEO Marcus Webb" in 1520 Istanbul).
-Your job: rewrite EVERY name, title, occupation, and any dialogue or embedded
-text so they belong to this time and place.
-
-Rules:
-1. Names must fit the culture and era. No modern surnames in ancient settings.
-   Ancient Rome: Gaius, Livia, Marcus Flavius. Ottoman: Mehmed, Fatima, Yusuf.
-   Harlem 1920s: Josephine, Duke, Red. Antarctic now: Dr. Chen is fine.
-2. Occupations must have period-appropriate equivalents.
-   "Doctor" → "Physician" or "Surgeon" in Victorian; "Healer" or "Physician" in Ancient.
-   "Lawyer" → "Advocate" in Roman; "Kadi" in Ottoman.
-   "CEO" → "Merchant Prince", "Guild Master", "Trading House Head".
-3. Titles and honorifics must match the era.
-   No "Mr.", "Ms.", "Dr." in ancient or medieval settings.
-   Use "Senator", "Tribune", "Archon", "Bey", "Effendi", "Lord", "Lady" as appropriate.
-4. You MAY (encouraged!) create playful period-appropriate puns for minor characters.
-   A Roman witness called "I Saw Everything" could become "Vidiomnius".
-   A gossipy Harlem bystander could be "Tells-It-All Thomas".
-   Don't overdo it — one or two playful names per mystery, for witnesses/minor suspects.
-5. Update ALL text fields where names or titles appear: secrets, alibis, motives,
-   evidence descriptions, crime description, solution. Be thorough — a name left
-   unchanged in one field breaks immersion.
-6. Do NOT change the mystery structure, plot, culprit, or evidence. Only surface text.
-7. Update the title if it contains a modern-sounding name.
-
-Return the COMPLETE mystery JSON with localizations applied. Same structure, same keys.
-Return only valid JSON. No commentary.
-
-MYSTERY TO LOCALIZE:
-{json.dumps(mystery_dict, indent=2)}"""
-
-    raw = llm(prompt, system="You are a historical authenticity editor. Return only valid JSON.")
-    if "```json" in raw:
-        raw = raw.split("```json")[1].split("```")[0].strip()
-    elif "```" in raw:
-        raw = raw.split("```")[1].split("```")[0].strip()
-    localized = json.loads(raw)
-    # Preserve internal fields that Claude shouldn't touch
-    for key in ("_provenance", "_coherence", "_meta", "cinematic_brief"):
-        if key in mystery_dict:
-            localized[key] = mystery_dict[key]
-    return localized
+    """Thin wrapper — delegates to localization.py with the app's llm function."""
+    return _localize_mystery(mystery_dict, llm)
 
 
 def generate_cinematic_brief(mystery_dict: dict) -> dict:
@@ -349,7 +293,15 @@ cinematic_on = st.checkbox(
 if st.button("Generate Mystery", disabled=not user_prompt.strip()):
     with st.spinner("Building your case from the archives..."):
         mystery_dict, recipe = generate_mystery(user_prompt)
-        with st.spinner("Localizing names and occupations to setting..."):
+        from localization import _is_modern, _era_key, _load_era_rules
+        _setting = mystery_dict.get("setting", {})
+        if _is_modern(_setting):
+            loc_label = "Localization: modern setting — skipped"
+        elif _load_era_rules(_era_key(_setting)):
+            loc_label = "Localizing names (era rules cached)..."
+        else:
+            loc_label = "Localizing names and occupations (building era cache)..."
+        with st.spinner(loc_label):
             mystery_dict = localize_mystery(mystery_dict)
         st.session_state.mystery_dict = mystery_dict
         st.session_state.mystery = _mystery_to_markdown(mystery_dict)

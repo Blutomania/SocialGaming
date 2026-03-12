@@ -336,8 +336,20 @@ def cmd_generate(args):
 
     # ── Localization pass — adapt names/occupations to setting ───────
     if not demo_mode:
-        with _spinner("Localizing names and occupations to setting..."):
-            mystery = _localize_mystery(mystery)
+        from localization import _is_modern, _era_key, _load_era_rules
+        _s = mystery.get("setting", {})
+        if _is_modern(_s):
+            _print("[dim]Localization: modern setting — skipped[/dim]")
+        else:
+            _ek = _era_key(_s)
+            _cached = _load_era_rules(_ek)
+            _loc_label = (
+                "Localizing names (era rules cached)..."
+                if _cached
+                else "Localizing names and occupations (building era cache)..."
+            )
+            with _spinner(_loc_label):
+                mystery = _localize_mystery(mystery)
 
     # ── Post-generation coherence check ──────────────────────────────
     mystery_report = check_mystery(mystery)
@@ -880,83 +892,30 @@ Return only valid JSON. No commentary outside the JSON block."""
 
 
 def _localize_mystery(mystery: dict) -> dict:
-    """
-    Post-generation localization pass.
-    Rewrites all character names, occupations, titles, and embedded text
-    so they fit the setting's time period and culture.
-    Preserves JSON structure and internal fields (_provenance, _coherence, etc.).
-    Licensed to be playful: Roman witnesses can be named WhatICius, etc.
-    """
+    """Thin wrapper — delegates to localization.py with the CLI's llm function."""
     import requests, json as _json
+    from localization import localize_mystery as _loc
 
-    s = mystery.get("setting", {})
-    location = s.get("location", "")
-    time_period = s.get("time_period", "")
+    def _cli_llm(prompt: str) -> str:
+        header_name, header_value = _get_auth()
+        resp = requests.post(
+            _API_URL,
+            headers={
+                header_name: header_value,
+                "Content-Type": "application/json",
+                "anthropic-version": "2023-06-01",
+            },
+            json={
+                "model": "claude-sonnet-4-6",
+                "max_tokens": 1024,
+                "messages": [{"role": "user", "content": prompt}],
+            },
+            timeout=120,
+        )
+        resp.raise_for_status()
+        return resp.json()["content"][0]["text"].strip()
 
-    prompt = f"""\
-You are localizing a mystery game script for historical/cultural authenticity and fun.
-
-SETTING: {location} — {time_period}
-
-The mystery was generated with placeholder names that may be anachronistic
-(e.g. "Dr. Pemberton" in Ancient Rome, "CEO Marcus Webb" in 1520 Istanbul).
-Your job: rewrite EVERY name, title, occupation, and any dialogue or embedded
-text so they belong to this time and place.
-
-Rules:
-1. Names must fit the culture and era. No modern surnames in ancient settings.
-   Ancient Rome: Gaius, Livia, Marcus Flavius. Ottoman: Mehmed, Fatima, Yusuf.
-   Harlem 1920s: Josephine, Duke, Red. Antarctic now: Dr. Chen is fine.
-2. Occupations must have period-appropriate equivalents.
-   "Doctor" → "Physician" or "Surgeon" in Victorian; "Healer" or "Physician" in Ancient.
-   "Lawyer" → "Advocate" in Roman; "Kadi" in Ottoman.
-   "CEO" → "Merchant Prince", "Guild Master", "Trading House Head".
-3. Titles and honorifics must match the era.
-   No "Mr.", "Ms.", "Dr." in ancient or medieval settings.
-   Use "Senator", "Tribune", "Archon", "Bey", "Effendi", "Lord", "Lady" as appropriate.
-4. You MAY (encouraged!) create playful period-appropriate puns for minor characters.
-   A Roman witness called "I Saw Everything" could become "Vidiomnius".
-   A gossipy Harlem bystander could be "Tells-It-All Thomas".
-   Don't overdo it — one or two playful names per mystery, for witnesses/minor suspects.
-5. Update ALL text fields where names or titles appear: secrets, alibis, motives,
-   evidence descriptions, crime description, solution. Be thorough.
-6. Do NOT change the mystery structure, plot, culprit identity, or evidence logic.
-7. Update the title if it contains a modern-sounding name.
-
-Return the COMPLETE mystery JSON with localizations applied. Same structure, same keys.
-Return only valid JSON. No commentary.
-
-MYSTERY TO LOCALIZE:
-{_json.dumps(mystery, indent=2)}"""
-
-    header_name, header_value = _get_auth()
-    resp = requests.post(
-        _API_URL,
-        headers={
-            header_name: header_value,
-            "Content-Type": "application/json",
-            "anthropic-version": "2023-06-01",
-        },
-        json={
-            "model": "claude-sonnet-4-6",
-            "max_tokens": 8192,
-            "messages": [{"role": "user", "content": prompt}],
-        },
-        timeout=180,
-    )
-    resp.raise_for_status()
-    text = resp.json()["content"][0]["text"].strip()
-    if "```json" in text:
-        text = text.split("```json")[1].split("```")[0].strip()
-    elif "```" in text:
-        text = text.split("```")[1].split("```")[0].strip()
-
-    localized = _json.loads(text)
-    # Preserve internal fields that localization shouldn't touch
-    for key in ("_provenance", "_coherence", "_meta", "cinematic_brief"):
-        if key in mystery:
-            localized[key] = mystery[key]
-    return localized
+    return _loc(mystery, _cli_llm)
 
 
 def _solve_with_claude(description: str) -> dict:
