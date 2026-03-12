@@ -24,8 +24,8 @@ Use this file to onboard any new session without losing context.
 - **Feedback persistence deferred** — saving ratings + behavioral signals to disk is on the backlog (SESSIONS.md item 7) but must not be implemented until the owner explicitly requests it.
 
 ### What is incomplete / next steps
-1. **[BLOCKER — START HERE]** Add `ANTHROPIC_API_KEY` to HuggingFace Space secrets so the app runs in production
-2. **Play-test** — generate mysteries in the UI, use the viability rating, verify the full output looks right
+1. **[DONE]** ~~Add `ANTHROPIC_API_KEY` to HuggingFace Space secrets~~ — completed March 12, 2026
+2. **[START HERE]** Play-test — generate mysteries in the live Space, use the viability rating, verify full output looks right
 3. ~~Full corpus run~~ — **DO NOT re-run**. Corpus run failures were caused by source material that is too brief or not a mystery — re-running will produce the same failures. The 1,469-part registry is the corpus; expand it only by adding new quality source texts.
 4. Merge `claude/mystery-versioning-system-TPblK` (CLI + part registry) into main
 5. Add "Load saved mystery" dropdown to `app.py`

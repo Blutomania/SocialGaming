@@ -127,8 +127,8 @@ Add a row here whenever you introduce a new cache.
 
 Full list in `SESSIONS.md`. Top priorities:
 
-1. **[BLOCKER]** Add `ANTHROPIC_API_KEY` to HuggingFace Space secrets — nothing runs in production without it
-2. **Play-test** — generate 5–10 mysteries, verify coherence passes, rate them with the viability widget
+1. **[DONE]** ~~Add `ANTHROPIC_API_KEY` to HuggingFace Space secrets~~ — completed March 12, 2026
+2. **[START HERE]** Play-test — generate 5–10 mysteries in the live Space, verify coherence passes, rate with viability widget
 3. **Merge `claude/mystery-versioning-system-TPblK`** (CLI + part registry) into main
 4. **Load saved mystery** — add dropdown to `app.py` to browse and reload past mysteries from disk
 5. **Multiplayer invite mechanic** — shareable link + short game code (Jackbox model); global info sharing to start; see SESSIONS.md Session 9 design decision for full spec
