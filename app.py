@@ -273,7 +273,8 @@ for k, v in defaults.items():
 # Header
 # -------------------------
 st.title("Choose Your Mystery")
-st.caption("An AI-powered detective game. Set the scene. Interrogate the suspects. Solve the case.")
+st.caption("Ultimately: An AI-powered detective game. Set the scene. Interrogate the suspects. Solve the case.")
+st.caption("Currently: An AI-powered mystery creator. Set the scene. Verify the output")
 st.divider()
 
 # -------------------------
