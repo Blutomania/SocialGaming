@@ -15,17 +15,24 @@ part_registry.py — sample_for_generation()
      │  Returns: List[MysteryPart], Recipe
      │
      ▼
-Claude API  (one call, structured JSON prompt)
+Claude API  (one call, structured JSON prompt)              ← call 1
      │  Parts act as hard constraints — Claude fleshes out prose
      │  Returns: mystery dict  (see Mystery JSON Schema below)
      │
      ▼
-coherence_validator.py — check_mystery()
-     │  FREE — no API call
+localize_mystery()                                          ← call 2 (always)
+     │  Rewrites all character names, occupations, titles, and embedded
+     │  text so they fit the setting's time period and culture.
+     │  "Dr. Pemberton" in Ancient Athens → "Alexios the Physician"
+     │  Minor characters may get playful period puns (e.g. "Vidiomnius")
+     │  Preserves plot, culprit, evidence logic — surface text only.
+     │
+     ▼
+coherence_validator.py — check_mystery()                    ← free, no API call
      │  Checks P1 causal chain + witness depth + evidence variety
      │  Returns: CoherenceReport  (passed, blocking_count, warning_count)
      │
-     ├─── [opt-in] generate_cinematic_brief()
+     ├─── [opt-in] generate_cinematic_brief()               ← call 3 (opt-in)
      │         One extra Claude call
      │         Returns: cinematic_brief dict  (see Cinematic Brief Schema below)
      │         Stored at mystery_dict["cinematic_brief"]
@@ -33,6 +40,16 @@ coherence_validator.py — check_mystery()
      ▼
 mystery_dict  saved to  mystery_database/generated/<slug>_<timestamp>.json
 ```
+
+### Call budget per generation
+
+| Step | Calls | Condition |
+|---|---|---|
+| Mystery generation | 1 | always |
+| Localization | 1 | always (quality fix, not opt-in) |
+| Cinematic brief | 1 | opt-in only |
+| Coherence check | 0 | free |
+| **Total** | **2–3** | |
 
 ---
 
@@ -118,6 +135,40 @@ Every generated mystery is a dict with these top-level keys:
 - `solution.key_evidence` must reference ≥ 2 evidence IDs
 - `solution.how_to_deduce` must contain ≥ 3 reasoning steps
 - `setting.description` must explain the isolation mechanic
+
+---
+
+## Localization pass
+
+**Function:** `localize_mystery(mystery_dict)` in both `app.py` and `cli.py`
+
+**Always runs** — it's a quality fix, not an opt-in. Anachronistic names are immersion-breaking.
+
+**What it changes:**
+- Character names → era/culture appropriate (no "Dr. Pemberton" in Ancient Athens)
+- Occupations → period equivalents ("CEO" → "Merchant Prince", "Doctor" → "Healer")
+- Honorifics and titles → era-correct ("Mr." has no place in Ancient Rome)
+- All text fields that contain names: secrets, alibis, motives, evidence descriptions, title
+- Minor characters may receive playful period puns (encouraged, not mandatory):
+  - A Roman witness named "I Saw Everything" → "Vidiomnius"
+  - A gossipy Harlem bystander → "Tells-It-All Thomas"
+  - One or two per mystery maximum — witnesses and minor suspects only
+
+**What it does NOT change:**
+- Plot, culprit identity, evidence logic, solution
+- Internal fields: `_provenance`, `_coherence`, `_meta`, `cinematic_brief`
+
+**Setting-to-name conventions (guidance for the prompt):**
+
+| Setting | Name style | Occupation examples |
+|---|---|---|
+| Ancient Greece/Rome | Single name or nomen+cognomen | Physician, Senator, Tribune, Merchant |
+| Ottoman Empire | Arabic/Turkish given names | Kadi (judge), Bey, Effendi, Merchant |
+| Medieval Europe | Given name + epithet | Blacksmith, Steward, Apothecary, Knight |
+| Victorian Britain | Title + surname | Inspector, Dr., Rev., Lady |
+| 1920s Harlem | Nickname-friendly | Numbers runner, Club owner, Doorman |
+| Present day | No constraint | Modern titles fine |
+| Sci-fi / future | Invent plausibly | Any era or invented culture |
 
 ---
 
