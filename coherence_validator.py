@@ -430,8 +430,14 @@ def check_mystery(mystery: dict) -> CoherenceReport:
 
     # C4 — Culprit and motive
     culprit_name = solution.get("culprit", "")
+    # Use substring matching: Claude sometimes appends descriptors like "(the impostor)"
+    # to the solution culprit field. Match as long as a character's name is contained
+    # within the culprit string, or vice versa.
+    culprit_lower = culprit_name.lower()
     culprit_char = next(
-        (c for c in characters if c.get("name", "").lower() == culprit_name.lower()),
+        (c for c in characters
+         if c.get("name", "").lower() in culprit_lower
+         or culprit_lower in c.get("name", "").lower()),
         None,
     )
     if not culprit_name:

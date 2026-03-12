@@ -28,6 +28,32 @@ import sys
 import time
 from pathlib import Path
 
+# ── API auth helpers ──────────────────────────────────────────────────────────
+_INGRESS_TOKEN_FILE = "/home/claude/.claude/remote/.session_ingress_token"
+
+
+def _has_api_access() -> bool:
+    """True if either ANTHROPIC_API_KEY or the ingress Bearer token is available."""
+    return bool(os.environ.get("ANTHROPIC_API_KEY")) or os.path.exists(_INGRESS_TOKEN_FILE)
+
+
+def _make_client():
+    """Return an authenticated Anthropic client.
+
+    Prefers ANTHROPIC_API_KEY; falls back to the ingress Bearer token so that
+    CLI generation works in the Claude Code web environment without an explicit key.
+    """
+    import anthropic
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    if api_key:
+        return anthropic.Anthropic(api_key=api_key)
+    if os.path.exists(_INGRESS_TOKEN_FILE):
+        token = Path(_INGRESS_TOKEN_FILE).read_text().strip()
+        return anthropic.Anthropic(auth_token=token)
+    raise ValueError(
+        "No API credentials found. Set ANTHROPIC_API_KEY or ensure the ingress token exists."
+    )
+
 # ── Rich terminal UI ─────────────────────────────────────────────────────────
 try:
     from rich.console import Console
@@ -315,7 +341,7 @@ def cmd_generate(args):
     _print(f"\n[bold]Recipe:[/bold] [yellow]{recipe.format()}[/yellow]")
 
     # ── Generate mystery ──────────────────────────────────────────────
-    demo_mode = getattr(args, "demo", False) or not os.environ.get("ANTHROPIC_API_KEY")
+    demo_mode = getattr(args, "demo", False) or not _has_api_access()
     if demo_mode:
         _print("\n[dim]Demo mode — no Claude API call[/dim]")
         mystery = _demo_mystery(setting, crime_type, num_players, selected_parts, recipe)
@@ -404,7 +430,7 @@ def cmd_solve(args):
         _print("[red]No description provided.[/red]")
         return
 
-    demo_mode = getattr(args, "demo", False) or not os.environ.get("ANTHROPIC_API_KEY")
+    demo_mode = getattr(args, "demo", False) or not _has_api_access()
     if demo_mode:
         _print("[dim]Demo mode — no Claude API call[/dim]")
         analysis = _demo_solve(description)
@@ -821,20 +847,28 @@ Generate a complete mystery JSON with this exact structure:
 
 Return only valid JSON. No commentary outside the JSON block."""
 
-    client = anthropic.Anthropic()
+    client = _make_client()
     response = client.messages.create(
         model="claude-sonnet-4-6",
-        max_tokens=4096,
+        max_tokens=8192,
         messages=[{"role": "user", "content": prompt}],
     )
 
     text = response.content[0].text.strip()
-    if "```json" in text:
-        text = text.split("```json")[1].split("```")[0].strip()
-    elif "```" in text:
-        text = text.split("```")[1].split("```")[0].strip()
+    # Strip markdown code fences
+    import re as _re
+    text = _re.sub(r"^```(?:json)?\s*", "", text, flags=_re.MULTILINE)
+    text = _re.sub(r"\s*```$", "", text.strip(), flags=_re.MULTILINE)
 
-    mystery = json.loads(text)
+    try:
+        mystery = json.loads(text)
+    except json.JSONDecodeError:
+        # Fall back: find first complete {...} block
+        match = _re.search(r"\{[\s\S]*\}", text)
+        if match:
+            mystery = json.loads(match.group())
+        else:
+            raise
     mystery["_meta"] = {"num_players": num_players, "setting_input": setting}
     mystery["_provenance"] = recipe.to_dict()
     return mystery
@@ -870,7 +904,7 @@ Return a structured JSON analysis:
 
 Return only valid JSON."""
 
-    client = anthropic.Anthropic()
+    client = _make_client()
     response = client.messages.create(
         model="claude-sonnet-4-6",
         max_tokens=2048,
