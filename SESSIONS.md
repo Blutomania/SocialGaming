@@ -30,6 +30,8 @@ Use this file to onboard any new session without losing context.
 3. Wire `check_mystery` into `app.py` — currently only integrated in `cli.py`
 4. Full corpus run: `python cli.py extract --protocol P1P2` (359 books → ~700 new parts)
 5. Merge `claude/mystery-versioning-system-TPblK` once quality items validated
+6. Add "Load saved mystery" dropdown to app.py (browse mysteries generated via CLI inside the UI)
+7. **[LOW PRIORITY — do not implement until owner has played with it]** Player/creator feedback persistence: auto-save generated mystery to disk on generation (same slug+timestamp pattern as CLI), then write viability rating + any future behavioral signals (time-to-solve, interrogation patterns, first-accusation accuracy) back into the mystery JSON as `_feedback.*`. The data co-locates with the mystery and feeds back into part-registry weighting (high-rated mysteries → their parts sampled more). Consider HuggingFace Datasets API when app goes multi-user.
 
 ---
 
