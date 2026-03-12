@@ -104,6 +104,30 @@ git checkout claude/setup-api-and-mysteries-LRLQK
 git pull origin claude/setup-api-and-mysteries-LRLQK
 ```
 
+### HuggingFace deploy procedure (discovered March 12, 2026)
+
+The HF Space has two remotes on the owner's machine:
+- `origin` → GitHub (`git@github.com:Blutomania/SocialGaming.git`)
+- `hf` → HuggingFace (`git@hf.co:spaces/blutomania/SocialGaming`)
+
+HF rejects pushes that contain binary files (PDFs) anywhere in git history.
+The solution is an orphan branch (no history), which avoids the binary problem entirely.
+
+**Standard deploy command (run from owner's machine after syncing main):**
+```bash
+git checkout --orphan hf-deploy
+git add -A
+git commit -m "Deploy to HuggingFace"
+git push hf hf-deploy:main --force
+git checkout main
+git branch -D hf-deploy
+```
+
+**Constraints:**
+- `short_description` in README.md YAML must be ≤ 60 characters
+- PDFs must stay out of git tracking (covered by `.gitignore *.pdf`)
+- Never `git push hf main` directly — the orphan workaround is required
+
 ---
 
 ## Session 8 — March 12, 2026
