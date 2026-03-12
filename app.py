@@ -1,7 +1,9 @@
+import json
 import streamlit as st
 import os
 from anthropic import Anthropic
 from part_registry import load_registry, PART_TYPE_NAMES
+from coherence_validator import check_mystery
 
 # -------------------------
 # Page Config
@@ -47,89 +49,157 @@ def llm(prompt, system="You are a creative mystery game engine. Never reveal the
         return f"Error: {e}"
 
 # -------------------------
-# Mystery Generation — Registry-backed RAG
+# Mystery Generation — Registry-backed RAG → structured JSON
 # -------------------------
 def generate_mystery(user_prompt):
     """
     Sample compatible parts from the registry, then ask Claude to assemble
-    them into a coherent mystery narrative. The parts act as structured
-    constraints — Claude fleshes out the prose but cannot invent a different
-    crime, motive, or red herring from scratch.
+    them into a validated structured JSON mystery. Returns (mystery_dict, recipe).
     """
     parts, recipe = registry.sample_for_generation(target_setting=user_prompt)
 
-    # Build a structured part brief for Claude
-    part_lines = []
-    for part in parts:
-        part_lines.append(f"- {part.part_type.replace('_', ' ').upper()} [{part.source_id}({part.part_index})]: {part.content}")
-    parts_brief = "\n".join(part_lines)
+    parts_block = "\n".join(
+        f"  [{p.label()} — {p.part_type}]: {p.content}"
+        for p in parts
+    )
 
-    mystery_text = llm(f"""
-You are generating a mystery scenario for a detective party game.
+    prompt = f"""\
+You are generating a mystery scenario for a social deduction game with 4 players.
 
-Player prompt: "{user_prompt}"
+SETTING: {user_prompt}
 
-You have been given the following mystery components drawn from real published mystery fiction.
-USE THESE COMPONENTS — do not invent replacements. Adapt them to fit the player's setting,
-but preserve the essence of each element.
+The following atomized parts have been selected from existing mystery literature
+(recipe: {recipe.format()}). Adapt them to the target setting — do not copy verbatim.
 
-MYSTERY COMPONENTS:
-{parts_brief}
+SELECTED PARTS:
+{parts_block}
 
-Write the mystery as an engaging narrative the player reads at the start of the game.
-Structure it as follows:
+QUALITY REQUIREMENTS — every generated mystery MUST satisfy these:
 
-THE CRIME: What happened, how, and what question it poses.
-THE VICTIM: Who they are and why they had enemies.
-THE SETTING: The closed world — where this takes place and why no one can simply leave.
-THE SUSPECTS: Introduce 3-4 suspects drawn from the components above. Make each memorable.
-YOUR ROLE: Address the player directly — they are the investigator entering this scene.
+SETTING:
+  - description must explicitly explain why suspects cannot simply leave (isolation mechanic).
 
-Do NOT reveal the culprit. Plant the red herring naturally. Make the setting vivid.
-""")
+CHARACTERS (include 1 victim, 3–4 suspects, optionally 1–2 witnesses):
+  - alibi: SPECIFIC — state where the person was, with whom or doing what. Never "—" or vague.
+  - secret: CONCRETE FACT (≥ 2 sentences) anchoring interrogation questions.
+  - motive (suspects): specific stake — financial, relational, reputational, or political. Never "—".
+  - occupation: always present; must logically place the character in the closed world.
 
-    return mystery_text, recipe
+EVIDENCE (include at least 6 items total):
+  - At least 2 items with type "physical".
+  - At least 1 item with relevance "red_herring" and type "physical" or "documentary".
+  - At least 2 items with relevance "critical".
+  - description: ≥ 2 sentences; state what the item is, where found, and what it suggests.
+
+SOLUTION:
+  - key_evidence must list at least 2 evidence IDs.
+  - how_to_deduce: step-by-step logic chain (3+ steps).
+
+Generate a complete mystery JSON with this exact structure:
+{{
+  "title": "string",
+  "setting": {{
+    "location": "string",
+    "time_period": "string",
+    "environment": "string",
+    "description": "2–3 sentence atmospheric description including why suspects cannot leave"
+  }},
+  "crime": {{
+    "type": "string",
+    "what_happened": "string",
+    "when": "string",
+    "initial_discovery": "string"
+  }},
+  "characters": [
+    {{
+      "name": "string",
+      "role": "victim | suspect | detective | witness",
+      "occupation": "string",
+      "motive": "string",
+      "alibi": "string",
+      "secret": "string"
+    }}
+  ],
+  "evidence": [
+    {{
+      "id": "E1",
+      "name": "string",
+      "description": "string",
+      "type": "physical | testimonial | circumstantial | documentary",
+      "relevance": "critical | supporting | red_herring"
+    }}
+  ],
+  "solution": {{
+    "culprit": "string",
+    "method": "string",
+    "motive": "string",
+    "key_evidence": ["E1", "E2"],
+    "how_to_deduce": "step-by-step reasoning"
+  }},
+  "gameplay_notes": {{
+    "difficulty": "EASY | MEDIUM | HARD",
+    "estimated_playtime": "string",
+    "key_twists": ["string"]
+  }}
+}}
+
+Return only valid JSON. No commentary outside the JSON block."""
+
+    raw = llm(prompt, system="You are a mystery game engine. Return only valid JSON.")
+    if "```json" in raw:
+        raw = raw.split("```json")[1].split("```")[0].strip()
+    elif "```" in raw:
+        raw = raw.split("```")[1].split("```")[0].strip()
+    mystery_dict = json.loads(raw)
+    mystery_dict["_provenance"] = recipe.to_dict()
+    return mystery_dict, recipe
 
 
-# -------------------------
-# Suspect Extraction
-# -------------------------
-def extract_suspects(mystery):
-    return llm(f"""
-From this mystery, extract the list of suspects (exclude the victim and the detective/player).
-Return ONLY their names, one per line, no bullets, numbers, or extra text.
+def _mystery_to_markdown(m: dict) -> str:
+    """Convert a structured mystery dict to a readable narrative for display."""
+    s = m.get("setting", {})
+    c = m.get("crime", {})
+    chars = m.get("characters", [])
+    victim = next((ch for ch in chars if ch.get("role") == "victim"), None)
+    suspects = [ch for ch in chars if ch.get("role") == "suspect"]
 
-Mystery:
-{mystery}
-""")
-
-# -------------------------
-# Solution Generation
-# -------------------------
-def generate_solution(mystery, user_prompt):
-    return llm(f"""
-Original prompt: {user_prompt}
-
-Mystery:
-{mystery}
-
-Identify the following and return a structured solution:
-- CULPRIT: Who did it, and their means, motive, and opportunity
-- RED HERRINGS: Which clues or characters were planted to mislead
-- ALIBI: What false alibi the culprit used
-- REVEAL: What single piece of evidence definitively breaks the case
-
-Be precise. This is the game engine's internal solution vault.
-""", system="You are the mystery game engine's internal solution vault. Be precise and logical.")
+    lines = [
+        f"## {m.get('title', 'Untitled Mystery')}",
+        "",
+        f"**{s.get('location', '')}** — *{s.get('time_period', '')}*",
+        "",
+        s.get("description", ""),
+        "",
+        "### The Crime",
+        c.get("what_happened", ""),
+        f"*Discovered: {c.get('initial_discovery', '')}*",
+        "",
+    ]
+    if victim:
+        lines += [
+            "### The Victim",
+            f"**{victim['name']}** — {victim.get('occupation', '')}",
+            "",
+        ]
+    if suspects:
+        lines.append("### The Suspects")
+        for su in suspects:
+            lines.append(f"**{su['name']}** — {su.get('occupation', '')}")
+        lines.append("")
+    lines.append("### Your Role")
+    lines.append("You are the investigator. Question the suspects. Examine the evidence. Find the truth.")
+    return "\n".join(lines)
 
 # -------------------------
 # Session State
 # -------------------------
 defaults = {
-    "mystery": "",
+    "mystery": "",        # markdown narrative for display
+    "mystery_dict": None, # full structured dict
     "suspects": [],
     "solution": "",
     "recipe": None,
+    "coherence": None,    # {"passed": bool, "blocking": int, "warnings": int}
     "generated": False,
 }
 for k, v in defaults.items():
@@ -154,15 +224,34 @@ user_prompt = st.text_input(
 
 if st.button("Generate Mystery", disabled=not user_prompt.strip()):
     with st.spinner("Building your case from the archives..."):
-        mystery_text, recipe = generate_mystery(user_prompt)
-        st.session_state.mystery = mystery_text
+        mystery_dict, recipe = generate_mystery(user_prompt)
+        st.session_state.mystery_dict = mystery_dict
+        st.session_state.mystery = _mystery_to_markdown(mystery_dict)
         st.session_state.recipe = recipe.to_dict()
 
-        suspects_raw = extract_suspects(mystery_text)
-        st.session_state.suspects = [s.strip() for s in suspects_raw.split("\n") if s.strip()]
+        # Extract suspects directly from structured characters — no extra LLM call
+        chars = mystery_dict.get("characters", [])
+        st.session_state.suspects = [
+            ch["name"] for ch in chars if ch.get("role") == "suspect"
+        ]
 
-        solution = generate_solution(mystery_text, user_prompt)
-        st.session_state.solution = solution
+        # Solution is already embedded in the dict — no extra LLM call
+        sol = mystery_dict.get("solution", {})
+        st.session_state.solution = (
+            f"CULPRIT: {sol.get('culprit', '?')}\n"
+            f"METHOD: {sol.get('method', '?')}\n"
+            f"MOTIVE: {sol.get('motive', '?')}\n"
+            f"KEY EVIDENCE: {', '.join(sol.get('key_evidence', []))}\n"
+            f"HOW TO DEDUCE: {sol.get('how_to_deduce', '?')}"
+        )
+
+        # Coherence check
+        report = check_mystery(mystery_dict)
+        st.session_state.coherence = {
+            "passed": report.passed,
+            "blocking": report.blocking_count,
+            "warnings": report.warning_count,
+        }
 
         st.session_state.generated = True
 
@@ -181,6 +270,21 @@ if st.session_state.generated:
     with left_col:
         st.subheader("The Case")
         st.markdown(st.session_state.mystery)
+
+        # Coherence badge
+        coh = st.session_state.coherence
+        if coh:
+            if coh["passed"]:
+                st.success(
+                    f"Coherence: PASS — {coh['blocking']} blocking, {coh['warnings']} warnings",
+                    icon="✅",
+                )
+            else:
+                st.error(
+                    f"Coherence: FAIL — {coh['blocking']} blocking issue(s), {coh['warnings']} warnings. "
+                    "This mystery may have logical gaps.",
+                    icon="⚠️",
+                )
 
         # Provenance expander — shows which registry parts were used
         if st.session_state.recipe:
@@ -205,10 +309,23 @@ if st.session_state.generated:
             if st.button("Interrogate"):
                 if question.strip():
                     with st.spinner(f"Interrogating {selected_suspect}..."):
+                        # Pull this character's details for richer in-character replies
+                        chars = (st.session_state.mystery_dict or {}).get("characters", [])
+                        char_data = next((c for c in chars if c["name"] == selected_suspect), {})
+                        char_context = (
+                            f"Role: {char_data.get('role', 'suspect')}\n"
+                            f"Occupation: {char_data.get('occupation', '')}\n"
+                            f"Alibi: {char_data.get('alibi', '')}\n"
+                            f"Secret: {char_data.get('secret', '')}\n"
+                            f"Motive: {char_data.get('motive', '')}"
+                        ) if char_data else ""
                         reply = llm(f"""
 You are {selected_suspect} in this mystery:
 
 {st.session_state.mystery}
+
+Your private character details (do NOT reveal these directly):
+{char_context}
 
 Answer the detective's question in character.
 Be evasive if you are the culprit. Be defensive if you are innocent but suspicious.
