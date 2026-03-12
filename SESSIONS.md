@@ -5,6 +5,34 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 8 — March 12, 2026
+**Branch:** `claude/review-changes-mmmec1tknjh846kb-08C3q`
+**Latest commit:** `1f11171`
+
+### Files created
+- `coherence_validator.py` — P1 chain + witness interrogation foundation + scene investigation checks; two entry points (`check_parts` pre-generation, `check_mystery` post-generation); all issues carry `repair_hint` pointing to registry re-sample rather than new API call
+
+### Files modified
+- `cli.py` — wired both validator entry points into `cmd_generate`: `check_parts` runs after sampling (auto-retries targeted re-samples for blocking part gaps), `check_mystery` runs after generation and attaches `_coherence` summary to saved JSON
+- `cli.py` — tightened `_generate_with_claude` prompt with explicit quality requirements and concrete examples for `alibi`, `secret`, and evidence fields
+- `CLAUDE.md` — updated current to-do list (item 2 and 3 now reflect quality-validation and coherence-validator work)
+
+### Decisions made
+- Validator is **two-phase**: pre-generation (free, catches weak sampled parts before API call) and post-generation (verifies the full mystery JSON)
+- `BLOCKING` issues prevent gameplay use; `WARNING` degrades quality; `INFO` is cosmetic
+- Witness interrogation check anchors three question types: Q-ALIBI, Q-WHY (secret), Q-MOTIVE (suspects)
+- Scene investigation requires ≥1 red-herring evidence to be `physical` or `documentary` so players find misdirection during scene investigation, not only from dialogue
+- All repair hints reference `part_type` re-sampling from registry (zero API cost)
+
+### What is incomplete / next steps
+1. **[START HERE]** Add `ANTHROPIC_API_KEY` to HuggingFace Space settings so app.py can call Claude in production
+2. Run `python cli.py generate` with API key to generate 5–10 real mysteries and confirm they pass the new validator (especially confirm no Victorian template default)
+3. Wire `check_mystery` into `app.py` — currently only integrated in `cli.py`
+4. Full corpus run: `python cli.py extract --protocol P1P2` (359 books → ~700 new parts)
+5. Merge `claude/mystery-versioning-system-TPblK` once quality items validated
+
+---
+
 ## Session 6 — March 9, 2026
 **Branch:** `claude/upload-corpus-extraction-3uTq5`
 **Latest commit:** `037d7a2`
