@@ -1,0 +1,215 @@
+{
+  "title": "The Last Note at the Velvet Cage",
+  "setting": {
+    "location": "The Velvet Cage Jazz Club, 133rd Street, Harlem, New York",
+    "time_period": "1920s, Prohibition Era, a sweltering August night in 1926",
+    "environment": "A basement speakeasy beneath a laundry front, thick with cigarette smoke, spilled gin, and the ghost of a trumpet solo. The air is close and humid, the single staircase exit blocked by a police raid that arrived just after midnight \u2014 no one may leave until the precinct sergeant clears the premises.",
+    "description": "The Velvet Cage is the crown jewel of Harlem's underground circuit: red velvet booths, a battered upright piano, and a back room that runs numbers and illegal hooch. When two plainclothes officers arrived to shake down the owner for back-payments, they found a corpse and locked the club down tight. Every window is barred against rival gangs, the coal-chute is padlocked from outside, and the only door to the street is now guarded by Officer Briggs \u2014 nobody enters, nobody leaves until the detective has his answers."
+  },
+  "crime": {
+    "type": "Murder",
+    "what_happened": "Lena 'Songbird' Dupree, the club's star vocalist, was stabbed once through the heart with a boning knife taken from the kitchen during the midnight break between sets. Her body was discovered slumped in the back storage room among whiskey crates, a single garnet earring torn from her ear and missing.",
+    "when": "Between 12:05 and 12:25 AM on August 14th, 1926, during the twenty-minute intermission between sets.",
+    "initial_discovery": "Barback Clarence Tibbs went to the storage room to fetch a new case of bootleg gin and nearly tripped over Lena's outstretched hand. He screamed, which brought the police raid to an abrupt and unexpected focus."
+  },
+  "characters": [
+    {
+      "name": "Lena 'Songbird' Dupree",
+      "role": "victim",
+      "occupation": "Lead vocalist and part-owner of The Velvet Cage",
+      "motive": "N/A",
+      "alibi": "N/A \u2014 deceased",
+      "secret": "Lena had secretly been skimming fifteen percent of the club's nightly liquor revenue into a private account for eight months, intending to buy out her business partner and cut him out entirely. She had also been secretly carrying on a correspondence with a federal Prohibition agent, offering club information in exchange for personal immunity."
+    },
+    {
+      "name": "Roosevelt 'Rosy' Beaumont",
+      "role": "suspect",
+      "occupation": "Co-owner and manager of The Velvet Cage",
+      "motive": "Financial and reputational ruin: Lena was on the verge of legally dissolving their partnership using a contract clause he didn't know she'd had inserted by a lawyer. He stood to lose the club, his income, and his standing in Harlem society overnight.",
+      "alibi": "Claims he was at the bar pouring drinks and schmoozing patrons during the intermission, and that bandleader Duke Farris saw him there the whole time. However, Duke's account only covers the first ten minutes \u2014 Rosy's whereabouts for the final fifteen are unverified.",
+      "secret": "Rosy discovered Lena's skimming scheme three days before the murder when he found a ledger discrepancy; he confronted her privately in his office that same afternoon and they had a violent argument that left a crack in the office doorframe. He told no one because admitting the theft would expose the club's illegal revenue to the police."
+    },
+    {
+      "name": "Madeline 'Maddie' Voss",
+      "role": "suspect",
+      "occupation": "Club pianist and arranger",
+      "motive": "Jealousy and creative theft: Lena had been performing four original songs composed entirely by Maddie under Lena's name on promotional materials, collecting songwriter royalties that should have gone to Maddie, and blocking Maddie from any recording contract by telling producers she was 'unreliable.'",
+      "alibi": "States she remained on the bandstand the entire intermission, tuning the upright piano and reviewing sheet music. Trumpet player Hector Vidal confirms she was there when he returned from the bathroom, but admits he was gone for at least twelve minutes.",
+      "secret": "Maddie had received a written offer from the Okeh Records talent scout present at the club that very evening \u2014 the same scout Lena had already telephoned earlier in the day to poison Maddie's reputation. Maddie intercepted Lena's message through the club telephone operator and knew exactly what Lena had said."
+    },
+    {
+      "name": "Calvin Stroud",
+      "role": "suspect",
+      "occupation": "Numbers runner and back-room enforcer for the Harlem syndicate, operating out of the club's back room",
+      "motive": "Self-preservation: Lena's back-channel communication with the federal Prohibition agent threatened to expose the syndicate's entire numbers operation, which ran through the club. Calvin had been explicitly warned by his boss that any informant was to be handled 'permanently and quietly.'",
+      "alibi": "Claims he was in the locked back room all evening counting the night's numbers receipts with associate Darnell Pope. Darnell confirms this but is Calvin's subordinate and widely known to do whatever Calvin says.",
+      "secret": "Calvin was seen by barback Clarence Tibbs emerging from the corridor near the storage room at approximately 12:18 AM \u2014 not from the back-room door as he claims. Calvin told Clarence it was none of his business and gave him two dollars to forget it, which Clarence pocketed but did not forget."
+    },
+    {
+      "name": "Hector Vidal",
+      "role": "witness",
+      "occupation": "Trumpet player and bandleader's second, employed by The Velvet Cage for the summer season",
+      "motive": "None directly, though he is concealing an observation out of fear of Calvin Stroud's reputation for violence",
+      "alibi": "Was in the men's washroom at the back of the club for roughly twelve minutes during the intermission; returned to the bandstand and saw Maddie at the piano. Confirmed by the washroom's location adjacent to the storage room corridor.",
+      "secret": "While walking to the washroom, Hector glimpsed Calvin Stroud speaking in hushed, angry tones with Lena outside the storage room door at approximately 12:10 AM. He did not come forward initially because Calvin had previously threatened a musician who crossed him, and Hector's family depends on his weekly wage."
+    },
+    {
+      "name": "Clarence Tibbs",
+      "role": "witness",
+      "occupation": "Barback and general club hand, employed six months prior",
+      "motive": "None \u2014 though he accepted a bribe, he ultimately cooperates with the detective",
+      "alibi": "Was stacking clean glasses behind the bar from roughly 11:55 PM until he was sent to the storage room for gin at 12:25 AM; confirmed by head bartender Roy Elkins who was present the entire time except for a brief moment.",
+      "secret": "Clarence took two dollars from Calvin Stroud to stay quiet about seeing him near the storage room corridor at 12:18 AM. He is ashamed and frightened, and initially tells the detective he saw nothing unusual, but the bribe money \u2014 two crisp one-dollar bills \u2014 is still in his breast pocket."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "Boning Knife with Partial Palm Print",
+      "description": "A ten-inch boning knife from the club kitchen, found beside Lena's body with her blood along the full length of the blade. The wooden handle bears a smeared but partial palm print on the bolster that does not match Lena's hand \u2014 the size and ridge pattern are consistent with a large adult male hand.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E2",
+      "name": "Lena's Torn Letter Fragment",
+      "description": "A scrap of cream-colored notepaper found clutched in Lena's left hand, torn as though seized or pulled away during a struggle. The surviving fragment reads '...confirm receipt of club ledger pages by Thursday. Agent R. H\u2014' \u2014 strongly suggesting Lena was actively cooperating with federal authorities.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E3",
+      "name": "Two Crisp Dollar Bills in Clarence's Pocket",
+      "description": "Two consecutively serial-numbered one-dollar bills found in Clarence Tibbs's breast pocket when the detective asks him to empty his pockets. The bills are brand-new and notably out of place for a barback earning modest wages; when pressed, Clarence admits Calvin gave them to him near the storage corridor at 12:18 AM.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E4",
+      "name": "Hector's Reluctant Testimony",
+      "description": "Under patient questioning by the detective \u2014 and after being assured that Calvin would be held in the room \u2014 Hector describes seeing Calvin and Lena arguing in hushed voices outside the storage room at approximately 12:10 AM. He states Calvin's left hand was gripping Lena's wrist and she was pulling away.",
+      "type": "testimonial",
+      "relevance": "critical"
+    },
+    {
+      "id": "E5",
+      "name": "Rosy's Private Ledger with Red Annotations",
+      "description": "A cloth-bound accounting ledger found locked in Rosy Beaumont's office desk, retrieved with the detective's authority. Red ink annotations in Rosy's handwriting on the final three pages circle discrepancies and write 'LENA \u2014 15%' with a total sum of $2,340 and the notation 'confronted 8/11' \u2014 three days before the murder.",
+      "type": "documentary",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E6",
+      "name": "Missing Garnet Earring",
+      "description": "One of Lena's garnet drop earrings is absent \u2014 the remaining earring is still in her left ear, but the right ear shows a small abrasion suggesting the second earring was pulled free with some force. A garnet earring was found wedged between the floorboards of the back-room numbers office, roughly fifteen feet from the storage room, with a fresh smear of blood on its gold post.",
+      "type": "physical",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E7",
+      "name": "Maddie's Intercepted Telephone Note",
+      "description": "A pink telephone-message slip found in Maddie Voss's coat pocket, written in the hand of the club's telephone operator, reading: 'Miss Dupree called Okeh Records at 9 PM \u2014 told Mr. Spence that M. Voss drinks on the job and missed rehearsals.' The note gives Maddie a clear and documented grievance against Lena on the very night of the murder.",
+      "type": "documentary",
+      "relevance": "red_herring"
+    },
+    {
+      "id": "E8",
+      "name": "Crack in Rosy's Office Doorframe",
+      "description": "A fresh split in the wooden doorframe of Rosy's private office, consistent with a door being slammed with significant force very recently \u2014 paint chips are still on the floor and have not yet been swept. The office is adjacent to the corridor leading to the storage room, suggesting the argument Rosy described as 'calm' was anything but.",
+      "type": "physical",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E9",
+      "name": "Calvin's Clean Right Hand vs. Kitchen Log",
+      "description": "When Calvin Stroud's hands are examined, his right hand shows no unusual marks, but his left palm has a faint reddish pressure-mark consistent with gripping a narrow handle tightly. The kitchen log kept by the cook shows the boning knife was present at 11:45 PM during a brief inventory check \u2014 after which Calvin was seen passing the kitchen doorway.",
+      "type": "circumstantial",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E10",
+      "name": "Darnell Pope's Shaky Alibi Confirmation",
+      "description": "Darnell Pope, Calvin's subordinate, confirms Calvin was in the back room 'the whole time,' but when asked what they discussed, he gives vague answers and cannot describe a single number total from the evening's count despite claiming to have counted alongside Calvin. His corroboration visibly collapses under basic follow-up questions.",
+      "type": "testimonial",
+      "relevance": "supporting"
+    }
+  ],
+  "solution": {
+    "culprit": "Calvin Stroud",
+    "method": "Calvin lured Lena into the storage room corridor under the pretense of urgent syndicate business at the start of the intermission, then followed her inside, seized the boning knife he had already retrieved from the kitchen, and stabbed her once through the heart. He tore the letter from her hand, pocketed it partially \u2014 the fragment remained \u2014 and locked the storage room from outside using the barrel-bolt before returning through the back corridor. He then encountered Clarence Tibbs in the hallway, realized he had been partially seen, and bribed him on the spot.",
+    "motive": "Calvin had been ordered by the Harlem syndicate to permanently silence Lena after intercepting word that she was feeding the club's operational details to a federal Prohibition agent in exchange for immunity. Exposure would have dismantled the numbers operation and cost Calvin his position \u2014 and likely his life at his boss's hands.",
+    "key_evidence": [
+      "E2",
+      "E3",
+      "E4"
+    ],
+    "how_to_deduce": "Step 1 \u2014 Establish the victim's federal cooperation: The torn letter fragment (E2) found in Lena's hand reveals she was actively passing information to a Prohibition agent, giving the syndicate's enforcer Calvin a life-or-death motive that no other suspect possesses at the same magnitude.\n\nStep 2 \u2014 Place Calvin at the scene during the murder window: Hector's testimony (E4) puts Calvin physically gripping Lena's wrist outside the storage room at 12:10 AM \u2014 directly contradicting his alibi of being locked in the back room all night. This breaks his alibi and places him at the murder location within the critical window.\n\nStep 3 \u2014 Expose the bribe as consciousness of guilt: The two consecutive dollar bills in Clarence's pocket (E3), combined with Clarence's admission that Calvin handed them over near the storage corridor at 12:18 AM, proves Calvin was in that corridor after the murder occurred and actively suppressed a witness \u2014 behavior that only makes sense if he had committed the crime.\n\nStep 4 \u2014 Eliminate the red herring suspect: Although Maddie's telephone note (E7) gives her a documented motive and makes her look most immediately suspicious, her alibi for at least part of the window is corroborated, she had no access to or knowledge of the federal letter, and the palm print on the knife (E1) is consistent with a large male hand \u2014 not Maddie's. Rosy's ledger (E5) shows he had motive and a recent confrontation, but the earring found in the numbers office (E6) points toward the syndicate's operational space, and Darnell's collapsing alibi corroboration (E10) further undermines Calvin's story rather than Rosy's.\n\nStep 5 \u2014 Confirm with physical corroboration: Calvin's left palm mark (E9), consistent with gripping a knife handle hard, combined with the kitchen log showing the knife was present just before Calvin passed by, closes the chain: Calvin took the knife, used it, and was seen fleeing the scene by two separate witnesses whose silence he could only partially buy."
+  },
+  "gameplay_notes": {
+    "difficulty": "MEDIUM",
+    "estimated_playtime": "75\u2013100 minutes",
+    "key_twists": [
+      "The telephone message note in Maddie's pocket makes her look like the most obvious suspect for the first half of the game, as she has a written, documented grievance from the same evening \u2014 but the physical evidence ultimately exonerates her.",
+      "Clarence's bribe money seems like it might implicate him as an accomplice, but it is actually the most damning evidence against Calvin once Clarence confesses the circumstances under which he received it.",
+      "Rosy's ledger reveals Lena was stealing from him and they argued violently just days before \u2014 a strong motive that keeps him as a viable suspect until Calvin's alibi breaks, preventing the group from converging too early.",
+      "The federal cooperation letter fragment suggests an outside force ordered the killing, which the players may initially interpret as an unseen crime boss \u2014 they must realize Calvin was acting on standing syndicate orders without any explicit command given that specific night."
+    ]
+  },
+  "_meta": {
+    "num_players": 4,
+    "setting_input": "1920s Harlem, jazz club after hours, Prohibition era"
+  },
+  "_provenance": {
+    "recipe": "corpus_0083_ebo(1) + corpus_0122_ebo(2) + corpus_0048_ebo(3) + corpus_0046_ebo(4) + corpus_0253_ebo(5) + corpus_0143_ebo(6) + corpus_0066_ebo(7) + corpus_0178_ebo(8)",
+    "slots": [
+      {
+        "source_id": "corpus_0083_ebo",
+        "part_index": 1,
+        "part_type": "crime_type"
+      },
+      {
+        "source_id": "corpus_0122_ebo",
+        "part_index": 2,
+        "part_type": "setting_element"
+      },
+      {
+        "source_id": "corpus_0048_ebo",
+        "part_index": 3,
+        "part_type": "motive"
+      },
+      {
+        "source_id": "corpus_0046_ebo",
+        "part_index": 4,
+        "part_type": "suspect_archetype"
+      },
+      {
+        "source_id": "corpus_0253_ebo",
+        "part_index": 5,
+        "part_type": "red_herring"
+      },
+      {
+        "source_id": "corpus_0143_ebo",
+        "part_index": 6,
+        "part_type": "reveal_mechanic"
+      },
+      {
+        "source_id": "corpus_0066_ebo",
+        "part_index": 7,
+        "part_type": "social_dynamic"
+      },
+      {
+        "source_id": "corpus_0178_ebo",
+        "part_index": 8,
+        "part_type": "evidence_type"
+      }
+    ],
+    "target_setting": "1920s Harlem, jazz club after hours, Prohibition era",
+    "generated_title": ""
+  },
+  "_coherence": {
+    "passed": true,
+    "blocking": 0,
+    "warnings": 0,
+    "witness_gaps": []
+  }
+}

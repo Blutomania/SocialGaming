@@ -1,0 +1,193 @@
+{
+  "title": "The Silk Road Betrayal",
+  "setting": {
+    "location": "The Han of the Golden Crescent, adjacent to the Grand Bazaar, Ottoman Istanbul",
+    "time_period": "1520, reign of Suleiman the Magnificent",
+    "environment": "A fortified caravanserai whose heavy iron gates have been locked by order of the Janissary garrison following the discovery of a body; the labyrinthine bazaar corridors are sealed at every exit by armed guards until the A\u011fa of the Janissaries completes his inquiry. No merchant, trader, or servant may depart until the killer is identified, as the victim carried documents touching imperial security.",
+    "description": "The Han of the Golden Crescent is a three-storied stone caravanserai surrounding a central courtyard fountain, its arcaded galleries piled with bolts of Bursa silk, Venetian glass, and spice sacks from Alexandria. Smoke from a dozen braziers mingles with the scent of saffron and horse dung, and the cries of the bazaar have been replaced by an uneasy silence since the Janissary gates slammed shut at the second hour after sunrise. Until the A\u011fa's investigator absolves or accuses, every soul inside is a prisoner of the Sultan's justice."
+  },
+  "crime": {
+    "type": "Murder concealing treason \u2014 a merchant is stabbed to death to silence him before he can deliver evidence of an imperial official selling Ottoman naval route maps to Venetian agents",
+    "what_happened": "Halil the silk merchant was found stabbed through the throat with a narrow-bladed knife in the locked storage cellar beneath the han. He had in his possession a sealed document pouch containing copied naval charts of the Aegean fleet's patrol routes, which he intended to hand to the Janissary A\u011fa as proof of treason. The killer reached him first, took the original incriminating ledger, and left only the copied charts behind to obscure what was stolen.",
+    "when": "Between the call to Fajr prayer and the opening of the bazaar gates, approximately two hours before dawn",
+    "initial_discovery": "The han's water-carrier boy, Mehmed, descended to the cellar at dawn to fill the courtyard urns and found Halil's body slumped against a spice chest, a single deep stab wound in his throat and a brass oil lamp still burning beside him. The Janissary garrison was summoned immediately and sealed the han."
+  },
+  "characters": [
+    {
+      "name": "Halil ibn Yusuf",
+      "role": "victim",
+      "occupation": "Prosperous silk merchant from Bursa, lodging in the han for the spring trading season",
+      "motive": "N/A",
+      "alibi": "N/A \u2014 victim",
+      "secret": "Halil had secretly been recruited three months ago by the Janissary intelligence service to observe suspicious transactions in the han. He had compiled a ledger recording payments made to a high-ranking official in exchange for naval patrol charts, and he arranged a pre-dawn meeting in the cellar to hand the evidence over without being observed."
+    },
+    {
+      "name": "Kas\u0131m \u00c7elebi",
+      "role": "suspect",
+      "occupation": "Imperial Customs Registrar assigned to the Grand Bazaar, responsible for taxing imported goods passing through the han",
+      "motive": "Kas\u0131m has been selling copied Ottoman Aegean naval patrol routes to a Venetian factor for three years, receiving payments disguised as import-tax receipts. If Halil's ledger reaches the A\u011fa, Kas\u0131m faces execution for treason. He had to destroy the ledger and its bearer before dawn.",
+      "alibi": "Claims he was in his second-floor office chamber reviewing customs manifests by candlelight from midnight until the call to prayer, with only his personal scribe present \u2014 but the scribe is in his financial debt and the alibi is coached.",
+      "secret": "Kas\u0131m carries a second, personal seal ring engraved with a Venetian lion motif \u2014 a gift from the factor \u2014 which he wears on his right hand beneath a leather glove. He was seen descending the cellar stairs by Mehmed the water-carrier two hours before the body was found, though Mehmed has been bribed with a silver coin to stay silent about this."
+    },
+    {
+      "name": "Zara Hatun",
+      "role": "suspect",
+      "occupation": "Widowed spice trader from Cairo, occupying a ground-floor stall in the han and lodging in the upper gallery",
+      "motive": "Halil owed Zara a substantial unpaid debt from a collapsed joint silk-and-spice venture the previous year, and she recently discovered he had been falsifying their shared accounts to hide his profits. She confronted him publicly in the bazaar two days before his death, threatening to take her complaint before the Kad\u0131 court.",
+      "alibi": "States she was in her stall inventory-checking her saffron and pepper stock from midnight until dawn, witnessed by her young female assistant Fatima, who corroborates her account consistently.",
+      "secret": "Zara was secretly meeting a rival merchant in the cellar the week before the murder to negotiate buying Halil's debt from a moneylender \u2014 she knew the cellar layout and the hidden key location behind the loose stone in the east wall. She concealed this because it would reveal she had planned to ruin Halil financially rather than harm him physically."
+    },
+    {
+      "name": "Brother Domenico",
+      "role": "suspect",
+      "occupation": "Genoese cloth factor posing as a travelling Franciscan friar, lodging in the han as a guest of a Christian merchant community",
+      "motive": "Domenico is the Venetian intelligence factor who pays Kas\u0131m for the naval charts. He was present in the han to collect the latest packet of route maps. He fears that if Halil's documents survive or if Kas\u0131m is arrested and talks, his entire network and his own life will be forfeit.",
+      "alibi": "Claims he spent the entire night in the upper gallery chapel room in private prayer and was observed there by two other Christian merchants at the midnight hour, though neither can confirm he remained until dawn.",
+      "secret": "Domenico carries a hollow-carved wooden cross containing a cipher key matching the encoding used on the naval chart copies found beside Halil's body. He attempted to burn a small piece of paper in his room's brazier shortly after the han was sealed, and ash residue in an unusual pattern remains in his grate."
+    },
+    {
+      "name": "Mehmed the Water-Carrier",
+      "role": "witness",
+      "occupation": "Han servant boy, age approximately thirteen, responsible for filling urns from the cellar cistern each morning",
+      "motive": "N/A \u2014 witness",
+      "alibi": "Was sleeping in the servants' loft until shortly before dawn, then descended to the cellar per his daily duty, at which point he discovered the body. Three other han servants confirm he was in the loft until that time.",
+      "secret": "Mehmed saw Kas\u0131m \u00c7elebi descend the cellar stairs in the pre-dawn darkness but accepted a silver ak\u00e7e coin from Kas\u0131m afterward and agreed to say nothing. He is frightened and will reveal this if questioned compassionately or shown that Kas\u0131m cannot harm him while the han is sealed."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "The Stabbing Knife",
+      "description": "A narrow stiletto-style blade approximately eight inches long, found beneath a spice chest three feet from the body, partially covered by scattered peppercorns as if kicked away or dropped hastily. The blade style is distinctly European \u2014 a Venetian misericorde \u2014 not a form commonly carried by Ottoman merchants or officials, which initially suggests a foreign hand committed the murder.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E2",
+      "name": "Kas\u0131m's Venetian Seal Ring Impression",
+      "description": "Pressed into the soft wax seal of the stolen ledger's carrying tube \u2014 which the killer dropped in haste near the cellar drain \u2014 is a partial impression of a ring engraved with a Venetian winged lion. The impression is clear enough to match to a ring currently worn by Kas\u0131m \u00c7elebi, identifying him as the person who last handled the tube before attempting to flee with it.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E3",
+      "name": "Mehmed's Silver Ak\u00e7e Coin",
+      "description": "A single freshly-minted silver ak\u00e7e coin found in Mehmed the water-carrier's sandal lining when he fidgets nervously and it falls out during questioning. Ottoman servants of his station are paid in copper, and a silver coin represents nearly a week's wage. When pressed, Mehmed admits it was given to him by Kas\u0131m \u00c7elebi in exchange for his silence about what he saw on the cellar stairs.",
+      "type": "physical",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E4",
+      "name": "Brother Domenico's Burned Paper",
+      "description": "In the brazier of Domenico's upper-gallery room, investigators find ash residue with a distinctive pattern: small rectangular fragments suggesting a folded letter, and traces of a brown ink that has not fully combusted. A cryptographer could potentially reconstruct partial text, but even without reconstruction the act of burning documents immediately after the han was sealed indicates guilty knowledge of something connected to the crime.",
+      "type": "physical",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E5",
+      "name": "Zara Hatun's Unpaid Debt Record",
+      "description": "A notarized debt document found in the han's lockbox, lodged there by Zara herself three weeks prior as a formal grievance against Halil for 400 gold sultani. The document is stamped by the Kad\u0131 court, confirming the public nature of their financial dispute. Investigators initially fixate on this as primary motive for the murder, especially combined with Zara's known argument with Halil two days earlier.",
+      "type": "documentary",
+      "relevance": "red_herring"
+    },
+    {
+      "id": "E6",
+      "name": "The Copied Naval Charts",
+      "description": "Seven sheets of vellum found in an open document pouch beside Halil's body, each bearing carefully copied diagrams of Aegean coastal patrol routes with Ottoman fleet timing notations. These are the copies Halil prepared to demonstrate what he had discovered; the original ledger of payments is missing, stolen by the killer. The charts confirm the existence of a treason plot and make this murder a matter of state security rather than personal grievance.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E7",
+      "name": "The Hollow Wooden Cross",
+      "description": "Found among Brother Domenico's personal effects during a search of his room, a carved wooden crucifix of ordinary appearance that, when examined closely, reveals a hidden compartment in the base containing a small rolled parchment with a substitution cipher key. The cipher matches the encoding notations found on the margins of the stolen naval charts, directly connecting Domenico to the espionage network and explaining why Kas\u0131m was motivated to silence Halil before the charts could be authenticated.",
+      "type": "physical",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E8",
+      "name": "The Scribe's Coached Testimony",
+      "description": "Kas\u0131m's personal scribe, when interviewed separately from his master and informed that lying to a Janissary investigator carries its own punishment, reveals that Kas\u0131m woke him at the second hour before dawn specifically to instruct him on what to say about the night's activities. The scribe admits Kas\u0131m left the office chamber for an unaccounted period of approximately one hour during the pre-dawn darkness, precisely the window in which the murder occurred.",
+      "type": "testimonial",
+      "relevance": "critical"
+    }
+  ],
+  "solution": {
+    "culprit": "Kas\u0131m \u00c7elebi",
+    "method": "Kas\u0131m descended to the cellar under pretense of conducting an early customs inspection, using the hidden key behind the east wall stone \u2014 knowledge he had from prior secret meetings with Domenico in that same cellar. He confronted Halil, who had arrived early to wait for the Janissary contact, and stabbed him through the throat with the Venetian stiletto provided by Domenico for exactly such an emergency. He seized the ledger of payments from Halil's satchel but in his haste dropped the sealed document tube near the drain, leaving the wax impression of his ring. He bribed Mehmed on his way back upstairs.",
+    "motive": "Kas\u0131m had been selling Ottoman Aegean naval patrol routes to the Venetian intelligence network represented by Brother Domenico for three years, receiving substantial payments that funded a hidden second household outside the city walls. Halil's compiled ledger would have proven these transactions conclusively, resulting in Kas\u0131m's execution for treason against the Sultan. Killing Halil and destroying the ledger was the only way to eliminate the evidence before it reached Janissary hands.",
+    "key_evidence": [
+      "E2",
+      "E8"
+    ],
+    "how_to_deduce": "Step 1 \u2014 Establish that this is a treason-motivated killing, not a personal dispute: The naval charts (E6) found beside the body prove Halil was acting as an intelligence informant, eliminating simple merchant rivalry as a motive and directing suspicion toward those with a stake in suppressing state secrets. This rules out Zara Hatun despite her debt motive, because she had no knowledge of or connection to naval intelligence matters. Step 2 \u2014 Identify who had access, opportunity, and a treason connection: The Venetian stiletto (E1) initially points to Domenico as a foreign agent, but Domenico lacks direct access to the cellar and has a partial alibi for the midnight hour. The hollow cross cipher key (E7) confirms Domenico as the Venetian factor, but the cipher matches chart annotations \u2014 meaning Kas\u0131m, who provided those charts, is the source and the one most endangered by Halil's evidence. Step 3 \u2014 Break the false alibi: The scribe's revised testimony (E8) destroys Kas\u0131m's alibi by confirming he was absent from his office for one hour during the exact pre-dawn window of the murder, and that the alibi was constructed after Kas\u0131m woke the scribe specifically to coach him. Step 4 \u2014 Place Kas\u0131m physically at the scene: The wax impression of the Venetian lion seal ring (E2) on the dropped document tube connects Kas\u0131m directly to the stolen ledger and proves he handled it in the cellar. Combined with Mehmed's revelation (E3) that Kas\u0131m paid him silver to stay silent about seeing him on the cellar stairs, this places Kas\u0131m at the scene at the time of death. Step 5 \u2014 Confirm the complete picture: Kas\u0131m possessed Venetian-connected materials (the ring, a gift from Domenico), had the means (a Venetian blade supplied through Domenico's network), had a one-hour unaccounted gap, was seen at the cellar stairs, bribed a witness, and dropped physical evidence bearing his own seal \u2014 the convergence of E2 and E8 proves guilt beyond reasonable doubt, with E3 and E7 providing the motive framework and network context."
+  },
+  "gameplay_notes": {
+    "difficulty": "HARD",
+    "estimated_playtime": "75\u201390 minutes",
+    "key_twists": [
+      "The Venetian stiletto and Brother Domenico's obvious foreign-agent status create a powerful red herring directing players toward the friar as the killer, when Domenico is guilty of espionage but not of the actual murder.",
+      "Zara Hatun's documented debt grievance and public argument with the victim make her appear to be the primary suspect in a simple robbery-murder, completely obscuring the treason dimension of the crime until players examine the naval charts carefully.",
+      "Mehmed the water-carrier is the key witness but begins the game lying due to his bribe; players must create a safe environment for him to tell the truth, rewarding empathetic interrogation over aggressive accusation.",
+      "The real evidence against Kas\u0131m \u2014 the wax seal impression on the dropped tube \u2014 is easily overlooked because investigators are drawn to the knife and the charts first, and the tube itself looks like an ordinary courier container.",
+      "Kas\u0131m's high-ranking imperial position (Customs Registrar) invokes the military-hierarchy dynamic, making players psychologically reluctant to accuse an official over a travelling widow or a foreign friar."
+    ]
+  },
+  "_meta": {
+    "num_players": 4,
+    "setting_input": "Ottoman Istanbul, 1520, Grand Bazaar and adjacent hans"
+  },
+  "_provenance": {
+    "recipe": "corpus_0159_ebo(1) + corpus_0090_ebo(2) + corpus_0175_ebo(3) + corpus_0301_ebo(4) + corpus_0089_ebo(5) + corpus_0124_ebo(6) + corpus_0208_ebo(7) + corpus_0258_ebo(8)",
+    "slots": [
+      {
+        "source_id": "corpus_0159_ebo",
+        "part_index": 1,
+        "part_type": "crime_type"
+      },
+      {
+        "source_id": "corpus_0090_ebo",
+        "part_index": 2,
+        "part_type": "setting_element"
+      },
+      {
+        "source_id": "corpus_0175_ebo",
+        "part_index": 3,
+        "part_type": "motive"
+      },
+      {
+        "source_id": "corpus_0301_ebo",
+        "part_index": 4,
+        "part_type": "suspect_archetype"
+      },
+      {
+        "source_id": "corpus_0089_ebo",
+        "part_index": 5,
+        "part_type": "red_herring"
+      },
+      {
+        "source_id": "corpus_0124_ebo",
+        "part_index": 6,
+        "part_type": "reveal_mechanic"
+      },
+      {
+        "source_id": "corpus_0208_ebo",
+        "part_index": 7,
+        "part_type": "social_dynamic"
+      },
+      {
+        "source_id": "corpus_0258_ebo",
+        "part_index": 8,
+        "part_type": "evidence_type"
+      }
+    ],
+    "target_setting": "Ottoman Istanbul, 1520, Grand Bazaar and adjacent hans",
+    "generated_title": ""
+  },
+  "_coherence": {
+    "passed": true,
+    "blocking": 0,
+    "warnings": 1,
+    "witness_gaps": []
+  }
+}

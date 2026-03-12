@@ -1,0 +1,200 @@
+{
+  "title": "Schatten am Checkpoint",
+  "setting": {
+    "location": "Checkpoint Bravo, East Berlin border crossing station, Dreilinden",
+    "time_period": "November 1973, 02:15 AM",
+    "environment": "A fortified Soviet-controlled checkpoint building flanked by watchtowers, razor wire, and floodlights. Sleet hammers the corrugated roof. A lone telephone line to headquarters has been cut by the storm.",
+    "description": "The checkpoint is a sealed administrative block \u2014 one entry gate, one exit gate, both locked down after a body was found during a routine shift change. Soviet protocol demands that no personnel may depart until a senior officer authorizes clearance, and the only officer with that authority, Hauptmann Richter, is himself a suspect. A blown transformer has knocked out radio contact with East Berlin HQ, meaning all four individuals present are trapped together until dawn when a military vehicle is scheduled to arrive."
+  },
+  "crime": {
+    "type": "Murder \u2014 staged as a defection accident",
+    "what_happened": "Dieter Wolff, a Stasi courier carrying a microfilm canister, was found dead in the document-processing room with a single blunt-force wound to the back of the skull. His death was arranged to look like he slipped on the wet floor and struck his head on the iron filing cabinet, but the angle of the wound and a missing microfilm canister reveal it was murder. The canister \u2014 containing names of double agents working for West German intelligence \u2014 has vanished from his courier satchel.",
+    "when": "Between 01:30 AM and 02:00 AM, during a scheduled 30-minute identity verification recess when the main hall was officially empty",
+    "initial_discovery": "Border guard Ilse Brenner found Wolff face-down near the filing cabinet when she returned from the outer gatehouse at 02:10 AM and noticed the document-processing room light was still burning."
+  },
+  "characters": [
+    {
+      "name": "Dieter Wolff",
+      "role": "victim",
+      "occupation": "Stasi courier, Level 2 \u2014 authorized to transport sealed microfilm between regional offices under military escort",
+      "motive": "N/A",
+      "alibi": "N/A \u2014 victim",
+      "secret": "Wolff had secretly been photographing duplicate copies of the microfilm contents for his own insurance file, intending to use them as leverage to negotiate his own eventual defection to the West. A second, smaller canister was sewn into the lining of his coat \u2014 unknown to his killer."
+    },
+    {
+      "name": "Hauptmann Ernst Richter",
+      "role": "suspect",
+      "occupation": "Soviet-liaison checkpoint commander, responsible for authorizing all personnel crossings during the night shift",
+      "motive": "Richter is one of the double agents named on the microfilm. If the canister reached East Berlin HQ, his identity as a BND asset would be exposed and he would be executed. Eliminating Wolff and destroying the film was the only way to protect himself.",
+      "alibi": "Claims he was in his private command office reviewing transit logs from 01:25 AM to 02:05 AM, alone, with the door locked from the inside \u2014 no corroborating witness.",
+      "secret": "Richter has been passing low-level troop movement data to West German intelligence for eighteen months in exchange for a guaranteed extraction promise that has never materialized. He carries a personal cipher pad hidden inside a hollowed-out copy of Lenin's collected works on his office shelf, which would immediately identify him as a Western asset if found."
+    },
+    {
+      "name": "Ilse Brenner",
+      "role": "suspect",
+      "occupation": "Border guard, outer gatehouse, responsible for document stamping and physical searches of outbound personnel",
+      "motive": "Brenner's estranged husband crossed illegally to the West in 1971 and she has been under low-level Stasi surveillance ever since. She learned that Wolff's microfilm contained a report recommending her formal arrest and interrogation. Destroying the canister would remove the only documented basis for her detention.",
+      "alibi": "States she was at the outer gatehouse booth stamping a transit manifest for a Soviet military truck from 01:20 AM until 02:10 AM; the truck's departure log exists but shows only her stamp, with no driver counter-signature \u2014 an irregularity she cannot explain.",
+      "secret": "Brenner had read the header summary of Wolff's manifest during his arrival check-in and recognized her own Stasi file number listed as an attachment. She confronted Wolff quietly in the hallway at 01:15 AM, demanding he tell her what the file contained, and two witnesses \u2014 if pressed \u2014 heard raised voices near the document room before the recess began."
+    },
+    {
+      "name": "Pavel Sukhov",
+      "role": "suspect",
+      "occupation": "KGB liaison officer, temporarily assigned to Checkpoint Bravo to oversee the microfilm's chain of custody on behalf of Moscow Centre",
+      "motive": "Sukhov was sent not merely to escort the film but to intercept it before it reached East German hands \u2014 Moscow Centre suspects the Stasi is running an unauthorized operation that embarrasses Soviet intelligence, and Sukhov was ordered to acquire the canister and return it directly to KGB archives, bypassing the Stasi entirely. Wolff refused to hand it over without written authorization, leaving Sukhov with no legal recourse.",
+      "alibi": "Says he was in the staff canteen eating a late meal from 01:15 AM to 02:00 AM; a half-eaten bowl of borscht was indeed found on the canteen table, but the canteen has a rear corridor that connects directly to the document-processing room in under ninety seconds.",
+      "secret": "Sukhov carries a forged transfer order bearing a Stasi colonel's signature \u2014 the forgery was prepared by KGB technical services and would expose an active Moscow deception operation against the East Germans if examined by a document expert. He attempted to present this order to Wolff at 01:00 AM and was refused, after which he was seen by Brenner pacing the corridor outside the document room."
+    },
+    {
+      "name": "Karl Metz",
+      "role": "witness",
+      "occupation": "Night-shift maintenance technician, responsible for generator upkeep and building repairs at the checkpoint",
+      "motive": "N/A \u2014 witness only",
+      "alibi": "Was in the transformer substation room from 00:50 AM onward attempting to restore power after the blown transformer, visibly covered in electrical grease and documented by a maintenance log he completed in real time.",
+      "secret": "Metz served two years in Stasi informant capacity under the code name LERCHE and was assigned to monitor Richter specifically. He observed Richter leave the command office at 01:35 AM through a window while walking back from the substation, but said nothing initially because he feared Richter would expose his informant past to the other guards, destroying his civilian cover."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "Wolff's Courier Satchel \u2014 Missing Canister Slot",
+      "description": "Wolff's official leather satchel was found beside his body with its sealed microfilm compartment open and empty. The interior foam lining shows a clean circular impression where a standard 16mm canister was seated, confirming the canister was present on arrival but removed after death. This immediately establishes that the murder was motivated by theft of the film rather than personal grievance.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E2",
+      "name": "Richter's Cipher Pad",
+      "description": "A hand-sized one-time cipher pad discovered inside the hollowed spine of a Lenin volume on Richter's office shelf during a sweep of the command room. The pad uses an encoding system consistent with BND West German field communications, not Soviet or East German formats. Its presence proves Richter maintains an active covert communications channel with a Western intelligence service.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E3",
+      "name": "Metz's Maintenance Log \u2014 Timestamp Entry",
+      "description": "A handwritten maintenance log recovered from the substation room records Metz's activities in ten-minute intervals. The 01:35 AM entry reads 'returned from tool cabinet, east corridor clear' \u2014 placing him in visual range of Richter's office window at the exact time Richter claims to have been locked inside reviewing transit documents. When cross-referenced with Metz's later testimony, this contradicts Richter's alibi.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E4",
+      "name": "Wet Boot Print on Document Room Threshold",
+      "description": "A single partial boot print in wet sleet-mud was found on the interior threshold of the document-processing room doorway, pointing inward. Comparative sizing places it at 44 EU \u2014 matching Richter's issued border-authority boots, which were still damp when examined. Brenner's and Sukhov's footwear measured 39 and 41 respectively, eliminating them as the source.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E5",
+      "name": "Sukhov's Forged Transfer Order",
+      "description": "A single-page typed document bearing the letterhead of Stasi District Command Leipzig was found folded in Sukhov's interior jacket pocket. A close examination reveals the colonel's signature ink is ballpoint on a form that should use only official typewriter carbon \u2014 a fabrication inconsistency. While deeply suspicious, document analysis confirms it has no direct bearing on Wolff's death, only on an inter-agency deception operation.",
+      "type": "documentary",
+      "relevance": "red_herring"
+    },
+    {
+      "id": "E6",
+      "name": "Concealed Secondary Microfilm Canister in Wolff's Coat Lining",
+      "description": "A second, smaller canister was discovered sewn into the hem-lining of Wolff's overcoat during a post-mortem body search. It contains duplicate photographs of the same agent-name index as the stolen primary canister, meaning the killer's core objective \u2014 silencing the information \u2014 was not achieved. The canister's existence suggests Wolff anticipated betrayal and prepared a dead-man's insurance copy.",
+      "type": "physical",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E7",
+      "name": "Brenner's Unsigned Truck Transit Manifest",
+      "description": "The outbound transit manifest for the 01:20 AM Soviet military truck bears only Brenner's stamp with no counter-signature from the driver, which is a mandatory dual-sign protocol. The truck's scheduled departure time could have been forged retroactively in the log to construct her alibi window. However, a mud track from the truck's tires in the outer yard confirms the vehicle did depart at approximately the stated time, weakening but not eliminating her as a suspect.",
+      "type": "documentary",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E8",
+      "name": "Overturned Enamel Mug Near Filing Cabinet",
+      "description": "A standard-issue enamel drinking mug was found overturned beside the iron filing cabinet, its tea contents pooled across the floor near Wolff's body. The mug shows no blood or hair trace, but its position initially suggested a struggle. Closer inspection reveals the tea is cold and the mug was placed \u2014 not knocked \u2014 on its side, indicating it was deliberately set there after Wolff fell, possibly to suggest he tripped rather than was struck.",
+      "type": "physical",
+      "relevance": "red_herring"
+    },
+    {
+      "id": "E9",
+      "name": "Metz's Verbal Testimony Regarding Richter's Movements",
+      "description": "Under direct questioning, maintenance technician Metz admits he saw Richter exit the command office via the side door at 01:35 AM and walk in the direction of the document-processing room. He withheld this information initially out of fear that Richter would expose his past Stasi informant role. This testimony, combined with the maintenance log timestamp, places Richter outside his claimed location during the murder window.",
+      "type": "testimonial",
+      "relevance": "supporting"
+    }
+  ],
+  "solution": {
+    "culprit": "Hauptmann Ernst Richter",
+    "method": "Richter left his command office at 01:35 AM during the recess period, entered the document-processing room under the pretense of a routine authorization check, and struck Wolff from behind with the base of the iron document stamp press \u2014 a heavy desk instrument that was wiped clean and replaced on the desk. He took the primary microfilm canister, returned to his office, and was back inside before Brenner returned from the gatehouse at 02:10 AM. He did not discover the secondary canister in Wolff's coat lining.",
+    "motive": "Richter is named on the microfilm as an active BND double agent. Delivery of the canister to East Berlin Stasi headquarters would result in his immediate arrest and execution. Killing Wolff and destroying or hiding the film was the only option remaining after his attempt to claim administrative authority over the canister was refused during arrival processing.",
+    "key_evidence": [
+      "E2",
+      "E4",
+      "E3"
+    ],
+    "how_to_deduce": "Step 1 \u2014 Establish that the murder was motivated by the microfilm: E1 (empty satchel slot) confirms the canister was stolen, meaning the killer had a specific reason to want the film's contents suppressed, not merely a personal grudge against Wolff. This narrows suspicion to anyone whose identity or interests were threatened by the film's contents.\n\nStep 2 \u2014 Eliminate or weaken alternative suspects: Sukhov (E5) had motive but his forged order is an inter-agency political maneuver, and the canteen borscht and corridor distance, while suspicious, lack physical placement at the scene. Brenner (E7) has a partially corroborated alibi through the truck's tire tracks, and her boot size (39) does not match the threshold print. Neither can be definitively placed inside the document room.\n\nStep 3 \u2014 Place Richter at the scene: E4 (boot print, size 44, matching Richter's issued footwear) physically places someone of Richter's boot size crossing the document room threshold. This alone is circumstantial since Richter could claim an earlier visit, but combined with E3 (Metz's maintenance log showing Richter left his office at 01:35 AM, contradicting his claimed continuous presence) and E9 (Metz's corroborating verbal testimony), his alibi collapses entirely.\n\nStep 4 \u2014 Confirm motive with E2: The cipher pad in Richter's office, using BND encoding formats, proves he is the Western double agent whose name appears on the stolen microfilm. This ties his confirmed movement to the scene (E3, E4) directly to a concrete, life-or-death motive, completing the chain: Richter had the motive (named on the film), the opportunity (unaccounted movement during the recess), and the physical trace at the scene (boot print), making him the only viable culprit."
+  },
+  "gameplay_notes": {
+    "difficulty": "HARD",
+    "estimated_playtime": "75\u201390 minutes",
+    "key_twists": [
+      "Sukhov's forged transfer order (E5) makes him look like the primary suspect for nearly the entire first half of investigation \u2014 players who focus on the inter-agency deception angle waste significant time before pivoting to Richter.",
+      "The overturned mug (E8) is a deliberate staging by Richter to suggest an accidental fall, and players who accept the staging at face value may classify the death as an accident before examining wound angle.",
+      "Metz's silence about witnessing Richter's movements is explained only when players discover his own informant past \u2014 he must be pressured or given immunity before he reveals the critical E9 testimony.",
+      "The secondary canister in Wolff's coat (E6) reframes the entire endgame: even if Richter is identified and the primary canister is found in his possession, the duplicate means the intelligence has already survived \u2014 raising the stakes beyond a single murder into a live espionage crisis."
+    ]
+  },
+  "_meta": {
+    "num_players": 4,
+    "setting_input": "Cold War East Berlin, 1973, Soviet checkpoint crossing"
+  },
+  "_provenance": {
+    "recipe": "corpus_0316_ebo(1) + corpus_0040_ebo(2) + corpus_0217_ebo(3) + corpus_0179_ebo(4) + corpus_0194_ebo(5) + corpus_0131_ebo(6) + corpus_0129_ebo(7) + corpus_0063_ebo(8)",
+    "slots": [
+      {
+        "source_id": "corpus_0316_ebo",
+        "part_index": 1,
+        "part_type": "crime_type"
+      },
+      {
+        "source_id": "corpus_0040_ebo",
+        "part_index": 2,
+        "part_type": "setting_element"
+      },
+      {
+        "source_id": "corpus_0217_ebo",
+        "part_index": 3,
+        "part_type": "motive"
+      },
+      {
+        "source_id": "corpus_0179_ebo",
+        "part_index": 4,
+        "part_type": "suspect_archetype"
+      },
+      {
+        "source_id": "corpus_0194_ebo",
+        "part_index": 5,
+        "part_type": "red_herring"
+      },
+      {
+        "source_id": "corpus_0131_ebo",
+        "part_index": 6,
+        "part_type": "reveal_mechanic"
+      },
+      {
+        "source_id": "corpus_0129_ebo",
+        "part_index": 7,
+        "part_type": "social_dynamic"
+      },
+      {
+        "source_id": "corpus_0063_ebo",
+        "part_index": 8,
+        "part_type": "evidence_type"
+      }
+    ],
+    "target_setting": "Cold War East Berlin, 1973, Soviet checkpoint crossing",
+    "generated_title": ""
+  },
+  "_coherence": {
+    "passed": true,
+    "blocking": 0,
+    "warnings": 0,
+    "witness_gaps": []
+  }
+}

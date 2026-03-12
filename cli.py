@@ -315,7 +315,12 @@ def cmd_generate(args):
     _print(f"\n[bold]Recipe:[/bold] [yellow]{recipe.format()}[/yellow]")
 
     # ── Generate mystery ──────────────────────────────────────────────
-    demo_mode = getattr(args, "demo", False) or not os.environ.get("ANTHROPIC_API_KEY")
+    demo_mode = getattr(args, "demo", False)
+    if not demo_mode:
+        try:
+            _get_auth()
+        except ValueError:
+            demo_mode = True
     if demo_mode:
         _print("\n[dim]Demo mode — no Claude API call[/dim]")
         mystery = _demo_mystery(setting, crime_type, num_players, selected_parts, recipe)
@@ -404,7 +409,12 @@ def cmd_solve(args):
         _print("[red]No description provided.[/red]")
         return
 
-    demo_mode = getattr(args, "demo", False) or not os.environ.get("ANTHROPIC_API_KEY")
+    demo_mode = getattr(args, "demo", False)
+    if not demo_mode:
+        try:
+            _get_auth()
+        except ValueError:
+            demo_mode = True
     if demo_mode:
         _print("[dim]Demo mode — no Claude API call[/dim]")
         analysis = _demo_solve(description)
@@ -709,6 +719,21 @@ def _display_solution(analysis: dict):
 # CLAUDE INTEGRATION
 # ============================================================================
 
+_INGRESS_TOKEN_FILE = "/home/claude/.claude/remote/.session_ingress_token"
+_API_URL = "https://api.anthropic.com/v1/messages"
+
+
+def _get_auth() -> tuple[str, str]:
+    """Return (header_name, header_value) — API key preferred, bearer token fallback."""
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    if api_key:
+        return "x-api-key", api_key
+    if os.path.exists(_INGRESS_TOKEN_FILE):
+        token = open(_INGRESS_TOKEN_FILE).read().strip()
+        return "Authorization", f"Bearer {token}"
+    raise ValueError("No API key found. Set ANTHROPIC_API_KEY or ensure ingress token exists.")
+
+
 def _generate_with_claude(
     setting: str,
     crime_type: str,
@@ -717,7 +742,7 @@ def _generate_with_claude(
     selected_parts,
     recipe,
 ) -> dict:
-    import anthropic
+    import requests
 
     parts_block = "\n".join(
         f"  [{p.label()} — {p.part_type}]: {p.content}"
@@ -821,14 +846,23 @@ Generate a complete mystery JSON with this exact structure:
 
 Return only valid JSON. No commentary outside the JSON block."""
 
-    client = anthropic.Anthropic()
-    response = client.messages.create(
-        model="claude-sonnet-4-6",
-        max_tokens=4096,
-        messages=[{"role": "user", "content": prompt}],
+    header_name, header_value = _get_auth()
+    resp = requests.post(
+        _API_URL,
+        headers={
+            header_name: header_value,
+            "Content-Type": "application/json",
+            "anthropic-version": "2023-06-01",
+        },
+        json={
+            "model": "claude-sonnet-4-6",
+            "max_tokens": 8192,
+            "messages": [{"role": "user", "content": prompt}],
+        },
+        timeout=180,
     )
-
-    text = response.content[0].text.strip()
+    resp.raise_for_status()
+    text = resp.json()["content"][0]["text"].strip()
     if "```json" in text:
         text = text.split("```json")[1].split("```")[0].strip()
     elif "```" in text:

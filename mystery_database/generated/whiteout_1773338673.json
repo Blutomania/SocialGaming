@@ -1,0 +1,206 @@
+{
+  "title": "Whiteout",
+  "setting": {
+    "location": "Halvorsen Deep-Ice Research Station, East Antarctic Plateau",
+    "time_period": "Present day, July (austral winter)",
+    "environment": "A cluster of prefabricated modules buried under three metres of compacted snow, connected by pressurised tunnels. Outside temperatures hover at minus sixty Celsius with wind-chill, and a polar vortex has grounded the single emergency aircraft for at least a fortnight.",
+    "description": "Six weeks into the mandatory winter lockdown, Halvorsen Station is a self-contained world of humming generators, recycled air, and unbroken darkness. The nearest inhabited base is nine hundred kilometres away across a featureless plateau, and radio contact with McMurdo is limited to two scheduled windows per day. No one can leave, no rescue team can arrive, and every person on station knows every other person's face \u2014 which makes the body found in the ice-core archive at 0340 hours all the more terrifying."
+  },
+  "crime": {
+    "type": "Murder",
+    "what_happened": "Dr. Petra Voss, the station's senior glaciologist and de-facto science director, was found dead in the sub-zero ice-core archive. She had been struck on the back of the head with a blunt instrument and left to freeze. The killer exploited the archive's minus-thirty-five Celsius temperature to slow decomposition and obscure the precise time of death, staging the scene to look like an accidental fall onto a metal core-rack bracket.",
+    "when": "Estimated between 2200 and 2330 on Wednesday 12 July; body discovered at 0340 Thursday 13 July.",
+    "initial_discovery": "Field technician Bjorn Haugen went to retrieve a core sample for an early-morning analysis run, found the archive door unlocked and the light on, and discovered Dr. Voss face-down between two rack rows. He raised the alarm over the station intercom, waking all remaining personnel."
+  },
+  "characters": [
+    {
+      "name": "Dr. Petra Voss",
+      "role": "victim",
+      "occupation": "Senior Glaciologist and Science Director, present as the lead researcher overseeing the winter ice-core extraction programme",
+      "motive": "N/A",
+      "alibi": "N/A",
+      "secret": "Petra had recently discovered that falsified climate-data entries had been inserted into the station's shared research database, entries that would inflate a key funding body's projected grant by over two million euros. She had drafted a formal misconduct report naming a specific colleague and had emailed it to the institute's ethics board at the 2100 radio window \u2014 roughly an hour before her estimated death."
+    },
+    {
+      "name": "Dr. Marcus Renner",
+      "role": "suspect",
+      "occupation": "Atmospheric Chemist and Deputy Station Commander, stationed for the full winter-over rotation",
+      "motive": "Renner is the lead applicant on the fraudulent grant. If Petra's misconduct report reached the ethics board and was acted upon, he would lose the funding, face dismissal from his university chair, and likely be prosecuted for research fraud. He had the clearest and most immediate stake in silencing her.",
+      "alibi": "Claims he was in the communications room from 2130 to 2330 compiling weekly atmospheric reports, citing the automatic logging timestamps on the terminal. However, the terminal logs show a twelve-minute gap between 2218 and 2230 with no keystrokes recorded, which Renner attributes to 'thinking time.'",
+      "secret": "Renner secretly altered twenty-seven database entries over the previous three months using a shared administrator password he obtained by watching Petra type it during a routine calibration session. He has not disclosed to anyone that he possesses this password, and the altered entries all carry metadata timestamps showing they were changed from his personal laptop's MAC address."
+    },
+    {
+      "name": "Dr. Yuki Tanaka",
+      "role": "suspect",
+      "occupation": "Biogeochemist, mid-winter rotation researcher studying microbial life in ancient ice samples",
+      "motive": "Yuki borrowed forty thousand euros from Petra eighteen months ago to cover a family medical emergency, with a private agreement to repay from her next grant disbursement. That disbursement was delayed, Petra had begun pressing for repayment in increasingly sharp emails, and Yuki feared Petra would escalate to the institute's finance office \u2014 an act that would trigger a formal investigation and likely end Yuki's contract.",
+      "alibi": "States she was in the biology wet lab from 2000 onwards, processing micro-core samples under the fume hood. She points to a batch of timestamped microscopy images logged between 2015 and 2310 as corroboration, but the imaging system can be queued to run automatically without the operator present.",
+      "secret": "Yuki was observed by witness Bjorn Haugen arguing loudly with Petra in the main corridor at approximately 2045, a confrontation Yuki denied ever taking place when first interviewed. The argument was overheard to include the phrase 'you'll ruin everything I've built here.'"
+    },
+    {
+      "name": "Dmitri Solov",
+      "role": "suspect",
+      "occupation": "Station Engineer responsible for all mechanical systems, generator maintenance, and module integrity; has been on station for nine months including the summer season",
+      "motive": "Dmitri has been conducting an undisclosed personal side-project: drilling shallow boreholes in a restricted grid sector to extract samples he intended to sell to a private minerals-exploration company. Petra had stumbled onto his drill logs two days before her death and confronted him, telling him she intended to include the unauthorised drilling in a separate report to the Antarctic Treaty authorities \u2014 an act that could result in criminal charges and a lifetime ban from polar research contracts.",
+      "alibi": "Says he was performing a scheduled maintenance cycle on Generator B from 2100 to 2345, a task that takes roughly two hours and is normally done alone. The generator's automated diagnostic log confirms it was serviced that night, but the log only records the start command at 2104 and the completion sign-off at 2341 \u2014 nothing in between verifies continuous human presence.",
+      "secret": "Dmitri's master keycard was used to access the ice-core archive at 2209 according to the door-control log \u2014 yet he insists he never left the generator room. His keycard is the only one on station besides Petra's own that is coded for unsupervised archive access, and he cannot explain the log entry."
+    },
+    {
+      "name": "Bjorn Haugen",
+      "role": "witness",
+      "occupation": "Field Technician and Ice-Core Handler, responsible for physical extraction, labelling, and storage of all core samples",
+      "motive": "None \u2014 Bjorn has no financial or professional stake in the grant dispute or the drilling operation",
+      "alibi": "Went to sleep in his bunk module at 2230, was woken by his own 0330 alarm to begin the early analysis shift, and discovered the body at 0340. His bunk-module motion sensor logged his presence continuously from 2234 until 0329.",
+      "secret": "Bjorn witnessed Yuki and Petra's heated argument in the corridor at 2045 but initially told investigators he had seen nothing unusual that evening, because he was afraid of becoming entangled in what he assumed was a personal dispute. He later admitted this omission when pressed about his movements."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "Door-Control Access Log",
+      "description": "The ice-core archive's electronic door-control system records every keycard swipe with a timestamp and card ID. The log for 12 July shows Dmitri Solov's card accessing the archive at 2209 and the door remaining open for four minutes before re-locking \u2014 placing someone with his card at the murder scene within the estimated window of death. This is the most direct electronic trace linking a suspect to the archive at the critical time.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E2",
+      "name": "Laptop Metadata on Altered Database Entries",
+      "description": "A forensic review of the station's shared research database, initiated after Petra's ethics-board email was flagged, reveals twenty-seven altered climate-data entries. The metadata on each altered record includes the MAC address of Dr. Marcus Renner's personal laptop and timestamps clustered between 0100 and 0300 on nights when Renner was confirmed to be the last person awake in the computing module. This directly corroborates the fraud motive and ties Renner to the misconduct Petra was about to expose.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E3",
+      "name": "Missing Titanium Core-Tube Wrench",
+      "description": "A heavy titanium torque wrench used to seal core-sample storage tubes is missing from its labelled hook on the archive wall. The hook is photographed empty in Bjorn's initial scene photographs, and a faint blood smear consistent with blunt-force impact is visible on the adjacent rack strut. The wrench, if found, would likely be the murder weapon; its absence suggests the killer removed it deliberately after the attack.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E4",
+      "name": "Keycard Found in Generator Room Drainage Channel",
+      "description": "During a systematic search of all non-habitation modules, Dmitri's keycard is found wedged in the drainage channel beneath Generator B \u2014 the room where Dmitri claims he spent the entire evening. The card is dry and clean despite the channel being slightly damp, suggesting it was placed there recently rather than dropped accidentally. Its presence in the generator room is initially consistent with Dmitri's alibi, but the clean condition and the archive access log together indicate the card was used elsewhere first and then left here.",
+      "type": "physical",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E5",
+      "name": "Renner's Terminal Gap in Communications Log",
+      "description": "The communications room terminal automatically logs every keystroke with a precise timestamp. A review reveals a twelve-minute gap between 2218 and 2230 with zero activity \u2014 the terminal was occupied (the session was open and the screensaver had not triggered) but nobody was typing. The archive is a ninety-second walk from the communications room through the connecting tunnel. This gap places Renner with an unaccounted window of time precisely when the archive was accessed.",
+      "type": "documentary",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E6",
+      "name": "Petra's Draft Ethics Report in Sent-Mail Cache",
+      "description": "The outgoing mail cache on the communications terminal confirms that an email titled 'Formal Misconduct Notification \u2014 Grant Data Integrity' was transmitted to the institute's ethics board at 2103, one hour before the estimated murder. The attached report names Dr. Marcus Renner explicitly and includes database screenshots, MAC-address metadata, and a chronology of the alterations. This establishes Renner's motive with documentary certainty and confirms that Petra had already sent the report before she was killed \u2014 meaning silencing her was partly futile, a fact the killer may not have known.",
+      "type": "documentary",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E7",
+      "name": "Overheard Argument \u2014 Yuki's Denied Confrontation",
+      "description": "Bjorn's corrected witness statement describes hearing Yuki tell Petra 'you'll ruin everything I've built here' at approximately 2045 in the main corridor. Yuki's initial blanket denial of any confrontation, contradicted by a witness, marks her as concealing information and provides circumstantial evidence of hostility toward the victim shortly before death. Investigators may initially focus strongly on Yuki given the direct overheard threat.",
+      "type": "testimonial",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E8",
+      "name": "Automicroscopy Queue File \u2014 Yuki's Lab Alibi",
+      "description": "A hidden queue file on the biology lab's microscopy workstation shows that the timestamped batch of images Yuki cites as her alibi was actually submitted as an automated overnight run at 1955 \u2014 before Yuki claims she began working and before the confrontation Bjorn witnessed. The images ran without an operator present. This demolishes the technical foundation of Yuki's alibi, but it does not by itself place her at the archive; it simply means she cannot prove where she was after 2045.",
+      "type": "documentary",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E9",
+      "name": "Unauthorised Drill Log on Dmitri's Encrypted USB Drive",
+      "description": "A small encrypted USB drive is found in Dmitri's personal tool locker. Once decrypted using a password recovered from a sticky note inside the same locker, it contains GPS coordinates, depth readings, and sample codes for eleven unauthorised boreholes drilled over four months in a restricted sector. An email draft (unsent) addresses a contact at a private minerals firm and references 'preliminary yield assessments.' This confirms Dmitri's motive for wanting Petra silenced, but Petra had already confronted him verbally two days earlier \u2014 there is no written record she had formally reported the drilling yet, giving Dmitri a window of opportunity motive.",
+      "type": "documentary",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E10",
+      "name": "Smudged Boot Print in Archive Condensation",
+      "description": "A partial boot print is visible in the thin condensation layer that forms on the archive's rubberised floor near the entrance whenever the door is opened from the warmer tunnel. The print is smudged but shows a distinctive V-shaped tread pattern. Comparison of boot soles from all station personnel initially suggests a match to Dmitri's standard-issue station boots \u2014 but the same V-tread pattern is issued to all four winter-over personnel as part of the standard kit, making the print non-attributable and misleading investigators toward Dmitri before other evidence is weighed.",
+      "type": "physical",
+      "relevance": "red_herring"
+    }
+  ],
+  "solution": {
+    "culprit": "Dr. Marcus Renner",
+    "method": "Renner walked from the communications room to the ice-core archive during his unlogged twelve-minute terminal gap (2218\u20132230). He had stolen Dmitri's keycard earlier that day \u2014 while Dmitri was running a diagnostics check in the generator room and left his jacket on the corridor hook \u2014 to avoid using his own card and creating a direct log entry under his name. He used Dmitri's card to enter the archive at 2209, struck Petra from behind with the titanium core-tube wrench when she was crouched examining a lower rack, and left her to freeze. He returned Dmitri's keycard to the generator-room drainage channel to ensure it would be 'found' in a location consistent with Dmitri's claimed alibi, intending to frame him. He disposed of the wrench by dropping it into an exterior equipment hatch that vents to the sub-surface snow pack \u2014 recoverable only if investigators think to probe the hatch.",
+    "motive": "Petra had just transmitted a formal misconduct report to the ethics board naming Renner as the architect of a two-million-euro research-grant fraud. Renner did not know the report had already been sent when he acted; he believed killing Petra before the 0600 radio window would allow him to access her terminal and delete the draft. Discovering the email was already in the sent cache, which he checked after returning to the communications room, was the shock that caused his uncharacteristically poor composure during the morning interviews.",
+    "key_evidence": [
+      "E1",
+      "E2"
+    ],
+    "how_to_deduce": "Step 1 \u2014 Establish who was physically at the archive: E1 (door-control log) shows Dmitri's keycard accessed the archive at 2209. This initially implicates Dmitri. However, E4 (keycard found in generator room drainage channel) is clean and dry despite the damp channel, indicating it was placed there deliberately after use rather than dropped naturally \u2014 meaning someone else used the card and then returned it to create a false trail.\n\nStep 2 \u2014 Identify who had the opportunity to steal the keycard and execute the twelve-minute window: E5 (terminal gap) shows Renner had an unlogged twelve-minute absence from the communications room precisely when the archive was accessed. The communications room is ninety seconds from the archive. No other suspect has an evidenced absence in a location adjacent to the archive during that window. Yuki's alibi is false (E8) but places her nowhere near the archive with positive evidence; Dmitri's card log is explained by the framing.\n\nStep 3 \u2014 Confirm motive and connect Renner to the underlying fraud: E2 (laptop metadata) irrefutably links Renner's personal device to the altered database entries, and E6 (sent-mail cache) confirms Petra had already dispatched the ethics report naming Renner at 2103 \u2014 roughly one hour before the archive access. Renner is the only person with both the forensically provable motive (the fraud report) and the evidenced opportunity gap (the terminal silence). The framing of Dmitri via his keycard, combined with Renner's attempt to create a false continuity of presence in the communications room, is the signature of a calculated concealment \u2014 not a crime of passion, which rules out Yuki's impulsive argument motive and Dmitri's reactive drilling-exposure motive as the actual driver of this precise, staged murder."
+  },
+  "gameplay_notes": {
+    "difficulty": "HARD",
+    "estimated_playtime": "90\u2013120 minutes",
+    "key_twists": [
+      "The keycard log points at Dmitri, but the clean keycard in a damp drainage channel reveals it was planted \u2014 players must resist the first obvious suspect.",
+      "Petra's ethics report was already sent before she died, meaning the murder was both motivated by the report and ultimately futile \u2014 Renner's panicked morning demeanour is explained once players discover the sent-mail cache.",
+      "Yuki's false denial of the argument and her demolished microscopy alibi make her a compelling red-herring suspect for most of the game, absorbing player attention while Renner's quiet terminal gap is the decisive clue.",
+      "The V-tread boot print (E10) fits every person on station, punishing players who try to use it as definitive physical proof without cross-checking the kit-issue records."
+    ]
+  },
+  "_meta": {
+    "num_players": 4,
+    "setting_input": "Antarctic research station, present day, six-week winter lockdown"
+  },
+  "_provenance": {
+    "recipe": "corpus_0149_ebo(1) + corpus_0208_ebo(2) + corpus_0064_ebo(3) + corpus_0134_ebo(4) + corpus_0310_ebo(5) + corpus_0342_ebo(6) + corpus_0087_ebo(7) + corpus_0184_ebo(8)",
+    "slots": [
+      {
+        "source_id": "corpus_0149_ebo",
+        "part_index": 1,
+        "part_type": "crime_type"
+      },
+      {
+        "source_id": "corpus_0208_ebo",
+        "part_index": 2,
+        "part_type": "setting_element"
+      },
+      {
+        "source_id": "corpus_0064_ebo",
+        "part_index": 3,
+        "part_type": "motive"
+      },
+      {
+        "source_id": "corpus_0134_ebo",
+        "part_index": 4,
+        "part_type": "suspect_archetype"
+      },
+      {
+        "source_id": "corpus_0310_ebo",
+        "part_index": 5,
+        "part_type": "red_herring"
+      },
+      {
+        "source_id": "corpus_0342_ebo",
+        "part_index": 6,
+        "part_type": "reveal_mechanic"
+      },
+      {
+        "source_id": "corpus_0087_ebo",
+        "part_index": 7,
+        "part_type": "social_dynamic"
+      },
+      {
+        "source_id": "corpus_0184_ebo",
+        "part_index": 8,
+        "part_type": "evidence_type"
+      }
+    ],
+    "target_setting": "Antarctic research station, present day, six-week winter lockdown",
+    "generated_title": ""
+  },
+  "_coherence": {
+    "passed": true,
+    "blocking": 0,
+    "warnings": 0,
+    "witness_gaps": []
+  }
+}
