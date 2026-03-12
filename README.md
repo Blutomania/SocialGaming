@@ -7,7 +7,7 @@ sdk: streamlit
 app_file: app.py
 pinned: false
 license: mit
-short_description: AI murder mystery party game — generate, interrogate, and solve unique cases
+short_description: AI murder mystery party game — solve unique cases
 tags:
   - text-generation
   - game
