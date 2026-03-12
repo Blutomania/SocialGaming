@@ -4,144 +4,133 @@
 AI-powered social mystery party game. Players investigate crimes, interrogate AI characters,
 and compete to solve the case first. Core innovation: the 75% information-sharing mechanic.
 
-Key files:
-- `app.py` — Streamlit UI
-- `cli.py` — Terminal entry point (subcommands: `generate`, `extract`, `check`, `browse`, `solve`)
-- `part_registry.py` — Mystery atomization and part sampling (1,469-part corpus)
-- `coherence_validator.py` — P1 causal-chain validator
-- `localization.py` — Setting-aware character name/occupation localization (3-tier cache)
-- `extraction_protocols.py` — P1–P4 taxonomy definitions
-- `SESSIONS.md` — Master session log and consolidated to-do list
-- `RESEARCH_FINDINGS.md` — Writer-grounded mystery taxonomy (C1–C6, M1–M8, F1–F12)
-- `docs/WIRING.md` — Full technical architecture (schemas, data flow, caching)
+Current phase: **mystery creator / output verification** (single-player, creator-side).
+Next phase: multiplayer gameplay with the 75% sharing mechanic.
 
-Active branch (current work):
-- `claude/setup-api-and-mysteries-LRLQK`
+---
 
-Stale branches (do not develop on these):
-- `claude/document-research-findings-LdlIV` — superseded
-- `claude/mystery-versioning-system-TPblK` — pending merge into main
+## Key Files
+
+| File | Purpose |
+|---|---|
+| `app.py` | Streamlit UI — generation, interrogation, accusation, viability rating |
+| `cli.py` | Terminal entry point (`generate`, `extract`, `check`, `browse`, `solve`) |
+| `part_registry.py` | 1,469-part corpus; sampling logic |
+| `coherence_validator.py` | P1 causal-chain + witness + evidence checks (free — no API call) |
+| `localization.py` | Era-appropriate name/occupation localization with 3-tier disk cache |
+| `extraction_protocols.py` | P1–P4 taxonomy definitions |
+| `scripts/browse_mysteries.py` | Rich terminal mystery browser (scene, cast, evidence, solution) |
+| `docs/WIRING.md` | **Canonical architecture reference** — read before touching generation |
+| `SESSIONS.md` | Session-by-session history and full to-do list |
+| `RESEARCH_FINDINGS.md` | Writer-grounded mystery taxonomy (C1–C6, M1–M8, F1–F12) |
+
+---
+
+## Active Branch
+
+**`claude/setup-api-and-mysteries-LRLQK`** — all current development goes here.
+
+Stale / pending:
+- `claude/mystery-versioning-system-TPblK` — pending merge into main (CLI + part registry)
 
 ---
 
 ## Session Start Protocol — MANDATORY
 
-At the start of every session you MUST:
-
-1. **Identify the correct branch.** Check `CLAUDE.md → Active branch` above. If it doesn't
-   match what you're on, switch:
+1. **Verify branch:**
    ```bash
    git fetch origin
    git checkout claude/setup-api-and-mysteries-LRLQK
    git pull origin claude/setup-api-and-mysteries-LRLQK
    ```
-
-2. **Read SESSIONS.md** — specifically the most recent session block. It contains the exact
-   next step, any blockers, and decisions that must not be revisited.
-
-3. **Read docs/WIRING.md** if your task touches generation, localization, coherence, or
-   the cinematic brief. The wiring doc is the canonical architecture reference.
-
-4. **State your starting point** in the first reply: branch name, latest commit hash,
-   and what you intend to do in this session.
+2. **Read the most recent block in `SESSIONS.md`** — it has the exact next step, any blockers,
+   and decisions that must not be revisited.
+3. **Read `docs/WIRING.md`** if your task touches generation, localization, coherence, or
+   the cinematic brief.
+4. **State your starting point** in the first reply: branch, latest commit hash, what you'll do.
 
 ---
 
 ## Session End Protocol — MANDATORY
 
-At the end of every session you MUST:
-
-1. **Run the session summary script:**
+1. **Update `SESSIONS.md`** with a new session block (files changed, decisions made, next steps).
+   Run `python scripts/session_summary.py --auto` or write it manually.
+2. **Update `CLAUDE.md → Current To-Do`** to reflect completed and next items.
+3. **Commit everything** on the working branch and push.
+4. **Tell the user to sync locally** (see local sync steps at bottom of each SESSIONS.md block).
+5. The remote rejects `git push origin main` (HTTP 403). Promote to main via PR:
    ```bash
-   python scripts/session_summary.py --auto
-   ```
-   If that fails, write the summary manually into `SESSIONS.md` and commit it.
-
-2. **Merge the working branch into main locally:**
-   ```bash
-   git fetch origin main
-   git checkout -b main --track origin/main   # first time only; else: git checkout main
-   git pull origin main
-   git merge <working-branch> --no-ff -m "Merge <working-branch> into main — <summary>"
-   git checkout <working-branch>              # return to working branch
-   ```
-   **Note:** the remote rejects direct `git push origin main` (HTTP 403 — only
-   `claude/*` branches are writable by the agent). After doing the local merge,
-   tell the user they can promote main via the hosting platform UI, or create a PR:
-   ```bash
-   gh pr create --base main --head <working-branch> --title "Session work: <summary>"
+   gh pr create --base main --head claude/setup-api-and-mysteries-LRLQK --title "..."
    ```
 
-3. **Update `CLAUDE.md → Active branch`** if the branch name changed.
-
-4. **Update `CLAUDE.md → Current To-Do`** to reflect what was completed and what is next.
-
-### NEVER end a session without updating SESSIONS.md and merging to main.
+### NEVER end a session without updating SESSIONS.md.
 
 ---
 
 ## Coding Conventions
+
 - Python 3.8+
 - Claude model: `claude-sonnet-4-6`
-- Mystery parts use `SOURCE(INDEX)` notation: `C(4)`, `F(2)`, `A(6)`
-- Extraction protocols: P1 Skeleton (C1-C6), P2 Architecture (M1-M8), P3 Craft (F1-F8), P4 Texture (F9-F12)
+- Mystery parts: `SOURCE(INDEX)` notation — `C(4)`, `F(2)`, `A(6)`
+- Extraction protocols: P1 Skeleton (C1–C6), P2 Architecture (M1–M8), P3 Craft (F1–F8), P4 Texture (F9–F12)
 - All generated mysteries must include a `_provenance` field
-- UI is Streamlit; backend scripts are CLI via `cli.py`
-- API auth: use Bearer token from `/home/claude/.claude/remote/.session_ingress_token` when `ANTHROPIC_API_KEY` is not set (see `extract_test_mysteries.py:_get_token()`)
+- UI: Streamlit (`app.py`). Backend scripts: CLI via `cli.py`
+- API auth priority: (1) `ANTHROPIC_API_KEY` env var, (2) Bearer token from
+  `/home/claude/.claude/remote/.session_ingress_token`
 
 ---
 
-## Design Principles — Feedback Loops, Coherence, Cost
+## Design Principles
 
-Every new feature should answer at least one of these three questions:
+Every new feature must answer at least one of these:
 
 ### 1. Does it close a feedback loop?
-Feedback loops are the mechanism by which the game improves. Before writing new code, ask:
-- **Player signal**: Can player behavior (accusations, interrogation patterns, time-to-solve) feed back into which parts are used more or less?
-- **Quality signal**: Is there a way to score or flag a generated mystery for coherence without replaying it?
-- **Part signal**: Which `SOURCE(INDEX)` parts co-occur in high-rated mysteries? Can the registry weight them?
+- **Creator signal**: viability rating (1–10) on each mystery
+- **Player signal** (future): accusations, interrogation patterns, time-to-solve
+- **Part signal** (future): which `SOURCE(INDEX)` parts appear in high-rated mysteries → weight registry
 
-Prefer code that *captures* signal (even just logging) over code that generates more content with no signal.
+Prefer code that *captures* signal over code that generates more content with no signal.
 
 ### 2. Does it preserve mystery coherence?
-A mystery is coherent when its P1 elements are causally consistent: crime → victim → closed world → culprit/motive → resolution must form an unbroken chain. Before adding generation features:
-- P1 skeleton must be validated before P2 elements are added
-- Motive must be consistent with suspect archetype
-- Reveal mechanic must be satisfiable given the closed world's constraints
-- When mixing parts across source mysteries, flag incompatibilities explicitly (don't silently blend)
-
-The `_provenance` field exists precisely to make incoherence traceable. Use it.
+P1 causal chain must be unbroken: crime → victim → closed world → culprit/motive → resolution.
+- Run `coherence_validator.check_parts()` before the Claude generation call
+- Run `coherence_validator.check_mystery()` after — attach result as `_coherence` in the JSON
+- The `_provenance` field makes incoherence traceable back to specific corpus parts
 
 ### 3. Does it drive down cost?
-Claude API calls are the primary cost driver. This is not just a preference — it is a standing mandate. **Before writing any code that calls the API, actively look for a caching or efficiency opportunity.**
+API calls are the primary cost driver. **Before any new API call, look for a cache hit.**
 
-Standing rules:
-- **Cache extractions**: never re-extract a source text that already has a JSON result
-- **Cache localization rulesets**: `mystery_database/localization_cache/` holds per-era naming rules; consult before making a localization call (see `localization.py`)
-- **Skip modern-era localization**: contemporary / near-future settings need no localization call — modern names are already correct
-- **Compact mapping over full rewrite**: when asking Claude to transform structured data, have it return only a mapping/diff and apply it in Python — never round-trip a full JSON blob
-- **Test on 6**: use `extract_test_mysteries.py` (free, already extracted) before running corpus pipeline
-- **Protocol triage**: run P1 first; only escalate to P2/P3 if P1 quality is high
-- **Batch before prompting**: assemble all parts for a generation request before calling Claude, not incrementally
-- **Dry-run first**: all pipeline scripts should support `--dry-run` to validate logic without API calls
-- **Check coherence free**: `coherence_validator.check_mystery()` and `check_parts()` make zero API calls — always run these before deciding to re-generate
+| Rule | Detail |
+|---|---|
+| Cache localization rulesets | `mystery_database/localization_cache/<era_key>.json` — derived on first use, reused forever |
+| Skip modern-era localization | `_is_modern(setting)` → no API call |
+| Compact mapping over full rewrite | Claude returns `[{old,new}]` only; Python substitutes |
+| Cache extractions | Never re-extract a source text that already has a JSON result |
+| Test on 6 | Use `extract_test_mysteries.py` (free) before running corpus pipeline |
+| P1 first | Only escalate to P2/P3 if P1 quality is confirmed high |
+| Dry-run first | All pipeline scripts support `--dry-run` |
+| Coherence is free | `check_mystery()` / `check_parts()` make zero API calls |
 
-**Active caching inventory** (update this when you add new caches):
+**Active caching inventory:**
+
 | Cache | Location | Key | What it stores |
 |---|---|---|---|
-| Localization rulesets | `mystery_database/localization_cache/<era_key>.json` | location+time_period | Name conventions, occupation map, forbidden titles |
-| Part extractions | `mystery_database/extractions/*.json` | source filename | P1–P4 parts extracted from source texts |
-| Generated mysteries | `mystery_database/generated/*.json` | slug+timestamp | Full mystery dicts with coherence report |
+| Localization rulesets | `mystery_database/localization_cache/<era_key>.json` | location+time_period slug | Name conventions, occupation map, forbidden titles |
+| Part extractions | `mystery_database/extractions/*.json` | source filename | P1–P4 parts from source texts |
+| Generated mysteries | `mystery_database/generated/*.json` | slug+timestamp | Full mystery dicts with `_coherence` |
 
-When you add a new cache, add a row to this table.
+Add a row here whenever you introduce a new cache.
 
 ---
 
 ## Current To-Do (as of March 12, 2026)
-See `SESSIONS.md` for the full prioritized list. Top items:
 
-1. **Add `ANTHROPIC_API_KEY` secret to HuggingFace Space settings** (unblocks production)
-2. **Full corpus run**: `python cli.py extract --protocol P1P2` (359 books → ~700 new parts)
-3. **Merge `claude/mystery-versioning-system-TPblK`** once quality items validated
-4. **Browse UI**: add a "Load saved mystery" dropdown to `app.py` so past mysteries are accessible
-5. **Player knowledge tracking**: implement the 75% sharing mechanic in the UI
+Full list in `SESSIONS.md`. Top priorities:
+
+1. **[BLOCKER]** Add `ANTHROPIC_API_KEY` to HuggingFace Space secrets — nothing runs in production without it
+2. **Play-test** — generate 5–10 mysteries, verify coherence passes, rate them with the viability widget
+3. **Full corpus run**: `python cli.py extract --protocol P1P2` (359 books → ~700 new parts)
+4. **Merge `claude/mystery-versioning-system-TPblK`** (CLI + part registry) into main
+5. **Load saved mystery** — add dropdown to `app.py` to browse and reload past mysteries from disk
+6. **75% sharing mechanic** — the core multiplayer feature; no design started yet
+7. **[LOW PRIORITY]** Feedback persistence — save viability rating + behavioral signals back to mystery JSON; defer until after play-testing

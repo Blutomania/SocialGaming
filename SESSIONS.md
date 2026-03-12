@@ -5,6 +5,43 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 9 — March 12, 2026
+**Branch:** `claude/setup-api-and-mysteries-LRLQK`
+**Latest commit:** `d66657d`
+
+### Files modified
+- `app.py` — Multiple UI improvements (see decisions below)
+- `CLAUDE.md` — Streamlined and updated to reflect current state
+- `SESSIONS.md` — This entry
+
+### Decisions made
+- **Page header** now has two caption lines: "Ultimately: ..." (game vision) and "Currently: ..." (creator tool). The "Currently" line is **owner-maintained** — Claude Code must not change it.
+- **Evidence surfaced** — all evidence items now shown in an expandable section (open by default) with type badge and ★/✗/· relevance tags. Previously generated but never displayed.
+- **Gameplay notes surfaced** — difficulty, estimated playtime, key twists now shown inline below evidence.
+- **Witnesses** added to cast display in the narrative and to the interrogation dropdown (alongside suspects).
+- **`crime.when`** now shown in the crime narrative.
+- **Viability rating** — 1–10 horizontal radio buttons with a descriptive label per score. Creator-side only. Stored in session state; **not persisted to disk yet** (intentional — owner wants to play with it first).
+- **Feedback persistence deferred** — saving ratings + behavioral signals to disk is on the backlog (SESSIONS.md item 7) but must not be implemented until the owner explicitly requests it.
+
+### What is incomplete / next steps
+1. **[BLOCKER — START HERE]** Add `ANTHROPIC_API_KEY` to HuggingFace Space secrets so the app runs in production
+2. **Play-test** — generate mysteries in the UI, use the viability rating, verify the full output looks right
+3. Full corpus run: `python cli.py extract --protocol P1P2` (359 books → ~700 new parts)
+4. Merge `claude/mystery-versioning-system-TPblK` (CLI + part registry) into main
+5. Add "Load saved mystery" dropdown to `app.py`
+6. 75% sharing mechanic — the core multiplayer feature; no design started yet
+7. **[LOW PRIORITY — do not implement until owner asks]** Feedback persistence: auto-save mystery to disk on generation, write `_feedback.viability_rating` back into the JSON. Extend to behavioral signals (time-to-solve, interrogation patterns, first-accusation accuracy) when ready. Consider HuggingFace Datasets API for multi-user deployment.
+
+### Local sync steps (for owner)
+```bash
+cd ~/SocialGaming                                        # or wherever your local clone lives
+git fetch origin
+git checkout claude/setup-api-and-mysteries-LRLQK
+git pull origin claude/setup-api-and-mysteries-LRLQK
+```
+
+---
+
 ## Session 8 — March 12, 2026
 **Branch:** `claude/review-changes-mmmec1tknjh846kb-08C3q`
 **Latest commit:** `1f11171`
