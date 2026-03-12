@@ -57,16 +57,20 @@ At the end of every session you MUST:
    ```
    If that fails, write the summary manually into `SESSIONS.md` and commit it.
 
-2. **Merge the working branch into main:**
+2. **Merge the working branch into main locally:**
    ```bash
    git fetch origin main
    git checkout -b main --track origin/main   # first time only; else: git checkout main
    git pull origin main
-   git merge <working-branch> --no-ff -m "Merge <branch> into main — <one-line summary>"
-   git push origin main
+   git merge <working-branch> --no-ff -m "Merge <working-branch> into main — <summary>"
    git checkout <working-branch>              # return to working branch
    ```
-   This ensures `main` always reflects the current releasable state.
+   **Note:** the remote rejects direct `git push origin main` (HTTP 403 — only
+   `claude/*` branches are writable by the agent). After doing the local merge,
+   tell the user they can promote main via the hosting platform UI, or create a PR:
+   ```bash
+   gh pr create --base main --head <working-branch> --title "Session work: <summary>"
+   ```
 
 3. **Update `CLAUDE.md → Active branch`** if the branch name changed.
 
