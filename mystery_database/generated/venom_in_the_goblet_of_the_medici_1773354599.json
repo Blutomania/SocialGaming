@@ -1,0 +1,201 @@
+{
+  "title": "Venom in the Goblet of the Medici",
+  "setting": {
+    "location": "Palazzo Vettori, Florence",
+    "time_period": "1487, during the reign of Lorenzo de' Medici",
+    "environment": "A grand but claustrophobic Renaissance palace during a three-day diplomatic banquet. The city gates are sealed by ducal decree for a visiting Milanese delegation, and no member of the court may depart until the Duke's herald formally dismisses the assembly \u2014 to leave early would constitute a grave political insult and invite criminal suspicion.",
+    "description": "Gilded halls hung with Flemish tapestries conceal old grudges and fresher debts. The scent of beeswax candles mingles with the bitter undertone of something gone wrong in the banquet hall. Every guest is trapped behind the palace walls by ducal edict until the delegation departs in two days, making the poisoner as much a prisoner as their victim."
+  },
+  "crime": {
+    "type": "Murder by poisoning",
+    "what_happened": "Giovanni Albizzi, a wealthy Florentine wool merchant and creditor to half the court, was found dead at the high table during the second evening of the banquet. He collapsed mid-toast, convulsing, and was dead within minutes. The court physician identified the cause as aconite poison introduced into his personal wine goblet.",
+    "when": "Second evening of the banquet, approximately two hours after sunset, during the formal toast to the Milanese ambassador",
+    "initial_discovery": "A page boy noticed Giovanni slump sideways from his chair and alerted the steward. The goblet was still in his hand, a dark residue visible at the rim. The palace was immediately sealed by order of the Duke's captain of the guard, Capitano Ferrante, who launched a constrained investigation with orders to resolve the matter before the delegation's departure in 48 hours \u2014 to avoid a diplomatic incident."
+  },
+  "characters": [
+    {
+      "name": "Giovanni Albizzi",
+      "role": "victim",
+      "occupation": "Wool merchant and court creditor \u2014 attended the banquet as a financial guarantor of the Duke's hospitality gifts to Milan",
+      "motive": "N/A",
+      "alibi": "N/A \u2014 victim",
+      "secret": "Giovanni had been secretly calling in debts from multiple court members simultaneously, threatening to expose those who could not pay to the Duke's tax collectors. He kept a leather ledger recording every loan, interest accrual, and threat made in private correspondence."
+    },
+    {
+      "name": "Ser Matteo Conti",
+      "role": "suspect",
+      "occupation": "Court notary responsible for drafting contracts and witnessing financial agreements \u2014 his presence at every banquet is required by protocol",
+      "motive": "Giovanni held a promissory note for 400 florins Matteo had borrowed eighteen months ago to cover gambling debts; Giovanni had recently threatened to present the note publicly before the Duke, which would end Matteo's career and land him in the Stinche prison",
+      "alibi": "Claims he was in the scriptorium copying the ambassador's treaty draft from the first bell of evening until the commotion arose; the junior scribe Luca confirms he was present but admits he stepped away for a quarter-hour to fetch ink",
+      "secret": "Matteo had stolen a small vial from the apothecary's supply cabinet three weeks prior, claiming he needed a remedy for his ailing mother. The apothecary later discovered the missing vial contained concentrated aconite tincture. Matteo has never mentioned this theft to anyone and has avoided the apothecary ever since."
+    },
+    {
+      "name": "Donna Fiora Pazzi",
+      "role": "suspect",
+      "occupation": "Widow of a disgraced Pazzi conspirator, retained at court as a lady of the household to the Duke's wife \u2014 her continued presence depends entirely on the Duke's goodwill",
+      "motive": "Giovanni had been blackmailing Fiora with letters proving her late husband funneled Pazzi conspiracy money through her accounts; she feared that if Giovanni showed those letters to the Duke, she would be expelled from the court or worse",
+      "alibi": "States she was attending the Duchess in her private solar from vespers until the alarm was raised, with two other ladies-in-waiting present; however, one of those ladies, Caterina, admits Fiora left the solar alone for nearly twenty minutes just before the toast",
+      "secret": "Fiora had been exchanging coded candle-signal messages with a contact outside the palace walls for three nights running. Players initially interpret this as evidence of conspiracy or poisoning coordination, but the signals were communications with her exiled son, whom she has been secretly trying to arrange safe passage for \u2014 her signals were protective, not criminal, and reveal that she was at the window during the murder, not near the banquet hall."
+    },
+    {
+      "name": "Pravar al-Rashid",
+      "role": "suspect",
+      "occupation": "Levantine spice and apothecary merchant attending the banquet as a trade representative \u2014 his exotic knowledge of Eastern poisons makes him an immediate object of suspicion",
+      "motive": "Giovanni had undercut Pravar's wool-spice barter arrangement with the Duke by bribing the Duke's steward, costing Pravar a contract worth thousands of florins",
+      "alibi": "Was seated at the low table during the entire banquet, visible to a dozen witnesses including the Milanese secretary; he never approached the high table",
+      "secret": "Pravar carries a small locked chest of medicinal compounds including plant-derived tinctures, which he has not declared to the palace steward as required. He concealed this because one compound is derived from a plant restricted by Florentine guild law. When the chest is examined, it contains no aconite \u2014 but its discovery initially redirects all suspicion onto Pravar, and he is briefly detained, distracting the investigation from the true culprit. He becomes effectively a victim of the investigation itself."
+    },
+    {
+      "name": "Bernardo Lippi",
+      "role": "suspect",
+      "occupation": "Palace steward responsible for managing the banquet service, wine cellar, and table settings \u2014 the only person with routine unsupervised access to every goblet before service",
+      "motive": "Giovanni had discovered that Bernardo had been skimming funds from the palace household accounts for two years and threatened to report him to the Duke in exchange for cancellation of his own debt \u2014 Bernardo stood to lose his position, his pension, and his freedom",
+      "alibi": "Claims he was overseeing wine service in the cellar with two servants during the toast; one servant confirms this but the other, old Giacomo, was found to have been asleep in the corner for much of the evening and cannot confirm the timeline",
+      "secret": "Bernardo had access to Giovanni's personal goblet earlier that evening when he personally inspected the high-table settings two hours before the banquet began \u2014 a duty he normally delegates to an understeward. A kitchen servant saw Bernardo linger alone at the high table for several minutes but said nothing, assuming it was routine. Bernardo has also been seen meeting privately with the apothecary in the past month."
+    },
+    {
+      "name": "Brother Anselmo",
+      "role": "witness",
+      "occupation": "Court chaplain and herbalist \u2014 resident cleric who maintains the palace chapel and a small physic garden, and who serves as informal physician's assistant",
+      "motive": "None \u2014 he has no financial or personal stake in Giovanni's death",
+      "alibi": "Was leading compline prayers in the chapel with four palace servants and a guard from the start of evening until the alarm, providing a solid alibi confirmed by multiple witnesses",
+      "secret": "Brother Anselmo noticed Bernardo entering the apothecary's storeroom without authorization two weeks ago and recorded it in his private diary out of concern, but he did not report it because he feared the political complications of accusing a senior palace official. His diary entry constitutes the most damning corroborating evidence against Bernardo."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "The Poisoned Goblet",
+      "description": "Giovanni's personal silver goblet, engraved with the Albizzi crest, recovered from the banquet floor where it fell from his hand. A dark, oily residue coats the inner base of the cup. The court physician confirms the residue smells of aconite and matches the symptom progression Giovanni displayed before death.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E2",
+      "name": "Brother Anselmo's Diary Entry",
+      "description": "A handwritten entry dated eleven days before the banquet in Brother Anselmo's personal devotional diary, found in the chapel vestry. The entry reads: 'I observed Steward Bernardo in the apothecary's private cabinet past the second hour of night \u2014 he removed something small and stoppered and concealed it in his sleeve. I prayed for guidance on whether to speak.' The entry directly places Bernardo in unauthorized possession of an apothecary substance.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E3",
+      "name": "Pravar's Locked Medicine Chest",
+      "description": "A small cedarwood chest with an iron lock, found beneath Pravar al-Rashid's sleeping pallet when his quarters were searched. It contains seven vials of Eastern medicinal compounds labeled in Arabic script, one of which is a restricted Florentine guild substance. It contains no aconite, but its undeclared presence creates immediate and intense suspicion of the foreign merchant before the contents are properly translated.",
+      "type": "physical",
+      "relevance": "red_herring"
+    },
+    {
+      "id": "E4",
+      "name": "Matteo's Promissory Note (Copy)",
+      "description": "A copy of a 400-florin promissory note found folded inside Giovanni's leather ledger, which was discovered beneath his traveling chest in his guest chamber. The note bears Matteo Conti's seal and a threatening marginal annotation in Giovanni's hand reading 'Present before the Duke if not settled by the feast of San Giovanni.' It establishes a powerful motive for Matteo but is not the actual murder weapon.",
+      "type": "documentary",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E5",
+      "name": "The Apothecary's Missing Vial Record",
+      "description": "The palace apothecary's inventory ledger, maintained in the storeroom, shows a vial of aconite tincture crossed out with the notation 'taken \u2014 unknown \u2014 discovered absent on the 14th.' The date corresponds to two weeks before the banquet. The apothecary states he assumed it was Matteo Conti who took it after Matteo visited the storeroom around that time, but the diary entry places Bernardo there later the same week.",
+      "type": "documentary",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E6",
+      "name": "Candle Wax Signals at the East Tower Window",
+      "description": "A series of distinctive burn patterns on the east tower windowsill, with candle stubs arranged in a coded sequence, found in the room adjacent to Donna Fiora's solar. The patterns initially suggest covert coordination with an outside conspirator and appear to implicate Fiora in a plot. However, decrypting the sequence against a cipher found in her prayer book reveals the messages are maternal endearments and safe-passage coordinates addressed to her exiled son \u2014 proof that her mysterious nighttime absences were family correspondence, not murder conspiracy.",
+      "type": "physical",
+      "relevance": "red_herring"
+    },
+    {
+      "id": "E7",
+      "name": "Kitchen Servant's Testimony Regarding the High Table",
+      "description": "A verbal account given by kitchen servant Rosa Bindi when questioned under Capitano Ferrante's authority. She states she saw Steward Bernardo standing alone at the high table approximately two hours before the banquet, touching and rearranging the goblets, for a duration she estimates as 'long enough to recite a Paternoster three times.' She had not volunteered this information earlier because she assumed it was normal stewardly duty.",
+      "type": "testimonial",
+      "relevance": "critical"
+    },
+    {
+      "id": "E8",
+      "name": "Bernardo's Hidden Florin Purse",
+      "description": "A leather purse containing 38 florins discovered sewn into the lining of Bernardo's wool cloak, hanging in the steward's quarters. Cross-referenced against the palace account books, this sum closely matches one month's unaccounted surplus from the household grain and candle budget. It corroborates Giovanni's knowledge of the embezzlement and confirms the financial motive for silencing him.",
+      "type": "physical",
+      "relevance": "supporting"
+    }
+  ],
+  "solution": {
+    "culprit": "Bernardo Lippi",
+    "method": "Bernardo stole a vial of aconite tincture from the palace apothecary's storeroom approximately two weeks before the banquet, as witnessed and recorded by Brother Anselmo. On the evening of the murder, using his authority as steward to inspect the high table settings unsupervised two hours before service, he introduced the aconite into the interior base of Giovanni's personal engraved goblet, knowing it would dissolve into the wine during the formal toast. He then returned to the wine cellar to establish a partial alibi.",
+    "motive": "Giovanni had discovered Bernardo's two-year embezzlement of palace household funds and threatened to expose him to the Duke unless Bernardo assisted in canceling Giovanni's own debts. Rather than submit to perpetual blackmail and risk eventual exposure, Bernardo chose to silence the only person who could destroy him.",
+    "key_evidence": [
+      "E2",
+      "E7"
+    ],
+    "how_to_deduce": "Step 1 \u2014 Eliminate the red herrings: Pravar al-Rashid's locked medicine chest contains no aconite and his alibi at the low table is confirmed by a dozen witnesses including foreign dignitaries; he is eliminated as suspect once his chest is properly inventoried. Donna Fiora's suspicious candle signals, once decrypted using the cipher in her prayer book (E6), prove she was at the east tower window during the murder \u2014 not at the banquet hall \u2014 and her behavior was maternal correspondence, not conspiracy, clearing her of physical opportunity. Step 2 \u2014 Narrow the field by access and opportunity: The poison was in Giovanni's personal goblet, not the general wine supply, meaning it was introduced before service. Bernardo Lippi is the only suspect with both unsupervised legitimate access to the high table settings before the banquet and the technical knowledge (as steward overseeing the apothecary supply budget) to know where aconite was stored. Kitchen servant Rosa Bindi's testimony (E7) places Bernardo alone at the high table for several minutes the evening of the murder \u2014 time enough to poison a single goblet. Step 3 \u2014 Confirm with the diary and the missing vial: Brother Anselmo's diary (E2) records Bernardo removing a small stoppered vial from the apothecary cabinet covertly eleven days before the banquet. The apothecary's ledger (E5) confirms a vial of aconite tincture went missing around that period. While Matteo Conti was also seen near the apothecary storeroom, the diary entry places Bernardo there later, and Matteo's confirmed presence in the scriptorium (albeit with a gap) is weaker as a means-and-opportunity link than Bernardo's direct table access. Step 4 \u2014 Motive confirmed by financial evidence: The hidden purse of embezzled florins (E8) and Giovanni's annotated promissory ledger (E4) establish that Giovanni had leverage over Bernardo that was existential \u2014 not merely inconvenient. Bernardo had no exit from the blackmail except Giovanni's death. The convergence of sole physical opportunity (E7), confirmed possession of the poison (E2), and overwhelming motive (E8) proves Bernardo Lippi is the murderer."
+  },
+  "gameplay_notes": {
+    "difficulty": "HARD",
+    "estimated_playtime": "90\u2013120 minutes",
+    "key_twists": [
+      "Pravar al-Rashid is aggressively suspected as the poisoner due to his exotic medicine chest and foreign origin, redirecting player attention until his chest is properly examined and his alibi corroborated \u2014 he is a victim of prejudice, not a perpetrator",
+      "Donna Fiora's coded candle signals appear to be conspiratorial communication with an outside accomplice but are revealed through decryption to be loving messages to her exiled son, completely clearing her and illustrating that mysterious behavior can have innocent explanations",
+      "The 48-hour diplomatic deadline created by the Duke's edict pressures players to resolve accusations quickly, incentivizing hasty judgments against the most exotic-seeming suspect",
+      "Brother Anselmo's diary is only found if players think to search the chapel \u2014 it is the single most damning piece of evidence and rewards thorough scene investigation over social interrogation alone",
+      "Matteo Conti's motive is the most dramatically obvious, making him the intuitive primary suspect, but his alibi and the absence of physical evidence linking him to the goblet ultimately exonerate him"
+    ]
+  },
+  "_meta": {
+    "num_players": 6,
+    "setting_input": "A poisoning at a Renaissance Florentine court"
+  },
+  "_provenance": {
+    "recipe": "corpus_0024_ebo(1) + corpus_0179_ebo(2) + corpus_0095_ebo(3) + corpus_0086_ebo(4) + corpus_0108_ebo(5) + corpus_0126_ebo(6) + corpus_0034_ebo(7) + corpus_0012_ebo(8)",
+    "slots": [
+      {
+        "source_id": "corpus_0024_ebo",
+        "part_index": 1,
+        "part_type": "crime_type"
+      },
+      {
+        "source_id": "corpus_0179_ebo",
+        "part_index": 2,
+        "part_type": "setting_element"
+      },
+      {
+        "source_id": "corpus_0095_ebo",
+        "part_index": 3,
+        "part_type": "motive"
+      },
+      {
+        "source_id": "corpus_0086_ebo",
+        "part_index": 4,
+        "part_type": "suspect_archetype"
+      },
+      {
+        "source_id": "corpus_0108_ebo",
+        "part_index": 5,
+        "part_type": "red_herring"
+      },
+      {
+        "source_id": "corpus_0126_ebo",
+        "part_index": 6,
+        "part_type": "reveal_mechanic"
+      },
+      {
+        "source_id": "corpus_0034_ebo",
+        "part_index": 7,
+        "part_type": "social_dynamic"
+      },
+      {
+        "source_id": "corpus_0012_ebo",
+        "part_index": 8,
+        "part_type": "evidence_type"
+      }
+    ],
+    "target_setting": "A poisoning at a Renaissance Florentine court",
+    "generated_title": ""
+  },
+  "_coherence": {
+    "passed": true,
+    "blocking": 0,
+    "warnings": 0,
+    "witness_gaps": []
+  }
+}

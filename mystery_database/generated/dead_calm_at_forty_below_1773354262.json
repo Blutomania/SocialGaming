@@ -1,0 +1,209 @@
+{
+  "title": "Dead Calm at Forty Below",
+  "setting": {
+    "location": "RMS Empress of the Atlantic, mid-Atlantic Ocean",
+    "time_period": "1924",
+    "environment": "First-class deck and staterooms of a grand ocean liner, three days from any port",
+    "description": "The Empress of the Atlantic steams through grey, featureless waters a thousand miles from the nearest coast, her passengers sealed inside by icy November gales that have kept the promenade deck deserted since nightfall. The ship's wireless room was struck by a freak lightning surge two days out of Southampton, severing all communication with the outside world until landfall. No lifeboats could survive the current sea state, and the captain has made it quietly clear: whoever killed first-class passenger Mr. Reginald Ashworth is still aboard, and still aboard they will remain until New York Harbour."
+  },
+  "crime": {
+    "type": "Murder",
+    "what_happened": "Reginald Ashworth, a wealthy shipping magnate, was found dead in his locked first-class stateroom (A-14) with a lethal dose of physostigmine \u2014 extracted from calabar beans \u2014 administered via a hypodermic needle to the back of his neck, disguised among several existing mosquito bites from his recent West African tour. The culprit used a stolen passkey to enter and exit, then locked the door from the outside with a duplicate key to simulate a locked-room death.",
+    "when": "Between 10:45 p.m. and 11:30 p.m. on the third night out of Southampton, Wednesday the 12th of November, 1924",
+    "initial_discovery": "Ashworth's valet, Perkins, arrived at 7:15 a.m. Thursday with morning tea and found the door locked from within \u2014 or so it appeared. When the purser's passkey was used and Ashworth was found cold and rigid, the ship's surgeon, Dr. Maren Voss, was summoned and immediately noted the suspicious needle mark at the base of the skull."
+  },
+  "characters": [
+    {
+      "name": "Reginald Ashworth",
+      "role": "victim",
+      "occupation": "Shipping magnate and majority shareholder of Ashworth & Sons Atlantic Trading Co., travelling to New York to finalize a company restructuring",
+      "motive": "N/A",
+      "alibi": "N/A \u2014 victim",
+      "secret": "Ashworth had secretly altered his will three weeks before sailing, cutting his younger brother Edmund entirely from the estate after discovering Edmund had been embezzling from the family company for two years. He had also written a signed statement intended for his solicitors in New York, which was locked in his cabin safe."
+    },
+    {
+      "name": "Edmund Ashworth",
+      "role": "suspect",
+      "occupation": "Junior partner at Ashworth & Sons, travelling aboard ostensibly to assist his brother with New York negotiations",
+      "motive": "Edmund learned through a company clerk that Reginald had altered the will and intended to hand evidence of the embezzlement to New York lawyers. Exposure would mean not only complete disinheritance but criminal prosecution for fraud exceeding twelve thousand pounds.",
+      "alibi": "Claims he was playing bridge in the first-class smoking room from 9:00 p.m. until midnight with three other passengers, but the third player, Colonel Beauchamp, recalls Edmund leaving the table for 'well over half an hour' between roughly 10:30 p.m. and 11:15 p.m., citing a headache.",
+      "secret": "Edmund had obtained a duplicate passkey to stateroom A-14 by bribing a junior steward named Kowalski three days earlier, claiming he needed access to retrieve a personal letter. He was also seen by the night-shift pantry boy emerging from the A-deck corridor at approximately 11:20 p.m., his shirt cuffs damp."
+    },
+    {
+      "name": "Dr. Maren Voss",
+      "role": "suspect",
+      "occupation": "Ship's surgeon aboard the Empress, responsible for medical care of all passengers and crew",
+      "motive": "Reginald Ashworth had, five years earlier, testified against Voss's late husband in a maritime insurance fraud trial that ended in her husband's imprisonment; he died in Wormwood Scrubs of pneumonia eighteen months into his sentence. Voss blames Ashworth entirely and has carried a documented grievance ever since.",
+      "alibi": "States she was in the ship's surgery from 10:00 p.m. onward, treating a stoker for a rope burn. The stoker, Haakon Lund, confirms she sutured his hand but states he was released by 10:35 p.m. and cannot account for her whereabouts after that time. She has full access to the ship's pharmaceutical stores.",
+      "secret": "Dr. Voss's medical log shows a vial of physostigmine sulphate solution checked out on the first day of the voyage for 'ophthalmic trials' \u2014 a use that requires only a fraction of the quantity withdrawn. She had also been observed by pantry steward Rojas standing outside stateroom A-14 at approximately 9:50 p.m. the previous evening, pressing her ear to the door."
+    },
+    {
+      "name": "Mrs. Celia Fontaine",
+      "role": "suspect",
+      "occupation": "Professional socialite and widow, travelling first class to New York to contest a trust fund arrangement",
+      "motive": "Ashworth was the sole trustee of her late husband's estate and had systematically denied her access to funds she was legally entitled to, keeping her financially dependent and under his control through a years-long campaign of legal obstruction motivated by his desire to absorb the trust into his own holdings.",
+      "alibi": "Was attending the late-evening recital in the first-class music salon from 10:00 p.m. until 11:45 p.m., confirmed by the pianist, Mr. Hartley, and two other passengers, the Misses Clarence, who sat beside her throughout.",
+      "secret": "Mrs. Fontaine had confronted Ashworth violently in the dining saloon at lunchtime on Wednesday \u2014 the day of the murder \u2014 and was overheard by three stewards threatening that he would 'not see New York.' She had also sent him a sealed note that afternoon demanding a private meeting in his stateroom at 10:00 p.m. that evening, which Ashworth declined in writing via his valet."
+    },
+    {
+      "name": "Viktor Kowalski",
+      "role": "suspect",
+      "occupation": "Junior steward assigned to A-deck, responsible for room service and corridor maintenance on the first-class level",
+      "motive": "Edmund Ashworth paid Kowalski thirty pounds \u2014 nearly three months' wages \u2014 to provide a duplicate passkey to stateroom A-14. Kowalski fears that if the murder is traced through the key, he will be charged as an accomplice and lose his position and freedom.",
+      "alibi": "Was assigned to the A-deck linen cupboard inventory from 10:00 p.m. to midnight under the supervision of the head steward, Mr. Fitch, who confirms Kowalski was present for most of the shift but admits he stepped away from the cupboard himself for roughly twenty minutes around 10:45 p.m. to deal with a complaint on B-deck.",
+      "secret": "Kowalski did not merely provide the key \u2014 he personally unlocked A-14 for Edmund at Edmund's request, waiting outside in the corridor to relock it afterward. He has hidden the thirty pounds in a tobacco tin inside his crew bunk and has told no one, but a fellow steward, Rojas, saw Kowalski and Edmund speaking furtively near the passkey cabinet on Monday evening."
+    },
+    {
+      "name": "Thomas Perkins",
+      "role": "witness",
+      "occupation": "Personal valet to Reginald Ashworth, employed in that capacity for eleven years and travelling as part of Ashworth's household staff",
+      "motive": "N/A \u2014 witness",
+      "alibi": "Was in the servants' quarters on C-deck from 9:30 p.m. onward, playing cards with two other valets. Retired to his bunk at 11:00 p.m. and discovered the body at 7:15 a.m. the following morning.",
+      "secret": "Perkins knew the contents of the altered will, having inadvertently seen the document on Ashworth's writing desk ten days before sailing. He chose not to warn Edmund out of loyalty to Reginald, but also did not inform anyone else, meaning he has been concealing material knowledge since before the voyage began."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "Withdrawn Physostigmine Vial",
+      "description": "A small brown glass vial, logged out of the ship's pharmacy cabinet on day one of the voyage under Dr. Voss's signature, containing physostigmine sulphate solution for injection. The vial is found in Voss's surgery cabinet with a third of its contents missing \u2014 far more than any legitimate ophthalmic use would require. Post-mortem analysis by Voss herself (before she is a suspect) confirms the same compound killed Ashworth.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E2",
+      "name": "Duplicate Passkey to Stateroom A-14",
+      "description": "A brass passkey stamped with the room number A-14, discovered wrapped in a handkerchief at the bottom of Edmund Ashworth's Gladstone bag during a cabin search ordered by the captain. It is not the master passkey issued to stewards but a purpose-cut duplicate, and the ship's locksmith confirms it was made from a wax impression of the original within the past week. Its presence in Edmund's luggage places him in possession of the means to enter and exit the locked stateroom.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E3",
+      "name": "Altered Will and Embezzlement Statement",
+      "description": "A sealed legal envelope recovered from the small iron safe bolted beneath Ashworth's writing desk, opened in the presence of the captain and purser. Inside are a signed and witnessed revision to Reginald Ashworth's will, dated three weeks prior, which removes Edmund Ashworth entirely from the estate, and a twelve-page audited statement detailing Edmund's embezzlement of company funds. This document establishes Edmund's motive with devastating specificity.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E4",
+      "name": "Pantry Boy's Testimony",
+      "description": "A written statement taken from fifteen-year-old pantry assistant Declan Murch, who was carrying a slop bucket through the A-deck service corridor at approximately 11:20 p.m. on Wednesday night. He states he saw a man in evening dress \u2014 whom he identifies from a photograph as Edmund Ashworth \u2014 emerge quickly from the main corridor near stateroom A-14, his white shirt cuffs visibly damp and his expression 'frightened-looking.' The testimony places Edmund directly at the scene during the murder window.",
+      "type": "testimonial",
+      "relevance": "critical"
+    },
+    {
+      "id": "E5",
+      "name": "The Threatening Note from Mrs. Fontaine",
+      "description": "A cream envelope found on Ashworth's writing desk, opened and bearing Mrs. Celia Fontaine's monogram, in which she demands a private meeting in his stateroom at 10:00 p.m. and warns him to 'settle this before we dock or face consequences you have not imagined.' The note, combined with her overheard lunchtime threat, makes her appear the most volatile and openly hostile suspect. However, her alibi for the murder window is the most airtight of any suspect.",
+      "type": "documentary",
+      "relevance": "red_herring"
+    },
+    {
+      "id": "E6",
+      "name": "Steward Rojas's Observation Log",
+      "description": "An informal duty diary kept by steward Miguel Rojas, who records unusual events during his corridor watch as a personal habit. On the entry for Monday evening, he has written: 'E.A. [Edmund Ashworth] at passkey cabinet near linen store, speaking low with Kowalski, 9:40 p.m. \u2014 seemed odd.' On Wednesday entry he notes seeing 'the lady doctor' outside A-14 around 9:50 p.m. pressing her ear to the door. The diary implicates both Edmund and Voss in suspicious behaviour prior to the murder.",
+      "type": "documentary",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E7",
+      "name": "Damp Shirt Cuffs and Discarded Rubber Glove",
+      "description": "Edmund Ashworth's evening shirt, retrieved from his cabin laundry bag, has wet cuffs consistent with hand-washing, and a faint chemical smell is detected by Dr. Voss when examining it \u2014 consistent with physostigmine solution. More significantly, a single thin rubber glove of the type used in medical procedures is found wedged behind the drainpipe beneath the A-deck washroom basin two doors from A-14, suggesting the killer wore it to avoid leaving fingerprints on the syringe and then discarded it nearby.",
+      "type": "physical",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E8",
+      "name": "Colonel Beauchamp's Bridge Score Card",
+      "description": "The official score card from Wednesday night's bridge game in the smoking room, kept by Colonel Beauchamp in his breast pocket. Scores are recorded in four columns but the third column \u2014 Edmund Ashworth's \u2014 shows a gap in recorded hands between what the Colonel estimates was 10:30 p.m. and 11:15 p.m., with a note in Beauchamp's handwriting reading 'E. absent \u2014 headache.' This directly contradicts Edmund's alibi of being present at the table throughout the evening.",
+      "type": "documentary",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E9",
+      "name": "Kowalski's Hidden Banknotes",
+      "description": "Thirty pounds in mixed denomination banknotes discovered in a tobacco tin inside Viktor Kowalski's crew bunk during the captain's search of crew quarters. The sum is extraordinary for a junior steward's savings, and when confronted, Kowalski's account of its origin shifts three times. Perkins confirms he saw Edmund passing an envelope to 'the young fair-haired steward' near the purser's office on Monday morning, which links the payment to Edmund's procurement of the duplicate key.",
+      "type": "physical",
+      "relevance": "supporting"
+    }
+  ],
+  "solution": {
+    "culprit": "Edmund Ashworth",
+    "method": "Edmund bribed steward Kowalski to produce a duplicate passkey to his brother's stateroom. On the night of the murder, during the gap in the bridge game, he used the key to enter A-14 while his brother slept \u2014 Reginald having retired early with a mild seasick complaint noted by Perkins. Edmund injected physostigmine sulphate solution into the base of Reginald's neck using a hypodermic syringe he had stolen from the ship's surgery two days earlier and pre-loaded with solution taken from Dr. Voss's withdrawn vial (which he accessed while she was on deck during lifeboat drill). He relocked the door from the outside using the duplicate key to simulate a locked-room scenario, then washed his hands and returned to the smoking room, claiming his headache had cleared.",
+    "motive": "Reginald had discovered Edmund's two-year embezzlement of twelve thousand pounds from the family company and had silently altered his will and prepared a criminal evidence dossier for New York lawyers. Edmund faced simultaneous disinheritance and prosecution. The ship's isolation meant that killing Reginald mid-ocean was the only way to prevent the documents reaching New York \u2014 if Reginald died at sea, the New York meeting would be cancelled and the will and documents might be suppressed or delayed long enough for Edmund to destroy or contest them.",
+    "key_evidence": [
+      "E2",
+      "E3",
+      "E4"
+    ],
+    "how_to_deduce": "Step 1 \u2014 Establish means and access: The duplicate passkey (E2) found in Edmund's luggage proves he could enter and exit the locked stateroom without using the master passkey. The locksmith's confirmation that it was cut from a wax impression this week links it to Kowalski's bribery (E9), and Rojas's diary (E6) places Edmund at the passkey cabinet with Kowalski on Monday \u2014 two days before the murder. This dismantles the locked-room illusion. Step 2 \u2014 Eliminate the most theatrical suspect: Mrs. Fontaine's threatening note (E5) and overheard lunchtime outburst make her the obvious suspect, but her alibi \u2014 confirmed independently by the pianist and two passengers throughout the murder window \u2014 is unbreakable. Recognising her as a red herring refocuses investigation on Edmund. Step 3 \u2014 Break Edmund's alibi: Colonel Beauchamp's bridge card (E8) shows a documented gap in Edmund's presence between roughly 10:30 and 11:15 p.m. \u2014 precisely the murder window. This destroys his sole alibi. Step 4 \u2014 Place him at the scene: Pantry boy Murch's testimony (E4) independently places Edmund in the A-deck corridor at 11:20 p.m., emerging from near A-14 with damp cuffs \u2014 corroborated by the physical evidence of the washed shirt and discarded glove (E7). Step 5 \u2014 Establish motive with documentation: The will and embezzlement statement (E3) from the safe provide the specific and devastating financial and legal motive. Edmund had everything to lose and only a mid-ocean murder to gain time. The convergence of stolen access, broken alibi, eyewitness placement, physical traces, and documented motive leaves no other conclusion."
+  },
+  "gameplay_notes": {
+    "difficulty": "HARD",
+    "estimated_playtime": "90\u2013120 minutes",
+    "key_twists": [
+      "The locked-room appearance is a deliberate illusion created by a duplicate key, not a genuine impossibility \u2014 players who fixate on 'how did anyone get in?' may waste time on the wrong question.",
+      "Dr. Voss's access to the poison and her documented hatred of the victim make her the most medically credible killer, but the physostigmine was stolen from her stores without her knowledge, making her simultaneously the most suspicious and the most wrongly accused character.",
+      "Mrs. Fontaine's theatrically hostile behaviour and threatening note are a classic red herring \u2014 her alibi is perfect, and players who build a case against her must eventually confront that the evidence points entirely the other way.",
+      "Kowalski's guilt is real but limited: he is an accomplice to murder without fully understanding what he enabled, and his testimony \u2014 once his bribery is exposed \u2014 is what closes the case against Edmund.",
+      "The ship's destroyed wireless means no outside verification of any character's background is possible, forcing players to work entirely from shipboard testimony, physical evidence, and documents \u2014 mirroring the true isolation of the setting."
+    ]
+  },
+  "_meta": {
+    "num_players": 5,
+    "setting_input": "A murder aboard a 1920s ocean liner mid-Atlantic"
+  },
+  "_provenance": {
+    "recipe": "corpus_0258_ebo(1) + D(2) + corpus_0126_ebo(3) + corpus_0062_ebo(4) + corpus_0188_ebo(5) + corpus_0041_ebo(6) + corpus_0154_ebo(7) + corpus_0331_ebo(8)",
+    "slots": [
+      {
+        "source_id": "corpus_0258_ebo",
+        "part_index": 1,
+        "part_type": "crime_type"
+      },
+      {
+        "source_id": "D",
+        "part_index": 2,
+        "part_type": "setting_element"
+      },
+      {
+        "source_id": "corpus_0126_ebo",
+        "part_index": 3,
+        "part_type": "motive"
+      },
+      {
+        "source_id": "corpus_0062_ebo",
+        "part_index": 4,
+        "part_type": "suspect_archetype"
+      },
+      {
+        "source_id": "corpus_0188_ebo",
+        "part_index": 5,
+        "part_type": "red_herring"
+      },
+      {
+        "source_id": "corpus_0041_ebo",
+        "part_index": 6,
+        "part_type": "reveal_mechanic"
+      },
+      {
+        "source_id": "corpus_0154_ebo",
+        "part_index": 7,
+        "part_type": "social_dynamic"
+      },
+      {
+        "source_id": "corpus_0331_ebo",
+        "part_index": 8,
+        "part_type": "evidence_type"
+      }
+    ],
+    "target_setting": "A murder aboard a 1920s ocean liner mid-Atlantic",
+    "generated_title": ""
+  },
+  "_coherence": {
+    "passed": true,
+    "blocking": 0,
+    "warnings": 0,
+    "witness_gaps": []
+  }
+}

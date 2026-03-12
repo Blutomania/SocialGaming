@@ -1,0 +1,195 @@
+{
+  "title": "Whiteout at Erebus Station",
+  "setting": {
+    "location": "Erebus-7 Antarctic Research Station, 340 kilometres from McMurdo Sound",
+    "time_period": "Present day, austral winter (June)",
+    "environment": "A prefabricated station of six modules half-buried in ice, surrounded by total polar darkness and a Category-2 blizzard that has already snapped the satellite uplink antenna.",
+    "description": "Erebus-7 sits alone on the Ross Ice Shelf, reachable only by Twin Otter aircraft that are grounded until the storm passes \u2014 a window the station meteorologist estimates at 72 hours minimum. Outside temperatures hover at minus 47 Celsius with wind chill, making unprotected exposure lethal within minutes, which means every person on the station is locked inside as surely as if the doors were barred. The six-module complex feels smaller each hour, and the disappearance of one of its four researchers has turned every corridor into a potential crime scene."
+  },
+  "crime": {
+    "type": "disappearance",
+    "what_happened": "Dr. Maren Solberg, the station's glaciologist, vanished sometime during the night rotation. She was last seen alive at 23:10 entering the equipment vestibule adjacent to Module C. By morning she was gone \u2014 her cold-weather suit is still hanging on its rack, making voluntary exit into the storm a death sentence she almost certainly did not choose. A faint drag mark in condensation frost was found near the floor hatch leading to the under-ice utility crawlspace.",
+    "when": "Between 23:10 and 06:00 during the station's night rotation",
+    "initial_discovery": "Station cook and logistics officer Pieter Voss went to wake Solberg for her morning data run at 06:30 and found her bunk empty. A systematic search of all modules took ninety minutes before anyone checked the utility crawlspace, where a single blood-smeared glove was found near the emergency ice-core storage vault \u2014 but no body."
+  },
+  "characters": [
+    {
+      "name": "Dr. Maren Solberg",
+      "role": "victim",
+      "occupation": "Glaciologist and deputy station commander; her ice-core drilling project is the primary scientific mission of the posting.",
+      "motive": "N/A \u2014 victim",
+      "alibi": "N/A \u2014 victim",
+      "secret": "Solberg had recently discovered, by accident, that one of the station's researchers was falsifying their identity using credentials belonging to a scientist who died in a mountaineering accident two years ago. She had drafted a secure email to the Norwegian Polar Institute flagging the discrepancy but had not yet sent it because the satellite antenna was destroyed in the storm."
+    },
+    {
+      "name": "Dr. Casimir Wronski",
+      "role": "suspect",
+      "occupation": "Atmospheric physicist; posted to Erebus-7 to maintain the ozone and particulate monitoring array on the station roof.",
+      "motive": "Wronski is the impostor: he assumed the identity and credentials of the real Casimir Wronski after witnessing his accidental death during a shared fieldwork expedition in Svalbard. The position at Erebus-7 was coveted because the remote posting comes with a substantial hazard bonus and \u2014 more critically \u2014 access to the station's sealed archive of pre-Columbian ice cores valued at over three million euros by private collectors. Solberg's discovery threatened to unravel the false identity he had built over two years.",
+      "alibi": "Claims he was alone in the instrument bay on Module F from 22:30 until 04:00, running a routine calibration on the LIDAR array. No corroborating witness; the calibration log exists but its timestamps can be manually edited from the same workstation.",
+      "secret": "The real Casimir Wronski's personnel file contains a retinal scan from his university employment record. The man currently using his name has slightly different biometrics, a discrepancy Solberg noticed when the station's door-access log flagged an iris mismatch error three weeks ago. Wronski (the impostor) carries a forged laminated copy of the original's credentials in the lining of his parka."
+    },
+    {
+      "name": "Dr. Yuki Tanabe",
+      "role": "suspect",
+      "occupation": "Marine biologist and secondary researcher; studying microbial life in sub-ice brine channels accessed through the crawlspace hatch system.",
+      "motive": "Tanabe is the only person besides Solberg with regular authorised access to the under-ice crawlspace and knows its layout intimately. She had a separate, personal motive for wanting Solberg silenced: Solberg had written a confidential peer-review rejecting Tanabe's flagship journal submission six months ago, a rejection Tanabe recently traced back to Solberg through a leak at the editorial office. The rejection cost Tanabe a major grant renewal.",
+      "alibi": "States she was in the shared bunkroom from 22:00 onward, asleep, and heard nothing. Pieter Voss confirms he saw her light off by 22:15 \u2014 but his sightline only covers the bunkroom door, not the interior, and Tanabe's bunk is beside a secondary corridor hatch.",
+      "secret": "Tanabe had entered the crawlspace at 21:45 that evening \u2014 before the disappearance window \u2014 to retrieve a sample canister, and she did not log the entry as regulations require. She is concealing this because an unlogged crawlspace entry would make her the prime suspect, even though she left before Solberg arrived."
+    },
+    {
+      "name": "Pieter Voss",
+      "role": "suspect",
+      "occupation": "Logistics officer and station cook; responsible for supplies, mechanical systems, and the station's emergency equipment inventory.",
+      "motive": "Voss has been systematically skimming high-value supplies \u2014 medical-grade pharmaceuticals from the emergency medical kit, rare-isotope calibration standards from the science stores \u2014 and selling them to a black-market network via encoded messages hidden in routine weather-report transmissions. Solberg had noticed inventory discrepancies and confronted Voss two days before her disappearance, giving him until the storm passed to explain himself before she filed a formal report.",
+      "alibi": "Was in the kitchen module from 21:00 to midnight preparing tomorrow's provisions, confirmed by Tanabe who passed through at 21:50 and saw him at the prep counter. After midnight he says he went directly to his private berth.",
+      "secret": "Voss secretly modified the station's emergency medical sedative supply three months ago, diverting two full syringes of ketamine from the kit and replacing them with saline. He keeps the actual syringes hidden inside a hollowed food-storage canister in the dry pantry \u2014 a method that would allow him to incapacitate someone quickly and quietly without leaving obvious external injuries."
+    },
+    {
+      "name": "Ingrid Halvorsen",
+      "role": "witness",
+      "occupation": "Station meteorologist and communications officer; responsible for weather forecasting and all uplink/downlink operations.",
+      "motive": "None \u2014 she is a witness",
+      "alibi": "Was in the communications module throughout the night trying to restore partial satellite contact after the antenna damage, a continuous effort she can document with timestamped system logs and failed-connection error reports.",
+      "secret": "Halvorsen observed Wronski leaving the instrument bay at 01:15 \u2014 not staying until 04:00 as he claims \u2014 and walking toward the crawlspace access corridor with what appeared to be a heavy duffel bag slung over one shoulder. She has not yet reported this because Wronski told her he was just moving equipment and she does not want to falsely accuse a colleague, but she recorded a brief voice memo on her personal recorder noting the sighting out of habit."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "Forged credential card in parka lining",
+      "description": "A laminated identity card bearing the real Casimir Wronski's photograph and biometric data, discovered when Pieter Voss inventoried the coat rack for missing cold-weather gear and felt a stiff panel inside Wronski's spare parka. The card's photograph matches historical photos of the genuine scientist found in a university faculty archive, and bears subtle printing differences from legitimately issued cards \u2014 the font kerning on the institution name is slightly off, visible under magnification. Its presence proves the current 'Wronski' is not who he claims to be.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E2",
+      "name": "Halvorsen's voice memo recording",
+      "description": "A 14-second voice memo on Ingrid Halvorsen's personal digital recorder, timestamped 01:17, in which she quietly narrates seeing 'Casimir heading toward the C-hatch corridor carrying the big grey duffel, the one usually stored in the instrument bay.' The memo contradicts Wronski's alibi of remaining in the instrument bay until 04:00. Cross-referencing the timestamp with the crawlspace access log shows the C-hatch floor panel was opened at 01:19, two minutes after Halvorsen's observation.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E3",
+      "name": "Hollow food canister with sedative syringes",
+      "description": "A large metal catering canister in Pieter Voss's dry pantry, labelled 'Powdered Milk \u2014 Reserve,' containing two pre-loaded syringes of ketamine rather than food product. The syringes bear lot numbers matching those listed as 'used' in the medical kit's dispensing log, suggesting Voss falsified usage records. Their discovery initially makes Voss appear to be Solberg's attacker, as ketamine would explain how she was incapacitated without a struggle.",
+      "type": "physical",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E4",
+      "name": "Crawlspace access panel frost drag-mark",
+      "description": "A smeared disturbance in the condensation frost on the Module C floor, roughly 60 centimetres wide and approximately 1.5 metres long, leading from the direction of the equipment vestibule to the crawlspace hatch. The pattern is consistent with a heavy object \u2014 such as a person's torso \u2014 being dragged rather than walked. It was partially obscured by boot traffic during the initial search, but a photograph taken by Halvorsen during her own inspection preserves its full shape.",
+      "type": "physical",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E5",
+      "name": "Falsified LIDAR calibration log",
+      "description": "The calibration log on the instrument-bay workstation that Wronski presented as his alibi, showing continuous entries from 22:30 to 04:00. A metadata inspection of the file's edit history, accessible through the station's internal server, reveals that all entries between 22:30 and 04:00 were written in a single batch at 04:03 \u2014 meaning the log was fabricated after the fact rather than recorded in real time. This directly undermines Wronski's stated alibi.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E6",
+      "name": "Solberg's unsent email draft",
+      "description": "A draft email found on Solberg's workstation terminal, addressed to the Norwegian Polar Institute's personnel security office, describing a biometric mismatch in the station door-access log for the researcher going by the name Casimir Wronski and requesting a verification check against university records. The email references a specific date three weeks prior when the iris-scan reader logged an error and automatically captured a photograph of the unrecognised face. The draft was never sent because the antenna failed before she could transmit.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E7",
+      "name": "Tanabe's unlogged crawlspace entry \u2014 boot print cluster",
+      "description": "A cluster of smaller boot prints (size 36, matching Tanabe's station-issue footwear) found near the east junction of the crawlspace, separate from the drag-mark zone and pointing away from the ice-core vault. The prints are partially obscured by larger prints leading toward the vault, suggesting two different individuals entered the crawlspace at different times. Initially this evidence points strongly toward Tanabe as the person who moved Solberg, but the size, direction, and soil trace of the prints indicate the smaller-booted person was moving away from the vault, not toward it.",
+      "type": "physical",
+      "relevance": "red_herring"
+    },
+    {
+      "id": "E8",
+      "name": "Grey duffel bag found in ice-core vault",
+      "description": "A large grey duffel bag, normally stored in the instrument bay per the equipment manifest, discovered pushed behind a row of sealed ice-core drawers in the under-ice vault at the far end of the crawlspace. The bag contains rope, a roll of heavy-duty tape, and a field medical kit missing its sedative components \u2014 but crucially, it also contains a cracked tablet computer belonging to Wronski. The tablet's screen, though broken, still powers on and displays a message thread with an anonymous buyer discussing the theft and sale of three specific rare ice cores.",
+      "type": "physical",
+      "relevance": "critical"
+    }
+  ],
+  "solution": {
+    "culprit": "Dr. Casimir Wronski (the impostor)",
+    "method": "Wronski ambushed Solberg in the equipment vestibule outside Module C during the quiet hours of the night rotation, using ketamine from the station medical kit (which he had separately accessed before Voss diverted his own supply) to incapacitate her. He dragged her unconscious body through the C-hatch and into the under-ice crawlspace, then concealed her inside the sealed emergency ice-core storage vault alongside the duffel bag containing his theft equipment. He then returned to the instrument bay and falsified the LIDAR calibration log to construct a retroactive alibi. Solberg is alive but sedated and locked in the vault, which maintains sub-zero but survivable temperatures due to the insulation designed to protect the cores \u2014 she can be rescued if the investigators find her before the sedative wears off and hypothermia sets in.",
+    "motive": "Wronski (the impostor) had two converging motives: first, Solberg had discovered his false identity through the biometric mismatch and was days away from exposing him, which would destroy the life he had constructed under the stolen name; second, he had arranged a sale of three irreplaceable pre-Columbian ice cores to a private collector for 1.4 million euros and needed Solberg \u2014 the only person with the vault's secondary access code \u2014 removed before she could prevent the theft or report it.",
+    "key_evidence": [
+      "E5",
+      "E6",
+      "E2",
+      "E1"
+    ],
+    "how_to_deduce": "Step 1 \u2014 Eliminate the red herring: Tanabe's unlogged crawlspace entry (E7, boot prints heading away from the vault) initially makes her the prime suspect, but the direction and size of her prints show she exited the crawlspace before the drag-mark was made and never reached the vault area. Her secret entry is explained by her sample retrieval, which occurred before the disappearance window. Step 2 \u2014 Undermine the strongest alibi: Wronski's LIDAR calibration log appears to give him an unbreakable alibi, but the server metadata (E5) proves the entire log was written in a single batch at 04:03, three hours after it supposedly began \u2014 a fabrication. Step 3 \u2014 Place Wronski at the scene: Halvorsen's voice memo (E2) timestamps him walking toward the C-hatch corridor at 01:17 carrying the large grey duffel bag, directly contradicting his alibi and placing him at the entrance to the crawlspace two minutes before the hatch was opened. Step 4 \u2014 Establish motive via identity fraud: Solberg's unsent email draft (E6) explains why she was targeted \u2014 she had documented the biometric mismatch and was about to expose Wronski as an impostor. The forged credential card found in his parka (E1) confirms she was right. Step 5 \u2014 Confirm the secondary motive and locate Solberg: The cracked tablet in the duffel bag (E8) contains the ice-core sale negotiation, explaining why Wronski needed access to the vault and why Solberg had to be removed rather than simply intimidated. The vault is the logical place to search for her, and the players can rescue her before she dies \u2014 turning the disappearance case into an arrest."
+  },
+  "gameplay_notes": {
+    "difficulty": "HARD",
+    "estimated_playtime": "90\u2013120 minutes",
+    "key_twists": [
+      "Solberg is not dead \u2014 she is locked alive in the ice-core vault and can be rescued if players deduce the location in time, adding a ticking-clock urgency mechanic.",
+      "Wronski's false identity means his entire background story and stated expertise are lies; players who research his academic history online (via the station's partially restored uplink) will find the real Casimir Wronski's obituary from two years ago.",
+      "Tanabe's unlogged crawlspace entry, combined with her hidden grudge against Solberg, is designed to absorb suspicion for most of the game \u2014 she looks guilty and acts evasively, but for entirely different reasons than the crime.",
+      "Voss's hidden ketamine syringes suggest he is the attacker, but the syringes are still in his pantry unused; Wronski used a separate medical-kit vial, pointing players who check the kit's lot numbers carefully toward a different perpetrator.",
+      "The fabricated LIDAR log is the pivotal break: it is hidden in server metadata rather than visible in the log itself, rewarding players who think to question how a digital document was created rather than just what it says."
+    ]
+  },
+  "_meta": {
+    "num_players": 4,
+    "setting_input": "A disappearance at a remote Antarctic research station"
+  },
+  "_provenance": {
+    "recipe": "corpus_0327_ebo(1) + corpus_0041_ebo(2) + corpus_0308_ebo(3) + corpus_0039_ebo(4) + corpus_0107_ebo(5) + corpus_0087_ebo(6) + corpus_0261_ebo(7) + corpus_0184_ebo(8)",
+    "slots": [
+      {
+        "source_id": "corpus_0327_ebo",
+        "part_index": 1,
+        "part_type": "crime_type"
+      },
+      {
+        "source_id": "corpus_0041_ebo",
+        "part_index": 2,
+        "part_type": "setting_element"
+      },
+      {
+        "source_id": "corpus_0308_ebo",
+        "part_index": 3,
+        "part_type": "motive"
+      },
+      {
+        "source_id": "corpus_0039_ebo",
+        "part_index": 4,
+        "part_type": "suspect_archetype"
+      },
+      {
+        "source_id": "corpus_0107_ebo",
+        "part_index": 5,
+        "part_type": "red_herring"
+      },
+      {
+        "source_id": "corpus_0087_ebo",
+        "part_index": 6,
+        "part_type": "reveal_mechanic"
+      },
+      {
+        "source_id": "corpus_0261_ebo",
+        "part_index": 7,
+        "part_type": "social_dynamic"
+      },
+      {
+        "source_id": "corpus_0184_ebo",
+        "part_index": 8,
+        "part_type": "evidence_type"
+      }
+    ],
+    "target_setting": "A disappearance at a remote Antarctic research station",
+    "generated_title": ""
+  },
+  "_coherence": {
+    "passed": false,
+    "blocking": 1,
+    "warnings": 0,
+    "witness_gaps": []
+  }
+}

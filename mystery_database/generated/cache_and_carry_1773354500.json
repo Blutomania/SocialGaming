@@ -1,0 +1,198 @@
+{
+  "title": "Cache and Carry",
+  "setting": {
+    "location": "Helix Dynamics Campus, Palo Alto, California",
+    "time_period": "Present day, a Tuesday evening",
+    "environment": "A sprawling modern tech campus featuring glass-walled offices, a central innovation hub, and underground server corridors. The campus is on lockdown following an automated security alert triggered by the theft, meaning all badge-access gates have sealed and no one can exit until campus security completes its sweep \u2014 a standard protocol that traps all four persons of interest inside."
+  },
+  "crime": {
+    "type": "Theft",
+    "what_happened": "A prototype neural-processing chip \u2014 codenamed 'Prism,' valued at $4.2 million and embedded with proprietary AI architecture \u2014 was stolen from the locked R&D vault on the third floor of the Innovation Hub. The thief used a cloned access badge to enter the vault between 7:45 PM and 8:10 PM, bypassed the secondary biometric scanner using a spoofed fingerprint sleeve, and removed the chip from its case, leaving the packaging behind.",
+    "when": "Tuesday evening, between 7:45 PM and 8:10 PM",
+    "initial_discovery": "Campus security officer Dani Reyes arrived for her 8:15 PM vault check and found the vault door ajar, the chip case empty, and no chip. She immediately triggered the campus lockdown and called for an internal investigation."
+  },
+  "characters": [
+    {
+      "name": "Marcus Oyelaran",
+      "role": "victim",
+      "occupation": "Senior Hardware Engineer and custodian of the Prism prototype; his credentials are officially tied to the vault",
+      "motive": "N/A \u2014 victim",
+      "alibi": "Marcus was in Conference Room B on the second floor from 7:00 PM to 8:30 PM, running a vendor call with three remote engineers from Taipei. The call is logged on the conference room booking system and corroborated by the video-call recording.",
+      "secret": "Marcus had secretly negotiated a side consulting agreement with a rival firm, NovaSynth, three months ago, sharing non-classified but sensitive architectural notes about Prism. He never reported this to Helix Dynamics compliance, fearing termination \u2014 which is why he initially resisted full cooperation with the investigation."
+    },
+    {
+      "name": "Priya Anand",
+      "role": "suspect",
+      "occupation": "Product Intelligence Analyst; her role requires periodic access to R&D documentation and gives her legitimate reason to be in the Innovation Hub after hours",
+      "motive": "Priya is the estranged daughter of wealthy tech industrialist Rajan Anand, who cut off her inheritance after she refused to join his company. She has been living beyond her means and has accumulated $180,000 in private debts. She made contact three weeks ago with a broker known to fence stolen semiconductor IP \u2014 her motive is financial desperation dressed up as corporate espionage for profit.",
+      "alibi": "Priya claims she was at her desk on the second floor working on a quarterly report from 7:30 PM to 8:20 PM. Her desk computer shows activity during that window, but no colleague can confirm seeing her there in person during the critical 25-minute gap.",
+      "secret": "Priya had previously stolen a single low-value access fob from the facilities drawer six weeks ago to practice cloning it using off-campus equipment. She returned the fob before it was noticed missing but kept the cloning data. She never disclosed this to anyone and deleted the related files from her personal laptop \u2014 though forensic traces remain."
+    },
+    {
+      "name": "Caleb Morrow",
+      "role": "suspect",
+      "occupation": "Freelance technical writer contracted by Helix Dynamics to document the Prism chip's user architecture manual; his short-term contract gives him temporary badge access to select areas of the Innovation Hub",
+      "motive": "Caleb is a struggling writer in financial freefall \u2014 his freelance career collapsed after a major client sued him for a contract dispute, leaving him $60,000 in legal debt. He fabricated a story to campus HR about a previous Bahamas-based consulting engagement and presented forged credentials from a fake 'Inspector-General of Tech Standards' body to seem more credentialed than he is. He was secretly approached online by an anonymous buyer offering $300,000 for the Prism chip and saw the contract as his opportunity.",
+      "alibi": "Caleb says he was in the Campus Caf\u00e9 on the ground floor from 7:40 PM to 8:15 PM, nursing a coffee and working on his laptop. A barista named Tom\u00e1s remembers him being there earlier but cannot confirm he stayed the entire time \u2014 there is a 20-minute gap in caf\u00e9 security footage due to a camera malfunction.",
+      "secret": "Caleb had befriended Marcus over the previous two weeks, subtly extracting vault-adjacent details under the guise of documentation interviews. He photographed Marcus's access badge using a close-range scan app disguised as a document-scanning tool on his phone \u2014 the metadata of that photo is still recoverable from his device."
+    },
+    {
+      "name": "Dani Reyes",
+      "role": "witness",
+      "occupation": "Campus Security Officer; her routine vault checks are the reason the theft was discovered at 8:15 PM",
+      "motive": "N/A \u2014 witness",
+      "alibi": "Dani conducted her standard perimeter walk of the campus exterior from 7:00 PM to 8:10 PM, as logged by her body camera timestamps and the checkpoint tap-log at six outdoor stations.",
+      "secret": "Dani had been romantically involved with Caleb Morrow for two months before the theft and broke off contact the prior week after discovering he had lied about his professional background. She did not disclose this relationship to her supervisor when filing the initial discovery report, fearing it would implicate her \u2014 this omission makes her appear more complicit than she is."
+    },
+    {
+      "name": "Sunita Kapoor",
+      "role": "suspect",
+      "occupation": "IT Infrastructure Manager; she oversees badge-access systems, biometric scanners, and server-room permissions across the campus",
+      "motive": "Sunita discovered six months ago that Marcus Oyelaran had used her login credentials \u2014 obtained by shoulder-surfing \u2014 to access a restricted personnel database to look up a colleague's salary. Rather than report it formally, she confronted him privately and he dismissed her. She has harbored a resentment ever since and was in contact with NovaSynth (the same firm Marcus had a side deal with) to sell them the vault's access architecture as revenge. Her motive is reputational and financial: destroy Marcus's credibility while profiting.",
+      "alibi": "Sunita states she was in the basement server corridor from 7:30 PM to 8:30 PM performing a scheduled firmware update on the badge-reader nodes. The update log shows her admin credentials initiated the job at 7:31 PM, but admin credentials can be used remotely \u2014 no physical presence is confirmed by the log alone.",
+      "secret": "Sunita had secretly disabled the third-floor vault's backup biometric camera for a 40-minute window that evening under the pretext of a 'calibration test' \u2014 a task she logged but which was not on the official maintenance schedule. She forged the scheduling entry after the fact. This action benefited whoever stole the chip but Sunita claims she did not know the theft would occur that night."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "Cloned Access Badge",
+      "description": "A white RFID card with no printed markings was found wedged behind a fire-extinguisher mount in the third-floor corridor, twelve feet from the vault entrance. Forensic scanning reveals it carries a perfect clone of Marcus Oyelaran's badge credentials, and the card stock matches a brand sold in bulk at an electronics supply store in Sunnyvale. This initially suggests an inside job by someone with direct access to Marcus's badge data.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E2",
+      "name": "Phone Metadata \u2014 Badge Scan Photograph",
+      "description": "A forensic image of Caleb Morrow's smartphone reveals a photograph taken twelve days before the theft, showing Marcus Oyelaran's access badge at a distance of approximately four centimeters. The photo was taken using an app called 'DocScan Pro' which, on inspection, contains a hidden RFID-harvesting module \u2014 a known tool for contactless badge cloning. The metadata places the photograph as taken inside the Innovation Hub second-floor documentation office during one of Caleb's scheduled interviews with Marcus.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E3",
+      "name": "Spoofed Fingerprint Sleeve",
+      "description": "A thin silicone sleeve, approximately thumb-sized and molded with a partial fingerprint ridge pattern, was found discarded in the men's restroom bin on the third floor. The fingerprint on the sleeve does not match any staff member in the biometric database \u2014 it is a synthetic composite print, suggesting the thief manufactured it to fool the scanner. The discovery of this item indicates the thief had advance knowledge of the biometric security system's vulnerability to synthetic prints.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E4",
+      "name": "Forged Consulting Credentials",
+      "description": "HR records show Caleb Morrow submitted a reference letter from the 'Office of the Inspector-General for Technology Standards, Nassau, Bahamas' when applying for his contractor position. A quick online check reveals no such regulatory body exists in the Bahamas, and the letterhead address corresponds to a vacant lot. This suggests Caleb fabricated his professional background to gain access to the campus under false pretenses.",
+      "type": "documentary",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E5",
+      "name": "Vault Camera Maintenance Log \u2014 Forged Entry",
+      "description": "The campus security system's maintenance log shows a 'scheduled biometric camera calibration' for the third-floor vault camera between 7:35 PM and 8:15 PM, authorized under Sunita Kapoor's admin account. However, cross-referencing with the official monthly maintenance calendar \u2014 held by the facilities team \u2014 reveals no such calibration was planned. The log entry's file timestamp shows it was created at 8:22 PM, seven minutes after the theft was discovered, indicating it was backdated.",
+      "type": "documentary",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E6",
+      "name": "Encrypted Messaging Thread \u2014 Anonymous Buyer",
+      "description": "A partially recovered encrypted chat thread on Caleb Morrow's laptop, retrieved via forensic recovery of deleted files, shows 23 messages exchanged over the past month with a contact labeled only 'C-Buyer.' The final message, sent at 6:58 PM the evening of the theft, reads: 'Tonight. Vault window confirmed. Proceed as planned.' The thread references a payment of $300,000 to be wired to an offshore account after delivery of 'the package.'",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E7",
+      "name": "Caf\u00e9 Receipt and Loyalty App Timestamp",
+      "description": "A digital receipt from the Campus Caf\u00e9 shows Caleb Morrow scanned his loyalty app at 7:42 PM for a coffee purchase \u2014 consistent with his alibi. However, the caf\u00e9's loyalty app also logs a second scan at 8:03 PM at a self-service kiosk near the caf\u00e9 exit, suggesting Caleb left the caf\u00e9 area and returned, punching in a loyalty code remotely via his phone. The barista Tom\u00e1s confirms the second cup was never physically collected from the counter.",
+      "type": "circumstantial",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E8",
+      "name": "Old Woman in the Lobby \u2014 Security Footage",
+      "description": "Campus lobby security footage from 7:50 PM shows an elderly woman in a gray coat speaking at length with the front-desk guard, apparently confused about which building housed 'the lecture.' The guard spent approximately 15 minutes assisting her, pulling up campus maps and calling two internal extensions. Investigators initially wonder if this woman was a deliberate distraction deployed by the thief \u2014 however, subsequent inquiry reveals she was a retired professor who had misread the date of a campus public talk and genuinely arrived on the wrong evening.",
+      "type": "physical",
+      "relevance": "red_herring"
+    },
+    {
+      "id": "E9",
+      "name": "Dani Reyes's Undisclosed Relationship \u2014 Text Messages",
+      "description": "Dani Reyes's phone, reviewed with her consent, shows a text chain with Caleb Morrow ending abruptly six days before the theft. In one exchange, Caleb asks Dani a seemingly casual question: 'Hey, when do you do your evening vault round usually?' and Dani answers '8:15, like clockwork.' This message, while not proof of Dani's direct complicity, demonstrates that Caleb knew the exact window before Dani's check \u2014 and timed the theft accordingly.",
+      "type": "testimonial",
+      "relevance": "supporting"
+    }
+  ],
+  "solution": {
+    "culprit": "Caleb Morrow",
+    "method": "Caleb used a hidden RFID-harvesting app disguised as a document scanner on his phone to clone Marcus Oyelaran's access badge during a documentation interview twelve days before the theft. He manufactured a synthetic fingerprint sleeve using a composite print to bypass the biometric scanner. On the evening of the theft, he confirmed with his anonymous buyer at 6:58 PM, used information extracted from his former girlfriend Dani Reyes to know he had until 8:15 PM before discovery, and exploited the camera blackout window that Sunita Kapoor independently created. He entered the vault between 7:45 PM and 8:10 PM, took the Prism chip, discarded the badge and fingerprint sleeve on the third floor, returned to the caf\u00e9 to create a second loyalty-app timestamp remotely, and waited for lockdown having already passed the chip to a pickup dead-drop in the campus loading bay.",
+    "motive": "Caleb Morrow was financially desperate following a lawsuit that left him $60,000 in debt and professionally isolated. He was recruited online by an anonymous broker offering $300,000 for the Prism chip and used his contractor position \u2014 obtained through forged credentials \u2014 as deliberate infiltration cover.",
+    "key_evidence": [
+      "E2",
+      "E6"
+    ],
+    "how_to_deduce": "Step 1 \u2014 Establish the cloning mechanism: E1 (the cloned badge) proves the vault was entered using Marcus's credentials, but Marcus has a rock-solid alibi. Investigators must determine who had both opportunity and means to clone his badge. E2 (the phone metadata) directly places Caleb's device within centimeters of Marcus's badge and reveals the hidden RFID-harvesting app \u2014 proving Caleb is the only person who both had access to Marcus and used a tool capable of creating E1. Step 2 \u2014 Confirm premeditation and motive: E6 (the encrypted buyer thread) shows Caleb had a confirmed buyer, a pre-arranged timeline, and received a go-signal at 6:58 PM the evening of the theft. This eliminates any possibility of impulse and connects Caleb's financial desperation (corroborated by E4's forged credentials showing he lied his way onto campus) to a deliberate, planned act of theft-for-hire. Step 3 \u2014 Collapse the alibi: E7 (the caf\u00e9 loyalty app timestamp anomaly) shows Caleb's second loyalty scan was logged remotely at 8:03 PM \u2014 precisely during the vault window \u2014 while no physical cup was collected. Cross-referenced with E9 (Dani's text confirming the 8:15 PM check time), this proves Caleb knew his window, timed his exit and return to manufacture a false alibi, and had inside knowledge of security schedules only his former relationship could have supplied. Step 4 \u2014 Eliminate other suspects: Sunita disabled the camera (E5) but had no knowledge of the specific theft night and no means of badge cloning. Priya had debt motive and fob-cloning history, but no direct access to Marcus's badge data and no connection to the buyer thread. The forged camera log (E5) supports Sunita as an unwitting or self-interested enabler, not the thief \u2014 and the solution is confirmed by the convergence of E2 and E6 pointing exclusively to Caleb."
+  },
+  "gameplay_notes": {
+    "difficulty": "MEDIUM",
+    "estimated_playtime": "75\u201390 minutes",
+    "key_twists": [
+      "The elderly confused woman on lobby security footage initially appears to be a deliberate distraction planted by the thief, but turns out to be completely unrelated \u2014 a red herring that sends players chasing a phantom accomplice.",
+      "Sunita Kapoor's camera blackout is genuinely suspicious and she did facilitate the theft window, but she is not the culprit \u2014 players must distinguish between complicit negligence and actual guilt.",
+      "Dani Reyes's undisclosed relationship with Caleb makes her appear involved, but her only crime was an omission of a personal connection; Caleb exploited her trust without her knowledge.",
+      "Caleb's forged Bahamas credentials are revealed to be an entirely fabricated professional identity \u2014 he was never a legitimate contractor but an infiltrator who engineered his own access to the campus specifically to steal the chip."
+    ]
+  },
+  "_meta": {
+    "num_players": 4,
+    "setting_input": "Theft at a contemporary Silicon Valley tech campus"
+  },
+  "_provenance": {
+    "recipe": "corpus_0094_ebo(1) + corpus_0118_ebo(2) + corpus_0258_ebo(3) + corpus_0129_ebo(4) + corpus_0340_ebo(5) + corpus_0143_ebo(6) + corpus_0326_ebo(7) + corpus_0236_ebo(8)",
+    "slots": [
+      {
+        "source_id": "corpus_0094_ebo",
+        "part_index": 1,
+        "part_type": "crime_type"
+      },
+      {
+        "source_id": "corpus_0118_ebo",
+        "part_index": 2,
+        "part_type": "setting_element"
+      },
+      {
+        "source_id": "corpus_0258_ebo",
+        "part_index": 3,
+        "part_type": "motive"
+      },
+      {
+        "source_id": "corpus_0129_ebo",
+        "part_index": 4,
+        "part_type": "suspect_archetype"
+      },
+      {
+        "source_id": "corpus_0340_ebo",
+        "part_index": 5,
+        "part_type": "red_herring"
+      },
+      {
+        "source_id": "corpus_0143_ebo",
+        "part_index": 6,
+        "part_type": "reveal_mechanic"
+      },
+      {
+        "source_id": "corpus_0326_ebo",
+        "part_index": 7,
+        "part_type": "social_dynamic"
+      },
+      {
+        "source_id": "corpus_0236_ebo",
+        "part_index": 8,
+        "part_type": "evidence_type"
+      }
+    ],
+    "target_setting": "Theft at a contemporary Silicon Valley tech campus",
+    "generated_title": ""
+  },
+  "_coherence": {
+    "passed": true,
+    "blocking": 0,
+    "warnings": 1,
+    "witness_gaps": []
+  }
+}

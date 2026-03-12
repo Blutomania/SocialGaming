@@ -1,0 +1,217 @@
+{
+  "title": "Dead Calm at Latitude 48",
+  "setting": {
+    "location": "RMS Calypso Empress, mid-Atlantic Ocean",
+    "time_period": "1924",
+    "environment": "A grand ocean liner five days out of Southampton, bound for New York, currently becalmed in heavy fog with wireless equipment disabled by a storm the previous night.",
+    "description": "The Calypso Empress sits motionless in a grey Atlantic fog, her engines idling while engineers assess storm damage to the propeller shaft. No rescue vessel can reach her for at least thirty-six hours, and the disabled wireless ensures no outside authority can be summoned \u2014 every passenger and crew member is sealed within her iron hull, three hundred miles from the nearest coast. The ship's captain has ordered all first-class passengers confined to the A-Deck lounge and their cabins while the ship's purser conducts a preliminary inquiry, making escape or concealment of evidence a matter of ship's record and locked gangways."
+  },
+  "crime": {
+    "type": "murder",
+    "what_happened": "Mr. Cornelius Hatch, a wealthy American cotton broker, was found dead in his first-class stateroom, Cabin A-7. He had been poisoned with a concentrated tincture of belladonna introduced into his nightly brandy nightcap. The murderer had also rifled through his leather document case, removing a specific bundle of letters. Hatch had apparently been drugged lightly first \u2014 traces of chloral hydrate in his bloodstream suggest he was rendered groggy before the lethal belladonna dose was administered, ensuring he could not call for help.",
+    "when": "Between 11:00 PM and 1:00 AM on the fourth night of the voyage, Wednesday into Thursday.",
+    "initial_discovery": "Hatch's valet, Tomkins, arrived at 7:30 AM to lay out morning clothes and found his employer cold in bed, a half-empty brandy glass on the nightstand and an expression of rigid, wide-eyed terror on his face \u2014 classic signs, the ship's surgeon would later note, of belladonna toxicity causing fatal cardiac arrest."
+  },
+  "characters": [
+    {
+      "name": "Cornelius Hatch",
+      "role": "victim",
+      "occupation": "American cotton broker and financier, travelling first class to New York after concluding business deals in London",
+      "motive": "N/A \u2014 victim",
+      "alibi": "N/A \u2014 victim",
+      "secret": "Hatch had spent the past year secretly acquiring compromising letters written by several prominent people, using them as instruments of financial leverage \u2014 effectively blackmailing them into favorable business arrangements. He kept this correspondence locked in a reinforced document case that he never let out of his sight."
+    },
+    {
+      "name": "Mrs. Dorothea Vane",
+      "role": "suspect",
+      "occupation": "First-class passenger; recently widowed English socialite traveling to New York to settle her late husband's estate",
+      "motive": "Hatch possessed a series of letters written by Dorothea to a lover six years ago, letters that, if published, would destroy her standing in English society and potentially invalidate her claim to her husband's estate on grounds of marital fraud. She had been negotiating their return for months and had finally offered Hatch a large sum in London, which he had refused, laughing in her face the morning before embarkation.",
+      "alibi": "Claims she retired to Cabin A-12 at 10:15 PM after the evening's card party, took a sleeping draught, and did not leave until morning; her maid, Elsie Marsh, confirms she was in the cabin at 10:30 PM but admits she herself fell asleep in the adjoining dressing room and cannot account for the hours after 11:00 PM.",
+      "secret": "Dorothea purchased a small vial of chloral hydrate tablets from a chemist in Southampton three days before boarding, telling the chemist they were for seasickness anxiety. She has concealed the nearly empty vial inside a hollowed-out rouge compact in her vanity case, and she was seen by steward Gerald Poole walking quickly along the A-Deck corridor past Cabin A-7 at approximately 11:20 PM, though she claims she was merely going to the lavatory at the end of the hall."
+    },
+    {
+      "name": "Mr. Felix Raske",
+      "role": "suspect",
+      "occupation": "German-born pharmaceuticals importer traveling first class on business, with documented trade connections in both London and New York",
+      "motive": "Hatch had used leverage to force Raske's company into a ruinous licensing agreement eighteen months ago, effectively siphoning thirty percent of Raske's profits. Raske had recently discovered that Hatch also held a letter in which Raske had boasted \u2014 in private correspondence \u2014 of bribing a US customs official, a crime that would result in imprisonment and the destruction of his American business if revealed.",
+      "alibi": "States he was in the first-class smoking room from 9:00 PM until midnight, playing piquet with fellow passenger Sir Ambrose Kellick; Kellick confirms Raske was present until approximately 11:40 PM but admits the game broke up briefly for fifteen minutes around 11:15 PM when Kellick stepped out for air on the promenade deck, during which time Raske was alone in the smoking room.",
+      "secret": "Raske is a trained pharmacist by original education before he entered commerce, and he brought a personal medicine chest aboard containing, among other items, a bottle of belladonna tincture he uses in highly diluted form for a chronic eye condition. The medicine chest is stored in his cabin wardrobe; when the ship's surgeon later examines it, the belladonna bottle is found to be significantly more depleted than a legitimate therapeutic regimen would explain."
+    },
+    {
+      "name": "Mr. Edmund Crale",
+      "role": "suspect",
+      "occupation": "Hatch's personal secretary and traveling companion, assigned Cabin A-9 directly adjacent to the victim's stateroom",
+      "motive": "Crale had worked for Hatch for seven years and had gradually become complicit in managing the blackmail correspondence \u2014 cataloguing letters, drafting demand notes, and arranging meetings. He had recently fallen desperately in love with a young woman in London whose family Hatch was also blackmailing; Crale had secretly begun passing warnings to the family and feared that Hatch, who had grown suspicious of a leak, was about to dismiss and expose him, destroying both his career and his relationship.",
+      "alibi": "Claims he worked on correspondence in his own cabin from 9:30 PM onward and went to bed at midnight; no one can confirm his presence in Cabin A-9 during the critical hours, and the adjoining wall between A-9 and A-7 contains a ventilation panel that, when the cover is removed from either side, allows a person to reach through to the neighboring room's nightstand with a long arm.",
+      "secret": "Crale possessed a duplicate key to Cabin A-7, legitimately obtained because Hatch frequently sent him to retrieve documents. He has not disclosed the existence of this key to the purser's inquiry, and it is currently hidden inside his shaving kit wrapped in a handkerchief. Additionally, Crale had removed and destroyed several letters from Hatch's document case two weeks prior \u2014 not those belonging to Dorothea Vane or Felix Raske, but ones implicating the London family of the woman he loves \u2014 meaning he had already demonstrated willingness to steal from his employer."
+    },
+    {
+      "name": "Sir Ambrose Kellick",
+      "role": "witness",
+      "occupation": "Retired British colonial administrator traveling first class to New York for a speaking engagement; acquaintance of Hatch through London club connections",
+      "motive": "None directly, though Kellick knew Hatch socially and disliked him intensely, regarding him as a vulgar schemer; he has no financial entanglement with Hatch",
+      "alibi": "Confirmed in the smoking room with Raske until 11:15 PM, then walked the promenade deck alone for approximately fifteen minutes before returning; retired to Cabin A-4 at midnight, confirmed by his cabin steward who turned down his bed at 12:10 AM.",
+      "secret": "Kellick noticed, during his promenade walk at approximately 11:20 PM, a woman in a dark traveling cloak moving quickly along the A-Deck interior corridor, but he dismissed it as unremarkable and did not mention it in his initial statement to the purser because he assumed it was simply a passenger going to the lavatory. When pressed, he can confirm the figure was moving away from the direction of the lavatories, not toward them, and was coming from the area of Cabin A-7."
+    },
+    {
+      "name": "Dr. Prentiss Okafor",
+      "role": "detective",
+      "occupation": "Ship's surgeon aboard the Calypso Empress, a Nigerian-born doctor trained at Edinburgh, responsible for all medical matters aboard and conducting the preliminary forensic inquiry at the captain's request",
+      "motive": "N/A \u2014 detective role",
+      "alibi": "N/A \u2014 detective role",
+      "secret": "Dr. Okafor had treated Hatch two days earlier for what Hatch described as an upset stomach; Okafor now suspects this may have been an earlier, failed poisoning attempt, as the symptoms Hatch described are consistent with a subthreshold dose of belladonna \u2014 a fact he is professionally obliged to include in his autopsy report."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "The Brandy Glass with Residue",
+      "description": "A crystal brandy glass found on the nightstand beside Hatch's body, containing approximately one inch of amber liquid at the bottom. Dr. Okafor's chemical analysis of the residue reveals the presence of both chloral hydrate and a high concentration of belladonna alkaloids \u2014 atropine and scopolamine \u2014 sufficient to cause fatal cardiac arrest in a man of Hatch's age and weight. The glass bears a single clear thumb-print on its base that does not match Hatch's own prints.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E2",
+      "name": "Raske's Depleted Belladonna Bottle",
+      "description": "A small dark-glass pharmaceutical bottle labeled 'Belladonna Tincture 1% \u2014 F. Raske, personal prescription' found in Raske's medicine chest during the ship's surgeon's cabin inspection. The bottle is approximately two-thirds empty, but Raske's stated dosage regimen for his eye condition would account for only a fraction of the missing volume over the six days since he last refilled it in Hamburg. The volume discrepancy is consistent with the amount required to produce a fatal dose.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E3",
+      "name": "Dorothea's Chloral Hydrate Compact",
+      "description": "A silver rouge compact found in Mrs. Vane's vanity case during a discreet search authorized by the captain, its interior hollowed out and containing a small glass vial with four chloral hydrate tablets remaining out of an original quantity of twenty. The chemist's label inside the compact lid \u2014 partially scraped but still legible \u2014 bears the name of a Southampton pharmacy and the date three days before the voyage. The presence of this sedative aboard, undeclared to the ship's medical officer, directly links her to the chloral hydrate found in the victim's brandy glass.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E4",
+      "name": "The Duplicate Cabin Key",
+      "description": "A brass cabin key discovered wrapped in a white linen handkerchief inside Edmund Crale's shaving kit, stamped with the number A-7 \u2014 identical in cut to Hatch's own cabin key. Crale had not disclosed its existence during his initial questioning, claiming he had no means of entering the victim's cabin independently. Its concealment suggests Crale was hiding his ability to access the crime scene without leaving any sign of forced entry.",
+      "type": "physical",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E5",
+      "name": "Kellick's Revised Corridor Testimony",
+      "description": "Sir Ambrose Kellick's second statement to Dr. Okafor, given after the surgeon pressed him on his promenade walk, in which he describes seeing a woman in a dark cloak at approximately 11:20 PM walking briskly along the A-Deck interior corridor away from Cabin A-7 and toward the stern staircase. He notes she appeared to be carrying something small and dark in her right hand \u2014 possibly a glass or a vial \u2014 and that her pace was hurried in a manner inconsistent with a casual late-night stroll. This testimony places someone matching Dorothea Vane's description and traveling cloak outside the victim's cabin at the precise time of the murder window.",
+      "type": "testimonial",
+      "relevance": "critical"
+    },
+    {
+      "id": "E6",
+      "name": "The Rifled Document Case",
+      "description": "Hatch's reinforced leather document case found open and partially emptied on the desk in Cabin A-7, its brass lock showing fresh scratches consistent with being forced open with a thin instrument rather than the proper key. A bundled packet of letters is absent \u2014 a gap in the filing system Crale himself had organized is evident from the labeled dividers \u2014 but all the remaining correspondence including letters from Raske and from Dorothea Vane is still present. The missing bundle corresponds to the divider tab labeled in Crale's own handwriting with a London family name.",
+      "type": "physical",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E7",
+      "name": "Maid Elsie Marsh's Sleeping-Draught Testimony",
+      "description": "Elsie Marsh, Dorothea Vane's maid, states in questioning that her mistress requested a particularly strong sleeping draught from the ship's steward on the evening of the murder \u2014 double the dose she had used on previous nights \u2014 and that Mrs. Vane specifically instructed Elsie to take her own rest early in the dressing room and not to wait up. Marsh found this instruction unusual because Mrs. Vane normally required assistance undressing. This testimony suggests Dorothea deliberately arranged to have no witness to her movements after 11:00 PM.",
+      "type": "testimonial",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E8",
+      "name": "Felix Raske's Annotated Passenger List",
+      "description": "A first-class passenger manifest found in Raske's cabin desk, on which he has penciled a circle around Hatch's name and cabin number \u2014 A-7 \u2014 with the notation '23rd, confirm before NY' written in German beside it. This appears initially to suggest Raske was planning a confrontation or meeting with Hatch, and the annotation fuels suspicion that Raske was tracking the victim's whereabouts. However, investigation reveals that Raske had arranged a legitimate business meeting with Hatch on the morning of the 23rd to attempt a renegotiation of their licensing agreement \u2014 a meeting Hatch's own appointment diary confirms \u2014 making the annotation evidence of a planned conversation, not premeditated crime.",
+      "type": "documentary",
+      "relevance": "red_herring"
+    },
+    {
+      "id": "E9",
+      "name": "Dr. Okafor's Autopsy Report",
+      "description": "The ship's surgeon's formal written findings, detailing the contents of Hatch's stomach and bloodstream: residual brandy, traces of a light supper taken at 9:00 PM, a measurable concentration of chloral hydrate consistent with two to three crushed tablets dissolved in liquid, and a fatal concentration of atropine and scopolamine consistent with belladonna tincture. The report further notes bruising under Hatch's fingernails consistent with his attempting to grip the bedsheet, suggesting he was conscious but paralyzed as the belladonna took effect \u2014 and that the sequence of sedation followed by poisoning required either two individuals acting in concert or one individual who administered the chloral hydrate earlier in the evening and returned later with the belladonna.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E10",
+      "name": "Dorothea's Dark Traveling Cloak",
+      "description": "A heavy dark-blue wool traveling cloak hanging in Mrs. Vane's wardrobe, which Elsie Marsh confirms her mistress was wearing when she last saw her at 10:30 PM and which matches Kellick's description of the figure in the corridor precisely. Examined closely, the cloak's right cuff bears a faint amber-colored stain that Dr. Okafor identifies as consistent with brandy or similar spirits \u2014 suggesting the wearer handled a liquid-filled glass while wearing it, and the stain is fresh, showing no sign of the oxidization that would be present had it dried days ago.",
+      "type": "physical",
+      "relevance": "critical"
+    }
+  ],
+  "solution": {
+    "culprit": "Mrs. Dorothea Vane",
+    "method": "Dorothea obtained belladonna tincture from Felix Raske's unlocked cabin while he was in the smoking room \u2014 she had charmed Raske into showing her his medicine chest earlier in the voyage under the pretense of curiosity about homeopathic remedies, learning exactly where he kept it and that he left his cabin unlocked in the evenings. On the night of the murder, she used her chloral hydrate tablets \u2014 three crushed into powder \u2014 to spike Hatch's brandy at dinner by briefly handling his glass when it was set down unattended during the 9:00 PM meal, rendering him groggy. She then waited until after 11:00 PM, entered his already unlocked cabin (Hatch, drowsy from the sedative, had failed to bolt the door properly), introduced the concentrated belladonna dose into the remaining brandy in his nightstand glass, and left swiftly \u2014 taking only the packet of her own letters from his document case, not realizing she left all other correspondence undisturbed. She was seen leaving by Kellick.",
+    "motive": "Hatch possessed deeply compromising love letters written by Dorothea that would destroy her social standing and invalidate her claim to her late husband's estate under marital fraud provisions; he had refused her final offer of payment and she believed she had no remaining recourse except his death.",
+    "key_evidence": [
+      "E3",
+      "E9",
+      "E10",
+      "E5"
+    ],
+    "how_to_deduce": "Step 1 \u2014 Establish the murder method from the autopsy (E9): the report reveals a two-stage poisoning \u2014 chloral hydrate administered earlier, then lethal belladonna introduced into the brandy glass. This means the killer either had an accomplice or made two separate approaches to the victim, and possessed both substances. Step 2 \u2014 Identify who held both substances: E3 (Dorothea's hidden chloral hydrate compact) and E2 (Raske's depleted belladonna bottle) connect the two drugs to two different people. However, E2 alone does not place Raske at the scene, while E3 directly places Dorothea in possession of the sedative used in the first stage. The investigators must then ask how she obtained belladonna \u2014 and Raske's testimony that she had visited his cabin and expressed interest in his medicine chest provides the bridge, confirming she had access to his tincture without his knowledge. Step 3 \u2014 Place Dorothea at the scene at the time of death: Kellick's revised testimony (E5) puts a woman matching her description outside Cabin A-7 at 11:20 PM carrying something in her hand; the fresh brandy stain on her dark cloak's right cuff (E10) confirms she handled a liquid-filled glass while wearing it that very night. Combined, these items prove she was physically present with a glass near Hatch's cabin during the murder window. Step 4 \u2014 Eliminate alternate suspects: Raske's annotated passenger list (E8) is revealed as a red herring \u2014 a legitimate meeting, not criminal planning. Crale's duplicate key and hidden behavior suggest complicity in the blackmail scheme but his stolen bundle of letters (E6) belongs to a third party unconnected to Dorothea's motive, and no physical evidence places him in A-7 that night; his secret is concealment of prior theft, not the murder. Step 5 \u2014 Confirm guilt: The thumb-print on the brandy glass (E1) does not match Hatch or Crale; when compared to Dorothea's prints taken under the purser's authority, it matches her right thumb \u2014 the same hand that bears the brandy stain on her cloak cuff \u2014 completing the chain of physical, testimonial, and forensic evidence that identifies Dorothea Vane as the sole murderer."
+  },
+  "gameplay_notes": {
+    "difficulty": "HARD",
+    "estimated_playtime": "90\u2013120 minutes",
+    "key_twists": [
+      "Raske's depleted belladonna bottle and his annotated passenger list make him the dominant red herring suspect for most of the game \u2014 players must realize the belladonna was stolen from him, not used by him.",
+      "The two-stage poisoning method (chloral hydrate then belladonna) initially suggests two killers or an accomplice, creating misdirection toward a Dorothea-Crale conspiracy that does not exist.",
+      "Crale's concealed duplicate key and destroyed letters make him appear deeply guilty of the murder when in fact he is only guilty of earlier theft to protect a lover \u2014 his suspicious behavior is entirely explainable without the murder.",
+      "The brandy stain on Dorothea's cloak is the pivotal physical link: it corroborates Kellick's testimony and contradicts her alibi of never leaving her cabin, collapsing her defense when presented alongside the fingerprint on E1.",
+      "Dr. Okafor's offhand remark about treating Hatch for stomach upset two days earlier \u2014 a failed earlier poisoning attempt \u2014 suggests the killer had been planning and testing doses, adding premeditation and pointing toward someone with extended access to Hatch rather than an impulsive crime of opportunity."
+    ]
+  },
+  "_meta": {
+    "num_players": 5,
+    "setting_input": "A murder aboard a 1920s ocean liner mid-Atlantic"
+  },
+  "_provenance": {
+    "recipe": "corpus_0124_ebo(1) + corpus_0139_ebo(2) + corpus_0298_ebo(3) + corpus_0317_ebo(4) + corpus_0126_ebo(5) + corpus_0017_ebo(6) + corpus_0299_ebo(7) + corpus_0102_ebo(8)",
+    "slots": [
+      {
+        "source_id": "corpus_0124_ebo",
+        "part_index": 1,
+        "part_type": "crime_type"
+      },
+      {
+        "source_id": "corpus_0139_ebo",
+        "part_index": 2,
+        "part_type": "setting_element"
+      },
+      {
+        "source_id": "corpus_0298_ebo",
+        "part_index": 3,
+        "part_type": "motive"
+      },
+      {
+        "source_id": "corpus_0317_ebo",
+        "part_index": 4,
+        "part_type": "suspect_archetype"
+      },
+      {
+        "source_id": "corpus_0126_ebo",
+        "part_index": 5,
+        "part_type": "red_herring"
+      },
+      {
+        "source_id": "corpus_0017_ebo",
+        "part_index": 6,
+        "part_type": "reveal_mechanic"
+      },
+      {
+        "source_id": "corpus_0299_ebo",
+        "part_index": 7,
+        "part_type": "social_dynamic"
+      },
+      {
+        "source_id": "corpus_0102_ebo",
+        "part_index": 8,
+        "part_type": "evidence_type"
+      }
+    ],
+    "target_setting": "A murder aboard a 1920s ocean liner mid-Atlantic",
+    "generated_title": ""
+  },
+  "_coherence": {
+    "passed": true,
+    "blocking": 0,
+    "warnings": 0,
+    "witness_gaps": []
+  }
+}
