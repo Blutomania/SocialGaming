@@ -155,6 +155,62 @@ Return only valid JSON. No commentary outside the JSON block."""
     return mystery_dict, recipe
 
 
+def generate_cinematic_brief(mystery_dict: dict) -> dict:
+    """
+    One extra LLM call — converts a structured mystery dict into a
+    video-generation-optimized brief. Returns a cinematic_brief dict.
+    Only called when the user explicitly enables it.
+    """
+    m = mystery_dict
+    s = m.get("setting", {})
+    c = m.get("crime", {})
+    chars = m.get("characters", [])
+    suspects = [ch for ch in chars if ch.get("role") == "suspect"]
+    cast_lines = "\n".join(
+        f"  - {ch['name']} ({ch.get('occupation', '')}): {ch.get('secret', '')[:80]}"
+        for ch in suspects
+    )
+
+    prompt = f"""\
+You are writing a cinematic brief for an AI video generator (e.g. Sora, Runway Gen-3).
+The brief will become the opening sequence of a mystery party game — 15–30 seconds,
+no spoilers, pure visual and atmospheric hook.
+
+MYSTERY TITLE: {m.get('title', '')}
+SETTING: {s.get('location', '')} — {s.get('time_period', '')}
+ATMOSPHERE: {s.get('description', '')}
+CRIME: {c.get('what_happened', '')}
+DISCOVERED BY: {c.get('initial_discovery', '')}
+SUSPECTS (do NOT show guilt or motive — only appearance and first moment):
+{cast_lines}
+
+Return ONLY valid JSON in this exact structure:
+{{
+  "logline": "One sentence. Visual, urgent, present tense. Under 20 words.",
+  "opening_shot": "Establishing shot description — lens, light, movement, no dialogue. 2–3 sentences.",
+  "crime_reveal_shot": "The moment the crime is discovered — camera angle, reaction, sound. 2–3 sentences.",
+  "atmosphere_tags": ["3–6 single words or short phrases: mood, texture, colour palette"],
+  "sound_design": "What the audience hears before any dialogue. One sentence.",
+  "cast_visuals": [
+    {{
+      "name": "character name",
+      "appearance": "Clothing, posture, distinguishing detail. One sentence.",
+      "first_seen_doing": "Their first on-screen action. One sentence."
+    }}
+  ],
+  "title_card": "The text overlay that ends the opening sequence. Short, evocative."
+}}
+
+Return only valid JSON. No commentary."""
+
+    raw = llm(prompt, system="You are a cinematic brief writer for AI video generation. Return only valid JSON.")
+    if "```json" in raw:
+        raw = raw.split("```json")[1].split("```")[0].strip()
+    elif "```" in raw:
+        raw = raw.split("```")[1].split("```")[0].strip()
+    return json.loads(raw)
+
+
 def _mystery_to_markdown(m: dict) -> str:
     """Convert a structured mystery dict to a readable narrative for display."""
     s = m.get("setting", {})
@@ -199,7 +255,8 @@ defaults = {
     "suspects": [],
     "solution": "",
     "recipe": None,
-    "coherence": None,    # {"passed": bool, "blocking": int, "warnings": int}
+    "coherence": None,         # {"passed": bool, "blocking": int, "warnings": int}
+    "cinematic_brief": None,   # video-gen optimized brief (opt-in)
     "generated": False,
 }
 for k, v in defaults.items():
@@ -220,6 +277,11 @@ st.subheader("Set Your Mystery")
 user_prompt = st.text_input(
     "Describe your scenario:",
     placeholder='e.g. "A murder on a Mars colony" or "An art theft in Renaissance Venice"',
+)
+cinematic_on = st.checkbox(
+    "Generate cinematic brief (video prompt)",
+    value=False,
+    help="Adds one extra AI call to produce a shot-list and visual brief for video generation. Off by default.",
 )
 
 if st.button("Generate Mystery", disabled=not user_prompt.strip()):
@@ -252,6 +314,14 @@ if st.button("Generate Mystery", disabled=not user_prompt.strip()):
             "blocking": report.blocking_count,
             "warnings": report.warning_count,
         }
+
+        # Cinematic brief — opt-in only
+        if cinematic_on:
+            brief = generate_cinematic_brief(mystery_dict)
+            mystery_dict["cinematic_brief"] = brief
+            st.session_state.cinematic_brief = brief
+        else:
+            st.session_state.cinematic_brief = None
 
         st.session_state.generated = True
 
@@ -295,6 +365,28 @@ if st.session_state.generated:
                         f"**{slot['part_type'].replace('_', ' ').title()}** — "
                         f"source `{slot['source_id']}`, part {slot['part_index']}"
                     )
+
+        # Cinematic brief expander — only shown when opted in
+        brief = st.session_state.cinematic_brief
+        if brief:
+            with st.expander("Cinematic Brief (video prompt)", expanded=True):
+                st.markdown(f"**Logline:** {brief.get('logline', '')}")
+                st.divider()
+                st.markdown(f"**Opening shot**\n\n{brief.get('opening_shot', '')}")
+                st.markdown(f"**Crime reveal**\n\n{brief.get('crime_reveal_shot', '')}")
+                tags = brief.get("atmosphere_tags", [])
+                if tags:
+                    st.markdown("**Atmosphere:** " + " · ".join(f"`{t}`" for t in tags))
+                st.markdown(f"**Sound design:** {brief.get('sound_design', '')}")
+                cast = brief.get("cast_visuals", [])
+                if cast:
+                    st.markdown("**Cast visuals**")
+                    for ch in cast:
+                        st.markdown(
+                            f"- **{ch.get('name', '')}** — {ch.get('appearance', '')} "
+                            f"*First seen: {ch.get('first_seen_doing', '')}*"
+                        )
+                st.markdown(f"**Title card:** _{brief.get('title_card', '')}_")
 
     # -------------------------
     # Right: Suspects + Interrogation + Coming Soon
