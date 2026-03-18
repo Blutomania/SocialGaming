@@ -23,7 +23,12 @@ fi
 
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
-if [ "$CURRENT_BRANCH" != "$ACTIVE_BRANCH" ]; then
+# If the task runner placed us on a different claude/ session branch, stay on it.
+# Only override when we're on a non-claude branch (e.g. main, detached HEAD).
+if [[ "$CURRENT_BRANCH" == claude/* && "$CURRENT_BRANCH" != "$ACTIVE_BRANCH" ]]; then
+  echo "session-start: on task branch '$CURRENT_BRANCH', skipping switch to '$ACTIVE_BRANCH'"
+  git pull origin "$CURRENT_BRANCH" || true
+elif [ "$CURRENT_BRANCH" != "$ACTIVE_BRANCH" ]; then
   echo "session-start: switching from '$CURRENT_BRANCH' → '$ACTIVE_BRANCH'"
   git fetch origin "$ACTIVE_BRANCH"
   git checkout "$ACTIVE_BRANCH"
