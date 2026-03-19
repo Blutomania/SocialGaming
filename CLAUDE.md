@@ -123,15 +123,16 @@ Add a row here whenever you introduce a new cache.
 
 ---
 
-## Current To-Do (as of March 12, 2026)
+## Current To-Do (as of March 19, 2026)
 
 Full list in `SESSIONS.md`. Top priorities:
 
 1. **[DONE]** ~~Add `ANTHROPIC_API_KEY` to HuggingFace Space secrets~~ — completed March 12, 2026
-2. **[START HERE]** Play-test — generate 5–10 mysteries in the live Space, verify coherence passes, rate with viability widget
-3. **Merge `claude/mystery-versioning-system-TPblK`** (CLI + part registry) into main
-4. **Load saved mystery** — add dropdown to `app.py` to browse and reload past mysteries from disk
-5. **Multiplayer invite mechanic** — shareable link + short game code (Jackbox model); global info sharing to start; see SESSIONS.md Session 9 design decision for full spec
-6. **[LOW PRIORITY]** Feedback persistence — save viability rating + behavioral signals back to mystery JSON; defer until after play-testing
+2. **[DONE]** ~~Load saved mystery~~ — dropdown in `app.py`, completed March 19, 2026
+3. **[START HERE]** Re-run batch (`python3 scripts/batch_generate.py`) — localization fix in place, expect 14/14. Then open `app.py`, load each mystery, rate with viability widget.
+4. **Investigate generation speed** — mystery #5 (Sesame Street) took 33 min vs ~2 min for others. Suspected: interactive `Reveal solution? [y/n]` prompt blocking `batch_generate.py`. Fix before next batch run.
+5. **Merge `claude/mystery-versioning-system-TPblK`** (CLI + part registry) into main
+6. **Multiplayer invite mechanic** — shareable link + short game code (Jackbox model); global info sharing to start; see SESSIONS.md Session 9 design decision for full spec
+7. **[LOW PRIORITY]** Feedback persistence — save viability rating + behavioral signals back to mystery JSON; defer until after play-testing
 
 > **DO NOT re-run the corpus extraction pipeline.** Previous failures were due to source texts being too brief or not a mystery — re-running produces the same results. Expand the corpus only by adding new quality source texts.

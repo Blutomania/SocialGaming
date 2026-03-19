@@ -5,6 +5,71 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session — March 19, 2026 (batch fix + load saved mystery)
+**Branch:** `claude/verify-correct-branch-plcUt`
+**Latest commit:** `d31555a`
+
+### What was done
+
+#### Bug fixed: localization truncation (13/14 batch failures)
+- **Root cause:** `_cli_llm` in `cli.py` had `max_tokens: 1024` for the
+  localization call. First call for a new era returns `era_rules` + `name_map`
+  combined — this overflowed 1024 tokens, truncating mid-string → JSONDecodeError.
+- **Fix 1 (`cli.py:910`):** `max_tokens: 1024 → 4096`
+- **Fix 2 (`localization.py:70`):** wrapped `json.loads` in try/except —
+  on parse failure, logs a warning and returns unlocalized mystery instead of
+  crashing the batch. Batch now produces 14/14 instead of 1/14.
+- **Cost impact:** negligible — pays for actually generated tokens (was already
+  generating ~1400 but truncating at 1024). Era cache fills on first run,
+  subsequent calls are small (name_map only, ~300–500 tokens).
+
+#### Feature added: Load Saved Mystery in app.py (to-do #4)
+- New `_list_saved_mysteries()` — reads `mystery_database/generated/`,
+  excludes batch_summary files, sorts newest-first.
+- New `_load_mystery_into_session(data)` — populates full session state
+  from a saved mystery dict with zero API calls. Uses embedded `_coherence`
+  if present; falls back to free `check_mystery()` re-run.
+- New UI section in `app.py`: "Load Saved Mystery" expander with dropdown
+  and Load button. Sits between Mystery Stock and the generate prompt.
+  All existing display/interrogation/viability/accusation sections work
+  unchanged since they read from session state.
+
+### Files changed
+- `cli.py` — max_tokens 1024 → 4096 in `_localize_mystery` wrapper
+- `localization.py` — try/except around json.loads with fallback
+- `app.py` — `_list_saved_mysteries`, `_load_mystery_into_session`, Load UI
+
+### Commits this session
+```
+d31555a feat(app): load saved mystery from disk — dropdown + no-API-call load
+6980387 fix: raise localization max_tokens 1024→4096; add JSON parse fallback
+```
+
+### Next steps
+1. **[START HERE]** Pull fix, re-run batch (`python3 scripts/batch_generate.py`)
+   — expect 14/14. Note: the Sesame Street mystery (mystery #5) took 33 min
+   vs ~2 min for all others. Suspected cause: the `Reveal solution? [y/n]`
+   interactive prompt in `cmd_generate` blocking mid-batch. Investigate before
+   optimizing generation speed.
+2. **Open app.py**, use "Load Saved Mystery" dropdown, browse batch output,
+   rate each mystery with the viability widget (1–10). This closes the
+   creator feedback loop for the current phase.
+3. **Generation speed:** after rating confirms quality is OK, investigate
+   the 33-min outlier. If the interactive prompt is the culprit, batch_generate
+   should pass `--no-reveal` or equivalent. If it's token count, profile.
+4. **Persist viability ratings** back to the mystery JSON on disk (currently
+   only lives in session state / stock). Low priority until play-testing done.
+5. **Multiplayer** — shareable link + game code (Jackbox model); see Session 9
+   design decision in SESSIONS.md for full spec.
+
+### Local sync
+```bash
+git fetch origin
+git pull origin claude/verify-correct-branch-plcUt
+```
+
+---
+
 ## Session — March 19, 2026 at 02:53
 **Branch:** `claude/verify-correct-branch-plcUt`
 **Latest commit:** `6adb173`
