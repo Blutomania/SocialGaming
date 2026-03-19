@@ -5,6 +5,46 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session — March 19, 2026 at 02:53
+**Branch:** `claude/verify-correct-branch-plcUt`
+**Latest commit:** `6adb173`
+
+### Files changed this session
+- `mystery_database/generated/batch_summary_1773888778.json` — Untracked
+- `mystery_database/generated/the_disappearance_at_a_small_english_vil_1773888778.json` — Untracked
+- `mystery_database/generated/the_disappearance_at_france_1773888778.json` — Untracked
+- `mystery_database/generated/the_murder_at_deep_space_1773888778.json` — Untracked
+- `mystery_database/generated/the_murder_at_louisiana_territory_1773888778.json` — Untracked
+- `mystery_database/generated/the_murder_at_north_sea_1773888778.json` — Untracked
+- `mystery_database/generated/the_murder_at_russian_steppe_1773888778.json` — Untracked
+- `mystery_database/generated/the_murder_at_the_hyborian_age___the_top_1773888778.json` — Untracked
+- `mystery_database/generated/the_sabotage_at_rome_1773888778.json` — Untracked
+- `mystery_database/generated/the_theft_at_prague_1773888778.json` — Untracked
+- `mystery_database/generated/the_theft_at_yucatan_jungle_1773888778.json` — Untracked
+
+### Commits this session
+```
+6adb173 Add scripts/batch_generate.py — non-interactive batch mystery generator
+6dc5d5d feat: mystery stock (10-cap), JSON/CSV download, Peter Parker trigger
+9f52eb7 fix(session-start): stay on task-runner branch when already on a claude/ branch
+8193bb4 Register session-start.sh as SessionStart hook in settings.json
+e95b051 chore: auto-update SESSIONS.md with session summary [fb8e533]
+fb8e533 Fix session-start branch parsing (use grep -oP instead of greedy awk gsub)
+c59f2f8 chore: auto-update SESSIONS.md with session summary [444ce35]
+444ce35 Document HuggingFace deploy procedure in SESSIONS.md
+782e698 Fix short_description length for HuggingFace (60 char limit)
+fa0a6a8 chore: auto-update SESSIONS.md with session summary [badd150]
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
 ## Session — March 18, 2026 at 18:04
 **Branch:** `claude/setup-api-and-mysteries-LRLQK`
 **Latest commit:** `fb8e533`
