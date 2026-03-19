@@ -5,6 +5,44 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session — March 19, 2026 at 04:27
+**Branch:** `claude/verify-correct-branch-plcUt`
+**Latest commit:** `53a54cc`
+
+### Files changed this session
+- `LAUDE.md` — Modified
+
+### Commits this session
+```
+53a54cc chore: update SESSIONS.md + CLAUDE.md for March 19 session
+d31555a feat(app): load saved mystery from disk — dropdown + no-API-call load
+6980387 fix: raise localization max_tokens 1024→4096; add JSON parse fallback
+41fa01a Add maintenance gate to app.py (MAINTENANCE_MODE env var)
+c15d4e1 Replace mystery #5: Sesame Street cookie theft replaces Trans-Siberian courier
+bb57d2f Expand batch list to 14 mysteries; add 4 new premises
+80d9f2e Add demo-mode batch output for 10 test mysteries
+95a2351 chore: auto-update SESSIONS.md with session summary [6adb173]
+6adb173 Add scripts/batch_generate.py — non-interactive batch mystery generator
+6dc5d5d feat: mystery stock (10-cap), JSON/CSV download, Peter Parker trigger
+9f52eb7 fix(session-start): stay on task-runner branch when already on a claude/ branch
+8193bb4 Register session-start.sh as SessionStart hook in settings.json
+e95b051 chore: auto-update SESSIONS.md with session summary [fb8e533]
+fb8e533 Fix session-start branch parsing (use grep -oP instead of greedy awk gsub)
+c59f2f8 chore: auto-update SESSIONS.md with session summary [444ce35]
+444ce35 Document HuggingFace deploy procedure in SESSIONS.md
+782e698 Fix short_description length for HuggingFace (60 char limit)
+fa0a6a8 chore: auto-update SESSIONS.md with session summary [badd150]
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
 ## Session — March 19, 2026 (batch fix + load saved mystery)
 **Branch:** `claude/verify-correct-branch-plcUt`
 **Latest commit:** `d31555a`
