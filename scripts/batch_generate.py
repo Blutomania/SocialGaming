@@ -46,9 +46,9 @@ MYSTERIES = [
         "theme": "An ancient jade idol has been removed from the cenote floor; the community claims the cenote itself whispered the thief's name to the high priest",
     },
     {
-        "setting": "Russian steppe, 1888 — the Trans-Siberian postal express, three days east of Ekaterinburg",
-        "crime_type": "murder",
-        "theme": "A government courier is found dead in a locked mail compartment; the diplomatic pouch he carried is intact but the sealed letter inside has been read and resealed",
+        "setting": "Sesame Street — Cookie Monster's brownstone apartment and the surrounding neighbourhood",
+        "crime_type": "theft",
+        "theme": "Every last cookie in Cookie Monster's legendary collection has been stolen overnight; he is inconsolable and the whole street is a suspect",
     },
     {
         "setting": "Rome, 1st century AD — the Circus Maximus, during the most lucrative chariot race of the year",
