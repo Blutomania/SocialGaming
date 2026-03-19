@@ -22,7 +22,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 import cli  # noqa: E402  (must be after sys.path tweak)
 
 # ---------------------------------------------------------------------------
-# The 10 mysteries to generate
+# The 14 mysteries to generate
 # ---------------------------------------------------------------------------
 MYSTERIES = [
     {
@@ -74,6 +74,27 @@ MYSTERIES = [
         "setting": "The Hyborian Age — the top of a windowless sorcerer's tower in the city of Tarantia, Kingdom of Aquilonia",
         "crime_type": "murder",
         "theme": "A high-ranking Aquilonian envoy and old mercenary brother-in-arms to King Conan is found dead atop the tower; no stairs lead to the roof",
+    },
+    # --- 4 additional mysteries ---
+    {
+        "setting": "France, 1917 — a ruined farmhouse command post on the Western Front, the morning after an assault",
+        "crime_type": "disappearance",
+        "theme": "An entire battalion of French soldiers vanished from their trench line during the night; cowardice or desertion is assumed, but the rifles, boots, and identity tags are all still there",
+    },
+    {
+        "setting": "North Sea, 1943 — aboard a Finnish Navy patrol vessel that has intercepted a drifting trawler in international waters",
+        "crime_type": "murder",
+        "theme": "The trawler's crew is gone, the radio is smashed, and a meal is half-eaten — but the cargo hold is locked from the inside",
+    },
+    {
+        "setting": "Yucatan, 14th century — inside a Maya temple complex during the feast of Tlacaxipehualiztli, when ritual heart sacrifice is performed",
+        "crime_type": "theft",
+        "theme": "A sacred jade-and-gold pectoral worn only by the high priest has vanished from the altar room during the height of the ceremony; the guards claim no one entered or left",
+    },
+    {
+        "setting": "Central Asian steppe, 1206 — the forward camp of a Mongol scouting party riding ahead of Genghis Khan's main horde",
+        "crime_type": "murder",
+        "theme": "The Khan's most trusted advance scout is found with a broken neck; someone in the camp killed him before he could report what he had discovered",
     },
 ]
 

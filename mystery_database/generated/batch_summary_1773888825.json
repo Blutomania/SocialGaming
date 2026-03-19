@@ -1,0 +1,34 @@
+[
+  {
+    "index": 1,
+    "setting": "France, 1917 \u2014 a ruined farmhouse command post on the Western Front, the morning after an assault",
+    "crime_type": "disappearance",
+    "status": "OK",
+    "elapsed_s": 0.0,
+    "error": null
+  },
+  {
+    "index": 2,
+    "setting": "North Sea, 1943 \u2014 aboard a Finnish Navy patrol vessel that has intercepted a drifting trawler in international waters",
+    "crime_type": "murder",
+    "status": "OK",
+    "elapsed_s": 0.0,
+    "error": null
+  },
+  {
+    "index": 3,
+    "setting": "Yucatan, 14th century \u2014 inside a Maya temple complex during the feast of Tlacaxipehualiztli, when ritual heart sacrifice is performed",
+    "crime_type": "theft",
+    "status": "OK",
+    "elapsed_s": 0.0,
+    "error": null
+  },
+  {
+    "index": 4,
+    "setting": "Central Asian steppe, 1206 \u2014 the forward camp of a Mongol scouting party riding ahead of Genghis Khan's main horde",
+    "crime_type": "murder",
+    "status": "OK",
+    "elapsed_s": 0.0,
+    "error": null
+  }
+]
