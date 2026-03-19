@@ -22,6 +22,18 @@ st.set_page_config(
 )
 
 # -------------------------
+# Maintenance gate
+# Set MAINTENANCE_MODE=1 in HuggingFace Space secrets to enable.
+# -------------------------
+if os.environ.get("MAINTENANCE_MODE") == "1":
+    st.title("🔧 Under Construction")
+    st.info(
+        "Choose Your Mystery is being upgraded and is temporarily unavailable. "
+        "Check back soon!"
+    )
+    st.stop()
+
+# -------------------------
 # Load API Key
 # -------------------------
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY")
