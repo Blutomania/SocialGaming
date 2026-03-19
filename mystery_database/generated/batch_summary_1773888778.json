@@ -1,0 +1,82 @@
+[
+  {
+    "index": 1,
+    "setting": "France, 1917 \u2014 the Western Front, a muddy sector of trenches near the Somme",
+    "crime_type": "disappearance",
+    "status": "OK",
+    "elapsed_s": 0.1,
+    "error": null
+  },
+  {
+    "index": 2,
+    "setting": "North Sea, 1952 \u2014 aboard a commercial fishing trawler found drifting forty miles off the Scottish coast",
+    "crime_type": "murder",
+    "status": "OK",
+    "elapsed_s": 0.0,
+    "error": null
+  },
+  {
+    "index": 3,
+    "setting": "Prague, 1612 \u2014 the laboratory and apartments of a Royal Alchemist in the Hradcany district",
+    "crime_type": "theft",
+    "status": "OK",
+    "elapsed_s": 0.0,
+    "error": null
+  },
+  {
+    "index": 4,
+    "setting": "Yucatan jungle, 1887 \u2014 a remote cenote considered sacred and secret by a local Maya community",
+    "crime_type": "theft",
+    "status": "OK",
+    "elapsed_s": 0.0,
+    "error": null
+  },
+  {
+    "index": 5,
+    "setting": "Russian steppe, 1888 \u2014 the Trans-Siberian postal express, three days east of Ekaterinburg",
+    "crime_type": "murder",
+    "status": "OK",
+    "elapsed_s": 0.0,
+    "error": null
+  },
+  {
+    "index": 6,
+    "setting": "Rome, 1st century AD \u2014 the Circus Maximus, during the most lucrative chariot race of the year",
+    "crime_type": "sabotage",
+    "status": "OK",
+    "elapsed_s": 0.0,
+    "error": null
+  },
+  {
+    "index": 7,
+    "setting": "A small English village, 1963 \u2014 a quaint house on Unicorn Lane, just off Teddy Bear Close",
+    "crime_type": "disappearance",
+    "status": "OK",
+    "elapsed_s": 0.0,
+    "error": null
+  },
+  {
+    "index": 8,
+    "setting": "Deep space, 2187 \u2014 a research vessel in orbit around Pluto, crewed by an order of 'data-monks' who maintain the solar network's memory archives",
+    "crime_type": "murder",
+    "status": "OK",
+    "elapsed_s": 0.0,
+    "error": null
+  },
+  {
+    "index": 9,
+    "setting": "Louisiana Territory, 1805 \u2014 a remote plantation house deep in the bayou, visited by a French government surveyor",
+    "crime_type": "murder",
+    "status": "OK",
+    "elapsed_s": 0.0,
+    "error": null
+  },
+  {
+    "index": 10,
+    "setting": "The Hyborian Age \u2014 the top of a windowless sorcerer's tower in the city of Tarantia, Kingdom of Aquilonia",
+    "crime_type": "murder",
+    "status": "OK",
+    "elapsed_s": 0.0,
+    "error": null
+  }
+]

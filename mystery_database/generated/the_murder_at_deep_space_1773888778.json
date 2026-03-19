@@ -1,0 +1,163 @@
+{
+  "title": "The Murder at Deep space",
+  "setting": {
+    "location": "Deep space, 2187 \u2014 a research vessel in orbit around Pluto, crewed by an order of 'data-monks' who maintain the solar network's memory archives",
+    "time_period": "period inferred from setting",
+    "environment": "closed circle of suspects",
+    "description": "The air in Deep space is thick with suspicion. A small, isolated group finds itself bound together by circumstance \u2014 and by the murder that none of them will admit to witnessing."
+  },
+  "crime": {
+    "type": "murder",
+    "what_happened": "A body was discovered in the locked study at midnight.",
+    "when": "Between 11 PM and midnight",
+    "initial_discovery": "The housekeeper raised the alarm when she found the door sealed from within."
+  },
+  "characters": [
+    {
+      "name": "Lady Hartwell",
+      "role": "victim",
+      "occupation": "Wealthy patron",
+      "motive": "\u2014",
+      "alibi": "\u2014",
+      "secret": "Recently altered her will"
+    },
+    {
+      "name": "Dr. Pemberton",
+      "role": "suspect",
+      "occupation": "Physician",
+      "motive": "Stands to inherit under the old will",
+      "alibi": "Claims to be in the library",
+      "secret": "Deeply in debt, creditors closing in"
+    },
+    {
+      "name": "Miss Crane",
+      "role": "suspect",
+      "occupation": "Personal secretary",
+      "motive": "Blackmail \u2014 knows about the forgery",
+      "alibi": "Unverified",
+      "secret": "Was the victim's confidante and knows too much"
+    },
+    {
+      "name": "Inspector Vane",
+      "role": "detective",
+      "occupation": "Police",
+      "motive": "\u2014",
+      "alibi": "\u2014",
+      "secret": "\u2014"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "Stopped pocket watch",
+      "description": "Found on the victim, stopped at 11:47 PM",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E2",
+      "name": "Torn letter",
+      "description": "References a sum large enough to ruin a man",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E3",
+      "name": "Muddy boots by the back door",
+      "description": "No one admits to going outside",
+      "type": "physical",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E4",
+      "name": "Empty medicine vial",
+      "description": "An unusual sedative not prescribed to the victim",
+      "type": "physical",
+      "relevance": "red_herring"
+    }
+  ],
+  "solution": {
+    "culprit": "Dr. Pemberton",
+    "method": "Poison administered in the evening tea, timed to allow an apparent alibi",
+    "motive": "Stood to inherit under the old will; new will cuts him out entirely",
+    "key_evidence": [
+      "E1",
+      "E2"
+    ],
+    "how_to_deduce": "The stopped watch (E1) fixes time of death at 11:47 PM, contradicting Pemberton's alibi that he was in the library until midnight. The torn letter (E2) establishes his desperate motive. The medicine vial (E4) is a red herring \u2014 it belonged to Miss Crane legitimately."
+  },
+  "gameplay_notes": {
+    "difficulty": "MEDIUM",
+    "estimated_playtime": "45\u201360 minutes",
+    "key_twists": [
+      "The will was changed three days before the murder",
+      "Miss Crane is a witness, not a suspect \u2014 she saw Pemberton leave the library early"
+    ]
+  },
+  "_meta": {
+    "num_players": 4,
+    "setting_input": "Deep space, 2187 \u2014 a research vessel in orbit around Pluto, crewed by an order of 'data-monks' who maintain the solar network's memory archives",
+    "demo": true
+  },
+  "_provenance": {
+    "recipe": "corpus_0355_ebo(1) + corpus_0122_ebo(2) + corpus_0289_ebo(3) + corpus_0298_ebo(4) + corpus_0297_ebo(5) + corpus_0089_ebo(6) + corpus_0239_ebo(7) + corpus_0241_ebo(8)",
+    "slots": [
+      {
+        "source_id": "corpus_0355_ebo",
+        "part_index": 1,
+        "part_type": "crime_type"
+      },
+      {
+        "source_id": "corpus_0122_ebo",
+        "part_index": 2,
+        "part_type": "setting_element"
+      },
+      {
+        "source_id": "corpus_0289_ebo",
+        "part_index": 3,
+        "part_type": "motive"
+      },
+      {
+        "source_id": "corpus_0298_ebo",
+        "part_index": 4,
+        "part_type": "suspect_archetype"
+      },
+      {
+        "source_id": "corpus_0297_ebo",
+        "part_index": 5,
+        "part_type": "red_herring"
+      },
+      {
+        "source_id": "corpus_0089_ebo",
+        "part_index": 6,
+        "part_type": "reveal_mechanic"
+      },
+      {
+        "source_id": "corpus_0239_ebo",
+        "part_index": 7,
+        "part_type": "social_dynamic"
+      },
+      {
+        "source_id": "corpus_0241_ebo",
+        "part_index": 8,
+        "part_type": "evidence_type"
+      }
+    ],
+    "target_setting": "Deep space, 2187 \u2014 a research vessel in orbit around Pluto, crewed by an order of 'data-monks' who maintain the solar network's memory archives",
+    "generated_title": ""
+  },
+  "_coherence": {
+    "passed": true,
+    "blocking": 0,
+    "warnings": 1,
+    "witness_gaps": [
+      {
+        "name": "Miss Crane",
+        "role": "suspect",
+        "missing": [
+          "alibi (too vague)"
+        ]
+      }
+    ]
+  }
+}
