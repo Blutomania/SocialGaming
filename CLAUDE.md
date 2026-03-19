@@ -1,5 +1,16 @@
 # Choose Your Mystery — Claude Code Instructions
 
+## gstack
+
+Use the `/browse` skill from gstack for all web browsing. Never use `mcp__claude-in-chrome__*` tools.
+
+Available gstack skills:
+`/office-hours`, `/plan-ceo-review`, `/plan-eng-review`, `/plan-design-review`,
+`/design-consultation`, `/review`, `/ship`, `/browse`, `/qa`, `/qa-only`,
+`/design-review`, `/setup-browser-cookies`, `/retro`, `/debug`, `/document-release`
+
+---
+
 ## Project Overview
 AI-powered social mystery party game. Players investigate crimes, interrogate AI characters,
 and compete to solve the case first. Core innovation: the 75% information-sharing mechanic.
