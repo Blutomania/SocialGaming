@@ -67,7 +67,15 @@ def localize_mystery(mystery_dict: dict, llm_fn: Callable[[str], str]) -> dict:
     elif "```" in raw:
         raw = raw.split("```")[1].split("```")[0].strip()
 
-    result = json.loads(raw)
+    try:
+        result = json.loads(raw)
+    except json.JSONDecodeError as exc:
+        import sys
+        print(
+            f"[localization] JSON parse failed ({exc}); returning unlocalized mystery.",
+            file=sys.stderr,
+        )
+        return mystery_dict
 
     # Optimization 2: cache era rules on first encounter
     if cached_rules is None and "era_rules" in result:

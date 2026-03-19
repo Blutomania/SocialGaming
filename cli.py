@@ -907,7 +907,7 @@ def _localize_mystery(mystery: dict) -> dict:
             },
             json={
                 "model": "claude-sonnet-4-6",
-                "max_tokens": 1024,
+                "max_tokens": 4096,
                 "messages": [{"role": "user", "content": prompt}],
             },
             timeout=120,
