@@ -336,6 +336,79 @@ def _stock_to_csv_bytes() -> bytes:
     return buf.getvalue().encode("utf-8")
 
 
+def _list_saved_mysteries() -> list[dict]:
+    """
+    Return metadata for all saved mysteries in mystery_database/generated/,
+    sorted newest-first. Excludes batch_summary files.
+    Each entry: {path, filename, title, timestamp_str}
+    """
+    gen_dir = os.path.join("mystery_database", "generated")
+    if not os.path.isdir(gen_dir):
+        return []
+    results = []
+    for fname in os.listdir(gen_dir):
+        if not fname.endswith(".json") or fname.startswith("batch_summary"):
+            continue
+        path = os.path.join(gen_dir, fname)
+        try:
+            with open(path) as f:
+                data = json.load(f)
+            title = data.get("title", fname)
+            # Try to get timestamp from _meta or fall back to file mtime
+            ts = data.get("_meta", {}).get("generated_at", "")
+            if not ts:
+                mtime = os.path.getmtime(path)
+                ts = datetime.fromtimestamp(mtime, tz=timezone.utc).strftime("%Y-%m-%d %H:%M")
+            else:
+                ts = ts[:16].replace("T", " ")
+            results.append({"path": path, "filename": fname, "title": title, "timestamp_str": ts})
+        except Exception:
+            continue
+    results.sort(key=lambda x: x["timestamp_str"], reverse=True)
+    return results
+
+
+def _load_mystery_into_session(mystery_data: dict) -> None:
+    """Populate session state from a saved mystery dict (no API calls)."""
+    st.session_state.mystery_dict = mystery_data
+    st.session_state.mystery = _mystery_to_markdown(mystery_data)
+
+    chars = mystery_data.get("characters", [])
+    st.session_state.suspects = [
+        ch["name"] for ch in chars if ch.get("role") in ("suspect", "witness")
+    ]
+
+    sol = mystery_data.get("solution", {})
+    st.session_state.solution = (
+        f"CULPRIT: {sol.get('culprit', '?')}\n"
+        f"METHOD: {sol.get('method', '?')}\n"
+        f"MOTIVE: {sol.get('motive', '?')}\n"
+        f"KEY EVIDENCE: {', '.join(sol.get('key_evidence', []))}\n"
+        f"HOW TO DEDUCE: {sol.get('how_to_deduce', '?')}"
+    )
+
+    st.session_state.recipe = mystery_data.get("_provenance")
+
+    # Use embedded coherence if present, otherwise re-run (free)
+    embedded = mystery_data.get("_coherence", {})
+    if embedded:
+        st.session_state.coherence = {
+            "passed": embedded.get("passed", True),
+            "blocking": embedded.get("blocking_count", 0),
+            "warnings": embedded.get("warning_count", 0),
+        }
+    else:
+        report = check_mystery(mystery_data)
+        st.session_state.coherence = {
+            "passed": report.passed,
+            "blocking": report.blocking_count,
+            "warnings": report.warning_count,
+        }
+
+    st.session_state.cinematic_brief = mystery_data.get("cinematic_brief")
+    st.session_state.generated = True
+
+
 def _render_download_buttons(label_prefix: str = ""):
     """Render JSON + CSV download buttons for the current stock."""
     stock = st.session_state.mystery_stock
@@ -411,6 +484,32 @@ with st.expander(
         _render_download_buttons()
     else:
         st.caption("No mysteries yet. Generate one to start building your stock.")
+
+st.divider()
+
+# -------------------------
+# Load Saved Mystery
+# -------------------------
+saved_mysteries = _list_saved_mysteries()
+with st.expander(
+    f"Load Saved Mystery ({len(saved_mysteries)} available)" if saved_mysteries else "Load Saved Mystery (none saved yet)",
+    expanded=False,
+):
+    if saved_mysteries:
+        options = {f"{m['title']} — {m['timestamp_str']}": m for m in saved_mysteries}
+        selected_label = st.selectbox("Choose a mystery to load:", list(options.keys()), key="load_mystery_select")
+        if st.button("Load Selected Mystery"):
+            chosen = options[selected_label]
+            try:
+                with open(chosen["path"]) as f:
+                    data = json.load(f)
+                _load_mystery_into_session(data)
+                st.success(f"Loaded: {chosen['title']}")
+                st.rerun()
+            except Exception as e:
+                st.error(f"Failed to load mystery: {e}")
+    else:
+        st.caption("No saved mysteries found. Run `python3 scripts/batch_generate.py` to generate some.")
 
 st.divider()
 
