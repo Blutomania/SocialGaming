@@ -1,10 +1,16 @@
+import csv
+import io
 import json
 import streamlit as st
 import os
+from datetime import datetime, timezone
 from anthropic import Anthropic
 from part_registry import load_registry, PART_TYPE_NAMES
 from coherence_validator import check_mystery
 from localization import localize_mystery as _localize_mystery, cache_stats as _loc_cache_stats
+
+MYSTERY_STOCK_MAX = 10
+DOWNLOAD_TRIGGER = "peter parker"
 
 # -------------------------
 # Page Config
@@ -260,6 +266,88 @@ def _mystery_to_markdown(m: dict) -> str:
     return "\n".join(lines)
 
 # -------------------------
+# Stock helpers
+# -------------------------
+def _add_to_stock(mystery_dict: dict, prompt: str, coherence: dict, viability: int = 5):
+    """Append a mystery to the session stock (max MYSTERY_STOCK_MAX, rolling)."""
+    entry = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "prompt": prompt,
+        "mystery_dict": mystery_dict,
+        "coherence": coherence,
+        "viability_rating": viability,
+    }
+    stock = st.session_state.mystery_stock
+    stock.append(entry)
+    if len(stock) > MYSTERY_STOCK_MAX:
+        stock.pop(0)
+
+
+def _stock_to_json_bytes() -> bytes:
+    """Serialise the full stock to a pretty-printed JSON byte string."""
+    return json.dumps(st.session_state.mystery_stock, indent=2).encode("utf-8")
+
+
+def _stock_to_csv_bytes() -> bytes:
+    """Serialise the stock to a flat CSV byte string."""
+    rows = []
+    for entry in st.session_state.mystery_stock:
+        m = entry.get("mystery_dict", {})
+        sol = m.get("solution", {})
+        coh = entry.get("coherence", {})
+        notes = m.get("gameplay_notes", {})
+        suspects = [c for c in m.get("characters", []) if c.get("role") == "suspect"]
+        rows.append({
+            "timestamp":          entry.get("timestamp", ""),
+            "prompt":             entry.get("prompt", ""),
+            "title":              m.get("title", ""),
+            "location":           m.get("setting", {}).get("location", ""),
+            "time_period":        m.get("setting", {}).get("time_period", ""),
+            "difficulty":         notes.get("difficulty", ""),
+            "estimated_playtime": notes.get("estimated_playtime", ""),
+            "culprit":            sol.get("culprit", ""),
+            "method":             sol.get("method", ""),
+            "motive":             sol.get("motive", ""),
+            "key_evidence":       ", ".join(sol.get("key_evidence", [])),
+            "coherence_passed":   coh.get("passed", ""),
+            "coherence_blocking": coh.get("blocking", ""),
+            "coherence_warnings": coh.get("warnings", ""),
+            "viability_rating":   entry.get("viability_rating", ""),
+            "num_suspects":       len(suspects),
+            "num_evidence":       len(m.get("evidence", [])),
+        })
+    buf = io.StringIO()
+    if rows:
+        writer = csv.DictWriter(buf, fieldnames=list(rows[0].keys()))
+        writer.writeheader()
+        writer.writerows(rows)
+    return buf.getvalue().encode("utf-8")
+
+
+def _render_download_buttons(label_prefix: str = ""):
+    """Render JSON + CSV download buttons for the current stock."""
+    stock = st.session_state.mystery_stock
+    if not stock:
+        st.info("No mysteries in stock yet — generate one first.")
+        return
+    col1, col2 = st.columns(2)
+    with col1:
+        st.download_button(
+            label=f"{label_prefix}Download JSON ({len(stock)} mysteries)",
+            data=_stock_to_json_bytes(),
+            file_name="mystery_stock.json",
+            mime="application/json",
+        )
+    with col2:
+        st.download_button(
+            label=f"{label_prefix}Download CSV ({len(stock)} mysteries)",
+            data=_stock_to_csv_bytes(),
+            file_name="mystery_stock.csv",
+            mime="text/csv",
+        )
+
+
+# -------------------------
 # Session State
 # -------------------------
 defaults = {
@@ -272,6 +360,7 @@ defaults = {
     "cinematic_brief": None,   # video-gen optimized brief (opt-in)
     "viability_rating": 5,     # creator-side 1–10 viability rating
     "generated": False,
+    "mystery_stock": [],       # rolling stock of up to MYSTERY_STOCK_MAX mysteries
 }
 for k, v in defaults.items():
     if k not in st.session_state:
@@ -283,6 +372,34 @@ for k, v in defaults.items():
 st.title("Choose Your Mystery")
 st.caption("Ultimately: An AI-powered detective game. Set the scene. Interrogate the suspects. Solve the case.")
 st.caption("Currently: An AI-powered mystery creator. Set the scene. Verify the output")
+st.divider()
+
+# -------------------------
+# Mystery Stock Status Bar
+# -------------------------
+stock_count = len(st.session_state.mystery_stock)
+with st.expander(
+    f"Mystery Stock — {stock_count}/{MYSTERY_STOCK_MAX} saved"
+    + (" · type \"Peter Parker\" to download" if stock_count > 0 else ""),
+    expanded=False,
+):
+    if stock_count:
+        for i, entry in enumerate(reversed(st.session_state.mystery_stock), 1):
+            m = entry.get("mystery_dict", {})
+            coh = entry.get("coherence", {})
+            coh_badge = "✅" if coh.get("passed") else "⚠️"
+            st.caption(
+                f"{i}. **{m.get('title', 'Untitled')}** — "
+                f"viability {entry.get('viability_rating', '?')}/10 · "
+                f"{coh_badge} coherence · "
+                f"_{entry.get('prompt', '')}_ · "
+                f"{entry.get('timestamp', '')[:10]}"
+            )
+        st.divider()
+        _render_download_buttons()
+    else:
+        st.caption("No mysteries yet. Generate one to start building your stock.")
+
 st.divider()
 
 # -------------------------
@@ -299,7 +416,12 @@ cinematic_on = st.checkbox(
     help="Adds one extra AI call to produce a shot-list and visual brief for video generation. Off by default.",
 )
 
-if st.button("Generate Mystery", disabled=not user_prompt.strip()):
+_is_download_trigger = user_prompt.strip().lower() == DOWNLOAD_TRIGGER
+
+if _is_download_trigger:
+    st.info("🕷️ **Download mode activated.** Your mystery stock is ready to export.")
+    _render_download_buttons()
+elif st.button("Generate Mystery", disabled=not user_prompt.strip()):
     with st.spinner("Building your case from the archives..."):
         mystery_dict, recipe = generate_mystery(user_prompt)
         from localization import _is_modern, _era_key, _load_era_rules
@@ -347,6 +469,14 @@ if st.button("Generate Mystery", disabled=not user_prompt.strip()):
             st.session_state.cinematic_brief = brief
         else:
             st.session_state.cinematic_brief = None
+
+        # Add to rolling stock (viability defaults to 5 at generation time)
+        _add_to_stock(
+            mystery_dict,
+            prompt=user_prompt,
+            coherence=st.session_state.coherence,
+            viability=5,
+        )
 
         st.session_state.generated = True
 
