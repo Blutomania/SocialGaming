@@ -2,10 +2,11 @@
 
 ## Project Overview
 AI-powered social mystery party game. Players investigate crimes, interrogate AI characters,
-and compete to solve the case first. Core innovation: the 75% information-sharing mechanic.
+and compete to solve the case first. Core innovation: asymmetric per-turn information sharing —
+each player decides what fraction of their findings to reveal to the group.
 
-Current phase: **multiplayer CLI** — up to 6 players, turn-based investigation with asymmetric sharing.
-Next phase: Streamlit UI for multiplayer + social export (Phase 2).
+Current phase: **multiplayer CLI play-testing** — `game_session.py` + `game_engine.py` + `play` command built; needs play-testing.
+Next phase: Streamlit UI for multiplayer + social export to Instagram/X (Phase 2).
 
 ---
 
@@ -30,10 +31,10 @@ Next phase: Streamlit UI for multiplayer + social export (Phase 2).
 
 ## Active Branch
 
-**`claude/setup-api-and-mysteries-LRLQK`** — all current development goes here.
+**`claude/add-multiplayer-investigation-ZO8Zr`** — all current development goes here.
 
-Stale / pending:
-- `claude/mystery-versioning-system-TPblK` — pending merge into main (CLI + part registry)
+Pending merge into main:
+- `claude/mystery-versioning-system-TPblK` — CLI + part registry (blocked on play-test sign-off)
 
 ---
 
@@ -42,8 +43,8 @@ Stale / pending:
 1. **Verify branch:**
    ```bash
    git fetch origin
-   git checkout claude/setup-api-and-mysteries-LRLQK
-   git pull origin claude/setup-api-and-mysteries-LRLQK
+   git checkout claude/add-multiplayer-investigation-ZO8Zr
+   git pull origin claude/add-multiplayer-investigation-ZO8Zr
    ```
 2. **Read the most recent block in `SESSIONS.md`** — it has the exact next step, any blockers,
    and decisions that must not be revisited.
@@ -60,9 +61,9 @@ Stale / pending:
 2. **Update `CLAUDE.md → Current To-Do`** to reflect completed and next items.
 3. **Commit everything** on the working branch and push.
 4. **Tell the user to sync locally** (see local sync steps at bottom of each SESSIONS.md block).
-5. The remote rejects `git push origin main` (HTTP 403). Promote to main via PR:
+5. Promote to main via PR (remote rejects direct push to main):
    ```bash
-   gh pr create --base main --head claude/setup-api-and-mysteries-LRLQK --title "..."
+   gh pr create --base main --head <current-branch> --title "..."
    ```
 
 ### NEVER end a session without updating SESSIONS.md.
@@ -88,7 +89,7 @@ Every new feature must answer at least one of these:
 
 ### 1. Does it close a feedback loop?
 - **Creator signal**: viability rating (1–10) on each mystery
-- **Player signal** (future): accusations, interrogation patterns, time-to-solve
+- **Player signal** (partial): accusations, interrogation patterns tracked in game_engine turn log
 - **Part signal** (future): which `SOURCE(INDEX)` parts appear in high-rated mysteries → weight registry
 
 Prefer code that *captures* signal over code that generates more content with no signal.
@@ -120,6 +121,7 @@ API calls are the primary cost driver. **Before any new API call, look for a cac
 | Localization rulesets | `mystery_database/localization_cache/<era_key>.json` | location+time_period slug | Name conventions, occupation map, forbidden titles |
 | Part extractions | `mystery_database/extractions/*.json` | source filename | P1–P4 parts from source texts |
 | Generated mysteries | `mystery_database/generated/*.json` | slug+timestamp | Full mystery dicts with `_coherence` |
+| Active game sessions | `mystery_database/games/*.json` | game code | Full GameSession state |
 
 Add a row here whenever you introduce a new cache.
 
@@ -129,12 +131,10 @@ Add a row here whenever you introduce a new cache.
 
 Full list in `SESSIONS.md`. Top priorities:
 
-1. **[DONE]** ~~Add `ANTHROPIC_API_KEY` to HuggingFace Space secrets~~ — completed March 12, 2026
-2. **[DONE]** ~~Multiplayer CLI — game_session.py + game_engine.py + `play` command~~ — completed March 22, 2026
-3. **[START HERE]** Play-test the CLI multiplayer: `python cli.py play --host --name Alice` + second terminal joining with code
-4. **Merge `claude/mystery-versioning-system-TPblK`** (CLI + part registry) into main
-5. **Load saved mystery** — add dropdown to `app.py` to browse and reload past mysteries from disk
-6. **Multiplayer Phase 2 (Streamlit UI)** — lobby panel, game panel, sharing UI; social export (WhatsApp + Twitter links); avatar hooks
-7. **[LOW PRIORITY]** Feedback persistence — save viability rating + behavioral signals back to mystery JSON; defer until after play-testing
+1. **[START HERE]** Play-test the CLI multiplayer: `python cli.py play --host --name Alice` + second terminal joining with code
+2. **Merge `claude/mystery-versioning-system-TPblK`** (CLI + part registry) into main
+3. **Load saved mystery** — add dropdown to `app.py` to browse and reload past mysteries from disk
+4. **Multiplayer Phase 2 (Streamlit UI)** — lobby panel, game panel, sharing UI; social export (Instagram + X links); avatar hooks
+5. **[LOW PRIORITY]** Feedback persistence — save viability rating + behavioral signals back to mystery JSON; defer until after play-testing
 
 > **DO NOT re-run the corpus extraction pipeline.** Previous failures were due to source texts being too brief or not a mystery — re-running produces the same results. Expand the corpus only by adding new quality source texts.
