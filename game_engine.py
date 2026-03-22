@@ -399,7 +399,9 @@ def build_end_summary(session: GameSession) -> dict:
         "total_evidence": len(mystery.get("evidence", [])),
         "shared_pool_size": len(session.shared_pool),
         # Phase 2: social export fields (populated by social_export.py)
-        "social_share_text": None,
-        "whatsapp_link": None,
-        "twitter_link": None,
+        # Targets: Instagram caption + X/Twitter intent link
+        "social_share_text": None,       # short copyable text (≤280 chars for X)
+        "instagram_caption": None,       # long-form caption with player stats
+        "twitter_link": None,            # https://twitter.com/intent/tweet?text=...
+        "x_link": None,                  # same as twitter_link (X branding)
     }
