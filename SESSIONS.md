@@ -5,6 +5,45 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 11 — March 22, 2026
+**Branch:** `claude/add-multiplayer-investigation-ZO8Zr`
+**Latest commit:** `55fe02f`
+
+### Files modified
+- `.claude/settings.json` (project) — fixed Stop hook ordering; now runs `session_summary` first, then `git-check`; added `$schema` field
+- `~/.claude/settings.json` (global) — removed Stop hook (consolidated into project settings); now holds only `$schema` + `permissions.allow: ["Skill"]`
+- `game_engine.py` — updated `build_end_summary()` social export stubs: `whatsapp_link` replaced by `instagram_caption` + `x_link` to reflect confirmed platform targets
+- `CLAUDE.md` — updated active branch name, stripped completed to-do items, fixed social targets (Instagram + X), updated project overview sentence, marked player signal as partially implemented, added `games/` cache row
+
+### Decisions made
+
+1. **Stop hook ordering fix:** The global `git-check` hook was firing before the project `session_summary` hook, causing `git-check` to see uncommitted changes (SESSIONS.md) and exit 2 — blocking session close. Fix: both hooks now live in the project settings file in the correct order (summary commits first, then check verifies clean tree).
+
+2. **Social export platforms confirmed:** Instagram + X (not WhatsApp/Twitter). Phase 2 social export will generate an Instagram caption and an X/Twitter intent link. All other platform stubs removed from the summary schema.
+
+3. **Interrogation is player-crafted, not scripted:** Each interrogation requires the player to type a free-text question. Claude responds in-character using the character's private alibi/secret/motive data, with evasion behaviour for the culprit and defensive-but-truthful behaviour for innocents.
+
+4. **Sharing mechanic confirmed:** Checkbox model. Player sees numbered list of captures from their turn, types indices to share (e.g. `1 3`), `all`, or `none`. No paraphrasing or editing — verbatim copy to shared pool.
+
+5. **Wrong accusation confirmed:** No penalty. Play continues uninterrupted. Wrong guess is logged; game ends only on correct accusation.
+
+### Next steps
+1. **[START HERE]** Play-test CLI multiplayer: open two terminals, run `python cli.py play --host --name Alice` and `python cli.py play --code <CODE> --name Bob`
+2. **Merge `claude/mystery-versioning-system-TPblK`** into main
+3. **Multiplayer Phase 2 (Streamlit UI)** — add `pages/2_Multiplayer.py` with lobby, game panel, sharing UI
+4. **Social export** — `social_export.py` with Instagram caption + X intent link
+5. **Load saved mystery dropdown** in `app.py`
+
+### Local sync steps
+```bash
+cd ~/SocialGaming
+git fetch origin
+git checkout claude/add-multiplayer-investigation-ZO8Zr
+git pull origin claude/add-multiplayer-investigation-ZO8Zr
+```
+
+---
+
 ## Session 10 — March 22, 2026
 **Branch:** `claude/add-multiplayer-investigation-ZO8Zr`
 **Base commit:** `db4af22`

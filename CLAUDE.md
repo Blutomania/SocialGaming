@@ -134,7 +134,7 @@ Full list in `SESSIONS.md`. Top priorities:
 1. **[START HERE]** Play-test the CLI multiplayer: `python cli.py play --host --name Alice` + second terminal joining with code
 2. **Merge `claude/mystery-versioning-system-TPblK`** (CLI + part registry) into main
 3. **Load saved mystery** — add dropdown to `app.py` to browse and reload past mysteries from disk
-4. **Multiplayer Phase 2 (Streamlit UI)** — lobby panel, game panel, sharing UI; social export (Instagram + X links); avatar hooks
+4. **Multiplayer Phase 2 (Streamlit UI)** — lobby panel, game panel, sharing UI; `social_export.py` (Instagram caption + X intent link); avatar hooks
 5. **[LOW PRIORITY]** Feedback persistence — save viability rating + behavioral signals back to mystery JSON; defer until after play-testing
 
 > **DO NOT re-run the corpus extraction pipeline.** Previous failures were due to source texts being too brief or not a mystery — re-running produces the same results. Expand the corpus only by adding new quality source texts.
