@@ -1,0 +1,256 @@
+{
+  "game_code": "ITTA9",
+  "mystery": {
+    "title": "Burn Rate",
+    "setting": {
+      "location": "NovaSpark Technologies headquarters, a converted warehouse in Palo Alto, California",
+      "time_period": "November 2001, during the height of the dot-com crash",
+      "environment": "Open-plan office with exposed ductwork, rows of abandoned workstations, a glass-walled conference room, a server closet, and a rooftop deck. The building is in overnight lockdown due to an emergency all-hands meeting called by the CEO after the company's lead investor announced a funding freeze.",
+      "description": "The NovaSpark office is a graveyard of Aeron chairs and unpaid ping-pong tables, its fluorescent lights buzzing over stacks of layoff paperwork. A late-season rainstorm has knocked out the parking garage gate and flooded the ground-floor exits, and the building's electronic key-card system has been remotely locked by the landlord over an unpaid lease \u2014 meaning all four people present cannot leave until the facilities manager arrives at dawn. The air smells of stale Red Bull and the particular desperation of a company with two weeks of runway left."
+    },
+    "crime": {
+      "type": "Murder staged as accidental overdose",
+      "what_happened": "CEO and co-founder Derek Hale was found dead in the server closet, slumped against a rack of humming machines. He had been given a lethal dose of his own prescription benzodiazepines, crushed and dissolved into his energy drink, then positioned to look like he had passed out from stress and exhaustion. The killer exploited the chaos of the emergency meeting and the fact that Derek's heavy pill use was an open secret at the company.",
+      "when": "Between 10:45 PM and 11:30 PM on November 14, 2001",
+      "initial_discovery": "Head of Engineering Priya Osman went to the server closet at 11:30 PM to reboot a crashing database and found Derek unresponsive on the floor with an empty NovaSpark branded tumbler beside him. She called out to the others, and everyone gathered assuming he had simply collapsed from exhaustion."
+    },
+    "characters": [
+      {
+        "name": "Derek Hale",
+        "role": "victim",
+        "occupation": "CEO and co-founder of NovaSpark Technologies",
+        "motive": "N/A",
+        "alibi": "N/A \u2014 deceased",
+        "secret": "Derek had secretly signed a term sheet three days earlier selling the company's core IP to a competitor, Axiom Networks, for a sum that would pay back investors but leave all employee stock options worthless. He had not disclosed this to his co-founder or staff, and the transaction was set to close the following morning."
+      },
+      {
+        "name": "Priya Osman",
+        "role": "suspect",
+        "occupation": "Head of Engineering and technical co-founder of NovaSpark",
+        "motive": "Priya co-founded NovaSpark and holds a 22% equity stake. Derek's secret IP sale to Axiom would have rendered her shares worthless while Derek personally netted $1.4 million from a side consulting clause buried in the term sheet \u2014 a clause she discovered when she intercepted a misdirected fax that afternoon.",
+        "alibi": "Claims she was alone at her workstation from 10:30 PM onward, debugging a memory leak in the payment API. Server logs show her credentials were used to access the codebase at 10:31 PM, but the session was idle for 47 minutes starting at 10:44 PM.",
+        "secret": "Priya received a misdirected fax of the Axiom term sheet at 4:17 PM that same day and hid it under her keyboard rather than confront Derek immediately. She had also been secretly interviewing at Axiom herself for the past month, creating a financial motive that cuts both ways \u2014 she wanted the deal dead, or she wanted Derek out of the way before he could cut her out entirely."
+      },
+      {
+        "name": "Marcus Tull",
+        "role": "suspect",
+        "occupation": "VP of Sales and Derek's childhood friend, responsible for all enterprise accounts",
+        "motive": "Marcus personally guaranteed a $200,000 bridge loan to NovaSpark using his house as collateral at Derek's urging six months ago. He recently learned that Derek had been falsifying sales pipeline numbers to keep investor confidence alive, meaning the company was never going to hit the milestones that would have triggered loan repayment. Marcus stood to lose his home and his reputation simultaneously.",
+        "alibi": "Says he was on the rooftop deck from 10:15 PM until nearly midnight, smoking and on a call with his wife. His wife confirms the call but only from 11:35 PM onward \u2014 the critical 50-minute window is unaccounted for. A half-smoked cigarette pack was found on the rooftop, but only one butt was in the ashtray despite Marcus claiming he smoked several.",
+        "secret": "Marcus had stolen Derek's prescription pill bottle from his desk drawer two weeks earlier, photographed the label, and researched the lethal dose range. He told himself it was to understand Derek's erratic behavior, but the research notes were saved in a folder on his laptop labeled 'Exit Strategy.' He replaced the bottle before Derek noticed it was missing."
+      },
+      {
+        "name": "Cassandra Vole",
+        "role": "suspect",
+        "occupation": "Head of Finance and Controller, hired eight months ago directly by the lead investor",
+        "motive": "Cassandra had been secretly reporting NovaSpark's true financial state to lead investor Raymond Park for months \u2014 a sanctioned arrangement Derek did not know about. Derek had discovered her dual reporting relationship that afternoon and threatened to expose her to future employers as a corporate spy, effectively ending her career in Silicon Valley. With Derek dead, his threat dies with him.",
+        "alibi": "States she was in the glass-walled conference room from 10:00 PM preparing the company's wind-down financial model, visible to anyone who looked. However, the conference room blinds were drawn from 10:40 PM onward \u2014 something she claims Derek himself requested before going to the server closet, but no one can corroborate.",
+        "secret": "Cassandra has a key to the server closet on her personal keyring \u2014 she had a copy made three months ago to access backup financial records without Derek's knowledge. She told no one about this key and did not mention it when the body was found, even as everyone puzzled over how Derek had gotten inside when the door appeared locked."
+      },
+      {
+        "name": "Jin Baek",
+        "role": "witness",
+        "occupation": "Junior network administrator, the only non-executive present that night, called in to stabilize the server infrastructure before the morning's investor call",
+        "motive": "N/A \u2014 witness",
+        "alibi": "Was crawling under the raised flooring in the server room anteroom running ethernet cable from approximately 9:50 PM to 11:15 PM, a task logged in his work order and confirmed by the cable runs he completed. He heard raised voices from inside the server closet around 10:50 PM but assumed it was Derek arguing on the phone as usual.",
+        "secret": "Jin saw Cassandra enter the server closet at approximately 10:48 PM using a key from her own keychain \u2014 not the master key hanging on the wall \u2014 but said nothing when the body was found because Cassandra had promised to write him a job reference and he feared losing it. He only divulged this information when pressed during a second round of questioning."
+      }
+    ],
+    "evidence": [
+      {
+        "id": "E1",
+        "name": "Derek's NovaSpark Branded Tumbler",
+        "description": "A 20-ounce stainless steel tumbler with the NovaSpark logo found beside Derek's body in the server closet. A thin white residue is visible along the interior bottom rim, later identified as crushed benzodiazepine tablets consistent with Derek's prescription. The tumbler had been rinsed \u2014 the inside is damp \u2014 suggesting someone attempted to dilute or obscure the residue after the fatal dose was administered.",
+        "type": "physical",
+        "relevance": "critical"
+      },
+      {
+        "id": "E2",
+        "name": "Cassandra's Duplicate Server Closet Key",
+        "description": "A brass key found on Cassandra Vole's personal keyring during a voluntary search of belongings, matching the server closet lock exactly. The master key for the server closet was found hanging undisturbed on its hook near the front desk, meaning Cassandra possessed unauthorized independent access to the room where Derek died. When first asked, Cassandra denied having any key to the closet.",
+        "type": "physical",
+        "relevance": "critical"
+      },
+      {
+        "id": "E3",
+        "name": "Marcus Tull's Laptop Research Folder",
+        "description": "A folder titled 'Exit Strategy' found on Marcus's work laptop containing three browser-saved articles from medical websites about benzodiazepine toxicity, lethal dose thresholds, and interaction effects with alcohol and caffeine. The files were created and last accessed two weeks prior to Derek's death. This initially positions Marcus as the most likely premeditated killer.",
+        "type": "documentary",
+        "relevance": "red_herring"
+      },
+      {
+        "id": "E4",
+        "name": "Misdirected Axiom Term Sheet Fax",
+        "description": "A seven-page fax discovered tucked under Priya Osman's keyboard, bearing the header of Axiom Networks' legal department and dated November 14, 2001. The document outlines the sale of NovaSpark's core routing patent portfolio and includes a consulting rider awarding Derek Hale personally $1.4 million contingent on post-close technical support. Priya's fingerprints are the only ones on the document, suggesting she read and concealed it.",
+        "type": "documentary",
+        "relevance": "supporting"
+      },
+      {
+        "id": "E5",
+        "name": "Server Access Log with 47-Minute Idle Gap",
+        "description": "A printed system log from NovaSpark's authentication server showing that Priya Osman's developer credentials opened a code repository session at 10:31 PM but registered no keystrokes or commands for the following 47 minutes until 11:18 PM. The log was retrieved from the server rack adjacent to where Derek's body was found. It undermines Priya's alibi that she was coding continuously throughout the evening.",
+        "type": "documentary",
+        "relevance": "supporting"
+      },
+      {
+        "id": "E6",
+        "name": "Jin Baek's Written Statement \u2014 Second Interview",
+        "description": "A handwritten statement provided by Jin Baek during a follow-up questioning session in which he confirms seeing Cassandra Vole enter the server closet at approximately 10:48 PM using a key from her own keychain, not the master key. Jin states the door closed behind her and he heard low, urgent conversation for several minutes before Cassandra emerged alone around 11:05 PM. This statement directly contradicts Cassandra's claim that she was in the conference room with the blinds drawn during the entire critical window.",
+        "type": "testimonial",
+        "relevance": "critical"
+      },
+      {
+        "id": "E7",
+        "name": "Conference Room Blind Pull \u2014 Smudged Fingerprints",
+        "description": "The drawstring pull for the conference room venetian blinds shows a smear of a white chalky substance consistent with crushed pharmaceutical tablets, identified on close inspection as the same benzodiazepine compound found in Derek's tumbler. The smear suggests the person who drew the blinds had recently handled the crushed pills without fully cleaning their hands. Only Cassandra claims to have drawn those blinds.",
+        "type": "physical",
+        "relevance": "critical"
+      },
+      {
+        "id": "E8",
+        "name": "Rooftop Ashtray \u2014 Single Cigarette Butt",
+        "description": "The rooftop deck ashtray contains exactly one cigarette butt, despite Marcus Tull claiming to have smoked three to four cigarettes during his claimed 45-minute stay on the roof. A full pack with only one cigarette missing was found in his jacket pocket. This discrepancy suggests Marcus was not on the roof for as long as he claims, though it does not place him at the scene of the crime.",
+        "type": "physical",
+        "relevance": "supporting"
+      }
+    ],
+    "solution": {
+      "culprit": "Cassandra Vole",
+      "method": "Cassandra crushed several of Derek's prescription benzodiazepine tablets \u2014 she had observed his pill habit closely in her role monitoring company health \u2014 dissolved them in Derek's tumbler, and handed it to him in the server closet under the pretext of discussing the wind-down financials privately. She used her duplicate key to access the closet, stayed while he lost consciousness, and left him to die, re-locking the door behind her. She then drew the conference room blinds and positioned herself there as a visible alibi, unaware the blind pull retained traces of the crushed tablets on her fingers.",
+      "motive": "Derek had discovered that afternoon that Cassandra was a covert informant for lead investor Raymond Park and threatened to destroy her professional reputation publicly. With the company collapsing anyway, Cassandra calculated that Derek's death would be ruled an accidental overdose given his known prescription dependency, eliminating the only person who could end her career. She also stood to receive a modest severance bonus triggered only upon the CEO's departure under the company's wind-down policy.",
+      "key_evidence": [
+        "E2",
+        "E6",
+        "E7"
+      ],
+      "how_to_deduce": "Step 1 \u2014 Establish access: The server closet was found locked with the master key undisturbed on its hook, yet Derek was inside. Only Cassandra's duplicate key (E2) explains how the closet was accessed and re-locked after the murder, immediately focusing suspicion on her despite her claimed conference-room alibi. Step 2 \u2014 Break the alibi: Jin Baek's second statement (E6) places Cassandra physically inside the server closet between 10:48 PM and 11:05 PM \u2014 squarely within the murder window \u2014 contradicting her claim of uninterrupted conference-room presence. Step 3 \u2014 Link her to the poison delivery: The white pharmaceutical residue on the conference-room blind pull (E7) matches the crushed benzodiazepine compound in Derek's tumbler (E1), and only Cassandra claims to have drawn those blinds. This residue proves she handled the crushed tablets and inadvertently transferred trace material when she drew the blinds after returning from the closet. Step 4 \u2014 Eliminate competing suspects: Marcus's 'Exit Strategy' research folder (E3) is frightening but circumstantial \u2014 he researched dosage but had no access to the locked closet and his rooftop discrepancy only shortens his alibi without placing him inside; Priya's idle server session is suspicious but explained by her reading the fax and agonizing over confronting Derek, and she had no closet access. Step 5 \u2014 Confirm motive via the fax and financials: E4 shows Derek was preparing to betray the entire company; Cassandra's role as the investor's mole meant Derek's threat was existential to her specifically, providing the personal urgency that moves her from suspicion to culprit."
+    },
+    "gameplay_notes": {
+      "difficulty": "HARD",
+      "estimated_playtime": "75\u201390 minutes",
+      "key_twists": [
+        "Marcus Tull's 'Exit Strategy' research folder makes him the obvious suspect for the first half of the game, drawing players away from Cassandra.",
+        "Cassandra's alibi appears visually verifiable \u2014 she was in a glass-walled room \u2014 until players realize the blinds were drawn during the critical window.",
+        "Jin Baek withholds the key eyewitness observation in his first statement, only revealing it if players press him a second time with a specific question about the server closet key.",
+        "The duplicate key is only discovered if players request a voluntary belongings search, which requires building enough in-game suspicion to justify the ask.",
+        "Priya's concealed fax and idle coding session make her look deeply guilty despite her innocence, functioning as a layered red herring built on real wrongdoing."
+      ]
+    },
+    "_meta": {
+      "num_players": 4,
+      "setting_input": "Silicon Valley startup, 2001 dot-com crash, open-plan office building"
+    },
+    "_provenance": {
+      "recipe": "corpus_0281_ebo(1) + corpus_0052_ebo(2) + corpus_0163_ebo(3) + corpus_0352_ebo(4) + corpus_0287_ebo(5) + corpus_0150_ebo(6) + corpus_0351_ebo(7) + corpus_0351_ebo(8)",
+      "slots": [
+        {
+          "source_id": "corpus_0281_ebo",
+          "part_index": 1,
+          "part_type": "crime_type"
+        },
+        {
+          "source_id": "corpus_0052_ebo",
+          "part_index": 2,
+          "part_type": "setting_element"
+        },
+        {
+          "source_id": "corpus_0163_ebo",
+          "part_index": 3,
+          "part_type": "motive"
+        },
+        {
+          "source_id": "corpus_0352_ebo",
+          "part_index": 4,
+          "part_type": "suspect_archetype"
+        },
+        {
+          "source_id": "corpus_0287_ebo",
+          "part_index": 5,
+          "part_type": "red_herring"
+        },
+        {
+          "source_id": "corpus_0150_ebo",
+          "part_index": 6,
+          "part_type": "reveal_mechanic"
+        },
+        {
+          "source_id": "corpus_0351_ebo",
+          "part_index": 7,
+          "part_type": "social_dynamic"
+        },
+        {
+          "source_id": "corpus_0351_ebo",
+          "part_index": 8,
+          "part_type": "evidence_type"
+        }
+      ],
+      "target_setting": "Silicon Valley startup, 2001 dot-com crash, open-plan office building",
+      "generated_title": ""
+    },
+    "_coherence": {
+      "passed": true,
+      "blocking": 0,
+      "warnings": 0,
+      "witness_gaps": []
+    }
+  },
+  "mystery_file": "burn_rate_1773338859.json",
+  "players": [
+    {
+      "player_id": "0765c034-542a-4561-a94f-56ac95e52229",
+      "player_name": "Alice",
+      "is_host": true,
+      "entries": [
+        {
+          "turn_number": 1,
+          "action_type": "investigate",
+          "target": "crime_scene",
+          "question": null,
+          "response": "[E1] Derek's NovaSpark Branded Tumbler\nA 20-ounce stainless steel tumbler with the NovaSpark logo found beside Derek's body in the server closet. A thin white residue is visible along the interior bottom rim, later identified as crushed benzodiazepine tablets consistent with Derek's prescription. The tumbler had been rinsed \u2014 the inside is damp \u2014 suggesting someone attempted to dilute or obscure the residue after the fatal dose was administered.\nType: physical",
+          "shared": true
+        },
+        {
+          "turn_number": 1,
+          "action_type": "interrogate",
+          "target": "Priya Osman",
+          "question": "Where were you?",
+          "response": "I was in the library all evening. I had nothing to do with it.",
+          "shared": false
+        }
+      ],
+      "accusations_made": [
+        "Marcus Tull",
+        "Cassandra Vole"
+      ],
+      "avatar_url": null
+    }
+  ],
+  "turn_order": [
+    "0765c034-542a-4561-a94f-56ac95e52229"
+  ],
+  "current_turn_index": 0,
+  "phase": "finished",
+  "evidence_pool": [
+    "E1",
+    "E2",
+    "E5",
+    "E6",
+    "E7",
+    "E8"
+  ],
+  "evidence_discovered": [
+    "E1"
+  ],
+  "shared_pool": [
+    {
+      "contributed_by": "Alice",
+      "turn_number": 1,
+      "action_type": "investigate",
+      "target": "crime_scene",
+      "response": "[E1] Derek's NovaSpark Branded Tumbler\nA 20-ounce stainless steel tumbler with the NovaSpark logo found beside Derek's body in the server closet. A thin white residue is visible along the interior bottom rim, later identified as crushed benzodiazepine tablets consistent with Derek's prescription. The tumbler had been rinsed \u2014 the inside is damp \u2014 suggesting someone attempted to dilute or obscure the residue after the fatal dose was administered.\nType: physical"
+    }
+  ],
+  "winner": "Alice",
+  "created_at": 1774157160.6243203,
+  "last_updated": 1774157160.6296523
+}

@@ -362,11 +362,98 @@ See `extract_test_mysteries.py:_get_token()` for the reference implementation.
 
 ---
 
+## Multiplayer data flow (Phase 1 — CLI)
+
+```
+Host: python cli.py play --host --name Alice
+     │
+     ▼
+_play_select_mystery()        → picks saved mystery from mystery_database/generated/
+     │
+     ▼
+game_session.create_game()    → mystery_database/games/<CODE>.json created
+     │  evidence_pool = 75% of evidence (guaranteed ≥1 critical item)
+     │  phase = "lobby"
+     │
+     ▼
+Players join:  python cli.py play --code XK7F2 --name Bob
+     │
+     ▼
+game_session.join_game()      → appends PlayerNotebook to session, saves
+     │
+     ▼
+Host types "start"
+     │
+     ▼
+game_session.start_game()     → randomises turn_order, phase = "playing"
+     │
+     ▼
+Turn loop:
+     │
+     ├── INTERROGATE → game_engine.resolve_action()  ← 1 Claude call
+     │       • builds in-character prompt (alibi, secret, motive)
+     │       • culprit is evasive; innocent suspects are defensive
+     │
+     ├── INVESTIGATE → game_engine.resolve_action()  ← 0 Claude calls
+     │       • reveals next item from evidence_pool not yet discovered
+     │       • pool exhaustion returns graceful message
+     │
+     ├── FOLLOW LEAD → game_engine.resolve_action()  ← 1 Claude call
+     │       • analytical expansion on a discovered evidence item
+     │       • does not name culprit directly
+     │
+     └── ACCUSE → game_engine.resolve_action()       ← 0 Claude calls
+             • deterministic check against solution.culprit
+             • correct → phase = "finished", winner set
+             • wrong   → logged, game continues uninterrupted
+     │
+     ▼
+_play_sharing_prompt()
+     │  player sees numbered list of captures from this turn
+     │  types indices to share (e.g. "1 3"), "all", or "none"
+     │
+     ▼
+game_engine.apply_sharing()   → selected entries copied verbatim to shared_pool
+     │
+     ▼
+game_session.advance_turn()   → current_turn_index += 1 (wraps), saved
+     │
+     ▼
+End game (phase == "finished")
+     │
+     ▼
+game_engine.build_end_summary()  → mystery_database/games/<CODE>_summary.json
+     │  Contains player stats (actions/shared/withheld), winner, culprit details
+     │  Phase 2: social_export.py reads this to generate shareable cards/links
+```
+
+### Multiplayer API cost profile
+
+| Action | Claude calls | Tokens (est.) |
+|---|---|---|
+| Interrogate | 1 | ~600 |
+| Investigate | 0 | 0 |
+| Follow Lead | 1 | ~500 |
+| Accuse | 0 | 0 |
+| Full 6-player game (10 turns/player) | ~36 | ~29,000 |
+
+### Multiplayer file locations
+
+| File | Purpose |
+|---|---|
+| `game_session.py` | Data models (GameSession, PlayerNotebook, CapturedEntry, SharedEntry) + persistence |
+| `game_engine.py` | Turn action resolution + sharing + end-game summary builder |
+| `mystery_database/games/<CODE>.json` | Live game state (one file per active game) |
+| `mystery_database/games/<CODE>_summary.json` | End-game summary (Phase 2 social export source) |
+
+---
+
 ## Active branches
 
 | Branch | What's on it |
 |---|---|
 | `claude/setup-api-and-mysteries-LRLQK` | UI, cinematic brief, 13 generated mysteries, session log |
 | `claude/mystery-versioning-system-TPblK` | Part registry, CLI, corpus pipeline |
+| `claude/add-multiplayer-investigation-ZO8Zr` | Multiplayer CLI (game_session, game_engine, play command) |
 
 Merge `mystery-versioning-system-TPblK` once quality validation (tasks 2–3) is confirmed.

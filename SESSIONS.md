@@ -5,6 +5,70 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 10 — March 22, 2026
+**Branch:** `claude/add-multiplayer-investigation-ZO8Zr`
+**Base commit:** `db4af22`
+
+### Files created
+- `game_session.py` — Multiplayer game state data models + JSON file persistence
+  - `GameSession`, `PlayerNotebook`, `CapturedEntry`, `SharedEntry` dataclasses
+  - `create_game`, `join_game`, `load_game`, `save_game`, `start_game`, `advance_turn`, `get_current_player`, `get_player_by_id`
+  - Evidence pool builder (75% mechanic with critical evidence guarantee)
+  - Game code generator (5-char uppercase alphanumeric, collision-checked)
+- `game_engine.py` — Turn action resolution and sharing logic
+  - `resolve_action()` — dispatches INTERROGATE / INVESTIGATE / FOLLOW_LEAD / ACCUSE
+  - `apply_sharing()` — checkbox model: player selects whole captures to share
+  - `format_shared_pool()`, `format_player_stats()`, `build_end_summary()`
+- `mystery_database/games/` — Directory for active game session JSON files
+
+### Files modified
+- `cli.py` — Added `play` command (`cmd_play`, `_make_llm_fn`, lobby/game loop helpers)
+  - Host flow: select mystery → create game → lobby → start → game loop
+  - Player flow: join by code → lobby wait → game loop
+  - Sharing prompt after each turn: numbered list, enter indices / all / none
+  - End-game: ASCII summary + `_summary.json` write for Phase 2 social export
+- `docs/WIRING.md` — Added "Multiplayer data flow" section with full turn loop diagram, cost profile, and file locations
+- `CLAUDE.md` — Updated current phase description, key files table, to-do list
+
+### Decisions made
+
+1. **Turn actions:** INTERROGATE (1 Claude call), INVESTIGATE (0 calls — reveals evidence from 75% pool), FOLLOW LEAD (1 Claude call — analytical expansion), ACCUSE (0 calls — deterministic check).
+
+2. **Sharing mechanic:** Checkbox model — player sees numbered list of captures from current turn, types indices to share in full (e.g. "1 3"), "all", or "none". No paraphrasing or editing.
+
+3. **Wrong accusation:** Play continues uninterrupted. Wrong guess is logged in `player.accusations_made`. Game only ends on correct accusation.
+
+4. **Social export:** Deferred to Phase 2. Phase 1 prints ASCII end-game summary to terminal and writes `mystery_database/games/<CODE>_summary.json` with all data needed for social cards/links.
+
+5. **75% evidence pool:** At game creation, 75% of evidence IDs are randomly selected as discoverable. At least one critical evidence item is guaranteed in the pool. Items outside pool are permanently hidden (the "25% withheld" constraint).
+
+6. **File persistence:** Each game is a single JSON file (`mystery_database/games/<CODE>.json`). Atomic write via `.tmp` + rename. Players poll by reloading the file (2s interval in lobby, 3s during non-active turns).
+
+7. **Avatar architecture hooks:** `avatar_url` field is `None` in Phase 1 on both `PlayerNotebook` and in `build_end_summary()`. Phase 2 populates these for character and player avatars.
+
+### Tests run
+- `game_session` create/join/start/advance cycle — 3 players, 4 turns, wrap-around verified
+- `game_engine` all four actions with stub llm_fn — investigate, interrogate, follow_lead, wrong accuse, correct accuse
+- Sharing: 1 of 2 captures shared → shared_pool grows, private entry stays private
+- End summary: all keys present, `_summary.json` written
+
+### Next steps
+1. **[START HERE]** Play-test CLI multiplayer: open two terminals, run `python cli.py play --host --name Alice` and `python cli.py play --code <CODE> --name Bob`
+2. **Merge `claude/mystery-versioning-system-TPblK`** into main
+3. **Multiplayer Phase 2 (Streamlit UI)** — add `pages/2_Multiplayer.py` with lobby, game panel, sharing UI
+4. **Social export** — `social_export.py` with WhatsApp + Twitter links, shareable image card
+5. **Load saved mystery dropdown** in `app.py`
+
+### Local sync steps
+```bash
+cd ~/SocialGaming
+git fetch origin
+git checkout claude/add-multiplayer-investigation-ZO8Zr
+git pull origin claude/add-multiplayer-investigation-ZO8Zr
+```
+
+---
+
 ## Session 9 — March 12, 2026
 **Branch:** `claude/setup-api-and-mysteries-LRLQK`
 **Latest commit:** `d66657d`

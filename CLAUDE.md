@@ -4,8 +4,8 @@
 AI-powered social mystery party game. Players investigate crimes, interrogate AI characters,
 and compete to solve the case first. Core innovation: the 75% information-sharing mechanic.
 
-Current phase: **mystery creator / output verification** (single-player, creator-side).
-Next phase: multiplayer gameplay with the 75% sharing mechanic.
+Current phase: **multiplayer CLI** — up to 6 players, turn-based investigation with asymmetric sharing.
+Next phase: Streamlit UI for multiplayer + social export (Phase 2).
 
 ---
 
@@ -14,7 +14,9 @@ Next phase: multiplayer gameplay with the 75% sharing mechanic.
 | File | Purpose |
 |---|---|
 | `app.py` | Streamlit UI — generation, interrogation, accusation, viability rating |
-| `cli.py` | Terminal entry point (`generate`, `extract`, `check`, `browse`, `solve`) |
+| `cli.py` | Terminal entry point (`generate`, `extract`, `check`, `browse`, `solve`, `play`) |
+| `game_session.py` | Multiplayer game state data models + JSON file persistence |
+| `game_engine.py` | Turn action logic (interrogate, investigate, follow lead, accuse, sharing) |
 | `part_registry.py` | 1,469-part corpus; sampling logic |
 | `coherence_validator.py` | P1 causal-chain + witness + evidence checks (free — no API call) |
 | `localization.py` | Era-appropriate name/occupation localization with 3-tier disk cache |
@@ -123,15 +125,16 @@ Add a row here whenever you introduce a new cache.
 
 ---
 
-## Current To-Do (as of March 12, 2026)
+## Current To-Do (as of March 22, 2026)
 
 Full list in `SESSIONS.md`. Top priorities:
 
 1. **[DONE]** ~~Add `ANTHROPIC_API_KEY` to HuggingFace Space secrets~~ — completed March 12, 2026
-2. **[START HERE]** Play-test — generate 5–10 mysteries in the live Space, verify coherence passes, rate with viability widget
-3. **Merge `claude/mystery-versioning-system-TPblK`** (CLI + part registry) into main
-4. **Load saved mystery** — add dropdown to `app.py` to browse and reload past mysteries from disk
-5. **Multiplayer invite mechanic** — shareable link + short game code (Jackbox model); global info sharing to start; see SESSIONS.md Session 9 design decision for full spec
-6. **[LOW PRIORITY]** Feedback persistence — save viability rating + behavioral signals back to mystery JSON; defer until after play-testing
+2. **[DONE]** ~~Multiplayer CLI — game_session.py + game_engine.py + `play` command~~ — completed March 22, 2026
+3. **[START HERE]** Play-test the CLI multiplayer: `python cli.py play --host --name Alice` + second terminal joining with code
+4. **Merge `claude/mystery-versioning-system-TPblK`** (CLI + part registry) into main
+5. **Load saved mystery** — add dropdown to `app.py` to browse and reload past mysteries from disk
+6. **Multiplayer Phase 2 (Streamlit UI)** — lobby panel, game panel, sharing UI; social export (WhatsApp + Twitter links); avatar hooks
+7. **[LOW PRIORITY]** Feedback persistence — save viability rating + behavioral signals back to mystery JSON; defer until after play-testing
 
 > **DO NOT re-run the corpus extraction pipeline.** Previous failures were due to source texts being too brief or not a mystery — re-running produces the same results. Expand the corpus only by adding new quality source texts.

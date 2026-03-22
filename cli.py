@@ -12,6 +12,7 @@ Commands:
     mystery list        — Browse the mystery database
     mystery registry    — Inspect the part registry and diversity stats
     mystery extract     — Run corpus extraction pipeline
+    mystery play        — Play a mystery with up to 6 investigators (multiplayer)
 
 Usage:
     python cli.py generate
@@ -19,6 +20,8 @@ Usage:
     python cli.py solve
     python cli.py list
     python cli.py registry
+    python cli.py play --host --name Alice
+    python cli.py play --code XK7F2 --name Bob
 """
 
 import argparse
@@ -1090,6 +1093,451 @@ def _save_mystery(mystery: dict, recipe, db_dir: str):
 
 
 # ============================================================================
+# PLAY — MULTIPLAYER INVESTIGATION
+# ============================================================================
+
+def _make_llm_fn(max_tokens: int = 800):
+    """Return a callable llm_fn(prompt) -> str using the CLI auth pattern."""
+    import requests as _req
+
+    def llm_fn(prompt: str) -> str:
+        header_name, header_value = _get_auth()
+        resp = _req.post(
+            _API_URL,
+            headers={
+                header_name: header_value,
+                "Content-Type": "application/json",
+                "anthropic-version": "2023-06-01",
+            },
+            json={
+                "model": "claude-sonnet-4-6",
+                "max_tokens": max_tokens,
+                "messages": [{"role": "user", "content": prompt}],
+            },
+            timeout=120,
+        )
+        resp.raise_for_status()
+        return resp.json()["content"][0]["text"].strip()
+
+    return llm_fn
+
+
+def _play_select_mystery(db_dir: str) -> tuple:
+    """
+    Prompt host to select a saved mystery. Returns (mystery_dict, filename).
+    """
+    generated_dir = Path(db_dir) / "generated"
+    files = sorted(generated_dir.glob("*.json"))
+    if not files:
+        _print("[red]No saved mysteries found. Run `python cli.py generate` first.[/red]")
+        sys.exit(1)
+
+    _rule("Select a Mystery")
+    mysteries = []
+    for i, f in enumerate(files, 1):
+        try:
+            m = json.loads(f.read_text())
+            title = m.get("title", f.stem)
+            setting = m.get("setting", {})
+            loc = setting.get("location", "")
+            era = setting.get("time_period", "")
+            diff = m.get("gameplay_notes", {}).get("difficulty", "")
+            _print(f"  [{i}] {title}  |  {loc} — {era}  |  {diff}")
+            mysteries.append((m, f.name))
+        except Exception:
+            continue
+
+    if not mysteries:
+        _print("[red]No valid mysteries found.[/red]")
+        sys.exit(1)
+
+    choice = _ask_int("Select mystery number", default=1)
+    idx = max(0, min(choice - 1, len(mysteries) - 1))
+    return mysteries[idx]
+
+
+def _play_lobby_host(session, db_dir: str):
+    """
+    Host waits in the lobby, printing join events until they type 'start'.
+    Returns the started session.
+    """
+    from game_session import load_game, start_game
+
+    _rule("Lobby")
+    _print(f"[bold green]Game code: {session.game_code}[/bold green]")
+    _print(f"Share this code: [cyan]chooseyourmystery.com/game/{session.game_code}[/cyan]")
+    _print("Other players join with:  [bold]python cli.py play --code {code} --name {name}[/bold]")
+    _print("\nType [bold]start[/bold] when everyone has joined (or press Enter to refresh).\n")
+
+    known_players = {p.player_id for p in session.players}
+    host_id = next(p.player_id for p in session.players if p.is_host)
+
+    while True:
+        try:
+            cmd = input("> ").strip().lower()
+        except (EOFError, KeyboardInterrupt):
+            _print("\n[yellow]Aborted.[/yellow]")
+            sys.exit(0)
+
+        # Reload to catch new joins
+        session = load_game(session.game_code, db_dir)
+        new_players = [p for p in session.players if p.player_id not in known_players]
+        for p in new_players:
+            _print(f"  [green]+ {p.player_name} joined[/green]")
+            known_players.add(p.player_id)
+
+        if cmd == "start":
+            if len(session.players) < 1:
+                _print("[yellow]Need at least one player.[/yellow]")
+                continue
+            session = start_game(session.game_code, host_id, db_dir)
+            _print(f"\n[bold green]Game started! {len(session.players)} player(s).[/bold green]")
+            return session, host_id
+
+        if cmd:
+            _print("(Type [bold]start[/bold] to begin, or press Enter to refresh.)")
+
+
+def _play_lobby_player(game_code: str, player_id: str, db_dir: str):
+    """
+    Non-host waits in the lobby until phase changes to 'playing'.
+    Returns the live session.
+    """
+    from game_session import load_game
+
+    _print(f"[dim]Waiting for host to start game {game_code}...[/dim]")
+    while True:
+        time.sleep(2)
+        try:
+            session = load_game(game_code, db_dir)
+        except FileNotFoundError:
+            _print("[red]Game not found. Did the host cancel?[/red]")
+            sys.exit(1)
+        if session.phase == "playing":
+            _print("[bold green]Game started![/bold green]")
+            return session
+
+
+def _play_print_mystery_brief(session):
+    """Print the mystery brief (setting + crime + character list) for all players."""
+    mystery = session.mystery
+    setting = mystery.get("setting", {})
+    crime = mystery.get("crime", {})
+    _rule(mystery.get("title", "The Mystery"))
+    _print(f"[bold]Setting:[/bold] {setting.get('location', '')} — {setting.get('time_period', '')}")
+    _print(f"{setting.get('description', '')}")
+    _print(f"\n[bold]Crime:[/bold] {crime.get('type', '').upper()} — {crime.get('what_happened', '')}")
+    _print(f"When: {crime.get('when', '')}")
+    _print(f"Discovery: {crime.get('initial_discovery', '')}")
+    _print("\n[bold]People present:[/bold]")
+    for c in mystery.get("characters", []):
+        role_tag = f"[yellow]{c['role']}[/yellow]" if HAS_RICH else c["role"]
+        _print(f"  • {c['name']} — {c.get('occupation', '')} ({role_tag})")
+    _print("")
+
+
+def _play_print_shared_pool(session):
+    """Print the current shared pool."""
+    from game_engine import format_shared_pool
+    _rule("Shared Investigation Pool")
+    _print(format_shared_pool(session))
+    _print("")
+
+
+def _play_choose_action(player_name: str) -> str:
+    """Prompt the active player to choose an action type."""
+    _rule(f"{player_name}'s Turn")
+    _print("Choose your action:")
+    _print("  [I] Interrogate a witness or suspect")
+    _print("  [V] Investigate the crime scene (no API call)")
+    _print("  [F] Follow a lead on discovered evidence")
+    _print("  [A] Make your final accusation")
+    while True:
+        try:
+            choice = input("\n> ").strip().upper()
+        except (EOFError, KeyboardInterrupt):
+            _print("\n[yellow]Aborted.[/yellow]")
+            sys.exit(0)
+        if choice in ("I", "V", "F", "A"):
+            return {"I": "interrogate", "V": "investigate",
+                    "F": "follow_lead", "A": "accuse"}[choice]
+        _print("Enter I, V, F, or A.")
+
+
+def _play_get_interrogate_target(session) -> tuple:
+    """Prompt for character name and question."""
+    characters = session.mystery.get("characters", [])
+    non_victim = [c for c in characters if c["role"] != "victim"]
+    _print("\n[bold]Characters you can interrogate:[/bold]")
+    for i, c in enumerate(non_victim, 1):
+        _print(f"  [{i}] {c['name']} — {c.get('occupation', '')} ({c['role']})")
+    try:
+        idx_str = input("\nCharacter number (or type name): ").strip()
+        if idx_str.isdigit():
+            idx = int(idx_str) - 1
+            if 0 <= idx < len(non_victim):
+                target = non_victim[idx]["name"]
+            else:
+                target = idx_str
+        else:
+            target = idx_str
+        question = input("Your question: ").strip()
+    except (EOFError, KeyboardInterrupt):
+        sys.exit(0)
+    return target, question
+
+
+def _play_get_follow_lead_target(session) -> str:
+    """Prompt for evidence ID to follow up on."""
+    if not session.evidence_discovered:
+        _print("[yellow]No evidence discovered yet. Investigate the scene first.[/yellow]")
+        return ""
+    mystery = session.mystery
+    _print("\n[bold]Discovered evidence:[/bold]")
+    for eid in session.evidence_discovered:
+        for e in mystery.get("evidence", []):
+            if e["id"] == eid:
+                _print(f"  [{e['id']}] {e['name']}")
+    try:
+        target = input("\nEvidence ID to follow (e.g. E1): ").strip().upper()
+    except (EOFError, KeyboardInterrupt):
+        sys.exit(0)
+    return target
+
+
+def _play_get_accusation_target(session) -> str:
+    """Prompt for the suspect to accuse."""
+    suspects = [c for c in session.mystery.get("characters", [])
+                if c["role"] == "suspect"]
+    _print("\n[bold]Suspects:[/bold]")
+    for i, c in enumerate(suspects, 1):
+        _print(f"  [{i}] {c['name']}")
+    try:
+        idx_str = input("\nSuspect number (or type name): ").strip()
+        if idx_str.isdigit():
+            idx = int(idx_str) - 1
+            if 0 <= idx < len(suspects):
+                return suspects[idx]["name"]
+        return idx_str
+    except (EOFError, KeyboardInterrupt):
+        sys.exit(0)
+    return ""
+
+
+def _play_sharing_prompt(session, player_id: str, entries_before: int, db_dir: str):
+    """
+    Show new captures from this turn and let the player choose what to share.
+    """
+    from game_engine import apply_sharing
+    from game_session import get_player_by_id
+
+    player = get_player_by_id(session, player_id)
+    new_entries = player.entries[entries_before:]
+    if not new_entries:
+        return session
+
+    _print("\n[bold]--- YOUR CAPTURE THIS TURN ---[/bold]")
+    for i, entry in enumerate(new_entries):
+        global_idx = entries_before + i
+        action_label = {
+            "interrogate": f"Interrogated {entry.target}",
+            "investigate": "Crime scene investigation",
+            "follow_lead": f"Followed lead on {entry.target}",
+        }.get(entry.action_type, entry.action_type)
+        _print(f"\n  [{i + 1}] {action_label}")
+        for line in entry.response.split("\n"):
+            _print(f"      {line}")
+
+    _print("\n[bold]--- SHARE WITH THE GROUP? ---[/bold]")
+    _print("Enter numbers to share (e.g. '1', '1 2'), 'all', or 'none':")
+    try:
+        raw = input("> ").strip().lower()
+    except (EOFError, KeyboardInterrupt):
+        raw = "none"
+
+    indices_to_share = []
+    if raw == "all":
+        indices_to_share = list(range(entries_before, entries_before + len(new_entries)))
+    elif raw != "none" and raw:
+        for token in raw.split():
+            if token.isdigit():
+                local_idx = int(token) - 1  # user sees 1-indexed
+                global_idx = entries_before + local_idx
+                if 0 <= local_idx < len(new_entries):
+                    indices_to_share.append(global_idx)
+
+    if indices_to_share:
+        session = apply_sharing(session, player_id, indices_to_share, db_dir)
+        _print(f"[green]Shared {len(indices_to_share)} item(s) with the group.[/green]")
+    else:
+        _print("[dim]Nothing shared this turn.[/dim]")
+
+    return session
+
+
+def _play_print_end_game(session, db_dir: str):
+    """Print end-game summary and write summary JSON."""
+    from game_engine import build_end_summary, format_player_stats
+
+    _rule("CASE CLOSED")
+    mystery = session.mystery
+    solution = mystery.get("solution", {})
+    setting = mystery.get("setting", {})
+    _print(f"[bold]Mystery:[/bold] {mystery.get('title', '')}")
+    _print(f"[bold]Setting:[/bold] {setting.get('location', '')} — {setting.get('time_period', '')}")
+    _print(f"[bold]Culprit:[/bold] {solution.get('culprit', '')} — {solution.get('method', '')}")
+    _print(f"[bold]Motive:[/bold] {solution.get('motive', '')}")
+    _print(f"[bold green]\nWINNER: {session.winner}[/bold green]")
+    _print("")
+    _print("[bold]--- PLAYER STATS ---[/bold]")
+    _print(format_player_stats(session))
+    _print("")
+    _print("[dim]Social sharing links — Phase 2[/dim]")
+
+    # Write summary JSON for Phase 2 social export
+    summary = build_end_summary(session)
+    summary_path = Path(db_dir) / "games" / f"{session.game_code}_summary.json"
+    summary_path.write_text(json.dumps(summary, indent=2))
+    _print(f"\n[dim]Summary saved → {summary_path}[/dim]")
+
+
+def cmd_play(args):
+    """Multiplayer investigation game (host or join)."""
+    db_dir = args.db_dir
+    is_host = args.host
+    game_code = (args.code or "").strip().upper()
+    player_name = (args.name or "").strip()
+
+    # ── Validate inputs ───────────────────────────────────────────────────
+    if not is_host and not game_code:
+        _print("[red]Provide --code CODE to join a game, or --host to create one.[/red]")
+        sys.exit(1)
+
+    if not player_name:
+        try:
+            player_name = input("Your name: ").strip()
+        except (EOFError, KeyboardInterrupt):
+            sys.exit(0)
+        if not player_name:
+            _print("[red]Name cannot be empty.[/red]")
+            sys.exit(1)
+
+    from game_session import (
+        create_game, join_game, load_game, get_current_player, advance_turn,
+        get_player_by_id,
+    )
+    from game_engine import resolve_action, format_shared_pool
+
+    # ── Host: create game ─────────────────────────────────────────────────
+    if is_host:
+        _banner()
+        mystery_dict, mystery_file = _play_select_mystery(db_dir)
+        with _spinner("Creating game session..."):
+            session = create_game(mystery_dict, mystery_file, player_name, db_dir)
+        host_player_id = session.players[0].player_id
+        session, host_player_id = _play_lobby_host(session, db_dir)
+        player_id = host_player_id
+
+    # ── Player: join game ─────────────────────────────────────────────────
+    else:
+        _banner()
+        with _spinner(f"Joining game {game_code}..."):
+            try:
+                session = join_game(game_code, player_name, db_dir)
+            except (FileNotFoundError, ValueError) as e:
+                _print(f"[red]{e}[/red]")
+                sys.exit(1)
+        player_id = next(
+            p.player_id for p in session.players if p.player_name == player_name
+        )
+        session = _play_lobby_player(game_code, player_id, db_dir)
+
+    # ── Mystery brief ─────────────────────────────────────────────────────
+    _play_print_mystery_brief(session)
+    llm_fn = _make_llm_fn(max_tokens=600)
+
+    # ── Game loop ─────────────────────────────────────────────────────────
+    while session.phase == "playing":
+        # Reload to catch other players' turns
+        try:
+            session = load_game(session.game_code, db_dir)
+        except FileNotFoundError:
+            _print("[red]Game file disappeared. Exiting.[/red]")
+            break
+
+        if session.phase == "finished":
+            break
+
+        current = get_current_player(session)
+
+        if current.player_id != player_id:
+            # Not this player's turn — show shared pool and wait
+            _print(f"\n[dim]Waiting for {current.player_name}'s turn...[/dim]")
+            _play_print_shared_pool(session)
+            time.sleep(3)
+            continue
+
+        # This player's turn
+        _play_print_shared_pool(session)
+
+        player = get_player_by_id(session, player_id)
+        entries_before = len(player.entries)
+
+        action_type = _play_choose_action(current.player_name)
+
+        # Collect action-specific inputs
+        target = ""
+        question = None
+
+        if action_type == "interrogate":
+            target, question = _play_get_interrogate_target(session)
+            if not target or not question:
+                _print("[yellow]Interrogation cancelled.[/yellow]")
+                continue
+
+        elif action_type == "investigate":
+            target = "crime_scene"
+
+        elif action_type == "follow_lead":
+            target = _play_get_follow_lead_target(session)
+            if not target:
+                continue
+
+        elif action_type == "accuse":
+            target = _play_get_accusation_target(session)
+            if not target:
+                _print("[yellow]Accusation cancelled.[/yellow]")
+                continue
+
+        # Resolve
+        _print("\n[dim]Investigating...[/dim]")
+        try:
+            response, session = resolve_action(
+                session, player_id, action_type, target, question, llm_fn, db_dir
+            )
+        except Exception as exc:
+            _print(f"[red]Error resolving action: {exc}[/red]")
+            continue
+
+        _print(f"\n[bold]--- RESULT ---[/bold]\n{response}\n")
+
+        if session.phase == "finished":
+            break
+
+        # Sharing prompt (only for non-accuse actions; accuse result is shared by default)
+        if action_type != "accuse":
+            session = _play_sharing_prompt(session, player_id, entries_before, db_dir)
+
+        # Advance turn
+        session = advance_turn(session, db_dir)
+        _print("\n[dim]Turn complete. Next player's turn.[/dim]\n")
+
+    # ── End game ──────────────────────────────────────────────────────────
+    if session.phase == "finished":
+        _play_print_end_game(session, db_dir)
+
+
+# ============================================================================
 # ENTRY POINT
 # ============================================================================
 
@@ -1106,6 +1554,8 @@ Examples:
   python cli.py list
   python cli.py registry
   python cli.py extract --protocol P1P2 --dry-run
+  python cli.py play --host --name Alice
+  python cli.py play --code XK7F2 --name Bob
 """,
     )
     parser.add_argument("--db-dir", default="./mystery_database", metavar="DIR",
@@ -1148,6 +1598,17 @@ Examples:
     # ── registry ──────────────────────────────────────────────────────
     r = sub.add_parser("registry", aliases=["reg"], help="Inspect the part registry")
     r.set_defaults(func=cmd_registry)
+
+    # ── play ──────────────────────────────────────────────────────────
+    p = sub.add_parser("play", aliases=["multiplayer", "mp"],
+                       help="Play a mystery with up to 6 investigators")
+    p.add_argument("--host", action="store_true",
+                   help="Create a new game (you are the host)")
+    p.add_argument("--code", metavar="CODE",
+                   help="5-character game code to join an existing game")
+    p.add_argument("--name", metavar="NAME",
+                   help="Your investigator name")
+    p.set_defaults(func=cmd_play)
 
     # ── extract ───────────────────────────────────────────────────────
     e = sub.add_parser("extract", help="Run corpus extraction pipeline")
