@@ -1,8 +1,16 @@
 # Choose Your Mystery — Claude Code Instructions
 
 ## Project Overview
-AI-powered social mystery party game. Players investigate crimes, interrogate AI characters,
-and compete to solve the case first. Core innovation: the 75% information-sharing mechanic.
+**Choose Your Mystery** is a multiplayer, generative-AI-enhanced mystery-solving social game.
+*Clue* meets *Choose Your Own Adventure*, with *Among Us* and *For the Ladies* thrown in.
+
+Players engage in turn-based gameplay with user-defined mystery scenarios. They explore crime
+scenes, interrogate AI-driven witnesses, and selectively share the information they uncover —
+competing to solve the mystery first. Core innovation: the **75% information-sharing mechanic**
+(players share most of what they learn, but not all — creating social tension and strategy).
+
+**Thesis:** Gaming should be fun and social.
+**Target platform:** PC (Steam TBD).
 
 Current phase: **mystery creator / output verification** (single-player, creator-side).
 Next phase: multiplayer gameplay with the 75% sharing mechanic.
