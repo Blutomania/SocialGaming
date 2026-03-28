@@ -214,6 +214,104 @@ In-memory indexing is loaded once per session.
 
 ---
 
+## Godot Migration Plan
+
+**Status: Planned — architecture decided, implementation not yet started.**
+
+Choose Your Mystery is migrating from Streamlit (Python prototype) to **Godot 4** as
+the game client. The Python backend stays and becomes a lightweight HTTP server.
+
+### What Stays in Python
+
+The Claude API integration is irreplaceable in Python. `app.py` functions become
+FastAPI endpoints exposed via a new `server.py` (~50 lines):
+
+| Endpoint | What it does |
+|----------|-------------|
+| `POST /api/generate` | Part-sampling + Claude generation + localization + coherence check |
+| `POST /api/interrogate` | In-character Claude response for a suspect + question |
+| `POST /api/accuse` | Dramatic verdict reveal (correct/wrong + evidence walkthrough) |
+| `POST /api/cinematic` | Optional video-prompt generation |
+
+Add `fastapi` and `uvicorn` to `requirements.txt`. All existing Python logic unchanged.
+
+### What Moves to Godot
+
+All UI rendering, user input, screen transitions, animations, audio, and session state
+display. Godot makes HTTP calls to the Python server; Python calls Claude.
+
+### Scene Tree
+
+```
+Root
+  ├── GameManager (autoload) — mystery state, turn management, 75% sharing mechanic
+  ├── UIManager   (autoload) — screen transitions, modal stack
+  ├── AudioManager(autoload) — music, SFX (FMOD or built-in)
+  ├── APIManager  (autoload) — HTTPRequest pool, backend calls, response parsing
+  └── Main (current scene)
+```
+
+Managers communicate through **signals only** — never direct references.
+
+Signal flow: `User action → APIManager.request() → [HTTP] Python → Claude → APIManager emits api_response → GameManager updates GameState → GameManager emits state_changed → UI nodes react`
+
+### Entity Pattern
+
+Game entities are **Resource classes** (pure data, NOT nodes). They mirror the
+`mystery_dict` JSON schema exactly and live in `res://scripts/entities/`:
+
+| Resource | Maps to |
+|----------|---------|
+| `MysteryResource` | Full `mystery_dict` |
+| `CharacterResource` | `characters[]` items |
+| `EvidenceResource` | `evidence[]` items |
+| `GameStateResource` | `GameManager.current_game` — single source of truth |
+| `SharedInfoRecord` | 75% sharing mechanic — what each player has shared |
+
+Nodes in scenes reference entities; entities never reference nodes.
+All game state lives in `GameManager.current_game`. Nodes are views, entities are models.
+
+### File Structure
+
+```
+res://
+  scenes/
+    main_menu/        — title screen
+    generation/       — mystery prompt input, loading
+    play/             — mystery display: narrative, evidence, cast
+    interrogation/    — character selector, question input, response
+    accusation/       — suspect selector, dramatic verdict reveal
+    shared/           — reusable fragments (evidence_card, character_card)
+  scripts/
+    autoloads/        — game_manager.gd, ui_manager.gd, audio_manager.gd, api_manager.gd
+    entities/         — Resource classes (mystery, character, evidence, game_state)
+    generation/       — generation_scene.gd
+    play/             — play_scene.gd, evidence_list.gd, character_list.gd
+    interrogation/    — interrogation_scene.gd
+    accusation/       — accusation_scene.gd
+  data/               — JSON (mysteries cached locally after generation)
+  ui/                 — UI-only scenes (buttons, panels, modal base)
+  resources/          — .tres files (themes, fonts, colour palettes)
+  tests/              — GdUnit4 test files
+```
+
+### Migration Phases
+
+| Phase | What | Status |
+|-------|------|--------|
+| 0 | Architecture documented (this section) | ✅ Done |
+| 1 | Python backend → `server.py` FastAPI HTTP server | Pending |
+| 2 | Godot project scaffold + autoloads | Pending |
+| 3 | Entity Resource classes matching `mystery_dict` | Pending |
+| 4 | Generation screen | Pending |
+| 5 | Play + Interrogation screens | Pending |
+| 6 | Accusation + verdict screen | Pending |
+| 7 | Multiplayer (ENet/WebRTC, 75% sharing) | Future |
+
+**Do not start Phase 1 until the HuggingFace Space play-testing (current to-do #2) is complete.**
+
+---
+
 ## Current To-Do (as of March 27, 2026)
 
 Full list in `SESSIONS.md`. Top priorities:
