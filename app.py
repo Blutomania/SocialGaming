@@ -41,7 +41,7 @@ def llm(prompt, system="You are a creative mystery game engine. Never reveal the
     try:
         response = client.messages.create(
             model="claude-sonnet-4-6",
-            max_tokens=1500,
+            max_tokens=8192,
             system=system,
             messages=[{"role": "user", "content": prompt}]
         )
@@ -488,7 +488,7 @@ Detective's question: {question}
         st.markdown("""
 <div style='background-color:#1a1a2e; padding:16px; border-radius:10px; border:1px solid #3a3a5c;'>
   <p style='color:#f0a500; font-weight:bold; margin-bottom:10px;'>Coming Soon</p>
-  <p style='color:#cccccc; margin:4px 0;'>🎬 &nbsp;Generative AI depiction scenes</p>
+  <p style='color:#cccccc; margin:4px 0;'>🎦 &nbsp;Generative AI depiction scenes</p>
   <p style='color:#cccccc; margin:4px 0;'>👥 &nbsp;Multiplayer</p>
   <p style='color:#cccccc; margin:4px 0;'>🔗 &nbsp;Clue sharing</p>
   <p style='color:#cccccc; margin:4px 0;'>🧬 &nbsp;Gen AI avatars</p>
