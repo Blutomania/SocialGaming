@@ -41,7 +41,7 @@ def llm(prompt, system="You are a creative mystery game engine. Never reveal the
     try:
         response = client.messages.create(
             model="claude-sonnet-4-6",
-            max_tokens=1500,
+            max_tokens=8192,
             system=system,
             messages=[{"role": "user", "content": prompt}]
         )
