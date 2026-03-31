@@ -300,7 +300,7 @@ cinematic_on = st.checkbox(
 )
 
 if st.button("Generate Mystery", disabled=not user_prompt.strip()):
-    with st.spinner("Building your case from the archives..."):
+    with st.spinner("Building the case..."):
         mystery_dict, recipe = generate_mystery(user_prompt)
         from localization import _is_modern, _era_key, _load_era_rules
         _setting = mystery_dict.get("setting", {})
