@@ -3,7 +3,7 @@ import streamlit as st
 import os
 from anthropic import Anthropic
 from part_registry import load_registry, PART_TYPE_NAMES
-from coherence_validator import check_mystery
+from coherence_checker import check_mystery
 from localization import localize_mystery as _localize_mystery, cache_stats as _loc_cache_stats
 
 # -------------------------
@@ -95,6 +95,10 @@ EVIDENCE (include at least 6 items total):
 SOLUTION:
   - key_evidence must list at least 2 evidence IDs.
   - how_to_deduce: step-by-step logic chain (3+ steps).
+
+GAMEPLAY NOTES:
+  - estimated_playtime: must reflect difficulty — EASY: 30–45 min, MEDIUM: 45–60 min, HARD: 60–75 min.
+    Do not exceed 75 minutes. This is a digital party game, not a dinner-event experience.
 
 Generate a complete mystery JSON with this exact structure:
 {{
