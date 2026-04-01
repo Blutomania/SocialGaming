@@ -5,6 +5,32 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session — April 01, 2026 at 00:12
+**Branch:** `claude/review-and-docs-n4rHY`
+**Latest commit:** `a218a07`
+
+### Files changed this session
+- `LAUDE.md` — Modified
+
+### Commits this session
+```
+a218a07 Add game length constraints: 75-min ceiling, difficulty-scaled playtime
+6bfedab Change spinner text to "Building the case..."
+031d44b Fix JSON truncation: raise max_tokens from 1500 to 8192
+3bf5bad Add Godot Migration Plan to CLAUDE.md
+39fb8d2 Expand Project Overview with full game vision and target platform
+4e5e73b Review and consolidate CLAUDE.md: fix branch refs, add Core System Architecture
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
 ## Session 9 — March 12, 2026
 **Branch:** `claude/setup-api-and-mysteries-LRLQK`
 **Latest commit:** `d66657d`
