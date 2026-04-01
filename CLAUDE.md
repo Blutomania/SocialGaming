@@ -114,6 +114,18 @@ Key findings:
 These constraints are enforced in the generation prompt in `app.py` (`GAMEPLAY NOTES` block).
 Do not change the 75-minute ceiling without updating both `app.py` and this section.
 
+### The 15-minute hook rule
+Players must be actively engaged within the first 15 minutes or they disengage permanently
+(Microsoft Research CHI Play 2014; Sid Meier GDC). For Choose Your Mystery this means the
+crime reveal, cast, and first evidence must be immediately visible on generation — not buried
+below the fold.
+
+### Multiplayer pacing (counter-scaling)
+For sessions with more than 6 players, do **not** add more content — reduce interrogation
+rounds per player instead (the "Sushi Go pattern"). More players = fewer turns each, keeping
+total session time flat at 45–60 min. Implement this in `GameManager` turn logic when
+multiplayer is built.
+
 ---
 
 ## Design Principles
