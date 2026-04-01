@@ -89,6 +89,33 @@ Stale / pending:
 
 ---
 
+## Game Length Design Constraints
+
+Research-backed targets for Choose Your Mystery session length (sourced from party game design
+literature, BGG data, and digital game analytics — March 2026):
+
+| Difficulty | Target playtime | Rationale |
+|------------|----------------|-----------|
+| EASY       | 30–45 min      | Accessible; first-time players |
+| MEDIUM     | 45–60 min      | Sweet spot — matches Secret Hitler / Mysterium tier |
+| HARD       | 60–75 min      | Upper ceiling; beyond 75 min casual audiences disengage |
+
+**Hard ceiling: 75 minutes.** This is a digital party game, not a dinner-event experience.
+
+Key findings:
+- **40–50 min** is where sustained group attention starts degrading (cognitive science consensus)
+- **~10 min/player** is the murder mystery industry formula (4 players → 40 min, 6 players → 60 min)
+- **Digital removes ~30% of friction** vs tabletop — AI handles GM overhead, so a 90-min tabletop
+  mystery compresses to ~60 min here
+- **Player count sweet spot: 5–7** — enough suspects for genuine ambiguity, small enough for
+  information sharing to remain meaningful
+- The **75% sharing mechanic** is a pacing asset — structured beats prevent sessions sprawling
+
+These constraints are enforced in the generation prompt in `app.py` (`GAMEPLAY NOTES` block).
+Do not change the 75-minute ceiling without updating both `app.py` and this section.
+
+---
+
 ## Design Principles
 
 Every new feature must answer at least one of these:

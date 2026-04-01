@@ -96,6 +96,10 @@ SOLUTION:
   - key_evidence must list at least 2 evidence IDs.
   - how_to_deduce: step-by-step logic chain (3+ steps).
 
+GAMEPLAY NOTES:
+  - estimated_playtime: must reflect difficulty — EASY: 30–45 min, MEDIUM: 45–60 min, HARD: 60–75 min.
+    Do not exceed 75 minutes. This is a digital party game, not a dinner-event experience.
+
 Generate a complete mystery JSON with this exact structure:
 {{
   "title": "string",
