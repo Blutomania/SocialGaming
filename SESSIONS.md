@@ -6,6 +6,50 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 12 — April 2, 2026 [IN PROGRESS]
+**Branch:** `claude/verify-root-path-JyDSP`
+**Starting commit:** `bba0848` (merge of Godot migration)
+**Status:** Phase 2 bug-fixes complete — awaiting player loop test
+
+### What was done
+- Fixed session orientation permanently (see below)
+- Merged `claude/start-godot-migration-mNrWD` into this branch (Sessions 10+11 code)
+- Audited all GDScript UI files against their `.tscn` scene trees
+- Fixed **4 bugs** that would have crashed the single-player loop on first run:
+
+| File | Bug | Fix |
+|---|---|---|
+| `case_display.gd`, `result_screen.gd` | `@onready` paths used `$MainVBox/...` but `MainVBox` lives under `ScrollContainer` | Changed to `$ScrollContainer/MainVBox/...` |
+| `interrogation.gd` | `AskButton`, `AccuseButton`, `BackButton` referenced as `$VBox/Button` but are under `$VBox/ButtonRow/` | Corrected paths |
+| `case_display.gd` | `_build_viability_buttons()` called `queue_free()` on `viability_label` (a scene node), then tried to re-add it | Skip label in clear loop |
+| `main_menu.gd` | `browse_list.item_selected` and `CloseButton` never connected | Wired in `_ready()` |
+
+- `server/main.py` reviewed — no bugs found. All imports and call signatures confirmed correct.
+
+### Orientation fix (permanent)
+- Rewrote `CLAUDE.md` Session Start Protocol: Step 1 now detects missing `godot/` or `server/`
+  and gives exact commands to find and merge the right branch
+- Rewrote `SESSIONS.md`: newest-first ordering, "Newest sessions at top" header
+
+### SESSIONS.md checkpoint — if this session ends here
+**Next step:** Run the Phase 2 test loop:
+1. `pip3 install -r server/requirements.txt` (one-time)
+2. `ANTHROPIC_API_KEY=sk-... uvicorn server.main:app --port 8000` (from repo root)
+3. Open `godot/` in Godot 4.6, press F5
+4. New Game → type prompt → Generate → CaseDisplay → Interrogate → Accuse → Result
+5. Fix any new `@onready` null errors (paste the Godot error log here)
+6. When full loop works: tag `phase2-single-player-prototype`, commit, push
+
+### Files changed this session
+- `CLAUDE.md` — orientation fix (divergence check, dynamic branch instructions)
+- `SESSIONS.md` — reordered newest-first, added Session 12
+- `godot/scripts/ui/case_display.gd` — node paths + viability label fix
+- `godot/scripts/ui/result_screen.gd` — node paths fix
+- `godot/scripts/ui/interrogation.gd` — button node paths fix
+- `godot/scripts/ui/main_menu.gd` — browse signal wiring
+
+---
+
 ## Session 11 — April 2, 2026
 **Branch:** `claude/start-godot-migration-mNrWD`
 **Starting commit:** `380f0e2`
