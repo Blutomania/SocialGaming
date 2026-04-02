@@ -15,9 +15,9 @@ extends Control
 # ---------------------------------------------------------------------------
 @onready var suspect_dropdown: OptionButton = $VBox/SuspectDropdown
 @onready var question_input: LineEdit = $VBox/QuestionInput
-@onready var ask_button: Button = $VBox/AskButton
-@onready var back_button: Button = $VBox/BackButton
-@onready var accuse_button: Button = $VBox/AccuseButton
+@onready var ask_button: Button = $VBox/ButtonRow/AskButton
+@onready var back_button: Button = $VBox/ButtonRow/BackButton
+@onready var accuse_button: Button = $VBox/ButtonRow/AccuseButton
 @onready var history_container: VBoxContainer = $VBox/ScrollContainer/HistoryContainer
 @onready var status_label: Label = $VBox/StatusLabel
 @onready var spinner: ProgressBar = $VBox/Spinner

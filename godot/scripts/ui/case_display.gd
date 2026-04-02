@@ -12,17 +12,17 @@ extends Control
 # ---------------------------------------------------------------------------
 # Node references
 # ---------------------------------------------------------------------------
-@onready var title_label: Label = $MainVBox/TitleLabel
-@onready var setting_label: RichTextLabel = $MainVBox/SettingLabel
-@onready var crime_label: RichTextLabel = $MainVBox/CrimeLabel
-@onready var cast_container: VBoxContainer = $MainVBox/CastContainer
-@onready var coherence_label: Label = $MainVBox/CoherenceBadge
-@onready var evidence_container: VBoxContainer = $MainVBox/EvidenceContainer
-@onready var gameplay_label: Label = $MainVBox/GameplayLabel
-@onready var interrogate_button: Button = $MainVBox/Buttons/InterrogateButton
-@onready var accuse_button: Button = $MainVBox/Buttons/AccuseButton
-@onready var viability_hbox: HBoxContainer = $MainVBox/ViabilityRow
-@onready var viability_label: Label = $MainVBox/ViabilityRow/ViabilityLabel
+@onready var title_label: Label = $ScrollContainer/MainVBox/TitleLabel
+@onready var setting_label: RichTextLabel = $ScrollContainer/MainVBox/SettingLabel
+@onready var crime_label: RichTextLabel = $ScrollContainer/MainVBox/CrimeLabel
+@onready var cast_container: VBoxContainer = $ScrollContainer/MainVBox/CastContainer
+@onready var coherence_label: Label = $ScrollContainer/MainVBox/CoherenceBadge
+@onready var evidence_container: VBoxContainer = $ScrollContainer/MainVBox/EvidenceContainer
+@onready var gameplay_label: Label = $ScrollContainer/MainVBox/GameplayLabel
+@onready var interrogate_button: Button = $ScrollContainer/MainVBox/Buttons/InterrogateButton
+@onready var accuse_button: Button = $ScrollContainer/MainVBox/Buttons/AccuseButton
+@onready var viability_hbox: HBoxContainer = $ScrollContainer/MainVBox/ViabilityRow
+@onready var viability_label: Label = $ScrollContainer/MainVBox/ViabilityRow/ViabilityLabel
 
 var _mystery: MysteryData
 var _current_rating: int = 0
@@ -120,10 +120,11 @@ func _add_evidence_row(ev: MysteryData.EvidenceData) -> void:
 	evidence_container.add_child(lbl)
 
 func _build_viability_buttons() -> void:
+	# Only free dynamically-added buttons — never free the label (it's a scene node)
 	for child in viability_hbox.get_children():
-		child.queue_free()
+		if child != viability_label:
+			child.queue_free()
 	viability_label.text = "Rate this mystery: "
-	viability_hbox.add_child(viability_label)
 	for i in range(1, 11):
 		var btn := Button.new()
 		btn.text = str(i)

@@ -29,6 +29,10 @@ func _ready() -> void:
 	browse_button.pressed.connect(_on_browse)
 	quit_button.pressed.connect(get_tree().quit)
 
+	# Wire browse popup signals
+	browse_list.item_selected.connect(_on_browse_item_selected)
+	$BrowsePopup/VBox/CloseButton.pressed.connect(func(): browse_popup.hide())
+
 	# Verify backend is reachable on startup
 	status_label.text = "Checking backend…"
 	ApiClient.health_check(_on_health_check)

@@ -14,11 +14,11 @@ extends Control
 # ---------------------------------------------------------------------------
 # Node references
 # ---------------------------------------------------------------------------
-@onready var verdict_label: Label = $MainVBox/VerdictLabel
-@onready var solution_label: RichTextLabel = $MainVBox/SolutionLabel
-@onready var rating_row: HBoxContainer = $MainVBox/RatingRow
-@onready var play_again_button: Button = $MainVBox/Buttons/PlayAgainButton
-@onready var review_button: Button = $MainVBox/Buttons/ReviewButton
+@onready var verdict_label: Label = $ScrollContainer/MainVBox/VerdictLabel
+@onready var solution_label: RichTextLabel = $ScrollContainer/MainVBox/SolutionLabel
+@onready var rating_row: HBoxContainer = $ScrollContainer/MainVBox/RatingRow
+@onready var play_again_button: Button = $ScrollContainer/MainVBox/Buttons/PlayAgainButton
+@onready var review_button: Button = $ScrollContainer/MainVBox/Buttons/ReviewButton
 
 var _rating_given: bool = false
 
