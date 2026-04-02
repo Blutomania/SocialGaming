@@ -32,21 +32,21 @@ Use this file to onboard any new session without losing context.
 - Rewrote `SESSIONS.md`: newest-first ordering, "Newest sessions at top" header
 
 ### SESSIONS.md checkpoint — if this session ends here
-**Next step:** Run the Phase 2 test loop:
-1. `pip3 install -r server/requirements.txt` (one-time)
-2. `ANTHROPIC_API_KEY=sk-... uvicorn server.main:app --port 8000` (from repo root)
-3. Open `godot/` in Godot 4.6, press F5
+**Next step:** Run the Phase 2 test loop on Mac:
+1. `pip3 install -r server/requirements.txt` (one-time, already done)
+2. `ANTHROPIC_API_KEY=sk-... python3 -m uvicorn server.main:app --port 8000` (Tab 1)
+3. Open `godot/` in Godot 4.6, press F5 (Tab 2 for any errors)
 4. New Game → type prompt → Generate → CaseDisplay → Interrogate → Accuse → Result
-5. Fix any new `@onready` null errors (paste the Godot error log here)
+5. Fix any new `@onready` null errors (paste the Godot output panel here)
 6. When full loop works: tag `phase2-single-player-prototype`, commit, push
 
-### Files changed this session
-- `CLAUDE.md` — orientation fix (divergence check, dynamic branch instructions)
-- `SESSIONS.md` — reordered newest-first, added Session 12
-- `godot/scripts/ui/case_display.gd` — node paths + viability label fix
-- `godot/scripts/ui/result_screen.gd` — node paths fix
-- `godot/scripts/ui/interrogation.gd` — button node paths fix
-- `godot/scripts/ui/main_menu.gd` — browse signal wiring
+### All changes this session
+| Commit | What |
+|---|---|
+| `0b0b3ff` | Orientation fix: CLAUDE.md divergence-check protocol, SESSIONS.md newest-first |
+| `bba0848` | Merge Godot migration (server/ + godot/ from Sessions 10+11) |
+| `95cf1f8` | Fix 4 GDScript bugs: node paths (case/result/interrogation), viability label, browse signal |
+| `3c1391d` | Evidence descriptions on CaseDisplay, Back to Menu button, interrogation auto-scroll |
 
 ---
 
