@@ -70,6 +70,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Make Accusation"
 
+[node name="MainMenuButton" type="Button" parent="ScrollContainer/MainVBox/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Back to Menu"
+
 [node name="ViabilityRow" type="HBoxContainer" parent="ScrollContainer/MainVBox"]
 layout_mode = 2
 

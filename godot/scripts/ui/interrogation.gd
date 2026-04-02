@@ -19,6 +19,7 @@ extends Control
 @onready var back_button: Button = $VBox/ButtonRow/BackButton
 @onready var accuse_button: Button = $VBox/ButtonRow/AccuseButton
 @onready var history_container: VBoxContainer = $VBox/ScrollContainer/HistoryContainer
+@onready var history_scroll: ScrollContainer = $VBox/ScrollContainer
 @onready var status_label: Label = $VBox/StatusLabel
 @onready var spinner: ProgressBar = $VBox/Spinner
 
@@ -107,6 +108,9 @@ func _add_history_entry(character: String, question: String, response: String) -
 	vbox.add_child(r_label)
 	panel.add_child(vbox)
 	history_container.add_child(panel)
+	# Scroll to bottom after layout settles
+	await get_tree().process_frame
+	history_scroll.scroll_vertical = history_scroll.get_v_scroll_bar().max_value
 
 # ---------------------------------------------------------------------------
 # Navigation

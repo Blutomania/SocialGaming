@@ -21,6 +21,7 @@ extends Control
 @onready var gameplay_label: Label = $ScrollContainer/MainVBox/GameplayLabel
 @onready var interrogate_button: Button = $ScrollContainer/MainVBox/Buttons/InterrogateButton
 @onready var accuse_button: Button = $ScrollContainer/MainVBox/Buttons/AccuseButton
+@onready var main_menu_button: Button = $ScrollContainer/MainVBox/Buttons/MainMenuButton
 @onready var viability_hbox: HBoxContainer = $ScrollContainer/MainVBox/ViabilityRow
 @onready var viability_label: Label = $ScrollContainer/MainVBox/ViabilityRow/ViabilityLabel
 
@@ -35,6 +36,7 @@ func _ready() -> void:
 	_populate()
 	interrogate_button.pressed.connect(_go_interrogate)
 	accuse_button.pressed.connect(_go_accuse)
+	main_menu_button.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/ui/MainMenu.tscn"))
 
 func _populate() -> void:
 	title_label.text = _mystery.title
@@ -114,10 +116,22 @@ func _add_cast_row(role_tag: String, name: String, occupation: String, color: Co
 
 func _add_evidence_row(ev: MysteryData.EvidenceData) -> void:
 	var relevance_icon := {"critical": "★", "red_herring": "✗", "supporting": "·"}.get(ev.relevance, "·")
-	var lbl := Label.new()
-	lbl.text = "%s [%s] %s (%s)" % [relevance_icon, ev.id, ev.name, ev.type]
-	lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	evidence_container.add_child(lbl)
+	var panel := PanelContainer.new()
+	var vbox := VBoxContainer.new()
+
+	var header := Label.new()
+	header.text = "%s [%s] %s  (%s)" % [relevance_icon, ev.id, ev.name, ev.type]
+	header.modulate = Color.LIGHT_GRAY
+
+	var desc := Label.new()
+	desc.text = ev.description
+	desc.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	desc.add_theme_color_override("font_color", Color(0.85, 0.85, 0.85))
+
+	vbox.add_child(header)
+	vbox.add_child(desc)
+	panel.add_child(vbox)
+	evidence_container.add_child(panel)
 
 func _build_viability_buttons() -> void:
 	# Only free dynamically-added buttons — never free the label (it's a scene node)
