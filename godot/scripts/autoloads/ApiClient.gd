@@ -30,7 +30,7 @@ var server_url: String = SERVER_URL_DEFAULT
 # ---------------------------------------------------------------------------
 ## One HTTPRequest node per in-flight request. We keep a pool so multiple
 ## requests can be in-flight simultaneously (e.g. listing + generating).
-var _pool: Array[HTTPRequest] = []
+var _pool: Array = []
 
 # ---------------------------------------------------------------------------
 # Lifecycle
@@ -112,13 +112,11 @@ func _get_request_node() -> HTTPRequest:
 func _post(path: String, body: String, callback: Callable) -> void:
 	var req := _get_request_node()
 	var headers := PackedStringArray(["Content-Type: application/json"])
-	req.request_completed.connect(
-		func(result, code, _headers, body_bytes):
-			_pool.erase(req)
-			req.queue_free()
-			_handle_response(result, code, body_bytes, callback),
-		CONNECT_ONE_SHOT
-	)
+	var on_complete := func(result, code, _headers, body_bytes):
+		_pool.erase(req)
+		req.queue_free()
+		_handle_response(result, code, body_bytes, callback)
+	req.request_completed.connect(on_complete, CONNECT_ONE_SHOT)
 	var err := req.request(server_url + path, headers, HTTPClient.METHOD_POST, body)
 	if err != OK:
 		_pool.erase(req)
@@ -127,13 +125,11 @@ func _post(path: String, body: String, callback: Callable) -> void:
 
 func _get(path: String, callback: Callable) -> void:
 	var req := _get_request_node()
-	req.request_completed.connect(
-		func(result, code, _headers, body_bytes):
-			_pool.erase(req)
-			req.queue_free()
-			_handle_response(result, code, body_bytes, callback),
-		CONNECT_ONE_SHOT
-	)
+	var on_complete := func(result, code, _headers, body_bytes):
+		_pool.erase(req)
+		req.queue_free()
+		_handle_response(result, code, body_bytes, callback)
+	req.request_completed.connect(on_complete, CONNECT_ONE_SHOT)
 	var err := req.request(server_url + path)
 	if err != OK:
 		_pool.erase(req)
