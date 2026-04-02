@@ -1,0 +1,78 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1case000001"]
+
+[ext_resource type="Script" path="res://scripts/ui/case_display.gd" id="1_casedisp"]
+
+[node name="CaseDisplay" type="Control"]
+script = ExtResource("1_casedisp")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainVBox" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+offset_right = 1280.0
+
+[node name="TitleLabel" type="Label" parent="ScrollContainer/MainVBox"]
+layout_mode = 2
+text = ""
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24
+
+[node name="SettingLabel" type="RichTextLabel" parent="ScrollContainer/MainVBox"]
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+text = ""
+
+[node name="CrimeLabel" type="RichTextLabel" parent="ScrollContainer/MainVBox"]
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+text = ""
+
+[node name="CastContainer" type="VBoxContainer" parent="ScrollContainer/MainVBox"]
+layout_mode = 2
+
+[node name="CoherenceBadge" type="Label" parent="ScrollContainer/MainVBox"]
+layout_mode = 2
+text = ""
+
+[node name="EvidenceContainer" type="VBoxContainer" parent="ScrollContainer/MainVBox"]
+layout_mode = 2
+
+[node name="GameplayLabel" type="Label" parent="ScrollContainer/MainVBox"]
+layout_mode = 2
+text = ""
+autowrap_mode = 3
+
+[node name="Buttons" type="HBoxContainer" parent="ScrollContainer/MainVBox"]
+layout_mode = 2
+
+[node name="InterrogateButton" type="Button" parent="ScrollContainer/MainVBox/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Interrogate Suspects"
+
+[node name="AccuseButton" type="Button" parent="ScrollContainer/MainVBox/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Make Accusation"
+
+[node name="ViabilityRow" type="HBoxContainer" parent="ScrollContainer/MainVBox"]
+layout_mode = 2
+
+[node name="ViabilityLabel" type="Label" parent="ScrollContainer/MainVBox/ViabilityRow"]
+layout_mode = 2
+text = "Rate this mystery:"

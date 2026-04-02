@@ -1,0 +1,71 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1intr000001"]
+
+[ext_resource type="Script" path="res://scripts/ui/interrogation.gd" id="1_interrog"]
+
+[node name="Interrogation" type="Control"]
+script = ExtResource("1_interrog")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HeaderLabel" type="Label" parent="VBox"]
+layout_mode = 2
+text = "Interrogation"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 20
+
+[node name="SuspectDropdown" type="OptionButton" parent="VBox"]
+layout_mode = 2
+
+[node name="QuestionInput" type="LineEdit" parent="VBox"]
+layout_mode = 2
+placeholder_text = "Ask a question..."
+
+[node name="ButtonRow" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="AskButton" type="Button" parent="VBox/ButtonRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ask"
+
+[node name="AccuseButton" type="Button" parent="VBox/ButtonRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Make Accusation"
+
+[node name="BackButton" type="Button" parent="VBox/ButtonRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Back to Case"
+
+[node name="Spinner" type="ProgressBar" parent="VBox"]
+layout_mode = 2
+visible = false
+
+[node name="StatusLabel" type="Label" parent="VBox"]
+layout_mode = 2
+text = ""
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HistoryContainer" type="VBoxContainer" parent="VBox/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3

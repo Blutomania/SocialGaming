@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1gen0000001"]
+
+[ext_resource type="Script" path="res://scripts/ui/mystery_generation.gd" id="1_mysgen"]
+
+[node name="MysteryGeneration" type="Control"]
+script = ExtResource("1_mysgen")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -220.0
+offset_right = 300.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="VBox"]
+layout_mode = 2
+text = "Set Your Mystery"
+horizontal_alignment = 1
+
+[node name="PromptHintLabel" type="Label" parent="VBox"]
+layout_mode = 2
+text = "Describe the scenario:"
+
+[node name="PromptInput" type="LineEdit" parent="VBox"]
+layout_mode = 2
+placeholder_text = "e.g. \"A murder on a Mars colony\" or \"An art theft in Renaissance Venice\""
+
+[node name="CinematicCheckbox" type="CheckBox" parent="VBox"]
+layout_mode = 2
+text = "Generate cinematic brief (adds one extra AI call)"
+
+[node name="Spinner" type="ProgressBar" parent="VBox"]
+layout_mode = 2
+visible = false
+
+[node name="GenerateButton" type="Button" parent="VBox"]
+layout_mode = 2
+text = "Generate Mystery"
+
+[node name="BackButton" type="Button" parent="VBox"]
+layout_mode = 2
+text = "Back"
+
+[node name="StatusLabel" type="Label" parent="VBox"]
+layout_mode = 2
+text = ""
+horizontal_alignment = 1
+autowrap_mode = 3
