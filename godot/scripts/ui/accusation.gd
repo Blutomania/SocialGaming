@@ -12,6 +12,7 @@ extends Control
 # ---------------------------------------------------------------------------
 # Node references
 # ---------------------------------------------------------------------------
+@onready var bg_texture: TextureRect = $BgTexture
 @onready var suspect_dropdown: OptionButton = $VBox/SuspectDropdown
 @onready var submit_button: Button = $VBox/SubmitButton
 @onready var back_button: Button = $VBox/BackButton
@@ -25,6 +26,10 @@ var _selected_suspect: String = ""
 # Lifecycle
 # ---------------------------------------------------------------------------
 func _ready() -> void:
+	for path in ["res://assets/ui/accusation_bg.png", "res://assets/ui/main_menu_bg.png"]:
+		if ResourceLoader.exists(path):
+			bg_texture.texture = load(path)
+			break
 	_mystery = MysteryData.from_dict(GameState.current_mystery)
 
 	for name in _mystery.suspect_names():

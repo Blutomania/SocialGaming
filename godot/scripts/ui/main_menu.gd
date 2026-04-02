@@ -20,11 +20,20 @@ extends Control
 
 var _saved_mysteries: Array = []
 
+func _load_bg(node: TextureRect, path: String) -> void:
+	if ResourceLoader.exists(path):
+		node.texture = load(path)
+
 # ---------------------------------------------------------------------------
 # Lifecycle
 # ---------------------------------------------------------------------------
+@onready var bg_texture: TextureRect = $BgTexture
+@onready var logo_texture: TextureRect = $VBox/LogoTexture
+
 func _ready() -> void:
 	GameState.reset()
+	_load_bg(bg_texture, "res://assets/ui/main_menu_bg.png")
+	_load_bg(logo_texture, "res://assets/ui/logo.png")
 	new_game_button.pressed.connect(_on_new_game)
 	browse_button.pressed.connect(_on_browse)
 	quit_button.pressed.connect(get_tree().quit)

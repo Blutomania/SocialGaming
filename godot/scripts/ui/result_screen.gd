@@ -14,6 +14,7 @@ extends Control
 # ---------------------------------------------------------------------------
 # Node references
 # ---------------------------------------------------------------------------
+@onready var bg_texture: TextureRect = $BgTexture
 @onready var verdict_label: Label = $ScrollContainer/MainVBox/VerdictLabel
 @onready var solution_label: RichTextLabel = $ScrollContainer/MainVBox/SolutionLabel
 @onready var rating_row: HBoxContainer = $ScrollContainer/MainVBox/RatingRow
@@ -26,6 +27,10 @@ var _rating_given: bool = false
 # Lifecycle
 # ---------------------------------------------------------------------------
 func _ready() -> void:
+	for path in ["res://assets/ui/result_bg.png", "res://assets/ui/main_menu_bg.png"]:
+		if ResourceLoader.exists(path):
+			bg_texture.texture = load(path)
+			break
 	play_again_button.pressed.connect(_on_play_again)
 	review_button.pressed.connect(_go_case)
 	_populate()

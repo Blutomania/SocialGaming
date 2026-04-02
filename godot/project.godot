@@ -12,6 +12,7 @@ config/version="0.1.0"
 run/main_scene="res://scenes/ui/MainMenu.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://assets/ui/icon.png"
+; Drop a 256x256 PNG at godot/assets/ui/icon.png to set the window icon.
 
 [autoload]
 

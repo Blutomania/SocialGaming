@@ -13,6 +13,7 @@ extends Control
 # ---------------------------------------------------------------------------
 # Node references (wire these in the .tscn)
 # ---------------------------------------------------------------------------
+@onready var bg_texture: TextureRect = $BgTexture
 @onready var prompt_input: LineEdit = $VBox/PromptInput
 @onready var cinematic_checkbox: CheckBox = $VBox/CinematicCheckbox
 @onready var generate_button: Button = $VBox/GenerateButton
@@ -24,6 +25,8 @@ extends Control
 # Lifecycle
 # ---------------------------------------------------------------------------
 func _ready() -> void:
+	if ResourceLoader.exists("res://assets/ui/main_menu_bg.png"):
+		bg_texture.texture = load("res://assets/ui/main_menu_bg.png")
 	generate_button.pressed.connect(_on_generate)
 	back_button.pressed.connect(_on_back)
 	prompt_input.text_submitted.connect(func(_t): _on_generate())

@@ -12,6 +12,7 @@ extends Control
 # ---------------------------------------------------------------------------
 # Node references
 # ---------------------------------------------------------------------------
+@onready var bg_texture: TextureRect = $BgTexture
 @onready var title_label: Label = $ScrollContainer/MainVBox/TitleLabel
 @onready var setting_label: RichTextLabel = $ScrollContainer/MainVBox/SettingLabel
 @onready var crime_label: RichTextLabel = $ScrollContainer/MainVBox/CrimeLabel
@@ -32,6 +33,10 @@ var _current_rating: int = 0
 # Lifecycle
 # ---------------------------------------------------------------------------
 func _ready() -> void:
+	if ResourceLoader.exists("res://assets/ui/case_bg.png"):
+		bg_texture.texture = load("res://assets/ui/case_bg.png")
+	elif ResourceLoader.exists("res://assets/ui/main_menu_bg.png"):
+		bg_texture.texture = load("res://assets/ui/main_menu_bg.png")
 	_mystery = MysteryData.from_dict(GameState.current_mystery)
 	_populate()
 	interrogate_button.pressed.connect(_go_interrogate)
