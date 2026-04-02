@@ -50,11 +50,11 @@ func _populate() -> void:
 
 	# Full solution breakdown
 	var key_ev: Array = solution.get("key_evidence", [])
-	var sol_text := (
-		"[b]Culprit:[/b] %s\n"
-		"[b]Method:[/b] %s\n"
-		"[b]Motive:[/b] %s\n"
-		"[b]Key evidence:[/b] %s\n\n"
+	var sol_text: String = (
+		"[b]Culprit:[/b] %s\n" +
+		"[b]Method:[/b] %s\n" +
+		"[b]Motive:[/b] %s\n" +
+		"[b]Key evidence:[/b] %s\n\n" +
 		"[b]How to deduce:[/b]\n%s"
 	) % [
 		solution.get("culprit", "?"),

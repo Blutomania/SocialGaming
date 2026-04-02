@@ -115,7 +115,7 @@ func _add_cast_row(role_tag: String, name: String, occupation: String, color: Co
 	cast_container.add_child(lbl)
 
 func _add_evidence_row(ev: MysteryData.EvidenceData) -> void:
-	var relevance_icon := {"critical": "★", "red_herring": "✗", "supporting": "·"}.get(ev.relevance, "·")
+	var relevance_icon: String = ({"critical": "★", "red_herring": "✗", "supporting": "·"} as Dictionary).get(ev.relevance, "·")
 	var panel := PanelContainer.new()
 	var vbox := VBoxContainer.new()
 
