@@ -5,6 +5,34 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 11 — April 2, 2026
+**Branch:** `claude/start-godot-migration-mNrWD`
+**Starting commit:** `380f0e2`
+**Status:** Complete — Godot project loads without errors
+
+### What was done
+- Fixed `ApiClient.gd` parse error: GDScript can't handle multi-line lambdas capturing
+  outer-scope variables. Rewrote using `.bind(req, callback)` on a named `_on_done()`
+  method instead. Simpler and more reliable.
+- Fixed `project.godot` version: updated `4.2` → `4.6` to match installed Godot version.
+- Godot 4.6 confirmed: project opens and all autoloads load without errors.
+
+### Known: project.godot drift
+Godot rewrites `project.godot` on every open. Before pushing, run:
+`git checkout -- godot/project.godot` to discard Godot's local changes, then pull.
+Long-term fix: commit Godot's version after each session.
+
+### Next steps (resume here — Phase 2)
+1. Start backend: `cd SocialGaming && ANTHROPIC_API_KEY=sk-... uvicorn server.main:app --port 8000`
+2. Press F5 in Godot — MainMenu should load and status label should go green
+3. Click "New Game", type a prompt, click "Generate Mystery"
+4. Verify CaseDisplay loads with mystery title, suspects, evidence
+5. Interrogate a suspect, make an accusation, see result screen
+6. Once full loop works: tag `phase2-single-player-prototype` and commit
+7. Then: Phase 3 — lobby, ENet multiplayer, 75% clue-sharing
+
+---
+
 ## Session 10 — April 2, 2026
 **Branch:** `claude/start-godot-migration-mNrWD`
 **Starting commit:** `ea5af2f`
