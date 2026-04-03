@@ -51,6 +51,34 @@ class EvidenceData:
 		return e
 
 
+class InvestigationAreaData:
+	var id: String = ""
+	var name: String = ""
+	var description: String = ""   ## Shown to players (atmospheric)
+	## investigation_prompt is server-side only — NOT stored in client data
+
+	static func from_dict(d: Dictionary) -> InvestigationAreaData:
+		var a := InvestigationAreaData.new()
+		a.id = d.get("id", "")
+		a.name = d.get("name", "")
+		a.description = d.get("description", "")
+		return a
+
+
+class LeadData:
+	var id: String = ""
+	var title: String = ""
+	var brief: String = ""   ## Shown to players
+	## investigation_prompt is server-side only — NOT stored in client data
+
+	static func from_dict(d: Dictionary) -> LeadData:
+		var l := LeadData.new()
+		l.id = d.get("id", "")
+		l.title = d.get("title", "")
+		l.brief = d.get("brief", "")
+		return l
+
+
 class SolutionData:
 	var culprit: String = ""
 	var method: String = ""
@@ -91,6 +119,12 @@ var characters: Array[CharacterData] = []
 
 ## Evidence
 var evidence: Array[EvidenceData] = []
+
+## Investigation areas (Phase 3)
+var investigation_areas: Array[InvestigationAreaData] = []
+
+## Leads (Phase 3)
+var leads: Array[LeadData] = []
 
 ## Solution (hidden from players until accusation)
 var solution: SolutionData = SolutionData.new()
@@ -135,6 +169,12 @@ static func from_dict(d: Dictionary) -> MysteryData:
 
 	for ev_dict in d.get("evidence", []):
 		m.evidence.append(EvidenceData.from_dict(ev_dict))
+
+	for area_dict in d.get("investigation_areas", []):
+		m.investigation_areas.append(InvestigationAreaData.from_dict(area_dict))
+
+	for lead_dict in d.get("leads", []):
+		m.leads.append(LeadData.from_dict(lead_dict))
 
 	m.solution = SolutionData.from_dict(d.get("solution", {}))
 

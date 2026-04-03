@@ -1,11 +1,10 @@
 ## CaseDisplay — shows the generated mystery:
-## title, setting, crime, victim, suspects, coherence badge, evidence.
-## Two action buttons: "Interrogate Suspects" and "Make Accusation".
+## title, setting, crime, victim, suspects, coherence badge, evidence,
+## investigation areas, leads, and shared intel from other players.
 ##
-## SESSION ANNOTATION — Phase 2:
 ## The viability rating widget lives on this screen (bottom).
-## Phase 3: Add a "Shared Clues" panel on the right side for clues
-## received from other players via the 75% mechanic.
+## In Phase 3 multiplayer, the Shared Intel panel shows clues received
+## from other players (polled every 3s).
 
 extends Control
 
@@ -23,9 +22,14 @@ extends Control
 @onready var accuse_button: Button = $MainVBox/Buttons/AccuseButton
 @onready var viability_hbox: HBoxContainer = $MainVBox/ViabilityRow
 @onready var viability_label: Label = $MainVBox/ViabilityRow/ViabilityLabel
+@onready var areas_container: VBoxContainer = $MainVBox/AreasContainer
+@onready var leads_container: VBoxContainer = $MainVBox/LeadsContainer
+@onready var shared_intel_container: VBoxContainer = $MainVBox/SharedIntelContainer
 
 var _mystery: MysteryData
 var _current_rating: int = 0
+var _poll_timer: float = 0.0
+const POLL_INTERVAL: float = 3.0
 
 # ---------------------------------------------------------------------------
 # Lifecycle
@@ -35,6 +39,20 @@ func _ready() -> void:
 	_populate()
 	interrogate_button.pressed.connect(_go_interrogate)
 	accuse_button.pressed.connect(_go_accuse)
+
+func _process(delta: float) -> void:
+	if GameState.game_id.is_empty():
+		return
+	_poll_timer -= delta
+	if _poll_timer <= 0.0:
+		_poll_timer = POLL_INTERVAL
+		ApiClient.get_shared_clues(GameState.game_id, GameState.player_id, _on_shared_clues)
+
+func _on_shared_clues(error: String, data: Dictionary) -> void:
+	if error:
+		return
+	GameState.merge_shared_clues(data)
+	_rebuild_shared_intel()
 
 func _populate() -> void:
 	title_label.text = _mystery.title
@@ -100,6 +118,15 @@ func _populate() -> void:
 		]
 	)
 
+	# --- Investigation areas ---
+	_populate_areas()
+
+	# --- Leads ---
+	_populate_leads()
+
+	# --- Shared Intel (multiplayer) ---
+	_rebuild_shared_intel()
+
 	# --- Viability rating buttons ---
 	_build_viability_buttons()
 
@@ -151,3 +178,63 @@ func _go_interrogate() -> void:
 func _go_accuse() -> void:
 	GameState.game_phase = GameState.Phase.ACCUSATION
 	get_tree().change_scene_to_file("res://scenes/ui/Accusation.tscn")
+
+func _populate_areas() -> void:
+	if not is_instance_valid(areas_container):
+		return
+	for child in areas_container.get_children():
+		child.queue_free()
+	if _mystery.investigation_areas.is_empty():
+		return
+	var header := Label.new()
+	header.text = "Investigation Areas"
+	header.modulate = Color.CORNFLOWER_BLUE
+	areas_container.add_child(header)
+	for area in _mystery.investigation_areas:
+		var lbl := Label.new()
+		lbl.text = "  [%s] %s" % [area.id, area.name]
+		lbl.tooltip_text = area.description
+		areas_container.add_child(lbl)
+
+func _populate_leads() -> void:
+	if not is_instance_valid(leads_container):
+		return
+	for child in leads_container.get_children():
+		child.queue_free()
+	if _mystery.leads.is_empty():
+		return
+	var header := Label.new()
+	header.text = "Leads"
+	header.modulate = Color.GOLDENROD
+	leads_container.add_child(header)
+	for lead in _mystery.leads:
+		var lbl := Label.new()
+		lbl.text = "  [%s] %s — %s" % [lead.id, lead.title, lead.brief]
+		lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		leads_container.add_child(lbl)
+
+func _rebuild_shared_intel() -> void:
+	if not is_instance_valid(shared_intel_container):
+		return
+	for child in shared_intel_container.get_children():
+		child.queue_free()
+	var all_shared: Array = []
+	for phase_key in ["witness", "investigation", "lead"]:
+		all_shared.append_array(GameState.shared_clues[phase_key])
+	if all_shared.is_empty():
+		return
+	var header := Label.new()
+	header.text = "Shared Intel"
+	header.modulate = Color.LIGHT_GREEN
+	shared_intel_container.add_child(header)
+	for clue in all_shared:
+		var lbl := Label.new()
+		lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		var sender: String = clue.get("sender_name", "?")
+		if clue.has("question"):
+			lbl.text = "  [%s → %s] %s" % [sender, clue.get("character", "?"), clue.get("response", "")]
+		elif clue.has("area_name"):
+			lbl.text = "  [%s @ %s] %s" % [sender, clue.get("area_name", "?"), clue.get("findings", "")]
+		else:
+			lbl.text = "  [%s lead] %s" % [sender, clue.get("findings", "")]
+		shared_intel_container.add_child(lbl)

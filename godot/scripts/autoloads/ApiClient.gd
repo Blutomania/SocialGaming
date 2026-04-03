@@ -38,6 +38,40 @@ func generate_mystery_async(prompt: String, cinematic_brief: bool, callback: Cal
 func poll_job(job_id: String, callback: Callable) -> void:
 	_do_request("/jobs/" + job_id, HTTPClient.METHOD_GET, "", callback)
 
+## --- Phase 3: game session API ---
+
+func create_game(mystery_slug: String, host_name: String, difficulty: String, callback: Callable) -> void:
+	var body := JSON.stringify({"mystery_slug": mystery_slug, "host_name": host_name, "difficulty": difficulty})
+	_post("/games/create", body, callback)
+
+func join_game(game_id: String, player_name: String, callback: Callable) -> void:
+	var body := JSON.stringify({"player_name": player_name})
+	_post("/games/" + game_id + "/join", body, callback)
+
+func get_block_pool(game_id: String, callback: Callable) -> void:
+	_do_request("/games/" + game_id + "/block-pool", HTTPClient.METHOD_GET, "", callback)
+
+func get_shared_clues(game_id: String, player_id: String, callback: Callable) -> void:
+	_do_request("/games/" + game_id + "/shared-clues?player_id=" + player_id, HTTPClient.METHOD_GET, "", callback)
+
+func game_interrogate_witness(game_id: String, player_id: String, character_name: String, question: String, callback: Callable) -> void:
+	var body := JSON.stringify({"player_id": player_id, "character_name": character_name, "question": question})
+	_post("/games/" + game_id + "/interrogate-witness", body, callback)
+
+func investigate_area(game_id: String, player_id: String, area_id: String, callback: Callable) -> void:
+	var body := JSON.stringify({"player_id": player_id, "area_id": area_id})
+	_post("/games/" + game_id + "/investigate-area", body, callback)
+
+func follow_lead(game_id: String, player_id: String, lead_id: String, callback: Callable) -> void:
+	var body := JSON.stringify({"player_id": player_id, "lead_id": lead_id})
+	_post("/games/" + game_id + "/follow-lead", body, callback)
+
+func share_phase(game_id: String, player_id: String, phase: String, selected_ids: Array, callback: Callable) -> void:
+	var body := JSON.stringify({"player_id": player_id, "phase": phase, "selected_ids": selected_ids})
+	_post("/games/" + game_id + "/share-phase", body, callback)
+
+## --- Single-player legacy API (Phase 2) ---
+
 func interrogate(mystery: Dictionary, character_name: String, question: String, callback: Callable) -> void:
 	var body := JSON.stringify({"mystery": mystery, "character_name": character_name, "question": question})
 	_post("/interrogate", body, callback)

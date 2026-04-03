@@ -160,6 +160,18 @@ GAMEPLAY NOTES:
   - estimated_playtime: must reflect difficulty — EASY: 30–45 min, MEDIUM: 45–60 min, HARD: 60–75 min.
     Do not exceed 75 minutes. This is a digital party game, not a dinner-event experience.
 
+INVESTIGATION AREAS (exactly 5):
+  - Named physical locations within the setting where players can search for clues.
+  - Each area must be atmospherically distinct and plausible for the setting.
+  - investigation_prompt: 1–2 sentences of private context Claude will use when a player investigates
+    this area (what could be found there — may include red herrings). NOT shown to players.
+
+LEADS (exactly 4):
+  - Pre-existing tips, rumours, or documents that can be followed up on.
+  - Each lead must be specific and actionable (not generic like "investigate the crime").
+  - investigation_prompt: 1–2 sentences of private context Claude will use to resolve the lead.
+    NOT shown to players. At least 1 lead should point toward the culprit; at least 1 is a red herring.
+
 Generate a complete mystery JSON with this exact structure:
 {{
   "title": "string",
@@ -192,6 +204,22 @@ Generate a complete mystery JSON with this exact structure:
       "description": "string",
       "type": "physical | testimonial | circumstantial | documentary",
       "relevance": "critical | supporting | red_herring"
+    }}
+  ],
+  "investigation_areas": [
+    {{
+      "id": "A1",
+      "name": "string",
+      "description": "1–2 sentence atmospheric description of the location visible to players",
+      "investigation_prompt": "private context for AI — what is here, what could be found"
+    }}
+  ],
+  "leads": [
+    {{
+      "id": "L1",
+      "title": "string",
+      "brief": "1 sentence visible to players describing the tip or document",
+      "investigation_prompt": "private context for AI — what this lead reveals when followed"
     }}
   ],
   "solution": {{
@@ -366,6 +394,97 @@ def _run_generation_job(job_id: str, prompt: str, cinematic_brief: bool) -> None
 
 
 # ---------------------------------------------------------------------------
+# Game session store
+# ---------------------------------------------------------------------------
+# In-memory; good for Phase 3. Replace with a DB if sessions need to survive restarts.
+#
+# Session structure:
+# {
+#   "game_id": str,
+#   "mystery": dict,           # full mystery dict including investigation_areas + leads
+#   "difficulty": str,
+#   "share_min": float,        # minimum fraction of findings player must share
+#   "witness_budget": int,
+#   "investigation_budget": int,
+#   "players": {player_id: {"name": str, "phase": str, "witness_budget": int,
+#                            "investigation_budget": int, "leads_used": [lead_id],
+#                            "witness_findings": [{id, character, question, response}],
+#                            "investigation_findings": [{id, area_id, findings}],
+#                            "lead_findings": [{id, lead_id, findings}]}},
+#   "shared_pool": {
+#       "witness": [{sender_name, id, character, question, response, ts}],
+#       "investigation": [{sender_name, id, area_id, findings, ts}],
+#       "lead": [{sender_name, id, lead_id, findings, ts}],
+#   },
+#   "block_pool": {
+#       "witness": [{character, fingerprint}],
+#       "investigation": [area_id],
+#       "lead": [lead_id],
+#   },
+#   "ts": float,
+# }
+
+_games: dict = {}
+_games_lock = threading.Lock()
+_GAME_TTL = 3600  # 1 hour
+
+_DIFFICULTY_CONFIG = {
+    "EASY":   {"share_min": 0.70, "witness_budget": 8, "investigation_budget": 3},
+    "MEDIUM": {"share_min": 0.60, "witness_budget": 6, "investigation_budget": 2},
+    "HARD":   {"share_min": 0.50, "witness_budget": 4, "investigation_budget": 2},
+}
+
+
+def _new_game_id() -> str:
+    return str(uuid.uuid4())[:8].upper()
+
+
+def _new_player_id() -> str:
+    return str(uuid.uuid4())
+
+
+def _get_game(game_id: str) -> Optional[dict]:
+    with _games_lock:
+        return _games.get(game_id)
+
+
+def _fingerprint(question: str) -> str:
+    """Normalised lowercase question key for duplicate detection."""
+    return question.strip().lower()
+
+
+def _investigate_area_with_ai(mystery: dict, area: dict, player_name: str) -> str:
+    setting = mystery.get("setting", {})
+    crime = mystery.get("crime", {})
+    prompt = (
+        f"You are an AI narrator for a mystery game. A detective named {player_name} "
+        f"is investigating '{area['name']}' at {setting.get('location', 'the scene')} "
+        f"({setting.get('time_period', '')}).\n\n"
+        f"Crime overview: {crime.get('what_happened', '')}\n\n"
+        f"Private context for this area: {area.get('investigation_prompt', '')}\n\n"
+        "Describe in 2–4 sentences what the detective finds when searching this area. "
+        "Be atmospheric and specific. May include clues, red herrings, or atmosphere. "
+        "Do not reveal the culprit directly."
+    )
+    return llm(prompt, system="You are a mystery game narrator. Be vivid and specific.")
+
+
+def _follow_lead_with_ai(mystery: dict, lead: dict, player_name: str) -> str:
+    setting = mystery.get("setting", {})
+    crime = mystery.get("crime", {})
+    prompt = (
+        f"You are an AI narrator for a mystery game. A detective named {player_name} "
+        f"is following the lead: '{lead['title']}' at {setting.get('location', 'the scene')}.\n\n"
+        f"Crime overview: {crime.get('what_happened', '')}\n\n"
+        f"Private context for this lead: {lead.get('investigation_prompt', '')}\n\n"
+        "Describe in 2–4 sentences what the detective discovers when following this lead. "
+        "Be specific and atmospherically consistent with the mystery. "
+        "Do not reveal the culprit directly."
+    )
+    return llm(prompt, system="You are a mystery game narrator. Be vivid and specific.")
+
+
+# ---------------------------------------------------------------------------
 # FastAPI app
 # ---------------------------------------------------------------------------
 app = FastAPI(title="Choose Your Mystery — Backend", version="1.0.0")
@@ -398,6 +517,27 @@ class RateRequest(BaseModel):
 class AsyncGenerateRequest(BaseModel):
     prompt: str
     cinematic_brief: bool = False
+
+class CreateGameRequest(BaseModel):
+    mystery_slug: str
+    host_name: str
+    difficulty: str = "MEDIUM"   # "EASY" | "MEDIUM" | "HARD"
+
+class JoinGameRequest(BaseModel):
+    player_name: str
+
+class InvestigateAreaRequest(BaseModel):
+    player_id: str
+    area_id: str
+
+class FollowLeadRequest(BaseModel):
+    player_id: str
+    lead_id: str
+
+class SharePhaseRequest(BaseModel):
+    player_id: str
+    phase: str          # "witness" | "investigation" | "lead"
+    selected_ids: list  # list of clue/finding IDs the player chose to share
 
 # ---------------------------------------------------------------------------
 # Endpoints
@@ -487,6 +627,304 @@ def get_job(job_id: str):
     }
 
 
+@app.post("/games/create")
+def create_game(req: CreateGameRequest):
+    """
+    Create a new multiplayer game session from a previously generated mystery.
+    Returns the game_id (room code) and per-difficulty budgets.
+    """
+    difficulty = req.difficulty.upper()
+    if difficulty not in _DIFFICULTY_CONFIG:
+        raise HTTPException(status_code=400, detail="difficulty must be EASY, MEDIUM, or HARD")
+
+    # Load the mystery
+    generated_dir = _DB_PATH / "generated"
+    matches = list(generated_dir.glob(f"{req.mystery_slug}_*.json"))
+    if not matches:
+        raise HTTPException(status_code=404, detail="mystery not found")
+    with open(sorted(matches)[-1]) as f:
+        mystery = json.load(f)
+
+    cfg = _DIFFICULTY_CONFIG[difficulty]
+    game_id = _new_game_id()
+    host_id = _new_player_id()
+
+    session = {
+        "game_id": game_id,
+        "mystery": mystery,
+        "difficulty": difficulty,
+        "share_min": cfg["share_min"],
+        "witness_budget": cfg["witness_budget"],
+        "investigation_budget": cfg["investigation_budget"],
+        "players": {
+            host_id: {
+                "name": req.host_name,
+                "is_host": True,
+                "phase": "witness",
+                "witness_budget": cfg["witness_budget"],
+                "investigation_budget": cfg["investigation_budget"],
+                "leads_used": [],
+                "witness_findings": [],
+                "investigation_findings": [],
+                "lead_findings": [],
+            }
+        },
+        "shared_pool": {"witness": [], "investigation": [], "lead": []},
+        "block_pool": {"witness": [], "investigation": [], "lead": []},
+        "ts": time.time(),
+    }
+    with _games_lock:
+        _games[game_id] = session
+
+    return {
+        "game_id": game_id,
+        "player_id": host_id,
+        "share_min": cfg["share_min"],
+        "witness_budget": cfg["witness_budget"],
+        "investigation_budget": cfg["investigation_budget"],
+    }
+
+
+@app.post("/games/{game_id}/join")
+def join_game(game_id: str, req: JoinGameRequest):
+    """Register a new player in the game session."""
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    player_id = _new_player_id()
+    cfg = _DIFFICULTY_CONFIG[game["difficulty"]]
+    with _games_lock:
+        game["players"][player_id] = {
+            "name": req.player_name,
+            "is_host": False,
+            "phase": "witness",
+            "witness_budget": cfg["witness_budget"],
+            "investigation_budget": cfg["investigation_budget"],
+            "leads_used": [],
+            "witness_findings": [],
+            "investigation_findings": [],
+            "lead_findings": [],
+        }
+    return {
+        "player_id": player_id,
+        "game_id": game_id,
+        "share_min": game["share_min"],
+        "witness_budget": cfg["witness_budget"],
+        "investigation_budget": cfg["investigation_budget"],
+    }
+
+
+@app.get("/games/{game_id}/block-pool")
+def get_block_pool(game_id: str):
+    """
+    Return the current block pool for this game so the client can grey out
+    already-shared questions, areas, and leads before the player tries them.
+    """
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    return game["block_pool"]
+
+
+@app.get("/games/{game_id}/shared-clues")
+def get_shared_clues(game_id: str, player_id: str):
+    """
+    Return all clues that have been shared into this game session.
+    In a future WebSocket version this would be pushed; for now the client polls.
+    """
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    if player_id not in game["players"]:
+        raise HTTPException(status_code=404, detail="player not in game")
+    # Return everything in shared_pool — all players receive all shared clues
+    return game["shared_pool"]
+
+
+@app.post("/games/{game_id}/investigate-area")
+def investigate_area(game_id: str, req: InvestigateAreaRequest):
+    """
+    Player investigates a named crime scene area.
+    - Checks hard block (area already in block pool)
+    - Calls Claude to generate findings
+    - Deducts 1 from the player's investigation budget
+    """
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    if req.player_id not in game["players"]:
+        raise HTTPException(status_code=404, detail="player not in game")
+
+    player = game["players"][req.player_id]
+    if player["phase"] != "investigation":
+        raise HTTPException(status_code=400, detail="player is not in the investigation phase")
+    if player["investigation_budget"] <= 0:
+        raise HTTPException(status_code=400, detail="investigation budget exhausted")
+
+    # Hard block check
+    if req.area_id in game["block_pool"]["investigation"]:
+        raise HTTPException(
+            status_code=409,
+            detail={"blocked": True, "reason": "This area has already been shared with the group. Try a different location."}
+        )
+
+    # Find the area definition in the mystery
+    areas = game["mystery"].get("investigation_areas", [])
+    area = next((a for a in areas if a["id"] == req.area_id), None)
+    if area is None:
+        raise HTTPException(status_code=404, detail="area not found in mystery")
+
+    findings = _investigate_area_with_ai(game["mystery"], area, player["name"])
+    finding_id = str(uuid.uuid4())[:8]
+
+    with _games_lock:
+        player["investigation_findings"].append({
+            "id": finding_id,
+            "area_id": req.area_id,
+            "area_name": area["name"],
+            "findings": findings,
+        })
+        player["investigation_budget"] -= 1
+
+    return {"finding_id": finding_id, "area_name": area["name"], "findings": findings,
+            "budget_remaining": player["investigation_budget"]}
+
+
+@app.post("/games/{game_id}/follow-lead")
+def follow_lead(game_id: str, req: FollowLeadRequest):
+    """
+    Player follows one of the pre-generated leads.
+    - Checks hard block
+    - Each player limited to 2 leads total
+    - Calls Claude to generate findings
+    """
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    if req.player_id not in game["players"]:
+        raise HTTPException(status_code=404, detail="player not in game")
+
+    player = game["players"][req.player_id]
+    if player["phase"] != "lead":
+        raise HTTPException(status_code=400, detail="player is not in the lead phase")
+    if len(player["leads_used"]) >= 2:
+        raise HTTPException(status_code=400, detail="lead budget exhausted (max 2 per player)")
+    if req.lead_id in player["leads_used"]:
+        raise HTTPException(status_code=400, detail="you already followed this lead")
+
+    # Hard block check
+    if req.lead_id in game["block_pool"]["lead"]:
+        raise HTTPException(
+            status_code=409,
+            detail={"blocked": True, "reason": "This lead has already been shared with the group. Pick a different one."}
+        )
+
+    leads = game["mystery"].get("leads", [])
+    lead = next((l for l in leads if l["id"] == req.lead_id), None)
+    if lead is None:
+        raise HTTPException(status_code=404, detail="lead not found in mystery")
+
+    findings = _follow_lead_with_ai(game["mystery"], lead, player["name"])
+    finding_id = str(uuid.uuid4())[:8]
+
+    with _games_lock:
+        player["lead_findings"].append({
+            "id": finding_id,
+            "lead_id": req.lead_id,
+            "lead_title": lead["title"],
+            "findings": findings,
+        })
+        player["leads_used"].append(req.lead_id)
+
+    return {"finding_id": finding_id, "lead_title": lead["title"], "findings": findings,
+            "leads_remaining": 2 - len(player["leads_used"])}
+
+
+@app.post("/games/{game_id}/share-phase")
+def share_phase(game_id: str, req: SharePhaseRequest):
+    """
+    Player submits their Share Selection at the end of a phase.
+
+    - Validates minimum share % (must share ≥ share_min of findings)
+    - Checks selected IDs for duplicates against the shared pool
+    - If duplicates found: returns duplicate_flags, player must resubmit
+    - If clean: broadcasts selected findings to all players, updates block pool
+    """
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    if req.player_id not in game["players"]:
+        raise HTTPException(status_code=404, detail="player not in game")
+
+    player = game["players"][req.player_id]
+    phase = req.phase
+
+    # Get the player's findings for this phase
+    findings_key = f"{phase}_findings"
+    all_findings = player.get(findings_key, [])
+    if not all_findings:
+        raise HTTPException(status_code=400, detail="no findings to share for this phase")
+
+    # Validate minimum share %
+    min_required = max(1, round(len(all_findings) * game["share_min"]))
+    if len(req.selected_ids) < min_required:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Must share at least {min_required} of {len(all_findings)} findings "
+                   f"({int(game['share_min']*100)}% minimum)."
+        )
+
+    # Validate selected IDs exist in player's findings
+    findings_by_id = {f["id"]: f for f in all_findings}
+    invalid = [sid for sid in req.selected_ids if sid not in findings_by_id]
+    if invalid:
+        raise HTTPException(status_code=400, detail=f"Unknown finding IDs: {invalid}")
+
+    # Duplicate check against shared pool
+    duplicate_flags = []
+    for sid in req.selected_ids:
+        finding = findings_by_id[sid]
+        if phase == "witness":
+            fp = _fingerprint(finding["question"])
+            if any(b["character"] == finding["character"] and b["fingerprint"] == fp
+                   for b in game["block_pool"]["witness"]):
+                duplicate_flags.append(sid)
+        elif phase == "investigation":
+            if finding["area_id"] in game["block_pool"]["investigation"]:
+                duplicate_flags.append(sid)
+        elif phase == "lead":
+            if finding["lead_id"] in game["block_pool"]["lead"]:
+                duplicate_flags.append(sid)
+
+    if duplicate_flags:
+        return {"ok": False, "shared_count": 0, "duplicate_flags": duplicate_flags}
+
+    # Broadcast to all: add to shared_pool and update block_pool
+    sender_name = player["name"]
+    with _games_lock:
+        for sid in req.selected_ids:
+            finding = findings_by_id[sid]
+            entry = {"sender_name": sender_name, "ts": time.time(), **finding}
+            game["shared_pool"][phase].append(entry)
+
+            if phase == "witness":
+                game["block_pool"]["witness"].append({
+                    "character": finding["character"],
+                    "fingerprint": _fingerprint(finding["question"]),
+                })
+            elif phase == "investigation":
+                game["block_pool"]["investigation"].append(finding["area_id"])
+            elif phase == "lead":
+                game["block_pool"]["lead"].append(finding["lead_id"])
+
+        # Advance player to next phase
+        phase_order = ["witness", "investigation", "lead", "done"]
+        current_idx = phase_order.index(phase)
+        player["phase"] = phase_order[min(current_idx + 1, len(phase_order) - 1)]
+
+    return {"ok": True, "shared_count": len(req.selected_ids), "duplicate_flags": []}
+
+
 @app.post("/interrogate")
 def interrogate(req: InterrogateRequest):
     """
@@ -537,6 +975,113 @@ Detective's question: {req.question}"""
 
     reply = llm(prompt, system="You are a mystery game character. Stay in character.")
     return {"response": reply}
+
+
+@app.post("/games/{game_id}/interrogate")
+def game_interrogate(game_id: str, req: InterrogateRequest):
+    """
+    Game-session-aware interrogation used during Phase 3 multiplayer.
+    - Validates player is in the witness phase
+    - Checks hard-block (duplicate question already shared)
+    - Deducts from witness budget
+    - Stores finding so the player can share at phase end
+    The underlying AI call is identical to the solo /interrogate endpoint.
+    """
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+
+    # Look up player_id from the request body's mystery — we need it separately.
+    # For game interrogation we expect a player_id field on the request.
+    # We re-use InterrogateRequest but the player_id is passed as a query param.
+    raise HTTPException(
+        status_code=501,
+        detail="Use POST /games/{game_id}/interrogate-witness instead."
+    )
+
+
+class GameInterrogateRequest(BaseModel):
+    player_id: str
+    character_name: str
+    question: str
+
+
+@app.post("/games/{game_id}/interrogate-witness")
+def game_interrogate_witness(game_id: str, req: GameInterrogateRequest):
+    """
+    Multiplayer witness interrogation.
+    - Player must be in 'witness' phase
+    - Hard-block if (character, question_fingerprint) already in block pool
+    - Calls Claude for in-character response
+    - Deducts 1 from witness budget; stores in player's witness_findings
+    """
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    if req.player_id not in game["players"]:
+        raise HTTPException(status_code=404, detail="player not in game")
+
+    player = game["players"][req.player_id]
+    if player["phase"] != "witness":
+        raise HTTPException(status_code=400, detail="player is not in the witness phase")
+    if player["witness_budget"] <= 0:
+        raise HTTPException(status_code=400, detail="witness budget exhausted")
+
+    # Hard block check
+    fp = _fingerprint(req.question)
+    if any(b["character"] == req.character_name and b["fingerprint"] == fp
+           for b in game["block_pool"]["witness"]):
+        raise HTTPException(
+            status_code=409,
+            detail={
+                "blocked": True,
+                "reason": f"This question to {req.character_name} has already been shared with the group. Ask something different."
+            }
+        )
+
+    # Retrieve character data from mystery for richer context
+    chars = game["mystery"].get("characters", [])
+    char_data = next((c for c in chars if c["name"] == req.character_name), None)
+    if char_data is None:
+        raise HTTPException(status_code=404, detail=f"Character '{req.character_name}' not found")
+
+    s = game["mystery"].get("setting", {})
+    c = game["mystery"].get("crime", {})
+    setting_summary = (
+        f"Location: {s.get('location', '')}\n"
+        f"Time period: {s.get('time_period', '')}\n"
+        f"Crime: {c.get('what_happened', '')}"
+    )
+    char_context = (
+        f"Role: {char_data.get('role', 'suspect')}\n"
+        f"Occupation: {char_data.get('occupation', '')}\n"
+        f"Alibi: {char_data.get('alibi', '')}\n"
+        f"Secret: {char_data.get('secret', '')}\n"
+        f"Motive: {char_data.get('motive', '')}"
+    )
+    prompt = (
+        f"You are {req.character_name} in this mystery.\n\n"
+        f"SETTING:\n{setting_summary}\n\n"
+        f"YOUR PRIVATE CHARACTER DETAILS (do NOT reveal directly):\n{char_context}\n\n"
+        f"Detective's question: {req.question}"
+    )
+    response = llm(prompt, system="You are a mystery game character. Stay in character.")
+
+    finding_id = str(uuid.uuid4())[:8]
+    with _games_lock:
+        player["witness_findings"].append({
+            "id": finding_id,
+            "character": req.character_name,
+            "question": req.question,
+            "response": response,
+        })
+        player["witness_budget"] -= 1
+
+    return {
+        "finding_id": finding_id,
+        "response": response,
+        "budget_remaining": player["witness_budget"],
+    }
 
 
 @app.post("/rate")
