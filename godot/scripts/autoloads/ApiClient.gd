@@ -12,6 +12,7 @@
 extends Node
 
 const SERVER_URL_DEFAULT: String = "http://localhost:8000"
+const REQUEST_TIMEOUT: float = 120.0   ## seconds; generation can take 60-90s
 var server_url: String = SERVER_URL_DEFAULT
 
 func _ready() -> void:
@@ -23,9 +24,19 @@ func _ready() -> void:
 # Public API
 # ---------------------------------------------------------------------------
 
+## Synchronous generation (kept for reference; prefer generate_mystery_async).
 func generate_mystery(prompt: String, cinematic_brief: bool, callback: Callable) -> void:
 	var body := JSON.stringify({"prompt": prompt, "cinematic_brief": cinematic_brief})
 	_post("/generate", body, callback)
+
+## Async generation: returns {job_id} immediately; poll with poll_job().
+func generate_mystery_async(prompt: String, cinematic_brief: bool, callback: Callable) -> void:
+	var body := JSON.stringify({"prompt": prompt, "cinematic_brief": cinematic_brief})
+	_post("/generate/async", body, callback)
+
+## Poll a running job. callback receives (error, {status, stage, result, error}).
+func poll_job(job_id: String, callback: Callable) -> void:
+	_do_request("/jobs/" + job_id, HTTPClient.METHOD_GET, "", callback)
 
 func interrogate(mystery: Dictionary, character_name: String, question: String, callback: Callable) -> void:
 	var body := JSON.stringify({"mystery": mystery, "character_name": character_name, "question": question})
@@ -53,6 +64,7 @@ func _post(path: String, body: String, callback: Callable) -> void:
 
 func _do_request(path: String, method: int, body: String, callback: Callable) -> void:
 	var req := HTTPRequest.new()
+	req.timeout = REQUEST_TIMEOUT
 	add_child(req)
 	req.request_completed.connect(_on_done.bind(req, callback))
 	var headers := PackedStringArray(["Content-Type: application/json"])
@@ -67,6 +79,9 @@ func _do_request(path: String, method: int, body: String, callback: Callable) ->
 
 func _on_done(result: int, code: int, _headers: PackedStringArray, body_bytes: PackedByteArray, req: HTTPRequest, callback: Callable) -> void:
 	req.queue_free()
+	if result == HTTPRequest.RESULT_TIMEOUT:
+		callback.call("Request timed out after %ds — server may still be generating." % int(REQUEST_TIMEOUT), {})
+		return
 	if result != HTTPRequest.RESULT_SUCCESS:
 		callback.call("Network error (result=%d)" % result, {})
 		return

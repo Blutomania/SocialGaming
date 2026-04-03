@@ -27,7 +27,9 @@ SESSION ANNOTATION — Phase 1 complete when:
 import json
 import os
 import sys
+import threading
 import time
+import uuid
 from pathlib import Path
 from typing import Optional
 
@@ -283,6 +285,87 @@ def _save_mystery(mystery_dict: dict) -> str:
     return slug
 
 # ---------------------------------------------------------------------------
+# Async job store
+# ---------------------------------------------------------------------------
+# Jobs are held in memory; they expire after 10 minutes.
+# Structure: { job_id: { "status": str, "stage": str, "result": dict|None, "error": str, "ts": float } }
+_jobs: dict = {}
+_jobs_lock = threading.Lock()
+
+JOB_TTL = 600  # seconds
+
+
+def _job_create() -> str:
+    job_id = str(uuid.uuid4())
+    with _jobs_lock:
+        _jobs[job_id] = {"status": "queued", "stage": "Queued", "result": None, "error": "", "ts": time.time()}
+    return job_id
+
+
+def _job_update(job_id: str, status: str, stage: str) -> None:
+    with _jobs_lock:
+        if job_id in _jobs:
+            _jobs[job_id]["status"] = status
+            _jobs[job_id]["stage"] = stage
+
+
+def _job_finish(job_id: str, result: dict) -> None:
+    with _jobs_lock:
+        if job_id in _jobs:
+            _jobs[job_id]["status"] = "done"
+            _jobs[job_id]["stage"] = "Done"
+            _jobs[job_id]["result"] = result
+
+
+def _job_fail(job_id: str, error: str) -> None:
+    with _jobs_lock:
+        if job_id in _jobs:
+            _jobs[job_id]["status"] = "error"
+            _jobs[job_id]["stage"] = "Error"
+            _jobs[job_id]["error"] = error
+
+
+def _job_get(job_id: str) -> Optional[dict]:
+    with _jobs_lock:
+        return _jobs.get(job_id)
+
+
+def _evict_old_jobs() -> None:
+    cutoff = time.time() - JOB_TTL
+    with _jobs_lock:
+        stale = [k for k, v in _jobs.items() if v["ts"] < cutoff]
+        for k in stale:
+            del _jobs[k]
+
+
+def _run_generation_job(job_id: str, prompt: str, cinematic_brief: bool) -> None:
+    """Background thread: runs the full generation pipeline and updates job state."""
+    try:
+        _job_update(job_id, "running", "Generating mystery…")
+        mystery_dict, recipe = _generate_mystery_dict(prompt)
+
+        _job_update(job_id, "running", "Localizing characters…")
+        mystery_dict = _run_localization(mystery_dict)
+
+        _job_update(job_id, "running", "Checking coherence…")
+        mystery_dict = _run_coherence(mystery_dict)
+
+        if cinematic_brief:
+            _job_update(job_id, "running", "Writing cinematic brief…")
+            brief = _generate_cinematic_brief(mystery_dict)
+            mystery_dict["cinematic_brief"] = brief
+
+        _job_update(job_id, "running", "Saving…")
+        slug = _save_mystery(mystery_dict)
+        mystery_dict["_slug"] = slug
+
+        _job_finish(job_id, mystery_dict)
+        _evict_old_jobs()
+    except Exception as exc:
+        _job_fail(job_id, str(exc))
+
+
+# ---------------------------------------------------------------------------
 # FastAPI app
 # ---------------------------------------------------------------------------
 app = FastAPI(title="Choose Your Mystery — Backend", version="1.0.0")
@@ -311,6 +394,10 @@ class InterrogateRequest(BaseModel):
 class RateRequest(BaseModel):
     mystery_slug: str
     rating: int                    # 1–10
+
+class AsyncGenerateRequest(BaseModel):
+    prompt: str
+    cinematic_brief: bool = False
 
 # ---------------------------------------------------------------------------
 # Endpoints
@@ -352,6 +439,52 @@ def generate(req: GenerateRequest):
     slug = _save_mystery(mystery_dict)
     mystery_dict["_slug"] = slug
     return mystery_dict
+
+
+@app.post("/generate/async")
+def generate_async(req: AsyncGenerateRequest):
+    """
+    Kick off mystery generation in a background thread and return a job_id immediately.
+    The client polls GET /jobs/{job_id} for progress and the final result.
+
+    Stages returned in "stage":
+      "Queued" → "Generating mystery…" → "Localizing characters…"
+      → "Checking coherence…" → ["Writing cinematic brief…"] → "Saving…" → "Done"
+
+    Status values: "queued" | "running" | "done" | "error"
+    """
+    if not req.prompt.strip():
+        raise HTTPException(status_code=400, detail="prompt must not be empty")
+    job_id = _job_create()
+    thread = threading.Thread(
+        target=_run_generation_job,
+        args=(job_id, req.prompt, req.cinematic_brief),
+        daemon=True,
+    )
+    thread.start()
+    return {"job_id": job_id}
+
+
+@app.get("/jobs/{job_id}")
+def get_job(job_id: str):
+    """
+    Poll for job status.
+
+    Returns:
+      { "status": "queued"|"running"|"done"|"error",
+        "stage":  human-readable progress label,
+        "result": <mystery dict> | null,
+        "error":  "" | "error message" }
+    """
+    job = _job_get(job_id)
+    if job is None:
+        raise HTTPException(status_code=404, detail="job not found (may have expired)")
+    return {
+        "status": job["status"],
+        "stage":  job["stage"],
+        "result": job["result"],
+        "error":  job["error"],
+    }
 
 
 @app.post("/interrogate")
