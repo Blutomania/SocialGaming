@@ -178,13 +178,31 @@ API calls are the primary cost driver.
 
 ---
 
-## Current To-Do (as of April 1, 2026)
+## Multiplayer Architecture (decided Session 12)
+
+**Jackbox model:**
+- **Godot desktop** = host/TV screen, Steamworks-connected
+- **HTML phone client** = thin browser page served by FastAPI at `/play`, no install
+- **Transport** = FastAPI WebSocket (replaces HTTP polling); room per `game_id`
+- **Room codes** = short alphanumeric, shown on host screen (QR code future)
+- **ENet is desktop-only** — browsers block UDP; use `WebSocketMultiplayerPeer` if Godot web export ever needed
+
+**Why keep Godot (not all-Python):**
+GodotSteam is the best Steamworks path; Godot Linux export = Steam Deck support free; host screen can be cinematic while phone UI is minimal.
+
+---
+
+## Current To-Do (as of April 4, 2026)
 
 Full list in `SESSIONS.md`. Top priorities:
 
-1. **[IN PROGRESS]** Phase 1 — FastAPI server + Godot project scaffold
-2. **[NEXT]** Phase 2 — Single-player Godot prototype (all 5 screens functional)
-3. **[FUTURE]** Phase 3 — Multiplayer (lobby, 75% clue-sharing, dedicated server)
+1. **[DONE]** Phase 1 — FastAPI server + Godot project scaffold
+2. **[DONE]** Phase 2 — Single-player Godot prototype (all 5 screens functional)
+3. **[IN PROGRESS]** Phase 3 — Multiplayer investigation phases + clue sharing
+   - **[DONE]** 3a: Mystery gen updated (investigation_areas + leads in JSON)
+   - **[DONE]** 3b: Game session store + 8 server endpoints
+   - **[NEXT]** 3c: WebSocket upgrade + mobile.html phone client + .tscn wiring
+   - **[FUTURE]** 3d: Lobby flow, room codes, QR display on host screen
 4. **[FUTURE]** Phase 4 — Steam integration (GodotSteam plugin)
 
 Retired / superseded:

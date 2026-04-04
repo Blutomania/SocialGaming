@@ -5,6 +5,82 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 12 — April 4, 2026
+**Branch:** `claude/fix-godot-performance-QyXLQ`
+**Starting commit:** `4235c7c`
+**Ending commit:** `a7a361c`
+**Status:** Complete — Phase 3a/3b implemented; architecture decided
+
+### What was designed (no code yet)
+
+**Sharing mechanic (revised):**
+- Old: fixed % of *players* receive all your findings
+- New: you select 50–70% of your findings; **all** players receive what you chose
+- Individual deduction is the skill — everyone works from the same shared pool
+- Minimum share % is difficulty-gated: EASY 70%, MEDIUM 60%, HARD 50%
+- Duplicate check on submission: if a clue is already in the pool, you must replace it
+
+**Three-phase investigation structure:**
+```
+Witness Phase (X questions) → Investigation Phase (Y areas) → Lead Phase (2 leads) → Accusation
+```
+Each phase has a hard budget. When budget hits 0 → Share Selection screen → advance to next phase.
+
+**Multiplayer architecture (confirmed):**
+- **Godot desktop** = host/TV screen, atmospheric, Steamworks-connected (keep Godot)
+- **HTML phone client** = thin browser page served by FastAPI, no download required
+- **Pattern**: Jackbox model — host runs Godot, players open a URL on their phones
+- **Transport**: FastAPI WebSocket (upgrade from current HTTP polling)
+- **Room codes**: short alphanumeric (e.g. "A7FX2"), phone players type it in at the URL
+
+**Why Godot over all-Python:**
+- GodotSteam is the best Steamworks integration for indie; Python bindings are DIY
+- Godot Linux export = Steam Deck first-class support for free
+- Host screen can be cinematic and atmospheric; phones are deliberately minimal
+- ENet (Godot's UDP networking) doesn't work in browsers — use WebSocket instead
+
+### What was built (committed)
+
+**`server/main.py`:**
+- Mystery generation prompt updated: now requests `investigation_areas` (5) and `leads` (4)
+- In-memory game session store (`_games` dict, same pattern as async job store)
+- 8 new endpoints:
+  - `POST /games/create` — create session from mystery slug + difficulty
+  - `POST /games/{id}/join` — register player, get player_id + budgets
+  - `POST /games/{id}/interrogate-witness` — budget-checked, hard-blocked, Claude AI call
+  - `POST /games/{id}/investigate-area` — budget-checked, hard-blocked, Claude AI call
+  - `POST /games/{id}/follow-lead` — max 2 per player, hard-blocked, Claude AI call
+  - `POST /games/{id}/share-phase` — validates min %, checks dupes, broadcasts to all
+  - `GET /games/{id}/block-pool` — current blocked questions/areas/leads
+  - `GET /games/{id}/shared-clues` — all shared clues for polling
+
+**Godot:**
+- `MysteryData.gd` — added `InvestigationAreaData` and `LeadData` inner classes
+- `GameState.gd` — full rewrite: `InvestPhase` enum, per-phase budgets, block pool, shared clues dict, helper methods (`is_witness_blocked`, `is_area_blocked`, `is_lead_blocked`, `current_phase_findings`, `reset`)
+- `ApiClient.gd` — 8 new game API methods; single-player `/interrogate` preserved
+- `interrogation.gd` — full rewrite: phase-aware Witness/Investigation/Lead sub-panels, block-pool polling, shared intel panel
+- `share_selection.gd` — new: Share Selection screen with minimum enforcement, duplicate conflict highlighting
+- `ShareSelection.tscn` — new: scene for share_selection.gd
+- `case_display.gd` — added investigation areas, leads, Shared Intel panel with polling
+
+### What still needs to be done
+
+1. **`invest_phase` transition bug**: `_check_phase_complete()` in `interrogation.gd` transitions directly to `ShareSelection.tscn` but doesn't first set `invest_phase` to `SHARE_WITNESS`. Needs: set phase to `SHARE_WITNESS` before `change_scene_to_file`.
+2. **`.tscn` wiring**: `Interrogation.tscn` needs new sub-panel nodes (WitnessPanel, InvestigationPanel, LeadPanel, SharedPanel). `CaseDisplay.tscn` needs AreasContainer, LeadsContainer, SharedIntelContainer nodes.
+3. **WebSocket upgrade**: Replace HTTP polling with FastAPI WebSocket push. Server broadcasts `clues_shared` + `block_updated` events instead of clients polling.
+4. **`mobile.html`** — phone client: simple HTML/JS page served by FastAPI, connects via WebSocket, handles all three phases + share selection.
+5. **QR code or room URL display** on Godot host screen so players can join easily.
+
+### Next steps (resume here)
+1. Fix the `invest_phase` transition bug (1-line fix in `interrogation.gd`)
+2. Wire the `.tscn` node trees to match `@onready` paths in scripts
+3. Add `WebSocket /ws/{game_id}` endpoint to FastAPI + `ConnectionManager` class
+4. Upgrade Godot `ApiClient.gd` to use `WebSocketPeer` instead of polling
+5. Build `mobile.html` — phone client served at `/play`
+6. End-to-end playtest: 2 players (desktop + phone) through all 3 phases + accusation
+
+---
+
 ## Session 11 — April 2, 2026
 **Branch:** `claude/start-godot-migration-mNrWD`
 **Starting commit:** `380f0e2`
