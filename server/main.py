@@ -832,6 +832,35 @@ def join_game(game_id: str, req: JoinGameRequest):
     }
 
 
+@app.get("/games/{game_id}/mystery-brief")
+def mystery_brief(game_id: str):
+    """
+    Returns the public-facing mystery data for phone clients.
+    Strips private fields (investigation_prompt, solution) before sending.
+    """
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    mystery = game["mystery"]
+    # Strip server-only fields
+    safe = {k: v for k, v in mystery.items()
+            if k not in ("_provenance", "_coherence")}
+    # Remove investigation_prompt from areas and leads (server-side only)
+    safe["investigation_areas"] = [
+        {k: v for k, v in a.items() if k != "investigation_prompt"}
+        for a in safe.get("investigation_areas", [])
+    ]
+    safe["leads"] = [
+        {k: v for k, v in l.items() if k != "investigation_prompt"}
+        for l in safe.get("leads", [])
+    ]
+    # Never send the solution to clients
+    safe.pop("solution", None)
+    safe["witness_budget"] = _DIFFICULTY_CONFIG[game["difficulty"]]["witness_budget"]
+    safe["investigation_budget"] = _DIFFICULTY_CONFIG[game["difficulty"]]["investigation_budget"]
+    return safe
+
+
 @app.get("/games/{game_id}/block-pool")
 def get_block_pool(game_id: str):
     """
