@@ -24,6 +24,7 @@ SESSION ANNOTATION — Phase 1 complete when:
   returns a valid mystery JSON with _provenance and _coherence fields.
 """
 
+import asyncio
 import json
 import os
 import sys
@@ -33,8 +34,10 @@ import uuid
 from pathlib import Path
 from typing import Optional
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from anthropic import Anthropic
 
@@ -485,6 +488,74 @@ def _follow_lead_with_ai(mystery: dict, lead: dict, player_name: str) -> str:
 
 
 # ---------------------------------------------------------------------------
+# WebSocket connection manager
+# ---------------------------------------------------------------------------
+# Maintains one set of open WebSocket connections per game_id (room).
+# All server-side actions that change shared state call _ws_broadcast()
+# so clients receive push events instead of polling.
+#
+# Push event envelope:
+#   { "event": str, "data": dict }
+#
+# Events pushed today:
+#   player_joined      — { name }
+#   clues_shared       — { sender_name, phase, clues: [...] }
+#   block_updated      — { witness: [...], investigation: [...], lead: [...] }
+#   player_phase_done  — { player_name, phase }
+
+class ConnectionManager:
+    def __init__(self) -> None:
+        # game_id → list of open WebSocket connections
+        self._rooms: dict[str, list[WebSocket]] = {}
+        self._lock = asyncio.Lock()
+
+    async def connect(self, game_id: str, ws: WebSocket) -> None:
+        await ws.accept()
+        async with self._lock:
+            self._rooms.setdefault(game_id, []).append(ws)
+
+    async def disconnect(self, game_id: str, ws: WebSocket) -> None:
+        async with self._lock:
+            room = self._rooms.get(game_id, [])
+            if ws in room:
+                room.remove(ws)
+
+    async def broadcast(self, game_id: str, event: str, data: dict) -> None:
+        payload = json.dumps({"event": event, "data": data})
+        async with self._lock:
+            dead: list[WebSocket] = []
+            for ws in self._rooms.get(game_id, []):
+                try:
+                    await ws.send_text(payload)
+                except Exception:
+                    dead.append(ws)
+            for ws in dead:
+                self._rooms[game_id].remove(ws)
+
+
+_ws_manager = ConnectionManager()
+
+
+def _broadcast_sync(game_id: str, event: str, data: dict) -> None:
+    """
+    Fire-and-forget WebSocket broadcast from a synchronous context
+    (e.g. inside a regular FastAPI endpoint or thread).
+    Creates a new event loop task if the running loop allows it.
+    Safe to call from non-async code.
+    """
+    try:
+        loop = asyncio.get_event_loop()
+        if loop.is_running():
+            asyncio.run_coroutine_threadsafe(
+                _ws_manager.broadcast(game_id, event, data), loop
+            )
+        else:
+            loop.run_until_complete(_ws_manager.broadcast(game_id, event, data))
+    except RuntimeError:
+        pass  # No event loop available — server is probably shutting down
+
+
+# ---------------------------------------------------------------------------
 # FastAPI app
 # ---------------------------------------------------------------------------
 app = FastAPI(title="Choose Your Mystery — Backend", version="1.0.0")
@@ -497,6 +568,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Serve mobile.html and any other static phone-client assets from server/static/
+_static_dir = Path(__file__).parent / "static"
+_static_dir.mkdir(exist_ok=True)
+app.mount("/static", StaticFiles(directory=str(_static_dir)), name="static")
 
 # ---------------------------------------------------------------------------
 # Request / Response models
@@ -627,6 +703,47 @@ def get_job(job_id: str):
     }
 
 
+@app.get("/play", response_class=HTMLResponse)
+async def play_page():
+    """Serve the mobile phone client."""
+    mobile_html = _static_dir / "mobile.html"
+    if mobile_html.exists():
+        return HTMLResponse(mobile_html.read_text())
+    return HTMLResponse("<h2>mobile.html not found — server/static/mobile.html is missing.</h2>", status_code=503)
+
+
+@app.websocket("/ws/{game_id}")
+async def websocket_endpoint(ws: WebSocket, game_id: str, player_id: str = ""):
+    """
+    Persistent WebSocket connection for a game room.
+    Clients connect here to receive real-time push events:
+      - clues_shared      when another player's Share Selection is submitted
+      - block_updated     when the block pool changes
+      - player_joined     when a new player joins
+      - player_phase_done when a player advances phase
+
+    The client can also send messages, currently only used to confirm readiness:
+      { "action": "ping" }  → ignored (keepalive)
+    """
+    game = _get_game(game_id)
+    if game is None:
+        await ws.close(code=4004, reason="game not found")
+        return
+
+    await _ws_manager.connect(game_id, ws)
+    player_name = ""
+    if player_id and player_id in game["players"]:
+        player_name = game["players"][player_id]["name"]
+        await _ws_manager.broadcast(game_id, "player_joined", {"name": player_name})
+
+    try:
+        while True:
+            # Keep the connection alive; ignore any messages from client
+            await ws.receive_text()
+    except WebSocketDisconnect:
+        await _ws_manager.disconnect(game_id, ws)
+
+
 @app.post("/games/create")
 def create_game(req: CreateGameRequest):
     """
@@ -705,6 +822,7 @@ def join_game(game_id: str, req: JoinGameRequest):
             "investigation_findings": [],
             "lead_findings": [],
         }
+    _broadcast_sync(game_id, "player_joined", {"name": req.player_name})
     return {
         "player_id": player_id,
         "game_id": game_id,
@@ -921,6 +1039,19 @@ def share_phase(game_id: str, req: SharePhaseRequest):
         phase_order = ["witness", "investigation", "lead", "done"]
         current_idx = phase_order.index(phase)
         player["phase"] = phase_order[min(current_idx + 1, len(phase_order) - 1)]
+
+    # Push events to all connected WebSocket clients in this room
+    shared_clues = [findings_by_id[sid] for sid in req.selected_ids]
+    _broadcast_sync(game_id, "clues_shared", {
+        "sender_name": player["name"],
+        "phase": phase,
+        "clues": shared_clues,
+    })
+    _broadcast_sync(game_id, "block_updated", game["block_pool"])
+    _broadcast_sync(game_id, "player_phase_done", {
+        "player_name": player["name"],
+        "phase": phase,
+    })
 
     return {"ok": True, "shared_count": len(req.selected_ids), "duplicate_flags": []}
 

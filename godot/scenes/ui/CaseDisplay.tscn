@@ -70,6 +70,15 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Make Accusation"
 
+[node name="AreasContainer" type="VBoxContainer" parent="ScrollContainer/MainVBox"]
+layout_mode = 2
+
+[node name="LeadsContainer" type="VBoxContainer" parent="ScrollContainer/MainVBox"]
+layout_mode = 2
+
+[node name="SharedIntelContainer" type="VBoxContainer" parent="ScrollContainer/MainVBox"]
+layout_mode = 2
+
 [node name="ViabilityRow" type="HBoxContainer" parent="ScrollContainer/MainVBox"]
 layout_mode = 2
 

@@ -1,24 +1,49 @@
 ## ApiClient -- Global singleton.
-## Wraps all HTTP calls to the FastAPI backend.
-## The Godot client never talks to the Claude API directly -- all AI calls
-## go through this singleton to server/main.py.
+## Wraps all HTTP calls to the FastAPI backend, plus the WebSocket connection
+## for real-time push events during multiplayer games.
 ##
-## Callbacks receive (error: String, data).
+## HTTP callbacks receive (error: String, data: Dictionary).
 ## error is "" on success, or an error message on failure.
+##
+## WebSocket:
+##   Call connect_ws(game_id, player_id) once per game session.
+##   Emits signal ws_event(event_name: String, data: Dictionary) on each
+##   push from the server.  Scenes connect to this signal instead of polling.
 ##
 ## SESSION ANNOTATION -- Phase 2:
 ## SERVER_URL is localhost for dev. Change to deployed URL before shipping.
 
 extends Node
 
+signal ws_event(event_name: String, data: Dictionary)
+
 const SERVER_URL_DEFAULT: String = "http://localhost:8000"
 const REQUEST_TIMEOUT: float = 120.0   ## seconds; generation can take 60-90s
 var server_url: String = SERVER_URL_DEFAULT
+
+## Active WebSocket peer (null when not in a game session)
+var _ws: WebSocketPeer = null
+var _ws_game_id: String = ""
 
 func _ready() -> void:
 	var cfg := ConfigFile.new()
 	if cfg.load("user://server_config.cfg") == OK:
 		server_url = cfg.get_value("server", "url", SERVER_URL_DEFAULT)
+
+func _process(_delta: float) -> void:
+	if _ws == null:
+		return
+	_ws.poll()
+	var state := _ws.get_ready_state()
+	if state == WebSocketPeer.STATE_OPEN:
+		while _ws.get_available_packet_count() > 0:
+			var raw := _ws.get_packet().get_string_from_utf8()
+			var json := JSON.new()
+			if json.parse(raw) == OK and json.data is Dictionary:
+				var msg: Dictionary = json.data
+				ws_event.emit(msg.get("event", ""), msg.get("data", {}))
+	elif state == WebSocketPeer.STATE_CLOSED:
+		_ws = null
 
 # ---------------------------------------------------------------------------
 # Public API
@@ -37,6 +62,25 @@ func generate_mystery_async(prompt: String, cinematic_brief: bool, callback: Cal
 ## Poll a running job. callback receives (error, {status, stage, result, error}).
 func poll_job(job_id: String, callback: Callable) -> void:
 	_do_request("/jobs/" + job_id, HTTPClient.METHOD_GET, "", callback)
+
+## --- Phase 3: WebSocket connection ---
+
+func connect_ws(game_id: String, player_id: String) -> void:
+	"""Open a persistent WebSocket to /ws/{game_id}. Call once after joining a game."""
+	if _ws != null:
+		_ws.close()
+	_ws_game_id = game_id
+	_ws = WebSocketPeer.new()
+	var ws_url := server_url.replace("http://", "ws://").replace("https://", "wss://")
+	ws_url += "/ws/" + game_id + "?player_id=" + player_id
+	_ws.connect_to_url(ws_url)
+
+func disconnect_ws() -> void:
+	"""Close the active WebSocket (call on scene cleanup or game exit)."""
+	if _ws != null:
+		_ws.close()
+		_ws = null
+		_ws_game_id = ""
 
 ## --- Phase 3: game session API ---
 

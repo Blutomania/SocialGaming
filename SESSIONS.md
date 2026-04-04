@@ -81,6 +81,66 @@ Each phase has a hard budget. When budget hits 0 → Share Selection screen → 
 
 ---
 
+## Session 13 — April 4, 2026 (continuation)
+**Branch:** `claude/fix-godot-performance-QyXLQ`
+**Starting commit:** `389c154`
+**Status:** In progress — Phase 3c
+
+### What was built so far this session
+
+**Bug fix — `interrogation.gd`:**
+- `_check_phase_complete()` now sets `GameState.invest_phase` to the correct `SHARE_*`
+  enum value before transitioning to `ShareSelection.tscn`. Without this, the share
+  screen had no idea which findings to display.
+
+**`.tscn` wiring:**
+- `Interrogation.tscn` — full rewrite to match all `@onready` paths in `interrogation.gd`:
+  `PhaseLabel`, `BudgetLabel`, `WitnessPanel` (with `SuspectDropdown`, `QuestionInput`,
+  `AskButton`, scroll history), `InvestigationPanel` (with `AreasContainer`),
+  `LeadPanel` (with `LeadsContainer`), `SharedPanel` (with `SharedContainer`),
+  `StatusLabel`, `Spinner`, `AccuseButton`, `BackButton`.
+- `CaseDisplay.tscn` — added `AreasContainer`, `LeadsContainer`, `SharedIntelContainer`
+  nodes under `ScrollContainer/MainVBox`.
+- `case_display.gd` — fixed `@onready` paths from `$MainVBox/...` to
+  `$ScrollContainer/MainVBox/...` (the node is not a direct child of the root).
+
+**FastAPI WebSocket (`server/main.py`):**
+- Added `import asyncio` and `WebSocket, WebSocketDisconnect` to FastAPI imports.
+- Added `fastapi.responses.HTMLResponse` and `fastapi.staticfiles.StaticFiles`.
+- `ConnectionManager` class: async `connect`, `disconnect`, `broadcast` with per-room
+  dict; `_broadcast_sync()` helper bridges sync endpoints to async WS sends.
+- `GET /ws/{game_id}` WebSocket endpoint: accepts connection, broadcasts `player_joined`,
+  listens for pings, cleans up on disconnect.
+- `GET /play` — serves `server/static/mobile.html`.
+- `app.mount("/static", ...)` — StaticFiles middleware for phone client assets.
+- `share_phase` endpoint now calls `_broadcast_sync` for `clues_shared`,
+  `block_updated`, and `player_phase_done` events on successful share.
+- `join_game` endpoint now broadcasts `player_joined` to the room.
+
+**Godot WebSocket upgrade:**
+- `ApiClient.gd` — added `signal ws_event(event_name, data)`, `WebSocketPeer _ws`,
+  `connect_ws(game_id, player_id)`, `disconnect_ws()`. `_process()` polls the peer and
+  emits `ws_event` on each incoming JSON message.
+- `interrogation.gd` — removed poll timer + `_poll_server()`. On `_ready()`, connects
+  `ApiClient.ws_event` to `_on_ws_event()` (handles `block_updated`, `clues_shared`,
+  `player_joined`). Disconnects signal in `_exit_tree()`.
+- `case_display.gd` — same: removed poll timer, connects `ws_event` to `_on_ws_event`
+  which calls `merge_shared_clues` + `_rebuild_shared_intel` on `clues_shared`.
+
+### Still to do this session
+- `server/static/mobile.html` — phone client (in progress)
+- Commit and push
+- End-to-end test: 2 players through all 3 phases + accusation
+
+### If session ends before mobile.html is done
+Resume by: write `server/static/mobile.html`.
+It needs to: join by room code + name → WebSocket connect → three phase UIs
+(witness: dropdown + text input; investigation: area buttons; lead: lead buttons) →
+share selection checkboxes → shared intel feed. All via WebSocket + HTTP fetch calls
+to the existing FastAPI endpoints.
+
+---
+
 ## Session 11 — April 2, 2026
 **Branch:** `claude/start-godot-migration-mNrWD`
 **Starting commit:** `380f0e2`

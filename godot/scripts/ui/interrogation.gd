@@ -16,8 +16,6 @@
 
 extends Control
 
-const POLL_INTERVAL: float = 3.0
-
 # ---------------------------------------------------------------------------
 # Node references (wire in Interrogation.tscn)
 # ---------------------------------------------------------------------------
@@ -78,13 +76,14 @@ func _ready() -> void:
 	_refresh_phase_ui()
 	_rebuild_history()
 
-func _process(delta: float) -> void:
-	if not _is_multiplayer:
-		return
-	_poll_timer -= delta
-	if _poll_timer <= 0.0:
-		_poll_timer = POLL_INTERVAL
-		_poll_server()
+	if _is_multiplayer:
+		# Connect WebSocket (idempotent if already open from a previous scene)
+		ApiClient.connect_ws(GameState.game_id, GameState.player_id)
+		ApiClient.ws_event.connect(_on_ws_event)
+
+func _exit_tree() -> void:
+	if ApiClient.ws_event.is_connected(_on_ws_event):
+		ApiClient.ws_event.disconnect(_on_ws_event)
 
 # ---------------------------------------------------------------------------
 # Phase UI
@@ -122,6 +121,14 @@ func _check_phase_complete() -> void:
 			advance = (GameState.leads_remaining <= 0)
 
 	if advance:
+		# Set invest_phase to SHARE_* so ShareSelection knows which findings to show.
+		match GameState.invest_phase:
+			GameState.InvestPhase.WITNESS:
+				GameState.invest_phase = GameState.InvestPhase.SHARE_WITNESS
+			GameState.InvestPhase.INVESTIGATION:
+				GameState.invest_phase = GameState.InvestPhase.SHARE_INVESTIGATION
+			GameState.InvestPhase.LEAD:
+				GameState.invest_phase = GameState.InvestPhase.SHARE_LEAD
 		get_tree().change_scene_to_file("res://scenes/ui/ShareSelection.tscn")
 
 # ---------------------------------------------------------------------------
@@ -261,25 +268,21 @@ func _on_lead_result(error: String, data: Dictionary, btn: Button) -> void:
 	_check_phase_complete()
 
 # ---------------------------------------------------------------------------
-# Shared intel polling (multiplayer)
+# WebSocket push events (replace HTTP polling)
 # ---------------------------------------------------------------------------
-func _poll_server() -> void:
-	ApiClient.get_block_pool(GameState.game_id, _on_block_pool)
-	ApiClient.get_shared_clues(GameState.game_id, GameState.player_id, _on_shared_clues)
-
-func _on_block_pool(error: String, data: Dictionary) -> void:
-	if error:
-		return
-	GameState.update_block_pool(data)
-	# Refresh area/lead buttons to grey out newly blocked entries
-	_build_area_buttons()
-	_build_lead_buttons()
-
-func _on_shared_clues(error: String, data: Dictionary) -> void:
-	if error:
-		return
-	GameState.merge_shared_clues(data)
-	_rebuild_shared_panel()
+func _on_ws_event(event_name: String, data: Dictionary) -> void:
+	match event_name:
+		"block_updated":
+			GameState.update_block_pool(data)
+			_build_area_buttons()
+			_build_lead_buttons()
+		"clues_shared":
+			GameState.merge_shared_clues({
+				data.get("phase", "witness"): data.get("clues", [])
+			})
+			_rebuild_shared_panel()
+		"player_joined":
+			status_label.text = "%s joined the game." % data.get("name", "A player")
 
 func _rebuild_shared_panel() -> void:
 	for child in shared_container.get_children():

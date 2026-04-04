@@ -11,25 +11,23 @@ extends Control
 # ---------------------------------------------------------------------------
 # Node references
 # ---------------------------------------------------------------------------
-@onready var title_label: Label = $MainVBox/TitleLabel
-@onready var setting_label: RichTextLabel = $MainVBox/SettingLabel
-@onready var crime_label: RichTextLabel = $MainVBox/CrimeLabel
-@onready var cast_container: VBoxContainer = $MainVBox/CastContainer
-@onready var coherence_label: Label = $MainVBox/CoherenceBadge
-@onready var evidence_container: VBoxContainer = $MainVBox/EvidenceContainer
-@onready var gameplay_label: Label = $MainVBox/GameplayLabel
-@onready var interrogate_button: Button = $MainVBox/Buttons/InterrogateButton
-@onready var accuse_button: Button = $MainVBox/Buttons/AccuseButton
-@onready var viability_hbox: HBoxContainer = $MainVBox/ViabilityRow
-@onready var viability_label: Label = $MainVBox/ViabilityRow/ViabilityLabel
-@onready var areas_container: VBoxContainer = $MainVBox/AreasContainer
-@onready var leads_container: VBoxContainer = $MainVBox/LeadsContainer
-@onready var shared_intel_container: VBoxContainer = $MainVBox/SharedIntelContainer
+@onready var title_label: Label = $ScrollContainer/MainVBox/TitleLabel
+@onready var setting_label: RichTextLabel = $ScrollContainer/MainVBox/SettingLabel
+@onready var crime_label: RichTextLabel = $ScrollContainer/MainVBox/CrimeLabel
+@onready var cast_container: VBoxContainer = $ScrollContainer/MainVBox/CastContainer
+@onready var coherence_label: Label = $ScrollContainer/MainVBox/CoherenceBadge
+@onready var evidence_container: VBoxContainer = $ScrollContainer/MainVBox/EvidenceContainer
+@onready var gameplay_label: Label = $ScrollContainer/MainVBox/GameplayLabel
+@onready var interrogate_button: Button = $ScrollContainer/MainVBox/Buttons/InterrogateButton
+@onready var accuse_button: Button = $ScrollContainer/MainVBox/Buttons/AccuseButton
+@onready var viability_hbox: HBoxContainer = $ScrollContainer/MainVBox/ViabilityRow
+@onready var viability_label: Label = $ScrollContainer/MainVBox/ViabilityRow/ViabilityLabel
+@onready var areas_container: VBoxContainer = $ScrollContainer/MainVBox/AreasContainer
+@onready var leads_container: VBoxContainer = $ScrollContainer/MainVBox/LeadsContainer
+@onready var shared_intel_container: VBoxContainer = $ScrollContainer/MainVBox/SharedIntelContainer
 
 var _mystery: MysteryData
 var _current_rating: int = 0
-var _poll_timer: float = 0.0
-const POLL_INTERVAL: float = 3.0
 
 # ---------------------------------------------------------------------------
 # Lifecycle
@@ -39,20 +37,19 @@ func _ready() -> void:
 	_populate()
 	interrogate_button.pressed.connect(_go_interrogate)
 	accuse_button.pressed.connect(_go_accuse)
+	if not GameState.game_id.is_empty():
+		ApiClient.ws_event.connect(_on_ws_event)
 
-func _process(delta: float) -> void:
-	if GameState.game_id.is_empty():
-		return
-	_poll_timer -= delta
-	if _poll_timer <= 0.0:
-		_poll_timer = POLL_INTERVAL
-		ApiClient.get_shared_clues(GameState.game_id, GameState.player_id, _on_shared_clues)
+func _exit_tree() -> void:
+	if ApiClient.ws_event.is_connected(_on_ws_event):
+		ApiClient.ws_event.disconnect(_on_ws_event)
 
-func _on_shared_clues(error: String, data: Dictionary) -> void:
-	if error:
-		return
-	GameState.merge_shared_clues(data)
-	_rebuild_shared_intel()
+func _on_ws_event(event_name: String, data: Dictionary) -> void:
+	if event_name == "clues_shared":
+		GameState.merge_shared_clues({
+			data.get("phase", "witness"): data.get("clues", [])
+		})
+		_rebuild_shared_intel()
 
 func _populate() -> void:
 	title_label.text = _mystery.title
