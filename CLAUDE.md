@@ -12,8 +12,7 @@ Core innovation: the **75% information-sharing mechanic** — when a player shar
 it reaches exactly 75% of other players (randomly), forcing collaboration while preserving
 individual advantage.
 
-Current phase: **Godot migration — Phase 1 (backend server + project scaffold)**.
-Previous phase (retired): Streamlit creator tool hosted on HuggingFace Spaces.
+Current phase: **Phase 3d — Lobby flow, room codes, QR display on host screen**.
 
 ---
 
@@ -61,25 +60,18 @@ Previous phase (retired): Streamlit creator tool hosted on HuggingFace Spaces.
 | `part_registry.py` | 1,469-part corpus; sampling logic |
 | `coherence_validator.py` | P1 causal-chain + witness + evidence checks (free — no API call) |
 | `localization.py` | Era-appropriate name/occupation localization with 3-tier disk cache |
-| `extraction_protocols.py` | P1–P4 taxonomy definitions |
-| `cli.py` | Terminal dev tools (`generate`, `extract`, `check`, `browse`, `solve`) |
 | `docs/WIRING.md` | **Canonical generation architecture** — read before touching generation |
 | `SESSIONS.md` | Session-by-session history and full to-do list |
 | `RESEARCH_FINDINGS.md` | Writer-grounded mystery taxonomy (C1–C6, M1–M8, F1–F12) |
 
-**Retired (do not modify):**
-- `app.py` — Streamlit UI, replaced by Godot client
-- HuggingFace `hf-deploy` branch — stale
+**Deprecated (do not touch — kept for reference only):**
+- `deprecated/` — all pre-Godot Python tooling (app.py, cli.py, corpus pipeline, etc.)
 
 ---
 
 ## Active Branch
 
-**`claude/start-godot-migration-mNrWD`** — all Godot migration work goes here.
-
-Stale / pending (pre-migration):
-- `claude/setup-api-and-mysteries-LRLQK` — previous main development branch
-- `claude/mystery-versioning-system-TPblK` — pending merge (CLI + part registry)
+**`claude/review-and-resume-1k0tP`** — current session branch (based on Phase 3c complete state).
 
 ---
 
@@ -88,8 +80,8 @@ Stale / pending (pre-migration):
 1. **Verify branch:**
    ```bash
    git fetch origin
-   git checkout claude/start-godot-migration-mNrWD
-   git pull origin claude/start-godot-migration-mNrWD
+   git checkout claude/review-and-resume-1k0tP
+   git pull origin claude/review-and-resume-1k0tP
    ```
 2. **Read the most recent block in `SESSIONS.md`** — exact next step, blockers, decisions.
 3. **State your starting point:** branch, latest commit hash, what you'll do.
@@ -101,7 +93,7 @@ Stale / pending (pre-migration):
 
 1. **Update `SESSIONS.md`** with new session block (files changed, decisions, next steps).
 2. **Update `CLAUDE.md → Current To-Do`** to reflect completed and next items.
-3. **Commit and push** on `claude/start-godot-migration-mNrWD`.
+3. **Commit and push** on `claude/review-and-resume-1k0tP`.
 4. **Tell the user to sync locally.**
 5. The remote rejects `git push origin main` (HTTP 403). Use GitHub MCP tools to create a PR.
 
@@ -192,7 +184,7 @@ GodotSteam is the best Steamworks path; Godot Linux export = Steam Deck support 
 
 ---
 
-## Current To-Do (as of April 4, 2026)
+## Current To-Do (as of April 20, 2026)
 
 Full list in `SESSIONS.md`. Top priorities:
 
@@ -201,14 +193,9 @@ Full list in `SESSIONS.md`. Top priorities:
 3. **[IN PROGRESS]** Phase 3 — Multiplayer investigation phases + clue sharing
    - **[DONE]** 3a: Mystery gen updated (investigation_areas + leads in JSON)
    - **[DONE]** 3b: Game session store + 8 server endpoints
-   - **[NEXT]** 3c: WebSocket upgrade + mobile.html phone client + .tscn wiring
-   - **[FUTURE]** 3d: Lobby flow, room codes, QR display on host screen
+   - **[DONE]** 3c: WebSocket upgrade + mobile.html phone client + .tscn wiring
+   - **[NEXT]** 3d: Lobby flow, room codes, QR display on host screen
 4. **[FUTURE]** Phase 4 — Steam integration (GodotSteam plugin)
 
-Retired / superseded:
-- ~~Play-test on HuggingFace~~ — HuggingFace retired
-- ~~Merge mystery-versioning-system-TPblK~~ — subsumed by migration
-- ~~Load saved mystery dropdown in app.py~~ — replaced by Godot browse screen
-
 > **DO NOT re-run the corpus extraction pipeline.** Expand corpus only by adding new quality source texts.
-> **DO NOT modify app.py.** It is retired and will be deleted once Phase 1 is confirmed working.
+> **DO NOT touch `deprecated/`.** It exists for reference only.
