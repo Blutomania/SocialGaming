@@ -5,6 +5,79 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 14 — April 20, 2026
+**Branch:** `claude/review-and-resume-1k0tP`
+**Starting commit:** `403ba24`
+**Status:** Complete — Phase 3d lobby flow built
+
+### What was done
+
+**Housekeeping:**
+- Reset branch to Phase 3c-complete state (`claude/fix-godot-performance-QyXLQ`)
+- Moved all pre-Godot Python tooling to `deprecated/` (app.py, cli.py, corpus pipeline, etc.)
+- Updated CLAUDE.md: correct active branch, Phase 3c marked done, Phase 3d as next
+
+**Phase 3d — Lobby flow:**
+
+**`server/main.py`:**
+- Added `StartGameRequest` Pydantic model
+- `GET /games/{game_id}/lobby` — returns player list, mystery title, difficulty
+- `POST /games/{game_id}/start` — host-only; broadcasts `game_started` WebSocket event
+
+**`godot/scripts/autoloads/GameState.gd`:**
+- Added `is_multiplayer: bool` flag (set by MainMenu, cleared on reset)
+
+**`godot/scripts/autoloads/ApiClient.gd`:**
+- Added `get_lobby()` and `start_game()` methods
+
+**`godot/scenes/ui/MainMenu.tscn` + `main_menu.gd`:**
+- Renamed "New Game" → "New Game (Solo)"
+- Added "Multiplayer" button; sets `GameState.is_multiplayer = true` before routing to MysteryGeneration
+
+**`godot/scenes/ui/MysteryGeneration.tscn` + `mystery_generation.gd`:**
+- Added `MultiplayerSection` (hidden in solo): host name input + difficulty OptionButton
+- After generation: if multiplayer → `create_game()` → `Lobby.tscn`; if solo → `CaseDisplay.tscn` (unchanged)
+
+**`godot/scenes/ui/Lobby.tscn` + `godot/scripts/ui/lobby.gd`** — NEW:
+- Displays room code and join URL (`SERVER_URL/play`)
+- Live player list fed by `player_joined` WebSocket events
+- "Start Game" button → `POST /start` → `game_started` broadcast → transitions to `CaseDisplay.tscn`
+- "Cancel" returns to MainMenu and resets state
+
+**`server/static/mobile.html`:**
+- Added lobby waiting screen (shown after join, before host starts)
+- localStorage persists player name across visits (zero friction on return)
+- `game_started` WebSocket event triggers transition from lobby → investigation
+- `player_joined` event adds player to lobby list
+
+### Design decisions
+
+**Player identity (decided):** `localStorage` token approach deferred to Phase 3e (avatar system).
+For now, name is persisted in `localStorage` for convenience; no cross-device identity.
+
+**Avatar system (designed, not built):**
+- Setting-matched AI portraits (3 per player, era-styled, generated during lobby wait)
+- Era-keyed pool in `mystery_database/avatar_pool/<era_key>/` — same key as localization cache
+- Pre-generated pool + background replenishment; players' seen IDs tracked in localStorage
+- Image API: FLUX via fal.ai recommended (~$0.003/image)
+- Scheduled for Phase 3e, after lobby is confirmed working
+
+### What is next
+
+1. **[NEXT — Phase 3e]** Avatar pool system: seed pools per era, serve 3 portraits at lobby join, player picks one
+2. **[NEXT — Phase 3e]** Player history tracking: localStorage token as persistent ID, `mystery_database/player_history/` JSON files, deduplication at generation time
+3. **[FUTURE — Phase 3d test]** End-to-end playtest: host Godot + 1+ phones through full lobby → investigation → accusation
+4. **[FUTURE]** Phase 4 — Steam integration (GodotSteam plugin)
+
+### Local sync steps (for owner)
+```bash
+git fetch origin
+git checkout claude/review-and-resume-1k0tP
+git pull origin claude/review-and-resume-1k0tP
+```
+
+---
+
 ## Session 12 — April 4, 2026
 **Branch:** `claude/fix-godot-performance-QyXLQ`
 **Starting commit:** `4235c7c`

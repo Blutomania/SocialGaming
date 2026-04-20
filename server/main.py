@@ -615,6 +615,9 @@ class SharePhaseRequest(BaseModel):
     phase: str          # "witness" | "investigation" | "lead"
     selected_ids: list  # list of clue/finding IDs the player chose to share
 
+class StartGameRequest(BaseModel):
+    player_id: str
+
 # ---------------------------------------------------------------------------
 # Endpoints
 # ---------------------------------------------------------------------------
@@ -859,6 +862,38 @@ def mystery_brief(game_id: str):
     safe["witness_budget"] = _DIFFICULTY_CONFIG[game["difficulty"]]["witness_budget"]
     safe["investigation_budget"] = _DIFFICULTY_CONFIG[game["difficulty"]]["investigation_budget"]
     return safe
+
+
+@app.get("/games/{game_id}/lobby")
+def get_lobby(game_id: str):
+    """Current lobby state: player list + mystery title + difficulty."""
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    mystery = game["mystery"]
+    return {
+        "game_id": game_id,
+        "title": mystery.get("title", "Mystery"),
+        "setting": mystery.get("setting", {}),
+        "difficulty": game["difficulty"],
+        "players": [
+            {"id": pid, "name": p["name"], "is_host": p["is_host"]}
+            for pid, p in game["players"].items()
+        ],
+    }
+
+
+@app.post("/games/{game_id}/start")
+def start_game(game_id: str, req: StartGameRequest):
+    """Host starts the game — broadcasts game_started to all connected clients."""
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    player = game["players"].get(req.player_id)
+    if not player or not player.get("is_host"):
+        raise HTTPException(status_code=403, detail="only the host can start the game")
+    _broadcast_sync(game_id, "game_started", {"game_id": game_id})
+    return {"ok": True}
 
 
 @app.get("/games/{game_id}/block-pool")

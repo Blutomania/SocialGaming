@@ -42,6 +42,26 @@ placeholder_text = "e.g. \"A murder on a Mars colony\" or \"An art theft in Rena
 layout_mode = 2
 text = "Generate cinematic brief (adds one extra AI call)"
 
+[node name="MultiplayerSection" type="VBoxContainer" parent="VBox"]
+layout_mode = 2
+visible = false
+
+[node name="HostNameLabel" type="Label" parent="VBox/MultiplayerSection"]
+layout_mode = 2
+text = "Your name (host):"
+
+[node name="HostNameInput" type="LineEdit" parent="VBox/MultiplayerSection"]
+layout_mode = 2
+placeholder_text = "Enter your name"
+max_length = 24
+
+[node name="DifficultyLabel" type="Label" parent="VBox/MultiplayerSection"]
+layout_mode = 2
+text = "Difficulty:"
+
+[node name="DifficultyOption" type="OptionButton" parent="VBox/MultiplayerSection"]
+layout_mode = 2
+
 [node name="Spinner" type="ProgressBar" parent="VBox"]
 layout_mode = 2
 visible = false

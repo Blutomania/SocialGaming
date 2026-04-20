@@ -12,6 +12,7 @@ extends Control
 # Node references (set these in the .tscn file)
 # ---------------------------------------------------------------------------
 @onready var new_game_button: Button = $VBox/NewGameButton
+@onready var multiplayer_button: Button = $VBox/MultiplayerButton
 @onready var browse_button: Button = $VBox/BrowseSavedButton
 @onready var quit_button: Button = $VBox/QuitButton
 @onready var status_label: Label = $StatusLabel
@@ -26,6 +27,7 @@ var _saved_mysteries: Array = []
 func _ready() -> void:
 	GameState.reset()
 	new_game_button.pressed.connect(_on_new_game)
+	multiplayer_button.pressed.connect(_on_multiplayer)
 	browse_button.pressed.connect(_on_browse)
 	quit_button.pressed.connect(get_tree().quit)
 
@@ -45,6 +47,11 @@ func _on_health_check(error: String, _data: Dictionary) -> void:
 		status_label.modulate = Color.GREEN
 
 func _on_new_game() -> void:
+	GameState.is_multiplayer = false
+	get_tree().change_scene_to_file("res://scenes/ui/MysteryGeneration.tscn")
+
+func _on_multiplayer() -> void:
+	GameState.is_multiplayer = true
 	get_tree().change_scene_to_file("res://scenes/ui/MysteryGeneration.tscn")
 
 func _on_browse() -> void:

@@ -44,6 +44,7 @@ var accusation_result: Dictionary = {}      ## {correct: bool, culprit: str, ver
 var game_id: String = ""
 var player_id: String = ""
 var player_list: Array = []                 ## [{id, name, is_host}, ...]
+var is_multiplayer: bool = false            ## set true when host picks "Multiplayer" in MainMenu
 
 ## Current investigation sub-phase
 var invest_phase: InvestPhase = InvestPhase.WITNESS
@@ -165,4 +166,5 @@ func reset() -> void:
 	lead_findings = []
 	shared_clues = {"witness": [], "investigation": [], "lead": []}
 	block_pool = {"witness": [], "investigation": [], "lead": []}
+	is_multiplayer = false
 	# Note: player_name is intentionally NOT reset between games

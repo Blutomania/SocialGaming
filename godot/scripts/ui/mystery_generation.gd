@@ -28,7 +28,10 @@ const POLL_INTERVAL: float = 2.0   ## seconds between job status polls
 @onready var generate_button: Button = $VBox/GenerateButton
 @onready var back_button: Button = $VBox/BackButton
 @onready var status_label: Label = $VBox/StatusLabel
-@onready var spinner: ProgressBar = $VBox/Spinner          ## Indeterminate ProgressBar
+@onready var spinner: ProgressBar = $VBox/Spinner
+@onready var multiplayer_section: VBoxContainer = $VBox/MultiplayerSection
+@onready var host_name_input: LineEdit = $VBox/MultiplayerSection/HostNameInput
+@onready var difficulty_option: OptionButton = $VBox/MultiplayerSection/DifficultyOption
 
 var _job_id: String = ""
 var _poll_timer: float = 0.0
@@ -41,6 +44,14 @@ func _ready() -> void:
 	generate_button.pressed.connect(_on_generate)
 	back_button.pressed.connect(_on_back)
 	prompt_input.text_submitted.connect(func(_t): _on_generate())
+	multiplayer_section.visible = GameState.is_multiplayer
+	if GameState.is_multiplayer:
+		difficulty_option.add_item("Easy")
+		difficulty_option.add_item("Medium")
+		difficulty_option.add_item("Hard")
+		difficulty_option.selected = 1   ## Medium default
+		if GameState.player_name != "Detective":
+			host_name_input.text = GameState.player_name
 	_set_loading(false)
 
 func _process(delta: float) -> void:
@@ -101,14 +112,42 @@ func _on_poll_result(error: String, data: Dictionary) -> void:
 				return
 			_set_loading(false)
 			GameState.current_mystery = result
-			GameState.game_phase = GameState.Phase.CASE_DISPLAY
-			get_tree().change_scene_to_file("res://scenes/ui/CaseDisplay.tscn")
+			if GameState.is_multiplayer:
+				_create_multiplayer_game(result.get("_slug", ""))
+			else:
+				GameState.game_phase = GameState.Phase.CASE_DISPLAY
+				get_tree().change_scene_to_file("res://scenes/ui/CaseDisplay.tscn")
 		"error":
 			_polling = false
 			_set_loading(false)
 			status_label.text = "Generation failed: " + data.get("error", "unknown error")
 		_:
 			pass   ## queued / running — keep polling
+
+func _create_multiplayer_game(slug: String) -> void:
+	if slug.is_empty():
+		status_label.text = "Error: mystery has no slug — cannot create game."
+		return
+	var host_name := host_name_input.text.strip_edges()
+	if host_name.is_empty():
+		host_name = "Host"
+	GameState.player_name = host_name
+	var difficulty := difficulty_option.get_item_text(difficulty_option.selected).to_upper()
+	status_label.text = "Creating game session…"
+	_set_loading(true)
+	ApiClient.create_game(slug, host_name, difficulty, _on_game_created)
+
+func _on_game_created(error: String, data: Dictionary) -> void:
+	_set_loading(false)
+	if error:
+		status_label.text = "Error creating game: " + error
+		return
+	GameState.game_id = data.get("game_id", "")
+	GameState.player_id = data.get("player_id", "")
+	GameState.witness_budget = data.get("witness_budget", 0)
+	GameState.investigation_budget = data.get("investigation_budget", 0)
+	GameState.share_min = data.get("share_min", 0.6)
+	get_tree().change_scene_to_file("res://scenes/ui/Lobby.tscn")
 
 func _on_back() -> void:
 	_polling = false

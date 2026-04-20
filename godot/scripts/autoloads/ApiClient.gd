@@ -92,6 +92,13 @@ func join_game(game_id: String, player_name: String, callback: Callable) -> void
 	var body := JSON.stringify({"player_name": player_name})
 	_post("/games/" + game_id + "/join", body, callback)
 
+func get_lobby(game_id: String, callback: Callable) -> void:
+	_do_request("/games/" + game_id + "/lobby", HTTPClient.METHOD_GET, "", callback)
+
+func start_game(game_id: String, player_id: String, callback: Callable) -> void:
+	var body := JSON.stringify({"player_id": player_id})
+	_post("/games/" + game_id + "/start", body, callback)
+
 func get_block_pool(game_id: String, callback: Callable) -> void:
 	_do_request("/games/" + game_id + "/block-pool", HTTPClient.METHOD_GET, "", callback)
 

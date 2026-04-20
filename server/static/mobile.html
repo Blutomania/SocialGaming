@@ -131,10 +131,25 @@
     <h1>Choose Your Mystery</h1>
     <p>Enter the room code shown on the host screen and your detective name.</p>
     <input id="inp-room" type="text" placeholder="Room code (e.g. A7FX2)"
-           maxlength="8" style="text-transform:uppercase; letter-spacing:2px">
-    <input id="inp-name" type="text" placeholder="Your name" maxlength="24">
+           maxlength="8" style="text-transform:uppercase; letter-spacing:2px"
+           autocomplete="off">
+    <input id="inp-name" type="text" placeholder="Your name" maxlength="24"
+           autocomplete="username">
     <button class="btn-primary" id="btn-join">Join Game</button>
     <div class="status" id="join-status"></div>
+  </div>
+</div>
+
+<!-- ===================== LOBBY SCREEN ===================== -->
+<div id="sec-lobby" class="section">
+  <div class="card" style="text-align:center;">
+    <h1>Waiting for Host</h1>
+    <p id="lobby-title" style="color:#c8a96e; font-size:1.1em; margin:8px 0;"></p>
+    <p style="color:#888; font-size:0.88em;">The host will start the game when everyone is ready.</p>
+  </div>
+  <div class="card">
+    <h2>Players in Lobby</h2>
+    <div id="lobby-player-list"></div>
   </div>
 </div>
 
@@ -338,7 +353,13 @@ function connectWS() {
 function handleWsEvent(event, data) {
   switch (event) {
     case "player_joined":
-      if (data.name !== S.playerName) toast(data.name + " joined the game.");
+      if (data.name !== S.playerName) {
+        addLobbyPlayer(data.name);
+        toast(data.name + " joined the game.");
+      }
+      break;
+    case "game_started":
+      enterGame();
       break;
     case "clues_shared":
       if (data.sender_name !== S.playerName) {
@@ -359,12 +380,22 @@ function handleWsEvent(event, data) {
 }
 
 // ============================================================
+// localStorage — persist player name across visits
+// ============================================================
+(function restoreName() {
+  const saved = localStorage.getItem("cym_player_name");
+  if (saved) $("inp-name").value = saved;
+})();
+
+// ============================================================
 // JOIN
 // ============================================================
 $("btn-join").addEventListener("click", async () => {
   const roomCode = $("inp-room").value.trim().toUpperCase();
   const name = $("inp-name").value.trim();
   if (!roomCode || !name) { $("join-status").textContent = "Enter room code and name."; return; }
+
+  localStorage.setItem("cym_player_name", name);
 
   $("btn-join").disabled = true;
   $("join-status").textContent = "Joining…";
@@ -375,23 +406,48 @@ $("btn-join").addEventListener("click", async () => {
     S.playerName = name;
     S.shareMin = data.share_min ?? 0.6;
 
-    // Stash budgets on mystery placeholder
     S.mystery = {
       witness_budget: data.witness_budget,
       investigation_budget: data.investigation_budget,
       leads_used: 0,
     };
 
-    $("lbl-name").textContent = name;
-    await loadMysteryBrief(roomCode);
+    // Show lobby while waiting for host to start
+    const lobby = await api("/games/" + roomCode + "/lobby");
+    $("lobby-title").textContent = lobby.title || "";
+    renderLobbyPlayers(lobby.players || []);
     connectWS();
-    show("sec-game");
-    showPhase("witness");
+    show("sec-lobby");
   } catch(e) {
     $("join-status").textContent = "Error: " + e.message;
     $("btn-join").disabled = false;
   }
 });
+
+function renderLobbyPlayers(players) {
+  const el = $("lobby-player-list");
+  el.innerHTML = "";
+  players.forEach(p => {
+    const div = document.createElement("div");
+    div.className = "feed-item";
+    div.textContent = p.name + (p.is_host ? " (host)" : "");
+    el.appendChild(div);
+  });
+}
+
+function addLobbyPlayer(name) {
+  const div = document.createElement("div");
+  div.className = "feed-item";
+  div.textContent = name;
+  $("lobby-player-list").appendChild(div);
+}
+
+async function enterGame() {
+  $("lbl-name").textContent = S.playerName;
+  await loadMysteryBrief(S.gameId);
+  show("sec-game");
+  showPhase("witness");
+}
 
 async function loadMysteryBrief(gameId) {
   // Fetch the block pool which also confirms the game exists; mystery brief
