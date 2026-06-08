@@ -30,3 +30,5 @@ Thumbs.db
 .idea/
 .vscode/
 *.swp
+mind-your-friends/.next
+mind-your-friends/node_modules

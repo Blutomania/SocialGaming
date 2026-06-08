@@ -57,6 +57,8 @@ const PERSONALITY_PROMPTS = {
  * @param {string} params.roundRuleInstruction - prompt instruction for the rule
  * @param {string} params.hostPersonality
  * @param {string[]} params.previousQuestions - avoid repeating
+ * @param {string} params.activePlayerName - name of player whose turn it is
+ * @param {string[]} params.playerNames - all player names in the game
  * @returns {Promise<{question: string, hint: string, correctAnswer: string, hostQuip: string}>}
  */
 export async function generateQuestion({
@@ -66,6 +68,8 @@ export async function generateQuestion({
   roundRuleInstruction,
   hostPersonality,
   previousQuestions = [],
+  activePlayerName = '',
+  playerNames = [],
 }) {
   const client = getClient();
   const personalityPrompt =
@@ -76,9 +80,18 @@ export async function generateQuestion({
       ? `\n\nAvoid questions similar to these already asked:\n${previousQuestions.slice(-5).join('\n')}`
       : '';
 
+  const playerContext = activePlayerName
+    ? `\nThe active player is ${activePlayerName}.` +
+      (playerNames.length > 1
+        ? ` Other players watching: ${playerNames.filter((n) => n !== activePlayerName).join(', ')}.`
+        : '')
+    : '';
+
   const systemPrompt =
     `${personalityPrompt}\n\n` +
-    `You are generating content for "Mind Your Friends", a social trivia party game.\n` +
+    `You are generating content for "Mind Your Friends", a social trivia party game.` +
+    `${playerContext} You may address players by name in your hostQuip to make it personal and fun — ` +
+    `taunts, encouragement, or callbacks to the group dynamic are all fair game.\n` +
     `Respond ONLY with valid JSON — no markdown, no extra text.`;
 
   const userPrompt =
@@ -90,7 +103,7 @@ export async function generateQuestion({
     `  "question": "the trivia question text",\n` +
     `  "hint": "a helpful but not too obvious hint (1 sentence)",\n` +
     `  "correctAnswer": "the correct answer (concise)",\n` +
-    `  "hostQuip": "a short in-character line introducing this question (max 15 words)"\n` +
+    `  "hostQuip": "a short in-character line addressing ${activePlayerName || 'the player'} by name (max 20 words)"\n` +
     `}${avoidList}`;
 
   const message = await client.messages.create({

@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --game-dark: #0d0d1a;
+  --game-card: #1a1a2e;
+  --game-accent: #7c3aed;
+}
+
+body {
+  background-color: var(--game-dark);
+  color: white;
+}
+
+/* Fickle Flicker round rule effect */
+.flicker-text {
+  animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.05; }
+}
+
+/* Blurry Flurry round rule effect */
+.blurred-text {
+  filter: blur(6px);
+  transition: filter 0.3s ease;
+  cursor: pointer;
+}
+.blurred-text.revealed {
+  filter: blur(0);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--game-dark); }
+::-webkit-scrollbar-thumb { background: var(--game-accent); border-radius: 3px; }
