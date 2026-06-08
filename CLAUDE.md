@@ -22,17 +22,7 @@ Two AI-powered social party games in one monorepo:
 - Claude API (`claude-sonnet-4-6`)
 - JSON file store: `mystery_database/generated/`, `mystery_database/extractions/`
 
-**Auth (both projects)**
-```js
-// JS
-const apiKey = process.env.ANTHROPIC_API_KEY ||
-  fs.readFileSync('/home/claude/.claude/remote/.session_ingress_token', 'utf8').trim();
-```
-```python
-# Python
-key = os.environ.get("ANTHROPIC_API_KEY") or
-  open("/home/claude/.claude/remote/.session_ingress_token").read().strip()
-```
+**Auth (both projects)** — Use env var `ANTHROPIC_API_KEY` or the session token file; see `lib/claudeClient.js` for the pattern.
 
 ---
 
