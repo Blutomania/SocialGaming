@@ -28,7 +28,7 @@ You describe a setting — a 1920s jazz club, a Scottish castle, a corporate ret
 
 Built on a 1,469-part corpus of classic mystery literature. Every mystery is unique.
 
-**Core mechanic (multiplayer, coming soon):** each player must share 75% of what they learn — forcing collaboration while preserving individual advantage.
+**Core mechanic:** Players join via a shareable code. Each player must share 75% of what they learn — forcing collaboration while preserving individual advantage.
 
 ---
 

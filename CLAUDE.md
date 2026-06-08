@@ -5,7 +5,7 @@ Two AI-powered social party games in one monorepo:
 
 1. **Mind Your Friends** (`mind-your-friends/`) — Real-time multiplayer trivia with sabotage cards, rotating round rules, and a personalized AI host. Players join via 4-letter code, wager points, play cards against each other, and answer AI-generated questions. Built on Next.js + Socket.io.
 
-2. **Choose Your Mystery** (root) — Single-player mystery creator/verifier. AI generates coherent murder mystery scenarios from a 1,469-part corpus. Current phase: creator-side output verification. Next phase: multiplayer 75%-information-sharing mechanic.
+2. **Choose Your Mystery** (root) — Multiplayer social deduction mystery game. AI generates coherent murder mystery scenarios from a 1,469-part corpus. Players join via shareable code; the 75%-information-sharing mechanic forces collaboration while preserving individual advantage.
 
 ---
 

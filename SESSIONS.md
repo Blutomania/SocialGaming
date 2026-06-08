@@ -61,7 +61,7 @@ Check `CLAUDE.md` for project conventions and current priorities.
   - This is the Jackbox / Skribbl.io model — lowest friction, works in any group-chat context.
   - First-come-first-served on joining (no invite list to manage).
   - If a gated invite list is needed later it can be added, but start without it.
-- **Do not implement yet** — design is captured here for the next session that picks up multiplayer work.
+- **Multiplayer is the target state** — the shareable-code invite mechanic is the agreed design. Implement when owner is ready to build it.
 
 ### Local sync steps (for owner)
 ```bash
