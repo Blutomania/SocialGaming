@@ -23,7 +23,7 @@ app/game/[code]/   # Game room page — Socket.io client, routes by phase
 ```
 
 ## Conventions
-- **Branch**: always use a `claude/` prefixed branch — never commit directly to `main`
+- **Branch**: develop on `dev/mind-your-friends` — never commit directly to `main`
 - ESM throughout (`"type": "module"`); Socket.io server owns all game logic, never the client
 - Model: `claude-sonnet-4-6`
 - No comments unless the WHY is non-obvious

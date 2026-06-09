@@ -22,7 +22,7 @@ docs/WIRING.md      # Canonical generation architecture — read before touching
 ```
 
 ## Conventions
-- **Branch**: always use a `claude/` prefixed branch — never commit directly to `main`
+- **Branch**: develop on `dev/choose-your-mystery` — never commit directly to `main`
 - Mystery parts use `SOURCE(INDEX)` notation (`C(4)`, `F(2)`)
 - All generated mysteries include `_provenance` and `_coherence` fields
 - Model: `claude-sonnet-4-6`
