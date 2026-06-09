@@ -6,11 +6,10 @@ personalized AI host. Players join via 4-letter code, wager points, play cards a
 other, and answer AI-generated questions. The social loop — not the trivia — is the product.
 
 ## Current To-Do
-1. **Review Round variation types** — audit `lib/roundRules.js`; suggest, edit, delete, or
-   comment on existing rules so we end up with at least 8 well-defined, playable variations.
-2. **Review card mechanic** — audit `lib/cards.js` and its integration in
-   `gameState.js → playCard()`; confirm each card's effect is correctly wired, balanced,
-   and clearly defined.
+1. ~~**Review Round variation types**~~ — 8 variations confirmed. See `GAME_DESIGN.md`.
+2. ~~**Review card mechanic**~~ — Two-card rule and hand progression agreed. See `GAME_DESIGN.md`.
+3. **Resolve open questions** in `GAME_DESIGN.md` (questions per round, card usage cap, anchor card, cards 8-10, round rule assignment).
+4. **Build the codebase** — `server.js`, `lib/gameState.js`, `lib/claudeClient.js`, `lib/cards.js`, `lib/roundRules.js`, components, Next.js skeleton.
 
 ## Tech Stack
 - Next.js 14 (App Router), React, Tailwind CSS
