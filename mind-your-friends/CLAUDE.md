@@ -39,6 +39,24 @@ app/game/[code]/    # Game room page — Socket.io client, routes by phase
 - No comments unless the WHY is non-obvious
 
 ## Game Design Context
+**Input modes — text and voice:**
+The MVP is text-driven. The intended final product is voice-driven (browser mic or phone).
+Game logic and state machine are identical in both modes — input mode only affects the
+answer surface. `inputMode` (`"text"` | `"voice"`) lives on the session state and is passed
+into `transformAnswer()` and `evaluateAnswer()`.
+
+Round rules that constrain the answer format must define both variants:
+```js
+BACK_IT_UP: {
+  transform: {
+    text: (answer) => answer.split('').reverse().join(''),   // "htooB sekliW nhoJ"
+    voice: (answer) => answer.split(' ').reverse().join(' ') // "Booth Wilkes John"
+  }
+}
+```
+Rules with no answer constraint (Lightning Round, Double Down, etc.) are input-agnostic and
+need no variants. Never bake in text-only assumptions — voice is the destination.
+
 **Round loop** (server enforces phase order):
 1. Active player picks category
 2. Next player sets wager (50–500 pts)
@@ -68,7 +86,8 @@ npm run dev   # starts on :3000
 
 **Add a round rule** — edit `lib/roundRules.js`: add entry with
 `{id, name, emoji, description, promptInstruction, timerSeconds}`. If the answer needs
-transformation (e.g. BACK_IT_UP reverses the string), add a case to `transformAnswer()`.
+transformation, add a case to `transformAnswer()` with both `text` and `voice` variants
+(see Input modes above). Input-agnostic rules need no transform case.
 
 **Add a card** — edit `lib/cards.js`: add definition. Apply the effect in
 `gameState.js → playCard()`. If it's a sabotage card, log a moment in
