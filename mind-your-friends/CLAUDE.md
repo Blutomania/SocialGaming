@@ -12,9 +12,10 @@ other, and answer AI-generated questions. The social loop — not the trivia —
 3. ~~**Resolve structural open questions**~~ — 4 rounds × 6 questions (24 total), 20s/question,
    common cards = Insurance + Skip, round rules assigned randomly, Boxed In = 1-2 word answers
    (baseline questions are >3 words). See `GAME_DESIGN.md`.
-4. **Resolve remaining open questions** in `GAME_DESIGN.md` (Audience Poll in/out, category
-   selection UX, tie-breaking/starting score).
-5. **Build the codebase** — `server.js`, `lib/gameState.js`, `lib/claudeClient.js`, `lib/cards.js`, `lib/roundRules.js`, components, Next.js skeleton.
+4. ~~**Resolve remaining open questions**~~ — Audience Poll out for v1; categories via
+   registration pool (5/player, no DB) + random-6 pick each turn; scoring starts at 0,
+   ties are shared wins. See `GAME_DESIGN.md`.
+5. **[START HERE] Build the codebase** — `server.js`, `lib/gameState.js`, `lib/claudeClient.js`, `lib/cards.js`, `lib/roundRules.js`, components, Next.js skeleton.
 
 ## Tech Stack
 - Next.js 14 (App Router), React, Tailwind CSS

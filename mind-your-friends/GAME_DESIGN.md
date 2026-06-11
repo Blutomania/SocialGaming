@@ -134,10 +134,31 @@ Full rule list — 8 confirmed, 1 backburnered:
 | 6 | Hot Take | Opinion question; confidence beats correctness | Yes |
 | 7 | Double Down | Wager auto-doubled, no backing out | Yes |
 | 8 | Steal | Wrong answer opens a steal window for other players | Yes |
-| 9 | Audience Poll | Others predict active player's answer *(backburnered — complex)* | Yes |
+| 9 | Audience Poll | Others predict active player's answer *(out of v1 — backburnered)* | Yes |
 
 ### How round rules are assigned
 **Random**, assigned each turn by the server.
+
+---
+
+## Categories
+
+### Registration
+At lobby join (no database — in-memory, per-game-session only), each player
+submits **5 categories** they like (free-text tags, e.g. "Pop Music," "Marvel
+Movies," "90s Sitcoms"). All players' submissions go into one shared pool for
+that game.
+
+### Category Pick
+When it's a player's turn to pick a category, the server shows them **6 random
+categories drawn from the shared pool** (their own or others' — no special
+weighting). They pick one; it's passed to `generateQuestion()`.
+
+### Parked for later
+**AI-host-curated categories** (host persona influencing/adding category
+options) — interesting, but depends on a host-persona system that doesn't
+exist yet. Not part of v1; revisit once the host's voice/personality is
+defined.
 
 ---
 
@@ -170,11 +191,11 @@ Never bake in text-only assumptions — voice is the destination.
 
 ## Open Questions
 
-All previously-open structural questions (rounds/questions, timing, common
-cards, round rule assignment, Boxed In) are resolved as of June 2026. Remaining:
+All structural design questions are resolved as of June 2026:
+- Audience Poll: out for v1 (backburnered)
+- Categories: registration pool (5 per player, no DB) + random-6 pick each turn;
+  AI-host-curated categories parked for later
+- Scoring: start at 0 (can go negative), ties are shared wins (no tiebreaker)
 
-| # | Question | Notes |
-|---|---|---|
-| 1 | Audience Poll round rule — in or out for v1? | Backburnered as complex; revisit once core loop is built |
-| 2 | Category selection — free-text or fixed list? | Affects `generateQuestion()` prompt and category-pick UI |
-| 3 | Tie-breaking / starting score baseline? | Decide before building scoreboard logic |
+No open design questions remain — ready to scaffold the codebase
+(`CLAUDE.md` to-do item 5).
