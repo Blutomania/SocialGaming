@@ -5,6 +5,32 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session — June 11, 2026 at 18:40
+**Branch:** `claude/confident-franklin-250vxg`
+**Latest commit:** `b3627aa`
+
+### Files changed this session
+- `ind-your-friends/GAME_DESIGN.md` — Modified
+
+### Commits this session
+```
+b3627aa Merge Mind Your Friends design docs into branch
+961f809 Add GAME_DESIGN.md and update To-Do for MYF
+06fe500 Document text/voice input mode architecture in MYF CLAUDE.md
+d598d4c Restructure mind-your-friends/CLAUDE.md
+393dd39 Update CLAUDE.md files with named dev branches
+5e686de Add mind-your-friends subproject and TODO items
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
 ## Session 9 — March 12, 2026
 **Branch:** `claude/setup-api-and-mysteries-LRLQK`
 **Latest commit:** `d66657d`
