@@ -15,7 +15,27 @@ other, and answer AI-generated questions. The social loop — not the trivia —
 4. ~~**Resolve remaining open questions**~~ — Audience Poll out for v1; categories via
    registration pool (5/player, no DB) + random-6 pick each turn; scoring starts at 0,
    ties are shared wins. See `GAME_DESIGN.md`.
-5. **[START HERE] Build the codebase** — `server.js`, `lib/gameState.js`, `lib/claudeClient.js`, `lib/cards.js`, `lib/roundRules.js`, components, Next.js skeleton.
+5. ~~**Build the first scaffold**~~ — `server.js`, `lib/gameState.js`, `lib/claudeClient.js`,
+   `lib/cards.js`, `lib/roundRules.js`, `lib/constants.js`, Next.js app shell, and components
+   (Lobby, CategoryPicker, CardHand, GameBoard, ScoreBoard) are in place. Syntax-checked but
+   **not yet run** (`npm install` not done in this session).
+6. **[START HERE] First run + playtest** — `npm install`, add `ANTHROPIC_API_KEY` to
+   `.env.local`, `npm run dev`, play through a full game with 2+ browser tabs. Expect rough
+   edges — see TODOs below.
+7. **Known gaps / TODOs from the scaffold**:
+   - `broadcast()` sends the full game state to everyone — opponents' hands and the
+     correct answer are visible before reveal. Needs per-player views.
+   - **Redirect** targets a random other player (placeholder) — no design decision yet
+     on how the target should be chosen.
+   - **Whoa Nellie** is currently flavor-only (asks Claude for "a different question") —
+     the actual "re-roll" mechanic isn't fully specified.
+   - **Spotlight** ("no prep time") is approximated as a 5s timer — UI doesn't yet skip
+     a distinct "prep" step.
+   - **Steal** round rule has no steal-window implementation yet.
+   - Voice input mode (`inputMode: "voice"`) is wired into `transformAnswer()`/
+     `evaluateAnswer()` signatures but the UI is text-only.
+   - Game code collisions aren't checked (`generateGameCode()` doesn't verify uniqueness
+     against existing games).
 
 ## Tech Stack
 - Next.js 14 (App Router), React, Tailwind CSS
@@ -31,9 +51,10 @@ see `lib/claudeClient.js` for the pattern.
 server.js           # Socket.io event hub + question generation orchestrator
 lib/gameState.js    # In-memory state machine (8 phases: LOBBY → CATEGORY → WAGER → CARD → QUESTION → ANSWER → RESULT → GAME_OVER)
 lib/claudeClient.js # generateQuestion(), evaluateAnswer()
-lib/cards.js        # Card definitions + effect logic
+lib/cards.js        # Card definitions + dealHand()
 lib/roundRules.js   # Rule definitions + answer transforms
-components/         # React UI per phase
+lib/constants.js    # Shared constants (no Node-only deps — safe for client components)
+components/         # React UI per phase (Lobby, CategoryPicker, CardHand, GameBoard, ScoreBoard)
 app/game/[code]/    # Game room page — Socket.io client, routes by phase
 ```
 
@@ -107,9 +128,9 @@ npm run dev   # starts on :3000
 transformation, add a case to `transformAnswer()` with both `text` and `voice` variants
 (see Input modes above). Input-agnostic rules need no transform case.
 
-**Add a card** — edit `lib/cards.js`: add definition. Apply the effect in
-`gameState.js → playCard()`. If it's a sabotage card, log a moment in
-`server.js → turn:playCard`.
+**Add a card** — edit `lib/cards.js`: add definition (and to `COMMON_CARD_IDS` or
+`PICKABLE_CARD_IDS`). Apply the effect in `gameState.js → resolveCardSlot()`'s switch
+statement; log a highlight via `logHighlight()` if it's a notable sabotage moment.
 
 ## Session Start Protocol
 1. `git checkout dev/mind-your-friends && git pull origin dev/mind-your-friends`
