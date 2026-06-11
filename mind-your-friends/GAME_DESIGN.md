@@ -12,15 +12,21 @@ coalition-building, reading the room — are the product. The trivia is the vehi
 Under 30 minutes. Design goal: 25 minutes.
 
 ### Round & Question Structure
-**UNDECIDED** — see Open Questions below. The tension is between:
-- 5 rounds × 3 questions (fits 25 min, breaks card progression pacing)
-- 3 rounds × 5 questions (fits 25 min, loses the full 10-card payoff)
-- 5 rounds × 5 questions with ~60s per question (fits 25 min, more chaotic)
+**4 rounds × 6 questions = 24 questions total.**
+
+Back-of-envelope per-question cycle: ~8s category pick + ~8s wager + ~5s card
+window + ~4s question generation + 20s answer timer + ~3s evaluation + 4s
+result screen ≈ **~50-55s/question** (more with real players reading/typing,
+say up to ~65s).
+- 24 × 55s ≈ 22 min
+- 24 × 65s ≈ 26 min
+
+Lands comfortably inside the 20-30 min target with buffer under the hard cap.
 
 ### What is agreed:
-- 5 rounds
+- 4 rounds, 6 questions per round (24 total)
+- 20 seconds per question
 - Each player has a fixed hand of 6 cards for the entire game (see Card Mechanic below)
-- Questions per round and time per question TBD
 
 ---
 
@@ -62,7 +68,7 @@ an incoming sabotage). Revisit after playtesting.
 ### Card Usage Cap
 **Single use per game.** Once a card is played (and claims the FCFS slot — see
 Card Resolution above), it's removed from that player's hand for the rest of
-the game. With only 6 cards per player across 5 rounds, this keeps cards scarce
+the game. With only 6 cards per player across 4 rounds, this keeps cards scarce
 and each play meaningful.
 
 ### The 10 Base Cards
@@ -78,7 +84,7 @@ and resolve via the FCFS slot (see Card Resolution above).
 | 5 | Spotlight | Sabotage | Active player must answer immediately, before seeing the timer/options |
 | 6 | Heckle | Sabotage | Player who plays it submits a one-line heckle, read aloud by the AI host before the active player answers — pure social/comedy, no mechanical effect |
 | 7 | Language Barrier | Sabotage | AI host phrases the question in a randomly-chosen silly register (Old English, pirate, corporate-legalese, Gen-Z slang, etc.) |
-| 8 | Boxed In | Sabotage | Active player's answer must fit a randomly-chosen format constraint (one word, exactly seven letters, no repeated letters, etc.) |
+| 8 | Boxed In | Sabotage | Active player's answer must fit in one or two words (see Question Design Conventions below) |
 | 9 | Insurance | Anti-sabotage | Question proceeds completely normally, as if no sabotage card had been played |
 | 10 | The Fixer | Anti-sabotage | Same as Insurance (sabotage neutralized), plus the player who played it banks a small bonus (e.g. +50 pts) |
 
@@ -89,18 +95,28 @@ Claude designs the Q&A pair to satisfy the constraint by construction —
 no risk of an unanswerable question, and no extra evaluation step. This is
 the pattern for any future sabotage card that constrains the answer format.
 
+### Question Design Conventions
+**Baseline**: every generated question's correct answer should normally be
+**more than 3 words** (a short phrase, not a single term). This gives "Back It
+Up" (reverse the answer) something substantial to reverse, and gives Boxed In
+a real bite.
+- **Boxed In** overrides the baseline: the answer must be **one or two words**
+  for that question — a meaningful reduction from the norm, not just a
+  format quirk.
+
 **Cut from earlier drafts**: Daily Double, Safety Net, Pinch Penny
 (self-buff cards) — dropped in favor of an all-sabotage +
 anti-sabotage theme (June 2026).
 
 
-### Round 1 Anchor Cards
-The 2 common cards (see Hand Dealing above) serve this role — every player has
-them from the start, so they must be:
-- Instantly understandable
-- Creates a visible, funny moment
-- Not punishing to the target
-**Which 2 cards** — still TBD pending the full 10-card list (see Open Questions).
+### Common Cards (Round 1 Anchors)
+**Insurance** and **Skip**. Every player has these two from the start.
+- **Insurance** — zero-risk, easy to understand, gives every player a
+  baseline defense from turn one.
+- **Skip** — the most mechanically powerful sabotage card (it denies a
+  player's turn entirely), but instantly understandable and creates a
+  visible, funny moment when played. Making it common means every game has
+  this high-impact card in circulation from the start.
 
 ---
 
@@ -121,7 +137,7 @@ Full rule list — 8 confirmed, 1 backburnered:
 | 9 | Audience Poll | Others predict active player's answer *(backburnered — complex)* | Yes |
 
 ### How round rules are assigned
-**UNDECIDED** — randomly assigned each turn, or active player chooses?
+**Random**, assigned each turn by the server.
 
 ---
 
@@ -154,10 +170,11 @@ Never bake in text-only assumptions — voice is the destination.
 
 ## Open Questions
 
-| # | Question | Leading candidates |
+All previously-open structural questions (rounds/questions, timing, common
+cards, round rule assignment, Boxed In) are resolved as of June 2026. Remaining:
+
+| # | Question | Notes |
 |---|---|---|
-| 1 | Questions per round? | 3 or 5 |
-| 2 | Time per question? | 90s or 60s |
-| 3 | Which 2 cards are the common/anchor cards? | TBD — likely Heckle (low-stakes, funny) plus one more |
-| 4 | How are round rules assigned? | Random or player choice |
-| 5 | Boxed In's format constraint pool? | TBD — tune during playtest |
+| 1 | Audience Poll round rule — in or out for v1? | Backburnered as complex; revisit once core loop is built |
+| 2 | Category selection — free-text or fixed list? | Affects `generateQuestion()` prompt and category-pick UI |
+| 3 | Tie-breaking / starting score baseline? | Decide before building scoreboard logic |

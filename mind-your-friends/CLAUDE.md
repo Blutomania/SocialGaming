@@ -9,10 +9,12 @@ other, and answer AI-generated questions. The social loop — not the trivia —
 1. ~~**Review Round variation types**~~ — 8 variations confirmed. See `GAME_DESIGN.md`.
 2. ~~**Review card mechanic**~~ — FCFS card resolution, fixed 6-card hand, single-use,
    and the full 10-card list (8 sabotage + 2 anti-sabotage) are agreed. See `GAME_DESIGN.md`.
-3. **Resolve remaining open questions** in `GAME_DESIGN.md` (questions per round, time per
-   question, which 2 cards are common/anchor, round rule assignment, Boxed In's format
-   constraint pool).
-4. **Build the codebase** — `server.js`, `lib/gameState.js`, `lib/claudeClient.js`, `lib/cards.js`, `lib/roundRules.js`, components, Next.js skeleton.
+3. ~~**Resolve structural open questions**~~ — 4 rounds × 6 questions (24 total), 20s/question,
+   common cards = Insurance + Skip, round rules assigned randomly, Boxed In = 1-2 word answers
+   (baseline questions are >3 words). See `GAME_DESIGN.md`.
+4. **Resolve remaining open questions** in `GAME_DESIGN.md` (Audience Poll in/out, category
+   selection UX, tie-breaking/starting score).
+5. **Build the codebase** — `server.js`, `lib/gameState.js`, `lib/claudeClient.js`, `lib/cards.js`, `lib/roundRules.js`, components, Next.js skeleton.
 
 ## Tech Stack
 - Next.js 14 (App Router), React, Tailwind CSS
