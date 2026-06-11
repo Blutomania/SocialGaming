@@ -45,16 +45,17 @@ Each question follows this phase order (server enforces):
 - Same hand for all players — level playing field, differentiation comes from
   timing and targeting decisions
 
-### The Two-Card Rule
-Cards only take effect if the **same card is played by two or more players** on
-the same question. A card played by only one player is neutralised — no effect.
+### Card Resolution — First Come, First Served
+**Replaces the old Two-Card Rule (June 2026).** Each question has a single
+"card slot." The first player to play a card claims the slot and that card
+resolves; everyone else's attempt is rejected (e.g. "too slow!").
 - 0 cards played → normal question
-- 1 unique card played → no effect
-- 2+ players play the same card → that card resolves
-- Mixed cards (each played once) → all cancel, normal question
+- 1+ cards played → first one submitted resolves, all others rejected
 
-This forces coalition play. Sabotaging someone requires social coordination,
-not just a lucky card draw.
+**NOTE: this mechanic may need tweaking** — open concerns include reflex-speed
+bias (fastest player always wins ties) and self-buff vs. sabotage cards
+competing for the same slot (e.g. the active player could self-buff to block
+an incoming sabotage). Revisit after playtesting.
 
 ### Card Usage Cap
 **UNDECIDED** — see Open Questions. Leading candidates:
