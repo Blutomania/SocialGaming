@@ -7,8 +7,11 @@ other, and answer AI-generated questions. The social loop — not the trivia —
 
 ## Current To-Do
 1. ~~**Review Round variation types**~~ — 8 variations confirmed. See `GAME_DESIGN.md`.
-2. ~~**Review card mechanic**~~ — Two-card rule and hand progression agreed. See `GAME_DESIGN.md`.
-3. **Resolve open questions** in `GAME_DESIGN.md` (questions per round, card usage cap, anchor card, cards 8-10, round rule assignment).
+2. ~~**Review card mechanic**~~ — FCFS card resolution, fixed 6-card hand, single-use,
+   and the full 10-card list (8 sabotage + 2 anti-sabotage) are agreed. See `GAME_DESIGN.md`.
+3. **Resolve remaining open questions** in `GAME_DESIGN.md` (questions per round, time per
+   question, which 2 cards are common/anchor, round rule assignment, Boxed In's format
+   constraint pool).
 4. **Build the codebase** — `server.js`, `lib/gameState.js`, `lib/claudeClient.js`, `lib/cards.js`, `lib/roundRules.js`, components, Next.js skeleton.
 
 ## Tech Stack
@@ -59,15 +62,28 @@ need no variants. Never bake in text-only assumptions — voice is the destinati
 **Round loop** (server enforces phase order):
 1. Active player picks category
 2. Next player sets wager (50–500 pts)
-3. All players may play one card (sabotage or self-buff)
-4. Server calls Claude → question (modified by active round rule)
+3. All players may play a card; first one submitted claims the single FCFS
+   "card slot" for the question, all others rejected (see `GAME_DESIGN.md` →
+   Card Resolution)
+4. Server calls Claude → question (modified by active round rule and any
+   resolved format-constraining card — see below)
 5. Active player answers within timer
 6. Claude evaluates answer (fuzzy match); points awarded/deducted
 7. 4s result screen → next turn; after max rounds → GAME_OVER
 
-**Cards that matter architecturally**: Redirect changes who answers (`effects.redirectedTo`);
-Muted skips a player; Whoa Nellie re-triggers question generation; Safety Net / Pinch Penny
-modify point math in `submitAnswer()`.
+**The 10 cards (8 sabotage + 2 anti-sabotage, all single-use)** — see
+`GAME_DESIGN.md` → The 10 Base Cards for full descriptions. Architecturally:
+- **Redirect** changes who answers (`effects.redirectedTo`)
+- **Skip** skips the active player's turn entirely
+- **Whoa Nellie** re-triggers question generation
+- **Spotlight** forces the active player to answer immediately
+- **Language Barrier** and **Boxed In** are `generateQuestion()` prompt
+  modifiers (register change / answer-format constraint) — resolved *before*
+  question generation, not as post-hoc answer checks
+- **Heckle** is a pure host-quip injection, no state change
+- **Insurance** / **The Fixer** (anti-sabotage) neutralize whatever sabotage
+  card would otherwise resolve; The Fixer additionally awards a small bonus
+  to the player who played it
 
 **Social loop features (already designed):**
 - **Host personalization** — `generateQuestion()` receives `activePlayerName` + `playerNames`;

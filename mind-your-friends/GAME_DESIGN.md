@@ -66,20 +66,33 @@ the game. With only 6 cards per player across 5 rounds, this keeps cards scarce
 and each play meaningful.
 
 ### The 10 Base Cards
-**UNDECIDED in full** — final list pending design review. Working candidates:
+8 sabotage + 2 anti-sabotage. All cards are single-use (see Card Usage Cap above)
+and resolve via the FCFS slot (see Card Resolution above).
 
 | # | Card | Type | Effect |
 |---|---|---|---|
 | 1 | Skip | Sabotage | Target player's turn is skipped entirely |
 | 2 | Redirect | Sabotage | Changes who must answer (`effects.redirectedTo`) |
 | 3 | Whoa Nellie | Sabotage | Forces server to re-generate the question |
-| 4 | Daily Double | Self-buff | Doubles the wager value |
-| 5 | Safety Net | Self-buff | Wrong answer costs no points |
-| 6 | Pinch Penny | Self-buff | Reduces wager cost if answer is wrong |
-| 7 | 50% Off | Sabotage | Halves the active player's wager value |
-| 8 | TBD | TBD | |
-| 9 | TBD | TBD | |
-| 10 | TBD | TBD | |
+| 4 | 50% Off | Sabotage | Halves the active player's wager value |
+| 5 | Spotlight | Sabotage | Active player must answer immediately, before seeing the timer/options |
+| 6 | Heckle | Sabotage | Player who plays it submits a one-line heckle, read aloud by the AI host before the active player answers — pure social/comedy, no mechanical effect |
+| 7 | Language Barrier | Sabotage | AI host phrases the question in a randomly-chosen silly register (Old English, pirate, corporate-legalese, Gen-Z slang, etc.) |
+| 8 | Boxed In | Sabotage | Active player's answer must fit a randomly-chosen format constraint (one word, exactly seven letters, no repeated letters, etc.) |
+| 9 | Insurance | Anti-sabotage | Question proceeds completely normally, as if no sabotage card had been played |
+| 10 | The Fixer | Anti-sabotage | Same as Insurance (sabotage neutralized), plus the player who played it banks a small bonus (e.g. +50 pts) |
+
+**Format-constraining cards are `generateQuestion()` prompt modifiers, not
+post-hoc answer checks.** Because cards resolve in step 3 (before question
+generation in step 4), Language Barrier and Boxed In feed into the prompt so
+Claude designs the Q&A pair to satisfy the constraint by construction —
+no risk of an unanswerable question, and no extra evaluation step. This is
+the pattern for any future sabotage card that constrains the answer format.
+
+**Cut from earlier drafts**: Daily Double, Safety Net, Pinch Penny
+(self-buff cards) — dropped in favor of an all-sabotage +
+anti-sabotage theme (June 2026).
+
 
 ### Round 1 Anchor Cards
 The 2 common cards (see Hand Dealing above) serve this role — every player has
@@ -145,5 +158,6 @@ Never bake in text-only assumptions — voice is the destination.
 |---|---|---|
 | 1 | Questions per round? | 3 or 5 |
 | 2 | Time per question? | 90s or 60s |
-| 3 | Cards 8, 9, 10 (and which 2 are the common/anchor cards)? | TBD |
+| 3 | Which 2 cards are the common/anchor cards? | TBD — likely Heckle (low-stakes, funny) plus one more |
 | 4 | How are round rules assigned? | Random or player choice |
+| 5 | Boxed In's format constraint pool? | TBD — tune during playtest |
