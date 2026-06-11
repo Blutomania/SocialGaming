@@ -19,8 +19,7 @@ Under 30 minutes. Design goal: 25 minutes.
 
 ### What is agreed:
 - 5 rounds
-- Card hand grows each round: 2 → 4 → 6 → 8 → 10 cards
-- Round 5 everyone holds all 10 cards — full game, maximum strategy
+- Each player has a fixed hand of 6 cards for the entire game (see Card Mechanic below)
 - Questions per round and time per question TBD
 
 ---
@@ -40,10 +39,13 @@ Each question follows this phase order (server enforces):
 ## Card Mechanic
 
 ### Hand Dealing
-- At the start of each round, everyone receives the same hand, randomly selected
-- Round 1: 2 cards. Round 2: 4 cards. Round 3: 6. Round 4: 8. Round 5: all 10.
-- Same hand for all players — level playing field, differentiation comes from
-  timing and targeting decisions
+- Pool of 10 cards total. Each player's hand is **fixed for the entire game** at 6 cards:
+  - **2 common cards** — every player gets the same 2 cards. These double as the
+    Round 1 anchor cards (see below) — chosen to be instantly understandable,
+    funny, and not punishing.
+  - **4 player-picked cards** — at game start, each player picks 4 of the
+    remaining 8 cards for their hand.
+- Dealt once at game start; no growth or redraw during the game.
 
 ### Card Resolution — First Come, First Served
 **Replaces the old Two-Card Rule (June 2026).** Each question has a single
@@ -58,10 +60,10 @@ competing for the same slot (e.g. the active player could self-buff to block
 an incoming sabotage). Revisit after playtesting.
 
 ### Card Usage Cap
-**UNDECIDED** — see Open Questions. Leading candidates:
-- Cards reusable every question within a round (unlimited)
-- Max 2 uses per card per round (creates scarcity, timing decisions)
-- Single use per round (high stakes, may feel punishing)
+**Single use per game.** Once a card is played (and claims the FCFS slot — see
+Card Resolution above), it's removed from that player's hand for the rest of
+the game. With only 6 cards per player across 5 rounds, this keeps cards scarce
+and each play meaningful.
 
 ### The 10 Base Cards
 **UNDECIDED in full** — final list pending design review. Working candidates:
@@ -79,12 +81,13 @@ an incoming sabotage). Revisit after playtesting.
 | 9 | TBD | TBD | |
 | 10 | TBD | TBD | |
 
-### Round 1 Anchor Card
-One card is always included in the Round 1 random draw. It must be:
+### Round 1 Anchor Cards
+The 2 common cards (see Hand Dealing above) serve this role — every player has
+them from the start, so they must be:
 - Instantly understandable
 - Creates a visible, funny moment
 - Not punishing to the target
-**UNDECIDED** — Skip and Daily Double are leading candidates.
+**Which 2 cards** — still TBD pending the full 10-card list (see Open Questions).
 
 ---
 
@@ -142,7 +145,5 @@ Never bake in text-only assumptions — voice is the destination.
 |---|---|---|
 | 1 | Questions per round? | 3 or 5 |
 | 2 | Time per question? | 90s or 60s |
-| 3 | Card usage cap? | Unlimited / max 2 / single use |
-| 4 | Round 1 anchor card? | Skip or Daily Double |
-| 5 | Cards 8, 9, 10? | TBD |
-| 6 | How are round rules assigned? | Random or player choice |
+| 3 | Cards 8, 9, 10 (and which 2 are the common/anchor cards)? | TBD |
+| 4 | How are round rules assigned? | Random or player choice |
