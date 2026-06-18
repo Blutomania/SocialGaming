@@ -19,19 +19,27 @@ other, and answer AI-generated questions. The social loop — not the trivia —
    `lib/cards.js`, `lib/roundRules.js`, `lib/constants.js`, Next.js app shell, and components
    (Lobby, CategoryPicker, CardHand, GameBoard, ScoreBoard) are in place. Syntax-checked but
    **not yet run** (`npm install` not done in this session).
-6. **[START HERE] First run + playtest** — `npm install`, add `ANTHROPIC_API_KEY` to
-   `.env.local`, `npm run dev`, play through a full game with 2+ browser tabs. Expect rough
-   edges — see TODOs below.
-7. **Known gaps / TODOs from the scaffold**:
-   - `broadcast()` sends the full game state to everyone — opponents' hands and the
-     correct answer are visible before reveal. Needs per-player views.
-   - **Redirect** targets a random other player (placeholder) — no design decision yet
-     on how the target should be chosen.
-   - **Whoa Nellie** is currently flavor-only (asks Claude for "a different question") —
-     the actual "re-roll" mechanic isn't fully specified.
-   - **Spotlight** ("no prep time") is approximated as a 5s timer — UI doesn't yet skip
-     a distinct "prep" step.
-   - **Steal** round rule has no steal-window implementation yet.
+6. ~~**Coherence Engine**~~ — `lib/coherence.js` integrated into game loop.
+   Round-level constraints computed at turn start; turn-level constraints
+   assembled after card resolution; post-generation validation checks answer
+   format. Shared framework in `coherence/engine.py` (monorepo root).
+7. **[START HERE] Per-player views** — `broadcast()` currently sends full game
+   state to everyone (opponents' hands + correct answer visible). Must filter
+   state per-player before emitting. This is the #1 blocker for playtesting.
+8. **Next pieces after per-player views**:
+   - **Lobby → card pick UI** — update `Lobby.jsx` / add `CardPicker.jsx` for
+     the 1-pick-from-10 moment at registration (currently expects 4 picks).
+   - **Steal round rule** — implement the steal window: on wrong answer, other
+     players get a brief window to buzz in. Needs a new phase or sub-phase.
+   - **Redirect target selection** — currently random; decide if the card
+     player chooses the target (more social) or if it stays random.
+   - **First run + playtest** — `npm install`, `npm run dev`, play through
+     with 2+ browser tabs. Blocked on per-player views.
+9. **Known gaps / TODOs from the scaffold**:
+   - **Whoa Nellie** — CE treats it as a prompt modifier ("generate a different
+     question"). May need a "previously generated" exclusion list.
+   - **Spotlight** — approximated as 5s timer; UI doesn't skip a prep step.
+   - Game code collisions aren't checked.
    - Voice input mode (`inputMode: "voice"`) is wired into `transformAnswer()`/
      `evaluateAnswer()` signatures but the UI is text-only.
    - Game code collisions aren't checked (`generateGameCode()` doesn't verify uniqueness
