@@ -6,6 +6,27 @@ coalition-building, reading the room — are the product. The trivia is the vehi
 
 ---
 
+## Design Thesis: Casual-First
+
+This game targets casual, social players — not competitive optimizers. Every
+mechanic should be evaluated through this lens:
+
+- **Optimize for surprise, laughs, and "oh no!" moments** over strategic depth.
+  A card play is a social event ("she used her Skip on ME?!"), not a chess move.
+- **Randomness is a feature, not a bug.** Random hands create unique situations
+  each game. Nobody is studying tier lists or drafting optimal loadouts — they're
+  reacting in the moment and riffing off each other.
+- **Minimal decisions, maximum expression.** When a player does get a choice
+  (picking a card, choosing a category), it should be instant and gut-feel, not
+  analysis paralysis. One fun decision beats three strategic ones.
+- **No homework required.** A new player sitting down for the first time should
+  understand every mechanic by the end of Round 1, without reading rules ahead
+  of time. If a feature needs a subreddit to explain it, it's wrong.
+
+Design for the table, not the meta.
+
+---
+
 ## Game Structure
 
 ### Target Play Time
@@ -46,12 +67,14 @@ Each question follows this phase order (server enforces):
 
 ### Hand Dealing
 - Pool of 10 cards total. Each player's hand is **fixed for the entire game** at 6 cards:
-  - **2 common cards** — every player gets the same 2 cards. These double as the
-    Round 1 anchor cards (see below) — chosen to be instantly understandable,
-    funny, and not punishing.
-  - **4 player-picked cards** — at game start, each player picks 4 of the
-    remaining 8 cards for their hand.
+  - **1 player-picked card** — at game start, each player picks 1 card from
+    the full pool. One gut-feel decision, no analysis paralysis (see Design
+    Thesis above).
+  - **5 randomly dealt cards** — server deals 5 from the remaining pool.
+    Every player discovers a unique hand they react to in the moment.
 - Dealt once at game start; no growth or redraw during the game.
+- Duplicate cards across players are fine — if two players both have Skip,
+  that's a social dynamic, not a bug.
 
 ### Card Resolution — First Come, First Served
 **Replaces the old Two-Card Rule (June 2026).** Each question has a single
@@ -109,14 +132,11 @@ a real bite.
 anti-sabotage theme (June 2026).
 
 
-### Common Cards (Round 1 Anchors)
-**Insurance** and **Skip**. Every player has these two from the start.
-- **Insurance** — zero-risk, easy to understand, gives every player a
-  baseline defense from turn one.
-- **Skip** — the most mechanically powerful sabotage card (it denies a
-  player's turn entirely), but instantly understandable and creates a
-  visible, funny moment when played. Making it common means every game has
-  this high-impact card in circulation from the start.
+### The Pick Moment
+At game start, each player sees the full pool of 10 cards and picks 1.
+This is a social moment — players see each other picking, can react ("you
+took Heckle? oh no"), and it sets the tone for the game. The remaining 5
+are dealt randomly. No common/anchor cards — the randomness ensures variety.
 
 ---
 

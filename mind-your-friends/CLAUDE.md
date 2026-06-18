@@ -7,8 +7,8 @@ other, and answer AI-generated questions. The social loop — not the trivia —
 
 ## Current To-Do
 1. ~~**Review Round variation types**~~ — 8 variations confirmed. See `GAME_DESIGN.md`.
-2. ~~**Review card mechanic**~~ — FCFS card resolution, fixed 6-card hand, single-use,
-   and the full 10-card list (8 sabotage + 2 anti-sabotage) are agreed. See `GAME_DESIGN.md`.
+2. ~~**Review card mechanic**~~ — FCFS card resolution, fixed 6-card hand (1 picked +
+   5 random from pool of 10), single-use, 8 sabotage + 2 anti-sabotage. See `GAME_DESIGN.md`.
 3. ~~**Resolve structural open questions**~~ — 4 rounds × 6 questions (24 total), 20s/question,
    common cards = Insurance + Skip, round rules assigned randomly, Boxed In = 1-2 word answers
    (baseline questions are >3 words). See `GAME_DESIGN.md`.
@@ -36,6 +36,13 @@ other, and answer AI-generated questions. The social loop — not the trivia —
      `evaluateAnswer()` signatures but the UI is text-only.
    - Game code collisions aren't checked (`generateGameCode()` doesn't verify uniqueness
      against existing games).
+
+## Design Thesis: Casual-First
+This game targets casual, social players — not competitive optimizers. Every
+mechanic must optimize for surprise, laughs, and "oh no!" moments over strategic
+depth. Randomness is a feature. Minimal decisions, maximum expression. No homework
+required — a new player should understand everything by end of Round 1. Design for
+the table, not the meta. See `GAME_DESIGN.md → Design Thesis` for full detail.
 
 ## Tech Stack
 - Next.js 14 (App Router), React, Tailwind CSS
