@@ -235,6 +235,48 @@ Never bake in text-only assumptions — voice is the destination.
 
 ---
 
+## Post-Game Activations
+Inspired by "For the Girls" party game energy — extend the social experience
+beyond the last question so the game doesn't just *end*, it *lands*.
+
+### Superlative Voting
+After GAME_OVER, a brief voting round. Everyone votes on AI-generated
+superlative categories drawn from what actually happened:
+- "Best Sabotage" — based on logged card plays
+- "Worst Answer" — based on logged wrong answers
+- "Luckiest Steal" — if any steals occurred
+- "Most Targeted Player" — whoever had the most cards played against them
+The AI host announces each winner with a personalized quip.
+
+### Replay Moments
+The highlight reel is presented as a slideshow, not a flat list. Each moment
+gets a card-style screen with AI host narration: "Remember when Jake played
+Whoa Nellie and Sarah had to answer Marine Biology?" Players swipe/click
+through together.
+
+### Shareable Recap
+A generated image or shareable link summarizing the game: final scores,
+superlatives, 2–3 best highlights, player names. This is the growth mechanic —
+"look at this game we just played." Designed for group chats and social media.
+
+### "One More Round" Moments
+Post-game dares or challenges based on what happened. The AI host generates
+1–2 challenges tied to the game's narrative: "Jake, since you went negative,
+you pick the restaurant tonight." Optional, social, no mechanical consequence.
+
+---
+
+## Disconnection Handling
+**"Wait for our friend"** — when a player disconnects mid-game, the game
+pauses. All remaining players see a waiting screen with two options:
+1. **Keep waiting** — game stays paused.
+2. **Continue without** — requires majority vote. The dropped player's turns
+   are skipped for the rest of the game, their score freezes.
+
+No AI takeover, no bot substitution. It's a party, not a ranked match.
+
+---
+
 ## Open Questions
 
 All structural design questions are resolved as of June 2026:
@@ -242,6 +284,7 @@ All structural design questions are resolved as of June 2026:
 - Categories: registration pool (5 per player, no DB) + random-6 pick each turn;
   AI-host-curated categories parked for later
 - Scoring: start at 0 (can go negative), ties are shared wins (no tiebreaker)
+- Heckle content moderation: TBD — options are pass-through, host
+  reinterpretation, tone-gating, or curated templates
 
-No open design questions remain — ready to scaffold the codebase
-(`CLAUDE.md` to-do item 5).
+No blocking design questions remain.

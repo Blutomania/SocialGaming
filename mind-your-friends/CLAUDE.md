@@ -23,9 +23,8 @@ other, and answer AI-generated questions. The social loop — not the trivia —
    Round-level constraints computed at turn start; turn-level constraints
    assembled after card resolution; post-generation validation checks answer
    format. Shared framework in `coherence/engine.py` (monorepo root).
-7. **[START HERE] Per-player views** — `broadcast()` currently sends full game
-   state to everyone (opponents' hands + correct answer visible). Must filter
-   state per-player before emitting. This is the #1 blocker for playtesting.
+7. ~~**Per-player views**~~ — `playerView()` filters state per socket. Hands,
+   answers, and role-gated data hidden appropriately.
 8. ~~**Steal round rule**~~ — FCFS buzz-in window (8s), half-wager penalty on
    wrong steal. Documented in `GAME_DESIGN.md`.
 9. ~~**Redirect**~~ — random target (decided). No UI needed.
@@ -33,26 +32,40 @@ other, and answer AI-generated questions. The social loop — not the trivia —
     attributed in category options. Everyone sees who submitted what.
 11. ~~**Player count**~~ — 3–6 players enforced. Hard cap at join.
 12. ~~**Wager design principle**~~ — "I cut, you choose" documented.
-13. **[START HERE] Lobby → card pick UI** — update `Lobby.jsx` / add
-    `CardPicker.jsx` for the 1-pick-from-10 moment at registration.
-14. **First run + playtest** — `npm install`, `npm run dev`, play through
+13. ~~**Whoa Nellie**~~ — category ambush: swaps to a random different category
+    from the pool at the same difficulty. Attributed ("swapped to Sarah's
+    90s Hip Hop!").
+14. **[START HERE] Post-game activations** — extend the social experience
+    beyond the last question. Inspired by "For the Girls" party game energy.
+    Design and build these features:
+    - **Superlative voting** — after GAME_OVER, everyone votes on categories
+      like "Best Sabotage," "Worst Answer," "Luckiest Steal," "Most Targeted
+      Player." AI host announces winners with quips.
+    - **Replay moments** — highlight reel as a slideshow, not just a list.
+      Each highlight gets card-style presentation with AI host narration.
+    - **Shareable recap** — generated image or link summarizing the game:
+      final scores, superlatives, best highlights. Growth mechanic.
+    - **"One more round" moments** — post-game dares or challenges based on
+      what happened during the game ("Jake went negative, so Jake has to...").
+15. **Lobby → card pick UI** — update `Lobby.jsx` / add `CardPicker.jsx`
+    for the 1-pick-from-10 moment at registration.
+16. **First run + playtest** — `npm install`, `npm run dev`, play through
     with 3+ browser tabs.
-15. **Known gaps / TODOs from the scaffold**:
-    - **Whoa Nellie** — CE treats it as a prompt modifier ("generate a different
-      question"). May need a "previously generated" exclusion list.
+17. **Disconnection handling** — "Wait for our friend" pause screen. Players
+    vote to keep waiting or continue without. No AI/bot takeover — dropped
+    player's turns are skipped, score freezes. It's a party, not a ranked match.
+18. **Known gaps / TODOs from the scaffold**:
     - **Spotlight** — approximated as 5s timer; UI doesn't skip a prep step.
-    - Game code collisions aren't checked.
     - **Heckle content moderation** — free-text read by AI host. Define
-      boundaries (refuse? rephrase? pass through?).
-    - **Disconnection handling** — what happens when a player drops mid-game.
-16. **[FUTURE] Group splitting** — when 7+ players want to play together,
+      boundaries (refuse? rephrase? host-reinterpretation?).
+    - Game code collisions aren't checked.
+    - Voice input mode (`inputMode: "voice"`) wired into signatures but
+      UI is text-only.
+19. **[FUTURE] Group splitting** — when 7+ players want to play together,
     design a splintering mechanic to auto-create balanced sub-games (e.g.
     4+3, 3+3+3). Considerations: grouping UI, how to choose/assign,
     avoiding lopsided splits (4+2), whether scores reunite after. Parked
     until core game is proven.
-   - Voice input mode (`inputMode: "voice"`) is wired into `transformAnswer()`/
-     `evaluateAnswer()` signatures but the UI is text-only.
-   - Game code collisions aren't checked (`generateGameCode()` doesn't verify uniqueness
      against existing games).
 
 ## Design Thesis: Casual-First
