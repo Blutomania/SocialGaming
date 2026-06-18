@@ -112,6 +112,7 @@ function beginTurn(game) {
   game.roundRule = pickRandomRoundRule();
   game.roundConstraints = roundConstraints(game.roundRule);
   game.currentCategory = null;
+  game.currentCategoryAttribution = null;
   game.currentWager = null;
   game.cardSlot = null;
   game.currentQuestion = null;
@@ -119,9 +120,12 @@ function beginTurn(game) {
   game.categoryOptions = getCategoryOptions(game);
 }
 
-// 6 random categories drawn from the shared pool of all players' submissions.
+// 6 random categories drawn from the shared pool. Each entry is attributed
+// to the player who submitted it: { category, submittedBy, submittedById }.
 function getCategoryOptions(game) {
-  const pool = game.players.flatMap((p) => p.categories);
+  const pool = game.players.flatMap((p) =>
+    p.categories.map((cat) => ({ category: cat, submittedBy: p.name, submittedById: p.id }))
+  );
   const options = [];
   const remaining = [...pool];
   const count = Math.min(CATEGORY_OPTIONS_COUNT, remaining.length);
@@ -153,10 +157,12 @@ export function pickCategory(game, playerId, category) {
   if (playerId !== getActivePlayer(game).id) {
     throw new Error('Only the active player picks the category');
   }
-  if (!game.categoryOptions.includes(category)) {
+  const match = game.categoryOptions.find((opt) => opt.category === category);
+  if (!match) {
     throw new Error('Category must be one of the offered options');
   }
-  game.currentCategory = category;
+  game.currentCategory = match.category;
+  game.currentCategoryAttribution = { submittedBy: match.submittedBy, submittedById: match.submittedById };
   game.phase = 'WAGER';
   return game;
 }
@@ -442,6 +448,7 @@ export function playerView(game, playerId) {
       name: p.name,
       score: p.score,
       registered: p.registered,
+      categories: p.categories,
       cardCount: p.hand.length,
       hand: isMe ? p.hand : undefined,
     };
@@ -462,11 +469,12 @@ export function playerView(game, playerId) {
     isActivePlayer,
     isWagerPlayer,
     currentCategory: game.currentCategory,
+    currentCategoryAttribution: game.currentCategoryAttribution ?? null,
     currentWager: game.currentWager,
     roundRule: game.roundRule
       ? { id: game.roundRule.id, name: game.roundRule.name, emoji: game.roundRule.emoji, description: game.roundRule.description }
       : null,
-    categoryOptions: isActivePlayer ? game.categoryOptions : undefined,
+    categoryOptions: game.categoryOptions ?? null,
     heckleMessage: game.heckleMessage,
     highlightReel: game.highlightReel,
   };
