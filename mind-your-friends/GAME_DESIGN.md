@@ -113,7 +113,7 @@ and resolve via the FCFS slot (see Card Resolution above).
 |---|---|---|---|
 | 1 | Skip | Sabotage | Target player's turn is skipped entirely |
 | 2 | Redirect | Sabotage | Changes who must answer (`effects.redirectedTo`) |
-| 3 | Whoa Nellie | Sabotage | Forces server to re-generate the question |
+| 3 | Whoa Nellie | Sabotage | Swaps the category to a random different one from the pool (same difficulty). A category ambush. |
 | 4 | 50% Off | Sabotage | Halves the active player's wager value |
 | 5 | Spotlight | Sabotage | Active player must answer immediately, before seeing the timer/options |
 | 6 | Heckle | Sabotage | Player who plays it submits a one-line heckle, read aloud by the AI host before the active player answers — pure social/comedy, no mechanical effect |

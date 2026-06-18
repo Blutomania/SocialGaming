@@ -241,9 +241,22 @@ export function resolveCardSlot(game) {
       break;
     }
 
-    case 'whoaNellie':
-      logHighlight(game, `${playerName} played Whoa Nellie — re-rolling the question!`);
+    case 'whoaNellie': {
+      const pool = game.players.flatMap((p) =>
+        p.categories.map((cat) => ({ category: cat, submittedBy: p.name, submittedById: p.id }))
+      );
+      const alternatives = pool.filter((opt) => opt.category !== game.currentCategory);
+      if (alternatives.length > 0) {
+        const pick = alternatives[Math.floor(Math.random() * alternatives.length)];
+        const oldCategory = game.currentCategory;
+        game.currentCategory = pick.category;
+        game.currentCategoryAttribution = { submittedBy: pick.submittedBy, submittedById: pick.submittedById };
+        logHighlight(game, `${playerName} played Whoa Nellie! Category swapped from "${oldCategory}" to ${pick.submittedBy}'s "${pick.category}"!`);
+      } else {
+        logHighlight(game, `${playerName} played Whoa Nellie but there's nowhere to go — same category!`);
+      }
       break;
+    }
 
     case 'fiftyOff':
       game.currentWager = Math.round(game.currentWager / 2);
@@ -424,7 +437,7 @@ export function getWinners(game) {
 }
 
 const ANTI_SABOTAGE = new Set(['insurance', 'fixer']);
-const STATE_ONLY_CARDS = new Set(['skip', 'redirect', 'fiftyOff', 'heckle']);
+const STATE_ONLY_CARDS = new Set(['skip', 'redirect', 'fiftyOff', 'heckle', 'whoaNellie']);
 
 function getEffectiveCard(game) {
   const cardId = game.cardSlot?.cardId;
