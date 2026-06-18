@@ -43,9 +43,9 @@ app.prepare().then(() => {
       });
     });
 
-    socket.on('player:register', ({ categories, pickedCardIds }) => {
+    socket.on('player:register', ({ categories, pickedCardId }) => {
       withMyGame(socket, (game, playerId) => {
-        gameState.registerPlayer(game, playerId, { categories, pickedCardIds });
+        gameState.registerPlayer(game, playerId, { categories, pickedCardId });
         broadcast(io, game);
       });
     });

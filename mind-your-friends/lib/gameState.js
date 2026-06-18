@@ -10,6 +10,7 @@
 import { dealHand, pickRandomLanguageRegister } from './cards.js';
 import { pickRandomRoundRule, transformAnswer } from './roundRules.js';
 import { generateQuestion, evaluateAnswer } from './claudeClient.js';
+import { roundConstraints, turnConstraints, validateQuestion } from './coherence.js';
 import {
   ROUNDS,
   QUESTIONS_PER_ROUND,
@@ -77,16 +78,15 @@ export function addPlayer(game, id, name) {
   return game;
 }
 
-// Registration: each player submits 5 categories and picks 4 of the 8
-// pickable cards (2 common cards are added automatically). See
-// GAME_DESIGN.md -> Hand Dealing, Categories -> Registration.
-export function registerPlayer(game, playerId, { categories, pickedCardIds }) {
+// Registration: each player submits 5 categories and picks 1 card from the
+// pool of 10. The remaining 5 are randomly dealt. See GAME_DESIGN.md → Hand Dealing.
+export function registerPlayer(game, playerId, { categories, pickedCardId }) {
   const player = getPlayer(game, playerId);
   if (categories.length !== CATEGORIES_PER_PLAYER) {
     throw new Error(`Must submit exactly ${CATEGORIES_PER_PLAYER} categories`);
   }
   player.categories = categories;
-  player.hand = dealHand(pickedCardIds);
+  player.hand = dealHand(pickedCardId);
   player.registered = true;
   return game;
 }
@@ -108,6 +108,7 @@ export function startGame(game) {
 
 function beginTurn(game) {
   game.roundRule = pickRandomRoundRule();
+  game.roundConstraints = roundConstraints(game.roundRule);
   game.currentCategory = null;
   game.currentWager = null;
   game.cardSlot = null;
@@ -193,11 +194,12 @@ export function playCard(game, playerId, cardId, payload) {
 // Closes the card window (no more cards may be played) and resolves whatever
 // is in the slot. Returns control to the caller, which should then call
 // runQuestionPhase() unless the turn was skipped entirely (Skip card).
+// Closes the card window and resolves state-side effects. Prompt modifiers
+// (Language Barrier, Boxed In) are handled by the CE in runQuestionPhase —
+// this switch only handles game-state mutations and highlight logging.
 export function resolveCardSlot(game) {
   assertPhase(game, 'CARD');
   const slot = game.cardSlot;
-  game.cardModifier = null;
-  game.timerSecondsOverride = null;
   game.heckleMessage = null;
 
   if (!slot) {
@@ -205,65 +207,58 @@ export function resolveCardSlot(game) {
     return game;
   }
 
+  const playerName = getPlayer(game, slot.playerId).name;
+  const activeName = getActivePlayer(game).name;
+
   switch (slot.cardId) {
     case 'skip':
-      logHighlight(game, `${getPlayer(game, slot.playerId).name} played Skip — ${getActivePlayer(game).name}'s turn is skipped!`);
+      logHighlight(game, `${playerName} played Skip — ${activeName}'s turn is skipped!`);
       game.phase = 'RESULT';
       game.skippedTurn = true;
       return game;
 
     case 'redirect': {
-      // Simplification for v1: redirects to a random other player.
       const others = game.players
         .map((_, i) => i)
         .filter((i) => i !== game.activePlayerIndex);
       game.answererIndex = others[Math.floor(Math.random() * others.length)];
-      logHighlight(game, `${getPlayer(game, slot.playerId).name} played Redirect — ${game.players[game.answererIndex].name} must answer instead!`);
+      logHighlight(game, `${playerName} played Redirect — ${game.players[game.answererIndex].name} must answer instead!`);
       break;
     }
 
     case 'whoaNellie':
-      // TODO: define what makes the regenerated question different from a
-      // normal one. For now this is a flavor-only re-roll.
-      game.cardModifier = 'Generate a different question than you might normally pick for this category — surprise the players.';
-      logHighlight(game, `${getPlayer(game, slot.playerId).name} played Whoa Nellie — re-rolling the question!`);
+      logHighlight(game, `${playerName} played Whoa Nellie — re-rolling the question!`);
       break;
 
     case 'fiftyOff':
       game.currentWager = Math.round(game.currentWager / 2);
-      logHighlight(game, `${getPlayer(game, slot.playerId).name} played 50% Off — the wager is now ${game.currentWager}!`);
+      logHighlight(game, `${playerName} played 50% Off — the wager is now ${game.currentWager}!`);
       break;
 
     case 'spotlight':
-      // TODO: "no prep time" — UI should skip any pre-answer countdown.
-      game.timerSecondsOverride = 5;
-      logHighlight(game, `${getPlayer(game, slot.playerId).name} played Spotlight — ${getActivePlayer(game).name} must answer immediately!`);
+      logHighlight(game, `${playerName} played Spotlight — ${activeName} must answer immediately!`);
       break;
 
     case 'heckle':
       game.heckleMessage = slot.payload?.text || '...';
-      logHighlight(game, `${getPlayer(game, slot.playerId).name} heckled: "${game.heckleMessage}"`);
+      logHighlight(game, `${playerName} heckled: "${game.heckleMessage}"`);
       break;
 
-    case 'languageBarrier': {
-      const register = pickRandomLanguageRegister();
-      game.cardModifier = `Phrase the question in this register: ${register}.`;
-      logHighlight(game, `${getPlayer(game, slot.playerId).name} played Language Barrier — the host now speaks in ${register}!`);
+    case 'languageBarrier':
+      logHighlight(game, `${playerName} played Language Barrier!`);
       break;
-    }
 
     case 'boxedIn':
-      game.cardModifier = 'The correct answer MUST be ONE OR TWO WORDS — overriding the normal "more than 3 words" convention.';
-      logHighlight(game, `${getPlayer(game, slot.playerId).name} played Boxed In — the answer must be one or two words!`);
+      logHighlight(game, `${playerName} played Boxed In — the answer must be one or two words!`);
       break;
 
     case 'insurance':
-      logHighlight(game, `${getPlayer(game, slot.playerId).name} played Insurance — this question proceeds normally.`);
+      logHighlight(game, `${playerName} played Insurance — this question proceeds normally.`);
       break;
 
     case 'fixer':
       getPlayer(game, slot.playerId).score += 50;
-      logHighlight(game, `${getPlayer(game, slot.playerId).name} played The Fixer — +50 pts, and this question proceeds normally.`);
+      logHighlight(game, `${playerName} played The Fixer — +50 pts, and this question proceeds normally.`);
       break;
 
     default:
@@ -274,23 +269,35 @@ export function resolveCardSlot(game) {
   return game;
 }
 
-// Calls Claude to generate the question, then advances to ANSWER.
+// Assembles constraints via the CE, calls Claude, validates the result.
 export async function runQuestionPhase(game) {
   assertPhase(game, 'QUESTION');
-  const result = await generateQuestion({
+
+  const constraints = turnConstraints(game.roundConstraints, {
     category: game.currentCategory,
-    roundRule: game.roundRule,
-    cardModifier: game.cardModifier,
+    wager: game.currentWager,
+    resolvedCard: getEffectiveCard(game),
+  });
+
+  const result = await generateQuestion({
+    constraints,
     activePlayerName: getActivePlayer(game).name,
     playerNames: game.players.map((p) => p.name),
   });
+
+  const validation = validateQuestion(result, constraints);
+  if (!validation.passed) {
+    console.warn('CE validation failed:', validation.issues);
+  }
+
   game.currentQuestion = result;
+  game.turnConstraints = constraints;
   game.phase = 'ANSWER';
   return game;
 }
 
 export function getTimerSeconds(game) {
-  return game.timerSecondsOverride ?? game.roundRule.timerSeconds;
+  return game.turnConstraints?.timerSeconds ?? game.roundRule.timerSeconds;
 }
 
 // Evaluates the answerer's submission via Claude and applies scoring.
@@ -344,6 +351,15 @@ export function nextTurn(game) {
 export function getWinners(game) {
   const top = Math.max(...game.players.map((p) => p.score));
   return game.players.filter((p) => p.score === top); // ties are shared wins
+}
+
+const ANTI_SABOTAGE = new Set(['insurance', 'fixer']);
+const STATE_ONLY_CARDS = new Set(['skip', 'redirect', 'fiftyOff', 'heckle']);
+
+function getEffectiveCard(game) {
+  const cardId = game.cardSlot?.cardId;
+  if (!cardId || ANTI_SABOTAGE.has(cardId) || STATE_ONLY_CARDS.has(cardId)) return null;
+  return cardId;
 }
 
 function logHighlight(game, message) {

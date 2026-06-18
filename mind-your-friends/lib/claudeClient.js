@@ -14,37 +14,28 @@ function requireClient() {
 
 // Generate a question for the active player.
 //
-// `category` — one of the 6 options the active player chose from (see
-// GAME_DESIGN.md → Categories).
-// `roundRule` — the active round rule (lib/roundRules.js); its
-// `promptInstruction` (if any) is folded into the prompt.
-// `cardModifier` — optional prompt instruction from a resolved
-// format-constraining card (Language Barrier, Boxed In). See GAME_DESIGN.md →
-// "Format-constraining cards are generateQuestion() prompt modifiers".
+// `constraints` — assembled by the Coherence Engine (lib/coherence.js).
+//   Contains `promptInstructions` (array of strings), `category`, `difficulty`,
+//   and any card effects. The CE owns all prompt-shaping logic; this function
+//   just formats and sends.
 // `activePlayerName` / `playerNames` — for host personalization (hostQuip).
 export async function generateQuestion({
-  category,
-  roundRule,
-  cardModifier,
+  constraints,
   activePlayerName,
   playerNames,
 }) {
   const anthropic = requireClient();
 
-  const instructions = [
-    `Category: ${category}`,
-    'By default, the correct answer should be a short phrase of MORE than 3 words (see GAME_DESIGN.md → Question Design Conventions).',
-    roundRule?.promptInstruction,
-    cardModifier,
-  ]
-    .filter(Boolean)
-    .join('\n');
+  const instructions = constraints.promptInstructions.join('\n');
 
   const prompt = `You are the AI host of "Mind Your Friends," a fast-paced multiplayer
 trivia game. Generate one trivia question for ${activePlayerName} (other
 players: ${playerNames.filter((n) => n !== activePlayerName).join(', ')}).
 
 ${instructions}
+
+By default, the correct answer should be a short phrase of MORE than 3 words,
+unless a card or round rule overrides this.
 
 Respond with ONLY a JSON object, no other text:
 {
