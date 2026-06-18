@@ -18,6 +18,7 @@ import {
   MIN_WAGER,
   MAX_WAGER,
   RESULT_SCREEN_MS,
+  STEAL_WINDOW_MS,
   CATEGORIES_PER_PLAYER,
   CATEGORY_OPTIONS_COUNT,
 } from './constants.js';
@@ -29,6 +30,7 @@ export {
   MIN_WAGER,
   MAX_WAGER,
   RESULT_SCREEN_MS,
+  STEAL_WINDOW_MS,
   CATEGORIES_PER_PLAYER,
   CATEGORY_OPTIONS_COUNT,
 };
@@ -301,6 +303,8 @@ export function getTimerSeconds(game) {
 }
 
 // Evaluates the answerer's submission via Claude and applies scoring.
+// If the Steal round rule is active and the answer is wrong, transitions
+// to the STEAL phase instead of RESULT (see claimSteal / expireSteal).
 export async function submitAnswer(game, playerId, rawAnswer, inputMode) {
   assertPhase(game, 'ANSWER');
   const answerer = game.players[game.answererIndex];
@@ -317,18 +321,71 @@ export async function submitAnswer(game, playerId, rawAnswer, inputMode) {
   });
 
   const wager = game.currentWager;
+  game.lastResult = { ...result, wager, playerAnswer: rawAnswer };
+
   if (result.correct) {
     answerer.score += wager;
+    game.phase = 'RESULT';
   } else {
     answerer.score -= wager;
     logHighlight(
       game,
-      `${answerer.name} wagered ${wager} and answered "${rawAnswer}" — wrong! Correct answer: ${game.currentQuestion.answer}`
+      `${answerer.name} wagered ${wager} and answered "${rawAnswer}" — wrong!`
     );
-    // TODO: Steal round rule — open a steal window for other players here.
+
+    if (game.roundRule?.stealOnWrong) {
+      game.phase = 'STEAL';
+      game.stealSlot = null;
+      game.stealEligible = game.players
+        .filter((p) => p.id !== answerer.id)
+        .map((p) => p.id);
+    } else {
+      game.phase = 'RESULT';
+    }
   }
 
-  game.lastResult = { ...result, wager, playerAnswer: rawAnswer };
+  return game;
+}
+
+// FCFS steal: first eligible player to buzz in claims the steal attempt.
+export async function claimSteal(game, playerId, rawAnswer, inputMode) {
+  assertPhase(game, 'STEAL');
+  if (game.stealSlot) {
+    throw new Error('Steal already claimed — too slow!');
+  }
+  if (!game.stealEligible.includes(playerId)) {
+    throw new Error('Not eligible to steal');
+  }
+
+  game.stealSlot = playerId;
+  const stealer = getPlayer(game, playerId);
+
+  const transformed = transformAnswer(game.roundRule, rawAnswer, inputMode);
+  const result = await evaluateAnswer({
+    question: game.currentQuestion.question,
+    correctAnswer: game.currentQuestion.answer,
+    playerAnswer: transformed,
+    roundRule: game.roundRule,
+  });
+
+  const wager = game.currentWager;
+  if (result.correct) {
+    stealer.score += wager;
+    logHighlight(game, `${stealer.name} stole it for ${wager} pts!`);
+  } else {
+    stealer.score -= Math.round(wager / 2);
+    logHighlight(game, `${stealer.name} tried to steal but got it wrong — loses ${Math.round(wager / 2)} pts!`);
+  }
+
+  game.lastResult = { ...result, wager, playerAnswer: rawAnswer, stolen: true, stealerName: stealer.name };
+  game.phase = 'RESULT';
+  return game;
+}
+
+// Called when the steal window expires with no takers.
+export function expireSteal(game) {
+  if (game.phase !== 'STEAL') return;
+  logHighlight(game, 'Nobody stole — moving on!');
   game.phase = 'RESULT';
   return game;
 }
@@ -430,7 +487,12 @@ export function playerView(game, playerId) {
     }
   }
 
-  if (game.lastResult && (phase === 'RESULT' || phase === 'GAME_OVER')) {
+  if (phase === 'STEAL') {
+    view.stealEligible = game.stealEligible?.includes(playerId) && !game.stealSlot;
+    view.stealClaimed = !!game.stealSlot;
+  }
+
+  if (game.lastResult && (phase === 'RESULT' || phase === 'GAME_OVER' || phase === 'STEAL')) {
     view.lastResult = game.lastResult;
   }
 

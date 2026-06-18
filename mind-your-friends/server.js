@@ -85,6 +85,18 @@ app.prepare().then(() => {
       withMyGame(socket, async (game, playerId) => {
         await gameState.submitAnswer(game, playerId, answer, inputMode);
         broadcast(io, game);
+        if (game.phase === 'STEAL') {
+          startStealWindow(io, game);
+        } else {
+          scheduleNextTurn(io, game);
+        }
+      });
+    });
+
+    socket.on('turn:claimSteal', ({ answer, inputMode }) => {
+      withMyGame(socket, async (game, playerId) => {
+        await gameState.claimSteal(game, playerId, answer, inputMode);
+        broadcast(io, game);
         scheduleNextTurn(io, game);
       });
     });
@@ -168,6 +180,15 @@ app.prepare().then(() => {
           scheduleNextTurn(io, game);
         });
     }, ms);
+  }
+
+  function startStealWindow(io, game) {
+    setTimeout(() => {
+      if (game.phase !== 'STEAL') return;
+      gameState.expireSteal(game);
+      broadcast(io, game);
+      scheduleNextTurn(io, game);
+    }, gameState.STEAL_WINDOW_MS);
   }
 
   function scheduleNextTurn(io, game) {

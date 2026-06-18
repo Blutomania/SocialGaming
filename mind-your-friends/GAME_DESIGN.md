@@ -156,6 +156,21 @@ Full rule list — 8 confirmed, 1 backburnered:
 | 8 | Steal | Wrong answer opens a steal window for other players | Yes |
 | 9 | Audience Poll | Others predict active player's answer *(out of v1 — backburnered)* | Yes |
 
+### Steal — How It Works
+When the Steal round rule is active and the answerer gets it wrong:
+1. A "wrong" buzzer sound + visual fires for everyone.
+2. The game enters a **STEAL phase** (8-second window). Every player except the
+   original answerer sees a "STEAL!" button.
+3. **First to buzz in claims it** (FCFS, same pattern as card play). They must
+   submit their answer immediately.
+4. Correct steal: stealer gains the full wager. Wrong steal: stealer loses
+   half the wager. Either way, the window closes.
+5. If nobody buzzes in within 8 seconds, the window expires and play continues.
+
+**Redirect interaction**: if a Redirect card changed the answerer, the
+redirected player is the one excluded from the steal pool — the original
+active player can still steal.
+
 ### How round rules are assigned
 **Random**, assigned each turn by the server.
 
