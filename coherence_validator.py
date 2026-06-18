@@ -28,22 +28,22 @@ import re
 from dataclasses import dataclass, field
 from typing import List, Optional
 
-
-# ─── Severity levels ─────────────────────────────────────────────────────────
-
-BLOCKING = "blocking"   # must be fixed; mystery should not be output
-WARNING  = "warning"    # degrades gameplay but doesn't make mystery unsolvable
-INFO     = "info"       # cosmetic / enhancement suggestion
+from coherence.engine import (
+    BLOCKING,
+    WARNING,
+    INFO,
+    Issue as _BaseIssue,
+    CoherenceReport as _BaseReport,
+)
 
 
 # ─── Result dataclasses ──────────────────────────────────────────────────────
+# Issue inherits from the shared framework; adds nothing (repair_hint is
+# already an optional field on the base).
 
 @dataclass
-class Issue:
-    code: str            # e.g. "P1.culprit.no_motive"
-    severity: str        # BLOCKING | WARNING | INFO
-    message: str         # human-readable explanation
-    repair_hint: str     # how to fix WITHOUT a new full-mystery API call
+class Issue(_BaseIssue):
+    pass
 
 
 @dataclass

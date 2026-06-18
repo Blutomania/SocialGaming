@@ -76,25 +76,17 @@ export const CARDS = {
   },
 };
 
-// Common cards — every player starts with these. See GAME_DESIGN.md → Common Cards.
-export const COMMON_CARD_IDS = ['insurance', 'skip'];
+// Every card id is pickable — no common cards. See GAME_DESIGN.md → Hand Dealing.
+export const ALL_CARD_IDS = Object.keys(CARDS);
 
-// The remaining 8 cards, from which each player picks 4 at registration.
-export const PICKABLE_CARD_IDS = Object.keys(CARDS).filter(
-  (id) => !COMMON_CARD_IDS.includes(id)
-);
-
-// Build a player's fixed 6-card hand: 2 common + 4 player-picked.
-export function dealHand(pickedCardIds) {
-  if (pickedCardIds.length !== 4) {
-    throw new Error('Players must pick exactly 4 cards from the pickable pool');
+// Build a player's fixed 6-card hand: 1 player-picked + 5 randomly dealt.
+export function dealHand(pickedCardId) {
+  if (!ALL_CARD_IDS.includes(pickedCardId)) {
+    throw new Error(`Invalid card id: ${pickedCardId}`);
   }
-  for (const id of pickedCardIds) {
-    if (!PICKABLE_CARD_IDS.includes(id)) {
-      throw new Error(`Invalid card id: ${id}`);
-    }
-  }
-  return [...COMMON_CARD_IDS, ...pickedCardIds];
+  const remaining = ALL_CARD_IDS.filter((id) => id !== pickedCardId);
+  const shuffled = remaining.sort(() => Math.random() - 0.5);
+  return [pickedCardId, ...shuffled.slice(0, 5)];
 }
 
 export function pickRandomLanguageRegister() {
