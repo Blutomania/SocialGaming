@@ -371,3 +371,72 @@ function assertPhase(game, expected) {
     throw new Error(`Expected phase ${expected}, got ${game.phase}`);
   }
 }
+
+// Build a state view tailored to a specific player. Hides information that
+// the game rules say they shouldn't see: other players' hands, the correct
+// answer (until RESULT), and internal CE/constraint data.
+export function playerView(game, playerId) {
+  const phase = game.phase;
+
+  const players = game.players.map((p) => {
+    const isMe = p.id === playerId;
+    return {
+      id: p.id,
+      name: p.name,
+      score: p.score,
+      registered: p.registered,
+      cardCount: p.hand.length,
+      hand: isMe ? p.hand : undefined,
+    };
+  });
+
+  const myIndex = game.players.findIndex((p) => p.id === playerId);
+  const isActivePlayer = game.activePlayerIndex === myIndex;
+  const isWagerPlayer = game.players.length >= 2 && game.players.indexOf(getWagerPlayer(game)) === myIndex;
+
+  const view = {
+    code: game.code,
+    phase,
+    myPlayerId: playerId,
+    players,
+    questionIndex: game.questionIndex,
+    activePlayerIndex: game.activePlayerIndex,
+    answererIndex: game.answererIndex,
+    isActivePlayer,
+    isWagerPlayer,
+    currentCategory: game.currentCategory,
+    currentWager: game.currentWager,
+    roundRule: game.roundRule
+      ? { id: game.roundRule.id, name: game.roundRule.name, emoji: game.roundRule.emoji, description: game.roundRule.description }
+      : null,
+    categoryOptions: isActivePlayer ? game.categoryOptions : undefined,
+    heckleMessage: game.heckleMessage,
+    highlightReel: game.highlightReel,
+  };
+
+  if (game.cardSlot) {
+    view.cardSlot = {
+      playerId: game.cardSlot.playerId,
+      cardId: game.cardSlot.cardId,
+    };
+  }
+
+  if (game.currentQuestion) {
+    view.question = game.currentQuestion.question;
+    view.hostQuip = game.currentQuestion.hostQuip;
+
+    if (phase === 'RESULT' || phase === 'GAME_OVER') {
+      view.answer = game.currentQuestion.answer;
+    }
+  }
+
+  if (game.lastResult && (phase === 'RESULT' || phase === 'GAME_OVER')) {
+    view.lastResult = game.lastResult;
+  }
+
+  if (phase === 'GAME_OVER') {
+    view.winners = getWinners(game).map((p) => ({ id: p.id, name: p.name, score: p.score }));
+  }
+
+  return view;
+}

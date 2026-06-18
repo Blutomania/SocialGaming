@@ -178,10 +178,13 @@ app.prepare().then(() => {
   }
 
   function broadcast(io, game) {
-    // TODO: send per-player views that hide opponents' hands and the
-    // correct answer until RESULT phase. Broadcasting the full state is a
-    // simplification for the first scaffold.
-    io.to(game.code).emit('game:state', game);
+    const room = io.sockets.adapter.rooms.get(game.code);
+    if (!room) return;
+    for (const socketId of room) {
+      const entry = sockets.get(socketId);
+      if (!entry) continue;
+      io.to(socketId).emit('game:state', gameState.playerView(game, entry.playerId));
+    }
   }
 
   httpServer.listen(port, () => {
