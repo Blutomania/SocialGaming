@@ -19,6 +19,8 @@ import {
   MAX_WAGER,
   RESULT_SCREEN_MS,
   STEAL_WINDOW_MS,
+  MIN_PLAYERS,
+  MAX_PLAYERS,
   CATEGORIES_PER_PLAYER,
   CATEGORY_OPTIONS_COUNT,
 } from './constants.js';
@@ -31,6 +33,8 @@ export {
   MAX_WAGER,
   RESULT_SCREEN_MS,
   STEAL_WINDOW_MS,
+  MIN_PLAYERS,
+  MAX_PLAYERS,
   CATEGORIES_PER_PLAYER,
   CATEGORY_OPTIONS_COUNT,
 };
@@ -76,6 +80,9 @@ export function addPlayer(game, id, name) {
   if (game.phase !== 'LOBBY') {
     throw new Error('Cannot join — game already started');
   }
+  if (game.players.length >= MAX_PLAYERS) {
+    throw new Error(`Room is full (max ${MAX_PLAYERS} players). Start a second game!`);
+  }
   game.players.push(makePlayer(id, name));
   return game;
 }
@@ -94,7 +101,7 @@ export function registerPlayer(game, playerId, { categories, pickedCardId }) {
 }
 
 export function allPlayersRegistered(game) {
-  return game.players.length >= 2 && game.players.every((p) => p.registered);
+  return game.players.length >= MIN_PLAYERS && game.players.every((p) => p.registered);
 }
 
 export function startGame(game) {

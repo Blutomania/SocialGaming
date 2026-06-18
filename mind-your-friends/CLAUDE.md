@@ -26,20 +26,30 @@ other, and answer AI-generated questions. The social loop — not the trivia —
 7. **[START HERE] Per-player views** — `broadcast()` currently sends full game
    state to everyone (opponents' hands + correct answer visible). Must filter
    state per-player before emitting. This is the #1 blocker for playtesting.
-8. **Next pieces after per-player views**:
-   - **Lobby → card pick UI** — update `Lobby.jsx` / add `CardPicker.jsx` for
-     the 1-pick-from-10 moment at registration (currently expects 4 picks).
-   - **Steal round rule** — implement the steal window: on wrong answer, other
-     players get a brief window to buzz in. Needs a new phase or sub-phase.
-   - **Redirect target selection** — currently random; decide if the card
-     player chooses the target (more social) or if it stays random.
-   - **First run + playtest** — `npm install`, `npm run dev`, play through
-     with 2+ browser tabs. Blocked on per-player views.
-9. **Known gaps / TODOs from the scaffold**:
-   - **Whoa Nellie** — CE treats it as a prompt modifier ("generate a different
-     question"). May need a "previously generated" exclusion list.
-   - **Spotlight** — approximated as 5s timer; UI doesn't skip a prep step.
-   - Game code collisions aren't checked.
+8. ~~**Steal round rule**~~ — FCFS buzz-in window (8s), half-wager penalty on
+   wrong steal. Documented in `GAME_DESIGN.md`.
+9. ~~**Redirect**~~ — random target (decided). No UI needed.
+10. ~~**Category attribution**~~ — locked at registration, publicly visible,
+    attributed in category options. Everyone sees who submitted what.
+11. ~~**Player count**~~ — 3–6 players enforced. Hard cap at join.
+12. ~~**Wager design principle**~~ — "I cut, you choose" documented.
+13. **[START HERE] Lobby → card pick UI** — update `Lobby.jsx` / add
+    `CardPicker.jsx` for the 1-pick-from-10 moment at registration.
+14. **First run + playtest** — `npm install`, `npm run dev`, play through
+    with 3+ browser tabs.
+15. **Known gaps / TODOs from the scaffold**:
+    - **Whoa Nellie** — CE treats it as a prompt modifier ("generate a different
+      question"). May need a "previously generated" exclusion list.
+    - **Spotlight** — approximated as 5s timer; UI doesn't skip a prep step.
+    - Game code collisions aren't checked.
+    - **Heckle content moderation** — free-text read by AI host. Define
+      boundaries (refuse? rephrase? pass through?).
+    - **Disconnection handling** — what happens when a player drops mid-game.
+16. **[FUTURE] Group splitting** — when 7+ players want to play together,
+    design a splintering mechanic to auto-create balanced sub-games (e.g.
+    4+3, 3+3+3). Considerations: grouping UI, how to choose/assign,
+    avoiding lopsided splits (4+2), whether scores reunite after. Parked
+    until core game is proven.
    - Voice input mode (`inputMode: "voice"`) is wired into `transformAnswer()`/
      `evaluateAnswer()` signatures but the UI is text-only.
    - Game code collisions aren't checked (`generateGameCode()` doesn't verify uniqueness

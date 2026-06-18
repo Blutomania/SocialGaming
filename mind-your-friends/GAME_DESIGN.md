@@ -25,6 +25,16 @@ mechanic should be evaluated through this lens:
 
 Design for the table, not the meta.
 
+### Category + Wager: "I Cut, You Choose"
+The category/wager split follows the classic fair-division mechanism
+([Yale SOM](https://insights.som.yale.edu/insights/better-way-to-divide-the-pie)):
+Player 1 picks the category (the cut); Player 2 prices the risk (the choose).
+This self-balances without additional incentive structures — Player 1 can't
+pick an easy self-serving category without Player 2 slamming a high wager on
+it, and Player 2 can't set a punishing wager without considering that Player 1
+chose this category for a reason. The setter needs no skin in the game — their
+power IS the balancing force.
+
 ---
 
 ## Game Structure
@@ -48,6 +58,7 @@ Lands comfortably inside the 20-30 min target with buffer under the hard cap.
 - 4 rounds, 6 questions per round (24 total)
 - 20 seconds per question
 - Each player has a fixed hand of 6 cards for the entire game (see Card Mechanic below)
+- **3–6 players per game** (hard cap enforced at join)
 
 ---
 
