@@ -1,15 +1,28 @@
-# Choose Your Mystery — Claude Code Instructions
+# SocialGaming Monorepo — Claude Code Instructions
 
-## Project Overview
+## Projects in This Repo
+
+### 1. Choose Your Mystery (`/` — root)
 AI-powered social mystery party game. Players investigate crimes, interrogate AI characters,
 and compete to solve the case first. Core innovation: the 75% information-sharing mechanic.
 
 Current phase: **mystery creator / output verification** (single-player, creator-side).
 Next phase: multiplayer gameplay with the 75% sharing mechanic.
 
+### 2. Mind Your Friends (`/mind-your-friends/`)
+Real-time multiplayer social trivia game with sabotage cards and an AI host.
+The social dynamics — sabotage, coalition-building, reading the room — are the product.
+The trivia is the vehicle.
+
+**Key docs:**
+- `mind-your-friends/CLAUDE.md` — project spec, architecture, to-do list
+- `mind-your-friends/GAME_DESIGN.md` — full game design document (cards, rounds, rules)
+
+Current phase: **card mechanic design + scaffold build**.
+
 ---
 
-## Key Files
+## Key Files (Choose Your Mystery)
 
 | File | Purpose |
 |---|---|
