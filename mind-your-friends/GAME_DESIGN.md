@@ -28,11 +28,12 @@ Design for the table, not the meta.
 ### Category + Wager: "I Cut, You Choose"
 The category/wager split follows the classic fair-division mechanism
 ([Yale SOM](https://insights.som.yale.edu/insights/better-way-to-divide-the-pie)):
-Player 1 picks the category (the cut); Player 2 prices the risk (the choose).
-This self-balances without additional incentive structures — Player 1 can't
-pick an easy self-serving category without Player 2 slamming a high wager on
-it, and Player 2 can't set a punishing wager without considering that Player 1
-chose this category for a reason. The setter needs no skin in the game — their
+Player 1 picks the category (the cut); Player 2 picks the point tier (the
+choose). Fixed tiers: **20 / 40 / 80 / 160 / 400**. This self-balances
+without additional incentive structures — Player 1 can't pick an easy
+self-serving category without Player 2 slamming a 400 on it, and Player 2
+can't pick a punishing tier without considering that Player 1 chose this
+category for a reason. The setter needs no skin in the game — their
 power IS the balancing force.
 
 ---
@@ -65,7 +66,7 @@ Lands comfortably inside the 20-30 min target with buffer under the hard cap.
 ## The Round Loop
 Each question follows this phase order (server enforces):
 1. Active player picks a category
-2. Next player sets the wager (50–500 pts)
+2. Next player picks a point tier (20 / 40 / 80 / 160 / 400)
 3. All players may play cards (see Card Mechanic below)
 4. Server calls Claude → generates question (modified by active round rule)
 5. Active player answers within the timer
@@ -100,10 +101,14 @@ competing for the same slot (e.g. the active player could self-buff to block
 an incoming sabotage). Revisit after playtesting.
 
 ### Card Usage Cap
-**Single use per game.** Once a card is played (and claims the FCFS slot — see
-Card Resolution above), it's removed from that player's hand for the rest of
-the game. With only 6 cards per player across 4 rounds, this keeps cards scarce
-and each play meaningful.
+**Single use per game** for most cards. Once a card is played (and claims the
+FCFS slot — see Card Resolution above), it's removed from that player's hand
+for the rest of the game.
+
+**Exception — 50% Off (Half-Off):** every player receives a Half-Off card at
+the start of each round. If used during a round, it's gone until the next round
+replenishes it. This gives everyone a baseline defensive tool against high
+point tiers without making it feel precious.
 
 ### The 10 Base Cards
 8 sabotage + 2 anti-sabotage. All cards are single-use (see Card Usage Cap above)

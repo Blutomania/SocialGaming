@@ -15,6 +15,7 @@ import {
   ROUNDS,
   QUESTIONS_PER_ROUND,
   TOTAL_QUESTIONS,
+  POINT_TIERS,
   MIN_WAGER,
   MAX_WAGER,
   RESULT_SCREEN_MS,
@@ -29,6 +30,7 @@ export {
   ROUNDS,
   QUESTIONS_PER_ROUND,
   TOTAL_QUESTIONS,
+  POINT_TIERS,
   MIN_WAGER,
   MAX_WAGER,
   RESULT_SCREEN_MS,
@@ -111,8 +113,17 @@ export function startGame(game) {
   game.phase = 'CATEGORY';
   game.activePlayerIndex = 0;
   game.questionIndex = 0;
+  grantHalfOff(game);
   beginTurn(game);
   return game;
+}
+
+function grantHalfOff(game) {
+  for (const p of game.players) {
+    if (!p.hand.includes('fiftyOff')) {
+      p.hand.push('fiftyOff');
+    }
+  }
 }
 
 function beginTurn(game) {
@@ -179,7 +190,10 @@ export function setWager(game, playerId, amount) {
   if (playerId !== getWagerPlayer(game).id) {
     throw new Error('Only the wager-decider sets the wager');
   }
-  let wager = Math.max(MIN_WAGER, Math.min(MAX_WAGER, Math.round(amount)));
+  if (!POINT_TIERS.includes(amount)) {
+    throw new Error(`Wager must be one of: ${POINT_TIERS.join(', ')}`);
+  }
+  let wager = amount;
   if (game.roundRule.wagerMultiplier) {
     wager *= game.roundRule.wagerMultiplier; // Double Down
   }
@@ -425,6 +439,9 @@ export function nextTurn(game) {
     game.phase = 'GAME_OVER';
     return game;
   }
+  if (game.questionIndex % QUESTIONS_PER_ROUND === 0) {
+    grantHalfOff(game);
+  }
   game.activePlayerIndex = (game.activePlayerIndex + 1) % game.players.length;
   game.phase = 'CATEGORY';
   beginTurn(game);
@@ -491,6 +508,7 @@ export function playerView(game, playerId) {
     currentCategory: game.currentCategory,
     currentCategoryAttribution: game.currentCategoryAttribution ?? null,
     currentWager: game.currentWager,
+    pointTiers: POINT_TIERS,
     roundRule: game.roundRule
       ? { id: game.roundRule.id, name: game.roundRule.name, emoji: game.roundRule.emoji, description: game.roundRule.description }
       : null,

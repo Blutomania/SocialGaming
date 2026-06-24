@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import CategoryPicker from './CategoryPicker';
 import CardHand from './CardHand';
-import { MIN_WAGER, MAX_WAGER, TOTAL_QUESTIONS, QUESTIONS_PER_ROUND } from '../lib/constants';
+import { POINT_TIERS, TOTAL_QUESTIONS, QUESTIONS_PER_ROUND } from '../lib/constants';
 
 export default function GameBoard({ game, myId, socket }) {
   const round = Math.floor(game.questionIndex / QUESTIONS_PER_ROUND) + 1;
@@ -56,38 +56,32 @@ function ScoreStrip({ game, myId }) {
 
 function WagerPicker({ game, myId, socket }) {
   const wagerPlayer = game.players[(game.activePlayerIndex + 1) % game.players.length];
-  const [amount, setAmount] = useState(MIN_WAGER);
 
   if (wagerPlayer.id !== myId) {
-    return <p className="text-center text-gray-300">{wagerPlayer.name} is setting the wager…</p>;
+    return <p className="text-center text-gray-300">{wagerPlayer.name} is picking the stakes…</p>;
   }
 
   return (
     <div className="space-y-3 text-center">
       <h2 className="text-xl font-semibold">
-        Set {game.players[game.activePlayerIndex].name}'s wager
+        Pick {game.players[game.activePlayerIndex].name}'s stakes
       </h2>
-      {game.roundRule.wagerMultiplier && (
+      {game.roundRule?.wagerMultiplier && (
         <p className="text-sm text-game-gold">
-          {game.roundRule.name}: this wager will be doubled automatically!
+          {game.roundRule.name}: this will be doubled automatically!
         </p>
       )}
-      <input
-        type="range"
-        min={MIN_WAGER}
-        max={MAX_WAGER}
-        step={10}
-        value={amount}
-        onChange={(e) => setAmount(Number(e.target.value))}
-        className="w-full"
-      />
-      <p className="font-mono text-2xl">{amount}</p>
-      <button
-        className="rounded bg-game-accent px-6 py-2 font-semibold hover:opacity-90"
-        onClick={() => socket.emit('turn:setWager', { amount })}
-      >
-        Confirm
-      </button>
+      <div className="flex flex-wrap justify-center gap-2">
+        {POINT_TIERS.map((tier) => (
+          <button
+            key={tier}
+            className="rounded bg-game-dark px-5 py-3 font-mono text-lg font-semibold hover:bg-game-accent/60"
+            onClick={() => socket.emit('turn:setWager', { amount: tier })}
+          >
+            {tier}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

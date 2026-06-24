@@ -123,7 +123,7 @@ need no variants. Never bake in text-only assumptions — voice is the destinati
 
 **Round loop** (server enforces phase order):
 1. Active player picks category
-2. Next player sets wager (50–500 pts)
+2. Next player picks point tier (20 / 40 / 80 / 160 / 400)
 3. All players may play a card; first one submitted claims the single FCFS
    "card slot" for the question, all others rejected (see `GAME_DESIGN.md` →
    Card Resolution)
