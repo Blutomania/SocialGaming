@@ -271,6 +271,96 @@ you pick the restaurant tonight." Optional, social, no mechanical consequence.
 
 ---
 
+## Design Principle: Every Game Is Complete
+
+MYF is a party game, not a platform. Every session should be a self-contained
+experience — the fun is in *this room with these people tonight*, not in
+grinding toward a progress bar across 50 sessions.
+
+This means:
+- **No cumulative unlocks, levels, or lifetime stats.** The moment the game
+  rewards you for *having played before* over *what just happened*, it stops
+  being a party game and starts being a video game.
+- **No collection mechanics.** Avatar cards and social graphics are souvenirs
+  of a specific night, not entries in a Pokédex.
+- **No returning-player advantage.** A first-timer and a 100-game veteran
+  walk into the same lobby with identical chances. Experience helps you play
+  cards better, but the game never mechanically rewards tenure.
+- **The unit of fun is the session, not the account.** If someone plays once
+  at a bachelorette party and never again, they had the full experience. If
+  someone plays weekly, each game stands on its own.
+
+Every feature proposal should be tested against this principle: does it make
+*this game* better, or does it make *the 50th game* better? If only the
+latter, it's wrong for MYF.
+
+---
+
+## Avatar Cards & Social Graphics
+
+### AI Avatars
+Every player has an AI-generated avatar created at registration. The avatar
+appears on all social graphics produced during and after the game — it makes
+cards *yours* without requiring a real photo.
+
+### Card Minting — Notable Moment + Random Gate
+Avatar cards are **rare by design.** They feel like lightning striking, not a
+vending machine. Two ingredients are required to mint a card:
+
+1. **Notable moment occurred** (deterministic). The highlight reel already
+   flags these: steals, high-tier (400pt) swings, sabotage plays, comebacks,
+   going negative. Boring correct answers on a 20pt question never produce
+   cards.
+2. **Random gate** (non-deterministic). Even when a notable moment happens,
+   the card only mints with some hidden probability (~30–40%). The player
+   never sees the threshold or the odds.
+
+**Why this isn't gameable:**
+- You can't force notable moments — you can't *choose* to be stolen from.
+- Even when something notable happens, the random gate means chasing it
+  doesn't reliably pay off.
+- The odds are server-side and never exposed.
+
+**Adaptive tuning:** the server targets ~2–3 mid-game cards per player per
+game. If a game is running hot (many notable moments), the gate tightens
+silently. If it's quiet, it loosens. Players experience natural variance,
+not a formula.
+
+**Superlative cards are guaranteed.** Everyone walks away with their
+superlative(s). Mid-game avatar cards are the surprise on top.
+
+### Spectacularly Wrong — Wrongness Badges
+When `evaluateAnswer()` returns a wrong answer, Claude already has both the
+correct answer and the player's answer. The coherence engine can assess the
+**magnitude and category of wrongness** — and when the gap crosses into
+comedy territory, it mints a social graphic. Not a punishment — a badge of
+honor.
+
+These are inherently rare. Most wrong answers are close misses or timeouts.
+The truly absurd gaps are organic, unplannable, and unshareable-because-
+embarrassing — they're shareable because they're *funny*.
+
+**Wrongness archetypes:**
+
+| Archetype | Trigger | Example badge |
+|---|---|---|
+| Geographic | Wrong hemisphere or continent | "Back to Geography Class 🌍" — avatar pointing at wrong continent |
+| Temporal | Wrong century or millennium | "Time Traveler 🕰️" — avatar in the wrong era's clothing |
+| Categorical | Entirely wrong domain (animal vs. mineral, fiction vs. reality) | "Wrong Universe 🪐" — avatar in a portal to the wrong genre |
+| Scale | Orders of magnitude off on a number | "Just a Little Off 📏" — avatar next to a comically wrong scale |
+
+**Implementation:** after `evaluateAnswer()` returns `correct: false`, a
+follow-up Claude call (or structured output from the same call) classifies
+the wrongness gap. If it matches an archetype and exceeds the comedy
+threshold, the server mints the badge with the player's avatar, the wrong
+answer, the right answer, and a one-liner. The graphic is revealed post-game
+alongside avatar cards.
+
+These badges reinforce the "Every Game Is Complete" principle — they're
+souvenirs of *this moment* with *these people*, not lifetime achievements.
+
+---
+
 ## Social Media Integration — DM-Based Answers
 
 ### The Core Mechanic
