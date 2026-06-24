@@ -271,6 +271,50 @@ you pick the restaurant tonight." Optional, social, no mechanical consequence.
 
 ---
 
+## Social Media Integration — DM-Based Answers
+
+### The Core Mechanic
+On certain questions, the active player **DMs their answer to an official MYF
+account on Snapchat or Instagram** instead of typing it in-game. The MYF
+account (bot or lightweight webhook listener) receives the DM, matches it to
+the active game session via the player's linked handle, and forwards the
+answer text back to the game server. Claude evaluates it normally.
+
+### Why DM, Not Public Post
+Public posting feels performative and contrived — it's homework, not gameplay.
+A DM feels like passing a note. It's private, low-stakes, and native behavior
+on both platforms. No one has to curate a post mid-game.
+
+### Registration
+During lobby join, each player links their Snap or IG handle (free text
+input). This is the only friction — and it's the same friction as entering
+a display name, which they're already doing.
+
+### What This Gets Us
+1. **Every player follows the MYF account to play.** Follower base grows as
+   a side effect of gameplay, not a marketing ask.
+2. **The MYF account can DM back.** Post-game recap cards, superlative cards,
+   "you got sabotaged" moments — pushed directly into the player's DM thread.
+   No share sheet friction, no "save and repost" dropout. It's already in the
+   conversation.
+3. **Story reshare from DMs is one tap.** If MYF sends you your superlative
+   card via DM, resharing it to your story is native behavior on both
+   platforms.
+4. **Game code on every card.** Viewers who see a reshared card can join the
+   next game.
+
+### Open Design Questions (DM Integration)
+- **Frequency**: every question is too much context-switching. Once per round?
+  Triggered by a specific round rule or card? Player's choice?
+- **Platform priority**: Snap or IG first? Support both from day one, or
+  start with one?
+- **Bot implementation**: Snap Kit / IG Messenger API, or a simpler
+  webhook-based approach?
+- **Fallback**: what happens if a player doesn't have Snap/IG? Skip the DM
+  question and answer in-game normally?
+
+---
+
 ## Disconnection Handling
 **"Wait for our friend"** — when a player disconnects mid-game, the game
 pauses. All remaining players see a waiting screen with two options:
