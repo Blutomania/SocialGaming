@@ -66,7 +66,18 @@ other, and answer AI-generated questions. The social loop — not the trivia —
     4+3, 3+3+3). Considerations: grouping UI, how to choose/assign,
     avoiding lopsided splits (4+2), whether scores reunite after. Parked
     until core game is proven.
-     against existing games).
+20. **Social media integration (DM-based)** — design in progress. Core idea:
+    players DM answers to an official MYF account on Snap/IG instead of
+    answering in-game (some questions, not all). Builds follower base as a
+    side effect of gameplay. Also enables push delivery of recap/superlative
+    cards via DM. Frequency and platform priority TBD — owner is thinking.
+21. **Coherence test run** — pick 5 trivia categories, generate questions for
+    each, and verify correct answers across ALL 8 round rules and ALL 10 card
+    types. Confirm that `generateQuestion()` + `evaluateAnswer()` produce
+    sensible Q&A pairs when modified by every combination of round rule and
+    format-constraining card (Language Barrier, Boxed In, Back It Up, One
+    Word Only, etc.). This is the first real end-to-end validation of the
+    Claude integration.
 
 ## Design Thesis: Casual-First
 This game targets casual, social players — not competitive optimizers. Every
