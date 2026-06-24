@@ -35,49 +35,48 @@ other, and answer AI-generated questions. The social loop — not the trivia —
 13. ~~**Whoa Nellie**~~ — category ambush: swaps to a random different category
     from the pool at the same difficulty. Attributed ("swapped to Sarah's
     90s Hip Hop!").
-14. **[START HERE] Post-game activations** — extend the social experience
-    beyond the last question. Inspired by "For the Girls" party game energy.
-    Design and build these features:
-    - **Superlative voting** — after GAME_OVER, everyone votes on categories
-      like "Best Sabotage," "Worst Answer," "Luckiest Steal," "Most Targeted
-      Player." AI host announces winners with quips.
-    - **Replay moments** — highlight reel as a slideshow, not just a list.
-      Each highlight gets card-style presentation with AI host narration.
-    - **Shareable recap** — generated image or link summarizing the game:
-      final scores, superlatives, best highlights. Growth mechanic.
-    - **"One more round" moments** — post-game dares or challenges based on
-      what happened during the game ("Jake went negative, so Jake has to...").
+14. ~~**Post-game activations**~~ — designed: superlative voting, replay
+    moments, shareable recap, "one more round" dares. See `GAME_DESIGN.md`.
+    Implementation pending.
 15. **Lobby → card pick UI** — update `Lobby.jsx` / add `CardPicker.jsx`
     for the 1-pick-from-10 moment at registration.
-16. **First run + playtest** — `npm install`, `npm run dev`, play through
+16. ~~**Point tiers**~~ — freeform wager (50–500) replaced with fixed tiers
+    (20/40/80/160/400) in `constants.js`. Wager picker is now tier buttons.
+17. ~~**Per-round Half-Off**~~ — every player gets a Half-Off card at the
+    start of each round. Replenished automatically.
+18. ~~**"Every Game Is Complete" principle**~~ — codified. No cumulative
+    unlocks, no collection mechanics, no returning-player advantage.
+19. ~~**Avatar cards + wrongness badges**~~ — designed: notable moment +
+    random gate minting, wrongness archetypes (geographic, temporal,
+    categorical, scale). See `GAME_DESIGN.md`.
+20. ~~**Player Memory (tentative)**~~ — designed + stubbed in
+    `playerProfile.js`: preferred categories, AI avatar, badge cooldown
+    (4-game suppression). Not wired into game loop yet.
+21. **[START HERE] Coherence test run** — pick 5 trivia categories, generate
+    questions for each, and verify correct answers across ALL 8 round rules
+    and ALL 10 card types. Confirm that `generateQuestion()` +
+    `evaluateAnswer()` produce sensible Q&A pairs when modified by every
+    combination of round rule and format-constraining card (Language Barrier,
+    Boxed In, Back It Up, One Word Only, etc.). First real end-to-end
+    validation of the Claude integration.
+22. **Social media integration (DM-based)** — designed in `GAME_DESIGN.md`.
+    Core idea: players DM answers to official MYF account on Snap/IG. Builds
+    follower base organically. Open questions: frequency, platform priority,
+    bot implementation, fallback.
+23. **First run + playtest** — `npm install`, `npm run dev`, play through
     with 3+ browser tabs.
-17. **Disconnection handling** — "Wait for our friend" pause screen. Players
-    vote to keep waiting or continue without. No AI/bot takeover — dropped
-    player's turns are skipped, score freezes. It's a party, not a ranked match.
-18. **Known gaps / TODOs from the scaffold**:
+24. **Disconnection handling** — "Wait for our friend" pause screen. Players
+    vote to keep waiting or continue without. No AI/bot takeover.
+25. **Known gaps / TODOs from the scaffold**:
     - **Spotlight** — approximated as 5s timer; UI doesn't skip a prep step.
     - **Heckle content moderation** — free-text read by AI host. Define
       boundaries (refuse? rephrase? host-reinterpretation?).
     - Game code collisions aren't checked.
     - Voice input mode (`inputMode: "voice"`) wired into signatures but
       UI is text-only.
-19. **[FUTURE] Group splitting** — when 7+ players want to play together,
+26. **[FUTURE] Group splitting** — when 7+ players want to play together,
     design a splintering mechanic to auto-create balanced sub-games (e.g.
-    4+3, 3+3+3). Considerations: grouping UI, how to choose/assign,
-    avoiding lopsided splits (4+2), whether scores reunite after. Parked
-    until core game is proven.
-20. **Social media integration (DM-based)** — design in progress. Core idea:
-    players DM answers to an official MYF account on Snap/IG instead of
-    answering in-game (some questions, not all). Builds follower base as a
-    side effect of gameplay. Also enables push delivery of recap/superlative
-    cards via DM. Frequency and platform priority TBD — owner is thinking.
-21. **Coherence test run** — pick 5 trivia categories, generate questions for
-    each, and verify correct answers across ALL 8 round rules and ALL 10 card
-    types. Confirm that `generateQuestion()` + `evaluateAnswer()` produce
-    sensible Q&A pairs when modified by every combination of round rule and
-    format-constraining card (Language Barrier, Boxed In, Back It Up, One
-    Word Only, etc.). This is the first real end-to-end validation of the
-    Claude integration.
+    4+3, 3+3+3). Parked until core game is proven.
 
 ## Design Thesis: Casual-First
 This game targets casual, social players — not competitive optimizers. Every
