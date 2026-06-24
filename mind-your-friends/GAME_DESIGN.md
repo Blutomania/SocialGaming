@@ -361,6 +361,46 @@ souvenirs of *this moment* with *these people*, not lifetime achievements.
 
 ---
 
+## Player Memory (Tentative)
+
+*Half-baked — writing in pencil. This section captures cross-game data that
+improves comfort and kindness, not progression or advantage. If any item
+starts feeling like a level-up system, kill it.*
+
+A lightweight player profile persists across sessions. It stores:
+
+### 1. Preferred Categories
+The 5 categories a player submitted last time, pre-filled at lobby
+registration. They can change any or all — it's a convenience default, not a
+lock-in. Saves the "ugh, type 5 things" friction on repeat plays.
+
+### 2. AI Avatar
+Generated once, reused across games. Players can regenerate anytime but don't
+have to. The avatar is theirs — it shows up on their cards, badges, and
+recaps without re-creating it each session.
+
+### 3. Wrongness Badge Cooldown
+The server tracks which wrongness archetypes a player has been hit with
+recently. If someone got "Back to Geography Class" last game, that archetype
+is suppressed for them for N games (TBD — maybe 3–5). The comedy threshold
+for that archetype rises sharply so it only fires again on a *truly*
+spectacular miss.
+
+**Why this matters:** a wrongness badge is funny the first time. The same
+badge hitting the same person repeatedly stops being a joke and becomes a
+label. The cooldown protects players from feeling defined by a weak spot.
+The game should punch up (celebrate absurdity) not down (expose ignorance).
+
+### What This Is NOT
+- Not a player account system. No login, no password. Could be as simple as
+  a device-local cookie or a short code they remember.
+- Not a progression mechanic. Nothing here makes the 10th game mechanically
+  different from the 1st.
+- Not a social profile. Other players never see your history, your badge
+  cooldowns, or how many times you've played.
+
+---
+
 ## Social Media Integration — DM-Based Answers
 
 ### The Core Mechanic
