@@ -52,29 +52,46 @@ other, and answer AI-generated questions. The social loop — not the trivia —
 20. ~~**Player Memory (tentative)**~~ — designed + stubbed in
     `playerProfile.js`: preferred categories, AI avatar, badge cooldown
     (4-game suppression). Not wired into game loop yet.
-21. **[START HERE] Coherence test run** — pick 5 trivia categories, generate
-    questions for each, and verify correct answers across ALL 8 round rules
-    and ALL 10 card types. Confirm that `generateQuestion()` +
-    `evaluateAnswer()` produce sensible Q&A pairs when modified by every
-    combination of round rule and format-constraining card (Language Barrier,
-    Boxed In, Back It Up, One Word Only, etc.). First real end-to-end
-    validation of the Claude integration.
-22. **Social media integration (DM-based)** — designed in `GAME_DESIGN.md`.
-    Core idea: players DM answers to official MYF account on Snap/IG. Builds
-    follower base organically. Open questions: frequency, platform priority,
-    bot implementation, fallback.
-23. **First run + playtest** — `npm install`, `npm run dev`, play through
-    with 3+ browser tabs.
-24. **Disconnection handling** — "Wait for our friend" pause screen. Players
+21. ~~**Coherence test run**~~ — ran 8 categories × 5 tiers × round rules ×
+    cards. Results in `scripts/coherence-test-results.json`. Findings:
+    39/40 passed difficulty scaling, 14/14 round rules passed, duplicate
+    questions at same difficulty (fixed with easy/easy-alt split), One Word
+    Only prompt tightened, batch pre-gen saves ~44%.
+22. ~~**Sub-topic expansion + question pools**~~ — LLM generates 8-10
+    sub-topics per category, batch-generates ~15 questions per category.
+    Pool draw during play, live fallback for format-constraining cards.
+    See `questionPool.js` and `GAME_DESIGN.md`.
+23. **[OPEN] Difficulty model** — owner considering whether difficulty should
+    scale with point tiers or be mostly flat (fun over stratification).
+    Current thinking: only the 400pt tier is explicitly hard; rest are
+    approachable. Decision pending.
+
+--- TOMORROW: START HERE ---
+
+24. **Re-run coherence test** — verify fixes (easy-alt split, One Word Only
+    tightening, sub-topic pool) actually solve the duplicate/format issues.
+    Pull latest, run `node scripts/coherence-test.js` with API key.
+25. **Difficulty model decision** — decide: flat difficulty (all tiers same
+    hardness, tiers = pure stakes) vs. current model (invisible scaling) vs.
+    hybrid (only 400pt is explicitly hard). Update constants + prompts once
+    decided.
+26. **Lobby → card pick UI** — update `Lobby.jsx` / add `CardPicker.jsx`
+    for the 1-pick-from-10 moment at registration.
+27. **First run + playtest** — `npm install`, `npm run dev`, play through
+    with 3+ browser tabs. First real gameplay test.
+28. **Social media integration (DM-based)** — designed in `GAME_DESIGN.md`.
+    Open questions: frequency, platform priority, bot implementation,
+    fallback for players without Snap/IG.
+29. **Disconnection handling** — "Wait for our friend" pause screen. Players
     vote to keep waiting or continue without. No AI/bot takeover.
-25. **Known gaps / TODOs from the scaffold**:
+30. **Known gaps / TODOs from the scaffold**:
     - **Spotlight** — approximated as 5s timer; UI doesn't skip a prep step.
     - **Heckle content moderation** — free-text read by AI host. Define
       boundaries (refuse? rephrase? host-reinterpretation?).
     - Game code collisions aren't checked.
     - Voice input mode (`inputMode: "voice"`) wired into signatures but
       UI is text-only.
-26. **[FUTURE] Group splitting** — when 7+ players want to play together,
+31. **[FUTURE] Group splitting** — when 7+ players want to play together,
     design a splintering mechanic to auto-create balanced sub-games (e.g.
     4+3, 3+3+3). Parked until core game is proven.
 
