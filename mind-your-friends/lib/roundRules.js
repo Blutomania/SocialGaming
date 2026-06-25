@@ -27,7 +27,7 @@ export const ROUND_RULES = {
     emoji: '1️⃣',
     description: 'The answer must be a single word.',
     promptInstruction:
-      'Generate a question whose correct answer can be reduced to a single word.',
+      'Generate a question whose correct answer is exactly ONE word — a single common word, number, or name (not a multi-word proper noun). Design the question so a one-word answer is natural.',
     timerSeconds: BASE_TIMER_SECONDS,
     transform: {
       text: (answer) => answer.trim().split(/\s+/)[0],

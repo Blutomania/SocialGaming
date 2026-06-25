@@ -9,8 +9,16 @@
 
 import { dealHand, pickRandomLanguageRegister } from './cards.js';
 import { pickRandomRoundRule, transformAnswer } from './roundRules.js';
-import { generateQuestion, evaluateAnswer } from './claudeClient.js';
+import { generateQuestion, evaluateAnswer, getClient, MODEL } from './claudeClient.js';
 import { roundConstraints, turnConstraints, validateQuestion } from './coherence.js';
+import {
+  expandCategories,
+  generatePool,
+  createQuestionPool,
+  addToPool,
+  drawQuestion,
+  needsRefill,
+} from './questionPool.js';
 import {
   ROUNDS,
   QUESTIONS_PER_ROUND,
@@ -106,16 +114,36 @@ export function allPlayersRegistered(game) {
   return game.players.length >= MIN_PLAYERS && game.players.every((p) => p.registered);
 }
 
-export function startGame(game) {
+export async function startGame(game) {
   if (!allPlayersRegistered(game)) {
     throw new Error('All players must register before the game can start');
   }
   game.phase = 'CATEGORY';
   game.activePlayerIndex = 0;
   game.questionIndex = 0;
+  game.questionPool = createQuestionPool();
   grantHalfOff(game);
+
+  await populateQuestionPool(game);
+
   beginTurn(game);
   return game;
+}
+
+async function populateQuestionPool(game) {
+  const anthropic = getClient();
+  const allCategories = [...new Set(game.players.flatMap((p) => p.categories))];
+  const playerNames = game.players.map((p) => p.name);
+
+  const subTopicMap = await expandCategories(anthropic, MODEL, allCategories);
+
+  const poolPromises = allCategories.map(async (category) => {
+    const subTopics = subTopicMap[category] || [category];
+    const questions = await generatePool(anthropic, MODEL, category, subTopics, playerNames);
+    addToPool(game.questionPool, category, subTopics, questions);
+  });
+
+  await Promise.all(poolPromises);
 }
 
 function grantHalfOff(game) {
@@ -311,7 +339,10 @@ export function resolveCardSlot(game) {
   return game;
 }
 
-// Assembles constraints via the CE, calls Claude, validates the result.
+// Draws from the pre-generated pool when possible. Falls back to a live
+// API call if the pool is empty for this category/difficulty, or if a
+// format-constraining card (Language Barrier, Boxed In) requires a fresh
+// question tailored to the constraint.
 export async function runQuestionPhase(game) {
   assertPhase(game, 'QUESTION');
 
@@ -321,11 +352,28 @@ export async function runQuestionPhase(game) {
     resolvedCard: getEffectiveCard(game),
   });
 
-  const result = await generateQuestion({
-    constraints,
-    activePlayerName: getActivePlayer(game).name,
-    playerNames: game.players.map((p) => p.name),
-  });
+  const effectiveCard = getEffectiveCard(game);
+  const needsFreshGeneration = effectiveCard === 'languageBarrier' || effectiveCard === 'boxedIn';
+
+  let result;
+  if (!needsFreshGeneration && game.questionPool) {
+    const pooled = drawQuestion(game.questionPool, game.currentCategory, game.currentWager);
+    if (pooled) {
+      result = {
+        question: pooled.question,
+        answer: pooled.answer,
+        hostQuip: pooled.hostQuip.replace(/\byou\b/gi, getActivePlayer(game).name),
+      };
+    }
+  }
+
+  if (!result) {
+    result = await generateQuestion({
+      constraints,
+      activePlayerName: getActivePlayer(game).name,
+      playerNames: game.players.map((p) => p.name),
+    });
+  }
 
   const validation = validateQuestion(result, constraints);
   if (!validation.passed) {

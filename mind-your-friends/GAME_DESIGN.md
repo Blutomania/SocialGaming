@@ -200,10 +200,45 @@ submits **5 categories** they like (free-text tags, e.g. "Pop Music," "Marvel
 Movies," "90s Sitcoms"). All players' submissions go into one shared pool for
 that game.
 
+### Sub-Topic Expansion
+At game start, every unique category in the pool is sent to the LLM, which
+generates **8–10 sub-topics** per category. "WWII" becomes "Pacific Theater,"
+"European Theater," "Key dates and turning points," "Weapons and technology,"
+"Military leaders," etc. This creates depth within any user-submitted category
+— no curated category list needed. Sub-topics are cached per game session.
+
+### Question Pool (Batch Pre-Generation)
+After sub-topic expansion, the server **batch-generates a pool of ~15
+questions per category** (3 per difficulty level: easy, easy-alt, medium,
+hard, expert) in a single API call per category. During play, questions are
+drawn from the pool — no per-question API call. This yields ~44% token
+savings vs. individual generation calls.
+
+**Difficulty differentiation:**
+| Tier | Difficulty | Prompt behavior |
+|---|---|---|
+| 20pt | easy | Most accessible, obvious question for the category |
+| 40pt | easy-alt | Still easy, but a different angle or less-famous fact |
+| 80pt | medium | Moderately challenging — not trivial, but fair |
+| 160pt | hard | Requires specific knowledge |
+| 400pt | expert | Deep knowledge only |
+
+The easy/easy-alt split prevents duplicate questions at low tiers (a problem
+found in coherence testing — both 20pt and 40pt were generating identical
+questions when both mapped to "easy").
+
+**Pool refill:** if a category's pool drops below 3 remaining questions,
+a background batch-refill is triggered. The LLM is instructed to draw from
+sub-topics not yet used, ensuring continued variety.
+
+**Format-constraining cards bypass the pool.** When a Language Barrier or
+Boxed In card is played, the question must be generated fresh to satisfy the
+format constraint — the pool doesn't contain pre-formatted variants.
+
 ### Category Pick
 When it's a player's turn to pick a category, the server shows them **6 random
 categories drawn from the shared pool** (their own or others' — no special
-weighting). They pick one; it's passed to `generateQuestion()`.
+weighting). They pick one; a question is drawn from the pre-generated pool.
 
 ### Parked for later
 **AI-host-curated categories** (host persona influencing/adding category

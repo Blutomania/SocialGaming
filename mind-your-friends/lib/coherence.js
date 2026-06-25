@@ -25,7 +25,7 @@ export const INFO = 'info';
 
 const TIER_TO_DIFFICULTY = {
   20: 'easy',
-  40: 'easy',
+  40: 'easy-alt',
   80: 'medium',
   160: 'hard',
   400: 'expert',
@@ -36,7 +36,8 @@ function wagerToDifficulty(wager) {
 }
 
 const DIFFICULTY_PROMPT = {
-  easy: 'Generate an easy question that most people would know the answer to.',
+  easy: 'Generate an easy question — the most accessible, obvious question for this category. Most people would know the answer.',
+  'easy-alt': 'Generate an easy question, but NOT the most obvious one. Pick a different angle or a less-famous-but-still-easy fact.',
   medium: 'Generate a moderately challenging question — not trivial, but fair.',
   hard: 'Generate a difficult question that requires specific knowledge.',
   expert: 'Generate an expert-level question — only someone with deep knowledge of this subject would get it right.',

@@ -1,9 +1,17 @@
 import Anthropic from '@anthropic-ai/sdk';
 
-const MODEL = 'claude-sonnet-4-6';
+export const MODEL = 'claude-sonnet-4-6';
 
 const apiKey = process.env.ANTHROPIC_API_KEY;
 const client = apiKey ? new Anthropic({ apiKey }) : null;
+
+function stripMarkdownFences(text) {
+  return text.replace(/^```(?:json)?\s*\n?/i, '').replace(/\n?```\s*$/i, '').trim();
+}
+
+export function getClient() {
+  return requireClient();
+}
 
 function requireClient() {
   if (!client) {
@@ -51,7 +59,7 @@ Respond with ONLY a JSON object, no other text:
   });
 
   const text = response.content[0].text;
-  return JSON.parse(text);
+  return JSON.parse(stripMarkdownFences(text));
 }
 
 // Evaluate a player's answer.
@@ -87,5 +95,5 @@ Respond with ONLY a JSON object, no other text:
   });
 
   const text = response.content[0].text;
-  return JSON.parse(text);
+  return JSON.parse(stripMarkdownFences(text));
 }
