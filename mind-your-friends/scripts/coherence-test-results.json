@@ -1,0 +1,972 @@
+{
+  "timestamp": "2026-06-25T02:14:51.459Z",
+  "categories": [
+    "The NBA",
+    "High Fashion",
+    "PlayStation 5 Games",
+    "Top Albums of the 2000s",
+    "Famous Military Battles",
+    "Jane Austen",
+    "High-Performance Cars",
+    "Scary Movies"
+  ],
+  "pointTiers": [
+    20,
+    40,
+    80,
+    160,
+    400
+  ],
+  "difficultyScaling": [
+    {
+      "category": "The NBA",
+      "tier": 20,
+      "difficulty": "easy",
+      "question": "What city do the Los Angeles Lakers play their home games in?",
+      "answer": "Los Angeles, California",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 151,
+      "outputTokens": 68
+    },
+    {
+      "category": "The NBA",
+      "tier": 40,
+      "difficulty": "easy",
+      "question": "What city do the Los Angeles Lakers play their home games in?",
+      "answer": "Los Angeles, California",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 151,
+      "outputTokens": 71
+    },
+    {
+      "category": "The NBA",
+      "tier": 80,
+      "difficulty": "medium",
+      "question": "Which NBA team did LeBron James lead to their first ever franchise championship in 2016, coming back from a 3-1 series deficit?",
+      "answer": "the Cleveland Cavaliers",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 152,
+      "outputTokens": 86
+    },
+    {
+      "category": "The NBA",
+      "tier": 160,
+      "difficulty": "hard",
+      "question": "Which NBA player holds the record for the most points scored in a single overtime period, and how many points did he score?",
+      "answer": "Butch Carter with 16 points",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 147,
+      "outputTokens": 87
+    },
+    {
+      "category": "The NBA",
+      "tier": 400,
+      "difficulty": "expert",
+      "question": "What is the name of the play the Chicago Bulls ran for Scottie Pippen to take the final shot in Game 3 of the 1994 Eastern Conference Semifinals, which he famously refused to execute after Phil Jackson drew up the last shot for Toni Kukoč instead?",
+      "answer": "the triangle post entry",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 158,
+      "outputTokens": 127
+    },
+    {
+      "category": "High Fashion",
+      "tier": 20,
+      "difficulty": "easy",
+      "question": "What French luxury fashion house is known for its iconic double-C logo?",
+      "answer": "Chanel by Coco Chanel",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 151,
+      "outputTokens": 80
+    },
+    {
+      "category": "High Fashion",
+      "tier": 40,
+      "difficulty": "easy",
+      "question": "What French fashion house is famous for its iconic interlocking double-C logo?",
+      "answer": "Chanel double C logo",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 151,
+      "outputTokens": 77
+    },
+    {
+      "category": "High Fashion",
+      "tier": 80,
+      "difficulty": "medium",
+      "question": "Which Italian fashion house created the iconic 'Jungle' print dress famously worn by Jennifer Lopez at the 2000 Grammy Awards, which is often credited with inspiring the creation of Google Images?",
+      "answer": "Versace green jungle dress",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 152,
+      "outputTokens": 100
+    },
+    {
+      "category": "High Fashion",
+      "tier": 160,
+      "difficulty": "hard",
+      "question": "Which Italian fashion house created the 'Superga' platform sneakers worn by Naomi Campbell when she famously fell on the runway during the Vivienne Westwood 1993 show?",
+      "answer": "Vivienne Westwood Blue Label",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 147,
+      "outputTokens": 101
+    },
+    {
+      "category": "High Fashion",
+      "tier": 400,
+      "difficulty": "expert",
+      "question": "What was the name of the radical 1965 André Courrèges collection that introduced geometric white miniskirts, go-go boots, and cut-out sunglasses, effectively launching the Space Age fashion movement?",
+      "answer": "Moon Girl collection",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 158,
+      "outputTokens": 102
+    },
+    {
+      "category": "PlayStation 5 Games",
+      "tier": 20,
+      "difficulty": "easy",
+      "question": "What is the name of the open-world game featuring Aloy as the main character, released on PS5 in 2022?",
+      "answer": "Horizon Forbidden West",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 154,
+      "outputTokens": 86
+    },
+    {
+      "category": "PlayStation 5 Games",
+      "tier": 40,
+      "difficulty": "easy",
+      "question": "What is the name of the open-world Spider-Man game released exclusively for PS5 in 2023?",
+      "answer": "Marvel's Spider-Man 2",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 154,
+      "outputTokens": 82
+    },
+    {
+      "category": "PlayStation 5 Games",
+      "tier": 80,
+      "difficulty": "medium",
+      "question": "In the PS5 launch title 'Demon's Souls,' what is the name of the mysterious maiden who serves as your guide and allows you to level up at the Nexus?",
+      "answer": "The Maiden in Black",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 155,
+      "outputTokens": 105
+    },
+    {
+      "category": "PlayStation 5 Games",
+      "tier": 160,
+      "difficulty": "hard",
+      "question": "In Demon's Souls (PS5 remake), what is the name of the final archstone boss that guards the Northern Limit?",
+      "answer": "Old Hero of Boletaria",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 150,
+      "outputTokens": 93
+    },
+    {
+      "category": "PlayStation 5 Games",
+      "tier": 400,
+      "difficulty": "expert",
+      "question": "In Returnal, what is the name of the mysterious tower that appears in the later biomes and serves as the central structure of the game's cryptic narrative, also referenced in the protagonist Selene's audio logs?",
+      "answer": "the Tower of Sisyphus",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 161,
+      "outputTokens": 109
+    },
+    {
+      "category": "Top Albums of the 2000s",
+      "tier": 20,
+      "difficulty": "easy",
+      "question": "Which Beyoncé album released in 2003 featured the hit singles 'Crazy in Love' and 'Baby Boy'?",
+      "answer": "Dangerously in Love",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 157,
+      "outputTokens": 86
+    },
+    {
+      "category": "Top Albums of the 2000s",
+      "tier": 40,
+      "difficulty": "easy",
+      "question": "What is the name of Eminem's 2002 album that includes the hit song 'Without Me' and was one of the best-selling albums of that year?",
+      "answer": "The Eminem Show",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 157,
+      "outputTokens": 96
+    },
+    {
+      "category": "Top Albums of the 2000s",
+      "tier": 80,
+      "difficulty": "medium",
+      "question": "Which band released the critically acclaimed 2003 album 'Elephant,' featuring the hit single 'Seven Nation Army'?",
+      "answer": "The White Stripes",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 158,
+      "outputTokens": 87
+    },
+    {
+      "category": "Top Albums of the 2000s",
+      "tier": 160,
+      "difficulty": "hard",
+      "question": "What is the full title of the Arcade Fire album released in 2004 that was recorded in a church and features the song 'Neighborhood #1 (Tunnels)'?",
+      "answer": "Funeral by Arcade Fire",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 153,
+      "outputTokens": 103
+    },
+    {
+      "category": "Top Albums of the 2000s",
+      "tier": 400,
+      "difficulty": "expert",
+      "question": "On Radiohead's 2003 album 'Hail to the Thief,' what is the full parenthetical subtitle given to the track commonly known as 'There There'?",
+      "answer": "The Boney King of Nowhere",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 164,
+      "outputTokens": 106
+    },
+    {
+      "category": "Famous Military Battles",
+      "tier": 20,
+      "difficulty": "easy",
+      "question": "What was the name of the beach landings in Normandy, France on June 6, 1944?",
+      "answer": "D-Day invasion of Normandy",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 153,
+      "outputTokens": 81
+    },
+    {
+      "category": "Famous Military Battles",
+      "tier": 40,
+      "difficulty": "easy",
+      "question": "What was the name of the massive Allied invasion of Nazi-occupied France that took place on June 6, 1944?",
+      "answer": "The D-Day invasion of Normandy",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 153,
+      "outputTokens": 84
+    },
+    {
+      "category": "Famous Military Battles",
+      "tier": 80,
+      "difficulty": "medium",
+      "question": "What was the name of the decisive 1781 battle in Virginia where British General Cornwallis surrendered, effectively ending the American Revolutionary War?",
+      "answer": "The Siege of Yorktown",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 154,
+      "outputTokens": 90
+    },
+    {
+      "category": "Famous Military Battles",
+      "tier": 160,
+      "difficulty": "hard",
+      "question": "During the Battle of Cannae in 216 BC, what tactical maneuver did Hannibal use to surround and destroy the Roman army, later studied by military strategists for centuries?",
+      "answer": "double envelopment pincer movement",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 149,
+      "outputTokens": 106
+    },
+    {
+      "category": "Famous Military Battles",
+      "tier": 400,
+      "difficulty": "expert",
+      "question": "During the Battle of Cannae in 216 BC, what specific tactical formation did Hannibal use to encircle and destroy the Roman legions, which military historians still study today as the archetypal double envelopment?",
+      "answer": "convex center with enveloping wings",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 160,
+      "outputTokens": 126
+    },
+    {
+      "category": "Jane Austen",
+      "tier": 20,
+      "difficulty": "easy",
+      "question": "What is the opening line of Jane Austen's Pride and Prejudice, beginning with 'It is a truth universally acknowledged...'?",
+      "answer": "a single man in possession of a good fortune must be in want of a wife",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 153,
+      "outputTokens": 96
+    },
+    {
+      "category": "Jane Austen",
+      "tier": 40,
+      "difficulty": "easy",
+      "question": "In Jane Austen's 'Pride and Prejudice,' what is the first name of the male lead, Mr. Darcy?",
+      "answer": "Fitzwilliam Darcy's first name is Fitzwilliam",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 153,
+      "outputTokens": 98
+    },
+    {
+      "category": "Jane Austen",
+      "tier": 80,
+      "difficulty": "medium",
+      "question": "In 'Pride and Prejudice,' what is the name of the estate owned by Mr. Darcy?",
+      "answer": "Pemberley in Derbyshire",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 154,
+      "outputTokens": 86
+    },
+    {
+      "category": "Jane Austen",
+      "tier": 160,
+      "difficulty": "hard",
+      "question": "In 'Mansfield Park,' what is the name of the theatrical play that the young people controversially decide to perform at Mansfield Park during Sir Thomas Bertram's absence?",
+      "answer": "Lovers' Vows by Elizabeth Inchbald",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 149,
+      "outputTokens": 104
+    },
+    {
+      "category": "Jane Austen",
+      "tier": 400,
+      "difficulty": "expert",
+      "question": "In 'Mansfield Park,' what is the full title of the theatrical play that the Bertram household controversially decides to perform during Sir Thomas's absence?",
+      "answer": "Lovers' Vows by Elizabeth Inchbald",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 160,
+      "outputTokens": 109
+    },
+    {
+      "category": "High-Performance Cars",
+      "tier": 20,
+      "difficulty": "easy",
+      "question": "What Italian luxury sports car brand has a prancing horse as its logo?",
+      "answer": "Ferrari prancing horse brand",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 153,
+      "outputTokens": 66
+    },
+    {
+      "category": "High-Performance Cars",
+      "tier": 40,
+      "difficulty": "easy",
+      "question": "What iconic Italian sports car brand has a prancing horse as its logo?",
+      "answer": "Ferrari prancing horse brand",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 153,
+      "outputTokens": 66
+    },
+    {
+      "category": "High-Performance Cars",
+      "tier": 80,
+      "difficulty": "medium",
+      "question": "What specific engine configuration, known for its flat design and low center of gravity, powers the Porsche 911 and is mounted behind the rear axle?",
+      "answer": "air-cooled flat-six engine",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 154,
+      "outputTokens": 91
+    },
+    {
+      "category": "High-Performance Cars",
+      "tier": 160,
+      "difficulty": "hard",
+      "question": "What is the name of the specific aerodynamic feature on the Bugatti Chiron that automatically deploys to act as an air brake during emergency stopping?",
+      "answer": "the rear wing air brake",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 149,
+      "outputTokens": 88
+    },
+    {
+      "category": "High-Performance Cars",
+      "tier": 400,
+      "difficulty": "expert",
+      "question": "What specific engine designation was used in the Porsche 959, featuring twin sequential turbochargers and water-cooled cylinder heads on an air-cooled block?",
+      "answer": "Type 959/50 flat-six engine",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 160,
+      "outputTokens": 99
+    },
+    {
+      "category": "Scary Movies",
+      "tier": 20,
+      "difficulty": "easy",
+      "question": "In the 1993 horror comedy 'Hocus Pocus,' what are the first names of the three Sanderson sisters?",
+      "answer": "Winifred, Sarah, and Mary",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 152,
+      "outputTokens": 89
+    },
+    {
+      "category": "Scary Movies",
+      "tier": 40,
+      "difficulty": "easy",
+      "question": "In the 1975 Steven Spielberg film 'Jaws,' what type of creature terrorizes the beach town of Amity Island?",
+      "answer": "a great white shark",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 152,
+      "outputTokens": 89
+    },
+    {
+      "category": "Scary Movies",
+      "tier": 80,
+      "difficulty": "medium",
+      "question": "In the 1980 horror film 'The Shining,' what phrase does Jack Torrance repeatedly type on his typewriter?",
+      "answer": "All work and no play makes Jack a dull boy",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 153,
+      "outputTokens": 95
+    },
+    {
+      "category": "Scary Movies",
+      "tier": 160,
+      "error": "Unexpected non-whitespace character after JSON at position 349 (line 6 column 1)"
+    },
+    {
+      "category": "Scary Movies",
+      "tier": 400,
+      "difficulty": "expert",
+      "question": "In Dario Argento's 'Suspiria' (1977), what is the name of the ancient witch who founded the dance academy and whose presence still haunts it?",
+      "answer": "Helena Markos the Black Queen",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 159,
+      "outputTokens": 100
+    }
+  ],
+  "roundRules": [
+    {
+      "category": "The NBA",
+      "roundRule": "Back It Up",
+      "card": null,
+      "question": "What is the name of the trophy awarded to the NBA Finals Most Valuable Player?",
+      "answer": "Bill Russell MVP Trophy",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 168,
+      "outputTokens": 77
+    },
+    {
+      "category": "The NBA",
+      "roundRule": "One Word Only",
+      "card": null,
+      "question": "Which NBA team did LeBron James lead to their first-ever franchise championship in 2016, completing a historic comeback from 3-1 down in the Finals?",
+      "answer": "Cleveland Cavaliers",
+      "validation": {
+        "passed": true,
+        "issues": [
+          {
+            "code": "question.answer_too_long.one_word",
+            "severity": "warning",
+            "message": "One Word Only round: answer \"Cleveland Cavaliers\" has 2 words."
+          }
+        ]
+      },
+      "inputTokens": 167,
+      "outputTokens": 103
+    },
+    {
+      "category": "The NBA",
+      "roundRule": "ELI5",
+      "card": null,
+      "question": "Why do they call it a 'triple-double' when a basketball player is really really good in a game?",
+      "answer": "reaching double digits in three different stat categories",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 189,
+      "outputTokens": 85
+    },
+    {
+      "category": "The NBA",
+      "roundRule": "Hot Take",
+      "card": null,
+      "question": "Who is the greatest pure point guard in NBA history, and what makes them stand out above the rest?",
+      "answer": "Opinion-based — reward confident reasoning about playmaking, leadership, winning, or statistical dominance",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 181,
+      "outputTokens": 94
+    },
+    {
+      "category": "The NBA",
+      "roundRule": "Lightning Round",
+      "card": null,
+      "question": "Which NBA team did LeBron James lead to their first ever franchise championship in 2016, coming back from a 3-1 series deficit?",
+      "answer": "the Cleveland Cavaliers",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 152,
+      "outputTokens": 87
+    },
+    {
+      "category": "The NBA",
+      "roundRule": "Double Down",
+      "card": "Boxed In",
+      "question": "Which NBA team did LeBron James play for when he won his first championship in 2012?",
+      "answer": "Heat",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 176,
+      "outputTokens": 74
+    },
+    {
+      "category": "The NBA",
+      "roundRule": "Double Down",
+      "card": "Language Barrier",
+      "question": "Arrr, what be the name of the trophy awarded to the player who leads the NBA in scoring average at the end of the regular season?",
+      "answer": "the NBA scoring title",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 183,
+      "outputTokens": 88
+    },
+    {
+      "category": "Jane Austen",
+      "roundRule": "Back It Up",
+      "card": null,
+      "question": "In 'Pride and Prejudice', what is the name of the Bennet family's estate where the story primarily takes place?",
+      "answer": "Longbourn in Hertfordshire",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 170,
+      "outputTokens": 92
+    },
+    {
+      "category": "Jane Austen",
+      "roundRule": "One Word Only",
+      "card": null,
+      "question": "In 'Pride and Prejudice,' what is the name of the Bennet family's estate?",
+      "answer": "Longbourn",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 169,
+      "outputTokens": 78
+    },
+    {
+      "category": "Jane Austen",
+      "roundRule": "ELI5",
+      "card": null,
+      "question": "Why did the lady named Elizabeth say no the first time Mr. Darcy asked her to marry him in Pride and Prejudice?",
+      "answer": "she thought he was arrogant and rude and she believed he broke up her sister Jane and Mr. Bingley",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 191,
+      "outputTokens": 118
+    },
+    {
+      "category": "Jane Austen",
+      "roundRule": "Hot Take",
+      "card": null,
+      "question": "Which of Jane Austen's heroines do you think undergoes the most meaningful personal growth throughout her novel, and why?",
+      "answer": "Any heroine argued with specific textual reasoning and confidence",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 183,
+      "outputTokens": 102
+    },
+    {
+      "category": "Jane Austen",
+      "roundRule": "Lightning Round",
+      "card": null,
+      "question": "In 'Pride and Prejudice,' what is the name of the estate owned by Mr. Darcy?",
+      "answer": "Pemberley in Derbyshire",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 154,
+      "outputTokens": 86
+    },
+    {
+      "category": "Jane Austen",
+      "roundRule": "Double Down",
+      "card": "Boxed In",
+      "question": "In 'Pride and Prejudice', what is the name of the Bennet family's estate?",
+      "answer": "Longbourn",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 178,
+      "outputTokens": 80
+    },
+    {
+      "category": "Jane Austen",
+      "roundRule": "Double Down",
+      "card": "Language Barrier",
+      "question": "Hark! What sayest thou, good TestPlayer — in which noble estate, pray tell, doth the fair Dashwood family take refuge after the death of their patriarch, having been displaced from Norland Park in the tale of 'Sense and Sensibility'?",
+      "answer": "Barton Cottage in Devonshire",
+      "validation": {
+        "passed": true,
+        "issues": []
+      },
+      "inputTokens": 186,
+      "outputTokens": 130
+    }
+  ],
+  "categoryDepth": [
+    {
+      "category": "The NBA",
+      "questions": [
+        {
+          "question": "Which NBA team did Shaquille O'Neal win his first three championship rings with?",
+          "answer": "the Los Angeles Lakers",
+          "inputTokens": 152,
+          "outputTokens": 77
+        },
+        {
+          "question": "Which NBA player holds the record for the most career triple-doubles in league history?",
+          "answer": "Russell Westbrook with 198",
+          "inputTokens": 199,
+          "outputTokens": 82
+        },
+        {
+          "question": "Which NBA player was nicknamed 'The Mailman' because he always delivered, and won back-to-back MVP awards in 1988 and 1989?",
+          "answer": "Karl Malone of the Utah Jazz",
+          "inputTokens": 232,
+          "outputTokens": 98
+        },
+        {
+          "question": "Which NBA team did LeBron James lead to a historic comeback from a 3-1 deficit to win the 2016 NBA Championship?",
+          "answer": "the Cleveland Cavaliers",
+          "inputTokens": 285,
+          "outputTokens": 101
+        },
+        {
+          "question": "Which NBA team did Kevin Durant join in 2016, forming a superteam that went on to win back-to-back championships in 2017 and 2018?",
+          "answer": "the Golden State Warriors",
+          "inputTokens": 330,
+          "outputTokens": 98
+        },
+        {
+          "question": "Which NBA player famously scored 81 points in a single game against the Toronto Raptors in January 2006, the second-highest single-game total in NBA history?",
+          "answer": "Kobe Bryant of the Los Angeles Lakers",
+          "inputTokens": 381,
+          "outputTokens": 102
+        },
+        {
+          "question": "Which NBA player won the Defensive Player of the Year award four consecutive times between 2015 and 2018, the first player ever to achieve that feat?",
+          "answer": "Kawhi Leonard of the San Antonio Spurs",
+          "inputTokens": 438,
+          "outputTokens": 101
+        },
+        {
+          "question": "Which NBA player won his only championship with the Dallas Mavericks in 2011, earning Finals MVP honors after averaging 26 points per game in the series against the Miami Heat?",
+          "answer": "Dirk Nowitzki of the Dallas Mavericks",
+          "inputTokens": 492,
+          "outputTokens": 108
+        },
+        {
+          "question": "Which NBA player won his record fifth MVP award in 2012, making him the most decorated MVP in league history at that time?",
+          "answer": "Kareem Abdul-Jabbar of the Los Angeles Lakers",
+          "inputTokens": 554,
+          "outputTokens": 94
+        },
+        {
+          "question": "Which NBA player became the first guard in league history to win the Defensive Player of the Year award, earning the honor in the 1987-88 season while playing for the Detroit Pistons?",
+          "answer": "Michael Jordan of the Chicago Bulls",
+          "inputTokens": 603,
+          "outputTokens": 99
+        }
+      ],
+      "tokenGrowth": {
+        "first": 152,
+        "last": 603
+      }
+    },
+    {
+      "category": "Scary Movies",
+      "questions": [
+        {
+          "question": "In the 1980 horror film 'The Shining,' what phrase does Jack Torrance repeatedly type throughout the manuscript he is writing?",
+          "answer": "All work and no play makes Jack a dull boy",
+          "inputTokens": 153,
+          "outputTokens": 97
+        },
+        {
+          "question": "In the 1978 horror film 'Halloween,' what is the clinical term Dr. Loomis uses to describe Michael Myers, calling him the embodiment of pure evil?",
+          "answer": "the boogeyman",
+          "inputTokens": 219,
+          "outputTokens": 103
+        },
+        {
+          "question": "In the 1991 horror film 'The Silence of the Lambs,' what specific instructions does Hannibal Lecter give Clarice about how she will know when Buffalo Bill's next victim has been found?",
+          "answer": "she will be found missing her skin",
+          "inputTokens": 270,
+          "outputTokens": 109
+        },
+        {
+          "question": "In the 1984 horror film 'A Nightmare on Elm Street,' what is the full name of the burned killer who haunts teenagers in their dreams?",
+          "answer": "Fred or Freddy Krueger",
+          "inputTokens": 335,
+          "outputTokens": 89
+        },
+        {
+          "question": "In the 1973 horror film 'The Exorcist,' what is the full name of the actress who played the demonically possessed young girl Regan MacNeil?",
+          "answer": "Linda Blair",
+          "inputTokens": 387,
+          "outputTokens": 90
+        },
+        {
+          "question": "In the 1992 supernatural horror film 'Candyman,' what is the one-handed killer's origin story — specifically, what was done to his hand that led to his transformation into the Candyman?",
+          "answer": "it was sawed off with a rusty hook",
+          "inputTokens": 438,
+          "outputTokens": 112
+        },
+        {
+          "question": "In the 1999 found-footage horror film 'The Blair Witch Project,' what do the three student filmmakers claim they are setting out to document when they enter the Black Hills Forest?",
+          "answer": "the legend of the Blair Witch",
+          "inputTokens": 502,
+          "outputTokens": 105
+        },
+        {
+          "question": "In the 1982 horror film 'Poltergeist,' what is the unsettling warning that the young Carol Anne delivers to her family after staring at the static on the television screen?",
+          "answer": "They're here",
+          "inputTokens": 559,
+          "outputTokens": 104
+        },
+        {
+          "question": "In the 2004 supernatural horror film 'Saw,' what is the name given to the mysterious villain who traps victims in deadly moral dilemmas, later revealed to be terminally ill civil engineer John Kramer?",
+          "answer": "the Jigsaw Killer",
+          "inputTokens": 614,
+          "outputTokens": 104
+        },
+        {
+          "question": "In the 1968 psychological horror film 'Rosemary's Baby,' what disturbing truth does Rosemary ultimately uncover about her neighbors, the Castevets, and their connection to her newborn child?",
+          "answer": "they are devil worshippers who used her baby as the spawn of Satan",
+          "inputTokens": 678,
+          "outputTokens": 124
+        }
+      ],
+      "tokenGrowth": {
+        "first": 153,
+        "last": 678
+      }
+    }
+  ],
+  "visualViability": [
+    {
+      "category": "The NBA",
+      "visualScore": 5,
+      "realImageViability": "medium - team logos and jerseys are trademarked by the NBA, player photos require licensing, but widely available press photos exist for editorial use",
+      "aiGeneratedViability": "medium - AI can render stylized player silhouettes, court designs, and jersey numbers but likeness of real players is legally murky",
+      "estimatedVisualDepth": 200,
+      "examples": [
+        "Show a cropped close-up of a team logo — which franchise is this?",
+        "Show a player's silhouette mid-dunk in their jersey number — who is this?"
+      ],
+      "copyrightRisk": "high"
+    },
+    {
+      "category": "High Fashion",
+      "visualScore": 5,
+      "realImageViability": "medium - runway photos and brand logos are heavily protected by fashion houses, editorial use is possible but inconsistent across brands",
+      "aiGeneratedViability": "high - AI excels at generating stylized garments, distinctive silhouettes, and brand-aesthetic illustrations without copying specific pieces",
+      "estimatedVisualDepth": 150,
+      "examples": [
+        "Show a distinctive Chanel tweed jacket illustration — which fashion house is this associated with?",
+        "Show a runway silhouette with a red-lacquered sole — which designer's signature is this?"
+      ],
+      "copyrightRisk": "high"
+    },
+    {
+      "category": "PlayStation 5 Games",
+      "visualScore": 5,
+      "realImageViability": "medium - official cover art and screenshots are copyrighted by publishers, though promotional images are widely distributed and some publishers allow fan/editorial use",
+      "aiGeneratedViability": "medium - AI can render stylized game-world scenes and character archetypes but reproducing specific IP characters risks infringement",
+      "estimatedVisualDepth": 120,
+      "examples": [
+        "Show a stylized render of a Norse mythological setting with a red-bearded warrior — which PS5 game is this?",
+        "Show a cropped game box art logo — identify this PS5 title"
+      ],
+      "copyrightRisk": "high"
+    },
+    {
+      "category": "Top Albums of the 2000s",
+      "visualScore": 5,
+      "realImageViability": "medium - album covers are copyrighted by labels and artists, but are among the most recognizable single images in pop culture and widely reproduced in editorial contexts",
+      "aiGeneratedViability": "low - album covers are so specific and iconic that AI-generated approximations would be too vague or risk being too close to the original",
+      "estimatedVisualDepth": 100,
+      "examples": [
+        "Show a blurred or partially obscured album cover — which artist released this?",
+        "Show a color-palette-only recreation of a famous 2000s album cover — can you identify it?"
+      ],
+      "copyrightRisk": "medium"
+    },
+    {
+      "category": "Famous Military Battles",
+      "visualScore": 3,
+      "realImageViability": "high - historical paintings, maps, and pre-1928 photographs are largely in the public domain, especially for battles predating the 20th century",
+      "aiGeneratedViability": "high - AI can generate highly detailed and stylized battle scenes, period-accurate uniforms, terrain maps, and military formations with no IP concerns",
+      "estimatedVisualDepth": 80,
+      "examples": [
+        "Show an AI-illustrated map of troop movements at a famous battle — which engagement is depicted?",
+        "Show a period painting of a naval battle scene — identify this historical conflict"
+      ],
+      "copyrightRisk": "low"
+    },
+    {
+      "category": "Jane Austen",
+      "visualScore": 2,
+      "realImageViability": "high - all original Jane Austen works, portraits, and 19th-century illustrations are public domain, though modern film/TV adaptations are copyrighted",
+      "aiGeneratedViability": "medium - AI can generate Regency-era scenes, character portraits, and estate illustrations but visual distinctiveness between stories is limited",
+      "estimatedVisualDepth": 40,
+      "examples": [
+        "Show an AI illustration of a grand English country estate — which Austen novel is set here?",
+        "Show a Regency-era portrait of two women in a drawing room — which Austen title does this scene suggest?"
+      ],
+      "copyrightRisk": "low"
+    },
+    {
+      "category": "High-Performance Cars",
+      "visualScore": 5,
+      "realImageViability": "medium - car designs are trademarked and photos of specific models may require licensing, though automotive press photos are widely available for editorial use",
+      "aiGeneratedViability": "high - AI generates photorealistic and stylized car renders extremely well, and body silhouettes alone are highly recognizable without reproducing copyrighted photos",
+      "estimatedVisualDepth": 180,
+      "examples": [
+        "Show a side-profile silhouette of an iconic supercar — identify this make and model",
+        "Show a close-up of a distinctive front grille design — which high-performance brand is this?"
+      ],
+      "copyrightRisk": "medium"
+    },
+    {
+      "category": "Scary Movies",
+      "visualScore": 5,
+      "realImageViability": "medium - movie stills and promotional posters are copyrighted by studios, but horror iconography is among the most culturally embedded visual language in cinema",
+      "aiGeneratedViability": "high - AI is very capable of generating stylized horror scenes, iconic costume aesthetics, and atmospheric settings that evoke specific films without copying stills",
+      "estimatedVisualDepth": 160,
+      "examples": [
+        "Show an AI-illustrated silhouette of a masked figure in a distinctive costume — which horror franchise is this?",
+        "Show a stylized haunted house illustration matching a famous film setting — identify the movie"
+      ],
+      "copyrightRisk": "medium"
+    }
+  ],
+  "promptEfficiency": {
+    "singleTotal": {
+      "input": 462,
+      "output": 259
+    },
+    "batchTokens": {
+      "input": 139,
+      "output": 263
+    }
+  }
+}
