@@ -13,7 +13,7 @@
 
 import { CARDS, pickRandomLanguageRegister } from './cards.js';
 import { ROUND_RULES, BASE_TIMER_SECONDS } from './roundRules.js';
-import { MIN_WAGER, MAX_WAGER } from './constants.js';
+import { POINT_TIERS } from './constants.js';
 
 // --- Severity levels (shared vocabulary with Choose Your Mystery CE) ---
 
@@ -23,18 +23,23 @@ export const INFO = 'info';
 
 // --- Difficulty mapping ---
 
+const TIER_TO_DIFFICULTY = {
+  20: 'easy',
+  40: 'easy',
+  80: 'medium',
+  160: 'hard',
+  400: 'expert',
+};
+
 function wagerToDifficulty(wager) {
-  const range = MAX_WAGER - MIN_WAGER;
-  const normalized = (wager - MIN_WAGER) / range;
-  if (normalized <= 0.33) return 'easy';
-  if (normalized <= 0.66) return 'medium';
-  return 'hard';
+  return TIER_TO_DIFFICULTY[wager] || 'medium';
 }
 
 const DIFFICULTY_PROMPT = {
   easy: 'Generate an easy question that most people would know the answer to.',
   medium: 'Generate a moderately challenging question — not trivial, but fair.',
   hard: 'Generate a difficult question that requires specific knowledge.',
+  expert: 'Generate an expert-level question — only someone with deep knowledge of this subject would get it right.',
 };
 
 // --- Format-constraining cards (affect question generation) ---
