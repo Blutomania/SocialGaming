@@ -47,6 +47,10 @@ const CATEGORIES = [
 const FORMAT_CARDS = ['boxedIn', 'languageBarrier'];
 const NOTABLE_ROUND_RULES = ['backItUp', 'oneWordOnly', 'eli5', 'hotTake', 'lightningRound'];
 
+function stripMarkdownFences(text) {
+  return text.replace(/^```(?:json)?\s*\n?/i, '').replace(/\n?```\s*$/i, '').trim();
+}
+
 // --- Helper: call Claude for question generation ---
 
 async function generateTestQuestion(constraints, category) {
@@ -76,7 +80,7 @@ Respond with ONLY a JSON object, no other text:
   const text = response.content[0].text;
   const inputTokens = response.usage?.input_tokens || 0;
   const outputTokens = response.usage?.output_tokens || 0;
-  return { parsed: JSON.parse(text), inputTokens, outputTokens };
+  return { parsed: JSON.parse(stripMarkdownFences(text)), inputTokens, outputTokens };
 }
 
 // --- Test 1: Difficulty scaling per category ---
@@ -343,7 +347,7 @@ Respond with ONLY a JSON array, no other text:
       messages: [{ role: 'user', content: prompt }],
     });
 
-    const parsed = JSON.parse(response.content[0].text);
+    const parsed = JSON.parse(stripMarkdownFences(response.content[0].text));
     results.visualViability = parsed;
 
     for (const cat of parsed) {
