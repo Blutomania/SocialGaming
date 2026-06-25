@@ -5,6 +5,46 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session — June 25, 2026 at 02:01
+**Branch:** `claude/brave-bohr-45istr`
+**Latest commit:** `430ae1a`
+
+### Files changed this session
+- `mind-your-friends/package-lock.json` — Untracked
+
+### Commits this session
+```
+430ae1a chore: auto-update SESSIONS.md with session summary [4c5114a]
+4c5114a Add coherence test script and explicit tier-to-difficulty mapping
+3582f2c chore: auto-update SESSIONS.md with session summary [bea90bb]
+bea90bb Update MYF to-do list: mark session work done, set coherence test as START HERE
+afddbed Add Player Memory section (tentative) and stub playerProfile.js
+0fa9765 Add 'Every Game Is Complete' principle, avatar cards, and wrongness badges
+4b2752b Add DM-based social media integration design to GAME_DESIGN.md
+4099c12 Add social media DM integration (design TBD) and coherence test run to to-do list
+2f4f0d6 Point tiers (20/40/80/160/400) replace freeform wager; Half-Off replenishes each round
+1321013 Add post-game activations, disconnection design, update to-do list
+bc51855 Whoa Nellie: swap category to another from the pool, same difficulty
+5ab0dc0 Add player cap (3-6), "I cut you choose" wager principle, updated to-do
+dc314dd Add category attribution — everyone sees who submitted each category
+b3baf54 Implement Steal round rule with FCFS buzz-in window
+9aa1a61 Add per-player state views — hide hands, answers, and role-gated data
+7c10185 Update MYF to-do list with CE complete and next pieces documented
+c39f1f2 Integrate Coherence Engine into MYF game loop
+8dc5a80 Add shared Coherence Engine framework + MYF coherence module
+0581627 Add casual-first design thesis; update card dealing to 1 pick + 5 random
+f2859bf Merge Mind Your Friends sub-project into current branch
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
 ## Session — June 25, 2026 at 01:57
 **Branch:** `claude/brave-bohr-45istr`
 **Latest commit:** `4c5114a`
