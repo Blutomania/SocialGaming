@@ -71,7 +71,7 @@ Lands comfortably inside the 20-30 min target with buffer under the hard cap.
 ### What is agreed:
 - 4 rounds, 6 questions per round (24 total)
 - 20 seconds per question
-- Each player has a fixed hand of 6 cards for the entire game (see Card Mechanic below)
+- Each player holds Half-Off (universal) + 1 picked card + 1–2 random cards per round (see Card Mechanic below)
 - **3–6 players per game** (hard cap enforced at join)
 
 ---
@@ -90,16 +90,16 @@ Each question follows this phase order (server enforces):
 
 ## Card Mechanic
 
-### Hand Dealing
-- Pool of 10 cards total. Each player's hand is **fixed for the entire game** at 6 cards:
-  - **1 player-picked card** — at game start, each player picks 1 card from
-    the full pool. One gut-feel decision, no analysis paralysis (see Design
-    Thesis above).
-  - **5 randomly dealt cards** — server deals 5 from the remaining pool.
-    Every player discovers a unique hand they react to in the moment.
-- Dealt once at game start; no growth or redraw during the game.
-- Duplicate cards across players are fine — if two players both have Skip,
-  that's a social dynamic, not a bug.
+### Hand Composition
+Each round, a player holds:
+- **Half-Off** — universal card, always available, every round, never consumed
+- **1 player-picked card** — chosen once at game start (single use for the
+  entire game; once played, it's gone for remaining rounds)
+- **1–2 randomly dealt cards** — fresh each round, single use for that round
+
+Early game a player holds 3–4 cards; after the picked card is spent, 2–3.
+Cards stay scarce, every play matters.
+Duplicate cards across players are fine — that's a social dynamic, not a bug.
 
 ### Card Resolution — First Come, First Served
 **Replaces the old Two-Card Rule (June 2026).** Each question has a single
@@ -178,10 +178,18 @@ fit. No post-hoc filtering needed.
 
 
 ### The Pick Moment
-At game start, each player sees the full pool of 10 cards and picks 1.
-This is a social moment — players see each other picking, can react ("you
-took Heckle? oh no"), and it sets the tone for the game. The remaining 5
-are dealt randomly. No common/anchor cards — the randomness ensures variety.
+At game start, each player sees the full pool of cards with **name +
+one-line explanation** for every card (no matter how intuitive the name —
+every card gets a description). Players have **40 seconds** to pick 1 card.
+
+- Picks are **private** — you don't see what others are choosing
+- When the timer expires (or all players have picked), all picks are
+  **revealed simultaneously** — "Jake took Skip, Sarah took Insurance,
+  Mia took Heckle, Tom took Redirect"
+- If a player doesn't pick in time, they get a **random assignment** —
+  no penalty, game keeps moving
+- This is a social moment: reactions, trash talk, reading into each
+  other's choices
 
 ---
 
