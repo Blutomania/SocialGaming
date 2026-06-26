@@ -1,37 +1,29 @@
 'use client';
 
 import { useState } from 'react';
-import { CARDS, COMMON_CARD_IDS, PICKABLE_CARD_IDS } from '../lib/cards';
 import { CATEGORIES_PER_PLAYER } from '../lib/constants';
-
-const PICK_COUNT = 4;
+import CardPicker from './CardPicker';
 
 export default function Lobby({ game, myId, socket }) {
   const me = game.players.find((p) => p.id === myId);
   const [categories, setCategories] = useState(Array(CATEGORIES_PER_PLAYER).fill(''));
-  const [pickedCardIds, setPickedCardIds] = useState([]);
+  const [step, setStep] = useState('categories'); // 'categories' | 'cards' | 'done'
 
   if (!me) return null;
 
-  function toggleCard(id) {
-    setPickedCardIds((prev) => {
-      if (prev.includes(id)) return prev.filter((c) => c !== id);
-      if (prev.length >= PICK_COUNT) return prev;
-      return [...prev, id];
-    });
-  }
-
-  function submit() {
+  function submitCategories() {
     const trimmed = categories.map((c) => c.trim()).filter(Boolean);
     if (trimmed.length !== CATEGORIES_PER_PLAYER) {
       alert(`Enter all ${CATEGORIES_PER_PLAYER} categories`);
       return;
     }
-    if (pickedCardIds.length !== PICK_COUNT) {
-      alert(`Pick exactly ${PICK_COUNT} cards`);
-      return;
-    }
-    socket.emit('player:register', { categories: trimmed, pickedCardIds });
+    setStep('cards');
+  }
+
+  function handleCardPick(pickedCardId) {
+    const trimmed = categories.map((c) => c.trim()).filter(Boolean);
+    socket.emit('player:register', { categories: trimmed, pickedCardId });
+    setStep('done');
   }
 
   const allRegistered = game.players.length >= 2 && game.players.every((p) => p.registered);
@@ -53,12 +45,15 @@ export default function Lobby({ game, myId, socket }) {
         </ul>
       </section>
 
-      {!me.registered && (
+      {!me.registered && step === 'categories' && (
         <section className="space-y-4">
           <div>
             <h2 className="mb-2 text-xl font-semibold">
               Pick {CATEGORIES_PER_PLAYER} categories you like
             </h2>
+            <p className="text-sm text-gray-400 mb-3">
+              These go into the shared pool — questions will be drawn from everyone's categories.
+            </p>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               {categories.map((val, i) => (
                 <input
@@ -76,42 +71,25 @@ export default function Lobby({ game, myId, socket }) {
             </div>
           </div>
 
-          <div>
-            <h2 className="mb-2 text-xl font-semibold">
-              Pick {PICK_COUNT} cards ({pickedCardIds.length}/{PICK_COUNT})
-            </h2>
-            <p className="mb-2 text-sm text-gray-400">
-              Everyone also starts with{' '}
-              {COMMON_CARD_IDS.map((id) => CARDS[id].name).join(' and ')} for free.
-            </p>
-            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-              {PICKABLE_CARD_IDS.map((id) => {
-                const card = CARDS[id];
-                const selected = pickedCardIds.includes(id);
-                return (
-                  <button
-                    key={id}
-                    onClick={() => toggleCard(id)}
-                    className={`rounded border-2 px-3 py-2 text-left transition ${
-                      selected
-                        ? 'border-game-accent bg-game-accent/20'
-                        : 'border-transparent bg-game-card'
-                    }`}
-                  >
-                    <div className="font-semibold">{card.name}</div>
-                    <div className="text-xs text-gray-400">{card.description}</div>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
           <button
             className="w-full rounded bg-game-accent px-4 py-2 font-semibold hover:opacity-90"
-            onClick={submit}
+            onClick={submitCategories}
           >
-            Ready
+            Next — Pick Your Card
           </button>
+        </section>
+      )}
+
+      {!me.registered && step === 'cards' && (
+        <section>
+          <CardPicker onPick={handleCardPick} />
+        </section>
+      )}
+
+      {me.registered && (
+        <section className="text-center py-4">
+          <p className="text-game-green font-semibold">You're ready!</p>
+          <p className="text-gray-400 text-sm mt-1">Waiting for everyone else…</p>
         </section>
       )}
 

@@ -489,6 +489,7 @@ function assertPhase(game, expected) {
 export function playerView(game, playerId) {
   const phase = game.phase;
 
+  const allReg = game.players.every((p) => p.registered);
   const players = game.players.map((p) => {
     const isMe = p.id === playerId;
     return {
@@ -499,6 +500,8 @@ export function playerView(game, playerId) {
       categories: p.categories,
       cardCount: p.hand.length,
       hand: isMe ? p.hand : undefined,
+      pickedCard: allReg ? p.pickedCardId : (isMe ? p.pickedCardId : undefined),
+      pickedCardUsed: p.pickedCardUsed,
     };
   });
 
