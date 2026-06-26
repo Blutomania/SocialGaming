@@ -213,12 +213,19 @@ someone mid-party, it's too complex. Rename or cut it.
 | 2 | Open to All | Everyone answers; no speed pressure | Anyone who gets it right scores points |
 | 3 | Visual | Image-based prompt (logo, scene, clue) — identify what you see | Follows FCFS or Open to All scoring (server picks). **See trademark/copyright note below.** |
 
-**Visual question type — trademark/copyright note:**
-Using trademarked logos (e.g. Chanel) in trivia questions is generally fine
-under trademark law (factual reference, not passing off). The risk is
-**copyright on the image itself**. Options to explore: linking to public
-images, using freely licensed assets, or AI-generated visual puzzles that
-avoid direct reproduction. **Needs legal review before launch.**
+**Visual question type — image sourcing:**
+Curated pool of freely licensed visual assets, tagged by category (logos,
+landmarks, objects, symbols, etc.). `generateQuestion()` picks from the pool
+based on the active category. No AI-generated images, no copyright gray areas.
+
+**Asset sources:**
+- **Wikimedia Commons** — logos, landmarks, historical images (Creative Commons / public domain)
+- **The Noun Project** — icons and symbols for stylized visual puzzles
+- **Open Game Art / OpenClipart** — public domain illustrations
+
+Each asset must have clear licensing metadata before entering the pool.
+**Legal review still recommended before launch** for trademark use in
+trivia context.
 
 Question types and round rules are **separate layers** — a round rule modifies
 how the question plays out on top of whatever question type is active. E.g.
