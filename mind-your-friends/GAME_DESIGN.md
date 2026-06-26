@@ -180,7 +180,12 @@ fit. No post-hoc filtering needed.
 ### The Pick Moment
 At game start, each player sees the full pool of cards with **name +
 one-line explanation** for every card (no matter how intuitive the name —
-every card gets a description). Players have **40 seconds** to pick 1 card.
+every card gets a description). The screen displays the instruction text:
+
+> **Card Selection:** Please select a card you will have throughout the game.
+> You can play your card one time every round.
+
+Players have **40 seconds** to pick 1 card.
 
 - Picks are **private** — you don't see what others are choosing
 - When the timer expires (or all players have picked), all picks are
