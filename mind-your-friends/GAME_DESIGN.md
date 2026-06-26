@@ -71,7 +71,7 @@ Lands comfortably inside the 20-30 min target with buffer under the hard cap.
 ### What is agreed:
 - 4 rounds, 6 questions per round (24 total)
 - 20 seconds per question
-- Each player holds Half-Off (universal) + 1 picked card + 1–2 random cards per round (see Card Mechanic below)
+- Each player holds Half-Off (universal) + 1 picked card + 2 random cards per round (see Card Mechanic below)
 - **3–6 players per game** (hard cap enforced at join)
 
 ---
@@ -95,9 +95,9 @@ Each round, a player holds:
 - **Half-Off** — universal card, always available, every round, never consumed
 - **1 player-picked card** — chosen once at game start (single use for the
   entire game; once played, it's gone for remaining rounds)
-- **1–2 randomly dealt cards** — fresh each round, single use for that round
+- **2 randomly dealt cards** — fresh each round, single use for that round
 
-Early game a player holds 3–4 cards; after the picked card is spent, 2–3.
+Early game a player holds 4 cards; after the picked card is spent, 3.
 Cards stay scarce, every play matters.
 Duplicate cards across players are fine — that's a social dynamic, not a bug.
 
@@ -211,7 +211,14 @@ someone mid-party, it's too complex. Rename or cut it.
 |---|---|---|---|
 | 1 | First Come First Serve | Speed — first correct answer wins | Only the first correct answer scores |
 | 2 | Open to All | Everyone answers; no speed pressure | Anyone who gets it right scores points |
-| 3 | Visual | Image-based prompt (logo, scene, clue) — identify what you see | Follows FCFS or Open to All scoring (server picks) |
+| 3 | Visual | Image-based prompt (logo, scene, clue) — identify what you see | Follows FCFS or Open to All scoring (server picks). **See trademark/copyright note below.** |
+
+**Visual question type — trademark/copyright note:**
+Using trademarked logos (e.g. Chanel) in trivia questions is generally fine
+under trademark law (factual reference, not passing off). The risk is
+**copyright on the image itself**. Options to explore: linking to public
+images, using freely licensed assets, or AI-generated visual puzzles that
+avoid direct reproduction. **Needs legal review before launch.**
 
 Question types and round rules are **separate layers** — a round rule modifies
 how the question plays out on top of whatever question type is active. E.g.
@@ -221,7 +228,7 @@ how the question plays out on top of whatever question type is active. E.g.
 
 ## Round Rules (Variations)
 Each question is modified by an active round rule. Rules rotate across the game.
-Full rule list — 9 confirmed, 1 backburnered:
+Full rule list — 7 confirmed, 1 backburnered:
 
 | # | Name | What changes | Input-agnostic? |
 |---|---|---|---|
@@ -230,11 +237,10 @@ Full rule list — 9 confirmed, 1 backburnered:
 | 3 | Lightning Round | Timer halved | Yes |
 | 4 | Take Your Time | Timer doubled; host quip escalates | Yes |
 | 5 | ELI5 | Question phrased by a curious 5-year-old; Claude judges understanding | Yes |
-| 6 | Hot Take | Opinion question; confidence beats correctness *(needs rework — too amorphous, unclear what "winning" looks like to a player)* | Yes |
-| 7 | Double Down | Wager auto-doubled, no backing out | Yes |
-| 8 | Steal | Wrong answer opens a steal window for other players | Yes |
-| 9 | Worst Answer Wins | Everyone submits; worst answer scores lowest (wins). Scored on 3 axes: factually wrong (1-10), creatively wrong (1-10), plausibility (1-10). Lowest total wins. | Yes |
-| 10 | Audience Poll | Others predict active player's answer *(out of v1 — backburnered)* | Yes |
+| 6 | Double Down | Wager auto-doubled, no backing out | Yes |
+| 7 | Steal | Wrong answer opens a steal window for other players | Yes |
+| 8 | Worst Answer Wins | Everyone submits; worst answer scores lowest (wins). Scored on 3 axes: factually wrong (1-10), creatively wrong (1-10), plausibility (1-10). Lowest total wins. | Yes |
+| — | Audience Poll | Others predict active player's answer *(out of v1 — backburnered)* | Yes |
 
 ### Worst Answer Wins — How It Works
 This is a **submission-based** round (not speed-based). All players get the

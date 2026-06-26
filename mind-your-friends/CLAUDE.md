@@ -46,10 +46,8 @@ other, and answer AI-generated questions. The social loop — not the trivia —
     See `GAME_DESIGN.md → Question–Rule Coherence`.
 19. ~~**Complexity guardrails**~~ — "hear it and get it" test added to Design
     Thesis. See `GAME_DESIGN.md → Complexity Budget`.
-20. **[PARKED] Rework Hot Take** — too amorphous. The "hot"/salacious angle
-    has social energy (dirty corruptions of correct answers, double entendres)
-    but no clean scoring mechanic yet. Player-judged voting explored but adds
-    complexity. Revisit when a crisp, scorable mechanic emerges.
+20. ~~**Hot Take removed**~~ — moved to `PLAYTEST.md` (PT-2). Includes
+    stretch idea: player-defined round rules ("Group Round").
 21. **[START HERE] Lobby → card pick UI** — update `Lobby.jsx` / add
     `CardPicker.jsx` for the 1-pick-from-10 moment at registration.
 22. **First run + playtest** — `npm install`, `npm run dev`, play through

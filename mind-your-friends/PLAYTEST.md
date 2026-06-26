@@ -26,3 +26,31 @@ that may violate the Complexity Budget.
 - Does stacking slow down the turn cycle noticeably?
 
 ---
+
+## PT-2: Hot Take Round Rule — Salacious/Comedy Mechanic
+
+**Removed from v1** — the concept has social energy but no clean scoring mechanic.
+
+**The idea:** Players give "hot" answers — dirty wordplay, double entendres,
+salacious corruptions of correct answers (e.g. "Andy Butthole" for Andy Warhol).
+The table loves it, but how does the AI score "hotness"? Player voting was
+explored but adds complexity.
+
+**What to test:**
+- Ask playtesters: "What round rule is missing?" — see if something like this
+  emerges organically
+- Survey: show the concept, ask if it's fun and how they'd score it
+- Does player voting (thumbs up/down on "hotness") feel natural or like homework?
+
+**Stretch idea — Player-Defined Round Rule ("Group Round"):**
+Players could define their own round rule mid-game. Possible workflow:
+1. Each player submits a one-line rule description
+2. All submissions shown to the group
+3. If everyone gives it a thumbs up, it becomes the rule for that turn
+4. AI host adapts the question to fit the player-defined rule
+
+This could be how Hot Take or similar comedy mechanics enter the game — the
+players invent the mechanic themselves. Needs playtesting for feasibility
+(do groups actually converge? does it kill pacing?).
+
+---
