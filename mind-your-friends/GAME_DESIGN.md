@@ -25,6 +25,20 @@ mechanic should be evaluated through this lens:
 
 Design for the table, not the meta.
 
+### Complexity Budget
+The game has three modifier layers: **question types**, **round rules**, and
+**cards**. That's already three things a player tracks. Each individual element
+within those layers must pass the "hear it and get it" test:
+- **Question types**: hearing the type name tells you exactly how to play.
+  "First Come First Serve" — obvious. "Open to All" — obvious.
+- **Round rules**: hearing the rule name tells you what's different this turn.
+  "Lightning Round" — faster. "Worst Answer Wins" — be wrong on purpose.
+- **Cards**: reading the card name tells you what it does. "Skip" — skip
+  someone. "Redirect" — send it to someone else.
+
+If any element needs a paragraph to explain, it's too complex for this game.
+When in doubt, cut it.
+
 ### Category + Wager: "I Cut, You Choose"
 The category/wager split follows the classic fair-division mechanism
 ([Yale SOM](https://insights.som.yale.edu/insights/better-way-to-divide-the-pie)):
@@ -151,21 +165,55 @@ are dealt randomly. No common/anchor cards — the randomness ensures variety.
 
 ---
 
+## Question Types
+Each question has a **type** that determines how players answer and how scoring
+works. The type is announced before the question — a player should immediately
+know what's expected of them just from hearing the type name. No rulebook
+consultation, no "wait, what does that mean?" moments.
+
+**Intuitiveness test**: if you can't explain the question type in ≤5 words to
+someone mid-party, it's too complex. Rename or cut it.
+
+| # | Type | How it works | Scoring |
+|---|---|---|---|
+| 1 | First Come First Serve | Speed — first correct answer wins | Only the first correct answer scores |
+| 2 | Open to All | Everyone answers; no speed pressure | Anyone who gets it right scores points |
+| 3 | Visual | Image-based prompt (logo, scene, clue) — identify what you see | Follows FCFS or Open to All scoring (server picks) |
+
+Question types and round rules are **separate layers** — a round rule modifies
+how the question plays out on top of whatever question type is active. E.g.
+"Visual + Worst Answer Wins" or "Open to All + Lightning Round."
+
+---
+
 ## Round Rules (Variations)
 Each question is modified by an active round rule. Rules rotate across the game.
-Full rule list — 8 confirmed, 1 backburnered:
+Full rule list — 9 confirmed, 1 backburnered:
 
 | # | Name | What changes | Input-agnostic? |
 |---|---|---|---|
 | 1 | Back It Up | Answer must be reversed | No — see below |
 | 2 | One Word Only | Answer must be a single word | No — see below |
 | 3 | Lightning Round | Timer halved | Yes |
-| 4 | Slow Burn | Timer doubled; host quip escalates | Yes |
+| 4 | Take Your Time | Timer doubled; host quip escalates | Yes |
 | 5 | ELI5 | Question phrased by a curious 5-year-old; Claude judges understanding | Yes |
-| 6 | Hot Take | Opinion question; confidence beats correctness | Yes |
+| 6 | Hot Take | Opinion question; confidence beats correctness *(needs rework — too amorphous, unclear what "winning" looks like to a player)* | Yes |
 | 7 | Double Down | Wager auto-doubled, no backing out | Yes |
 | 8 | Steal | Wrong answer opens a steal window for other players | Yes |
-| 9 | Audience Poll | Others predict active player's answer *(out of v1 — backburnered)* | Yes |
+| 9 | Worst Answer Wins | Everyone submits; worst answer scores lowest (wins). Scored on 3 axes: factually wrong (1-10), creatively wrong (1-10), plausibility (1-10). Lowest total wins. | Yes |
+| 10 | Audience Poll | Others predict active player's answer *(out of v1 — backburnered)* | Yes |
+
+### Worst Answer Wins — How It Works
+This is a **submission-based** round (not speed-based). All players get the
+same question and a time window to craft their answer. Answers are revealed
+simultaneously, then scored by the AI on three axes (1 = best/worst, 10 = most
+correct/boring/implausible):
+1. **Factually wrong** — how far from the truth? (1 = maximally wrong)
+2. **Creatively wrong** — how inventive is the wrongness? (1 = most creative)
+3. **Plausibility** — how convincing does it sound despite being false? (1 = most plausible)
+
+Lowest total score wins. The sweet spot: completely false, wildly creative,
+yet somehow sounds convincing.
 
 ### Steal — How It Works
 When the Steal round rule is active and the answerer gets it wrong:
