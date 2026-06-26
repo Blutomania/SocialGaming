@@ -5,6 +5,27 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session — June 26, 2026 at 18:12
+**Branch:** `claude/continuation-r0mhfq`
+**Latest commit:** `ea5af2f`
+
+### Files changed this session
+- `mind-your-friends/GAME_DESIGN.md` — AM
+
+### Commits this session
+```
+_No new commits_
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
 ## Session 9 — March 12, 2026
 **Branch:** `claude/setup-api-and-mysteries-LRLQK`
 **Latest commit:** `d66657d`
