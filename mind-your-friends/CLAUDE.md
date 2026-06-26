@@ -54,9 +54,10 @@ other, and answer AI-generated questions. The social loop — not the trivia —
     `claudeClient.js`. Five-bucket research prompt (Catalyst & Origins →
     Verified Trivia). Called once at game start via `buildFactBank()` in
     `gameState.js`. Stored on `game.factBank`. ~5-7 API calls vs 48.
-23. **[START HERE] Question-from-fact builder** — wire `turnConstraints` to
-    pick a factoid from the bank and build the question prompt from it.
-24. **First run + playtest** — `npm install`, `npm run dev`, play through
+23. ~~**Question-from-fact builder**~~ — `pickFactoid()` in `coherence.js`
+    filters by difficulty + answer format. `generateQuestion()` uses factoid +
+    random question angle. Falls back to original prompt if no bank.
+24. **[START HERE] First run + playtest** — `npm install`, `npm run dev`, play through
     with 3+ browser tabs.
 25. **Disconnection handling** — "Wait for our friend" pause screen. Players
     vote to keep waiting or continue without. No AI/bot takeover — dropped
