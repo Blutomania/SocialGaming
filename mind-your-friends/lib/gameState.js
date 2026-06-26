@@ -10,7 +10,7 @@
 import { buildRoundHand, pickRandomLanguageRegister } from './cards.js';
 import { pickRandomRoundRule, transformAnswer } from './roundRules.js';
 import { generateQuestion, evaluateAnswer, fetchFactsBatch } from './claudeClient.js';
-import { roundConstraints, turnConstraints, validateQuestion } from './coherence.js';
+import { roundConstraints, turnConstraints, validateQuestion, pickFactoid } from './coherence.js';
 import {
   ROUNDS,
   QUESTIONS_PER_ROUND,
@@ -340,8 +340,13 @@ export async function runQuestionPhase(game) {
     resolvedCard: getEffectiveCard(game),
   });
 
+  const factoid = game.factBank
+    ? pickFactoid(game.factBank, game.currentCategory, constraints)
+    : null;
+
   const result = await generateQuestion({
     constraints,
+    factoid,
     activePlayerName: getActivePlayer(game).name,
     playerNames: game.players.map((p) => p.name),
   });

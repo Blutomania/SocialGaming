@@ -125,6 +125,34 @@ export function turnConstraints(roundCtx, { category, wager, resolvedCard }) {
   };
 }
 
+// Pick a factoid from the bank that matches the current turn constraints.
+// Removes the picked factoid so it's never reused within a game.
+export function pickFactoid(factBank, category, constraints) {
+  const facts = factBank[category];
+  if (!facts || facts.length === 0) return null;
+
+  const formatMax =
+    constraints.answerFormat === 'single-word' ? 1
+    : constraints.answerFormat === 'one-or-two-words' ? 2
+    : Infinity;
+
+  const matching = facts.filter((f) => {
+    if (f.answerWordCount > formatMax) return false;
+    if (constraints.answerFormat === 'phrase' && f.answerWordCount < 2) return false;
+    if (f.difficulty === constraints.difficulty) return true;
+    return false;
+  });
+
+  // Fallback: relax difficulty if no exact match
+  const pool = matching.length > 0 ? matching : facts.filter((f) => f.answerWordCount <= formatMax);
+  if (pool.length === 0) return facts.splice(0, 1)[0];
+
+  const idx = Math.floor(Math.random() * pool.length);
+  const picked = pool[idx];
+  facts.splice(facts.indexOf(picked), 1);
+  return picked;
+}
+
 // --- Pass 3: Post-generation validation ---
 
 export function validateQuestion(question, constraints) {

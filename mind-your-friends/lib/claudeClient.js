@@ -83,16 +83,42 @@ sourceType is the kind of reference this fact would be found in. Use one of: "en
 // `activePlayerName` / `playerNames` — for host personalization (hostQuip).
 export async function generateQuestion({
   constraints,
+  factoid,
   activePlayerName,
   playerNames,
 }) {
   const anthropic = requireClient();
 
   const instructions = constraints.promptInstructions.join('\n');
+  const otherPlayers = playerNames.filter((n) => n !== activePlayerName).join(', ');
 
-  const prompt = `You are the AI host of "Mind Your Friends," a fast-paced multiplayer
+  let prompt;
+
+  if (factoid) {
+    const angle = factoid.questionAngles[Math.floor(Math.random() * factoid.questionAngles.length)];
+    prompt = `You are the AI host of "Mind Your Friends," a fast-paced multiplayer
+trivia game. Build a trivia question from this factoid for ${activePlayerName}
+(other players: ${otherPlayers}).
+
+Factoid: ${factoid.fact}
+Answer: ${factoid.answer}
+Question angle: ${angle}
+
+${instructions}
+
+Turn this factoid into an engaging trivia question using the given angle.
+The answer MUST be exactly: ${factoid.answer}
+
+Respond with ONLY a JSON object, no other text:
+{
+  "question": "the trivia question text",
+  "answer": "${factoid.answer}",
+  "hostQuip": "a short, personalized, game-show-host-style line addressed to ${activePlayerName} introducing the question"
+}`;
+  } else {
+    prompt = `You are the AI host of "Mind Your Friends," a fast-paced multiplayer
 trivia game. Generate one trivia question for ${activePlayerName} (other
-players: ${playerNames.filter((n) => n !== activePlayerName).join(', ')}).
+players: ${otherPlayers}).
 
 ${instructions}
 
@@ -105,6 +131,7 @@ Respond with ONLY a JSON object, no other text:
   "answer": "the correct answer",
   "hostQuip": "a short, personalized, game-show-host-style line addressed to ${activePlayerName} introducing the question"
 }`;
+  }
 
   const response = await anthropic.messages.create({
     model: MODEL,
