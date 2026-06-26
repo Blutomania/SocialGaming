@@ -178,3 +178,35 @@ Respond with ONLY a JSON object, no other text:
   const text = response.content[0].text;
   return JSON.parse(text);
 }
+
+// Moderate a Heckle submission via host-reinterpretation.
+export async function moderateHeckle({ heckleText, activePlayerName, hecklerName }) {
+  const anthropic = requireClient();
+
+  const prompt = `You are the AI host of "Mind Your Friends," a social trivia game.
+A player named ${hecklerName} submitted this heckle aimed at ${activePlayerName}:
+
+"${heckleText}"
+
+Your job: deliver this heckle in your game-show-host voice. Rules:
+- Light trash talk, teasing, and playful insults are ENCOURAGED — this is a party game
+- Rewrite (don't censor) anything that crosses into slurs, hate speech, or attacks on identity
+- Keep it short — one punchy line
+- If the original is fine, you can use it nearly verbatim with your own flair
+
+Respond with ONLY a JSON object:
+{
+  "heckle": "the host-delivered heckle line",
+  "moderated": true or false
+}
+
+Set moderated to true only if you had to meaningfully change the intent.`;
+
+  const response = await anthropic.messages.create({
+    model: MODEL,
+    max_tokens: 256,
+    messages: [{ role: 'user', content: prompt }],
+  });
+
+  return JSON.parse(response.content[0].text);
+}

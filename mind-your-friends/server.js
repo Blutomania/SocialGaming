@@ -27,7 +27,16 @@ app.prepare().then(() => {
 
   io.on('connection', (socket) => {
     socket.on('game:create', ({ name }) => {
-      const game = gameState.createGame(socket.id, name);
+      let game = gameState.createGame(socket.id, name);
+      let attempts = 0;
+      while (games.has(game.code) && attempts < 10) {
+        game = gameState.createGame(socket.id, name);
+        attempts++;
+      }
+      if (games.has(game.code)) {
+        socket.emit('error', { message: 'Could not generate a unique game code — try again' });
+        return;
+      }
       games.set(game.code, game);
       sockets.set(socket.id, { code: game.code, playerId: socket.id });
       socket.join(game.code);
@@ -193,7 +202,7 @@ app.prepare().then(() => {
   }
 
   async function finishCardPhase(io, game) {
-    gameState.resolveCardSlot(game);
+    await gameState.resolveCardSlot(game);
     broadcast(io, game);
     if (game.phase === 'RESULT') {
       // Skip card — turn ends with no question.

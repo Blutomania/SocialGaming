@@ -9,7 +9,7 @@
 
 import { buildRoundHand, pickRandomLanguageRegister } from './cards.js';
 import { pickRandomRoundRule, transformAnswer } from './roundRules.js';
-import { generateQuestion, evaluateAnswer, fetchFactsBatch } from './claudeClient.js';
+import { generateQuestion, evaluateAnswer, fetchFactsBatch, moderateHeckle } from './claudeClient.js';
 import { roundConstraints, turnConstraints, validateQuestion, pickFactoid } from './coherence.js';
 import {
   ROUNDS,
@@ -247,7 +247,7 @@ export function playCard(game, playerId, cardId, payload) {
 // Closes the card window and resolves state-side effects. Prompt modifiers
 // (Language Barrier, Boxed In) are handled by the CE in runQuestionPhase —
 // this switch only handles game-state mutations and highlight logging.
-export function resolveCardSlot(game) {
+export async function resolveCardSlot(game) {
   assertPhase(game, 'CARD');
   const slot = game.cardSlot;
   game.heckleMessage = null;
@@ -307,10 +307,17 @@ export function resolveCardSlot(game) {
       logHighlight(game, `${playerName} played Spotlight — ${activeName} must answer immediately!`);
       break;
 
-    case 'heckle':
-      game.heckleMessage = slot.payload?.text || '...';
+    case 'heckle': {
+      const rawHeckle = slot.payload?.text || '...';
+      const result = await moderateHeckle({
+        heckleText: rawHeckle,
+        activePlayerName: activeName,
+        hecklerName: playerName,
+      });
+      game.heckleMessage = result.heckle;
       logHighlight(game, `${playerName} heckled: "${game.heckleMessage}"`);
       break;
+    }
 
     case 'languageBarrier':
       logHighlight(game, `${playerName} played Language Barrier!`);

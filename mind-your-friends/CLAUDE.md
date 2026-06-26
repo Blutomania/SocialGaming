@@ -66,11 +66,13 @@ other, and answer AI-generated questions. The social loop — not the trivia —
     narrates disconnects with humor.
 26. **Known gaps / TODOs from the scaffold**:
     - **Spotlight** — approximated as 5s timer; UI doesn't skip a prep step.
-    - **Heckle content moderation** — free-text read by AI host. Define
-      boundaries (refuse? rephrase? host-reinterpretation?).
-    - Game code collisions aren't checked.
-    - Voice input mode (`inputMode: "voice"`) wired into signatures but
-      UI is text-only.
+    - ~~**Heckle content moderation**~~ — host-reinterpretation via
+      `moderateHeckle()` in `claudeClient.js`. Light trash talk encouraged,
+      slurs/hate rewritten. `resolveCardSlot()` now async.
+    - ~~Game code collisions~~ — retry loop in `server.js` `game:create`.
+    - ~~Voice input~~ — `VoiceInput.jsx` component using Web Speech API.
+      Server contract already supports `inputMode: 'voice'`. Wire into
+      `GameBoard.jsx` answer input when ready for playtest.
 27. **[FUTURE] Group splitting** — when 7+ players want to play together,
     design a splintering mechanic to auto-create balanced sub-games (e.g.
     4+3, 3+3+3). Parked until core game is proven.
