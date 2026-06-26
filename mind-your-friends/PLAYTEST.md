@@ -54,3 +54,27 @@ players invent the mechanic themselves. Needs playtesting for feasibility
 (do groups actually converge? does it kill pacing?).
 
 ---
+
+## PT-3: Single-Player Inactivity — Group Dynamic Impact
+
+**Current design:** Timers auto-advance on every player-action phase (category
+pick, wager, answer). If a player goes AFK, the game doesn't stall — it
+auto-picks a random category, sets a default wager, or submits an empty answer.
+
+**The question:** Does one inactive player degrade the experience for the group,
+or does the social dynamic self-correct ("dude, it's your turn")?
+
+**What to watch for in playtesting:**
+- Does auto-advancing feel jarring or natural when someone zones out?
+- Do groups verbally nudge the inactive player, or do they silently resent it?
+- Does repeated inactivity from one player make others want to quit?
+- Is there a threshold (e.g. 3+ auto-advances) where the game should intervene
+  (host callout, soft penalty, "are you still playing?" prompt)?
+- Multi-player inactivity (2+ AFK) — does the game become pointless? Is this
+  where an engineering solution is actually needed?
+
+**Decision deferred until after playtesting.** Single-player AFK is likely a
+social problem, not a technical one. Only build auto-kick or penalty mechanics
+if testing shows it genuinely stalls games.
+
+---
