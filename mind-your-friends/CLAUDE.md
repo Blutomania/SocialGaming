@@ -59,9 +59,11 @@ other, and answer AI-generated questions. The social loop — not the trivia —
     random question angle. Falls back to original prompt if no bank.
 24. **[START HERE] First run + playtest** — `npm install`, `npm run dev`, play through
     with 3+ browser tabs.
-25. **Disconnection handling** — "Wait for our friend" pause screen. Players
-    vote to keep waiting or continue without. No AI/bot takeover — dropped
-    player's turns are skipped, score freezes. It's a party, not a ranked match.
+25. ~~**Disconnection handling**~~ — 45s grace period → vote to wait/continue.
+    `disconnectPlayer()`, `reconnectPlayer()`, `startDisconnectVote()`,
+    `castDisconnectVote()`, `resumeAfterDrop()` in `gameState.js`. Server
+    wired with `game:rejoin`, `disconnect:vote` events. Future: AI host
+    narrates disconnects with humor.
 26. **Known gaps / TODOs from the scaffold**:
     - **Spotlight** — approximated as 5s timer; UI doesn't skip a prep step.
     - **Heckle content moderation** — free-text read by AI host. Define

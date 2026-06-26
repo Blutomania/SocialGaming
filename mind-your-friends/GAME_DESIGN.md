@@ -361,13 +361,24 @@ you pick the restaurant tonight." Optional, social, no mechanical consequence.
 ---
 
 ## Disconnection Handling
-**"Wait for our friend"** — when a player disconnects mid-game, the game
-pauses. All remaining players see a waiting screen with two options:
-1. **Keep waiting** — game stays paused.
-2. **Continue without** — requires majority vote. The dropped player's turns
-   are skipped for the rest of the game, their score freezes.
+**"Wait for our friend"** — when a player disconnects mid-game:
+
+1. **45-second grace period** — game auto-pauses on phases that need the
+   disconnected player. Other players see "Reconnecting…" next to their name.
+   No vote prompt yet — most reconnects happen within this window.
+2. **Vote prompt** — after 45s, remaining players vote "Wait" or "Continue."
+   Simple majority to continue. A "wait" vote resets another 45s window.
+3. **If continued without** — the dropped player's turns are skipped, score
+   freezes. If they reconnect later, they rejoin as a spectator (frozen score)
+   and can jump back in during "one more round" at game end.
+4. **If reconnected during vote** — vote is dismissed, play resumes immediately.
 
 No AI takeover, no bot substitution. It's a party, not a ranked match.
+
+**[FUTURE] AI Host narration** — when the AI host is voice-enabled, it should
+use humor to narrate disconnects ("Looks like Jake's phone just rage-quit…
+giving him a moment to crawl back") and reconnects ("The prodigal son
+returns!"). Keeps energy up instead of a sterile loading screen.
 
 ---
 

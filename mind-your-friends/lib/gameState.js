@@ -23,6 +23,7 @@ import {
   MAX_PLAYERS,
   CATEGORIES_PER_PLAYER,
   CATEGORY_OPTIONS_COUNT,
+  DISCONNECT_GRACE_MS,
 } from './constants.js';
 
 export {
@@ -37,6 +38,7 @@ export {
   MAX_PLAYERS,
   CATEGORIES_PER_PLAYER,
   CATEGORY_OPTIONS_COUNT,
+  DISCONNECT_GRACE_MS,
 };
 
 function generateGameCode() {
@@ -75,6 +77,8 @@ function makePlayer(id, name) {
     pickedCardUsed: false,
     hand: [],
     registered: false,
+    connected: true,
+    droppedOut: false,
   };
 }
 
@@ -497,6 +501,112 @@ function assertPhase(game, expected) {
   }
 }
 
+// --- Disconnection / Reconnection ---
+
+export function disconnectPlayer(game, playerId) {
+  const player = game.players.find((p) => p.id === playerId);
+  if (!player) return game;
+  player.connected = false;
+  if (game.phase === 'LOBBY') return game;
+  game.disconnectPending = game.disconnectPending || {};
+  game.disconnectPending[playerId] = { since: Date.now() };
+  logHighlight(game, `${player.name} disconnected — waiting for reconnect…`);
+  return game;
+}
+
+// Returns true if the game should pause (disconnected player needs to act).
+export function shouldPause(game) {
+  if (game.phase === 'LOBBY' || game.phase === 'GAME_OVER') return false;
+  const activePlayer = getActivePlayer(game);
+  const answerer = game.players[game.answererIndex];
+  const wagerPlayer = game.players.length >= 2 ? getWagerPlayer(game) : null;
+  const needsAction = [activePlayer, answerer, wagerPlayer].filter(Boolean);
+  return needsAction.some((p) => !p.connected && !p.droppedOut);
+}
+
+export function reconnectPlayer(game, oldPlayerId, newSocketId) {
+  const player = game.players.find((p) => p.id === oldPlayerId);
+  if (!player) return null;
+  player.id = newSocketId;
+  player.connected = true;
+  if (game.disconnectPending) delete game.disconnectPending[oldPlayerId];
+  if (game.disconnectVote) game.disconnectVote = null;
+  logHighlight(game, `${player.name} is back!`);
+  return game;
+}
+
+export function startDisconnectVote(game, disconnectedPlayerId) {
+  const player = game.players.find((p) => p.id === disconnectedPlayerId);
+  if (!player) return game;
+  game.disconnectVote = {
+    targetPlayerId: disconnectedPlayerId,
+    targetName: player.name,
+    votes: {},
+  };
+  return game;
+}
+
+export function castDisconnectVote(game, playerId, vote) {
+  if (!game.disconnectVote) return { game, resolved: false };
+  if (playerId === game.disconnectVote.targetPlayerId) return { game, resolved: false };
+  game.disconnectVote.votes[playerId] = vote; // 'wait' | 'continue'
+
+  const eligible = game.players.filter(
+    (p) => p.id !== game.disconnectVote.targetPlayerId && p.connected
+  );
+  const voteCount = Object.keys(game.disconnectVote.votes).length;
+  if (voteCount < eligible.length) return { game, resolved: false };
+
+  const continueVotes = Object.values(game.disconnectVote.votes).filter((v) => v === 'continue').length;
+  const majority = continueVotes > eligible.length / 2;
+
+  if (majority) {
+    const target = game.players.find((p) => p.id === game.disconnectVote.targetPlayerId);
+    if (target) {
+      target.droppedOut = true;
+      logHighlight(game, `The group voted to continue without ${target.name}. Score frozen.`);
+    }
+    game.disconnectVote = null;
+    if (game.disconnectPending) delete game.disconnectPending[game.disconnectVote?.targetPlayerId];
+    return { game, resolved: true, action: 'continue' };
+  }
+
+  logHighlight(game, `The group voted to wait for ${game.disconnectVote.targetName}.`);
+  game.disconnectVote = null;
+  return { game, resolved: true, action: 'wait' };
+}
+
+// Skip a dropped-out player's turn.
+export function isPlayerDroppedOut(game, playerIndex) {
+  return game.players[playerIndex]?.droppedOut === true;
+}
+
+// Advance past dropped-out players' turns.
+export function skipDroppedOutPlayers(game) {
+  const n = game.players.length;
+  let checks = 0;
+  while (isPlayerDroppedOut(game, game.activePlayerIndex) && checks < n) {
+    game.questionIndex += 1;
+    if (game.questionIndex >= TOTAL_QUESTIONS) {
+      game.phase = 'GAME_OVER';
+      return game;
+    }
+    game.activePlayerIndex = (game.activePlayerIndex + 1) % n;
+    checks++;
+  }
+  return game;
+}
+
+// Resume play after a dropped-out player's turn is skipped.
+export function resumeAfterDrop(game) {
+  skipDroppedOutPlayers(game);
+  if (game.phase !== 'GAME_OVER') {
+    beginTurn(game);
+    game.phase = 'CATEGORY';
+  }
+  return game;
+}
+
 // Build a state view tailored to a specific player. Hides information that
 // the game rules say they shouldn't see: other players' hands, the correct
 // answer (until RESULT), and internal CE/constraint data.
@@ -511,6 +621,8 @@ export function playerView(game, playerId) {
       name: p.name,
       score: p.score,
       registered: p.registered,
+      connected: p.connected,
+      droppedOut: p.droppedOut,
       categories: p.categories,
       cardCount: p.hand.length,
       hand: isMe ? p.hand : undefined,
@@ -572,6 +684,16 @@ export function playerView(game, playerId) {
   if (phase === 'GAME_OVER') {
     view.winners = getWinners(game).map((p) => ({ id: p.id, name: p.name, score: p.score }));
   }
+
+  if (game.disconnectVote) {
+    view.disconnectVote = {
+      targetName: game.disconnectVote.targetName,
+      canVote: playerId !== game.disconnectVote.targetPlayerId &&
+        !game.disconnectVote.votes[playerId],
+    };
+  }
+
+  view.paused = shouldPause(game);
 
   return view;
 }

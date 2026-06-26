@@ -102,8 +102,41 @@ app.prepare().then(() => {
     });
 
     socket.on('disconnect', () => {
+      const entry = sockets.get(socket.id);
+      if (entry) {
+        const game = games.get(entry.code);
+        if (game && game.phase !== 'LOBBY') {
+          gameState.disconnectPlayer(game, socket.id);
+          broadcast(io, game);
+          startGracePeriod(io, game, socket.id);
+        }
+      }
       sockets.delete(socket.id);
-      // TODO: handle mid-game disconnects (pause, remove player, etc.)
+    });
+
+    socket.on('game:rejoin', ({ code, name }) => {
+      withGame(socket, code, (game) => {
+        const existing = game.players.find((p) => p.name === name && !p.connected);
+        if (!existing) {
+          socket.emit('error', { message: 'No disconnected player with that name found' });
+          return;
+        }
+        const oldId = existing.id;
+        gameState.reconnectPlayer(game, oldId, socket.id);
+        sockets.set(socket.id, { code, playerId: socket.id });
+        socket.join(code);
+        broadcast(io, game);
+      });
+    });
+
+    socket.on('disconnect:vote', ({ vote }) => {
+      withMyGame(socket, (game, playerId) => {
+        const { resolved, action } = gameState.castDisconnectVote(game, playerId, vote);
+        broadcast(io, game);
+        if (resolved && action === 'continue' && !gameState.shouldPause(game)) {
+          resumeAfterDisconnect(io, game);
+        }
+      });
     });
   });
 
@@ -196,6 +229,22 @@ app.prepare().then(() => {
       gameState.nextTurn(game);
       broadcast(io, game);
     }, gameState.RESULT_SCREEN_MS);
+  }
+
+  function startGracePeriod(io, game, disconnectedPlayerId) {
+    setTimeout(() => {
+      const player = game.players.find((p) => p.id === disconnectedPlayerId);
+      if (!player || player.connected) return;
+      gameState.startDisconnectVote(game, disconnectedPlayerId);
+      broadcast(io, game);
+    }, gameState.DISCONNECT_GRACE_MS);
+  }
+
+  function resumeAfterDisconnect(io, game) {
+    if (gameState.isPlayerDroppedOut(game, game.activePlayerIndex)) {
+      gameState.resumeAfterDrop(game);
+    }
+    broadcast(io, game);
   }
 
   function broadcast(io, game) {

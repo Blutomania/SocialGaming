@@ -16,3 +16,5 @@ export const CARD_PICK_TIMER_MS = 40000;
 export const RANDOM_CARDS_PER_ROUND = 2;
 export const FACTS_PER_CATEGORY = 10;
 export const CATEGORIES_PER_FETCH_BATCH = 3;
+export const DISCONNECT_GRACE_MS = 45000;
+export const DISCONNECT_VOTE_EXTENSION_MS = 45000;
