@@ -1,5 +1,9 @@
-// The 10-card pool: 8 sabotage + 2 anti-sabotage. See GAME_DESIGN.md → The 10 Base Cards.
-// All cards are single-use and resolve via the FCFS card slot (gameState.playCard).
+// The card pool: 8 sabotage + 2 anti-sabotage + 1 universal.
+// See GAME_DESIGN.md → Card Mechanic.
+// Sabotage/anti-sabotage cards are single-use and resolve via the FCFS card
+// slot (gameState.playCard). Half-Off is universal — always available, never consumed.
+
+import { RANDOM_CARDS_PER_ROUND } from './constants.js';
 
 export const LANGUAGE_BARRIER_REGISTERS = [
   'Old English ("Hark! What sayest thou...")',
@@ -8,6 +12,13 @@ export const LANGUAGE_BARRIER_REGISTERS = [
   'Gen-Z slang ("no cap, what is the...")',
   'Victorian formal ("Pray tell, dear sir or madam...")',
 ];
+
+export const HALF_OFF = {
+  id: 'halfOff',
+  name: 'Half-Off',
+  type: 'universal',
+  description: "Halves the active player's wager value. Available every round.",
+};
 
 export const CARDS = {
   skip: {
@@ -26,7 +37,7 @@ export const CARDS = {
     id: 'whoaNellie',
     name: 'Whoa Nellie',
     type: 'sabotage',
-    description: 'Forces the server to re-generate the question.',
+    description: 'Swaps the category to a random different one from the pool.',
   },
   fiftyOff: {
     id: 'fiftyOff',
@@ -45,7 +56,7 @@ export const CARDS = {
     name: 'Heckle',
     type: 'sabotage',
     description:
-      'Player who plays it submits a one-line heckle, read aloud by the AI host before the active player answers. No mechanical effect.',
+      'Submit a one-line heckle read aloud by the AI host before the active player answers. No mechanical effect.',
   },
   languageBarrier: {
     id: 'languageBarrier',
@@ -59,7 +70,7 @@ export const CARDS = {
     name: 'Boxed In',
     type: 'sabotage',
     description:
-      "Active player's answer must fit in one or two words (questions normally expect more than 3).",
+      "Active player's answer must fit in one or two words.",
   },
   insurance: {
     id: 'insurance',
@@ -72,21 +83,34 @@ export const CARDS = {
     name: 'The Fixer',
     type: 'anti-sabotage',
     description:
-      'Question proceeds normally (like Insurance), and the player who played it banks a +50 pt bonus.',
+      'Question proceeds normally (like Insurance), and you bank a +50 pt bonus.',
   },
 };
 
-// Every card id is pickable — no common cards. See GAME_DESIGN.md → Hand Dealing.
 export const ALL_CARD_IDS = Object.keys(CARDS);
 
-// Build a player's fixed 6-card hand: 1 player-picked + 5 randomly dealt.
-export function dealHand(pickedCardId) {
-  if (!ALL_CARD_IDS.includes(pickedCardId)) {
-    throw new Error(`Invalid card id: ${pickedCardId}`);
+// All cards are available for the pick-one-at-game-start moment.
+export const PICKABLE_CARD_IDS = ALL_CARD_IDS;
+
+// Deal 2 random cards for a round. Excludes the player's picked card (if still
+// available) to avoid duplicates with their permanent card.
+export function dealRoundCards(excludeCardId) {
+  const pool = ALL_CARD_IDS.filter((id) => id !== excludeCardId);
+  const shuffled = pool.sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, RANDOM_CARDS_PER_ROUND);
+}
+
+// Build a player's hand for a given round:
+// - Half-Off (always)
+// - picked card (if not yet used)
+// - 2 random cards for this round
+export function buildRoundHand(pickedCardId, pickedCardUsed) {
+  const hand = ['halfOff'];
+  if (!pickedCardUsed) {
+    hand.push(pickedCardId);
   }
-  const remaining = ALL_CARD_IDS.filter((id) => id !== pickedCardId);
-  const shuffled = remaining.sort(() => Math.random() - 0.5);
-  return [pickedCardId, ...shuffled.slice(0, 5)];
+  hand.push(...dealRoundCards(pickedCardUsed ? null : pickedCardId));
+  return hand;
 }
 
 export function pickRandomLanguageRegister() {

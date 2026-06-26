@@ -7,7 +7,7 @@
 // `games` map (code -> game object) and emits Socket.io events after each
 // mutation.
 
-import { dealHand, pickRandomLanguageRegister } from './cards.js';
+import { buildRoundHand, pickRandomLanguageRegister } from './cards.js';
 import { pickRandomRoundRule, transformAnswer } from './roundRules.js';
 import { generateQuestion, evaluateAnswer } from './claudeClient.js';
 import { roundConstraints, turnConstraints, validateQuestion } from './coherence.js';
@@ -70,8 +70,10 @@ function makePlayer(id, name) {
     id,
     name,
     score: 0,
-    categories: [], // 5 free-text tags, set during registration
-    hand: [], // 6 card ids, set during registration
+    categories: [],
+    pickedCardId: null,
+    pickedCardUsed: false,
+    hand: [],
     registered: false,
   };
 }
@@ -88,16 +90,25 @@ export function addPlayer(game, id, name) {
 }
 
 // Registration: each player submits 5 categories and picks 1 card from the
-// pool of 10. The remaining 5 are randomly dealt. See GAME_DESIGN.md → Hand Dealing.
+// pool of 10. The picked card persists for the entire game (single use).
+// Per-round random cards are dealt at the start of each round via dealRoundHands().
 export function registerPlayer(game, playerId, { categories, pickedCardId }) {
   const player = getPlayer(game, playerId);
   if (categories.length !== CATEGORIES_PER_PLAYER) {
     throw new Error(`Must submit exactly ${CATEGORIES_PER_PLAYER} categories`);
   }
   player.categories = categories;
-  player.hand = dealHand(pickedCardId);
+  player.pickedCardId = pickedCardId;
+  player.pickedCardUsed = false;
   player.registered = true;
   return game;
+}
+
+// Deal fresh hands at the start of each round: Half-Off + picked card (if unused) + 2 random.
+function dealRoundHands(game) {
+  for (const player of game.players) {
+    player.hand = buildRoundHand(player.pickedCardId, player.pickedCardUsed);
+  }
 }
 
 export function allPlayersRegistered(game) {
@@ -111,6 +122,7 @@ export function startGame(game) {
   game.phase = 'CATEGORY';
   game.activePlayerIndex = 0;
   game.questionIndex = 0;
+  dealRoundHands(game);
   beginTurn(game);
   return game;
 }
@@ -201,7 +213,14 @@ export function playCard(game, playerId, cardId, payload) {
   if (!player.hand.includes(cardId)) {
     throw new Error('Card not in hand');
   }
-  player.hand = player.hand.filter((id) => id !== cardId);
+  // Half-Off is universal — never removed from hand
+  if (cardId !== 'halfOff') {
+    player.hand = player.hand.filter((id) => id !== cardId);
+  }
+  // Mark picked card as used (gone for the rest of the game)
+  if (cardId === player.pickedCardId) {
+    player.pickedCardUsed = true;
+  }
   game.cardSlot = { playerId, cardId, payload };
   return game;
 }
@@ -257,6 +276,11 @@ export function resolveCardSlot(game) {
       }
       break;
     }
+
+    case 'halfOff':
+      game.currentWager = Math.round(game.currentWager / 2);
+      logHighlight(game, `${playerName} played Half-Off — the wager is now ${game.currentWager}!`);
+      break;
 
     case 'fiftyOff':
       game.currentWager = Math.round(game.currentWager / 2);
@@ -425,6 +449,10 @@ export function nextTurn(game) {
     game.phase = 'GAME_OVER';
     return game;
   }
+  // Deal fresh hands at the start of each new round
+  if (game.questionIndex % QUESTIONS_PER_ROUND === 0) {
+    dealRoundHands(game);
+  }
   game.activePlayerIndex = (game.activePlayerIndex + 1) % game.players.length;
   game.phase = 'CATEGORY';
   beginTurn(game);
@@ -437,7 +465,7 @@ export function getWinners(game) {
 }
 
 const ANTI_SABOTAGE = new Set(['insurance', 'fixer']);
-const STATE_ONLY_CARDS = new Set(['skip', 'redirect', 'fiftyOff', 'heckle', 'whoaNellie']);
+const STATE_ONLY_CARDS = new Set(['skip', 'redirect', 'fiftyOff', 'halfOff', 'heckle', 'whoaNellie']);
 
 function getEffectiveCard(game) {
   const cardId = game.cardSlot?.cardId;

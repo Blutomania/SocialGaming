@@ -1,4 +1,5 @@
-// 8 round rule variations. See GAME_DESIGN.md → Round Rules. Audience Poll is out for v1.
+// 8 round rule variations. See GAME_DESIGN.md → Round Rules.
+// Audience Poll is out for v1. Hot Take removed (see PLAYTEST.md PT-2).
 // Assigned randomly each turn (pickRandomRoundRule).
 //
 // Rules that constrain the answer format define both `transform.text` and
@@ -42,9 +43,9 @@ export const ROUND_RULES = {
     promptInstruction: null,
     timerSeconds: BASE_TIMER_SECONDS / 2,
   },
-  slowBurn: {
-    id: 'slowBurn',
-    name: 'Slow Burn',
+  takeYourTime: {
+    id: 'takeYourTime',
+    name: 'Take Your Time',
     emoji: '🐢',
     description: 'Timer doubled; host quip escalates.',
     promptInstruction:
@@ -58,15 +59,6 @@ export const ROUND_RULES = {
     description: 'Question phrased by a curious 5-year-old; Claude judges understanding.',
     promptInstruction:
       'Phrase the question as if asked by a curious 5-year-old. When evaluating the answer, judge whether the player demonstrated understanding, not just exact wording.',
-    timerSeconds: BASE_TIMER_SECONDS,
-  },
-  hotTake: {
-    id: 'hotTake',
-    name: 'Hot Take',
-    emoji: '🔥',
-    description: 'Opinion question; confidence beats correctness.',
-    promptInstruction:
-      'Generate an opinion-based question with no single correct answer. When evaluating, reward confident, well-argued answers over "correctness".',
     timerSeconds: BASE_TIMER_SECONDS,
   },
   doubleDown: {
@@ -86,6 +78,16 @@ export const ROUND_RULES = {
     promptInstruction: null,
     timerSeconds: BASE_TIMER_SECONDS,
     stealOnWrong: true,
+  },
+  worstAnswerWins: {
+    id: 'worstAnswerWins',
+    name: 'Worst Answer Wins',
+    emoji: '🏆',
+    description: 'Everyone submits — worst answer wins. Scored on: factually wrong, creatively wrong, plausibility.',
+    promptInstruction:
+      'Generate a factual question with a clear correct answer. All players will submit intentionally wrong answers. The question must have a definitive factual answer so "wrongness" is measurable.',
+    timerSeconds: BASE_TIMER_SECONDS * 2,
+    submissionBased: true,
   },
 };
 

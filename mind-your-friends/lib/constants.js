@@ -12,3 +12,5 @@ export const MIN_PLAYERS = 3;
 export const MAX_PLAYERS = 6;
 export const CATEGORIES_PER_PLAYER = 5;
 export const CATEGORY_OPTIONS_COUNT = 6;
+export const CARD_PICK_TIMER_MS = 40000;
+export const RANDOM_CARDS_PER_ROUND = 2;
