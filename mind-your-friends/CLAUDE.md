@@ -97,11 +97,13 @@ see `lib/claudeClient.js` for the pattern.
 ```
 server.js           # Socket.io event hub + question generation orchestrator
 lib/gameState.js    # In-memory state machine (8 phases: LOBBY → CATEGORY → WAGER → CARD → QUESTION → ANSWER → RESULT → GAME_OVER)
-lib/claudeClient.js # generateQuestion(), evaluateAnswer()
-lib/cards.js        # Card definitions + dealHand()
+                    # Also: disconnect/reconnect, inactivity detection, fact bank
+lib/claudeClient.js # fetchFactsBatch(), generateQuestion(), evaluateAnswer(), moderateHeckle()
+lib/coherence.js    # Two-pass CE (roundConstraints → turnConstraints → validateQuestion) + pickFactoid()
+lib/cards.js        # Card definitions, dealRoundCards(), buildRoundHand()
 lib/roundRules.js   # Rule definitions + answer transforms
 lib/constants.js    # Shared constants (no Node-only deps — safe for client components)
-components/         # React UI per phase (Lobby, CategoryPicker, CardHand, GameBoard, ScoreBoard)
+components/         # React UI per phase (Lobby, CardPicker, CategoryPicker, CardHand, GameBoard, ScoreBoard, VoiceInput)
 app/game/[code]/    # Game room page — Socket.io client, routes by phase
 ```
 
@@ -180,12 +182,14 @@ transformation, add a case to `transformAnswer()` with both `text` and `voice` v
 statement; log a highlight via `logHighlight()` if it's a notable sabotage moment.
 
 ## Session Start Protocol
-1. `git checkout dev/mind-your-friends && git pull origin dev/mind-your-friends`
-2. Read **Current To-Do** above — it has the exact next step.
-3. Run `git log --oneline -5` to see what was last committed.
-4. State your starting point in the first reply: branch, latest commit, what you'll do.
+1. `git checkout claude/continuation-r0mhfq && git pull origin claude/continuation-r0mhfq`
+2. Read **Current To-Do** above — item #24 is the next step.
+3. Run `git log --oneline -10` to see what was last committed.
+4. Read `GAME_DESIGN.md` for the full game design.
+5. Read `PLAYTEST.md` for open playtest questions (PT-1 through PT-3).
+6. State your starting point in the first reply: branch, latest commit, what you'll do.
 
 ## What NOT to Do
-- Never push directly to `main` (403). Always use `dev/mind-your-friends`.
+- Never push directly to `main` (403). Use `claude/continuation-r0mhfq`.
 - Never put Claude API calls in client-side React — only `server.js` touches the API.
 - Don't add a database yet — in-memory state is intentional for MVP.
