@@ -156,6 +156,26 @@ a real bite.
 (self-buff cards) — dropped in favor of an all-sabotage +
 anti-sabotage theme (June 2026).
 
+### Question–Rule Coherence
+Every generated question must be **coherent with the active round rule**.
+`generateQuestion()` receives the active round rule and must produce a Q&A
+pair that the rule can meaningfully act on. Examples:
+
+| Round rule | Question requirement |
+|---|---|
+| Back It Up | Answer must be a phrase worth reversing (not a single letter or number) |
+| One Word Only | Answer must have a natural single-word form |
+| Worst Answer Wins | Must have a clear factual answer so "wrongness" is measurable |
+| ELI5 | Question must be rephrasable in simple language without losing meaning |
+| Take Your Time | No special constraint — any question works |
+| Lightning Round | No special constraint — any question works |
+| Double Down | No special constraint — any question works |
+| Steal | Must have a definitive correct answer (no opinion/subjective questions) |
+
+This is a **generation-time constraint**, same pattern as format-constraining
+cards: the round rule feeds into the prompt so Claude builds the question to
+fit. No post-hoc filtering needed.
+
 
 ### The Pick Moment
 At game start, each player sees the full pool of 10 cards and picks 1.
