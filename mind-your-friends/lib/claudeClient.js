@@ -49,14 +49,16 @@ Respond with ONLY a JSON object mapping each category to its array of facts:
       "bucket": 1,
       "difficulty": "easy",
       "answerWordCount": 2,
-      "questionAngles": ["naming", "year", "person-to-achievement"]
+      "questionAngles": ["naming", "year", "person-to-achievement"],
+      "sourceType": "encyclopedia"
     }
   ]
 }
 
 difficulty must be "easy", "medium", or "hard". Buckets 1-3 should lean easy/medium, bucket 4 medium/hard, bucket 5 hard.
 questionAngles is an array of 1-3 strings describing how this fact could be asked as a trivia question (e.g. "naming", "year", "person-to-achievement", "number", "location", "cause-effect").
-answerWordCount is the word count of the answer field.`;
+answerWordCount is the word count of the answer field.
+sourceType is the kind of reference this fact would be found in. Use one of: "encyclopedia", "biography", "news-archive", "awards-registry", "music-database", "sports-database", "academic-journal", "government-record", "industry-publication", "documentary", "interview", "almanac".`;
 
     const response = await anthropic.messages.create({
       model: MODEL,
