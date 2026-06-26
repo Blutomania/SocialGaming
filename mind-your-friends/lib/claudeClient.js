@@ -1,4 +1,5 @@
 import Anthropic from '@anthropic-ai/sdk';
+import { FACTS_PER_CATEGORY, CATEGORIES_PER_FETCH_BATCH } from './constants.js';
 
 const MODEL = 'claude-sonnet-4-6';
 
@@ -10,6 +11,65 @@ function requireClient() {
     throw new Error('ANTHROPIC_API_KEY not set — see .env.local.example');
   }
   return client;
+}
+
+// Fetch structured factoids for a batch of categories. Called at game start
+// to build the fact bank — all questions are later constructed from these
+// factoids rather than generated from scratch per turn.
+export async function fetchFactsBatch(categories) {
+  const anthropic = requireClient();
+  const results = {};
+
+  const batches = [];
+  for (let i = 0; i < categories.length; i += CATEGORIES_PER_FETCH_BATCH) {
+    batches.push(categories.slice(i, i + CATEGORIES_PER_FETCH_BATCH));
+  }
+
+  for (const batch of batches) {
+    const categoryList = batch.map((c) => `"${c}"`).join(', ');
+
+    const prompt = `You are an expert researcher. For each of the following categories: ${categoryList}
+
+Provide ${FACTS_PER_CATEGORY} diverse, strictly factual data points per category. Organize each category's facts into these five buckets (2 facts per bucket):
+
+1. Catalyst & Origins: Key dates, events, and underlying factors that caused or initiated this topic.
+2. Execution & Methodology: The primary strategies, tools, techniques, or defining characteristics.
+3. Key Figures & Collaborators: Crucial individuals, leaders, or recurring contributors.
+4. Major Milestones & Turning Points: The most significant events, releases, or awards.
+5. Verified Trivia & Behind-the-Scenes: Esoteric, lesser-known, yet confirmed and documented anecdotes.
+
+Each fact must be objective and free of opinion or speculation.
+
+Respond with ONLY a JSON object mapping each category to its array of facts:
+{
+  "Category Name": [
+    {
+      "fact": "A clear, specific factual statement",
+      "answer": "The key piece of information (the trivia answer)",
+      "bucket": 1,
+      "difficulty": "easy",
+      "answerWordCount": 2,
+      "questionAngles": ["naming", "year", "person-to-achievement"]
+    }
+  ]
+}
+
+difficulty must be "easy", "medium", or "hard". Buckets 1-3 should lean easy/medium, bucket 4 medium/hard, bucket 5 hard.
+questionAngles is an array of 1-3 strings describing how this fact could be asked as a trivia question (e.g. "naming", "year", "person-to-achievement", "number", "location", "cause-effect").
+answerWordCount is the word count of the answer field.`;
+
+    const response = await anthropic.messages.create({
+      model: MODEL,
+      max_tokens: 4096,
+      messages: [{ role: 'user', content: prompt }],
+    });
+
+    const text = response.content[0].text;
+    const parsed = JSON.parse(text);
+    Object.assign(results, parsed);
+  }
+
+  return results;
 }
 
 // Generate a question for the active player.
@@ -64,8 +124,8 @@ export async function evaluateAnswer({ question, correctAnswer, playerAnswer, ro
   const evaluationNote =
     roundRule?.id === 'eli5'
       ? 'This is an ELI5 round — judge whether the player demonstrated understanding, not exact wording.'
-      : roundRule?.id === 'hotTake'
-      ? 'This is a Hot Take round — there is no single correct answer. Reward confident, well-argued answers.'
+      : roundRule?.id === 'worstAnswerWins'
+      ? 'This is a Worst Answer Wins round — the answer should be factually wrong. Do not evaluate for correctness.'
       : 'Use fuzzy matching — minor wording differences, typos, or synonyms still count as correct.';
 
   const prompt = `Question: ${question}

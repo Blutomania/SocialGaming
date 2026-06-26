@@ -51,8 +51,8 @@ app.prepare().then(() => {
     });
 
     socket.on('game:start', () => {
-      withMyGame(socket, (game) => {
-        gameState.startGame(game);
+      withMyGame(socket, async (game) => {
+        await gameState.startGame(game);
         broadcast(io, game);
       });
     });

@@ -9,7 +9,7 @@
 
 import { buildRoundHand, pickRandomLanguageRegister } from './cards.js';
 import { pickRandomRoundRule, transformAnswer } from './roundRules.js';
-import { generateQuestion, evaluateAnswer } from './claudeClient.js';
+import { generateQuestion, evaluateAnswer, fetchFactsBatch } from './claudeClient.js';
 import { roundConstraints, turnConstraints, validateQuestion } from './coherence.js';
 import {
   ROUNDS,
@@ -115,10 +115,19 @@ export function allPlayersRegistered(game) {
   return game.players.length >= MIN_PLAYERS && game.players.every((p) => p.registered);
 }
 
-export function startGame(game) {
+// Fetches facts for all player-submitted categories in batches.
+// Called once at game start — all questions are built from this bank.
+export async function buildFactBank(game) {
+  const allCategories = [...new Set(game.players.flatMap((p) => p.categories))];
+  game.factBank = await fetchFactsBatch(allCategories);
+  return game;
+}
+
+export async function startGame(game) {
   if (!allPlayersRegistered(game)) {
     throw new Error('All players must register before the game can start');
   }
+  await buildFactBank(game);
   game.phase = 'CATEGORY';
   game.activePlayerIndex = 0;
   game.questionIndex = 0;

@@ -48,21 +48,27 @@ other, and answer AI-generated questions. The social loop — not the trivia —
     Thesis. See `GAME_DESIGN.md → Complexity Budget`.
 20. ~~**Hot Take removed**~~ — moved to `PLAYTEST.md` (PT-2). Includes
     stretch idea: player-defined round rules ("Group Round").
-21. **[START HERE] Lobby → card pick UI** — update `Lobby.jsx` / add
-    `CardPicker.jsx` for the 1-pick-from-10 moment at registration.
-22. **First run + playtest** — `npm install`, `npm run dev`, play through
+21. ~~**Lobby → card pick UI**~~ — `Lobby.jsx` rewritten (two-step flow:
+    categories → CardPicker). `CardPicker.jsx` added (40s timer, grid of 10).
+22. ~~**Fact bank / batch question pipeline**~~ — `fetchFactsBatch()` in
+    `claudeClient.js`. Five-bucket research prompt (Catalyst & Origins →
+    Verified Trivia). Called once at game start via `buildFactBank()` in
+    `gameState.js`. Stored on `game.factBank`. ~5-7 API calls vs 48.
+23. **[START HERE] Question-from-fact builder** — wire `turnConstraints` to
+    pick a factoid from the bank and build the question prompt from it.
+24. **First run + playtest** — `npm install`, `npm run dev`, play through
     with 3+ browser tabs.
-23. **Disconnection handling** — "Wait for our friend" pause screen. Players
+25. **Disconnection handling** — "Wait for our friend" pause screen. Players
     vote to keep waiting or continue without. No AI/bot takeover — dropped
     player's turns are skipped, score freezes. It's a party, not a ranked match.
-24. **Known gaps / TODOs from the scaffold**:
+26. **Known gaps / TODOs from the scaffold**:
     - **Spotlight** — approximated as 5s timer; UI doesn't skip a prep step.
     - **Heckle content moderation** — free-text read by AI host. Define
       boundaries (refuse? rephrase? host-reinterpretation?).
     - Game code collisions aren't checked.
     - Voice input mode (`inputMode: "voice"`) wired into signatures but
       UI is text-only.
-25. **[FUTURE] Group splitting** — when 7+ players want to play together,
+27. **[FUTURE] Group splitting** — when 7+ players want to play together,
     design a splintering mechanic to auto-create balanced sub-games (e.g.
     4+3, 3+3+3). Parked until core game is proven.
 
