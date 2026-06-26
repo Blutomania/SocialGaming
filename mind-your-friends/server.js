@@ -59,6 +59,7 @@ app.prepare().then(() => {
 
     socket.on('turn:pickCategory', ({ category }) => {
       withMyGame(socket, (game, playerId) => {
+        gameState.recordPlayerAction(game, playerId);
         gameState.pickCategory(game, playerId, category);
         broadcast(io, game);
       });
@@ -66,6 +67,7 @@ app.prepare().then(() => {
 
     socket.on('turn:setWager', ({ amount }) => {
       withMyGame(socket, (game, playerId) => {
+        gameState.recordPlayerAction(game, playerId);
         gameState.setWager(game, playerId, amount);
         broadcast(io, game);
         startCardWindow(io, game);
@@ -74,15 +76,16 @@ app.prepare().then(() => {
 
     socket.on('turn:playCard', ({ cardId, payload }) => {
       withMyGame(socket, (game, playerId) => {
+        gameState.recordPlayerAction(game, playerId);
         gameState.playCard(game, playerId, cardId, payload);
         broadcast(io, game);
-        // First card played closes the window immediately.
         resolveCardWindow(io, game);
       });
     });
 
     socket.on('turn:submitAnswer', ({ answer, inputMode }) => {
       withMyGame(socket, async (game, playerId) => {
+        gameState.recordPlayerAction(game, playerId);
         await gameState.submitAnswer(game, playerId, answer, inputMode);
         broadcast(io, game);
         if (game.phase === 'STEAL') {
@@ -95,6 +98,7 @@ app.prepare().then(() => {
 
     socket.on('turn:claimSteal', ({ answer, inputMode }) => {
       withMyGame(socket, async (game, playerId) => {
+        gameState.recordPlayerAction(game, playerId);
         await gameState.claimSteal(game, playerId, answer, inputMode);
         broadcast(io, game);
         scheduleNextTurn(io, game);
@@ -204,10 +208,11 @@ app.prepare().then(() => {
   function startAnswerTimer(io, game) {
     const ms = gameState.getTimerSeconds(game) * 1000;
     setTimeout(() => {
-      if (game.phase !== 'ANSWER') return; // already answered
-      // Timeout = wrong answer with empty submission.
+      if (game.phase !== 'ANSWER') return;
+      const answererId = game.players[game.answererIndex].id;
+      gameState.recordAutoAdvance(game, answererId);
       gameState
-        .submitAnswer(game, game.players[game.answererIndex].id, '', 'text')
+        .submitAnswer(game, answererId, '', 'text')
         .then(() => {
           broadcast(io, game);
           scheduleNextTurn(io, game);

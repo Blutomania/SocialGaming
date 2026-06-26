@@ -24,6 +24,7 @@ import {
   CATEGORIES_PER_PLAYER,
   CATEGORY_OPTIONS_COUNT,
   DISCONNECT_GRACE_MS,
+  AUTO_ADVANCE_AWAY_THRESHOLD,
 } from './constants.js';
 
 export {
@@ -79,6 +80,8 @@ function makePlayer(id, name) {
     registered: false,
     connected: true,
     droppedOut: false,
+    away: false,
+    autoAdvanceCount: 0,
   };
 }
 
@@ -472,6 +475,8 @@ export function nextTurn(game) {
     dealRoundHands(game);
   }
   game.activePlayerIndex = (game.activePlayerIndex + 1) % game.players.length;
+  skipUnavailablePlayers(game);
+  if (game.phase === 'GAME_OVER') return game;
   game.phase = 'CATEGORY';
   beginTurn(game);
   return game;
@@ -499,6 +504,32 @@ function assertPhase(game, expected) {
   if (game.phase !== expected) {
     throw new Error(`Expected phase ${expected}, got ${game.phase}`);
   }
+}
+
+// --- Inactivity detection ---
+
+export function recordAutoAdvance(game, playerId) {
+  const player = getPlayer(game, playerId);
+  player.autoAdvanceCount += 1;
+  if (player.autoAdvanceCount >= AUTO_ADVANCE_AWAY_THRESHOLD) {
+    player.away = true;
+    logHighlight(game, `${player.name} seems to be away — skipping their turns until they're back.`);
+  }
+  return game;
+}
+
+export function recordPlayerAction(game, playerId) {
+  const player = game.players.find((p) => p.id === playerId);
+  if (!player) return;
+  if (player.away) {
+    player.away = false;
+    logHighlight(game, `${player.name} is back in action!`);
+  }
+  player.autoAdvanceCount = 0;
+}
+
+export function isPlayerAway(game, playerIndex) {
+  return game.players[playerIndex]?.away === true;
 }
 
 // --- Disconnection / Reconnection ---
@@ -581,11 +612,15 @@ export function isPlayerDroppedOut(game, playerIndex) {
   return game.players[playerIndex]?.droppedOut === true;
 }
 
-// Advance past dropped-out players' turns.
-export function skipDroppedOutPlayers(game) {
+function shouldSkipPlayer(game, playerIndex) {
+  return isPlayerDroppedOut(game, playerIndex) || isPlayerAway(game, playerIndex);
+}
+
+// Advance past dropped-out or away players' turns.
+export function skipUnavailablePlayers(game) {
   const n = game.players.length;
   let checks = 0;
-  while (isPlayerDroppedOut(game, game.activePlayerIndex) && checks < n) {
+  while (shouldSkipPlayer(game, game.activePlayerIndex) && checks < n) {
     game.questionIndex += 1;
     if (game.questionIndex >= TOTAL_QUESTIONS) {
       game.phase = 'GAME_OVER';
@@ -599,7 +634,7 @@ export function skipDroppedOutPlayers(game) {
 
 // Resume play after a dropped-out player's turn is skipped.
 export function resumeAfterDrop(game) {
-  skipDroppedOutPlayers(game);
+  skipUnavailablePlayers(game);
   if (game.phase !== 'GAME_OVER') {
     beginTurn(game);
     game.phase = 'CATEGORY';
@@ -623,6 +658,7 @@ export function playerView(game, playerId) {
       registered: p.registered,
       connected: p.connected,
       droppedOut: p.droppedOut,
+      away: p.away,
       categories: p.categories,
       cardCount: p.hand.length,
       hand: isMe ? p.hand : undefined,
