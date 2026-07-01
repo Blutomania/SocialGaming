@@ -697,6 +697,7 @@ export function playerView(game, playerId) {
     categoryOptions: game.categoryOptions ?? null,
     heckleMessage: game.heckleMessage,
     highlightReel: game.highlightReel,
+    skippedTurn: !!game.skippedTurn,
   };
 
   if (game.cardSlot) {
