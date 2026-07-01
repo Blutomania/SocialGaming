@@ -189,16 +189,27 @@ app.prepare().then(() => {
     }
   }
 
+  // If a Claude API call in the turn pipeline throws (network error,
+  // truncated/unparseable JSON, etc.) the turn would otherwise hang forever
+  // in QUESTION/ANSWER phase with no client feedback. Skip it and move on.
+  function recoverFromFailedTurn(io, game, err) {
+    console.error('Turn failed, skipping:', err);
+    game.phase = 'RESULT';
+    game.skippedTurn = true;
+    broadcast(io, game);
+    scheduleNextTurn(io, game);
+  }
+
   function startCardWindow(io, game) {
     setTimeout(() => {
       if (game.phase !== 'CARD') return; // already resolved by a card play
-      finishCardPhase(io, game);
+      finishCardPhase(io, game).catch((err) => recoverFromFailedTurn(io, game, err));
     }, CARD_WINDOW_MS);
   }
 
   function resolveCardWindow(io, game) {
     if (game.phase !== 'CARD') return;
-    finishCardPhase(io, game);
+    finishCardPhase(io, game).catch((err) => recoverFromFailedTurn(io, game, err));
   }
 
   async function finishCardPhase(io, game) {
@@ -225,7 +236,8 @@ app.prepare().then(() => {
         .then(() => {
           broadcast(io, game);
           scheduleNextTurn(io, game);
-        });
+        })
+        .catch((err) => recoverFromFailedTurn(io, game, err));
     }, ms);
   }
 
@@ -240,6 +252,7 @@ app.prepare().then(() => {
 
   function scheduleNextTurn(io, game) {
     setTimeout(() => {
+      if (game.phase !== 'RESULT') return; // already advanced by another path
       gameState.nextTurn(game);
       broadcast(io, game);
     }, gameState.RESULT_SCREEN_MS);

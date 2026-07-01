@@ -31,7 +31,7 @@ function requireClient() {
 // being asked for raw JSON — strip it before parsing.
 function parseJson(text) {
   const trimmed = text.trim();
-  const fenced = trimmed.match(/^```(?:json)?\s*([\s\S]*?)\s*```$/);
+  const fenced = trimmed.match(/```(?:json)?\s*([\s\S]*?)\s*```/);
   return JSON.parse(fenced ? fenced[1] : trimmed);
 }
 
@@ -157,7 +157,7 @@ Respond with ONLY a JSON object, no other text:
 
   const response = await anthropic.messages.create({
     model: MODEL,
-    max_tokens: 1024,
+    max_tokens: 2048,
     messages: [{ role: 'user', content: prompt }],
   });
 
