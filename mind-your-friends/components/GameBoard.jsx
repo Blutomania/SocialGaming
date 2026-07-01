@@ -29,6 +29,7 @@ export default function GameBoard({ game, myId, socket }) {
         {game.phase === 'CARD' && <CardPhase game={game} myId={myId} socket={socket} />}
         {game.phase === 'QUESTION' && <p className="text-center">Generating question…</p>}
         {game.phase === 'ANSWER' && <AnswerPhase game={game} myId={myId} socket={socket} />}
+        {game.phase === 'STEAL' && <StealPhase game={game} socket={socket} />}
         {game.phase === 'RESULT' && <ResultPhase game={game} />}
       </div>
 
@@ -150,15 +151,65 @@ function AnswerPhase({ game, myId, socket }) {
   );
 }
 
+function StealPhase({ game, socket }) {
+  const [answer, setAnswer] = useState('');
+
+  if (game.stealClaimed) {
+    return <p className="text-center text-gray-300">Steal claimed — evaluating…</p>;
+  }
+
+  if (!game.stealEligible) {
+    return (
+      <p className="text-center text-gray-300">
+        Wrong answer! Waiting to see if anyone steals the wager…
+      </p>
+    );
+  }
+
+  return (
+    <div className="space-y-3 text-center">
+      <p className="font-semibold text-game-red">Wrong answer! Buzz in to steal the wager.</p>
+      <div className="flex gap-2">
+        <input
+          className="flex-1 rounded bg-game-dark px-3 py-2"
+          placeholder="Your steal answer…"
+          value={answer}
+          onChange={(e) => setAnswer(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              socket.emit('turn:claimSteal', { answer, inputMode: 'text' });
+            }
+          }}
+        />
+        <button
+          className="rounded bg-game-red px-4 py-2 font-semibold"
+          onClick={() => socket.emit('turn:claimSteal', { answer, inputMode: 'text' })}
+        >
+          Steal!
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function ResultPhase({ game }) {
   if (game.skippedTurn) {
     return <p className="text-center text-xl">Turn skipped!</p>;
   }
   const result = game.lastResult;
+  const halfWager = Math.round(result.wager / 2);
+  const headline = result.stolen
+    ? result.correct
+      ? `${result.stealerName} stole it! +${result.wager}`
+      : `${result.stealerName}'s steal missed! -${halfWager}`
+    : result.correct
+    ? `Correct! +${result.wager}`
+    : `Wrong! -${result.wager}`;
+
   return (
     <div className="space-y-2 text-center">
       <p className={`text-2xl font-bold ${result.correct ? 'text-game-green' : 'text-game-red'}`}>
-        {result.correct ? `Correct! +${result.wager}` : `Wrong! -${result.wager}`}
+        {headline}
       </p>
       <p className="text-sm text-gray-400">
         Correct answer: {game.answer}
