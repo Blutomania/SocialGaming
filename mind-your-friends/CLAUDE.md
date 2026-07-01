@@ -103,11 +103,55 @@ other, and answer AI-generated questions. The social loop — not the trivia —
 27. **[FUTURE] Group splitting** — when 7+ players want to play together,
     design a splintering mechanic to auto-create balanced sub-games (e.g.
     4+3, 3+3+3). Parked until core game is proven.
-28. **[START HERE] Extended playtest** — item 24 verified one full turn end-to-end.
-    Still needs coverage: a full 24-question game to completion (GAME_OVER +
-    ScoreBoard), sabotage card plays via `turn:playCard` (not just the FCFS
-    window auto-resolving with no card played), Whoa Nellie / Redirect / Skip /
-    Spotlight / Steal effects, voice input mode, and disconnect/reconnect.
+28. ~~**Extended playtest**~~ — ran an automated 3-player Playwright game that
+    actively plays a sabotage/anti-sabotage card every turn (rotating through
+    the hand, deprioritizing the always-available Half-Off so real cards get
+    exercised) and plays a full 24-question game to `GAME_OVER`. Found and
+    fixed 3 more bugs beyond item 24's four:
+    - **Missing STEAL phase UI** — `gameState.js`/`server.js` fully
+      implement the FCFS steal mechanic (`claimSteal`, `expireSteal`,
+      half-wager penalty) but `GameBoard.jsx`'s phase switch had no `STEAL`
+      case, so the window silently auto-expired with no way to buzz in.
+      Added a `StealPhase` component wired to `turn:claimSteal`, and a
+      `result.stolen` headline in `ResultPhase`.
+    - **Skip-card crash** — `resolveCardSlot()`'s `'skip'` case sets
+      `game.skippedTurn = true` and skips `lastResult` entirely (there's no
+      question to report), but `playerView()` never forwarded
+      `skippedTurn` to the client. `ResultPhase`'s `if (game.skippedTurn)`
+      guard was therefore always false and fell through to
+      `game.lastResult.wager`, crashing every client the instant anyone
+      played Skip, for the rest of the game. Fixed by adding
+      `skippedTurn: !!game.skippedTurn` to the view.
+    - **Silent hang on a failed Claude call** — `finishCardPhase()` (which
+      calls `generateQuestion()`) was invoked fire-and-forget from
+      `resolveCardWindow()`/`startCardWindow()` with no `.catch`; same gap
+      in `startAnswerTimer`'s auto-submit path. Any thrown error (network
+      blip, truncated JSON) left the turn hung forever in QUESTION/ANSWER
+      phase with zero client feedback, and once it did eventually resolve,
+      `scheduleNextTurn()` — the only phase-timeout helper with no guard —
+      spammed `uncaughtException`s trying to re-advance an already-advanced
+      game. Fixed with a shared `recoverFromFailedTurn()` (skips the turn)
+      plus the missing phase guard. Also raised `generateQuestion`'s
+      `max_tokens` 1024→2048 and loosened the JSON-fence regex to match
+      a fenced block anywhere in the reply, not just when it wraps the
+      whole response — both reduce how often a verbose round-rule prompt
+      trips this path.
+    After all fixes: a full 24-question game completes with zero
+    console/page errors and zero server exceptions, exercising every
+    sabotage/anti-sabotage card, Steal (both a successful and a failed
+    steal, plus a no-one-stole expiry), and the inactivity auto-skip system
+    (triggered incidentally when a card play left a player un-answered for
+    a stretch). Remaining uncovered: voice input mode, disconnect/reconnect,
+    and the `submissionBased` flag on Worst Answer Wins (declared on the
+    round rule but never actually branched on in `gameState.js` — currently
+    plays like a normal single-answerer turn).
+29. **[START HERE] Remaining gaps from extended playtest** — pick one:
+    voice input mode (wire `VoiceInput.jsx` into `GameBoard.jsx`'s answer
+    input, playtest with `inputMode: 'voice'`), disconnect/reconnect
+    (kill a browser tab mid-game, confirm the grace period + vote flow),
+    or implement `submissionBased` for Worst Answer Wins (all players
+    submit an answer, 3-axis scoring, lowest total wins — currently just
+    a normal single-answerer turn with a different evaluation prompt).
 
 ## Design Thesis: Casual-First
 This game targets casual, social players — not competitive optimizers. Every
