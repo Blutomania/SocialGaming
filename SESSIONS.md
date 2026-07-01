@@ -5,6 +5,58 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session — July 01, 2026 at 20:37
+**Branch:** `claude/continuation-r0mhfq`
+**Latest commit:** `1727293`
+
+### Files changed this session
+- `ind-your-friends/components/GameBoard.jsx` — Modified
+
+### Commits this session
+```
+1727293 Mark item 24 (first run + playtest) done, add item 28 for extended playtest
+82e2886 Fix AnswerPhase/ResultPhase crash: client read game.currentQuestion, server never sends it
+16cf29c Fix CardHand crash: hand always includes 'halfOff', which isn't in the CARDS lookup
+eb4cc56 chore: auto-update SESSIONS.md with session summary [41c44f4]
+41c44f4 Fix first-run crashes found during playtest: markdown-fenced JSON, category options as objects
+9dfec0c chore: auto-update SESSIONS.md with session summary [bd88adc]
+bd88adc chore: auto-update SESSIONS.md with session summary [4bead35]
+4bead35 chore: auto-update SESSIONS.md with session summary [a97a6fc]
+a97a6fc Update CLAUDE.md: architecture, session protocol, branch references
+09267d6 Add game code collision check, Heckle moderation, and VoiceInput component
+0189035 Add inactivity detection — auto-skip away players after 2 timeouts
+e6520cc Add PT-3: single-player inactivity as playtest question
+0235add Add disconnection handling with grace period and vote system
+c6fc9c7 Mark question-from-fact builder as done in to-do list
+5aaa65f Wire question generation to fact bank
+86fcdb2 Add sourceType field to fact-fetching schema
+c1a2a49 Add batch fact-fetching pipeline for question generation
+5810db4 Build CardPicker UI and rewrite Lobby for new card mechanic
+3e42b85 Wire design changes into scaffold: per-round cards, Half-Off, Take Your Time, Worst Answer Wins
+812b9a2 Add package-lock.json for mind-your-friends
+c740e00 chore: auto-update SESSIONS.md with session summary [d6f7fa0]
+d6f7fa0 Bring scaffold code from awesome-hopper branch into continuation branch
+6aa7c31 Define Visual question image sourcing: curated pool from Wikimedia, Noun Project, OpenClipart
+7e4eab1 Remove Hot Take, pin 2 random cards/round, add trademark note for Visual
+b9495a7 Add card selection instruction text to pick screen
+45c8914 Revamp card mechanic: per-round hands, Half-Off universal, 40s pick timer
+1db8b47 Add PLAYTEST.md with first question: FCFS vs stacking card resolution
+53b168b Park Hot Take, advance to-do list to item 21 (lobby card pick UI)
+14b89b1 Update to-do list: mark items 14-19 done, add Hot Take rework as next step
+f375047 Add question-rule coherence constraints to GAME_DESIGN.md
+bf39d87 Add question types, Worst Answer Wins round rule, complexity guardrails
+c6f9f0d chore: auto-update SESSIONS.md with session summary [ea5af2f]
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
 ## Session — July 01, 2026 at 18:52
 **Branch:** `claude/continuation-r0mhfq`
 **Latest commit:** `41c44f4`
