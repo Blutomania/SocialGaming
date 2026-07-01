@@ -117,8 +117,8 @@ function AnswerPhase({ game, myId, socket }) {
       {game.heckleMessage && (
         <p className="italic text-game-pink">Heckle: "{game.heckleMessage}"</p>
       )}
-      <p className="text-game-gold">{game.currentQuestion.hostQuip}</p>
-      <p className="text-lg font-semibold">{game.currentQuestion.question}</p>
+      <p className="text-game-gold">{game.hostQuip}</p>
+      <p className="text-lg font-semibold">{game.question}</p>
       <p className="text-sm text-gray-400">
         Wager: {game.currentWager} · {timer}s · {answerer.name} answers
       </p>
@@ -161,7 +161,7 @@ function ResultPhase({ game }) {
         {result.correct ? `Correct! +${result.wager}` : `Wrong! -${result.wager}`}
       </p>
       <p className="text-sm text-gray-400">
-        Correct answer: {game.currentQuestion.answer}
+        Correct answer: {game.answer}
       </p>
       <p>{result.feedback}</p>
     </div>
