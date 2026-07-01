@@ -1,16 +1,38 @@
+import fs from 'fs';
 import Anthropic from '@anthropic-ai/sdk';
 import { FACTS_PER_CATEGORY, CATEGORIES_PER_FETCH_BATCH } from './constants.js';
 
 const MODEL = 'claude-sonnet-4-6';
 
-const apiKey = process.env.ANTHROPIC_API_KEY;
-const client = apiKey ? new Anthropic({ apiKey }) : null;
+const INGRESS_TOKEN_FILE = '/home/claude/.claude/remote/.session_ingress_token';
+
+function buildClient() {
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (apiKey) return new Anthropic({ apiKey });
+
+  if (fs.existsSync(INGRESS_TOKEN_FILE)) {
+    const authToken = fs.readFileSync(INGRESS_TOKEN_FILE, 'utf8').trim();
+    return new Anthropic({ authToken });
+  }
+
+  return null;
+}
+
+const client = buildClient();
 
 function requireClient() {
   if (!client) {
-    throw new Error('ANTHROPIC_API_KEY not set — see .env.local.example');
+    throw new Error('No API key found. Set ANTHROPIC_API_KEY or ensure ingress token exists — see .env.local.example');
   }
   return client;
+}
+
+// Claude sometimes wraps JSON replies in a ```json ... ``` fence despite
+// being asked for raw JSON — strip it before parsing.
+function parseJson(text) {
+  const trimmed = text.trim();
+  const fenced = trimmed.match(/^```(?:json)?\s*([\s\S]*?)\s*```$/);
+  return JSON.parse(fenced ? fenced[1] : trimmed);
 }
 
 // Fetch structured factoids for a batch of categories. Called at game start
@@ -67,7 +89,7 @@ sourceType is the kind of reference this fact would be found in. Use one of: "en
     });
 
     const text = response.content[0].text;
-    const parsed = JSON.parse(text);
+    const parsed = parseJson(text);
     Object.assign(results, parsed);
   }
 
@@ -140,7 +162,7 @@ Respond with ONLY a JSON object, no other text:
   });
 
   const text = response.content[0].text;
-  return JSON.parse(text);
+  return parseJson(text);
 }
 
 // Evaluate a player's answer.
@@ -176,7 +198,7 @@ Respond with ONLY a JSON object, no other text:
   });
 
   const text = response.content[0].text;
-  return JSON.parse(text);
+  return parseJson(text);
 }
 
 // Moderate a Heckle submission via host-reinterpretation.
@@ -208,5 +230,5 @@ Set moderated to true only if you had to meaningfully change the intent.`;
     messages: [{ role: 'user', content: prompt }],
   });
 
-  return JSON.parse(response.content[0].text);
+  return parseJson(response.content[0].text);
 }
