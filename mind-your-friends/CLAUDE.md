@@ -57,8 +57,35 @@ other, and answer AI-generated questions. The social loop — not the trivia —
 23. ~~**Question-from-fact builder**~~ — `pickFactoid()` in `coherence.js`
     filters by difficulty + answer format. `generateQuestion()` uses factoid +
     random question angle. Falls back to original prompt if no bank.
-24. **[START HERE] First run + playtest** — `npm install`, `npm run dev`, play through
-    with 3+ browser tabs.
+24. ~~**First run + playtest**~~ — `npm install` + `npm run dev` succeeded. Ran an
+    automated 3-player Playwright playtest (lobby → categories → card pick →
+    Start Game → category → wager → card window → question → answer → result)
+    and found/fixed 4 crash bugs uncovered only by actually running the app:
+    - `claudeClient.js`: Claude sometimes wraps JSON replies in a ```` ```json ````
+      fence; raw `JSON.parse` crashed on it. Added a fence-stripping `parseJson()`
+      helper used by all 4 API call sites. Also wired the documented
+      `ANTHROPIC_API_KEY` / session-ingress-token fallback that was never
+      actually implemented.
+    - `CategoryPicker.jsx`: rendered `categoryOptions` entries (which are
+      `{category, submittedBy, submittedById}` objects per the attribution
+      design) as if they were plain strings — fatal "Objects are not valid as
+      a React child" crash the instant the CATEGORY phase appeared.
+    - `CardHand.jsx` / `cards.js`: every hand always includes the universal
+      `'halfOff'` card, but `CARDS` never included it (`HALF_OFF` was a
+      separate constant) — `CARDS['halfOff']` was `undefined`, crashing every
+      CARD-phase render. Added `CARD_INFO` (merged lookup) and switched
+      `CardHand.jsx` to use it.
+    - `GameBoard.jsx`: `AnswerPhase`/`ResultPhase` read `game.currentQuestion.*`,
+      but `playerView()` never sends a nested `currentQuestion` — it flattens
+      to `game.question` / `game.hostQuip` / `game.answer` (answer withheld
+      until RESULT/GAME_OVER on purpose). Fixed the client to read the flat
+      fields.
+    After all 4 fixes, a full turn completes cleanly end-to-end with zero
+    console/page errors (verified: category attribution, wager, card window,
+    Claude-generated question honoring the active round rule, fuzzy answer
+    evaluation, result screen). Next: extend playtesting to a full 24-question
+    game, sabotage card plays (not just the auto-resolving card window),
+    disconnect/reconnect, and voice input.
 25. ~~**Disconnection handling**~~ — 45s grace period → vote to wait/continue.
     `disconnectPlayer()`, `reconnectPlayer()`, `startDisconnectVote()`,
     `castDisconnectVote()`, `resumeAfterDrop()` in `gameState.js`. Server
@@ -76,6 +103,11 @@ other, and answer AI-generated questions. The social loop — not the trivia —
 27. **[FUTURE] Group splitting** — when 7+ players want to play together,
     design a splintering mechanic to auto-create balanced sub-games (e.g.
     4+3, 3+3+3). Parked until core game is proven.
+28. **[START HERE] Extended playtest** — item 24 verified one full turn end-to-end.
+    Still needs coverage: a full 24-question game to completion (GAME_OVER +
+    ScoreBoard), sabotage card plays via `turn:playCard` (not just the FCFS
+    window auto-resolving with no card played), Whoa Nellie / Redirect / Skip /
+    Spotlight / Steal effects, voice input mode, and disconnect/reconnect.
 
 ## Design Thesis: Casual-First
 This game targets casual, social players — not competitive optimizers. Every
