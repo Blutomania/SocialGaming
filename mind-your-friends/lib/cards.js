@@ -89,6 +89,11 @@ export const CARDS = {
 
 export const ALL_CARD_IDS = Object.keys(CARDS);
 
+// Lookup covering every possible hand entry, including the universal
+// Half-Off card that buildRoundHand() always injects but which isn't part
+// of the pickable CARDS pool.
+export const CARD_INFO = { ...CARDS, [HALF_OFF.id]: HALF_OFF };
+
 // All cards are available for the pick-one-at-game-start moment.
 export const PICKABLE_CARD_IDS = ALL_CARD_IDS;
 

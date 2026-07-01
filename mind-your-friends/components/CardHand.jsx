@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { CARDS } from '../lib/cards';
+import { CARD_INFO } from '../lib/cards';
 
 // Shown to every player during the CARD phase. First card played wins the
 // FCFS slot (see GAME_DESIGN.md -> Card Resolution); everyone else's
@@ -37,10 +37,10 @@ export default function CardHand({ game, myId, socket }) {
             key={id}
             disabled={slotTaken}
             onClick={() => play(id)}
-            title={CARDS[id].description}
+            title={CARD_INFO[id].description}
             className="rounded border border-game-accent px-3 py-2 text-sm hover:bg-game-accent/20 disabled:opacity-30"
           >
-            {CARDS[id].name}
+            {CARD_INFO[id].name}
           </button>
         ))}
         {me.hand.length === 0 && <p className="text-sm text-gray-500">No cards left.</p>}
@@ -62,7 +62,7 @@ export default function CardHand({ game, myId, socket }) {
 
       {slotTaken && (
         <p className="text-sm text-gray-400">
-          {CARDS[game.cardSlot.cardId].name} was played — card slot is closed for this question.
+          {CARD_INFO[game.cardSlot.cardId].name} was played — card slot is closed for this question.
         </p>
       )}
     </div>
