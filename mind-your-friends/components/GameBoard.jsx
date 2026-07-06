@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import CategoryPicker from './CategoryPicker';
 import CardHand from './CardHand';
+import VoiceInput from './VoiceInput';
 import { MIN_WAGER, MAX_WAGER, TOTAL_QUESTIONS, QUESTIONS_PER_ROUND } from '../lib/constants';
 
 export default function GameBoard({ game, myId, socket }) {
@@ -111,7 +112,10 @@ function AnswerPhase({ game, myId, socket }) {
   const answerer = game.players[game.answererIndex];
   const isAnswerer = answerer.id === myId;
   const [answer, setAnswer] = useState('');
+  const [inputMode, setInputMode] = useState('text');
   const timer = game.timerSecondsOverride ?? game.roundRule.timerSeconds;
+
+  const submit = () => socket.emit('turn:submitAnswer', { answer, inputMode });
 
   return (
     <div className="space-y-3 text-center">
@@ -130,17 +134,21 @@ function AnswerPhase({ game, myId, socket }) {
             className="flex-1 rounded bg-game-dark px-3 py-2"
             placeholder="Your answer…"
             value={answer}
-            onChange={(e) => setAnswer(e.target.value)}
+            onChange={(e) => {
+              setAnswer(e.target.value);
+              setInputMode('text');
+            }}
             onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                socket.emit('turn:submitAnswer', { answer, inputMode: 'text' });
-              }
+              if (e.key === 'Enter') submit();
             }}
           />
-          <button
-            className="rounded bg-game-accent px-4 py-2 font-semibold"
-            onClick={() => socket.emit('turn:submitAnswer', { answer, inputMode: 'text' })}
-          >
+          <VoiceInput
+            onTranscript={(transcript) => {
+              setAnswer(transcript);
+              setInputMode('voice');
+            }}
+          />
+          <button className="rounded bg-game-accent px-4 py-2 font-semibold" onClick={submit}>
             Submit
           </button>
         </div>
@@ -153,6 +161,9 @@ function AnswerPhase({ game, myId, socket }) {
 
 function StealPhase({ game, socket }) {
   const [answer, setAnswer] = useState('');
+  const [inputMode, setInputMode] = useState('text');
+
+  const submit = () => socket.emit('turn:claimSteal', { answer, inputMode });
 
   if (game.stealClaimed) {
     return <p className="text-center text-gray-300">Steal claimed — evaluating…</p>;
@@ -174,17 +185,21 @@ function StealPhase({ game, socket }) {
           className="flex-1 rounded bg-game-dark px-3 py-2"
           placeholder="Your steal answer…"
           value={answer}
-          onChange={(e) => setAnswer(e.target.value)}
+          onChange={(e) => {
+            setAnswer(e.target.value);
+            setInputMode('text');
+          }}
           onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              socket.emit('turn:claimSteal', { answer, inputMode: 'text' });
-            }
+            if (e.key === 'Enter') submit();
           }}
         />
-        <button
-          className="rounded bg-game-red px-4 py-2 font-semibold"
-          onClick={() => socket.emit('turn:claimSteal', { answer, inputMode: 'text' })}
-        >
+        <VoiceInput
+          onTranscript={(transcript) => {
+            setAnswer(transcript);
+            setInputMode('voice');
+          }}
+        />
+        <button className="rounded bg-game-red px-4 py-2 font-semibold" onClick={submit}>
           Steal!
         </button>
       </div>

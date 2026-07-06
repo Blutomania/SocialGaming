@@ -145,13 +145,29 @@ other, and answer AI-generated questions. The social loop — not the trivia —
     and the `submissionBased` flag on Worst Answer Wins (declared on the
     round rule but never actually branched on in `gameState.js` — currently
     plays like a normal single-answerer turn).
-29. **[START HERE] Remaining gaps from extended playtest** — pick one:
-    voice input mode (wire `VoiceInput.jsx` into `GameBoard.jsx`'s answer
-    input, playtest with `inputMode: 'voice'`), disconnect/reconnect
-    (kill a browser tab mid-game, confirm the grace period + vote flow),
-    or implement `submissionBased` for Worst Answer Wins (all players
-    submit an answer, 3-axis scoring, lowest total wins — currently just
-    a normal single-answerer turn with a different evaluation prompt).
+29. ~~**Remaining gaps from extended playtest — voice input mode**~~ — wired
+    `VoiceInput.jsx` into both `AnswerPhase` and `StealPhase` in
+    `GameBoard.jsx`. Each phase now tracks `inputMode` (`'text'` | `'voice'`)
+    alongside the answer string: typing sets it back to `'text'`, a finished
+    voice transcript sets it to `'voice'` and fills the same editable input
+    (so a misrecognized word can still be corrected before Submit/Steal).
+    `submit()` sends whichever mode was last used, unchanged wire format —
+    no server changes needed since `server.js` already passed `inputMode`
+    through to `submitAnswer()`/`claimSteal()`.
+    Verified end-to-end with a real game (real Claude API calls for fact
+    bank + question + evaluation) and a mocked `window.SpeechRecognition`
+    (Playwright, no real mic in this environment): clicking the mic filled
+    the answer box with the fake transcript, and the round rule's **voice**
+    transform (not the text transform) was applied server-side — confirmed
+    by the evaluator's feedback quoting back the voice-transformed string.
+    Remaining: disconnect/reconnect and `submissionBased` Worst Answer Wins
+    are still open (see item 26/28's notes) — pick one next.
+    **Known platform caveat (not fixed, just documented):** Web Speech API
+    is Chromium-only — Safari/iOS has no `SpeechRecognition`, so
+    `VoiceInput.jsx` renders `null` there and those players fall back to
+    text silently. Also requires a secure context (HTTPS or localhost) for
+    mic permission — fine for local dev, but the deployed build needs TLS
+    for phone players to get mic access at all.
 
 ## Design Thesis: Casual-First
 This game targets casual, social players — not competitive optimizers. Every
