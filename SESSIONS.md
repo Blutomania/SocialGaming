@@ -49,13 +49,43 @@ Root cause: no session was reliably merging its branch back before the next one 
 **Godot is the confirmed, sole direction going forward.** All Streamlit/HuggingFace-era code
 stays archived in `deprecated/` for provenance — not deleted, not resurrected.
 
+### Follow-up within this session
+- Opened **PR #1** (`claude/mystery-pdf-extraction-0fisq0` → `main`):
+  https://github.com/Blutomania/SocialGaming/pull/1 — open, `mergeable_state: clean`, not yet merged
+- Owner is deleting the five superseded branches manually via GitHub UI (git push --delete was
+  blocked with the same 403 policy that blocks direct pushes to `main`; no delete-ref tool was
+  available either) — **owner action, in progress, not yet confirmed done**
+- Owner hit a real bug running `scripts/extract_from_pdfs.py` locally: `extract_pdf()` returned
+  bare `None` (instead of the `(None, "")` tuple its signature promises) when the Claude API call
+  raised — e.g. on an invalid key — so `main()`'s unconditional tuple-unpack crashed the whole
+  batch with `TypeError: cannot unpack non-iterable NoneType object` instead of recording one
+  clean failure and continuing. Fixed in commit `8967754` (single-line fix, `return None` →
+  `return None, ""`), pushed to this branch/PR.
+- Root cause of the original 401 was a stale/missing local `ANTHROPIC_API_KEY` — owner fixed by
+  exporting a fresh key via `~/.zshrc`.
+- Owner then successfully ran full ingestion end-to-end locally:
+  `python3 scripts/extract_from_pdfs.py mystery_database/new_sources/ --protocol P1` —
+  **4/4 processed, 0 failed** — and pushed the results directly to this branch (commit `00bca46`):
+  - `pdf_the_circular_staircase_project_gutenberg.json` (Mary Roberts Rinehart)
+  - `pdf_the_greene_murder_case_project_gutenberg.json` (S.S. Van Dine)
+  - `pdf_the_leavenworth_case_a_lawyer_s_story_by_anna_katharine_gree.json` (Anna Katharine Green)
+  - `pdf_the_red_house_mystery_by_a_a_milne.json` (A.A. Milne)
+  - Also updated `pdf_smallbone_deceased_a_london_mystery_brit_michael_gilbert.json` — a
+    `--fill-resolution` pass filled a previously-null resolution (confidence low → high)
+  - Spot-checked `pdf_the_red_house_mystery_by_a_a_milne.json`: `crime` field quotes real
+    Chapter III narration, not a table-of-contents artifact — extraction quality looks sound
+- Corpus now has 12 PDF-sourced entries total (8 from the prior stranded-branch session + 4 new)
+
 ### What is next
-1. Push this branch, open a PR to reconcile it into `main`
-2. **Owner to confirm**, then delete the five superseded branches: `claude/review-godot-migration-GiLDz`,
-   `claude/fix-godot-performance-QyXLQ`, `claude/start-godot-migration-mNrWD`,
-   `claude/setup-api-and-mysteries-LRLQK`, `claude/mystery-versioning-system-TPblK`
+1. **Confirm PR #1 merged into `main`** — was open and clean as of session end, not yet merged
+2. **Confirm the five superseded branches were actually deleted** (owner was doing this manually
+   when this session ended — verify, don't re-assume)
 3. Resume Phase 3d work from Session 14 (avatar pool system, player history tracking — see
    Session 14 below)
+4. Consider whether the corpus JSONs added this session should also get folded into
+   `part_registry.json` itself, or whether relying on `load_extractions()`'s live directory scan
+   at runtime is sufficient going forward (currently sufficient — no action required unless
+   startup load time becomes a concern)
 
 ### Local sync steps (for owner)
 ```bash

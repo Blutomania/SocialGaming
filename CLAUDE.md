@@ -208,18 +208,28 @@ GodotSteam is the best Steamworks path; Godot Linux export = Steam Deck support 
 
 ---
 
-## Current To-Do (as of April 20, 2026)
+## Current To-Do (as of July 9, 2026)
 
 Full list in `SESSIONS.md`. Top priorities:
 
 1. **[DONE]** Phase 1 — FastAPI server + Godot project scaffold
 2. **[DONE]** Phase 2 — Single-player Godot prototype (all 5 screens functional)
-3. **[IN PROGRESS]** Phase 3 — Multiplayer investigation phases + clue sharing
+3. **[DONE]** Phase 3 — Multiplayer investigation phases + clue sharing
    - **[DONE]** 3a: Mystery gen updated (investigation_areas + leads in JSON)
    - **[DONE]** 3b: Game session store + 8 server endpoints
    - **[DONE]** 3c: WebSocket upgrade + mobile.html phone client + .tscn wiring
-   - **[NEXT]** 3d: Lobby flow, room codes, QR display on host screen
-4. **[FUTURE]** Phase 4 — Steam integration (GodotSteam plugin)
+   - **[DONE]** 3d: Lobby flow, room codes, host-screen display (Session 14)
+4. **[START HERE]** Phase 3e — Avatar pool system + player history tracking (designed in
+   Session 14, not yet built — see `SESSIONS.md` Session 14 for full spec)
+5. **[VERIFY]** Confirm PR #1 (branch reconciliation) merged into `main` — see
+   https://github.com/Blutomania/SocialGaming/pull/1
+6. **[VERIFY]** Confirm the five superseded branches were actually deleted (owner was doing this
+   manually as of last session — `claude/review-godot-migration-GiLDz`,
+   `claude/fix-godot-performance-QyXLQ`, `claude/start-godot-migration-mNrWD`,
+   `claude/setup-api-and-mysteries-LRLQK`, `claude/mystery-versioning-system-TPblK`)
+7. **[ONGOING]** Corpus growth — 12 PDF-sourced entries added so far via
+   `scripts/extract_from_pdfs.py`; keep adding one quality source at a time as they're found
+8. **[FUTURE]** Phase 4 — Steam integration (GodotSteam plugin)
 
 > **DO NOT re-run the frozen bulk corpus pipeline** (`deprecated/run_corpus_pipeline.py`). Expand
 > the corpus only via `scripts/extract_from_pdfs.py`, adding one quality source at a time.
