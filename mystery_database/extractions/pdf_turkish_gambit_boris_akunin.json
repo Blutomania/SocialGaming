@@ -1,0 +1,41 @@
+{
+  "crime": {
+    "value": "Espionage and treason: Army cryptographer Pyotr Yablokov accused of espionage during Russo-Turkish War, facing imprisonment and execution; central question: who is the real culprit?",
+    "confidence": "high",
+    "quote": "when Yablokov is accused of espionage and faces imprisonment and execution, Varya must turn to Fandorin to find the real culprit"
+  },
+  "victim": {
+    "value": "Pyotr Yablokov, army cryptographer and fianc\u00e9 of Varya Suvorova; 'killable' due to his sensitive military position and access to encrypted communications during wartime",
+    "confidence": "high",
+    "quote": "Pyotr Yablokov, an army cryptographer"
+  },
+  "closed_world": {
+    "value": "Russian Army of the Danube during 1877 Russo-Turkish War on the Bulgarian front; military hierarchy and field army structure containing suspects and witnesses",
+    "confidence": "high",
+    "quote": "It is 1877, and war has broken out between Russia and the Ottoman Empire... Amid the treacherous atmosphere of a nineteenth-century Russian field army"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Erast Fandorin, former diplomat and detective; investigates the case through partnership with Varya Suvorova, who initially distrusts him but must rely on his deductive skills",
+    "confidence": "high",
+    "quote": "former diplomat and detective extraordinaire Erast Fandorin finds his most confounding case"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/Turkish Gambit - Boris Akunin.pdf",
+    "filename": "Turkish Gambit - Boris Akunin.pdf",
+    "text_len": 6037,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Turkish Gambit - Boris Akunin"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "crime": {
+    "value": "Public suicide of a wealthy student, later connected to murder; central question: are these deaths connected and part of a larger conspiracy?",
+    "confidence": "high",
+    "quote": "The bizarre and tragic suicide is soon connected to a clear case of murder, witnessed firsthand by Fandorin himself."
+  },
+  "victim": {
+    "value": "A talented student from a wealthy family who shoots himself in public; later a murder victim whose death connects to the suicide; also Fandorin himself becomes a target of assassination attempts.",
+    "confidence": "medium",
+    "quote": "What would cause a talented student from a wealthy family to shoot himself in front of a promenading public?"
+  },
+  "closed_world": {
+    "value": "Moscow in 1876, expanding across Europe; initially bounded by Alexander Gardens public promenade and hotel system; conspiracy spans diplomatic and international networks.",
+    "confidence": "medium",
+    "quote": "Moscow, May 1876... leads him across Europe, landing him at the center of a vast conspiracy"
+  },
+  "culprit_and_motive": {
+    "value": "An international conspiracy (Amalia Bezhetskaya and associates) with operatives in the Russian embassy; motive involves silencing Fandorin and controlling information.",
+    "confidence": "medium",
+    "quote": "They had their own people in the Russian embassy!... 'Don't you dare! It's my fault, and I shall correct my own mistake.'"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Erast Fandorin, a young, talented detective dissatisfied with official conclusions; pursues investigation through keen intuition despite institutional resistance.",
+    "confidence": "high",
+    "quote": "young sleuth Erast Fandorin is not satisfied with the conclusion... Relying on his keen intuition, the eager detective plunges into an investigation"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The Winter Queen - Boris Akunin.pdf",
+    "filename": "The Winter Queen - Boris Akunin.pdf",
+    "text_len": 6037,
+    "protocols": [
+      "P1"
+    ],
+    "title": "The Winter Queen - Boris Akunin"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Namiya General Store - a advice-giving establishment that receives letters through a mail slot",
+    "confidence": "medium",
+    "quote": "whoever sent me the blank letter... This letter was for him. An answer. Written by none other than the real Mr. Namiya."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Mr. Namiya interprets a blank letter as symbolic of absence of a life map and provides philosophical counsel about self-determination",
+    "confidence": "medium",
+    "quote": "A blank map means you can fill it in however you like. It's entirely up to you. Everything is open; the possibilities are limitless."
+  },
+  "investigator": {
+    "value": "Atsuya - the person who sent the blank letter, receiving a response from Mr. Namiya",
+    "confidence": "high",
+    "quote": "Atsuya gulped. He had been the one who slipped the blank sheet of paper through the mail slot."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/pdfcoffee.com_the-miracles-of-the-namiya-general-store-by-keigo-higashino-pdf-free.pdf",
+    "filename": "pdfcoffee.com_the-miracles-of-the-namiya-general-store-by-keigo-higashino-pdf-free.pdf",
+    "text_len": 6037,
+    "protocols": [
+      "P1"
+    ],
+    "title": "pdfcoffee.com_the-miracles-of-the-namiya-general-store-by-keigo-higashino-pdf-free"
+  }
+}

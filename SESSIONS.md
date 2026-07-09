@@ -5,6 +5,67 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 15 — July 9, 2026
+**Branch:** `claude/mystery-pdf-extraction-0fisq0`
+**Starting commit:** `84424e2` (tip of `claude/review-and-resume-1k0tP`)
+**Status:** Complete — branch reconciliation + Streamlit deprecation cleanup
+
+### The problem
+Several past sessions had been auto-assigned fresh branches off older commits instead of
+continuing the actual active branch. This left multiple divergent "current states" of the repo
+existing in parallel with no single source of truth:
+- `claude/review-and-resume-1k0tP` — the real Godot tip (Phase 3d, includes Session 14's
+  `deprecated/` cleanup)
+- `claude/fix-godot-performance-QyXLQ` and `claude/start-godot-migration-mNrWD` — earlier,
+  now-superseded points in the same Godot lineage
+- `claude/review-godot-migration-GiLDz` — a *stranded* branch (misleadingly named, contains no
+  Godot code) that forked from the same pre-migration point and did one day of PDF-ingestion
+  work (`scripts/extract_from_pdfs.py`, 8 new corpus extractions from Gilbert/Akunin/Higashino
+  PDFs, a cast-of-characters text-sampling bug fix) that never got folded into the Godot line
+- `claude/mystery-pdf-extraction-0fisq0` (this session's assigned branch) — itself just an empty
+  fork of the old pre-migration point, with none of the above
+- `CLAUDE.md` on `main` was stale, pointing at a fifth branch (`claude/setup-api-and-mysteries-LRLQK`)
+  that predates the Godot pivot entirely
+
+Root cause: no session was reliably merging its branch back before the next one started fresh.
+
+### What was done
+- Rebuilt this branch from `claude/review-and-resume-1k0tP` (the true Godot tip)
+- Cherry-picked the stranded PDF-ingestion work from `claude/review-godot-migration-GiLDz`:
+  `scripts/extract_from_pdfs.py` and the 8 extraction JSONs it produced
+- Restored `extraction_protocols.py` from `deprecated/` to root — Session 14's deprecation sweep
+  predated the PDF-ingestion work and didn't know it was still a live dependency
+  (`scripts/extract_from_pdfs.py` imports it; `part_registry.load_registry()` reads every JSON
+  in `mystery_database/extractions/` live, so the new PDF-derived corpus entries are active data)
+- Rewrote `CLAUDE.md`: corrected Active Branch, added the corpus-expansion workflow
+  (`scripts/extract_from_pdfs.py`, run with `python3` — this environment has no `python` alias)
+  to Key Files and the caching-rules table, documented which branches are now safe to delete
+- Rewrote `README.md` — it still had the original HuggingFace Streamlit metadata block and
+  "`streamlit run app.py`" instructions at the top, missed by Session 14's cleanup. Now describes
+  the Godot + FastAPI setup, with an explicit note that the Streamlit version is retired and
+  archived under `deprecated/`.
+
+### Decision (owner, this session)
+**Godot is the confirmed, sole direction going forward.** All Streamlit/HuggingFace-era code
+stays archived in `deprecated/` for provenance — not deleted, not resurrected.
+
+### What is next
+1. Push this branch, open a PR to reconcile it into `main`
+2. **Owner to confirm**, then delete the five superseded branches: `claude/review-godot-migration-GiLDz`,
+   `claude/fix-godot-performance-QyXLQ`, `claude/start-godot-migration-mNrWD`,
+   `claude/setup-api-and-mysteries-LRLQK`, `claude/mystery-versioning-system-TPblK`
+3. Resume Phase 3d work from Session 14 (avatar pool system, player history tracking — see
+   Session 14 below)
+
+### Local sync steps (for owner)
+```bash
+git fetch origin
+git checkout claude/mystery-pdf-extraction-0fisq0
+git pull origin claude/mystery-pdf-extraction-0fisq0
+```
+
+---
+
 ## Session 14 — April 20, 2026
 **Branch:** `claude/review-and-resume-1k0tP`
 **Starting commit:** `403ba24`

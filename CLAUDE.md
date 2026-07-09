@@ -57,21 +57,44 @@ Current phase: **Phase 3d — Lobby flow, room codes, QR display on host screen*
 | `godot/scripts/autoloads/NetworkManager.gd` | ENet multiplayer singleton |
 | `godot/scripts/data/MysteryData.gd` | Typed GDScript wrapper for mystery JSON |
 | `godot/scenes/ui/` | All UI scenes (MainMenu → Generation → Case → Interrogation → Accusation) |
-| `part_registry.py` | 1,469-part corpus; sampling logic |
+| `part_registry.py` | 1,469-part corpus; sampling logic; `load_registry()` also loads every JSON in `mystery_database/extractions/` live at runtime |
 | `coherence_validator.py` | P1 causal-chain + witness + evidence checks (free — no API call) |
 | `localization.py` | Era-appropriate name/occupation localization with 3-tier disk cache |
+| `extraction_protocols.py` | P1–P4 taxonomy definitions — still active, used by `scripts/extract_from_pdfs.py` |
+| `scripts/extract_from_pdfs.py` | Sanctioned way to add a **single new source** (e.g. a PDF) to the live corpus — extracts P1 parts, writes to `mystery_database/extractions/`. Distinct from the frozen bulk pipeline below. Invoke with `python3`, not `python` (this environment has no `python` alias). |
 | `docs/WIRING.md` | **Canonical generation architecture** — read before touching generation |
 | `SESSIONS.md` | Session-by-session history and full to-do list |
 | `RESEARCH_FINDINGS.md` | Writer-grounded mystery taxonomy (C1–C6, M1–M8, F1–F12) |
 
-**Deprecated (do not touch — kept for reference only):**
-- `deprecated/` — all pre-Godot Python tooling (app.py, cli.py, corpus pipeline, etc.)
+**Deprecated (do not touch — kept for historical reference only):**
+- `deprecated/` — all pre-Godot Streamlit/HuggingFace-era Python tooling (`app.py`, `cli.py`,
+  `corpus_loader.py`, `run_corpus_pipeline.py`, `test_mysteries.py`, `mystery_generator.py`,
+  `gameplay_validator.py`, `demo_acquisition.py`, `mystery_data_acquisition.py`,
+  `mystery_database_plan.md`, `extract_test_mysteries.py`, `browse_mysteries.py`,
+  `GETTING_STARTED.md`, `end_of_session.sh`, `requirements.txt`). This was the single-player
+  Streamlit creator tool hosted on HuggingFace Spaces — superseded by the Godot client +
+  FastAPI server above. Kept for provenance/history, not for use.
+  - **Exception:** `extraction_protocols.py` was briefly moved here and has been **restored to
+    root** — it's a live dependency of `scripts/extract_from_pdfs.py`, which is still how new
+    corpus sources get added (see Key Files above). Everything else in `deprecated/` really is inert.
 
 ---
 
 ## Active Branch
 
-**`claude/review-and-resume-1k0tP`** — current session branch (based on Phase 3c complete state).
+**`claude/mystery-pdf-extraction-0fisq0`** — current session branch (rebuilt from the
+`claude/review-and-resume-1k0tP` tip, Phase 3d).
+
+> **Branch hygiene note (July 9, 2026):** several past sessions were auto-assigned fresh
+> branches off older commits instead of continuing the active one, so multiple divergent
+> "current states" of this repo existed in parallel (a Godot line, a since-abandoned
+> pre-migration line, and a stranded PDF-ingestion line on `claude/review-godot-migration-GiLDz`
+> that never got folded back in). This branch reconciles them: it carries the full Godot Phase
+> 3d history plus the PDF-ingestion work described in Key Files above. The other branches below
+> are superseded and safe to delete once this branch's PR is merged — confirm with owner first:
+> `claude/review-godot-migration-GiLDz`, `claude/fix-godot-performance-QyXLQ`,
+> `claude/start-godot-migration-mNrWD`, `claude/setup-api-and-mysteries-LRLQK`,
+> `claude/mystery-versioning-system-TPblK`.
 
 ---
 
@@ -80,8 +103,8 @@ Current phase: **Phase 3d — Lobby flow, room codes, QR display on host screen*
 1. **Verify branch:**
    ```bash
    git fetch origin
-   git checkout claude/review-and-resume-1k0tP
-   git pull origin claude/review-and-resume-1k0tP
+   git checkout claude/mystery-pdf-extraction-0fisq0
+   git pull origin claude/mystery-pdf-extraction-0fisq0
    ```
 2. **Read the most recent block in `SESSIONS.md`** — exact next step, blockers, decisions.
 3. **State your starting point:** branch, latest commit hash, what you'll do.
@@ -93,7 +116,7 @@ Current phase: **Phase 3d — Lobby flow, room codes, QR display on host screen*
 
 1. **Update `SESSIONS.md`** with new session block (files changed, decisions, next steps).
 2. **Update `CLAUDE.md → Current To-Do`** to reflect completed and next items.
-3. **Commit and push** on `claude/review-and-resume-1k0tP`.
+3. **Commit and push** on `claude/mystery-pdf-extraction-0fisq0`.
 4. **Tell the user to sync locally.**
 5. The remote rejects `git push origin main` (HTTP 403). Use GitHub MCP tools to create a PR.
 
@@ -159,6 +182,7 @@ API calls are the primary cost driver.
 | Compact mapping over full rewrite | Claude returns `[{old,new}]` only |
 | Cache extractions | Never re-extract a source already in JSON |
 | Coherence is free | `check_mystery()` / `check_parts()` — zero API calls |
+| Adding one new source | Use `scripts/extract_from_pdfs.py <file-or-dir> --protocol P1` (`python3`, not `python`), not the frozen bulk pipeline |
 
 **Active caching inventory:**
 
@@ -197,5 +221,9 @@ Full list in `SESSIONS.md`. Top priorities:
    - **[NEXT]** 3d: Lobby flow, room codes, QR display on host screen
 4. **[FUTURE]** Phase 4 — Steam integration (GodotSteam plugin)
 
-> **DO NOT re-run the corpus extraction pipeline.** Expand corpus only by adding new quality source texts.
-> **DO NOT touch `deprecated/`.** It exists for reference only.
+> **DO NOT re-run the frozen bulk corpus pipeline** (`deprecated/run_corpus_pipeline.py`). Expand
+> the corpus only via `scripts/extract_from_pdfs.py`, adding one quality source at a time.
+> **DO NOT touch `deprecated/`** except the one restored exception noted above. It exists for
+> historical reference only.
+> **Branch cleanup pending:** delete the five superseded branches listed under Active Branch
+> once this branch's PR is merged — ask owner to confirm first.
