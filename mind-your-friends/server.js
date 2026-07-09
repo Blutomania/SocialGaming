@@ -95,6 +95,16 @@ app.prepare().then(() => {
     socket.on('turn:submitAnswer', ({ answer, inputMode }) => {
       withMyGame(socket, async (game, playerId) => {
         gameState.recordPlayerAction(game, playerId);
+
+        if (game.roundRule.submissionBased) {
+          const allIn = gameState.submitGroupAnswer(game, playerId, answer, inputMode);
+          broadcast(io, game);
+          if (allIn) {
+            await evaluateGroupAnswers(io, game).catch((err) => recoverFromFailedTurn(io, game, err));
+          }
+          return;
+        }
+
         await gameState.submitAnswer(game, playerId, answer, inputMode);
         broadcast(io, game);
         if (game.phase === 'STEAL') {
@@ -228,7 +238,14 @@ app.prepare().then(() => {
   function startAnswerTimer(io, game) {
     const ms = gameState.getTimerSeconds(game) * 1000;
     setTimeout(() => {
-      if (game.phase !== 'ANSWER') return;
+      if (game.phase !== 'ANSWER') return; // already resolved (all submitted, or STEAL/skip path)
+
+      if (game.roundRule.submissionBased) {
+        gameState.autoFillMissingSubmissions(game);
+        evaluateGroupAnswers(io, game).catch((err) => recoverFromFailedTurn(io, game, err));
+        return;
+      }
+
       const answererId = game.players[game.answererIndex].id;
       gameState.recordAutoAdvance(game, answererId);
       gameState
@@ -239,6 +256,19 @@ app.prepare().then(() => {
         })
         .catch((err) => recoverFromFailedTurn(io, game, err));
     }, ms);
+  }
+
+  // Worst Answer Wins (and future submission-based rules): flips to the
+  // transient EVALUATING phase synchronously first, so a submission landing
+  // at the exact instant the answer timer also fires can't trigger this
+  // twice -- whichever caller runs first wins the phase, the other's
+  // `game.phase !== 'ANSWER'` guard then no-ops.
+  async function evaluateGroupAnswers(io, game) {
+    gameState.beginGroupEvaluation(game);
+    broadcast(io, game);
+    await gameState.resolveGroupAnswers(game);
+    broadcast(io, game);
+    scheduleNextTurn(io, game);
   }
 
   function startStealWindow(io, game) {

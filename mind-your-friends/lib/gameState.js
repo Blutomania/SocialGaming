@@ -9,7 +9,13 @@
 
 import { buildRoundHand, pickRandomLanguageRegister } from './cards.js';
 import { pickRandomRoundRule, transformAnswer } from './roundRules.js';
-import { generateQuestion, evaluateAnswer, fetchFactsBatch, moderateHeckle } from './claudeClient.js';
+import {
+  generateQuestion,
+  evaluateAnswer,
+  evaluateWorstAnswers,
+  fetchFactsBatch,
+  moderateHeckle,
+} from './claudeClient.js';
 import { roundConstraints, turnConstraints, validateQuestion, pickFactoid } from './coherence.js';
 import {
   ROUNDS,
@@ -153,6 +159,7 @@ function beginTurn(game) {
   game.currentQuestion = null;
   game.answererIndex = game.activePlayerIndex;
   game.categoryOptions = getCategoryOptions(game);
+  game.submissions = null;
 }
 
 // 6 random categories drawn from the shared pool. Each entry is attributed
@@ -373,6 +380,122 @@ export async function runQuestionPhase(game) {
   game.currentQuestion = result;
   game.turnConstraints = constraints;
   game.phase = 'ANSWER';
+  if (game.roundRule.submissionBased) {
+    game.submissions = {};
+  }
+  return game;
+}
+
+// --- Worst Answer Wins (submission-based rounds) ---
+//
+// Unlike the normal single-answerer flow, every non-dropped-out player
+// submits their own answer to the same question. Once everyone eligible has
+// submitted (or the timer forces it), all submissions are scored together in
+// one Claude call (see evaluateWorstAnswers) and the full per-player,
+// per-axis breakdown is stored on lastResult so it can be shown to everyone
+// -- not just who won, but why.
+
+function submissionEligiblePlayers(game) {
+  return game.players.filter((p) => !p.droppedOut);
+}
+
+export function allSubmitted(game) {
+  const eligible = submissionEligiblePlayers(game);
+  return eligible.every((p) => game.submissions[p.id] !== undefined);
+}
+
+// Records one player's raw submission. Returns true once every eligible
+// player has submitted (signal to the caller to move on to evaluation).
+export function submitGroupAnswer(game, playerId, rawAnswer, inputMode) {
+  assertPhase(game, 'ANSWER');
+  if (!game.roundRule.submissionBased) {
+    throw new Error('submitGroupAnswer called on a non-submission-based round');
+  }
+  const player = getPlayer(game, playerId);
+  if (player.droppedOut) {
+    throw new Error('Dropped-out players cannot submit');
+  }
+  if (game.submissions[playerId] !== undefined) {
+    throw new Error('Already submitted');
+  }
+  game.submissions[playerId] = { rawAnswer, inputMode };
+  return allSubmitted(game);
+}
+
+// Called by the answer timer when it expires: any eligible player who never
+// submitted is filled in with a blank answer so the round can still resolve.
+export function autoFillMissingSubmissions(game) {
+  for (const player of submissionEligiblePlayers(game)) {
+    if (game.submissions[player.id] === undefined) {
+      recordAutoAdvance(game, player.id);
+      game.submissions[player.id] = { rawAnswer: '', inputMode: 'text' };
+    }
+  }
+  return game;
+}
+
+// Synchronous phase flip so a submission arriving at the same instant the
+// timer fires can't trigger evaluation twice (see server.js).
+export function beginGroupEvaluation(game) {
+  assertPhase(game, 'ANSWER');
+  game.phase = 'EVALUATING';
+  return game;
+}
+
+// Calls Claude once for the whole batch, computes totals, determines the
+// winner(s) (lowest total; ties share the win, same convention as
+// getWinners()), and stores the full breakdown on lastResult.
+export async function resolveGroupAnswers(game) {
+  assertPhase(game, 'EVALUATING');
+
+  const eligible = submissionEligiblePlayers(game);
+  const transformedAnswers = eligible.map((p) => {
+    const { rawAnswer, inputMode } = game.submissions[p.id];
+    return transformAnswer(game.roundRule, rawAnswer, inputMode);
+  });
+
+  const scores = await evaluateWorstAnswers({
+    question: game.currentQuestion.question,
+    correctAnswer: game.currentQuestion.answer,
+    submissions: eligible.map((p, i) => ({ name: p.name, answer: transformedAnswers[i] })),
+  });
+
+  const entries = eligible.map((p, i) => {
+    const s = scores[i];
+    const total = s.factuallyWrong + s.creativelyWrong + s.plausibility;
+    return {
+      playerId: p.id,
+      name: p.name,
+      answer: game.submissions[p.id].rawAnswer,
+      factuallyWrong: s.factuallyWrong,
+      creativelyWrong: s.creativelyWrong,
+      plausibility: s.plausibility,
+      total,
+      feedback: s.feedback,
+    };
+  });
+
+  const lowestTotal = Math.min(...entries.map((e) => e.total));
+  const wager = game.currentWager;
+  for (const entry of entries) {
+    entry.isWinner = entry.total === lowestTotal;
+    if (entry.isWinner) {
+      getPlayer(game, entry.playerId).score += wager;
+    }
+  }
+
+  const winnerNames = entries.filter((e) => e.isWinner).map((e) => e.name);
+  logHighlight(
+    game,
+    `Worst Answer Wins: ${winnerNames.join(' & ')} nailed being wrong (total ${lowestTotal}) and won ${wager} pts!`
+  );
+
+  game.lastResult = {
+    submissionBased: true,
+    wager,
+    entries,
+  };
+  game.phase = 'RESULT';
   return game;
 }
 
@@ -692,7 +815,13 @@ export function playerView(game, playerId) {
     currentCategoryAttribution: game.currentCategoryAttribution ?? null,
     currentWager: game.currentWager,
     roundRule: game.roundRule
-      ? { id: game.roundRule.id, name: game.roundRule.name, emoji: game.roundRule.emoji, description: game.roundRule.description }
+      ? {
+          id: game.roundRule.id,
+          name: game.roundRule.name,
+          emoji: game.roundRule.emoji,
+          description: game.roundRule.description,
+          submissionBased: !!game.roundRule.submissionBased,
+        }
       : null,
     categoryOptions: game.categoryOptions ?? null,
     heckleMessage: game.heckleMessage,
@@ -719,6 +848,13 @@ export function playerView(game, playerId) {
   if (phase === 'STEAL') {
     view.stealEligible = game.stealEligible?.includes(playerId) && !game.stealSlot;
     view.stealClaimed = !!game.stealSlot;
+  }
+
+  if ((phase === 'ANSWER' || phase === 'EVALUATING') && game.roundRule?.submissionBased) {
+    const eligible = submissionEligiblePlayers(game);
+    view.mySubmitted = game.submissions?.[playerId] !== undefined;
+    view.submittedCount = eligible.filter((p) => game.submissions?.[p.id] !== undefined).length;
+    view.totalToSubmit = eligible.length;
   }
 
   if (game.lastResult && (phase === 'RESULT' || phase === 'GAME_OVER' || phase === 'STEAL')) {

@@ -201,6 +201,54 @@ Respond with ONLY a JSON object, no other text:
   return parseJson(text);
 }
 
+// Score every player's submission for a Worst Answer Wins round in a single
+// call (cheaper than N calls, and lets Claude judge creativity/plausibility
+// relative to the other submissions in the same batch). Per GAME_DESIGN.md:
+// each axis is 1-10 where 1 is the "best" (most wrong / most creative / most
+// convincing) and 10 is the "worst" (correct / boring / unbelievable) --
+// lowest total across the three axes wins.
+export async function evaluateWorstAnswers({ question, correctAnswer, submissions }) {
+  const anthropic = requireClient();
+
+  const list = submissions
+    .map((s, i) => `${i + 1}. ${s.name}: "${s.answer || '(no answer submitted)'}"`)
+    .join('\n');
+
+  const prompt = `Question: ${question}
+Expected correct answer: ${correctAnswer}
+
+This is a "Worst Answer Wins" round — every player was told to submit an
+answer that is confidently, entertainingly WRONG. Score each submission on
+three axes, each 1-10:
+- factuallyWrong: how far from the truth? 1 = maximally wrong, 10 = actually correct
+- creativelyWrong: how inventive is the wrongness? 1 = most creative/funny, 10 = laziest/most boring
+- plausibility: how convincing does it sound despite being false? 1 = most convincing, 10 = obviously absurd
+A blank submission ("(no answer submitted)") should score 10 on all three axes —
+they didn't attempt the bit.
+
+Submissions:
+${list}
+
+Respond with ONLY a JSON array, no other text, one object per submission in
+the SAME ORDER as listed above:
+[
+  { "factuallyWrong": 1-10, "creativelyWrong": 1-10, "plausibility": 1-10, "feedback": "a short, host-style line reacting to this specific answer" }
+]`;
+
+  const response = await anthropic.messages.create({
+    model: MODEL,
+    max_tokens: 1536,
+    messages: [{ role: 'user', content: prompt }],
+  });
+
+  const text = response.content[0].text;
+  const scores = parseJson(text);
+  if (!Array.isArray(scores) || scores.length !== submissions.length) {
+    throw new Error('evaluateWorstAnswers: response length did not match submissions');
+  }
+  return scores;
+}
+
 // Moderate a Heckle submission via host-reinterpretation.
 export async function moderateHeckle({ heckleText, activePlayerName, hecklerName }) {
   const anthropic = requireClient();

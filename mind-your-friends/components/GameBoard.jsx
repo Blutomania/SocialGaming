@@ -30,6 +30,9 @@ export default function GameBoard({ game, myId, socket }) {
         {game.phase === 'CARD' && <CardPhase game={game} myId={myId} socket={socket} />}
         {game.phase === 'QUESTION' && <p className="text-center">Generating question…</p>}
         {game.phase === 'ANSWER' && <AnswerPhase game={game} myId={myId} socket={socket} />}
+        {game.phase === 'EVALUATING' && (
+          <p className="text-center">🏆 The host is judging everyone's wrongness…</p>
+        )}
         {game.phase === 'STEAL' && <StealPhase game={game} socket={socket} />}
         {game.phase === 'RESULT' && <ResultPhase game={game} />}
       </div>
@@ -109,6 +112,10 @@ function CardPhase({ game }) {
 }
 
 function AnswerPhase({ game, myId, socket }) {
+  if (game.roundRule.submissionBased) {
+    return <SubmissionAnswerPhase game={game} socket={socket} />;
+  }
+
   const answerer = game.players[game.answererIndex];
   const isAnswerer = answerer.id === myId;
   const [answer, setAnswer] = useState('');
@@ -154,6 +161,59 @@ function AnswerPhase({ game, myId, socket }) {
         </div>
       ) : (
         <p className="text-gray-400">Waiting for {answerer.name} to answer…</p>
+      )}
+    </div>
+  );
+}
+
+// Worst Answer Wins (and future submission-based rules): every player
+// submits their own answer to the same question instead of one active
+// answerer. `game.mySubmitted`/`submittedCount`/`totalToSubmit` come from
+// playerView() so the "waiting on N more" state survives reconnects.
+function SubmissionAnswerPhase({ game, socket }) {
+  const [answer, setAnswer] = useState('');
+  const [inputMode, setInputMode] = useState('text');
+  const timer = game.timerSecondsOverride ?? game.roundRule.timerSeconds;
+
+  const submit = () => socket.emit('turn:submitAnswer', { answer, inputMode });
+  const remaining = game.totalToSubmit - game.submittedCount;
+
+  return (
+    <div className="space-y-3 text-center">
+      <p className="text-game-gold">{game.hostQuip}</p>
+      <p className="text-lg font-semibold">{game.question}</p>
+      <p className="text-sm text-gray-400">
+        Wager: {game.currentWager} · {timer}s · Everyone submits an answer that's confidently wrong!
+      </p>
+
+      {game.mySubmitted ? (
+        <p className="text-gray-400">
+          Answer locked in! Waiting for {remaining} more player{remaining === 1 ? '' : 's'} ({game.submittedCount}/{game.totalToSubmit} in)…
+        </p>
+      ) : (
+        <div className="flex gap-2">
+          <input
+            className="flex-1 rounded bg-game-dark px-3 py-2"
+            placeholder="Your wonderfully wrong answer…"
+            value={answer}
+            onChange={(e) => {
+              setAnswer(e.target.value);
+              setInputMode('text');
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') submit();
+            }}
+          />
+          <VoiceInput
+            onTranscript={(transcript) => {
+              setAnswer(transcript);
+              setInputMode('voice');
+            }}
+          />
+          <button className="rounded bg-game-accent px-4 py-2 font-semibold" onClick={submit}>
+            Lock In
+          </button>
+        </div>
       )}
     </div>
   );
@@ -212,6 +272,11 @@ function ResultPhase({ game }) {
     return <p className="text-center text-xl">Turn skipped!</p>;
   }
   const result = game.lastResult;
+
+  if (result.submissionBased) {
+    return <WorstAnswerResults game={game} result={result} />;
+  }
+
   const halfWager = Math.round(result.wager / 2);
   const headline = result.stolen
     ? result.correct
@@ -230,6 +295,51 @@ function ResultPhase({ game }) {
         Correct answer: {game.answer}
       </p>
       <p>{result.feedback}</p>
+    </div>
+  );
+}
+
+// Worst Answer Wins result: transparent, per-player, per-axis breakdown --
+// not just who won, but the exact scores the host judged them on. Sorted by
+// total ascending (lowest/best first), winner(s) highlighted.
+function WorstAnswerResults({ game, result }) {
+  const sorted = [...result.entries].sort((a, b) => a.total - b.total);
+  const winners = sorted.filter((e) => e.isWinner).map((e) => e.name).join(' & ');
+
+  return (
+    <div className="space-y-3 text-center">
+      <p className="text-2xl font-bold text-game-gold">
+        {winners} nailed it! +{result.wager}
+      </p>
+      <p className="text-sm text-gray-400">
+        Correct answer: {game.answer} · lowest total score wins
+      </p>
+
+      <div className="space-y-2 text-left">
+        {sorted.map((entry) => (
+          <div
+            key={entry.playerId}
+            className={`rounded p-3 ${
+              entry.isWinner ? 'border border-game-gold bg-game-gold/10' : 'bg-game-dark'
+            }`}
+          >
+            <div className="flex items-center justify-between">
+              <span className="font-semibold">
+                {entry.name}
+                {entry.isWinner && ' 🏆'}
+              </span>
+              <span className="font-mono text-sm text-gray-400">Total: {entry.total}/30</span>
+            </div>
+            <p className="mt-1 italic text-sm text-gray-300">"{entry.answer || '(no answer submitted)'}"</p>
+            <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-400">
+              <span>Factually wrong: {entry.factuallyWrong}/10</span>
+              <span>Creatively wrong: {entry.creativelyWrong}/10</span>
+              <span>Plausibility: {entry.plausibility}/10</span>
+            </div>
+            <p className="mt-2 text-sm">{entry.feedback}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

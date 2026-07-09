@@ -168,6 +168,51 @@ other, and answer AI-generated questions. The social loop — not the trivia —
     text silently. Also requires a secure context (HTTPS or localhost) for
     mic permission — fine for local dev, but the deployed build needs TLS
     for phone players to get mic access at all.
+30. ~~**Worst Answer Wins — real submission-based mechanic + transparent
+    scoring**~~ — this was previously a fake: the round rule declared
+    `submissionBased: true` but `gameState.js` never branched on it, so it
+    played like a normal single-answerer turn with a tweaked prompt, and
+    `evaluateAnswer()` never computed the 3 axes at all. Built the real
+    thing per `GAME_DESIGN.md`:
+    - `gameState.js`: new `game.submissions` map collects one answer per
+      eligible (non-dropped-out) player during ANSWER. `submitGroupAnswer()`
+      records each one and reports back once everyone's in;
+      `autoFillMissingSubmissions()` fills blanks for stragglers when the
+      timer expires. A new transient **EVALUATING** phase
+      (`beginGroupEvaluation()`) flips synchronously the instant the last
+      submission lands or the timer fires, so the two triggers can't race
+      and double-evaluate. `resolveGroupAnswers()` then calls Claude once
+      for the whole batch, computes each player's total (factually wrong +
+      creatively wrong + plausibility), and awards the wager to whoever's
+      total is lowest (ties share the win, same convention as
+      `getWinners()`) — non-winners aren't penalized, since nobody "loses"
+      a bit that landed.
+    - `claudeClient.js`: new `evaluateWorstAnswers()` scores every
+      submission in **one** call (not N) — cheaper, and lets Claude judge
+      creativity/plausibility relative to the other answers in the batch.
+    - `GameBoard.jsx`: new `SubmissionAnswerPhase` replaces the
+      single-answerer view for this round rule — every player gets their
+      own answer box + voice input, and sees "N/M submitted" while
+      waiting. New `WorstAnswerResults` component is the transparency
+      piece the user asked for: after scoring, every player sees
+      **everyone's** submitted answer plus all three per-axis scores, the
+      total, and Claude's specific feedback for that answer — not just who
+      won.
+    - `playerView()` exposes `roundRule.submissionBased`, `mySubmitted`,
+      `submittedCount`/`totalToSubmit` (no leaking of other players'
+      answers pre-reveal — those only appear once evaluation completes and
+      phase is RESULT).
+    Verified end-to-end with a real 3-player game (round rule temporarily
+    forced via a local hack, reverted before commit) and a real batched
+    Claude call: all 3 pages showed the simultaneous submission UI, the
+    "waiting for N more" counter updated correctly, voice submission worked
+    in this phase too, and the RESULT screen showed the complete transparent
+    breakdown for all 3 players with the winner correctly identified by
+    lowest total.
+    **Open design call, not spec'd in GAME_DESIGN.md:** only the winner(s)
+    gain the wager; everyone else's score is untouched (no penalty for
+    non-winners). Worth revisiting if playtesting shows it needs teeth.
+    Next: disconnect/reconnect is now the only item-29-era gap left open.
 
 ## Design Thesis: Casual-First
 This game targets casual, social players — not competitive optimizers. Every
