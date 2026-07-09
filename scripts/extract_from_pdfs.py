@@ -270,7 +270,7 @@ def extract_pdf(
             )
         except Exception as e:
             print(f"  ERROR calling Claude: {e}")
-            return None
+            return None, ""
 
         raw = message.content[0].text.strip()
 
