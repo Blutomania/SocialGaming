@@ -20,9 +20,9 @@
     "quote": "she knew from that moment what would have to be done\u2014and a week later she did it...She carried his purse for him. She'd been his right hand and his left hand for nearly twenty years."
   },
   "resolution": {
-    "value": null,
-    "confidence": "low",
-    "quote": null
+    "value": "Miss Cornel murdered Miss Chittering. She killed her a week after Miss Chittering publicly revealed that she (Miss Cornel) owned the green rucksack, which connected Miss Cornel to the Lincoln's Inn murder. Miss Cornel had purchased the rucksack from Miss Chittering's fianc\u00e9 at Messrs. Merryweather and Matlock, and when this connection was about to be exposed, she eliminated the witness to prevent being linked to the crime.",
+    "confidence": "high",
+    "quote": "Imagine Miss Cornel's feelings when, in the secretaries' room, in front of almost the whole staff\u2014including myself\u2014Miss Chittering suggested that Miss Cornel should lend Miss Bellbas 'her big green rucksack'... Kept her head. Turned the conversation. But I reckon she knew from that moment what would have to be done\u2014and a week later she did it."
   },
   "investigator": {
     "value": "Henry Bohun: 'the very newest thing in solicitors', a brilliant young man with 'a flair for amateur detection' who pieces together the puzzle through observation and deduction.",
@@ -36,6 +36,7 @@
     "protocols": [
       "P1"
     ],
-    "title": "Smallbone_Deceased__A_London_Mystery_Brit_-_Michael_Gilbert"
+    "title": "Smallbone_Deceased__A_London_Mystery_Brit_-_Michael_Gilbert",
+    "resolution_filled": true
   }
 }

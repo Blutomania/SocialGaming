@@ -1,0 +1,41 @@
+{
+  "crime": {
+    "value": "Murder at the Red House; victim found dead; central question concerns the method of escape and the killer's identity",
+    "confidence": "medium",
+    "quote": "CHAPTER III. Two Men and a Body"
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "The Red House and its grounds; a contained estate where suspects are limited to those present",
+    "confidence": "medium",
+    "quote": "Title: The Red House Mystery"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Detective Antony Gillingham solves the crime through observation of physical details; specifically by analyzing shadow movement and door mechanics to determine the killer's actions",
+    "confidence": "medium",
+    "quote": "The shadow on the wall! I was looking at the shadow on the wall... That explains why I was surprised afterwards"
+  },
+  "investigator": {
+    "value": "Antony Gillingham, an amateur detective/gentleman investigator who arrives at the scene and methodically solves the mystery",
+    "confidence": "high",
+    "quote": "CHAPTER II. Mr. Gillingham Gets Out at the Wrong Station"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The Red House Mystery, by A. A. Milne.pdf",
+    "filename": "The Red House Mystery, by A. A. Milne.pdf",
+    "text_len": 6037,
+    "protocols": [
+      "P1"
+    ],
+    "title": "The Red House Mystery, by A. A. Milne"
+  }
+}

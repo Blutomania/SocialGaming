@@ -1,0 +1,41 @@
+{
+  "crime": {
+    "value": "Double murder within the Greene family; gunshot death of at least one family member; central question involves the mechanism and psychology of the crime, with suggestion of extraordinary technical ingenuity beyond ordinary investigation.",
+    "confidence": "medium",
+    "quote": "A Double Tragedy...one of the outstanding murder mysteries of modern times\u2014a case practically unique in the annals of latter-day crime."
+  },
+  "victim": {
+    "value": "At minimum, one Greene family member (likely Chester or Rex Greene based on narrative focus); victim killable due to position within wealthy household with complex family dynamics and secrets.",
+    "confidence": "medium",
+    "quote": "your son is dead...the tragedy is causing you"
+  },
+  "closed_world": {
+    "value": "The Greene mansion in New York County; bounded household with staff (butler, cook, maids, nurse, physician), family members, and limited external access during the critical timeframe.",
+    "confidence": "high",
+    "quote": "the Greene mansion...Characters of the Book [listing household and family members]"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Resolution achieved through analytical deduction by Philo Vance using novel methods of criminal deduction beyond ordinary police investigative procedures; involves understanding the 'warped psychological motives' and 'hidden sources of technic' underlying the crime.",
+    "confidence": "medium",
+    "quote": "The man who elucidated the mystery...had it not been for him and his novel methods of criminal deduction, the heinous plot...would have been conclusively successful."
+  },
+  "investigator": {
+    "value": "Philo Vance, a young social aristocrat with no official police connection; intimate friend of District Attorney John F.-X. Markham; operates as amateur detective applying superior analytical methods.",
+    "confidence": "high",
+    "quote": "Philo Vance...a young social aristocrat, an intimate friend of John F.-X. Markham, the District Attorney...no way of\ufb01cially connected with the police"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The Greene Murder Case | Project Gutenberg.pdf",
+    "filename": "The Greene Murder Case | Project Gutenberg.pdf",
+    "text_len": 9037,
+    "protocols": [
+      "P1"
+    ],
+    "title": "The Greene Murder Case | Project Gutenberg"
+  }
+}

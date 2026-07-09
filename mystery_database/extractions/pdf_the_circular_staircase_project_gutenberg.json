@@ -1,0 +1,41 @@
+{
+  "crime": {
+    "value": "Multiple mysterious crimes including a death (person fell down clothes chute), property intrusion (hole dug in trunk-room wall overnight), and disappearance of character Halsey. Central questions: Who created the hole? Who fell down the chute? What supernatural or criminal agency is at work?",
+    "confidence": "medium",
+    "quote": "Who was it fell down the clothes chute? Who was it scared Miss Louise almost into her grave?"
+  },
+  "victim": {
+    "value": "Multiple potential victims: unknown person who fell down clothes chute; Louise (frightened); Halsey (missing). Primary victim unclear from excerpt.",
+    "confidence": "low",
+    "quote": "Who was it fell down the clothes chute? Who was it scared Miss Louise almost into her grave?"
+  },
+  "closed_world": {
+    "value": "A rented country house for the summer occupied by the narrator (middle-aged spinster), family members Halsey and Gertrude, servant Liddy, and household staff. The house becomes a sealed investigative space where crimes occur internally.",
+    "confidence": "high",
+    "quote": "took a furnished house for the summer out of town, and found herself involved in one of those mysterious crimes"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Rachel Innes, the middle-aged spinster narrator who rents the house and undertakes investigation of the crimes. Acts as amateur detective examining evidence (the hole, the trunk-room, physical details).",
+    "confidence": "high",
+    "quote": "I'm doing my best to find out. What in the world are you driving at?"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The Circular Staircase | Project Gutenberg.pdf",
+    "filename": "The Circular Staircase | Project Gutenberg.pdf",
+    "text_len": 6037,
+    "protocols": [
+      "P1"
+    ],
+    "title": "The Circular Staircase | Project Gutenberg"
+  }
+}
