@@ -1,0 +1,42 @@
+{
+  "crime": {
+    "value": "Murder: A dead body found concealed in a hermetically sealed deed box at a London law firm (Horniman, Birley and Craine at Lincoln's Inn). Central question: how was the victim placed in the sealed container?",
+    "confidence": "high",
+    "quote": "a dead body is found at the firm's premises at Lincoln's Inn, concealed within a hermetically sealed deed box"
+  },
+  "victim": {
+    "value": "Abel (surname not given in excerpt): a partner at the law firm, described as both 'a damned good lawyer and a bloody difficult partner' and suspected of swindling a corporation. Killable due to his fraudulent activities and difficult relationships.",
+    "confidence": "medium",
+    "quote": "a damned good lawyer and a bloody difficult partner...he was prepared to swindle a large corporation to the tune of ten thousand pounds"
+  },
+  "closed_world": {
+    "value": "Horniman, Birley and Craine law firm at Lincoln's Inn, London. A professional office environment with limited access, multiple suspects among partners and staff present at a dinner party.",
+    "confidence": "high",
+    "quote": "partners and staff of Horniman, Birley and Craine...the firm's premises at Lincoln's Inn"
+  },
+  "culprit_and_motive": {
+    "value": "Miss Cornel (Abel's secretary/assistant for nearly twenty years): motive appears to be protective devotion and knowledge of Abel's criminality. She 'knew from that moment what would have to be done\u2014and a week later she did it.'",
+    "confidence": "medium",
+    "quote": "she knew from that moment what would have to be done\u2014and a week later she did it...She carried his purse for him. She'd been his right hand and his left hand for nearly twenty years."
+  },
+  "resolution": {
+    "value": "Miss Cornel murdered Miss Chittering. She killed her a week after Miss Chittering publicly revealed that she (Miss Cornel) owned the green rucksack, which connected Miss Cornel to the Lincoln's Inn murder. Miss Cornel had purchased the rucksack from Miss Chittering's fianc\u00e9 at Messrs. Merryweather and Matlock, and when this connection was about to be exposed, she eliminated the witness to prevent being linked to the crime.",
+    "confidence": "high",
+    "quote": "Imagine Miss Cornel's feelings when, in the secretaries' room, in front of almost the whole staff\u2014including myself\u2014Miss Chittering suggested that Miss Cornel should lend Miss Bellbas 'her big green rucksack'... Kept her head. Turned the conversation. But I reckon she knew from that moment what would have to be done\u2014and a week later she did it."
+  },
+  "investigator": {
+    "value": "Henry Bohun: 'the very newest thing in solicitors', a brilliant young man with 'a flair for amateur detection' who pieces together the puzzle through observation and deduction.",
+    "confidence": "high",
+    "quote": "Henry Bohun, 'the very newest thing in solicitors', a brilliant and slightly mysterious young man with a flair for amateur detection"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/Smallbone_Deceased__A_London_Mystery_Brit_-_Michael_Gilbert.pdf",
+    "filename": "Smallbone_Deceased__A_London_Mystery_Brit_-_Michael_Gilbert.pdf",
+    "text_len": 6037,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Smallbone_Deceased__A_London_Mystery_Brit_-_Michael_Gilbert",
+    "resolution_filled": true
+  }
+}

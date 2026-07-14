@@ -5,6 +5,423 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 15 — July 9, 2026
+**Branch:** `claude/mystery-pdf-extraction-0fisq0`
+**Starting commit:** `84424e2` (tip of `claude/review-and-resume-1k0tP`)
+**Status:** Complete — branch reconciliation + Streamlit deprecation cleanup
+
+### The problem
+Several past sessions had been auto-assigned fresh branches off older commits instead of
+continuing the actual active branch. This left multiple divergent "current states" of the repo
+existing in parallel with no single source of truth:
+- `claude/review-and-resume-1k0tP` — the real Godot tip (Phase 3d, includes Session 14's
+  `deprecated/` cleanup)
+- `claude/fix-godot-performance-QyXLQ` and `claude/start-godot-migration-mNrWD` — earlier,
+  now-superseded points in the same Godot lineage
+- `claude/review-godot-migration-GiLDz` — a *stranded* branch (misleadingly named, contains no
+  Godot code) that forked from the same pre-migration point and did one day of PDF-ingestion
+  work (`scripts/extract_from_pdfs.py`, 8 new corpus extractions from Gilbert/Akunin/Higashino
+  PDFs, a cast-of-characters text-sampling bug fix) that never got folded into the Godot line
+- `claude/mystery-pdf-extraction-0fisq0` (this session's assigned branch) — itself just an empty
+  fork of the old pre-migration point, with none of the above
+- `CLAUDE.md` on `main` was stale, pointing at a fifth branch (`claude/setup-api-and-mysteries-LRLQK`)
+  that predates the Godot pivot entirely
+
+Root cause: no session was reliably merging its branch back before the next one started fresh.
+
+### What was done
+- Rebuilt this branch from `claude/review-and-resume-1k0tP` (the true Godot tip)
+- Cherry-picked the stranded PDF-ingestion work from `claude/review-godot-migration-GiLDz`:
+  `scripts/extract_from_pdfs.py` and the 8 extraction JSONs it produced
+- Restored `extraction_protocols.py` from `deprecated/` to root — Session 14's deprecation sweep
+  predated the PDF-ingestion work and didn't know it was still a live dependency
+  (`scripts/extract_from_pdfs.py` imports it; `part_registry.load_registry()` reads every JSON
+  in `mystery_database/extractions/` live, so the new PDF-derived corpus entries are active data)
+- Rewrote `CLAUDE.md`: corrected Active Branch, added the corpus-expansion workflow
+  (`scripts/extract_from_pdfs.py`, run with `python3` — this environment has no `python` alias)
+  to Key Files and the caching-rules table, documented which branches are now safe to delete
+- Rewrote `README.md` — it still had the original HuggingFace Streamlit metadata block and
+  "`streamlit run app.py`" instructions at the top, missed by Session 14's cleanup. Now describes
+  the Godot + FastAPI setup, with an explicit note that the Streamlit version is retired and
+  archived under `deprecated/`.
+
+### Decision (owner, this session)
+**Godot is the confirmed, sole direction going forward.** All Streamlit/HuggingFace-era code
+stays archived in `deprecated/` for provenance — not deleted, not resurrected.
+
+### Follow-up within this session
+- Opened **PR #1** (`claude/mystery-pdf-extraction-0fisq0` → `main`):
+  https://github.com/Blutomania/SocialGaming/pull/1 — open, `mergeable_state: clean`, not yet merged
+- Owner is deleting the five superseded branches manually via GitHub UI (git push --delete was
+  blocked with the same 403 policy that blocks direct pushes to `main`; no delete-ref tool was
+  available either) — **owner action, in progress, not yet confirmed done**
+- Owner hit a real bug running `scripts/extract_from_pdfs.py` locally: `extract_pdf()` returned
+  bare `None` (instead of the `(None, "")` tuple its signature promises) when the Claude API call
+  raised — e.g. on an invalid key — so `main()`'s unconditional tuple-unpack crashed the whole
+  batch with `TypeError: cannot unpack non-iterable NoneType object` instead of recording one
+  clean failure and continuing. Fixed in commit `8967754` (single-line fix, `return None` →
+  `return None, ""`), pushed to this branch/PR.
+- Root cause of the original 401 was a stale/missing local `ANTHROPIC_API_KEY` — owner fixed by
+  exporting a fresh key via `~/.zshrc`.
+- Owner then successfully ran full ingestion end-to-end locally:
+  `python3 scripts/extract_from_pdfs.py mystery_database/new_sources/ --protocol P1` —
+  **4/4 processed, 0 failed** — and pushed the results directly to this branch (commit `00bca46`):
+  - `pdf_the_circular_staircase_project_gutenberg.json` (Mary Roberts Rinehart)
+  - `pdf_the_greene_murder_case_project_gutenberg.json` (S.S. Van Dine)
+  - `pdf_the_leavenworth_case_a_lawyer_s_story_by_anna_katharine_gree.json` (Anna Katharine Green)
+  - `pdf_the_red_house_mystery_by_a_a_milne.json` (A.A. Milne)
+  - Also updated `pdf_smallbone_deceased_a_london_mystery_brit_michael_gilbert.json` — a
+    `--fill-resolution` pass filled a previously-null resolution (confidence low → high)
+  - Spot-checked `pdf_the_red_house_mystery_by_a_a_milne.json`: `crime` field quotes real
+    Chapter III narration, not a table-of-contents artifact — extraction quality looks sound
+- Corpus now has 12 PDF-sourced entries total (8 from the prior stranded-branch session + 4 new)
+
+### What is next
+1. **Confirm PR #1 merged into `main`** — was open and clean as of session end, not yet merged
+2. **Confirm the five superseded branches were actually deleted** (owner was doing this manually
+   when this session ended — verify, don't re-assume)
+3. Resume Phase 3d work from Session 14 (avatar pool system, player history tracking — see
+   Session 14 below)
+4. Consider whether the corpus JSONs added this session should also get folded into
+   `part_registry.json` itself, or whether relying on `load_extractions()`'s live directory scan
+   at runtime is sufficient going forward (currently sufficient — no action required unless
+   startup load time becomes a concern)
+
+### Local sync steps (for owner)
+```bash
+git fetch origin
+git checkout claude/mystery-pdf-extraction-0fisq0
+git pull origin claude/mystery-pdf-extraction-0fisq0
+```
+
+---
+
+## Session 14 — April 20, 2026
+**Branch:** `claude/review-and-resume-1k0tP`
+**Starting commit:** `403ba24`
+**Status:** Complete — Phase 3d lobby flow built
+
+### What was done
+
+**Housekeeping:**
+- Reset branch to Phase 3c-complete state (`claude/fix-godot-performance-QyXLQ`)
+- Moved all pre-Godot Python tooling to `deprecated/` (app.py, cli.py, corpus pipeline, etc.)
+- Updated CLAUDE.md: correct active branch, Phase 3c marked done, Phase 3d as next
+
+**Phase 3d — Lobby flow:**
+
+**`server/main.py`:**
+- Added `StartGameRequest` Pydantic model
+- `GET /games/{game_id}/lobby` — returns player list, mystery title, difficulty
+- `POST /games/{game_id}/start` — host-only; broadcasts `game_started` WebSocket event
+
+**`godot/scripts/autoloads/GameState.gd`:**
+- Added `is_multiplayer: bool` flag (set by MainMenu, cleared on reset)
+
+**`godot/scripts/autoloads/ApiClient.gd`:**
+- Added `get_lobby()` and `start_game()` methods
+
+**`godot/scenes/ui/MainMenu.tscn` + `main_menu.gd`:**
+- Renamed "New Game" → "New Game (Solo)"
+- Added "Multiplayer" button; sets `GameState.is_multiplayer = true` before routing to MysteryGeneration
+
+**`godot/scenes/ui/MysteryGeneration.tscn` + `mystery_generation.gd`:**
+- Added `MultiplayerSection` (hidden in solo): host name input + difficulty OptionButton
+- After generation: if multiplayer → `create_game()` → `Lobby.tscn`; if solo → `CaseDisplay.tscn` (unchanged)
+
+**`godot/scenes/ui/Lobby.tscn` + `godot/scripts/ui/lobby.gd`** — NEW:
+- Displays room code and join URL (`SERVER_URL/play`)
+- Live player list fed by `player_joined` WebSocket events
+- "Start Game" button → `POST /start` → `game_started` broadcast → transitions to `CaseDisplay.tscn`
+- "Cancel" returns to MainMenu and resets state
+
+**`server/static/mobile.html`:**
+- Added lobby waiting screen (shown after join, before host starts)
+- localStorage persists player name across visits (zero friction on return)
+- `game_started` WebSocket event triggers transition from lobby → investigation
+- `player_joined` event adds player to lobby list
+
+### Design decisions
+
+**Player identity (decided):** `localStorage` token approach deferred to Phase 3e (avatar system).
+For now, name is persisted in `localStorage` for convenience; no cross-device identity.
+
+**Avatar system (designed, not built):**
+- Setting-matched AI portraits (3 per player, era-styled, generated during lobby wait)
+- Era-keyed pool in `mystery_database/avatar_pool/<era_key>/` — same key as localization cache
+- Pre-generated pool + background replenishment; players' seen IDs tracked in localStorage
+- Image API: FLUX via fal.ai recommended (~$0.003/image)
+- Scheduled for Phase 3e, after lobby is confirmed working
+
+### What is next
+
+1. **[NEXT — Phase 3e]** Avatar pool system: seed pools per era, serve 3 portraits at lobby join, player picks one
+2. **[NEXT — Phase 3e]** Player history tracking: localStorage token as persistent ID, `mystery_database/player_history/` JSON files, deduplication at generation time
+3. **[FUTURE — Phase 3d test]** End-to-end playtest: host Godot + 1+ phones through full lobby → investigation → accusation
+4. **[FUTURE]** Phase 4 — Steam integration (GodotSteam plugin)
+
+### Local sync steps (for owner)
+```bash
+git fetch origin
+git checkout claude/review-and-resume-1k0tP
+git pull origin claude/review-and-resume-1k0tP
+```
+
+---
+
+## Session 12 — April 4, 2026
+**Branch:** `claude/fix-godot-performance-QyXLQ`
+**Starting commit:** `4235c7c`
+**Ending commit:** `a7a361c`
+**Status:** Complete — Phase 3a/3b implemented; architecture decided
+
+### What was designed (no code yet)
+
+**Sharing mechanic (revised):**
+- Old: fixed % of *players* receive all your findings
+- New: you select 50–70% of your findings; **all** players receive what you chose
+- Individual deduction is the skill — everyone works from the same shared pool
+- Minimum share % is difficulty-gated: EASY 70%, MEDIUM 60%, HARD 50%
+- Duplicate check on submission: if a clue is already in the pool, you must replace it
+
+**Three-phase investigation structure:**
+```
+Witness Phase (X questions) → Investigation Phase (Y areas) → Lead Phase (2 leads) → Accusation
+```
+Each phase has a hard budget. When budget hits 0 → Share Selection screen → advance to next phase.
+
+**Multiplayer architecture (confirmed):**
+- **Godot desktop** = host/TV screen, atmospheric, Steamworks-connected (keep Godot)
+- **HTML phone client** = thin browser page served by FastAPI, no download required
+- **Pattern**: Jackbox model — host runs Godot, players open a URL on their phones
+- **Transport**: FastAPI WebSocket (upgrade from current HTTP polling)
+- **Room codes**: short alphanumeric (e.g. "A7FX2"), phone players type it in at the URL
+
+**Why Godot over all-Python:**
+- GodotSteam is the best Steamworks integration for indie; Python bindings are DIY
+- Godot Linux export = Steam Deck first-class support for free
+- Host screen can be cinematic and atmospheric; phones are deliberately minimal
+- ENet (Godot's UDP networking) doesn't work in browsers — use WebSocket instead
+
+### What was built (committed)
+
+**`server/main.py`:**
+- Mystery generation prompt updated: now requests `investigation_areas` (5) and `leads` (4)
+- In-memory game session store (`_games` dict, same pattern as async job store)
+- 8 new endpoints:
+  - `POST /games/create` — create session from mystery slug + difficulty
+  - `POST /games/{id}/join` — register player, get player_id + budgets
+  - `POST /games/{id}/interrogate-witness` — budget-checked, hard-blocked, Claude AI call
+  - `POST /games/{id}/investigate-area` — budget-checked, hard-blocked, Claude AI call
+  - `POST /games/{id}/follow-lead` — max 2 per player, hard-blocked, Claude AI call
+  - `POST /games/{id}/share-phase` — validates min %, checks dupes, broadcasts to all
+  - `GET /games/{id}/block-pool` — current blocked questions/areas/leads
+  - `GET /games/{id}/shared-clues` — all shared clues for polling
+
+**Godot:**
+- `MysteryData.gd` — added `InvestigationAreaData` and `LeadData` inner classes
+- `GameState.gd` — full rewrite: `InvestPhase` enum, per-phase budgets, block pool, shared clues dict, helper methods (`is_witness_blocked`, `is_area_blocked`, `is_lead_blocked`, `current_phase_findings`, `reset`)
+- `ApiClient.gd` — 8 new game API methods; single-player `/interrogate` preserved
+- `interrogation.gd` — full rewrite: phase-aware Witness/Investigation/Lead sub-panels, block-pool polling, shared intel panel
+- `share_selection.gd` — new: Share Selection screen with minimum enforcement, duplicate conflict highlighting
+- `ShareSelection.tscn` — new: scene for share_selection.gd
+- `case_display.gd` — added investigation areas, leads, Shared Intel panel with polling
+
+### What still needs to be done
+
+1. **`invest_phase` transition bug**: `_check_phase_complete()` in `interrogation.gd` transitions directly to `ShareSelection.tscn` but doesn't first set `invest_phase` to `SHARE_WITNESS`. Needs: set phase to `SHARE_WITNESS` before `change_scene_to_file`.
+2. **`.tscn` wiring**: `Interrogation.tscn` needs new sub-panel nodes (WitnessPanel, InvestigationPanel, LeadPanel, SharedPanel). `CaseDisplay.tscn` needs AreasContainer, LeadsContainer, SharedIntelContainer nodes.
+3. **WebSocket upgrade**: Replace HTTP polling with FastAPI WebSocket push. Server broadcasts `clues_shared` + `block_updated` events instead of clients polling.
+4. **`mobile.html`** — phone client: simple HTML/JS page served by FastAPI, connects via WebSocket, handles all three phases + share selection.
+5. **QR code or room URL display** on Godot host screen so players can join easily.
+
+### Next steps (resume here)
+1. Fix the `invest_phase` transition bug (1-line fix in `interrogation.gd`)
+2. Wire the `.tscn` node trees to match `@onready` paths in scripts
+3. Add `WebSocket /ws/{game_id}` endpoint to FastAPI + `ConnectionManager` class
+4. Upgrade Godot `ApiClient.gd` to use `WebSocketPeer` instead of polling
+5. Build `mobile.html` — phone client served at `/play`
+6. End-to-end playtest: 2 players (desktop + phone) through all 3 phases + accusation
+
+---
+
+## Session 13 — April 4, 2026 (continuation)
+**Branch:** `claude/fix-godot-performance-QyXLQ`
+**Starting commit:** `389c154`
+**Status:** In progress — Phase 3c
+
+### What was built so far this session
+
+**Bug fix — `interrogation.gd`:**
+- `_check_phase_complete()` now sets `GameState.invest_phase` to the correct `SHARE_*`
+  enum value before transitioning to `ShareSelection.tscn`. Without this, the share
+  screen had no idea which findings to display.
+
+**`.tscn` wiring:**
+- `Interrogation.tscn` — full rewrite to match all `@onready` paths in `interrogation.gd`:
+  `PhaseLabel`, `BudgetLabel`, `WitnessPanel` (with `SuspectDropdown`, `QuestionInput`,
+  `AskButton`, scroll history), `InvestigationPanel` (with `AreasContainer`),
+  `LeadPanel` (with `LeadsContainer`), `SharedPanel` (with `SharedContainer`),
+  `StatusLabel`, `Spinner`, `AccuseButton`, `BackButton`.
+- `CaseDisplay.tscn` — added `AreasContainer`, `LeadsContainer`, `SharedIntelContainer`
+  nodes under `ScrollContainer/MainVBox`.
+- `case_display.gd` — fixed `@onready` paths from `$MainVBox/...` to
+  `$ScrollContainer/MainVBox/...` (the node is not a direct child of the root).
+
+**FastAPI WebSocket (`server/main.py`):**
+- Added `import asyncio` and `WebSocket, WebSocketDisconnect` to FastAPI imports.
+- Added `fastapi.responses.HTMLResponse` and `fastapi.staticfiles.StaticFiles`.
+- `ConnectionManager` class: async `connect`, `disconnect`, `broadcast` with per-room
+  dict; `_broadcast_sync()` helper bridges sync endpoints to async WS sends.
+- `GET /ws/{game_id}` WebSocket endpoint: accepts connection, broadcasts `player_joined`,
+  listens for pings, cleans up on disconnect.
+- `GET /play` — serves `server/static/mobile.html`.
+- `app.mount("/static", ...)` — StaticFiles middleware for phone client assets.
+- `share_phase` endpoint now calls `_broadcast_sync` for `clues_shared`,
+  `block_updated`, and `player_phase_done` events on successful share.
+- `join_game` endpoint now broadcasts `player_joined` to the room.
+
+**Godot WebSocket upgrade:**
+- `ApiClient.gd` — added `signal ws_event(event_name, data)`, `WebSocketPeer _ws`,
+  `connect_ws(game_id, player_id)`, `disconnect_ws()`. `_process()` polls the peer and
+  emits `ws_event` on each incoming JSON message.
+- `interrogation.gd` — removed poll timer + `_poll_server()`. On `_ready()`, connects
+  `ApiClient.ws_event` to `_on_ws_event()` (handles `block_updated`, `clues_shared`,
+  `player_joined`). Disconnects signal in `_exit_tree()`.
+- `case_display.gd` — same: removed poll timer, connects `ws_event` to `_on_ws_event`
+  which calls `merge_shared_clues` + `_rebuild_shared_intel` on `clues_shared`.
+
+### Still to do this session
+- `server/static/mobile.html` — phone client (in progress)
+- Commit and push
+- End-to-end test: 2 players through all 3 phases + accusation
+
+### If session ends before mobile.html is done
+Resume by: write `server/static/mobile.html`.
+It needs to: join by room code + name → WebSocket connect → three phase UIs
+(witness: dropdown + text input; investigation: area buttons; lead: lead buttons) →
+share selection checkboxes → shared intel feed. All via WebSocket + HTTP fetch calls
+to the existing FastAPI endpoints.
+
+---
+
+## Session 11 — April 2, 2026
+**Branch:** `claude/start-godot-migration-mNrWD`
+**Starting commit:** `380f0e2`
+**Status:** Complete — Godot project loads without errors
+
+### What was done
+- Fixed `ApiClient.gd` parse error: GDScript can't handle multi-line lambdas capturing
+  outer-scope variables. Rewrote using `.bind(req, callback)` on a named `_on_done()`
+  method instead. Simpler and more reliable.
+- Fixed `project.godot` version: updated `4.2` → `4.6` to match installed Godot version.
+- Godot 4.6 confirmed: project opens and all autoloads load without errors.
+
+### Known: project.godot drift
+Godot rewrites `project.godot` on every open. Before pushing, run:
+`git checkout -- godot/project.godot` to discard Godot's local changes, then pull.
+Long-term fix: commit Godot's version after each session.
+
+### Next steps (resume here — Phase 2)
+1. Start backend: `cd SocialGaming && ANTHROPIC_API_KEY=sk-... uvicorn server.main:app --port 8000`
+2. Press F5 in Godot — MainMenu should load and status label should go green
+3. Click "New Game", type a prompt, click "Generate Mystery"
+4. Verify CaseDisplay loads with mystery title, suspects, evidence
+5. Interrogate a suspect, make an accusation, see result screen
+6. Once full loop works: tag `phase2-single-player-prototype` and commit
+7. Then: Phase 3 — lobby, ENet multiplayer, 75% clue-sharing
+
+---
+
+## Session 10 — April 2, 2026
+**Branch:** `claude/start-godot-migration-mNrWD`
+**Starting commit:** `ea5af2f`
+**Status:** Complete — Phase 1 done (`phase1-backend-done`)
+
+### What was done
+Full Godot migration scaffolded. Project is now a multiplayer standalone game targeting
+Steam, replacing the Streamlit creator tool. HuggingFace Spaces retired.
+
+**Architecture decided:**
+- Godot 4.x client (GDScript 2.0) — game UI, networking
+- Python FastAPI backend — all Claude API calls (mystery generation, interrogation)
+- Dedicated server model for multiplayer (Godot ENet, Phase 3)
+- Steam via GodotSteam plugin (Phase 4)
+
+**Files created:**
+
+| File | Purpose |
+|---|---|
+| `server/main.py` | FastAPI app — `/generate`, `/interrogate`, `/rate`, `/mysteries`, `/health` |
+| `server/requirements.txt` | fastapi, uvicorn, anthropic, python-dotenv |
+| `server/Dockerfile` | Container — copies server + existing Python backend modules |
+| `godot/project.godot` | Godot 4 project root; autoloads: GameState, ApiClient, NetworkManager |
+| `godot/scripts/autoloads/GameState.gd` | Singleton: mystery, phase, history, accusation result |
+| `godot/scripts/autoloads/ApiClient.gd` | HTTP wrapper; pooled HTTPRequest nodes per call |
+| `godot/scripts/autoloads/NetworkManager.gd` | ENet multiplayer stub (Phase 3) |
+| `godot/scripts/data/MysteryData.gd` | Typed GDScript wrapper for mystery JSON |
+| `godot/scripts/ui/main_menu.gd` | MainMenu controller; health-checks backend on ready |
+| `godot/scripts/ui/mystery_generation.gd` | Generation screen; calls /generate |
+| `godot/scripts/ui/case_display.gd` | Case + evidence display; viability rating |
+| `godot/scripts/ui/interrogation.gd` | Interrogation screen; calls /interrogate |
+| `godot/scripts/ui/accusation.gd` | Accusation; compares locally vs solution dict |
+| `godot/scripts/ui/result_screen.gd` | Result + solution reveal; calls /rate |
+| `godot/scenes/ui/MainMenu.tscn` | MainMenu scene tree |
+| `godot/scenes/ui/MysteryGeneration.tscn` | Generation scene tree |
+| `godot/scenes/ui/CaseDisplay.tscn` | Case display scene tree |
+| `godot/scenes/ui/Interrogation.tscn` | Interrogation scene tree |
+| `godot/scenes/ui/Accusation.tscn` | Accusation scene tree |
+| `godot/scenes/ui/ResultScreen.tscn` | Result scene tree |
+| `CLAUDE.md` | Updated: Steam target, Godot architecture, retired HuggingFace |
+
+**Files NOT modified (kept as-is):**
+- `app.py` — retired (do not modify; will delete once Phase 2 confirmed)
+- `mystery_generator.py`, `coherence_validator.py`, `part_registry.py`, `localization.py` — kept, used by FastAPI server
+
+### Key decisions
+- **Solution in client dict:** The `/generate` endpoint returns the full mystery including
+  `solution`. The Godot client stores it in `GameState` but never displays it until the
+  `ResultScreen`. Phase 3 will add server-side validation (`POST /accuse`) to prevent
+  multiplayer cheating; Phase 2 compares locally.
+- **No extra `/accuse` endpoint for Phase 2:** Simplification — accusation is a local
+  comparison. The `POST /accuse` endpoint (Claude verdict narrative) is deferred to Phase 3.
+- **NetworkManager is a stub:** All methods are present with Phase 3 annotations; Phase 2
+  is single-player only.
+- **HuggingFace retired:** `hf-deploy` branch is stale. Server runs locally via uvicorn.
+
+### How to test Phase 1
+```bash
+# 1. Install server dependencies
+cd server && pip install -r requirements.txt
+
+# 2. Start backend
+cd /path/to/SocialGaming && uvicorn server.main:app --port 8000
+
+# 3. Smoke test
+curl localhost:8000/health
+# → {"ok":true}
+
+# 4. Open godot/ in Godot 4 editor
+# 5. Verify 3 autoloads appear in Project → Project Settings → Autoload
+# 6. Press F5 — MainMenu should load
+```
+
+### Next steps (resume here — Phase 2)
+1. Open `godot/` in Godot 4 editor and verify scenes load without errors
+2. Run the FastAPI server locally; press F5 in Godot; generate a mystery end-to-end
+3. If any `@onready` node paths are wrong (scene tree mismatch), fix them in the editor
+4. Once full single-player loop works: tag `phase2-single-player-prototype`
+5. Then: Phase 3 — lobby system, ENet multiplayer, 75% clue-sharing
+
+### Local sync steps
+```bash
+git fetch origin
+git checkout claude/start-godot-migration-mNrWD
+git pull origin claude/start-godot-migration-mNrWD
+```
+
+---
+
 ## Session 9 — March 12, 2026
 **Branch:** `claude/setup-api-and-mysteries-LRLQK`
 **Latest commit:** `d66657d`

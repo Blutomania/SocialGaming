@@ -1,0 +1,41 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Domestic social circle: married couples (Yoshitaka and Ayane, the Ikais) and Hiromi, a younger woman, gathered for dinner",
+    "confidence": "medium",
+    "quote": "Ten minutes later the hosts and their guests were sitting at the dining room table."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/pdfcoffee.com_salvation-of-a-saint-pdf-free.pdf",
+    "filename": "pdfcoffee.com_salvation-of-a-saint-pdf-free.pdf",
+    "text_len": 6037,
+    "protocols": [
+      "P1"
+    ],
+    "title": "pdfcoffee.com_salvation-of-a-saint-pdf-free"
+  }
+}

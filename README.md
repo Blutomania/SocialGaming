@@ -1,57 +1,43 @@
----
-title: Choose Your Mystery
-emoji: 🔍
-colorFrom: indigo
-colorTo: purple
-sdk: streamlit
-app_file: app.py
-pinned: false
-license: mit
-short_description: AI murder mystery party game — generate, interrogate, and solve unique cases
-tags:
-  - text-generation
-  - game
-  - llm
-  - mystery
-  - claude
-  - social-deduction
-  - interactive-fiction
-  - party-game
-  - streamlit
----
-
 # Choose Your Mystery
 
-**An AI-powered murder mystery party game.** Set the scene, interrogate the suspects, and solve the case.
+**An AI-powered social murder mystery party game**, built as a Godot 4 client talking to a
+Python FastAPI backend. Players join a lobby, investigate a generated crime, interrogate AI
+suspects, share clues, and race to accuse the killer.
 
-You describe a setting — a 1920s jazz club, a Scottish castle, a corporate retreat — and the game generates a complete, coherent murder mystery: victim, suspects, motives, alibis, physical evidence, and a hidden culprit. Then you interrogate each character and accuse the killer.
+You describe a setting — a 1920s jazz club, a Scottish castle, a corporate retreat — and the
+backend generates a complete, coherent murder mystery: victim, suspects, motives, alibis,
+physical evidence, and a hidden culprit, drawn from a corpus of classic mystery literature.
+Every mystery passes an automated coherence check before the game begins.
 
-Built on a 1,469-part corpus of classic mystery literature. Every mystery is unique.
-
-**Core mechanic (multiplayer, coming soon):** each player must share 75% of what they learn — forcing collaboration while preserving individual advantage.
+**Core mechanic:** each player must share 75% of what they learn — forcing collaboration while
+preserving individual advantage.
 
 ---
 
-## How it works
+## Status
 
-1. **Describe a setting** — any era, any location (Victorian manor, space station, 1970s disco)
-2. **Get a full mystery** — victim, 3–4 suspects with motives and alibis, physical evidence, hidden culprit
-3. **Interrogate characters** — ask each suspect anything; the AI responds in character
-4. **Make your accusation** — name the killer, the method, and the motive
+Godot migration, **Phase 3d** (lobby flow, room codes, multiplayer game start). See `CLAUDE.md`
+for the full architecture and `SESSIONS.md` for session-by-session history.
 
-Every mystery passes an automated coherence check: the causal chain from crime → victim → suspects → resolution must hold before the game begins.
+> **This project was originally a single-player Streamlit app hosted on HuggingFace Spaces.**
+> That version is retired — all of it is archived under [`deprecated/`](deprecated/) for
+> historical reference, not for use. Everything below describes the current Godot + FastAPI
+> version.
 
 ---
 
 ## Run locally
 
 ```bash
+cd server
 pip install -r requirements.txt
 export ANTHROPIC_API_KEY=sk-ant-...
-streamlit run app.py
+uvicorn main:app --port 8000
 ```
 
-Requires an [Anthropic API key](https://console.anthropic.com).
+Then open `godot/project.godot` in Godot 4 and press F5. Requires an
+[Anthropic API key](https://console.anthropic.com) and a local install of
+[Godot 4](https://godotengine.org).
 
 ---
 
@@ -59,12 +45,15 @@ Requires an [Anthropic API key](https://console.anthropic.com).
 
 | File | Purpose |
 |---|---|
-| `app.py` | Streamlit UI |
-| `cli.py` | Terminal entry point (`generate`, `extract`, `check`, `browse`, `solve`) |
+| `server/main.py` | FastAPI backend — all AI endpoints |
+| `godot/` | Godot 4 client (scenes + GDScript) |
 | `part_registry.py` | 1,469-part corpus; sampling logic |
 | `coherence_validator.py` | P1 causal-chain validator (zero API calls) |
+| `localization.py` | Era-appropriate name/occupation localization |
+| `extraction_protocols.py` + `scripts/extract_from_pdfs.py` | Adding new corpus sources |
 | `docs/WIRING.md` | Full technical architecture |
 | `CLAUDE.md` | Instructions for AI coding assistants |
+| `deprecated/` | Retired Streamlit/HuggingFace-era code — history only |
 
 ---
 

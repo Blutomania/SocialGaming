@@ -1,0 +1,41 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Q Division police files; High Street shop and surrounding Christmas shopper crowds; wine cellars in France and England; soundproofed room; early nineteenth century Spain; shooting range",
+    "confidence": "medium",
+    "quote": "The settings range from elegant (but dangerous) wine cellars in France and England, to a soundproofed room inhabited by a dictator, to early nineteenth century Spain, to a deadly shooting range."
+  },
+  "culprit_and_motive": {
+    "value": "Slippery Sam - a long sardonic clown-faced operator conducting pranks and disruptions (hecklers at meetings, lights turned out, man on roof in underclothes); motive unclear but pattern suggests serial disruption",
+    "confidence": "medium",
+    "quote": "Petrella...had memories of a long sardonic clown's face and a pair of twinkling eyes. He called him Slippery Sam"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Inspector Petrella (and Inspector Hazlerigg) - police officers investigating cases for Q Division",
+    "confidence": "medium",
+    "quote": "Petrella, who was one of the few policemen to have seen the principal operator at close quarters"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_OceanofPDF.com_The_Curious_Conspiracy_-_Michael_Gilbert.pdf",
+    "filename": "_OceanofPDF.com_The_Curious_Conspiracy_-_Michael_Gilbert.pdf",
+    "text_len": 6037,
+    "protocols": [
+      "P1"
+    ],
+    "title": "_OceanofPDF.com_The_Curious_Conspiracy_-_Michael_Gilbert"
+  }
+}
