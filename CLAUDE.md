@@ -82,19 +82,20 @@ Current phase: **Phase 3d — Lobby flow, room codes, QR display on host screen*
 
 ## Active Branch
 
-**`claude/mystery-pdf-extraction-0fisq0`** — current session branch (rebuilt from the
-`claude/review-and-resume-1k0tP` tip, Phase 3d).
+**`main`** — reconciliation is complete (PR #1 merged July 9, 2026, commit `faf52e0`). Start new
+work from `main` directly; there is no other active branch right now.
 
-> **Branch hygiene note (July 9, 2026):** several past sessions were auto-assigned fresh
-> branches off older commits instead of continuing the active one, so multiple divergent
+> **Branch hygiene note (resolved July 9, 2026):** several past sessions had been auto-assigned
+> fresh branches off older commits instead of continuing the active one, so multiple divergent
 > "current states" of this repo existed in parallel (a Godot line, a since-abandoned
-> pre-migration line, and a stranded PDF-ingestion line on `claude/review-godot-migration-GiLDz`
-> that never got folded back in). This branch reconciles them: it carries the full Godot Phase
-> 3d history plus the PDF-ingestion work described in Key Files above. The other branches below
-> are superseded and safe to delete once this branch's PR is merged — confirm with owner first:
-> `claude/review-godot-migration-GiLDz`, `claude/fix-godot-performance-QyXLQ`,
+> pre-migration line, and a stranded PDF-ingestion line). All of that was reconciled into
+> `claude/mystery-pdf-extraction-0fisq0` and merged into `main` via PR #1. The five superseded
+> branches (`claude/review-godot-migration-GiLDz`, `claude/fix-godot-performance-QyXLQ`,
 > `claude/start-godot-migration-mNrWD`, `claude/setup-api-and-mysteries-LRLQK`,
-> `claude/mystery-versioning-system-TPblK`.
+> `claude/mystery-versioning-system-TPblK`) were confirmed deleted the same day. If a future
+> session gets auto-assigned a stale branch again, check this file on `main` first — don't trust
+> whatever branch name the harness handed you until you've compared it against `main`'s
+> `SESSIONS.md`.
 
 ---
 
@@ -103,9 +104,11 @@ Current phase: **Phase 3d — Lobby flow, room codes, QR display on host screen*
 1. **Verify branch:**
    ```bash
    git fetch origin
-   git checkout claude/mystery-pdf-extraction-0fisq0
-   git pull origin claude/mystery-pdf-extraction-0fisq0
+   git checkout main
+   git pull origin main
    ```
+   Create a new feature branch off `main` for your session's work if it's more than a trivial
+   change — don't accumulate unrelated work directly on `main`.
 2. **Read the most recent block in `SESSIONS.md`** — exact next step, blockers, decisions.
 3. **State your starting point:** branch, latest commit hash, what you'll do.
 4. **Read `docs/WIRING.md`** if touching generation, localization, or coherence logic.
@@ -116,9 +119,11 @@ Current phase: **Phase 3d — Lobby flow, room codes, QR display on host screen*
 
 1. **Update `SESSIONS.md`** with new session block (files changed, decisions, next steps).
 2. **Update `CLAUDE.md → Current To-Do`** to reflect completed and next items.
-3. **Commit and push** on `claude/mystery-pdf-extraction-0fisq0`.
+3. **Commit and push** on your session's feature branch.
 4. **Tell the user to sync locally.**
-5. The remote rejects `git push origin main` (HTTP 403). Use GitHub MCP tools to create a PR.
+5. The remote rejects `git push origin main` (HTTP 403). Use GitHub MCP tools to create a PR,
+   and merge it once it's clean rather than leaving it to accumulate — that's what caused the
+   July 9, 2026 branch-reconciliation mess documented above.
 
 ### NEVER end a session without updating SESSIONS.md.
 
@@ -221,15 +226,19 @@ Full list in `SESSIONS.md`. Top priorities:
    - **[DONE]** 3d: Lobby flow, room codes, host-screen display (Session 14)
 4. **[START HERE]** Phase 3e — Avatar pool system + player history tracking (designed in
    Session 14, not yet built — see `SESSIONS.md` Session 14 for full spec)
-5. **[VERIFY]** Confirm PR #1 (branch reconciliation) merged into `main` — see
-   https://github.com/Blutomania/SocialGaming/pull/1
-6. **[VERIFY]** Confirm the five superseded branches were actually deleted (owner was doing this
-   manually as of last session — `claude/review-godot-migration-GiLDz`,
-   `claude/fix-godot-performance-QyXLQ`, `claude/start-godot-migration-mNrWD`,
-   `claude/setup-api-and-mysteries-LRLQK`, `claude/mystery-versioning-system-TPblK`)
+5. **[DONE]** PR #1 (branch reconciliation) merged into `main` — merge commit `faf52e0`, July 9 2026.
+   `main` is now the source of truth: full Godot migration, `deprecated/` Streamlit archive, and
+   the PDF-ingestion corpus work are all present.
+6. **[DONE]** The five superseded branches were confirmed deleted (owner, July 9 2026):
+   `claude/review-godot-migration-GiLDz`, `claude/fix-godot-performance-QyXLQ`,
+   `claude/start-godot-migration-mNrWD`, `claude/setup-api-and-mysteries-LRLQK`,
+   `claude/mystery-versioning-system-TPblK`
 7. **[ONGOING]** Corpus growth — 12 PDF-sourced entries added so far via
    `scripts/extract_from_pdfs.py`; keep adding one quality source at a time as they're found
 8. **[FUTURE]** Phase 4 — Steam integration (GodotSteam plugin)
+
+> **Next session should branch from `main`, not from `claude/mystery-pdf-extraction-0fisq0`** —
+> that branch's work is now merged and it's a dead end going forward.
 
 > **DO NOT re-run the frozen bulk corpus pipeline** (`deprecated/run_corpus_pipeline.py`). Expand
 > the corpus only via `scripts/extract_from_pdfs.py`, adding one quality source at a time.
