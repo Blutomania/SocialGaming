@@ -244,5 +244,3 @@ Full list in `SESSIONS.md`. Top priorities:
 > the corpus only via `scripts/extract_from_pdfs.py`, adding one quality source at a time.
 > **DO NOT touch `deprecated/`** except the one restored exception noted above. It exists for
 > historical reference only.
-> **Branch cleanup pending:** delete the five superseded branches listed under Active Branch
-> once this branch's PR is merged — ask owner to confirm first.
