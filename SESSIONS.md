@@ -5,6 +5,51 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 16 — July 9, 2026 (design-only, no code)
+**Branch:** `main` (docs only, direct-to-PR)
+**Status:** Complete — Phase 3e avatar + player-profile design locked
+
+### What was decided
+Talked through Phase 3e (avatar pool + player history, designed-not-built since Session 14) end
+to end and landed on a two-layer avatar model instead of either of the two originally-posed
+options (persistent per-player identity vs. disposable per-mystery pool):
+
+- **Base look** — era-appropriate portrait, shared/cached per `<era_key>`, same pattern as the
+  existing localization cache. Solves the original concern (a jazz-age portrait showing up in an
+  Ancient Rome mystery) since it was never actually possible under the era-keyed pool design —
+  the real gap was that pools had no persistent-identity axis at all.
+- **Signature accessory** — a small fixed prop (monocle, scarf, etc.) chosen once at registration
+  and kept forever, deliberately anachronistic across eras. This is the persistence layer: cheap
+  because it's drawn from a small fixed catalog (era × accessory stays a bounded, cacheable
+  space), not freeform per-player generation.
+- Combining the two is a prompt modifier on the existing pool mechanism, not a new pipeline —
+  cached lazily under `<era_key>/<base_look_id>__<accessory_id>.png`.
+
+Full spec — lobby-join flow, player-profile JSON schema, proposed 16-item accessory catalog,
+cold-start fallback, and the five open questions each resolved to a default (registration
+skippable; accessory permanent; pool sized for 8-player lobbies; static placeholder on cold
+start; `localStorage` token now with `steam_id` reserved for Phase 4) — written up in
+`docs/WIRING.md` under "Avatar system + player profiles (Phase 3e)".
+
+Also fixed: `docs/WIRING.md`'s "Active branches" footer still named two branches from before the
+July 9 reconciliation (`claude/setup-api-and-mysteries-LRLQK`, `claude/mystery-versioning-system-TPblK`).
+Removed the duplicate tracking — `CLAUDE.md` is the single source of truth for branch status now.
+
+### What is next
+1. **Build Phase 3e** per the locked spec in `docs/WIRING.md` — nothing below exists yet:
+   - `mystery_database/accessory_catalog.json`
+   - Avatar pool generation script (fal.ai FLUX client, lazy-cache-on-request)
+   - `server/main.py`: player registration/upsert, avatar fetch-or-generate, `mysteries_played` logging
+   - Godot: registration screen, 3-candidate portrait picker in `Lobby.tscn`
+   - Cold-start placeholder asset
+2. Sign off on (or edit) the proposed 16-item accessory catalog before it's built
+3. `docs/WIRING.md` still has broader staleness beyond the two things fixed this session — several
+   sections reference `app.py`/`cli.py` as if still live (e.g. "Localization pass", "Where the
+   cinematic brief is triggered", the `cli.py extract` commands under "Extraction protocols").
+   Worth a dedicated pass, not done here since it wasn't this session's ask.
+
+---
+
 ## Session 15 — July 9, 2026
 **Branch:** `claude/mystery-pdf-extraction-0fisq0`
 **Starting commit:** `84424e2` (tip of `claude/review-and-resume-1k0tP`)
