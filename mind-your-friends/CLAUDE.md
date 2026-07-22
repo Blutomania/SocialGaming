@@ -5,6 +5,10 @@ Real-time multiplayer social trivia game with sabotage cards, rotating round rul
 personalized AI host. Players join via 4-letter code, wager points, play cards against each
 other, and answer AI-generated questions. The social loop — not the trivia — is the product.
 
+**Priority note (added July 22, 2026, from a CYM-side session):** the current Next.js/browser
+build is a design-validation prototype, not the shipping architecture. See **Current To-Do
+item 31** — a Godot port is now the top priority before further web-only feature work.
+
 ## Current To-Do
 1. ~~**Review Round variation types**~~ — 8 variations confirmed. See `GAME_DESIGN.md`.
 2. ~~**Review card mechanic**~~ — FCFS card resolution, fixed 6-card hand (1 picked +
@@ -22,7 +26,12 @@ other, and answer AI-generated questions. The social loop — not the trivia —
 6. ~~**Coherence Engine**~~ — `lib/coherence.js` integrated into game loop.
    Round-level constraints computed at turn start; turn-level constraints
    assembled after card resolution; post-generation validation checks answer
-   format. Shared framework in `coherence/engine.py` (monorepo root).
+   format. **Correction (July 22, 2026):** this originally claimed a shared
+   `coherence/engine.py` framework — that file didn't actually exist on this
+   branch's history until today's branch consolidation added it (see item 31).
+   It exists at the monorepo root now, but `lib/coherence.js` still doesn't
+   call it — treat "shared" as aspirational until item 31's Godot port makes
+   the actual wiring worthwhile.
 7. ~~**Per-player views**~~ — `playerView()` filters state per socket. Hands,
    answers, and role-gated data hidden appropriately.
 8. ~~**Steal round rule**~~ — FCFS buzz-in window (8s), half-wager penalty on
@@ -213,6 +222,36 @@ other, and answer AI-generated questions. The social loop — not the trivia —
     gain the wager; everyone else's score is untouched (no penalty for
     non-winners). Worth revisiting if playtesting shows it needs teeth.
     Next: disconnect/reconnect is now the only item-29-era gap left open.
+31. **[TOP PRIORITY] Godot port** — decided during a CYM-side session (July 22, 2026), reasoning
+    backward from distribution, not from engineering preference:
+    - Both CYM and MYF are intended for Steam, PlayStation, and other established platforms.
+      Next.js/browser has no clean, cert-friendly path onto those (Electron-wrapping a web app
+      is exactly the kind of friction console cert punishes). CYM already paid the cost of a
+      Godot client + planned GodotSteam integration (`godot/`, Phase 4 in the CYM `CLAUDE.md`) —
+      MYF converging onto the same client stack reuses that investment instead of duplicating a
+      second, incompatible distribution path.
+    - This also resolves the cross-language question for the shared **coherence engine** (see
+      the studio pitch deck's "our engine" slide — Coherence Engine + AI Generation are named as
+      the two proprietary pillars/moat across all titles, not incidental backend plumbing).
+      Today MYF's `lib/coherence.js` (JS) and CYM's `coherence_validator.py` (Python) are
+      separate implementations of the same concept, with no clean way for a Next.js app to call
+      Python code directly. Once MYF's client is Godot talking HTTP JSON to a backend — same
+      pattern as CYM — the engine can become one real shared Python service both games' backends
+      call, instead of two languages needing a bridge. That's a stronger technical story for
+      funding purposes too: one deployed asset both titles depend on, not a pattern implemented
+      twice.
+    - **Where this already stands, mechanically:** during today's branch-consolidation pass (four
+      competing, never-merged MYF forks got reconciled onto `dev/mind-your-friends`), a real
+      `coherence/engine.py` + `coherence/__init__.py` (a domain-agnostic `RuleSet`/`Issue`/
+      `CoherenceReport` base class) got cherry-picked in from one of the losing forks and now
+      exists at the monorepo root on this branch. **It is not yet wired to anything** — `lib/
+      coherence.js` doesn't call it, and CYM's `coherence_validator.py` doesn't subclass it. Do
+      that wiring as part of (or right after) the Godot port, not before — building the
+      integration against a Next.js client that's getting replaced anyway is wasted work.
+    - Scope not yet decided: full rewrite of `server.js`/`lib/*` game logic into GDScript +
+      FastAPI endpoints (mirroring CYM's split) vs. some other division of client/server logic.
+      That design pass hasn't happened — this item is "decide to do it and put it first," not
+      a worked-out migration plan.
 
 ## Design Thesis: Casual-First
 This game targets casual, social players — not competitive optimizers. Every
@@ -319,14 +358,26 @@ transformation, add a case to `transformAnswer()` with both `text` and `voice` v
 statement; log a highlight via `logHighlight()` if it's a notable sabotage moment.
 
 ## Session Start Protocol
-1. `git checkout claude/continuation-r0mhfq && git pull origin claude/continuation-r0mhfq`
-2. Read **Current To-Do** above — item #24 is the next step.
+1. `git checkout dev/mind-your-friends && git pull origin dev/mind-your-friends`
+2. Read **Current To-Do** above — item #31 (Godot port) is the next step.
 3. Run `git log --oneline -10` to see what was last committed.
 4. Read `GAME_DESIGN.md` for the full game design.
 5. Read `PLAYTEST.md` for open playtest questions (PT-1 through PT-3).
 6. State your starting point in the first reply: branch, latest commit, what you'll do.
 
+> **Branch hygiene note (July 22, 2026):** four past sessions each independently forked MYF from
+> the same old base commit (`claude/continuation-r0mhfq`, `brave-bohr-45istr`,
+> `confident-franklin-250vxg`, `compassionate-cray-pu5ieu`) with no cross-awareness, so real work
+> was scattered across competing branches with no PR and no single source of truth — the same
+> failure mode CYM hit before its own July 9 reconciliation. These got compared and consolidated
+> onto `dev/mind-your-friends` (built on `continuation-r0mhfq`, the most complete of the four,
+> plus the coherence-engine files and a standalone API route cherry-picked from two of the
+> others). The four source branches still exist on the remote but are superseded — don't resume
+> work on them; `dev/mind-your-friends` is the one true branch now. This file's Session Start
+> Protocol and "What NOT to Do" previously still pointed at `claude/continuation-r0mhfq` — fixed
+> here so a future session isn't misdirected the way CYM's `CLAUDE.md` was before its own fix.
+
 ## What NOT to Do
-- Never push directly to `main` (403). Use `claude/continuation-r0mhfq`.
+- Never push directly to `main` (403). Use `dev/mind-your-friends`.
 - Never put Claude API calls in client-side React — only `server.js` touches the API.
 - Don't add a database yet — in-memory state is intentional for MVP.
