@@ -352,6 +352,121 @@ python cli.py extract --protocol P1P2    # full corpus run (~359 books)
 
 ---
 
+## Avatar system + player profiles (Phase 3e)
+
+**Status:** Design locked (Session 16). Not yet implemented — see "What still needs building" below.
+
+### Two-layer avatar model
+
+Every player-facing portrait is the product of two independent, both-cacheable layers:
+
+1. **Base look** — an era-appropriate portrait style/pose, generated once per `<era_key>`
+   (same key as the localization cache) and shared across every mystery in that setting.
+   10–15 base looks per era; floor of 12 to comfortably cover an 8-player lobby without repeats.
+2. **Signature accessory** — a small, fixed prop (monocle, red scarf, pocket watch, ...) that
+   persists with a *player*, not a mystery. Deliberately allowed to be anachronistic — the same
+   monocle shows up whether they're a Roman senator or a 1920s jazz-club regular. It's the
+   player's visual signature across every game they ever play, not part of the setting.
+
+Combining the two is a prompt modifier, not a separate generation pipeline:
+`base_look_prompt + accessory_clause`. The resulting portrait is cached under a compound key:
+
+```
+mystery_database/avatar_pool/<era_key>/<base_look_id>__<accessory_id>.png
+```
+
+Generated **lazily on first request** — same caching philosophy as the localization ruleset
+cache. Nothing is pre-rendered for combinations nobody has asked for; a brand-new era crossed
+with a brand-new accessory is the only case that pays full generation cost, and every later
+player who shares either axis hits a cache.
+
+**Image API:** FLUX via fal.ai (~$0.003/image), decided Session 14. Prompt-driven, not
+photo-driven — avoids the moderation/liability surface of accepting user photos, and is what
+makes a pre-generated shared pool possible at all (you can't pre-generate from photos nobody's
+uploaded yet).
+
+### Lobby-join flow
+
+1. Player joins → if returning (`localStorage` token recognized), skip to step 4 with their
+   existing `signature_accessory_id`.
+2. New player → optional registration step: display name + one-time accessory pick from a fixed
+   catalog (grid UI). **Skippable** — declining gets a random accessory and no persistent
+   profile write, consistent with the existing zero-friction return-visit pattern.
+3. Server upserts `mystery_database/player_history/<player_id>.json` (schema below).
+4. Server offers 3 candidate portraits: 3 distinct `base_look_id`s for the mystery's `era_key`,
+   each combined with the player's `accessory_id`. The player picks one; the chosen
+   `base_look_id` is recorded on that game's `mysteries_played` entry.
+
+Within one lobby, `base_look_id` assignment must avoid duplicates across players (visual
+distinctness at the table) — `accessory_id` duplicates are fine and expected; it's identity,
+not a lobby-unique slot.
+
+### Cold start
+
+The first lobby ever run in a brand-new `era_key` has an empty pool. Rather than blocking lobby
+start on a live FLUX call, serve a static placeholder portrait (silhouette + accessory icon, no
+AI call) for that one lobby while a background job seeds the pool — same async-job pattern
+already built for mystery generation (`4235c7c`, "async job system + timeout + live progress").
+
+### Player profile schema
+
+`mystery_database/player_history/<player_id>.json`:
+
+```json
+{
+  "player_id": "localStorage token, generated on first registration",
+  "display_name": "string, player-chosen",
+  "signature_accessory_id": "key into the fixed accessory catalog, e.g. \"monocle\"",
+  "steam_id": null,
+  "created_at": "ISO timestamp",
+  "mysteries_played": [
+    {
+      "mystery_slug": "...",
+      "era_key": "...",
+      "base_look_id": "which of the 3 offered portraits they picked",
+      "played_at": "ISO timestamp",
+      "accused_correctly": true,
+      "time_to_solve_seconds": 1830
+    }
+  ]
+}
+```
+
+`steam_id` is reserved and unused until Phase 4 (GodotSteam) — the schema is forward-compatible
+so the identity layer doesn't need a migration later.
+
+### Accessory catalog (proposed — needs a sign-off pass, not final)
+
+Static, curated, 16 entries to start (clean 4×4 grid in the picker UI). Expand the same way the
+corpus grows — one addition at a time, no bulk churn:
+
+```
+monocle, red_scarf, pocket_watch, flower_crown, bow_tie, cracked_spectacles,
+pipe, brooch, fedora, pearl_necklace, walking_cane, feather_boa,
+signet_ring, eye_patch, silk_gloves, pinstripe_tie
+```
+
+### Open decisions resolved this session (defaults chosen — flag if wrong)
+
+| Question | Default chosen | Reasoning |
+|---|---|---|
+| Mandatory or skippable registration? | Skippable | Matches existing zero-friction return-visit design; party games shouldn't gate on signup |
+| Accessory permanent or editable? | Permanent | Identity/joke value, not a settings toggle |
+| Max concurrent players sized for? | 8 | Jackbox-range lobby size; pool floor set at 12 base looks/era for headroom |
+| Cold-start behavior? | Static placeholder, never block lobby start | Matches "no API call blocks a live game" principle used elsewhere |
+| Identity scope | `localStorage` token now, `steam_id` reserved | Avoids a schema migration when Phase 4 lands |
+
+### What still needs building (design only — none of this exists yet)
+
+- `mystery_database/accessory_catalog.json` — the static catalog file
+- Avatar pool generation script (fal.ai FLUX client, lazy-cache-on-request logic)
+- `server/main.py` endpoints: player registration/upsert, avatar-pool fetch-or-generate,
+  `mysteries_played` logging
+- Godot: registration screen (name + accessory grid), 3-candidate portrait picker in `Lobby.tscn`
+- Placeholder silhouette asset for the cold-start fallback
+
+---
+
 ## API authentication
 
 Priority order:
@@ -364,9 +479,6 @@ See `extract_test_mysteries.py:_get_token()` for the reference implementation.
 
 ## Active branches
 
-| Branch | What's on it |
-|---|---|
-| `claude/setup-api-and-mysteries-LRLQK` | UI, cinematic brief, 13 generated mysteries, session log |
-| `claude/mystery-versioning-system-TPblK` | Part registry, CLI, corpus pipeline |
-
-Merge `mystery-versioning-system-TPblK` once quality validation (tasks 2–3) is confirmed.
+Branch status lives in `CLAUDE.md` (Active Branch section), not here — this file drifted out of
+sync with reality once before (July 9, 2026 reconciliation) by duplicating that tracking.
+Single source of truth: `CLAUDE.md`.
