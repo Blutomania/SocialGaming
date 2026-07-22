@@ -69,10 +69,11 @@ __all__ = [
 _PHYSICAL_KW = re.compile(
     r"\b(found|discovered|object|item|trace|blood|stain|fingerprint|footprint|"
     r"wound|weapon|tool|paper|document|letter|photograph|bottle|fabric|cloth|"
-    r"key|lock|mark|scratch|burn|residue|fragment|shard|chemical|record|"
+    r"key|lock|scratch|burn|residue|fragment|shard|chemical|record|"
     r"log|ledger|note|map|container|device|body|remains|sample|artifact|"
     r"hidden|concealed|beneath|behind|inside|under|on\s+the\s+floor|"
-    r"on\s+the\s+desk|at\s+the\s+scene)\b",
+    r"on\s+the\s+desk|at\s+the\s+scene|"
+    r"(?:scratch|burn|bite|tire|skid|bruise|birth|impact|pressure)[\s-]?marks?)\b",
     re.IGNORECASE,
 )
 
@@ -213,6 +214,7 @@ class PartsCompletenessRule(Rule):
                     family=self.family,
                     message=f"No part sampled for part_type='{pt}'.",
                     repair_hint=f"Re-sample: registry.get_candidates('{pt}', ...) and add one part.",
+                    meta={"part_type": pt},
                 ))
         return issues
 
@@ -239,6 +241,7 @@ class PartsWitnessFoundationRule(Rule):
                 "Re-sample part_type='social_dynamic'; prefer parts that describe "
                 "specific roles, occupations, or patronage relationships."
             ),
+            meta={"part_type": "social_dynamic"},
         )]
 
 
@@ -267,6 +270,7 @@ class PartsSceneEvidenceRule(Rule):
                     "Re-sample part_type='evidence_type'; prefer parts with physical, "
                     "documentary, or forensic evidence (objects, records, traces)."
                 ),
+                meta={"part_type": "evidence_type"},
             )]
         if not has_physical:
             return [Issue(
@@ -281,6 +285,7 @@ class PartsSceneEvidenceRule(Rule):
                     "At generation: instruct Claude to include at least 2 physical "
                     "evidence items alongside the part's evidence type."
                 ),
+                meta={"part_type": "evidence_type"},
             )]
         return []
 
@@ -307,6 +312,7 @@ class PartsRedHerringRule(Rule):
                 "Re-sample part_type='red_herring'; prefer parts describing "
                 "planted objects, staged scenes, or forged documents."
             ),
+            meta={"part_type": "red_herring"},
         )]
 
 
@@ -332,6 +338,7 @@ class PartsMotiveSpecificityRule(Rule):
                 "Re-sample part_type='motive'; prefer parts with specific stakes "
                 "(inheritance, blackmail, rivalry, discovery, exposure)."
             ),
+            meta={"part_type": "motive"},
         )]
 
 

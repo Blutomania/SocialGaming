@@ -50,8 +50,8 @@ _repo_root = Path(__file__).parent.parent
 if str(_repo_root) not in sys.path:
     sys.path.insert(0, str(_repo_root))
 
-from part_registry import load_registry, PART_TYPE_NAMES  # noqa: E402
-from coherence_validator import check_mystery               # noqa: E402
+from part_registry import load_registry, PART_TYPE_NAMES, ProvenanceRecipe  # noqa: E402
+from coherence_validator import check_mystery, check_parts   # noqa: E402
 from localization import (                                  # noqa: E402
     localize_mystery as _localize_mystery,
     _is_modern,
@@ -117,10 +117,49 @@ def _parse_json(raw: str) -> dict:
 # ---------------------------------------------------------------------------
 # Mystery generation (ported from app.py)
 # ---------------------------------------------------------------------------
+def _ensure_parts_coherent(registry, parts, target_setting: str, max_attempts: int = 3):
+    """
+    Free, pre-generation repair loop: run check_parts() and, for any flagged
+    part (any severity — resampling costs zero API calls either way, so
+    there's no reason to only fix BLOCKING issues), swap in a fresh sample of
+    just that part_type. Bounded by max_attempts so a registry that simply
+    lacks a better candidate for some type doesn't loop forever.
+
+    This is the dimension-1 cost optimization from the July 2026 session:
+    check_parts() was documented in CLAUDE.md as the intended pre-generation
+    gate but was never actually wired into the live pipeline — only
+    check_mystery() (post-generation) was called, meaning fixable-for-free
+    gaps were only ever caught after a paid Claude call, if at all.
+    """
+    by_type = {p.part_type: p for p in parts}
+    for attempt in range(max_attempts):
+        report = check_parts(list(by_type.values()))
+        flagged_types = {
+            i.meta["part_type"] for i in report.issues if "part_type" in i.meta
+        }
+        if not flagged_types:
+            break
+        replacements, _ = registry.sample_for_generation(
+            part_types=list(flagged_types), target_setting=target_setting, seed=attempt,
+        )
+        for rp in replacements:
+            by_type[rp.part_type] = rp
+    # Preserve original slot ordering where possible
+    ordered = [by_type[pt] for pt in PART_TYPE_NAMES if pt in by_type]
+    return ordered
+
+
 def _generate_mystery_dict(user_prompt: str) -> tuple[dict, object]:
     """Sample registry parts, call Claude, return (mystery_dict, recipe)."""
     registry = get_registry()
     parts, recipe = registry.sample_for_generation(target_setting=user_prompt)
+    parts = _ensure_parts_coherent(registry, parts, user_prompt)
+    # Rebuild the recipe from the (possibly repaired) final parts — otherwise
+    # _provenance would describe the pre-repair sample, not what was actually used.
+    recipe = ProvenanceRecipe(
+        slots=[(p.source_id, p.part_index, p.part_type) for p in parts],
+        target_setting=user_prompt,
+    )
 
     parts_block = "\n".join(
         f"  [{p.label()} — {p.part_type}]: {p.content}"
@@ -260,6 +299,13 @@ def _run_coherence(mystery_dict: dict) -> dict:
         "passed": report.passed,
         "blocking": report.blocking_count,
         "warnings": report.warning_count,
+        # Rule-level detail (dimension-4 telemetry, July 2026 session): kept
+        # cheap (code + severity only, no message text) so that once real
+        # viability ratings start coming in via POST /rate, a correlation
+        # pass (scripts/rule_telemetry.py) can find out which rules actually
+        # predict a low- or high-rated mystery, rather than which merely
+        # fire the most.
+        "rule_hits": [{"code": i.code, "severity": i.severity} for i in report.issues],
     }
     return mystery_dict
 
