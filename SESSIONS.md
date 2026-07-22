@@ -5,6 +5,34 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 16 — July 22, 2026
+**Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
+**Starting commit:** `57575c1` (tip of `main`)
+**Status:** Complete — no code changes; resolved a stale-request false alarm
+
+### The problem
+The owner pasted a leftover exchange from before Session 15's PR #1 merged, asking Claude Code
+to "merge PR#1" into `main`. This looked like a live blocker but wasn't one.
+
+### What was found
+- PR #1 (`claude/mystery-pdf-extraction-0fisq0` → `main`) was already merged on 2026-07-14
+  18:05 UTC (merge commit `faf52e0`, confirmed via GitHub). `main` and this session's branch are
+  identical — no diff, clean working tree.
+- Separately, the owner had tried running `scripts/session_summary.py` (the interactive,
+  non-`--auto` mode used to type free-form session notes) directly instead of letting the
+  `Stop` hook run it in `--auto --quiet` mode. That mode calls Python's `input()` in a loop —
+  Claude Code's Bash tool has no live interactive stdin, so the process just blocks forever
+  with no way to type a response. That's the actual "Claude Code cannot move forward" symptom.
+
+### Decision
+No merge action needed — PR #1 was stale news. Session closed with no code changes; this entry
+exists so a future session doesn't re-open the same already-resolved question. If free-form
+notes need to be added to `SESSIONS.md` interactively again, don't run
+`scripts/session_summary.py` without `--auto` from Claude Code — dictate the notes to Claude Code
+directly and have it edit this file instead.
+
+---
+
 ## Session 15 — July 9, 2026
 **Branch:** `claude/mystery-pdf-extraction-0fisq0`
 **Starting commit:** `84424e2` (tip of `claude/review-and-resume-1k0tP`)
