@@ -58,12 +58,12 @@ optimized, studio-thesis formalization
    "Mark"); (d) telemetry — added `rule_hits` to `_coherence` output and
    `scripts/rule_telemetry.py` to correlate against `_meta.viability_rating` once real ratings
    exist (none do yet — `POST /rate` has never actually been called).
-8. **Funding-deck studio thesis formalized.** Re-checked the pitch deck (`Ur Social Games` v8,
-   shared with Claude Code this session, not committed to the repo) against the docs. Added a
-   "Studio Engine" section to `CLAUDE.md` mapping the deck's "two pillars, four outputs" framing
-   (AI Generation + Coherence Engine → Avatars/Experiences/Social Loops/Gameplay) to real files,
-   and a 4th Design Principle formalizing the deck's casual-first/anti-twitch differentiator for
-   CYM specifically (MYF already had an equivalent Design Thesis section).
+8. **Studio thesis formalized in the docs.** Added a "Studio Engine" section to `CLAUDE.md`
+   mapping the studio's "two pillars, four outputs" architecture (AI Generation + Coherence
+   Engine → Avatars/Experiences/Social Loops/Gameplay) to real files, and a 4th Design Principle
+   formalizing the casual-first/anti-twitch differentiator for CYM specifically (MYF already had
+   an equivalent Design Thesis section). Both written to stand on their own — no reference to
+   any external document, since none is committed to this repo.
 
 ### Decisions
 - `verify-root-path-JyDSP` and the "Mind Your Friends" forks: keep, don't delete — real
