@@ -16,6 +16,31 @@ Current phase: **Phase 3d — Lobby flow, room codes, QR display on host screen*
 
 ---
 
+## Studio Engine (two pillars → four outputs)
+
+This is the studio-level framing from the funding deck (`Ur Social Games`, pitch v8, shared with
+Claude Code July 22 2026 — not committed to this repo; ask the owner before assuming it's
+available in future sessions). It names two proprietary engine pillars as the studio's core
+"moat," feeding four product-facing outputs, across **every** title (CYM, MYF, and whatever
+follows). Recorded here so the mapping stays traceable to real code, not just slide copy —
+worth keeping accurate since external technical review may check it directly.
+
+**Pillar 1 — AI Generation:** `part_registry.py` (diversity-constrained sampling from the parts
+corpus) + the Claude generation call in `server/main.py`'s `_generate_mystery_dict()`.
+
+**Pillar 2 — Coherence Engine:** `coherence/engine.py` (the shared `Rule`/`RuleSet` framework,
+also used by MYF — see that project's own `CLAUDE.md`) + `coherence_validator.py`.
+
+**Four outputs, this title's current instances:**
+| Output | Where it lives in CYM |
+|---|---|
+| Avatars | Phase 3e avatar pool + player-profile spec (`docs/WIRING.md`) — designed, not yet built |
+| Experiences | `investigation_areas` / `leads` / AI interrogation |
+| Social Loops | The 75% clue-sharing mechanic |
+| Gameplay | Part-sampling + coherence-validated dynamic generation (this whole pipeline) |
+
+---
+
 ## Architecture
 
 ```
@@ -188,6 +213,21 @@ API calls are the primary cost driver.
 | Cache extractions | Never re-extract a source already in JSON |
 | Coherence is free | `check_mystery()` / `check_parts()` — zero API calls |
 | Adding one new source | Use `scripts/extract_from_pdfs.py <file-or-dir> --protocol P1` (`python3`, not `python`), not the frozen bulk pipeline |
+
+### 4. Does it serve stress-free, narrative-first play over "twitch" mastery?
+
+This is the studio's stated market differentiator (funding deck's "gaming problem" framing:
+the market is dominated by titles rewarding twitch-reflex mastery that excludes casual players,
+and purely win-focused play is linked to increased player anxiety). It's already formalized as
+an explicit "Design Thesis: Casual-First" in MYF's `CLAUDE.md` — CYM had the same intent
+(cooperative deduction over competitive reflexes, AI-run pacing rather than a clock-pressured
+twitch loop) but never wrote it down as an explicit constraint here. Concretely for CYM:
+- No mechanic should reward fast reaction time over reasoning — investigation and interrogation
+  are player-paced, not timer-pressured against other players.
+- The 75% mechanic is cooperative-with-asymmetry, not competitive-with-elimination — nobody is
+  knocked out or loses standing for being on the unlucky 25% of a given clue-share.
+- `gameplay_notes.estimated_playtime` bounds (30–75 min) exist to keep sessions relaxed and
+  finishable in one sitting, not endurance tests.
 
 **Active caching inventory:**
 
