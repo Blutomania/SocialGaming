@@ -5,6 +5,27 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session — July 22, 2026 at 03:01
+**Branch:** `claude/connection-check-lum47r`
+**Latest commit:** `1280fe1`
+
+### Files changed this session
+- `TAXONOMY_EXPANSION_CANDIDATES.md` — Untracked
+
+### Commits this session
+```
+_No new commits_
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
 ## Session 16 — July 22, 2026
 **Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
 **Starting commit:** `57575c1` (tip of `main`)
