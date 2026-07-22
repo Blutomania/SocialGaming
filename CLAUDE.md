@@ -224,8 +224,11 @@ Full list in `SESSIONS.md`. Top priorities:
    - **[DONE]** 3b: Game session store + 8 server endpoints
    - **[DONE]** 3c: WebSocket upgrade + mobile.html phone client + .tscn wiring
    - **[DONE]** 3d: Lobby flow, room codes, host-screen display (Session 14)
-4. **[START HERE]** Phase 3e — Avatar pool system + player history tracking (designed in
-   Session 14, not yet built — see `SESSIONS.md` Session 14 for full spec)
+4. **[START HERE]** Phase 3e — Avatar pool system + player history tracking. Design is now
+   **locked**, not just sketched — full spec in `docs/WIRING.md` under "Avatar system + player
+   profiles (Phase 3e)" (two-layer model: shared era-keyed base looks + persistent per-player
+   signature accessory from a fixed catalog). Nothing is built yet; see that section's
+   "What still needs building" list. Sign off on the proposed 16-item accessory catalog first.
 5. **[DONE]** PR #1 (branch reconciliation) merged into `main` — merge commit `faf52e0`, July 9 2026.
    `main` is now the source of truth: full Godot migration, `deprecated/` Streamlit archive, and
    the PDF-ingestion corpus work are all present.
