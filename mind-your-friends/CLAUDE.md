@@ -9,6 +9,22 @@ other, and answer AI-generated questions. The social loop — not the trivia —
 build is a design-validation prototype, not the shipping architecture. See **Current To-Do
 item 31** — a Godot port is now the top priority before further web-only feature work.
 
+**Studio engine framing (added same session, from the funding deck):** the studio names two
+proprietary engine pillars across every title — **AI Generation** and **Coherence Engine** —
+feeding four outputs: Avatars, Experiences, Social Loops, Gameplay. For MYF: `lib/coherence.js`
+is this title's Coherence Engine instance (see item 6 and item 31 above for the real state of
+the shared-framework question); `lib/claudeClient.js`'s question/fact-bank generation is AI
+Generation; Social Loops = the sabotage-card/wager social layer; Experiences = round rules +
+host personalization; Avatars has no MYF equivalent yet. Also carries the same "stress-free,
+casual-first" design mandate already written up below as this file's own **Design Thesis:
+Casual-First** section — that section already predates and matches the deck's framing, nothing
+to add there.
+
+**Known sync gap:** CYM's `coherence/engine.py` was substantially rebuilt in the same session
+(real `Rule`/`Applicability`/`RuleSet` composition, not just the bare Issue/CoherenceReport
+sketch this branch's copy still has) — pull the current version from CYM's branch before
+actually wiring MYF to it, don't build against the stale copy here.
+
 ## Current To-Do
 1. ~~**Review Round variation types**~~ — 8 variations confirmed. See `GAME_DESIGN.md`.
 2. ~~**Review card mechanic**~~ — FCFS card resolution, fixed 6-card hand (1 picked +
