@@ -5,24 +5,85 @@ Use this file to onboard any new session without losing context.
 
 ---
 
-## Session — July 22, 2026 at 03:01
+## Session 18 — July 22, 2026
 **Branch:** `claude/connection-check-lum47r`
-**Latest commit:** `1280fe1`
+**Starting commit:** `1280fe1` (tip of `main` at session start)
+**Status:** Complete — branch audit/cleanup, MYF consolidation, coherence engine rebuilt +
+optimized, studio-thesis formalization
 
-### Files changed this session
-- `TAXONOMY_EXPANSION_CANDIDATES.md` — Untracked
+### What was done
+1. **Branch audit (32 branches beyond `main`).** Four parallel agents diffed every stale branch
+   against `main`. Result: 11 confirmed fully-merged/empty branches deleted (owner, via GitHub
+   UI — this session's git credential can't delete refs, same 403 policy as pushing to `main`
+   directly). One branch (`claude/verify-root-path-JyDSP`) initially misreported as "safe to
+   delete" by a different session actually contained real unmerged Godot UI fixes — corrected
+   and flagged for review, not deleted. 20 further stale branches individually verdicted
+   DEAD/DUPLICATED/REAL-WORK (see chat transcript) — mostly safe to prune, a few (the "Mind Your
+   Friends" forks) turned out to be real, active MYF work, not noise.
+2. **PR #4 merged** (`claude/phase-3e-avatar-design` → `main`, commit `b2cdcc3`) — the Phase 3e
+   avatar design lock. Had drifted into conflict since `main` moved on; resolved a `SESSIONS.md`
+   session-numbering collision (renumbered the design-lock entry to Session 17) during the merge.
+3. **Mind Your Friends (MYF) consolidated.** Four independent, never-merged forks of this
+   companion trivia game (built by past sessions with no cross-awareness) got compared in depth
+   and consolidated onto `dev/mind-your-friends` (recreated — it had been an empty placeholder),
+   based on the most complete fork (`continuation-r0mhfq`) with the coherence-engine files and a
+   standalone API route cherry-picked in from two of the others.
+4. **Godot port decided for MYF.** Reasoning backward from Steam/PlayStation distribution: MYF's
+   Next.js client has no clean console path, so it converges onto CYM's already-proven
+   Godot+FastAPI stack. Recorded as MYF's top-priority to-do (that project's own `CLAUDE.md`).
+5. **Comprehensive mystery-craft taxonomy research pass** — four parallel research threads
+   (Golden Age rules canon incl. Van Dine's 20 Rules and the full Knox Decalogue; locked-room
+   typology via Carr + subgenre taxonomy via Symons; modern procedural/cozy/hardboiled/
+   psychological-suspense conventions; interactive/multiplayer mystery design) produced ~50
+   candidate taxonomy additions, staged in `TAXONOMY_EXPANSION_CANDIDATES.md` — not yet adopted.
+   Headline finding: Robin D. Laws' GUMSHOE "core-clue guarantee" and Justin Alexander's
+   (Inverted) Three Clue Rule directly ground and critique the 75% clue-sharing mechanic; no
+   existing design literature precedents the mechanic itself, which should be validated
+   empirically, not defended by citation.
+6. **`coherence/engine.py` + `coherence_validator.py` rebuilt.** New `Rule`/`Applicability`/
+   `RuleSet` shape (severity and applicability as two orthogonal axes — a narrowly-applicable
+   rule isn't automatically lesser). All ~20 existing checks migrated as a behavior-preserving
+   refactor (verified against the real `mystery_database/generated/` corpus — zero regressions).
+   Added two new rules from the research: critical-evidence redundancy raised from 2 to 3
+   (GUMSHOE/Three Clue Rule, protects the 75% mechanic), and a naturalistic-causality check
+   (Knox Commandment 2) — the latter caught and fixed a real false positive during testing
+   ("possessed" meaning "had in his possession," not supernatural possession).
+7. **Coherence engine optimized on 4 dimensions:** (a) cost — `check_parts()` was documented as
+   the intended pre-generation gate but never actually wired in; added `_ensure_parts_coherent()`
+   to `server/main.py`, a free targeted-resample repair loop, verified against both a genuine
+   BLOCKING repair and an honest can't-fully-resolve case; (b) latency — benchmarked (not
+   assumed) at ~0.23ms/~0.05ms per call, not a bottleneck, added `scripts/coherence_benchmark.py`
+   as a regression guard; (c) precision — audited every regex keyword list against the actual
+   field each rule reads; found and fixed one more real bug ("mark" colliding with the name
+   "Mark"); (d) telemetry — added `rule_hits` to `_coherence` output and
+   `scripts/rule_telemetry.py` to correlate against `_meta.viability_rating` once real ratings
+   exist (none do yet — `POST /rate` has never actually been called).
+8. **Funding-deck studio thesis formalized.** Re-checked the pitch deck (`Ur Social Games` v8,
+   shared with Claude Code this session, not committed to the repo) against the docs. Added a
+   "Studio Engine" section to `CLAUDE.md` mapping the deck's "two pillars, four outputs" framing
+   (AI Generation + Coherence Engine → Avatars/Experiences/Social Loops/Gameplay) to real files,
+   and a 4th Design Principle formalizing the deck's casual-first/anti-twitch differentiator for
+   CYM specifically (MYF already had an equivalent Design Thesis section).
 
-### Commits this session
-```
-_No new commits_
-```
+### Decisions
+- `verify-root-path-JyDSP` and the "Mind Your Friends" forks: keep, don't delete — real
+  unmerged/uncoordinated work, not noise, despite looking like it from branch names alone.
+- MYF gets a Godot port before further web-only feature work — decided from platform
+  distribution constraints, not engineering preference.
+- New coherence rules land at WARNING, not BLOCKING, until validated against more real
+  generations — Retrospective Inevitability and No-Coincidence Resolution (both need semantic
+  cross-suspect comparison this codebase's regex style can't safely do) deliberately deferred
+  rather than shipped as fragile heuristics.
 
-### Session notes
-_No additional notes recorded_
-
-### Resume from here
-See **Consolidated To-Do List** above for next steps.
-Check `CLAUDE.md` for project conventions and current priorities.
+### What is next
+1. Decide whether to actually adopt any of `TAXONOMY_EXPANSION_CANDIDATES.md`'s ~50 candidates
+   into `extraction_protocols.py` — nothing there is committed to yet.
+2. MYF's Godot port (that project's own `CLAUDE.md`, item 31) — a real scope decision, not done
+   this session.
+3. Re-run `scripts/rule_telemetry.py` once real viability ratings start coming in via `POST /rate`.
+4. Review the 20 remaining stale-branch verdicts from item 1 and decide what to keep/prune —
+   several still need a human look, not just the agents' summary.
+5. Resume Phase 3e build (avatar pool system) — design is locked (PR #4), nothing built yet.
 
 ---
 

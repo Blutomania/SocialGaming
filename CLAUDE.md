@@ -253,35 +253,35 @@ GodotSteam is the best Steamworks path; Godot Linux export = Steam Deck support 
 
 ---
 
-## Current To-Do (as of July 9, 2026)
+## Current To-Do (as of July 22, 2026 — Session 18)
 
 Full list in `SESSIONS.md`. Top priorities:
 
-1. **[DONE]** Phase 1 — FastAPI server + Godot project scaffold
-2. **[DONE]** Phase 2 — Single-player Godot prototype (all 5 screens functional)
-3. **[DONE]** Phase 3 — Multiplayer investigation phases + clue sharing
-   - **[DONE]** 3a: Mystery gen updated (investigation_areas + leads in JSON)
-   - **[DONE]** 3b: Game session store + 8 server endpoints
-   - **[DONE]** 3c: WebSocket upgrade + mobile.html phone client + .tscn wiring
-   - **[DONE]** 3d: Lobby flow, room codes, host-screen display (Session 14)
-4. **[START HERE]** Phase 3e — Avatar pool system + player history tracking. Design is now
-   **locked**, not just sketched — full spec in `docs/WIRING.md` under "Avatar system + player
-   profiles (Phase 3e)" (two-layer model: shared era-keyed base looks + persistent per-player
-   signature accessory from a fixed catalog). Nothing is built yet; see that section's
-   "What still needs building" list. Sign off on the proposed 16-item accessory catalog first.
-5. **[DONE]** PR #1 (branch reconciliation) merged into `main` — merge commit `faf52e0`, July 9 2026.
-   `main` is now the source of truth: full Godot migration, `deprecated/` Streamlit archive, and
-   the PDF-ingestion corpus work are all present.
-6. **[DONE]** The five superseded branches were confirmed deleted (owner, July 9 2026):
-   `claude/review-godot-migration-GiLDz`, `claude/fix-godot-performance-QyXLQ`,
-   `claude/start-godot-migration-mNrWD`, `claude/setup-api-and-mysteries-LRLQK`,
-   `claude/mystery-versioning-system-TPblK`
-7. **[ONGOING]** Corpus growth — 12 PDF-sourced entries added so far via
-   `scripts/extract_from_pdfs.py`; keep adding one quality source at a time as they're found
-8. **[FUTURE]** Phase 4 — Steam integration (GodotSteam plugin)
-
-> **Next session should branch from `main`, not from `claude/mystery-pdf-extraction-0fisq0`** —
-> that branch's work is now merged and it's a dead end going forward.
+1. **[DONE]** Phases 1–3 — FastAPI server, single-player Godot prototype, multiplayer
+   investigation phases + clue sharing (3a–3d, see `SESSIONS.md` Sessions 1–15 for detail)
+2. **[START HERE]** Phase 3e — Avatar pool system + player history tracking. Design is **locked**
+   (PR #4, merged) — full spec in `docs/WIRING.md` under "Avatar system + player profiles
+   (Phase 3e)". Nothing is built yet; see that section's "What still needs building" list. Sign
+   off on the proposed 16-item accessory catalog first.
+3. **[DONE]** Branch hygiene, round 2 (Session 18) — 32 stale branches beyond `main` audited via
+   4 parallel agents. 11 confirmed fully-merged/empty ones deleted by the owner via GitHub UI
+   (this session's git credential can't delete refs — same 403 policy as pushing to `main`
+   directly). 20 more individually verdicted (dead/duplicated/real-work) but not yet acted on —
+   see `SESSIONS.md` Session 18 for the full list and next-session to-do #4 below. One
+   (`claude/verify-root-path-JyDSP`) contains real unmerged Godot UI fixes — do not delete,
+   review and cherry-pick.
+4. **[ONGOING]** Mystery taxonomy expansion — `TAXONOMY_EXPANSION_CANDIDATES.md` has ~50
+   research-backed candidate additions to `extraction_protocols.py` (Session 18), staged but
+   **not yet adopted**. Decide which to formalize next.
+5. **[DONE]** `coherence/engine.py` + `coherence_validator.py` rebuilt on a real `Rule`/
+   `Applicability`/`RuleSet` shape (Session 18) and optimized on cost/latency/precision/telemetry
+   — see that session's `SESSIONS.md` entry. `check_parts()` is now actually wired into
+   generation (`server/main.py`'s `_ensure_parts_coherent()`), not just documented.
+6. **[ONGOING]** Corpus growth — 12 PDF-sourced entries added via `scripts/extract_from_pdfs.py`;
+   keep adding one quality source at a time as they're found
+7. **[FUTURE]** Phase 4 — Steam integration (GodotSteam plugin)
+8. **[FUTURE]** Once `POST /rate` starts getting real calls, run `scripts/rule_telemetry.py` to
+   see which coherence rules actually predict mystery quality vs. which just fire a lot
 
 > **DO NOT re-run the frozen bulk corpus pipeline** (`deprecated/run_corpus_pipeline.py`). Expand
 > the corpus only via `scripts/extract_from_pdfs.py`, adding one quality source at a time.
