@@ -5,6 +5,27 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session — July 29, 2026 at 19:11
+**Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
+**Latest commit:** `60cf31c`
+
+### Files changed this session
+- `SCREEN_CRAFT_FINDINGS.md` — Untracked
+
+### Commits this session
+```
+60cf31c Log Session 18: branch audit, PR #4 review, dev/mind-your-friends flagged as separate project
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
 ## Session 18 — July 22, 2026
 **Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
 **Starting commit:** `b2cdcc3` (tip of `main`, after PR #4 and PR #5 merged)
