@@ -5,6 +5,82 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 20 — July 29, 2026
+**Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
+**Starting commit:** `82cd423`
+**Status:** Complete — anthology ingestion support added and verified against a real 822-page
+short-story collection; batch of other new-source files reviewed but not yet processed
+
+### What was done
+The owner pushed several files into `mystery_database/new_sources/`, intending to send one short-
+story anthology PDF but sweeping in a whole local staging folder. Triaged all 10:
+
+- 4 already match existing extraction slugs exactly (Circular Staircase, Greene Murder Case,
+  Leavenworth Case, Red House Mystery) — harmless no-ops, `extract_from_pdfs.py`'s dedup check
+  skips them automatically.
+- 3 are full novels (Benjamin Stevenson ×2, Tana French's *Faithful Place*) — legitimate future
+  corpus additions, queued for later one-at-a-time ingestion per usual.
+- 1 (`In the Fog, by Richard Harding Davis.html`) is an `.html` file — `extract_from_pdfs.py` only
+  reads PDFs via `pypdf`; unsupported as-is regardless of the short-story question.
+- 1 (`The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf`, 822 pages, 63 stories) is the
+  anthology the owner actually meant to send — and confirmed the motivating case for this
+  session's work: `extract_from_pdfs.py` assumed one PDF = one continuous novel-length narrative
+  (begin/middle/end sampling capped at `MAX_TEXT_CHARS=6000`), which would either splice together
+  fragments of unrelated stories or silently discard most of a multi-story file.
+
+Added `--anthology` mode to `scripts/extract_from_pdfs.py`:
+- Detects per-story boundaries via a formatting pattern common to this kind of anthology — an
+  ALL-CAPS byline immediately followed by a title line, at the very top of each story's first
+  page — rather than trying to align a Contents-page listing against body text (title punctuation
+  routinely differs between the two, confirmed on this file: TOC "YOU CANT BLAME ME" vs. body
+  "You Can't Blame Me").
+- Skips all front matter by scanning only after the last "CONTENTS" heading, avoiding false
+  positives on the title page (which has the same "ALL-CAPS name over a title-cased line" shape).
+- Uses each story's **full text** for extraction rather than begin/middle/end sampling — sampling
+  exists to cheaply approximate a full novel (a ~1% sample of a 300K+ char, mostly-redundant text);
+  applied to a ~25K-char short story it would cut ~75% of a text with no slack, in three
+  disconnected chunks. Cost check: full-text vs. sliced across all 63 stories on Haiku 4.5 differs
+  by about $0.30 total (~$0.10 sliced vs. ~$0.41 full-text for P1 input tokens) — negligible next
+  to the quality/coherence risk sampling introduces on short-form prose. A per-story fallback to
+  begin/middle/end sampling still applies past `ANTHOLOGY_FULLTEXT_THRESHOLD` (25,000 chars) to
+  bound the rare outlier-length story.
+- Emits one output JSON per story with its own `source_id`, `--dry-run` support to review the
+  detected split before spending any API calls, and a Contents-count cross-check as a sanity
+  warning (not a hard gate).
+
+**Verified against the real file** (dry-run, no API calls): detected all **63 of 63** stories
+correctly on the first real pass but one — `#8` (a Jack Ritchie story whose title has zero
+alphabetic characters) was initially skipped by an overly strict title-line heuristic; fixed and
+re-verified 63/63 exact.
+
+**Also fixed a real, already-live bug found while building this**: `part_registry.py`'s
+`_atomize_extraction()` derived each source's `source_id` from `f.stem[:8]` (first 8 characters of
+the filename). The four `pdf_the_*` extractions already in the corpus all collapse to the same
+`source_id` (`corpus_pdf_the_`) today, silently defeating `sample_for_generation`'s
+`max_per_source` diversity constraint — confirmed via direct inspection, not yet visible in
+`part_registry.json` only because that file hasn't been regenerated since those sources were
+added. Multiple stories from one anthology sharing a filename prefix would have made this far
+worse (all 63 collapsing to one source). Fixed by hashing the full filename stem instead of
+truncating it.
+
+### Decision
+Anthology support lives as a separate `--anthology` mode rather than auto-detected — the existing
+single-novel path (and its cost-driven sampling) stays untouched for the three queued novels.
+
+### What is next
+1. Actually run `--anthology` against `The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf`
+   for real (needs `ANTHROPIC_API_KEY`, not set in this session) — the dry-run split is verified,
+   nothing has been extracted yet.
+2. Ingest the three queued novels one at a time, per the usual process.
+3. `.html` source support is a real gap if the owner wants to ingest non-PDF sources later (the
+   Richard Harding Davis novella) — not built, not requested yet.
+4. Once the registry is next rebuilt from `mystery_database/extractions/`, verify the `source_id`
+   fix actually resolves the diversity-constraint bug in practice (checked functionally in this
+   session via a throwaway in-memory `PartRegistry`, not by regenerating the committed
+   `part_registry.json`).
+
+---
+
 ## Session 19 — July 29, 2026
 **Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
 **Starting commit:** `60cf31c` (tip after Session 18 merged)

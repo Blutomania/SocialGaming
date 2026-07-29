@@ -61,7 +61,7 @@ Current phase: **Phase 3d — Lobby flow, room codes, QR display on host screen*
 | `coherence_validator.py` | P1 causal-chain + witness + evidence checks (free — no API call) |
 | `localization.py` | Era-appropriate name/occupation localization with 3-tier disk cache |
 | `extraction_protocols.py` | P1–P4 taxonomy definitions — still active, used by `scripts/extract_from_pdfs.py` |
-| `scripts/extract_from_pdfs.py` | Sanctioned way to add a **single new source** (e.g. a PDF) to the live corpus — extracts P1 parts, writes to `mystery_database/extractions/`. Distinct from the frozen bulk pipeline below. Invoke with `python3`, not `python` (this environment has no `python` alias). |
+| `scripts/extract_from_pdfs.py` | Sanctioned way to add a **single new source** (e.g. a PDF) to the live corpus — extracts P1 parts, writes to `mystery_database/extractions/`. Distinct from the frozen bulk pipeline below. Invoke with `python3`, not `python` (this environment has no `python` alias). Add `--anthology` for a short-story collection PDF (one novel-narrative sampling per file otherwise) — detects per-story boundaries and extracts each story as its own corpus source with its own full text; always `--dry-run` an anthology first to review the detected split before spending API calls. |
 | `docs/WIRING.md` | **Canonical generation architecture** — read before touching generation |
 | `SESSIONS.md` | Session-by-session history and full to-do list |
 | `RESEARCH_FINDINGS.md` | Writer-grounded mystery taxonomy (C1–C6, M1–M8, F1–F12) — prose novelists |
@@ -240,7 +240,13 @@ Full list in `SESSIONS.md`. Top priorities:
    `claude/start-godot-migration-mNrWD`, `claude/setup-api-and-mysteries-LRLQK`,
    `claude/mystery-versioning-system-TPblK`
 7. **[ONGOING]** Corpus growth — 12 PDF-sourced entries added so far via
-   `scripts/extract_from_pdfs.py`; keep adding one quality source at a time as they're found
+   `scripts/extract_from_pdfs.py`; keep adding one quality source at a time as they're found.
+   Anthology/short-story-collection PDFs are now supported via `--anthology` (Session 20) — see
+   Key Files above. `mystery_database/new_sources/` currently holds an unprocessed batch: three
+   full novels (Stevenson ×2, Tana French) queued for later one-at-a-time ingestion, one `.html`
+   file (`extract_from_pdfs.py` only reads PDFs — unsupported as-is), and the already-verified
+   anthology (`The_Best_of_Mystery_1980_Anthology`, 63/63 stories detected correctly via
+   `--dry-run`) not yet actually run against the API.
 8. **[FUTURE]** Phase 4 — Steam integration (GodotSteam plugin)
 9. **[ONGOING]** Repo-wide branch cleanup (Session 18) — 9 fully-merged branches identified as
    safe to delete, plus a further 21 stale unmerged branches the owner is triaging on their own

@@ -16,6 +16,7 @@ This makes every output auditable and non-repeatable.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import random
 from collections import defaultdict
@@ -382,7 +383,11 @@ class PartRegistry:
                 # test_*_p1p2.json files nest fields under "extracted" key
                 if "extracted" in data:
                     data = data["extracted"]
-                source_id = f"corpus_{f.stem[:8]}"
+                # Hash the full stem rather than truncating it — filenames sharing
+                # a long common prefix (e.g. multiple stories extracted from one
+                # anthology PDF) would otherwise collapse onto the same source_id
+                # and silently defeat sample_for_generation's diversity constraint.
+                source_id = f"corpus_{hashlib.sha1(f.stem.encode()).hexdigest()[:8]}"
                 title = data.get("_meta", {}).get("title", source_id)
                 self._atomize_extraction(data, source_id, title)
                 added += 1
