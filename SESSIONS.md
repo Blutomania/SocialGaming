@@ -5,6 +5,115 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 19 — July 29, 2026
+**Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
+**Starting commit:** `60cf31c` (tip after Session 18 merged)
+**Status:** Complete — two new craft-grounding companion docs; session interrupted mid-flow by
+a client-side hangup, resumed and closed out properly here (see also `SOURCING_METHODOLOGY.md`,
+added this session)
+
+> Note: this entry replaces three raw, unedited auto-summaries the `Stop` hook committed during
+> the interruption (`d5fdb2b`, `987c49a`'s summary, and one more — commits `3647bd8`, `7839022`,
+> and the summary that would have followed `987c49a`). Those auto-summaries had no notes and
+> cluttered the log with duplicate commit dumps; the real work they point to is captured properly
+> below instead. Nothing was reverted — only the log entries describing it were consolidated.
+
+### What was done
+Kicked off **CLAUDE.md Current To-Do item 10** (RAG for mystery best-practices): extended the
+writer-grounded taxonomy in `RESEARCH_FINDINGS.md` to two new media types, as companion docs:
+
+- **`SCREEN_CRAFT_FINDINGS.md`** — mystery film/TV directors and screenwriters: Rian Johnson,
+  Steven Moffat, John Hoffman, Chris Chibnall, Nic Pizzolatto, Anthony Horowitz, Alfred Hitchcock,
+  Christopher McQuarrie. Maps findings onto existing P1–P4 taxonomy codes where they fit, and
+  explicitly flags genuinely new concepts (e.g. "howcatchem" as a second structural mode,
+  production-security-as-craft-practice) for future taxonomy discussion rather than silently
+  editing the codes.
+- **`PARTY_CRAFT_FINDINGS.md`** — live/social-deduction game craft: Jackbox Games, Murder Mystery
+  Co, Steven Medway (*Blood on the Clocktower*), plus a Part 2 of player-experience/testimonial
+  evidence kept in a visibly separate citation register from Part 1's design authority. This is
+  arguably the most directly relevant companion doc, since it grounds *mechanics* (the 75%
+  sharing mechanic, interrogation phase, competitive accusation endgame) rather than prose/screen
+  plot construction.
+
+Both docs independently arrived at the same sourcing discipline: confidence-tiered citations
+(`[full text verified]` vs. WebSearch-snippet-attributed vs. `[third-party analysis]`), and a
+rule that a candidate new-taxonomy concept only gets flagged as higher-confidence once 2+
+independent creators name it. This session extracted that discipline into a standalone
+**`SOURCING_METHODOLOGY.md`** so it's explicit and reusable for the next media type, rather than
+re-derived per document.
+
+**Known constraint discovered:** direct `WebFetch` to most interview/article hosts is blocked by
+this session's egress policy (403 on CONNECT, confirmed via `$HTTPS_PROXY/__agentproxy/status`
+as a policy denial, not a site-side block). `WebSearch` still returns attributed excerpts, so
+that's the default research path; user-pasted full text (used for the Hitchcock and McQuarrie
+sections) is the way to reach `[full text verified]` confidence when needed.
+
+### Decision
+Neither companion doc is wired into the actual generation prompt (`server/main.py`) yet, and
+shouldn't be until quotes are verified against full source text — both docs say so explicitly.
+This session's scope was documentation only: consolidate the log, update the to-do, codify the
+sourcing process. Wiring retrieval into generation is separate follow-on work, tracked as its own
+to-do item now that the source material exists.
+
+### What is next
+1. **True-crime podcast producers/hosts** — the one media type discussed but not yet captured;
+   per `SOURCING_METHODOLOGY.md`, scope strictly to hosts' own craft-reflection commentary
+   ("what makes this case compelling"), never the underlying case narrative itself.
+2. **Verification pass** — confirm WebSearch-snippet-sourced quotes in both new docs against full
+   source text before any of this feeds a generation prompt.
+3. **Build the actual RAG wiring** — once verified, extend `server/main.py`'s
+   `_generate_mystery_dict()` to retrieve and inject relevant craft guidance from all three
+   companion docs, keyed off the sampled parts/setting. Not started.
+4. **Taxonomy discussion** — each companion doc's "New concepts flagged" sections have accumulated
+   real candidates (e.g. howcatchem mode, production-security practices, secondary per-player
+   objectives) that need a human decision on whether to formally add to `extraction_protocols.py`.
+
+---
+
+## Session 18 — July 22, 2026
+**Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
+**Starting commit:** `b2cdcc3` (tip of `main`, after PR #4 and PR #5 merged)
+**Status:** Complete — repo-wide branch audit; PR #4 reviewed and merged
+
+### What was done
+- Reviewed **PR #4** ("Lock Phase 3e design: two-layer avatar model + player profile schema"):
+  docs-only, sound content, but flagged two issues before merge — a duplicate "Session 16" label
+  colliding with this session's own log entry, and a wrong branch name in that entry. Owner
+  merged it and resolved the conflict directly (renumbered to Session 17, fixed the branch name,
+  added a note explaining the collision) — see that entry above.
+- Ran a full audit of every branch on `origin` beyond `main` (31 total). Findings:
+  - **9 branches are fully absorbed into `main` already** (zero unique commits) — safe to delete
+    with no risk of losing work: `claude/blissful-wozniak-Z0wIU`, `claude/mystery-pdf-extraction-0fisq0`,
+    `claude/post-merge-docs-sync`, `claude/review-and-resume-1k0tP`,
+    `claude/review-changes-mmmec1tknjh846kb-08C3q`, `claude/strike-stale-branch-note`,
+    `claude/phase-3e-avatar-design` (now merged as PR #4), `dev/choose-your-mystery`,
+    `dev/cryptic-challenge`. Owner to delete via GitHub UI — `git push --delete` is blocked by the
+    same 403 policy that blocks direct pushes to `main`, and no branch-delete tool is exposed via
+    the GitHub MCP server either.
+  - **`dev/mind-your-friends` is NOT stale** — pushed 2026-07-22 (same day), 43 commits, and its
+    diff vs `main` actively reverses the Godot/FastAPI reconciliation (deletes `server/main.py`,
+    `server/Dockerfile`, the mobile client; un-deprecates old Streamlit files). Owner confirmed
+    this is a **real, separate second project** ("MYF") intentionally sharing this repo. **Do not
+    touch, delete, or merge anything on this branch** — it is out of scope for Choose Your Mystery
+    cleanup work entirely.
+  - **21 branches have real unique commits (1–39 each) but no open PR**, dating from Feb–July
+    2026 — never reviewed, never merged, never cleaned up. Owner has made their own list of which
+    of these (excluding `dev/*`) to delete and will handle it on their own schedule outside this
+    session. No action taken on these here.
+
+### Decision
+`dev/mind-your-friends` is confirmed off-limits for any Choose Your Mystery repo cleanup —
+treat it as a separate project's branch that happens to live in the same repo. Do not include it
+in future branch-hygiene passes.
+
+### What is next
+- Owner will delete the 9 confirmed-safe branches plus their own selection from the 21 stale ones,
+  at their own pace — no follow-up needed from a session unless asked.
+- Next thread of work (starting immediately after this log entry): RAG (retrieval-augmented
+  generation) for mystery best-practices — not yet scoped; see next session entry.
+
+---
+
 ## Session 16 — July 22, 2026
 **Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
 **Starting commit:** `57575c1` (tip of `main`)
