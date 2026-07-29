@@ -213,7 +213,7 @@ GodotSteam is the best Steamworks path; Godot Linux export = Steam Deck support 
 
 ---
 
-## Current To-Do (as of July 9, 2026)
+## Current To-Do (as of July 22, 2026)
 
 Full list in `SESSIONS.md`. Top priorities:
 
@@ -224,8 +224,8 @@ Full list in `SESSIONS.md`. Top priorities:
    - **[DONE]** 3b: Game session store + 8 server endpoints
    - **[DONE]** 3c: WebSocket upgrade + mobile.html phone client + .tscn wiring
    - **[DONE]** 3d: Lobby flow, room codes, host-screen display (Session 14)
-4. **[START HERE]** Phase 3e — Avatar pool system + player history tracking. Design is now
-   **locked**, not just sketched — full spec in `docs/WIRING.md` under "Avatar system + player
+4. **[START HERE]** Phase 3e — Avatar pool system + player history tracking. Design is locked and
+   merged (PR #4, Session 17) — full spec in `docs/WIRING.md` under "Avatar system + player
    profiles (Phase 3e)" (two-layer model: shared era-keyed base looks + persistent per-player
    signature accessory from a fixed catalog). Nothing is built yet; see that section's
    "What still needs building" list. Sign off on the proposed 16-item accessory catalog first.
@@ -239,9 +239,12 @@ Full list in `SESSIONS.md`. Top priorities:
 7. **[ONGOING]** Corpus growth — 12 PDF-sourced entries added so far via
    `scripts/extract_from_pdfs.py`; keep adding one quality source at a time as they're found
 8. **[FUTURE]** Phase 4 — Steam integration (GodotSteam plugin)
-
-> **Next session should branch from `main`, not from `claude/mystery-pdf-extraction-0fisq0`** —
-> that branch's work is now merged and it's a dead end going forward.
+9. **[ONGOING]** Repo-wide branch cleanup (Session 18) — 9 fully-merged branches identified as
+   safe to delete, plus a further 21 stale unmerged branches the owner is triaging on their own
+   schedule (see `SESSIONS.md` Session 18). **`dev/mind-your-friends` is a separate, real second
+   project sharing this repo — do not touch it in any cleanup pass.**
+10. **[START HERE next]** RAG (retrieval-augmented generation) for mystery best-practices — not
+    yet scoped as of this entry; see the next `SESSIONS.md` entry once it exists.
 
 > **DO NOT re-run the frozen bulk corpus pipeline** (`deprecated/run_corpus_pipeline.py`). Expand
 > the corpus only via `scripts/extract_from_pdfs.py`, adding one quality source at a time.

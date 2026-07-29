@@ -5,6 +5,50 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 18 — July 22, 2026
+**Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
+**Starting commit:** `b2cdcc3` (tip of `main`, after PR #4 and PR #5 merged)
+**Status:** Complete — repo-wide branch audit; PR #4 reviewed and merged
+
+### What was done
+- Reviewed **PR #4** ("Lock Phase 3e design: two-layer avatar model + player profile schema"):
+  docs-only, sound content, but flagged two issues before merge — a duplicate "Session 16" label
+  colliding with this session's own log entry, and a wrong branch name in that entry. Owner
+  merged it and resolved the conflict directly (renumbered to Session 17, fixed the branch name,
+  added a note explaining the collision) — see that entry above.
+- Ran a full audit of every branch on `origin` beyond `main` (31 total). Findings:
+  - **9 branches are fully absorbed into `main` already** (zero unique commits) — safe to delete
+    with no risk of losing work: `claude/blissful-wozniak-Z0wIU`, `claude/mystery-pdf-extraction-0fisq0`,
+    `claude/post-merge-docs-sync`, `claude/review-and-resume-1k0tP`,
+    `claude/review-changes-mmmec1tknjh846kb-08C3q`, `claude/strike-stale-branch-note`,
+    `claude/phase-3e-avatar-design` (now merged as PR #4), `dev/choose-your-mystery`,
+    `dev/cryptic-challenge`. Owner to delete via GitHub UI — `git push --delete` is blocked by the
+    same 403 policy that blocks direct pushes to `main`, and no branch-delete tool is exposed via
+    the GitHub MCP server either.
+  - **`dev/mind-your-friends` is NOT stale** — pushed 2026-07-22 (same day), 43 commits, and its
+    diff vs `main` actively reverses the Godot/FastAPI reconciliation (deletes `server/main.py`,
+    `server/Dockerfile`, the mobile client; un-deprecates old Streamlit files). Owner confirmed
+    this is a **real, separate second project** ("MYF") intentionally sharing this repo. **Do not
+    touch, delete, or merge anything on this branch** — it is out of scope for Choose Your Mystery
+    cleanup work entirely.
+  - **21 branches have real unique commits (1–39 each) but no open PR**, dating from Feb–July
+    2026 — never reviewed, never merged, never cleaned up. Owner has made their own list of which
+    of these (excluding `dev/*`) to delete and will handle it on their own schedule outside this
+    session. No action taken on these here.
+
+### Decision
+`dev/mind-your-friends` is confirmed off-limits for any Choose Your Mystery repo cleanup —
+treat it as a separate project's branch that happens to live in the same repo. Do not include it
+in future branch-hygiene passes.
+
+### What is next
+- Owner will delete the 9 confirmed-safe branches plus their own selection from the 21 stale ones,
+  at their own pace — no follow-up needed from a session unless asked.
+- Next thread of work (starting immediately after this log entry): RAG (retrieval-augmented
+  generation) for mystery best-practices — not yet scoped; see next session entry.
+
+---
+
 ## Session 16 — July 22, 2026
 **Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
 **Starting commit:** `57575c1` (tip of `main`)
