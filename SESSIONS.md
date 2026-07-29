@@ -5,6 +5,29 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session — July 29, 2026 at 19:14
+**Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
+**Latest commit:** `d5fdb2b`
+
+### Files changed this session
+- `CREEN_CRAFT_FINDINGS.md` — Modified
+
+### Commits this session
+```
+d5fdb2b Start SCREEN_CRAFT_FINDINGS.md: Rian Johnson mystery craft capture
+7839022 chore: auto-update SESSIONS.md with session summary [60cf31c]
+60cf31c Log Session 18: branch audit, PR #4 review, dev/mind-your-friends flagged as separate project
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
 ## Session — July 29, 2026 at 19:11
 **Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
 **Latest commit:** `60cf31c`
