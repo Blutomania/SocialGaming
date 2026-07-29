@@ -106,6 +106,21 @@ material is ever used in a generation prompt.
    episode teaser. Flagged as an open thread, not a sourced insight — would need the actual
    audio/transcript (blocked host) to say anything concrete.
 
+### Murder Mystery Co — Hitchcock-Themed Party Templates
+
+**Sourcing note:** full article text provided directly by the user (`[full text verified]`),
+not a `WebSearch` snippet. Still marketing copy for the same company already cited above —
+each row extracts a genuinely reusable structural template rather than the surrounding sales
+copy, same treatment already applied to the "Why Murder Mysteries Are So Fun" entries.
+
+| Concept | Insight | Maps to game system | Source |
+|---|---|---|---|
+| Obstructed/partial observation as the core mechanic (*Rear Window* template) | Frames the party version around "nosy neighbors, suspicious couples, and — yes — a potential killer who's always just out of sight," mirroring the original film's voyeuristic, binoculars-only vantage point. | **Investigation/Scene Phase**, **75% Sharing Mechanic** — a specific technique: give some evidence only as a partial or obstructed view (rather than full, clean access) so players must infer past what they can't directly confirm, not just read a clue card | [Murder Mystery Co — Hitchcock Murder Mysteries Party Ideas](https://www.murdermysteryco.com/hitchcock-murder-mysteries-party-ideas/) |
+| Identity/persona layer as its own mechanic (*Vertigo* template) | Party version built around guests who "explore hidden motivations and fake personas" — not just secrets, but characters actively performing as someone else. | **Social Dynamics**, **Investigation/Scene Phase** — distinct from a simple hidden secret: a character actively presenting as a different identity is a heavier, more deliberate deception mechanic than an ordinary NPC secret | [Murder Mystery Co](https://www.murdermysteryco.com/hitchcock-murder-mysteries-party-ideas/) |
+| Deliberate two-player alliance pairing (*Strangers on a Train* template) | "Pairing guests into unexpected alliances creates the perfect tension, especially when the characters start realizing who they're really dealing with." | **Social Dynamics** — a concrete mechanic distinct from whole-group interrogation: deliberately binding two specific players into a private sub-plot/alliance that only later reveals its cost, rather than every player relating to the group uniformly | [Murder Mystery Co](https://www.murdermysteryco.com/hitchcock-murder-mysteries-party-ideas/) |
+| Tightly-wound alibis as the centerpiece (*Dial M for Murder* template) | Party version emphasizes "tightly wound alibis, clever clues, and dramatic confrontations" as the draw, over atmosphere or character voice. | **Accusation/Reveal Phase**, **Investigation/Scene Phase** — a reminder that for some player groups, the alibi-logic puzzle itself (not theme or performance) is the headline attraction and should be built airtight enough to reward careful reasoning | [Murder Mystery Co](https://www.murdermysteryco.com/hitchcock-murder-mysteries-party-ideas/) |
+| Even suspicion distribution across the whole cast (*Psycho* template) | The goal stated directly: "giving your guests the feeling that anyone — yes, anyone — could be the killer." | Extends **M1 Suspect Architecture**-adjacent thinking into **Social Dynamics** — reinforces spreading plausible suspicion evenly across the full suspect roster rather than letting 2-3 "obvious" characters absorb most of it, so every player-to-player exchange carries some real doubt | [Murder Mystery Co](https://www.murdermysteryco.com/hitchcock-murder-mysteries-party-ideas/) |
+
 ### New concepts flagged (Part 1)
 
 1. **Win Condition Design as a live tension** — Jackbox's "winning is secondary" ethos vs.
@@ -199,7 +214,7 @@ kind of source) rather than to named individuals unless a byline was actually fo
 ## Sources
 
 - Jackbox Games — [Built In Chicago](https://www.builtinchicago.org/articles/jackbox-games-design-party-pack)
-- Murder Mystery Co — [Why Murder Mysteries Are So Fun](https://www.murdermysteryco.com/why-murder-mysteries-are-so-fun/), [Reviews](https://www.murdermysteryco.com/reviews/)
+- Murder Mystery Co — [Why Murder Mysteries Are So Fun](https://www.murdermysteryco.com/why-murder-mysteries-are-so-fun/), [Reviews](https://www.murdermysteryco.com/reviews/), [Hitchcock Murder Mysteries Party Ideas](https://www.murdermysteryco.com/hitchcock-murder-mysteries-party-ideas/) (full text provided by user)
 - Steven Medway / Blood on the Clocktower — [Behind the Curtain #1](https://bloodontheclocktower.com/news/behind-the-curtain-1-total-chaos-sort-of), [#2](https://bloodontheclocktower.com/blogs/news/behind-the-curtain-2-outsiders-why), [#4](https://bloodontheclocktower.com/blogs/news/behind-the-curtain-4-werewolf-clocktower-how-they-are-different-how-they-are-the-same), [#7](https://bloodontheclocktower.com/blogs/news/behind-the-curtain-7-balance), [How did Steven Medway design Blood on the Clocktower?](https://bloodontheclocktower.com/blogs/news/how-did-steven-medway-design-blood-on-the-clocktower); [Storyteller Advice Wiki](https://wiki.bloodontheclocktower.com/Storyteller_Advice); [Draughts London guide](https://draughtslondon.com/mastering-blood-on-the-clocktower/); [Mechanics of Magic](https://mechanicsofmagic.com/2024/04/07/critical-player-blood-on-the-clocktower/); [Meeple Mountain review](https://www.meeplemountain.com/reviews/blood-on-the-clocktower-02/); [Room Escape Artist](https://roomescapeartist.com/2025/05/20/s9e6-steven-medway-blood-clocktower/) (topic pointer only)
 - My Mystery Party — [Testimonials](https://www.mymysteryparty.com/testimonials-1/)
 - Murder Mystery U.S.A. — [Live Testimonials](https://www.murdermystery.com/live-testimonials)
