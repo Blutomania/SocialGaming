@@ -5,72 +5,68 @@ Use this file to onboard any new session without losing context.
 
 ---
 
-## Session — July 29, 2026 at 19:24
+## Session 19 — July 29, 2026
 **Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
-**Latest commit:** `987c49a`
+**Starting commit:** `60cf31c` (tip after Session 18 merged)
+**Status:** Complete — two new craft-grounding companion docs; session interrupted mid-flow by
+a client-side hangup, resumed and closed out properly here (see also `SOURCING_METHODOLOGY.md`,
+added this session)
 
-### Files changed this session
-- `PARTY_CRAFT_FINDINGS.md` — Untracked
+> Note: this entry replaces three raw, unedited auto-summaries the `Stop` hook committed during
+> the interruption (`d5fdb2b`, `987c49a`'s summary, and one more — commits `3647bd8`, `7839022`,
+> and the summary that would have followed `987c49a`). Those auto-summaries had no notes and
+> cluttered the log with duplicate commit dumps; the real work they point to is captured properly
+> below instead. Nothing was reverted — only the log entries describing it were consolidated.
 
-### Commits this session
-```
-987c49a Complete SCREEN_CRAFT_FINDINGS.md: Moffat, Hoffman, Chibnall, Pizzolatto, Horowitz
-3647bd8 chore: auto-update SESSIONS.md with session summary [d5fdb2b]
-d5fdb2b Start SCREEN_CRAFT_FINDINGS.md: Rian Johnson mystery craft capture
-7839022 chore: auto-update SESSIONS.md with session summary [60cf31c]
-60cf31c Log Session 18: branch audit, PR #4 review, dev/mind-your-friends flagged as separate project
-```
+### What was done
+Kicked off **CLAUDE.md Current To-Do item 10** (RAG for mystery best-practices): extended the
+writer-grounded taxonomy in `RESEARCH_FINDINGS.md` to two new media types, as companion docs:
 
-### Session notes
-_No additional notes recorded_
+- **`SCREEN_CRAFT_FINDINGS.md`** — mystery film/TV directors and screenwriters: Rian Johnson,
+  Steven Moffat, John Hoffman, Chris Chibnall, Nic Pizzolatto, Anthony Horowitz, Alfred Hitchcock,
+  Christopher McQuarrie. Maps findings onto existing P1–P4 taxonomy codes where they fit, and
+  explicitly flags genuinely new concepts (e.g. "howcatchem" as a second structural mode,
+  production-security-as-craft-practice) for future taxonomy discussion rather than silently
+  editing the codes.
+- **`PARTY_CRAFT_FINDINGS.md`** — live/social-deduction game craft: Jackbox Games, Murder Mystery
+  Co, Steven Medway (*Blood on the Clocktower*), plus a Part 2 of player-experience/testimonial
+  evidence kept in a visibly separate citation register from Part 1's design authority. This is
+  arguably the most directly relevant companion doc, since it grounds *mechanics* (the 75%
+  sharing mechanic, interrogation phase, competitive accusation endgame) rather than prose/screen
+  plot construction.
 
-### Resume from here
-See **Consolidated To-Do List** above for next steps.
-Check `CLAUDE.md` for project conventions and current priorities.
+Both docs independently arrived at the same sourcing discipline: confidence-tiered citations
+(`[full text verified]` vs. WebSearch-snippet-attributed vs. `[third-party analysis]`), and a
+rule that a candidate new-taxonomy concept only gets flagged as higher-confidence once 2+
+independent creators name it. This session extracted that discipline into a standalone
+**`SOURCING_METHODOLOGY.md`** so it's explicit and reusable for the next media type, rather than
+re-derived per document.
 
----
+**Known constraint discovered:** direct `WebFetch` to most interview/article hosts is blocked by
+this session's egress policy (403 on CONNECT, confirmed via `$HTTPS_PROXY/__agentproxy/status`
+as a policy denial, not a site-side block). `WebSearch` still returns attributed excerpts, so
+that's the default research path; user-pasted full text (used for the Hitchcock and McQuarrie
+sections) is the way to reach `[full text verified]` confidence when needed.
 
-## Session — July 29, 2026 at 19:14
-**Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
-**Latest commit:** `d5fdb2b`
+### Decision
+Neither companion doc is wired into the actual generation prompt (`server/main.py`) yet, and
+shouldn't be until quotes are verified against full source text — both docs say so explicitly.
+This session's scope was documentation only: consolidate the log, update the to-do, codify the
+sourcing process. Wiring retrieval into generation is separate follow-on work, tracked as its own
+to-do item now that the source material exists.
 
-### Files changed this session
-- `CREEN_CRAFT_FINDINGS.md` — Modified
-
-### Commits this session
-```
-d5fdb2b Start SCREEN_CRAFT_FINDINGS.md: Rian Johnson mystery craft capture
-7839022 chore: auto-update SESSIONS.md with session summary [60cf31c]
-60cf31c Log Session 18: branch audit, PR #4 review, dev/mind-your-friends flagged as separate project
-```
-
-### Session notes
-_No additional notes recorded_
-
-### Resume from here
-See **Consolidated To-Do List** above for next steps.
-Check `CLAUDE.md` for project conventions and current priorities.
-
----
-
-## Session — July 29, 2026 at 19:11
-**Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
-**Latest commit:** `60cf31c`
-
-### Files changed this session
-- `SCREEN_CRAFT_FINDINGS.md` — Untracked
-
-### Commits this session
-```
-60cf31c Log Session 18: branch audit, PR #4 review, dev/mind-your-friends flagged as separate project
-```
-
-### Session notes
-_No additional notes recorded_
-
-### Resume from here
-See **Consolidated To-Do List** above for next steps.
-Check `CLAUDE.md` for project conventions and current priorities.
+### What is next
+1. **True-crime podcast producers/hosts** — the one media type discussed but not yet captured;
+   per `SOURCING_METHODOLOGY.md`, scope strictly to hosts' own craft-reflection commentary
+   ("what makes this case compelling"), never the underlying case narrative itself.
+2. **Verification pass** — confirm WebSearch-snippet-sourced quotes in both new docs against full
+   source text before any of this feeds a generation prompt.
+3. **Build the actual RAG wiring** — once verified, extend `server/main.py`'s
+   `_generate_mystery_dict()` to retrieve and inject relevant craft guidance from all three
+   companion docs, keyed off the sampled parts/setting. Not started.
+4. **Taxonomy discussion** — each companion doc's "New concepts flagged" sections have accumulated
+   real candidates (e.g. howcatchem mode, production-security practices, secondary per-player
+   objectives) that need a human decision on whether to formally add to `extraction_protocols.py`.
 
 ---
 

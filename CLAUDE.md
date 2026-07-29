@@ -64,7 +64,10 @@ Current phase: **Phase 3d — Lobby flow, room codes, QR display on host screen*
 | `scripts/extract_from_pdfs.py` | Sanctioned way to add a **single new source** (e.g. a PDF) to the live corpus — extracts P1 parts, writes to `mystery_database/extractions/`. Distinct from the frozen bulk pipeline below. Invoke with `python3`, not `python` (this environment has no `python` alias). |
 | `docs/WIRING.md` | **Canonical generation architecture** — read before touching generation |
 | `SESSIONS.md` | Session-by-session history and full to-do list |
-| `RESEARCH_FINDINGS.md` | Writer-grounded mystery taxonomy (C1–C6, M1–M8, F1–F12) |
+| `RESEARCH_FINDINGS.md` | Writer-grounded mystery taxonomy (C1–C6, M1–M8, F1–F12) — prose novelists |
+| `SCREEN_CRAFT_FINDINGS.md` | Companion to above: film/TV directors & screenwriters craft grounding |
+| `PARTY_CRAFT_FINDINGS.md` | Companion to above: live/social-deduction game mechanics grounding |
+| `SOURCING_METHODOLOGY.md` | Shared sourcing discipline (confidence tiers, corroboration rule) for the three craft-grounding docs above, and the process for adding a new media type |
 
 **Deprecated (do not touch — kept for historical reference only):**
 - `deprecated/` — all pre-Godot Streamlit/HuggingFace-era Python tooling (`app.py`, `cli.py`,
@@ -213,7 +216,7 @@ GodotSteam is the best Steamworks path; Godot Linux export = Steam Deck support 
 
 ---
 
-## Current To-Do (as of July 22, 2026)
+## Current To-Do (as of July 29, 2026)
 
 Full list in `SESSIONS.md`. Top priorities:
 
@@ -243,8 +246,21 @@ Full list in `SESSIONS.md`. Top priorities:
    safe to delete, plus a further 21 stale unmerged branches the owner is triaging on their own
    schedule (see `SESSIONS.md` Session 18). **`dev/mind-your-friends` is a separate, real second
    project sharing this repo — do not touch it in any cleanup pass.**
-10. **[START HERE next]** RAG (retrieval-augmented generation) for mystery best-practices — not
-    yet scoped as of this entry; see the next `SESSIONS.md` entry once it exists.
+10. **[ONGOING]** RAG (retrieval-augmented generation) for mystery best-practices (Session 19) —
+    craft-grounding source material now spans three companion docs: `RESEARCH_FINDINGS.md`
+    (novelists), `SCREEN_CRAFT_FINDINGS.md` (film/TV), `PARTY_CRAFT_FINDINGS.md` (live/social-
+    deduction games). Sourcing discipline codified in `SOURCING_METHODOLOGY.md`. **Not yet wired
+    into generation** — `server/main.py`'s `_generate_mystery_dict()` doesn't reference any of
+    these docs yet, and shouldn't until quotes are verified against full source text (currently
+    WebSearch-snippet-sourced, not fetched in full). Remaining sub-steps, in order:
+    - **[START HERE]** True-crime podcast producer/host craft grounding — the one media type
+      discussed but not yet captured (scope: hosts' own reflection on why a case is compelling,
+      never the case narrative itself — see `SOURCING_METHODOLOGY.md`)
+    - Verification pass on both new companion docs' WebSearch-sourced quotes
+    - Build the actual retrieval + prompt-injection code once verified
+    - Human decision on the accumulated "new concepts flagged" candidates across all three docs
+      (e.g. howcatchem structural mode, production-security-as-craft-practice) — whether any
+      warrant a new `extraction_protocols.py` code
 
 > **DO NOT re-run the frozen bulk corpus pipeline** (`deprecated/run_corpus_pipeline.py`). Expand
 > the corpus only via `scripts/extract_from_pdfs.py`, adding one quality source at a time.
