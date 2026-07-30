@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Serial predation/abduction of women via deceptive phone calls impersonating old acquaintances, luring victims to a secluded house in Crestview Gardens. Central question: who is the killer operating from the mansion, and how many victims are there?",
+    "confidence": "high",
+    "quote": "Vicky Henderson...went out to meet him and never came back."
+  },
+  "victim": {
+    "value": "Vicky Henderson: recently divorced, lonely, living alone, eager to reconnect with old flames, socially naive and easily manipulated by flattery and romantic deception.",
+    "confidence": "high",
+    "quote": "For one so petite, an astonishingly good figure. He was pleased. She was better than most. She would do very well."
+  },
+  "closed_world": {
+    "value": "Isolated mansion on three high-walled acres atop a hill in Crestview Gardens, surrounded by dense woodland, accessible only through electronic gate\u2014a remote estate insulated from outside observation.",
+    "confidence": "high",
+    "quote": "Perched atop a hill in the isolation of three high-walled acres...At the crest of the slope, loomed the long silhouette of the house."
+  },
+  "culprit_and_motive": {
+    "value": "The caretaker/chauffeur with the disfigured face (half-damaged from shrapnel). Motive: compulsion to hunt and lure vulnerable women; sadistic gratification from the hunt and the kill; operates seasonally in summer before family returns from Europe.",
+    "confidence": "high",
+    "quote": "The first thrill came with the hunt...welling up like bitter champagne, there was in him a curious, bubbling triumph"
+  },
+  "resolution": {
+    "value": "Partial\u2014Detectives Linwood and Mallick begin investigation after Rena Whalen reports Vicky missing and discovers the Ed Landrum lead is false. Detectives rule out the real Landrum and Mosby (alibied in Chicago). Resolution incomplete; killer remains at large but under suspicion.",
+    "confidence": "medium",
+    "quote": "Somewhere in Crestview Gardens...The kinda people who live up in Crestview Gardens don't play deadly phone games with lonely women."
+  },
+  "investigator": {
+    "value": "Two detectives, Linwood and Mallick, working from external evidence: missing person report, false identity traces, and the caretaker's cottage as likely base of operations. Limited by killer's careful elimination of evidence.",
+    "confidence": "high",
+    "quote": "Shortly before nine the two detectives were down at headquarters discussing the case. 'This is a beaut,' said Mallick."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 24626,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Voice in the Night",
+    "author": "ROBERT COLBY",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 15,
+    "story_count": 63
+  }
+}

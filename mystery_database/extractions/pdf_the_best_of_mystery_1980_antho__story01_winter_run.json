@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Double homicide by gunshot in a lakeside cottage. Central question: Was the shooting justified self-defense, crime of passion, or premeditated murder masked by circumstance?",
+    "confidence": "high",
+    "quote": "He squeezed the trigger and kept squeezing it, because this time there was no Sergeant Racin to knock the pistol from his hand."
+  },
+  "victim": {
+    "value": "Milt Woodman (seducer and manipulator) and Mrs. Dade (sheriff's wife). Woodman was 'killable' due to his affair with Kendell's fianc\u00e9e Sandy and his pattern of using cottages for illicit encounters. Mrs. Dade becomes collateral victim.",
+    "confidence": "high",
+    "quote": "He's quite a man with the girls, huh? Dade nodded sourly. He always was. He's just a no-good bum."
+  },
+  "closed_world": {
+    "value": "Wagon Lake, a Midwestern suburban town with a frozen lake, shuttered cottages, and a small-town law enforcement structure. Kendell works as deputy patrolling the lake nightly; the confined geography and social intimacy create inevitable collision.",
+    "confidence": "high",
+    "quote": "The town was called Wagon Lake...once so far removed from everywhere, had reckoned without the coming of the automobile and the postwar boom."
+  },
+  "culprit_and_motive": {
+    "value": "Johnny Kendell, the protagonist and deputy, commits the murders. Motive: belief that Sandy and Woodman are in the cottage together, fueled by jealousy, wounded pride, and unresolved trauma from killing an innocent man days before.",
+    "confidence": "high",
+    "quote": "If it was Sandy, he thought that he would kill her...He parked further down the road, and for a long time just sat in the car, smoking."
+  },
+  "resolution": {
+    "value": "There is no formal resolution through investigation or justice. The narrative ends with Kendell's realization of his error\u2014he killed an innocent woman (Mrs. Dade, not Sandy)\u2014and his acceptance of inevitable capture and likely execution.",
+    "confidence": "medium",
+    "quote": "It wasn't Sandy. It was Mrs. Dade, the sheriff's wife...This time he knew they wouldn't be far behind him. This time he knew there'd be no next town, no new life."
+  },
+  "investigator": {
+    "value": "Johnny Kendell himself\u2014the protagonist detective-turned-deputy who investigates the evidence of Sandy's infidelity but becomes the perpetrator. The reader experiences the mystery through his perspective as both investigator and culprit.",
+    "confidence": "high",
+    "quote": "In the bedroom upstairs he found what he sought...It was the mimeographed list Sheriff Dade had given him just two days before, the one Sandy had stuffed into her purse."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Winter Run",
+    "author": "EDWARD D. HOCH",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 1,
+    "story_count": 63
+  }
+}

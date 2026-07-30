@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Two murders by revolver during a game night; central question: how will the trapped victim escape or survive the killers' hunt?",
+    "confidence": "high",
+    "quote": "Cal Tinky held the revolver and the smile steady as the fear grew, cold and pulsating, deep in the pit of Bill's stomach."
+  },
+  "victim": {
+    "value": "Della Darst, Bill's wife of two years; killable because she is a stranger to the Tinkys with no protective social ties, selected for a lethal 'game'",
+    "confidence": "high",
+    "quote": "They had been married only two years, and he still sometimes experienced that feeling of possessive wonderment at what he considered his incomprehensible and undeserving luck."
+  },
+  "closed_world": {
+    "value": "The Tinkys' isolated hilltop mansion in the woods, 2+ miles from nearest neighbor, with barred windows and locked doors throughout\u2014a literal game board designed as a trap",
+    "confidence": "high",
+    "quote": "All the rooms that had windows were inescapable, and all the outside doors were locked."
+  },
+  "culprit_and_motive": {
+    "value": "Cal and Emma Tinky; motive is sadistic entertainment\u2014they hunt human prey as a 'game,' treating real murder as recreation and using the house as a game board",
+    "confidence": "high",
+    "quote": "Cal Tinky looked at his wife over the game board. 'I think he's had enough time,' he said. 'It never takes them more than a few minutes to run to cover.'"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Bill Darst, the surviving victim-protagonist; the reader experiences the mystery through his perspective as he discovers the horror and attempts escape",
+    "confidence": "high",
+    "quote": "Bill whispered her name once, staring at her, wanting to help her, knowing she was dead, finally and forever."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 20110,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Games for Adults",
+    "author": "JOHN LUTZ",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 20,
+    "story_count": 63
+  }
+}

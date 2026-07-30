@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Beating death with lead pipe in residential home during daytime; central question: was it a burglary-homicide or did the husband murder his wife and fake a robbery?",
+    "confidence": "high",
+    "quote": "The woman was beaten to death with the pipe. The photographer said he'd got his pictures and does the captain want him to dust for fingerprints?"
+  },
+  "victim": {
+    "value": "May Eldridge, 33, schoolteacher with ten years of unspent teaching salary accumulated during marriage; killable because her accumulated wealth and her husband's affair with neighbor created motive for murder disguised as robbery.",
+    "confidence": "high",
+    "quote": "when the wife has ten years' worth of teaching salary lying around unspent, you know the answer to that situation isn't going to be divorce, it's going to be murder."
+  },
+  "closed_world": {
+    "value": "A suburban residential neighborhood of tiny brick bungalows packed closely together with limited witness opportunities; the victim's home during a Saturday morning when neighbors are less observant.",
+    "confidence": "high",
+    "quote": "The house was a tiny brick bungalow in an area of tiny brick bungalows, packed together on midget lots with one-car garages in back and just room for a driveway between."
+  },
+  "culprit_and_motive": {
+    "value": "Joseph Eldridge, the husband, killed his wife to free himself for an affair with neighbor Mimi Jenks; promised her marriage and Caribbean luxury in exchange for a false alibi.",
+    "confidence": "high",
+    "quote": "how Eldridge promised her marriage and a life of Caribbean luxury in return for a murder alibi."
+  },
+  "resolution": {
+    "value": "Captain Galton uses psychology and a decoy witness (his daughter Jenny posing as a younger woman with an alibi for Eldridge) to provoke Mimi Jenks into betraying Eldridge out of jealousy, forcing her to reveal his guilt and the stolen jewelry hidden in her possession.",
+    "confidence": "high",
+    "quote": "the moment she thought a younger and prettier girl was also lying to save Eldridge's neck, she'd blow his alibi to kingdom come."
+  },
+  "investigator": {
+    "value": "Captain Mike Galton, an experienced detective with institutional authority; he reads human nature and psychology rather than forensic evidence, using deduction based on social dynamics to solve the case.",
+    "confidence": "high",
+    "quote": "Captain of Detectives Mike Galton, or 'the old man' as he was known to his underlings, looked down at the woman's body."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 16934,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Nothing but Human Nature",
+    "author": "HILLARY WAUGH",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 38,
+    "story_count": 63
+  }
+}

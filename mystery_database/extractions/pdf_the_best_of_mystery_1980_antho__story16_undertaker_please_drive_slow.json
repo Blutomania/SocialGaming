@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Heroin trafficking and burglary: Jack Tamerlane hid a $50,000-65,000 heroin shipment in Nancy Oland's old bedroom while imprisoned. Upon release, Tamerlane and Carrie Milligan forged a letter from the supposedly-dead Nancy to lure her father away from home, then burglarized the house to retrieve the hidden drugs. Central question: Can the detective expose the con and recover the narcotics before Tamerlane escapes?",
+    "confidence": "high",
+    "quote": "Taped under her bureau drawer in a plastic bag...it was worth fifty thousand when I gave it to Nancy to hold. Probably sixty, sixty-five now."
+  },
+  "victim": {
+    "value": "George Oland, the grieving father: made vulnerable by his psychological inability to accept his daughter Nancy's suicide 2.5 years prior, his isolation, and his desperate desire to believe she is alive. This emotional wound makes him an easy mark for exploitation.",
+    "confidence": "high",
+    "quote": "He rested his palms on the coffee table in front of him, then picked up the letters again. 'It's been two and a half years\u2014two years, seven months\u2014but I always knew she hadn't drowned. I knew she'd come back.'"
+  },
+  "closed_world": {
+    "value": "Greater Los Angeles metropolitan area (Glendale, Hollywood, Palm Springs, Disneyland road corridor) with key locations: Oland's isolated home, The Great Depression bar, Birks' Works Farms tourist attraction, and the ghost town within it. The detective can move freely but suspects have limited escape routes.",
+    "confidence": "medium",
+    "quote": "Gland's big brown shingle house was on a wide street, tree lined. Most of it looked like Southern California in the Thirties, pleasant with a porched. Midwest feeling."
+  },
+  "culprit_and_motive": {
+    "value": "Jack Tamerlane (age 28, ex-convict with narcotics record) and accomplice Carrie Milligan. Motive: Retrieve $50,000+ in heroin that Tamerlane gave to Nancy Oland for safekeeping before his arrest. Tamerlane forges letters impersonating dead Nancy to manipulate Oland into leaving home, enabling the burglary.",
+    "confidence": "high",
+    "quote": "So? It got him away from where I'd told Nancy to stow it. I always got good penmanship marks in school. Miss Cooper always said that was the only thing I did good."
+  },
+  "resolution": {
+    "value": "Detective Lowe identifies Tamerlane through police records and locates him at Birks' Works Farms. Lowe confronts Tamerlane at the cottage, pursues him through the grounds into a replica ghost town, and shoots him in the leg when Tamerlane attempts to flee. Tamerlane is apprehended; the heroin scheme is exposed and explained to Oland.",
+    "confidence": "high",
+    "quote": "I shot him in the leg...I had told him most of what I'd found out, about how Tamerlane had highjacked a shipment of heroin coming in from Mexico, given it to Nancy to hide in a safe place for a while."
+  },
+  "investigator": {
+    "value": "Mr. Lowe, a private detective hired by George Oland. Skeptical, world-weary, experienced in skip-tracing and divorce work. He operates outside official law enforcement, conducting interviews and physical surveillance, ultimately apprehending the culprit through direct confrontation rather than institutional means.",
+    "confidence": "high",
+    "quote": "Usually I worked on skip tracing, divorce stuff, bugging and debugging, but every once in a while...a client would show up with an odd one\u2014like Gland's daughter who had come back to life."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 24019,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Undertaker, Please Drive Slow",
+    "author": "RON GOULART",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 16,
+    "story_count": 63
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Serial murder by poisoning (stomach upsets) of wealthy widowers by a woman posing as a potential bride, motivated by theft of their estates. Central question: How many victims did Euphemia Barber claim, and is her descendant repeating the pattern?",
+    "confidence": "high",
+    "quote": "The evidence was clear, and complete...murder it quite clearly was, brutal murder, for profit."
+  },
+  "victim": {
+    "value": "Henrietta Buckley: a seventy-three-year-old widow, financially comfortable, lonely, with adult children distant, and engaged in genealogical research\u2014precisely the vulnerable profile Gerald Fowlkes targets.",
+    "confidence": "high",
+    "quote": "At seventy-three, how many days on this earth do I have left? And how rich life is these days!"
+  },
+  "closed_world": {
+    "value": "The social and epistemic closed world of genealogical research and correspondence networks, where family connections are discovered through magazines and letters, limiting external verification of identities.",
+    "confidence": "medium",
+    "quote": "The Genealogical Exchange had been helpful to me in the past...family trees do interlock"
+  },
+  "culprit_and_motive": {
+    "value": "Gerald Fowlkes (alias or real name unknown), descendant or follower of Euphemia Barber's method, preys on wealthy widows through genealogical connection, courting them to gain access to their estates via inheritance or murder made to appear natural.",
+    "confidence": "high",
+    "quote": "An unscrupulous man, preying on well-to-do widows, could find no better introduction than a common interest in genealogy."
+  },
+  "resolution": {
+    "value": "Henrietta discovers Gerald's deception by cross-referencing letters about Euphemia's multiple marriages and husbands' deaths, verifies his false stockbroker identity, and chooses to marry him anyway while remaining vigilant and documenting his potential future crimes for posthumous exposure.",
+    "confidence": "high",
+    "quote": "It is a list of Gerald's wives. It is in with my genealogical files, which I have willed to the Boston library."
+  },
+  "investigator": {
+    "value": "Mrs. Henrietta Buckley, the intended victim herself\u2014an amateur genealogist who reconstructs historical serial murders through archival research and then becomes a conscious counter-investigator monitoring her own would-be murderer.",
+    "confidence": "high",
+    "quote": "I am gradually compiling another sort of tree...One might facetiously call it a hanging tree."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Never Shake a Family Tree",
+    "author": "DONALD E. WESTLAKE",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 17,
+    "story_count": 63
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Serial murder: seven victims killed by an unknown red-haired male; central question\u2014how will the killer be apprehended when he eludes police roadblocks and grows bolder with each kill?",
+    "confidence": "high",
+    "quote": "So far they found seven of his victims... The police got all the roads blocked for fifty miles around Edmonton."
+  },
+  "victim": {
+    "value": "Multiple victims including a five-year-old child; killable because they were random targets selected after the first murder, when the killer's inhibitions dissolved and victims became interchangeable.",
+    "confidence": "high",
+    "quote": "One of those killed was a boy of five... After the first few, it doesn't matter. You get to like it."
+  },
+  "closed_world": {
+    "value": "A remote highway corridor near Edmonton, Alberta, spanning fifty miles with police blockades; the flat plain with sparse gas stations creates isolation where the killer and his victims are confined to a linear geography.",
+    "confidence": "high",
+    "quote": "The long flat road... the road stretched ahead of us and on both sides there was nothing but the flat plain. Not a house. Not a tree."
+  },
+  "culprit_and_motive": {
+    "value": "The red-haired seventeen-year-old hitchhiker is the serial killer, motivated by psychological rage\u2014he was bullied and dominated his entire life and 'exploded' into violence to become powerful and feared.",
+    "confidence": "high",
+    "quote": "Somebody was always there to tell him what to do... He exploded. A guy can take just so much. Then something's got to give."
+  },
+  "resolution": {
+    "value": "The narrator\u2014the actual killer, disguised as an ordinary driver\u2014uses the hitchhiker's own resemblance to the wanted description to trap and murder him, becoming victim #8 while escaping suspicion.",
+    "confidence": "high",
+    "quote": "He was going to be number eight."
+  },
+  "investigator": {
+    "value": "The protagonist narrator, who is himself the serial killer, serves as the lens through which the reader experiences the mystery; his perspective creates dramatic irony as the hitchhiker unknowingly reveals the killer's psychology.",
+    "confidence": "high",
+    "quote": "I took one hand off the wheel and rubbed the back of my neck... I thought I'd find you somewhere on this highway."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 5427,
+    "protocols": [
+      "P1"
+    ],
+    "title": "#8",
+    "author": "JACK RITCHIE",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 42,
+    "story_count": 63
+  }
+}

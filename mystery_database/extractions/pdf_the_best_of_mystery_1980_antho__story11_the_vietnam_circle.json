@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Death by snake (banded krait) at forward observation post; method: deliberate placement of venomous snake in victim's proximity; central question: how did the snake get into the sealed lookout tower and who placed it there?",
+    "confidence": "high",
+    "quote": "The compound was steeped in gloom...The death of Barclay was the prime topic in every little cluster of Vietnamese."
+  },
+  "victim": {
+    "value": "Staff Sergeant Barclay, senior NCO and detachment commander; killable because he enforced an order forbidding unauthorized raiding patrols, which cost Robson his rank and marriage prospects after court-martial",
+    "confidence": "high",
+    "quote": "Barclay, as the senior NCO, put out an order that members of the detachment would not go out on operational patrols or raids...When Barclay called you on it, you got all worked up about it and read him off."
+  },
+  "closed_world": {
+    "value": "Forward observation post compound in Vietnamese highlands: underground bunker with ladder access to two sealed lookout stations on top; only two men (Barclay and Robson) occupy the stations during night shift with grass cover blocking ladder",
+    "confidence": "high",
+    "quote": "The forward observation post was really two lookout stations built on top of an earthen room...With his foot, he flipped over the grass cover closing off the ladder access to the stations."
+  },
+  "culprit_and_motive": {
+    "value": "Private Munroe Robson, weapons expert and demolitions man; motive: revenge for loss of rank, marriage prospects, and military career caused by Barclay's enforcement of no-raiding order; also bitter about perceived cowardice",
+    "confidence": "high",
+    "quote": "I also understand how yellow Barclay is, he thought...All I was doing was out getting the enemy, and I lost my stripes and my marriage and my time in the Army."
+  },
+  "resolution": {
+    "value": "No formal resolution in excerpt; investigation begins with Major Flynn's arrival and witness interrogation; Robson denies all knowledge and is ordered to accompany Barclay's body to Tan Son Nhut for formal inquiry; case remains technically open to investigator",
+    "confidence": "medium",
+    "quote": "The Major has decided to hold the formal inquiry at the Tan Son Nhut airbase tomorrow...Robson stoically denied any knowledge of the death, and carefully and accurately provided all the details..."
+  },
+  "investigator": {
+    "value": "Lieutenant Higgins, new detachment commander and military authority; investigates through witness interviews and scene inspection; experiences growing doubt about Robson's guilt despite lack of proof",
+    "confidence": "high",
+    "quote": "I have missed something, but I'm damned if I can put my finger on it. There's something out of focus, but I can't lock on to it."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "The Vietnam Circle",
+    "author": "F. J. KELLY",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 11,
+    "story_count": 63
+  }
+}

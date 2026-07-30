@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Fatal car crash on coastal road between two rivals (Joe Dongan and Ralph Napier); classified as 'death by misadventure.' Central question: was it intentional ramming/murder, mutual suicide, or accident?",
+    "confidence": "high",
+    "quote": "The slap of metal as the two cars hit is like a peal o' thunder... they're spinnin' hard toward the guardrail. They crash through, both of 'em plungin' onto the rocks below."
+  },
+  "victim": {
+    "value": "Joe Dongan (and collaterally Ralph Napier). Joe is killable because he is caught between two women (Emma and Bessie), Ralph seeks revenge, and the emotional triangle creates lethal tension.",
+    "confidence": "high",
+    "quote": "Ralph Napier's as smart as he is mean, and he's needlin' Joe Dongan into an attack where there'll be a killin'."
+  },
+  "closed_world": {
+    "value": "Small Maine town (Bancroft, Pisquaticook County) with tight social bonds; Sheriff has limited jurisdiction. The Shore Road becomes the fatal locus\u2014isolated coastal route with cliff and guardrail.",
+    "confidence": "high",
+    "quote": "I reckon the next time I get a chance I'll have a word with her. After all, the cottage is in my territory. I drop around there on a Sat'dy afternoon."
+  },
+  "culprit_and_motive": {
+    "value": "Ralph Napier (joint culprit with Joe, or as aggressor). Motive: rage over Joe marrying Bessie instead of the wealthy widow's inheritance benefiting Ralph's dwindling finances; class resentment; jealousy.",
+    "confidence": "high",
+    "quote": "He yells, 'You'll never marry Bessie except over my dead body.' Ralph goes for his gun... Ralph takes off after him like a cat with salt on his tail."
+  },
+  "resolution": {
+    "value": "Coroner's verdict: 'death by misadventure'\u2014both men dead, no prosecution possible. Sheriff witnesses the crash but cannot intervene. Social resolution: Emma inherits Joe's estate; Bessie loses Joe and must grieve; the feud ends in ironic reconciliation.",
+    "confidence": "high",
+    "quote": "The coroner's verdict called it 'death by misadventure' and when you come to think on it that ain't such a bad name for what happened."
+  },
+  "investigator": {
+    "value": "County Sheriff (narrator, first-person POV). Authority is limited to his county; operates in advisory capacity in Bancroft. He witnesses the crash but arrives too late to prevent it; gathers facts post-mortem.",
+    "confidence": "high",
+    "quote": "As County Sheriff I ain't got no authority in Bancroft and it ain't rightly my affair. All the same, I drop by the office of Steve Roper, Bancroft's Chief of Police."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Death by Misadventure",
+    "author": "WENZELL BROWN",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 34,
+    "story_count": 63
+  }
+}

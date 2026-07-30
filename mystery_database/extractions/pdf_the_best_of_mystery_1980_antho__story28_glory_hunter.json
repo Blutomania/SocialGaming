@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Serial murder by ice pick; planned mass stabbing of hotel guests on top floor. Central question: Can the night clerk stop the killer before he reaches the victims?",
+    "confidence": "high",
+    "quote": "I can go quietly from room to room, using this master key I found in the safe...there won't be any unnecessary uproar or bother."
+  },
+  "victim": {
+    "value": "Seventeen female hotel guests, mostly in single rooms on the top floor of the Cragmore women's hotel. They are vulnerable because they are asleep and isolated.",
+    "confidence": "high",
+    "quote": "I see there are seventeen guests on that floor, most of them in single rooms. That'll make it easier, you know."
+  },
+  "closed_world": {
+    "value": "The Cragmore hotel for women\u2014a locked, respectable establishment with a single night clerk on duty, no house detective, manager asleep on top floor. Bounded by locked doors and social propriety.",
+    "confidence": "high",
+    "quote": "The Cragmore was run very much like the nearby YWCA; no male visitors were allowed inside the building after midnight, when the front door was locked."
+  },
+  "culprit_and_motive": {
+    "value": "Robert Edward Lambeth, age 23. Motive: narcissistic hunger for fame and notoriety. He seeks to become 'the most famous man in the country\u2014in the world' through mass murder.",
+    "confidence": "high",
+    "quote": "in a few hours, Mr. Doyle\u2014in a few hours I'll be the most famous man in the country\u2014in the world."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Homer Doyle, the night clerk. He becomes the only person capable of stopping Lambeth, yet faces a moral crisis: stopping the killer will bring him modest recognition, but allowing the murders will make him famous as the man who took Lambeth's surrender.",
+    "confidence": "high",
+    "quote": "Doyle sat there in a sudden blinding agony of indecision...After all, not only the young have dreams of glory."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 11982,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Glory Hunter",
+    "author": "RICHARD M. ELLIS",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 28,
+    "story_count": 63
+  }
+}

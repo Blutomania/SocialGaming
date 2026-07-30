@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Stabbing murder of Sarah Fletcher with a switchblade knife across the abdomen. Central question: Did the husband Gerald Fletcher commit the crime, or was it the burglar who entered through the kitchen window?",
+    "confidence": "high",
+    "quote": "his wife lay disemboweled on the bedroom floor in a pool of her own blood."
+  },
+  "victim": {
+    "value": "Sarah Fletcher, a married woman leading a double life as 'Sadie Collins,' engaging in serial infidelity to punish her husband Gerald Fletcher for refusing to sign separation papers. She was killable because her promiscuity and emotional manipulation made her a target for both her husband's rage and her own self-destructive behavior.",
+    "confidence": "high",
+    "quote": "Sarah might have asked me to kill her...she begged me to end it for her...when she died."
+  },
+  "closed_world": {
+    "value": "A second-floor rear apartment at 721 Silvermine Oval in an urban setting. The apartment has limited access points: front door and bedroom window opening onto a fire escape and narrow alleyway with a 30-foot drop to pavement below.",
+    "confidence": "high",
+    "quote": "the second-floor rear apartment of 721 Silvermine Oval...There was a distance of perhaps twelve feet between this building and the one across from it."
+  },
+  "culprit_and_motive": {
+    "value": "Gerald Fletcher, Sarah's husband, murdered her in a mercy killing/act of rage. Motive: Sarah's refusal to sign separation papers, her deliberate infidelity documented in 'little black book' marked with 'TG' (Told Gerry), and her psychological torture of him. Fletcher found her already stabbed by Corwin and 'finished her off' by pulling the knife across her belly.",
+    "confidence": "high",
+    "quote": "she begged me to kill her...Only the woman she'd become, the slut I'd forced her to become...when she died."
+  },
+  "resolution": {
+    "value": "Detective Steve Carella obtains a court-ordered bug in Fletcher's automobile. During a conversation with Arlene Orton en route to The Chandeliers, Fletcher confesses to the murder, describing how he found Sarah already stabbed and finished her off. Carella arrests Fletcher without resistance based on the recorded confession.",
+    "confidence": "high",
+    "quote": "Quietly, he charged Fletcher with the murder of his wife, and made the arrest without resistance."
+  },
+  "investigator": {
+    "value": "Detective Steve Carella of the 87th Precinct. A methodical police detective who suspects Fletcher early, conducts surveillance, discovers Fletcher's knowledge of the hidden microphone, and ultimately records his confession, though the resolution is complicated by the suicide of the initially suspected burglar Ralph Corwin.",
+    "confidence": "high",
+    "quote": "Detective Steve Carella wasn't sure he had heard the man correctly."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Sadie When She Died",
+    "author": "ED MCBAIN",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 12,
+    "story_count": 63
+  }
+}

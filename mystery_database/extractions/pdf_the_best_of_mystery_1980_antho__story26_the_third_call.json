@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Series of three bomb threat phone calls to Stevenson High School made during school hours; central question: who made the calls, given that only students absent during class times could have done so?",
+    "confidence": "high",
+    "quote": "A bomb is going to explode in your school in fifteen minutes... another bomb scare call was made this afternoon"
+  },
+  "victim": {
+    "value": "Lester Baines, an innocent seventeen-year-old student falsely identified as the culprit through logical deduction, whose family is destroyed by suspicion and false accusation.",
+    "confidence": "high",
+    "quote": "Lester Baines had a new sunburn and he carried a rolled-up towel under his arm. His normally cheerful face sobered when he stepped into the house and saw us."
+  },
+  "closed_world": {
+    "value": "Stevenson High School and its student body; the investigation is bounded by attendance records that narrow suspects to boys absent during specific class periods when calls were made.",
+    "confidence": "high",
+    "quote": "all of the calls came during times when classes were in session. And that means that only a student who was absent could have made them."
+  },
+  "culprit_and_motive": {
+    "value": "Dave, the narrator's own son, made the first two calls as a joke to 'pep things up'; the narrator (Detective Jim) made the third call to frame Lester and protect his son from suspicion.",
+    "confidence": "high",
+    "quote": "I did it as a joke. I just wanted to pep things up... I made that particular call myself... a father doesn't always think too clearly when it involves his son."
+  },
+  "resolution": {
+    "value": "Dave confesses to the narrator, recognizing that Lester is innocent and will not let another suffer for his mistakes. The narrator admits he made the third call. They phone Lester's father to clear his name before sitting down to supper.",
+    "confidence": "high",
+    "quote": "I think you'd better take me down to headquarters. Lester didn't make those bomb calls. I did... We'll have supper first... And then we'll phone Lester's father."
+  },
+  "investigator": {
+    "value": "Detective Jim, the narrator\u2014a police detective and the culprit's father whose investigation is compromised by his paternal bias and his obstruction of justice to protect his son.",
+    "confidence": "high",
+    "quote": "At 1:20 in the afternoon I phoned Stevenson High School and got through to Principal Morrison... I spoke through the handkerchief over the mouthpiece."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 15940,
+    "protocols": [
+      "P1"
+    ],
+    "title": "The Third Call",
+    "author": "JACK RITCHIE",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 26,
+    "story_count": 63
+  }
+}

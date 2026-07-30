@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Double homicide by decapitation with a lettuce knife. Central question: why did Haysoos, a migrant farm worker, commit such a brutal crime against two people he had no apparent serious conflict with?",
+    "confidence": "high",
+    "quote": "He'd killed Mrs. Jensen and Mr. Carbante...He'd gone up to the big white house with that sharp, sharp lettuce knife of his and cut off both their heads."
+  },
+  "victim": {
+    "value": "Mrs. Jensen (young, beautiful wife of the farm owner) and Mr. Carbante (foreman). Both were 'killable' due to their affair\u2014Mrs. Jensen's infidelity with the foreman, which Haysoos and other workers clearly knew about and resented.",
+    "confidence": "high",
+    "quote": "Carbante is who she likes, hey? Carbante and a thousand others...She had it coming...They both did."
+  },
+  "closed_world": {
+    "value": "Jensen Produce farm in Salinas Valley\u2014a bounded agricultural labor camp with bunkhouses, warehouse, fields, and main house. Workers are physically isolated; police note 'roads blocked' suggesting limited escape routes.",
+    "confidence": "high",
+    "quote": "There was a big white house set back a ways...four long, flat buildings made of wood...a big corrugated-iron warehouse...All of them had JENSEN PRODUCE done up in these big gold and blue letters"
+  },
+  "culprit_and_motive": {
+    "value": "Haysoos, a migrant Mexican worker. Motive: jealous rage and humiliation. He was sexually attracted to Mrs. Jensen but rejected by her; her open affair with Carbante, witnessed by all workers, enraged him. Alcohol disinhibited his violence.",
+    "confidence": "high",
+    "quote": "Such a beautiful woman, a man's blood boils at the sight of such a beautiful woman...Haysoos she does not like. Not big ugly Haysoos...Carbante is who she likes"
+  },
+  "resolution": {
+    "value": "Police arrive by sirens and ambulance; bodies discovered and removed. Manhunt initiated\u2014'roads blocked,' posses formed. Haysoos presumed to have fled 'through the fields.' No explicit capture or trial shown; resolution incomplete.",
+    "confidence": "medium",
+    "quote": "There was three of them there, and a big ambulance...He must have gone through the fields...They've got the roads blocked."
+  },
+  "investigator": {
+    "value": "The unnamed first-person narrator\u2014a migrant worker and new arrival at the farm who discovers the bodies and witnesses the police investigation. He is an outsider sympathetic to the victims, not an official detective.",
+    "confidence": "high",
+    "quote": "I wedged in there, and the pickers that had been there for a while was talking pretty fast...I turned away, sick as anybody ever was."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 14747,
+    "protocols": [
+      "P1"
+    ],
+    "title": "I Don\u2019t Understand It",
+    "author": "BILL PRONZINI",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 47,
+    "story_count": 63
+  }
+}

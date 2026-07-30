@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Murder of Eddie Larsen by rifle shot during attempted theft; later, murder of Dink O'Day by strangulation. Central question: who killed Eddie Larsen, and why was Jimmy Grover wrongly accused?",
+    "confidence": "high",
+    "quote": "Mattick had caught Eddie Larsen in his shed trying to steal some cider and had lit out after him with a rifle. He shot him down and killed him."
+  },
+  "victim": {
+    "value": "Eddie Larsen: a drunk man attempting to steal cider from Mattick's shed. Dink O'Day: a man who attempted blackmail after learning of the first murder.",
+    "confidence": "high",
+    "quote": "Mattick had caught Eddie Larsen in his shed trying to steal some cider...Dink started getting frisky about it and tried to squeeze a little money out of Mattick"
+  },
+  "closed_world": {
+    "value": "The small rural town of Capstone and its surrounding farms and woods during wartime (second year of Civil War); social closure: everyone knows everyone.",
+    "confidence": "medium",
+    "quote": "I hadn't ever seen such activity in Capstone. It seemed that everybody was there, all the storekeepers in their aprons and the men from the tavern"
+  },
+  "culprit_and_motive": {
+    "value": "Jack Mattick: murdered Eddie Larsen to prevent theft from his shed, then murdered Dink O'Day to silence blackmail. Motive: property protection and extortion prevention.",
+    "confidence": "high",
+    "quote": "Mattick had caught Eddie Larsen in his shed trying to steal some cider and had lit out after him with a rifle. He shot him down and killed him...Mattick's fierce temper and he had choked Dink to death"
+  },
+  "resolution": {
+    "value": "Pete and Gascius discover Dink O'Day's body in a barrel at Mattick's farm; they report to the sheriff, who apprehends Mattick. Mattick confesses to both murders. Jimmy Grover is exonerated and receives the reward money.",
+    "confidence": "high",
+    "quote": "The sheriff collared him good and led him off...Mattick tell it in the jail to the sheriff and all the others: Mattick had caught Eddie Larsen in his shed trying to steal some cider and had lit out after him with a rifle."
+  },
+  "investigator": {
+    "value": "Pete Mariah and Gascius (the narrator), two teenage boys: amateur investigators driven by curiosity and conscience. They stumble upon evidence through exploration rather than official authority.",
+    "confidence": "high",
+    "quote": "Pete said, 'I'll tell you one thing. They're going to hang him as soon as they let eyes on him.' We went off into the night-webbed trees...and found the dead body in the barrel."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "A Real, Live Murderer",
+    "author": "DONALD HONIG",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 54,
+    "story_count": 63
+  }
+}
