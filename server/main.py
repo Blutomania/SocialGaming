@@ -432,6 +432,10 @@ def _run_generation_job(job_id: str, prompt: str, cinematic_brief: bool) -> None
 #       "investigation": [area_id],
 #       "lead": [lead_id],
 #   },
+#   "stage": str | None,        # lockstep round state: None | "submitting" | "generating" | "revealed"
+#   "round": dict | None,       # active lockstep round, see _open_round() — independent of the
+#                                # legacy per-player "phase" above; phase-specific rework (witness/
+#                                # investigation/lead content) plugs into this separately.
 #   "ts": float,
 # }
 
@@ -510,6 +514,10 @@ def _follow_lead_with_ai(mystery: dict, lead: dict, player_name: str) -> str:
 #   clues_shared       — { sender_name, phase, clues: [...] }
 #   block_updated      — { witness: [...], investigation: [...], lead: [...] }
 #   player_phase_done  — { player_name, phase }
+#   round_opened       — { round_type, expected_players: [name, ...], timeout_seconds }
+#   player_submitted   — { player_name, submitted_count, expected_count }
+#   round_generating   — { round_type, timed_out: bool, missing_players: [name, ...] }
+#   round_revealed     — { round_type, result }
 
 class ConnectionManager:
     def __init__(self) -> None:
@@ -561,6 +569,140 @@ def _broadcast_sync(game_id: str, event: str, data: dict) -> None:
             loop.run_until_complete(_ws_manager.broadcast(game_id, event, data))
     except RuntimeError:
         pass  # No event loop available — server is probably shutting down
+
+
+# ---------------------------------------------------------------------------
+# Lockstep round state machine
+# ---------------------------------------------------------------------------
+# Game-level synchronization, independent of the legacy per-player "phase" field
+# above: every player must submit before anyone advances, rather than each player
+# moving through witness/investigation/lead independently at their own pace.
+#
+# Stage sequence: "submitting" -> "generating" -> "revealed"
+#
+# This module owns the round mechanics only — opening a round, collecting
+# submissions, detecting when everyone (or the timeout) says "go", and holding
+# the eventual result once it's produced. It does not decide what a "witness"
+# or "investigation" round's submission payload or generated result look like;
+# that content is owned separately, per round_type, by the code that calls
+# _open_round() and _resolve_round().
+_DEFAULT_ROUND_TIMEOUT = 90  # seconds
+
+
+def _open_round(game: dict, round_type: str, timeout_seconds: int = _DEFAULT_ROUND_TIMEOUT) -> dict:
+    """
+    Start a new lockstep round. Snapshots the currently-joined players as the
+    set required to submit — a player joining mid-round is not added to it and
+    will be included starting with the next round.
+    """
+    with _games_lock:
+        expected = list(game["players"].keys())
+        game["round"] = {
+            "round_type": round_type,
+            "expected_players": expected,
+            "submissions": {},
+            "opened_at": time.time(),
+            "timeout_seconds": timeout_seconds,
+            "result": None,
+        }
+        game["stage"] = "submitting"
+        round_snapshot = dict(game["round"])
+
+    _broadcast_sync(game["game_id"], "round_opened", {
+        "round_type": round_type,
+        "expected_players": [game["players"][pid]["name"] for pid in expected],
+        "timeout_seconds": timeout_seconds,
+    })
+    return round_snapshot
+
+
+def _maybe_advance_to_generating(game: dict) -> bool:
+    """
+    If every expected player has submitted, transition submitting -> generating.
+    Returns True if this call caused the transition.
+    """
+    round_ = game["round"]
+    if round_ is None or game["stage"] != "submitting":
+        return False
+    if not all(pid in round_["submissions"] for pid in round_["expected_players"]):
+        return False
+
+    with _games_lock:
+        game["stage"] = "generating"
+
+    _broadcast_sync(game["game_id"], "round_generating", {
+        "round_type": round_["round_type"],
+        "timed_out": False,
+        "missing_players": [],
+    })
+    return True
+
+
+def _check_round_timeout(game: dict) -> bool:
+    """
+    Lazy timeout check — call at the top of any round endpoint. If the
+    submission window has expired with players still missing, auto-advances to
+    "generating" anyway (missing players are recorded, not silently dropped)
+    so one absent player can't stall the game indefinitely.
+    Returns True if this call caused a timeout transition.
+    """
+    round_ = game["round"]
+    if round_ is None or game["stage"] != "submitting":
+        return False
+    if time.time() - round_["opened_at"] < round_["timeout_seconds"]:
+        return False
+
+    missing = [pid for pid in round_["expected_players"] if pid not in round_["submissions"]]
+    with _games_lock:
+        game["stage"] = "generating"
+
+    _broadcast_sync(game["game_id"], "round_generating", {
+        "round_type": round_["round_type"],
+        "timed_out": True,
+        "missing_players": [game["players"][pid]["name"] for pid in missing if pid in game["players"]],
+    })
+    return True
+
+
+def _resolve_round(game: dict, result: dict) -> None:
+    """
+    Attach the generated result (owned by round_type-specific code) and
+    transition generating -> revealed.
+    """
+    round_ = game["round"]
+    with _games_lock:
+        round_["result"] = result
+        game["stage"] = "revealed"
+
+    _broadcast_sync(game["game_id"], "round_revealed", {
+        "round_type": round_["round_type"],
+        "result": result,
+    })
+
+
+def _round_status_payload(game: dict) -> dict:
+    """Waiting-room view: who's submitted, who hasn't, time left."""
+    _check_round_timeout(game)
+    round_ = game["round"]
+    if round_ is None:
+        return {"stage": None, "round_type": None}
+
+    submitted_ids = set(round_["submissions"].keys())
+    pending_names = [
+        game["players"][pid]["name"]
+        for pid in round_["expected_players"]
+        if pid not in submitted_ids and pid in game["players"]
+    ]
+    seconds_remaining = max(0, round_["timeout_seconds"] - (time.time() - round_["opened_at"]))
+    return {
+        "stage": game["stage"],
+        "round_type": round_["round_type"],
+        "submitted_count": len(submitted_ids),
+        "expected_count": len(round_["expected_players"]),
+        "pending_players": pending_names,
+        "seconds_remaining": round(seconds_remaining, 1) if game["stage"] == "submitting" else 0,
+        "result": round_["result"],
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -625,6 +767,18 @@ class SharePhaseRequest(BaseModel):
 
 class StartGameRequest(BaseModel):
     player_id: str
+
+class OpenRoundRequest(BaseModel):
+    player_id: str       # must be the host
+    round_type: str      # e.g. "witness" — meaning owned by round-type-specific code
+    timeout_seconds: int = _DEFAULT_ROUND_TIMEOUT
+
+class SubmitRoundRequest(BaseModel):
+    player_id: str
+    payload: dict         # shape is round_type-specific, not validated here
+
+class ResolveRoundRequest(BaseModel):
+    result: dict           # shape is round_type-specific, not validated here
 
 # ---------------------------------------------------------------------------
 # Endpoints
@@ -800,6 +954,8 @@ def create_game(req: CreateGameRequest):
         },
         "shared_pool": {"witness": [], "investigation": [], "lead": []},
         "block_pool": {"witness": [], "investigation": [], "lead": []},
+        "stage": None,
+        "round": None,
         "ts": time.time(),
     }
     with _games_lock:
@@ -902,6 +1058,90 @@ def start_game(game_id: str, req: StartGameRequest):
     if not player or not player.get("is_host"):
         raise HTTPException(status_code=403, detail="only the host can start the game")
     _broadcast_sync(game_id, "game_started", {"game_id": game_id})
+    return {"ok": True}
+
+
+@app.post("/games/{game_id}/round/open")
+def open_round(game_id: str, req: OpenRoundRequest):
+    """
+    Host opens a new lockstep round (e.g. "witness"). Snapshots current
+    players as required submitters and starts the submission window.
+    Content generation for the round is owned elsewhere — this just starts
+    the synchronization mechanism.
+    """
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    player = game["players"].get(req.player_id)
+    if not player or not player.get("is_host"):
+        raise HTTPException(status_code=403, detail="only the host can open a round")
+    if game["stage"] == "submitting":
+        raise HTTPException(status_code=400, detail="a round is already open")
+
+    round_ = _open_round(game, req.round_type, req.timeout_seconds)
+    return {"ok": True, "round_type": round_["round_type"],
+            "expected_count": len(round_["expected_players"]),
+            "timeout_seconds": round_["timeout_seconds"]}
+
+
+@app.post("/games/{game_id}/round/submit")
+def submit_round(game_id: str, req: SubmitRoundRequest):
+    """
+    Player submits their payload for the current round (e.g. their
+    interrogation questions). Once every expected player has submitted (or
+    the timeout fires), the round advances to "generating" automatically.
+    """
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    if req.player_id not in game["players"]:
+        raise HTTPException(status_code=404, detail="player not in game")
+
+    _check_round_timeout(game)
+    round_ = game["round"]
+    if round_ is None or game["stage"] != "submitting":
+        raise HTTPException(status_code=400, detail="no round is currently accepting submissions")
+    if req.player_id not in round_["expected_players"]:
+        raise HTTPException(status_code=403, detail="player joined after this round opened")
+    if req.player_id in round_["submissions"]:
+        raise HTTPException(status_code=409, detail="player has already submitted this round")
+
+    with _games_lock:
+        round_["submissions"][req.player_id] = req.payload
+
+    _broadcast_sync(game_id, "player_submitted", {
+        "player_name": game["players"][req.player_id]["name"],
+        "submitted_count": len(round_["submissions"]),
+        "expected_count": len(round_["expected_players"]),
+    })
+    advanced = _maybe_advance_to_generating(game)
+    return {"ok": True, "advanced_to_generating": advanced}
+
+
+@app.get("/games/{game_id}/round/status")
+def round_status(game_id: str):
+    """Waiting-room view: current stage, who's submitted, time left."""
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    return _round_status_payload(game)
+
+
+@app.post("/games/{game_id}/round/resolve")
+def resolve_round(game_id: str, req: ResolveRoundRequest):
+    """
+    Attach a generated result and reveal it to all players. Called by
+    round-type-specific generation code once it has produced the shared
+    scene / outcome for the current round — not intended as a direct
+    player-facing action.
+    """
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    if game["round"] is None or game["stage"] != "generating":
+        raise HTTPException(status_code=400, detail="no round is currently generating")
+
+    _resolve_round(game, req.result)
     return {"ok": True}
 
 
