@@ -304,6 +304,119 @@ python cli.py generate --setting "..." --cinematic   # opt-in flag
 
 ---
 
+## Multiplayer lockstep round system
+
+New synchronization layer alongside the original per-player async `phase` field on
+each `game["players"][player_id]` — that field, and the endpoints that gate on it
+(`/interrogate-witness`, `/investigate-area`, `/follow-lead`, `/share-phase`), are
+still live and untouched. The lockstep system is additive: `game["stage"]` and
+`game["round"]` are new top-level keys on the game session dict, currently used by
+the witness interrogation flow only. Investigation and lead phases still run on the
+legacy per-player system until they're ported (tracked as separate future work).
+
+### Why it exists
+
+The original witness flow answered each player's question in total isolation — no
+memory of what the same witness had already told anyone else in the session, and no
+bound on how many separate LLM calls a round could cost (N players × M questions
+each). The lockstep model batches a whole round's questions into one generation call
+per witness instead, which fixes both problems at once: one call has full visibility
+into everything asked that round, and cost no longer scales per-question.
+
+### Stage sequence
+
+```
+submitting -> generating -> revealed
+```
+
+- **submitting** — a round is open; players are POSTing their payload in.
+- **generating** — every expected player has submitted (or the timeout fired);
+  round-type-specific generation is running in a background thread.
+- **revealed** — generation finished; `game["round"]["result"]` is populated and
+  broadcast to everyone.
+
+### Round shape (`game["round"]`)
+
+```json
+{
+  "round_type": "witness",
+  "expected_players": ["player_id", "..."],
+  "submissions": {"player_id": {"...": "round_type-specific payload"}},
+  "opened_at": 1735689600.0,
+  "timeout_seconds": 90,
+  "metadata": {"character_name": "Voss"},
+  "candidate_questions": ["...", "..."],
+  "result": null
+}
+```
+
+`expected_players` is snapshotted when the round opens — a player who joins mid-round
+is not included and picks up starting with the next round opened.
+
+### Endpoints
+
+| Endpoint | Who | What |
+|---|---|---|
+| `POST /games/{id}/round/open` | host only | Opens a round of a given `round_type`, with optional `metadata`. Rejects if a round is already open. |
+| `POST /games/{id}/round/submit` | any player | Submits this round's payload. Once every expected player has submitted, auto-advances to `generating` and kicks off generation. |
+| `GET /games/{id}/round/status` | any | Waiting-room view: stage, who's submitted, who's pending, seconds left. Also runs the lazy timeout check. |
+| `POST /games/{id}/round/resolve` | server-side | Attaches a result and reveals it. Called by round-type generation code, not meant as a direct player action. |
+
+Timeout handling is lazy, not a background sweep: `_check_round_timeout()` runs at
+the top of `submit` and `status`, so an expired round with missing players
+auto-advances to `generating` the next time anyone touches the round (missing
+players are recorded in the `round_generating` broadcast, not silently dropped).
+
+### WebSocket events
+
+`round_opened`, `player_submitted`, `round_generating` (carries `timed_out` and
+`missing_players`), `round_revealed` (carries the full `result`).
+
+### Extending to a new round_type
+
+Two dispatch points, both keyed by `round_type`:
+
+- **`_ROUND_PREP`** — optional hook run when a round opens; returns extra fields to
+  merge into the round dict (e.g. witness rounds attach `candidate_questions`).
+- **`_ROUND_GENERATORS`** — required to actually produce a result; run in a
+  background thread once the round reaches `generating`, then feeds straight into
+  `_resolve_round()`. A round_type with no registered generator just never resolves
+  past `generating` — nothing errors, but nothing happens either, so register one
+  before wiring up a new round_type's endpoints.
+
+### `round_type: "witness"` — the one built so far
+
+- **Submission payload:** `{"questions": ["...", "..."]}` — up to
+  `_DIFFICULTY_CONFIG[difficulty]["questions_per_round"]` (3/2/1 for EASY/MEDIUM/HARD),
+  enforced in `submit_round`. Each question can be one of the `candidate_questions`
+  pick-list (attached at round-open, role-aware — see `_CANDIDATE_QUESTIONS`) or free
+  text — hybrid input, not validated against the candidate list.
+- **Generation (`_generate_witness_scene`):** pools every submitted question across
+  all players, deduping by normalized text so the same question asked by multiple
+  players collapses into one entry with every asker attributed. One Claude call
+  covers the whole pool and returns a scene bounded to 2–3 sentences regardless of
+  how many questions were pooled, plus a private answer per pooled question. Carries
+  the evasion/anti-spoiler instruction ("do NOT directly reveal the real culprit")
+  that the old multiplayer witness endpoint was missing.
+- **Result shape:**
+  ```json
+  {
+    "scene": "shared dramatized text, same length regardless of pool size",
+    "scene_covers": ["question text that made it into the scene", "..."],
+    "answers": {"player_id": [{"question": "...", "answer": "..."}]}
+  }
+  ```
+  No random cross-player distribution: a player always gets 100% of the answers to
+  their own submitted questions, and the shared `scene` — covering whichever
+  questions multiple players asked in common, plus one authored flourish — is what
+  everyone sees together. Anything neither yours nor scene-covered simply isn't part
+  of what you have; this was a deliberate simplification over the original "70% of
+  the remaining answers, randomized" pitch, chosen for legibility.
+- **Secondary witness:** same `round_type: "witness"`, just opened a second time
+  with a different `character_name` in `metadata` — no separate mechanism needed.
+
+---
+
 ## Coherence validator — what it checks
 
 `coherence_validator.check_mystery(mystery_dict)` runs three check families:

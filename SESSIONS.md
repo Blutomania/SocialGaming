@@ -5,79 +5,145 @@ Use this file to onboard any new session without losing context.
 
 ---
 
-## Session — July 31, 2026 at 19:09
+## Session 21 — July 31, 2026
 **Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
-**Latest commit:** `899fa8d`
+**Starting commit:** `4f2f53c` (tip after Session 20's anthology extraction)
+**Latest commit:** `fefe547`
+**Status:** Complete — verified prior handoff, closed one corpus gap, then a long design
+arc that produced a real multiplayer architecture change, now partly built and verified
 
-### Files changed this session
-- `erver/main.py` — Modified
+> Note: this entry replaces three raw, unedited auto-summaries the Stop hook committed
+> during this session ("Session — July 31, 2026 at 18:07/19:00/19:09"). Those had no
+> real notes and duplicated commit lists already visible in git log; the actual work
+> they point to is captured properly below instead, per the same cleanup Session 19 did.
 
-### Commits this session
-```
-899fa8d Add lockstep round state machine for multiplayer game sessions
-2a65e64 chore: auto-update SESSIONS.md with session summary [acf64cc]
-acf64cc Split cinematic brief into player-facing narration + hidden video prompt
-afa5f4c chore: auto-update SESSIONS.md with session summary [4f2f53c]
-4f2f53c Add P1 extractions for The Best of Mystery (1980) anthology — 63 stories
-9f4c191 Add --anthology mode for short-story-collection PDFs; fix source_id collision bug
-82cd423 Add short-story collection PDF for corpus ingestion
-```
+### Handoff verification
+Confirmed the owner's ground truth from session start: the harness had again
+auto-assigned a fresh, empty branch (`claude/session-wrapup-cleanup-blocker-0sr8pn`,
+identical to `main`) instead of continuing the real work — same stale-branch pattern
+`CLAUDE.md` already warns about. Switched to the actual active branch. Verified the
+anthology extraction the owner ran manually had in fact completed: 63/63 story files
+present under `mystery_database/extractions/`, source_id collision fix confirmed
+working (hashes the full filename stem, so all 63 stories get distinct source_ids
+despite sharing a truncated 30-char filename prefix). One cosmetic-only finding: files
+are named `..._antho__story01...` not `..._anthology__...` — intentional `book_slug[:30]`
+truncation in `extract_from_pdfs.py`, not a bug.
 
-### Session notes
-_No additional notes recorded_
+### New gap found, not closed
+`mystery_database/new_sources/` has a 10th file — `The_Devotion_of_Suspect_X_-
+_Keigo_Higashino.pdf` — that Session 20's triage never categorized (it covered 9 of
+10). Confirmed it is **not** a duplicate of the existing Higashino extraction in the
+corpus (that's a different novel, *The Miracles of the Namiya General Store*). Owner
+ruled out deleting it. Still needs an actual triage decision — queue it, skip it, or
+something else. Tracked as an open task, not resolved this session.
 
-### Resume from here
-See **Consolidated To-Do List** above for next steps.
-Check `CLAUDE.md` for project conventions and current priorities.
+### Corpus composition + sourcing-ratio discussion
+Discovered `CLAUDE.md`'s "12 PDF-sourced entries" framing badly undercounts the real
+corpus — there are 283 additional `ebook_*` extractions from a prior bulk pipeline run
+(bookrix.com sources, P1+P2 depth) sitting in `mystery_database/extractions/` with no
+mention in the Current To-Do. Established, with the owner, a short-story-vs-novel
+intake ratio for future PDF clearance decisions: favor anthologies heavily (3–5
+anthology clearances per 1 novel clearance) while depth stays P1-only for both, since
+an anthology yields 15–63x the source_ids per single legal-clearance decision that a
+novel does, for currently-identical extraction depth.
 
----
+### RAG-wiring reprioritization
+Discussed whether continual corpus growth costs coherence quality (concluded no — it's
+a per-generation sampling function, not corpus-size-dependent; the real risk is
+quality dilution from weak sources, not coherence difficulty) and whether short
+stories or novels are more valuable given that (concluded: complementary, not
+substitutes). This led to reprioritizing `PARTY_CRAFT_FINDINGS.md` RAG-wiring ahead of
+the previously-planned true-crime podcast sourcing (`CLAUDE.md` to-do item 10's
+"START HERE"), since social/party-game craft — the texture of live, competitive,
+multiplayer play — has no equivalent in prose extraction at any depth or volume.
 
-## Session — July 31, 2026 at 19:00
-**Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
-**Latest commit:** `acf64cc`
+Owner pasted full text for the Jackbox "Built In Chicago" article and 3 of 4 targeted
+Medway *Behind the Curtain* posts (#1 Total Chaos, #4 Werewolf & Clocktower, #7
+Balance — not #2 Outsiders), plus an unlisted bonus strategy-tips post. Reading full
+text (not `WebSearch` snippets) surfaced something the snippet-sourced version of the
+doc had gotten wrong: *Blood on the Clocktower*'s entire design assumes team-based
+cooperative play toward one shared win ("reveal and share, it benefits everyone,"
+"what can WE do?") — structurally mismatched with Choose Your Mystery's individually-
+competitive, partial-information design (no hidden team, no shared win condition).
+Sorted findings into cleanly-transferable (Jackbox's NPC/host UX principles, the
+graduated-certainty deduction-logic material, qualitative balance framing) versus
+needs-an-explicit-divergence-note (full-transparency advice, the team "ghost vote"
+mechanic, team-balance math). **Not yet written into `PARTY_CRAFT_FINDINGS.md` itself**
+— still open.
 
-### Files changed this session
-- `erver/main.py` — Modified
+### Design-partner discussion (produced tracked decisions, not yet all built)
+- Win/solve tension: competitive structure stays as designed, but the sourced material
+  says the *texture* of losing (interrogation banter, near-misses) is what's actually
+  remembered, not the win/loss outcome — and CYM is deliberately lower-stakes/quicker-
+  to-restart than the live-hosted-party or *Clocktower* reference material, which
+  tempers how much "soften the loss" design effort is actually warranted.
+- Invisible per-player catch-up assistance — captured as future scope, tied to a
+  precedent in the owner's other project (MYF) and to a Medway concept already flagged
+  in `PARTY_CRAFT_FINDINGS.md` ("Storyteller subtly rebalancing mid-session").
+- "What I know vs. what's shared" knowledge-comparison screen — captured, ties directly
+  to the sourced "knowledge asymmetry is the addictive core" finding.
+- End-game resolution/summation scene — captured, reuses the two-output-per-call
+  pattern (cheap player-facing text + hidden video-prompt content) established below.
 
-### Commits this session
-```
-acf64cc Split cinematic brief into player-facing narration + hidden video prompt
-afa5f4c chore: auto-update SESSIONS.md with session summary [4f2f53c]
-4f2f53c Add P1 extractions for The Best of Mystery (1980) anthology — 63 stories
-9f4c191 Add --anthology mode for short-story-collection PDFs; fix source_id collision bug
-82cd423 Add short-story collection PDF for corpus ingestion
-```
+### Paradigm shift: lockstep multiplayer redesign
+Walked a concrete "Murder on Mars" use case against the **actual** running code
+(not `CLAUDE.md`'s aspirational description) and found real, previously-undocumented
+gaps: the documented "75%-random-share" mechanic doesn't exist in code at all (the
+real mechanic is a player-choice minimum-share threshold, 50/60/70% by difficulty,
+broadcast to everyone who shares); interrogation questions are free text, not a
+pick-list; phases are sequential-mandatory, not player-choice; the multiplayer witness
+prompt was missing the evasion/anti-spoiler instruction the old solo endpoint has; and
+there is **no backend endpoint anywhere for resolving a multiplayer accusation** — the
+only accusation code (`accusation.gd`) is single-player-era, checks the guess locally
+against the solution already sitting in the client's own copy of the mystery JSON.
 
-### Session notes
-_No additional notes recorded_
+This led to a full redesign, worked through collaboratively: lockstep round
+synchronization (everyone submits before anyone advances, replacing the old
+per-player-async phase model) instead of N isolated interrogation calls per witness;
+one shared dramatized scene per round instead of per-question isolation; claim-based
+lead reservation tied directly to solvability (a duplicated lead pick could leave the
+one culprit-pointing lead unexplored by anyone); and the same "cheap text now, hidden
+video-prompt-ready content for later" two-output pattern established for the opening
+scene, reused conceptually for the planned resolution scene.
 
-### Resume from here
-See **Consolidated To-Do List** above for next steps.
-Check `CLAUDE.md` for project conventions and current priorities.
+### What got built and shipped this session
+1. **Opening scene split** (`_generate_cinematic_brief`): now returns
+   `opening_narration` (player-facing prose, cheap) and `cinematic_brief` (hidden,
+   camera-direction language, ready for future video generation) from one call
+   instead of one video-only output. `docs/WIRING.md` updated. — commit `acf64cc`
+2. **Lockstep round state machine**: game-level `stage`/`round` fields, additive
+   alongside the legacy per-player `phase` (nothing existing broken). Four endpoints
+   (`round/open`, `round/submit`, `round/status`, `round/resolve`), four new
+   WebSocket events, lazy timeout handling so one AFK player can't stall a round
+   forever. Verified via direct function tests (happy path + timeout path) and a full
+   FastAPI `TestClient` HTTP flow. `docs/WIRING.md` updated this session. — commit
+   `899fa8d`
+3. **Witness interrogation redesign**: players submit up to
+   `questions_per_round` (3/2/1 by difficulty) questions per round, hybrid
+   pick-list-or-free-text; one generation call pools and dedupes everyone's
+   questions, returns a scene bounded to 2–3 sentences regardless of pool size plus a
+   private answer per question; no random cross-player answer distribution (a
+   deliberate simplification over the original "70% randomized" pitch, chosen for
+   legibility). Same mechanism covers the secondary witness via a second round with a
+   different `character_name`. Verified via stubbed-LLM tests (dedup correctness,
+   prompt content, answer redistribution) and full HTTP-level `TestClient` flow
+   including the validation-rejection path. Old `/interrogate-witness` and witness
+   `/share-phase` endpoints deliberately left untouched — owner's explicit call, since
+   `mobile.html` still targets them and no replacement UI exists yet. — commit
+   `fefe547`
 
----
-
-## Session — July 31, 2026 at 18:07
-**Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
-**Latest commit:** `4f2f53c`
-
-### Files changed this session
-- `ocs/WIRING.md` — Modified
-- `server/main.py` — Modified
-
-### Commits this session
-```
-4f2f53c Add P1 extractions for The Best of Mystery (1980) anthology — 63 stories
-9f4c191 Add --anthology mode for short-story-collection PDFs; fix source_id collision bug
-82cd423 Add short-story collection PDF for corpus ingestion
-```
-
-### Session notes
-_No additional notes recorded_
-
-### Resume from here
-See **Consolidated To-Do List** above for next steps.
-Check `CLAUDE.md` for project conventions and current priorities.
+### What is next
+See `CLAUDE.md` → Current To-Do for the full tracked backlog. In dependency order:
+1. Accusation-resolution backend (independent of the rest, and blocks the resolution
+   scene below) — no multiplayer-safe way to declare a winner exists yet.
+2. Crime-scene investigation redesign and the knowledge-comparison screen (both
+   depend on the lockstep mechanism, now in place).
+3. Lead-claim reservation + scaling lead count to max players (8, per the Phase 3e
+   avatar decision already on record).
+4. End-game resolution/summation scene — blocked on the accusation backend.
+5. Separate thread, not part of this redesign: finish verifying + writing the sorted
+   `PARTY_CRAFT_FINDINGS.md` findings, then wire it into the generation and
+   `/interrogate` prompts; decide the still-open Devotion of Suspect X triage.
 
 ---
 

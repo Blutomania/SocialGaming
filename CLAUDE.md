@@ -216,7 +216,7 @@ GodotSteam is the best Steamworks path; Godot Linux export = Steam Deck support 
 
 ---
 
-## Current To-Do (as of July 29, 2026)
+## Current To-Do (as of July 31, 2026)
 
 Full list in `SESSIONS.md`. Top priorities:
 
@@ -239,34 +239,67 @@ Full list in `SESSIONS.md`. Top priorities:
    `claude/review-godot-migration-GiLDz`, `claude/fix-godot-performance-QyXLQ`,
    `claude/start-godot-migration-mNrWD`, `claude/setup-api-and-mysteries-LRLQK`,
    `claude/mystery-versioning-system-TPblK`
-7. **[ONGOING]** Corpus growth — 12 PDF-sourced entries added so far via
-   `scripts/extract_from_pdfs.py`; keep adding one quality source at a time as they're found.
-   Anthology/short-story-collection PDFs are now supported via `--anthology` (Session 20) — see
-   Key Files above. `mystery_database/new_sources/` currently holds an unprocessed batch: three
-   full novels (Stevenson ×2, Tana French) queued for later one-at-a-time ingestion, one `.html`
-   file (`extract_from_pdfs.py` only reads PDFs — unsupported as-is), and the already-verified
-   anthology (`The_Best_of_Mystery_1980_Anthology`, 63/63 stories detected correctly via
-   `--dry-run`) not yet actually run against the API.
+7. **[ONGOING]** Corpus growth — the anthology (`The_Best_of_Mystery_1980_Anthology`) is **[DONE]**:
+   run for real, all 63/63 stories extracted (Session 21), source_id collision fix confirmed
+   working on the real output. Corpus is larger than this list previously implied — besides the
+   12 PDF-sourced entries via `scripts/extract_from_pdfs.py` (now 12 novels + 63 anthology
+   stories = 75), there are **283 additional `ebook_*` entries** from an earlier bulk-pipeline run
+   (bookrix.com sources, P1+P2 depth) already sitting in `mystery_database/extractions/` —
+   confirmed present, not previously tracked in this file (Session 21).
+   **Sourcing-ratio guideline (Session 21):** favor short-story anthology PDFs heavily over
+   individual novels for new clearance decisions — roughly 3–5 anthologies cleared per 1 novel —
+   since an anthology yields 15–63x the source_ids per single legal-clearance decision at
+   currently-identical extraction depth (both the 12 curated novels and the 63 stories are P1-only;
+   novels only earn a depth advantage once `--protocol P1P2`, or P3/P4, actually gets used on them).
+   `mystery_database/new_sources/` still holds: three full novels (Stevenson ×2, Tana French)
+   queued for later one-at-a-time ingestion; one `.html` file (`extract_from_pdfs.py` only reads
+   PDFs — unsupported as-is); and **`The_Devotion_of_Suspect_X` (Higashino) — found untriaged in
+   Session 21**, not one of Session 20's original 9 categorized files, confirmed NOT a duplicate of
+   the existing Higashino extraction (different novel: *Miracles of the Namiya General Store*).
+   Owner ruled out deleting it; still needs an actual triage call (queue / skip / other).
 8. **[FUTURE]** Phase 4 — Steam integration (GodotSteam plugin)
 9. **[ONGOING]** Repo-wide branch cleanup (Session 18) — 9 fully-merged branches identified as
    safe to delete, plus a further 21 stale unmerged branches the owner is triaging on their own
    schedule (see `SESSIONS.md` Session 18). **`dev/mind-your-friends` is a separate, real second
    project sharing this repo — do not touch it in any cleanup pass.**
-10. **[ONGOING]** RAG (retrieval-augmented generation) for mystery best-practices (Session 19) —
-    craft-grounding source material now spans three companion docs: `RESEARCH_FINDINGS.md`
-    (novelists), `SCREEN_CRAFT_FINDINGS.md` (film/TV), `PARTY_CRAFT_FINDINGS.md` (live/social-
-    deduction games). Sourcing discipline codified in `SOURCING_METHODOLOGY.md`. **Not yet wired
-    into generation** — `server/main.py`'s `_generate_mystery_dict()` doesn't reference any of
-    these docs yet, and shouldn't until quotes are verified against full source text (currently
-    WebSearch-snippet-sourced, not fetched in full). Remaining sub-steps, in order:
-    - **[START HERE]** True-crime podcast producer/host craft grounding — the one media type
-      discussed but not yet captured (scope: hosts' own reflection on why a case is compelling,
-      never the case narrative itself — see `SOURCING_METHODOLOGY.md`)
-    - Verification pass on both new companion docs' WebSearch-sourced quotes
-    - Build the actual retrieval + prompt-injection code once verified
+10. **[ONGOING, REPRIORITIZED Session 21]** RAG (retrieval-augmented generation) for mystery
+    best-practices — craft-grounding source material spans three companion docs:
+    `RESEARCH_FINDINGS.md` (novelists), `SCREEN_CRAFT_FINDINGS.md` (film/TV), `PARTY_CRAFT_FINDINGS.md`
+    (live/social-deduction games). Sourcing discipline codified in `SOURCING_METHODOLOGY.md`.
+    **Not yet wired into generation.** True-crime podcast sourcing (previously "START HERE") is
+    now explicitly deferred — decided this session that `PARTY_CRAFT_FINDINGS.md` goes first,
+    since social/party-game craft (live multiplayer texture) has no equivalent in prose extraction
+    at any depth, unlike podcast sourcing which would still just be craft-grounding for plot
+    construction. Sub-steps, in order:
+    - **[START HERE]** Finish verifying `PARTY_CRAFT_FINDINGS.md` against full source text. Owner
+      has pasted the Jackbox "Built In Chicago" article + 3 of 4 targeted Medway *Behind the
+      Curtain* posts (#1, #4, #7 — not #2 "Outsiders"). Full-text reading surfaced a real
+      structural mismatch not visible from the original WebSearch-snippet version: *Blood on the
+      Clocktower* assumes team-based cooperative play toward one shared win condition, which
+      doesn't transfer to Choose Your Mystery's individually-competitive, partial-information
+      design. Findings are sorted (cleanly-transferable vs. needs-an-explicit-divergence-note,
+      see `SESSIONS.md` Session 21) but **not yet written into the doc itself**.
+    - Build the actual retrieval + prompt-injection code once verified — touches both
+      `_generate_mystery_dict()` and the witness interrogation generation (`_generate_witness_scene`,
+      see item 11 below), per owner's explicit scope decision.
+    - True-crime podcast sourcing — deferred, not abandoned; pick back up after the above.
     - Human decision on the accumulated "new concepts flagged" candidates across all three docs
       (e.g. howcatchem structural mode, production-security-as-craft-practice) — whether any
       warrant a new `extraction_protocols.py` code
+11. **[IN PROGRESS, Session 21]** Multiplayer lockstep redesign — a live "Murder on Mars" use-case
+    walkthrough against the actual running code (not this file's aspirational description) found
+    real gaps: the "75%-random-share" mechanic described above doesn't exist in the code (real
+    mechanic: player-choice minimum-share threshold, 50/60/70% by difficulty); interrogation was
+    free text, not a pick-list; and **there is no backend endpoint anywhere for resolving a
+    multiplayer accusation** — the only accusation code (`accusation.gd`) is single-player-era,
+    client-local. Full design in `docs/WIRING.md` → "Multiplayer lockstep round system". Built and
+    verified so far: the lockstep round state machine (`stage`/`round`, additive alongside the
+    legacy per-player `phase` — nothing existing broken), and the witness interrogation redesign
+    (batched, deduped, shared-scene generation replacing N isolated per-question calls). Still
+    open, in dependency order: accusation-resolution backend (independent, also unblocks the
+    end-game resolution/summation scene); crime-scene investigation redesign and the "what I know
+    vs. what's shared" comparison screen (both depend on the lockstep mechanism, now in place);
+    lead-claim reservation + scaling lead count to max players (8, per item 4's Phase 3e decision).
 
 > **DO NOT re-run the frozen bulk corpus pipeline** (`deprecated/run_corpus_pipeline.py`). Expand
 > the corpus only via `scripts/extract_from_pdfs.py`, adding one quality source at a time.
