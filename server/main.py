@@ -444,10 +444,40 @@ _games_lock = threading.Lock()
 _GAME_TTL = 3600  # 1 hour
 
 _DIFFICULTY_CONFIG = {
-    "EASY":   {"share_min": 0.70, "witness_budget": 8, "investigation_budget": 3},
-    "MEDIUM": {"share_min": 0.60, "witness_budget": 6, "investigation_budget": 2},
-    "HARD":   {"share_min": 0.50, "witness_budget": 4, "investigation_budget": 2},
+    "EASY":   {"share_min": 0.70, "witness_budget": 8, "investigation_budget": 3, "questions_per_round": 3},
+    "MEDIUM": {"share_min": 0.60, "witness_budget": 6, "investigation_budget": 2, "questions_per_round": 2},
+    "HARD":   {"share_min": 0.50, "witness_budget": 4, "investigation_budget": 2, "questions_per_round": 1},
 }
+
+# Generic, role-aware conversation starters offered as pick-list options in a
+# witness lockstep round (hybrid input: pick one of these, or type a custom
+# question instead). Not mystery-specific — kept as a static bank rather than
+# an extra generation call, since the value here is speed/low-typing-burden,
+# not per-mystery flavor.
+_CANDIDATE_QUESTIONS = {
+    "suspect": [
+        "Where were you when the crime happened?",
+        "What was your relationship with the victim?",
+        "Did you see or hear anything unusual?",
+    ],
+    "witness": [
+        "What exactly did you see?",
+        "Did you notice anyone acting strangely?",
+        "Is there anything you haven't told anyone yet?",
+    ],
+    "default": [
+        "Where were you when the crime happened?",
+        "What did you see or hear?",
+        "Do you know of anyone who might have wanted this to happen?",
+    ],
+}
+
+
+def _candidate_questions_for(mystery: dict, character_name: str) -> list[str]:
+    chars = mystery.get("characters", [])
+    char_data = next((c for c in chars if c["name"] == character_name), None)
+    role = char_data.get("role", "") if char_data else ""
+    return _CANDIDATE_QUESTIONS.get(role, _CANDIDATE_QUESTIONS["default"])
 
 
 def _new_game_id() -> str:
@@ -589,12 +619,17 @@ def _broadcast_sync(game_id: str, event: str, data: dict) -> None:
 _DEFAULT_ROUND_TIMEOUT = 90  # seconds
 
 
-def _open_round(game: dict, round_type: str, timeout_seconds: int = _DEFAULT_ROUND_TIMEOUT) -> dict:
+def _open_round(game: dict, round_type: str, timeout_seconds: int = _DEFAULT_ROUND_TIMEOUT,
+                 metadata: Optional[dict] = None) -> dict:
     """
     Start a new lockstep round. Snapshots the currently-joined players as the
     set required to submit — a player joining mid-round is not added to it and
     will be included starting with the next round.
     """
+    metadata = metadata or {}
+    prep_fn = _ROUND_PREP.get(round_type)
+    extra_fields = prep_fn(game, metadata) if prep_fn else {}
+
     with _games_lock:
         expected = list(game["players"].keys())
         game["round"] = {
@@ -603,7 +638,9 @@ def _open_round(game: dict, round_type: str, timeout_seconds: int = _DEFAULT_ROU
             "submissions": {},
             "opened_at": time.time(),
             "timeout_seconds": timeout_seconds,
+            "metadata": metadata,
             "result": None,
+            **extra_fields,
         }
         game["stage"] = "submitting"
         round_snapshot = dict(game["round"])
@@ -612,6 +649,8 @@ def _open_round(game: dict, round_type: str, timeout_seconds: int = _DEFAULT_ROU
         "round_type": round_type,
         "expected_players": [game["players"][pid]["name"] for pid in expected],
         "timeout_seconds": timeout_seconds,
+        "metadata": metadata,
+        **extra_fields,
     })
     return round_snapshot
 
@@ -635,6 +674,7 @@ def _maybe_advance_to_generating(game: dict) -> bool:
         "timed_out": False,
         "missing_players": [],
     })
+    _dispatch_round_generation(game)
     return True
 
 
@@ -661,6 +701,7 @@ def _check_round_timeout(game: dict) -> bool:
         "timed_out": True,
         "missing_players": [game["players"][pid]["name"] for pid in missing if pid in game["players"]],
     })
+    _dispatch_round_generation(game)
     return True
 
 
@@ -703,6 +744,157 @@ def _round_status_payload(game: dict) -> dict:
         "seconds_remaining": round(seconds_remaining, 1) if game["stage"] == "submitting" else 0,
         "result": round_["result"],
     }
+
+
+# ---------------------------------------------------------------------------
+# Round-type implementations
+# ---------------------------------------------------------------------------
+# Each round_type registers an optional "prep" hook (extra fields to attach
+# when the round opens, e.g. a candidate-question pick-list) and a "generate"
+# hook (produces the eventual result once every player has submitted or the
+# round timed out). Dispatched by round_type — see _dispatch_round_generation.
+
+def _witness_prep(game: dict, metadata: dict) -> dict:
+    """Prep for a 'witness' round: attach candidate pick-list questions for the target witness."""
+    character_name = metadata.get("character_name", "")
+    return {"candidate_questions": _candidate_questions_for(game["mystery"], character_name)}
+
+
+def _generate_witness_scene(game: dict, round_: dict) -> dict:
+    """
+    Generate the result for a 'witness' round: one shared dramatized scene,
+    bounded to 2-3 sentences regardless of how many questions were pooled,
+    plus a private answer to every individual question each player submitted.
+    No random distribution beyond that — a player always gets their own
+    answers, and the scene is what's shared with everyone.
+    """
+    mystery = game["mystery"]
+    character_name = round_["metadata"].get("character_name", "")
+    chars = mystery.get("characters", [])
+    char_data = next((c for c in chars if c["name"] == character_name), {})
+
+    s = mystery.get("setting", {})
+    c = mystery.get("crime", {})
+    setting_summary = (
+        f"Location: {s.get('location', '')}\n"
+        f"Time period: {s.get('time_period', '')}\n"
+        f"Crime: {c.get('what_happened', '')}"
+    )
+    char_context = (
+        f"Role: {char_data.get('role', 'suspect')}\n"
+        f"Occupation: {char_data.get('occupation', '')}\n"
+        f"Alibi: {char_data.get('alibi', '')}\n"
+        f"Secret: {char_data.get('secret', '')}\n"
+        f"Motive: {char_data.get('motive', '')}"
+    )
+
+    # Pool questions across players, deduped by fingerprint so overlapping
+    # questions surface once (with all their askers) instead of N near-duplicates.
+    by_fingerprint: dict[str, dict] = {}
+    for pid, payload in round_["submissions"].items():
+        player_name = game["players"].get(pid, {}).get("name", "Unknown")
+        for q in payload.get("questions", []):
+            q = q.strip()
+            if not q:
+                continue
+            fp = _fingerprint(q)
+            entry = by_fingerprint.setdefault(fp, {"question": q, "askers": []})
+            entry["askers"].append((pid, player_name))
+
+    pooled = list(by_fingerprint.values())
+    empty_answers = {pid: [] for pid in round_["submissions"].keys()}
+    if not pooled:
+        return {"scene": f"{character_name} waited, but nobody had a question this round.",
+                "scene_covers": [], "answers": empty_answers}
+
+    for i, entry in enumerate(pooled):
+        entry["qid"] = f"Q{i + 1}"
+    questions_block = "\n".join(
+        f"  {p['qid']}: \"{p['question']}\" (asked by: {', '.join(name for _, name in p['askers'])})"
+        for p in pooled
+    )
+
+    prompt = f"""\
+You are {character_name} in this mystery, being interrogated by a group of detectives at once.
+
+SETTING:
+{setting_summary}
+
+YOUR PRIVATE CHARACTER DETAILS (do NOT reveal directly):
+{char_context}
+
+Be evasive if you are the culprit. Be defensive if you are innocent but suspicious.
+Do NOT directly reveal the real culprit.
+
+The detectives asked these questions this round (some were asked by more than one):
+{questions_block}
+
+Produce two things:
+
+1. A SHARED SCENE: a short, watchable dramatization of this interrogation — 2 to 3
+   sentences, no matter how many questions were pooled above. Prioritize whichever
+   question(s) were asked by more than one detective, plus one character/atmosphere
+   flourish moment. Keep this the same length regardless of how many questions were
+   pooled — condense, don't list them all.
+2. A private ANSWER to every individual question above, keyed by its id — these are
+   NOT shown to the group, only to whichever detective(s) asked that question.
+
+Return ONLY valid JSON:
+{{
+  "scene": "2-3 sentence dramatized scene, written to be watched/read by the whole group",
+  "scene_covers": ["Q1", "Q3"],
+  "answers": {{"Q1": "private in-character answer, 1-3 sentences", "Q2": "..."}}
+}}"""
+
+    raw = llm(prompt, system="You are a mystery game character. Stay in character. Return only valid JSON.")
+    parsed = _parse_json(raw)
+
+    answers_by_qid = parsed.get("answers", {})
+    per_player_answers: dict[str, list] = {pid: [] for pid in round_["submissions"].keys()}
+    for entry in pooled:
+        answer = answers_by_qid.get(entry["qid"], "")
+        for pid, _name in entry["askers"]:
+            per_player_answers[pid].append({"question": entry["question"], "answer": answer})
+
+    scene_covers_qids = set(parsed.get("scene_covers", []))
+    scene_covers_text = [e["question"] for e in pooled if e["qid"] in scene_covers_qids]
+
+    return {
+        "scene": parsed.get("scene", ""),
+        "scene_covers": scene_covers_text,
+        "answers": per_player_answers,   # {player_id: [{question, answer}, ...]} — private per player
+    }
+
+
+_ROUND_PREP = {
+    "witness": _witness_prep,
+}
+
+_ROUND_GENERATORS = {
+    "witness": _generate_witness_scene,
+}
+
+
+def _dispatch_round_generation(game: dict) -> None:
+    """
+    Kick off the round_type-specific generator in a background thread once a
+    round has moved to "generating", then resolve the round with its result.
+    Round types with no registered generator (future work not built yet)
+    fall through safely rather than erroring.
+    """
+    round_ = game["round"]
+    generator = _ROUND_GENERATORS.get(round_["round_type"])
+    if generator is None:
+        return
+
+    def _run() -> None:
+        try:
+            result = generator(game, round_)
+        except Exception as exc:
+            result = {"error": str(exc)}
+        _resolve_round(game, result)
+
+    threading.Thread(target=_run, daemon=True).start()
 
 
 # ---------------------------------------------------------------------------
@@ -772,6 +964,7 @@ class OpenRoundRequest(BaseModel):
     player_id: str       # must be the host
     round_type: str      # e.g. "witness" — meaning owned by round-type-specific code
     timeout_seconds: int = _DEFAULT_ROUND_TIMEOUT
+    metadata: dict = {}  # round-type-specific, e.g. {"character_name": "..."} for a witness round
 
 class SubmitRoundRequest(BaseModel):
     player_id: str
@@ -1078,10 +1271,11 @@ def open_round(game_id: str, req: OpenRoundRequest):
     if game["stage"] == "submitting":
         raise HTTPException(status_code=400, detail="a round is already open")
 
-    round_ = _open_round(game, req.round_type, req.timeout_seconds)
+    round_ = _open_round(game, req.round_type, req.timeout_seconds, req.metadata)
     return {"ok": True, "round_type": round_["round_type"],
             "expected_count": len(round_["expected_players"]),
-            "timeout_seconds": round_["timeout_seconds"]}
+            "timeout_seconds": round_["timeout_seconds"],
+            "candidate_questions": round_.get("candidate_questions", [])}
 
 
 @app.post("/games/{game_id}/round/submit")
@@ -1105,6 +1299,19 @@ def submit_round(game_id: str, req: SubmitRoundRequest):
         raise HTTPException(status_code=403, detail="player joined after this round opened")
     if req.player_id in round_["submissions"]:
         raise HTTPException(status_code=409, detail="player has already submitted this round")
+
+    # Round-type-specific submission validation. Only "witness" needs this
+    # today; if more round types need it, generalize into a dispatch dict
+    # the way _ROUND_PREP / _ROUND_GENERATORS already are.
+    if round_["round_type"] == "witness":
+        max_questions = _DIFFICULTY_CONFIG[game["difficulty"]]["questions_per_round"]
+        questions = [q.strip() for q in req.payload.get("questions", []) if isinstance(q, str) and q.strip()]
+        if len(questions) > max_questions:
+            raise HTTPException(
+                status_code=400,
+                detail=f"at most {max_questions} questions allowed this round on {game['difficulty']} difficulty"
+            )
+        req.payload["questions"] = questions
 
     with _games_lock:
         round_["submissions"][req.player_id] = req.payload
