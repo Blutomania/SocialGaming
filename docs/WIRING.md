@@ -215,9 +215,16 @@ are already appropriate). Detected by `localization._is_modern(setting)`.
 
 ## Cinematic brief schema
 
-Stored at `mystery_dict["cinematic_brief"]`. Purpose: drop-in prompt for AI video
-generators (Sora, Runway Gen-3, Pika). Covers the opening 15–30 second sequence only —
-no spoilers, pure cinematic hook.
+One `_generate_cinematic_brief()` call produces two separate outputs, stored as two
+separate top-level keys on `mystery_dict` — not nested inside each other:
+
+- **`mystery_dict["opening_narration"]`** — a string, 3–5 sentences of atmospheric prose.
+  Player-facing: meant to be displayed or read aloud at the start of the game. No spoilers,
+  no camera/shot direction — just the scene.
+- **`mystery_dict["cinematic_brief"]`** — a dict, drop-in prompt for AI video generators
+  (Sora, Runway Gen-3, Pika). Technical shot/lighting/sound direction. Hidden from
+  players — prepared for future video generation, not something to show them directly.
+  Covers the opening 15–30 second sequence only, no spoilers.
 
 ```json
 {
@@ -242,6 +249,10 @@ no spoilers, pure cinematic hook.
   "title_card": "The text overlay that ends the opening sequence."
 }
 ```
+
+Both outputs come from the same Claude call (one API call total, not two) — the point of
+splitting them into two fields is presentation (one for players, one hidden for a future
+video pipeline), not cost.
 
 ### How to use with a video API (future wiring)
 

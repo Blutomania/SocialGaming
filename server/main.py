@@ -275,9 +275,13 @@ def _generate_cinematic_brief(mystery_dict: dict) -> dict:
         for ch in suspects
     )
     prompt = f"""\
-You are writing a cinematic brief for an AI video generator (e.g. Sora, Runway Gen-3).
-The brief will become the opening sequence of a mystery party game — 15–30 seconds,
-no spoilers, pure visual and atmospheric hook.
+You are writing the opening sequence material for a mystery party game, in two forms:
+
+1. A short narration meant to be displayed or read aloud to players at the start of the
+   game — atmospheric prose, no spoilers, no camera/shot direction, just the scene.
+2. A cinematic brief for an AI video generator (e.g. Sora, Runway Gen-3) covering the same
+   15–30 second opening — technical shot/lighting/sound direction, not meant for players to
+   see directly. This is prepared for future video generation and stays hidden from players.
 
 MYSTERY TITLE: {m.get('title', '')}
 SETTING: {s.get('location', '')} — {s.get('time_period', '')}
@@ -289,17 +293,20 @@ SUSPECTS (do NOT show guilt or motive — only appearance and first moment):
 
 Return ONLY valid JSON:
 {{
-  "logline": "One sentence. Visual, urgent, present tense. Under 20 words.",
-  "opening_shot": "Establishing shot description. 2–3 sentences.",
-  "crime_reveal_shot": "The discovery moment. 2–3 sentences.",
-  "atmosphere_tags": ["3–6 mood/texture/palette words"],
-  "sound_design": "What the audience hears before dialogue. One sentence.",
-  "cast_visuals": [
-    {{"name": "character name", "appearance": "one sentence", "first_seen_doing": "one sentence"}}
-  ],
-  "title_card": "Short evocative text overlay."
+  "opening_narration": "3-5 sentences of atmospheric prose, written to be displayed or read aloud to players. No spoilers, no camera direction — just the scene.",
+  "cinematic_brief": {{
+    "logline": "One sentence. Visual, urgent, present tense. Under 20 words.",
+    "opening_shot": "Establishing shot description. 2–3 sentences.",
+    "crime_reveal_shot": "The discovery moment. 2–3 sentences.",
+    "atmosphere_tags": ["3–6 mood/texture/palette words"],
+    "sound_design": "What the audience hears before dialogue. One sentence.",
+    "cast_visuals": [
+      {{"name": "character name", "appearance": "one sentence", "first_seen_doing": "one sentence"}}
+    ],
+    "title_card": "Short evocative text overlay."
+  }}
 }}"""
-    raw = llm(prompt, system="You are a cinematic brief writer. Return only valid JSON.")
+    raw = llm(prompt, system="You are a mystery game's opening-sequence writer. Return only valid JSON.")
     return _parse_json(raw)
 
 
@@ -383,8 +390,9 @@ def _run_generation_job(job_id: str, prompt: str, cinematic_brief: bool) -> None
 
         if cinematic_brief:
             _job_update(job_id, "running", "Writing cinematic brief…")
-            brief = _generate_cinematic_brief(mystery_dict)
-            mystery_dict["cinematic_brief"] = brief
+            opening = _generate_cinematic_brief(mystery_dict)
+            mystery_dict["opening_narration"] = opening["opening_narration"]
+            mystery_dict["cinematic_brief"] = opening["cinematic_brief"]
 
         _job_update(job_id, "running", "Saving…")
         slug = _save_mystery(mystery_dict)
@@ -652,8 +660,9 @@ def generate(req: GenerateRequest):
     mystery_dict = _run_coherence(mystery_dict)
 
     if req.cinematic_brief:
-        brief = _generate_cinematic_brief(mystery_dict)
-        mystery_dict["cinematic_brief"] = brief
+        opening = _generate_cinematic_brief(mystery_dict)
+        mystery_dict["opening_narration"] = opening["opening_narration"]
+        mystery_dict["cinematic_brief"] = opening["cinematic_brief"]
 
     slug = _save_mystery(mystery_dict)
     mystery_dict["_slug"] = slug
