@@ -5,6 +5,33 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session — July 31, 2026 at 19:09
+**Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
+**Latest commit:** `899fa8d`
+
+### Files changed this session
+- `erver/main.py` — Modified
+
+### Commits this session
+```
+899fa8d Add lockstep round state machine for multiplayer game sessions
+2a65e64 chore: auto-update SESSIONS.md with session summary [acf64cc]
+acf64cc Split cinematic brief into player-facing narration + hidden video prompt
+afa5f4c chore: auto-update SESSIONS.md with session summary [4f2f53c]
+4f2f53c Add P1 extractions for The Best of Mystery (1980) anthology — 63 stories
+9f4c191 Add --anthology mode for short-story-collection PDFs; fix source_id collision bug
+82cd423 Add short-story collection PDF for corpus ingestion
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
 ## Session — July 31, 2026 at 19:00
 **Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
 **Latest commit:** `acf64cc`
