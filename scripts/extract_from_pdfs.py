@@ -33,6 +33,7 @@ import re
 import sys
 import time
 from pathlib import Path
+from typing import Optional
 
 from dotenv import load_dotenv
 
@@ -294,6 +295,97 @@ def _count_toc_entries(full_text: str, search_chars: int = 20000) -> int:
     return count
 
 
+class ExtractionAPIError(Exception):
+    """Every retry attempt failed at the API-call level — never got a
+    response back to even attempt parsing. Callers should abort the whole
+    source (don't save a file at all) rather than write a placeholder, so
+    a later re-run's dedup-by-filename check retries it instead of treating
+    a network/auth hiccup as "already extracted, nothing to see here."""
+
+
+def _call_claude_for_protocol(
+    client: "anthropic.Anthropic",
+    model: str,
+    prompt: str,
+    pid: str,
+    label: str,
+    max_retries: int = 1,
+    verbose: bool = True,
+) -> tuple[dict, Optional[str]]:
+    """Call Claude for one protocol's extraction prompt and parse the JSON
+    response, retrying once on a malformed response before falling back to
+    a null placeholder.
+
+    The old inline version of this logic (duplicated in extract_pdf() and
+    extract_pdf_anthology()) caught a JSON parse failure and silently wrote
+    the same null-placeholder shape Claude itself is instructed to use for
+    a genuinely-absent element (see extraction_prompt()'s "If an element is
+    absent... set value to null" instruction) — meaning a hard parse
+    failure was indistinguishable from an honest "nothing found" result
+    without manually cross-checking against a sibling extraction. Confirmed
+    on the real corpus: story05 of the Best of Mystery anthology
+    ("Pseudo Identity") came back with all 6 P1 fields null, including
+    "crime" and "investigator" — fields essentially always present in any
+    mystery — while the same author's other story in the same anthology
+    extracted cleanly. That shape only comes from this fallback, not from
+    a genuine "absent from source" case.
+
+    Raises ExtractionAPIError if every attempt failed before a response was
+    ever received (network/auth/rate-limit) — the caller should not save
+    anything in that case. If at least the final attempt got a response but
+    it wouldn't parse as JSON, returns a null-placeholder dict and a warning
+    string instead of raising — that case is still worth saving (paired
+    with the warning) since a formatting quirk on one story's content isn't
+    expected to be fixed by a bare re-run the way a network error might be.
+
+    Returns (extracted_dict, warning_or_None).
+    """
+    protocol = get_protocol(pid)
+    last_error = None
+    last_error_was_api_failure = True
+
+    for attempt in range(max_retries + 1):
+        try:
+            message = client.messages.create(
+                model=model,
+                max_tokens=1000,
+                messages=[{"role": "user", "content": prompt}],
+            )
+        except Exception as e:
+            last_error = f"API error: {e}"
+            last_error_was_api_failure = True
+            if verbose:
+                more = "retrying" if attempt < max_retries else "giving up"
+                print(f"  WARNING  {label} ({pid}): {last_error} — {more}")
+            continue
+
+        raw = message.content[0].text.strip()
+        if raw.startswith("```"):
+            raw = raw.split("```", 2)[1]
+            if raw.startswith("json"):
+                raw = raw[4:]
+            raw = raw.rsplit("```", 1)[0]
+
+        try:
+            return json.loads(raw.strip()), None
+        except json.JSONDecodeError as e:
+            last_error = f"JSON parse failed ({e})"
+            last_error_was_api_failure = False
+            if verbose:
+                preview = raw.strip()[:150].replace("\n", " ")
+                more = "retrying" if attempt < max_retries else f"giving up after {max_retries + 1} attempt(s)"
+                print(f"  WARNING  {label} ({pid}): {last_error} — {more}. Raw response started: {preview!r}")
+
+    if last_error_was_api_failure:
+        raise ExtractionAPIError(last_error)
+
+    placeholder = {
+        p.json_key: {"value": None, "confidence": "low", "quote": None}
+        for p in protocol.parts
+    }
+    return placeholder, last_error
+
+
 def extract_pdf_anthology(
     pdf_path: Path,
     client: "anthropic.Anthropic",
@@ -348,38 +440,17 @@ def extract_pdf_anthology(
             print(f"  READ  story {story['index']:02d}: {story['title']} — {story['author']}  ({note})")
 
         merged: dict = {}
-        story_failed = False
-        for pid in protocol_ids:
-            prompt = extraction_prompt(pid, sampled_text, max_text_chars=len(sampled_text))
-            try:
-                message = client.messages.create(
-                    model=model,
-                    max_tokens=1000,
-                    messages=[{"role": "user", "content": prompt}],
-                )
-            except Exception as e:
-                print(f"  ERROR calling Claude for story {story['index']:02d}: {e}")
-                story_failed = True
-                break
-
-            raw = message.content[0].text.strip()
-            if raw.startswith("```"):
-                raw = raw.split("```", 2)[1]
-                if raw.startswith("json"):
-                    raw = raw[4:]
-                raw = raw.rsplit("```", 1)[0]
-
-            try:
-                extracted = json.loads(raw.strip())
-            except json.JSONDecodeError:
-                protocol = get_protocol(pid)
-                extracted = {
-                    p.json_key: {"value": None, "confidence": "low", "quote": None}
-                    for p in protocol.parts
-                }
-            merged.update(extracted)
-
-        if story_failed:
+        warnings: list[str] = []
+        label = f"story {story['index']:02d} ({story['title']})"
+        try:
+            for pid in protocol_ids:
+                prompt = extraction_prompt(pid, sampled_text, max_text_chars=len(sampled_text))
+                extracted, warning = _call_claude_for_protocol(client, model, prompt, pid, label, verbose=verbose)
+                if warning:
+                    warnings.append(f"{pid}: {warning}")
+                merged.update(extracted)
+        except ExtractionAPIError as e:
+            print(f"  ERROR  {label}: {e} — skipping, not saving a placeholder (re-run will retry)")
             failed += 1
             continue
 
@@ -394,6 +465,8 @@ def extract_pdf_anthology(
             "story_index": story["index"],
             "story_count": len(stories),
         }
+        if warnings:
+            merged["_meta"]["extraction_warnings"] = warnings
 
         out_path.parent.mkdir(parents=True, exist_ok=True)
         with open(out_path, "w") as f:
@@ -526,41 +599,21 @@ def extract_pdf(
         print(f"        {len(text):,} chars extracted from PDF")
 
     merged: dict = {}
-    for pid in protocol_ids:
-        # `text` has already been sampled (and possibly cast-list-expanded)
-        # by extract_text_from_pdf; pass its own length through so
-        # extraction_prompt's internal _sample_text doesn't re-truncate it.
-        prompt = extraction_prompt(pid, text, max_text_chars=len(text))
-
-        try:
-            message = client.messages.create(
-                model      = model,
-                max_tokens = 1000,
-                messages   = [{"role": "user", "content": prompt}],
-            )
-        except Exception as e:
-            print(f"  ERROR calling Claude: {e}")
-            return None, ""
-
-        raw = message.content[0].text.strip()
-
-        # Strip markdown fences if Claude added them
-        if raw.startswith("```"):
-            raw = raw.split("```", 2)[1]
-            if raw.startswith("json"):
-                raw = raw[4:]
-            raw = raw.rsplit("```", 1)[0]
-
-        try:
-            extracted = json.loads(raw.strip())
-        except json.JSONDecodeError:
-            protocol = get_protocol(pid)
-            extracted = {
-                p.json_key: {"value": None, "confidence": "low", "quote": None}
-                for p in protocol.parts
-            }
-
-        merged.update(extracted)
+    warnings: list[str] = []
+    label = pdf_path.stem
+    try:
+        for pid in protocol_ids:
+            # `text` has already been sampled (and possibly cast-list-expanded)
+            # by extract_text_from_pdf; pass its own length through so
+            # extraction_prompt's internal _sample_text doesn't re-truncate it.
+            prompt = extraction_prompt(pid, text, max_text_chars=len(text))
+            extracted, warning = _call_claude_for_protocol(client, model, prompt, pid, label, verbose=verbose)
+            if warning:
+                warnings.append(f"{pid}: {warning}")
+            merged.update(extracted)
+    except ExtractionAPIError as e:
+        print(f"  ERROR  {label}: {e} — skipping, not saving a placeholder (re-run will retry)")
+        return None, ""
 
     merged["_meta"] = {
         "source":    str(pdf_path),
@@ -569,6 +622,8 @@ def extract_pdf(
         "protocols": protocol_ids,
         "title":     pdf_path.stem,
     }
+    if warnings:
+        merged["_meta"]["extraction_warnings"] = warnings
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     with open(out_path, "w") as f:
