@@ -629,13 +629,15 @@ callers can always concatenate it straight into a prompt without a conditional.
 | `_investigate_area_with_ai()` | Fixed, in `CALL_SITE_TAGS["investigate_area"]` | `F4` (Setting as Constraint), `F5` (Evidence Type) + `"Investigation/Scene Phase"` | Scene/evidence narration craft — e.g. Murder Mystery Co's "clues framed as story, not raw data" finding, which is specifically about *how to describe a found clue*, not about plot mechanics. |
 | `_follow_lead_with_ai()` | Fixed, in `CALL_SITE_TAGS["follow_lead"]` | `M2` (Red Herring), `M5` (Alibi), `C4` (Culprit + Motive) + `"Investigation/Scene Phase"` | Lead-reveal craft — what a lead should actually disclose and how it should mislead when it's a red herring. |
 
-**Known caveat baked into `PART_TYPE_TO_TAXONOMY`:** `part_registry.py`'s `_atomize_extraction()`
-maps the extraction key `"alibi"` (a P2/M5 field) onto the registry's axis named
-`"evidence_type"` — a pre-existing mislabeling (see the Session 22 audit above). The mapping
-`"evidence_type": ["M5"]` reflects what that axis *actually contains* today, not what its name
-suggests. **Do not "fix" this to `["F5"]` without first fixing the underlying mislabeling in
-`part_registry.py`** — doing one without the other would silently swap which craft guidance
-attaches to that axis.
+**Resolved caveat (Session 23):** `part_registry.py`'s axis 8 used to be named `"evidence_type"`
+despite holding alibi content — the extraction key `"alibi"` mapped there, not anything about
+evidence type. Session 23 renamed the axis itself to `"alibi"`, so `PART_TYPE_TO_TAXONOMY` now
+reads `"alibi": ["M5"]` directly, no name/content mismatch. Same session also extended
+`_atomize_extraction()`'s `KEY_TO_IDX` to stop silently discarding `victim`, `resolution`,
+`investigator`, `investigator_wound`, and `clue_fairness` (previously extracted, never sampled —
+see the Session 22 efficiency audit above for how that was found). `media_and_audience` remains
+deliberately unmapped — it's meta/format information, not a fit for any of the 8 crime-mechanic
+axes. Full detail in `SESSIONS.md` Session 23.
 
 ### Where the audit trail lives
 

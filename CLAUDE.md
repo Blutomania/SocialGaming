@@ -298,21 +298,40 @@ Full list in `SESSIONS.md`. Top priorities:
     end-game resolution/summation scene); crime-scene investigation redesign and the "what I know
     vs. what's shared" comparison screen (both depend on the lockstep mechanism, now in place);
     lead-claim reservation + scaling lead count to max players (8, per item 4's Phase 3e decision).
-12. **[ONGOING, Session 22]** Extraction-pipeline efficiency gap, found while auditing whether
-    extraction actually supports the coherence engine's dialogue generation — two concrete,
-    code-verified issues, neither fixed yet:
-    - `part_registry.py`'s `_atomize_extraction()` expects P2-tier keys that a P1-only extraction
-      never produces, so every P1-only source (all 12 novels + all 63 anthology stories) can only
-      ever populate 3 of the registry's 8 sampling axes — confirmed directly against
-      `story01_winter_run.json`.
-    - Even fully P1+P2-depth sources have craft-relevant fields (`clue_fairness`,
-      `media_and_audience`, `investigator_wound`, `victim`, `resolution`, `investigator`) that the
-      registry extracts and then never reads, for any source, at any depth — confirmed against a
-      real `ebook_*` extraction (14 populated fields, only 8 ever read).
-    Two independent fixes, not mutually exclusive: extend `part_registry.py`'s field mapping to
-    stop discarding the 6 unused fields (no new API cost, unlocks value already paid for); and/or
-    re-extract the 75 P1-only sources at `--protocol P1P2` (new API cost, backfills their missing
-    axes specifically). Full detail in `SESSIONS.md` Session 22.
+12. **[PARTIALLY FIXED, Session 22 audit / Session 23 fix]** Extraction-pipeline efficiency gap,
+    found while auditing whether extraction actually supports the coherence engine's dialogue
+    generation — two concrete, code-verified issues:
+    - **[DONE, Session 23]** Even fully P1+P2-depth sources had craft-relevant fields
+      (`clue_fairness`, `media_and_audience`, `investigator_wound`, `victim`, `resolution`,
+      `investigator`) that the registry extracted and then never read, for any source, at any
+      depth — confirmed against a real `ebook_*` extraction (14 populated fields, only 8 ever
+      read). Fixed by extending `part_registry.py`'s `KEY_TO_IDX`; see item 14 below for the full
+      fix (also resolved the pre-existing `evidence_type`/`alibi` axis mislabeling in the same
+      pass). `media_and_audience` remains deliberately unmapped — no honest fit among the 8 axes.
+    - **[STILL OPEN]** `part_registry.py`'s `_atomize_extraction()` still has no P3/P4-tier keys
+      to read, so a P1-only source (all 12 novels + all 63 anthology stories) went from populating
+      3 of the registry's 8 sampling axes to 5 of 8 after the Session 23 fix (gained `motive` via
+      `victim`, `reveal_mechanic` via `resolution`, `social_dynamic` via `investigator`) — but
+      `suspect_archetype`, `red_herring`, and `alibi` still require P2-tier fields
+      (`suspect_architecture`, `red_herring`/`clue_fairness`, `alibi`) that a P1-only extraction
+      never produces. Only fix: re-extract the 75 P1-only sources at `--protocol P1P2` (new API
+      cost, backfills the remaining 3 axes specifically). Full detail in `SESSIONS.md` Session 22.
+14. **[DONE, Session 23]** Fixed the `evidence_type`/`alibi` axis mislabeling flagged as a known
+    caveat in `craft_grounding.py`'s docstring (axis 8 was named `"evidence_type"` but actually
+    held alibi content, since the extraction key `"alibi"` mapped there) — renamed the axis itself
+    to `"alibi"` in `part_registry.py`, updated `craft_grounding.py`'s `PART_TYPE_TO_TAXONOMY` and
+    `coherence_validator.py`'s hardcoded `"evidence_type"` string checks (4 call sites) to match.
+    Done together with the item 12 field-mapping fix above, in the same commit, per the caveat's
+    own instruction not to do one without the other. Also found and fixed a second, unrelated
+    staleness bug while regenerating the registry to verify: `mystery_database/part_registry.json`
+    is a checked-in cache with no staleness check (`load_registry()` only rebuilds if the file is
+    *missing*, never if it's stale) — it had been silently frozen since March 11, missing ~75
+    sources' worth of corpus growth (294 → 369 sources after regeneration; 1,469 → 2,833 parts).
+    Regenerated and committed this time, but the root cause is **not** fixed — `load_registry()`
+    still has no staleness check, so the next extraction run will silently go stale again until
+    someone manually deletes `part_registry.json`. Worth a real fix (e.g. mtime comparison against
+    `extractions/`, matching the pattern `craft_grounding.py`'s index cache already uses) as a
+    follow-up, not done this session. Full detail in `SESSIONS.md` Session 23.
 13. **[DONE, Session 23]** Fixed a silent extraction-failure bug found while reviewing anthology
     output quality: `extract_pdf()`/`extract_pdf_anthology()` used to catch a malformed Claude
     response and silently save the same null-placeholder shape used for a genuine "nothing found"

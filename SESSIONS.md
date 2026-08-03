@@ -9,8 +9,10 @@ Use this file to onboard any new session without losing context.
 **Branch:** `claude/session-wrapup-cleanup-blocker-3val9a` (continued from Session 22, same branch —
 PR #7 already open against it)
 **Starting commit:** `1b6ae7c` (tip after Session 22)
-**Status:** Complete — fixed a silent extraction-failure bug found while reviewing the Session 20
-anthology output, verified against the real failing case
+**Status:** Complete — two fixes: (1) silent extraction-failure bug found while reviewing the
+Session 20 anthology output, verified against the real failing case; (2) extraction-pipeline
+field-mapping gap from Session 22's audit, plus the `evidence_type`/`alibi` axis mislabeling it
+collided with
 
 ### Bug found: silent JSON-parse failure indistinguishable from a genuine "nothing found"
 While reviewing extracted anthology content per the owner's request, found
@@ -60,7 +62,81 @@ P1-only-source depth) — those remain open, separate decisions.
 - Owner has more anthologies to extract; this fix is now live for all of them.
 - Owner still needs to triage remaining `mystery_database/new_sources/` files (3 queued novels,
   1 unsupported `.html`, the untriaged Higashino novel).
-- Everything from Session 22's "What is next" list is still open and untouched this session.
+- The extraction-pipeline efficiency gap's second half (P1-only sources still missing 3 of 8
+  axes) — see below, this remains open.
+
+### Continued this session: extraction-efficiency field-mapping fix + axis mislabeling fix
+Owner asked to address open issues next. Picked up Session 22's first efficiency-gap fix
+(`part_registry.py` discarding 6 extracted-but-unread fields) — while scoping it, found it
+collides with a documented caveat already sitting in `craft_grounding.py`'s docstring: the
+registry's axis 8 is named `"evidence_type"` but actually holds alibi content (the extraction key
+`"alibi"` maps there), and the docstring explicitly warns not to extend that axis's mapping
+without fixing the mislabeling first — doing one without the other would blend unrelated craft
+concepts under one mistagged axis. Asked the owner how to handle it; answer: **"Definitely fix the
+mislabelling too. Keep it clean."**
+
+**What got fixed, in one pass:**
+1. **Axis rename**: `part_registry.py`'s `PART_TYPE_NAMES[7]` renamed from `"evidence_type"` to
+   `"alibi"` (`SETTING_COMPAT` key renamed to match).
+2. **Field-mapping extended**: `_atomize_extraction()`'s `KEY_TO_IDX` now maps the 5 previously-
+   discarded fields with honest semantic fits — `victim`→motive (idx 3, alongside
+   `culprit_and_motive`), `resolution`→reveal_mechanic (idx 6, alongside `reveal_mechanic` itself
+   — P1's shallow version of the same P2 concept), `investigator` + `investigator_wound`→
+   social_dynamic (idx 7), `clue_fairness`→red_herring (idx 5, paired as "clue economy" — both
+   axes govern how information reaches the reader, from opposite ends). `media_and_audience` (P2)
+   deliberately left unmapped — meta/format information, no honest fit among the 8 crime-mechanic
+   axes.
+3. **`craft_grounding.py` updated to match**: `PART_TYPE_TO_TAXONOMY`'s `"evidence_type": ["M5"]`
+   → `"alibi": ["M5"]`; the module docstring's "KNOWN CAVEAT" section replaced with a short
+   "RESOLVED CAVEAT" note pointing here.
+4. **`coherence_validator.py` updated** — this was the one live dependency that would have
+   silently broken: `check_parts()`'s completeness check and its "scene investigation must be
+   scene-observable" check (section 3) both hardcoded the string `"evidence_type"` as a
+   `by_type` dict key. Since parts now carry `part_type="alibi"`, those checks would have quietly
+   stopped firing (the `if "evidence_type" in by_type` branch never true) without this rename — 4
+   call sites fixed (the two `by_type` lookups, plus two repair-hint strings in `check_mystery()`
+   that reference `part_type='evidence_type'` by name).
+5. **`docs/WIRING.md`** — the "Known caveat baked into `PART_TYPE_TO_TAXONOMY`" section rewritten
+   as a resolved note.
+
+**Verified, not just written:**
+- `_atomize_extraction()` tested directly against a synthetic extraction dict covering all 14
+  P1+P2 keys: confirmed 13 parts produced (not 14 — `media_and_audience` correctly excluded),
+  landing on the correct axes, including two-per-axis pooling (`motive` got both
+  `culprit_and_motive` and `victim`; `social_dynamic` got `investigator`, `social_world`, and
+  `investigator_wound`).
+- `craft_grounding.PART_TYPE_TO_TAXONOMY` confirmed to have `"alibi"` and not `"evidence_type"`.
+- `server/main.py` still imports cleanly and serves all 31 routes (its `_craft_guidance_for_parts`
+  helper does a plain `.get(p.part_type, [])` lookup, so the rename required zero changes there).
+- `sample_for_generation()` + `coherence_validator.check_parts()` run end-to-end against the real
+  rebuilt registry: sampled recipe included an `alibi` part, `report.passed == True`.
+- Grepped the whole live codebase (excluding `deprecated/` and historical `mystery_database/
+  generated/*.json` snapshots, which correctly keep their old field name as a point-in-time
+  record) for stray `"evidence_type"` references — none left outside explanatory prose in resolved
+  caveat notes.
+
+**Second bug found and fixed along the way, unrelated to the mislabeling but same root cause
+category (silent staleness):** `mystery_database/part_registry.json` is a checked-in cache that
+`load_registry()` only rebuilds if the file is *missing* — never if it's *stale*. It had been
+frozen since March 11 (294 sources), silently missing ~75 sources' worth of corpus growth since
+then, including all 63 anthology stories from Session 20. Deleted and let `load_registry()`
+rebuild it fresh (369 sources, 2,833 parts — up from 1,469). The underlying staleness-check gap is
+**not** fixed, only the immediate staleness; flagged as a follow-up in `CLAUDE.md` item 14.
+
+### Files modified
+- `part_registry.py` — axis rename, `SETTING_COMPAT` key rename, `KEY_TO_IDX` extended
+- `craft_grounding.py` — `PART_TYPE_TO_TAXONOMY` key rename, docstring caveat resolved
+- `coherence_validator.py` — 4 call sites renamed from `"evidence_type"` to `"alibi"`
+- `docs/WIRING.md` — caveat section rewritten as resolved
+- `mystery_database/part_registry.json` — regenerated (stale cache, see above)
+
+### What is next
+- The extraction-pipeline efficiency gap's remaining half: P1-only sources still populate only 5
+  of 8 axes (up from 3) — full 8-axis coverage needs `--protocol P1P2` re-extraction, which is a
+  new-API-cost decision still open.
+- `load_registry()`'s missing staleness check (CLAUDE.md item 14) — real fix needed, not done this
+  session.
+- Everything else from Session 22's "What is next" list remains open and untouched.
 
 ---
 
