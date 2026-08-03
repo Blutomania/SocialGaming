@@ -5,6 +5,65 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 23 — August 3, 2026
+**Branch:** `claude/session-wrapup-cleanup-blocker-3val9a` (continued from Session 22, same branch —
+PR #7 already open against it)
+**Starting commit:** `1b6ae7c` (tip after Session 22)
+**Status:** Complete — fixed a silent extraction-failure bug found while reviewing the Session 20
+anthology output, verified against the real failing case
+
+### Bug found: silent JSON-parse failure indistinguishable from a genuine "nothing found"
+While reviewing extracted anthology content per the owner's request, found
+`pdf_the_best_of_mystery_1980_antho__story05_pseudo_identity.json` ("Pseudo Identity" by Lawrence
+Block) had come back with all 6 P1 fields null — including `crime` and `investigator`, fields
+essentially always present in any mystery. The same author's other story in the anthology
+extracted cleanly. Root cause: `extract_pdf()` and `extract_pdf_anthology()` both caught
+`json.JSONDecodeError` on a malformed Claude response and silently wrote the same null-placeholder
+shape Claude itself uses for a legitimately-absent element — so a hard parse failure and an honest
+"not in this text" result were byte-for-byte identical in the saved file. No warning, no log line,
+nothing to distinguish them without manually cross-checking against a sibling extraction.
+
+### Fix: shared retry helper, loud warnings, failure-mode split
+Added `_call_claude_for_protocol()` in `scripts/extract_from_pdfs.py`, replacing the duplicated
+inline call+parse blocks in both `extract_pdf()` and `extract_pdf_anthology()`:
+- A malformed response now retries once before falling back to the placeholder.
+- If the retry also fails to parse, the placeholder is still saved (a formatting quirk isn't
+  expected to self-resolve on a bare re-run), but now **with a warning** recorded in
+  `_meta.extraction_warnings` and printed to console — no longer silent.
+- Pure API-call failures (network/auth/rate-limit — never got a response back at all) are handled
+  differently on purpose: raises `ExtractionAPIError`, and the caller skips the source entirely
+  rather than saving anything. This preserves the original (safer) behavior for that failure mode —
+  the dedup-by-filename check on a later re-run will retry it naturally, instead of a transient
+  network hiccup permanently marking the source "done."
+
+### Verified against the real failing case, not just stubs
+Stub-tested first (3 scenarios: retry-succeeds, always-malformed, pure-API-failure — all correct).
+Then the owner ran it for real locally: deleted the story05 output file and re-ran
+`python3 scripts/extract_from_pdfs.py ".../The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf" --anthology --protocol P1`.
+Console showed the mechanism firing exactly as designed — first attempt hit
+`JSON parse failed (Expecting ',' delimiter: line 5 column 48 (char 266))`, printed a `WARNING`
+with a preview of the bad raw response, retried, and the retry succeeded. The saved file now has
+real, high-confidence, coherent values across all 6 fields (confirmed by the owner pasting the
+final JSON) with no `extraction_warnings` key — a clean save, not a warned placeholder. Bug
+confirmed fixed against the actual data that originally exposed it.
+
+### Files modified
+- `scripts/extract_from_pdfs.py` — `_call_claude_for_protocol()` + `ExtractionAPIError`, both
+  extraction entry points updated to use it (commit `5dee1cd`)
+
+### Decision
+This fix only addresses the extraction call/parse robustness gap. It does not touch the two
+extraction-pipeline efficiency gaps from Session 22 (registry field-mapping mismatch;
+P1-only-source depth) — those remain open, separate decisions.
+
+### What is next
+- Owner has more anthologies to extract; this fix is now live for all of them.
+- Owner still needs to triage remaining `mystery_database/new_sources/` files (3 queued novels,
+  1 unsupported `.html`, the untriaged Higashino novel).
+- Everything from Session 22's "What is next" list is still open and untouched this session.
+
+---
+
 ## Session 22 — July 31, 2026
 **Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
 **Starting commit:** `a90ded7` (tip after Session 21)

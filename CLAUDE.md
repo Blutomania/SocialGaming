@@ -217,7 +217,7 @@ GodotSteam is the best Steamworks path; Godot Linux export = Steam Deck support 
 
 ---
 
-## Current To-Do (as of Session 22, July 31, 2026)
+## Current To-Do (as of Session 23, August 3, 2026)
 
 Full list in `SESSIONS.md`. Top priorities:
 
@@ -313,6 +313,17 @@ Full list in `SESSIONS.md`. Top priorities:
     stop discarding the 6 unused fields (no new API cost, unlocks value already paid for); and/or
     re-extract the 75 P1-only sources at `--protocol P1P2` (new API cost, backfills their missing
     axes specifically). Full detail in `SESSIONS.md` Session 22.
+13. **[DONE, Session 23]** Fixed a silent extraction-failure bug found while reviewing anthology
+    output quality: `extract_pdf()`/`extract_pdf_anthology()` used to catch a malformed Claude
+    response and silently save the same null-placeholder shape used for a genuine "nothing found"
+    result — confirmed on `pdf_the_best_of_mystery_1980_antho__story05_pseudo_identity.json`
+    (Lawrence Block's "Pseudo Identity"), which came back all-null with no trace of the failure.
+    Fixed via a shared `_call_claude_for_protocol()` helper (retry once, then save-with-warning in
+    `_meta.extraction_warnings` on parse failure; raise `ExtractionAPIError` and skip-without-saving
+    on a pure API/network failure, preserving the dedup-by-filename retry on next run). Verified
+    against the real failing case, not just stubs — owner re-ran extraction locally, the retry
+    fired and fixed it, and the resulting file now has real high-confidence data across all 6
+    fields. Full detail in `SESSIONS.md` Session 23.
 
 > **DO NOT re-run the frozen bulk corpus pipeline** (`deprecated/run_corpus_pipeline.py`). Expand
 > the corpus only via `scripts/extract_from_pdfs.py`, adding one quality source at a time.
