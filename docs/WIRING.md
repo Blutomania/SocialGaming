@@ -415,6 +415,33 @@ Two dispatch points, both keyed by `round_type`:
 - **Secondary witness:** same `round_type: "witness"`, just opened a second time
   with a different `character_name` in `metadata` — no separate mechanism needed.
 
+### Accusation resolution
+
+Not part of the lockstep round mechanism above — accusing is a race, not a
+synchronized round, so it's a standalone always-available action rather than a
+`round_type`. Two new fields on the game session: `game["winner"]` (`player_id` or
+`None`) and `game["accusations"]` (full public history: `{player_id, accused_name,
+correct, ts}`).
+
+`POST /games/{id}/accuse` — `{player_id, culprit_name}`. Checked server-side against
+`mystery["solution"]["culprit"]` (normalized the same way as question deduping —
+case/whitespace-insensitive) — the solution is never sent to clients (see
+`/mystery-brief`, which explicitly strips it), so this is the only way a client can
+actually learn whether a guess was right. First correct accusation wins; the game is
+rejected with `400` for any further attempt once `winner` is set. Race-safety: the
+win is claimed inside `_games_lock`, re-checking that `winner` is still `None` at the
+moment of the correct guess — so if two players guess correctly close together, only
+the one that actually acquires the lock first wins, not just whichever request
+arrived first. No elimination on a wrong guess — a player can keep trying.
+
+Every attempt — right or wrong — broadcasts `accusation_made` to the whole room
+(`{player_name, accused_name, correct}`); a winning guess additionally broadcasts
+`game_won` (`{winner_player_id, winner_name, solution}`), which is what should
+trigger the end-game resolution/summation scene once that's built. `GET
+/games/{id}/result` gives the same outcome as a snapshot, for a client that missed
+the broadcast (late join, reconnect) — `{"solved": false}` before anyone's won,
+otherwise `{"solved": true, "winner_player_id", "winner_name", "solution"}`.
+
 ---
 
 ## Coherence validator — what it checks
