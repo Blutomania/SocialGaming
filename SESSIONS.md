@@ -5,6 +5,73 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 25 — August 3, 2026 (reconciliation)
+**Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
+**Starting commit:** `dbe849d` (tip after Session 24's reconciliation merge)
+**Status:** Complete — reconciled a handoff doc from yet another concurrent session against real
+GitHub state (found it was partially stale), then closed the one real open risk it surfaced
+
+### Multi-session branch confusion, resolved by checking GitHub directly instead of trusting either account
+The owner pasted a handoff doc from a session that had been working on this same branch,
+warning that PR #7 was still open and undecided, and that PR #8 (containing the Session 23 axis-
+mislabeling/field-mapping fix) needed review before any branch reset. Checked actual GitHub state
+rather than trusting either account: **PR #7 was in fact already merged** (`0e39e93`, merge commit
+visible in `git log origin/main`) — that must have happened after the handoff was written. PR #8
+(`dbe849d`, exactly the Session 23 commit) was confirmed `mergeable_state: "clean"` against current
+`main`, 7 files changed, matching expectations exactly — no surprise content.
+
+### The one real, unresolved risk from the handoff: checked, found latent not live, fixed anyway
+The handoff's sharpest claim: `craft_grounding.py` (RAG layer, Session 22) is "actively wiring
+`PARTY_CRAFT_FINDINGS.md` content into all four generation call-sites right now," and a full-text
+verification pass (done in that other session, never written into the doc — "only exists in this
+session's conversation history") found that Steven Medway's *Blood on the Clocktower* design
+assumes team-based cooperation ("work together to build a team that agrees with you"), which
+structurally conflicts with this game's individually-competitive, first-to-solve accusation design.
+Framed as something that "should be checked/fixed before the RAG layer is trusted further."
+
+Rather than trying to reconstruct another session's lost conversation (not possible — no session
+has access to another session's transcript), verified the actual risk empirically against the real
+retrieval code:
+- Ran `get_craft_guidance()` with the exact `CALL_SITE_TAGS` used by all three fixed call-sites
+  and inspected the real top-5 (post confidence-tier ranking) that would actually get injected.
+  The Clocktower "team consensus" row (tagged `Accusation/Reveal Phase`, `75% Sharing Mechanic`)
+  is not reachable by any of the three currently-wired call-sites (`witness_scene`,
+  `investigate_area`, `follow_lead`) — none of them request those two game-system tags.
+- Confirmed `_generate_mystery_dict()` can't reach `PARTY_CRAFT_FINDINGS.md` content at all today:
+  it only queries by taxonomy codes (`PART_TYPE_TO_TAXONOMY`), and 38 of that doc's 39 parsed
+  entries have empty `taxonomy_tags` (that doc uses game-system tags instead, per its own stated
+  design).
+- **So: not currently live.** But a real latent risk — the moment any future call wires in an
+  `Accusation/Reveal Phase` tag (the end-game resolution scene, unblocked and next on the roadmap,
+  is exactly that kind of call), this row's raw "work together" framing would surface unmodified.
+
+**Fixed at the row level, not just in doc prose**, so the fix travels with the content wherever
+it's retrieved rather than relying on a future reader noticing a warning elsewhere: confirmed via
+`format_guidance_block()` that only a row's `concept` + `insight` text ever reaches a live prompt
+(the "Maps to game system" column is parsed for tags only, never injected) — so added an explicit
+`DIVERGENCE` caveat directly into the Medway "Storyteller's chaos" row's Insight text in
+`PARTY_CRAFT_FINDINGS.md`, naming the real endpoint (`POST /games/{id}/accuse`, first-correct-
+guess-wins-alone) and instructing that the *triangulating partial info* insight transfers but the
+*team* framing must not. Verified directly: rebuilt the index, confirmed `"DIVERGENCE"` and
+`"individually competitive"` are present in the row's actual `.insight` field post-parse — not
+just in the markdown source. Also strengthened the existing "Win Condition Design as a live
+tension" flagged-concept note to record this as a confirmed structural conflict, not just a tonal
+one, and point back to the row-level fix.
+
+### Files modified
+- `PARTY_CRAFT_FINDINGS.md` — divergence caveat added to the Medway "Storyteller's chaos" row and
+  the "New concepts flagged" section
+
+### What is next
+- PR #8 (now carrying this fix too) ready to merge — clean against current `main`.
+- Per the handoff's own recommendation: once merged, start a fresh branch off `main` for further
+  work rather than continuing to accumulate on this one (multiple concurrent sessions have now
+  landed work here; time to close it out).
+- End-game resolution scene / knowledge-comparison screen — both unblocked, not built.
+- `The_Devotion_of_Suspect_X` triage decision — still the owner's to make.
+
+---
+
 ## Session 24 — August 3, 2026
 **Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
 **Starting commit:** `a90ded7` (tip after Session 21 — same base Session 22/23 branched from;
