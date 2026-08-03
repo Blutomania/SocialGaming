@@ -5,6 +5,45 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 24 — August 3, 2026
+**Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
+**Starting commit:** `a90ded7` (tip after Session 21 — same base Session 22/23 branched from;
+this work happened in parallel with those two, not aware of them until merge time)
+**Status:** Complete — built the multiplayer accusation-resolution backend (Session 21's item
+1 next-step), then reconciled with Session 22/23's work landing on the same branch concurrently
+
+### Accusation-resolution backend
+Closed the gap Session 21 identified: no backend endpoint existed anywhere for resolving a
+multiplayer accusation. Added `POST /games/{id}/accuse` (server-authoritative check against
+`mystery["solution"]["culprit"]`, which is never sent to clients; first correct accusation wins;
+race-safe via `_games_lock` re-checked at the moment of the winning claim, not just an early
+gate) and `GET /games/{id}/result` (snapshot for a client that missed the broadcast). New fields
+`game["winner"]` / `game["accusations"]`. Two new broadcasts: `accusation_made` (every attempt,
+right or wrong, public to the whole room — explicit owner decision, matches the party-craft
+research on shared wrong-guess moments) and `game_won` (full solution reveal, the trigger point
+for the still-unbuilt end-game resolution scene). Wrong guesses are non-eliminating.
+
+**Verified, not just written:** wrong-guess/correct-guess/post-solve-rejection flow through real
+FastAPI `TestClient` HTTP calls; late-join `/result` snapshot before and after a win; and
+specifically the race condition — fired 3 simultaneous correct accusations from 3 players in
+real threads, confirmed exactly 1 won and the other 2 were correctly rejected as already-solved,
+not just checked in the easy sequential case. `docs/WIRING.md` documents the new endpoints.
+
+### Merge reconciliation with Session 22/23
+Pushing this work hit a non-fast-forward rejection — Session 22 (RAG craft-grounding retrieval
+layer, built on `_generate_witness_scene` from Session 21) and Session 23 (extraction
+silent-failure fix) had both landed on this same branch in the meantime. Merged rather than
+force-pushing; `server/main.py`, `docs/WIRING.md`, and `CLAUDE.md` auto-merged cleanly (no
+functional overlap — different call-sites and files respectively). Only this log file conflicted,
+resolved by discarding a content-free auto-chore stub in favor of proper session entries on both
+sides.
+
+### What is next
+Unchanged from Session 22/23's lists, plus: the accusation backend now unblocks the end-game
+resolution/summation scene (Session 21's tracked item, still open).
+
+---
+
 ## Session 23 — August 3, 2026
 **Branch:** `claude/session-wrapup-cleanup-blocker-3val9a` (continued from Session 22, same branch —
 PR #7 already open against it)

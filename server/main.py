@@ -454,6 +454,8 @@ def _run_generation_job(job_id: str, prompt: str, cinematic_brief: bool) -> None
 #   "round": dict | None,       # active lockstep round, see _open_round() — independent of the
 #                                # legacy per-player "phase" above; phase-specific rework (witness/
 #                                # investigation/lead content) plugs into this separately.
+#   "winner": player_id | None, # set on the first correct accusation; game is over once set
+#   "accusations": [{player_id, accused_name, correct, ts}],  # full public history
 #   "ts": float,
 # }
 
@@ -574,6 +576,8 @@ def _follow_lead_with_ai(mystery: dict, lead: dict, player_name: str) -> tuple[s
 #   player_submitted   — { player_name, submitted_count, expected_count }
 #   round_generating   — { round_type, timed_out: bool, missing_players: [name, ...] }
 #   round_revealed     — { round_type, result }
+#   accusation_made    — { player_name, accused_name, correct: bool } — every attempt, public
+#   game_won            — { winner_player_id, winner_name, solution }
 
 class ConnectionManager:
     def __init__(self) -> None:
@@ -1016,6 +1020,10 @@ class SubmitRoundRequest(BaseModel):
 class ResolveRoundRequest(BaseModel):
     result: dict           # shape is round_type-specific, not validated here
 
+class AccuseRequest(BaseModel):
+    player_id: str
+    culprit_name: str
+
 # ---------------------------------------------------------------------------
 # Endpoints
 # ---------------------------------------------------------------------------
@@ -1192,6 +1200,8 @@ def create_game(req: CreateGameRequest):
         "block_pool": {"witness": [], "investigation": [], "lead": []},
         "stage": None,
         "round": None,
+        "winner": None,
+        "accusations": [],
         "ts": time.time(),
     }
     with _games_lock:
@@ -1393,6 +1403,81 @@ def resolve_round(game_id: str, req: ResolveRoundRequest):
 
     _resolve_round(game, req.result)
     return {"ok": True}
+
+
+@app.post("/games/{game_id}/accuse")
+def accuse(game_id: str, req: AccuseRequest):
+    """
+    Player accuses a character of being the culprit — server-authoritative,
+    checked against the mystery's actual solution (which is never sent to
+    clients, see /mystery-brief). First correct accusation wins the game.
+    Every attempt, right or wrong, is broadcast to the whole room — accusing
+    is meant to be a public, shared moment, not a private guess-and-check.
+    No elimination on a wrong guess; a player can try again.
+    """
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    player = game["players"].get(req.player_id)
+    if player is None:
+        raise HTTPException(status_code=404, detail="player not in game")
+    if game.get("winner"):
+        raise HTTPException(status_code=400, detail="the case has already been solved")
+
+    solution = game["mystery"].get("solution", {})
+    correct = _fingerprint(req.culprit_name) == _fingerprint(solution.get("culprit", ""))
+
+    won = False
+    if correct:
+        # Re-check inside the lock: guards the race between two players both
+        # guessing correctly at nearly the same time — only the first to
+        # actually claim the lock while game["winner"] is still None wins.
+        with _games_lock:
+            if game.get("winner") is None:
+                game["winner"] = req.player_id
+                won = True
+
+    game.setdefault("accusations", []).append({
+        "player_id": req.player_id,
+        "accused_name": req.culprit_name,
+        "correct": correct,
+        "ts": time.time(),
+    })
+
+    _broadcast_sync(game_id, "accusation_made", {
+        "player_name": player["name"],
+        "accused_name": req.culprit_name,
+        "correct": correct,
+    })
+    if won:
+        _broadcast_sync(game_id, "game_won", {
+            "winner_player_id": req.player_id,
+            "winner_name": player["name"],
+            "solution": solution,
+        })
+
+    return {"correct": correct, "won": won}
+
+
+@app.get("/games/{game_id}/result")
+def get_result(game_id: str):
+    """
+    Snapshot of the game's outcome — for a client that missed the game_won
+    broadcast (e.g. joined late, reconnected). Solution is only included
+    once the game has actually been won.
+    """
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    winner_id = game.get("winner")
+    if winner_id is None:
+        return {"solved": False}
+    return {
+        "solved": True,
+        "winner_player_id": winner_id,
+        "winner_name": game["players"].get(winner_id, {}).get("name", "Unknown"),
+        "solution": game["mystery"].get("solution", {}),
+    }
 
 
 @app.get("/games/{game_id}/block-pool")
