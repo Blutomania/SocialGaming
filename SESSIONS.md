@@ -5,6 +5,37 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session — August 03, 2026 at 21:12
+**Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
+**Latest commit:** `a90ded7`
+
+### Files changed this session
+- `ocs/WIRING.md` — Modified
+- `server/main.py` — Modified
+
+### Commits this session
+```
+a90ded7 Document Session 21: lockstep round system, corpus findings, RAG reprioritization
+fefe547 Redesign witness interrogation as lockstep shared-scene model
+073178a chore: auto-update SESSIONS.md with session summary [899fa8d]
+899fa8d Add lockstep round state machine for multiplayer game sessions
+2a65e64 chore: auto-update SESSIONS.md with session summary [acf64cc]
+acf64cc Split cinematic brief into player-facing narration + hidden video prompt
+afa5f4c chore: auto-update SESSIONS.md with session summary [4f2f53c]
+4f2f53c Add P1 extractions for The Best of Mystery (1980) anthology — 63 stories
+9f4c191 Add --anthology mode for short-story-collection PDFs; fix source_id collision bug
+82cd423 Add short-story collection PDF for corpus ingestion
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
 ## Session 21 — July 31, 2026
 **Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
 **Starting commit:** `4f2f53c` (tip after Session 20's anthology extraction)
