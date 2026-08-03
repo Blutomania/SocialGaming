@@ -57,17 +57,12 @@ DESIGN PRINCIPLES — these were explicit decisions, not defaults, so don't
    most during early playtesting, when you're trying to figure out *why*
    something felt off.
 
-KNOWN CAVEAT — read this before mapping new call-sites
--------------------------------------------------------------------------
-`part_registry.py`'s `_atomize_extraction()` maps the extraction JSON key
-`"alibi"` (a P2/M5 field) onto the registry's `PART_TYPE_NAMES[7]`, which is
-named `"evidence_type"`. That name is a pre-existing mislabeling — the
-content sampled under that part type is actually alibi content, not
-evidence-type content. `PART_TYPE_TO_TAXONOMY` below maps that axis to M5
-(Alibi), matching what the axis *actually contains* today, not what its name
-suggests. Do not "fix" this mapping to F5 without first fixing the
-underlying mislabeling in `part_registry.py` — doing one without the other
-would silently swap which craft guidance gets attached to that axis.
+RESOLVED CAVEAT (Session 23) — `part_registry.py`'s axis 8 was previously
+named `"evidence_type"` despite holding alibi content (the extraction key
+`"alibi"` mapped there). Renamed the axis itself to `"alibi"` in
+`part_registry.py`, so `PART_TYPE_TO_TAXONOMY` below maps `"alibi"` -> M5
+directly — no more name/content mismatch. See `SESSIONS.md` Session 23 for
+the full before/after.
 """
 
 from __future__ import annotations
@@ -425,7 +420,6 @@ def guidance_provenance(entries: list[GuidanceEntry]) -> list[dict]:
 # server/main.py to retrieve guidance matching whatever axes a given
 # generated mystery actually drew from.
 #
-# See the KNOWN CAVEAT in the module docstring re: "evidence_type" -> M5.
 PART_TYPE_TO_TAXONOMY: dict[str, list[str]] = {
     "crime_type": ["C1"],
     "setting_element": ["C3"],
@@ -434,7 +428,7 @@ PART_TYPE_TO_TAXONOMY: dict[str, list[str]] = {
     "red_herring": ["M2"],
     "reveal_mechanic": ["M6"],
     "social_dynamic": ["M4"],
-    "evidence_type": ["M5"],  # actually alibi content — see module docstring
+    "alibi": ["M5"],
 }
 
 # Fixed tag sets for the three call-sites that don't sample from the part

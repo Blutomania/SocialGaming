@@ -5,6 +5,73 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 25 — August 3, 2026 (reconciliation)
+**Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
+**Starting commit:** `dbe849d` (tip after Session 24's reconciliation merge)
+**Status:** Complete — reconciled a handoff doc from yet another concurrent session against real
+GitHub state (found it was partially stale), then closed the one real open risk it surfaced
+
+### Multi-session branch confusion, resolved by checking GitHub directly instead of trusting either account
+The owner pasted a handoff doc from a session that had been working on this same branch,
+warning that PR #7 was still open and undecided, and that PR #8 (containing the Session 23 axis-
+mislabeling/field-mapping fix) needed review before any branch reset. Checked actual GitHub state
+rather than trusting either account: **PR #7 was in fact already merged** (`0e39e93`, merge commit
+visible in `git log origin/main`) — that must have happened after the handoff was written. PR #8
+(`dbe849d`, exactly the Session 23 commit) was confirmed `mergeable_state: "clean"` against current
+`main`, 7 files changed, matching expectations exactly — no surprise content.
+
+### The one real, unresolved risk from the handoff: checked, found latent not live, fixed anyway
+The handoff's sharpest claim: `craft_grounding.py` (RAG layer, Session 22) is "actively wiring
+`PARTY_CRAFT_FINDINGS.md` content into all four generation call-sites right now," and a full-text
+verification pass (done in that other session, never written into the doc — "only exists in this
+session's conversation history") found that Steven Medway's *Blood on the Clocktower* design
+assumes team-based cooperation ("work together to build a team that agrees with you"), which
+structurally conflicts with this game's individually-competitive, first-to-solve accusation design.
+Framed as something that "should be checked/fixed before the RAG layer is trusted further."
+
+Rather than trying to reconstruct another session's lost conversation (not possible — no session
+has access to another session's transcript), verified the actual risk empirically against the real
+retrieval code:
+- Ran `get_craft_guidance()` with the exact `CALL_SITE_TAGS` used by all three fixed call-sites
+  and inspected the real top-5 (post confidence-tier ranking) that would actually get injected.
+  The Clocktower "team consensus" row (tagged `Accusation/Reveal Phase`, `75% Sharing Mechanic`)
+  is not reachable by any of the three currently-wired call-sites (`witness_scene`,
+  `investigate_area`, `follow_lead`) — none of them request those two game-system tags.
+- Confirmed `_generate_mystery_dict()` can't reach `PARTY_CRAFT_FINDINGS.md` content at all today:
+  it only queries by taxonomy codes (`PART_TYPE_TO_TAXONOMY`), and 38 of that doc's 39 parsed
+  entries have empty `taxonomy_tags` (that doc uses game-system tags instead, per its own stated
+  design).
+- **So: not currently live.** But a real latent risk — the moment any future call wires in an
+  `Accusation/Reveal Phase` tag (the end-game resolution scene, unblocked and next on the roadmap,
+  is exactly that kind of call), this row's raw "work together" framing would surface unmodified.
+
+**Fixed at the row level, not just in doc prose**, so the fix travels with the content wherever
+it's retrieved rather than relying on a future reader noticing a warning elsewhere: confirmed via
+`format_guidance_block()` that only a row's `concept` + `insight` text ever reaches a live prompt
+(the "Maps to game system" column is parsed for tags only, never injected) — so added an explicit
+`DIVERGENCE` caveat directly into the Medway "Storyteller's chaos" row's Insight text in
+`PARTY_CRAFT_FINDINGS.md`, naming the real endpoint (`POST /games/{id}/accuse`, first-correct-
+guess-wins-alone) and instructing that the *triangulating partial info* insight transfers but the
+*team* framing must not. Verified directly: rebuilt the index, confirmed `"DIVERGENCE"` and
+`"individually competitive"` are present in the row's actual `.insight` field post-parse — not
+just in the markdown source. Also strengthened the existing "Win Condition Design as a live
+tension" flagged-concept note to record this as a confirmed structural conflict, not just a tonal
+one, and point back to the row-level fix.
+
+### Files modified
+- `PARTY_CRAFT_FINDINGS.md` — divergence caveat added to the Medway "Storyteller's chaos" row and
+  the "New concepts flagged" section
+
+### What is next
+- PR #8 (now carrying this fix too) ready to merge — clean against current `main`.
+- Per the handoff's own recommendation: once merged, start a fresh branch off `main` for further
+  work rather than continuing to accumulate on this one (multiple concurrent sessions have now
+  landed work here; time to close it out).
+- End-game resolution scene / knowledge-comparison screen — both unblocked, not built.
+- `The_Devotion_of_Suspect_X` triage decision — still the owner's to make.
+
+---
+
 ## Session 24 — August 3, 2026
 **Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
 **Starting commit:** `a90ded7` (tip after Session 21 — same base Session 22/23 branched from;
@@ -48,8 +115,10 @@ resolution/summation scene (Session 21's tracked item, still open).
 **Branch:** `claude/session-wrapup-cleanup-blocker-3val9a` (continued from Session 22, same branch —
 PR #7 already open against it)
 **Starting commit:** `1b6ae7c` (tip after Session 22)
-**Status:** Complete — fixed a silent extraction-failure bug found while reviewing the Session 20
-anthology output, verified against the real failing case
+**Status:** Complete — two fixes: (1) silent extraction-failure bug found while reviewing the
+Session 20 anthology output, verified against the real failing case; (2) extraction-pipeline
+field-mapping gap from Session 22's audit, plus the `evidence_type`/`alibi` axis mislabeling it
+collided with
 
 ### Bug found: silent JSON-parse failure indistinguishable from a genuine "nothing found"
 While reviewing extracted anthology content per the owner's request, found
@@ -99,7 +168,81 @@ P1-only-source depth) — those remain open, separate decisions.
 - Owner has more anthologies to extract; this fix is now live for all of them.
 - Owner still needs to triage remaining `mystery_database/new_sources/` files (3 queued novels,
   1 unsupported `.html`, the untriaged Higashino novel).
-- Everything from Session 22's "What is next" list is still open and untouched this session.
+- The extraction-pipeline efficiency gap's second half (P1-only sources still missing 3 of 8
+  axes) — see below, this remains open.
+
+### Continued this session: extraction-efficiency field-mapping fix + axis mislabeling fix
+Owner asked to address open issues next. Picked up Session 22's first efficiency-gap fix
+(`part_registry.py` discarding 6 extracted-but-unread fields) — while scoping it, found it
+collides with a documented caveat already sitting in `craft_grounding.py`'s docstring: the
+registry's axis 8 is named `"evidence_type"` but actually holds alibi content (the extraction key
+`"alibi"` maps there), and the docstring explicitly warns not to extend that axis's mapping
+without fixing the mislabeling first — doing one without the other would blend unrelated craft
+concepts under one mistagged axis. Asked the owner how to handle it; answer: **"Definitely fix the
+mislabelling too. Keep it clean."**
+
+**What got fixed, in one pass:**
+1. **Axis rename**: `part_registry.py`'s `PART_TYPE_NAMES[7]` renamed from `"evidence_type"` to
+   `"alibi"` (`SETTING_COMPAT` key renamed to match).
+2. **Field-mapping extended**: `_atomize_extraction()`'s `KEY_TO_IDX` now maps the 5 previously-
+   discarded fields with honest semantic fits — `victim`→motive (idx 3, alongside
+   `culprit_and_motive`), `resolution`→reveal_mechanic (idx 6, alongside `reveal_mechanic` itself
+   — P1's shallow version of the same P2 concept), `investigator` + `investigator_wound`→
+   social_dynamic (idx 7), `clue_fairness`→red_herring (idx 5, paired as "clue economy" — both
+   axes govern how information reaches the reader, from opposite ends). `media_and_audience` (P2)
+   deliberately left unmapped — meta/format information, no honest fit among the 8 crime-mechanic
+   axes.
+3. **`craft_grounding.py` updated to match**: `PART_TYPE_TO_TAXONOMY`'s `"evidence_type": ["M5"]`
+   → `"alibi": ["M5"]`; the module docstring's "KNOWN CAVEAT" section replaced with a short
+   "RESOLVED CAVEAT" note pointing here.
+4. **`coherence_validator.py` updated** — this was the one live dependency that would have
+   silently broken: `check_parts()`'s completeness check and its "scene investigation must be
+   scene-observable" check (section 3) both hardcoded the string `"evidence_type"` as a
+   `by_type` dict key. Since parts now carry `part_type="alibi"`, those checks would have quietly
+   stopped firing (the `if "evidence_type" in by_type` branch never true) without this rename — 4
+   call sites fixed (the two `by_type` lookups, plus two repair-hint strings in `check_mystery()`
+   that reference `part_type='evidence_type'` by name).
+5. **`docs/WIRING.md`** — the "Known caveat baked into `PART_TYPE_TO_TAXONOMY`" section rewritten
+   as a resolved note.
+
+**Verified, not just written:**
+- `_atomize_extraction()` tested directly against a synthetic extraction dict covering all 14
+  P1+P2 keys: confirmed 13 parts produced (not 14 — `media_and_audience` correctly excluded),
+  landing on the correct axes, including two-per-axis pooling (`motive` got both
+  `culprit_and_motive` and `victim`; `social_dynamic` got `investigator`, `social_world`, and
+  `investigator_wound`).
+- `craft_grounding.PART_TYPE_TO_TAXONOMY` confirmed to have `"alibi"` and not `"evidence_type"`.
+- `server/main.py` still imports cleanly and serves all 31 routes (its `_craft_guidance_for_parts`
+  helper does a plain `.get(p.part_type, [])` lookup, so the rename required zero changes there).
+- `sample_for_generation()` + `coherence_validator.check_parts()` run end-to-end against the real
+  rebuilt registry: sampled recipe included an `alibi` part, `report.passed == True`.
+- Grepped the whole live codebase (excluding `deprecated/` and historical `mystery_database/
+  generated/*.json` snapshots, which correctly keep their old field name as a point-in-time
+  record) for stray `"evidence_type"` references — none left outside explanatory prose in resolved
+  caveat notes.
+
+**Second bug found and fixed along the way, unrelated to the mislabeling but same root cause
+category (silent staleness):** `mystery_database/part_registry.json` is a checked-in cache that
+`load_registry()` only rebuilds if the file is *missing* — never if it's *stale*. It had been
+frozen since March 11 (294 sources), silently missing ~75 sources' worth of corpus growth since
+then, including all 63 anthology stories from Session 20. Deleted and let `load_registry()`
+rebuild it fresh (369 sources, 2,833 parts — up from 1,469). The underlying staleness-check gap is
+**not** fixed, only the immediate staleness; flagged as a follow-up in `CLAUDE.md` item 14.
+
+### Files modified
+- `part_registry.py` — axis rename, `SETTING_COMPAT` key rename, `KEY_TO_IDX` extended
+- `craft_grounding.py` — `PART_TYPE_TO_TAXONOMY` key rename, docstring caveat resolved
+- `coherence_validator.py` — 4 call sites renamed from `"evidence_type"` to `"alibi"`
+- `docs/WIRING.md` — caveat section rewritten as resolved
+- `mystery_database/part_registry.json` — regenerated (stale cache, see above)
+
+### What is next
+- The extraction-pipeline efficiency gap's remaining half: P1-only sources still populate only 5
+  of 8 axes (up from 3) — full 8-axis coverage needs `--protocol P1P2` re-extraction, which is a
+  new-API-cost decision still open.
+- `load_registry()`'s missing staleness check (CLAUDE.md item 14) — real fix needed, not done this
+  session.
+- Everything else from Session 22's "What is next" list remains open and untouched.
 
 ---
 
