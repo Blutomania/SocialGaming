@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Serial murder by poisoning: Four people killed over two summers using their own collecting equipment (cyanide killing-bottles) or natural toxins, disguised as accidents. Central question: who is executing these collectors and why?",
+    "confidence": "high",
+    "quote": "The two ladies who died summer before last were found poisoned, poisoned by the fumes from their killing-bottles."
+  },
+  "victim": {
+    "value": "Insect and animal collectors (butterfly nets, beetle collecting, water moccasin exposure). They are 'killable' because they capture and kill living creatures for sport/science, making them targets of an eco-extremist murderer who views them as instruments of cruelty.",
+    "confidence": "high",
+    "quote": "She got the leather bag from the front seat...the killing-bottle...A bright yellow butterfly flitted past and she skipped after it, swinging her butterfly net about in what appeared to be that specialized joy reserved only for hunters stalking prey."
+  },
+  "closed_world": {
+    "value": "Rural New England lake region, north end, sequestered woods with hemlock, pine, and glacial rocks. Few visitors; isolated enough that a stranger could commit murders over two summers without detection.",
+    "confidence": "high",
+    "quote": "There were almost no visitors to this sequestered section at the north end of the lake anymore. He would have heard unwanted intruders, but there were none."
+  },
+  "culprit_and_motive": {
+    "value": "Jim, a frail college professor with eco-extremist ideology, murders collectors to avenge 'God's innocent' creatures. Barbara, a woman posing as a fellow believer, manipulates him into escalating from individual collectors to poisoning agricultural workers spraying pesticides that kill billions of insects.",
+    "confidence": "high",
+    "quote": "Blood calls for blood...I understood why he did it, the need for justice...You can do a great deal more. With one act you can save millions and millions of sacred little lives."
+  },
+  "resolution": {
+    "value": "Jim kills Barbara's husband (a farmer) with parathion spray in the storage shed. Barbara shoots him (non-fatally), reports him to Sheriff Reed as a lunatic, and inherits the farm plus insurance. Jim is convicted, declares his moral righteousness, and is executed by cyanide gas\u2014poetic justice in the killing-bottle.",
+    "confidence": "high",
+    "quote": "He knew when the cyanide pellets dropped into a bucket of acid under his chair and the fumes drifted up into a mist before his face...It was the killing-bottle."
+  },
+  "investigator": {
+    "value": "Barbara, the woman protagonist, who appears to be a suspect/victim but is actually the architect of the entire scheme. She investigates the unsolved murders, identifies Jim as the killer, and then manipulates him into committing murder on her behalf to eliminate her husband.",
+    "confidence": "high",
+    "quote": "I kept thinking about what those people had in common\u2014their murdering of God's innocent. And because I felt so strongly their evil\u2014I got a hunch, Jim. I got a hunch about how and why they had really died."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "All the Needless Killing",
+    "author": "BRYCE WALTON",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 43,
+    "story_count": 63
+  }
+}

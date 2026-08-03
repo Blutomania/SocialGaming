@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Double stabbing murder of Richard 3833 and Laura 6356 in a totalitarian state where murder is not legally recognized as a crime; central question: how will authorities respond to an offense that exists outside their legal framework?",
+    "confidence": "high",
+    "quote": "He plunged the knife in quickly...withdrew the knife and wiped it on the sleeve of Laura's blouse."
+  },
+  "victim": {
+    "value": "Richard 3833 and Laura 6356, Paul's assigned mates under state Mating Assignment protocol. They are 'killable' because Paul perceives them as obstacles to his romantic union with Carol 7427, whom he loves.",
+    "confidence": "high",
+    "quote": "He was to be mated with an incompatible person, while his compatible person was to be mated with someone else."
+  },
+  "closed_world": {
+    "value": "Complex 55, a sealed totalitarian state facility housing 100,000 citizens with rigidly controlled movement, monitored corridors, mandatory work assignments, and pervasive surveillance via microphones and television screens.",
+    "confidence": "high",
+    "quote": "The whole machinery of Complex 55 with its hundred thousand members could not be halted and disrupted indefinitely."
+  },
+  "culprit_and_motive": {
+    "value": "Paul 2473, air filtration maintenance engineer. Motive: romantic\u2014to eliminate his incompatible assigned mate (Laura) and his rival (Richard) so he can be reassigned to Carol 7427, his true romantic preference.",
+    "confidence": "high",
+    "quote": "A double murder was necessary then. Richard and Laura...to eliminate Carol to prevent Richard's getting her...Carol 7427 and Paul 2473 now had no mates."
+  },
+  "resolution": {
+    "value": "State authorities administer truth serum via hypodermic injection during mass medical screening, forcing Paul to confess. He is tried publicly, then placed in a glass cage wired with pain-delivery electrodes as public torture and deterrent.",
+    "confidence": "high",
+    "quote": "Did you stab two people to death yesterday? Somehow there didn't seem to be any choice, but to answer with the truth...strapped there in an upright position. More than a hundred wires were inserted..."
+  },
+  "investigator": {
+    "value": "The state apparatus itself\u2014impersonal, technological, and extra-legal. No detective investigates; instead, mass surveillance, chemical interrogation, and public trial serve as the investigative and punitive mechanism.",
+    "confidence": "high",
+    "quote": "The authorities, confronted with a new problem outside the realm of their rules and experience...a man in a white coat and a very penetrating stare confronted him."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Murder, 1990",
+    "author": "C. B. GILFORD",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 39,
+    "story_count": 63
+  }
+}

@@ -215,9 +215,16 @@ are already appropriate). Detected by `localization._is_modern(setting)`.
 
 ## Cinematic brief schema
 
-Stored at `mystery_dict["cinematic_brief"]`. Purpose: drop-in prompt for AI video
-generators (Sora, Runway Gen-3, Pika). Covers the opening 15–30 second sequence only —
-no spoilers, pure cinematic hook.
+One `_generate_cinematic_brief()` call produces two separate outputs, stored as two
+separate top-level keys on `mystery_dict` — not nested inside each other:
+
+- **`mystery_dict["opening_narration"]`** — a string, 3–5 sentences of atmospheric prose.
+  Player-facing: meant to be displayed or read aloud at the start of the game. No spoilers,
+  no camera/shot direction — just the scene.
+- **`mystery_dict["cinematic_brief"]`** — a dict, drop-in prompt for AI video generators
+  (Sora, Runway Gen-3, Pika). Technical shot/lighting/sound direction. Hidden from
+  players — prepared for future video generation, not something to show them directly.
+  Covers the opening 15–30 second sequence only, no spoilers.
 
 ```json
 {
@@ -242,6 +249,10 @@ no spoilers, pure cinematic hook.
   "title_card": "The text overlay that ends the opening sequence."
 }
 ```
+
+Both outputs come from the same Claude call (one API call total, not two) — the point of
+splitting them into two fields is presentation (one for players, one hidden for a future
+video pipeline), not cost.
 
 ### How to use with a video API (future wiring)
 
@@ -290,6 +301,146 @@ coherence badge in the left column.
 ```bash
 python cli.py generate --setting "..." --cinematic   # opt-in flag
 ```
+
+---
+
+## Multiplayer lockstep round system
+
+New synchronization layer alongside the original per-player async `phase` field on
+each `game["players"][player_id]` — that field, and the endpoints that gate on it
+(`/interrogate-witness`, `/investigate-area`, `/follow-lead`, `/share-phase`), are
+still live and untouched. The lockstep system is additive: `game["stage"]` and
+`game["round"]` are new top-level keys on the game session dict, currently used by
+the witness interrogation flow only. Investigation and lead phases still run on the
+legacy per-player system until they're ported (tracked as separate future work).
+
+### Why it exists
+
+The original witness flow answered each player's question in total isolation — no
+memory of what the same witness had already told anyone else in the session, and no
+bound on how many separate LLM calls a round could cost (N players × M questions
+each). The lockstep model batches a whole round's questions into one generation call
+per witness instead, which fixes both problems at once: one call has full visibility
+into everything asked that round, and cost no longer scales per-question.
+
+### Stage sequence
+
+```
+submitting -> generating -> revealed
+```
+
+- **submitting** — a round is open; players are POSTing their payload in.
+- **generating** — every expected player has submitted (or the timeout fired);
+  round-type-specific generation is running in a background thread.
+- **revealed** — generation finished; `game["round"]["result"]` is populated and
+  broadcast to everyone.
+
+### Round shape (`game["round"]`)
+
+```json
+{
+  "round_type": "witness",
+  "expected_players": ["player_id", "..."],
+  "submissions": {"player_id": {"...": "round_type-specific payload"}},
+  "opened_at": 1735689600.0,
+  "timeout_seconds": 90,
+  "metadata": {"character_name": "Voss"},
+  "candidate_questions": ["...", "..."],
+  "result": null
+}
+```
+
+`expected_players` is snapshotted when the round opens — a player who joins mid-round
+is not included and picks up starting with the next round opened.
+
+### Endpoints
+
+| Endpoint | Who | What |
+|---|---|---|
+| `POST /games/{id}/round/open` | host only | Opens a round of a given `round_type`, with optional `metadata`. Rejects if a round is already open. |
+| `POST /games/{id}/round/submit` | any player | Submits this round's payload. Once every expected player has submitted, auto-advances to `generating` and kicks off generation. |
+| `GET /games/{id}/round/status` | any | Waiting-room view: stage, who's submitted, who's pending, seconds left. Also runs the lazy timeout check. |
+| `POST /games/{id}/round/resolve` | server-side | Attaches a result and reveals it. Called by round-type generation code, not meant as a direct player action. |
+
+Timeout handling is lazy, not a background sweep: `_check_round_timeout()` runs at
+the top of `submit` and `status`, so an expired round with missing players
+auto-advances to `generating` the next time anyone touches the round (missing
+players are recorded in the `round_generating` broadcast, not silently dropped).
+
+### WebSocket events
+
+`round_opened`, `player_submitted`, `round_generating` (carries `timed_out` and
+`missing_players`), `round_revealed` (carries the full `result`).
+
+### Extending to a new round_type
+
+Two dispatch points, both keyed by `round_type`:
+
+- **`_ROUND_PREP`** — optional hook run when a round opens; returns extra fields to
+  merge into the round dict (e.g. witness rounds attach `candidate_questions`).
+- **`_ROUND_GENERATORS`** — required to actually produce a result; run in a
+  background thread once the round reaches `generating`, then feeds straight into
+  `_resolve_round()`. A round_type with no registered generator just never resolves
+  past `generating` — nothing errors, but nothing happens either, so register one
+  before wiring up a new round_type's endpoints.
+
+### `round_type: "witness"` — the one built so far
+
+- **Submission payload:** `{"questions": ["...", "..."]}` — up to
+  `_DIFFICULTY_CONFIG[difficulty]["questions_per_round"]` (3/2/1 for EASY/MEDIUM/HARD),
+  enforced in `submit_round`. Each question can be one of the `candidate_questions`
+  pick-list (attached at round-open, role-aware — see `_CANDIDATE_QUESTIONS`) or free
+  text — hybrid input, not validated against the candidate list.
+- **Generation (`_generate_witness_scene`):** pools every submitted question across
+  all players, deduping by normalized text so the same question asked by multiple
+  players collapses into one entry with every asker attributed. One Claude call
+  covers the whole pool and returns a scene bounded to 2–3 sentences regardless of
+  how many questions were pooled, plus a private answer per pooled question. Carries
+  the evasion/anti-spoiler instruction ("do NOT directly reveal the real culprit")
+  that the old multiplayer witness endpoint was missing.
+- **Result shape:**
+  ```json
+  {
+    "scene": "shared dramatized text, same length regardless of pool size",
+    "scene_covers": ["question text that made it into the scene", "..."],
+    "answers": {"player_id": [{"question": "...", "answer": "..."}]}
+  }
+  ```
+  No random cross-player distribution: a player always gets 100% of the answers to
+  their own submitted questions, and the shared `scene` — covering whichever
+  questions multiple players asked in common, plus one authored flourish — is what
+  everyone sees together. Anything neither yours nor scene-covered simply isn't part
+  of what you have; this was a deliberate simplification over the original "70% of
+  the remaining answers, randomized" pitch, chosen for legibility.
+- **Secondary witness:** same `round_type: "witness"`, just opened a second time
+  with a different `character_name` in `metadata` — no separate mechanism needed.
+
+### Accusation resolution
+
+Not part of the lockstep round mechanism above — accusing is a race, not a
+synchronized round, so it's a standalone always-available action rather than a
+`round_type`. Two new fields on the game session: `game["winner"]` (`player_id` or
+`None`) and `game["accusations"]` (full public history: `{player_id, accused_name,
+correct, ts}`).
+
+`POST /games/{id}/accuse` — `{player_id, culprit_name}`. Checked server-side against
+`mystery["solution"]["culprit"]` (normalized the same way as question deduping —
+case/whitespace-insensitive) — the solution is never sent to clients (see
+`/mystery-brief`, which explicitly strips it), so this is the only way a client can
+actually learn whether a guess was right. First correct accusation wins; the game is
+rejected with `400` for any further attempt once `winner` is set. Race-safety: the
+win is claimed inside `_games_lock`, re-checking that `winner` is still `None` at the
+moment of the correct guess — so if two players guess correctly close together, only
+the one that actually acquires the lock first wins, not just whichever request
+arrived first. No elimination on a wrong guess — a player can keep trying.
+
+Every attempt — right or wrong — broadcasts `accusation_made` to the whole room
+(`{player_name, accused_name, correct}`); a winning guess additionally broadcasts
+`game_won` (`{winner_player_id, winner_name, solution}`), which is what should
+trigger the end-game resolution/summation scene once that's built. `GET
+/games/{id}/result` gives the same outcome as a snapshot, for a client that missed
+the broadcast (late join, reconnect) — `{"solved": false}` before anyone's won,
+otherwise `{"solved": true, "winner_player_id", "winner_name", "solution"}`.
 
 ---
 
@@ -349,6 +500,232 @@ not for generation gating.
 python cli.py extract --protocol P1      # cheapest, run first
 python cli.py extract --protocol P1P2    # full corpus run (~359 books)
 ```
+
+---
+
+## Craft-grounding retrieval (RAG layer)
+
+**Status:** Built and wired in (Session 22). This section is written for someone with zero
+prior context on this repo — read it start to finish before touching `craft_grounding.py` or
+any of its four call-sites in `server/main.py`.
+
+### The problem this solves
+
+`RESEARCH_FINDINGS.md`, `SCREEN_CRAFT_FINDINGS.md`, and `PARTY_CRAFT_FINDINGS.md` (see
+`SOURCING_METHODOLOGY.md` for how they're built and how a new one gets added) ground this
+project's mystery-writing taxonomy in real craft sources — novelists, screenwriters, and
+party-game designers explaining, in their own words, *how* to plant a fair clue, build a red
+herring, or keep a witness's answers consistent. Before Session 22, those documents were pure
+research — real, carefully-sourced, and completely inert. Nothing in the running system ever
+read them. Every generation call (the initial mystery, a witness's answers, a crime-scene
+search, a lead follow-up) was writing dialogue and narration with zero craft guidance behind it
+beyond whatever the underlying LLM already knew.
+
+Separately, an audit of the extraction pipeline (`part_registry.py`) turned up two related
+findings worth knowing as background:
+1. Every P1-only-depth corpus source (all 12 curated novels, all 63 anthology stories from
+   Session 20) can only ever populate 3 of the registry's 8 sampling axes, because the
+   registry's atomizer expects P2-tier keys a P1 extraction never produces.
+2. Even a fully P1+P2 source has craft-relevant fields (`clue_fairness`, `media_and_audience`,
+   `investigator_wound`) that are extracted and then never read by the registry at all, for any
+   source, at any depth.
+
+Those two findings motivated *this* build but describe a different, still-open piece of work
+(fixing `part_registry.py`'s field mapping / re-extracting at deeper protocol levels — not done
+as part of this section). What follows is specifically the retrieval layer that makes the three
+craft-grounding docs actually influence generation, independent of that other work.
+
+### Design principles (read before "simplifying" anything)
+
+These were explicit decisions made in discussion with the owner, not defaults an implementer
+picked alone:
+
+1. **The markdown is the only source of truth. The index is a disposable, regenerated cache.**
+   `craft_grounding.build_index()` re-parses every `*_CRAFT_FINDINGS.md` / `RESEARCH_FINDINGS.md`
+   file at the repo root into `mystery_database/craft_grounding_index.json`, automatically,
+   whenever a source doc's mtime is newer than the cached index. **The index file is gitignored
+   on purpose** — see `.gitignore` — because a committed copy could go stale across a fresh
+   clone (`git checkout` doesn't preserve original file mtimes, which the staleness check relies
+   on). Nobody should ever hand-edit that JSON file; it will just be silently overwritten.
+2. **Retrieval is a local, zero-cost lookup — never an LLM call.** All the "intelligence" here is
+   a plain dict filter over pre-parsed entries. Adding craft grounding to a generation call must
+   never turn one API call into two — this was an explicit cost-consciousness requirement from
+   the owner, given that `_investigate_area_with_ai` and `_follow_lead_with_ai` already fire live,
+   repeatedly, per player, per area/lead, on `claude-sonnet-4-6` (not a cheap model).
+3. **Not bounded, not immutable.** Paste new full-text findings into an existing doc, or drop a
+   brand-new `*_CRAFT_FINDINGS.md` doc into the repo root following the same table convention
+   (see "Adding a new craft doc" below), and the very next generation call picks it up
+   automatically. No code change is needed for new *content* — only for a genuinely new *table
+   shape* the parser hasn't seen before.
+4. **Confidence tiers gate what reaches a live prompt.** The companion docs already tag entries
+   by sourcing confidence (see `SOURCING_METHODOLOGY.md`'s confidence-tier discipline).
+   `get_craft_guidance()` defaults to excluding the lowest tier (`secondary`) so a shaky or
+   merely-anecdotal finding never silently governs what a witness actually says.
+5. **Every retrieval is auditable.** This was the owner's specific ask, especially valuable
+   during early playtesting: every call that injects craft guidance also records exactly which
+   entries it used, in a structured citation form, attached to whatever that call produced. If a
+   generated mystery or a witness's answer reads oddly, you can trace it back to the specific
+   craft citation(s) that informed it — see "Where the audit trail lives" below.
+
+### Data model
+
+`craft_grounding.GuidanceEntry` — one row of craft guidance, parsed from a companion doc's table:
+
+| Field | Meaning |
+|---|---|
+| `doc` | Source filename, e.g. `"SCREEN_CRAFT_FINDINGS.md"` |
+| `section` | Nearest preceding markdown heading, e.g. `"Alfred Hitchcock"` |
+| `concept` | Short label, e.g. `"Minimize actual lies; let circumstance do the misdirecting"` |
+| `insight` | The full quote/explanation |
+| `taxonomy_tags` | P1–P4 codes this maps to, e.g. `["M2"]` — pulled from a "Maps to taxonomy" column |
+| `game_system_tags` | Fixed mechanics categories `PARTY_CRAFT_FINDINGS.md` uses instead, e.g. `["Interrogation Phase"]` — an entry can have either kind of tag, both, or neither |
+| `confidence` | `"canonical"` (the taxonomy's own C/M/F definitions) \| `"verified"` (full text confirmed) \| `"primary"` (default) \| `"secondary"` (third-party analysis, or `PARTY_CRAFT_FINDINGS.md`'s explicitly-non-prescriptive "Player Experience" section — see below) |
+| `source` | Raw citation text/URL from the doc |
+
+### How parsing works, precisely
+
+`craft_grounding._parse_doc()` walks a markdown file line by line, tracking the nearest heading
+(for the `section` field) and the nearest **H2** heading separately (see the reception-evidence
+rule below), and recognizes two table shapes via `_classify_columns()`:
+
+1. **`RESEARCH_FINDINGS.md`'s taxonomy-definition table** — header exactly `# | Part | Who Names
+   It`. Each row is one taxonomy code's own canonical definition (e.g. C1, M3, F8), tagged
+   `confidence="canonical"` — the highest tier, since these are the taxonomy's own foundational
+   text, not a secondary finding about it.
+2. **A per-creator findings table** — header `Concept | Insight | Maps to taxonomy|game system |
+   Source` (either "maps to" wording is accepted). `taxonomy_tags` are extracted from the "Maps
+   to" column via the regex `\b([CMF]\d{1,2})\b`; `game_system_tags` are matched against the
+   fixed list in `craft_grounding.GAME_SYSTEM_CATEGORIES` (kept in sync with
+   `PARTY_CRAFT_FINDINGS.md`'s "Mapping convention" section — update both together if that list
+   changes).
+
+Any table whose header doesn't match one of these two shapes is **silently skipped**, not
+treated as an error — so a reference table that isn't meant to be findings (there aren't any
+today, but nothing stops one being added) doesn't pollute the index. If a future companion doc
+introduces a genuinely new table shape, extend `_classify_columns()`.
+
+**Confidence-tag detection** (`_infer_confidence()`) reads tags like `[full text verified]` or
+`[third-party analysis]` from *any* of the Concept/Insight/Source columns — these tags have
+shown up in different columns across the existing docs (e.g. McQuarrie's entries carry
+`**[full text verified]**` inline in the Concept column itself), so all three are checked. The
+tag markup is then stripped from the displayed `concept` text (`_clean_concept()`) — the tier is
+already captured structurally in `confidence`, so leaving the raw bracket tag in would just be
+noise in an injected prompt.
+
+**The Part 1 / Part 2 reception-evidence rule.** `PARTY_CRAFT_FINDINGS.md` explicitly splits
+"Part 1 — Design & Mechanics Authority" (designers explaining their own reasoning) from "Part 2
+— Player Experience" (testimonials/reviews — that doc's own text says to treat these as
+"data... not as prescriptions the way Part 1's entries are"). The parser respects that: any
+table whose nearest **H2** ancestor heading matches `player experience|reception`
+(case-insensitive) has every row in it forced to `confidence="secondary"`, regardless of that
+row's own inline tag — which excludes it from a live prompt under the default `min_confidence=
+"primary"` cutoff, while still keeping it in the index/audit trail for anyone who explicitly
+lowers the bar. **If a future companion doc wants this same split, name its reception section's
+H2 heading with "Player Experience" or "Reception" in it** — no code change needed.
+
+### Retrieval API
+
+```python
+get_craft_guidance(
+    taxonomy_tags: list[str] | None = None,
+    game_system_tags: list[str] | None = None,
+    min_confidence: str = "primary",
+    max_items: int = 5,
+) -> list[GuidanceEntry]
+```
+
+OR-matches on tags (an entry qualifies if it matches *any* requested taxonomy code or
+game-system category), filters by confidence rank, then sorts highest-confidence-first with a
+stable tiebreak (`doc`, `section`, `concept`) so the same call against the same index always
+returns the same guidance — useful when debugging why a particular generation came out the way
+it did.
+
+`format_guidance_block(entries)` renders entries as a prompt-ready `"CRAFT GUIDANCE (...): - ..."`
+text block, returning `""` (not a header with zero rows) when there's nothing to inject, so
+callers can always concatenate it straight into a prompt without a conditional.
+
+`guidance_provenance(entries)` returns the structured citation list (`concept`, `doc`,
+`section`, `confidence`, `source` per entry) used for auditing — see below.
+
+### The four call-sites, and why each gets the tags it gets
+
+| Call-site (`server/main.py`) | Tag source | Tags | Why |
+|---|---|---|---|
+| `_generate_mystery_dict()` | Derived per-call from `craft_grounding.PART_TYPE_TO_TAXONOMY`, mapped from whatever `part_registry.py` actually sampled for this specific mystery (via `_craft_guidance_for_parts()`) | Varies — only the axes this mystery drew from | The one call whose relevant craft axes change every time, because the sampled recipe changes every time. Injecting a fixed tag set here would either miss what's relevant or inject irrelevant guidance for axes this mystery isn't using. |
+| `_generate_witness_scene()` | Fixed, in `craft_grounding.CALL_SITE_TAGS["witness_scene"]` | `M2` (Red Herring), `M3` (Clue Fairness), `F3` (Unreliable Frame) + `"Interrogation Phase"`, `"Social Dynamics"` | These are the craft axes that govern *how a witness should mislead and stay fair* during interrogation — not plot-construction axes. Fixed because every witness-scene call needs the same kind of dialogue-craft guidance, regardless of which specific mystery is being played. |
+| `_investigate_area_with_ai()` | Fixed, in `CALL_SITE_TAGS["investigate_area"]` | `F4` (Setting as Constraint), `F5` (Evidence Type) + `"Investigation/Scene Phase"` | Scene/evidence narration craft — e.g. Murder Mystery Co's "clues framed as story, not raw data" finding, which is specifically about *how to describe a found clue*, not about plot mechanics. |
+| `_follow_lead_with_ai()` | Fixed, in `CALL_SITE_TAGS["follow_lead"]` | `M2` (Red Herring), `M5` (Alibi), `C4` (Culprit + Motive) + `"Investigation/Scene Phase"` | Lead-reveal craft — what a lead should actually disclose and how it should mislead when it's a red herring. |
+
+**Known caveat baked into `PART_TYPE_TO_TAXONOMY`:** `part_registry.py`'s `_atomize_extraction()`
+maps the extraction key `"alibi"` (a P2/M5 field) onto the registry's axis named
+`"evidence_type"` — a pre-existing mislabeling (see the Session 22 audit above). The mapping
+`"evidence_type": ["M5"]` reflects what that axis *actually contains* today, not what its name
+suggests. **Do not "fix" this to `["F5"]` without first fixing the underlying mislabeling in
+`part_registry.py`** — doing one without the other would silently swap which craft guidance
+attaches to that axis.
+
+### Where the audit trail lives
+
+Craft guidance is never silently applied — every call that uses it records exactly what it used,
+but *where* that record lands differs by call-site, deliberately:
+
+- **`_generate_mystery_dict()`**: stored in `mystery_dict["_provenance"]["craft_guidance"]`,
+  alongside the existing part-sampling recipe. Already covered by the existing stripping in
+  `GET /games/{game_id}/mystery-brief` (which drops the whole `_provenance` key before sending to
+  clients) — so this never leaks to players, with no new code needed for that.
+- **`_generate_witness_scene()`**: the generator returns a `"_craft_guidance"` key alongside
+  `scene`/`scene_covers`/`answers`, but `_resolve_round()` pops it off *before* storing
+  `round_["result"]` (the dict that gets broadcast to every player over WebSocket) and stashes it
+  instead on `round_["_craft_guidance"]` — server-side only. This one needed explicit handling
+  (unlike the mystery dict) because round results are broadcast to the whole room, not returned
+  to a single requester, and craft-guidance citations are internal tooling, not player content.
+- **`_investigate_area_with_ai()` / `_follow_lead_with_ai()`**: both now return
+  `(findings_text, craft_guidance_provenance)` tuples. The citation list is stored in the
+  player's own `investigation_findings` / `lead_findings` entry **and** included directly in the
+  HTTP response (`"craft_guidance"` key). This is safe to expose to the calling client, unlike
+  the witness-round case, because these are private per-player HTTP responses, never broadcast to
+  the room — there's no other player who could see it.
+
+During early playtesting, this means you can always answer "why did this narration/dialogue turn
+out this way?" by reading the relevant `_craft_guidance` / `craft_guidance` field next to
+whatever it produced — no separate logging system needed.
+
+### Extending this system
+
+- **Adding a new craft-grounding doc** (e.g. the still-open true-crime-podcast sourcing from
+  `CLAUDE.md`'s to-do): write it as `SOMETHING_CRAFT_FINDINGS.md` at the repo root, following the
+  `Concept | Insight | Maps to taxonomy` (or `Maps to game system`) table convention already used
+  by `SCREEN_CRAFT_FINDINGS.md` / `PARTY_CRAFT_FINDINGS.md`. Nothing else to do — the glob in
+  `craft_grounding._SOURCE_DOC_GLOBS` picks it up automatically, and the index rebuilds itself on
+  next use.
+- **Adding a new call-site**: add an entry to `craft_grounding.CALL_SITE_TAGS` with the taxonomy
+  and/or game-system tags that describe what that call is actually generating (not just "more
+  guidance is better" — pick tags the way the table above reasons through each existing one), call
+  `get_craft_guidance(**CALL_SITE_TAGS["your_new_site"])`, inject the formatted block into the
+  prompt, and decide where the provenance should land (broadcast to everyone? private to one
+  player? — follow the reasoning in "Where the audit trail lives" above, don't default to
+  broadcasting it).
+- **Adding a new taxonomy code**: if a "new concept flagged" entry in one of the companion docs
+  (see each doc's own "New concepts flagged" sections) ever gets formalized into a real
+  `extraction_protocols.py` code, it becomes retrievable automatically the next time the index
+  rebuilds — no `craft_grounding.py` change needed, since taxonomy tags are extracted from doc
+  text at parse time, not hardcoded.
+
+### Verifying it's working
+
+```bash
+python3 -c "
+import craft_grounding as cg
+entries = cg.build_index(force=True)
+print('total entries:', len(entries))
+for name, tags in cg.CALL_SITE_TAGS.items():
+    print(name, '->', len(cg.get_craft_guidance(**tags)), 'entries')
+"
+```
+
+If a doc was just edited and the count looks wrong, delete
+`mystery_database/craft_grounding_index.json` and re-run — that file is a disposable cache (see
+above), never the source of truth.
 
 ---
 

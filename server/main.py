@@ -58,6 +58,7 @@ from localization import (                                  # noqa: E402
     _era_key,
     _load_era_rules,
 )
+import craft_grounding                                       # noqa: E402
 
 # ---------------------------------------------------------------------------
 # API client — auth priority: env var → session ingress token
@@ -117,6 +118,17 @@ def _parse_json(raw: str) -> dict:
 # ---------------------------------------------------------------------------
 # Mystery generation (ported from app.py)
 # ---------------------------------------------------------------------------
+def _craft_guidance_for_parts(parts) -> list:
+    """Map the part_types actually sampled for this mystery onto their
+    taxonomy codes (see craft_grounding.PART_TYPE_TO_TAXONOMY) and retrieve
+    matching craft guidance — so a mystery only gets guidance relevant to
+    the axes it actually drew from, not a generic dump."""
+    taxonomy_tags: set[str] = set()
+    for p in parts:
+        taxonomy_tags.update(craft_grounding.PART_TYPE_TO_TAXONOMY.get(p.part_type, []))
+    return craft_grounding.get_craft_guidance(taxonomy_tags=sorted(taxonomy_tags), max_items=5)
+
+
 def _generate_mystery_dict(user_prompt: str) -> tuple[dict, object]:
     """Sample registry parts, call Claude, return (mystery_dict, recipe)."""
     registry = get_registry()
@@ -126,6 +138,9 @@ def _generate_mystery_dict(user_prompt: str) -> tuple[dict, object]:
         f"  [{p.label()} — {p.part_type}]: {p.content}"
         for p in parts
     )
+
+    guidance_entries = _craft_guidance_for_parts(parts)
+    guidance_block = craft_grounding.format_guidance_block(guidance_entries)
 
     prompt = f"""\
 You are generating a mystery scenario for a social deduction game with 4 players.
@@ -137,6 +152,8 @@ The following atomized parts have been selected from existing mystery literature
 
 SELECTED PARTS:
 {parts_block}
+
+{guidance_block}
 
 QUALITY REQUIREMENTS — every generated mystery MUST satisfy these:
 
@@ -244,6 +261,7 @@ Return only valid JSON. No commentary outside the JSON block."""
     raw = llm(prompt, system="You are a mystery game engine. Return only valid JSON.")
     mystery_dict = _parse_json(raw)
     mystery_dict["_provenance"] = recipe.to_dict()
+    mystery_dict["_provenance"]["craft_guidance"] = craft_grounding.guidance_provenance(guidance_entries)
     return mystery_dict, recipe
 
 
@@ -275,9 +293,13 @@ def _generate_cinematic_brief(mystery_dict: dict) -> dict:
         for ch in suspects
     )
     prompt = f"""\
-You are writing a cinematic brief for an AI video generator (e.g. Sora, Runway Gen-3).
-The brief will become the opening sequence of a mystery party game — 15–30 seconds,
-no spoilers, pure visual and atmospheric hook.
+You are writing the opening sequence material for a mystery party game, in two forms:
+
+1. A short narration meant to be displayed or read aloud to players at the start of the
+   game — atmospheric prose, no spoilers, no camera/shot direction, just the scene.
+2. A cinematic brief for an AI video generator (e.g. Sora, Runway Gen-3) covering the same
+   15–30 second opening — technical shot/lighting/sound direction, not meant for players to
+   see directly. This is prepared for future video generation and stays hidden from players.
 
 MYSTERY TITLE: {m.get('title', '')}
 SETTING: {s.get('location', '')} — {s.get('time_period', '')}
@@ -289,17 +311,20 @@ SUSPECTS (do NOT show guilt or motive — only appearance and first moment):
 
 Return ONLY valid JSON:
 {{
-  "logline": "One sentence. Visual, urgent, present tense. Under 20 words.",
-  "opening_shot": "Establishing shot description. 2–3 sentences.",
-  "crime_reveal_shot": "The discovery moment. 2–3 sentences.",
-  "atmosphere_tags": ["3–6 mood/texture/palette words"],
-  "sound_design": "What the audience hears before dialogue. One sentence.",
-  "cast_visuals": [
-    {{"name": "character name", "appearance": "one sentence", "first_seen_doing": "one sentence"}}
-  ],
-  "title_card": "Short evocative text overlay."
+  "opening_narration": "3-5 sentences of atmospheric prose, written to be displayed or read aloud to players. No spoilers, no camera direction — just the scene.",
+  "cinematic_brief": {{
+    "logline": "One sentence. Visual, urgent, present tense. Under 20 words.",
+    "opening_shot": "Establishing shot description. 2–3 sentences.",
+    "crime_reveal_shot": "The discovery moment. 2–3 sentences.",
+    "atmosphere_tags": ["3–6 mood/texture/palette words"],
+    "sound_design": "What the audience hears before dialogue. One sentence.",
+    "cast_visuals": [
+      {{"name": "character name", "appearance": "one sentence", "first_seen_doing": "one sentence"}}
+    ],
+    "title_card": "Short evocative text overlay."
+  }}
 }}"""
-    raw = llm(prompt, system="You are a cinematic brief writer. Return only valid JSON.")
+    raw = llm(prompt, system="You are a mystery game's opening-sequence writer. Return only valid JSON.")
     return _parse_json(raw)
 
 
@@ -383,8 +408,9 @@ def _run_generation_job(job_id: str, prompt: str, cinematic_brief: bool) -> None
 
         if cinematic_brief:
             _job_update(job_id, "running", "Writing cinematic brief…")
-            brief = _generate_cinematic_brief(mystery_dict)
-            mystery_dict["cinematic_brief"] = brief
+            opening = _generate_cinematic_brief(mystery_dict)
+            mystery_dict["opening_narration"] = opening["opening_narration"]
+            mystery_dict["cinematic_brief"] = opening["cinematic_brief"]
 
         _job_update(job_id, "running", "Saving…")
         slug = _save_mystery(mystery_dict)
@@ -424,6 +450,12 @@ def _run_generation_job(job_id: str, prompt: str, cinematic_brief: bool) -> None
 #       "investigation": [area_id],
 #       "lead": [lead_id],
 #   },
+#   "stage": str | None,        # lockstep round state: None | "submitting" | "generating" | "revealed"
+#   "round": dict | None,       # active lockstep round, see _open_round() — independent of the
+#                                # legacy per-player "phase" above; phase-specific rework (witness/
+#                                # investigation/lead content) plugs into this separately.
+#   "winner": player_id | None, # set on the first correct accusation; game is over once set
+#   "accusations": [{player_id, accused_name, correct, ts}],  # full public history
 #   "ts": float,
 # }
 
@@ -432,10 +464,40 @@ _games_lock = threading.Lock()
 _GAME_TTL = 3600  # 1 hour
 
 _DIFFICULTY_CONFIG = {
-    "EASY":   {"share_min": 0.70, "witness_budget": 8, "investigation_budget": 3},
-    "MEDIUM": {"share_min": 0.60, "witness_budget": 6, "investigation_budget": 2},
-    "HARD":   {"share_min": 0.50, "witness_budget": 4, "investigation_budget": 2},
+    "EASY":   {"share_min": 0.70, "witness_budget": 8, "investigation_budget": 3, "questions_per_round": 3},
+    "MEDIUM": {"share_min": 0.60, "witness_budget": 6, "investigation_budget": 2, "questions_per_round": 2},
+    "HARD":   {"share_min": 0.50, "witness_budget": 4, "investigation_budget": 2, "questions_per_round": 1},
 }
+
+# Generic, role-aware conversation starters offered as pick-list options in a
+# witness lockstep round (hybrid input: pick one of these, or type a custom
+# question instead). Not mystery-specific — kept as a static bank rather than
+# an extra generation call, since the value here is speed/low-typing-burden,
+# not per-mystery flavor.
+_CANDIDATE_QUESTIONS = {
+    "suspect": [
+        "Where were you when the crime happened?",
+        "What was your relationship with the victim?",
+        "Did you see or hear anything unusual?",
+    ],
+    "witness": [
+        "What exactly did you see?",
+        "Did you notice anyone acting strangely?",
+        "Is there anything you haven't told anyone yet?",
+    ],
+    "default": [
+        "Where were you when the crime happened?",
+        "What did you see or hear?",
+        "Do you know of anyone who might have wanted this to happen?",
+    ],
+}
+
+
+def _candidate_questions_for(mystery: dict, character_name: str) -> list[str]:
+    chars = mystery.get("characters", [])
+    char_data = next((c for c in chars if c["name"] == character_name), None)
+    role = char_data.get("role", "") if char_data else ""
+    return _CANDIDATE_QUESTIONS.get(role, _CANDIDATE_QUESTIONS["default"])
 
 
 def _new_game_id() -> str:
@@ -456,35 +518,43 @@ def _fingerprint(question: str) -> str:
     return question.strip().lower()
 
 
-def _investigate_area_with_ai(mystery: dict, area: dict, player_name: str) -> str:
+def _investigate_area_with_ai(mystery: dict, area: dict, player_name: str) -> tuple[str, list]:
     setting = mystery.get("setting", {})
     crime = mystery.get("crime", {})
+    guidance_entries = craft_grounding.get_craft_guidance(**craft_grounding.CALL_SITE_TAGS["investigate_area"], max_items=5)
+    guidance_block = craft_grounding.format_guidance_block(guidance_entries)
     prompt = (
         f"You are an AI narrator for a mystery game. A detective named {player_name} "
         f"is investigating '{area['name']}' at {setting.get('location', 'the scene')} "
         f"({setting.get('time_period', '')}).\n\n"
         f"Crime overview: {crime.get('what_happened', '')}\n\n"
         f"Private context for this area: {area.get('investigation_prompt', '')}\n\n"
+        f"{guidance_block}\n\n"
         "Describe in 2–4 sentences what the detective finds when searching this area. "
         "Be atmospheric and specific. May include clues, red herrings, or atmosphere. "
         "Do not reveal the culprit directly."
     )
-    return llm(prompt, system="You are a mystery game narrator. Be vivid and specific.")
+    findings = llm(prompt, system="You are a mystery game narrator. Be vivid and specific.")
+    return findings, craft_grounding.guidance_provenance(guidance_entries)
 
 
-def _follow_lead_with_ai(mystery: dict, lead: dict, player_name: str) -> str:
+def _follow_lead_with_ai(mystery: dict, lead: dict, player_name: str) -> tuple[str, list]:
     setting = mystery.get("setting", {})
     crime = mystery.get("crime", {})
+    guidance_entries = craft_grounding.get_craft_guidance(**craft_grounding.CALL_SITE_TAGS["follow_lead"], max_items=5)
+    guidance_block = craft_grounding.format_guidance_block(guidance_entries)
     prompt = (
         f"You are an AI narrator for a mystery game. A detective named {player_name} "
         f"is following the lead: '{lead['title']}' at {setting.get('location', 'the scene')}.\n\n"
         f"Crime overview: {crime.get('what_happened', '')}\n\n"
         f"Private context for this lead: {lead.get('investigation_prompt', '')}\n\n"
+        f"{guidance_block}\n\n"
         "Describe in 2–4 sentences what the detective discovers when following this lead. "
         "Be specific and atmospherically consistent with the mystery. "
         "Do not reveal the culprit directly."
     )
-    return llm(prompt, system="You are a mystery game narrator. Be vivid and specific.")
+    findings = llm(prompt, system="You are a mystery game narrator. Be vivid and specific.")
+    return findings, craft_grounding.guidance_provenance(guidance_entries)
 
 
 # ---------------------------------------------------------------------------
@@ -502,6 +572,12 @@ def _follow_lead_with_ai(mystery: dict, lead: dict, player_name: str) -> str:
 #   clues_shared       — { sender_name, phase, clues: [...] }
 #   block_updated      — { witness: [...], investigation: [...], lead: [...] }
 #   player_phase_done  — { player_name, phase }
+#   round_opened       — { round_type, expected_players: [name, ...], timeout_seconds }
+#   player_submitted   — { player_name, submitted_count, expected_count }
+#   round_generating   — { round_type, timed_out: bool, missing_players: [name, ...] }
+#   round_revealed     — { round_type, result }
+#   accusation_made    — { player_name, accused_name, correct: bool } — every attempt, public
+#   game_won            — { winner_player_id, winner_name, solution }
 
 class ConnectionManager:
     def __init__(self) -> None:
@@ -553,6 +629,319 @@ def _broadcast_sync(game_id: str, event: str, data: dict) -> None:
             loop.run_until_complete(_ws_manager.broadcast(game_id, event, data))
     except RuntimeError:
         pass  # No event loop available — server is probably shutting down
+
+
+# ---------------------------------------------------------------------------
+# Lockstep round state machine
+# ---------------------------------------------------------------------------
+# Game-level synchronization, independent of the legacy per-player "phase" field
+# above: every player must submit before anyone advances, rather than each player
+# moving through witness/investigation/lead independently at their own pace.
+#
+# Stage sequence: "submitting" -> "generating" -> "revealed"
+#
+# This module owns the round mechanics only — opening a round, collecting
+# submissions, detecting when everyone (or the timeout) says "go", and holding
+# the eventual result once it's produced. It does not decide what a "witness"
+# or "investigation" round's submission payload or generated result look like;
+# that content is owned separately, per round_type, by the code that calls
+# _open_round() and _resolve_round().
+_DEFAULT_ROUND_TIMEOUT = 90  # seconds
+
+
+def _open_round(game: dict, round_type: str, timeout_seconds: int = _DEFAULT_ROUND_TIMEOUT,
+                 metadata: Optional[dict] = None) -> dict:
+    """
+    Start a new lockstep round. Snapshots the currently-joined players as the
+    set required to submit — a player joining mid-round is not added to it and
+    will be included starting with the next round.
+    """
+    metadata = metadata or {}
+    prep_fn = _ROUND_PREP.get(round_type)
+    extra_fields = prep_fn(game, metadata) if prep_fn else {}
+
+    with _games_lock:
+        expected = list(game["players"].keys())
+        game["round"] = {
+            "round_type": round_type,
+            "expected_players": expected,
+            "submissions": {},
+            "opened_at": time.time(),
+            "timeout_seconds": timeout_seconds,
+            "metadata": metadata,
+            "result": None,
+            **extra_fields,
+        }
+        game["stage"] = "submitting"
+        round_snapshot = dict(game["round"])
+
+    _broadcast_sync(game["game_id"], "round_opened", {
+        "round_type": round_type,
+        "expected_players": [game["players"][pid]["name"] for pid in expected],
+        "timeout_seconds": timeout_seconds,
+        "metadata": metadata,
+        **extra_fields,
+    })
+    return round_snapshot
+
+
+def _maybe_advance_to_generating(game: dict) -> bool:
+    """
+    If every expected player has submitted, transition submitting -> generating.
+    Returns True if this call caused the transition.
+    """
+    round_ = game["round"]
+    if round_ is None or game["stage"] != "submitting":
+        return False
+    if not all(pid in round_["submissions"] for pid in round_["expected_players"]):
+        return False
+
+    with _games_lock:
+        game["stage"] = "generating"
+
+    _broadcast_sync(game["game_id"], "round_generating", {
+        "round_type": round_["round_type"],
+        "timed_out": False,
+        "missing_players": [],
+    })
+    _dispatch_round_generation(game)
+    return True
+
+
+def _check_round_timeout(game: dict) -> bool:
+    """
+    Lazy timeout check — call at the top of any round endpoint. If the
+    submission window has expired with players still missing, auto-advances to
+    "generating" anyway (missing players are recorded, not silently dropped)
+    so one absent player can't stall the game indefinitely.
+    Returns True if this call caused a timeout transition.
+    """
+    round_ = game["round"]
+    if round_ is None or game["stage"] != "submitting":
+        return False
+    if time.time() - round_["opened_at"] < round_["timeout_seconds"]:
+        return False
+
+    missing = [pid for pid in round_["expected_players"] if pid not in round_["submissions"]]
+    with _games_lock:
+        game["stage"] = "generating"
+
+    _broadcast_sync(game["game_id"], "round_generating", {
+        "round_type": round_["round_type"],
+        "timed_out": True,
+        "missing_players": [game["players"][pid]["name"] for pid in missing if pid in game["players"]],
+    })
+    _dispatch_round_generation(game)
+    return True
+
+
+def _resolve_round(game: dict, result: dict) -> None:
+    """
+    Attach the generated result (owned by round_type-specific code) and
+    transition generating -> revealed.
+
+    Round generators may include a "_craft_guidance" key (a citation list
+    from craft_grounding.guidance_provenance) for audit purposes — useful
+    during playtesting to trace which craft sources informed a given
+    witness scene. That key is stored server-side only, on round_ itself,
+    and popped off before result is broadcast — it goes to every player in
+    the game over WebSocket, and craft-guidance citations are internal
+    tooling, not player-facing content.
+    """
+    round_ = game["round"]
+    with _games_lock:
+        round_["_craft_guidance"] = result.pop("_craft_guidance", None)
+        round_["result"] = result
+        game["stage"] = "revealed"
+
+    _broadcast_sync(game["game_id"], "round_revealed", {
+        "round_type": round_["round_type"],
+        "result": result,
+    })
+
+
+def _round_status_payload(game: dict) -> dict:
+    """Waiting-room view: who's submitted, who hasn't, time left."""
+    _check_round_timeout(game)
+    round_ = game["round"]
+    if round_ is None:
+        return {"stage": None, "round_type": None}
+
+    submitted_ids = set(round_["submissions"].keys())
+    pending_names = [
+        game["players"][pid]["name"]
+        for pid in round_["expected_players"]
+        if pid not in submitted_ids and pid in game["players"]
+    ]
+    seconds_remaining = max(0, round_["timeout_seconds"] - (time.time() - round_["opened_at"]))
+    return {
+        "stage": game["stage"],
+        "round_type": round_["round_type"],
+        "submitted_count": len(submitted_ids),
+        "expected_count": len(round_["expected_players"]),
+        "pending_players": pending_names,
+        "seconds_remaining": round(seconds_remaining, 1) if game["stage"] == "submitting" else 0,
+        "result": round_["result"],
+    }
+
+
+# ---------------------------------------------------------------------------
+# Round-type implementations
+# ---------------------------------------------------------------------------
+# Each round_type registers an optional "prep" hook (extra fields to attach
+# when the round opens, e.g. a candidate-question pick-list) and a "generate"
+# hook (produces the eventual result once every player has submitted or the
+# round timed out). Dispatched by round_type — see _dispatch_round_generation.
+
+def _witness_prep(game: dict, metadata: dict) -> dict:
+    """Prep for a 'witness' round: attach candidate pick-list questions for the target witness."""
+    character_name = metadata.get("character_name", "")
+    return {"candidate_questions": _candidate_questions_for(game["mystery"], character_name)}
+
+
+def _generate_witness_scene(game: dict, round_: dict) -> dict:
+    """
+    Generate the result for a 'witness' round: one shared dramatized scene,
+    bounded to 2-3 sentences regardless of how many questions were pooled,
+    plus a private answer to every individual question each player submitted.
+    No random distribution beyond that — a player always gets their own
+    answers, and the scene is what's shared with everyone.
+    """
+    mystery = game["mystery"]
+    character_name = round_["metadata"].get("character_name", "")
+    chars = mystery.get("characters", [])
+    char_data = next((c for c in chars if c["name"] == character_name), {})
+
+    s = mystery.get("setting", {})
+    c = mystery.get("crime", {})
+    setting_summary = (
+        f"Location: {s.get('location', '')}\n"
+        f"Time period: {s.get('time_period', '')}\n"
+        f"Crime: {c.get('what_happened', '')}"
+    )
+    char_context = (
+        f"Role: {char_data.get('role', 'suspect')}\n"
+        f"Occupation: {char_data.get('occupation', '')}\n"
+        f"Alibi: {char_data.get('alibi', '')}\n"
+        f"Secret: {char_data.get('secret', '')}\n"
+        f"Motive: {char_data.get('motive', '')}"
+    )
+
+    # Pool questions across players, deduped by fingerprint so overlapping
+    # questions surface once (with all their askers) instead of N near-duplicates.
+    by_fingerprint: dict[str, dict] = {}
+    for pid, payload in round_["submissions"].items():
+        player_name = game["players"].get(pid, {}).get("name", "Unknown")
+        for q in payload.get("questions", []):
+            q = q.strip()
+            if not q:
+                continue
+            fp = _fingerprint(q)
+            entry = by_fingerprint.setdefault(fp, {"question": q, "askers": []})
+            entry["askers"].append((pid, player_name))
+
+    pooled = list(by_fingerprint.values())
+    empty_answers = {pid: [] for pid in round_["submissions"].keys()}
+    if not pooled:
+        return {"scene": f"{character_name} waited, but nobody had a question this round.",
+                "scene_covers": [], "answers": empty_answers}
+
+    for i, entry in enumerate(pooled):
+        entry["qid"] = f"Q{i + 1}"
+    questions_block = "\n".join(
+        f"  {p['qid']}: \"{p['question']}\" (asked by: {', '.join(name for _, name in p['askers'])})"
+        for p in pooled
+    )
+
+    guidance_entries = craft_grounding.get_craft_guidance(**craft_grounding.CALL_SITE_TAGS["witness_scene"], max_items=5)
+    guidance_block = craft_grounding.format_guidance_block(guidance_entries)
+
+    prompt = f"""\
+You are {character_name} in this mystery, being interrogated by a group of detectives at once.
+
+SETTING:
+{setting_summary}
+
+YOUR PRIVATE CHARACTER DETAILS (do NOT reveal directly):
+{char_context}
+
+Be evasive if you are the culprit. Be defensive if you are innocent but suspicious.
+Do NOT directly reveal the real culprit.
+
+{guidance_block}
+
+The detectives asked these questions this round (some were asked by more than one):
+{questions_block}
+
+Produce two things:
+
+1. A SHARED SCENE: a short, watchable dramatization of this interrogation — 2 to 3
+   sentences, no matter how many questions were pooled above. Prioritize whichever
+   question(s) were asked by more than one detective, plus one character/atmosphere
+   flourish moment. Keep this the same length regardless of how many questions were
+   pooled — condense, don't list them all.
+2. A private ANSWER to every individual question above, keyed by its id — these are
+   NOT shown to the group, only to whichever detective(s) asked that question.
+
+Return ONLY valid JSON:
+{{
+  "scene": "2-3 sentence dramatized scene, written to be watched/read by the whole group",
+  "scene_covers": ["Q1", "Q3"],
+  "answers": {{"Q1": "private in-character answer, 1-3 sentences", "Q2": "..."}}
+}}"""
+
+    raw = llm(prompt, system="You are a mystery game character. Stay in character. Return only valid JSON.")
+    parsed = _parse_json(raw)
+
+    answers_by_qid = parsed.get("answers", {})
+    per_player_answers: dict[str, list] = {pid: [] for pid in round_["submissions"].keys()}
+    for entry in pooled:
+        answer = answers_by_qid.get(entry["qid"], "")
+        for pid, _name in entry["askers"]:
+            per_player_answers[pid].append({"question": entry["question"], "answer": answer})
+
+    scene_covers_qids = set(parsed.get("scene_covers", []))
+    scene_covers_text = [e["question"] for e in pooled if e["qid"] in scene_covers_qids]
+
+    return {
+        "scene": parsed.get("scene", ""),
+        "scene_covers": scene_covers_text,
+        "answers": per_player_answers,   # {player_id: [{question, answer}, ...]} — private per player
+        # Popped off by _resolve_round before broadcast — see that function's
+        # docstring for why this never reaches the WebSocket payload.
+        "_craft_guidance": craft_grounding.guidance_provenance(guidance_entries),
+    }
+
+
+_ROUND_PREP = {
+    "witness": _witness_prep,
+}
+
+_ROUND_GENERATORS = {
+    "witness": _generate_witness_scene,
+}
+
+
+def _dispatch_round_generation(game: dict) -> None:
+    """
+    Kick off the round_type-specific generator in a background thread once a
+    round has moved to "generating", then resolve the round with its result.
+    Round types with no registered generator (future work not built yet)
+    fall through safely rather than erroring.
+    """
+    round_ = game["round"]
+    generator = _ROUND_GENERATORS.get(round_["round_type"])
+    if generator is None:
+        return
+
+    def _run() -> None:
+        try:
+            result = generator(game, round_)
+        except Exception as exc:
+            result = {"error": str(exc)}
+        _resolve_round(game, result)
+
+    threading.Thread(target=_run, daemon=True).start()
 
 
 # ---------------------------------------------------------------------------
@@ -618,6 +1007,23 @@ class SharePhaseRequest(BaseModel):
 class StartGameRequest(BaseModel):
     player_id: str
 
+class OpenRoundRequest(BaseModel):
+    player_id: str       # must be the host
+    round_type: str      # e.g. "witness" — meaning owned by round-type-specific code
+    timeout_seconds: int = _DEFAULT_ROUND_TIMEOUT
+    metadata: dict = {}  # round-type-specific, e.g. {"character_name": "..."} for a witness round
+
+class SubmitRoundRequest(BaseModel):
+    player_id: str
+    payload: dict         # shape is round_type-specific, not validated here
+
+class ResolveRoundRequest(BaseModel):
+    result: dict           # shape is round_type-specific, not validated here
+
+class AccuseRequest(BaseModel):
+    player_id: str
+    culprit_name: str
+
 # ---------------------------------------------------------------------------
 # Endpoints
 # ---------------------------------------------------------------------------
@@ -652,8 +1058,9 @@ def generate(req: GenerateRequest):
     mystery_dict = _run_coherence(mystery_dict)
 
     if req.cinematic_brief:
-        brief = _generate_cinematic_brief(mystery_dict)
-        mystery_dict["cinematic_brief"] = brief
+        opening = _generate_cinematic_brief(mystery_dict)
+        mystery_dict["opening_narration"] = opening["opening_narration"]
+        mystery_dict["cinematic_brief"] = opening["cinematic_brief"]
 
     slug = _save_mystery(mystery_dict)
     mystery_dict["_slug"] = slug
@@ -791,6 +1198,10 @@ def create_game(req: CreateGameRequest):
         },
         "shared_pool": {"witness": [], "investigation": [], "lead": []},
         "block_pool": {"witness": [], "investigation": [], "lead": []},
+        "stage": None,
+        "round": None,
+        "winner": None,
+        "accusations": [],
         "ts": time.time(),
     }
     with _games_lock:
@@ -896,6 +1307,179 @@ def start_game(game_id: str, req: StartGameRequest):
     return {"ok": True}
 
 
+@app.post("/games/{game_id}/round/open")
+def open_round(game_id: str, req: OpenRoundRequest):
+    """
+    Host opens a new lockstep round (e.g. "witness"). Snapshots current
+    players as required submitters and starts the submission window.
+    Content generation for the round is owned elsewhere — this just starts
+    the synchronization mechanism.
+    """
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    player = game["players"].get(req.player_id)
+    if not player or not player.get("is_host"):
+        raise HTTPException(status_code=403, detail="only the host can open a round")
+    if game["stage"] == "submitting":
+        raise HTTPException(status_code=400, detail="a round is already open")
+
+    round_ = _open_round(game, req.round_type, req.timeout_seconds, req.metadata)
+    return {"ok": True, "round_type": round_["round_type"],
+            "expected_count": len(round_["expected_players"]),
+            "timeout_seconds": round_["timeout_seconds"],
+            "candidate_questions": round_.get("candidate_questions", [])}
+
+
+@app.post("/games/{game_id}/round/submit")
+def submit_round(game_id: str, req: SubmitRoundRequest):
+    """
+    Player submits their payload for the current round (e.g. their
+    interrogation questions). Once every expected player has submitted (or
+    the timeout fires), the round advances to "generating" automatically.
+    """
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    if req.player_id not in game["players"]:
+        raise HTTPException(status_code=404, detail="player not in game")
+
+    _check_round_timeout(game)
+    round_ = game["round"]
+    if round_ is None or game["stage"] != "submitting":
+        raise HTTPException(status_code=400, detail="no round is currently accepting submissions")
+    if req.player_id not in round_["expected_players"]:
+        raise HTTPException(status_code=403, detail="player joined after this round opened")
+    if req.player_id in round_["submissions"]:
+        raise HTTPException(status_code=409, detail="player has already submitted this round")
+
+    # Round-type-specific submission validation. Only "witness" needs this
+    # today; if more round types need it, generalize into a dispatch dict
+    # the way _ROUND_PREP / _ROUND_GENERATORS already are.
+    if round_["round_type"] == "witness":
+        max_questions = _DIFFICULTY_CONFIG[game["difficulty"]]["questions_per_round"]
+        questions = [q.strip() for q in req.payload.get("questions", []) if isinstance(q, str) and q.strip()]
+        if len(questions) > max_questions:
+            raise HTTPException(
+                status_code=400,
+                detail=f"at most {max_questions} questions allowed this round on {game['difficulty']} difficulty"
+            )
+        req.payload["questions"] = questions
+
+    with _games_lock:
+        round_["submissions"][req.player_id] = req.payload
+
+    _broadcast_sync(game_id, "player_submitted", {
+        "player_name": game["players"][req.player_id]["name"],
+        "submitted_count": len(round_["submissions"]),
+        "expected_count": len(round_["expected_players"]),
+    })
+    advanced = _maybe_advance_to_generating(game)
+    return {"ok": True, "advanced_to_generating": advanced}
+
+
+@app.get("/games/{game_id}/round/status")
+def round_status(game_id: str):
+    """Waiting-room view: current stage, who's submitted, time left."""
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    return _round_status_payload(game)
+
+
+@app.post("/games/{game_id}/round/resolve")
+def resolve_round(game_id: str, req: ResolveRoundRequest):
+    """
+    Attach a generated result and reveal it to all players. Called by
+    round-type-specific generation code once it has produced the shared
+    scene / outcome for the current round — not intended as a direct
+    player-facing action.
+    """
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    if game["round"] is None or game["stage"] != "generating":
+        raise HTTPException(status_code=400, detail="no round is currently generating")
+
+    _resolve_round(game, req.result)
+    return {"ok": True}
+
+
+@app.post("/games/{game_id}/accuse")
+def accuse(game_id: str, req: AccuseRequest):
+    """
+    Player accuses a character of being the culprit — server-authoritative,
+    checked against the mystery's actual solution (which is never sent to
+    clients, see /mystery-brief). First correct accusation wins the game.
+    Every attempt, right or wrong, is broadcast to the whole room — accusing
+    is meant to be a public, shared moment, not a private guess-and-check.
+    No elimination on a wrong guess; a player can try again.
+    """
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    player = game["players"].get(req.player_id)
+    if player is None:
+        raise HTTPException(status_code=404, detail="player not in game")
+    if game.get("winner"):
+        raise HTTPException(status_code=400, detail="the case has already been solved")
+
+    solution = game["mystery"].get("solution", {})
+    correct = _fingerprint(req.culprit_name) == _fingerprint(solution.get("culprit", ""))
+
+    won = False
+    if correct:
+        # Re-check inside the lock: guards the race between two players both
+        # guessing correctly at nearly the same time — only the first to
+        # actually claim the lock while game["winner"] is still None wins.
+        with _games_lock:
+            if game.get("winner") is None:
+                game["winner"] = req.player_id
+                won = True
+
+    game.setdefault("accusations", []).append({
+        "player_id": req.player_id,
+        "accused_name": req.culprit_name,
+        "correct": correct,
+        "ts": time.time(),
+    })
+
+    _broadcast_sync(game_id, "accusation_made", {
+        "player_name": player["name"],
+        "accused_name": req.culprit_name,
+        "correct": correct,
+    })
+    if won:
+        _broadcast_sync(game_id, "game_won", {
+            "winner_player_id": req.player_id,
+            "winner_name": player["name"],
+            "solution": solution,
+        })
+
+    return {"correct": correct, "won": won}
+
+
+@app.get("/games/{game_id}/result")
+def get_result(game_id: str):
+    """
+    Snapshot of the game's outcome — for a client that missed the game_won
+    broadcast (e.g. joined late, reconnected). Solution is only included
+    once the game has actually been won.
+    """
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    winner_id = game.get("winner")
+    if winner_id is None:
+        return {"solved": False}
+    return {
+        "solved": True,
+        "winner_player_id": winner_id,
+        "winner_name": game["players"].get(winner_id, {}).get("name", "Unknown"),
+        "solution": game["mystery"].get("solution", {}),
+    }
+
+
 @app.get("/games/{game_id}/block-pool")
 def get_block_pool(game_id: str):
     """
@@ -956,7 +1540,7 @@ def investigate_area(game_id: str, req: InvestigateAreaRequest):
     if area is None:
         raise HTTPException(status_code=404, detail="area not found in mystery")
 
-    findings = _investigate_area_with_ai(game["mystery"], area, player["name"])
+    findings, craft_guidance = _investigate_area_with_ai(game["mystery"], area, player["name"])
     finding_id = str(uuid.uuid4())[:8]
 
     with _games_lock:
@@ -965,11 +1549,16 @@ def investigate_area(game_id: str, req: InvestigateAreaRequest):
             "area_id": req.area_id,
             "area_name": area["name"],
             "findings": findings,
+            "_craft_guidance": craft_guidance,
         })
         player["investigation_budget"] -= 1
 
+    # craft_guidance is included here (unlike the witness-round broadcast) because
+    # this response goes only to the requesting player over a private HTTP call,
+    # not broadcast to the room — useful for tracing narration quality during
+    # playtesting without any spoiler/leak risk to other players.
     return {"finding_id": finding_id, "area_name": area["name"], "findings": findings,
-            "budget_remaining": player["investigation_budget"]}
+            "budget_remaining": player["investigation_budget"], "craft_guidance": craft_guidance}
 
 
 @app.post("/games/{game_id}/follow-lead")
@@ -1006,7 +1595,7 @@ def follow_lead(game_id: str, req: FollowLeadRequest):
     if lead is None:
         raise HTTPException(status_code=404, detail="lead not found in mystery")
 
-    findings = _follow_lead_with_ai(game["mystery"], lead, player["name"])
+    findings, craft_guidance = _follow_lead_with_ai(game["mystery"], lead, player["name"])
     finding_id = str(uuid.uuid4())[:8]
 
     with _games_lock:
@@ -1015,11 +1604,14 @@ def follow_lead(game_id: str, req: FollowLeadRequest):
             "lead_id": req.lead_id,
             "lead_title": lead["title"],
             "findings": findings,
+            "_craft_guidance": craft_guidance,
         })
         player["leads_used"].append(req.lead_id)
 
+    # See the matching comment in investigate_area() re: why craft_guidance is
+    # safe to include here (private per-player response, not a room broadcast).
     return {"finding_id": finding_id, "lead_title": lead["title"], "findings": findings,
-            "leads_remaining": 2 - len(player["leads_used"])}
+            "leads_remaining": 2 - len(player["leads_used"]), "craft_guidance": craft_guidance}
 
 
 @app.post("/games/{game_id}/share-phase")

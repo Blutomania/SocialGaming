@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Bank robbery during business hours; central question: will the robber escape with hostage and money, or will authorities intercept him?",
+    "confidence": "high",
+    "quote": "two people arrived...A tall slender man in a windbreaker followed her closely...he said softly, 'but be careful, very, very careful.' He pushed the black bag across the counter top."
+  },
+  "victim": {
+    "value": "Marge Elliot, bank teller\u2014a dutiful suburban housewife trapped between domestic obligations and her own suppressed desires, making her psychologically vulnerable to the robber's manipulation.",
+    "confidence": "high",
+    "quote": "Marge was hungry...too tired to start the annual argument about the parents' show...After fourteen years no woman got excited."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "The robber, a Korean War veteran escaping a suffocating marriage and bourgeois entrapment. Motive: violent rebellion against domestic servitude and societal conformity; he seeks freedom through crime and explicitly states he will not be captured alive.",
+    "confidence": "high",
+    "quote": "I had to get out of it...I don't know. Maybe I did love her, maybe I still do...Either I make it with the money, or they kill me. But they won't catch me!"
+  },
+  "resolution": {
+    "value": "The robber is killed in a police shootout after being tracked via Marge's abandoned watch. Marge is rescued but psychologically transformed\u2014no longer the compliant housewife. She rejects Warren's comfort and the promise of returning to 'normal.'",
+    "confidence": "high",
+    "quote": "There was a distant, lost sound of a siren...rapid, faint reports of guns firing...over the cliff...She jerked away from him and buried her face in the pillow, where her abductor's head had rested."
+  },
+  "investigator": {
+    "value": "Marge Elliot herself\u2014the victim-witness whose internal perspective dominates the narrative. She experiences the crime as both captive and reluctant confidante, gradually recognizing uncomfortable truths about her own life.",
+    "confidence": "high",
+    "quote": "It was as if she were coming out from a deep dream, only now being consciously in control of her actions...Why hadn't she screamed in the lot?"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "A Case of Desperation",
+    "author": "KATE WILHELM",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 49,
+    "story_count": 63
+  }
+}

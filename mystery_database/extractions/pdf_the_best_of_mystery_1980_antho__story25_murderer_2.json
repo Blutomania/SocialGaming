@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Bludgeoning murder of elderly woman with paperweight in her bedroom; central question: who actually committed the crime\u2014Rolfe (who planned it) or Borden (who executed it)?",
+    "confidence": "high",
+    "quote": "Mother's smashed-in head lay sideways on the pillow. She had put up quite a struggle for her poor life; one fat dimpled hand reached vainly toward the telephone"
+  },
+  "victim": {
+    "value": "Rolfe's mother: a retired magazine editor living on a pension, now dependent on her son's trust fund for nursing care and medical expenses. She is 'killable' because her continued life drains Rolfe's inheritance.",
+    "confidence": "high",
+    "quote": "She's got the pension from her office\u2014Peanuts. Hardly pays the rent. That's why she's worried. She knows she's going to have to dip into your trust fund"
+  },
+  "closed_world": {
+    "value": "An apartment building: Rolfe's apartment upstairs, Mother's apartment below, Mr. Webb's apartment across the hall. Access via fire escape and connected building spaces. Late night, sparse witnesses.",
+    "confidence": "high",
+    "quote": "It had been snowing lightly, Rolfe found when he stepped noiselessly through his window. The fire escape steps looked ghostly under the thin white coat. The windows of the two floors between him and Mother's apartment were dark."
+  },
+  "culprit_and_motive": {
+    "value": "Borden, the reformed narcotics addict: desperate, emotionally dependent, and manipulated by Rolfe into believing Mother rejected him. Borden kills in a rage of abandonment, finding Rolfe's apartment key and entering. Rolfe (secondary culprit) planned the murder but was preceded by Borden.",
+    "confidence": "high",
+    "quote": "It had been snowing lightly, Rolfe found when he stepped noiselessly through his window...It could not have been Rolfe. At last his mind grasped the truth...The someone else was Borden."
+  },
+  "resolution": {
+    "value": "Mr. Webb discovers Rolfe straddling the window sill wearing the blood-stained jacket, catches him red-handed. Police find Borden dead (suicide or accident from his window). Rolfe is convicted, though his guilt is ambiguous\u2014he planned the murder but did not execute it. He confesses: 'I am guilty. I did not do it, but I am guilty.'",
+    "confidence": "high",
+    "quote": "He was lost. Ignominiously straddling the window sill...he looked into the granite eyes of Mr. Webb and knew that disaster was upon him...They found Borden. What was left of him."
+  },
+  "investigator": {
+    "value": "Mr. Webb: the mother's attorney and Rolfe's neighbor. He is instrumental in exposing the truth through chance discovery, though he is not a professional investigator. The reader also experiences the mystery through Rolfe's perspective.",
+    "confidence": "medium",
+    "quote": "He was lost. Ignominiously straddling the window sill, with one arm still trying to fumble its way out of the jacket, he looked into the granite eyes of Mr. Webb and knew that disaster was upon him."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Murderer #2",
+    "author": "JEAN POTTS",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 25,
+    "story_count": 63
+  }
+}

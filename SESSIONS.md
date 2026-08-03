@@ -5,6 +5,428 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 24 — August 3, 2026
+**Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
+**Starting commit:** `a90ded7` (tip after Session 21 — same base Session 22/23 branched from;
+this work happened in parallel with those two, not aware of them until merge time)
+**Status:** Complete — built the multiplayer accusation-resolution backend (Session 21's item
+1 next-step), then reconciled with Session 22/23's work landing on the same branch concurrently
+
+### Accusation-resolution backend
+Closed the gap Session 21 identified: no backend endpoint existed anywhere for resolving a
+multiplayer accusation. Added `POST /games/{id}/accuse` (server-authoritative check against
+`mystery["solution"]["culprit"]`, which is never sent to clients; first correct accusation wins;
+race-safe via `_games_lock` re-checked at the moment of the winning claim, not just an early
+gate) and `GET /games/{id}/result` (snapshot for a client that missed the broadcast). New fields
+`game["winner"]` / `game["accusations"]`. Two new broadcasts: `accusation_made` (every attempt,
+right or wrong, public to the whole room — explicit owner decision, matches the party-craft
+research on shared wrong-guess moments) and `game_won` (full solution reveal, the trigger point
+for the still-unbuilt end-game resolution scene). Wrong guesses are non-eliminating.
+
+**Verified, not just written:** wrong-guess/correct-guess/post-solve-rejection flow through real
+FastAPI `TestClient` HTTP calls; late-join `/result` snapshot before and after a win; and
+specifically the race condition — fired 3 simultaneous correct accusations from 3 players in
+real threads, confirmed exactly 1 won and the other 2 were correctly rejected as already-solved,
+not just checked in the easy sequential case. `docs/WIRING.md` documents the new endpoints.
+
+### Merge reconciliation with Session 22/23
+Pushing this work hit a non-fast-forward rejection — Session 22 (RAG craft-grounding retrieval
+layer, built on `_generate_witness_scene` from Session 21) and Session 23 (extraction
+silent-failure fix) had both landed on this same branch in the meantime. Merged rather than
+force-pushing; `server/main.py`, `docs/WIRING.md`, and `CLAUDE.md` auto-merged cleanly (no
+functional overlap — different call-sites and files respectively). Only this log file conflicted,
+resolved by discarding a content-free auto-chore stub in favor of proper session entries on both
+sides.
+
+### What is next
+Unchanged from Session 22/23's lists, plus: the accusation backend now unblocks the end-game
+resolution/summation scene (Session 21's tracked item, still open).
+
+---
+
+## Session 23 — August 3, 2026
+**Branch:** `claude/session-wrapup-cleanup-blocker-3val9a` (continued from Session 22, same branch —
+PR #7 already open against it)
+**Starting commit:** `1b6ae7c` (tip after Session 22)
+**Status:** Complete — fixed a silent extraction-failure bug found while reviewing the Session 20
+anthology output, verified against the real failing case
+
+### Bug found: silent JSON-parse failure indistinguishable from a genuine "nothing found"
+While reviewing extracted anthology content per the owner's request, found
+`pdf_the_best_of_mystery_1980_antho__story05_pseudo_identity.json` ("Pseudo Identity" by Lawrence
+Block) had come back with all 6 P1 fields null — including `crime` and `investigator`, fields
+essentially always present in any mystery. The same author's other story in the anthology
+extracted cleanly. Root cause: `extract_pdf()` and `extract_pdf_anthology()` both caught
+`json.JSONDecodeError` on a malformed Claude response and silently wrote the same null-placeholder
+shape Claude itself uses for a legitimately-absent element — so a hard parse failure and an honest
+"not in this text" result were byte-for-byte identical in the saved file. No warning, no log line,
+nothing to distinguish them without manually cross-checking against a sibling extraction.
+
+### Fix: shared retry helper, loud warnings, failure-mode split
+Added `_call_claude_for_protocol()` in `scripts/extract_from_pdfs.py`, replacing the duplicated
+inline call+parse blocks in both `extract_pdf()` and `extract_pdf_anthology()`:
+- A malformed response now retries once before falling back to the placeholder.
+- If the retry also fails to parse, the placeholder is still saved (a formatting quirk isn't
+  expected to self-resolve on a bare re-run), but now **with a warning** recorded in
+  `_meta.extraction_warnings` and printed to console — no longer silent.
+- Pure API-call failures (network/auth/rate-limit — never got a response back at all) are handled
+  differently on purpose: raises `ExtractionAPIError`, and the caller skips the source entirely
+  rather than saving anything. This preserves the original (safer) behavior for that failure mode —
+  the dedup-by-filename check on a later re-run will retry it naturally, instead of a transient
+  network hiccup permanently marking the source "done."
+
+### Verified against the real failing case, not just stubs
+Stub-tested first (3 scenarios: retry-succeeds, always-malformed, pure-API-failure — all correct).
+Then the owner ran it for real locally: deleted the story05 output file and re-ran
+`python3 scripts/extract_from_pdfs.py ".../The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf" --anthology --protocol P1`.
+Console showed the mechanism firing exactly as designed — first attempt hit
+`JSON parse failed (Expecting ',' delimiter: line 5 column 48 (char 266))`, printed a `WARNING`
+with a preview of the bad raw response, retried, and the retry succeeded. The saved file now has
+real, high-confidence, coherent values across all 6 fields (confirmed by the owner pasting the
+final JSON) with no `extraction_warnings` key — a clean save, not a warned placeholder. Bug
+confirmed fixed against the actual data that originally exposed it.
+
+### Files modified
+- `scripts/extract_from_pdfs.py` — `_call_claude_for_protocol()` + `ExtractionAPIError`, both
+  extraction entry points updated to use it (commit `5dee1cd`)
+
+### Decision
+This fix only addresses the extraction call/parse robustness gap. It does not touch the two
+extraction-pipeline efficiency gaps from Session 22 (registry field-mapping mismatch;
+P1-only-source depth) — those remain open, separate decisions.
+
+### What is next
+- Owner has more anthologies to extract; this fix is now live for all of them.
+- Owner still needs to triage remaining `mystery_database/new_sources/` files (3 queued novels,
+  1 unsupported `.html`, the untriaged Higashino novel).
+- Everything from Session 22's "What is next" list is still open and untouched this session.
+
+---
+
+## Session 22 — July 31, 2026
+**Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
+**Starting commit:** `a90ded7` (tip after Session 21)
+**Status:** Complete — extraction-pipeline efficiency audit, deck-terminology naming discussion,
+and the RAG craft-grounding retrieval layer built and wired into all four relevant generation
+call-sites
+
+### Extraction efficiency audit (led to this session's build)
+Asked directly whether the extraction pipeline is actually feeding the coherence engine enough
+to produce coherent NPC dialogue, now that Session 21 rebuilt how that dialogue gets generated.
+Traced the real code path and found two concrete, verified gaps:
+1. **Depth mismatch drops 5 of 8 registry axes for every P1-only source.** `part_registry.py`'s
+   `_atomize_extraction()` expects P2-tier keys (`suspect_architecture`, `red_herring`,
+   `reveal_mechanic`, `social_world`, `alibi`) that a P1-only extraction never produces (P1 only
+   has `crime`, `victim`, `closed_world`, `culprit_and_motive`, `resolution`, `investigator`).
+   Confirmed directly on `story01_winter_run.json`: exactly the 6 P1 keys, none of the 5 P2 keys
+   the registry needs. Every P1-only source — all 12 novels and all 63 anthology stories from
+   Session 20 — can only ever be sampled for 3 of the registry's 8 axes.
+2. **Even fully-extracted sources waste most of what they capture.** A P1+P2 `ebook_*` source
+   has 14 populated fields (confirmed directly), but the registry only ever reads 8 of them —
+   `clue_fairness`, `media_and_audience`, `investigator_wound`, `victim`, `resolution`, and
+   `investigator` are extracted and then never touched again, for any source, at any depth.
+
+Neither gap was fixed this session (that's a separate, still-open decision — see What is next) —
+this audit's real output was scoping the third fix option precisely: wiring the craft-grounding
+docs into generation, since raw plot-skeleton extraction was never going to carry dialogue-craft
+signal the way `clue_fairness`/`M2`/`M3`-tagged findings can.
+
+### Pitch-deck terminology discussion
+Separately, helped name the mechanism driving NPC dialogue/action/asset coherence for a funding
+deck — recommended "Continuity Engine" (film/TV production term, maps directly to
+`coherence_validator.py` + JSON schema guardrails) with "Arbitration Layer" as a second term
+specifically for the Session 21 pooled-question dedup mechanic. No code changes; deck content is
+the owner's to finalize.
+
+### Craft-grounding retrieval layer — built and verified
+Scoped and built the RAG-wiring mechanism (`CLAUDE.md` to-do item 10), explicitly to "maximum
+viable," not minimal — full design discussion in this session's chat log, condensed into
+`docs/WIRING.md`'s new "Craft-grounding retrieval (RAG layer)" section (read that section in
+full before touching any of this — it's written for a new hire with zero context).
+
+**What got built:**
+- **`craft_grounding.py`** (new module) — parses every `*_CRAFT_FINDINGS.md` /
+  `RESEARCH_FINDINGS.md` doc at the repo root into a structured, retrievable index
+  (`GuidanceEntry`: concept, insight, taxonomy tags, game-system tags, confidence tier, source),
+  cached to `mystery_database/craft_grounding_index.json` (gitignored — disposable, rebuilt
+  automatically whenever a source doc changes). Retrieval (`get_craft_guidance()`) is a pure
+  local dict filter — zero added API calls, ever.
+- **Confidence-tier respecting**: defaults to excluding `secondary`-tier findings from live
+  prompts. Also implemented the doc's own stated distinction — `PARTY_CRAFT_FINDINGS.md`'s "Part
+  2 — Player Experience" testimonials are reception evidence, not prescriptive technique, per
+  that doc's own text — so rows under a "Player Experience"/"Reception" H2 heading are
+  automatically capped at secondary confidence and excluded by default.
+- **Wired into all four relevant call-sites** in `server/main.py`, each with its own reasoned tag
+  set (full rationale table in `docs/WIRING.md`): `_generate_mystery_dict()` (derived per-call
+  from whichever part-registry axes this specific mystery sampled), `_generate_witness_scene()`
+  (M2/M3/F3 + Interrogation Phase/Social Dynamics), `_investigate_area_with_ai()` (F4/F5 +
+  Investigation/Scene Phase), `_follow_lead_with_ai()` (M2/M5/C4 + Investigation/Scene Phase).
+  The latter two also picked up their own craft grounding for the first time — previously
+  zero-guidance despite firing live, repeatedly, per player, on `claude-sonnet-4-6`.
+- **Auditable by design, per the owner's explicit ask** — every call that injects guidance
+  records exactly which citations it used. Routing differs deliberately by broadcast scope:
+  mystery-level guidance rides in `_provenance.craft_guidance` (already stripped from client
+  responses by existing code); witness-round guidance is popped off by `_resolve_round()` before
+  the WebSocket broadcast and stashed server-side only (round results go to the whole room);
+  investigate/lead guidance is safe to return directly in the HTTP response (those are private
+  per-player calls, never broadcast).
+
+**Verified, not just written:** parser tested against all 3 real docs (129 entries parsed,
+confidence tiers correct after two bugs found and fixed — see below); all four call-sites tested
+with a stubbed `llm()` to confirm guidance actually lands in each prompt; `_resolve_round`'s
+broadcast-stripping verified directly (guidance present in the raw generator return, absent from
+the broadcast payload, present in `round_["_craft_guidance"]`); full `server.main` app import +
+route load verified via `TestClient` (31 routes, no wiring errors).
+
+**Two real bugs found and fixed while building, not left in:**
+1. Confidence tags like `[full text verified]` can appear in the Concept column, not just
+   Insight/Source (McQuarrie's entries do this) — initial version missed them, showing
+   `primary` instead of `verified`; fixed by checking all three columns.
+2. `PARTY_CRAFT_FINDINGS.md`'s Part 2 reception testimonials were initially being retrieved
+   identically to Part 1 design-authority findings, surfacing customer-review quotes as
+   generation-prompt "craft guidance" — fixed via the H2-heading-based downgrade described above.
+
+### Decision
+Craft-guidance wiring stops at "make the existing docs actually influence generation." Neither
+of the two extraction-pipeline gaps (registry field-mapping mismatch; re-extracting P1-only
+sources at deeper protocol levels) was addressed this session — both remain open, separate
+decisions with their own cost tradeoffs.
+
+### What is next
+1. Decide on the two extraction-pipeline gaps from this session's audit: fix
+   `part_registry.py`'s `KEY_TO_IDX` to also sample the 6 currently-discarded fields (no new API
+   cost, unlocks value already paid for across the whole corpus), and/or re-extract the 75
+   P1-only sources at `--protocol P1P2` (new API cost, backfills their 5 missing axes
+   specifically).
+2. True-crime podcast sourcing (still the one open media type per `SOURCING_METHODOLOGY.md`) —
+   when written, it becomes retrievable automatically, no `craft_grounding.py` change needed.
+3. The "new concepts flagged" taxonomy-formalization decision from `CLAUDE.md` item 10 remains
+   open and is explicitly separate from this session's build (see the RAG-review conversation
+   this session for why "wiring the mechanism" and "formalizing new taxonomy codes" were kept as
+   two different decisions).
+4. Everything from Session 21's own "What is next" list is still open (accusation-resolution
+   backend, crime-scene/lead-claim redesign, etc.) — untouched this session.
+
+---
+
+## Session 21 — July 31, 2026
+**Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
+**Starting commit:** `4f2f53c` (tip after Session 20's anthology extraction)
+**Latest commit:** `fefe547`
+**Status:** Complete — verified prior handoff, closed one corpus gap, then a long design
+arc that produced a real multiplayer architecture change, now partly built and verified
+
+> Note: this entry replaces three raw, unedited auto-summaries the Stop hook committed
+> during this session ("Session — July 31, 2026 at 18:07/19:00/19:09"). Those had no
+> real notes and duplicated commit lists already visible in git log; the actual work
+> they point to is captured properly below instead, per the same cleanup Session 19 did.
+
+### Handoff verification
+Confirmed the owner's ground truth from session start: the harness had again
+auto-assigned a fresh, empty branch (`claude/session-wrapup-cleanup-blocker-0sr8pn`,
+identical to `main`) instead of continuing the real work — same stale-branch pattern
+`CLAUDE.md` already warns about. Switched to the actual active branch. Verified the
+anthology extraction the owner ran manually had in fact completed: 63/63 story files
+present under `mystery_database/extractions/`, source_id collision fix confirmed
+working (hashes the full filename stem, so all 63 stories get distinct source_ids
+despite sharing a truncated 30-char filename prefix). One cosmetic-only finding: files
+are named `..._antho__story01...` not `..._anthology__...` — intentional `book_slug[:30]`
+truncation in `extract_from_pdfs.py`, not a bug.
+
+### New gap found, not closed
+`mystery_database/new_sources/` has a 10th file — `The_Devotion_of_Suspect_X_-
+_Keigo_Higashino.pdf` — that Session 20's triage never categorized (it covered 9 of
+10). Confirmed it is **not** a duplicate of the existing Higashino extraction in the
+corpus (that's a different novel, *The Miracles of the Namiya General Store*). Owner
+ruled out deleting it. Still needs an actual triage decision — queue it, skip it, or
+something else. Tracked as an open task, not resolved this session.
+
+### Corpus composition + sourcing-ratio discussion
+Discovered `CLAUDE.md`'s "12 PDF-sourced entries" framing badly undercounts the real
+corpus — there are 283 additional `ebook_*` extractions from a prior bulk pipeline run
+(bookrix.com sources, P1+P2 depth) sitting in `mystery_database/extractions/` with no
+mention in the Current To-Do. Established, with the owner, a short-story-vs-novel
+intake ratio for future PDF clearance decisions: favor anthologies heavily (3–5
+anthology clearances per 1 novel clearance) while depth stays P1-only for both, since
+an anthology yields 15–63x the source_ids per single legal-clearance decision that a
+novel does, for currently-identical extraction depth.
+
+### RAG-wiring reprioritization
+Discussed whether continual corpus growth costs coherence quality (concluded no — it's
+a per-generation sampling function, not corpus-size-dependent; the real risk is
+quality dilution from weak sources, not coherence difficulty) and whether short
+stories or novels are more valuable given that (concluded: complementary, not
+substitutes). This led to reprioritizing `PARTY_CRAFT_FINDINGS.md` RAG-wiring ahead of
+the previously-planned true-crime podcast sourcing (`CLAUDE.md` to-do item 10's
+"START HERE"), since social/party-game craft — the texture of live, competitive,
+multiplayer play — has no equivalent in prose extraction at any depth or volume.
+
+Owner pasted full text for the Jackbox "Built In Chicago" article and 3 of 4 targeted
+Medway *Behind the Curtain* posts (#1 Total Chaos, #4 Werewolf & Clocktower, #7
+Balance — not #2 Outsiders), plus an unlisted bonus strategy-tips post. Reading full
+text (not `WebSearch` snippets) surfaced something the snippet-sourced version of the
+doc had gotten wrong: *Blood on the Clocktower*'s entire design assumes team-based
+cooperative play toward one shared win ("reveal and share, it benefits everyone,"
+"what can WE do?") — structurally mismatched with Choose Your Mystery's individually-
+competitive, partial-information design (no hidden team, no shared win condition).
+Sorted findings into cleanly-transferable (Jackbox's NPC/host UX principles, the
+graduated-certainty deduction-logic material, qualitative balance framing) versus
+needs-an-explicit-divergence-note (full-transparency advice, the team "ghost vote"
+mechanic, team-balance math). **Not yet written into `PARTY_CRAFT_FINDINGS.md` itself**
+— still open.
+
+### Design-partner discussion (produced tracked decisions, not yet all built)
+- Win/solve tension: competitive structure stays as designed, but the sourced material
+  says the *texture* of losing (interrogation banter, near-misses) is what's actually
+  remembered, not the win/loss outcome — and CYM is deliberately lower-stakes/quicker-
+  to-restart than the live-hosted-party or *Clocktower* reference material, which
+  tempers how much "soften the loss" design effort is actually warranted.
+- Invisible per-player catch-up assistance — captured as future scope, tied to a
+  precedent in the owner's other project (MYF) and to a Medway concept already flagged
+  in `PARTY_CRAFT_FINDINGS.md` ("Storyteller subtly rebalancing mid-session").
+- "What I know vs. what's shared" knowledge-comparison screen — captured, ties directly
+  to the sourced "knowledge asymmetry is the addictive core" finding.
+- End-game resolution/summation scene — captured, reuses the two-output-per-call
+  pattern (cheap player-facing text + hidden video-prompt content) established below.
+
+### Paradigm shift: lockstep multiplayer redesign
+Walked a concrete "Murder on Mars" use case against the **actual** running code
+(not `CLAUDE.md`'s aspirational description) and found real, previously-undocumented
+gaps: the documented "75%-random-share" mechanic doesn't exist in code at all (the
+real mechanic is a player-choice minimum-share threshold, 50/60/70% by difficulty,
+broadcast to everyone who shares); interrogation questions are free text, not a
+pick-list; phases are sequential-mandatory, not player-choice; the multiplayer witness
+prompt was missing the evasion/anti-spoiler instruction the old solo endpoint has; and
+there is **no backend endpoint anywhere for resolving a multiplayer accusation** — the
+only accusation code (`accusation.gd`) is single-player-era, checks the guess locally
+against the solution already sitting in the client's own copy of the mystery JSON.
+
+This led to a full redesign, worked through collaboratively: lockstep round
+synchronization (everyone submits before anyone advances, replacing the old
+per-player-async phase model) instead of N isolated interrogation calls per witness;
+one shared dramatized scene per round instead of per-question isolation; claim-based
+lead reservation tied directly to solvability (a duplicated lead pick could leave the
+one culprit-pointing lead unexplored by anyone); and the same "cheap text now, hidden
+video-prompt-ready content for later" two-output pattern established for the opening
+scene, reused conceptually for the planned resolution scene.
+
+### What got built and shipped this session
+1. **Opening scene split** (`_generate_cinematic_brief`): now returns
+   `opening_narration` (player-facing prose, cheap) and `cinematic_brief` (hidden,
+   camera-direction language, ready for future video generation) from one call
+   instead of one video-only output. `docs/WIRING.md` updated. — commit `acf64cc`
+2. **Lockstep round state machine**: game-level `stage`/`round` fields, additive
+   alongside the legacy per-player `phase` (nothing existing broken). Four endpoints
+   (`round/open`, `round/submit`, `round/status`, `round/resolve`), four new
+   WebSocket events, lazy timeout handling so one AFK player can't stall a round
+   forever. Verified via direct function tests (happy path + timeout path) and a full
+   FastAPI `TestClient` HTTP flow. `docs/WIRING.md` updated this session. — commit
+   `899fa8d`
+3. **Witness interrogation redesign**: players submit up to
+   `questions_per_round` (3/2/1 by difficulty) questions per round, hybrid
+   pick-list-or-free-text; one generation call pools and dedupes everyone's
+   questions, returns a scene bounded to 2–3 sentences regardless of pool size plus a
+   private answer per question; no random cross-player answer distribution (a
+   deliberate simplification over the original "70% randomized" pitch, chosen for
+   legibility). Same mechanism covers the secondary witness via a second round with a
+   different `character_name`. Verified via stubbed-LLM tests (dedup correctness,
+   prompt content, answer redistribution) and full HTTP-level `TestClient` flow
+   including the validation-rejection path. Old `/interrogate-witness` and witness
+   `/share-phase` endpoints deliberately left untouched — owner's explicit call, since
+   `mobile.html` still targets them and no replacement UI exists yet. — commit
+   `fefe547`
+
+### What is next
+See `CLAUDE.md` → Current To-Do for the full tracked backlog. In dependency order:
+1. Accusation-resolution backend (independent of the rest, and blocks the resolution
+   scene below) — no multiplayer-safe way to declare a winner exists yet.
+2. Crime-scene investigation redesign and the knowledge-comparison screen (both
+   depend on the lockstep mechanism, now in place).
+3. Lead-claim reservation + scaling lead count to max players (8, per the Phase 3e
+   avatar decision already on record).
+4. End-game resolution/summation scene — blocked on the accusation backend.
+5. Separate thread, not part of this redesign: finish verifying + writing the sorted
+   `PARTY_CRAFT_FINDINGS.md` findings, then wire it into the generation and
+   `/interrogate` prompts; decide the still-open Devotion of Suspect X triage.
+
+---
+
+## Session 20 — July 29, 2026
+**Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
+**Starting commit:** `82cd423`
+**Status:** Complete — anthology ingestion support added and verified against a real 822-page
+short-story collection; batch of other new-source files reviewed but not yet processed
+
+### What was done
+The owner pushed several files into `mystery_database/new_sources/`, intending to send one short-
+story anthology PDF but sweeping in a whole local staging folder. Triaged all 10:
+
+- 4 already match existing extraction slugs exactly (Circular Staircase, Greene Murder Case,
+  Leavenworth Case, Red House Mystery) — harmless no-ops, `extract_from_pdfs.py`'s dedup check
+  skips them automatically.
+- 3 are full novels (Benjamin Stevenson ×2, Tana French's *Faithful Place*) — legitimate future
+  corpus additions, queued for later one-at-a-time ingestion per usual.
+- 1 (`In the Fog, by Richard Harding Davis.html`) is an `.html` file — `extract_from_pdfs.py` only
+  reads PDFs via `pypdf`; unsupported as-is regardless of the short-story question.
+- 1 (`The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf`, 822 pages, 63 stories) is the
+  anthology the owner actually meant to send — and confirmed the motivating case for this
+  session's work: `extract_from_pdfs.py` assumed one PDF = one continuous novel-length narrative
+  (begin/middle/end sampling capped at `MAX_TEXT_CHARS=6000`), which would either splice together
+  fragments of unrelated stories or silently discard most of a multi-story file.
+
+Added `--anthology` mode to `scripts/extract_from_pdfs.py`:
+- Detects per-story boundaries via a formatting pattern common to this kind of anthology — an
+  ALL-CAPS byline immediately followed by a title line, at the very top of each story's first
+  page — rather than trying to align a Contents-page listing against body text (title punctuation
+  routinely differs between the two, confirmed on this file: TOC "YOU CANT BLAME ME" vs. body
+  "You Can't Blame Me").
+- Skips all front matter by scanning only after the last "CONTENTS" heading, avoiding false
+  positives on the title page (which has the same "ALL-CAPS name over a title-cased line" shape).
+- Uses each story's **full text** for extraction rather than begin/middle/end sampling — sampling
+  exists to cheaply approximate a full novel (a ~1% sample of a 300K+ char, mostly-redundant text);
+  applied to a ~25K-char short story it would cut ~75% of a text with no slack, in three
+  disconnected chunks. Cost check: full-text vs. sliced across all 63 stories on Haiku 4.5 differs
+  by about $0.30 total (~$0.10 sliced vs. ~$0.41 full-text for P1 input tokens) — negligible next
+  to the quality/coherence risk sampling introduces on short-form prose. A per-story fallback to
+  begin/middle/end sampling still applies past `ANTHOLOGY_FULLTEXT_THRESHOLD` (25,000 chars) to
+  bound the rare outlier-length story.
+- Emits one output JSON per story with its own `source_id`, `--dry-run` support to review the
+  detected split before spending any API calls, and a Contents-count cross-check as a sanity
+  warning (not a hard gate).
+
+**Verified against the real file** (dry-run, no API calls): detected all **63 of 63** stories
+correctly on the first real pass but one — `#8` (a Jack Ritchie story whose title has zero
+alphabetic characters) was initially skipped by an overly strict title-line heuristic; fixed and
+re-verified 63/63 exact.
+
+**Also fixed a real, already-live bug found while building this**: `part_registry.py`'s
+`_atomize_extraction()` derived each source's `source_id` from `f.stem[:8]` (first 8 characters of
+the filename). The four `pdf_the_*` extractions already in the corpus all collapse to the same
+`source_id` (`corpus_pdf_the_`) today, silently defeating `sample_for_generation`'s
+`max_per_source` diversity constraint — confirmed via direct inspection, not yet visible in
+`part_registry.json` only because that file hasn't been regenerated since those sources were
+added. Multiple stories from one anthology sharing a filename prefix would have made this far
+worse (all 63 collapsing to one source). Fixed by hashing the full filename stem instead of
+truncating it.
+
+### Decision
+Anthology support lives as a separate `--anthology` mode rather than auto-detected — the existing
+single-novel path (and its cost-driven sampling) stays untouched for the three queued novels.
+
+### What is next
+1. Actually run `--anthology` against `The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf`
+   for real (needs `ANTHROPIC_API_KEY`, not set in this session) — the dry-run split is verified,
+   nothing has been extracted yet.
+2. Ingest the three queued novels one at a time, per the usual process.
+3. `.html` source support is a real gap if the owner wants to ingest non-PDF sources later (the
+   Richard Harding Davis novella) — not built, not requested yet.
+4. Once the registry is next rebuilt from `mystery_database/extractions/`, verify the `source_id`
+   fix actually resolves the diversity-constraint bug in practice (checked functionally in this
+   session via a throwaway in-memory `PartRegistry`, not by regenerating the committed
+   `part_registry.json`).
+
+---
+
 ## Session 19 — July 29, 2026
 **Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
 **Starting commit:** `60cf31c` (tip after Session 18 merged)

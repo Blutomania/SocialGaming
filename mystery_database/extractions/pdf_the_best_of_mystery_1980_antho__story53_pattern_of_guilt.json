@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Serial murder by burglary: killer targets women living alone, uses door-to-door towel peddling as pretext to scout victims, enters via window screen cutting, steals small amounts of cash, and shoots victim at close range. Central question: who is the 'cat-killer' and how does he select his victims?",
+    "confidence": "high",
+    "quote": "Violet Hammerman, 38, lived alone in a single apartment on North Curson...died in her bed Sunday night...the victim of one bullet through her heart fired at close range."
+  },
+  "victim": {
+    "value": "Elaine Briscoe (also Dorothy McGannon and Violet Hammerman): women living alone, financially modest, vulnerable to door-to-door sales pitches. 'Killable' because they are isolated, unmarried, and unobserved\u2014perfect targets for a predatory killer.",
+    "confidence": "high",
+    "quote": "The cat-killer concentrated on women living alone...All of the other apartments in each building were occupied by two or more tenants."
+  },
+  "closed_world": {
+    "value": "Apartment complex units in an urban residential area rezoned into small units; multiple isolated women tenants. The killer operates within a defined neighborhood where he scouts victims, returns to commit murders, and leaves forensic evidence in soil.",
+    "confidence": "high",
+    "quote": "a single apartment on North Curson...first-floor apartment in one of the old residential houses that had been rezoned and remodeled into small units"
+  },
+  "culprit_and_motive": {
+    "value": "Keith Briscoe, police reporter, murders his wife Elaine to frame the actual 'cat-killer' Kawalik. Motive: to obtain freedom from his marriage to Elaine while eliminating suspicion by matching the serial killer's signature. Secondary motive: obsession with reuniting with his ex-wife Faye.",
+    "confidence": "high",
+    "quote": "Keith entered Kawalik's apartment by way of the back door...He switched on the flashlight...a pink one. Shocking pink. It seemed appropriate for Elaine...Half an hour later, Keith climbed through Elaine's bedroom window."
+  },
+  "resolution": {
+    "value": "Sergeant Gonzales apprehends Kawalik at his apartment after a landlord reports suspicious activity. Police discover Kawalik's car with blood evidence from a gunshot wound inflicted by Officer Clancy during the arrest. Keith's guilt is exposed when he hands his murder weapon to Gonzales, confessing through action rather than words.",
+    "confidence": "high",
+    "quote": "When he couldn't stand the weight of it any longer, he handed it to Gonzales. Gonzales would figure it out. A thread, a fabric, a pattern."
+  },
+  "investigator": {
+    "value": "Keith Briscoe: police reporter and crime journalist who is simultaneously investigator and culprit. He works alongside Sergeant Gonzales to solve the 'cat-killer' murders while secretly committing a murder himself to frame the actual killer.",
+    "confidence": "high",
+    "quote": "Keith Briscoe had never been a hating man...one of the best [police reporters]...The next day, Keith went to Gonzales with his idea."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Pattern of Guilt",
+    "author": "HELEN NIELSEN",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 53,
+    "story_count": 63
+  }
+}

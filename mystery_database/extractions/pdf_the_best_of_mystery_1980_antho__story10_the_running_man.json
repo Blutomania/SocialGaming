@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Planned murder of a fugitive named Spikes via ambush at a remote diner; two armed men position themselves to kill Spikes when he jumps from a passing freight train and arrives at the location.",
+    "confidence": "high",
+    "quote": "We're here to kill a man... We're going to kill a man named Spikes... at five-thirty that freight is coming through here."
+  },
+  "victim": {
+    "value": "Spikes, a fugitive hiding in a boxcar who 'did something he shouldn't have done' and is being hunted by two contract killers intending to intercept him at the diner.",
+    "confidence": "high",
+    "quote": "There's a man named Spikes hiding in one of the boxcars, and when it passes by here he's going to jump off."
+  },
+  "closed_world": {
+    "value": "Charley's Oasis diner in the Arizona desert, isolated along a highway near railroad tracks, with limited personnel (old man, young waitress, and drifter Jack) and no outside help available before the scheduled murder.",
+    "confidence": "high",
+    "quote": "The building, standing back from the highway, was almost equidistant between it and the tracks... a single-story, unpainted affair... Charley's Oasis."
+  },
+  "culprit_and_motive": {
+    "value": "Frank and Earl, two armed contract killers hired to eliminate Spikes; their motive is professional\u2014they have been paid to execute him as revenge or silencing for an unspecified prior offense.",
+    "confidence": "high",
+    "quote": "Let's just say he did something he shouldn't have done... We're here to kill a man."
+  },
+  "resolution": {
+    "value": "The old man throws hot coffee at Frank, Jack retrieves a hidden gun and shoots Earl in the shoulder, incapacitating both killers before Spikes arrives. The sheriff is called and arrives to arrest them; order is restored through improvised defensive violence by diner staff and an armed intervention.",
+    "confidence": "high",
+    "quote": "The old man, his hand sweeping upward... threw the pot of hot coffee at Frank... Jack had moved fast... snatched the gun out of the rags... and pulled the trigger."
+  },
+  "investigator": {
+    "value": "Jack Hennessy, a fugitive drifter himself, accidentally becomes the primary actor in thwarting the murder plot; he serves as the reader's lens and undergoes personal moral transformation through the crisis.",
+    "confidence": "high",
+    "quote": "Jack, staring at them, felt a cold knot in his stomach... He made up his mind, suddenly... That's me running, he thought with a sudden realization."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "The Running Man",
+    "author": "BILL PRONZINI",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 10,
+    "story_count": 63
+  }
+}

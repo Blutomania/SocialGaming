@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Murder by strangulation. Roy Baxter, a blackmailer, is killed in his Connecticut home by Lee Costa, a hired assassin, using bare hands. Central question: How can a murder committed during a fishing trip be concealed when the victim's body disappears into the Sound?",
+    "confidence": "high",
+    "quote": "Two minutes later, he was standing over the sleeping form of Roy Baxter. Costa braced his feet. His hands fastened to the throat of the sleeping man."
+  },
+  "victim": {
+    "value": "Roy Baxter, a lawyer and blackmailer who discovered that Joe Rosetti killed a man years ago. Baxter is 'killable' because he is extorting Rosetti for $25,000 and threatening to expose the old murder to police.",
+    "confidence": "high",
+    "quote": "He said he would give me two weeks to raise twenty-five-thousand dollars. Then he goes to the police."
+  },
+  "closed_world": {
+    "value": "A small fishing boat anchored in sheltered waters off a Connecticut peninsula, with the Baxter house isolated on shore. The boat and surrounding Sound form a bounded space where only three people\u2014Rosetti, Mama Rosetti, and Costa\u2014are present.",
+    "confidence": "high",
+    "quote": "Early in the afternoon, they anchored the boat in the sheltered area around the point of the peninsula on which the Baxter house rested."
+  },
+  "culprit_and_motive": {
+    "value": "Mama Rosetti shoots and kills Costa. Her motive is to eliminate the only witness to her husband's crime and protect her family from future exposure by removing the one person (the hired killer) who could implicate them.",
+    "confidence": "high",
+    "quote": "She pulled an ugly little automatic out from under her knitting. 'A very nice night.' She shot him, twice, over the heart."
+  },
+  "resolution": {
+    "value": "No formal resolution. Mama Rosetti executes Costa as he returns from the assassination, disposing of both him and the murder weapon into the Sound. She restores order through a second murder that eliminates all witnesses except herself and her husband.",
+    "confidence": "high",
+    "quote": "She threw the pistol over the side. 'Cover up good, Papa. Don't catch cold.'"
+  },
+  "investigator": {
+    "value": "Lee Costa, the hired assassin and protagonist, serves as the lens through which the reader experiences the mystery. He is simultaneously detective of his own assignment, witness to the Rosettis' final plan, and ultimately victim.",
+    "confidence": "high",
+    "quote": "I'm a very cautious boy, Mr. Rosetti. I'll check it out. Let you know."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 18986,
+    "protocols": [
+      "P1"
+    ],
+    "title": "A Very Cautious Boy",
+    "author": "GILBERT RALSTON",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 13,
+    "story_count": 63
+  }
+}

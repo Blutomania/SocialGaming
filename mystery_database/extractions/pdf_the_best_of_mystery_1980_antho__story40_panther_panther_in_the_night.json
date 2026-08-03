@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Murder by gunshot disguised as hunting accident. Ken Bender shot dead during a leopard hunt. Central question: was it accidental misidentification or premeditated murder using a tame leopard's reputation as cover?",
+    "confidence": "high",
+    "quote": "I came finally upon Cozenka crouching over the still body of Ken Bender...the bloody wound in Bender's chest."
+  },
+  "victim": {
+    "value": "Kenneth Bender: wealthy Texas oil millionaire married to glamorous Eurasian Cozenka. Killable because he was emotionally dependent, naive, and ignored his wife's affair with guide Peter Wyndham. His wealth made him exploitable; his lack of sophistication made him blind.",
+    "confidence": "high",
+    "quote": "he was a crashing bore\u2014a big, clumsy, childlike man with only one qualification for your exquisite attentions. He was rich as Croesus."
+  },
+  "closed_world": {
+    "value": "Ken Bender's isolated Southwest lodge and private African animal sanctuary, miles from town. The hunting grounds where the murder occurs are contained within Bender's own property, limiting suspects to household members and guests present that night.",
+    "confidence": "high",
+    "quote": "a week later, I was picked up at a lonely whistle stop and driven twenty miles to Ken Bender's place...a million-dollar never-never land carefully recreated out there in the middle of nowhere."
+  },
+  "culprit_and_motive": {
+    "value": "Cozenka and Peter Wyndham are the murderers. Motive: Cozenka wanted Bender's money and freedom to be with Wyndham (or to live without a bore), but Bender's love made him an obstacle. They planned to kill him and blame the tame leopard 'Demon,' whose viciousness they publicly cultivated.",
+    "confidence": "high",
+    "quote": "So you figured out a foolproof way to kill him and have it called an accident...you were quite willing to take everything he had except the one thing he wanted you most to accept. Himself."
+  },
+  "resolution": {
+    "value": "Marty Payne (the narrator) discovers hidden 16mm film in Cozenka's closet showing the leopard being tamed by Wyndham\u2014proof the 'vicious' cat was harmless. Film is shown at coroner's inquest. Despite this evidence, the grand jury refuses to indict due to lack of legal certainty. Poetic justice follows: both Wyndham and Cozenka die within six months.",
+    "confidence": "high",
+    "quote": "I said, and took from my pocket the reel of sixteen-millimeter film I'd found on a shelf in one of Cozenka's closets...It was all there: highlights in the taming of a black leopard named Demon"
+  },
+  "investigator": {
+    "value": "Marty Payne: a magazine writer and journalist present as an invited guest ostensibly to cover Cozenka's animal sanctuary. He becomes an accidental detective, witnessing the crime scene immediately after the murder and gradually deducing the conspiracy through observation and logical reasoning.",
+    "confidence": "high",
+    "quote": "I'm a writer. I make my dubious living reporting on extraordinary people and places and things...I was even witness to the tragedy in a professional capacity."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Panther, Panther in the Night",
+    "author": "PAUL W. FAIRMAN",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 40,
+    "story_count": 63
+  }
+}

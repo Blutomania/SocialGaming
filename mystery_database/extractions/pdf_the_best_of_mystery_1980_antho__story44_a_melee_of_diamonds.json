@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Diamond theft from Midtown Diamond Exchange via smash-and-grab robbery. Central question: how did the thief remove $58,000 in diamonds from the window when he was under continuous observation and found with no diamonds on his person?",
+    "confidence": "high",
+    "quote": "Hoffman got $58,000 worth of diamonds out of that window, and he was in sight of at least one person every instant until they arrested him... The diamonds weren't on him. Captain. No trace of them."
+  },
+  "victim": {
+    "value": "Peter Arnold, owner of Midtown Diamond Exchange, was killable due to financial desperation and involvement in the robbery scheme as an insider collaborator.",
+    "confidence": "high",
+    "quote": "You're in bad financial trouble, and aiding in the theft of your company's diamonds was an easy way out for you."
+  },
+  "closed_world": {
+    "value": "Urban Union Street neighborhood in a city, spanning from the Diamond Exchange to a half-block radius where the suspect was arrested, with multiple witnesses continuously observing the robbery and pursuit.",
+    "confidence": "high",
+    "quote": "he was in sight of at least one person every instant until they arrested him... I ran him down halfway up the block... The police were there all night, looking."
+  },
+  "culprit_and_motive": {
+    "value": "Peter Arnold, the diamond store owner, orchestrated the theft with Rudy Hoffman to commit insurance fraud and solve his financial crisis by removing diamonds before the robbery, while Hoffman served as the visible thief to misdirect investigators.",
+    "confidence": "high",
+    "quote": "You closed the shop at nine o'clock the other night, and quickly removed the diamonds from that window. Rudy Hoffman came by as scheduled, broke the window and ran. You pocketed the diamonds and called the police."
+  },
+  "resolution": {
+    "value": "Captain Leopold deduces the scheme by recognizing Arnold's lie about seeing the theft through a velvet drape blocking the store's interior view. Leopold recovers the diamonds hidden in a coffee can. Arnold is shot by Fletcher when attempting to draw a gun, and is arrested for both robbery and the murder of Freddy Doyle.",
+    "confidence": "high",
+    "quote": "even though there's a velvet drape at the rear of the window that keeps you from seeing anything from inside the store. You didn't see him take the diamonds because he never took them."
+  },
+  "investigator": {
+    "value": "Captain Leopold of the Homicide and Violent Crimes squad, an official detective with institutional authority who works methodically through false leads before arriving at the correct solution.",
+    "confidence": "high",
+    "quote": "Captain Leopold of Violent Crimes... I jumped on some poor kid and try to make a murderer out of him... I've lost it, Fletcher."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "A Melee of Diamonds",
+    "author": "EDWARD D. HOCH",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 44,
+    "story_count": 63
+  }
+}

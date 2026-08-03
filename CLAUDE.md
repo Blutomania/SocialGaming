@@ -61,13 +61,14 @@ Current phase: **Phase 3d — Lobby flow, room codes, QR display on host screen*
 | `coherence_validator.py` | P1 causal-chain + witness + evidence checks (free — no API call) |
 | `localization.py` | Era-appropriate name/occupation localization with 3-tier disk cache |
 | `extraction_protocols.py` | P1–P4 taxonomy definitions — still active, used by `scripts/extract_from_pdfs.py` |
-| `scripts/extract_from_pdfs.py` | Sanctioned way to add a **single new source** (e.g. a PDF) to the live corpus — extracts P1 parts, writes to `mystery_database/extractions/`. Distinct from the frozen bulk pipeline below. Invoke with `python3`, not `python` (this environment has no `python` alias). |
+| `scripts/extract_from_pdfs.py` | Sanctioned way to add a **single new source** (e.g. a PDF) to the live corpus — extracts P1 parts, writes to `mystery_database/extractions/`. Distinct from the frozen bulk pipeline below. Invoke with `python3`, not `python` (this environment has no `python` alias). Add `--anthology` for a short-story collection PDF (one novel-narrative sampling per file otherwise) — detects per-story boundaries and extracts each story as its own corpus source with its own full text; always `--dry-run` an anthology first to review the detected split before spending API calls. |
 | `docs/WIRING.md` | **Canonical generation architecture** — read before touching generation |
 | `SESSIONS.md` | Session-by-session history and full to-do list |
 | `RESEARCH_FINDINGS.md` | Writer-grounded mystery taxonomy (C1–C6, M1–M8, F1–F12) — prose novelists |
 | `SCREEN_CRAFT_FINDINGS.md` | Companion to above: film/TV directors & screenwriters craft grounding |
 | `PARTY_CRAFT_FINDINGS.md` | Companion to above: live/social-deduction game mechanics grounding |
 | `SOURCING_METHODOLOGY.md` | Shared sourcing discipline (confidence tiers, corroboration rule) for the three craft-grounding docs above, and the process for adding a new media type |
+| `craft_grounding.py` | Retrieval layer over the craft-grounding docs — parses them into a confidence-tiered index and feeds relevant guidance into all four generation call-sites in `server/main.py`. See `docs/WIRING.md` → "Craft-grounding retrieval (RAG layer)" before touching this. |
 
 **Deprecated (do not touch — kept for historical reference only):**
 - `deprecated/` — all pre-Godot Streamlit/HuggingFace-era Python tooling (`app.py`, `cli.py`,
@@ -216,7 +217,7 @@ GodotSteam is the best Steamworks path; Godot Linux export = Steam Deck support 
 
 ---
 
-## Current To-Do (as of July 29, 2026)
+## Current To-Do (as of Session 23, August 3, 2026)
 
 Full list in `SESSIONS.md`. Top priorities:
 
@@ -239,28 +240,90 @@ Full list in `SESSIONS.md`. Top priorities:
    `claude/review-godot-migration-GiLDz`, `claude/fix-godot-performance-QyXLQ`,
    `claude/start-godot-migration-mNrWD`, `claude/setup-api-and-mysteries-LRLQK`,
    `claude/mystery-versioning-system-TPblK`
-7. **[ONGOING]** Corpus growth — 12 PDF-sourced entries added so far via
-   `scripts/extract_from_pdfs.py`; keep adding one quality source at a time as they're found
+7. **[ONGOING]** Corpus growth — the anthology (`The_Best_of_Mystery_1980_Anthology`) is **[DONE]**:
+   run for real, all 63/63 stories extracted (Session 21), source_id collision fix confirmed
+   working on the real output. Corpus is larger than this list previously implied — besides the
+   12 PDF-sourced entries via `scripts/extract_from_pdfs.py` (now 12 novels + 63 anthology
+   stories = 75), there are **283 additional `ebook_*` entries** from an earlier bulk-pipeline run
+   (bookrix.com sources, P1+P2 depth) already sitting in `mystery_database/extractions/` —
+   confirmed present, not previously tracked in this file (Session 21).
+   **Sourcing-ratio guideline (Session 21):** favor short-story anthology PDFs heavily over
+   individual novels for new clearance decisions — roughly 3–5 anthologies cleared per 1 novel —
+   since an anthology yields 15–63x the source_ids per single legal-clearance decision at
+   currently-identical extraction depth (both the 12 curated novels and the 63 stories are P1-only;
+   novels only earn a depth advantage once `--protocol P1P2`, or P3/P4, actually gets used on them).
+   `mystery_database/new_sources/` still holds: three full novels (Stevenson ×2, Tana French)
+   queued for later one-at-a-time ingestion; one `.html` file (`extract_from_pdfs.py` only reads
+   PDFs — unsupported as-is); and **`The_Devotion_of_Suspect_X` (Higashino) — found untriaged in
+   Session 21**, not one of Session 20's original 9 categorized files, confirmed NOT a duplicate of
+   the existing Higashino extraction (different novel: *Miracles of the Namiya General Store*).
+   Owner ruled out deleting it; still needs an actual triage call (queue / skip / other).
 8. **[FUTURE]** Phase 4 — Steam integration (GodotSteam plugin)
 9. **[ONGOING]** Repo-wide branch cleanup (Session 18) — 9 fully-merged branches identified as
    safe to delete, plus a further 21 stale unmerged branches the owner is triaging on their own
    schedule (see `SESSIONS.md` Session 18). **`dev/mind-your-friends` is a separate, real second
    project sharing this repo — do not touch it in any cleanup pass.**
-10. **[ONGOING]** RAG (retrieval-augmented generation) for mystery best-practices (Session 19) —
-    craft-grounding source material now spans three companion docs: `RESEARCH_FINDINGS.md`
-    (novelists), `SCREEN_CRAFT_FINDINGS.md` (film/TV), `PARTY_CRAFT_FINDINGS.md` (live/social-
-    deduction games). Sourcing discipline codified in `SOURCING_METHODOLOGY.md`. **Not yet wired
-    into generation** — `server/main.py`'s `_generate_mystery_dict()` doesn't reference any of
-    these docs yet, and shouldn't until quotes are verified against full source text (currently
-    WebSearch-snippet-sourced, not fetched in full). Remaining sub-steps, in order:
-    - **[START HERE]** True-crime podcast producer/host craft grounding — the one media type
-      discussed but not yet captured (scope: hosts' own reflection on why a case is compelling,
-      never the case narrative itself — see `SOURCING_METHODOLOGY.md`)
-    - Verification pass on both new companion docs' WebSearch-sourced quotes
-    - Build the actual retrieval + prompt-injection code once verified
+10. **[DONE, Session 22]** RAG (retrieval-augmented generation) for mystery best-practices —
+    **wired into generation.** `craft_grounding.py` parses `RESEARCH_FINDINGS.md`,
+    `SCREEN_CRAFT_FINDINGS.md`, and `PARTY_CRAFT_FINDINGS.md` into a retrievable, confidence-tiered
+    index and injects relevant guidance into all four generation call-sites in `server/main.py`
+    (`_generate_mystery_dict`, `_generate_witness_scene`, `_investigate_area_with_ai`,
+    `_follow_lead_with_ai`) — full design, rationale table, and extension guide in `docs/WIRING.md`
+    → "Craft-grounding retrieval (RAG layer)". Read that section before touching any of it. Zero
+    added API calls — retrieval is a local index lookup. Auditable by design: every call records
+    which citations it used (routing differs by broadcast scope — see that doc section).
+    Remaining open items, not part of this build:
+    - Finish verifying `PARTY_CRAFT_FINDINGS.md` against full source text (Session 21's partial
+      pass — Jackbox + 3 of 4 Medway posts pasted, findings sorted but not yet written into the
+      doc itself) — the retrieval layer works fine on the doc as it stands today, but the
+      verification pass is still worth finishing for citation accuracy.
+    - True-crime podcast sourcing — the one media type not yet covered; becomes retrievable
+      automatically the moment the doc exists, per `SOURCING_METHODOLOGY.md`'s process.
     - Human decision on the accumulated "new concepts flagged" candidates across all three docs
       (e.g. howcatchem structural mode, production-security-as-craft-practice) — whether any
-      warrant a new `extraction_protocols.py` code
+      warrant a new `extraction_protocols.py` code. Explicitly kept separate from "wiring the
+      retrieval mechanism" as its own decision (see Session 22's chat log) — not required for the
+      RAG layer to work, only for the taxonomy itself to grow.
+11. **[IN PROGRESS, Session 21]** Multiplayer lockstep redesign — a live "Murder on Mars" use-case
+    walkthrough against the actual running code (not this file's aspirational description) found
+    real gaps: the "75%-random-share" mechanic described above doesn't exist in the code (real
+    mechanic: player-choice minimum-share threshold, 50/60/70% by difficulty); interrogation was
+    free text, not a pick-list; and **there is no backend endpoint anywhere for resolving a
+    multiplayer accusation** — the only accusation code (`accusation.gd`) is single-player-era,
+    client-local. Full design in `docs/WIRING.md` → "Multiplayer lockstep round system". Built and
+    verified so far: the lockstep round state machine (`stage`/`round`, additive alongside the
+    legacy per-player `phase` — nothing existing broken), and the witness interrogation redesign
+    (batched, deduped, shared-scene generation replacing N isolated per-question calls). Still
+    open, in dependency order: accusation-resolution backend (independent, also unblocks the
+    end-game resolution/summation scene); crime-scene investigation redesign and the "what I know
+    vs. what's shared" comparison screen (both depend on the lockstep mechanism, now in place);
+    lead-claim reservation + scaling lead count to max players (8, per item 4's Phase 3e decision).
+12. **[ONGOING, Session 22]** Extraction-pipeline efficiency gap, found while auditing whether
+    extraction actually supports the coherence engine's dialogue generation — two concrete,
+    code-verified issues, neither fixed yet:
+    - `part_registry.py`'s `_atomize_extraction()` expects P2-tier keys that a P1-only extraction
+      never produces, so every P1-only source (all 12 novels + all 63 anthology stories) can only
+      ever populate 3 of the registry's 8 sampling axes — confirmed directly against
+      `story01_winter_run.json`.
+    - Even fully P1+P2-depth sources have craft-relevant fields (`clue_fairness`,
+      `media_and_audience`, `investigator_wound`, `victim`, `resolution`, `investigator`) that the
+      registry extracts and then never reads, for any source, at any depth — confirmed against a
+      real `ebook_*` extraction (14 populated fields, only 8 ever read).
+    Two independent fixes, not mutually exclusive: extend `part_registry.py`'s field mapping to
+    stop discarding the 6 unused fields (no new API cost, unlocks value already paid for); and/or
+    re-extract the 75 P1-only sources at `--protocol P1P2` (new API cost, backfills their missing
+    axes specifically). Full detail in `SESSIONS.md` Session 22.
+13. **[DONE, Session 23]** Fixed a silent extraction-failure bug found while reviewing anthology
+    output quality: `extract_pdf()`/`extract_pdf_anthology()` used to catch a malformed Claude
+    response and silently save the same null-placeholder shape used for a genuine "nothing found"
+    result — confirmed on `pdf_the_best_of_mystery_1980_antho__story05_pseudo_identity.json`
+    (Lawrence Block's "Pseudo Identity"), which came back all-null with no trace of the failure.
+    Fixed via a shared `_call_claude_for_protocol()` helper (retry once, then save-with-warning in
+    `_meta.extraction_warnings` on parse failure; raise `ExtractionAPIError` and skip-without-saving
+    on a pure API/network failure, preserving the dedup-by-filename retry on next run). Verified
+    against the real failing case, not just stubs — owner re-ran extraction locally, the retry
+    fired and fixed it, and the resulting file now has real high-confidence data across all 6
+    fields. Full detail in `SESSIONS.md` Session 23.
 
 > **DO NOT re-run the frozen bulk corpus pipeline** (`deprecated/run_corpus_pipeline.py`). Expand
 > the corpus only via `scripts/extract_from_pdfs.py`, adding one quality source at a time.

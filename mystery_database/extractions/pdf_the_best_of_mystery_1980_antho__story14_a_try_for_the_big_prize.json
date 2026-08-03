@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Kidnapping and extortion: Ronald O'Steen kidnaps wealthy Johnny Roth, extracts $200,000 ransom, and evades capture. Central question: Can detective Blake identify and locate the criminal from a single blurred telephoto snapshot?",
+    "confidence": "high",
+    "quote": "The kidnap victim had been a man with plenty of money...The kidnaper had gotten his money and made a clean getaway."
+  },
+  "victim": {
+    "value": "Johnny Roth, a wealthy man operating on the legal fringe who cannot cooperate with police without exposing his own dubious activities, making him an ideal kidnapping target.",
+    "confidence": "high",
+    "quote": "a man who wouldn't want the police or the FBI prying too closely into his own affairs. Not a wanted man, only a dubious man who operated close to the fringe of the law."
+  },
+  "closed_world": {
+    "value": "A professional football stadium during a championship game being televised; Blake must reach the stadium before the game ends to intercept O'Steen in the crowd.",
+    "confidence": "high",
+    "quote": "Blake saw him...The camera swung down over the crowd and the announcer said, 'And here's part of the vast turn-out for this great game.'"
+  },
+  "culprit_and_motive": {
+    "value": "Ronald O'Steen, failed professional football player seeking the 'big score' after rejection from the pros. Motive: to achieve the financial success that football denied him through one perfectly executed criminal operation.",
+    "confidence": "high",
+    "quote": "I was too light for the pros...I tried out, the year I finished, but they dropped me. So you went for the big one. Yes. I went for the big one."
+  },
+  "resolution": {
+    "value": "Blake apprehends O'Steen at the apartment, retrieves the ransom money from a bank safety deposit box, then kills O'Steen in a struggle. FBI and police, who have been conducting surveillance, arrive and interpret Blake's actions as heroic police work, granting him glory and closure before retirement.",
+    "confidence": "high",
+    "quote": "There was a burst of sound at the door and he whirled around. The door was splintering off its hinges...Why, it's your greatest case, Blake."
+  },
+  "investigator": {
+    "value": "Blake, a veteran detective with an extraordinary talent for facial recognition and memory for criminal records. He operates alone, motivated by lifelong ambition for the 'big case,' and ultimately compromises his integrity by attempting to steal the ransom money himself.",
+    "confidence": "high",
+    "quote": "He had a trick memory for names, numbers and faces...Blake had always been a loner and he would play this one alone."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "A Try for the Big Prize",
+    "author": "BORDEN DEAL",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 14,
+    "story_count": 63
+  }
+}
