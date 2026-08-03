@@ -58,6 +58,7 @@ from localization import (                                  # noqa: E402
     _era_key,
     _load_era_rules,
 )
+import craft_grounding                                       # noqa: E402
 
 # ---------------------------------------------------------------------------
 # API client — auth priority: env var → session ingress token
@@ -117,6 +118,17 @@ def _parse_json(raw: str) -> dict:
 # ---------------------------------------------------------------------------
 # Mystery generation (ported from app.py)
 # ---------------------------------------------------------------------------
+def _craft_guidance_for_parts(parts) -> list:
+    """Map the part_types actually sampled for this mystery onto their
+    taxonomy codes (see craft_grounding.PART_TYPE_TO_TAXONOMY) and retrieve
+    matching craft guidance — so a mystery only gets guidance relevant to
+    the axes it actually drew from, not a generic dump."""
+    taxonomy_tags: set[str] = set()
+    for p in parts:
+        taxonomy_tags.update(craft_grounding.PART_TYPE_TO_TAXONOMY.get(p.part_type, []))
+    return craft_grounding.get_craft_guidance(taxonomy_tags=sorted(taxonomy_tags), max_items=5)
+
+
 def _generate_mystery_dict(user_prompt: str) -> tuple[dict, object]:
     """Sample registry parts, call Claude, return (mystery_dict, recipe)."""
     registry = get_registry()
@@ -126,6 +138,9 @@ def _generate_mystery_dict(user_prompt: str) -> tuple[dict, object]:
         f"  [{p.label()} — {p.part_type}]: {p.content}"
         for p in parts
     )
+
+    guidance_entries = _craft_guidance_for_parts(parts)
+    guidance_block = craft_grounding.format_guidance_block(guidance_entries)
 
     prompt = f"""\
 You are generating a mystery scenario for a social deduction game with 4 players.
@@ -137,6 +152,8 @@ The following atomized parts have been selected from existing mystery literature
 
 SELECTED PARTS:
 {parts_block}
+
+{guidance_block}
 
 QUALITY REQUIREMENTS — every generated mystery MUST satisfy these:
 
@@ -244,6 +261,7 @@ Return only valid JSON. No commentary outside the JSON block."""
     raw = llm(prompt, system="You are a mystery game engine. Return only valid JSON.")
     mystery_dict = _parse_json(raw)
     mystery_dict["_provenance"] = recipe.to_dict()
+    mystery_dict["_provenance"]["craft_guidance"] = craft_grounding.guidance_provenance(guidance_entries)
     return mystery_dict, recipe
 
 
@@ -498,35 +516,43 @@ def _fingerprint(question: str) -> str:
     return question.strip().lower()
 
 
-def _investigate_area_with_ai(mystery: dict, area: dict, player_name: str) -> str:
+def _investigate_area_with_ai(mystery: dict, area: dict, player_name: str) -> tuple[str, list]:
     setting = mystery.get("setting", {})
     crime = mystery.get("crime", {})
+    guidance_entries = craft_grounding.get_craft_guidance(**craft_grounding.CALL_SITE_TAGS["investigate_area"], max_items=5)
+    guidance_block = craft_grounding.format_guidance_block(guidance_entries)
     prompt = (
         f"You are an AI narrator for a mystery game. A detective named {player_name} "
         f"is investigating '{area['name']}' at {setting.get('location', 'the scene')} "
         f"({setting.get('time_period', '')}).\n\n"
         f"Crime overview: {crime.get('what_happened', '')}\n\n"
         f"Private context for this area: {area.get('investigation_prompt', '')}\n\n"
+        f"{guidance_block}\n\n"
         "Describe in 2–4 sentences what the detective finds when searching this area. "
         "Be atmospheric and specific. May include clues, red herrings, or atmosphere. "
         "Do not reveal the culprit directly."
     )
-    return llm(prompt, system="You are a mystery game narrator. Be vivid and specific.")
+    findings = llm(prompt, system="You are a mystery game narrator. Be vivid and specific.")
+    return findings, craft_grounding.guidance_provenance(guidance_entries)
 
 
-def _follow_lead_with_ai(mystery: dict, lead: dict, player_name: str) -> str:
+def _follow_lead_with_ai(mystery: dict, lead: dict, player_name: str) -> tuple[str, list]:
     setting = mystery.get("setting", {})
     crime = mystery.get("crime", {})
+    guidance_entries = craft_grounding.get_craft_guidance(**craft_grounding.CALL_SITE_TAGS["follow_lead"], max_items=5)
+    guidance_block = craft_grounding.format_guidance_block(guidance_entries)
     prompt = (
         f"You are an AI narrator for a mystery game. A detective named {player_name} "
         f"is following the lead: '{lead['title']}' at {setting.get('location', 'the scene')}.\n\n"
         f"Crime overview: {crime.get('what_happened', '')}\n\n"
         f"Private context for this lead: {lead.get('investigation_prompt', '')}\n\n"
+        f"{guidance_block}\n\n"
         "Describe in 2–4 sentences what the detective discovers when following this lead. "
         "Be specific and atmospherically consistent with the mystery. "
         "Do not reveal the culprit directly."
     )
-    return llm(prompt, system="You are a mystery game narrator. Be vivid and specific.")
+    findings = llm(prompt, system="You are a mystery game narrator. Be vivid and specific.")
+    return findings, craft_grounding.guidance_provenance(guidance_entries)
 
 
 # ---------------------------------------------------------------------------
@@ -709,9 +735,18 @@ def _resolve_round(game: dict, result: dict) -> None:
     """
     Attach the generated result (owned by round_type-specific code) and
     transition generating -> revealed.
+
+    Round generators may include a "_craft_guidance" key (a citation list
+    from craft_grounding.guidance_provenance) for audit purposes — useful
+    during playtesting to trace which craft sources informed a given
+    witness scene. That key is stored server-side only, on round_ itself,
+    and popped off before result is broadcast — it goes to every player in
+    the game over WebSocket, and craft-guidance citations are internal
+    tooling, not player-facing content.
     """
     round_ = game["round"]
     with _games_lock:
+        round_["_craft_guidance"] = result.pop("_craft_guidance", None)
         round_["result"] = result
         game["stage"] = "revealed"
 
@@ -814,6 +849,9 @@ def _generate_witness_scene(game: dict, round_: dict) -> dict:
         for p in pooled
     )
 
+    guidance_entries = craft_grounding.get_craft_guidance(**craft_grounding.CALL_SITE_TAGS["witness_scene"], max_items=5)
+    guidance_block = craft_grounding.format_guidance_block(guidance_entries)
+
     prompt = f"""\
 You are {character_name} in this mystery, being interrogated by a group of detectives at once.
 
@@ -825,6 +863,8 @@ YOUR PRIVATE CHARACTER DETAILS (do NOT reveal directly):
 
 Be evasive if you are the culprit. Be defensive if you are innocent but suspicious.
 Do NOT directly reveal the real culprit.
+
+{guidance_block}
 
 The detectives asked these questions this round (some were asked by more than one):
 {questions_block}
@@ -863,6 +903,9 @@ Return ONLY valid JSON:
         "scene": parsed.get("scene", ""),
         "scene_covers": scene_covers_text,
         "answers": per_player_answers,   # {player_id: [{question, answer}, ...]} — private per player
+        # Popped off by _resolve_round before broadcast — see that function's
+        # docstring for why this never reaches the WebSocket payload.
+        "_craft_guidance": craft_grounding.guidance_provenance(guidance_entries),
     }
 
 
@@ -1412,7 +1455,7 @@ def investigate_area(game_id: str, req: InvestigateAreaRequest):
     if area is None:
         raise HTTPException(status_code=404, detail="area not found in mystery")
 
-    findings = _investigate_area_with_ai(game["mystery"], area, player["name"])
+    findings, craft_guidance = _investigate_area_with_ai(game["mystery"], area, player["name"])
     finding_id = str(uuid.uuid4())[:8]
 
     with _games_lock:
@@ -1421,11 +1464,16 @@ def investigate_area(game_id: str, req: InvestigateAreaRequest):
             "area_id": req.area_id,
             "area_name": area["name"],
             "findings": findings,
+            "_craft_guidance": craft_guidance,
         })
         player["investigation_budget"] -= 1
 
+    # craft_guidance is included here (unlike the witness-round broadcast) because
+    # this response goes only to the requesting player over a private HTTP call,
+    # not broadcast to the room — useful for tracing narration quality during
+    # playtesting without any spoiler/leak risk to other players.
     return {"finding_id": finding_id, "area_name": area["name"], "findings": findings,
-            "budget_remaining": player["investigation_budget"]}
+            "budget_remaining": player["investigation_budget"], "craft_guidance": craft_guidance}
 
 
 @app.post("/games/{game_id}/follow-lead")
@@ -1462,7 +1510,7 @@ def follow_lead(game_id: str, req: FollowLeadRequest):
     if lead is None:
         raise HTTPException(status_code=404, detail="lead not found in mystery")
 
-    findings = _follow_lead_with_ai(game["mystery"], lead, player["name"])
+    findings, craft_guidance = _follow_lead_with_ai(game["mystery"], lead, player["name"])
     finding_id = str(uuid.uuid4())[:8]
 
     with _games_lock:
@@ -1471,11 +1519,14 @@ def follow_lead(game_id: str, req: FollowLeadRequest):
             "lead_id": req.lead_id,
             "lead_title": lead["title"],
             "findings": findings,
+            "_craft_guidance": craft_guidance,
         })
         player["leads_used"].append(req.lead_id)
 
+    # See the matching comment in investigate_area() re: why craft_guidance is
+    # safe to include here (private per-player response, not a room broadcast).
     return {"finding_id": finding_id, "lead_title": lead["title"], "findings": findings,
-            "leads_remaining": 2 - len(player["leads_used"])}
+            "leads_remaining": 2 - len(player["leads_used"]), "craft_guidance": craft_guidance}
 
 
 @app.post("/games/{game_id}/share-phase")

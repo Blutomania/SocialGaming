@@ -68,6 +68,7 @@ Current phase: **Phase 3d — Lobby flow, room codes, QR display on host screen*
 | `SCREEN_CRAFT_FINDINGS.md` | Companion to above: film/TV directors & screenwriters craft grounding |
 | `PARTY_CRAFT_FINDINGS.md` | Companion to above: live/social-deduction game mechanics grounding |
 | `SOURCING_METHODOLOGY.md` | Shared sourcing discipline (confidence tiers, corroboration rule) for the three craft-grounding docs above, and the process for adding a new media type |
+| `craft_grounding.py` | Retrieval layer over the craft-grounding docs — parses them into a confidence-tiered index and feeds relevant guidance into all four generation call-sites in `server/main.py`. See `docs/WIRING.md` → "Craft-grounding retrieval (RAG layer)" before touching this. |
 
 **Deprecated (do not touch — kept for historical reference only):**
 - `deprecated/` — all pre-Godot Streamlit/HuggingFace-era Python tooling (`app.py`, `cli.py`,
@@ -216,7 +217,7 @@ GodotSteam is the best Steamworks path; Godot Linux export = Steam Deck support 
 
 ---
 
-## Current To-Do (as of July 31, 2026)
+## Current To-Do (as of Session 22, July 31, 2026)
 
 Full list in `SESSIONS.md`. Top priorities:
 
@@ -262,30 +263,27 @@ Full list in `SESSIONS.md`. Top priorities:
    safe to delete, plus a further 21 stale unmerged branches the owner is triaging on their own
    schedule (see `SESSIONS.md` Session 18). **`dev/mind-your-friends` is a separate, real second
    project sharing this repo — do not touch it in any cleanup pass.**
-10. **[ONGOING, REPRIORITIZED Session 21]** RAG (retrieval-augmented generation) for mystery
-    best-practices — craft-grounding source material spans three companion docs:
-    `RESEARCH_FINDINGS.md` (novelists), `SCREEN_CRAFT_FINDINGS.md` (film/TV), `PARTY_CRAFT_FINDINGS.md`
-    (live/social-deduction games). Sourcing discipline codified in `SOURCING_METHODOLOGY.md`.
-    **Not yet wired into generation.** True-crime podcast sourcing (previously "START HERE") is
-    now explicitly deferred — decided this session that `PARTY_CRAFT_FINDINGS.md` goes first,
-    since social/party-game craft (live multiplayer texture) has no equivalent in prose extraction
-    at any depth, unlike podcast sourcing which would still just be craft-grounding for plot
-    construction. Sub-steps, in order:
-    - **[START HERE]** Finish verifying `PARTY_CRAFT_FINDINGS.md` against full source text. Owner
-      has pasted the Jackbox "Built In Chicago" article + 3 of 4 targeted Medway *Behind the
-      Curtain* posts (#1, #4, #7 — not #2 "Outsiders"). Full-text reading surfaced a real
-      structural mismatch not visible from the original WebSearch-snippet version: *Blood on the
-      Clocktower* assumes team-based cooperative play toward one shared win condition, which
-      doesn't transfer to Choose Your Mystery's individually-competitive, partial-information
-      design. Findings are sorted (cleanly-transferable vs. needs-an-explicit-divergence-note,
-      see `SESSIONS.md` Session 21) but **not yet written into the doc itself**.
-    - Build the actual retrieval + prompt-injection code once verified — touches both
-      `_generate_mystery_dict()` and the witness interrogation generation (`_generate_witness_scene`,
-      see item 11 below), per owner's explicit scope decision.
-    - True-crime podcast sourcing — deferred, not abandoned; pick back up after the above.
+10. **[DONE, Session 22]** RAG (retrieval-augmented generation) for mystery best-practices —
+    **wired into generation.** `craft_grounding.py` parses `RESEARCH_FINDINGS.md`,
+    `SCREEN_CRAFT_FINDINGS.md`, and `PARTY_CRAFT_FINDINGS.md` into a retrievable, confidence-tiered
+    index and injects relevant guidance into all four generation call-sites in `server/main.py`
+    (`_generate_mystery_dict`, `_generate_witness_scene`, `_investigate_area_with_ai`,
+    `_follow_lead_with_ai`) — full design, rationale table, and extension guide in `docs/WIRING.md`
+    → "Craft-grounding retrieval (RAG layer)". Read that section before touching any of it. Zero
+    added API calls — retrieval is a local index lookup. Auditable by design: every call records
+    which citations it used (routing differs by broadcast scope — see that doc section).
+    Remaining open items, not part of this build:
+    - Finish verifying `PARTY_CRAFT_FINDINGS.md` against full source text (Session 21's partial
+      pass — Jackbox + 3 of 4 Medway posts pasted, findings sorted but not yet written into the
+      doc itself) — the retrieval layer works fine on the doc as it stands today, but the
+      verification pass is still worth finishing for citation accuracy.
+    - True-crime podcast sourcing — the one media type not yet covered; becomes retrievable
+      automatically the moment the doc exists, per `SOURCING_METHODOLOGY.md`'s process.
     - Human decision on the accumulated "new concepts flagged" candidates across all three docs
       (e.g. howcatchem structural mode, production-security-as-craft-practice) — whether any
-      warrant a new `extraction_protocols.py` code
+      warrant a new `extraction_protocols.py` code. Explicitly kept separate from "wiring the
+      retrieval mechanism" as its own decision (see Session 22's chat log) — not required for the
+      RAG layer to work, only for the taxonomy itself to grow.
 11. **[IN PROGRESS, Session 21]** Multiplayer lockstep redesign — a live "Murder on Mars" use-case
     walkthrough against the actual running code (not this file's aspirational description) found
     real gaps: the "75%-random-share" mechanic described above doesn't exist in the code (real
@@ -300,6 +298,21 @@ Full list in `SESSIONS.md`. Top priorities:
     end-game resolution/summation scene); crime-scene investigation redesign and the "what I know
     vs. what's shared" comparison screen (both depend on the lockstep mechanism, now in place);
     lead-claim reservation + scaling lead count to max players (8, per item 4's Phase 3e decision).
+12. **[ONGOING, Session 22]** Extraction-pipeline efficiency gap, found while auditing whether
+    extraction actually supports the coherence engine's dialogue generation — two concrete,
+    code-verified issues, neither fixed yet:
+    - `part_registry.py`'s `_atomize_extraction()` expects P2-tier keys that a P1-only extraction
+      never produces, so every P1-only source (all 12 novels + all 63 anthology stories) can only
+      ever populate 3 of the registry's 8 sampling axes — confirmed directly against
+      `story01_winter_run.json`.
+    - Even fully P1+P2-depth sources have craft-relevant fields (`clue_fairness`,
+      `media_and_audience`, `investigator_wound`, `victim`, `resolution`, `investigator`) that the
+      registry extracts and then never reads, for any source, at any depth — confirmed against a
+      real `ebook_*` extraction (14 populated fields, only 8 ever read).
+    Two independent fixes, not mutually exclusive: extend `part_registry.py`'s field mapping to
+    stop discarding the 6 unused fields (no new API cost, unlocks value already paid for); and/or
+    re-extract the 75 P1-only sources at `--protocol P1P2` (new API cost, backfills their missing
+    axes specifically). Full detail in `SESSIONS.md` Session 22.
 
 > **DO NOT re-run the frozen bulk corpus pipeline** (`deprecated/run_corpus_pipeline.py`). Expand
 > the corpus only via `scripts/extract_from_pdfs.py`, adding one quality source at a time.
