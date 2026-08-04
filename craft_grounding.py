@@ -16,7 +16,7 @@ sitting inert.
 This module is the retrieval half of that: it turns those docs into a small,
 queryable index and hands back a short, relevant slice of craft guidance for
 whichever generation call is asking (see `CALL_SITE_TAGS` below for exactly
-which tags each of the four call-sites in `server/main.py` requests).
+which tags each of the five call-sites in `server/main.py` requests).
 
 DESIGN PRINCIPLES — these were explicit decisions, not defaults, so don't
 "simplify" them away without re-reading why:
@@ -448,5 +448,9 @@ CALL_SITE_TAGS: dict[str, dict[str, list[str]]] = {
     "follow_lead": {
         "taxonomy_tags": ["M2", "M5", "C4"],
         "game_system_tags": ["Investigation/Scene Phase"],
+    },
+    "resolution_reveal": {
+        "taxonomy_tags": ["C5", "M6"],
+        "game_system_tags": ["Accusation/Reveal Phase"],
     },
 }

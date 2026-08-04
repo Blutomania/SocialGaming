@@ -498,6 +498,10 @@ def _run_game_generation_job(game_id: str, job_id: str, prompt: str, cinematic_b
 #                                # investigation/lead content) plugs into this separately.
 #   "winner": player_id | None, # set on the first correct accusation; game is over once set
 #   "accusations": [{player_id, accused_name, correct, ts}],  # full public history
+#   "resolution_narrative": str | None,  # generated once by _generate_resolution_narrative()
+#                                # on the first game_won/GET-result call after a win, then cached
+#                                # here -- never regenerated, so every viewer sees the same wording.
+#   "_resolution_craft_guidance": list | None,  # citations for the above, server-side audit only
 #   "ts": float,
 # }
 
@@ -570,21 +574,130 @@ def _winner_findings_summary(game: dict, winner_id: str) -> dict:
     investigations, followed leads -- pulled from data already collected
     during play. Zero API cost, pure data shaping. Shown to the whole room at
     game end on purpose (not kept private to the winner): the point is the
-    shared reveal of *how* they got there, not just *that* they won."""
+    shared reveal of *how* they got there, not just *that* they won.
+
+    Strips "_craft_guidance" from each finding: investigate-area/follow-lead
+    findings carry it (internal audit-trail citations, safe to return
+    per-player because those calls are private -- see docs/WIRING.md), but
+    this summary is broadcast to the whole room, so it needs the same
+    server-side-only treatment _resolve_round already gives witness rounds."""
     player = game["players"].get(winner_id, {})
+
+    def _strip_craft_guidance(findings: list) -> list:
+        return [{k: v for k, v in f.items() if k != "_craft_guidance"} for f in findings]
+
     return {
-        "witness_findings": player.get("witness_findings", []),
-        "investigation_findings": player.get("investigation_findings", []),
-        "lead_findings": player.get("lead_findings", []),
+        "witness_findings": _strip_craft_guidance(player.get("witness_findings", [])),
+        "investigation_findings": _strip_craft_guidance(player.get("investigation_findings", [])),
+        "lead_findings": _strip_craft_guidance(player.get("lead_findings", [])),
     }
 
 
+def _generate_resolution_narrative(game: dict, plot_reveal: dict, winner_findings: dict) -> tuple[str, list]:
+    """
+    One Claude call, craft-guidance-informed: turns the already-resolved
+    plot_reveal + the winner's own findings into a satisfying, well-paced
+    reveal narrative for the whole table -- not a restatement of the
+    structured solution fields, an actual "moment." Guided by C5 (The
+    Resolution) + M6 (The Reveal Mechanic) craft findings -- e.g. "a reveal
+    must feel earned, not just correct" (Rian Johnson), "the controlled
+    release of information... is really, really hard" (Moffat) -- plus
+    PARTY_CRAFT_FINDINGS.md's Accusation/Reveal Phase guidance for the
+    social, shared-table dimension screen craft alone doesn't cover.
+
+    max_items=8 here (vs. the other three call-sites' default 5): this pool
+    is unusually well-populated (19 matching entries) and this is the single
+    highest-stakes narrative beat in the game, so it gets more room. Not a
+    change to the shared ranking/confidence-tier logic itself -- just this
+    call's own budget.
+
+    No new facts are invented -- the prompt explicitly hands over the
+    already-determined solution and forbids introducing anything not listed,
+    same "adapt, don't invent" discipline _generate_mystery_dict already
+    uses on sampled parts.
+    """
+    mystery = game["mystery"]
+    s = mystery.get("setting", {})
+    c = mystery.get("crime", {})
+    winner_name = game["players"].get(game["winner"], {}).get("name", "the winner")
+
+    all_findings = (
+        [f'"{f.get("question", "")}" -> {f.get("response", "")}' for f in winner_findings.get("witness_findings", [])]
+        + [f'investigated {f.get("area_name", "")}: {f.get("findings", "")}' for f in winner_findings.get("investigation_findings", [])]
+        + [f'followed lead "{f.get("lead_title", "")}": {f.get("findings", "")}' for f in winner_findings.get("lead_findings", [])]
+    )
+    findings_block = "\n".join(f"  - {f}" for f in all_findings) if all_findings else "  (no recorded findings)"
+    evidence_block = "\n".join(
+        f"  - {e['name']}: {e['description']}" for e in plot_reveal.get("key_evidence", [])
+    ) or "  (none)"
+
+    guidance_entries = craft_grounding.get_craft_guidance(**craft_grounding.CALL_SITE_TAGS["resolution_reveal"], max_items=8)
+    guidance_block = craft_grounding.format_guidance_block(guidance_entries)
+
+    prompt = f"""\
+You are writing the end-of-game reveal narrative for a social deduction mystery game.
+{winner_name} just correctly named the culprit and won.
+
+SETTING: {s.get('location', '')}, {s.get('time_period', '')}
+CRIME: {c.get('what_happened', '')}
+
+THE SOLUTION (already determined -- do not change or contradict any fact here):
+  Culprit: {plot_reveal.get('culprit', '')}
+  Method: {plot_reveal.get('method', '')}
+  Motive: {plot_reveal.get('motive', '')}
+  How it was deduced: {plot_reveal.get('how_to_deduce', '')}
+
+KEY EVIDENCE:
+{evidence_block}
+
+WHAT {winner_name.upper()} PERSONALLY UNCOVERED DURING PLAY:
+{findings_block}
+
+{guidance_block}
+
+Write a satisfying reveal narrative for the whole table to read together -- the kind of moment
+that makes the mystery-solving worthwhile, not a dry restatement of the facts above. Weave in
+specifically what {winner_name} found and how it connected to the solution. Do not introduce any
+new facts, characters, or evidence not listed above -- narrate the reveal, don't invent one.
+4-7 sentences.
+
+Return ONLY the narrative text -- no JSON, no headers, no quotation marks around it."""
+
+    narrative = llm(
+        prompt,
+        system="You are a mystery game narrator staging the final reveal. Be vivid, satisfying, "
+               "and precise -- never contradict the given solution.",
+    )
+    return narrative.strip(), craft_grounding.guidance_provenance(guidance_entries)
+
+
 def _build_resolution_reveal(game: dict, winner_id: str) -> dict:
-    """Shared by the game_won broadcast and GET /result so a client that
-    missed the broadcast (late join, reconnect) sees the identical reveal."""
+    """
+    Shared by the game_won broadcast and GET /result so a client that missed
+    the broadcast (late join, reconnect) sees the identical reveal.
+
+    resolution_narrative is generated once -- the first call after the win
+    -- and cached on game["resolution_narrative"]. GET /result never
+    regenerates it: a reconnecting client must see the exact same wording
+    everyone else already saw, not a fresh (and differently-phrased) LLM
+    roll each time it's fetched. Craft-guidance citations are stashed
+    server-side only (game["_resolution_craft_guidance"]) for audit
+    purposes -- same "never player-facing" treatment as every other
+    craft-guidance call-site's provenance.
+    """
+    plot_reveal = _format_plot_reveal(game["mystery"])
+    winner_findings = _winner_findings_summary(game, winner_id)
+
+    if game.get("resolution_narrative") is None:
+        narrative, craft_guidance = _generate_resolution_narrative(game, plot_reveal, winner_findings)
+        with _games_lock:
+            game["resolution_narrative"] = narrative
+            game["_resolution_craft_guidance"] = craft_guidance
+
     return {
-        "plot_reveal": _format_plot_reveal(game["mystery"]),
-        "winner_findings": _winner_findings_summary(game, winner_id),
+        "plot_reveal": plot_reveal,
+        "winner_findings": winner_findings,
+        "resolution_narrative": game["resolution_narrative"],
     }
 
 
@@ -1096,6 +1209,8 @@ def _reset_game_for_next_mystery(game: dict, chosen_prompt_text: str) -> str:
         game["round"] = None
         game["winner"] = None
         game["accusations"] = []
+        game["resolution_narrative"] = None
+        game["_resolution_craft_guidance"] = None
         for player in game["players"].values():
             player["phase"] = "witness"
             player["witness_budget"] = cfg["witness_budget"]
@@ -1418,6 +1533,8 @@ def create_game(req: CreateGameRequest):
         "round": None,
         "winner": None,
         "accusations": [],
+        "resolution_narrative": None,  # cached once generated -- see _build_resolution_reveal
+        "_resolution_craft_guidance": None,  # server-side audit trail only, never sent to clients
         "ts": time.time(),
     }
     with _games_lock:

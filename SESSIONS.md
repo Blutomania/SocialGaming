@@ -8,9 +8,10 @@ Use this file to onboard any new session without losing context.
 ## Session 26 — August 4, 2026 (new game-flow features, in progress)
 **Branch:** `claude/session-wrapup-cleanup-blocker-3val9a` (reset fresh from `main` at the top of
 this session, per Session 25's own recommendation)
-**Status:** All 3 pieces done and verified below, built incrementally per explicit owner request.
-Owner has since asked to circle back to piece 2's plot reveal for a craft-grounding pass (see
-"What is next") — not started.
+**Status:** All 3 pieces done and verified, plus a follow-up craft-grounding pass on the piece-2
+plot reveal (one new AI call, explicitly approved after flagging the fork against "table all gen
+AI") — all built incrementally per explicit owner request, all merged into `main` via PR #9,
+except the craft-grounding pass which lands in this session's next commit.
 
 ### New scope this session
 Owner proposed three new features in one design conversation:
@@ -146,17 +147,63 @@ Prompt-suggestion round (piece 1) → end-of-game plot/findings reveal (piece 2)
 same-room replay (piece 3) form one complete loop, each built and verified incrementally per the
 owner's explicit request, all pushed to the same branch for review.
 
+### Piece 2 revisited: craft-grounded resolution narrative (one new AI call, explicitly approved)
+Owner asked to wire craft best-practices into the plot reveal to make it "as entertaining and
+apropos to the scenario, and fun as possible." Flagged the real fork this created against the
+earlier "table all gen AI" instruction — zero-cost restructuring of the existing fields vs. an
+actual AI-authored narrative — and asked before building either way. Owner chose the AI-authored
+option explicitly, un-tabling gen AI for this one call specifically (video generation stays
+tabled).
+
+**What got built** (`server/main.py`, `craft_grounding.py`):
+- New `CALL_SITE_TAGS["resolution_reveal"]` — the RAG layer's fifth call-site, after the original
+  four from Session 22. Tagged `C5` (The Resolution) + `M6` (The Reveal Mechanic) +
+  `"Accusation/Reveal Phase"`. Verified the retrieval pool directly before wiring anything: 19
+  matching entries, including real craft findings like Rian Johnson's "a reveal must feel earned,
+  not just correct" and Moffat's "the controlled release of information... is really, really
+  hard" (both `SCREEN_CRAFT_FINDINGS.md`) — genuinely on-topic, not just definitional filler.
+- Noticed the default `max_items=5` ranking (confidence-tier first, then alphabetical-by-concept
+  tiebreak) buries both of those specific findings well outside the top 5 for this query, given
+  how large the matching pool is here compared to the other four call-sites. Chose **not** to
+  touch the shared ranking/tiebreak logic itself (explicitly called out in `craft_grounding.py`'s
+  own docstring as a deliberate design decision, not a default) — instead used `max_items=8` as a
+  per-call budget for this one call-site only, documented as such.
+- New `_generate_resolution_narrative()` — one Claude call, prompt built from `plot_reveal` +
+  `winner_findings` (both already-resolved, no need to touch raw `mystery` a second time),
+  explicitly forbidden from inventing facts not already in those two inputs.
+- `_build_resolution_reveal()` now generates the narrative **once** (only if
+  `game["resolution_narrative"]` is still `None`) and caches it — `GET /result` never regenerates
+  on a later fetch, so a reconnecting client sees the identical wording, not a fresh (and
+  differently-phrased) LLM roll each time. Craft-guidance provenance stashed server-side only
+  (`game["_resolution_craft_guidance"]`), matching every other call-site's audit-trail treatment.
+  Both cache fields added to `_reset_game_for_next_mystery()`'s clear list from piece 3, so the
+  next mystery in the same room gets its own fresh narrative.
+
+**Real bug found and fixed while building this, not left in:** `_winner_findings_summary()`
+(piece 2, from earlier this session) had been returning `investigation_findings`/`lead_findings`
+raw, including their `_craft_guidance` key — internal audit citations that are safe to return
+per-player from `investigate-area`/`follow-lead` (those calls are private) but were about to leak
+to the **whole room** via `winner_findings`, which is deliberately broadcast. Exactly the kind of
+leak `_resolve_round()` was built to prevent for witness rounds, just missed in piece 2. Fixed by
+stripping `_craft_guidance` from each finding before returning.
+
+**Verified end-to-end**, not just written: confirmed the craft guidance block actually appears in
+the real prompt text sent to the (stubbed) LLM, not just that retrieval ran; confirmed exactly one
+LLM call happens per win (not per `GET /result` fetch); confirmed a second `GET /result` call
+makes zero additional LLM calls and returns byte-identical narrative text; confirmed the
+`_craft_guidance` leak fix directly (asserted the key is absent from `winner_findings` in the
+response); confirmed `_resolution_craft_guidance` never appears in any client-facing response
+while still being present server-side for audit. Full app still loads cleanly, 36 routes (no new
+endpoints — extended `_build_resolution_reveal()` in place). Documented in `docs/WIRING.md`
+(rewritten "End-of-game resolution reveal" section, extended call-site table now covering five
+sites, "Status" line updated) and `CLAUDE.md` item 10 (four → five call-sites) and new item 15.
+
 ### What is next
-- Owner has asked to circle back to piece 2's `plot_reveal` and wire in craft best-practices
-  (from the existing `RESEARCH_FINDINGS.md`/`SCREEN_CRAFT_FINDINGS.md`/`PARTY_CRAFT_FINDINGS.md`
-  craft-grounding layer) to make the reveal itself more entertaining/apropos — not started, and
-  the scope needs one clarification first: whether this stays zero-AI-cost (reordering/structuring
-  the already-generated fields using craft principles, pure Python) or crosses back into a real
-  generation call (an actual LLM-authored reveal narrative informed by craft guidance), since the
-  owner's "table all gen AI" instruction was still in effect when piece 2 was built.
-- Godot client work for all three pieces (waiting-room UI showing prompt-submission progress, the
-  resolution screen itself with the video placeholder panel, the vote/tiebreak UI) — none of this
-  session's work touched the Godot side, only `server/main.py`.
+- Godot client work for all three room/reveal/voting pieces (waiting-room UI showing
+  prompt-submission progress, the resolution screen with the video placeholder panel and the new
+  narrative text, the vote/tiebreak UI) — none of this session's backend work has touched Godot.
+- Video generation itself remains explicitly tabled, per the owner's own repeated instruction —
+  not a forgotten item, a deliberate one.
 
 ---
 
