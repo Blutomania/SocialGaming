@@ -27,6 +27,7 @@ SESSION ANNOTATION — Phase 1 complete when:
 import asyncio
 import json
 import os
+import random
 import sys
 import threading
 import time
@@ -472,10 +473,15 @@ def _run_game_generation_job(game_id: str, job_id: str, prompt: str, cinematic_b
 #                            "investigation_findings": [{id, area_id, findings}],
 #                            "lead_findings": [{id, lead_id, findings}]}},
 #   "submitted_prompts": {player_id: {"name": str, "prompt_text": str, "ts": float}},
-#                                # collected while "mystery" is still None; the host's own
-#                                # entry is what POST /games/{id}/start actually generates
-#                                # from. Everyone else's stay stored for the post-game
-#                                # "vote for the next mystery" round (not built yet).
+#                                # collected while "mystery" is still None; whoever's entry
+#                                # "used_prompt_player_id" names is what actually drove the
+#                                # attached mystery. Everyone else's stay stored for the
+#                                # "prompt_vote" round type (see below) once the game ends.
+#   "used_prompt_player_id": str | None,  # whose submitted_prompts entry generated "mystery"
+#   "win_history": [player_id, ...],  # one entry per mystery played in this room, oldest
+#                                # first -- used only to check "did the current winner also
+#                                # win the mystery right before this one" for prompt_vote's
+#                                # tie-break rule (see _tally_prompt_vote).
 #   "shared_pool": {
 #       "witness": [{sender_name, id, character, question, response, ts}],
 #       "investigation": [{sender_name, id, area_id, findings, ts}],
@@ -995,13 +1001,118 @@ Return ONLY valid JSON:
     }
 
 
+def _prompt_vote_prep(game: dict, metadata: dict) -> dict:
+    """Prep for a 'prompt_vote' round: the candidate list is every submitted
+    prompt except the one that generated the mystery just played (voting for
+    what to play next shouldn't re-offer what the group just did)."""
+    used_pid = game.get("used_prompt_player_id")
+    candidates = [
+        {"player_id": pid, "name": entry["name"], "prompt_text": entry["prompt_text"]}
+        for pid, entry in game["submitted_prompts"].items()
+        if pid != used_pid
+    ]
+    return {"candidates": candidates}
+
+
+def _tally_prompt_vote(game: dict, round_: dict) -> dict:
+    """
+    Tally votes for 'prompt_vote' -- pure Python, zero API cost. Majority
+    wins. On a tie, the game's winner breaks it themselves *unless* they also
+    won the mystery immediately before this one -- in that case tie-break
+    power passes to a random pick instead, so one dominant player can't also
+    keep controlling what the group plays next. No tie-break needed at all
+    if there's only one candidate or no votes were cast for more than one.
+    """
+    candidates = {c["player_id"]: c for c in round_.get("candidates", [])}
+    tally: dict[str, int] = {pid: 0 for pid in candidates}
+    for payload in round_["submissions"].values():
+        voted_for = payload.get("vote_for_player_id")
+        if voted_for in tally:
+            tally[voted_for] += 1
+
+    if not candidates:
+        return {"tie": False, "chosen_player_id": None, "tally": {}, "note": "no candidates to vote on"}
+
+    max_votes = max(tally.values(), default=0)
+    leaders = [pid for pid, count in tally.items() if count == max_votes]
+
+    if len(leaders) == 1:
+        return {"tie": False, "chosen_player_id": leaders[0], "tally": tally}
+
+    game_winner = game.get("winner")
+    win_history = game.get("win_history", [])
+    winner_is_repeat = bool(win_history) and win_history[-1] == game_winner
+
+    if game_winner in leaders and not winner_is_repeat:
+        return {
+            "tie": True, "tied_player_ids": leaders, "tally": tally,
+            "chosen_player_id": None, "awaiting_tiebreak_from": game_winner,
+        }
+
+    # Either the tie doesn't include the game winner's own candidate, or the
+    # winner also won last time -- either way, break it randomly rather than
+    # handing (or re-handing) tie-break power to them.
+    chosen = random.choice(leaders)
+    reason = (
+        "same player won the mystery right before this one, so tie-break passed to a random pick"
+        if winner_is_repeat else
+        "tie didn't include the game winner's own candidate, resolved randomly"
+    )
+    return {
+        "tie": True, "tied_player_ids": leaders, "tally": tally,
+        "chosen_player_id": chosen, "auto_resolved": True, "reason": reason,
+    }
+
+
 _ROUND_PREP = {
     "witness": _witness_prep,
+    "prompt_vote": _prompt_vote_prep,
 }
 
 _ROUND_GENERATORS = {
     "witness": _generate_witness_scene,
+    "prompt_vote": _tally_prompt_vote,
 }
+
+
+def _reset_game_for_next_mystery(game: dict, chosen_prompt_text: str) -> str:
+    """
+    Reset an already-played room in place for a new mystery -- same
+    game_id/room code, same player roster, nobody leaves or rejoins. This is
+    the "same room persists across mysteries" mechanic: records the
+    concluded game's winner into win_history (read by _tally_prompt_vote's
+    tie-break rule), then clears everything scoped to a single mystery
+    before kicking off generation from the chosen prompt. Returns a job_id.
+    """
+    cfg = _DIFFICULTY_CONFIG[game["difficulty"]]
+    with _games_lock:
+        game["win_history"].append(game["winner"])
+        game["mystery"] = None
+        game["used_prompt_player_id"] = None
+        game["submitted_prompts"] = {}
+        game["shared_pool"] = {"witness": [], "investigation": [], "lead": []}
+        game["block_pool"] = {"witness": [], "investigation": [], "lead": []}
+        game["stage"] = None
+        game["round"] = None
+        game["winner"] = None
+        game["accusations"] = []
+        for player in game["players"].values():
+            player["phase"] = "witness"
+            player["witness_budget"] = cfg["witness_budget"]
+            player["investigation_budget"] = cfg["investigation_budget"]
+            player["leads_used"] = []
+            player["witness_findings"] = []
+            player["investigation_findings"] = []
+            player["lead_findings"] = []
+
+    job_id = _job_create()
+    thread = threading.Thread(
+        target=_run_game_generation_job,
+        args=(game["game_id"], job_id, chosen_prompt_text, True),
+        daemon=True,
+    )
+    thread.start()
+    return job_id
 
 
 def _dispatch_round_generation(game: dict) -> None:
@@ -1109,6 +1220,13 @@ class ResolveRoundRequest(BaseModel):
 class AccuseRequest(BaseModel):
     player_id: str
     culprit_name: str
+
+class TiebreakRequest(BaseModel):
+    player_id: str
+    chosen_player_id: str
+
+class NextMysteryStartRequest(BaseModel):
+    player_id: str
 
 # ---------------------------------------------------------------------------
 # Endpoints
@@ -1292,6 +1410,8 @@ def create_game(req: CreateGameRequest):
             }
         },
         "submitted_prompts": {},  # player_id -> {"name": str, "prompt_text": str, "ts": float}
+        "used_prompt_player_id": None,  # whose submission drove the mystery currently attached
+        "win_history": [],  # [player_id, ...] one entry per mystery played in this room, oldest first
         "shared_pool": {"witness": [], "investigation": [], "lead": []},
         "block_pool": {"witness": [], "investigation": [], "lead": []},
         "stage": None,
@@ -1468,6 +1588,9 @@ def start_game(game_id: str, req: StartGameRequest):
             detail="submit a prompt via POST /games/{game_id}/prompts/submit before starting",
         )
 
+    with _games_lock:
+        game["used_prompt_player_id"] = req.player_id
+
     job_id = _job_create()
     thread = threading.Thread(
         target=_run_game_generation_job,
@@ -1524,9 +1647,9 @@ def submit_round(game_id: str, req: SubmitRoundRequest):
     if req.player_id in round_["submissions"]:
         raise HTTPException(status_code=409, detail="player has already submitted this round")
 
-    # Round-type-specific submission validation. Only "witness" needs this
-    # today; if more round types need it, generalize into a dispatch dict
-    # the way _ROUND_PREP / _ROUND_GENERATORS already are.
+    # Round-type-specific submission validation. If a third round_type needs
+    # this, generalize into a dispatch dict the way _ROUND_PREP /
+    # _ROUND_GENERATORS already are.
     if round_["round_type"] == "witness":
         max_questions = _DIFFICULTY_CONFIG[game["difficulty"]]["questions_per_round"]
         questions = [q.strip() for q in req.payload.get("questions", []) if isinstance(q, str) and q.strip()]
@@ -1536,6 +1659,11 @@ def submit_round(game_id: str, req: SubmitRoundRequest):
                 detail=f"at most {max_questions} questions allowed this round on {game['difficulty']} difficulty"
             )
         req.payload["questions"] = questions
+    elif round_["round_type"] == "prompt_vote":
+        candidate_ids = {c["player_id"] for c in round_.get("candidates", [])}
+        voted_for = req.payload.get("vote_for_player_id")
+        if voted_for not in candidate_ids:
+            raise HTTPException(status_code=400, detail="vote_for_player_id must be one of this round's candidates")
 
     with _games_lock:
         round_["submissions"][req.player_id] = req.payload
@@ -1654,6 +1782,77 @@ def get_result(game_id: str):
         "solution": game["mystery"].get("solution", {}),
         **_build_resolution_reveal(game, winner_id),
     }
+
+
+@app.post("/games/{game_id}/prompts/tiebreak")
+def prompt_tiebreak(game_id: str, req: TiebreakRequest):
+    """
+    Break a prompt_vote tie. Only usable when the round's result is an
+    unresolved tie waiting on a human call (round result's
+    "awaiting_tiebreak_from" is set) -- the auto-resolved-random case (the
+    game winner also won the mystery right before this one, or the tie
+    didn't include their own candidate at all) needs no human input and this
+    endpoint will reject it. Restricted to whichever player
+    _tally_prompt_vote named as the tie-break authority for this vote
+    (normally the game's winner).
+    """
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    round_ = game["round"]
+    if round_ is None or round_["round_type"] != "prompt_vote" or game["stage"] != "revealed":
+        raise HTTPException(status_code=400, detail="no prompt_vote result is awaiting a tiebreak")
+    result = round_["result"]
+    authority = result.get("awaiting_tiebreak_from")
+    if authority is None or result.get("chosen_player_id") is not None:
+        raise HTTPException(status_code=400, detail="this vote isn't waiting on a manual tiebreak")
+    if req.player_id != authority:
+        raise HTTPException(status_code=403, detail="only the tie-break authority for this vote can resolve it")
+    if req.chosen_player_id not in result.get("tied_player_ids", []):
+        raise HTTPException(status_code=400, detail="chosen_player_id must be one of the tied candidates")
+
+    with _games_lock:
+        result["chosen_player_id"] = req.chosen_player_id
+        result["tie_broken_by"] = req.player_id
+
+    _broadcast_sync(game_id, "prompt_tiebreak_resolved", {
+        "chosen_player_id": req.chosen_player_id,
+        "chosen_name": game["players"].get(req.chosen_player_id, {}).get("name", "Unknown"),
+    })
+    return {"ok": True, "chosen_player_id": req.chosen_player_id}
+
+
+@app.post("/games/{game_id}/next-mystery/start")
+def next_mystery_start(game_id: str, req: NextMysteryStartRequest):
+    """
+    Host confirms the group's prompt_vote pick and resets this same room in
+    place for the next mystery -- same room code, same players, nobody
+    rejoins. Requires the vote to have actually landed on a chosen prompt:
+    a clean majority, or a tie that's since been broken (manually via
+    /prompts/tiebreak, or automatically).
+    """
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    player = game["players"].get(req.player_id)
+    if not player or not player.get("is_host"):
+        raise HTTPException(status_code=403, detail="only the host can start the next mystery")
+    if game.get("winner") is None:
+        raise HTTPException(status_code=400, detail="this game hasn't been won yet")
+    round_ = game["round"]
+    if round_ is None or round_["round_type"] != "prompt_vote" or game["stage"] != "revealed":
+        raise HTTPException(status_code=400, detail="no completed prompt_vote to act on")
+    chosen_player_id = round_["result"].get("chosen_player_id")
+    if chosen_player_id is None:
+        raise HTTPException(status_code=400, detail="the vote is still tied and awaiting a tiebreak")
+
+    candidates = {c["player_id"]: c for c in round_.get("candidates", [])}
+    chosen_prompt = candidates.get(chosen_player_id)
+    if chosen_prompt is None:
+        raise HTTPException(status_code=500, detail="chosen candidate no longer exists")
+
+    job_id = _reset_game_for_next_mystery(game, chosen_prompt["prompt_text"])
+    return {"game_id": game_id, "status": "generating", "job_id": job_id}
 
 
 @app.get("/games/{game_id}/block-pool")

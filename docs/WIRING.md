@@ -533,6 +533,46 @@ actually gets picked back up, the natural shape (mirroring the opening scene's
 its prompt input, rather than re-deriving anything from `solution` a second time. Not built;
 not scoped until the owner decides to un-table video generation.
 
+### Post-game prompt voting and same-room replay (`prompt_vote`)
+
+Closes the loop opened by the room-first lobby flow above: the prompts nobody used this game
+(`game["submitted_prompts"]`, minus whoever's drove the mystery just played — tracked in
+`game["used_prompt_player_id"]`) become the candidate list for what to play next. **Zero AI calls**
+— tallying votes is pure Python, same cost discipline as the rest of this screen.
+
+**`round_type: "prompt_vote"`** — a normal lockstep round (`POST /round/open` →
+`POST /round/submit {vote_for_player_id}` → auto-resolves once everyone's voted or the round times
+out), registered the same way `"witness"` is:
+- **Prep** (`_prompt_vote_prep`) — candidates are every `submitted_prompts` entry except
+  `used_prompt_player_id`'s. Attached to the round as `candidates: [{player_id, name,
+  prompt_text}]`.
+- **Generator** (`_tally_prompt_vote`) — counts `vote_for_player_id` across submissions. Majority
+  wins outright (`{tie: false, chosen_player_id}`). On a tie, the rule is deliberately not "the
+  game's winner always decides":
+  - Winner is among the tied candidates **and didn't also win the mystery immediately before this
+    one** → they get to pick, `{tie: true, tied_player_ids, awaiting_tiebreak_from: winner_id,
+    chosen_player_id: null}` — the vote sits in this state until a human resolves it.
+  - Winner also won the previous mystery in this room (checked against `game["win_history"]`), or
+    isn't even one of the tied candidates → **auto-resolved randomly** instead,
+    `{tie: true, auto_resolved: true, chosen_player_id, reason}`. This is the owner's explicit
+    "I don't want the same winner to keep picking" rule — tie-break power doesn't compound onto
+    whoever's already winning.
+
+**`POST /games/{id}/prompts/tiebreak`** `{player_id, chosen_player_id}` — only usable while a
+result has `awaiting_tiebreak_from` set and no `chosen_player_id` yet (the auto-resolved case needs
+no human step and this endpoint rejects it). Restricted to whichever player the generator named as
+the tie-break authority; `chosen_player_id` must be one of `tied_player_ids`.
+
+**`POST /games/{id}/next-mystery/start`** `{player_id}` (host only) — once the vote has landed on a
+`chosen_player_id` (clean majority or a resolved tie), this is the "same room persists across
+mysteries" mechanic: `_reset_game_for_next_mystery()` records the concluded game's winner onto
+`game["win_history"]`, clears everything scoped to a single mystery (`mystery`, `stage`, `round`,
+`winner`, `accusations`, both pools, every player's phase/budgets/findings back to fresh), and kicks
+off generation from the chosen prompt via the same `_run_game_generation_job()` piece 1 already
+built — **same `game_id`, same players, nobody rejoins.** That persistence is the point: it's what
+gives "vote for what to play next" any actual pull to keep the same group together, rather than
+everyone having to re-form a new room from scratch.
+
 ---
 
 ## Coherence validator — what it checks
