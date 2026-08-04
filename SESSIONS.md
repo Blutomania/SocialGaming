@@ -5,6 +5,161 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 26 — August 4, 2026 (new game-flow features, in progress)
+**Branch:** `claude/session-wrapup-cleanup-blocker-3val9a` (reset fresh from `main` at the top of
+this session, per Session 25's own recommendation)
+**Status:** All 3 pieces done and verified below, built incrementally per explicit owner request.
+Owner has since asked to circle back to piece 2's plot reveal for a craft-grounding pass (see
+"What is next") — not started.
+
+### New scope this session
+Owner proposed three new features in one design conversation:
+1. **Prompt-suggestion round at game start** — every player suggests a mystery prompt idea; the
+   host's own suggestion is what actually gets played, and everyone else's stay stored for later.
+2. **End-of-game resolution as a social moment** — explicitly **all generative-AI video tabled for
+   now** (cost-consciousness + "design the look and feel first" — a `"Video Scene Will Play Here"`
+   placeholder stands in for it): reveal the mystery's plot/narrative, show the winning player's
+   own uncovered findings, then move into voting for the next mystery.
+3. **Post-game voting** — surface the prompts submitted in (1) that weren't used, let the group
+   vote (or the winner pick) for next time. Owner noted this should "subtly" encourage the same
+   group to reconvene — implies the room itself should be reusable across mysteries rather than
+   forcing a fresh room/rejoin each time (not designed in detail yet).
+
+### Piece 1 built and verified: room-first lobby + prompt collection
+Found a real architecture mismatch while scoping this: `POST /games/create` required a
+`mystery_slug` — a mystery had to exist *before* a room could exist, which is backwards from "the
+room is open, players suggest prompts while waiting." Confirmed the fix with the owner before
+touching it (this changes an existing endpoint's contract, not a purely additive change) — chose
+"room first, generate on start" over the lower-risk "keep old flow, log suggestions as cosmetic
+only" alternative, since only the room-first version actually delivers what the owner described.
+
+**What changed** (`server/main.py`):
+- `POST /games/create` — `mystery_slug` is now optional. Omitted (the new normal path): room opens
+  with `mystery: None`. Given (unchanged): quick-start path for local testing, mystery attached
+  immediately, no prompt collection.
+- New `POST /games/{id}/prompts/submit` — any player (host included) suggests a prompt;
+  resubmitting overwrites their own entry. Rejected once the mystery already exists.
+- `POST /games/{id}/start` — now branches: if `mystery` is already attached (quick-start path),
+  behaves exactly as before (broadcasts `game_started` immediately). Otherwise, reads the **host's
+  own** submission from `submitted_prompts`, 400s if the host hasn't submitted one yet, and kicks
+  off generation in a background thread, returning `{status: "generating", job_id}`.
+- New `_run_generation_pipeline()` — extracted the actual generate → localize → check-coherence →
+  optional-cinematic-brief → save pipeline out of the existing `/generate/async` job runner, so
+  both the plain job path and the new game-attached path (`_run_game_generation_job()`) share it
+  with zero duplicated logic. The game-attached version's only difference: once the pipeline
+  finishes, it attaches the result to `game["mystery"]` and broadcasts `mystery_ready` (or
+  `mystery_generation_failed`) instead of just marking a job done.
+- `GET /games/{id}/mystery-brief` and `GET /games/{id}/lobby` — both used to assume
+  `game["mystery"]` always exists and would crash on `None`. `mystery-brief` now 400s with a clear
+  "not yet generated" message; `lobby` returns `title`/`setting` as `null` plus a new
+  `submitted_prompt_count` and per-player `has_submitted_prompt`, so a waiting-room UI has
+  something real to render.
+
+**Verified end-to-end**, not just written: a stubbed-LLM `TestClient` run through the full sequence
+(create room-first → confirm `lobby.title` is `null` → join a second player → both submit prompts →
+confirm a non-host `start` attempt 403s → host `start` → poll the job to `done` → confirm
+`lobby.title` matches the **host's** prompt, not the other player's) plus edge cases (starting
+before any prompt submitted → 400; `mystery-brief` before generation → 400, not a crash; resubmitting
+a prompt overwrites rather than duplicates). Full app still loads cleanly, 34 routes (up from 33).
+Documented in `docs/WIRING.md` → "Room-first lobby flow."
+
+### Piece 2 built and verified: end-of-game resolution reveal (zero new AI calls)
+`server/main.py`:
+- New `_format_plot_reveal(mystery)` — reshapes the mystery's own `solution` (already generated
+  once at mystery creation) into `{culprit, method, motive, how_to_deduce, key_evidence}`, resolving
+  `solution.key_evidence`'s bare evidence IDs into full `{id, name, description}` objects so the
+  reveal can name what was found, not just cite `"E1"`. Pure formatting, no API call.
+- New `_winner_findings_summary(game, winner_id)` — the winning player's own
+  `witness_findings`/`investigation_findings`/`lead_findings`, exactly as collected during play.
+  Deliberately shown to the whole room, not kept private — the point is the shared reveal of *how*
+  they got there. Also zero API cost, pure data shaping.
+- New `_build_resolution_reveal(game, winner_id)` — thin shared wrapper so the `game_won` broadcast
+  and `GET /games/{id}/result` return the identical reveal shape; both now include `plot_reveal` and
+  `winner_findings` alongside the existing `solution`/`winner_name` fields.
+- Video stays a **client-side placeholder only** (`"Video Scene Will Play Here"`) — no backend
+  field, no dormant prompt-builder code added since there's nothing yet to point it at. Documented
+  in `docs/WIRING.md` what a future `_generate_resolution_video_brief()` would reuse (`plot_reveal`'s
+  already-resolved content) if/when video work gets un-tabled, without actually building it now.
+
+**Verified end-to-end**, not just written: extended the piece-1 stubbed-LLM test through a full
+game — host investigates an area (finding injected directly into game state, since the
+investigate-area endpoint's own phase-gating is pre-existing code, not what this test targets),
+accuses correctly, wins — then confirmed `GET /result` returns `plot_reveal.culprit == "Bob"`,
+evidence IDs correctly resolved to names (`"Knife"`, `"Note"`), `how_to_deduce` text intact, and
+`winner_findings.investigation_findings` contains the exact finding recorded during play. Full app
+still loads cleanly, still 34 routes (extended existing endpoints, added no new ones). Documented in
+`docs/WIRING.md` → "End-of-game resolution reveal."
+
+### Piece 3 built and verified: post-game voting + same-room replay
+Owner's decision on the vote mechanic: **group vote, winner breaks ties — except when that same
+winner also won the mystery right before this one, in which case tie-break passes to a random pick
+instead** ("I don't want the same winner to keep picking"). Zero AI calls throughout — tallying is
+pure Python, same discipline as piece 2.
+
+**What changed** (`server/main.py`):
+- New session fields: `used_prompt_player_id` (whose submission drove the currently-attached
+  mystery — set by `start_game`/the next-mystery flow) and `win_history` (one winner `player_id`
+  per mystery played in this room, oldest first — exists solely to answer "did the current winner
+  also win last time" for the tie-break rule).
+- New `round_type: "prompt_vote"`, registered into the existing `_ROUND_PREP`/`_ROUND_GENERATORS`
+  dispatch (piece 3 is the second thing to ever use that extension point, after `"witness"` —
+  confirms the round system genuinely generalizes, not just witness-shaped):
+  - `_prompt_vote_prep()` — candidates are `submitted_prompts` minus whoever's drove this game.
+  - `_tally_prompt_vote()` — counts votes, majority wins outright; on a tie, checks
+    `win_history[-1] == game["winner"]` to decide between "winner picks" (sets
+    `awaiting_tiebreak_from`, leaves `chosen_player_id` null) and "auto-resolve randomly" (repeat
+    winner, or the tie doesn't even include the winner's own candidate).
+  - `submit_round()` gained a `prompt_vote` validation branch (vote must name an actual candidate),
+    following the same per-round-type dispatch pattern the `witness` branch already used.
+- New `POST /games/{id}/prompts/tiebreak` — resolves an `awaiting_tiebreak_from` result; rejects
+  the auto-resolved case (nothing to confirm), enforces caller == the named authority, validates
+  the choice is actually one of the tied candidates.
+- New `POST /games/{id}/next-mystery/start` (host only) — the "same room persists across
+  mysteries" mechanic the owner called out as the actual point (subtly keeping the same group
+  together rather than forcing a fresh room each time). `_reset_game_for_next_mystery()` appends
+  the concluded winner to `win_history`, clears every mystery-scoped field (mystery, stage, round,
+  winner, accusations, both pools, every player's phase/budgets/findings), and re-triggers
+  `_run_game_generation_job()` (piece 1's machinery, unchanged) from the voted prompt — same
+  `game_id`, same players, nobody rejoins.
+
+**Verified end-to-end**, not just written:
+- Full API happy path: 3-player game → win → open `prompt_vote` → confirmed candidates correctly
+  exclude the used prompt → clear-majority vote (2-1) → `next-mystery/start` → polled the
+  regeneration job to `done` → confirmed `win_history == [original_winner]`, `winner` reset to
+  `None`, players' `investigation_findings` back to `[]`, `submitted_prompts` cleared, and the
+  *new* mystery (`"Test Mystery 2"`, second stubbed-LLM response) actually attached — not a stale
+  copy of the first.
+- Direct unit coverage of `_tally_prompt_vote()`'s branch logic (bypassing the multi-player API
+  dance for cases hard to construct via real votes): clear majority; tie with a non-repeat winner
+  → `awaiting_tiebreak_from` set correctly; tie with a repeat winner → auto-resolved random,
+  correct `reason` text; tie that excludes the winner's own candidate entirely → also
+  auto-resolved; single-candidate trivial case.
+- `/prompts/tiebreak` authorization: non-authority player rejected (403), invalid
+  `chosen_player_id` rejected (400), correct authority succeeds and sets `tie_broken_by`,
+  double-resolution attempt rejected (400).
+- Full app still loads cleanly, 36 routes (up from 34 — the two new endpoints; `prompt_vote`
+  itself added no new route since it reuses the existing generic round endpoints). Documented in
+  `docs/WIRING.md` → "Post-game prompt voting and same-room replay."
+
+### All three pieces of this feature set are now done
+Prompt-suggestion round (piece 1) → end-of-game plot/findings reveal (piece 2) → post-game vote +
+same-room replay (piece 3) form one complete loop, each built and verified incrementally per the
+owner's explicit request, all pushed to the same branch for review.
+
+### What is next
+- Owner has asked to circle back to piece 2's `plot_reveal` and wire in craft best-practices
+  (from the existing `RESEARCH_FINDINGS.md`/`SCREEN_CRAFT_FINDINGS.md`/`PARTY_CRAFT_FINDINGS.md`
+  craft-grounding layer) to make the reveal itself more entertaining/apropos — not started, and
+  the scope needs one clarification first: whether this stays zero-AI-cost (reordering/structuring
+  the already-generated fields using craft principles, pure Python) or crosses back into a real
+  generation call (an actual LLM-authored reveal narrative informed by craft guidance), since the
+  owner's "table all gen AI" instruction was still in effect when piece 2 was built.
+- Godot client work for all three pieces (waiting-room UI showing prompt-submission progress, the
+  resolution screen itself with the video placeholder panel, the vote/tiebreak UI) — none of this
+  session's work touched the Godot side, only `server/main.py`.
+
+---
+
 ## Session 25 — August 3, 2026 (reconciliation)
 **Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
 **Starting commit:** `dbe849d` (tip after Session 24's reconciliation merge)

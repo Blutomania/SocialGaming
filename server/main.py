@@ -27,6 +27,7 @@ SESSION ANNOTATION — Phase 1 complete when:
 import asyncio
 import json
 import os
+import random
 import sys
 import threading
 import time
@@ -394,32 +395,60 @@ def _evict_old_jobs() -> None:
             del _jobs[k]
 
 
+def _run_generation_pipeline(job_id: str, prompt: str, cinematic_brief: bool) -> dict:
+    """Runs generation + localization + coherence + optional cinematic brief +
+    save, updating job progress as it goes. Returns the final mystery dict
+    (with "_slug" set). Raises on failure -- callers own their own
+    _job_fail/cleanup, since that differs between a plain /generate/async job
+    and a game-attached one (the latter also needs to notify the room)."""
+    _job_update(job_id, "running", "Generating mystery…")
+    mystery_dict, recipe = _generate_mystery_dict(prompt)
+
+    _job_update(job_id, "running", "Localizing characters…")
+    mystery_dict = _run_localization(mystery_dict)
+
+    _job_update(job_id, "running", "Checking coherence…")
+    mystery_dict = _run_coherence(mystery_dict)
+
+    if cinematic_brief:
+        _job_update(job_id, "running", "Writing cinematic brief…")
+        opening = _generate_cinematic_brief(mystery_dict)
+        mystery_dict["opening_narration"] = opening["opening_narration"]
+        mystery_dict["cinematic_brief"] = opening["cinematic_brief"]
+
+    _job_update(job_id, "running", "Saving…")
+    slug = _save_mystery(mystery_dict)
+    mystery_dict["_slug"] = slug
+    return mystery_dict
+
+
 def _run_generation_job(job_id: str, prompt: str, cinematic_brief: bool) -> None:
     """Background thread: runs the full generation pipeline and updates job state."""
     try:
-        _job_update(job_id, "running", "Generating mystery…")
-        mystery_dict, recipe = _generate_mystery_dict(prompt)
-
-        _job_update(job_id, "running", "Localizing characters…")
-        mystery_dict = _run_localization(mystery_dict)
-
-        _job_update(job_id, "running", "Checking coherence…")
-        mystery_dict = _run_coherence(mystery_dict)
-
-        if cinematic_brief:
-            _job_update(job_id, "running", "Writing cinematic brief…")
-            opening = _generate_cinematic_brief(mystery_dict)
-            mystery_dict["opening_narration"] = opening["opening_narration"]
-            mystery_dict["cinematic_brief"] = opening["cinematic_brief"]
-
-        _job_update(job_id, "running", "Saving…")
-        slug = _save_mystery(mystery_dict)
-        mystery_dict["_slug"] = slug
-
+        mystery_dict = _run_generation_pipeline(job_id, prompt, cinematic_brief)
         _job_finish(job_id, mystery_dict)
         _evict_old_jobs()
     except Exception as exc:
         _job_fail(job_id, str(exc))
+
+
+def _run_game_generation_job(game_id: str, job_id: str, prompt: str, cinematic_brief: bool) -> None:
+    """Background thread: generates a mystery for a specific game room (the
+    room-first lobby flow -- POST /games/create with no mystery_slug, then
+    POST /games/{id}/start), attaches it to the session once done, and
+    broadcasts so connected clients stop waiting on the lobby screen."""
+    try:
+        mystery_dict = _run_generation_pipeline(job_id, prompt, cinematic_brief)
+        _job_finish(job_id, mystery_dict)
+        _evict_old_jobs()
+        game = _get_game(game_id)
+        if game is not None:
+            with _games_lock:
+                game["mystery"] = mystery_dict
+            _broadcast_sync(game_id, "mystery_ready", {"job_id": job_id})
+    except Exception as exc:
+        _job_fail(job_id, str(exc))
+        _broadcast_sync(game_id, "mystery_generation_failed", {"error": str(exc)})
 
 
 # ---------------------------------------------------------------------------
@@ -430,7 +459,10 @@ def _run_generation_job(job_id: str, prompt: str, cinematic_brief: bool) -> None
 # Session structure:
 # {
 #   "game_id": str,
-#   "mystery": dict,           # full mystery dict including investigation_areas + leads
+#   "mystery": dict | None,    # full mystery dict including investigation_areas + leads;
+#                                # None from room creation until the host starts the game
+#                                # (see "submitted_prompts" below) or a mystery_slug was
+#                                # given directly to POST /games/create.
 #   "difficulty": str,
 #   "share_min": float,        # minimum fraction of findings player must share
 #   "witness_budget": int,
@@ -440,6 +472,16 @@ def _run_generation_job(job_id: str, prompt: str, cinematic_brief: bool) -> None
 #                            "witness_findings": [{id, character, question, response}],
 #                            "investigation_findings": [{id, area_id, findings}],
 #                            "lead_findings": [{id, lead_id, findings}]}},
+#   "submitted_prompts": {player_id: {"name": str, "prompt_text": str, "ts": float}},
+#                                # collected while "mystery" is still None; whoever's entry
+#                                # "used_prompt_player_id" names is what actually drove the
+#                                # attached mystery. Everyone else's stay stored for the
+#                                # "prompt_vote" round type (see below) once the game ends.
+#   "used_prompt_player_id": str | None,  # whose submitted_prompts entry generated "mystery"
+#   "win_history": [player_id, ...],  # one entry per mystery played in this room, oldest
+#                                # first -- used only to check "did the current winner also
+#                                # win the mystery right before this one" for prompt_vote's
+#                                # tie-break rule (see _tally_prompt_vote).
 #   "shared_pool": {
 #       "witness": [{sender_name, id, character, question, response, ts}],
 #       "investigation": [{sender_name, id, area_id, findings, ts}],
@@ -498,6 +540,52 @@ def _candidate_questions_for(mystery: dict, character_name: str) -> list[str]:
     char_data = next((c for c in chars if c["name"] == character_name), None)
     role = char_data.get("role", "") if char_data else ""
     return _CANDIDATE_QUESTIONS.get(role, _CANDIDATE_QUESTIONS["default"])
+
+
+def _format_plot_reveal(mystery: dict) -> dict:
+    """Format the mystery's already-generated solution into the end-of-game
+    plot reveal. Zero API cost -- pure formatting over content generated once
+    at mystery creation (see GenerateRequest/_generate_mystery_dict), never
+    regenerated here. Resolves solution.key_evidence (a list of evidence IDs)
+    into the full evidence objects so the reveal can name what was found,
+    not just cite an ID."""
+    solution = mystery.get("solution", {})
+    evidence_by_id = {e["id"]: e for e in mystery.get("evidence", [])}
+    key_evidence = [
+        {"id": eid, "name": evidence_by_id[eid]["name"], "description": evidence_by_id[eid]["description"]}
+        for eid in solution.get("key_evidence", [])
+        if eid in evidence_by_id
+    ]
+    return {
+        "culprit": solution.get("culprit", ""),
+        "method": solution.get("method", ""),
+        "motive": solution.get("motive", ""),
+        "how_to_deduce": solution.get("how_to_deduce", ""),
+        "key_evidence": key_evidence,
+    }
+
+
+def _winner_findings_summary(game: dict, winner_id: str) -> dict:
+    """The winning player's own uncovered findings -- witness answers, scene
+    investigations, followed leads -- pulled from data already collected
+    during play. Zero API cost, pure data shaping. Shown to the whole room at
+    game end on purpose (not kept private to the winner): the point is the
+    shared reveal of *how* they got there, not just *that* they won."""
+    player = game["players"].get(winner_id, {})
+    return {
+        "witness_findings": player.get("witness_findings", []),
+        "investigation_findings": player.get("investigation_findings", []),
+        "lead_findings": player.get("lead_findings", []),
+    }
+
+
+def _build_resolution_reveal(game: dict, winner_id: str) -> dict:
+    """Shared by the game_won broadcast and GET /result so a client that
+    missed the broadcast (late join, reconnect) sees the identical reveal."""
+    return {
+        "plot_reveal": _format_plot_reveal(game["mystery"]),
+        "winner_findings": _winner_findings_summary(game, winner_id),
+    }
 
 
 def _new_game_id() -> str:
@@ -913,13 +1001,118 @@ Return ONLY valid JSON:
     }
 
 
+def _prompt_vote_prep(game: dict, metadata: dict) -> dict:
+    """Prep for a 'prompt_vote' round: the candidate list is every submitted
+    prompt except the one that generated the mystery just played (voting for
+    what to play next shouldn't re-offer what the group just did)."""
+    used_pid = game.get("used_prompt_player_id")
+    candidates = [
+        {"player_id": pid, "name": entry["name"], "prompt_text": entry["prompt_text"]}
+        for pid, entry in game["submitted_prompts"].items()
+        if pid != used_pid
+    ]
+    return {"candidates": candidates}
+
+
+def _tally_prompt_vote(game: dict, round_: dict) -> dict:
+    """
+    Tally votes for 'prompt_vote' -- pure Python, zero API cost. Majority
+    wins. On a tie, the game's winner breaks it themselves *unless* they also
+    won the mystery immediately before this one -- in that case tie-break
+    power passes to a random pick instead, so one dominant player can't also
+    keep controlling what the group plays next. No tie-break needed at all
+    if there's only one candidate or no votes were cast for more than one.
+    """
+    candidates = {c["player_id"]: c for c in round_.get("candidates", [])}
+    tally: dict[str, int] = {pid: 0 for pid in candidates}
+    for payload in round_["submissions"].values():
+        voted_for = payload.get("vote_for_player_id")
+        if voted_for in tally:
+            tally[voted_for] += 1
+
+    if not candidates:
+        return {"tie": False, "chosen_player_id": None, "tally": {}, "note": "no candidates to vote on"}
+
+    max_votes = max(tally.values(), default=0)
+    leaders = [pid for pid, count in tally.items() if count == max_votes]
+
+    if len(leaders) == 1:
+        return {"tie": False, "chosen_player_id": leaders[0], "tally": tally}
+
+    game_winner = game.get("winner")
+    win_history = game.get("win_history", [])
+    winner_is_repeat = bool(win_history) and win_history[-1] == game_winner
+
+    if game_winner in leaders and not winner_is_repeat:
+        return {
+            "tie": True, "tied_player_ids": leaders, "tally": tally,
+            "chosen_player_id": None, "awaiting_tiebreak_from": game_winner,
+        }
+
+    # Either the tie doesn't include the game winner's own candidate, or the
+    # winner also won last time -- either way, break it randomly rather than
+    # handing (or re-handing) tie-break power to them.
+    chosen = random.choice(leaders)
+    reason = (
+        "same player won the mystery right before this one, so tie-break passed to a random pick"
+        if winner_is_repeat else
+        "tie didn't include the game winner's own candidate, resolved randomly"
+    )
+    return {
+        "tie": True, "tied_player_ids": leaders, "tally": tally,
+        "chosen_player_id": chosen, "auto_resolved": True, "reason": reason,
+    }
+
+
 _ROUND_PREP = {
     "witness": _witness_prep,
+    "prompt_vote": _prompt_vote_prep,
 }
 
 _ROUND_GENERATORS = {
     "witness": _generate_witness_scene,
+    "prompt_vote": _tally_prompt_vote,
 }
+
+
+def _reset_game_for_next_mystery(game: dict, chosen_prompt_text: str) -> str:
+    """
+    Reset an already-played room in place for a new mystery -- same
+    game_id/room code, same player roster, nobody leaves or rejoins. This is
+    the "same room persists across mysteries" mechanic: records the
+    concluded game's winner into win_history (read by _tally_prompt_vote's
+    tie-break rule), then clears everything scoped to a single mystery
+    before kicking off generation from the chosen prompt. Returns a job_id.
+    """
+    cfg = _DIFFICULTY_CONFIG[game["difficulty"]]
+    with _games_lock:
+        game["win_history"].append(game["winner"])
+        game["mystery"] = None
+        game["used_prompt_player_id"] = None
+        game["submitted_prompts"] = {}
+        game["shared_pool"] = {"witness": [], "investigation": [], "lead": []}
+        game["block_pool"] = {"witness": [], "investigation": [], "lead": []}
+        game["stage"] = None
+        game["round"] = None
+        game["winner"] = None
+        game["accusations"] = []
+        for player in game["players"].values():
+            player["phase"] = "witness"
+            player["witness_budget"] = cfg["witness_budget"]
+            player["investigation_budget"] = cfg["investigation_budget"]
+            player["leads_used"] = []
+            player["witness_findings"] = []
+            player["investigation_findings"] = []
+            player["lead_findings"] = []
+
+    job_id = _job_create()
+    thread = threading.Thread(
+        target=_run_game_generation_job,
+        args=(game["game_id"], job_id, chosen_prompt_text, True),
+        daemon=True,
+    )
+    thread.start()
+    return job_id
 
 
 def _dispatch_round_generation(game: dict) -> None:
@@ -984,12 +1177,16 @@ class AsyncGenerateRequest(BaseModel):
     cinematic_brief: bool = False
 
 class CreateGameRequest(BaseModel):
-    mystery_slug: str
     host_name: str
     difficulty: str = "MEDIUM"   # "EASY" | "MEDIUM" | "HARD"
+    mystery_slug: Optional[str] = None  # skip prompt-collection, attach an already-generated mystery immediately
 
 class JoinGameRequest(BaseModel):
     player_name: str
+
+class SubmitPromptRequest(BaseModel):
+    player_id: str
+    prompt_text: str
 
 class InvestigateAreaRequest(BaseModel):
     player_id: str
@@ -1023,6 +1220,13 @@ class ResolveRoundRequest(BaseModel):
 class AccuseRequest(BaseModel):
     player_id: str
     culprit_name: str
+
+class TiebreakRequest(BaseModel):
+    player_id: str
+    chosen_player_id: str
+
+class NextMysteryStartRequest(BaseModel):
+    player_id: str
 
 # ---------------------------------------------------------------------------
 # Endpoints
@@ -1157,20 +1361,29 @@ async def websocket_endpoint(ws: WebSocket, game_id: str, player_id: str = ""):
 @app.post("/games/create")
 def create_game(req: CreateGameRequest):
     """
-    Create a new multiplayer game session from a previously generated mystery.
-    Returns the game_id (room code) and per-difficulty budgets.
+    Create a new multiplayer game room. Returns the game_id (room code) and
+    per-difficulty budgets.
+
+    Two modes:
+    - `mystery_slug` omitted (the normal path): the room opens empty — no
+      mystery yet. Players join and submit prompt suggestions via
+      POST /games/{id}/prompts/submit while waiting; the host's submission
+      is what actually generates the mystery once they POST /games/{id}/start.
+    - `mystery_slug` given: skips prompt collection and attaches an
+      already-generated mystery immediately (quick-start / dev / testing path).
     """
     difficulty = req.difficulty.upper()
     if difficulty not in _DIFFICULTY_CONFIG:
         raise HTTPException(status_code=400, detail="difficulty must be EASY, MEDIUM, or HARD")
 
-    # Load the mystery
-    generated_dir = _DB_PATH / "generated"
-    matches = list(generated_dir.glob(f"{req.mystery_slug}_*.json"))
-    if not matches:
-        raise HTTPException(status_code=404, detail="mystery not found")
-    with open(sorted(matches)[-1]) as f:
-        mystery = json.load(f)
+    mystery = None
+    if req.mystery_slug:
+        generated_dir = _DB_PATH / "generated"
+        matches = list(generated_dir.glob(f"{req.mystery_slug}_*.json"))
+        if not matches:
+            raise HTTPException(status_code=404, detail="mystery not found")
+        with open(sorted(matches)[-1]) as f:
+            mystery = json.load(f)
 
     cfg = _DIFFICULTY_CONFIG[difficulty]
     game_id = _new_game_id()
@@ -1196,6 +1409,9 @@ def create_game(req: CreateGameRequest):
                 "lead_findings": [],
             }
         },
+        "submitted_prompts": {},  # player_id -> {"name": str, "prompt_text": str, "ts": float}
+        "used_prompt_player_id": None,  # whose submission drove the mystery currently attached
+        "win_history": [],  # [player_id, ...] one entry per mystery played in this room, oldest first
         "shared_pool": {"witness": [], "investigation": [], "lead": []},
         "block_pool": {"witness": [], "investigation": [], "lead": []},
         "stage": None,
@@ -1246,6 +1462,40 @@ def join_game(game_id: str, req: JoinGameRequest):
     }
 
 
+@app.post("/games/{game_id}/prompts/submit")
+def submit_prompt(game_id: str, req: SubmitPromptRequest):
+    """
+    A player suggests a mystery prompt while the lobby is waiting to start
+    (e.g. "Smurf murder mystery", "Mystery on Mars"). Only meaningful before
+    the host starts the game — the host's own submission is what actually
+    drives generation; everyone else's are kept for the post-game vote on
+    what to play next. Submitting again overwrites this player's prior entry.
+    """
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    if game["mystery"] is not None:
+        raise HTTPException(status_code=400, detail="mystery already generated for this game")
+    player = game["players"].get(req.player_id)
+    if player is None:
+        raise HTTPException(status_code=404, detail="player not in game")
+    prompt_text = req.prompt_text.strip()
+    if not prompt_text:
+        raise HTTPException(status_code=400, detail="prompt_text must not be empty")
+
+    with _games_lock:
+        game["submitted_prompts"][req.player_id] = {
+            "name": player["name"],
+            "prompt_text": prompt_text,
+            "ts": time.time(),
+        }
+    _broadcast_sync(game_id, "prompt_submitted", {
+        "player_name": player["name"],
+        "is_host": player["is_host"],
+    })
+    return {"ok": True, "submitted_count": len(game["submitted_prompts"])}
+
+
 @app.get("/games/{game_id}/mystery-brief")
 def mystery_brief(game_id: str):
     """
@@ -1256,6 +1506,8 @@ def mystery_brief(game_id: str):
     if game is None:
         raise HTTPException(status_code=404, detail="game not found")
     mystery = game["mystery"]
+    if mystery is None:
+        raise HTTPException(status_code=400, detail="mystery not yet generated — waiting on the host to start the game")
     # Strip server-only fields
     safe = {k: v for k, v in mystery.items()
             if k not in ("_provenance", "_coherence")}
@@ -1277,18 +1529,25 @@ def mystery_brief(game_id: str):
 
 @app.get("/games/{game_id}/lobby")
 def get_lobby(game_id: str):
-    """Current lobby state: player list + mystery title + difficulty."""
+    """Current lobby state: player list + mystery title/setting (once generated,
+    otherwise null) + difficulty + how many prompt suggestions are in."""
     game = _get_game(game_id)
     if game is None:
         raise HTTPException(status_code=404, detail="game not found")
     mystery = game["mystery"]
     return {
         "game_id": game_id,
-        "title": mystery.get("title", "Mystery"),
-        "setting": mystery.get("setting", {}),
+        "title": mystery.get("title", "Mystery") if mystery else None,
+        "setting": mystery.get("setting", {}) if mystery else None,
         "difficulty": game["difficulty"],
+        "submitted_prompt_count": len(game["submitted_prompts"]),
         "players": [
-            {"id": pid, "name": p["name"], "is_host": p["is_host"]}
+            {
+                "id": pid,
+                "name": p["name"],
+                "is_host": p["is_host"],
+                "has_submitted_prompt": pid in game["submitted_prompts"],
+            }
             for pid, p in game["players"].items()
         ],
     }
@@ -1296,15 +1555,50 @@ def get_lobby(game_id: str):
 
 @app.post("/games/{game_id}/start")
 def start_game(game_id: str, req: StartGameRequest):
-    """Host starts the game — broadcasts game_started to all connected clients."""
+    """
+    Host starts the game.
+
+    Room-first flow (the normal case -- POST /games/create was called
+    without a mystery_slug): kicks off generation in a background thread
+    using the *host's own* submitted prompt (POST /games/{id}/prompts/submit
+    -- everyone else's submissions stay stored for the post-game "vote for
+    the next mystery" round). Returns a job_id pollable via GET /jobs/{id};
+    connected clients also get a "mystery_ready" WebSocket broadcast once
+    generation finishes, or "mystery_generation_failed" on error.
+
+    Quick-start flow (mystery_slug was given to /games/create): mystery is
+    already attached, so this just broadcasts game_started immediately, as
+    before.
+    """
     game = _get_game(game_id)
     if game is None:
         raise HTTPException(status_code=404, detail="game not found")
     player = game["players"].get(req.player_id)
     if not player or not player.get("is_host"):
         raise HTTPException(status_code=403, detail="only the host can start the game")
-    _broadcast_sync(game_id, "game_started", {"game_id": game_id})
-    return {"ok": True}
+
+    if game["mystery"] is not None:
+        _broadcast_sync(game_id, "game_started", {"game_id": game_id})
+        return {"game_id": game_id, "status": "started"}
+
+    host_prompt = game["submitted_prompts"].get(req.player_id)
+    if host_prompt is None:
+        raise HTTPException(
+            status_code=400,
+            detail="submit a prompt via POST /games/{game_id}/prompts/submit before starting",
+        )
+
+    with _games_lock:
+        game["used_prompt_player_id"] = req.player_id
+
+    job_id = _job_create()
+    thread = threading.Thread(
+        target=_run_game_generation_job,
+        args=(game_id, job_id, host_prompt["prompt_text"], True),
+        daemon=True,
+    )
+    thread.start()
+    return {"game_id": game_id, "status": "generating", "job_id": job_id}
 
 
 @app.post("/games/{game_id}/round/open")
@@ -1353,9 +1647,9 @@ def submit_round(game_id: str, req: SubmitRoundRequest):
     if req.player_id in round_["submissions"]:
         raise HTTPException(status_code=409, detail="player has already submitted this round")
 
-    # Round-type-specific submission validation. Only "witness" needs this
-    # today; if more round types need it, generalize into a dispatch dict
-    # the way _ROUND_PREP / _ROUND_GENERATORS already are.
+    # Round-type-specific submission validation. If a third round_type needs
+    # this, generalize into a dispatch dict the way _ROUND_PREP /
+    # _ROUND_GENERATORS already are.
     if round_["round_type"] == "witness":
         max_questions = _DIFFICULTY_CONFIG[game["difficulty"]]["questions_per_round"]
         questions = [q.strip() for q in req.payload.get("questions", []) if isinstance(q, str) and q.strip()]
@@ -1365,6 +1659,11 @@ def submit_round(game_id: str, req: SubmitRoundRequest):
                 detail=f"at most {max_questions} questions allowed this round on {game['difficulty']} difficulty"
             )
         req.payload["questions"] = questions
+    elif round_["round_type"] == "prompt_vote":
+        candidate_ids = {c["player_id"] for c in round_.get("candidates", [])}
+        voted_for = req.payload.get("vote_for_player_id")
+        if voted_for not in candidate_ids:
+            raise HTTPException(status_code=400, detail="vote_for_player_id must be one of this round's candidates")
 
     with _games_lock:
         round_["submissions"][req.player_id] = req.payload
@@ -1454,6 +1753,7 @@ def accuse(game_id: str, req: AccuseRequest):
             "winner_player_id": req.player_id,
             "winner_name": player["name"],
             "solution": solution,
+            **_build_resolution_reveal(game, req.player_id),
         })
 
     return {"correct": correct, "won": won}
@@ -1462,9 +1762,12 @@ def accuse(game_id: str, req: AccuseRequest):
 @app.get("/games/{game_id}/result")
 def get_result(game_id: str):
     """
-    Snapshot of the game's outcome — for a client that missed the game_won
-    broadcast (e.g. joined late, reconnected). Solution is only included
-    once the game has actually been won.
+    Snapshot of the game's outcome and end-of-game resolution reveal — for a
+    client that missed the game_won broadcast (e.g. joined late,
+    reconnected), or for the resolution screen itself. Everything here is
+    already-generated content (the mystery's own solution + the winner's own
+    findings, both produced before this call) reformatted for display --
+    zero new API calls. Only included once the game has actually been won.
     """
     game = _get_game(game_id)
     if game is None:
@@ -1477,7 +1780,79 @@ def get_result(game_id: str):
         "winner_player_id": winner_id,
         "winner_name": game["players"].get(winner_id, {}).get("name", "Unknown"),
         "solution": game["mystery"].get("solution", {}),
+        **_build_resolution_reveal(game, winner_id),
     }
+
+
+@app.post("/games/{game_id}/prompts/tiebreak")
+def prompt_tiebreak(game_id: str, req: TiebreakRequest):
+    """
+    Break a prompt_vote tie. Only usable when the round's result is an
+    unresolved tie waiting on a human call (round result's
+    "awaiting_tiebreak_from" is set) -- the auto-resolved-random case (the
+    game winner also won the mystery right before this one, or the tie
+    didn't include their own candidate at all) needs no human input and this
+    endpoint will reject it. Restricted to whichever player
+    _tally_prompt_vote named as the tie-break authority for this vote
+    (normally the game's winner).
+    """
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    round_ = game["round"]
+    if round_ is None or round_["round_type"] != "prompt_vote" or game["stage"] != "revealed":
+        raise HTTPException(status_code=400, detail="no prompt_vote result is awaiting a tiebreak")
+    result = round_["result"]
+    authority = result.get("awaiting_tiebreak_from")
+    if authority is None or result.get("chosen_player_id") is not None:
+        raise HTTPException(status_code=400, detail="this vote isn't waiting on a manual tiebreak")
+    if req.player_id != authority:
+        raise HTTPException(status_code=403, detail="only the tie-break authority for this vote can resolve it")
+    if req.chosen_player_id not in result.get("tied_player_ids", []):
+        raise HTTPException(status_code=400, detail="chosen_player_id must be one of the tied candidates")
+
+    with _games_lock:
+        result["chosen_player_id"] = req.chosen_player_id
+        result["tie_broken_by"] = req.player_id
+
+    _broadcast_sync(game_id, "prompt_tiebreak_resolved", {
+        "chosen_player_id": req.chosen_player_id,
+        "chosen_name": game["players"].get(req.chosen_player_id, {}).get("name", "Unknown"),
+    })
+    return {"ok": True, "chosen_player_id": req.chosen_player_id}
+
+
+@app.post("/games/{game_id}/next-mystery/start")
+def next_mystery_start(game_id: str, req: NextMysteryStartRequest):
+    """
+    Host confirms the group's prompt_vote pick and resets this same room in
+    place for the next mystery -- same room code, same players, nobody
+    rejoins. Requires the vote to have actually landed on a chosen prompt:
+    a clean majority, or a tie that's since been broken (manually via
+    /prompts/tiebreak, or automatically).
+    """
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    player = game["players"].get(req.player_id)
+    if not player or not player.get("is_host"):
+        raise HTTPException(status_code=403, detail="only the host can start the next mystery")
+    if game.get("winner") is None:
+        raise HTTPException(status_code=400, detail="this game hasn't been won yet")
+    round_ = game["round"]
+    if round_ is None or round_["round_type"] != "prompt_vote" or game["stage"] != "revealed":
+        raise HTTPException(status_code=400, detail="no completed prompt_vote to act on")
+    chosen_player_id = round_["result"].get("chosen_player_id")
+    if chosen_player_id is None:
+        raise HTTPException(status_code=400, detail="the vote is still tied and awaiting a tiebreak")
+
+    candidates = {c["player_id"]: c for c in round_.get("candidates", [])}
+    chosen_prompt = candidates.get(chosen_player_id)
+    if chosen_prompt is None:
+        raise HTTPException(status_code=500, detail="chosen candidate no longer exists")
+
+    job_id = _reset_game_for_next_mystery(game, chosen_prompt["prompt_text"])
+    return {"game_id": game_id, "status": "generating", "job_id": job_id}
 
 
 @app.get("/games/{game_id}/block-pool")

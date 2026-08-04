@@ -304,6 +304,72 @@ python cli.py generate --setting "..." --cinematic   # opt-in flag
 
 ---
 
+## Room-first lobby flow (prompt suggestions before generation)
+
+**Why it exists:** the old flow required a mystery to already exist before a room could be
+created (`POST /games/create` took a `mystery_slug`, loaded from a file on disk) — someone had to
+generate a mystery first, then create a room around it. That doesn't support "everybody suggests a
+prompt while the lobby is waiting, and the host's pick is what the group actually plays" — by the
+time the room existed, generation had already happened. The room-first flow inverts the order:
+the room opens empty, players suggest prompts while they wait, and generation is deferred until
+the host actually starts.
+
+### Sequence
+
+```
+POST /games/create  {host_name, difficulty}      -- no mystery_slug -> room opens with mystery: None
+   |
+   v
+POST /games/{id}/join                             -- other players join the empty lobby
+   |
+   v
+POST /games/{id}/prompts/submit  {player_id, prompt_text}
+                                                    -- each player (host included) suggests a prompt;
+                                                       resubmitting overwrites that player's own entry
+   |
+   v
+POST /games/{id}/start  {player_id}                -- host only. Reads the HOST's own submission from
+                                                       submitted_prompts, kicks off generation in a
+                                                       background thread, returns {status: "generating",
+                                                       job_id}. Poll GET /jobs/{job_id} the same way
+                                                       /generate/async already works, or just wait for
+                                                       the WebSocket broadcast below.
+   |
+   v
+"mystery_ready" broadcast (or "mystery_generation_failed" on error)
+                                                    -- game["mystery"] is now attached; clients can call
+                                                       GET /games/{id}/mystery-brief and GET /lobby
+                                                       normally from here on
+```
+
+Non-host players' submissions are **not discarded** — they stay in `game["submitted_prompts"]` for
+the post-game "vote for what to play next" round (design only, not built yet — ties into the
+end-game resolution work).
+
+### Quick-start / dev path (unchanged)
+
+`POST /games/create` still accepts an optional `mystery_slug` — if given, it skips prompt
+collection entirely and attaches an already-generated mystery immediately, exactly like the old
+behavior. `POST /games/{id}/start` on a room created this way just broadcasts `game_started` with
+no generation step, same as before this change. Useful for local testing without waiting on a full
+lobby.
+
+### Implementation notes
+
+- `_run_generation_pipeline()` is the shared core (generate → localize → check coherence → optional
+  cinematic brief → save) extracted out of the pre-existing `/generate/async` job runner. Both the
+  plain job path (`_run_generation_job`) and the new game-attached path
+  (`_run_game_generation_job`) call it — no duplicated pipeline logic.
+- `_run_game_generation_job()` differs from the plain version only in what happens after the
+  pipeline finishes: it attaches the result to `game["mystery"]` under `_games_lock` and broadcasts
+  `mystery_ready` (or `mystery_generation_failed`) instead of just marking the job done.
+- Any endpoint that reads `game["mystery"]` needs to handle `None` explicitly now — `mystery_brief`
+  returns `400` with a clear "not yet generated" message rather than crashing; `get_lobby` returns
+  `title`/`setting` as `null` and adds `submitted_prompt_count` / per-player `has_submitted_prompt`
+  so lobby UIs can show waiting-room progress.
+
+---
+
 ## Multiplayer lockstep round system
 
 New synchronization layer alongside the original per-player async `phase` field on
@@ -436,11 +502,76 @@ arrived first. No elimination on a wrong guess — a player can keep trying.
 
 Every attempt — right or wrong — broadcasts `accusation_made` to the whole room
 (`{player_name, accused_name, correct}`); a winning guess additionally broadcasts
-`game_won` (`{winner_player_id, winner_name, solution}`), which is what should
-trigger the end-game resolution/summation scene once that's built. `GET
-/games/{id}/result` gives the same outcome as a snapshot, for a client that missed
-the broadcast (late join, reconnect) — `{"solved": false}` before anyone's won,
-otherwise `{"solved": true, "winner_player_id", "winner_name", "solution"}`.
+`game_won` (`{winner_player_id, winner_name, solution, plot_reveal, winner_findings}`).
+`GET /games/{id}/result` gives the identical payload as a snapshot, for a client that
+missed the broadcast (late join, reconnect) — `{"solved": false}` before anyone's won,
+otherwise the same shape as `game_won` minus the broadcast-only framing.
+
+### End-of-game resolution reveal (`plot_reveal` + `winner_findings`)
+
+**Explicitly zero new AI calls** — the owner tabled all generative-AI video/text work for
+this screen to save cost and get the UI's look-and-feel right first. Both fields are pure
+reformatting of content that already exists by the time the game is won:
+
+- **`plot_reveal`** (`_format_plot_reveal()`) — the mystery's own `solution` (already
+  generated once, at mystery creation) reshaped for display: `culprit`, `method`, `motive`,
+  `how_to_deduce` (the string reasoning chain), and `key_evidence` — resolved from
+  `solution.key_evidence`'s bare evidence IDs into the full `{id, name, description}`
+  objects, so the reveal can actually name what was found instead of citing `"E1"`.
+- **`winner_findings`** (`_winner_findings_summary()`) — the winning player's own
+  `witness_findings` / `investigation_findings` / `lead_findings`, exactly as collected
+  during play. Deliberately shown to the **whole room**, not kept private to the winner —
+  the point of this screen is the shared reveal of *how* they got there, not just *that*
+  they won.
+
+**Video stays a placeholder for now.** The client should render a static
+`"Video Scene Will Play Here"` panel where a future resolution-video clip would go — no
+backend field for it, since there's nothing generated to point to yet. When video work
+actually gets picked back up, the natural shape (mirroring the opening scene's
+`_generate_cinematic_brief()` two-output split — see "Cinematic brief schema" above) is a
+`_generate_resolution_video_brief()` that reuses `plot_reveal`'s already-resolved content as
+its prompt input, rather than re-deriving anything from `solution` a second time. Not built;
+not scoped until the owner decides to un-table video generation.
+
+### Post-game prompt voting and same-room replay (`prompt_vote`)
+
+Closes the loop opened by the room-first lobby flow above: the prompts nobody used this game
+(`game["submitted_prompts"]`, minus whoever's drove the mystery just played — tracked in
+`game["used_prompt_player_id"]`) become the candidate list for what to play next. **Zero AI calls**
+— tallying votes is pure Python, same cost discipline as the rest of this screen.
+
+**`round_type: "prompt_vote"`** — a normal lockstep round (`POST /round/open` →
+`POST /round/submit {vote_for_player_id}` → auto-resolves once everyone's voted or the round times
+out), registered the same way `"witness"` is:
+- **Prep** (`_prompt_vote_prep`) — candidates are every `submitted_prompts` entry except
+  `used_prompt_player_id`'s. Attached to the round as `candidates: [{player_id, name,
+  prompt_text}]`.
+- **Generator** (`_tally_prompt_vote`) — counts `vote_for_player_id` across submissions. Majority
+  wins outright (`{tie: false, chosen_player_id}`). On a tie, the rule is deliberately not "the
+  game's winner always decides":
+  - Winner is among the tied candidates **and didn't also win the mystery immediately before this
+    one** → they get to pick, `{tie: true, tied_player_ids, awaiting_tiebreak_from: winner_id,
+    chosen_player_id: null}` — the vote sits in this state until a human resolves it.
+  - Winner also won the previous mystery in this room (checked against `game["win_history"]`), or
+    isn't even one of the tied candidates → **auto-resolved randomly** instead,
+    `{tie: true, auto_resolved: true, chosen_player_id, reason}`. This is the owner's explicit
+    "I don't want the same winner to keep picking" rule — tie-break power doesn't compound onto
+    whoever's already winning.
+
+**`POST /games/{id}/prompts/tiebreak`** `{player_id, chosen_player_id}` — only usable while a
+result has `awaiting_tiebreak_from` set and no `chosen_player_id` yet (the auto-resolved case needs
+no human step and this endpoint rejects it). Restricted to whichever player the generator named as
+the tie-break authority; `chosen_player_id` must be one of `tied_player_ids`.
+
+**`POST /games/{id}/next-mystery/start`** `{player_id}` (host only) — once the vote has landed on a
+`chosen_player_id` (clean majority or a resolved tie), this is the "same room persists across
+mysteries" mechanic: `_reset_game_for_next_mystery()` records the concluded game's winner onto
+`game["win_history"]`, clears everything scoped to a single mystery (`mystery`, `stage`, `round`,
+`winner`, `accusations`, both pools, every player's phase/budgets/findings back to fresh), and kicks
+off generation from the chosen prompt via the same `_run_game_generation_job()` piece 1 already
+built — **same `game_id`, same players, nobody rejoins.** That persistence is the point: it's what
+gives "vote for what to play next" any actual pull to keep the same group together, rather than
+everyone having to re-form a new room from scratch.
 
 ---
 
