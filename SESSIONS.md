@@ -5,6 +5,72 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 26 — August 4, 2026 (new game-flow features, in progress)
+**Branch:** `claude/session-wrapup-cleanup-blocker-3val9a` (reset fresh from `main` at the top of
+this session, per Session 25's own recommendation)
+**Status:** In progress — building incrementally, one reviewed piece at a time, per explicit owner
+request. This entry covers piece 1 of 3; pieces 2-3 not started yet.
+
+### New scope this session
+Owner proposed three new features in one design conversation:
+1. **Prompt-suggestion round at game start** — every player suggests a mystery prompt idea; the
+   host's own suggestion is what actually gets played, and everyone else's stay stored for later.
+2. **End-of-game resolution as a social moment** — explicitly **all generative-AI video tabled for
+   now** (cost-consciousness + "design the look and feel first" — a `"Video Scene Will Play Here"`
+   placeholder stands in for it): reveal the mystery's plot/narrative, show the winning player's
+   own uncovered findings, then move into voting for the next mystery.
+3. **Post-game voting** — surface the prompts submitted in (1) that weren't used, let the group
+   vote (or the winner pick) for next time. Owner noted this should "subtly" encourage the same
+   group to reconvene — implies the room itself should be reusable across mysteries rather than
+   forcing a fresh room/rejoin each time (not designed in detail yet).
+
+### Piece 1 built and verified: room-first lobby + prompt collection
+Found a real architecture mismatch while scoping this: `POST /games/create` required a
+`mystery_slug` — a mystery had to exist *before* a room could exist, which is backwards from "the
+room is open, players suggest prompts while waiting." Confirmed the fix with the owner before
+touching it (this changes an existing endpoint's contract, not a purely additive change) — chose
+"room first, generate on start" over the lower-risk "keep old flow, log suggestions as cosmetic
+only" alternative, since only the room-first version actually delivers what the owner described.
+
+**What changed** (`server/main.py`):
+- `POST /games/create` — `mystery_slug` is now optional. Omitted (the new normal path): room opens
+  with `mystery: None`. Given (unchanged): quick-start path for local testing, mystery attached
+  immediately, no prompt collection.
+- New `POST /games/{id}/prompts/submit` — any player (host included) suggests a prompt;
+  resubmitting overwrites their own entry. Rejected once the mystery already exists.
+- `POST /games/{id}/start` — now branches: if `mystery` is already attached (quick-start path),
+  behaves exactly as before (broadcasts `game_started` immediately). Otherwise, reads the **host's
+  own** submission from `submitted_prompts`, 400s if the host hasn't submitted one yet, and kicks
+  off generation in a background thread, returning `{status: "generating", job_id}`.
+- New `_run_generation_pipeline()` — extracted the actual generate → localize → check-coherence →
+  optional-cinematic-brief → save pipeline out of the existing `/generate/async` job runner, so
+  both the plain job path and the new game-attached path (`_run_game_generation_job()`) share it
+  with zero duplicated logic. The game-attached version's only difference: once the pipeline
+  finishes, it attaches the result to `game["mystery"]` and broadcasts `mystery_ready` (or
+  `mystery_generation_failed`) instead of just marking a job done.
+- `GET /games/{id}/mystery-brief` and `GET /games/{id}/lobby` — both used to assume
+  `game["mystery"]` always exists and would crash on `None`. `mystery-brief` now 400s with a clear
+  "not yet generated" message; `lobby` returns `title`/`setting` as `null` plus a new
+  `submitted_prompt_count` and per-player `has_submitted_prompt`, so a waiting-room UI has
+  something real to render.
+
+**Verified end-to-end**, not just written: a stubbed-LLM `TestClient` run through the full sequence
+(create room-first → confirm `lobby.title` is `null` → join a second player → both submit prompts →
+confirm a non-host `start` attempt 403s → host `start` → poll the job to `done` → confirm
+`lobby.title` matches the **host's** prompt, not the other player's) plus edge cases (starting
+before any prompt submitted → 400; `mystery-brief` before generation → 400, not a crash; resubmitting
+a prompt overwrites rather than duplicates). Full app still loads cleanly, 34 routes (up from 33).
+Documented in `docs/WIRING.md` → "Room-first lobby flow."
+
+### What is next (pieces 2-3, not started)
+- End-of-game resolution reveal (piece 2): format the mystery's *already-generated* `solution`
+  fields into a plot reveal, pull the winning player's own findings, `"Video Scene Will Play
+  Here"` placeholder — explicitly zero new AI calls.
+- Post-game voting (piece 3): surface `submitted_prompts` left over from piece 1, vote or
+  winner-picks, plus the "same room persists across mysteries" mechanic the owner flagged.
+
+---
+
 ## Session 25 — August 3, 2026 (reconciliation)
 **Branch:** `claude/session-wrapup-cleanup-blocker-3val9a`
 **Starting commit:** `dbe849d` (tip after Session 24's reconciliation merge)

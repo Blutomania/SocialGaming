@@ -304,6 +304,72 @@ python cli.py generate --setting "..." --cinematic   # opt-in flag
 
 ---
 
+## Room-first lobby flow (prompt suggestions before generation)
+
+**Why it exists:** the old flow required a mystery to already exist before a room could be
+created (`POST /games/create` took a `mystery_slug`, loaded from a file on disk) — someone had to
+generate a mystery first, then create a room around it. That doesn't support "everybody suggests a
+prompt while the lobby is waiting, and the host's pick is what the group actually plays" — by the
+time the room existed, generation had already happened. The room-first flow inverts the order:
+the room opens empty, players suggest prompts while they wait, and generation is deferred until
+the host actually starts.
+
+### Sequence
+
+```
+POST /games/create  {host_name, difficulty}      -- no mystery_slug -> room opens with mystery: None
+   |
+   v
+POST /games/{id}/join                             -- other players join the empty lobby
+   |
+   v
+POST /games/{id}/prompts/submit  {player_id, prompt_text}
+                                                    -- each player (host included) suggests a prompt;
+                                                       resubmitting overwrites that player's own entry
+   |
+   v
+POST /games/{id}/start  {player_id}                -- host only. Reads the HOST's own submission from
+                                                       submitted_prompts, kicks off generation in a
+                                                       background thread, returns {status: "generating",
+                                                       job_id}. Poll GET /jobs/{job_id} the same way
+                                                       /generate/async already works, or just wait for
+                                                       the WebSocket broadcast below.
+   |
+   v
+"mystery_ready" broadcast (or "mystery_generation_failed" on error)
+                                                    -- game["mystery"] is now attached; clients can call
+                                                       GET /games/{id}/mystery-brief and GET /lobby
+                                                       normally from here on
+```
+
+Non-host players' submissions are **not discarded** — they stay in `game["submitted_prompts"]` for
+the post-game "vote for what to play next" round (design only, not built yet — ties into the
+end-game resolution work).
+
+### Quick-start / dev path (unchanged)
+
+`POST /games/create` still accepts an optional `mystery_slug` — if given, it skips prompt
+collection entirely and attaches an already-generated mystery immediately, exactly like the old
+behavior. `POST /games/{id}/start` on a room created this way just broadcasts `game_started` with
+no generation step, same as before this change. Useful for local testing without waiting on a full
+lobby.
+
+### Implementation notes
+
+- `_run_generation_pipeline()` is the shared core (generate → localize → check coherence → optional
+  cinematic brief → save) extracted out of the pre-existing `/generate/async` job runner. Both the
+  plain job path (`_run_generation_job`) and the new game-attached path
+  (`_run_game_generation_job`) call it — no duplicated pipeline logic.
+- `_run_game_generation_job()` differs from the plain version only in what happens after the
+  pipeline finishes: it attaches the result to `game["mystery"]` under `_games_lock` and broadcasts
+  `mystery_ready` (or `mystery_generation_failed`) instead of just marking the job done.
+- Any endpoint that reads `game["mystery"]` needs to handle `None` explicitly now — `mystery_brief`
+  returns `400` with a clear "not yet generated" message rather than crashing; `get_lobby` returns
+  `title`/`setting` as `null` and adds `submitted_prompt_count` / per-player `has_submitted_prompt`
+  so lobby UIs can show waiting-room progress.
+
+---
+
 ## Multiplayer lockstep round system
 
 New synchronization layer alongside the original per-player async `phase` field on

@@ -394,32 +394,60 @@ def _evict_old_jobs() -> None:
             del _jobs[k]
 
 
+def _run_generation_pipeline(job_id: str, prompt: str, cinematic_brief: bool) -> dict:
+    """Runs generation + localization + coherence + optional cinematic brief +
+    save, updating job progress as it goes. Returns the final mystery dict
+    (with "_slug" set). Raises on failure -- callers own their own
+    _job_fail/cleanup, since that differs between a plain /generate/async job
+    and a game-attached one (the latter also needs to notify the room)."""
+    _job_update(job_id, "running", "Generating mystery…")
+    mystery_dict, recipe = _generate_mystery_dict(prompt)
+
+    _job_update(job_id, "running", "Localizing characters…")
+    mystery_dict = _run_localization(mystery_dict)
+
+    _job_update(job_id, "running", "Checking coherence…")
+    mystery_dict = _run_coherence(mystery_dict)
+
+    if cinematic_brief:
+        _job_update(job_id, "running", "Writing cinematic brief…")
+        opening = _generate_cinematic_brief(mystery_dict)
+        mystery_dict["opening_narration"] = opening["opening_narration"]
+        mystery_dict["cinematic_brief"] = opening["cinematic_brief"]
+
+    _job_update(job_id, "running", "Saving…")
+    slug = _save_mystery(mystery_dict)
+    mystery_dict["_slug"] = slug
+    return mystery_dict
+
+
 def _run_generation_job(job_id: str, prompt: str, cinematic_brief: bool) -> None:
     """Background thread: runs the full generation pipeline and updates job state."""
     try:
-        _job_update(job_id, "running", "Generating mystery…")
-        mystery_dict, recipe = _generate_mystery_dict(prompt)
-
-        _job_update(job_id, "running", "Localizing characters…")
-        mystery_dict = _run_localization(mystery_dict)
-
-        _job_update(job_id, "running", "Checking coherence…")
-        mystery_dict = _run_coherence(mystery_dict)
-
-        if cinematic_brief:
-            _job_update(job_id, "running", "Writing cinematic brief…")
-            opening = _generate_cinematic_brief(mystery_dict)
-            mystery_dict["opening_narration"] = opening["opening_narration"]
-            mystery_dict["cinematic_brief"] = opening["cinematic_brief"]
-
-        _job_update(job_id, "running", "Saving…")
-        slug = _save_mystery(mystery_dict)
-        mystery_dict["_slug"] = slug
-
+        mystery_dict = _run_generation_pipeline(job_id, prompt, cinematic_brief)
         _job_finish(job_id, mystery_dict)
         _evict_old_jobs()
     except Exception as exc:
         _job_fail(job_id, str(exc))
+
+
+def _run_game_generation_job(game_id: str, job_id: str, prompt: str, cinematic_brief: bool) -> None:
+    """Background thread: generates a mystery for a specific game room (the
+    room-first lobby flow -- POST /games/create with no mystery_slug, then
+    POST /games/{id}/start), attaches it to the session once done, and
+    broadcasts so connected clients stop waiting on the lobby screen."""
+    try:
+        mystery_dict = _run_generation_pipeline(job_id, prompt, cinematic_brief)
+        _job_finish(job_id, mystery_dict)
+        _evict_old_jobs()
+        game = _get_game(game_id)
+        if game is not None:
+            with _games_lock:
+                game["mystery"] = mystery_dict
+            _broadcast_sync(game_id, "mystery_ready", {"job_id": job_id})
+    except Exception as exc:
+        _job_fail(job_id, str(exc))
+        _broadcast_sync(game_id, "mystery_generation_failed", {"error": str(exc)})
 
 
 # ---------------------------------------------------------------------------
@@ -430,7 +458,10 @@ def _run_generation_job(job_id: str, prompt: str, cinematic_brief: bool) -> None
 # Session structure:
 # {
 #   "game_id": str,
-#   "mystery": dict,           # full mystery dict including investigation_areas + leads
+#   "mystery": dict | None,    # full mystery dict including investigation_areas + leads;
+#                                # None from room creation until the host starts the game
+#                                # (see "submitted_prompts" below) or a mystery_slug was
+#                                # given directly to POST /games/create.
 #   "difficulty": str,
 #   "share_min": float,        # minimum fraction of findings player must share
 #   "witness_budget": int,
@@ -440,6 +471,11 @@ def _run_generation_job(job_id: str, prompt: str, cinematic_brief: bool) -> None
 #                            "witness_findings": [{id, character, question, response}],
 #                            "investigation_findings": [{id, area_id, findings}],
 #                            "lead_findings": [{id, lead_id, findings}]}},
+#   "submitted_prompts": {player_id: {"name": str, "prompt_text": str, "ts": float}},
+#                                # collected while "mystery" is still None; the host's own
+#                                # entry is what POST /games/{id}/start actually generates
+#                                # from. Everyone else's stay stored for the post-game
+#                                # "vote for the next mystery" round (not built yet).
 #   "shared_pool": {
 #       "witness": [{sender_name, id, character, question, response, ts}],
 #       "investigation": [{sender_name, id, area_id, findings, ts}],
@@ -984,12 +1020,16 @@ class AsyncGenerateRequest(BaseModel):
     cinematic_brief: bool = False
 
 class CreateGameRequest(BaseModel):
-    mystery_slug: str
     host_name: str
     difficulty: str = "MEDIUM"   # "EASY" | "MEDIUM" | "HARD"
+    mystery_slug: Optional[str] = None  # skip prompt-collection, attach an already-generated mystery immediately
 
 class JoinGameRequest(BaseModel):
     player_name: str
+
+class SubmitPromptRequest(BaseModel):
+    player_id: str
+    prompt_text: str
 
 class InvestigateAreaRequest(BaseModel):
     player_id: str
@@ -1157,20 +1197,29 @@ async def websocket_endpoint(ws: WebSocket, game_id: str, player_id: str = ""):
 @app.post("/games/create")
 def create_game(req: CreateGameRequest):
     """
-    Create a new multiplayer game session from a previously generated mystery.
-    Returns the game_id (room code) and per-difficulty budgets.
+    Create a new multiplayer game room. Returns the game_id (room code) and
+    per-difficulty budgets.
+
+    Two modes:
+    - `mystery_slug` omitted (the normal path): the room opens empty — no
+      mystery yet. Players join and submit prompt suggestions via
+      POST /games/{id}/prompts/submit while waiting; the host's submission
+      is what actually generates the mystery once they POST /games/{id}/start.
+    - `mystery_slug` given: skips prompt collection and attaches an
+      already-generated mystery immediately (quick-start / dev / testing path).
     """
     difficulty = req.difficulty.upper()
     if difficulty not in _DIFFICULTY_CONFIG:
         raise HTTPException(status_code=400, detail="difficulty must be EASY, MEDIUM, or HARD")
 
-    # Load the mystery
-    generated_dir = _DB_PATH / "generated"
-    matches = list(generated_dir.glob(f"{req.mystery_slug}_*.json"))
-    if not matches:
-        raise HTTPException(status_code=404, detail="mystery not found")
-    with open(sorted(matches)[-1]) as f:
-        mystery = json.load(f)
+    mystery = None
+    if req.mystery_slug:
+        generated_dir = _DB_PATH / "generated"
+        matches = list(generated_dir.glob(f"{req.mystery_slug}_*.json"))
+        if not matches:
+            raise HTTPException(status_code=404, detail="mystery not found")
+        with open(sorted(matches)[-1]) as f:
+            mystery = json.load(f)
 
     cfg = _DIFFICULTY_CONFIG[difficulty]
     game_id = _new_game_id()
@@ -1196,6 +1245,7 @@ def create_game(req: CreateGameRequest):
                 "lead_findings": [],
             }
         },
+        "submitted_prompts": {},  # player_id -> {"name": str, "prompt_text": str, "ts": float}
         "shared_pool": {"witness": [], "investigation": [], "lead": []},
         "block_pool": {"witness": [], "investigation": [], "lead": []},
         "stage": None,
@@ -1246,6 +1296,40 @@ def join_game(game_id: str, req: JoinGameRequest):
     }
 
 
+@app.post("/games/{game_id}/prompts/submit")
+def submit_prompt(game_id: str, req: SubmitPromptRequest):
+    """
+    A player suggests a mystery prompt while the lobby is waiting to start
+    (e.g. "Smurf murder mystery", "Mystery on Mars"). Only meaningful before
+    the host starts the game — the host's own submission is what actually
+    drives generation; everyone else's are kept for the post-game vote on
+    what to play next. Submitting again overwrites this player's prior entry.
+    """
+    game = _get_game(game_id)
+    if game is None:
+        raise HTTPException(status_code=404, detail="game not found")
+    if game["mystery"] is not None:
+        raise HTTPException(status_code=400, detail="mystery already generated for this game")
+    player = game["players"].get(req.player_id)
+    if player is None:
+        raise HTTPException(status_code=404, detail="player not in game")
+    prompt_text = req.prompt_text.strip()
+    if not prompt_text:
+        raise HTTPException(status_code=400, detail="prompt_text must not be empty")
+
+    with _games_lock:
+        game["submitted_prompts"][req.player_id] = {
+            "name": player["name"],
+            "prompt_text": prompt_text,
+            "ts": time.time(),
+        }
+    _broadcast_sync(game_id, "prompt_submitted", {
+        "player_name": player["name"],
+        "is_host": player["is_host"],
+    })
+    return {"ok": True, "submitted_count": len(game["submitted_prompts"])}
+
+
 @app.get("/games/{game_id}/mystery-brief")
 def mystery_brief(game_id: str):
     """
@@ -1256,6 +1340,8 @@ def mystery_brief(game_id: str):
     if game is None:
         raise HTTPException(status_code=404, detail="game not found")
     mystery = game["mystery"]
+    if mystery is None:
+        raise HTTPException(status_code=400, detail="mystery not yet generated — waiting on the host to start the game")
     # Strip server-only fields
     safe = {k: v for k, v in mystery.items()
             if k not in ("_provenance", "_coherence")}
@@ -1277,18 +1363,25 @@ def mystery_brief(game_id: str):
 
 @app.get("/games/{game_id}/lobby")
 def get_lobby(game_id: str):
-    """Current lobby state: player list + mystery title + difficulty."""
+    """Current lobby state: player list + mystery title/setting (once generated,
+    otherwise null) + difficulty + how many prompt suggestions are in."""
     game = _get_game(game_id)
     if game is None:
         raise HTTPException(status_code=404, detail="game not found")
     mystery = game["mystery"]
     return {
         "game_id": game_id,
-        "title": mystery.get("title", "Mystery"),
-        "setting": mystery.get("setting", {}),
+        "title": mystery.get("title", "Mystery") if mystery else None,
+        "setting": mystery.get("setting", {}) if mystery else None,
         "difficulty": game["difficulty"],
+        "submitted_prompt_count": len(game["submitted_prompts"]),
         "players": [
-            {"id": pid, "name": p["name"], "is_host": p["is_host"]}
+            {
+                "id": pid,
+                "name": p["name"],
+                "is_host": p["is_host"],
+                "has_submitted_prompt": pid in game["submitted_prompts"],
+            }
             for pid, p in game["players"].items()
         ],
     }
@@ -1296,15 +1389,47 @@ def get_lobby(game_id: str):
 
 @app.post("/games/{game_id}/start")
 def start_game(game_id: str, req: StartGameRequest):
-    """Host starts the game — broadcasts game_started to all connected clients."""
+    """
+    Host starts the game.
+
+    Room-first flow (the normal case -- POST /games/create was called
+    without a mystery_slug): kicks off generation in a background thread
+    using the *host's own* submitted prompt (POST /games/{id}/prompts/submit
+    -- everyone else's submissions stay stored for the post-game "vote for
+    the next mystery" round). Returns a job_id pollable via GET /jobs/{id};
+    connected clients also get a "mystery_ready" WebSocket broadcast once
+    generation finishes, or "mystery_generation_failed" on error.
+
+    Quick-start flow (mystery_slug was given to /games/create): mystery is
+    already attached, so this just broadcasts game_started immediately, as
+    before.
+    """
     game = _get_game(game_id)
     if game is None:
         raise HTTPException(status_code=404, detail="game not found")
     player = game["players"].get(req.player_id)
     if not player or not player.get("is_host"):
         raise HTTPException(status_code=403, detail="only the host can start the game")
-    _broadcast_sync(game_id, "game_started", {"game_id": game_id})
-    return {"ok": True}
+
+    if game["mystery"] is not None:
+        _broadcast_sync(game_id, "game_started", {"game_id": game_id})
+        return {"game_id": game_id, "status": "started"}
+
+    host_prompt = game["submitted_prompts"].get(req.player_id)
+    if host_prompt is None:
+        raise HTTPException(
+            status_code=400,
+            detail="submit a prompt via POST /games/{game_id}/prompts/submit before starting",
+        )
+
+    job_id = _job_create()
+    thread = threading.Thread(
+        target=_run_game_generation_job,
+        args=(game_id, job_id, host_prompt["prompt_text"], True),
+        daemon=True,
+    )
+    thread.start()
+    return {"game_id": game_id, "status": "generating", "job_id": job_id}
 
 
 @app.post("/games/{game_id}/round/open")
