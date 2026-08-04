@@ -502,36 +502,55 @@ arrived first. No elimination on a wrong guess — a player can keep trying.
 
 Every attempt — right or wrong — broadcasts `accusation_made` to the whole room
 (`{player_name, accused_name, correct}`); a winning guess additionally broadcasts
-`game_won` (`{winner_player_id, winner_name, solution, plot_reveal, winner_findings}`).
-`GET /games/{id}/result` gives the identical payload as a snapshot, for a client that
-missed the broadcast (late join, reconnect) — `{"solved": false}` before anyone's won,
-otherwise the same shape as `game_won` minus the broadcast-only framing.
+`game_won` (`{winner_player_id, winner_name, solution, plot_reveal, winner_findings,
+resolution_narrative}`). `GET /games/{id}/result` gives the identical payload as a snapshot,
+for a client that missed the broadcast (late join, reconnect) — `{"solved": false}` before
+anyone's won, otherwise the same shape as `game_won` minus the broadcast-only framing.
 
-### End-of-game resolution reveal (`plot_reveal` + `winner_findings`)
+### End-of-game resolution reveal (`plot_reveal` + `winner_findings` + `resolution_narrative`)
 
-**Explicitly zero new AI calls** — the owner tabled all generative-AI video/text work for
-this screen to save cost and get the UI's look-and-feel right first. Both fields are pure
-reformatting of content that already exists by the time the game is won:
+Video stays explicitly tabled — the owner wants the UI's look-and-feel settled before any
+generative video work starts, so the client should still render a static
+`"Video Scene Will Play Here"` panel where a future clip would go (no backend field for it,
+nothing generated to point to yet). **The narrative text itself is no longer zero-cost** —
+un-tabled on explicit request, once the owner confirmed they wanted the "recommended" real
+AI-authored option over a zero-cost restructuring alternative. Three fields:
 
-- **`plot_reveal`** (`_format_plot_reveal()`) — the mystery's own `solution` (already
-  generated once, at mystery creation) reshaped for display: `culprit`, `method`, `motive`,
-  `how_to_deduce` (the string reasoning chain), and `key_evidence` — resolved from
-  `solution.key_evidence`'s bare evidence IDs into the full `{id, name, description}`
-  objects, so the reveal can actually name what was found instead of citing `"E1"`.
-- **`winner_findings`** (`_winner_findings_summary()`) — the winning player's own
-  `witness_findings` / `investigation_findings` / `lead_findings`, exactly as collected
-  during play. Deliberately shown to the **whole room**, not kept private to the winner —
-  the point of this screen is the shared reveal of *how* they got there, not just *that*
-  they won.
+- **`plot_reveal`** (`_format_plot_reveal()`, zero API cost) — the mystery's own `solution`
+  (already generated once, at mystery creation) reshaped for display: `culprit`, `method`,
+  `motive`, `how_to_deduce`, and `key_evidence` resolved from bare evidence IDs into full
+  `{id, name, description}` objects.
+- **`winner_findings`** (`_winner_findings_summary()`, zero API cost) — the winning player's
+  own `witness_findings` / `investigation_findings` / `lead_findings`, shown to the whole
+  room on purpose. **Strips `_craft_guidance` from each finding** — `investigate-area` and
+  `follow-lead` findings carry that key (internal audit citations, safe to return per-player
+  since those calls are private), but this summary broadcasts to the whole room, so it needs
+  the same server-side-only treatment `_resolve_round` already gives witness rounds. Found
+  and fixed while building the craft-grounded narrative below — piece 2 had been leaking it.
+- **`resolution_narrative`** (`_generate_resolution_narrative()`, **one Claude call**) — a
+  craft-guidance-informed reveal narrative, not a restatement of the structured fields above.
+  Tagged `C5` (The Resolution) + `M6` (The Reveal Mechanic) + `"Accusation/Reveal Phase"` via
+  a new `CALL_SITE_TAGS["resolution_reveal"]` entry in `craft_grounding.py` — the fifth
+  call-site to use the RAG layer, after the original four. Pulls real craft findings like
+  Rian Johnson's "a reveal must feel earned, not just correct" and Moffat's "the controlled
+  release of information... is really, really hard" (`SCREEN_CRAFT_FINDINGS.md`), plus
+  `PARTY_CRAFT_FINDINGS.md`'s shared-table reveal-phase guidance. Uses `max_items=8` (vs. the
+  other four call-sites' default 5) — this specific query's matching pool is unusually large
+  (19 entries) and this is the single highest-stakes narrative beat in the game, so it gets
+  more room; this is a per-call budget choice, not a change to the shared ranking logic.
+  Explicitly forbidden from inventing new facts — the prompt hands over the already-determined
+  solution and told not to contradict or add to it, same "adapt, don't invent" discipline
+  `_generate_mystery_dict()` already applies to sampled parts.
 
-**Video stays a placeholder for now.** The client should render a static
-`"Video Scene Will Play Here"` panel where a future resolution-video clip would go — no
-backend field for it, since there's nothing generated to point to yet. When video work
-actually gets picked back up, the natural shape (mirroring the opening scene's
-`_generate_cinematic_brief()` two-output split — see "Cinematic brief schema" above) is a
-`_generate_resolution_video_brief()` that reuses `plot_reveal`'s already-resolved content as
-its prompt input, rather than re-deriving anything from `solution` a second time. Not built;
-not scoped until the owner decides to un-table video generation.
+**Generated once, cached, never regenerated.** `_build_resolution_reveal()` calls the
+generator only if `game["resolution_narrative"]` is still `None`, then stores the result on
+the game session. A client that reconnects or calls `GET /result` later sees the exact same
+wording every other player already saw — not a fresh (and differently-phrased) LLM roll per
+fetch. Craft-guidance provenance is stashed server-side only
+(`game["_resolution_craft_guidance"]`), same "never player-facing" treatment every other
+craft-guidance call-site's audit trail gets. Both cache fields are cleared by
+`_reset_game_for_next_mystery()` (see below) so the next mystery in the same room gets its
+own fresh narrative, not a leftover from the previous game.
 
 ### Post-game prompt voting and same-room replay (`prompt_vote`)
 
@@ -636,9 +655,10 @@ python cli.py extract --protocol P1P2    # full corpus run (~359 books)
 
 ## Craft-grounding retrieval (RAG layer)
 
-**Status:** Built and wired in (Session 22). This section is written for someone with zero
-prior context on this repo — read it start to finish before touching `craft_grounding.py` or
-any of its four call-sites in `server/main.py`.
+**Status:** Built and wired in (Session 22); extended to a fifth call-site (Session 26, the
+end-of-game resolution reveal). This section is written for someone with zero prior context on
+this repo — read it start to finish before touching `craft_grounding.py` or any of its five
+call-sites in `server/main.py`.
 
 ### The problem this solves
 
@@ -778,7 +798,7 @@ callers can always concatenate it straight into a prompt without a conditional.
 `guidance_provenance(entries)` returns the structured citation list (`concept`, `doc`,
 `section`, `confidence`, `source` per entry) used for auditing — see below.
 
-### The four call-sites, and why each gets the tags it gets
+### The five call-sites, and why each gets the tags it gets
 
 | Call-site (`server/main.py`) | Tag source | Tags | Why |
 |---|---|---|---|
@@ -786,6 +806,7 @@ callers can always concatenate it straight into a prompt without a conditional.
 | `_generate_witness_scene()` | Fixed, in `craft_grounding.CALL_SITE_TAGS["witness_scene"]` | `M2` (Red Herring), `M3` (Clue Fairness), `F3` (Unreliable Frame) + `"Interrogation Phase"`, `"Social Dynamics"` | These are the craft axes that govern *how a witness should mislead and stay fair* during interrogation — not plot-construction axes. Fixed because every witness-scene call needs the same kind of dialogue-craft guidance, regardless of which specific mystery is being played. |
 | `_investigate_area_with_ai()` | Fixed, in `CALL_SITE_TAGS["investigate_area"]` | `F4` (Setting as Constraint), `F5` (Evidence Type) + `"Investigation/Scene Phase"` | Scene/evidence narration craft — e.g. Murder Mystery Co's "clues framed as story, not raw data" finding, which is specifically about *how to describe a found clue*, not about plot mechanics. |
 | `_follow_lead_with_ai()` | Fixed, in `CALL_SITE_TAGS["follow_lead"]` | `M2` (Red Herring), `M5` (Alibi), `C4` (Culprit + Motive) + `"Investigation/Scene Phase"` | Lead-reveal craft — what a lead should actually disclose and how it should mislead when it's a red herring. |
+| `_generate_resolution_narrative()` | Fixed, in `CALL_SITE_TAGS["resolution_reveal"]`, `max_items=8` (not the default 5 — see "End-of-game resolution reveal" above) | `C5` (The Resolution), `M6` (The Reveal Mechanic) + `"Accusation/Reveal Phase"` | The endgame payoff moment — "a reveal must feel earned, not just correct" (Rian Johnson), "controlled release of information" (Moffat) — plus the party-craft docs' shared-table reveal-phase guidance neither screen nor novel craft alone covers. |
 
 **Resolved caveat (Session 23):** `part_registry.py`'s axis 8 used to be named `"evidence_type"`
 despite holding alibi content — the extraction key `"alibi"` mapped there, not anything about

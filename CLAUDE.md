@@ -68,7 +68,7 @@ Current phase: **Phase 3d — Lobby flow, room codes, QR display on host screen*
 | `SCREEN_CRAFT_FINDINGS.md` | Companion to above: film/TV directors & screenwriters craft grounding |
 | `PARTY_CRAFT_FINDINGS.md` | Companion to above: live/social-deduction game mechanics grounding |
 | `SOURCING_METHODOLOGY.md` | Shared sourcing discipline (confidence tiers, corroboration rule) for the three craft-grounding docs above, and the process for adding a new media type |
-| `craft_grounding.py` | Retrieval layer over the craft-grounding docs — parses them into a confidence-tiered index and feeds relevant guidance into all four generation call-sites in `server/main.py`. See `docs/WIRING.md` → "Craft-grounding retrieval (RAG layer)" before touching this. |
+| `craft_grounding.py` | Retrieval layer over the craft-grounding docs — parses them into a confidence-tiered index and feeds relevant guidance into all five generation call-sites in `server/main.py`. See `docs/WIRING.md` → "Craft-grounding retrieval (RAG layer)" before touching this. |
 
 **Deprecated (do not touch — kept for historical reference only):**
 - `deprecated/` — all pre-Godot Streamlit/HuggingFace-era Python tooling (`app.py`, `cli.py`,
@@ -263,12 +263,12 @@ Full list in `SESSIONS.md`. Top priorities:
    safe to delete, plus a further 21 stale unmerged branches the owner is triaging on their own
    schedule (see `SESSIONS.md` Session 18). **`dev/mind-your-friends` is a separate, real second
    project sharing this repo — do not touch it in any cleanup pass.**
-10. **[DONE, Session 22]** RAG (retrieval-augmented generation) for mystery best-practices —
-    **wired into generation.** `craft_grounding.py` parses `RESEARCH_FINDINGS.md`,
+10. **[DONE, Session 22; extended Session 26]** RAG (retrieval-augmented generation) for mystery
+    best-practices — **wired into generation.** `craft_grounding.py` parses `RESEARCH_FINDINGS.md`,
     `SCREEN_CRAFT_FINDINGS.md`, and `PARTY_CRAFT_FINDINGS.md` into a retrievable, confidence-tiered
-    index and injects relevant guidance into all four generation call-sites in `server/main.py`
+    index and injects relevant guidance into all five generation call-sites in `server/main.py`
     (`_generate_mystery_dict`, `_generate_witness_scene`, `_investigate_area_with_ai`,
-    `_follow_lead_with_ai`) — full design, rationale table, and extension guide in `docs/WIRING.md`
+    `_follow_lead_with_ai`, and — added Session 26 — `_generate_resolution_narrative`) — full design, rationale table, and extension guide in `docs/WIRING.md`
     → "Craft-grounding retrieval (RAG layer)". Read that section before touching any of it. Zero
     added API calls — retrieval is a local index lookup. Auditable by design: every call records
     which citations it used (routing differs by broadcast scope — see that doc section).
@@ -343,6 +343,24 @@ Full list in `SESSIONS.md`. Top priorities:
     against the real failing case, not just stubs — owner re-ran extraction locally, the retry
     fired and fixed it, and the resulting file now has real high-confidence data across all 6
     fields. Full detail in `SESSIONS.md` Session 23.
+15. **[DONE, Session 26]** Room-first lobby + prompt suggestions, end-of-game resolution reveal,
+    and post-game voting + same-room replay — three-piece feature set, built and verified
+    incrementally per explicit owner request. `POST /games/create` now opens an empty room;
+    players suggest prompts while waiting; the host's own submission drives generation on
+    `POST /games/{id}/start`. On a win, `GET /games/{id}/result`/`game_won` return `plot_reveal`
+    (the mystery's own solution reformatted) + `winner_findings` (the winner's own findings,
+    shown to the whole room) + `resolution_narrative` (one Claude call, craft-guidance-informed —
+    the RAG layer's fifth call-site, tagged `C5`/`M6`/`"Accusation/Reveal Phase"` — generated once
+    and cached, never regenerated on a later fetch). New `round_type: "prompt_vote"` lets the
+    group pick what to play next from the leftover suggestions; ties go to the game's winner
+    unless they also won the mystery immediately before this one, in which case it's random
+    instead (`game["win_history"]` tracks this). `POST /games/{id}/next-mystery/start` resets the
+    same room in place — same `game_id`, same players, nobody rejoins — which is the actual point:
+    subtly encouraging the same group to keep playing together. Video generation stays explicitly
+    tabled — client renders a static `"Video Scene Will Play Here"` placeholder. Full detail,
+    including a real `_craft_guidance` leak this work found and fixed in `winner_findings` (private
+    per-player audit citations were about to broadcast to the whole room), in `SESSIONS.md`
+    Session 26 and `docs/WIRING.md`'s three new sections.
 
 > **DO NOT re-run the frozen bulk corpus pipeline** (`deprecated/run_corpus_pipeline.py`). Expand
 > the corpus only via `scripts/extract_from_pdfs.py`, adding one quality source at a time.
