@@ -258,22 +258,37 @@ Full list in `SESSIONS.md`. Top priorities:
    Session 21**, not one of Session 20's original 9 categorized files, confirmed NOT a duplicate of
    the existing Higashino extraction (different novel: *Miracles of the Namiya General Store*).
    Owner ruled out deleting it; still needs an actual triage call (queue / skip / other).
-   **[PENDING, Session 26]** Owner has **22 more anthology PDFs** staged locally (not yet in this
-   repo's `new_sources/`), about to run through `--anthology` mode on their own machine — this
-   was a live discussion this session, not yet executed. Guidance given, full detail in
-   `SESSIONS.md` Session 26's closing note: real per-story cost computed from the actual
-   already-ingested "Pseudo Identity" story's prompt size (~$0.009/story at P1 depth, ~$0.019 at
-   P1P2, on the script's default Haiku 4.5 model) — total for 22 anthologies landing somewhere in
-   the $3–$17 range depending on stories-per-anthology (`--dry-run` first gets the exact count,
-   zero cost). Flagged two real caveats before running: the anthology heading-detection heuristic
-   has only been validated against **one** real anthology so far (the already-ingested Hitchcock
-   collection) — dry-run every new file, don't assume the split is clean; and
-   `mystery_database/part_registry.json`'s known staleness bug (item 14 below) means the new
-   content won't be usable until the registry cache is manually deleted and regenerated after
-   ingestion — a command for that was included in the guidance. **Next session should check:**
-   did the ingestion run, how many of the 22 succeeded/failed, was the registry regenerated
-   afterward (compare source/part counts to Session 23's last-known baseline: 369 sources / 2,833
-   parts), and whether P1 or P1P2 depth was actually used.
+   **[IN PROGRESS, Session 27]** The 22+-anthology ingestion is underway, not finished. Session 27
+   was almost entirely git housekeeping (see `SESSIONS.md`) plus a duplicate-source triage: cross-
+   referenced the owner's ~26 staged local files against the real corpus and caught two real
+   near-misses — renamed duplicate PDFs of already-extracted books (*Leavenworth Case*, *Red House
+   Mystery*), and, more seriously, the already-fully-extracted 63-story Hitchcock 1980 anthology
+   itself still sitting in `new_sources/` (would have re-spent real API cost re-extracting 63
+   already-owned stories). Owner removed both categories. Confirmed the extraction pipeline still
+   has zero content-based dedup (`_slug()` keys purely off the input PDF's filename) — worth a
+   pre-flight duplicate check on every future batch, not just this one; a standalone checker script
+   was written for this (scratchpad-only, not committed to the repo).
+
+   Remaining 21 anthology PDFs were `--dry-run`'d: **10 came back clean** (full-book page ranges,
+   real per-story detection — the *Best American Mystery Stories* years 2005–2017/215/"4" plus
+   *Years Best Mystery & Suspense 1993*, ~207 stories) and were moved to
+   `mystery_database/new_sources/_anthologies/_ready/` with the real extraction command handed to
+   the owner — **not yet run as of session close.** The other **11 have real detection problems**
+   and are intentionally being held back, uncosted: 5 where the detector only caught back-matter and
+   missed the entire body of stories, 3 where the whole book got detected as a single oversized
+   "story" (459K–533K characters — a full anthology misattributed to one author, not a short story),
+   and 3 broken/wrong-fit (one detected 0 stories; one nonfiction true-crime collection flagged for
+   a separate taxonomy-fit decision). Full per-file breakdown in `SESSIONS.md` Session 27 — don't
+   re-litigate it from scratch, the analysis is already done, just needs someone to act on the
+   11 held-back files whenever there's appetite.
+
+   Also unrun this session: the 4-file `_novels/` batch (*39 Steps*, *Behold Here's Poison*,
+   *Mystery of the Chinese Ring*, *Whose Body?*) — never got even a `--dry-run` yet.
+
+   **Next session should check:** did the 10-file `_ready/` extraction run, did the 4-file novels
+   batch get dry-run and run, was `mystery_database/part_registry.json` deleted and regenerated
+   afterward (mandatory — the staleness bug in item 14 below is still unfixed), and compare new
+   source/part counts against the last-known baseline (369 sources / 2,833 parts, Session 23).
 8. **[FUTURE]** Phase 4 — Steam integration (GodotSteam plugin)
 9. **[ONGOING]** Repo-wide branch cleanup (Session 18) — 9 fully-merged branches identified as
    safe to delete, plus a further 21 stale unmerged branches the owner is triaging on their own
