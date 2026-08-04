@@ -258,6 +258,22 @@ Full list in `SESSIONS.md`. Top priorities:
    Session 21**, not one of Session 20's original 9 categorized files, confirmed NOT a duplicate of
    the existing Higashino extraction (different novel: *Miracles of the Namiya General Store*).
    Owner ruled out deleting it; still needs an actual triage call (queue / skip / other).
+   **[PENDING, Session 26]** Owner has **22 more anthology PDFs** staged locally (not yet in this
+   repo's `new_sources/`), about to run through `--anthology` mode on their own machine — this
+   was a live discussion this session, not yet executed. Guidance given, full detail in
+   `SESSIONS.md` Session 26's closing note: real per-story cost computed from the actual
+   already-ingested "Pseudo Identity" story's prompt size (~$0.009/story at P1 depth, ~$0.019 at
+   P1P2, on the script's default Haiku 4.5 model) — total for 22 anthologies landing somewhere in
+   the $3–$17 range depending on stories-per-anthology (`--dry-run` first gets the exact count,
+   zero cost). Flagged two real caveats before running: the anthology heading-detection heuristic
+   has only been validated against **one** real anthology so far (the already-ingested Hitchcock
+   collection) — dry-run every new file, don't assume the split is clean; and
+   `mystery_database/part_registry.json`'s known staleness bug (item 14 below) means the new
+   content won't be usable until the registry cache is manually deleted and regenerated after
+   ingestion — a command for that was included in the guidance. **Next session should check:**
+   did the ingestion run, how many of the 22 succeeded/failed, was the registry regenerated
+   afterward (compare source/part counts to Session 23's last-known baseline: 369 sources / 2,833
+   parts), and whether P1 or P1P2 depth was actually used.
 8. **[FUTURE]** Phase 4 — Steam integration (GodotSteam plugin)
 9. **[ONGOING]** Repo-wide branch cleanup (Session 18) — 9 fully-merged branches identified as
    safe to delete, plus a further 21 stale unmerged branches the owner is triaging on their own

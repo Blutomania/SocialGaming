@@ -8,10 +8,11 @@ Use this file to onboard any new session without losing context.
 ## Session 26 — August 4, 2026 (new game-flow features, in progress)
 **Branch:** `claude/session-wrapup-cleanup-blocker-3val9a` (reset fresh from `main` at the top of
 this session, per Session 25's own recommendation)
-**Status:** All 3 pieces done and verified, plus a follow-up craft-grounding pass on the piece-2
-plot reveal (one new AI call, explicitly approved after flagging the fork against "table all gen
-AI") — all built incrementally per explicit owner request, all merged into `main` via PR #9,
-except the craft-grounding pass which lands in this session's next commit.
+**Status:** Session closed clean. All 3 room/reveal/vote pieces plus the follow-up craft-grounding
+pass on the resolution narrative are built, verified, and merged into `main` (PR #9, PR #10).
+Branch reset to `main`'s tip, no open PRs, no uncommitted changes. A 22-anthology ingestion cycle
+was discussed and guidance handed to the owner to run locally, but **not executed this
+session** — see the closing note below for exactly what the next session needs to check first.
 
 ### New scope this session
 Owner proposed three new features in one design conversation:
@@ -204,6 +205,52 @@ sites, "Status" line updated) and `CLAUDE.md` item 10 (four → five call-sites)
   narrative text, the vote/tiebreak UI) — none of this session's backend work has touched Godot.
 - Video generation itself remains explicitly tabled, per the owner's own repeated instruction —
   not a forgotten item, a deliberate one.
+
+### Session close: PR #9 and #10 both merged, plus a live ingestion-planning discussion (not executed)
+Both feature PRs from this session merged clean into `main` — `f4af3c9` → `6ca36e4` (PR #9: the
+three-piece room/reveal/vote loop) → `0b3b078` (PR #10: the craft-grounded resolution narrative).
+Branch reset to `main`'s tip after each merge, per the established pattern; confirmed clean at
+session close (`git status` empty, branch is an exact, non-diverged match to `origin/main`).
+
+Before closing, the owner raised a **new corpus-ingestion cycle**: 22 more anthology PDFs staged
+locally, not yet in this repo's `mystery_database/new_sources/`. This was pure discussion/guidance
+this session — **no code was written or changed for it, and no extraction has run yet.** Three
+things were covered, all now also cross-referenced in `CLAUDE.md` item 7:
+
+1. **Readiness assessment.** Anthology-extraction *mechanics* (splitting, the Session 23
+   retry/silent-failure fix, the source_id collision fix) are solid, but flagged two real caveats
+   rather than a clean "yes": the heading-detection heuristic has only ever been validated against
+   **one** real anthology (the already-ingested Hitchcock collection) — the other 21 are unproven
+   against it, so `--dry-run` per file isn't optional here, it's the only check that exists before
+   spending real API calls. And `part_registry.json`'s known staleness bug (item 14, still
+   unfixed) means newly-ingested content won't actually be usable by generation until the registry
+   cache is manually deleted and regenerated afterward — easy to forget, already bit this project
+   once (frozen since March until Session 23 caught it).
+2. **Cost estimate**, computed from real numbers rather than guessed: replayed the actual
+   already-ingested "Pseudo Identity" story (22,758 chars) through the real prompt template to get
+   genuine token counts, then priced against the script's actual default model (Haiku 4.5,
+   $1/$5 per MTok) — **~$0.009/story at P1 depth, ~$0.019/story at P1P2**. Total for 22
+   anthologies estimated at **~$3–$17** depending on stories-per-anthology (highly variable; the
+   one known data point, 63 stories, may be on the high end for a "Best of the Year" annual
+   volume vs. a themed collection) — recommended `--dry-run` across all 22 first to replace the
+   estimate with an exact count before spending anything.
+3. **Exact terminal commands** handed to the owner to run locally: sync to `main` first (this
+   session's field-mapping/axis-rename fixes need to be present) → `--anthology --dry-run` across
+   the whole `new_sources/` directory (free) → real extraction at either `--protocol P1` (cheaper,
+   matches all 75 existing sources) or `--protocol P1P2` (owner's choice, full 8-axis registry
+   coverage for just these 22, ~2x cost) → **the registry regeneration step** (`rm
+   part_registry.json` + reload) called out explicitly as the step most likely to get forgotten →
+   a final count check against `mystery_database/extractions/`.
+
+**Next session should check, in this order:** (1) did the 22-anthology ingestion actually run
+locally — ask if unclear, don't assume; (2) if it ran, how many of the 22 succeeded vs. got
+skipped/errored (dry-run anomalies, non-anthology files mixed into the folder, etc.); (3) was the
+registry regenerated afterward — compare current source/part counts against the last known
+baseline (369 sources / 2,833 parts, Session 23, itself already possibly stale by then) to confirm
+growth actually landed; (4) which depth (P1 vs P1P2) was actually used, since that determines
+whether the new sources close the "STILL OPEN" axis-coverage gap in `CLAUDE.md` item 12 or just
+extend it; (5) the still-untriaged `The_Devotion_of_Suspect_X` (Higashino) and the 3 queued novels
+in `new_sources/` remain exactly as open as before — this session's discussion didn't touch them.
 
 ---
 
