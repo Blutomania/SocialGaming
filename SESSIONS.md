@@ -5,6 +5,119 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 27 — August 4-5, 2026 (git cleanup + anthology ingestion pre-flight, paused mid-run)
+**Branch:** `claude/session-wrapup-cleanup-blocker-3val9a` (same branch as Session 26 — continued,
+not reset, since this session was mostly local-git troubleshooting on the owner's machine rather
+than new feature work).
+**Status:** Session paused (not closed) at the owner's request, to resume tomorrow. No code
+changes this session — entirely git housekeeping plus ingestion pre-flight analysis. One real PR
+merged (#12, the story05 data fix that had been sitting uncommitted since Session 23). The 22+
+anthology ingestion itself is **mid-run**, not finished — see "Next session should" below.
+
+### What this session actually was
+The owner tried to follow Session 26's closing instructions locally and hit a real, multi-step git
+blocker chain. Worked through it live, in order:
+
+1. **story05 fix was never actually committed.** Session 23 verified the retry-fix code worked
+   against the real failing file, but only the code landed in a commit — the corrected JSON data
+   itself sat as an uncommitted local edit on the owner's machine this whole time. Committed it,
+   pushed, opened **PR #12**, verified `mergeable_state: clean`, merged
+   (`4f0c03c`). This sandbox's branch was fast-forwarded to pick it up too.
+2. **Push/pull friction while getting there** — a branch-name typo (commit landed on the current
+   branch, not a new one that was never created), a rejected push (remote had commits the local
+   machine hadn't fetched — resolved with `git pull --rebase`), and a rebase blocked by 9 unstaged
+   file deletions in `new_sources/` (resolved with a scoped `git stash` / `git stash pop` —
+   deliberately *not* `-u`, to avoid sweeping in the untracked `mind-your-friends/` project sitting
+   in the same repo).
+3. **Local `main` had diverged from `origin/main` — turned out to be a stale pre-reconciliation
+   clone.** `git log` comparison showed the owner's local `main` was frozen at old
+   Streamlit/HuggingFace-era commits (`app.py`, `MAINTENANCE_MODE`, `batch_generate.py`, a "Peter
+   Parker trigger") — the exact "stale branch" failure mode `CLAUDE.md`'s July 9 branch-hygiene
+   note warns about, just surfacing on `main` itself this time instead of a feature branch.
+   Confirmed none of that local-only history was ever pushed (main pushes are blocked repo-wide)
+   and that the content it represents is already preserved in `deprecated/` on the real `main`.
+   Fixed with `git branch backup-old-local-main` (found one already existed from a prior,
+   undocumented occurrence of this same issue — not alarming, just unlabeled history) +
+   `git reset --hard origin/main`. Local `main` now correctly matches `origin/main`.
+
+### Duplicate-source triage (before spending any ingestion API cost)
+Owner has ~26 new source PDFs staged locally for the next corpus-growth round. Before running
+anything, walked the owner through avoiding duplicate extraction spend:
+- Cross-referenced the owner's local file list against this sandbox's actual
+  `mystery_database/extractions/` contents. Confirmed 4 books were already extracted under
+  different filenames: *The Leavenworth Case*, *The Circular Staircase*, *The Greene Murder Case*,
+  *The Red House Mystery*. Two of those (*Leavenworth*, *Red House Mystery*) had renamed duplicate
+  PDFs sitting in the owner's `new_sources/` that would have silently re-extracted content already
+  in the corpus. Owner removed them.
+- Wrote a standalone, zero-cost, no-API duplicate checker
+  (`check_duplicate_sources.py`, normalized-title word-overlap against every existing extraction's
+  `_meta.title`) and handed it to the owner as a scratchpad file — **not committed to the repo**,
+  it's a one-off local tool, not part of `scripts/`.
+- On a fresh `ls` of the owner's actual `new_sources/`, caught one more, more serious duplicate risk
+  the title-matching approach hadn't been run against yet: **`The_Best_of_Mystery_1980_Anthology_-
+  _Alfred_Hitchcock.pdf` was still sitting in `new_sources/`** — the exact anthology already fully
+  extracted (63/63 stories, Session 21). Re-running it would have burned real API cost re-extracting
+  63 already-owned stories and created 63 duplicate `source_id`s. Owner removed it. Confirmed no
+  other overlap between the remaining ~24 files and the existing 12-novel + 63-story corpus.
+- Two remaining novels (*The Circular Staircase*, *The Greene Murder Case*) were mentioned by the
+  owner as "kept" locally but never appeared in any `new_sources/` listing this session — nothing to
+  clean up for those two, presumed handled already.
+- Confirmed the extraction pipeline genuinely has **zero content-based dedup** — `_slug()` in
+  `scripts/extract_from_pdfs.py` derives the output filename purely from the input PDF's own
+  filename, so any renamed re-download of an already-extracted source will silently re-extract and
+  duplicate. Not fixed this session (would be a real code change, own decision); worth flagging as
+  a standing risk for every future ingestion round, not just this one.
+
+### Anthology dry-run findings (21 files in `new_sources/_anthologies/`)
+Split the remaining files into `_novels/` (4: *39 Steps*, *Behold, Here's Poison*, *Mystery of the
+Chinese Ring*, *Whose Body?*) and `_anthologies/` (21) so each gets the right extraction flag.
+`--dry-run --anthology --protocol P1` against the 21 anthologies surfaced real detection-quality
+problems worth catching before spending anything:
+
+- **10 clean** — full-book page ranges, real per-story author/title detection, ready to run as-is:
+  *Best American Mystery Stories* 2005, 2006, 2007, 2008, 2009, 2016, 2017, "215"(2015), "4"
+  (Connelly-edited volume), and *Years Best Mystery & Suspense Stories 1993*. ~207 stories total.
+  (Minor, non-blocking: 3 of these have one story each double-detected — a contents-listing entry
+  plus the real story counted as two separate records; not a cost problem.)
+- **5 incomplete** — detector only caught back-matter (an editor's note / "bonus story" section),
+  missed the entire main body of stories: Horowitz *Best Crime Stories Vol 4*, Grisham *Best
+  Mystery Stories 2025*, Lee Child-edited *2010*, Towles-edited *2023*, Paretsky-edited *2022*.
+  Running these as-is would "succeed" while silently throwing away almost the whole book.
+- **3 dangerous** — the entire book detected as a single "story," 459K–533K characters each (an
+  actual novel-length chunk, not a short story) attributed to one author: an unnamed
+  Paretsky-edited volume's story01 specifically (469,713 chars), the 1992 Hoch-edited volume
+  (459,548 chars, whole book), and one more Hoch-branded volume with an unclear year in the
+  filename (533,566 chars, whole book). Extracting these as single calls would misrepresent an
+  entire multi-author anthology as one giant single-author "story" and blow far past the
+  short-story-scale cost model the corpus is built around.
+- **3 broken/wrong-fit** — McBain-edited *1999* volume detected **0** stories (nothing would be
+  extracted at all); Fredric Brown's *Carnival of Crime* detected 1 tiny 2-page fragment, missing
+  the rest of the book; Bowden's *Best American Crime Writing 2006* detected 1 "story" that's
+  actually the "About the Editors" back-matter — and separately, that volume is nonfiction true-crime
+  journalism, not fiction, a taxonomy-fit question independent of the detection bug.
+
+Moved the 10 clean files into `_anthologies/_ready/` and handed the owner the real extraction
+command for that subset. **The owner had not yet run it when the session paused** — this is the
+literal next action, not a finished step.
+
+### Next session should check
+1. Did the owner run `python3 scripts/extract_from_pdfs.py mystery_database/new_sources/_anthologies/_ready --anthology --protocol P1`? All 10/10 succeed?
+2. Was `mystery_database/part_registry.json` deleted and regenerated afterward (mandatory —
+   `load_registry()` still has no staleness check, per the standing known bug)? Compare new
+   source/part counts against this session's last-known baseline (369 sources / 2,833 parts,
+   Session 23) plus whatever the 10-file run adds.
+3. The `_novels/` batch (4 files) was never even dry-run this session — do that first before
+   running it for real.
+4. The 11 held-back anthology files are still sitting in `_anthologies/` (not `_ready/`), untouched,
+   no cost incurred. Owner needs to decide, file by file, whether to: fix/retry with a different
+   heading-detection approach, extract individually with hand-tuned settings, or skip. Not urgent,
+   but don't let it get lost — it's roughly half the batch.
+5. `check_duplicate_sources.py` (scratchpad-only, not in the repo) is worth re-running any time a
+   fresh batch of source PDFs shows up — it isn't a one-time fix, it's a standing pre-flight habit
+   given the pipeline's confirmed lack of real dedup.
+
+---
+
 ## Session 26 — August 4, 2026 (new game-flow features, in progress)
 **Branch:** `claude/session-wrapup-cleanup-blocker-3val9a` (reset fresh from `main` at the top of
 this session, per Session 25's own recommendation)
