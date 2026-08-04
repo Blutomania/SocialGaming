@@ -1,33 +1,33 @@
 {
   "crime": {
-    "value": null,
-    "confidence": "low",
-    "quote": null
+    "value": "Murder by knife. Howard Jordan, posing as Roy Baker, lures his wife Carolyn to a Village apartment and kills her. Central question: how does the killer establish an alibi while committing the crime under a false identity?",
+    "confidence": "high",
+    "quote": "\"I'm going to kill you, Carolyn,\" he said, and showed her the knife. She died slowly, and noisily."
   },
   "victim": {
-    "value": null,
-    "confidence": "low",
-    "quote": null
+    "value": "Carolyn Jordan, the wife. She is 'killable' because she represents everything Howard despises about his constrained life\u2014her coldness, her infidelity, her demand that he remain Howard Jordan instead of Roy Baker, and her financial control over him.",
+    "confidence": "high",
+    "quote": "She had made a Howard Jordan of him, and for that he would hate her forever."
   },
   "closed_world": {
-    "value": null,
-    "confidence": "low",
-    "quote": null
+    "value": "New York City during a specific night, split between Howard's office (with sign-in register), a midtown hotel (alibi location), and Roy Baker's Christopher Street apartment (crime scene). The urban setting allows identity fragmentation but constrains escape routes.",
+    "confidence": "high",
+    "quote": "At a quarter to seven he left the building again, this time failing to sign himself out. He took a cab to his apartment and was inside it by ten minutes after seven."
   },
   "culprit_and_motive": {
-    "value": null,
-    "confidence": "low",
-    "quote": null
+    "value": "Howard Jordan / Roy Baker is the culprit. Motive: hatred born from discovering his wife's infidelity, but deeper motive is existential\u2014he murdered the life he hated (Howard Jordan) by destroying its anchor (Carolyn), believing he could live permanently as Roy Baker.",
+    "confidence": "high",
+    "quote": "hated her more every day, not only for cheating but for making him an ad man instead of a writer, for making him live in that house instead of a Village apartment"
   },
   "resolution": {
-    "value": null,
-    "confidence": "low",
-    "quote": null
+    "value": "No resolution. The police never catch Howard Jordan. Fingerprint evidence identifies Carolyn's body and implicates 'Roy Baker' as the killer, but the false identity serves as a perfect scapegoat. Jordan's alibi holds (office until 11:15, then hotel). The mystery remains unsolved.",
+    "confidence": "high",
+    "quote": "That, incredibly, was all there was to it."
   },
   "investigator": {
-    "value": null,
-    "confidence": "low",
-    "quote": null
+    "value": "The reader. No detective investigates; police conduct routine checks. The narrative voice is omniscient, revealing Jordan's internal psychology and crimes. We are made complicit witnesses to a perfect crime rather than investigators solving it.",
+    "confidence": "high",
+    "quote": "For form's sake, the New York police checked Jordan's whereabouts at the time of the murder, and they found that he'd been at his office until eleven-fifteen"
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
