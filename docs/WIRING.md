@@ -502,11 +502,36 @@ arrived first. No elimination on a wrong guess — a player can keep trying.
 
 Every attempt — right or wrong — broadcasts `accusation_made` to the whole room
 (`{player_name, accused_name, correct}`); a winning guess additionally broadcasts
-`game_won` (`{winner_player_id, winner_name, solution}`), which is what should
-trigger the end-game resolution/summation scene once that's built. `GET
-/games/{id}/result` gives the same outcome as a snapshot, for a client that missed
-the broadcast (late join, reconnect) — `{"solved": false}` before anyone's won,
-otherwise `{"solved": true, "winner_player_id", "winner_name", "solution"}`.
+`game_won` (`{winner_player_id, winner_name, solution, plot_reveal, winner_findings}`).
+`GET /games/{id}/result` gives the identical payload as a snapshot, for a client that
+missed the broadcast (late join, reconnect) — `{"solved": false}` before anyone's won,
+otherwise the same shape as `game_won` minus the broadcast-only framing.
+
+### End-of-game resolution reveal (`plot_reveal` + `winner_findings`)
+
+**Explicitly zero new AI calls** — the owner tabled all generative-AI video/text work for
+this screen to save cost and get the UI's look-and-feel right first. Both fields are pure
+reformatting of content that already exists by the time the game is won:
+
+- **`plot_reveal`** (`_format_plot_reveal()`) — the mystery's own `solution` (already
+  generated once, at mystery creation) reshaped for display: `culprit`, `method`, `motive`,
+  `how_to_deduce` (the string reasoning chain), and `key_evidence` — resolved from
+  `solution.key_evidence`'s bare evidence IDs into the full `{id, name, description}`
+  objects, so the reveal can actually name what was found instead of citing `"E1"`.
+- **`winner_findings`** (`_winner_findings_summary()`) — the winning player's own
+  `witness_findings` / `investigation_findings` / `lead_findings`, exactly as collected
+  during play. Deliberately shown to the **whole room**, not kept private to the winner —
+  the point of this screen is the shared reveal of *how* they got there, not just *that*
+  they won.
+
+**Video stays a placeholder for now.** The client should render a static
+`"Video Scene Will Play Here"` panel where a future resolution-video clip would go — no
+backend field for it, since there's nothing generated to point to yet. When video work
+actually gets picked back up, the natural shape (mirroring the opening scene's
+`_generate_cinematic_brief()` two-output split — see "Cinematic brief schema" above) is a
+`_generate_resolution_video_brief()` that reuses `plot_reveal`'s already-resolved content as
+its prompt input, rather than re-deriving anything from `solution` a second time. Not built;
+not scoped until the owner decides to un-table video generation.
 
 ---
 

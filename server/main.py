@@ -536,6 +536,52 @@ def _candidate_questions_for(mystery: dict, character_name: str) -> list[str]:
     return _CANDIDATE_QUESTIONS.get(role, _CANDIDATE_QUESTIONS["default"])
 
 
+def _format_plot_reveal(mystery: dict) -> dict:
+    """Format the mystery's already-generated solution into the end-of-game
+    plot reveal. Zero API cost -- pure formatting over content generated once
+    at mystery creation (see GenerateRequest/_generate_mystery_dict), never
+    regenerated here. Resolves solution.key_evidence (a list of evidence IDs)
+    into the full evidence objects so the reveal can name what was found,
+    not just cite an ID."""
+    solution = mystery.get("solution", {})
+    evidence_by_id = {e["id"]: e for e in mystery.get("evidence", [])}
+    key_evidence = [
+        {"id": eid, "name": evidence_by_id[eid]["name"], "description": evidence_by_id[eid]["description"]}
+        for eid in solution.get("key_evidence", [])
+        if eid in evidence_by_id
+    ]
+    return {
+        "culprit": solution.get("culprit", ""),
+        "method": solution.get("method", ""),
+        "motive": solution.get("motive", ""),
+        "how_to_deduce": solution.get("how_to_deduce", ""),
+        "key_evidence": key_evidence,
+    }
+
+
+def _winner_findings_summary(game: dict, winner_id: str) -> dict:
+    """The winning player's own uncovered findings -- witness answers, scene
+    investigations, followed leads -- pulled from data already collected
+    during play. Zero API cost, pure data shaping. Shown to the whole room at
+    game end on purpose (not kept private to the winner): the point is the
+    shared reveal of *how* they got there, not just *that* they won."""
+    player = game["players"].get(winner_id, {})
+    return {
+        "witness_findings": player.get("witness_findings", []),
+        "investigation_findings": player.get("investigation_findings", []),
+        "lead_findings": player.get("lead_findings", []),
+    }
+
+
+def _build_resolution_reveal(game: dict, winner_id: str) -> dict:
+    """Shared by the game_won broadcast and GET /result so a client that
+    missed the broadcast (late join, reconnect) sees the identical reveal."""
+    return {
+        "plot_reveal": _format_plot_reveal(game["mystery"]),
+        "winner_findings": _winner_findings_summary(game, winner_id),
+    }
+
+
 def _new_game_id() -> str:
     return str(uuid.uuid4())[:8].upper()
 
@@ -1579,6 +1625,7 @@ def accuse(game_id: str, req: AccuseRequest):
             "winner_player_id": req.player_id,
             "winner_name": player["name"],
             "solution": solution,
+            **_build_resolution_reveal(game, req.player_id),
         })
 
     return {"correct": correct, "won": won}
@@ -1587,9 +1634,12 @@ def accuse(game_id: str, req: AccuseRequest):
 @app.get("/games/{game_id}/result")
 def get_result(game_id: str):
     """
-    Snapshot of the game's outcome — for a client that missed the game_won
-    broadcast (e.g. joined late, reconnected). Solution is only included
-    once the game has actually been won.
+    Snapshot of the game's outcome and end-of-game resolution reveal — for a
+    client that missed the game_won broadcast (e.g. joined late,
+    reconnected), or for the resolution screen itself. Everything here is
+    already-generated content (the mystery's own solution + the winner's own
+    findings, both produced before this call) reformatted for display --
+    zero new API calls. Only included once the game has actually been won.
     """
     game = _get_game(game_id)
     if game is None:
@@ -1602,6 +1652,7 @@ def get_result(game_id: str):
         "winner_player_id": winner_id,
         "winner_name": game["players"].get(winner_id, {}).get("name", "Unknown"),
         "solution": game["mystery"].get("solution", {}),
+        **_build_resolution_reveal(game, winner_id),
     }
 
 

@@ -9,7 +9,7 @@ Use this file to onboard any new session without losing context.
 **Branch:** `claude/session-wrapup-cleanup-blocker-3val9a` (reset fresh from `main` at the top of
 this session, per Session 25's own recommendation)
 **Status:** In progress — building incrementally, one reviewed piece at a time, per explicit owner
-request. This entry covers piece 1 of 3; pieces 2-3 not started yet.
+request. Pieces 1-2 of 3 done and verified below; piece 3 not started yet.
 
 ### New scope this session
 Owner proposed three new features in one design conversation:
@@ -62,12 +62,37 @@ before any prompt submitted → 400; `mystery-brief` before generation → 400, 
 a prompt overwrites rather than duplicates). Full app still loads cleanly, 34 routes (up from 33).
 Documented in `docs/WIRING.md` → "Room-first lobby flow."
 
-### What is next (pieces 2-3, not started)
-- End-of-game resolution reveal (piece 2): format the mystery's *already-generated* `solution`
-  fields into a plot reveal, pull the winning player's own findings, `"Video Scene Will Play
-  Here"` placeholder — explicitly zero new AI calls.
-- Post-game voting (piece 3): surface `submitted_prompts` left over from piece 1, vote or
-  winner-picks, plus the "same room persists across mysteries" mechanic the owner flagged.
+### Piece 2 built and verified: end-of-game resolution reveal (zero new AI calls)
+`server/main.py`:
+- New `_format_plot_reveal(mystery)` — reshapes the mystery's own `solution` (already generated
+  once at mystery creation) into `{culprit, method, motive, how_to_deduce, key_evidence}`, resolving
+  `solution.key_evidence`'s bare evidence IDs into full `{id, name, description}` objects so the
+  reveal can name what was found, not just cite `"E1"`. Pure formatting, no API call.
+- New `_winner_findings_summary(game, winner_id)` — the winning player's own
+  `witness_findings`/`investigation_findings`/`lead_findings`, exactly as collected during play.
+  Deliberately shown to the whole room, not kept private — the point is the shared reveal of *how*
+  they got there. Also zero API cost, pure data shaping.
+- New `_build_resolution_reveal(game, winner_id)` — thin shared wrapper so the `game_won` broadcast
+  and `GET /games/{id}/result` return the identical reveal shape; both now include `plot_reveal` and
+  `winner_findings` alongside the existing `solution`/`winner_name` fields.
+- Video stays a **client-side placeholder only** (`"Video Scene Will Play Here"`) — no backend
+  field, no dormant prompt-builder code added since there's nothing yet to point it at. Documented
+  in `docs/WIRING.md` what a future `_generate_resolution_video_brief()` would reuse (`plot_reveal`'s
+  already-resolved content) if/when video work gets un-tabled, without actually building it now.
+
+**Verified end-to-end**, not just written: extended the piece-1 stubbed-LLM test through a full
+game — host investigates an area (finding injected directly into game state, since the
+investigate-area endpoint's own phase-gating is pre-existing code, not what this test targets),
+accuses correctly, wins — then confirmed `GET /result` returns `plot_reveal.culprit == "Bob"`,
+evidence IDs correctly resolved to names (`"Knife"`, `"Note"`), `how_to_deduce` text intact, and
+`winner_findings.investigation_findings` contains the exact finding recorded during play. Full app
+still loads cleanly, still 34 routes (extended existing endpoints, added no new ones). Documented in
+`docs/WIRING.md` → "End-of-game resolution reveal."
+
+### What is next (piece 3, not started)
+- Post-game voting: surface `submitted_prompts` left over from piece 1, vote or winner-picks, plus
+  the "same room persists across mysteries" mechanic the owner flagged as the actual point (subtly
+  encouraging the same group to reconvene, rather than a fresh room each time).
 
 ---
 
