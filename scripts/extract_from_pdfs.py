@@ -348,7 +348,7 @@ def _call_claude_for_protocol(
         try:
             message = client.messages.create(
                 model=model,
-                max_tokens=1000,
+                max_tokens=3000,
                 messages=[{"role": "user", "content": prompt}],
             )
         except Exception as e:
