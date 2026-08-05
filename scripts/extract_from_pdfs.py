@@ -391,7 +391,7 @@ def extract_pdf_anthology(
     client: "anthropic.Anthropic",
     protocol_ids: list[str],
     db_dir: Path,
-    model: str = DEFAULT_MODEL,
+    model: "str | dict[str, str]" = DEFAULT_MODEL,
     verbose: bool = True,
 ) -> tuple[int, int]:
     """Extract each detected short story in an anthology PDF as its own
@@ -445,7 +445,8 @@ def extract_pdf_anthology(
         try:
             for pid in protocol_ids:
                 prompt = extraction_prompt(pid, sampled_text, max_text_chars=len(sampled_text))
-                extracted, warning = _call_claude_for_protocol(client, model, prompt, pid, label, verbose=verbose)
+                model_for_pid = _resolve_model(model, pid)
+                extracted, warning = _call_claude_for_protocol(client, model_for_pid, prompt, pid, label, verbose=verbose)
                 if warning:
                     warnings.append(f"{pid}: {warning}")
                 merged.update(extracted)
@@ -563,7 +564,7 @@ def extract_pdf(
     client: "anthropic.Anthropic",
     protocol_ids: list[str],
     db_dir: Path,
-    model: str = DEFAULT_MODEL,
+    model: "str | dict[str, str]" = DEFAULT_MODEL,
     verbose: bool = True,
 ) -> tuple[Path | None, str]:
     """Extract a single PDF and save results.
@@ -607,7 +608,8 @@ def extract_pdf(
             # by extract_text_from_pdf; pass its own length through so
             # extraction_prompt's internal _sample_text doesn't re-truncate it.
             prompt = extraction_prompt(pid, text, max_text_chars=len(text))
-            extracted, warning = _call_claude_for_protocol(client, model, prompt, pid, label, verbose=verbose)
+            model_for_pid = _resolve_model(model, pid)
+            extracted, warning = _call_claude_for_protocol(client, model_for_pid, prompt, pid, label, verbose=verbose)
             if warning:
                 warnings.append(f"{pid}: {warning}")
             merged.update(extracted)
@@ -656,6 +658,14 @@ def _collect_pdfs(sources: list[str]) -> list[Path]:
     return list(dict.fromkeys(pdfs))  # deduplicate, preserve order
 
 
+def _resolve_model(model: "str | dict[str, str]", pid: str) -> str:
+    """model is either a single model name (used for every protocol) or a
+    dict of {protocol_id: model_name} with a "default" fallback key."""
+    if isinstance(model, dict):
+        return model.get(pid, model.get("default", DEFAULT_MODEL))
+    return model
+
+
 def _protocol_arg(value: str) -> str:
     """Validate a --protocol value like 'P1' or a concatenation like 'P1P2'."""
     pids = value.replace("P", " P").split()
@@ -694,6 +704,12 @@ def main() -> None:
         help=f"Claude model to use (default: {DEFAULT_MODEL}). Use '{SONNET_MODEL}' for higher quality.",
     )
     parser.add_argument(
+        "--model-for", action="append", default=[], metavar="PID=MODEL",
+        help="Override the model for one protocol, e.g. --model-for P2=claude-sonnet-4-6 "
+             "(repeatable, one per protocol). Any protocol not overridden falls back to "
+             "--model. Does not affect --fill-resolution's separate pass.",
+    )
+    parser.add_argument(
         "--fill-resolution", action="store_true",
         help="After extraction, make a targeted second call on the final pages for any "
              "file where resolution confidence is low. Adds ~$0.001 per affected file.",
@@ -717,12 +733,28 @@ def main() -> None:
     db_dir = Path(args.db_dir)
     protocol_ids = args.protocol.replace("P", " P").split()  # "P1P2" → ["P1","P2"]
 
+    model_overrides: dict[str, str] = {}
+    for item in args.model_for:
+        pid, sep, model_name = item.partition("=")
+        pid = pid.strip().upper()
+        if not sep or pid not in PROTOCOLS or not model_name.strip():
+            parser.error(
+                f"--model-for expects PID=MODEL with PID one of {list(PROTOCOLS.keys())}, "
+                f"got {item!r}"
+            )
+        model_overrides[pid] = model_name.strip()
+    model_spec = {"default": args.model, **model_overrides} if model_overrides else args.model
+
     pdfs = _collect_pdfs(args.sources)
 
     if not pdfs:
         sys.exit("No PDF files found at the given path(s).")
 
-    print(f"\nFound {len(pdfs)} PDF(s)  |  protocol: {args.protocol}\n")
+    model_desc = args.model if not model_overrides else (
+        ", ".join(f"{pid}={m}" for pid, m in model_overrides.items())
+        + f", default={args.model}"
+    )
+    print(f"\nFound {len(pdfs)} PDF(s)  |  protocol: {args.protocol}  |  model: {model_desc}\n")
     for p in pdfs:
         print(f"  {p}")
 
@@ -752,12 +784,12 @@ def main() -> None:
         print(f"\n[{i+1}/{len(pdfs)}]")
 
         if args.anthology:
-            s, f_ = extract_pdf_anthology(pdf_path, client, protocol_ids, db_dir, model=args.model)
+            s, f_ = extract_pdf_anthology(pdf_path, client, protocol_ids, db_dir, model=model_spec)
             success += s
             failed += f_
             continue
 
-        out_path, full_text = extract_pdf(pdf_path, client, protocol_ids, db_dir, model=args.model)
+        out_path, full_text = extract_pdf(pdf_path, client, protocol_ids, db_dir, model=model_spec)
         if out_path is None:
             failed += 1
         else:
