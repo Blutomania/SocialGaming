@@ -656,6 +656,19 @@ def _collect_pdfs(sources: list[str]) -> list[Path]:
     return list(dict.fromkeys(pdfs))  # deduplicate, preserve order
 
 
+def _protocol_arg(value: str) -> str:
+    """Validate a --protocol value like 'P1' or a concatenation like 'P1P2'."""
+    pids = value.replace("P", " P").split()
+    unknown = [pid for pid in pids if pid.upper() not in PROTOCOLS]
+    if not pids or unknown:
+        valid = "', '".join(PROTOCOLS.keys())
+        raise argparse.ArgumentTypeError(
+            f"invalid protocol '{value}' — combine any of '{valid}' "
+            f"(e.g. 'P1', 'P1P2')"
+        )
+    return value
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Extract mystery parts from local PDF files.",
@@ -668,8 +681,9 @@ def main() -> None:
     )
     parser.add_argument(
         "--protocol", default=DEFAULT_PROTOCOL,
-        choices=list(PROTOCOLS.keys()),
-        help=f"Extraction depth (default: {DEFAULT_PROTOCOL})",
+        type=_protocol_arg,
+        help=f"Extraction depth: any of {list(PROTOCOLS.keys())}, or a concatenation "
+             f"like 'P1P2' (default: {DEFAULT_PROTOCOL})",
     )
     parser.add_argument(
         "--db-dir", default=DEFAULT_DB_DIR, metavar="DIR",
