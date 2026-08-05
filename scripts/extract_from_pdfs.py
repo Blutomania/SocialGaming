@@ -416,7 +416,7 @@ def extract_pdf_anthology(
     success, failed = 0, 0
     for story in stories:
         title_slug = _slug(story["title"])[:40]
-        out_path = db_dir / "extractions" / f"pdf_{book_slug[:30]}__story{story['index']:02d}_{title_slug}.json"
+        out_path = db_dir / "extractions" / f"pdf_{book_slug}__story{story['index']:02d}_{title_slug}.json"
 
         if out_path.exists():
             if verbose:
