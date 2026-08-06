@@ -19,10 +19,17 @@ host personalization; Avatars has no MYF equivalent yet. This is the same "stres
 casual-first" design mandate already written up below as this file's own **Design Thesis:
 Casual-First** section — nothing to add there, it already covers this.
 
-**Known sync gap:** CYM's `coherence/engine.py` was substantially rebuilt in the same session
-(real `Rule`/`Applicability`/`RuleSet` composition, not just the bare Issue/CoherenceReport
-sketch this branch's copy still has) — pull the current version from CYM's branch before
-actually wiring MYF to it, don't build against the stale copy here.
+**Correction (August 6, 2026, verified against CYM's actual `main` branch, not assumed):** this
+note previously claimed CYM's `coherence/engine.py` was "substantially rebuilt" with richer
+`Rule`/`Applicability`/`RuleSet` composition elsewhere — that was never actually checked against
+CYM's real state and was wrong. In fact `coherence/` didn't exist on CYM's `main` **at all** until
+today — it existed only on this MYF branch, unused by either project. Fixed today, CYM-side only:
+`coherence_validator.py` now genuinely subclasses `coherence.engine.RuleSet`
+(`MysteryPartsRuleSet`, `MysteryRuleSet` — see PR #14, `SESSIONS.md` Session 28 on `main`).
+MYF's side is still not wired — `lib/coherence.js` is JS and needs this session's Python port to
+land first (see item 31/33 below). When that happens, pull `coherence/engine.py` straight from
+`main` (now the real source of truth) rather than this branch's copy, which is stale relative to
+it in naming only — the classes are otherwise identical.
 
 ## Current To-Do
 1. ~~**Review Round variation types**~~ — 8 variations confirmed. See `GAME_DESIGN.md`.
