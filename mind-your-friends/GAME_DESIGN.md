@@ -171,6 +171,7 @@ pair that the rule can meaningfully act on. Examples:
 | Lightning Round | No special constraint — any question works |
 | Double Down | No special constraint — any question works |
 | Steal | Must have a definitive correct answer (no opinion/subjective questions) |
+| The Lineup | Must resolve to exactly one unambiguous correct option from a small fixed set — no free-text answer, same category as Steal's "definitive correct answer" requirement |
 
 This is a **generation-time constraint**, same pattern as format-constraining
 cards: the round rule feeds into the prompt so Claude builds the question to
@@ -235,7 +236,7 @@ how the question plays out on top of whatever question type is active. E.g.
 
 ## Round Rules (Variations)
 Each question is modified by an active round rule. Rules rotate across the game.
-Full rule list — 7 confirmed, 1 backburnered:
+Full rule list — 8 confirmed, 1 backburnered:
 
 | # | Name | What changes | Input-agnostic? |
 |---|---|---|---|
@@ -247,6 +248,7 @@ Full rule list — 7 confirmed, 1 backburnered:
 | 6 | Double Down | Wager auto-doubled, no backing out | Yes |
 | 7 | Steal | Wrong answer opens a steal window for other players | Yes |
 | 8 | Worst Answer Wins | Everyone submits; worst answer scores lowest (wins). Scored on 3 axes: factually wrong (1-10), creatively wrong (1-10), plausibility (1-10). Lowest total wins. | Yes |
+| 9 | The Lineup | Pick the right one from a lineup of look-alikes — see below | N/A — no free-text answer at all |
 | — | Audience Poll | Others predict active player's answer *(out of v1 — backburnered)* | Yes |
 
 ### Worst Answer Wins — How It Works
@@ -275,6 +277,35 @@ When the Steal round rule is active and the answerer gets it wrong:
 **Redirect interaction**: if a Redirect card changed the answerer, the
 redirected player is the one excluded from the steal pool — the original
 active player can still steal.
+
+### The Lineup — How It Works
+Not free-text at all — a multiple-choice "spot the real one" mechanic. 5
+options render (text list or color swatches), exactly one correct, the rest
+deliberately close near-misses.
+1. The active player still picks a category and the wager-decider still sets
+   the wager, same as any other round — the round loop doesn't change.
+2. On QUESTION, one of two flavors is chosen at random:
+   - **Text** — a fact-bank-grounded multiple-choice question (correct
+     answer verified against the fact bank; decoys are real adjacent
+     entities or believable invented look-alikes).
+   - **Color** — a curated real color (sports team, brand) plus 4
+     procedurally-perturbed near-miss swatches. No API call for this flavor.
+3. **Any player may tap any option, at any time, any number of times.**
+   Wrong taps fail silently — no penalty, no lockout, the round stays open.
+   First correct tap (server-ordered — no real race) claims the full wager
+   and ends the turn immediately.
+4. If nobody taps the correct option before the timer expires, the question
+   voids unclaimed — same shape as an unclaimed Steal window.
+
+**Known limitation:** color flavor is category-agnostic — it draws from its
+own curated color pool rather than the turn's picked category, since a real
+color needs a verified hex value that can't be reliably tied to arbitrary
+player-submitted category strings. The category pick still happens (keeps
+the round loop and wager-sizing intact) but only shapes the question for
+text flavor. Format-constraining cards (Boxed In, Language Barrier) also
+have no effect on Lineup questions, since a "pick one" answer has no
+free-text format to constrain — documented rather than special-cased, same
+as this game's other scoped-out edge cases.
 
 ### How round rules are assigned
 **Random**, assigned each turn by the server.

@@ -89,6 +89,15 @@ export const ROUND_RULES = {
     timerSeconds: BASE_TIMER_SECONDS * 2,
     submissionBased: true,
   },
+  theLineup: {
+    id: 'theLineup',
+    name: 'The Lineup',
+    emoji: '🕵️',
+    description: 'Pick the right one from a lineup of look-alikes. First correct tap wins — wrong taps just fail, no penalty.',
+    promptInstruction: null,
+    timerSeconds: BASE_TIMER_SECONDS,
+    lineupBased: true,
+  },
 };
 
 export function pickRandomRoundRule() {

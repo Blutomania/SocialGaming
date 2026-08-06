@@ -53,8 +53,9 @@ export function roundConstraints(roundRule) {
     timerSeconds: rule.timerSeconds ?? BASE_TIMER_SECONDS,
     wagerMultiplier: rule.wagerMultiplier ?? 1,
     stealOnWrong: rule.stealOnWrong ?? false,
+    lineupBased: rule.lineupBased ?? false,
     promptInstructions: rule.promptInstruction ? [rule.promptInstruction] : [],
-    answerFormat: rule.id === 'oneWordOnly' ? 'single-word' : 'phrase',
+    answerFormat: rule.id === 'oneWordOnly' ? 'single-word' : rule.lineupBased ? 'lineup' : 'phrase',
   };
 }
 
@@ -118,6 +119,7 @@ export function turnConstraints(roundCtx, { category, wager, resolvedCard }) {
     answerFormat,
     timerSeconds,
     stealOnWrong: roundCtx.stealOnWrong,
+    lineupBased: roundCtx.lineupBased,
     roundRuleId: roundCtx.roundRuleId,
     roundRuleName: roundCtx.roundRuleName,
     promptInstructions,
@@ -200,6 +202,33 @@ export function validateQuestion(question, constraints) {
       severity: INFO,
       message: `Baseline expects >3 word answers for card interplay; got "${answer}" (${wordCount} word).`,
     });
+  }
+
+  if (constraints.lineupBased) {
+    const lineup = question.lineup;
+    if (!lineup || !Array.isArray(lineup.options) || lineup.options.length < 2) {
+      issues.push({
+        code: 'lineup.invalid_options',
+        severity: BLOCKING,
+        message: 'The Lineup requires at least 2 options.',
+      });
+    } else {
+      const ids = lineup.options.map((o) => o.id);
+      if (new Set(ids).size !== ids.length) {
+        issues.push({
+          code: 'lineup.duplicate_option_ids',
+          severity: BLOCKING,
+          message: 'The Lineup options must have unique ids.',
+        });
+      }
+      if (!lineup.correctOptionId || !ids.includes(lineup.correctOptionId)) {
+        issues.push({
+          code: 'lineup.missing_correct_option',
+          severity: BLOCKING,
+          message: 'The Lineup correctOptionId must reference one of the options.',
+        });
+      }
+    }
   }
 
   const blocking = issues.some((i) => i.severity === BLOCKING);

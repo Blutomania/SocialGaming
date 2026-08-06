@@ -115,6 +115,9 @@ function AnswerPhase({ game, myId, socket }) {
   if (game.roundRule.submissionBased) {
     return <SubmissionAnswerPhase game={game} socket={socket} />;
   }
+  if (game.roundRule.lineupBased) {
+    return <LineupPhase game={game} socket={socket} />;
+  }
 
   const answerer = game.players[game.answererIndex];
   const isAnswerer = answerer.id === myId;
@@ -219,6 +222,55 @@ function SubmissionAnswerPhase({ game, socket }) {
   );
 }
 
+// The Lineup: anyone may tap any option, any number of times, until someone
+// gets it right or the timer runs out. Wrong taps get a brief red flash via
+// the ack callback (server doesn't broadcast on a wrong guess — see
+// server.js) rather than a real error, since being wrong here is the
+// expected common case, not a failure.
+function LineupPhase({ game, socket }) {
+  const [wrongId, setWrongId] = useState(null);
+  const timer = game.timerSecondsOverride ?? game.roundRule.timerSeconds;
+  const isColor = game.lineup?.flavor === 'color';
+
+  const pick = (optionId) => {
+    socket.emit('turn:attemptLineup', { optionId }, (res) => {
+      if (res && res.correct === false) {
+        setWrongId(optionId);
+        setTimeout(() => setWrongId((cur) => (cur === optionId ? null : cur)), 500);
+      }
+    });
+  };
+
+  return (
+    <div className="space-y-3 text-center">
+      <p className="text-game-gold">{game.hostQuip}</p>
+      <p className="text-lg font-semibold">{game.question}</p>
+      <p className="text-sm text-gray-400">
+        Wager: {game.currentWager} · {timer}s · Anyone can tap — first correct pick wins!
+      </p>
+
+      <div className="space-y-2">
+        {game.lineup?.options.map((opt, i) => (
+          <button
+            key={opt.id}
+            onClick={() => pick(opt.id)}
+            className={`flex w-full items-center gap-3 rounded px-3 py-2 text-left transition ${
+              wrongId === opt.id ? 'ring-2 ring-game-red' : ''
+            } ${isColor ? 'hover:opacity-80' : 'bg-game-dark font-semibold hover:bg-game-accent/40'}`}
+          >
+            <span className="font-mono text-sm text-gray-400">{i + 1}.</span>
+            {isColor ? (
+              <span className="h-10 flex-1 rounded" style={{ backgroundColor: opt.hex }} />
+            ) : (
+              <span>{opt.label}</span>
+            )}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function StealPhase({ game, socket }) {
   const [answer, setAnswer] = useState('');
   const [inputMode, setInputMode] = useState('text');
@@ -277,6 +329,10 @@ function ResultPhase({ game }) {
     return <WorstAnswerResults game={game} result={result} />;
   }
 
+  if (result.lineupWinner !== undefined) {
+    return <LineupResults game={game} result={result} />;
+  }
+
   const halfWager = Math.round(result.wager / 2);
   const headline = result.stolen
     ? result.correct
@@ -295,6 +351,48 @@ function ResultPhase({ game }) {
         Correct answer: {game.answer}
       </p>
       <p>{result.feedback}</p>
+    </div>
+  );
+}
+
+// The Lineup result: either someone spotted it first, or the timer ran out
+// unclaimed. Reveals the correct option (swatch for color flavor, label for
+// text) alongside the rest of the lineup.
+function LineupResults({ game, result }) {
+  return (
+    <div className="space-y-3 text-center">
+      {result.lineupWinner ? (
+        <p className="text-2xl font-bold text-game-green">
+          {result.winnerName} spotted it! +{result.wager}
+        </p>
+      ) : (
+        <p className="text-2xl font-bold text-game-red">
+          Nobody spotted it — {result.wager} pts unclaimed!
+        </p>
+      )}
+      <p className="text-sm text-gray-400">Correct answer: {game.answer}</p>
+
+      <div className="space-y-2">
+        {game.lineup?.options.map((opt, i) => {
+          const isCorrect = opt.id === result.correctOptionId;
+          return (
+            <div
+              key={opt.id}
+              className={`flex items-center gap-3 rounded px-3 py-2 ${
+                isCorrect ? 'ring-2 ring-game-gold' : 'bg-game-dark'
+              }`}
+            >
+              <span className="font-mono text-sm text-gray-400">{i + 1}.</span>
+              {opt.hex ? (
+                <span className="h-10 flex-1 rounded" style={{ backgroundColor: opt.hex }} />
+              ) : (
+                <span className="flex-1 text-left">{opt.label}</span>
+              )}
+              {isCorrect && <span className="text-game-gold">✓</span>}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

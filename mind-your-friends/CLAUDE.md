@@ -267,6 +267,53 @@ actually wiring MYF to it, don't build against the stale copy here.
       FastAPI endpoints (mirroring CYM's split) vs. some other division of client/server logic.
       That design pass hasn't happened — this item is "decide to do it and put it first," not
       a worked-out migration plan.
+32. ~~**The Lineup round rule**~~ — new 9th round rule, owner-requested one more web feature
+    before starting item 31's Godot port. Multiple-choice "spot the real one" mechanic, not
+    free-text: 5 options (text list or color swatches), one correct, decoys deliberately close.
+    Any player may tap any option any number of times — wrong taps fail silently, no penalty,
+    no lockout — first correct tap (server-ordered, no real race) wins the wager. Full design in
+    `GAME_DESIGN.md` → "The Lineup — How It Works" and the Question–Rule Coherence table.
+    - Two flavors, chosen randomly per question: **text** (fact-bank-grounded multiple choice
+      via new `generateLineupOptions()` in `claudeClient.js` — correct answer verified against
+      the fact bank rather than trusted to live generation, same reliability fix as the rest of
+      this file's fact-bank work; decoys are low-stakes creative generation) and **color** (a
+      curated `{entity, label, hex}` table in new `lib/lineupData.js` + procedurally-perturbed
+      near-miss swatches — no API call at all for this flavor, since a real hex code is a
+      factual claim Claude shouldn't be trusted to invent).
+    - `lib/roundRules.js`: new `theLineup` entry (`lineupBased: true`, no `transform` — a tap
+      isn't free text).
+    - `lib/coherence.js`: `roundConstraints()`/`turnConstraints()` propagate `lineupBased`;
+      `validateQuestion()` checks the generated lineup has ≥2 options, unique ids, and a
+      `correctOptionId` that references one of them.
+    - `lib/gameState.js`: `buildLineupQuestion()` (flavor selection + content assembly),
+      `attemptLineupPick()` (FCFS win check — deliberately returns `{correct:false}` instead of
+      throwing for a late/invalid tap, since this mechanic invites genuinely simultaneous taps
+      by design and a throw would hit the client's global `error` handler, which replaces the
+      whole page, not just the answer widget), `expireLineup()` (timer-expiry, no winner).
+    - `server.js`: new `turn:attemptLineup` handler using a Socket.io ack callback (not the
+      `error` event) so a wrong tap gets local feedback without blowing up the page; timer
+      branch mirrors the existing `submissionBased`/steal pattern.
+    - `components/GameBoard.jsx`: new `LineupPhase` (ANSWER-phase tap UI, text or swatch grid)
+      and `LineupResults` (RESULT-phase reveal, correct option highlighted).
+    - `playerView()`: exposes `lineup.options` pre-reveal (safe — that's the multiple-choice UI
+      itself) and withholds `correctOptionId` until RESULT/GAME_OVER, same pattern as the
+      existing free-text `answer` field.
+    Verified end-to-end with a real 3-player Playwright game (round rule temporarily forced via
+    a local hack, reverted before commit, same convention as item 30's Worst Answer Wins
+    verification) and real Claude API calls: 21 Lineup questions rendered across a full game,
+    both flavors confirmed (color: "Which one is Starbucks green?", "Which one is Duke
+    University blue?", etc.; text: real fact-bank-grounded questions with 5 well-formed options
+    each), always exactly 5 options, 9 clean wins each correctly attributed to whichever
+    player's tap landed first with correct scoring, zero client or server errors.
+    **Known gap:** the timeout/no-winner path (`expireLineup`) wasn't exercised by this
+    playtest — simulated players found the correct option well within the 20s timer every
+    time — though the code path is a direct structural mirror of the already-proven
+    `expireSteal`. Known limitations (color flavor ignores the picked category; Boxed In/
+    Language Barrier cards have no effect on Lineup questions) are documented in
+    `GAME_DESIGN.md` rather than fixed, matching this file's existing style for scoped-out
+    edge cases.
+    **Next: item 31, the Godot port** — this was the one explicitly-approved exception to
+    starting it immediately.
 
 ## Design Thesis: Casual-First
 This game targets casual, social players — not competitive optimizers. Every

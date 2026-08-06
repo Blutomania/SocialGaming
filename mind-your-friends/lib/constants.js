@@ -19,3 +19,4 @@ export const CATEGORIES_PER_FETCH_BATCH = 3;
 export const DISCONNECT_GRACE_MS = 45000;
 export const DISCONNECT_VOTE_EXTENSION_MS = 45000;
 export const AUTO_ADVANCE_AWAY_THRESHOLD = 2;
+export const LINEUP_COLOR_FLAVOR_CHANCE = 0.4; // vs. text flavor — see lib/lineupData.js

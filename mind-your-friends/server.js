@@ -124,6 +124,22 @@ app.prepare().then(() => {
       });
     });
 
+    // The Lineup: any player may tap any option at any time. Wrong taps are
+    // NOT an error (the global 'error' event replaces the whole page — see
+    // page.js — wrong on purpose here) so the picker gets an ack callback
+    // for local feedback instead; only the winning tap broadcasts state.
+    socket.on('turn:attemptLineup', ({ optionId }, ack) => {
+      withMyGame(socket, (game, playerId) => {
+        gameState.recordPlayerAction(game, playerId);
+        const result = gameState.attemptLineupPick(game, playerId, optionId);
+        if (typeof ack === 'function') ack(result);
+        if (result.correct) {
+          broadcast(io, game);
+          scheduleNextTurn(io, game);
+        }
+      });
+    });
+
     socket.on('disconnect', () => {
       const entry = sockets.get(socket.id);
       if (entry) {
@@ -243,6 +259,13 @@ app.prepare().then(() => {
       if (game.roundRule.submissionBased) {
         gameState.autoFillMissingSubmissions(game);
         evaluateGroupAnswers(io, game).catch((err) => recoverFromFailedTurn(io, game, err));
+        return;
+      }
+
+      if (game.roundRule.lineupBased) {
+        gameState.expireLineup(game);
+        broadcast(io, game);
+        scheduleNextTurn(io, game);
         return;
       }
 

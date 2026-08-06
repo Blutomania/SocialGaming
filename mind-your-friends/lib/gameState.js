@@ -11,12 +11,14 @@ import { buildRoundHand, pickRandomLanguageRegister } from './cards.js';
 import { pickRandomRoundRule, transformAnswer } from './roundRules.js';
 import {
   generateQuestion,
+  generateLineupOptions,
   evaluateAnswer,
   evaluateWorstAnswers,
   fetchFactsBatch,
   moderateHeckle,
 } from './claudeClient.js';
 import { roundConstraints, turnConstraints, validateQuestion, pickFactoid } from './coherence.js';
+import { pickColorLineupEntry, buildColorOptions } from './lineupData.js';
 import {
   ROUNDS,
   QUESTIONS_PER_ROUND,
@@ -31,6 +33,7 @@ import {
   CATEGORY_OPTIONS_COUNT,
   DISCONNECT_GRACE_MS,
   AUTO_ADVANCE_AWAY_THRESHOLD,
+  LINEUP_COLOR_FLAVOR_CHANCE,
 } from './constants.js';
 
 export {
@@ -361,16 +364,20 @@ export async function runQuestionPhase(game) {
     resolvedCard: getEffectiveCard(game),
   });
 
-  const factoid = game.factBank
-    ? pickFactoid(game.factBank, game.currentCategory, constraints)
-    : null;
-
-  const result = await generateQuestion({
-    constraints,
-    factoid,
-    activePlayerName: getActivePlayer(game).name,
-    playerNames: game.players.map((p) => p.name),
-  });
+  let result;
+  if (game.roundRule.lineupBased) {
+    result = await buildLineupQuestion(game, constraints);
+  } else {
+    const factoid = game.factBank
+      ? pickFactoid(game.factBank, game.currentCategory, constraints)
+      : null;
+    result = await generateQuestion({
+      constraints,
+      factoid,
+      activePlayerName: getActivePlayer(game).name,
+      playerNames: game.players.map((p) => p.name),
+    });
+  }
 
   const validation = validateQuestion(result, constraints);
   if (!validation.passed) {
@@ -383,6 +390,114 @@ export async function runQuestionPhase(game) {
   if (game.roundRule.submissionBased) {
     game.submissions = {};
   }
+  return game;
+}
+
+// --- The Lineup (pick-one round rule) ---
+//
+// Two flavors, chosen randomly per question: "text" (a fact-bank-grounded
+// multiple-choice question via Claude — see generateLineupOptions) and
+// "color" (a curated real color + procedurally-perturbed near-miss decoys,
+// no API call — see lib/lineupData.js). Color flavor is intentionally
+// category-agnostic: real colors need verified hex values that can't be
+// reliably tied to arbitrary player-submitted category strings, so it draws
+// from its own curated pool instead of the turn's picked category. The
+// category pick still happens (keeps the round loop and wager-sizing intact)
+// but only shapes the question for text flavor.
+//
+// Known gap: format-constraining cards (Boxed In, Language Barrier) have no
+// effect on Lineup questions — their prompt instructions are never wired
+// into generateLineupOptions, since a "pick one" answer has no free-text
+// format to constrain. Left as a documented limitation rather than special-
+// cased, matching this file's existing style for scoped-out edge cases.
+async function buildLineupQuestion(game, constraints) {
+  if (Math.random() < LINEUP_COLOR_FLAVOR_CHANCE) {
+    const entry = pickColorLineupEntry();
+    const { options, correctOptionId } = buildColorOptions(entry);
+    return {
+      question: `Which one is ${entry.entity} ${entry.label}?`,
+      answer: `${entry.entity} (${entry.label})`,
+      hostQuip: `Spot the real ${entry.label}, ${getActivePlayer(game).name} — don't blink!`,
+      lineup: { flavor: 'color', options, correctOptionId },
+    };
+  }
+
+  const factoid = game.factBank
+    ? pickFactoid(game.factBank, game.currentCategory, constraints)
+    : null;
+
+  const result = await generateLineupOptions({
+    factoid,
+    activePlayerName: getActivePlayer(game).name,
+    playerNames: game.players.map((p) => p.name),
+  });
+
+  const options = result.options.map((label, i) => ({ id: `opt${i}`, label }));
+  const correctOptionId = options[result.correctIndex]?.id ?? options[0].id;
+
+  return {
+    question: result.question,
+    answer: result.options[result.correctIndex] ?? result.options[0],
+    hostQuip: result.hostQuip,
+    lineup: { flavor: 'text', options, correctOptionId },
+  };
+}
+
+// FCFS pick: any eligible player may tap any option at any time during
+// ANSWER. Wrong taps fail silently — no penalty, no lockout, the round stays
+// open — first correct tap (processed in socket-event order, so no race)
+// claims the wager and ends the turn.
+//
+// Unlike other phase-gated actions in this file, this deliberately does NOT
+// throw for a stale/late tap (phase already moved past ANSWER because
+// someone else won, or a dropped-out player's queued click) — this
+// mechanic invites genuinely simultaneous taps by design, and a throw here
+// would surface as the client's global 'error' handler, which replaces the
+// whole page (see app/game/[code]/page.js), not just this widget. Anything
+// short of a clean win is treated the same as a wrong guess.
+export function attemptLineupPick(game, playerId, optionId) {
+  if (!game.roundRule?.lineupBased) {
+    throw new Error('attemptLineupPick called on a non-Lineup round');
+  }
+  if (game.phase !== 'ANSWER') {
+    return { correct: false };
+  }
+  const player = getPlayer(game, playerId);
+  if (player.droppedOut) {
+    return { correct: false };
+  }
+  const lineup = game.currentQuestion.lineup;
+  const picked = lineup.options.find((o) => o.id === optionId);
+  if (!picked || optionId !== lineup.correctOptionId) {
+    return { correct: false };
+  }
+
+  const wager = game.currentWager;
+  player.score += wager;
+  logHighlight(game, `${player.name} spotted it in The Lineup and won ${wager} pts!`);
+  game.lastResult = {
+    correct: true,
+    lineupWinner: true,
+    winnerName: player.name,
+    wager,
+    correctOptionId: lineup.correctOptionId,
+  };
+  game.phase = 'RESULT';
+  return { correct: true };
+}
+
+// Called when the answer timer expires with nobody having tapped correctly.
+export function expireLineup(game) {
+  if (game.phase !== 'ANSWER') return game;
+  const wager = game.currentWager;
+  logHighlight(game, `Nobody spotted it in The Lineup — ${wager} pts unclaimed!`);
+  game.lastResult = {
+    correct: false,
+    lineupWinner: false,
+    wager,
+    correctOptionId: game.currentQuestion.lineup.correctOptionId,
+  };
+  game.phase = 'RESULT';
   return game;
 }
 
@@ -821,6 +936,7 @@ export function playerView(game, playerId) {
           emoji: game.roundRule.emoji,
           description: game.roundRule.description,
           submissionBased: !!game.roundRule.submissionBased,
+          lineupBased: !!game.roundRule.lineupBased,
         }
       : null,
     categoryOptions: game.categoryOptions ?? null,
@@ -840,8 +956,21 @@ export function playerView(game, playerId) {
     view.question = game.currentQuestion.question;
     view.hostQuip = game.currentQuestion.hostQuip;
 
+    if (game.currentQuestion.lineup) {
+      // Options are safe pre-reveal (that's the multiple-choice UI itself) —
+      // only correctOptionId is withheld until RESULT/GAME_OVER, same
+      // withholding pattern as the free-text `answer` field below.
+      view.lineup = {
+        flavor: game.currentQuestion.lineup.flavor,
+        options: game.currentQuestion.lineup.options,
+      };
+    }
+
     if (phase === 'RESULT' || phase === 'GAME_OVER') {
       view.answer = game.currentQuestion.answer;
+      if (game.currentQuestion.lineup) {
+        view.lineup.correctOptionId = game.currentQuestion.lineup.correctOptionId;
+      }
     }
   }
 

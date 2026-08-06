@@ -165,6 +165,72 @@ Respond with ONLY a JSON object, no other text:
   return parseJson(text);
 }
 
+// Generate a "pick the right one" multiple-choice question for The Lineup
+// round rule: 5 options, exactly one correct, the rest plausible near-misses.
+// Unlike generateQuestion(), the correct answer isn't fuzzy-matched later —
+// it's a discrete pick — so we ask Claude for an explicit correctIndex
+// instead of inferring it by string-matching the options.
+export async function generateLineupOptions({ factoid, activePlayerName, playerNames }) {
+  const anthropic = requireClient();
+
+  const otherPlayers = playerNames.filter((n) => n !== activePlayerName).join(', ');
+
+  let prompt;
+  if (factoid) {
+    prompt = `You are the AI host of "Mind Your Friends," a fast-paced multiplayer
+trivia game. Build a "pick the right one" multiple-choice question from this
+factoid for ${activePlayerName} (other players: ${otherPlayers}).
+
+Factoid: ${factoid.fact}
+Correct answer: ${factoid.answer}
+
+One of the 5 options MUST be exactly "${factoid.answer}". Generate 4 decoy
+options that are plausible near-misses — real adjacent entities that are NOT
+correct, or believable invented look-alikes. Decoys should genuinely tempt a
+guess, not be obviously wrong.
+
+Respond with ONLY a JSON object, no other text:
+{
+  "question": "the multiple-choice question text",
+  "options": ["option A", "option B", "option C", "option D", "option E"],
+  "correctIndex": 0,
+  "hostQuip": "a short, personalized, game-show-host-style line addressed to ${activePlayerName} introducing the question"
+}
+
+"options" must have exactly 5 short, distinct entries in random order.
+"correctIndex" is the 0-based index of "${factoid.answer}" within "options".`;
+  } else {
+    prompt = `You are the AI host of "Mind Your Friends," a fast-paced multiplayer
+trivia game. Generate one "pick the right one" multiple-choice question for
+${activePlayerName} (other players: ${otherPlayers}).
+
+Pick a real, verifiable fact with one clearly correct answer. Generate 4
+decoy options that are plausible near-misses — real adjacent entities that
+are NOT correct, or believable invented look-alikes. Decoys should genuinely
+tempt a guess, not be obviously wrong.
+
+Respond with ONLY a JSON object, no other text:
+{
+  "question": "the multiple-choice question text",
+  "options": ["option A", "option B", "option C", "option D", "option E"],
+  "correctIndex": 0,
+  "hostQuip": "a short, personalized, game-show-host-style line addressed to ${activePlayerName} introducing the question"
+}
+
+"options" must have exactly 5 short, distinct entries in random order.
+"correctIndex" is the 0-based index of the correct one within "options".`;
+  }
+
+  const response = await anthropic.messages.create({
+    model: MODEL,
+    max_tokens: 1024,
+    messages: [{ role: 'user', content: prompt }],
+  });
+
+  const text = response.content[0].text;
+  return parseJson(text);
+}
+
 // Evaluate a player's answer.
 //
 // `roundRule` — used for special evaluation behavior (ELI5 judges
