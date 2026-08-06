@@ -5,6 +5,27 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session — August 06, 2026 at 22:05
+**Branch:** `claude/coherence-engine-unification`
+**Latest commit:** `d5d0b59`
+
+### Files changed this session
+- `mind-your-friends/` — Untracked
+
+### Commits this session
+```
+d5d0b59 Unify coherence engine: bring coherence/ to main, refactor CYM onto RuleSet
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
 ## Session 28 — August 6, 2026 (coherence engine unification — CYM side)
 **Branch:** `claude/coherence-engine-unification` (new, off `main` — this session started on a
 Mind Your Friends session (`claude/mind-your-friends-app-tu47of`, `dev/mind-your-friends`-based)
