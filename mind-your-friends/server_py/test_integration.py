@@ -1,32 +1,74 @@
 # One-off integration test for the FastAPI port. Not a permanent pytest
 # suite (none exists for the JS version either) — run manually with
-# `python3 test_integration.py` to verify the full HTTP + WebSocket loop
-# against real Claude API calls. Uses starlette's TestClient, which runs
-# the app in-process (no separate server needed, and its WebSocket test
-# client drives the same asyncio loop main.py's startup hook captures).
+# `python3 test_integration.py` against a real running uvicorn server
+# (`python3 -m uvicorn main:app --port 8001`). Uses real HTTP + a real
+# WebSocket client — TestClient's in-process lifespan semantics turned out
+# not to reliably deliver the threading.Timer-originated broadcasts (the
+# ones fired via _broadcast_sync from a background thread), so this tests
+# against the real thing instead, which is also more representative of
+# what the Godot client will actually talk to.
 
 import json
-import random
+import sys
 import threading
 import time
 
-from fastapi.testclient import TestClient
+import requests
+import websocket
 
-import main
-
-client = TestClient(main.app)
+BASE = "http://localhost:8001"
+WS_BASE = "ws://localhost:8001"
 
 PLAYERS = [("p1", "Alice"), ("p2", "Bob"), ("p3", "Cara")]
 
 
 def post(path, **body):
-    r = client.post(path, json=body)
+    r = requests.post(f"{BASE}{path}", json=body, timeout=30)
     if r.status_code >= 400:
         raise RuntimeError(f"{path} -> {r.status_code}: {r.text}")
     return r.json()
 
 
-def main_test():
+class WSListener:
+    """Collects game:state pushes on a background thread so the main
+    thread can just wait for the next one with a timeout."""
+
+    def __init__(self, code, player_id):
+        self.events = []
+        self._lock = threading.Lock()
+        self.ws = websocket.create_connection(f"{WS_BASE}/ws/{code}?player_id={player_id}", timeout=30)
+        self._stop = False
+        self._thread = threading.Thread(target=self._run, daemon=True)
+        self._thread.start()
+
+    def _run(self):
+        while not self._stop:
+            try:
+                raw = self.ws.recv()
+            except Exception:
+                break
+            with self._lock:
+                self.events.append(json.loads(raw))
+
+    def wait_for_phase(self, phase, timeout=40):
+        deadline = time.time() + timeout
+        while time.time() < deadline:
+            with self._lock:
+                for e in reversed(self.events):
+                    if e["event"] == "game:state" and e["data"]["phase"] == phase:
+                        return e["data"]
+            time.sleep(0.3)
+        raise TimeoutError(f"never saw phase={phase} within {timeout}s (last events: {[e['data'].get('phase') for e in self.events if e['event']=='game:state'][-5:]})")
+
+    def close(self):
+        self._stop = True
+        try:
+            self.ws.close()
+        except Exception:
+            pass
+
+
+def run():
     print("Creating game...")
     resp = post("/games/create", playerId="p1", name="Alice")
     code = resp["code"]
@@ -38,92 +80,87 @@ def main_test():
     for pid, name in PLAYERS:
         post(f"/games/{code}/register", playerId=pid,
              categories=["World Capitals"] * 5, pickedCardId="skip")
-
-    game = main._games[code]
-    assert main.gs.all_players_registered(game)
     print("all registered")
 
-    print("Starting game (real fact-bank API call)...")
+    listener = WSListener(code, "p1")
+    initial = listener.wait_for_phase("LOBBY", timeout=10)
+    print("initial ws push OK, phase:", initial["phase"])
+
+    print("Starting game (real fact-bank API call, can take ~20-90s)...")
     post(f"/games/{code}/start", playerId="p1")
-    print("phase after start:", game["phase"], "roundRule:", game["roundRule"]["name"])
+    state = listener.wait_for_phase("CATEGORY", timeout=120)
+    round_rule_name = state["roundRule"]["name"]
+    print("phase after start: CATEGORY, roundRule:", round_rule_name)
 
-    # Open a WebSocket for the active player and confirm it receives a
-    # game:state push after the next mutation.
-    ws_events = []
-    with client.websocket_connect(f"/ws/{code}?player_id=p1") as ws:
-        initial = json.loads(ws.receive_text())
-        print("initial ws push event:", initial["event"], "phase:", initial["data"]["phase"])
-        assert initial["event"] == "game:state"
+    active_id = state["activePlayerIndex"]
+    active_player_id = [p["id"] for p in state["players"]][active_id]
+    wager_player_idx = (active_id + 1) % len(state["players"])
+    wager_player_id = state["players"][wager_player_idx]["id"]
+    category = state["categoryOptions"][0]["category"]
 
-        active_id = game["players"][game["activePlayerIndex"]]["id"]
-        wager_id = main.gs.get_wager_player(game)["id"]
-        category = game["categoryOptions"][0]["category"]
+    print(f"active player ({active_player_id}) picks category...")
+    post(f"/games/{code}/round/pick-category", playerId=active_player_id, category=category)
+    state = listener.wait_for_phase("WAGER", timeout=15)
+    print("phase: WAGER OK")
 
-        print(f"active player picks category (as {active_id})...")
-        post(f"/games/{code}/round/pick-category", playerId=active_id, category=category)
-        push = json.loads(ws.receive_text())
-        print("ws push after category pick:", push["data"]["phase"])
-        assert push["data"]["phase"] == "WAGER"
+    print(f"wager player ({wager_player_id}) sets wager...")
+    post(f"/games/{code}/round/set-wager", playerId=wager_player_id, amount=250)
+    state = listener.wait_for_phase("CARD", timeout=15)
+    print("phase: CARD OK")
 
-        print(f"wager player sets wager (as {wager_id})...")
-        post(f"/games/{code}/round/set-wager", playerId=wager_id, amount=250)
-        push = json.loads(ws.receive_text())
-        print("ws push after wager:", push["data"]["phase"])
-        assert push["data"]["phase"] == "CARD"
+    print("Waiting for card window (8s) to auto-resolve + question generation (real API call)...")
+    state = listener.wait_for_phase("ANSWER", timeout=40)
+    print("phase: ANSWER OK")
+    print("question:", state["question"][:100])
 
-    # Card window auto-resolves after CARD_WINDOW_SECONDS (8s) with no card
-    # played -> triggers question generation (real API call) -> ANSWER.
-    print("Waiting for card window to auto-resolve + question to generate (real API call)...")
-    deadline = time.time() + 30
-    while game["phase"] not in ("ANSWER", "RESULT") and time.time() < deadline:
-        time.sleep(0.5)
-
-    print("phase after card window:", game["phase"])
-    assert game["phase"] == "ANSWER", f"expected ANSWER, got {game['phase']}"
-    print("question:", game["currentQuestion"]["question"][:100])
-
-    round_rule = game["roundRule"]
+    round_rule = state["roundRule"]
     if round_rule.get("lineupBased"):
-        lineup = game["currentQuestion"]["lineup"]
-        correct_id = lineup["correctOptionId"]
-        wrong_id = next(o["id"] for o in lineup["options"] if o["id"] != correct_id)
-        print("Lineup round — trying wrong option first...")
-        r = post(f"/games/{code}/round/attempt-lineup", playerId="p2", optionId=wrong_id)
-        assert r == {"correct": False}
-        assert game["phase"] == "ANSWER"
-        print("wrong tap correctly failed soft, phase still ANSWER")
-        r2 = post(f"/games/{code}/round/attempt-lineup", playerId="p3", optionId=correct_id)
-        assert r2 == {"correct": True}
-        print("correct tap won, phase:", game["phase"], "p3 score:", next(p["score"] for p in game["players"] if p["id"] == "p3"))
+        lineup = state["lineup"]
+        options = lineup["options"]
+        print(f"Lineup round, {len(options)} options — trying each until correct...")
+        won = False
+        for opt in options:
+            r = requests.post(
+                f"{BASE}/games/{code}/round/attempt-lineup",
+                json={"playerId": "p2", "optionId": opt["id"]}, timeout=15,
+            ).json()
+            if r["correct"]:
+                won = True
+                break
+        assert won, "no option registered as correct — bug"
+        state = listener.wait_for_phase("RESULT", timeout=15)
+        print("Lineup RESULT OK, lastResult:", state["lastResult"])
     elif round_rule.get("submissionBased"):
-        print("Worst Answer Wins round — all 3 players submit...")
+        print("Worst Answer Wins — all 3 players submit...")
         for pid, _ in PLAYERS:
             post(f"/games/{code}/round/submit-answer", playerId=pid, answer="a deliberately wrong answer", inputMode="text")
-        deadline = time.time() + 30
-        while game["phase"] not in ("RESULT",) and time.time() < deadline:
-            time.sleep(0.5)
-        print("phase after group eval:", game["phase"])
-        assert game["phase"] == "RESULT"
-        print("lastResult entries:", len(game["lastResult"]["entries"]))
+        state = listener.wait_for_phase("RESULT", timeout=30)
+        print("Worst Answer Wins RESULT OK, entries:", len(state["lastResult"]["entries"]))
     else:
-        answerer_id = game["players"][game["answererIndex"]]["id"]
-        correct_answer = game["currentQuestion"]["answer"]
-        transformed = main.gs.transform_answer(round_rule, correct_answer, "text") if False else correct_answer
-        # Apply the round rule's transform in reverse isn't needed for most
-        # rules (identity) — for backItUp/oneWordOnly this simple test may
-        # register as "wrong", which is fine: we're testing PHASE PLUMBING
-        # (submit -> RESULT -> next turn), not per-rule answer correctness
-        # (already verified separately for backItUp in this session).
-        print(f"Standard round ({round_rule['name']}) — submitting answer as {answerer_id}...")
-        post(f"/games/{code}/round/submit-answer", playerId=answerer_id, answer=correct_answer, inputMode="text")
-        deadline = time.time() + 15
-        while game["phase"] not in ("RESULT", "STEAL") and time.time() < deadline:
-            time.sleep(0.5)
-        print("phase after submit:", game["phase"])
-        assert game["phase"] in ("RESULT", "STEAL")
+        answerer_idx = state["answererIndex"]
+        answerer_id = state["players"][answerer_idx]["id"]
+        print(f"Standard round ({round_rule['name']}) — submitting a plausible answer as {answerer_id}...")
+        post(f"/games/{code}/round/submit-answer", playerId=answerer_id, answer="test answer", inputMode="text")
+        # either RESULT (correct/wrong, no steal) or STEAL (wrong + stealOnWrong)
+        deadline = time.time() + 20
+        last = None
+        while time.time() < deadline:
+            with listener._lock:
+                phases = [e["data"]["phase"] for e in listener.events if e["event"] == "game:state"]
+            if phases and phases[-1] in ("RESULT", "STEAL"):
+                last = phases[-1]
+                break
+            time.sleep(0.3)
+        print("phase after submit:", last)
+        assert last in ("RESULT", "STEAL"), f"expected RESULT or STEAL, got {last}"
 
+    listener.close()
     print("\n=== INTEGRATION TEST PASSED ===")
 
 
 if __name__ == "__main__":
-    main_test()
+    try:
+        run()
+    except Exception as e:
+        print(f"\n=== INTEGRATION TEST FAILED: {e} ===")
+        sys.exit(1)
