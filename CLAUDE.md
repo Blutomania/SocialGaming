@@ -272,8 +272,7 @@ Full list in `SESSIONS.md`. Top priorities:
    Remaining 21 anthology PDFs were `--dry-run`'d: **10 came back clean** (full-book page ranges,
    real per-story detection — the *Best American Mystery Stories* years 2005–2017/215/"4" plus
    *Years Best Mystery & Suspense 1993*, ~207 stories) and were moved to
-   `mystery_database/new_sources/_anthologies/_ready/` with the real extraction command handed to
-   the owner — **not yet run as of session close.** The other **11 have real detection problems**
+   `mystery_database/new_sources/_anthologies/_ready/`. The other **11 have real detection problems**
    and are intentionally being held back, uncosted: 5 where the detector only caught back-matter and
    missed the entire body of stories, 3 where the whole book got detected as a single oversized
    "story" (459K–533K characters — a full anthology misattributed to one author, not a short story),
@@ -282,13 +281,35 @@ Full list in `SESSIONS.md`. Top priorities:
    re-litigate it from scratch, the analysis is already done, just needs someone to act on the
    11 held-back files whenever there's appetite.
 
-   Also unrun this session: the 4-file `_novels/` batch (*39 Steps*, *Behold Here's Poison*,
-   *Mystery of the Chinese Ring*, *Whose Body?*) — never got even a `--dry-run` yet.
+   **[Session 28]** The 10-file `_ready/` batch **ran**, at combined P1+P2 depth (`--protocol P1P2`,
+   Haiku for P1 / Sonnet for P2 via new `--model-for` flag) — this is also the session that fixed
+   the `--protocol P1P2` argparse bug that had been silently blocking that depth option since it was
+   first written. Two more real bugs were found and fixed in the same session: a `max_tokens=1000`
+   cap causing P2 extractions to truncate and null out, and a filename-collision bug
+   (`book_slug[:30]`) that had already silently dropped 13 real stories before the fix landed —
+   recovered via a targeted backfill. Full technical detail on all three bugs in `SESSIONS.md`
+   Session 28 — don't re-derive it, the root causes are already found and fixed.
 
-   **Next session should check:** did the 10-file `_ready/` extraction run, did the 4-file novels
-   batch get dry-run and run, was `mystery_database/part_registry.json` deleted and regenerated
-   afterward (mandatory — the staleness bug in item 14 below is still unfixed), and compare new
-   source/part counts against the last-known baseline (369 sources / 2,833 parts, Session 23).
+   **[BLOCKED, Session 28] One book in that batch is under active legal review — do not act on it
+   without the owner.** `The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf` carries a
+   text watermark matching a known ebook piracy site's signature, discovered while debugging an
+   unrelated detection quirk. All 22 of its stories are currently sitting in
+   `mystery_database/extractions/` (12 from the main run, 10 from the collision backfill). Owner is
+   consulting partners before deciding keep vs. remove; nothing else in the 10-book batch is under
+   the same cloud. **The registry has not been regenerated since before this batch ran or the
+   backfill completed** — do not trust the last regen number (556 sources / 4,807 parts) as current,
+   and do not regenerate until the 2016-book decision is made (see `SESSIONS.md` Session 28 for the
+   exact keep/remove procedure).
+
+   Also unrun: the 4-file `_novels/` batch (*39 Steps*, *Behold Here's Poison*, *Mystery of the
+   Chinese Ring*, *Whose Body?*) — never got even a `--dry-run` yet.
+
+   **Next session should check:** did the 2016-book legal decision come back (see the BLOCKED item
+   above for the keep/remove procedure), did the 4-file novels batch get dry-run and run, was
+   `mystery_database/part_registry.json` deleted and regenerated afterward (mandatory — the
+   staleness bug in item 14 below is still unfixed), and compare new source/part counts against the
+   last-known clean baseline (369 sources / 2,833 parts, Session 23) plus this batch's ~219 new
+   sources once the 2016-book question is resolved either way.
 8. **[FUTURE]** Phase 4 — Steam integration (GodotSteam plugin)
 9. **[ONGOING]** Repo-wide branch cleanup (Session 18) — 9 fully-merged branches identified as
    safe to delete, plus a further 21 stale unmerged branches the owner is triaging on their own

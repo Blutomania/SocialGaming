@@ -5,6 +5,111 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 28 — August 6, 2026 (P1P2 anthology batch, two real bugs found and fixed, paused on a legal question)
+**Branch:** `claude/pdf-ingestion-checkpoint-71qwb3`
+**Status:** Paused (not closed) at the owner's request, pending a conversation with their partners
+about one specific source's copyright status. Everything else this session — three real code
+fixes, the 10-book P1P2 extraction batch, and a craft-grounding addition — is done, verified, and
+pushed. The one open item blocks a registry regen, not more code work.
+
+### The 10-book P1P2 anthology run (picking up Session 27's staged `_ready/` batch)
+Ran `scripts/extract_from_pdfs.py` against the 10 clean anthology PDFs Session 27 had already
+dry-run and staged, this time at combined P1+P2 depth instead of P1-only (closes the
+`--protocol P1P2` depth gap CLAUDE.md's to-do had flagged as still open). Along the way, a
+Haiku-vs-Sonnet quality comparison (built as a scratch-only `compare_models.py` tool, not
+committed) surfaced a real reason to split models per protocol rather than picking one: Haiku
+matched Sonnet cleanly on P1's concrete skeleton fields, but on P2's tactical fields — the ones
+requiring narrative-craft inference — Haiku repeatedly returned `confidence: "low"` on stories with
+unconventional structure (a first-person confessional Oates story with no detective character),
+where Sonnet reasoned through the same fields successfully. This matters mechanically, not just
+qualitatively: `part_registry.py`'s `_atomize_extraction()` **skips any field marked low-confidence
+entirely** — it doesn't degrade the registry entry, it contributes zero candidates for that axis from
+that source. Added `--model-for PID=MODEL` (repeatable) to `scripts/extract_from_pdfs.py` so the
+real batch could run Haiku for P1 and Sonnet for P2 in one pass rather than paying Sonnet-tier
+cost for both.
+
+### Three real bugs found and fixed (all pushed to this branch)
+1. **`--protocol` argparse rejected combined codes.** The extraction pipeline was already built to
+   handle `["P1", "P2"]` merged into one JSON per source, but `argparse`'s `choices=` only allowed
+   the four single-protocol strings — `--protocol P1P2` errored out before ever reaching that logic.
+   Replaced `choices=` with a validating `type=` function. This is the fix that made the to-do's
+   long-flagged "re-extract at `--protocol P1P2`" backfill actually possible to run for the first time.
+2. **P2 extractions were silently truncating.** `_call_claude_for_protocol`'s `max_tokens=1000` was
+   a flat cap applied to every protocol regardless of field count. P1 (6 fields) fit; P2 (8 more
+   verbose tactical fields) consistently didn't, truncating mid-JSON-string and falling back to null
+   placeholders. Every failure in an initial 3-story Haiku-vs-Sonnet test was tagged P2, zero P1 —
+   confirmed the cap, not the model, was the cause. Raised to `max_tokens=3000` (raising the cap
+   doesn't cost more; Claude bills for tokens generated, not the ceiling).
+3. **Anthology filename collisions silently dropped real stories.** `extract_pdf_anthology`'s output
+   filename truncated the source book's slug to `book_slug[:30]` — but all nine "*Best American
+   Mystery Stories \<year\>*" volumes in this batch share an identical first-30-character prefix (the
+   year is what disambiguates them, and it lands past character 30). Combined with "OceanofPDF.com"
+   — a scraper watermark the story-boundary detector frequently misreads as a story's byline —
+   several different books' real, distinct stories at the same index computed the exact same output
+   filename. The dedup-by-filename check silently treated the second (and sometimes third) book's
+   story as "already extracted" and never sent it to the API — no warning, still counted as success.
+   Confirmed via the real slug function that dropping the extra `[:30]` truncation resolves it (the
+   full, already-60-char-capped slug diverges by year well before the cap). **13 stories from this
+   exact batch had already been lost to this before the fix landed** — all 10 of the 2016 volume's
+   collision-eligible indices, plus 3 from the 2007 volume. Recovered via a targeted one-off backfill
+   script (scratch-only, reused the real extraction machinery, not committed) that re-parsed just
+   those two books and saved the missing 13 under the new, collision-free naming — confirmed
+   `Planned: 13 / Saved: 13`.
+
+### Craft-grounding addition
+Owner uploaded two "mystery writing guide" PDFs meant as source material for the craft-grounding
+docs. Read both in full and checked them against `SOURCING_METHODOLOGY.md`'s own confidence
+tiers before touching anything: both were third-party listicle content, not primary craft authority —
+one had a competitor's product ad (a tool called "Novelmint") embedded directly in the body text,
+the other was a vendor blog post literally advertising its own AI novel-writing SaaS product
+("Instant AI Book Generation — Generate Now"). Neither cleared the bar; nothing from either was
+ingested wholesale. One genuine primary source was mixed into the first PDF, though: **S.S. Van
+Dine's 1928 "Twenty Rules for Writing Detective Stories."** Checked whether it (or the also-present
+Ronald Knox commandments) were already covered — Knox already had a clean citation in
+`RESEARCH_FINDINGS.md`, but Van Dine had never been added. Mapped 14 of his 20 rules onto
+existing C/M/F taxonomy codes as reinforcing citations (C1, C3, C4, M1, M2, M3, M6, F9); 3 rules
+(no love interest, no servant-culprit, no descriptive/atmospheric prose) were explicitly excluded
+rather than force-mapped, with the last one flagged as directly contradicting this project's own
+P3/P4 texture layer — documented as a historical tension, not adopted, per the methodology's own
+"omit rather than force-map" rule. `craft_grounding.py`'s index cache rebuilds automatically on next
+use (mtime-based staleness check already in place — unlike `part_registry.json`'s known gap, this
+one doesn't need a manual delete).
+
+### The open item — do not resolve without the owner
+While explaining an unrelated detection quirk (the "OceanofPDF.com" watermark above), traced it to
+a known ebook piracy site's text-watermarking behavior. That watermark is confirmed present in
+`The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf` specifically — one of the 10
+books in this batch, containing work by actively-in-print, well-known authors (not public-domain
+material). This project targets a commercial Steam release, so this isn't a technical curiosity; it's a
+sourcing/legal question the owner is taking to their partners before either side of the decision gets
+acted on. **All 22 of that book's stories are currently sitting in `mystery_database/extractions/`** —
+12 from the original batch run, 10 recovered by the collision backfill (the backfill script completed
+before an in-flight interrupt request landed). Nothing else in this batch is under the same cloud —
+this is evidence about one specific file, not the other nine books.
+
+### Next session should check
+1. **Did the legal/sourcing decision on the 2016 Elizabeth George volume come back?**
+   - **Keep:** regenerate `part_registry.json` (delete + reload, per the standing staleness gap) and
+     compare new source/part counts against the last confirmed baseline (369 sources / 2,833 parts,
+     Session 23) plus this batch's ~219 new sources (206 from the main run + 13 backfilled).
+   - **Remove:** before regenerating anything, identify and delete all 22 of that book's extraction
+     JSONs (`pdf_the_best_american_mystery_stories_2016_elizabeth_george__story*.json` under the
+     new, fixed naming for the 10 backfilled ones — check both naming generations, since 12 were
+     saved before today's collision fix landed and use the old truncated-prefix filename) — then
+     regenerate the registry.
+   - Either way, the registry has not been regenerated since the backfill completed — the last
+     regen (556 sources / 4,807 parts) predates both the 13-story backfill and this open question,
+     so don't treat that number as current.
+2. **Session 27's other leftovers are still untouched:** the 4-file `_novels/` batch (*39 Steps*,
+   *Behold, Here's Poison*, *Mystery of the Chinese Ring*, *Whose Body?*) was never even dry-run;
+   the 11 held-back anthologies with detection problems are still sitting uncosted, no decision made.
+3. Given today's collision-bug finding, it's worth a rerun of the pre-flight duplicate/quality check
+   habit (`check_duplicate_sources.py`, still scratch-only) before running the `_novels/` batch or any
+   future anthology batch — that script checks title-based duplication, not filename collisions, so
+   it wouldn't have caught today's bug, but it's still the right first move before spending API cost.
+
+---
+
 ## Session 27 — August 4-5, 2026 (git cleanup + anthology ingestion pre-flight, paused mid-run)
 **Branch:** `claude/session-wrapup-cleanup-blocker-3val9a` (same branch as Session 26 — continued,
 not reset, since this session was mostly local-git troubleshooting on the owner's machine rather
