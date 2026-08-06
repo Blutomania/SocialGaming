@@ -47,6 +47,8 @@ class WSListener:
                 raw = self.ws.recv()
             except Exception:
                 break
+            if not raw:
+                break
             with self._lock:
                 self.events.append(json.loads(raw))
 
@@ -153,6 +155,18 @@ def run():
             time.sleep(0.3)
         print("phase after submit:", last)
         assert last in ("RESULT", "STEAL"), f"expected RESULT or STEAL, got {last}"
+
+        if last == "STEAL":
+            with listener._lock:
+                steal_state = next(
+                    e["data"] for e in reversed(listener.events)
+                    if e["event"] == "game:state" and e["data"]["phase"] == "STEAL"
+                )
+            stealer_id = next(p["id"] for p in steal_state["players"] if p["id"] != answerer_id)
+            print(f"Wrong answer opened STEAL — {stealer_id} buzzes in...")
+            post(f"/games/{code}/round/claim-steal", playerId=stealer_id, answer="test steal answer", inputMode="text")
+            state = listener.wait_for_phase("RESULT", timeout=15)
+            print("STEAL RESULT OK, lastResult:", state["lastResult"])
 
     listener.close()
     print("\n=== INTEGRATION TEST PASSED ===")

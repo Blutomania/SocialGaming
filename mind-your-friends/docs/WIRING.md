@@ -144,12 +144,18 @@ matches exactly what building both of those in JS this year already showed empir
 ## What's actually built as of this session (be honest about scope)
 
 **Do not read this doc as "the port is done."** As of this session:
-- [ ] `server_py/` FastAPI skeleton (rooms, lobby, WS) — in progress this session, see commits
-- [ ] Registration (categories + card pick) + game start — in progress this session
-- [ ] `standard` round_type end-to-end (category → wager → card → question → answer → result) —
-      target for this session, the proof-of-concept that the architecture actually works
-- [ ] `lightning_round`, `steal`, `worst_answer_wins`, `the_lineup` round types — **not started**,
-      the mapping table above is the plan, not a completed port
+- [x] `server_py/` FastAPI skeleton (rooms, lobby, WS) — built, verified against a real running
+      uvicorn server with a real WebSocket client (not just TestClient — see note below)
+- [x] Registration (categories + card pick) + game start (real fact-bank API call) — verified
+- [x] `standard` round_type end-to-end (category → wager → card → question → answer → result) —
+      verified with multiple real round rules (ELI5, Double Down, One Word Only) through the
+      real server, real Claude calls, real WebSocket pushes confirming every phase transition
+- [x] `steal`, `worst_answer_wins`, `the_lineup` — **all verified end-to-end** through the real
+      server (round rule temporarily forced via an env var for deterministic testing, reverted
+      before commit — same convention as the JS version's own playtest sessions). Steal's full
+      wrong-answer → STEAL phase → claim → RESULT chain was exercised, not just detected.
+      `lightning_round` was not separately forced (it's config-only on top of `standard` — no
+      distinct code path to verify beyond what `standard` already proved)
 - [ ] `godot/` client scenes — **not started this session.** Everything above is verifiable with
       a scripted HTTP/WS test client (no Godot binary exists in this environment — see root
       `CLAUDE.md` "No Godot binary in repo"). GDScript written without the ability to run it is a
@@ -157,6 +163,13 @@ matches exactly what building both of those in JS this year already showed empir
       after the backend is proven, not written speculatively alongside it.
 - [ ] Voice input, disconnect/reconnect, inactivity auto-advance — **not started**, will need
       their own pass once the core loop is proven.
+
+**Real-server testing note:** the first verification pass used FastAPI's `TestClient`, which
+turned out not to reliably deliver WebSocket broadcasts originating from a `threading.Timer`
+background thread (the card-window/answer-timer auto-resolve pushes) — the test hung waiting on
+a push `TestClient`'s in-process lifespan silently dropped. Switched to a real `uvicorn` process
+plus real `requests`/`websocket-client` — this is also more representative of what the Godot
+client will actually talk to, so it's the right test shape going forward, not just a workaround.
 
 Update the checkboxes above as work lands, in this same doc, rather than trusting `CLAUDE.md`'s
 narrative summary alone to stay accurate — this table is the single source of truth for "what's
