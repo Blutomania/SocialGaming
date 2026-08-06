@@ -16,10 +16,10 @@ Every writer, regardless of tradition, consistently names these as the load-bear
 
 | # | Part | Who Names It |
 |---|---|---|
-| C1 | **The Crime** — type, method, and the question it poses | Christie (start with method), P.D. James (central mysterious crime), Knox (rule 4: method must be plausible) |
+| C1 | **The Crime** — type, method, and the question it poses | Christie (start with method), P.D. James (central mysterious crime), Knox (rule 4: method must be plausible), Van Dine (rules 7, 8, 14, 18: murder only, naturalistic/scientific method, never an accident or suicide) |
 | C2 | **The Victim** — who they are and why they were killable | P.D. James explicitly: "I like to show what makes the victim the victim... there's got to be a motive for this appalling crime" |
-| C3 | **The Closed World** — the bounded space of suspects and setting | James: "closed circle of suspects"; Rankin: Edinburgh as character; French: location as first decision |
-| C4 | **The Culprit + Motive** — the real answer, constructed first | Christie: start with murderer and motive, then build outward; worked backward from the solution |
+| C3 | **The Closed World** — the bounded space of suspects and setting | James: "closed circle of suspects"; Rankin: Edinburgh as character; French: location as first decision; Van Dine (rule 13: no secret societies — culpability must trace to one bounded circle) |
+| C4 | **The Culprit + Motive** — the real answer, constructed first | Christie: start with murderer and motive, then build outward; worked backward from the solution; Van Dine (rules 10, 12, 17, 19: culprit must be a prominent, familiar character, exactly one culprit, not a professional criminal, personal motive only) |
 | C5 | **The Resolution** — how order is restored and by whom | James: "not by luck or divine intervention — by human intelligence"; Chandler: the detective as lone moral agent |
 | C6 | **The Detective/Investigator** — the lens through which the reader moves | Chandler: "down these mean streets a man must go"; French: the detective's POV is not intrinsically heroic |
 
@@ -31,12 +31,12 @@ These appear consistently but require craft decisions at the story level:
 
 | # | Part | Who Names It |
 |---|---|---|
-| M1 | **Suspect Architecture** — number, spread of means/motive/opportunity | James: "each with motive, means and opportunity"; Knox: criminal must appear early |
-| M2 | **The Red Herring** — deliberate misdirection, not accidental | Christie: notebooks show she planned false trails explicitly before writing |
-| M3 | **Clue Fairness** — every clue available to reader when detective sees it | James: "the detective can know nothing which the reader isn't also told"; Knox commandment 8 |
+| M1 | **Suspect Architecture** — number, spread of means/motive/opportunity | James: "each with motive, means and opportunity"; Knox: criminal must appear early; Van Dine (rule 4: the detective/official investigator must never be the culprit) |
+| M2 | **The Red Herring** — deliberate misdirection, not accidental | Christie: notebooks show she planned false trails explicitly before writing; Van Dine (rule 20: catalogs overused devices — cigarette-butt ID, forged fingerprints, twin-swap reveal, etc. — as clichés to avoid, not emulate) |
+| M3 | **Clue Fairness** — every clue available to reader when detective sees it | James: "the detective can know nothing which the reader isn't also told"; Knox commandment 8; Van Dine (rules 1, 2, 15: reader has equal opportunity to solve it, no tricks beyond what the criminal plays on the detective, solution must read as inevitable in retrospect) |
 | M4 | **The Social World** — power structures, hierarchies, who owes whom | Rankin: Edinburgh class/institutional power; James: patronage networks |
 | M5 | **The Alibi** — false or genuine, structural function in ruling suspects in/out | Christie notebooks: alibi construction is explicit planning step |
-| M6 | **The Reveal Mechanic** — how the solution is demonstrated, not just stated | Christie: often a technical or psychological impossibility exposed; French: revelation timing (2/3 through) |
+| M6 | **The Reveal Mechanic** — how the solution is demonstrated, not just stated | Christie: often a technical or psychological impossibility exposed; French: revelation timing (2/3 through); Van Dine (rules 5, 6: culprit found by logical deduction, never accident, coincidence, or confession) |
 | M7 | **Media/Audience** — how the crime is perceived by the world around it | Flynn: "the packaging of tragedy... the need for a heroine and villain"; Chandler: corrupt institutions |
 | M8 | **The Detective's Wound** — what the case exploits in the investigator | French: "the situation puts pressure on the character's weak spots"; Rankin: Rebus aging in real time |
 
@@ -56,10 +56,20 @@ These are the things writers name when discussing specific books, not the genre 
 | F6 | **The False Suspect** — one character who bears maximum suspicion but is innocent | Christie: planted to protect real culprit; Knox: criminal must not be whose thoughts we know |
 | F7 | **The Technical Detail** — the specific knowledge that makes the method possible | Knox commandment 4 (no unexplained science); Christie: expertise-as-alibi-builder |
 | F8 | **The Moral Ambiguity** — why the culprit is understandable, not just evil | Chandler: "flexible conception of right and wrong"; James: "shift from who to why" |
-| F9 | **The Sidekick/Foil** — the Watson function: slightly below reader intelligence, transparent thoughts | Knox commandment 9; Chandler: confidant who often perishes |
+| F9 | **The Sidekick/Foil** — the Watson function: slightly below reader intelligence, transparent thoughts | Knox commandment 9; Chandler: confidant who often perishes; Van Dine (rule 9: exactly one detective — a second protagonist of deduction splits the reader's thread of logic) |
 | F10 | **The Cascade of Deaths** — secondary crimes that follow the primary | Chandler formula: "deaths usually occur in a cascade" |
 | F11 | **The Public Spectacle Moment** — when the crime enters a wider social stage | Flynn: media as Greek chorus; Rankin: institutional exposure |
 | F12 | **The Inciting Image** — the single vivid scene the writer started from | Flynn: "a man coming home and the door is wide open"; French: the battered suitcase in the skip |
+
+---
+
+## Van Dine Rules Excluded From Mapping
+
+Per `SOURCING_METHODOLOGY.md`'s "omit findings with no game-relevant analogue rather than force-mapping them" — three of Van Dine's twenty rules don't get folded into the table above:
+
+- **Rule 3** (no love interest) — a dated genre convention this project doesn't enforce.
+- **Rule 11** (a servant/butler must never be the culprit) — too narrow and dated a restriction to encode.
+- **Rule 16** (no long descriptive passages, character analysis, or "atmospheric" preoccupation) — directly contradicted by this project's own P3/P4 texture layer, which grounds character depth and atmosphere in French, Flynn, and Rankin. Documented here as a historical tension, not adopted.
 
 ---
 
@@ -102,6 +112,7 @@ These elements appear in 3+ writers and should anchor the extraction protocols:
 - *P.D. James, Talking And Writing 'Detective Fiction'* — NPR
 - *The Salon Interview* — P.D. James
 - *Ronald Knox: 10 Commandments of Detective Fiction* — Gotham Writers Workshop
+- *Twenty Rules for Writing Detective Stories* — S.S. Van Dine (1928, *The American Magazine*; reproduced via Open Culture, stripped of third-party editorial commentary)
 - *The Simple Art of Murder* — Raymond Chandler (PDF)
 - *Tana French on Embracing Discomfort* — CrimeReads
 - *Tana French: We're All Unreliable Narrators* — CrimeReads
