@@ -613,6 +613,23 @@ Returns `CoherenceReport`:
 `check_parts(parts)` is a cheaper pre-generation check (runs on the sampled parts
 before the Claude call, catches missing part types early).
 
+**Now backed by the shared `coherence/` engine** (root-level package, new this session):
+`check_mystery`/`check_parts` are thin wrappers around two real `coherence.engine.RuleSet`
+subclasses — `MysteryRuleSet` and `MysteryPartsRuleSet` — living in `coherence_validator.py`.
+`CoherenceReport` here extends the engine's base `CoherenceReport` (adding CYM's categorized
+`p1_issues`/`witness_gaps`/`scene_issues`/`part_issues`, with the base's `issues` field kept in
+sync as their union so anything consuming the generic engine API — not just CYM-specific
+code — gets a correct flat issue list). `Issue` and the `BLOCKING`/`WARNING`/`INFO` severity
+constants now come directly from `coherence.engine`, not a local redefinition.
+
+This makes "shared coherence engine across every title" a real, running fact for the first time,
+not just the studio-pitch framing in `CLAUDE.md`'s "Studio engine framing" note — CYM is the
+first of (eventually) every title to actually subclass `RuleSet`. **Mind Your Friends is next**,
+once its own Python port lands (see MYF's `CLAUDE.md` item 31/32) — its `lib/coherence.js` is
+JavaScript today and can't touch this Python base class without a bridge, which is exactly why
+this wiring is sequenced after MYF's port rather than before it. Full rationale and the
+sequencing decision are in the session history around this change.
+
 ---
 
 ## Part registry — how parts are sampled

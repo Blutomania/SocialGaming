@@ -392,6 +392,24 @@ Full list in `SESSIONS.md`. Top priorities:
     including a real `_craft_guidance` leak this work found and fixed in `winner_findings` (private
     per-player audit citations were about to broadcast to the whole room), in `SESSIONS.md`
     Session 26 and `docs/WIRING.md`'s three new sections.
+16. **[DONE, Session 28]** Coherence engine unification — CYM side, first of eventually every
+    title. Owner priority: the "Coherence Engine" pillar in the studio funding pitch needs to be
+    real, not aspirational, and CYM was the safe place to start (same language, same repo, no
+    cross-language bridge — unlike MYF, which is JS today). Brought the `coherence/` package
+    (`Issue`/`CoherenceReport`/`RuleSet` base classes) over to `main` — it previously existed
+    **only** on the stranded `dev/mind-your-friends` branch, despite `docs/WIRING.md`'s prior
+    phrasing implying it was already shared. Refactored `coherence_validator.py`'s two entry
+    points into real `RuleSet` subclasses (`MysteryPartsRuleSet`, `MysteryRuleSet`); `CoherenceReport`
+    here now extends the engine's base class, keeping the inherited `issues` field in sync as the
+    union of CYM's categorized `p1_issues`/`scene_issues`/`part_issues`. `check_parts()`/
+    `check_mystery()` kept as thin wrapper functions with unchanged signatures — zero call-site
+    changes needed in `server/main.py` or `deprecated/cli.py`. Verified both the pass and fail
+    paths against realistic mystery dicts, and confirmed `MysteryRuleSet().run(mystery)` called
+    directly produces identical results to `check_mystery(mystery)`. Full detail in
+    `docs/WIRING.md` → "Coherence validator — what it checks". **MYF's side is deferred until its
+    own Python port lands** (see MYF's `CLAUDE.md` item 31/32) — its `lib/coherence.js` is
+    JavaScript and can't subclass a Python `RuleSet` without a bridge, which is exactly the
+    premature-integration mistake this sequencing avoids. Branch: `claude/coherence-engine-unification`.
 
 > **DO NOT re-run the frozen bulk corpus pipeline** (`deprecated/run_corpus_pipeline.py`). Expand
 > the corpus only via `scripts/extract_from_pdfs.py`, adding one quality source at a time.

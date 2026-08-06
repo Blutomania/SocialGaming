@@ -5,6 +5,80 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 28 — August 6, 2026 (coherence engine unification — CYM side)
+**Branch:** `claude/coherence-engine-unification` (new, off `main` — this session started on a
+Mind Your Friends session (`claude/mind-your-friends-app-tu47of`, `dev/mind-your-friends`-based)
+that built a new round rule, then pivoted to scoping MYF's Godot port. That scoping surfaced a
+real gap: the "shared Coherence Engine" pillar named in the studio funding pitch didn't actually
+exist as running code anywhere — this session's actual work switched to closing that gap on the
+CYM side, which needed its own branch off `main` since it's unrelated to the MYF branch's history.)
+
+### Why this happened mid-MYF-session
+While comparing CYM's Godot client against what MYF's port would need, found that
+`coherence/engine.py` (the `Issue`/`CoherenceReport`/`RuleSet` base classes) existed **only** on
+the stranded `dev/mind-your-friends` branch — not on `main` at all — despite MYF's own `CLAUDE.md`
+already describing it as an existing cross-title pillar ("Coherence Engine + AI Generation are
+named as the two proprietary pillars/moat across all titles" per the studio pitch deck framing).
+Neither CYM's `coherence_validator.py` nor MYF's `lib/coherence.js` actually used it. The owner
+flagged this as high-priority for funding conversations — it needs to be real, not aspirational.
+
+### Sequencing decision
+Owner chose: make it real on CYM first (same language, same repo, contained risk), defer MYF's
+side until MYF's own Python port lands (tracked as MYF `CLAUDE.md` item 31/32) rather than either
+(a) waiting to build both sides together, or (b) standing up a cross-language JS↔Python bridge as
+a stopgap — explicitly rejected as the same premature-integration mistake already flagged in the
+existing MYF `CLAUDE.md` note about not wiring the engine before the Godot port replaces the
+Next.js client anyway.
+
+### What was built
+- Brought `coherence/__init__.py` + `coherence/engine.py` over to `main` (root-level package;
+  domain-agnostic `Issue`, `CoherenceReport`, severity constants, abstract `RuleSet.run()`).
+- Refactored `coherence_validator.py`:
+  - Removed the locally-redefined `Issue` dataclass and `BLOCKING`/`WARNING`/`INFO` constants —
+    now imported from `coherence.engine`, the shared vocabulary.
+  - `CoherenceReport` here now subclasses the engine's base `CoherenceReport`, adding CYM's
+    categorized fields (`p1_issues`, `witness_gaps`, `scene_issues`, `part_issues`). A new
+    `__post_init__` keeps the inherited `issues` field in sync as the union of `p1_issues` +
+    `scene_issues` + `part_issues` (matching the original `blocking_count`/`warning_count`
+    semantics exactly — `witness_gaps` was never counted toward blocking/warning, since witness
+    gaps degrade gameplay but don't make a mystery unsolvable, and that's preserved).
+  - `check_parts()`'s and `check_mystery()`'s logic moved into two new `RuleSet` subclasses —
+    `MysteryPartsRuleSet` (pre-generation) and `MysteryRuleSet` (post-generation) — each with a
+    `run(context)` method. The original `check_parts()`/`check_mystery()` functions stay as thin
+    wrappers with unchanged signatures, so `server/main.py` (`from coherence_validator import
+    check_mystery`) and `deprecated/cli.py` needed zero changes.
+  - `WitnessGap` stays CYM-local — not part of the shared vocabulary, since it's a genuinely
+    domain-specific shape (character + missing interrogation anchors) that doesn't generalize.
+- Updated `docs/WIRING.md`'s "Coherence validator" section to describe the real wiring instead of
+  the plain function-based description, and to correct the "shared" framing to state plainly that
+  CYM is first, MYF is deferred and why.
+
+### Verification
+No existing test suite for this file (checked — none exists). Verified manually:
+- `check_mystery()` / `check_parts()` produce identical `passed`/`blocking_count`/`warning_count`/
+  issue-list results before and after the refactor, on both a deliberately-broken mystery dict
+  (7 blocking + 5 warning issues, matches pre-refactor behavior) and a realistic complete one
+  (passes clean, zero issues).
+- `MysteryRuleSet().run(mystery)` and `MysteryPartsRuleSet().run(parts)` called directly (the
+  actual point of the refactor — real `RuleSet` usage, not just function calls) produce identical
+  results to the wrapper functions.
+- Confirmed `isinstance(CoherenceReport_instance, coherence.engine.CoherenceReport)` holds, and
+  that `report.issues == report.p1_issues + report.scene_issues + report.part_issues` exactly.
+- `format_text()` (CYM's richer, category-sectioned override) still renders correctly.
+- `server/main.py` and `deprecated/cli.py` still parse/import cleanly with no signature changes.
+
+### Next steps
+- MYF's side: once MYF's Godot port lands a Python FastAPI backend, port `lib/coherence.js`'s
+  logic into a `RuleSet` subclass in this same `coherence/` package (e.g. a `TriviaRuleSet`),
+  living alongside `MysteryRuleSet`/`MysteryPartsRuleSet`. Not started — explicitly deferred.
+- This PR/branch has not yet been opened as a pull request — do that next, following the usual
+  `main`-rejects-direct-push flow.
+- The MYF session that was in progress before this pivot (`claude/mind-your-friends-app-tu47of`)
+  is unaffected — its own work (The Lineup round rule) was already committed and pushed separately
+  before this branch was created. Godot port scoping (item 31) resumes there once this lands.
+
+---
+
 ## Session 27 — August 4-5, 2026 (git cleanup + anthology ingestion pre-flight, paused mid-run)
 **Branch:** `claude/session-wrapup-cleanup-blocker-3val9a` (same branch as Session 26 — continued,
 not reset, since this session was mostly local-git troubleshooting on the owner's machine rather
