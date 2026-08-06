@@ -321,6 +321,70 @@ it in naming only — the classes are otherwise identical.
     edge cases.
     **Next: item 31, the Godot port** — this was the one explicitly-approved exception to
     starting it immediately.
+33. **[IN PROGRESS] Godot port — Python backend built and verified; Godot client not started.**
+    Same session as item 32, continued after a detour into `docs/WIRING.md` → the coherence
+    engine unification (see root repo `SESSIONS.md` Session 28 on a separate branch,
+    `claude/coherence-engine-unification`, PR #14 — that's CYM-side work, not part of this
+    branch's history, done first because it needed real code sharing with `main` that this
+    branch can't provide). Owner asked to keep working autonomously with incremental commits
+    while away, in case of interruption — this item is written assuming exactly that happened.
+    - Full architecture plan in `docs/WIRING.md` (new file, MYF's own — mirrors CYM's
+      `docs/WIRING.md` naming): directory layout (`server_py/` + planned `godot/`, existing
+      Next.js prototype kept as reference, not deleted), the WebSocket-not-ENet transport
+      decision (verified against CYM's actual `main` branch — `NetworkManager.gd` there is
+      still a dead Phase-2 stub, `ApiClient.gd`'s WebSocket path is what's actually shipped),
+      and a mapping of all 9 round rules onto CYM's `round_type` lockstep dispatch concept
+      (implemented via the same boolean-flag dispatch already proven in `lib/gameState.js`,
+      not a new abstraction — see the doc for why).
+    - `server_py/` — full Python port: `constants.py`, `cards.py`, `lineup_data.py`,
+      `round_rules.py`, `coherence.py` (straight semantic ports, not a redesign),
+      `claude_client.py` (all 6 Claude-calling functions, same prompts as the JS version
+      verbatim), `game_state.py` (the complete phase state machine — every function from
+      `lib/gameState.js`, including disconnect/reconnect and inactivity detection), and
+      `main.py` (FastAPI app: REST endpoints + WebSocket, `threading.Timer`-based orchestration
+      mirroring `server.js`'s `setTimeout` calls, `_broadcast_sync` bridge pattern borrowed
+      directly from CYM's `server/main.py`).
+    - **Real Python-vs-Node correctness difference, called out inline and in the doc:** every
+      state-mutating call runs under one process-wide `_games_lock` (`threading.Lock`) — Node's
+      single-threaded event loop gave the JS version's FCFS correctness (card play, Steal, The
+      Lineup) for free; Python doesn't, so this is a genuine new requirement, not boilerplate.
+      Coarser than per-game locking would be, flagged as a place to revisit if it becomes a
+      bottleneck, not treated as good enough forever.
+    - **Verification — real, not simulated:** first pass used FastAPI's `TestClient`, which
+      turned out not to reliably deliver WebSocket broadcasts fired from a `threading.Timer`
+      background thread (the test hung waiting on a push `TestClient`'s in-process lifespan
+      silently dropped — a real finding, not a red herring, worth remembering if `TestClient`
+      is reached for again later). Switched to a real running `uvicorn` process plus real
+      `requests`/`websocket-client` — also more representative of what the Godot client will
+      actually talk to. All 5 round-rule dispatch shapes verified end-to-end this way, with real
+      Claude API calls and real WebSocket pushes confirming every phase transition (round rule
+      forced via a `MYF_FORCE_ROUND_RULE` env-var hack, reverted before each commit, same
+      convention as item 30/32's playtest sessions): **standard** (ELI5, Double Down, One Word
+      Only, plus natural random runs), **steal** (full wrong-answer → STEAL phase → claim-steal
+      → RESULT chain, not just phase detection), **worst_answer_wins** (3 players submit → group
+      evaluation → RESULT with 3 scored entries), **the_lineup** (wrong taps failing soft,
+      correct tap winning). `lightning_round` wasn't separately forced — it's pure config on top
+      of `standard`, no distinct code path beyond what `standard` already proved.
+    - **What's explicitly NOT done, stated plainly so nobody assumes otherwise:** the `godot/`
+      client — zero scenes, zero GDScript — hasn't been started. No Godot binary exists in this
+      environment (root `CLAUDE.md`: "No Godot binary in repo"), so writing GDScript here would
+      mean shipping code nobody could verify even compiles, let alone runs — deliberately
+      sequenced after the backend was proven instead. Also not started: voice input,
+      disconnect/reconnect (ported to `game_state.py` but not exercised against a live game this
+      session), inactivity auto-advance (same — ported, not live-tested). The Next.js prototype
+      (`app/`, `components/`, `lib/*.js`, `server.js`) is untouched and still the reference
+      implementation for exact behavior until `server_py/`+`godot/` reach parity and get
+      playtested for real — do not delete it.
+    - **Session was interrupted by container restarts more than once** (mid-test, twice) — each
+      time, `git log` on this branch showed all prior commits intact and already pushed, so
+      nothing was lost; work resumed by re-verifying git state and re-running whatever test had
+      been killed. If a future session picks this up mid-stream, check `docs/WIRING.md`'s
+      checkbox list first — it's the single source of truth for what's actually built, kept more
+      current than this narrative summary by design.
+    - **Next:** the `godot/` client. Start with `ApiClient.gd`, ported near-verbatim from CYM's
+      (same WebSocket contract this backend already speaks), then a minimal Lobby scene talking
+      to `POST /games/create` + `/ws/{code}` to prove the client/server pair end-to-end before
+      building out the rest of the round-loop UI.
 
 ## Design Thesis: Casual-First
 This game targets casual, social players — not competitive optimizers. Every
