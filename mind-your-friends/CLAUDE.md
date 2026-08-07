@@ -37,17 +37,29 @@ The numbered list below is the full historical record and keeps growing. This is
 the short version — what to actually work on next, in order. Items link to their
 detail entries further down.
 
+**Owner steer (August 7, 2026): gameplay and core mechanics are the focus.**
+Text-only input is fine for now, and the sharing mechanic is to stay a basic
+placeholder. Two things drop down the list as a direct result — see PARKED
+below. Don't quietly re-prioritise them without asking.
+
 | # | Item | State |
 |---|---|---|
-| 1 | **Post-game social layer** — Superlative Voting + Shareable Question (item 35) | **START HERE** |
+| 1 | **Playtest the post-game social layer** — built (item 35), never played through | **START HERE** |
 | 2 | Godot: category-selection + card-pick screens (replaces stubbed lobby registration) | Next |
 | 3 | Godot: round-loop UI — WAGER → CARD → QUESTION → ANSWER → RESULT | Next |
-| 4 | Godot: GAME_OVER screen, then port the post-game social layer once it's playtested | Blocked on 1+3 |
-| 5 | Live-test disconnect/reconnect + inactivity auto-advance against `server_py` | Ported, never exercised |
-| 6 | Voice input in the Godot client | Not started |
-| 7 | Merge PR #14 (coherence unification) — now has a trivial docstring conflict | Open PR |
+| 4 | **`server_py` parity: `questionLog` + `postGame`** — the Python backend has neither, so the Godot client cannot show any post-game screen until this lands | Real gap, blocks 5 |
+| 5 | Godot: GAME_OVER screen + post-game social layer | Blocked on 3+4 |
+| 6 | Live-test disconnect/reconnect + inactivity auto-advance against `server_py` | Ported, never exercised |
+| 7 | Merge PR #14 (coherence unification) — 2 trivial conflicts, both resolvable in minutes | Open PR, CYM-side |
 | 8 | Wire MYF's coherence to the shared Python engine — now possible, `server_py` is Python | Unblocked by the port |
 | 9 | Retire the Next.js prototype — **only** once Godot reaches parity and is playtested | Do not do early |
+
+**PARKED by owner decision, not by oversight:**
+
+| Item | Why parked |
+|---|---|
+| Voice input | Text-only is fine for now. It was never wired into the Godot client, so parking costs nothing. Design still assumes voice is the eventual destination — keep honouring the `text`/`voice` transform split in `roundRules.js` rather than baking in text-only assumptions. |
+| Shareable Question polish | The current canvas card + Web Share implementation **is** the placeholder and is deliberately frozen there: one card, no hosting, no persistence. Do not extend it (no hosted links, no tap-to-reveal, no recap images) without the owner asking. Do not rip it out either — it's built and tested, so replacing it spends effort to end up with less. |
 
 ## Current To-Do
 1. ~~**Review Round variation types**~~ — 8 variations confirmed. See `GAME_DESIGN.md`.
