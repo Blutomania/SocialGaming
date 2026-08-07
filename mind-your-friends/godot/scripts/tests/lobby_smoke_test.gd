@@ -29,6 +29,22 @@ func _ready() -> void:
 func _run() -> void:
 	print("=== MYF lobby smoke test ===")
 
+	# 0. The Lobby scene must actually instantiate. The rest of this test
+	#    exercises the autoloads directly, which would happily pass even if
+	#    lobby.tscn were broken -- and a mistyped %UniqueName only fails at
+	#    runtime, in _ready(), as a null dereference.
+	var lobby_scene: PackedScene = load("res://scenes/ui/lobby.tscn")
+	_check(lobby_scene != null, "lobby.tscn loads")
+	if lobby_scene != null:
+		var lobby: Node = lobby_scene.instantiate()
+		add_child(lobby)
+		await get_tree().process_frame
+		_check(is_instance_valid(lobby), "lobby.tscn instantiates and survives _ready()")
+		_check(lobby.get_node_or_null("%StartButton") != null,
+			"lobby unique-name lookups resolve (%StartButton found)")
+		lobby.queue_free()
+		await get_tree().process_frame
+
 	# 1. Host creates a room.
 	var created := await _post(func(cb: Callable) -> void:
 		ApiClient.create_game(GameState.ensure_player_id(), HOST_NAME, cb)
