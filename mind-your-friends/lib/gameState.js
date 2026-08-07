@@ -16,6 +16,8 @@ import {
   evaluateWorstAnswers,
   fetchFactsBatch,
   moderateHeckle,
+  generateSuperlatives,
+  narrateSuperlativeResults,
 } from './claudeClient.js';
 import { roundConstraints, turnConstraints, validateQuestion, pickFactoid } from './coherence.js';
 import { pickColorLineupEntry, buildColorOptions } from './lineupData.js';
@@ -74,6 +76,13 @@ export function createGame(hostId, hostName) {
     currentQuestion: null, // { question, answer, hostQuip }
     answererIndex: null,
     highlightReel: [],
+    // Structured record of every question actually asked, appended by
+    // logQuestion() as each turn resolves. The highlight reel is prose meant
+    // to be read back to the room; this is data, and it's what the post-game
+    // social layer (superlatives, Shareable Question) is built on.
+    // Contains correct answers, so playerView() only exposes it at GAME_OVER.
+    questionLog: [],
+    postGame: null,
   };
 }
 
@@ -707,8 +716,74 @@ export function expireSteal(game) {
 }
 
 // Advances to the next question/turn, or GAME_OVER once TOTAL_QUESTIONS is reached.
+// Appends the turn that just resolved to game.questionLog. Called from
+// nextTurn() rather than from each resolution path (submitAnswer, claimSteal,
+// expireSteal, resolveGroupAnswers, the two lineup paths) because nextTurn is
+// the single funnel every one of them passes through — logging in six places
+// would mean six places to forget.
+function logQuestion(game) {
+  if (!game.currentQuestion || game.skippedTurn) return;
+
+  const answerer = game.answererIndex != null ? game.players[game.answererIndex] : null;
+  const result = game.lastResult ?? {};
+  const rule = game.roundRule ?? {};
+
+  let outcome;
+  let outcomeSummary;
+  if (rule.submissionBased) {
+    outcome = 'group';
+    outcomeSummary = 'The whole room answered this one.';
+  } else if (rule.lineupBased) {
+    const winnerName = result.lineupWinner ? result.winnerName : null;
+    outcome = winnerName ? 'spotted' : 'unclaimed';
+    outcomeSummary = winnerName
+      ? `${winnerName} spotted it first.`
+      : 'Nobody in the room spotted it.';
+  } else if (result.stolen) {
+    // claimSteal sets `stolen: true` whether the steal SUCCEEDED or FAILED —
+    // result.correct is what distinguishes them, and it refers to the stealer,
+    // not the original answerer.
+    const stealer = result.stealerName ?? 'someone else';
+    outcome = result.correct ? 'stolen' : 'wrong';
+    outcomeSummary = result.correct
+      ? `${answerer?.name ?? 'The answerer'} missed it — ${stealer} stole it.`
+      : `${answerer?.name ?? 'The answerer'} missed it, and so did ${stealer}.`;
+  } else if (result.correct) {
+    outcome = 'correct';
+    outcomeSummary = `${answerer?.name ?? 'The answerer'} got this one.`;
+  } else {
+    outcome = 'wrong';
+    outcomeSummary = `${answerer?.name ?? 'The answerer'} missed this one.`;
+  }
+
+  game.questionLog.push({
+    index: game.questionIndex,
+    question: game.currentQuestion.question,
+    answer: game.currentQuestion.answer,
+    category: game.currentCategory,
+    categoryAttribution: game.currentCategoryAttribution?.submittedBy ?? null,
+    roundRuleId: rule.id ?? null,
+    roundRuleName: rule.name ?? null,
+    answererName: answerer?.name ?? null,
+    playerAnswer: result.playerAnswer ?? null,
+    wager: game.currentWager ?? null,
+    outcome,
+    outcomeSummary,
+    // The room failing a question is the strongest share hook — it turns the
+    // card into a challenge ("nobody here got this") rather than a flashcard.
+    roomMissedIt: outcome === 'wrong' || outcome === 'unclaimed',
+    lineup: game.currentQuestion.lineup
+      ? {
+          options: game.currentQuestion.lineup.options,
+          correctOptionId: game.currentQuestion.lineup.correctOptionId,
+        }
+      : null,
+  });
+}
+
 export function nextTurn(game) {
   assertPhase(game, 'RESULT');
+  logQuestion(game);
   game.skippedTurn = false;
   game.questionIndex += 1;
   if (game.questionIndex >= TOTAL_QUESTIONS) {
@@ -992,6 +1067,25 @@ export function playerView(game, playerId) {
 
   if (phase === 'GAME_OVER') {
     view.winners = getWinners(game).map((p) => ({ id: p.id, name: p.name, score: p.score }));
+
+    // questionLog carries every correct answer, so it ships ONLY here — the
+    // game is over and there is nothing left to spoil. Never move this out of
+    // the GAME_OVER branch.
+    view.questionLog = game.questionLog;
+
+    if (game.postGame) {
+      view.postGame = {
+        stage: game.postGame.stage,
+        categories: game.postGame.categories,
+        // Individual votes stay hidden during voting so nobody can bandwagon;
+        // they're only meaningful in aggregate anyway, and the results stage
+        // publishes the tallies.
+        myVotes: game.postGame.votes[playerId] ?? {},
+        votedCount: Object.keys(game.postGame.votes).length,
+        totalToVote: game.players.filter((p) => !p.droppedOut).length,
+        results: game.postGame.stage === 'results' ? game.postGame.results : null,
+      };
+    }
   }
 
   if (game.disconnectVote) {
@@ -1005,4 +1099,130 @@ export function playerView(game, playerId) {
   view.paused = shouldPause(game);
 
   return view;
+}
+
+// ---------------------------------------------------------------------------
+// Post-game social layer — superlative voting (CLAUDE.md item 35).
+//
+// Runs entirely inside the GAME_OVER phase rather than adding new phases to
+// the main state machine. The game is over; this is an epilogue, and every
+// phase-timeout/auto-advance helper in this file assumes the eight-phase loop.
+// Bolting a tenth phase on would mean auditing all of them for a state that
+// can't affect scoring.
+//
+// game.postGame = {
+//   stage: 'voting' | 'results',
+//   categories: [{ id, title, description }],
+//   votes: { [voterId]: { [categoryId]: targetPlayerId } },
+//   results: [{ id, title, description, winnerNames, voteCount, quip }] | null
+// }
+// ---------------------------------------------------------------------------
+
+// Builds the superlative categories and opens voting. Safe to call more than
+// once — the server's game:over path and a manual client request can race.
+export async function beginSuperlativeVoting(game) {
+  if (game.phase !== 'GAME_OVER') {
+    throw new Error('Superlative voting only runs after the game is over');
+  }
+  if (game.postGame) return game; // already started
+
+  // Claim the slot synchronously BEFORE the await, so two concurrent callers
+  // can't both pass the guard above and generate two sets of categories.
+  game.postGame = { stage: 'voting', categories: [], votes: {}, results: null };
+
+  const categories = await generateSuperlatives({
+    highlightReel: game.highlightReel,
+    questionLog: game.questionLog,
+    playerNames: game.players.map((p) => p.name),
+  });
+
+  game.postGame.categories = categories;
+  return game;
+}
+
+export function castSuperlativeVote(game, voterId, categoryId, targetPlayerId) {
+  if (game.phase !== 'GAME_OVER' || !game.postGame) {
+    throw new Error('Voting is not open');
+  }
+  if (game.postGame.stage !== 'voting') {
+    throw new Error('Voting has already closed');
+  }
+  if (!game.postGame.categories.some((c) => c.id === categoryId)) {
+    throw new Error(`Unknown superlative category: ${categoryId}`);
+  }
+  if (!getPlayer(game, targetPlayerId)) {
+    throw new Error('You can only vote for a player in this game');
+  }
+
+  // Voting for yourself is allowed on purpose — "Best Sabotage" is a real
+  // thing to be proud of, and policing it invites more argument than it saves.
+  game.postGame.votes[voterId] = game.postGame.votes[voterId] ?? {};
+  game.postGame.votes[voterId][categoryId] = targetPlayerId;
+  return game;
+}
+
+// True once every still-present player has voted in every category.
+export function allSuperlativeVotesIn(game) {
+  if (!game.postGame || game.postGame.stage !== 'voting') return false;
+  const eligible = game.players.filter((p) => !p.droppedOut);
+  if (eligible.length === 0) return false;
+  return eligible.every((p) => {
+    const ballot = game.postGame.votes[p.id];
+    return ballot && game.postGame.categories.every((c) => ballot[c.id]);
+  });
+}
+
+// Tallies the votes and closes voting. Called when everyone has voted or when
+// the post-game timer expires — whichever comes first, so one slow player
+// can't strand the room on the voting screen.
+export async function resolveSuperlatives(game) {
+  if (!game.postGame || game.postGame.stage !== 'voting') return game;
+
+  // Flip the stage synchronously so the all-voted path and the timer path
+  // can't both tally — same guard pattern as beginGroupEvaluation().
+  game.postGame.stage = 'results';
+
+  const results = game.postGame.categories.map((category) => {
+    const tally = {};
+    for (const ballot of Object.values(game.postGame.votes)) {
+      const target = ballot[category.id];
+      if (target) tally[target] = (tally[target] ?? 0) + 1;
+    }
+
+    const top = Math.max(0, ...Object.values(tally));
+    const winnerIds = Object.keys(tally).filter((id) => tally[id] === top);
+    return {
+      id: category.id,
+      title: category.title,
+      description: category.description,
+      // Ties are shared wins — same convention as getWinners().
+      winnerNames: winnerIds.map((id) => getPlayer(game, id)?.name).filter(Boolean),
+      voteCount: top,
+      quip: null,
+    };
+  });
+
+  const awarded = results.filter((r) => r.winnerNames.length > 0);
+  if (awarded.length > 0) {
+    try {
+      const quips = await narrateSuperlativeResults({ results: awarded });
+      quips.forEach((entry, i) => {
+        if (!entry?.quip) return;
+        // Prefer matching on id, but fall back to position — the prompt asks
+        // for the same order, and an id mismatch previously dropped every
+        // quip silently rather than degrading to "mostly right".
+        const match =
+          results.find((r) => r.id === entry.id) ??
+          results.find((r) => r.title === entry.id) ??
+          awarded[i];
+        if (match) match.quip = entry.quip;
+      });
+    } catch {
+      // The quips are flavor. If Claude fails here the awards are still
+      // correct and the screen still works — don't lose the results over it.
+    }
+  }
+
+  game.postGame.results = results;
+  return game;
 }

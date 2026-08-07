@@ -1,6 +1,9 @@
 'use client';
 
-export default function ScoreBoard({ game, myId }) {
+import SuperlativeVoting from './SuperlativeVoting';
+import ShareableQuestion from './ShareableQuestion';
+
+export default function ScoreBoard({ game, myId, socket }) {
   const sorted = [...game.players].sort((a, b) => b.score - a.score);
   const topScore = sorted[0]?.score;
   const winners = sorted.filter((p) => p.score === topScore);
@@ -27,6 +30,18 @@ export default function ScoreBoard({ game, myId }) {
           </li>
         ))}
       </ul>
+
+      {/* Post-game social layer. Both of these degrade to nothing if the
+          server couldn't build them, so a failed superlative generation
+          costs the flavor, not the whole end-of-game screen. */}
+      <SuperlativeVoting
+        postGame={game.postGame}
+        players={game.players}
+        myId={myId}
+        socket={socket}
+      />
+
+      <ShareableQuestion questionLog={game.questionLog} gameCode={game.code} />
 
       {game.highlightReel.length > 0 && (
         <div className="text-left">

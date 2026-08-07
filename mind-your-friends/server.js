@@ -21,6 +21,10 @@ const sockets = new Map();
 // How long the FCFS card window stays open before auto-resolving.
 const CARD_WINDOW_MS = 8000;
 
+// How long post-game superlative voting stays open before the votes that did
+// arrive get tallied anyway.
+const POST_GAME_VOTE_MS = 90000;
+
 app.prepare().then(() => {
   const httpServer = createServer((req, res) => handle(req, res));
   const io = new Server(httpServer);
@@ -136,6 +140,27 @@ app.prepare().then(() => {
         if (result.correct) {
           broadcast(io, game);
           scheduleNextTurn(io, game);
+        }
+      });
+    });
+
+    // Post-game superlative voting (CLAUDE.md item 35). Uses an ack callback
+    // rather than the global 'error' event for the same reason attemptLineup
+    // does: a rejected vote should give local feedback, not replace the page.
+    socket.on('postgame:vote', ({ categoryId, targetPlayerId }, ack) => {
+      withMyGame(socket, async (game, playerId) => {
+        try {
+          gameState.castSuperlativeVote(game, playerId, categoryId, targetPlayerId);
+        } catch (err) {
+          if (typeof ack === 'function') ack({ ok: false, message: err.message });
+          return;
+        }
+        if (typeof ack === 'function') ack({ ok: true });
+        broadcast(io, game);
+
+        if (gameState.allSuperlativeVotesIn(game)) {
+          await gameState.resolveSuperlatives(game);
+          broadcast(io, game);
         }
       });
     });
@@ -308,7 +333,37 @@ app.prepare().then(() => {
       if (game.phase !== 'RESULT') return; // already advanced by another path
       gameState.nextTurn(game);
       broadcast(io, game);
+      if (game.phase === 'GAME_OVER') startPostGame(io, game);
     }, gameState.RESULT_SCREEN_MS);
+  }
+
+  // Kicks off superlative voting once the game ends. Generation is a real
+  // Claude call, so the GAME_OVER screen broadcasts first and the voting UI
+  // appears a moment later rather than making everyone stare at a spinner.
+  //
+  // Failure here is deliberately non-fatal: the scoreboard, highlight reel and
+  // Shareable Question all work without superlatives, and losing the whole
+  // end-of-game screen because one flavor call failed would be a bad trade.
+  function startPostGame(io, game) {
+    gameState
+      .beginSuperlativeVoting(game)
+      .then(() => {
+        broadcast(io, game);
+        setTimeout(() => {
+          // One slow (or departed) player must not strand everyone on the
+          // voting screen — tally whatever came in.
+          if (game.postGame?.stage !== 'voting') return;
+          gameState
+            .resolveSuperlatives(game)
+            .then(() => broadcast(io, game))
+            .catch((err) => console.error('Superlative tally failed:', err));
+        }, POST_GAME_VOTE_MS);
+      })
+      .catch((err) => {
+        console.error('Superlative generation failed:', err);
+        game.postGame = null; // let the client fall back to the plain scoreboard
+        broadcast(io, game);
+      });
   }
 
   function startGracePeriod(io, game, disconnectedPlayerId) {

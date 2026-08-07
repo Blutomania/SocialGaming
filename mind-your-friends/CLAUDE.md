@@ -465,6 +465,39 @@ detail entries further down.
       (question, answer, category + attribution, who answered, right/wrong, wager) — that's the
       first build step, and it's also what makes the "4 of 5 friends got this wrong" hook line
       possible.
+    - **BUILT (August 7, 2026).** What landed:
+      - `gameState.js`: `game.questionLog` + `logQuestion()`, called from `nextTurn()` — the one
+        funnel every resolution path (submitAnswer, claimSteal, expireSteal, resolveGroupAnswers,
+        both lineup paths) passes through, so there aren't six places to forget. Plus
+        `beginSuperlativeVoting()` / `castSuperlativeVote()` / `allSuperlativeVotesIn()` /
+        `resolveSuperlatives()`.
+      - `claudeClient.js`: `generateSuperlatives()` and `narrateSuperlativeResults()`, both
+        single batched calls (same reasoning as `evaluateWorstAnswers`).
+      - `server.js`: `postgame:vote` handler (ack callback, not the global `error` event —
+        same reason as `turn:attemptLineup`), post-game kickoff from `scheduleNextTurn`, and a
+        90s vote timer so one slow player can't strand the room.
+      - `components/`: `SuperlativeVoting.jsx`, `ShareableQuestion.jsx`, wired into
+        `ScoreBoard.jsx`.
+    - **Two real bugs found by testing, worth remembering:**
+      - `claimSteal()` sets `stolen: true` on a **failed** steal as well as a successful one —
+        `result.correct` is what separates them, and it refers to the *stealer*, not the
+        original answerer. Logging naively would have reported steals that never happened.
+      - `narrateSuperlativeResults()` returned quips keyed by award *title* instead of id,
+        because the prompt never showed Claude the ids. Every quip silently dropped. Fixed the
+        prompt and added a positional fallback so an id mismatch degrades instead of erasing.
+    - **Post-game state runs inside the GAME_OVER phase**, as `game.postGame`, rather than adding
+      new phases. Every phase-timeout and auto-advance helper in `gameState.js` assumes the
+      eight-phase loop; adding a tenth phase would mean auditing all of them for a state that
+      can't affect scoring.
+    - **`questionLog` is only exposed at GAME_OVER** — it contains every correct answer. Do not
+      move that out of the `phase === 'GAME_OVER'` branch in `playerView()`.
+    - **Verified:** `scripts/postgame-test.js` — 33 assertions, all passing, including every
+      `logQuestion` outcome shape, the answer-leak guard, and 2 real Claude calls. Builds clean
+      (`npm run build`). **NOT yet verified: a real game played through to GAME_OVER with these
+      screens on-screen.** The test builds a finished game object directly rather than playing
+      24 questions, so the UI itself is compile-verified only. That playtest is the next step,
+      and it's also the point of the feature — whether the social element *lands* is not
+      something a test can answer.
 
 ## Design Thesis: Casual-First
 This game targets casual, social players — not competitive optimizers. Every
