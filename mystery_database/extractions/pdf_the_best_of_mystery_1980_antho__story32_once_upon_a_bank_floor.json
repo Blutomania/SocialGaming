@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Bank robbery of Merchants National Bank: armed theft of cash and checks from night depository. Central question: How did the bank clerk signal for police without alerting the robbers?",
+    "confidence": "high",
+    "quote": "The tall man said, 'The night depository. Junior,' and I realized then that they did know what my routine was."
+  },
+  "victim": {
+    "value": "Colbaugh, a young bank clerk who was kidnapped at gunpoint, forced to open the night depository, and struck unconscious. He was vulnerable because he had sole access to the depository each morning.",
+    "confidence": "high",
+    "quote": "I was always the first one there; other employees would begin to drift in about fifteen minutes before opening time, but I had the bank to myself for a good half hour each morning."
+  },
+  "closed_world": {
+    "value": "Merchants National Bank in a small California town, early Friday morning (8:15-8:30 AM) before other employees arrive. The rear alley is deserted; the front entrance visible to street but obscured by lowered Venetian blind.",
+    "confidence": "high",
+    "quote": "The bank backed on a narrow lane, or alley, and the rear door was used only by employees. At that early hour, the lane was deserted."
+  },
+  "culprit_and_motive": {
+    "value": "Three out-of-state robbers (the tall blond gunman, Shiner, and the driver) motivated by theft of cash deposits. Secondary culprit: Dickson (the narrator), revealed as one of the original robbers, now seeking a $2,000 loan by blackmail.",
+    "confidence": "high",
+    "quote": "The police took them easily as they emerged from the rear door of the bank. The driver of the Ford was already in custody."
+  },
+  "resolution": {
+    "value": "Johnny Sampson, a teller and Colbaugh's friend, observes the Venetian blind still lowered at 8:20 AM (abnormal\u2014Colbaugh always raises it first). Per their pre-arranged plan, Sampson calls the bank; Colbaugh answers with wrong closing time (3:30 instead of 3:00), triggering police to surround the bank. Robbers arrested upon exit.",
+    "confidence": "high",
+    "quote": "When he telephoned the bank and asked the closing time, I told him 3:30. But he knew it closed at 3:00. So that was his signal. To call the police."
+  },
+  "investigator": {
+    "value": "The narrator (Dickson), a fellow plane passenger who listens to Colbaugh's story and then reveals himself as the original robber. He investigates by recognizing Colbaugh and following him, then uses the washroom encounter to confront him with a counter-blackmail scheme (threatening to expose the robbery's true instigators).",
+    "confidence": "high",
+    "quote": "I pushed my forefinger into his back, under cover of my topcoat, and said, 'Turn left, Mr. Colbaugh, and go into the men's room, will you?'"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 21232,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Once Upon a Bank Floor",
+    "author": "JAMES HOLDING",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 32,
+    "story_count": 63
+  }
+}

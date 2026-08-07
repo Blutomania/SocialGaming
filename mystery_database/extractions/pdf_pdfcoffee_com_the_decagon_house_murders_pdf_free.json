@@ -1,0 +1,41 @@
+{
+  "crime": {
+    "value": "Multiple murders on an isolated island. At least one victim (Orczy) killed; investigation centers on establishing method and opportunity among confined group.",
+    "confidence": "medium",
+    "quote": "The person who killed Orczy this morning is one of us here and it might have been Agatha."
+  },
+  "victim": {
+    "value": "Orczy (victim identified). Other victims implied but not detailed in excerpt. Relationship to killers and motives unclear from source.",
+    "confidence": "medium",
+    "quote": "The person who killed Orczy this morning is one of us here"
+  },
+  "closed_world": {
+    "value": "The Decagon House on an isolated island. Group of students confined together; no exit apparent during investigation period.",
+    "confidence": "high",
+    "quote": "The Decagon House Murders... a group of students from the thinly-disguised K\u2014University Mystery Club"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Ellery and Leroux (characters engaged in interrogation/investigation of suspects within the group). Appears to be an internal investigation among trapped parties.",
+    "confidence": "medium",
+    "quote": "Really? So Leroux, you are absolutely positive that Agatha... I think that you of all, Ellery, acted the strangest"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/pdfcoffee.com_the-decagon-house-murders-pdf-free.pdf",
+    "filename": "pdfcoffee.com_the-decagon-house-murders-pdf-free.pdf",
+    "text_len": 6037,
+    "protocols": [
+      "P1"
+    ],
+    "title": "pdfcoffee.com_the-decagon-house-murders-pdf-free"
+  }
+}

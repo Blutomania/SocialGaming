@@ -1,0 +1,93 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1lobb000001"]
+
+[ext_resource type="Script" path="res://scripts/ui/lobby.gd" id="1_lobby"]
+
+[node name="Lobby" type="Control"]
+script = ExtResource("1_lobby")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -280.0
+offset_right = 280.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="VBox"]
+layout_mode = 2
+text = "Waiting for Players"
+horizontal_alignment = 1
+
+[node name="MysteryTitleLabel" type="Label" parent="VBox"]
+layout_mode = 2
+text = ""
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 12)
+
+[node name="CodeHeader" type="Label" parent="VBox"]
+layout_mode = 2
+text = "Room Code"
+horizontal_alignment = 1
+
+[node name="RoomCodeLabel" type="Label" parent="VBox"]
+layout_mode = 2
+text = "------"
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 8)
+
+[node name="JoinHeader" type="Label" parent="VBox"]
+layout_mode = 2
+text = "Players join at:"
+horizontal_alignment = 1
+
+[node name="JoinUrlLabel" type="Label" parent="VBox"]
+layout_mode = 2
+text = "http://localhost:8000/play"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Spacer3" type="Control" parent="VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 16)
+
+[node name="PlayersHeader" type="Label" parent="VBox"]
+layout_mode = 2
+text = "Players in lobby:"
+
+[node name="PlayerList" type="VBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="Spacer4" type="Control" parent="VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 16)
+
+[node name="StartButton" type="Button" parent="VBox"]
+layout_mode = 2
+text = "Start Game"
+
+[node name="BackButton" type="Button" parent="VBox"]
+layout_mode = 2
+text = "Cancel"
+
+[node name="StatusLabel" type="Label" parent="VBox"]
+layout_mode = 2
+text = ""
+horizontal_alignment = 1

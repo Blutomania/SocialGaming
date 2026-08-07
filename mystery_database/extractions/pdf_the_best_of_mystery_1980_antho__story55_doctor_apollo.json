@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Murder by ice-pick stabbing (32+ times); central question: why did a well-behaved, normal boy commit such a brutal killing, and is he legally/psychologically culpable?",
+    "confidence": "high",
+    "quote": "he stabbed Laramer with an icepick. What was it\u2014thirty-two times?"
+  },
+  "victim": {
+    "value": "Laramer, a drunk and abusive substitute father figure who beat both Richard Gorman and his mother, displaced Gorman's idealized dead father, and usurped his place in the household.",
+    "confidence": "high",
+    "quote": "he was a lush, a drunken bum and he started beating hell out of me all the time...he didn't marry her, see, but he practically lived there, moved in, took over."
+  },
+  "closed_world": {
+    "value": "Green Valley Manor psychiatric sanitarium, a private treatment facility where Gorman is confined and where the investigator Kessler has clinical authority and access.",
+    "confidence": "high",
+    "quote": "Green Valley Manor resembled a lovely lakeside resort. Parklike grounds contained numerous small cottages...Here conditions were ideal for the advanced treatment of those who could be saved."
+  },
+  "culprit_and_motive": {
+    "value": "Richard Gorman killed Laramer to purge an Oedipus (later Orestes) complex rooted in unconscious hatred of his father, displaced onto Laramer; Kessler\u2014through therapy and literary suggestion\u2014catalyzes Gorman's recognition of this motive, enabling further violence.",
+    "confidence": "high",
+    "quote": "I hated him because he stood for my father. And I always unconsciously hated my father, because I was always jealous of his position with mother."
+  },
+  "resolution": {
+    "value": "No traditional resolution. Gorman, psychologically 'cured' by Kessler's treatment, murders his mother during a sanitarium visit. Kessler discovers the body and realizes his own misogyny enabled the killing. The mystery ends with moral/psychological ambiguity and Kessler's recognition of complicity.",
+    "confidence": "high",
+    "quote": "It's odd, he thought, but it's the first time I ever could look upon a dead woman...I hated her too, he thought. I always hated women."
+  },
+  "investigator": {
+    "value": "Dr. Kessler, a senior psychiatrist investigating not crime but psychology; he seeks to understand Gorman's motive, becomes his analyst and mentor, and inadvertently becomes complicit in enabling further murder through his theoretical framework.",
+    "confidence": "high",
+    "quote": "I'm interested in why he did it...Such cases as Gorman's could help illuminate one of the darkest cellars of psychiatry: the psychology of action."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Doctor Apollo",
+    "author": "BRYCE WALTON",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 55,
+    "story_count": 63
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Murder by strangulation disguised as disappearance. Central question: How did Kenneth dispose of Linda's body and establish an alibi while making her disappearance appear identical to a prior unsolved case?",
+    "confidence": "high",
+    "quote": "Kenneth Borchard was sure that she was definitely dead by 6:37, and dropped her body to the kitchen floor."
+  },
+  "victim": {
+    "value": "Linda Borchard (n\u00e9e Krebs), a psychologically fragile young woman with a history of running away when distressed. She was 'killable' because her withdrawn, hypersensitive nature made her vulnerable, and her compulsive flight tendency provided Kenneth perfect cover.",
+    "confidence": "high",
+    "quote": "her lips closed tight...her eyes went blank and her face took on a hightail-escape look...She was what he aspired to...yet felt he could never attain."
+  },
+  "closed_world": {
+    "value": "Small Midwestern town with surrounding prairies and farmland. The social world is further bounded by the tight-knit community of the feed store owner's family, church meetings, and Chamber of Commerce\u2014where Kenneth's movements and alibis are easily constructed and believed.",
+    "confidence": "high",
+    "quote": "Who gets lost in a town like this with nothing but prairies and farmland on each side?"
+  },
+  "culprit_and_motive": {
+    "value": "Kenneth Borchard murdered Linda out of revenge for his eight years wrongful imprisonment. He seduced her into marriage, then killed her to repay the loss of freedom she caused him\u2014framing her disappearance as a repeat of the unsolved 1963 case to exploit police incompetence.",
+    "confidence": "high",
+    "quote": "Kenneth Borchard knew at last that Linda had been worth every minute of his eight years in prison, now that he had paid her back for them."
+  },
+  "resolution": {
+    "value": "No resolution. The crime remains undetected. Linda vanishes again; Kenneth establishes a perfect alibi using his presence at a Chamber of Commerce meeting. Police issue an APB but concentrate search on asylums, never suspecting the actual murder. Justice is structurally denied.",
+    "confidence": "high",
+    "quote": "The police chief...solemnly listed the clothing...and concentrate on the asylums between here and California...as Kenneth Borchard was sure he would."
+  },
+  "investigator": {
+    "value": "The police chief and Leland Krebs (father) serve as nominal investigators, but both are rendered ineffectual by complicity, shame, and institutional limitation. The reader alone perceives the crime through omniscient narration\u2014making the reader an investigator without authority.",
+    "confidence": "medium",
+    "quote": "The police chief...admitted he didn't know what to do next...eager to rectify rash conceptions and past misjudgment."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Linda Is Gone",
+    "author": "PAULINE C. SMITH",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 29,
+    "story_count": 63
+  }
+}

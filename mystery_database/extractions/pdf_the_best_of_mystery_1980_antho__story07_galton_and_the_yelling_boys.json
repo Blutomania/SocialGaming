@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Murder of young woman Helen MacKenzie in City Park. Reported as kidnapping by her boyfriend Lawrence Wainwright, but detective Galton deduces it was a passion killing: Wainwright killed her with a rock during a sexual encounter when she resisted his advances, then fabricated a story about three abductors to cover his crime.",
+    "confidence": "high",
+    "quote": "The young girl lay dead and cold under a tree. Her pants were down, her skirt was up and her blouse and bra were off. Her once-pretty head was bloody and broken."
+  },
+  "victim": {
+    "value": "Helen MacKenzie, a young woman from a lower social class than Wainwright. She was 'killable' because she resisted Wainwright's sexual advances\u2014she said 'Stop it! Don't!'\u2014making her a threat to his plans and his reputation.",
+    "confidence": "high",
+    "quote": "I heard her say, 'Stop it! Don't!' but that's all."
+  },
+  "closed_world": {
+    "value": "City Park at night during a full moon in May, specifically the wooded area near the pond where Wainwright parked with the victim. The park becomes the investigative boundary as police search the woods.",
+    "confidence": "high",
+    "quote": "We were parked in the park doing a little\u2014you know\u2014smooching... They dragged her that way. At least, the last I saw... [pointing to] black woods a hundred yards distant."
+  },
+  "culprit_and_motive": {
+    "value": "Lawrence Wainwright, the boyfriend, killed Helen MacKenzie. Motive: sexual aggression met with resistance; when she fought him off, he struck her with a rock to 'subdue her,' but hit too hard and killed her. Motive also includes covering up the act by inventing the three-man abduction story.",
+    "confidence": "high",
+    "quote": "You took the girl down into the woods and started to pitch woo. Only she didn't want to go as far as you did and she tried to fight you off. But you were determined and you hit her with a rock to quiet her down."
+  },
+  "resolution": {
+    "value": "Captain Galton uses logical deduction based on human nature and criminal psychology. He recognizes the false alibi through internal inconsistency: three attackers would not need to kill the girl if their goal was rape\u2014they could simply restrain her. The rock-killing only makes sense if a single person (the boyfriend) was involved. Galton's reasoned accusation breaks down Wainwright's story; forensic examination of the body will provide physical evidence.",
+    "confidence": "high",
+    "quote": "Three guys? What would they need a rock for? Two could hold her for the third so tight she couldn't move a muscle... That girl's body is going to be examined very, very carefully for physical evidence."
+  },
+  "investigator": {
+    "value": "Captain Mike Galton, an experienced police detective with institutional authority. He is the lens through which the reader experiences the mystery. Galton's expertise in human nature\u2014his philosophical opening about cops knowing more about human behavior than psychiatrists\u2014becomes the instrument of solving the crime.",
+    "confidence": "high",
+    "quote": "'Human nature,' said Mike Galton, the captain of detectives, 'is the key to man's universe... a good, experienced cop knows more about human nature than a good, experienced psychiatrist.'"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 15617,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Galton and the Yelling Boys",
+    "author": "HILLARY WAUGH",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 7,
+    "story_count": 63
+  }
+}

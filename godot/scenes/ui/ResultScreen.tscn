@@ -1,0 +1,69 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1resu000001"]
+
+[ext_resource type="Script" path="res://scripts/ui/result_screen.gd" id="1_result"]
+
+[node name="ResultScreen" type="Control"]
+script = ExtResource("1_result")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainVBox" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+offset_right = 1280.0
+offset_left = 32.0
+offset_top = 32.0
+
+[node name="VerdictLabel" type="Label" parent="ScrollContainer/MainVBox"]
+layout_mode = 2
+text = ""
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 28
+autowrap_mode = 3
+
+[node name="SolutionLabel" type="RichTextLabel" parent="ScrollContainer/MainVBox"]
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+text = ""
+
+[node name="Separator1" type="HSeparator" parent="ScrollContainer/MainVBox"]
+layout_mode = 2
+
+[node name="RatingTitle" type="Label" parent="ScrollContainer/MainVBox"]
+layout_mode = 2
+text = "Rate This Mystery (1 = unplayable · 10 = perfect)"
+horizontal_alignment = 1
+
+[node name="RatingRow" type="HBoxContainer" parent="ScrollContainer/MainVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Separator2" type="HSeparator" parent="ScrollContainer/MainVBox"]
+layout_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="ScrollContainer/MainVBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="PlayAgainButton" type="Button" parent="ScrollContainer/MainVBox/Buttons"]
+layout_mode = 2
+text = "Play Again"
+custom_minimum_size = Vector2(150, 0)
+
+[node name="ReviewButton" type="Button" parent="ScrollContainer/MainVBox/Buttons"]
+layout_mode = 2
+text = "Review Case"
+custom_minimum_size = Vector2(150, 0)

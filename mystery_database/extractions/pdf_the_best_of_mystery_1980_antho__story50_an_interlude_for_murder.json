@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Murder by high-frequency sound transmission through a modified hearing-aid battery disguised as a hearing aid. The central question: how was Serge Maillot killed when all electrical apparatus were tested and safe?",
+    "confidence": "high",
+    "quote": "Sound. High-frequency sound... they can kill. That was why there was a dead spot on the tape."
+  },
+  "victim": {
+    "value": "Serge Maillot, 69-year-old theatrical impresario and film mogul, killed because he dismissed an employee (Demaine's father) in 1942, leading to the father's arrest and death in a Nazi concentration camp.",
+    "confidence": "high",
+    "quote": "He kicked out my father from his company\u2014and the Boche sent him to a camp\u2014and there he died!"
+  },
+  "closed_world": {
+    "value": "Orly Airport's VIP lounge during a champagne reception and press event for Serge Maillot, with limited exits and controlled access by police and airport staff.",
+    "confidence": "high",
+    "quote": "Through the plate-glass windows of the upstairs lounge I stared at the tarmac... the L-shaped room ending in a staircase"
+  },
+  "culprit_and_motive": {
+    "value": "Demaine, a young sound engineer, and possibly Martine (Maillot's wife), who replaced the hearing-aid battery with transistors acting as a receiver. Demaine's motive: revenge for his father's dismissal and subsequent death in a Nazi camp.",
+    "confidence": "high",
+    "quote": "She helped me!... It was she who changed the battery. I wanted to kill him, but she helped me."
+  },
+  "resolution": {
+    "value": "Inspector Jeannot reconstructs the crime by recognizing the hearing-aid battery was sabotaged with transistors; he demonstrates the method by having Demaine put on the device during tape playback, forcing Demaine's confession. Demaine flees across the tarmac and is killed by aircraft propellers.",
+    "confidence": "high",
+    "quote": "He replaced the battery with three transistors... tuned to each other... he turned tail\u2014his footsteps clattering down the staircase."
+  },
+  "investigator": {
+    "value": "Adam Venture, a private investigator and casual observer who gate-crashed the VIP party, witnesses Maillot's death, notices the hot ear, and convinces Inspector Jeannot to perform an autopsy and investigate the hearing aid.",
+    "confidence": "high",
+    "quote": "I happened to be watching Maillot when he died... when I accidentally touched Serge Maillot's left ear it was hot."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "An Interlude for Murder",
+    "author": "PAUL TABORI",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 50,
+    "story_count": 63
+  }
+}

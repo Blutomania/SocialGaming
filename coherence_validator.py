@@ -204,7 +204,7 @@ def check_parts(parts) -> CoherenceReport:
     # ── 1. Completeness — all 8 slots must be filled ─────────────────────
     REQUIRED_TYPES = [
         "crime_type", "setting_element", "motive", "suspect_archetype",
-        "red_herring", "reveal_mechanic", "social_dynamic", "evidence_type",
+        "red_herring", "reveal_mechanic", "social_dynamic", "alibi",
     ]
     for pt in REQUIRED_TYPES:
         if pt not in by_type:
@@ -240,31 +240,31 @@ def check_parts(parts) -> CoherenceReport:
                 ),
             ))
 
-    # ── 3. Scene investigation — evidence_type must be scene-observable ──
-    if "evidence_type" in by_type:
-        ev = by_type["evidence_type"]
+    # ── 3. Scene investigation — alibi must be scene-observable ───────────
+    if "alibi" in by_type:
+        ev = by_type["alibi"]
         has_physical = bool(_PHYSICAL_KW.search(ev.content))
         is_testimonial_only = bool(_TESTIMONIAL_ONLY_KW.search(ev.content)) and not has_physical
         if is_testimonial_only:
             issues.append(Issue(
-                code="parts.evidence_type.testimonial_only",
+                code="parts.alibi.testimonial_only",
                 severity=WARNING,
                 message=(
-                    f"evidence_type part [{ev.label()}] describes only testimonial "
+                    f"alibi part [{ev.label()}] describes only testimonial "
                     "evidence (confession/statement). Scene investigation will have "
                     "nothing physical to discover."
                 ),
                 repair_hint=(
-                    "Re-sample part_type='evidence_type'; prefer parts with physical, "
+                    "Re-sample part_type='alibi'; prefer parts with physical, "
                     "documentary, or forensic evidence (objects, records, traces)."
                 ),
             ))
         elif not has_physical:
             issues.append(Issue(
-                code="parts.evidence_type.no_physical_anchor",
+                code="parts.alibi.no_physical_anchor",
                 severity=INFO,
                 message=(
-                    f"evidence_type part [{ev.label()}] has no clear physical anchor. "
+                    f"alibi part [{ev.label()}] has no clear physical anchor. "
                     "Consider adding a physical evidence item at generation time."
                 ),
                 repair_hint=(
@@ -588,7 +588,7 @@ def check_mystery(mystery: dict) -> CoherenceReport:
                 "without relying solely on character testimony."
             ),
             repair_hint=(
-                "Re-sample part_type='evidence_type' (prefer physical/forensic) and "
+                "Re-sample part_type='alibi' (prefer physical/forensic) and "
                 "regenerate the evidence section, OR add 1-2 physical items without "
                 "full regeneration by patching the evidence array."
             ),
@@ -677,7 +677,7 @@ def check_mystery(mystery: dict) -> CoherenceReport:
                 "meaningful strategic decisions about what to withhold."
             ),
             repair_hint=(
-                "Add evidence items; use evidence_type and red_herring part content "
+                "Add evidence items; use alibi and red_herring part content "
                 "as seeds. No full regeneration needed — append to evidence array."
             ),
         ))

@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Murder by poisoning (grapejuice) and hair harvesting; central question: how did Aunt Abbie obtain the victim's hair if she fell into the gorge?",
+    "confidence": "high",
+    "quote": "She placed the half-full cup on the marble-topped table at her side... the copper-red strand glinting against the half-finished rose."
+  },
+  "victim": {
+    "value": "Marty's daughter, a young red-haired woman visiting from the city; killable because she is an orphan ('You're all alone?'), has no local ties, and her distinctive red hair is needed for Aunt Abbie's hair wreath.",
+    "confidence": "high",
+    "quote": "You're all alone?... Except for us... Such pretty red hair... I just got the rose left."
+  },
+  "closed_world": {
+    "value": "Aunt Abbie's isolated cabin in the hills, reached only by a rough walk through boulder-strewn terrain; the girl is physically isolated and dependent on Melinda and Aunt Abbie.",
+    "confidence": "high",
+    "quote": "The cabin squatted beneath bowed trees... goin' on fifty year... quite a piece. Rough ground."
+  },
+  "culprit_and_motive": {
+    "value": "Aunt Abbie, the elderly record keeper with 'second sight'; motive is to complete her hair wreath memorial\u2014the victim's red hair is the final 'rose' needed to finish the family death record.",
+    "confidence": "high",
+    "quote": "I just got the rose left... Such pretty, pretty red hair... Aunt Abbie never snipped a live lock. Never."
+  },
+  "resolution": {
+    "value": "Melinda gradually realizes the logical impossibility of Aunt Abbie's account: the girl could not have fallen into the gorge AND provided her hair through Aunt Abbie's ritual. Melinda accepts the truth through deduction and her knowledge of Aunt Abbie's methods.",
+    "confidence": "high",
+    "quote": "How had Aunt Abbie gone through the rites... how had Aunt Abbie gone through the rites... spry enough to spring up the sheer face of the gorge\u2014with scissors, hair and a mirror in her hand."
+  },
+  "investigator": {
+    "value": "Melinda, the victim's cousin and accomplice/witness; through her perspective we see the gradual realization of Aunt Abbie's crime, though she ultimately accepts it with 'pride-filled mind.'",
+    "confidence": "high",
+    "quote": "Melinda's sorrowful, pride-filled mind knew perplexity... Melinda heaved a final sigh of acceptance."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 16929,
+    "protocols": [
+      "P1"
+    ],
+    "title": "A Flower in Her Hair",
+    "author": "PAULINE C. SMITH",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 3,
+    "story_count": 63
+  }
+}

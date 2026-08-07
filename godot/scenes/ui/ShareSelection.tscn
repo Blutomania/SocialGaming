@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://share_selection"]
+
+[ext_resource type="Script" path="res://scripts/ui/share_selection.gd" id="1_sharesel"]
+
+[node name="ShareSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+script = ExtResource("1_sharesel")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = -24.0
+
+[node name="TitleLabel" type="Label" parent="VBox"]
+text = "Share Your Findings"
+theme_override_font_sizes/font_size = 20
+
+[node name="SubtitleLabel" type="Label" parent="VBox"]
+autowrap_mode = 3
+text = ""
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBox"]
+size_flags_vertical = 3
+
+[node name="FindingsContainer" type="VBoxContainer" parent="VBox/ScrollContainer"]
+size_flags_horizontal = 3
+
+[node name="CounterLabel" type="Label" parent="VBox"]
+text = "0 selected (minimum 0)"
+
+[node name="StatusLabel" type="Label" parent="VBox"]
+autowrap_mode = 3
+text = ""
+
+[node name="ShareButton" type="Button" parent="VBox"]
+text = "Share Selected Findings"
+
+[node name="Spinner" type="ProgressBar" parent="VBox"]
+show_percentage = false
+indeterminate = true
+visible = false

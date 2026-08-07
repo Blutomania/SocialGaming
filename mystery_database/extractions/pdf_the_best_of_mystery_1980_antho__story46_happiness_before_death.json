@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Sylvia Oaks, wealthy heiress poisoned by her husband Werther with sleeping pills after he made her happy on a poverty trip, changing her will to give away her fortune to charity",
+    "confidence": "high",
+    "quote": "The cause of her death was listed as an overdose of sleeping pills."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Werther Oaks, Sylvia's husband, murders her for her inheritance money, but discovers after her death that she changed her will and gave all her money to charity, nullifying his motive retroactively",
+    "confidence": "high",
+    "quote": "I gave her those pills, and she went to sleep, and she was smiling... She gave it all away. All her money."
+  },
+  "resolution": {
+    "value": "No investigation occurs; Werther's confession to Velvet remains private. The murder appears as an accidental overdose due to depression, certified by Dr. Miller's prior psychiatric assessment of suicidal ideation",
+    "confidence": "medium",
+    "quote": "The cause of her death was listed as an overdose of sleeping pills. She was survived by her husband, Werther."
+  },
+  "investigator": {
+    "value": "Velvet, Werther's mistress, serves as the reader's lens\u2014she pieces together the crime through Werther's confessional letter and his final visit, but takes no action",
+    "confidence": "medium",
+    "quote": "Velvet burned the letter... That night, Werther called and explained."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 23060,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Happiness Before Death",
+    "author": "HENRY SLESAR",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 46,
+    "story_count": 63
+  }
+}

@@ -16,6 +16,7 @@ This makes every output auditable and non-repeatable.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import random
 from collections import defaultdict
@@ -36,7 +37,7 @@ PART_TYPE_NAMES = [
     "red_herring",       # index 5 — deliberate misdirection
     "reveal_mechanic",   # index 6 — how the solution is demonstrated
     "social_dynamic",    # index 7 — power structures and group psychology
-    "evidence_type",     # index 8 — the kind of proof that breaks the case
+    "alibi",             # index 8 — the culprit's cover story and how it breaks
 ]
 
 # Content of each part from the test corpus (SOURCE → list of 8 descriptions)
@@ -157,8 +158,8 @@ SETTING_COMPAT = {
     },
     # social_dynamic (index 7): universal
     "social_dynamic": {s: "universal" for s in "ABCDEF"},
-    # evidence_type (index 8): sometimes tech-specific
-    "evidence_type": {
+    # alibi (index 8): sometimes tech-specific
+    "alibi": {
         "A": ["near_future", "far_future"],   # data log
         "B": "universal",                      # photographic record
         "C": "universal",                      # material analysis
@@ -382,7 +383,11 @@ class PartRegistry:
                 # test_*_p1p2.json files nest fields under "extracted" key
                 if "extracted" in data:
                     data = data["extracted"]
-                source_id = f"corpus_{f.stem[:8]}"
+                # Hash the full stem rather than truncating it — filenames sharing
+                # a long common prefix (e.g. multiple stories extracted from one
+                # anthology PDF) would otherwise collapse onto the same source_id
+                # and silently defeat sample_for_generation's diversity constraint.
+                source_id = f"corpus_{hashlib.sha1(f.stem.encode()).hexdigest()[:8]}"
                 title = data.get("_meta", {}).get("title", source_id)
                 self._atomize_extraction(data, source_id, title)
                 added += 1
@@ -396,17 +401,34 @@ class PartRegistry:
         Handles two formats:
         - Corpus JSONs: top-level keys, each value is {"value": str, "confidence": str, ...}
         - Test JSONs (after unwrapping "extracted"): same structure
+
+        Several keys share a target index on purpose — they're distinct P1/P2
+        extraction fields that both belong under the same 8-axis sampling type,
+        so both contribute pool entries for that axis rather than one
+        overwriting the other. `media_and_audience` (P2) is deliberately absent:
+        it's meta/format information (audience expectations, media
+        conventions), not a generation-usable crime-mechanic "part" — no axis
+        below is an honest fit for it.
         """
         # Map extraction JSON keys to part indices (matches actual extraction output)
         KEY_TO_IDX = {
-            "crime":             1,
-            "closed_world":      2,
-            "culprit_and_motive": 3,
+            # P1 (Skeleton)
+            "crime":                1,
+            "closed_world":         2,
+            "culprit_and_motive":   3,
+            "victim":               3,  # victim characterization is the flip side of motive
+            "resolution":           6,  # P1's shallow version of P2's reveal_mechanic
+            "investigator":         7,  # investigator's role in the social fabric
+            # P2 (Architecture)
             "suspect_architecture": 4,
-            "red_herring":       5,
-            "reveal_mechanic":   6,
-            "social_world":      7,
-            "alibi":             8,
+            "red_herring":          5,
+            "clue_fairness":        5,  # paired with red_herring: both govern how
+                                        # clues reach the reader, from opposite ends
+            "reveal_mechanic":      6,
+            "social_world":         7,
+            "alibi":                8,
+            "investigator_wound":   7,  # investigator-character content, same axis
+                                        # as "investigator"
         }
         for key, idx in KEY_TO_IDX.items():
             raw = extraction.get(key)

@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Strangulation murder of Dorothy Paxton, mayor's daughter, found at Willow Pool on October 18, 1944. Central question: who killed her, given that the principal suspect (Ralph Addison) was never convicted despite being last seen with her?",
+    "confidence": "high",
+    "quote": "a girl by the name of Dorothy Paxton was\u2014...she was drowned\u2014no, strangled\u2014found by some lake or other"
+  },
+  "victim": {
+    "value": "Dorothy Paxton, mayor's daughter, described as 'the prettiest thing in town.' Killable because she was pursued by multiple men including Ralph Addison (while her fianc\u00e9 was in military service), creating jealousy and romantic conflict.",
+    "confidence": "high",
+    "quote": "she was the prettiest thing in town. I'm heading over to the diner...a lot of fellows were after Dotty."
+  },
+  "closed_world": {
+    "value": "Small town of Stockton, Massachusetts, where the crime occurred 15 years prior to the story's present time. The social world is bounded by interconnected townspeople with shared memories and reputations.",
+    "confidence": "medium",
+    "quote": "a girl by the name of Dorothy Paxton was\u2014...That was the day of the Paxton murder...we were really on the map that year."
+  },
+  "culprit_and_motive": {
+    "value": "Bernard Waterfield, civil defense director and pharmacist, killed Dorothy Paxton. Motive: implied romantic rejection or jealousy (Waterfield had courted Mrs. De Ware in youth; Mrs. De Ware 'knew the sort of man he was').",
+    "confidence": "high",
+    "quote": "Bernard Waterfield. He had shot himself, leaving a written confession to the murder of Dorothy Paxton...Bernie courted me when we were both young."
+  },
+  "resolution": {
+    "value": "Waterfield confesses and commits suicide when confronted by Gifford about reopening the case. The confession exonerates Ralph Addison (Mrs. De Ware's brother), whose reputation is restored posthumously.",
+    "confidence": "high",
+    "quote": "For the next morning's Stockton Eagle carried screaming headlines of the suicide of Bernard Waterfield. He had shot himself, leaving a written confession to the murder of Dorothy Paxton."
+  },
+  "investigator": {
+    "value": "Allan Gifford, journalist and detective fiction writer vacationing in Stockton. He investigates as an outsider motivated by intellectual curiosity triggered by a mysterious library book return, unknowingly manipulated by Mrs. De Ware.",
+    "confidence": "high",
+    "quote": "A journalist and occasional writer of detective fiction, he'd taken a cottage in Stockton every July for the past seven years."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 15014,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Death Overdue",
+    "author": "ELEANOR DALY BOYLAN",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 51,
+    "story_count": 63
+  }
+}

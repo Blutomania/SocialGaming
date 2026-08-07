@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Desert freeway between Tucson and Yuma, Arizona - isolated stretch of modern highway bordered by vast empty desert with no towns for hours",
+    "confidence": "high",
+    "quote": "There's only the next town of Gila Bend, and then it's all empty desert."
+  },
+  "culprit_and_motive": {
+    "value": "Supernatural or ghost of former Yuma Territorial Prison inmate - driven by obsessive need to locate his water hole after decades of imprisonment",
+    "confidence": "medium",
+    "quote": "I gotta find my water hole. My own good pure water from my own water hole. Nobody's goin' to shut me up in that filth again."
+  },
+  "resolution": {
+    "value": "No conventional resolution. The couple discovers a water hole mysteriously appeared in the freeway pavement where the old man vanished; they find his rusty pick; the encounter defies rational explanation and leaves permanent damage to their car",
+    "confidence": "medium",
+    "quote": "filling it, brimming it, cupping it, shimmering in the red and white lights, was a clear shining pool of water!"
+  },
+  "investigator": {
+    "value": "Myra Edwards - wife on a second honeymoon; witnesses the encounter and becomes obsessed with understanding what happened, alongside her husband Harry",
+    "confidence": "high",
+    "quote": "I'm not asking you to believe it, you understand. In a way, I don't even want you to. You have no idea how lucky you are if you can't believe it."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 23832,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Television Country",
+    "author": "CHARLOTTE EDWARDS",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 36,
+    "story_count": 63
+  }
+}
