@@ -1,0 +1,1008 @@
+// In-memory game state machine. See GAME_DESIGN.md for the full design and
+// mind-your-friends/CLAUDE.md for the architecture summary.
+//
+// Phases: LOBBY -> CATEGORY -> WAGER -> CARD -> QUESTION -> ANSWER -> RESULT -> (loop) -> GAME_OVER
+//
+// server.js is the only caller of these functions; it owns the in-memory
+// `games` map (code -> game object) and emits Socket.io events after each
+// mutation.
+
+import { buildRoundHand, pickRandomLanguageRegister } from './cards.js';
+import { pickRandomRoundRule, transformAnswer } from './roundRules.js';
+import {
+  generateQuestion,
+  generateLineupOptions,
+  evaluateAnswer,
+  evaluateWorstAnswers,
+  fetchFactsBatch,
+  moderateHeckle,
+} from './claudeClient.js';
+import { roundConstraints, turnConstraints, validateQuestion, pickFactoid } from './coherence.js';
+import { pickColorLineupEntry, buildColorOptions } from './lineupData.js';
+import {
+  ROUNDS,
+  QUESTIONS_PER_ROUND,
+  TOTAL_QUESTIONS,
+  MIN_WAGER,
+  MAX_WAGER,
+  RESULT_SCREEN_MS,
+  STEAL_WINDOW_MS,
+  MIN_PLAYERS,
+  MAX_PLAYERS,
+  CATEGORIES_PER_PLAYER,
+  CATEGORY_OPTIONS_COUNT,
+  DISCONNECT_GRACE_MS,
+  AUTO_ADVANCE_AWAY_THRESHOLD,
+  LINEUP_COLOR_FLAVOR_CHANCE,
+} from './constants.js';
+
+export {
+  ROUNDS,
+  QUESTIONS_PER_ROUND,
+  TOTAL_QUESTIONS,
+  MIN_WAGER,
+  MAX_WAGER,
+  RESULT_SCREEN_MS,
+  STEAL_WINDOW_MS,
+  MIN_PLAYERS,
+  MAX_PLAYERS,
+  CATEGORIES_PER_PLAYER,
+  CATEGORY_OPTIONS_COUNT,
+  DISCONNECT_GRACE_MS,
+};
+
+function generateGameCode() {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ'; // no I/O — avoid confusion with 1/0
+  let code = '';
+  for (let i = 0; i < 4; i++) {
+    code += chars[Math.floor(Math.random() * chars.length)];
+  }
+  return code;
+}
+
+export function createGame(hostId, hostName) {
+  return {
+    code: generateGameCode(),
+    phase: 'LOBBY',
+    players: [makePlayer(hostId, hostName)],
+    questionIndex: 0, // 0-23
+    activePlayerIndex: 0,
+    currentCategory: null,
+    currentWager: null,
+    roundRule: null,
+    cardSlot: null, // { playerId, cardId, payload }
+    currentQuestion: null, // { question, answer, hostQuip }
+    answererIndex: null,
+    highlightReel: [],
+  };
+}
+
+function makePlayer(id, name) {
+  return {
+    id,
+    name,
+    score: 0,
+    categories: [],
+    pickedCardId: null,
+    pickedCardUsed: false,
+    hand: [],
+    registered: false,
+    connected: true,
+    droppedOut: false,
+    away: false,
+    autoAdvanceCount: 0,
+  };
+}
+
+export function addPlayer(game, id, name) {
+  if (game.phase !== 'LOBBY') {
+    throw new Error('Cannot join — game already started');
+  }
+  if (game.players.length >= MAX_PLAYERS) {
+    throw new Error(`Room is full (max ${MAX_PLAYERS} players). Start a second game!`);
+  }
+  game.players.push(makePlayer(id, name));
+  return game;
+}
+
+// Registration: each player submits 5 categories and picks 1 card from the
+// pool of 10. The picked card persists for the entire game (single use).
+// Per-round random cards are dealt at the start of each round via dealRoundHands().
+export function registerPlayer(game, playerId, { categories, pickedCardId }) {
+  const player = getPlayer(game, playerId);
+  if (categories.length !== CATEGORIES_PER_PLAYER) {
+    throw new Error(`Must submit exactly ${CATEGORIES_PER_PLAYER} categories`);
+  }
+  player.categories = categories;
+  player.pickedCardId = pickedCardId;
+  player.pickedCardUsed = false;
+  player.registered = true;
+  return game;
+}
+
+// Deal fresh hands at the start of each round: Half-Off + picked card (if unused) + 2 random.
+function dealRoundHands(game) {
+  for (const player of game.players) {
+    player.hand = buildRoundHand(player.pickedCardId, player.pickedCardUsed);
+  }
+}
+
+export function allPlayersRegistered(game) {
+  return game.players.length >= MIN_PLAYERS && game.players.every((p) => p.registered);
+}
+
+// Fetches facts for all player-submitted categories in batches.
+// Called once at game start — all questions are built from this bank.
+export async function buildFactBank(game) {
+  const allCategories = [...new Set(game.players.flatMap((p) => p.categories))];
+  game.factBank = await fetchFactsBatch(allCategories);
+  return game;
+}
+
+export async function startGame(game) {
+  if (!allPlayersRegistered(game)) {
+    throw new Error('All players must register before the game can start');
+  }
+  await buildFactBank(game);
+  game.phase = 'CATEGORY';
+  game.activePlayerIndex = 0;
+  game.questionIndex = 0;
+  dealRoundHands(game);
+  beginTurn(game);
+  return game;
+}
+
+function beginTurn(game) {
+  game.roundRule = pickRandomRoundRule();
+  game.roundConstraints = roundConstraints(game.roundRule);
+  game.currentCategory = null;
+  game.currentCategoryAttribution = null;
+  game.currentWager = null;
+  game.cardSlot = null;
+  game.currentQuestion = null;
+  game.answererIndex = game.activePlayerIndex;
+  game.categoryOptions = getCategoryOptions(game);
+  game.submissions = null;
+}
+
+// 6 random categories drawn from the shared pool. Each entry is attributed
+// to the player who submitted it: { category, submittedBy, submittedById }.
+function getCategoryOptions(game) {
+  const pool = game.players.flatMap((p) =>
+    p.categories.map((cat) => ({ category: cat, submittedBy: p.name, submittedById: p.id }))
+  );
+  const options = [];
+  const remaining = [...pool];
+  const count = Math.min(CATEGORY_OPTIONS_COUNT, remaining.length);
+  for (let i = 0; i < count; i++) {
+    const idx = Math.floor(Math.random() * remaining.length);
+    options.push(remaining.splice(idx, 1)[0]);
+  }
+  return options;
+}
+
+export function getPlayer(game, playerId) {
+  const player = game.players.find((p) => p.id === playerId);
+  if (!player) throw new Error('Player not found');
+  return player;
+}
+
+export function getActivePlayer(game) {
+  return game.players[game.activePlayerIndex];
+}
+
+// The wager-decider is always the next player after the active player.
+export function getWagerPlayer(game) {
+  const idx = (game.activePlayerIndex + 1) % game.players.length;
+  return game.players[idx];
+}
+
+export function pickCategory(game, playerId, category) {
+  assertPhase(game, 'CATEGORY');
+  if (playerId !== getActivePlayer(game).id) {
+    throw new Error('Only the active player picks the category');
+  }
+  const match = game.categoryOptions.find((opt) => opt.category === category);
+  if (!match) {
+    throw new Error('Category must be one of the offered options');
+  }
+  game.currentCategory = match.category;
+  game.currentCategoryAttribution = { submittedBy: match.submittedBy, submittedById: match.submittedById };
+  game.phase = 'WAGER';
+  return game;
+}
+
+export function setWager(game, playerId, amount) {
+  assertPhase(game, 'WAGER');
+  if (playerId !== getWagerPlayer(game).id) {
+    throw new Error('Only the wager-decider sets the wager');
+  }
+  let wager = Math.max(MIN_WAGER, Math.min(MAX_WAGER, Math.round(amount)));
+  if (game.roundRule.wagerMultiplier) {
+    wager *= game.roundRule.wagerMultiplier; // Double Down
+  }
+  game.currentWager = wager;
+  game.phase = 'CARD';
+  return game;
+}
+
+// First-come-first-served: the first card played claims the single slot for
+// this question. Everyone else's attempt is rejected. Cards are single-use —
+// removed from the player's hand the moment they claim the slot.
+// `payload` carries card-specific data (e.g. Heckle's message text).
+export function playCard(game, playerId, cardId, payload) {
+  assertPhase(game, 'CARD');
+  if (game.cardSlot) {
+    throw new Error('Card slot already claimed — too slow!');
+  }
+  const player = getPlayer(game, playerId);
+  if (!player.hand.includes(cardId)) {
+    throw new Error('Card not in hand');
+  }
+  // Half-Off is universal — never removed from hand
+  if (cardId !== 'halfOff') {
+    player.hand = player.hand.filter((id) => id !== cardId);
+  }
+  // Mark picked card as used (gone for the rest of the game)
+  if (cardId === player.pickedCardId) {
+    player.pickedCardUsed = true;
+  }
+  game.cardSlot = { playerId, cardId, payload };
+  return game;
+}
+
+// Closes the card window (no more cards may be played) and resolves whatever
+// is in the slot. Returns control to the caller, which should then call
+// runQuestionPhase() unless the turn was skipped entirely (Skip card).
+// Closes the card window and resolves state-side effects. Prompt modifiers
+// (Language Barrier, Boxed In) are handled by the CE in runQuestionPhase —
+// this switch only handles game-state mutations and highlight logging.
+export async function resolveCardSlot(game) {
+  assertPhase(game, 'CARD');
+  const slot = game.cardSlot;
+  game.heckleMessage = null;
+
+  if (!slot) {
+    game.phase = 'QUESTION';
+    return game;
+  }
+
+  const playerName = getPlayer(game, slot.playerId).name;
+  const activeName = getActivePlayer(game).name;
+
+  switch (slot.cardId) {
+    case 'skip':
+      logHighlight(game, `${playerName} played Skip — ${activeName}'s turn is skipped!`);
+      game.phase = 'RESULT';
+      game.skippedTurn = true;
+      return game;
+
+    case 'redirect': {
+      const others = game.players
+        .map((_, i) => i)
+        .filter((i) => i !== game.activePlayerIndex);
+      game.answererIndex = others[Math.floor(Math.random() * others.length)];
+      logHighlight(game, `${playerName} played Redirect — ${game.players[game.answererIndex].name} must answer instead!`);
+      break;
+    }
+
+    case 'whoaNellie': {
+      const pool = game.players.flatMap((p) =>
+        p.categories.map((cat) => ({ category: cat, submittedBy: p.name, submittedById: p.id }))
+      );
+      const alternatives = pool.filter((opt) => opt.category !== game.currentCategory);
+      if (alternatives.length > 0) {
+        const pick = alternatives[Math.floor(Math.random() * alternatives.length)];
+        const oldCategory = game.currentCategory;
+        game.currentCategory = pick.category;
+        game.currentCategoryAttribution = { submittedBy: pick.submittedBy, submittedById: pick.submittedById };
+        logHighlight(game, `${playerName} played Whoa Nellie! Category swapped from "${oldCategory}" to ${pick.submittedBy}'s "${pick.category}"!`);
+      } else {
+        logHighlight(game, `${playerName} played Whoa Nellie but there's nowhere to go — same category!`);
+      }
+      break;
+    }
+
+    case 'halfOff':
+      game.currentWager = Math.round(game.currentWager / 2);
+      logHighlight(game, `${playerName} played Half-Off — the wager is now ${game.currentWager}!`);
+      break;
+
+    case 'fiftyOff':
+      game.currentWager = Math.round(game.currentWager / 2);
+      logHighlight(game, `${playerName} played 50% Off — the wager is now ${game.currentWager}!`);
+      break;
+
+    case 'spotlight':
+      logHighlight(game, `${playerName} played Spotlight — ${activeName} must answer immediately!`);
+      break;
+
+    case 'heckle': {
+      const rawHeckle = slot.payload?.text || '...';
+      const result = await moderateHeckle({
+        heckleText: rawHeckle,
+        activePlayerName: activeName,
+        hecklerName: playerName,
+      });
+      game.heckleMessage = result.heckle;
+      logHighlight(game, `${playerName} heckled: "${game.heckleMessage}"`);
+      break;
+    }
+
+    case 'languageBarrier':
+      logHighlight(game, `${playerName} played Language Barrier!`);
+      break;
+
+    case 'boxedIn':
+      logHighlight(game, `${playerName} played Boxed In — the answer must be one or two words!`);
+      break;
+
+    case 'insurance':
+      logHighlight(game, `${playerName} played Insurance — this question proceeds normally.`);
+      break;
+
+    case 'fixer':
+      getPlayer(game, slot.playerId).score += 50;
+      logHighlight(game, `${playerName} played The Fixer — +50 pts, and this question proceeds normally.`);
+      break;
+
+    default:
+      throw new Error(`Unknown card: ${slot.cardId}`);
+  }
+
+  game.phase = 'QUESTION';
+  return game;
+}
+
+// Assembles constraints via the CE, calls Claude, validates the result.
+export async function runQuestionPhase(game) {
+  assertPhase(game, 'QUESTION');
+
+  const constraints = turnConstraints(game.roundConstraints, {
+    category: game.currentCategory,
+    wager: game.currentWager,
+    resolvedCard: getEffectiveCard(game),
+  });
+
+  let result;
+  if (game.roundRule.lineupBased) {
+    result = await buildLineupQuestion(game, constraints);
+  } else {
+    const factoid = game.factBank
+      ? pickFactoid(game.factBank, game.currentCategory, constraints)
+      : null;
+    result = await generateQuestion({
+      constraints,
+      factoid,
+      activePlayerName: getActivePlayer(game).name,
+      playerNames: game.players.map((p) => p.name),
+    });
+  }
+
+  const validation = validateQuestion(result, constraints);
+  if (!validation.passed) {
+    console.warn('CE validation failed:', validation.issues);
+  }
+
+  game.currentQuestion = result;
+  game.turnConstraints = constraints;
+  game.phase = 'ANSWER';
+  if (game.roundRule.submissionBased) {
+    game.submissions = {};
+  }
+  return game;
+}
+
+// --- The Lineup (pick-one round rule) ---
+//
+// Two flavors, chosen randomly per question: "text" (a fact-bank-grounded
+// multiple-choice question via Claude — see generateLineupOptions) and
+// "color" (a curated real color + procedurally-perturbed near-miss decoys,
+// no API call — see lib/lineupData.js). Color flavor is intentionally
+// category-agnostic: real colors need verified hex values that can't be
+// reliably tied to arbitrary player-submitted category strings, so it draws
+// from its own curated pool instead of the turn's picked category. The
+// category pick still happens (keeps the round loop and wager-sizing intact)
+// but only shapes the question for text flavor.
+//
+// Known gap: format-constraining cards (Boxed In, Language Barrier) have no
+// effect on Lineup questions — their prompt instructions are never wired
+// into generateLineupOptions, since a "pick one" answer has no free-text
+// format to constrain. Left as a documented limitation rather than special-
+// cased, matching this file's existing style for scoped-out edge cases.
+async function buildLineupQuestion(game, constraints) {
+  if (Math.random() < LINEUP_COLOR_FLAVOR_CHANCE) {
+    const entry = pickColorLineupEntry();
+    const { options, correctOptionId } = buildColorOptions(entry);
+    return {
+      question: `Which one is ${entry.entity} ${entry.label}?`,
+      answer: `${entry.entity} (${entry.label})`,
+      hostQuip: `Spot the real ${entry.label}, ${getActivePlayer(game).name} — don't blink!`,
+      lineup: { flavor: 'color', options, correctOptionId },
+    };
+  }
+
+  const factoid = game.factBank
+    ? pickFactoid(game.factBank, game.currentCategory, constraints)
+    : null;
+
+  const result = await generateLineupOptions({
+    factoid,
+    activePlayerName: getActivePlayer(game).name,
+    playerNames: game.players.map((p) => p.name),
+  });
+
+  const options = result.options.map((label, i) => ({ id: `opt${i}`, label }));
+  const correctOptionId = options[result.correctIndex]?.id ?? options[0].id;
+
+  return {
+    question: result.question,
+    answer: result.options[result.correctIndex] ?? result.options[0],
+    hostQuip: result.hostQuip,
+    lineup: { flavor: 'text', options, correctOptionId },
+  };
+}
+
+// FCFS pick: any eligible player may tap any option at any time during
+// ANSWER. Wrong taps fail silently — no penalty, no lockout, the round stays
+// open — first correct tap (processed in socket-event order, so no race)
+// claims the wager and ends the turn.
+//
+// Unlike other phase-gated actions in this file, this deliberately does NOT
+// throw for a stale/late tap (phase already moved past ANSWER because
+// someone else won, or a dropped-out player's queued click) — this
+// mechanic invites genuinely simultaneous taps by design, and a throw here
+// would surface as the client's global 'error' handler, which replaces the
+// whole page (see app/game/[code]/page.js), not just this widget. Anything
+// short of a clean win is treated the same as a wrong guess.
+export function attemptLineupPick(game, playerId, optionId) {
+  if (!game.roundRule?.lineupBased) {
+    throw new Error('attemptLineupPick called on a non-Lineup round');
+  }
+  if (game.phase !== 'ANSWER') {
+    return { correct: false };
+  }
+  const player = getPlayer(game, playerId);
+  if (player.droppedOut) {
+    return { correct: false };
+  }
+  const lineup = game.currentQuestion.lineup;
+  const picked = lineup.options.find((o) => o.id === optionId);
+  if (!picked || optionId !== lineup.correctOptionId) {
+    return { correct: false };
+  }
+
+  const wager = game.currentWager;
+  player.score += wager;
+  logHighlight(game, `${player.name} spotted it in The Lineup and won ${wager} pts!`);
+  game.lastResult = {
+    correct: true,
+    lineupWinner: true,
+    winnerName: player.name,
+    wager,
+    correctOptionId: lineup.correctOptionId,
+  };
+  game.phase = 'RESULT';
+  return { correct: true };
+}
+
+// Called when the answer timer expires with nobody having tapped correctly.
+export function expireLineup(game) {
+  if (game.phase !== 'ANSWER') return game;
+  const wager = game.currentWager;
+  logHighlight(game, `Nobody spotted it in The Lineup — ${wager} pts unclaimed!`);
+  game.lastResult = {
+    correct: false,
+    lineupWinner: false,
+    wager,
+    correctOptionId: game.currentQuestion.lineup.correctOptionId,
+  };
+  game.phase = 'RESULT';
+  return game;
+}
+
+// --- Worst Answer Wins (submission-based rounds) ---
+//
+// Unlike the normal single-answerer flow, every non-dropped-out player
+// submits their own answer to the same question. Once everyone eligible has
+// submitted (or the timer forces it), all submissions are scored together in
+// one Claude call (see evaluateWorstAnswers) and the full per-player,
+// per-axis breakdown is stored on lastResult so it can be shown to everyone
+// -- not just who won, but why.
+
+function submissionEligiblePlayers(game) {
+  return game.players.filter((p) => !p.droppedOut);
+}
+
+export function allSubmitted(game) {
+  const eligible = submissionEligiblePlayers(game);
+  return eligible.every((p) => game.submissions[p.id] !== undefined);
+}
+
+// Records one player's raw submission. Returns true once every eligible
+// player has submitted (signal to the caller to move on to evaluation).
+export function submitGroupAnswer(game, playerId, rawAnswer, inputMode) {
+  assertPhase(game, 'ANSWER');
+  if (!game.roundRule.submissionBased) {
+    throw new Error('submitGroupAnswer called on a non-submission-based round');
+  }
+  const player = getPlayer(game, playerId);
+  if (player.droppedOut) {
+    throw new Error('Dropped-out players cannot submit');
+  }
+  if (game.submissions[playerId] !== undefined) {
+    throw new Error('Already submitted');
+  }
+  game.submissions[playerId] = { rawAnswer, inputMode };
+  return allSubmitted(game);
+}
+
+// Called by the answer timer when it expires: any eligible player who never
+// submitted is filled in with a blank answer so the round can still resolve.
+export function autoFillMissingSubmissions(game) {
+  for (const player of submissionEligiblePlayers(game)) {
+    if (game.submissions[player.id] === undefined) {
+      recordAutoAdvance(game, player.id);
+      game.submissions[player.id] = { rawAnswer: '', inputMode: 'text' };
+    }
+  }
+  return game;
+}
+
+// Synchronous phase flip so a submission arriving at the same instant the
+// timer fires can't trigger evaluation twice (see server.js).
+export function beginGroupEvaluation(game) {
+  assertPhase(game, 'ANSWER');
+  game.phase = 'EVALUATING';
+  return game;
+}
+
+// Calls Claude once for the whole batch, computes totals, determines the
+// winner(s) (lowest total; ties share the win, same convention as
+// getWinners()), and stores the full breakdown on lastResult.
+export async function resolveGroupAnswers(game) {
+  assertPhase(game, 'EVALUATING');
+
+  const eligible = submissionEligiblePlayers(game);
+  const transformedAnswers = eligible.map((p) => {
+    const { rawAnswer, inputMode } = game.submissions[p.id];
+    return transformAnswer(game.roundRule, rawAnswer, inputMode);
+  });
+
+  const scores = await evaluateWorstAnswers({
+    question: game.currentQuestion.question,
+    correctAnswer: game.currentQuestion.answer,
+    submissions: eligible.map((p, i) => ({ name: p.name, answer: transformedAnswers[i] })),
+  });
+
+  const entries = eligible.map((p, i) => {
+    const s = scores[i];
+    const total = s.factuallyWrong + s.creativelyWrong + s.plausibility;
+    return {
+      playerId: p.id,
+      name: p.name,
+      answer: game.submissions[p.id].rawAnswer,
+      factuallyWrong: s.factuallyWrong,
+      creativelyWrong: s.creativelyWrong,
+      plausibility: s.plausibility,
+      total,
+      feedback: s.feedback,
+    };
+  });
+
+  const lowestTotal = Math.min(...entries.map((e) => e.total));
+  const wager = game.currentWager;
+  for (const entry of entries) {
+    entry.isWinner = entry.total === lowestTotal;
+    if (entry.isWinner) {
+      getPlayer(game, entry.playerId).score += wager;
+    }
+  }
+
+  const winnerNames = entries.filter((e) => e.isWinner).map((e) => e.name);
+  logHighlight(
+    game,
+    `Worst Answer Wins: ${winnerNames.join(' & ')} nailed being wrong (total ${lowestTotal}) and won ${wager} pts!`
+  );
+
+  game.lastResult = {
+    submissionBased: true,
+    wager,
+    entries,
+  };
+  game.phase = 'RESULT';
+  return game;
+}
+
+export function getTimerSeconds(game) {
+  return game.turnConstraints?.timerSeconds ?? game.roundRule.timerSeconds;
+}
+
+// Evaluates the answerer's submission via Claude and applies scoring.
+// If the Steal round rule is active and the answer is wrong, transitions
+// to the STEAL phase instead of RESULT (see claimSteal / expireSteal).
+export async function submitAnswer(game, playerId, rawAnswer, inputMode) {
+  assertPhase(game, 'ANSWER');
+  const answerer = game.players[game.answererIndex];
+  if (playerId !== answerer.id) {
+    throw new Error('Only the answerer may submit an answer');
+  }
+
+  const transformed = transformAnswer(game.roundRule, rawAnswer, inputMode);
+  const result = await evaluateAnswer({
+    question: game.currentQuestion.question,
+    correctAnswer: game.currentQuestion.answer,
+    playerAnswer: transformed,
+    roundRule: game.roundRule,
+  });
+
+  const wager = game.currentWager;
+  game.lastResult = { ...result, wager, playerAnswer: rawAnswer };
+
+  if (result.correct) {
+    answerer.score += wager;
+    game.phase = 'RESULT';
+  } else {
+    answerer.score -= wager;
+    logHighlight(
+      game,
+      `${answerer.name} wagered ${wager} and answered "${rawAnswer}" — wrong!`
+    );
+
+    if (game.roundRule?.stealOnWrong) {
+      game.phase = 'STEAL';
+      game.stealSlot = null;
+      game.stealEligible = game.players
+        .filter((p) => p.id !== answerer.id)
+        .map((p) => p.id);
+    } else {
+      game.phase = 'RESULT';
+    }
+  }
+
+  return game;
+}
+
+// FCFS steal: first eligible player to buzz in claims the steal attempt.
+export async function claimSteal(game, playerId, rawAnswer, inputMode) {
+  assertPhase(game, 'STEAL');
+  if (game.stealSlot) {
+    throw new Error('Steal already claimed — too slow!');
+  }
+  if (!game.stealEligible.includes(playerId)) {
+    throw new Error('Not eligible to steal');
+  }
+
+  game.stealSlot = playerId;
+  const stealer = getPlayer(game, playerId);
+
+  const transformed = transformAnswer(game.roundRule, rawAnswer, inputMode);
+  const result = await evaluateAnswer({
+    question: game.currentQuestion.question,
+    correctAnswer: game.currentQuestion.answer,
+    playerAnswer: transformed,
+    roundRule: game.roundRule,
+  });
+
+  const wager = game.currentWager;
+  if (result.correct) {
+    stealer.score += wager;
+    logHighlight(game, `${stealer.name} stole it for ${wager} pts!`);
+  } else {
+    stealer.score -= Math.round(wager / 2);
+    logHighlight(game, `${stealer.name} tried to steal but got it wrong — loses ${Math.round(wager / 2)} pts!`);
+  }
+
+  game.lastResult = { ...result, wager, playerAnswer: rawAnswer, stolen: true, stealerName: stealer.name };
+  game.phase = 'RESULT';
+  return game;
+}
+
+// Called when the steal window expires with no takers.
+export function expireSteal(game) {
+  if (game.phase !== 'STEAL') return;
+  logHighlight(game, 'Nobody stole — moving on!');
+  game.phase = 'RESULT';
+  return game;
+}
+
+// Advances to the next question/turn, or GAME_OVER once TOTAL_QUESTIONS is reached.
+export function nextTurn(game) {
+  assertPhase(game, 'RESULT');
+  game.skippedTurn = false;
+  game.questionIndex += 1;
+  if (game.questionIndex >= TOTAL_QUESTIONS) {
+    game.phase = 'GAME_OVER';
+    return game;
+  }
+  // Deal fresh hands at the start of each new round
+  if (game.questionIndex % QUESTIONS_PER_ROUND === 0) {
+    dealRoundHands(game);
+  }
+  game.activePlayerIndex = (game.activePlayerIndex + 1) % game.players.length;
+  skipUnavailablePlayers(game);
+  if (game.phase === 'GAME_OVER') return game;
+  game.phase = 'CATEGORY';
+  beginTurn(game);
+  return game;
+}
+
+export function getWinners(game) {
+  const top = Math.max(...game.players.map((p) => p.score));
+  return game.players.filter((p) => p.score === top); // ties are shared wins
+}
+
+const ANTI_SABOTAGE = new Set(['insurance', 'fixer']);
+const STATE_ONLY_CARDS = new Set(['skip', 'redirect', 'fiftyOff', 'halfOff', 'heckle', 'whoaNellie']);
+
+function getEffectiveCard(game) {
+  const cardId = game.cardSlot?.cardId;
+  if (!cardId || ANTI_SABOTAGE.has(cardId) || STATE_ONLY_CARDS.has(cardId)) return null;
+  return cardId;
+}
+
+function logHighlight(game, message) {
+  game.highlightReel.push(message);
+}
+
+function assertPhase(game, expected) {
+  if (game.phase !== expected) {
+    throw new Error(`Expected phase ${expected}, got ${game.phase}`);
+  }
+}
+
+// --- Inactivity detection ---
+
+export function recordAutoAdvance(game, playerId) {
+  const player = getPlayer(game, playerId);
+  player.autoAdvanceCount += 1;
+  if (player.autoAdvanceCount >= AUTO_ADVANCE_AWAY_THRESHOLD) {
+    player.away = true;
+    logHighlight(game, `${player.name} seems to be away — skipping their turns until they're back.`);
+  }
+  return game;
+}
+
+export function recordPlayerAction(game, playerId) {
+  const player = game.players.find((p) => p.id === playerId);
+  if (!player) return;
+  if (player.away) {
+    player.away = false;
+    logHighlight(game, `${player.name} is back in action!`);
+  }
+  player.autoAdvanceCount = 0;
+}
+
+export function isPlayerAway(game, playerIndex) {
+  return game.players[playerIndex]?.away === true;
+}
+
+// --- Disconnection / Reconnection ---
+
+export function disconnectPlayer(game, playerId) {
+  const player = game.players.find((p) => p.id === playerId);
+  if (!player) return game;
+  player.connected = false;
+  if (game.phase === 'LOBBY') return game;
+  game.disconnectPending = game.disconnectPending || {};
+  game.disconnectPending[playerId] = { since: Date.now() };
+  logHighlight(game, `${player.name} disconnected — waiting for reconnect…`);
+  return game;
+}
+
+// Returns true if the game should pause (disconnected player needs to act).
+export function shouldPause(game) {
+  if (game.phase === 'LOBBY' || game.phase === 'GAME_OVER') return false;
+  const activePlayer = getActivePlayer(game);
+  const answerer = game.players[game.answererIndex];
+  const wagerPlayer = game.players.length >= 2 ? getWagerPlayer(game) : null;
+  const needsAction = [activePlayer, answerer, wagerPlayer].filter(Boolean);
+  return needsAction.some((p) => !p.connected && !p.droppedOut);
+}
+
+export function reconnectPlayer(game, oldPlayerId, newSocketId) {
+  const player = game.players.find((p) => p.id === oldPlayerId);
+  if (!player) return null;
+  player.id = newSocketId;
+  player.connected = true;
+  if (game.disconnectPending) delete game.disconnectPending[oldPlayerId];
+  if (game.disconnectVote) game.disconnectVote = null;
+  logHighlight(game, `${player.name} is back!`);
+  return game;
+}
+
+export function startDisconnectVote(game, disconnectedPlayerId) {
+  const player = game.players.find((p) => p.id === disconnectedPlayerId);
+  if (!player) return game;
+  game.disconnectVote = {
+    targetPlayerId: disconnectedPlayerId,
+    targetName: player.name,
+    votes: {},
+  };
+  return game;
+}
+
+export function castDisconnectVote(game, playerId, vote) {
+  if (!game.disconnectVote) return { game, resolved: false };
+  if (playerId === game.disconnectVote.targetPlayerId) return { game, resolved: false };
+  game.disconnectVote.votes[playerId] = vote; // 'wait' | 'continue'
+
+  const eligible = game.players.filter(
+    (p) => p.id !== game.disconnectVote.targetPlayerId && p.connected
+  );
+  const voteCount = Object.keys(game.disconnectVote.votes).length;
+  if (voteCount < eligible.length) return { game, resolved: false };
+
+  const continueVotes = Object.values(game.disconnectVote.votes).filter((v) => v === 'continue').length;
+  const majority = continueVotes > eligible.length / 2;
+
+  if (majority) {
+    const target = game.players.find((p) => p.id === game.disconnectVote.targetPlayerId);
+    if (target) {
+      target.droppedOut = true;
+      logHighlight(game, `The group voted to continue without ${target.name}. Score frozen.`);
+    }
+    game.disconnectVote = null;
+    if (game.disconnectPending) delete game.disconnectPending[game.disconnectVote?.targetPlayerId];
+    return { game, resolved: true, action: 'continue' };
+  }
+
+  logHighlight(game, `The group voted to wait for ${game.disconnectVote.targetName}.`);
+  game.disconnectVote = null;
+  return { game, resolved: true, action: 'wait' };
+}
+
+// Skip a dropped-out player's turn.
+export function isPlayerDroppedOut(game, playerIndex) {
+  return game.players[playerIndex]?.droppedOut === true;
+}
+
+function shouldSkipPlayer(game, playerIndex) {
+  return isPlayerDroppedOut(game, playerIndex) || isPlayerAway(game, playerIndex);
+}
+
+// Advance past dropped-out or away players' turns.
+export function skipUnavailablePlayers(game) {
+  const n = game.players.length;
+  let checks = 0;
+  while (shouldSkipPlayer(game, game.activePlayerIndex) && checks < n) {
+    game.questionIndex += 1;
+    if (game.questionIndex >= TOTAL_QUESTIONS) {
+      game.phase = 'GAME_OVER';
+      return game;
+    }
+    game.activePlayerIndex = (game.activePlayerIndex + 1) % n;
+    checks++;
+  }
+  return game;
+}
+
+// Resume play after a dropped-out player's turn is skipped.
+export function resumeAfterDrop(game) {
+  skipUnavailablePlayers(game);
+  if (game.phase !== 'GAME_OVER') {
+    beginTurn(game);
+    game.phase = 'CATEGORY';
+  }
+  return game;
+}
+
+// Build a state view tailored to a specific player. Hides information that
+// the game rules say they shouldn't see: other players' hands, the correct
+// answer (until RESULT), and internal CE/constraint data.
+export function playerView(game, playerId) {
+  const phase = game.phase;
+
+  const allReg = game.players.every((p) => p.registered);
+  const players = game.players.map((p) => {
+    const isMe = p.id === playerId;
+    return {
+      id: p.id,
+      name: p.name,
+      score: p.score,
+      registered: p.registered,
+      connected: p.connected,
+      droppedOut: p.droppedOut,
+      away: p.away,
+      categories: p.categories,
+      cardCount: p.hand.length,
+      hand: isMe ? p.hand : undefined,
+      pickedCard: allReg ? p.pickedCardId : (isMe ? p.pickedCardId : undefined),
+      pickedCardUsed: p.pickedCardUsed,
+    };
+  });
+
+  const myIndex = game.players.findIndex((p) => p.id === playerId);
+  const isActivePlayer = game.activePlayerIndex === myIndex;
+  const isWagerPlayer = game.players.length >= 2 && game.players.indexOf(getWagerPlayer(game)) === myIndex;
+
+  const view = {
+    code: game.code,
+    phase,
+    myPlayerId: playerId,
+    players,
+    questionIndex: game.questionIndex,
+    activePlayerIndex: game.activePlayerIndex,
+    answererIndex: game.answererIndex,
+    isActivePlayer,
+    isWagerPlayer,
+    currentCategory: game.currentCategory,
+    currentCategoryAttribution: game.currentCategoryAttribution ?? null,
+    currentWager: game.currentWager,
+    roundRule: game.roundRule
+      ? {
+          id: game.roundRule.id,
+          name: game.roundRule.name,
+          emoji: game.roundRule.emoji,
+          description: game.roundRule.description,
+          submissionBased: !!game.roundRule.submissionBased,
+          lineupBased: !!game.roundRule.lineupBased,
+        }
+      : null,
+    categoryOptions: game.categoryOptions ?? null,
+    heckleMessage: game.heckleMessage,
+    highlightReel: game.highlightReel,
+    skippedTurn: !!game.skippedTurn,
+  };
+
+  if (game.cardSlot) {
+    view.cardSlot = {
+      playerId: game.cardSlot.playerId,
+      cardId: game.cardSlot.cardId,
+    };
+  }
+
+  if (game.currentQuestion) {
+    view.question = game.currentQuestion.question;
+    view.hostQuip = game.currentQuestion.hostQuip;
+
+    if (game.currentQuestion.lineup) {
+      // Options are safe pre-reveal (that's the multiple-choice UI itself) —
+      // only correctOptionId is withheld until RESULT/GAME_OVER, same
+      // withholding pattern as the free-text `answer` field below.
+      view.lineup = {
+        flavor: game.currentQuestion.lineup.flavor,
+        options: game.currentQuestion.lineup.options,
+      };
+    }
+
+    if (phase === 'RESULT' || phase === 'GAME_OVER') {
+      view.answer = game.currentQuestion.answer;
+      if (game.currentQuestion.lineup) {
+        view.lineup.correctOptionId = game.currentQuestion.lineup.correctOptionId;
+      }
+    }
+  }
+
+  if (phase === 'STEAL') {
+    view.stealEligible = game.stealEligible?.includes(playerId) && !game.stealSlot;
+    view.stealClaimed = !!game.stealSlot;
+  }
+
+  if ((phase === 'ANSWER' || phase === 'EVALUATING') && game.roundRule?.submissionBased) {
+    const eligible = submissionEligiblePlayers(game);
+    view.mySubmitted = game.submissions?.[playerId] !== undefined;
+    view.submittedCount = eligible.filter((p) => game.submissions?.[p.id] !== undefined).length;
+    view.totalToSubmit = eligible.length;
+  }
+
+  if (game.lastResult && (phase === 'RESULT' || phase === 'GAME_OVER' || phase === 'STEAL')) {
+    view.lastResult = game.lastResult;
+  }
+
+  if (phase === 'GAME_OVER') {
+    view.winners = getWinners(game).map((p) => ({ id: p.id, name: p.name, score: p.score }));
+  }
+
+  if (game.disconnectVote) {
+    view.disconnectVote = {
+      targetName: game.disconnectVote.targetName,
+      canVote: playerId !== game.disconnectVote.targetPlayerId &&
+        !game.disconnectVote.votes[playerId],
+    };
+  }
+
+  view.paused = shouldPause(game);
+
+  return view;
+}

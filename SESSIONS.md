@@ -5,6 +5,86 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+> **Merge note (August 7, 2026):** this log has two entry styles that grew on separate
+> branches and were joined when the Mind Your Friends Godot port merged to `main` (PR #15).
+> Auto-generated `## Session — <date>` blocks come from `scripts/session_summary.py --auto`
+> on the MYF branch; numbered `## Session N` blocks were written by hand on `main`. No entries
+> were dropped and none overlapped. Ordering below is newest-first across both styles.
+
+## Session — August 06, 2026 at 22:29
+**Branch:** `claude/mind-your-friends-app-tu47of`
+**Latest commit:** `13b4d74`
+
+### Files changed this session
+- `mind-your-friends/server_py/main.py` — Untracked
+- `mind-your-friends/server_py/test_integration.py` — Untracked
+
+### Commits this session
+```
+13b4d74 MYF Godot port: game_state.py — full state machine ported from lib/gameState.js
+a461a83 MYF Godot port: Python leaf modules (constants, cards, lineup_data, round_rules, coherence, claude_client)
+85c35b5 MYF Godot port: architecture doc (Python/Godot split, round_type mapping)
+68b8ffd MYF: add The Lineup round rule (multiple-choice, FCFS tap-to-win)
+9787612 chore: auto-update SESSIONS.md with session summary [2cbdb5e]
+2cbdb5e chore: auto-update SESSIONS.md with session summary [5b7a336]
+5b7a336 chore: auto-update SESSIONS.md with session summary [ea8f6f9]
+ea8f6f9 chore: auto-update SESSIONS.md with session summary [232b15e]
+232b15e chore: auto-update SESSIONS.md with session summary [8588740]
+8588740 chore: auto-update SESSIONS.md with session summary [77939fb]
+77939fb Rewrite studio-engine framing to stand on its own
+749c26c MYF CLAUDE.md: formalize studio engine framing from funding deck
+ae6650e MYF CLAUDE.md: prioritize Godot port, fix stale branch references
+8b95c87 Consolidate MYF: merge in shared coherence engine + standalone question route
+92698cf Implement real submission-based Worst Answer Wins with transparent scoring
+4854e3d Wire voice input into answer/steal submission (item 29)
+cfe649d Mark item 28 (extended playtest) done, add item 29 for remaining gaps
+44cc668 Fix server hang + crash-spam: guard scheduleNextTurn, recover from failed turns
+a749842 Fix Skip-card crash: playerView() never forwarded skippedTurn to the client
+e715e24 Add missing STEAL phase UI
+2e604e3 chore: auto-update SESSIONS.md with session summary [1727293]
+1727293 Mark item 24 (first run + playtest) done, add item 28 for extended playtest
+82e2886 Fix AnswerPhase/ResultPhase crash: client read game.currentQuestion, server never sends it
+16cf29c Fix CardHand crash: hand always includes 'halfOff', which isn't in the CARDS lookup
+eb4cc56 chore: auto-update SESSIONS.md with session summary [41c44f4]
+41c44f4 Fix first-run crashes found during playtest: markdown-fenced JSON, category options as objects
+9dfec0c chore: auto-update SESSIONS.md with session summary [bd88adc]
+bd88adc chore: auto-update SESSIONS.md with session summary [4bead35]
+4bead35 chore: auto-update SESSIONS.md with session summary [a97a6fc]
+a97a6fc Update CLAUDE.md: architecture, session protocol, branch references
+09267d6 Add game code collision check, Heckle moderation, and VoiceInput component
+0189035 Add inactivity detection — auto-skip away players after 2 timeouts
+e6520cc Add PT-3: single-player inactivity as playtest question
+0235add Add disconnection handling with grace period and vote system
+c6fc9c7 Mark question-from-fact builder as done in to-do list
+5aaa65f Wire question generation to fact bank
+86fcdb2 Add sourceType field to fact-fetching schema
+c1a2a49 Add batch fact-fetching pipeline for question generation
+5810db4 Build CardPicker UI and rewrite Lobby for new card mechanic
+3e42b85 Wire design changes into scaffold: per-round cards, Half-Off, Take Your Time, Worst Answer Wins
+812b9a2 Add package-lock.json for mind-your-friends
+c740e00 chore: auto-update SESSIONS.md with session summary [d6f7fa0]
+d6f7fa0 Bring scaffold code from awesome-hopper branch into continuation branch
+6aa7c31 Define Visual question image sourcing: curated pool from Wikimedia, Noun Project, OpenClipart
+7e4eab1 Remove Hot Take, pin 2 random cards/round, add trademark note for Visual
+b9495a7 Add card selection instruction text to pick screen
+45c8914 Revamp card mechanic: per-round hands, Half-Off universal, 40s pick timer
+1db8b47 Add PLAYTEST.md with first question: FCFS vs stacking card resolution
+53b168b Park Hot Take, advance to-do list to item 21 (lobby card pick UI)
+14b89b1 Update to-do list: mark items 14-19 done, add Hot Take rework as next step
+f375047 Add question-rule coherence constraints to GAME_DESIGN.md
+bf39d87 Add question types, Worst Answer Wins round rule, complexity guardrails
+c6f9f0d chore: auto-update SESSIONS.md with session summary [ea5af2f]
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
 ## Session — August 06, 2026 at 22:05
 **Branch:** `claude/coherence-engine-unification`
 **Latest commit:** `d5d0b59`
@@ -100,6 +180,745 @@ No existing test suite for this file (checked — none exists). Verified manuall
 
 ---
 
+## Session — August 06, 2026 at 21:07
+**Branch:** `claude/mind-your-friends-app-tu47of`
+**Latest commit:** `2cbdb5e`
+
+### Files changed this session
+- `ind-your-friends/components/GameBoard.jsx` — Modified
+- `mind-your-friends/lib/claudeClient.js` — Modified
+- `mind-your-friends/lib/coherence.js` — Modified
+- `mind-your-friends/lib/constants.js` — Modified
+- `mind-your-friends/lib/gameState.js` — Modified
+- `mind-your-friends/lib/roundRules.js` — Modified
+- `mind-your-friends/package-lock.json` — Modified
+- `mind-your-friends/package.json` — Modified
+- `mind-your-friends/server.js` — Modified
+- `mind-your-friends/lib/lineupData.js` — Untracked
+- `mind-your-friends/scripts/playtest-lineup.mjs` — Untracked
+
+### Commits this session
+```
+2cbdb5e chore: auto-update SESSIONS.md with session summary [5b7a336]
+5b7a336 chore: auto-update SESSIONS.md with session summary [ea8f6f9]
+ea8f6f9 chore: auto-update SESSIONS.md with session summary [232b15e]
+232b15e chore: auto-update SESSIONS.md with session summary [8588740]
+8588740 chore: auto-update SESSIONS.md with session summary [77939fb]
+77939fb Rewrite studio-engine framing to stand on its own
+749c26c MYF CLAUDE.md: formalize studio engine framing from funding deck
+ae6650e MYF CLAUDE.md: prioritize Godot port, fix stale branch references
+8b95c87 Consolidate MYF: merge in shared coherence engine + standalone question route
+92698cf Implement real submission-based Worst Answer Wins with transparent scoring
+4854e3d Wire voice input into answer/steal submission (item 29)
+cfe649d Mark item 28 (extended playtest) done, add item 29 for remaining gaps
+44cc668 Fix server hang + crash-spam: guard scheduleNextTurn, recover from failed turns
+a749842 Fix Skip-card crash: playerView() never forwarded skippedTurn to the client
+e715e24 Add missing STEAL phase UI
+2e604e3 chore: auto-update SESSIONS.md with session summary [1727293]
+1727293 Mark item 24 (first run + playtest) done, add item 28 for extended playtest
+82e2886 Fix AnswerPhase/ResultPhase crash: client read game.currentQuestion, server never sends it
+16cf29c Fix CardHand crash: hand always includes 'halfOff', which isn't in the CARDS lookup
+eb4cc56 chore: auto-update SESSIONS.md with session summary [41c44f4]
+41c44f4 Fix first-run crashes found during playtest: markdown-fenced JSON, category options as objects
+9dfec0c chore: auto-update SESSIONS.md with session summary [bd88adc]
+bd88adc chore: auto-update SESSIONS.md with session summary [4bead35]
+4bead35 chore: auto-update SESSIONS.md with session summary [a97a6fc]
+a97a6fc Update CLAUDE.md: architecture, session protocol, branch references
+09267d6 Add game code collision check, Heckle moderation, and VoiceInput component
+0189035 Add inactivity detection — auto-skip away players after 2 timeouts
+e6520cc Add PT-3: single-player inactivity as playtest question
+0235add Add disconnection handling with grace period and vote system
+c6fc9c7 Mark question-from-fact builder as done in to-do list
+5aaa65f Wire question generation to fact bank
+86fcdb2 Add sourceType field to fact-fetching schema
+c1a2a49 Add batch fact-fetching pipeline for question generation
+5810db4 Build CardPicker UI and rewrite Lobby for new card mechanic
+3e42b85 Wire design changes into scaffold: per-round cards, Half-Off, Take Your Time, Worst Answer Wins
+812b9a2 Add package-lock.json for mind-your-friends
+c740e00 chore: auto-update SESSIONS.md with session summary [d6f7fa0]
+d6f7fa0 Bring scaffold code from awesome-hopper branch into continuation branch
+6aa7c31 Define Visual question image sourcing: curated pool from Wikimedia, Noun Project, OpenClipart
+7e4eab1 Remove Hot Take, pin 2 random cards/round, add trademark note for Visual
+b9495a7 Add card selection instruction text to pick screen
+45c8914 Revamp card mechanic: per-round hands, Half-Off universal, 40s pick timer
+1db8b47 Add PLAYTEST.md with first question: FCFS vs stacking card resolution
+53b168b Park Hot Take, advance to-do list to item 21 (lobby card pick UI)
+14b89b1 Update to-do list: mark items 14-19 done, add Hot Take rework as next step
+f375047 Add question-rule coherence constraints to GAME_DESIGN.md
+bf39d87 Add question types, Worst Answer Wins round rule, complexity guardrails
+c6f9f0d chore: auto-update SESSIONS.md with session summary [ea5af2f]
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
+## Session — August 06, 2026 at 21:07
+**Branch:** `claude/mind-your-friends-app-tu47of`
+**Latest commit:** `5b7a336`
+
+### Files changed this session
+- `ind-your-friends/components/GameBoard.jsx` — Modified
+- `mind-your-friends/lib/claudeClient.js` — Modified
+- `mind-your-friends/lib/coherence.js` — Modified
+- `mind-your-friends/lib/constants.js` — Modified
+- `mind-your-friends/lib/gameState.js` — Modified
+- `mind-your-friends/lib/roundRules.js` — Modified
+- `mind-your-friends/package-lock.json` — Modified
+- `mind-your-friends/package.json` — Modified
+- `mind-your-friends/server.js` — Modified
+- `mind-your-friends/lib/lineupData.js` — Untracked
+- `mind-your-friends/scripts/playtest-lineup.mjs` — Untracked
+
+### Commits this session
+```
+5b7a336 chore: auto-update SESSIONS.md with session summary [ea8f6f9]
+ea8f6f9 chore: auto-update SESSIONS.md with session summary [232b15e]
+232b15e chore: auto-update SESSIONS.md with session summary [8588740]
+8588740 chore: auto-update SESSIONS.md with session summary [77939fb]
+77939fb Rewrite studio-engine framing to stand on its own
+749c26c MYF CLAUDE.md: formalize studio engine framing from funding deck
+ae6650e MYF CLAUDE.md: prioritize Godot port, fix stale branch references
+8b95c87 Consolidate MYF: merge in shared coherence engine + standalone question route
+92698cf Implement real submission-based Worst Answer Wins with transparent scoring
+4854e3d Wire voice input into answer/steal submission (item 29)
+cfe649d Mark item 28 (extended playtest) done, add item 29 for remaining gaps
+44cc668 Fix server hang + crash-spam: guard scheduleNextTurn, recover from failed turns
+a749842 Fix Skip-card crash: playerView() never forwarded skippedTurn to the client
+e715e24 Add missing STEAL phase UI
+2e604e3 chore: auto-update SESSIONS.md with session summary [1727293]
+1727293 Mark item 24 (first run + playtest) done, add item 28 for extended playtest
+82e2886 Fix AnswerPhase/ResultPhase crash: client read game.currentQuestion, server never sends it
+16cf29c Fix CardHand crash: hand always includes 'halfOff', which isn't in the CARDS lookup
+eb4cc56 chore: auto-update SESSIONS.md with session summary [41c44f4]
+41c44f4 Fix first-run crashes found during playtest: markdown-fenced JSON, category options as objects
+9dfec0c chore: auto-update SESSIONS.md with session summary [bd88adc]
+bd88adc chore: auto-update SESSIONS.md with session summary [4bead35]
+4bead35 chore: auto-update SESSIONS.md with session summary [a97a6fc]
+a97a6fc Update CLAUDE.md: architecture, session protocol, branch references
+09267d6 Add game code collision check, Heckle moderation, and VoiceInput component
+0189035 Add inactivity detection — auto-skip away players after 2 timeouts
+e6520cc Add PT-3: single-player inactivity as playtest question
+0235add Add disconnection handling with grace period and vote system
+c6fc9c7 Mark question-from-fact builder as done in to-do list
+5aaa65f Wire question generation to fact bank
+86fcdb2 Add sourceType field to fact-fetching schema
+c1a2a49 Add batch fact-fetching pipeline for question generation
+5810db4 Build CardPicker UI and rewrite Lobby for new card mechanic
+3e42b85 Wire design changes into scaffold: per-round cards, Half-Off, Take Your Time, Worst Answer Wins
+812b9a2 Add package-lock.json for mind-your-friends
+c740e00 chore: auto-update SESSIONS.md with session summary [d6f7fa0]
+d6f7fa0 Bring scaffold code from awesome-hopper branch into continuation branch
+6aa7c31 Define Visual question image sourcing: curated pool from Wikimedia, Noun Project, OpenClipart
+7e4eab1 Remove Hot Take, pin 2 random cards/round, add trademark note for Visual
+b9495a7 Add card selection instruction text to pick screen
+45c8914 Revamp card mechanic: per-round hands, Half-Off universal, 40s pick timer
+1db8b47 Add PLAYTEST.md with first question: FCFS vs stacking card resolution
+53b168b Park Hot Take, advance to-do list to item 21 (lobby card pick UI)
+14b89b1 Update to-do list: mark items 14-19 done, add Hot Take rework as next step
+f375047 Add question-rule coherence constraints to GAME_DESIGN.md
+bf39d87 Add question types, Worst Answer Wins round rule, complexity guardrails
+c6f9f0d chore: auto-update SESSIONS.md with session summary [ea5af2f]
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
+## Session — August 06, 2026 at 21:06
+**Branch:** `claude/mind-your-friends-app-tu47of`
+**Latest commit:** `ea8f6f9`
+
+### Files changed this session
+- `ind-your-friends/components/GameBoard.jsx` — Modified
+- `mind-your-friends/lib/claudeClient.js` — Modified
+- `mind-your-friends/lib/coherence.js` — Modified
+- `mind-your-friends/lib/constants.js` — Modified
+- `mind-your-friends/lib/gameState.js` — Modified
+- `mind-your-friends/lib/roundRules.js` — Modified
+- `mind-your-friends/package-lock.json` — Modified
+- `mind-your-friends/package.json` — Modified
+- `mind-your-friends/server.js` — Modified
+- `mind-your-friends/lib/lineupData.js` — Untracked
+- `mind-your-friends/scripts/playtest-lineup.mjs` — Untracked
+
+### Commits this session
+```
+ea8f6f9 chore: auto-update SESSIONS.md with session summary [232b15e]
+232b15e chore: auto-update SESSIONS.md with session summary [8588740]
+8588740 chore: auto-update SESSIONS.md with session summary [77939fb]
+77939fb Rewrite studio-engine framing to stand on its own
+749c26c MYF CLAUDE.md: formalize studio engine framing from funding deck
+ae6650e MYF CLAUDE.md: prioritize Godot port, fix stale branch references
+8b95c87 Consolidate MYF: merge in shared coherence engine + standalone question route
+92698cf Implement real submission-based Worst Answer Wins with transparent scoring
+4854e3d Wire voice input into answer/steal submission (item 29)
+cfe649d Mark item 28 (extended playtest) done, add item 29 for remaining gaps
+44cc668 Fix server hang + crash-spam: guard scheduleNextTurn, recover from failed turns
+a749842 Fix Skip-card crash: playerView() never forwarded skippedTurn to the client
+e715e24 Add missing STEAL phase UI
+2e604e3 chore: auto-update SESSIONS.md with session summary [1727293]
+1727293 Mark item 24 (first run + playtest) done, add item 28 for extended playtest
+82e2886 Fix AnswerPhase/ResultPhase crash: client read game.currentQuestion, server never sends it
+16cf29c Fix CardHand crash: hand always includes 'halfOff', which isn't in the CARDS lookup
+eb4cc56 chore: auto-update SESSIONS.md with session summary [41c44f4]
+41c44f4 Fix first-run crashes found during playtest: markdown-fenced JSON, category options as objects
+9dfec0c chore: auto-update SESSIONS.md with session summary [bd88adc]
+bd88adc chore: auto-update SESSIONS.md with session summary [4bead35]
+4bead35 chore: auto-update SESSIONS.md with session summary [a97a6fc]
+a97a6fc Update CLAUDE.md: architecture, session protocol, branch references
+09267d6 Add game code collision check, Heckle moderation, and VoiceInput component
+0189035 Add inactivity detection — auto-skip away players after 2 timeouts
+e6520cc Add PT-3: single-player inactivity as playtest question
+0235add Add disconnection handling with grace period and vote system
+c6fc9c7 Mark question-from-fact builder as done in to-do list
+5aaa65f Wire question generation to fact bank
+86fcdb2 Add sourceType field to fact-fetching schema
+c1a2a49 Add batch fact-fetching pipeline for question generation
+5810db4 Build CardPicker UI and rewrite Lobby for new card mechanic
+3e42b85 Wire design changes into scaffold: per-round cards, Half-Off, Take Your Time, Worst Answer Wins
+812b9a2 Add package-lock.json for mind-your-friends
+c740e00 chore: auto-update SESSIONS.md with session summary [d6f7fa0]
+d6f7fa0 Bring scaffold code from awesome-hopper branch into continuation branch
+6aa7c31 Define Visual question image sourcing: curated pool from Wikimedia, Noun Project, OpenClipart
+7e4eab1 Remove Hot Take, pin 2 random cards/round, add trademark note for Visual
+b9495a7 Add card selection instruction text to pick screen
+45c8914 Revamp card mechanic: per-round hands, Half-Off universal, 40s pick timer
+1db8b47 Add PLAYTEST.md with first question: FCFS vs stacking card resolution
+53b168b Park Hot Take, advance to-do list to item 21 (lobby card pick UI)
+14b89b1 Update to-do list: mark items 14-19 done, add Hot Take rework as next step
+f375047 Add question-rule coherence constraints to GAME_DESIGN.md
+bf39d87 Add question types, Worst Answer Wins round rule, complexity guardrails
+c6f9f0d chore: auto-update SESSIONS.md with session summary [ea5af2f]
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
+## Session — August 06, 2026 at 21:06
+**Branch:** `claude/mind-your-friends-app-tu47of`
+**Latest commit:** `232b15e`
+
+### Files changed this session
+- `ind-your-friends/components/GameBoard.jsx` — Modified
+- `mind-your-friends/lib/claudeClient.js` — Modified
+- `mind-your-friends/lib/coherence.js` — Modified
+- `mind-your-friends/lib/constants.js` — Modified
+- `mind-your-friends/lib/gameState.js` — Modified
+- `mind-your-friends/lib/roundRules.js` — Modified
+- `mind-your-friends/package-lock.json` — Modified
+- `mind-your-friends/package.json` — Modified
+- `mind-your-friends/server.js` — Modified
+- `mind-your-friends/lib/lineupData.js` — Untracked
+- `mind-your-friends/scripts/playtest-lineup.mjs` — Untracked
+
+### Commits this session
+```
+232b15e chore: auto-update SESSIONS.md with session summary [8588740]
+8588740 chore: auto-update SESSIONS.md with session summary [77939fb]
+77939fb Rewrite studio-engine framing to stand on its own
+749c26c MYF CLAUDE.md: formalize studio engine framing from funding deck
+ae6650e MYF CLAUDE.md: prioritize Godot port, fix stale branch references
+8b95c87 Consolidate MYF: merge in shared coherence engine + standalone question route
+92698cf Implement real submission-based Worst Answer Wins with transparent scoring
+4854e3d Wire voice input into answer/steal submission (item 29)
+cfe649d Mark item 28 (extended playtest) done, add item 29 for remaining gaps
+44cc668 Fix server hang + crash-spam: guard scheduleNextTurn, recover from failed turns
+a749842 Fix Skip-card crash: playerView() never forwarded skippedTurn to the client
+e715e24 Add missing STEAL phase UI
+2e604e3 chore: auto-update SESSIONS.md with session summary [1727293]
+1727293 Mark item 24 (first run + playtest) done, add item 28 for extended playtest
+82e2886 Fix AnswerPhase/ResultPhase crash: client read game.currentQuestion, server never sends it
+16cf29c Fix CardHand crash: hand always includes 'halfOff', which isn't in the CARDS lookup
+eb4cc56 chore: auto-update SESSIONS.md with session summary [41c44f4]
+41c44f4 Fix first-run crashes found during playtest: markdown-fenced JSON, category options as objects
+9dfec0c chore: auto-update SESSIONS.md with session summary [bd88adc]
+bd88adc chore: auto-update SESSIONS.md with session summary [4bead35]
+4bead35 chore: auto-update SESSIONS.md with session summary [a97a6fc]
+a97a6fc Update CLAUDE.md: architecture, session protocol, branch references
+09267d6 Add game code collision check, Heckle moderation, and VoiceInput component
+0189035 Add inactivity detection — auto-skip away players after 2 timeouts
+e6520cc Add PT-3: single-player inactivity as playtest question
+0235add Add disconnection handling with grace period and vote system
+c6fc9c7 Mark question-from-fact builder as done in to-do list
+5aaa65f Wire question generation to fact bank
+86fcdb2 Add sourceType field to fact-fetching schema
+c1a2a49 Add batch fact-fetching pipeline for question generation
+5810db4 Build CardPicker UI and rewrite Lobby for new card mechanic
+3e42b85 Wire design changes into scaffold: per-round cards, Half-Off, Take Your Time, Worst Answer Wins
+812b9a2 Add package-lock.json for mind-your-friends
+c740e00 chore: auto-update SESSIONS.md with session summary [d6f7fa0]
+d6f7fa0 Bring scaffold code from awesome-hopper branch into continuation branch
+6aa7c31 Define Visual question image sourcing: curated pool from Wikimedia, Noun Project, OpenClipart
+7e4eab1 Remove Hot Take, pin 2 random cards/round, add trademark note for Visual
+b9495a7 Add card selection instruction text to pick screen
+45c8914 Revamp card mechanic: per-round hands, Half-Off universal, 40s pick timer
+1db8b47 Add PLAYTEST.md with first question: FCFS vs stacking card resolution
+53b168b Park Hot Take, advance to-do list to item 21 (lobby card pick UI)
+14b89b1 Update to-do list: mark items 14-19 done, add Hot Take rework as next step
+f375047 Add question-rule coherence constraints to GAME_DESIGN.md
+bf39d87 Add question types, Worst Answer Wins round rule, complexity guardrails
+c6f9f0d chore: auto-update SESSIONS.md with session summary [ea5af2f]
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
+## Session — August 06, 2026 at 21:02
+**Branch:** `claude/mind-your-friends-app-tu47of`
+**Latest commit:** `8588740`
+
+### Files changed this session
+- `ind-your-friends/components/GameBoard.jsx` — Modified
+- `mind-your-friends/lib/claudeClient.js` — Modified
+- `mind-your-friends/lib/coherence.js` — Modified
+- `mind-your-friends/lib/constants.js` — Modified
+- `mind-your-friends/lib/gameState.js` — Modified
+- `mind-your-friends/lib/roundRules.js` — Modified
+- `mind-your-friends/package-lock.json` — Modified
+- `mind-your-friends/package.json` — Modified
+- `mind-your-friends/server.js` — Modified
+- `mind-your-friends/lib/lineupData.js` — Untracked
+- `mind-your-friends/scripts/playtest-lineup.mjs` — Untracked
+
+### Commits this session
+```
+8588740 chore: auto-update SESSIONS.md with session summary [77939fb]
+77939fb Rewrite studio-engine framing to stand on its own
+749c26c MYF CLAUDE.md: formalize studio engine framing from funding deck
+ae6650e MYF CLAUDE.md: prioritize Godot port, fix stale branch references
+8b95c87 Consolidate MYF: merge in shared coherence engine + standalone question route
+92698cf Implement real submission-based Worst Answer Wins with transparent scoring
+4854e3d Wire voice input into answer/steal submission (item 29)
+cfe649d Mark item 28 (extended playtest) done, add item 29 for remaining gaps
+44cc668 Fix server hang + crash-spam: guard scheduleNextTurn, recover from failed turns
+a749842 Fix Skip-card crash: playerView() never forwarded skippedTurn to the client
+e715e24 Add missing STEAL phase UI
+2e604e3 chore: auto-update SESSIONS.md with session summary [1727293]
+1727293 Mark item 24 (first run + playtest) done, add item 28 for extended playtest
+82e2886 Fix AnswerPhase/ResultPhase crash: client read game.currentQuestion, server never sends it
+16cf29c Fix CardHand crash: hand always includes 'halfOff', which isn't in the CARDS lookup
+eb4cc56 chore: auto-update SESSIONS.md with session summary [41c44f4]
+41c44f4 Fix first-run crashes found during playtest: markdown-fenced JSON, category options as objects
+9dfec0c chore: auto-update SESSIONS.md with session summary [bd88adc]
+bd88adc chore: auto-update SESSIONS.md with session summary [4bead35]
+4bead35 chore: auto-update SESSIONS.md with session summary [a97a6fc]
+a97a6fc Update CLAUDE.md: architecture, session protocol, branch references
+09267d6 Add game code collision check, Heckle moderation, and VoiceInput component
+0189035 Add inactivity detection — auto-skip away players after 2 timeouts
+e6520cc Add PT-3: single-player inactivity as playtest question
+0235add Add disconnection handling with grace period and vote system
+c6fc9c7 Mark question-from-fact builder as done in to-do list
+5aaa65f Wire question generation to fact bank
+86fcdb2 Add sourceType field to fact-fetching schema
+c1a2a49 Add batch fact-fetching pipeline for question generation
+5810db4 Build CardPicker UI and rewrite Lobby for new card mechanic
+3e42b85 Wire design changes into scaffold: per-round cards, Half-Off, Take Your Time, Worst Answer Wins
+812b9a2 Add package-lock.json for mind-your-friends
+c740e00 chore: auto-update SESSIONS.md with session summary [d6f7fa0]
+d6f7fa0 Bring scaffold code from awesome-hopper branch into continuation branch
+6aa7c31 Define Visual question image sourcing: curated pool from Wikimedia, Noun Project, OpenClipart
+7e4eab1 Remove Hot Take, pin 2 random cards/round, add trademark note for Visual
+b9495a7 Add card selection instruction text to pick screen
+45c8914 Revamp card mechanic: per-round hands, Half-Off universal, 40s pick timer
+1db8b47 Add PLAYTEST.md with first question: FCFS vs stacking card resolution
+53b168b Park Hot Take, advance to-do list to item 21 (lobby card pick UI)
+14b89b1 Update to-do list: mark items 14-19 done, add Hot Take rework as next step
+f375047 Add question-rule coherence constraints to GAME_DESIGN.md
+bf39d87 Add question types, Worst Answer Wins round rule, complexity guardrails
+c6f9f0d chore: auto-update SESSIONS.md with session summary [ea5af2f]
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
+## Session — August 06, 2026 at 21:01
+**Branch:** `claude/mind-your-friends-app-tu47of`
+**Latest commit:** `77939fb`
+
+### Files changed this session
+- `ind-your-friends/components/GameBoard.jsx` — Modified
+- `mind-your-friends/lib/claudeClient.js` — Modified
+- `mind-your-friends/lib/coherence.js` — Modified
+- `mind-your-friends/lib/constants.js` — Modified
+- `mind-your-friends/lib/gameState.js` — Modified
+- `mind-your-friends/lib/roundRules.js` — Modified
+- `mind-your-friends/package-lock.json` — Modified
+- `mind-your-friends/package.json` — Modified
+- `mind-your-friends/server.js` — Modified
+- `mind-your-friends/lib/lineupData.js` — Untracked
+- `mind-your-friends/scripts/playtest-lineup.mjs` — Untracked
+
+### Commits this session
+```
+77939fb Rewrite studio-engine framing to stand on its own
+749c26c MYF CLAUDE.md: formalize studio engine framing from funding deck
+ae6650e MYF CLAUDE.md: prioritize Godot port, fix stale branch references
+8b95c87 Consolidate MYF: merge in shared coherence engine + standalone question route
+92698cf Implement real submission-based Worst Answer Wins with transparent scoring
+4854e3d Wire voice input into answer/steal submission (item 29)
+cfe649d Mark item 28 (extended playtest) done, add item 29 for remaining gaps
+44cc668 Fix server hang + crash-spam: guard scheduleNextTurn, recover from failed turns
+a749842 Fix Skip-card crash: playerView() never forwarded skippedTurn to the client
+e715e24 Add missing STEAL phase UI
+2e604e3 chore: auto-update SESSIONS.md with session summary [1727293]
+1727293 Mark item 24 (first run + playtest) done, add item 28 for extended playtest
+82e2886 Fix AnswerPhase/ResultPhase crash: client read game.currentQuestion, server never sends it
+16cf29c Fix CardHand crash: hand always includes 'halfOff', which isn't in the CARDS lookup
+eb4cc56 chore: auto-update SESSIONS.md with session summary [41c44f4]
+41c44f4 Fix first-run crashes found during playtest: markdown-fenced JSON, category options as objects
+9dfec0c chore: auto-update SESSIONS.md with session summary [bd88adc]
+bd88adc chore: auto-update SESSIONS.md with session summary [4bead35]
+4bead35 chore: auto-update SESSIONS.md with session summary [a97a6fc]
+a97a6fc Update CLAUDE.md: architecture, session protocol, branch references
+09267d6 Add game code collision check, Heckle moderation, and VoiceInput component
+0189035 Add inactivity detection — auto-skip away players after 2 timeouts
+e6520cc Add PT-3: single-player inactivity as playtest question
+0235add Add disconnection handling with grace period and vote system
+c6fc9c7 Mark question-from-fact builder as done in to-do list
+5aaa65f Wire question generation to fact bank
+86fcdb2 Add sourceType field to fact-fetching schema
+c1a2a49 Add batch fact-fetching pipeline for question generation
+5810db4 Build CardPicker UI and rewrite Lobby for new card mechanic
+3e42b85 Wire design changes into scaffold: per-round cards, Half-Off, Take Your Time, Worst Answer Wins
+812b9a2 Add package-lock.json for mind-your-friends
+c740e00 chore: auto-update SESSIONS.md with session summary [d6f7fa0]
+d6f7fa0 Bring scaffold code from awesome-hopper branch into continuation branch
+6aa7c31 Define Visual question image sourcing: curated pool from Wikimedia, Noun Project, OpenClipart
+7e4eab1 Remove Hot Take, pin 2 random cards/round, add trademark note for Visual
+b9495a7 Add card selection instruction text to pick screen
+45c8914 Revamp card mechanic: per-round hands, Half-Off universal, 40s pick timer
+1db8b47 Add PLAYTEST.md with first question: FCFS vs stacking card resolution
+53b168b Park Hot Take, advance to-do list to item 21 (lobby card pick UI)
+14b89b1 Update to-do list: mark items 14-19 done, add Hot Take rework as next step
+f375047 Add question-rule coherence constraints to GAME_DESIGN.md
+bf39d87 Add question types, Worst Answer Wins round rule, complexity guardrails
+c6f9f0d chore: auto-update SESSIONS.md with session summary [ea5af2f]
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
+## Session — July 01, 2026 at 20:37
+**Branch:** `claude/continuation-r0mhfq`
+**Latest commit:** `1727293`
+
+### Files changed this session
+- `ind-your-friends/components/GameBoard.jsx` — Modified
+
+### Commits this session
+```
+1727293 Mark item 24 (first run + playtest) done, add item 28 for extended playtest
+82e2886 Fix AnswerPhase/ResultPhase crash: client read game.currentQuestion, server never sends it
+16cf29c Fix CardHand crash: hand always includes 'halfOff', which isn't in the CARDS lookup
+eb4cc56 chore: auto-update SESSIONS.md with session summary [41c44f4]
+41c44f4 Fix first-run crashes found during playtest: markdown-fenced JSON, category options as objects
+9dfec0c chore: auto-update SESSIONS.md with session summary [bd88adc]
+bd88adc chore: auto-update SESSIONS.md with session summary [4bead35]
+4bead35 chore: auto-update SESSIONS.md with session summary [a97a6fc]
+a97a6fc Update CLAUDE.md: architecture, session protocol, branch references
+09267d6 Add game code collision check, Heckle moderation, and VoiceInput component
+0189035 Add inactivity detection — auto-skip away players after 2 timeouts
+e6520cc Add PT-3: single-player inactivity as playtest question
+0235add Add disconnection handling with grace period and vote system
+c6fc9c7 Mark question-from-fact builder as done in to-do list
+5aaa65f Wire question generation to fact bank
+86fcdb2 Add sourceType field to fact-fetching schema
+c1a2a49 Add batch fact-fetching pipeline for question generation
+5810db4 Build CardPicker UI and rewrite Lobby for new card mechanic
+3e42b85 Wire design changes into scaffold: per-round cards, Half-Off, Take Your Time, Worst Answer Wins
+812b9a2 Add package-lock.json for mind-your-friends
+c740e00 chore: auto-update SESSIONS.md with session summary [d6f7fa0]
+d6f7fa0 Bring scaffold code from awesome-hopper branch into continuation branch
+6aa7c31 Define Visual question image sourcing: curated pool from Wikimedia, Noun Project, OpenClipart
+7e4eab1 Remove Hot Take, pin 2 random cards/round, add trademark note for Visual
+b9495a7 Add card selection instruction text to pick screen
+45c8914 Revamp card mechanic: per-round hands, Half-Off universal, 40s pick timer
+1db8b47 Add PLAYTEST.md with first question: FCFS vs stacking card resolution
+53b168b Park Hot Take, advance to-do list to item 21 (lobby card pick UI)
+14b89b1 Update to-do list: mark items 14-19 done, add Hot Take rework as next step
+f375047 Add question-rule coherence constraints to GAME_DESIGN.md
+bf39d87 Add question types, Worst Answer Wins round rule, complexity guardrails
+c6f9f0d chore: auto-update SESSIONS.md with session summary [ea5af2f]
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
+## Session — July 01, 2026 at 18:52
+**Branch:** `claude/continuation-r0mhfq`
+**Latest commit:** `41c44f4`
+
+### Files changed this session
+- `ind-your-friends/components/CardHand.jsx` — Modified
+- `mind-your-friends/lib/cards.js` — Modified
+
+### Commits this session
+```
+41c44f4 Fix first-run crashes found during playtest: markdown-fenced JSON, category options as objects
+9dfec0c chore: auto-update SESSIONS.md with session summary [bd88adc]
+bd88adc chore: auto-update SESSIONS.md with session summary [4bead35]
+4bead35 chore: auto-update SESSIONS.md with session summary [a97a6fc]
+a97a6fc Update CLAUDE.md: architecture, session protocol, branch references
+09267d6 Add game code collision check, Heckle moderation, and VoiceInput component
+0189035 Add inactivity detection — auto-skip away players after 2 timeouts
+e6520cc Add PT-3: single-player inactivity as playtest question
+0235add Add disconnection handling with grace period and vote system
+c6fc9c7 Mark question-from-fact builder as done in to-do list
+5aaa65f Wire question generation to fact bank
+86fcdb2 Add sourceType field to fact-fetching schema
+c1a2a49 Add batch fact-fetching pipeline for question generation
+5810db4 Build CardPicker UI and rewrite Lobby for new card mechanic
+3e42b85 Wire design changes into scaffold: per-round cards, Half-Off, Take Your Time, Worst Answer Wins
+812b9a2 Add package-lock.json for mind-your-friends
+c740e00 chore: auto-update SESSIONS.md with session summary [d6f7fa0]
+d6f7fa0 Bring scaffold code from awesome-hopper branch into continuation branch
+6aa7c31 Define Visual question image sourcing: curated pool from Wikimedia, Noun Project, OpenClipart
+7e4eab1 Remove Hot Take, pin 2 random cards/round, add trademark note for Visual
+b9495a7 Add card selection instruction text to pick screen
+45c8914 Revamp card mechanic: per-round hands, Half-Off universal, 40s pick timer
+1db8b47 Add PLAYTEST.md with first question: FCFS vs stacking card resolution
+53b168b Park Hot Take, advance to-do list to item 21 (lobby card pick UI)
+14b89b1 Update to-do list: mark items 14-19 done, add Hot Take rework as next step
+f375047 Add question-rule coherence constraints to GAME_DESIGN.md
+bf39d87 Add question types, Worst Answer Wins round rule, complexity guardrails
+c6f9f0d chore: auto-update SESSIONS.md with session summary [ea5af2f]
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
+## Session — July 01, 2026 at 18:44
+**Branch:** `claude/continuation-r0mhfq`
+**Latest commit:** `bd88adc`
+
+### Files changed this session
+- `ind-your-friends/components/CategoryPicker.jsx` — Modified
+- `mind-your-friends/lib/claudeClient.js` — Modified
+
+### Commits this session
+```
+bd88adc chore: auto-update SESSIONS.md with session summary [4bead35]
+4bead35 chore: auto-update SESSIONS.md with session summary [a97a6fc]
+a97a6fc Update CLAUDE.md: architecture, session protocol, branch references
+09267d6 Add game code collision check, Heckle moderation, and VoiceInput component
+0189035 Add inactivity detection — auto-skip away players after 2 timeouts
+e6520cc Add PT-3: single-player inactivity as playtest question
+0235add Add disconnection handling with grace period and vote system
+c6fc9c7 Mark question-from-fact builder as done in to-do list
+5aaa65f Wire question generation to fact bank
+86fcdb2 Add sourceType field to fact-fetching schema
+c1a2a49 Add batch fact-fetching pipeline for question generation
+5810db4 Build CardPicker UI and rewrite Lobby for new card mechanic
+3e42b85 Wire design changes into scaffold: per-round cards, Half-Off, Take Your Time, Worst Answer Wins
+812b9a2 Add package-lock.json for mind-your-friends
+c740e00 chore: auto-update SESSIONS.md with session summary [d6f7fa0]
+d6f7fa0 Bring scaffold code from awesome-hopper branch into continuation branch
+6aa7c31 Define Visual question image sourcing: curated pool from Wikimedia, Noun Project, OpenClipart
+7e4eab1 Remove Hot Take, pin 2 random cards/round, add trademark note for Visual
+b9495a7 Add card selection instruction text to pick screen
+45c8914 Revamp card mechanic: per-round hands, Half-Off universal, 40s pick timer
+1db8b47 Add PLAYTEST.md with first question: FCFS vs stacking card resolution
+53b168b Park Hot Take, advance to-do list to item 21 (lobby card pick UI)
+14b89b1 Update to-do list: mark items 14-19 done, add Hot Take rework as next step
+f375047 Add question-rule coherence constraints to GAME_DESIGN.md
+bf39d87 Add question types, Worst Answer Wins round rule, complexity guardrails
+c6f9f0d chore: auto-update SESSIONS.md with session summary [ea5af2f]
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
+## Session — July 01, 2026 at 18:37
+**Branch:** `claude/continuation-r0mhfq`
+**Latest commit:** `4bead35`
+
+### Files changed this session
+- `ind-your-friends/lib/claudeClient.js` — Modified
+
+### Commits this session
+```
+4bead35 chore: auto-update SESSIONS.md with session summary [a97a6fc]
+a97a6fc Update CLAUDE.md: architecture, session protocol, branch references
+09267d6 Add game code collision check, Heckle moderation, and VoiceInput component
+0189035 Add inactivity detection — auto-skip away players after 2 timeouts
+e6520cc Add PT-3: single-player inactivity as playtest question
+0235add Add disconnection handling with grace period and vote system
+c6fc9c7 Mark question-from-fact builder as done in to-do list
+5aaa65f Wire question generation to fact bank
+86fcdb2 Add sourceType field to fact-fetching schema
+c1a2a49 Add batch fact-fetching pipeline for question generation
+5810db4 Build CardPicker UI and rewrite Lobby for new card mechanic
+3e42b85 Wire design changes into scaffold: per-round cards, Half-Off, Take Your Time, Worst Answer Wins
+812b9a2 Add package-lock.json for mind-your-friends
+c740e00 chore: auto-update SESSIONS.md with session summary [d6f7fa0]
+d6f7fa0 Bring scaffold code from awesome-hopper branch into continuation branch
+6aa7c31 Define Visual question image sourcing: curated pool from Wikimedia, Noun Project, OpenClipart
+7e4eab1 Remove Hot Take, pin 2 random cards/round, add trademark note for Visual
+b9495a7 Add card selection instruction text to pick screen
+45c8914 Revamp card mechanic: per-round hands, Half-Off universal, 40s pick timer
+1db8b47 Add PLAYTEST.md with first question: FCFS vs stacking card resolution
+53b168b Park Hot Take, advance to-do list to item 21 (lobby card pick UI)
+14b89b1 Update to-do list: mark items 14-19 done, add Hot Take rework as next step
+f375047 Add question-rule coherence constraints to GAME_DESIGN.md
+bf39d87 Add question types, Worst Answer Wins round rule, complexity guardrails
+c6f9f0d chore: auto-update SESSIONS.md with session summary [ea5af2f]
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
+## Session — July 01, 2026 at 18:36
+**Branch:** `claude/continuation-r0mhfq`
+**Latest commit:** `a97a6fc`
+
+### Files changed this session
+- `ind-your-friends/lib/claudeClient.js` — Modified
+
+### Commits this session
+```
+a97a6fc Update CLAUDE.md: architecture, session protocol, branch references
+09267d6 Add game code collision check, Heckle moderation, and VoiceInput component
+0189035 Add inactivity detection — auto-skip away players after 2 timeouts
+e6520cc Add PT-3: single-player inactivity as playtest question
+0235add Add disconnection handling with grace period and vote system
+c6fc9c7 Mark question-from-fact builder as done in to-do list
+5aaa65f Wire question generation to fact bank
+86fcdb2 Add sourceType field to fact-fetching schema
+c1a2a49 Add batch fact-fetching pipeline for question generation
+5810db4 Build CardPicker UI and rewrite Lobby for new card mechanic
+3e42b85 Wire design changes into scaffold: per-round cards, Half-Off, Take Your Time, Worst Answer Wins
+812b9a2 Add package-lock.json for mind-your-friends
+c740e00 chore: auto-update SESSIONS.md with session summary [d6f7fa0]
+d6f7fa0 Bring scaffold code from awesome-hopper branch into continuation branch
+6aa7c31 Define Visual question image sourcing: curated pool from Wikimedia, Noun Project, OpenClipart
+7e4eab1 Remove Hot Take, pin 2 random cards/round, add trademark note for Visual
+b9495a7 Add card selection instruction text to pick screen
+45c8914 Revamp card mechanic: per-round hands, Half-Off universal, 40s pick timer
+1db8b47 Add PLAYTEST.md with first question: FCFS vs stacking card resolution
+53b168b Park Hot Take, advance to-do list to item 21 (lobby card pick UI)
+14b89b1 Update to-do list: mark items 14-19 done, add Hot Take rework as next step
+f375047 Add question-rule coherence constraints to GAME_DESIGN.md
+bf39d87 Add question types, Worst Answer Wins round rule, complexity guardrails
+c6f9f0d chore: auto-update SESSIONS.md with session summary [ea5af2f]
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
+## Session — June 26, 2026 at 19:12
+**Branch:** `claude/continuation-r0mhfq`
+**Latest commit:** `d6f7fa0`
+
+### Files changed this session
+- `mind-your-friends/package-lock.json` — Untracked
+
+### Commits this session
+```
+d6f7fa0 Bring scaffold code from awesome-hopper branch into continuation branch
+6aa7c31 Define Visual question image sourcing: curated pool from Wikimedia, Noun Project, OpenClipart
+7e4eab1 Remove Hot Take, pin 2 random cards/round, add trademark note for Visual
+b9495a7 Add card selection instruction text to pick screen
+45c8914 Revamp card mechanic: per-round hands, Half-Off universal, 40s pick timer
+1db8b47 Add PLAYTEST.md with first question: FCFS vs stacking card resolution
+53b168b Park Hot Take, advance to-do list to item 21 (lobby card pick UI)
+14b89b1 Update to-do list: mark items 14-19 done, add Hot Take rework as next step
+f375047 Add question-rule coherence constraints to GAME_DESIGN.md
+bf39d87 Add question types, Worst Answer Wins round rule, complexity guardrails
+c6f9f0d chore: auto-update SESSIONS.md with session summary [ea5af2f]
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
+## Session — June 26, 2026 at 18:12
+**Branch:** `claude/continuation-r0mhfq`
+**Latest commit:** `ea5af2f`
+
+### Files changed this session
+- `mind-your-friends/GAME_DESIGN.md` — AM
+
+### Commits this session
+```
+_No new commits_
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
 ## Session 27 — August 4-5, 2026 (git cleanup + anthology ingestion pre-flight, paused mid-run)
 **Branch:** `claude/session-wrapup-cleanup-blocker-3val9a` (same branch as Session 26 — continued,
 not reset, since this session was mostly local-git troubleshooting on the owner's machine rather

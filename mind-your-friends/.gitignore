@@ -1,0 +1,12 @@
+node_modules/
+.next/
+.env.local
+
+# Godot editor import cache — regenerated on open, never source of truth.
+# Note: .uid files are NOT ignored; Godot 4.4+ expects those committed so
+# resource references survive across machines.
+godot/.godot/
+
+# Python
+__pycache__/
+*.pyc
