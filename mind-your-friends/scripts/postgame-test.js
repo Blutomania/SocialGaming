@@ -247,5 +247,44 @@ tie.postGame = {
 await resolveSuperlatives(tie);
 check(tie.postGame.results[0].winnerNames.length === 2, 'a tied award is a shared win');
 
+// --- Part 4: players leaving during post-game -------------------------------
+// After a game ends people close the tab. A departed player must not hold the
+// rest of the room on the voting screen until the 90s timer expires.
+
+console.log('=== departures during voting ===');
+
+const leaver = createGame('p1', 'Alice');
+addPlayer(leaver, 'p2', 'Bob');
+addPlayer(leaver, 'p3', 'Cara');
+leaver.phase = 'GAME_OVER';
+leaver.postGame = {
+  stage: 'voting',
+  categories: [{ id: 'c1', title: 'Best Sabotage', description: 'x' }],
+  votes: { p1: { c1: 'p2' }, p2: { c1: 'p1' } },
+  results: null,
+};
+
+check(!allSuperlativeVotesIn(leaver), 'voting is not complete while Cara is still connected');
+
+leaver.players[2].connected = false;
+check(
+  allSuperlativeVotesIn(leaver),
+  'a disconnected player no longer blocks the tally'
+);
+check(
+  playerView(leaver, 'p1').postGame.totalToVote === 2,
+  'totalToVote drops to the players actually still present'
+);
+
+// Claude returning an empty set must not read as "everyone has voted".
+const noCategories = createGame('p1', 'Alice');
+addPlayer(noCategories, 'p2', 'Bob');
+noCategories.phase = 'GAME_OVER';
+noCategories.postGame = { stage: 'voting', categories: [], votes: {}, results: null };
+check(
+  !allSuperlativeVotesIn(noCategories),
+  'zero categories does not vacuously report all votes in'
+);
+
 console.log(failures === 0 ? '=== ALL PASSED ===' : `=== ${failures} FAILURE(S) ===`);
 process.exit(failures > 0 ? 1 : 0);

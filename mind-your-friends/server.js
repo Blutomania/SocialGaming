@@ -172,7 +172,20 @@ app.prepare().then(() => {
         if (game && game.phase !== 'LOBBY') {
           gameState.disconnectPlayer(game, socket.id);
           broadcast(io, game);
-          startGracePeriod(io, game, socket.id);
+          // No grace period once the game is over. People close the tab the
+          // moment they've seen the scores — starting a "wait for our friend?"
+          // vote at that point interrupts the post-game screens for everyone
+          // still there, to decide whether to resume a game that has ended.
+          if (game.phase !== 'GAME_OVER') {
+            startGracePeriod(io, game, socket.id);
+          } else if (gameState.allSuperlativeVotesIn(game)) {
+            // Their leaving may have been the last thing the tally was waiting
+            // on — re-check, or the rest of the room waits out the full timer.
+            gameState
+              .resolveSuperlatives(game)
+              .then(() => broadcast(io, game))
+              .catch((err) => console.error('Superlative tally failed:', err));
+          }
         }
       }
       sockets.delete(socket.id);
@@ -348,6 +361,15 @@ app.prepare().then(() => {
     gameState
       .beginSuperlativeVoting(game)
       .then(() => {
+        // Claude can return an empty set without throwing. Leaving postGame in
+        // place with no categories parks everyone on a "tallying up…" spinner
+        // for the full timer with nothing to vote on — drop it instead and let
+        // the plain scoreboard + Shareable Question stand on their own.
+        if (game.postGame && game.postGame.categories.length === 0) {
+          game.postGame = null;
+          broadcast(io, game);
+          return;
+        }
         broadcast(io, game);
         setTimeout(() => {
           // One slow (or departed) player must not strand everyone on the
@@ -380,6 +402,11 @@ app.prepare().then(() => {
       gameState.resumeAfterDrop(game);
     }
     broadcast(io, game);
+    // resumeAfterDrop() can itself end the game (skipUnavailablePlayers runs
+    // out the question count). That's a second route to GAME_OVER that doesn't
+    // pass through scheduleNextTurn, so without this the post-game screens
+    // never appear for a game that ended by attrition.
+    if (game.phase === 'GAME_OVER') startPostGame(io, game);
   }
 
   function broadcast(io, game) {

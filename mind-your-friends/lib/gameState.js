@@ -1082,7 +1082,7 @@ export function playerView(game, playerId) {
         // publishes the tallies.
         myVotes: game.postGame.votes[playerId] ?? {},
         votedCount: Object.keys(game.postGame.votes).length,
-        totalToVote: game.players.filter((p) => !p.droppedOut).length,
+        totalToVote: superlativeVoters(game).length,
         results: game.postGame.stage === 'results' ? game.postGame.results : null,
       };
     }
@@ -1161,10 +1161,19 @@ export function castSuperlativeVote(game, voterId, categoryId, targetPlayerId) {
   return game;
 }
 
+// Who still owes a ballot. Excludes disconnected players as well as
+// dropped-out ones: after the game ends people close the tab, and a player who
+// has left must not hold the remaining room on the voting screen until the
+// timer expires.
+export function superlativeVoters(game) {
+  return game.players.filter((p) => !p.droppedOut && p.connected);
+}
+
 // True once every still-present player has voted in every category.
 export function allSuperlativeVotesIn(game) {
   if (!game.postGame || game.postGame.stage !== 'voting') return false;
-  const eligible = game.players.filter((p) => !p.droppedOut);
+  if (game.postGame.categories.length === 0) return false;
+  const eligible = superlativeVoters(game);
   if (eligible.length === 0) return false;
   return eligible.every((p) => {
     const ballot = game.postGame.votes[p.id];
