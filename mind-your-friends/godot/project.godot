@@ -1,0 +1,39 @@
+; Engine configuration file.
+; Generated for Godot 4.x
+; https://godotengine.org/
+;
+; UNVERIFIED — no Godot binary in this environment (see root CLAUDE.md and
+; mind-your-friends/CLAUDE.md item 33). Structure mirrors CYM's godot/project.godot
+; (proven working) with only ApiClient.gd registered so far — no main scene
+; exists yet, so run/main_scene is deliberately omitted rather than pointing
+; at a .tscn that doesn't exist. Open in a real Godot 4 editor and fix
+; whatever this guess got wrong before trusting it.
+
+config_version=5
+
+[application]
+
+config/name="Mind Your Friends"
+config/description="Real-time multiplayer social trivia game with sabotage cards and rotating round rules."
+config/version="0.1.0"
+config/features=PackedStringArray("4.6", "Forward Plus")
+run/main_scene="res://scenes/ui/lobby.tscn"
+
+[autoload]
+
+; Singletons — loaded before the first scene.
+; SESSION ANNOTATION: If you add a new autoload, register it here AND
+; verify it appears in Project → Project Settings → Autoload in the editor.
+; NetworkManager is deliberately NOT ported/registered — CYM's own copy is
+; a dead Phase-2 ENet stub never actually wired to anything; the real
+; transport is ApiClient's WebSocket connection. See docs/WIRING.md.
+; Order matters: GameState connects to ApiClient's ws_event signal in its
+; _ready(), so ApiClient must be listed first.
+ApiClient="*res://scripts/autoloads/ApiClient.gd"
+GameState="*res://scripts/autoloads/GameState.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
