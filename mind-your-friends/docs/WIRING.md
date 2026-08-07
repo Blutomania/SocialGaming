@@ -156,11 +156,13 @@ matches exactly what building both of those in JS this year already showed empir
       wrong-answer → STEAL phase → claim → RESULT chain was exercised, not just detected.
       `lightning_round` was not separately forced (it's config-only on top of `standard` — no
       distinct code path to verify beyond what `standard` already proved)
-- [ ] `godot/` client scenes — **not started this session.** Everything above is verifiable with
-      a scripted HTTP/WS test client (no Godot binary exists in this environment — see root
-      `CLAUDE.md` "No Godot binary in repo"). GDScript written without the ability to run it is a
-      real risk of shipping untested, subtly-wrong code, so it's being deliberately sequenced
-      after the backend is proven, not written speculatively alongside it.
+- [~] `godot/` client — **foundation only, UNVERIFIED.** `project.godot` (no main scene set —
+      none exists) + `ApiClient.gd` (HTTP+WS wrapper, adapted from CYM's proven version to MYF's
+      actual endpoint paths) exist now. No Godot binary in this environment (root `CLAUDE.md`:
+      "No Godot binary in repo"), so this is unverified by construction — written carefully
+      against CYM's known-working reference rather than from scratch, but still needs a real
+      Godot editor to confirm it even compiles before anyone trusts it. **No scenes exist.**
+      `GameState.gd` (MYF's state mirror) is the next piece, before any UI.
 - [ ] Voice input, disconnect/reconnect, inactivity auto-advance — **not started**, will need
       their own pass once the core loop is proven.
 
