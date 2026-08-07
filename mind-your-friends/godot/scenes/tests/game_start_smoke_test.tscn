@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0myfstart01"]
+
+[ext_resource type="Script" path="res://scripts/tests/game_start_smoke_test.gd" id="1_start"]
+
+[node name="GameStartSmokeTest" type="Node"]
+script = ExtResource("1_start")

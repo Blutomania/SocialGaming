@@ -156,15 +156,62 @@ matches exactly what building both of those in JS this year already showed empir
       wrong-answer → STEAL phase → claim → RESULT chain was exercised, not just detected.
       `lightning_round` was not separately forced (it's config-only on top of `standard` — no
       distinct code path to verify beyond what `standard` already proved)
-- [~] `godot/` client — **foundation only, UNVERIFIED.** `project.godot` (no main scene set —
-      none exists) + `ApiClient.gd` (HTTP+WS wrapper, adapted from CYM's proven version to MYF's
-      actual endpoint paths) exist now. No Godot binary in this environment (root `CLAUDE.md`:
-      "No Godot binary in repo"), so this is unverified by construction — written carefully
-      against CYM's known-working reference rather than from scratch, but still needs a real
-      Godot editor to confirm it even compiles before anyone trusts it. **No scenes exist.**
-      `GameState.gd` (MYF's state mirror) is the next piece, before any UI.
+- [x] `godot/` client foundation — **now VERIFIED against a real Godot 4.6 binary.** The "no
+      Godot binary in this environment" constraint turned out to be beatable: the official
+      Linux headless build downloads and runs fine here (see "Verifying the Godot client"
+      below). `ApiClient.gd` **did not compile** as written — `_post`'s `request_completed`
+      lambda had untyped parameters, so `var text := response_body.get_string_from_utf8()`
+      couldn't infer a type (`Parse Error` at line 147). Fixed by typing the callback
+      signature. That's exactly the class of error the previous session flagged as
+      unverifiable, and it was real.
+- [x] `GameState.gd` — client-side mirror of `player_view()`. Holds no game logic: the server
+      broadcasts a complete per-player view after every mutation, so the client does
+      last-write-wins replacement, not delta patching. Turns the single `game:state` firehose
+      into `state_updated` / `phase_changed` / `players_changed` / `game_over` signals, plus
+      typed accessors so scenes never hand-parse raw dictionaries.
+- [x] Lobby scene (`scenes/ui/lobby.tscn` + `scripts/ui/lobby.gd`) — create/join a room, live
+      roster, ready-up, start. Registration currently submits **placeholder** categories and a
+      hardcoded `insurance` card: the real category-selection and card-pick screens don't exist
+      yet, and stubbing them keeps the lobby independently testable rather than blocked.
+- [x] **Client/server pair proven end-to-end** — two headless test scenes drive the real
+      autoloads against a real uvicorn backend:
+      - `scenes/tests/lobby_smoke_test.tscn` — 18 assertions, **all passing**, zero API cost.
+        Covers create → WS push → join ×2 → roster push → register ×3 → `can_start_game()`,
+        plus the information-hiding guarantees (other players' hands stay withheld).
+      - `scenes/tests/game_start_smoke_test.tscn` — **all passing**, but **costs real API
+        calls** (fact-bank build), so it's a separate scene rather than part of the everyday
+        test. Covers LOBBY → CATEGORY: `phase_changed` fires, 6 attributed `categoryOptions`
+        arrive, hands get dealt, a round rule is assigned.
 - [ ] Voice input, disconnect/reconnect, inactivity auto-advance — **not started**, will need
       their own pass once the core loop is proven.
+
+## Verifying the Godot client
+
+Previous sessions recorded "no Godot binary in this environment" as a hard blocker and wrote
+GDScript unverified because of it. That is no longer true — the official build downloads and
+runs headless here:
+
+```bash
+curl -sSL -o godot.zip \
+  https://github.com/godotengine/godot/releases/download/4.6-stable/Godot_v4.6-stable_linux.x86_64.zip
+unzip -q godot.zip && chmod +x Godot_v4.6-stable_linux.x86_64
+
+# Compile-check every script + scene in the project:
+./Godot_v4.6-stable_linux.x86_64 --headless --path godot --import
+
+# Full end-to-end against a live backend:
+cd server_py && python3 -m uvicorn main:app --port 8001 &
+./Godot_v4.6-stable_linux.x86_64 --headless --path godot \
+  res://scenes/tests/lobby_smoke_test.tscn    # exits 0 on pass
+```
+
+4.6 is what `project.godot` declares in `config/features`, so that's what these were verified
+against. **Do not write GDScript in this repo without running at least the `--import` check** —
+it catches parse errors in seconds and it already caught a real one.
+
+**Server dependency gotcha:** a bare `pip install uvicorn` has no WebSocket support, and the
+symptom is misleading — the WS handshake 404s and looks like a client bug or a routing mistake.
+Install `uvicorn[standard]` (or `websockets`) or the Godot client cannot connect at all.
 
 **Real-server testing note:** the first verification pass used FastAPI's `TestClient`, which
 turned out not to reliably deliver WebSocket broadcasts originating from a `threading.Timer`

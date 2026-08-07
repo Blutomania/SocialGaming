@@ -17,6 +17,7 @@ config/name="Mind Your Friends"
 config/description="Real-time multiplayer social trivia game with sabotage cards and rotating round rules."
 config/version="0.1.0"
 config/features=PackedStringArray("4.6", "Forward Plus")
+run/main_scene="res://scenes/ui/lobby.tscn"
 
 [autoload]
 
@@ -26,9 +27,10 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 ; NetworkManager is deliberately NOT ported/registered — CYM's own copy is
 ; a dead Phase-2 ENet stub never actually wired to anything; the real
 ; transport is ApiClient's WebSocket connection. See docs/WIRING.md.
-; GameState.gd (MYF's own game-state mirror, distinct from CYM's) doesn't
-; exist yet — next piece to build, before any scenes.
+; Order matters: GameState connects to ApiClient's ws_event signal in its
+; _ready(), so ApiClient must be listed first.
 ApiClient="*res://scripts/autoloads/ApiClient.gd"
+GameState="*res://scripts/autoloads/GameState.gd"
 
 [display]
 

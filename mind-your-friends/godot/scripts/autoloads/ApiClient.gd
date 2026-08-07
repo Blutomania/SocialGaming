@@ -143,7 +143,7 @@ func _post(path: String, body: Dictionary, callback: Callable, timeout: float = 
 	var http := HTTPRequest.new()
 	add_child(http)
 	http.timeout = timeout
-	http.request_completed.connect(func(_result, response_code, _headers, response_body):
+	http.request_completed.connect(func(_result: int, response_code: int, _headers: PackedStringArray, response_body: PackedByteArray) -> void:
 		var text := response_body.get_string_from_utf8()
 		var json := JSON.new()
 		var parse_ok := json.parse(text) == OK

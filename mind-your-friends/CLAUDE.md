@@ -385,6 +385,42 @@ it in naming only — the classes are otherwise identical.
       (same WebSocket contract this backend already speaks), then a minimal Lobby scene talking
       to `POST /games/create` + `/ws/{code}` to prove the client/server pair end-to-end before
       building out the rest of the round-loop UI.
+34. **[DONE] Godot client foundation built AND verified end-to-end** — completes the "Next" step
+    item 33 left open. The headline finding: **"no Godot binary in this environment" was wrong.**
+    The official Godot 4.6 Linux headless build downloads and runs here fine, so GDScript in this
+    repo no longer has to be written blind. Full instructions in `docs/WIRING.md` →
+    "Verifying the Godot client". Every future session should run the `--import` compile check
+    before trusting any GDScript.
+    - **`ApiClient.gd` did not compile as written.** Item 33 shipped it unverified with a caveat
+      saying exactly that; the caveat was justified. `_post`'s `request_completed` lambda took
+      untyped parameters, so `var text := response_body.get_string_from_utf8()` couldn't infer a
+      type — a hard `Parse Error`, meaning the autoload failed to load and the client would not
+      have started at all. Fixed by typing the callback signature.
+    - **`GameState.gd`** — client-side mirror of `player_view()`, registered as the second
+      autoload (after `ApiClient`, which it connects to in `_ready()`). Deliberately holds zero
+      game logic: `server_py` broadcasts a complete per-player view after every mutation, so the
+      correct client design is last-write-wins replacement, not delta patching — any client-side
+      prediction would just be a second source of truth to drift. Exposes `state_updated` /
+      `phase_changed` / `players_changed` / `game_over` signals plus typed accessors.
+    - **Lobby scene** (`scenes/ui/lobby.tscn` + `scripts/ui/lobby.gd`) — create/join, live
+      roster, ready-up, start. Follows CYM's `lobby.gd` pattern: fire the HTTP action, then
+      drive all UI off the resulting WebSocket push, never off the HTTP callback.
+      **Registration is stubbed** — it submits placeholder categories and a hardcoded
+      `insurance` card, because the category-selection and card-pick screens don't exist yet.
+      That's the next UI work, and it's the one thing in the lobby flow that is not real.
+    - **Verified end-to-end against a real running backend, not mocks:** two headless test
+      scenes. `lobby_smoke_test.tscn` — 18 assertions, all passing, **no API cost** (create → WS
+      push → join ×2 → roster push → register ×3 → startable, plus confirming other players'
+      hands stay withheld). `game_start_smoke_test.tscn` — all passing, but **spends real API
+      calls** on the fact-bank build, so it's kept as a separate scene; it proves LOBBY →
+      CATEGORY with 6 attributed category options, hands dealt, and a round rule assigned.
+    - **Environment gotcha worth remembering:** a bare `pip install uvicorn` ships without
+      WebSocket support, and the failure mode is misleading — the WS handshake 404s, which reads
+      as a client routing bug. Install `uvicorn[standard]`/`websockets` or the client cannot
+      connect. Cost real debugging time here; it is not a code defect.
+    - **Next:** the CategoryPicker screen (replacing the lobby's placeholder registration), then
+      the card-pick screen, then the round-loop UI (WAGER → CARD → QUESTION → ANSWER → RESULT).
+      `GameState` already exposes accessors for all of those phases; none have UI yet.
 
 ## Design Thesis: Casual-First
 This game targets casual, social players — not competitive optimizers. Every
