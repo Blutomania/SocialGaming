@@ -31,6 +31,24 @@ land first (see item 31/33 below). When that happens, pull `coherence/engine.py`
 `main` (now the real source of truth) rather than this branch's copy, which is stale relative to
 it in naming only — the classes are otherwise identical.
 
+## Priority Queue (as of August 7, 2026)
+
+The numbered list below is the full historical record and keeps growing. This is
+the short version — what to actually work on next, in order. Items link to their
+detail entries further down.
+
+| # | Item | State |
+|---|---|---|
+| 1 | **Post-game social layer** — Superlative Voting + Shareable Question (item 35) | **START HERE** |
+| 2 | Godot: category-selection + card-pick screens (replaces stubbed lobby registration) | Next |
+| 3 | Godot: round-loop UI — WAGER → CARD → QUESTION → ANSWER → RESULT | Next |
+| 4 | Godot: GAME_OVER screen, then port the post-game social layer once it's playtested | Blocked on 1+3 |
+| 5 | Live-test disconnect/reconnect + inactivity auto-advance against `server_py` | Ported, never exercised |
+| 6 | Voice input in the Godot client | Not started |
+| 7 | Merge PR #14 (coherence unification) — now has a trivial docstring conflict | Open PR |
+| 8 | Wire MYF's coherence to the shared Python engine — now possible, `server_py` is Python | Unblocked by the port |
+| 9 | Retire the Next.js prototype — **only** once Godot reaches parity and is playtested | Do not do early |
+
 ## Current To-Do
 1. ~~**Review Round variation types**~~ — 8 variations confirmed. See `GAME_DESIGN.md`.
 2. ~~**Review card mechanic**~~ — FCFS card resolution, fixed 6-card hand (1 picked +
@@ -421,6 +439,32 @@ it in naming only — the classes are otherwise identical.
     - **Next:** the CategoryPicker screen (replacing the lobby's placeholder registration), then
       the card-pick screen, then the round-loop UI (WAGER → CARD → QUESTION → ANSWER → RESULT).
       `GameState` already exposes accessors for all of those phases; none have UI yet.
+
+35. **[IN PROGRESS — priority 1] Post-game social layer: Superlative Voting + Shareable
+    Question.** Owner-chosen (August 7, 2026) as the next feature after the Godot port merged
+    to `main` (PR #15). Two pieces, built **in the Next.js prototype first** — deliberately,
+    because it's the only version that can be played end-to-end with real people today, and
+    the whole point of a social feature is finding out whether it lands. Same validation
+    convention as items 24/28/30/32. It gets ported to Godot after it's proven, not before.
+    - **Superlative Voting** — after GAME_OVER, a short voting round on 3–4 AI-generated
+      superlative categories drawn from what actually happened in the game ("Best Sabotage",
+      "Worst Answer", "Most Targeted"). Ties are shared wins, same convention as `getWinners()`.
+      Chosen over the cheaper alternatives because it's the only post-game option that
+      **captures player signal** rather than just generating more content — which is the root
+      `CLAUDE.md` design principle ("prefer code that captures signal over code that generates
+      more content with no signal").
+    - **Shareable Question** — owner's redesign of the spec'd "Shareable Recap", and a better
+      idea: the shareable artifact is **a question from the game**, framed as a challenge to
+      the sharer's own following, *not* a scoreboard. A scoreboard only means something to the
+      people who were in the room; a hard trivia question travels, because guessing it drives
+      replies. Optional per player, answer deliberately withheld from the card, no persistence
+      required (client-side canvas → Web Share API, download fallback). Full design in
+      `GAME_DESIGN.md` → "Shareable Question — the growth mechanic".
+    - **Known prerequisite:** `game.highlightReel` logs prose strings, not structured data, and
+      there is no record of the questions asked. Both features need a real `game.questionLog`
+      (question, answer, category + attribution, who answered, right/wrong, wager) — that's the
+      first build step, and it's also what makes the "4 of 5 friends got this wrong" hook line
+      possible.
 
 ## Design Thesis: Casual-First
 This game targets casual, social players — not competitive optimizers. Every
