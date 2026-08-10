@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Wall Street trading floor and corporate offices at a major investment bank",
+    "confidence": "medium",
+    "quote": "Working sixteen-hour days in those glistening glass towers in Manhattan"
+  },
+  "culprit_and_motive": {
+    "value": "Howard Ranieri and Ian Becker conspire to remove Mark Barston from power through corporate coup; motive is career advancement and fraud concealment",
+    "confidence": "high",
+    "quote": "You systematically bad-mouth me to Becker and the rest of senior management as 'redundant' and 'not a team player.'"
+  },
+  "resolution": {
+    "value": "Mark Barston discovers Eagles Mere III CDO fraud scheme implicating Ranieri and Becker; compliance investigation initiated by General Counsel",
+    "confidence": "high",
+    "quote": "According to a routine compliance check on personal trading that was run over the weekend, both you and Becker have sizable positions"
+  },
+  "investigator": {
+    "value": "Mark Barston, the protagonist and target of corporate assassination, who uncovers the fraud scheme and turns tables on his enemies",
+    "confidence": "high",
+    "quote": "At the Top of His Game... On the day they conspire to put a bullet in my head, I experience an epiphany."
+  },
+  "suspect_architecture": {
+    "value": "Multiple antagonists with overlapping motives: Ranieri (co-head, turf/power), Becker (Ranieri's Harvard roommate/patron, institutional), Susan (estranged wife, divorce lawyer retained), unnamed kickboxing instructor and Dr. Lauren (suspected affairs). Ranieri and Becker are differentiated \u2014 Ranieri is the operational aggressor, Becker the senior enabler. The trading floor subordinates are ambiguously loyal. Fiona appears as a romantic peripheral who is also cast as a latent threat.",
+    "confidence": "high",
+    "quote": "How many more Ranieris are even now lining up to take what I've built? How many of them are in this room"
+  },
+  "red_herring": {
+    "value": "The narrator's suspicion that Susan is having affairs (with Adam the martial arts instructor and Dr. Lauren the physician) is presented as the primary marital betrayal \u2014 but the actual operative threat is the retained divorce attorney Peter Tortola, revealed by the canceled check. The infidelity narrative misdirects both narrator and reader from the legal/financial coup already in motion.",
+    "confidence": "high",
+    "quote": "The appearance of Peter I. Tortola's name in my checkbook register suggests otherwise."
+  },
+  "clue_fairness": {
+    "value": "The Eagles Mere III CDO fraud is disclosed to the reader at the same moment it is deployed against Ranieri and Becker \u2014 the compliance check details ($50,000 units paying $11,568/month interest) are laid out in full in the narrator's confrontation speech, giving the reader simultaneous access to the evidence. The canceled Tortola check is shown to the reader before its significance is confirmed.",
+    "confidence": "medium",
+    "quote": "a security that cost him $50,000 a unit is throwing off $11,568 in interest\u2014a month. That would be about $140,000 a year"
+  },
+  "social_world": {
+    "value": "Wall Street equity derivatives hierarchy: Senior Managing Directors command co-heads through Harvard old-boy patronage networks (Becker-Ranieri roommate bond). Revenue generation confers informal power but is overridden by institutional politics. Greenwich suburban wealth creates a parallel social hierarchy of hedge fund prestige. Loyalty is transactional \u2014 the trading floor applauds the winner, not the righteous.",
+    "confidence": "high",
+    "quote": "Becker drop-kicks you into my sandbox as a co-head. Says you've got a lot to learn and you're 'here to help.'"
+  },
+  "alibi": {
+    "value": "Ranieri's implicit alibi \u2014 that the termination meeting is a legitimate restructuring decision by senior management \u2014 is dismantled when the Eagles Mere III fraud is exposed, revealing the firing as a quid pro quo cover-up. Sanderson's Hong Kong absence is used by the narrator as a procedural alibi to delay his own termination on Friday.",
+    "confidence": "medium",
+    "quote": "Sanderson says stand down. Nothing is to happen until he returns to London on Monday."
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated through a financial instrument audit: a routine compliance check on personal trading accounts uncovers that Ranieri and Becker hold positions in Eagles Mere III CDO units yielding ~300% annual risk-free return \u2014 mathematically impossible in legitimate markets, proving the security is a fabricated vehicle to divert client funds as a kickback. The numbers themselves constitute the proof.",
+    "confidence": "high",
+    "quote": "What kind of security pays nearly three hundred percent interest a year with zero risk? I don't know, I've never heard of such a thing."
+  },
+  "media_and_audience": {
+    "value": "The trading floor functions as an internal audience and information market \u2014 'information is the ultimate commodity' \u2014 transforming each confrontation into a public performance. Standing ovations replace press coverage; Terri's leak of the Eagles Mere scandal spreads through the floor like news wire. The firm's compliance and legal apparatus (Rosenman) serves as the institutional press, packaging the crime into formal consequence.",
+    "confidence": "medium",
+    "quote": "information is the ultimate commodity, and the news that I survived Ranieri's savage assassination attempt causes spasms of joy"
+  },
+  "investigator_wound": {
+    "value": "The narrator-as-investigator is psychologically compromised by fourteen years of identity erosion on Wall Street, a collapsing marriage, suspected infertility grief, and paranoid isolation. His wound is that every triumph deepens his alienation \u2014 victory over Ranieri yields not relief but the epiphany that everyone, including his loyal assistant Terri, is a potential enemy. He cannot trust the relationships that motivate his fight.",
+    "confidence": "high",
+    "quote": "absolutely no one is beyond suspicion. Et tu, Terri? I force myself to smile back"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "At the Top of His Game",
+    "author": "STEPHEN RHODES",
+    "anthology_title": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos",
+    "story_index": 16,
+    "story_count": 22
+  }
+}

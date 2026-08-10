@@ -1,0 +1,89 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": "Not a traditional mystery suspect architecture. The 'perpetrators' are a meth dealer network (Gabe, Misfit, Pedro, others unnamed); the protagonists Jack and David are the vigilante killers. Collateral victims include an innocent neighbour couple and a pretty Indian girl, muddying moral culpability across multiple parties.",
+    "confidence": "medium",
+    "quote": "Two men were down at the end of the hall, both with guns... Misfit lay on the floor, bleeding into the carpet like a gutted deer"
+  },
+  "red_herring": {
+    "value": "Jack's cowboy appearance and the cover story referencing 'Stuart Kicking Bird' function as deliberate misdirection \u2014 the dealers are led to believe he is merely a drug customer passing through, not a vigilante assassin. The hat concealing the Derringer is the physical embodiment of this deception.",
+    "confidence": "high",
+    "quote": "'A cowboy. He's just passing through. Said Stuart Kicking Bird told him where to go.'"
+  },
+  "clue_fairness": {
+    "value": "This is crime fiction but not a whodunit; clue fairness as a classical mystery convention is largely absent. The reader has full access to Jack's plan (gun in hat, David hidden under quilt with rifles) from the opening scene, so there is transparency of method rather than investigative clue-planting.",
+    "confidence": "low",
+    "quote": "Jack put the Derringer inside his hat, tore off a piece of duct tape... and taped the gun inside. He put the hat on. He'd practiced this"
+  },
+  "social_world": {
+    "value": "A collision of rural Montana working-class cowboy culture (ranch brothers, army veterans, hunting tradition) against an urban Nevada meth-dealer underworld. Law enforcement is depicted as indifferent to the deaths of drug-world participants, forcing private extrajudicial action. Class and geography shape who gets justice.",
+    "confidence": "high",
+    "quote": "'He might as well have said, \"He's just some drug dealer; it ain't like he was somebody who mattered.\"'"
+  },
+  "alibi": {
+    "value": "No classical alibi structure is present. The reverse applies: Jack constructs a false identity (innocent cowboy buyer) rather than a false whereabouts. The frisk by Pedro that declares him 'clean' is the story's functional alibi \u2014 it falsely certifies Jack as harmless, enabling his entry.",
+    "confidence": "medium",
+    "quote": "'Pedro frisked him,' Misfit said. 'Motherfucker's clean.'"
+  },
+  "reveal_mechanic": {
+    "value": "There is no mystery reveal in the classical sense. The story's moral revelation \u2014 that Jack and David have killed innocent bystanders including a neighbour's wife and the pretty Indian girl \u2014 arrives through accumulating visual evidence during the firefight, functioning as a tragic ironic disclosure rather than a detective solution.",
+    "confidence": "medium",
+    "quote": "He realized what they were doing in a way he hadn't before. It punched him in the gut."
+  },
+  "media_and_audience": {
+    "value": "Largely absent as an explicit element. The story is insular and immediate. The only institutional voice is the dismissive Carson City lawman whose indifference drives the vigilante plot. Public perception, press, and institutional narrative framing are not depicted; sirens at the close suggest incoming official response but it is not dramatised.",
+    "confidence": "low",
+    "quote": "He heard sirens."
+  },
+  "investigator_wound": {
+    "value": "Jack's wound is guilt and inaction: he saw Jamie's decline at Christmas \u2014 the pallor, yellow teeth, thinness \u2014 and said nothing. This failure to act when he could have saved his brother psychologically compels his violent vigilantism. The mission is as much self-punishment and redemption as justice.",
+    "confidence": "high",
+    "quote": "'So,' he thought, staring into the fire, 'you gonna fail your brother again?'"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "filename": "The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Cowboy\tJustice",
+    "author": "ANDREW\tBOURELLE",
+    "anthology_title": "The_Best_American_Mystery_Stories_215_-_James_Patterson",
+    "story_index": 2,
+    "story_count": 19,
+    "extraction_warnings": [
+      "P1: JSON parse failed (Expecting ',' delimiter: line 5 column 32 (char 319))"
+    ]
+  }
+}

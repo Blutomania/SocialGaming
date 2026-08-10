@@ -1,0 +1,87 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": "Two intruders (Boyd and Cooter): Boyd is dominant, physically imposing, motivated by class resentment, dispossession, and survival; Cooter is subordinate, impulsive, formerly incarcerated. Victims Jeff and Sally are the only other parties. No additional suspects; the architecture is binary aggressor/victim with differentiation by hierarchy and psychology.",
+    "confidence": "high",
+    "quote": "Boyd narrowed his eyes at the stooped man in front of him. / 'I don't think that concerns you,' Boyd mocked. / 'Tell it, Boyd.' Cooter twisted a stalk"
+  },
+  "red_herring": {
+    "value": "Jeff's visible weapons search (letter opener, scissors, ballpoint pen) and his concealed paring knife misdirect both the intruders and the reader toward Jeff as the likely armed defender; the actual lethal resolution comes from Sally, who is staged throughout as passive and domestic, her quiet retreat to the bedroom concealing her retrieval of a firearm.",
+    "confidence": "high",
+    "quote": "Jeff secreted a paring knife in his cardigan pocket... Sally returned to the room. 'Boyd, she got a gun!' / Sally fired."
+  },
+  "clue_fairness": {
+    "value": "The clue that Sally is cognitively impaired (dementia) is planted early and fairly for the reader: she misplaces the coffeepot, mistakes the teenage boys for her dead sons Daniel and Chad, and her hair is described as disheveled. These details are available to the reader before Jeff's private acknowledgment 'Yes, this is one of her good days' and before the final reveal of her confusion.",
+    "confidence": "high",
+    "quote": "Jeff retrieved the coffeepot from the hutch, where Sally had misplaced it. / 'Yes, this is one of her good days.'"
+  },
+  "social_world": {
+    "value": "Post-collapse Appalachian mountain economy: rigid divide between the prepared retired middle class (Jeff and Sally, former electrician/homemaker) and the dispossessed working poor (Boyd's family, furniture-factory laid-off, restaurant failed). Vertical power runs through land ownership history, political connection (Walter Bailey, state senator turned deputy sheriff), and access to barter networks versus raw survival.",
+    "confidence": "high",
+    "quote": "Our grandpappy used ta own all this land afore the developers got hold to it... I lost my job when all the furniture companies went to China."
+  },
+  "alibi": {
+    "value": "Jeff constructs a retroactive cover story for the disappearance of Boyd and Cooter when their sons arrive: he claims the two men said they were going to hunt turkeys, redirecting the boys toward the creek and woods. This is a false alibi for the killings, presented calmly to deflect suspicion. It is undermined only subtly by Jeff's physical difficulty standing and Sally's dissociated state.",
+    "confidence": "high",
+    "quote": "'They said they were going to hunt for turkeys.' Jeff peered past them into the frozen forest."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is psychological and behavioral rather than forensic: Sally's dementia-driven confusion \u2014 mistaking the teenage boys for her dead sons and kissing their cheeks \u2014 simultaneously exposes her mental state, the cover story's fragility, and the emotional cost of the violence. The reader assembles the truth from accumulating behavioral signals rather than an explicit confession.",
+    "confidence": "high",
+    "quote": "'I'm so glad you came to visit your old folks.' Sally kissed their cheeks. The two boys exchanged blank looks."
+  },
+  "media_and_audience": {
+    "value": "There is no press or institutional framing within the story; the post-collapse world has no functioning media infrastructure. The crime is instead narrated through community rumor and family search (sons looking for their father), with Walter Bailey \u2014 former state senator, now deputy sheriff \u2014 representing the only institutional audience, invoked as a threat the boys might report to. Public perception is entirely local and oral.",
+    "confidence": "medium",
+    "quote": "'If we don't find Pa and Cousin Cooter, Ma hasta go tell Uncle Walter. He's the new deputy sheriff.'"
+  },
+  "investigator_wound": {
+    "value": "Jeff is not a formal investigator, but as the story's point-of-view protagonist managing the threat, his wound is his wife's dementia: he cannot fully protect her, cannot predict her actions, and must simultaneously manage violent intruders and shield Sally from herself. The case exploits his helplessness as a caregiver \u2014 she charges the armed men precisely because he cannot contain her.",
+    "confidence": "medium",
+    "quote": "'No! Go back!' / Jeff watched in horror as she charged the visitors."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "text_len": 22134,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "GEORGIA RUTH",
+    "anthology_title": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George",
+    "story_index": 15,
+    "story_count": 22,
+    "backfilled_from": "book_slug[:30] filename-collision bug"
+  }
+}

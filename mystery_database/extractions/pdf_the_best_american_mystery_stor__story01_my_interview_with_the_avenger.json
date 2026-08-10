@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Tom Bissell, a magazine journalist and essayist who arranges an interview with the masked vigilante known as the Avenger in a remote wooded location",
+    "confidence": "high",
+    "quote": "Six months ago I wrote an essay for this magazine...I had not, of course, interviewed the Avenger for my essay."
+  },
+  "suspect_architecture": {
+    "value": "No traditional suspect cast. The Avenger is the sole quasi-criminal figure; the architecture is binary \u2014 anonymous vigilante vs. the city's criminal underclass \u2014 with legal ambiguity replacing a suspect spread. The NYPD, mayor, and press function as institutional antagonists rather than suspects.",
+    "confidence": "low",
+    "quote": "Was he a polite Bernhard Goetz? A human Superman? A witty sociopath? A professional headline seeker? A nut? A saint?"
+  },
+  "red_herring": {
+    "value": "The Avenger's public persona and rehearsed sloganeering ('I am a most unique man'; 'I am the force that will make civilization civil') misdirect press and public toward a mythic superhero archetype, concealing a wounded, physically fragile, morally ambivalent man who is frequently injured and uncertain of his own purpose.",
+    "confidence": "medium",
+    "quote": "the man whom in our sacred unease we fantasized as a harsh sentinel, an incorruptible guardian, sounded more like a slurring crackpot"
+  },
+  "clue_fairness": {
+    "value": "Not applicable as a traditional mystery. However, the narrator withholds from the reader the Avenger's stated reason for the meeting ('which will have to wait'), denying both narrator and reader the resolution \u2014 a deliberate structural withholding rather than fair-clue placement.",
+    "confidence": "low",
+    "quote": "I asked you here for one reason. Which will have to wait, because someone is coming."
+  },
+  "social_world": {
+    "value": "New York City's layered power structure: NYPD and mayoral authority vs. extralegal vigilantism; celebrity media economy vs. anonymous virtue; the press as arbiter of public legitimacy. Class is implicit \u2014 the Avenger terrorises poor, circumstantially criminal youth while being celebrated by institutions.",
+    "confidence": "high",
+    "quote": "I essentially terrorize poor kids who had shitty situations to begin with. Am I happy about that? I am not."
+  },
+  "alibi": {
+    "value": "Not applicable in a classical sense. The Avenger's anonymity functions as a perpetual, structural alibi \u2014 no one can place him anywhere because no one knows who he is. His trip-wire surveillance device and planned escape routes are described as pre-emptive alibi mechanics.",
+    "confidence": "low",
+    "quote": "If anyone happens along, I'll be out of sight in twenty seconds, give or take. And you won't be able to follow me."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is psychological and incomplete: the Avenger demonstrates his vulnerability (dentures, broken ribs, Kevlar, financial modesty) to deconstruct his own myth, and the interview structure itself is the mechanism \u2014 but the central revelation (why he summoned the narrator) is never delivered, leaving the mechanic deliberately suspended.",
+    "confidence": "medium",
+    "quote": "More than half of my teeth have been knocked out. Mostly dentures... I get hurt all the time."
+  },
+  "media_and_audience": {
+    "value": "Central structural element. The Post and Times frame competing narratives (populist hero vs. civic menace); YouTube virality shapes public perception; the mayor grants unprecedented legal status under media pressure; academic dissertations and the World Superhero Registry show institutionalised myth-making. The narrator's own essay is part of this media architecture.",
+    "confidence": "high",
+    "quote": "Our news cycles will have a different algorithm now, synced to the actions of a man no one can find, no one knows."
+  },
+  "investigator_wound": {
+    "value": "The narrator's brother died trying to intervene against a stronger party victimising a weaker one \u2014 the exact impulse the Avenger embodies. The narrator studied martial arts after the death, then abandoned it. His anti-Avenger essay is a rationalised displacement of grief, guilt, and fear of his own weakness.",
+    "confidence": "high",
+    "quote": "I worried you would inspire people to step into situations they have no business stepping into... I didn't like feeling weak."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "My Interview with the Avenger",
+    "author": "TOM BISSELL",
+    "anthology_title": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver",
+    "story_index": 1,
+    "story_count": 25
+  }
+}

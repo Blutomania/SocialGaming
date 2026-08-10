@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Two premeditated murders: E.J. Freemont killed by Travis Bolton for stealing a ham; Clay Freemont killed by Glaine Bolton and Marcus Eady in self-defense after Clay publicly threatened to shoot Travis Bolton at church.",
+    "confidence": "high",
+    "quote": "He was stealing from me...I yelled at him to stop but he took off running...A ham"
+  },
+  "victim": {
+    "value": "Clay Freemont: young man seeking vengeance for his father's death; motivated by rage and a sense of justice denied by the law. His father E.J. was killed sixteen years prior over a stolen ham, with no legal consequence for the killer.",
+    "confidence": "high",
+    "quote": "Your boy and Travis Bolton had some words...he was going to shoot Glaine's daddy"
+  },
+  "closed_world": {
+    "value": "Rural Mississippi cotton plantation community in 1887, bounded by social and legal constraints that protect wealthy landowners. Bess and Clay exist as transient laborers dependent on Travis Bolton's tenant farm.",
+    "confidence": "medium",
+    "quote": "one river to the other. Why I count on folks to help me...I'd have rode out and got him myself"
+  },
+  "culprit_and_motive": {
+    "value": "Glaine Bolton and Marcus Eady killed Clay in preemptive self-defense after Clay threatened to murder Glaine's father (Travis Bolton, the preacher) in public at church. Motive: protection of family, enabled by legal immunity for defending against an announced threat.",
+    "confidence": "high",
+    "quote": "That's enough cause for Glaine Bolton and Marcus Eady to take up a post in the bushes and wait...I'd a shot him too"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Sheriff Waite: official representative of law who investigates both deaths but enforces the legal logic that permits Bolton to kill E.J. unpunished and allows Bolton's son to kill Clay in preemptive self-defense. He serves as expositor of systemic injustice rather than solver of crime.",
+    "confidence": "high",
+    "quote": "It ain't fair, it ain't right, but it ain't illegal, either...I'd have done the same thing myself"
+  },
+  "suspect_architecture": {
+    "value": "Two killers of Clay (Glaine Bolton and Marcus Eady), one original killer (Travis Bolton, now a preacher), and Sheriff Waite as complicit authority; differentiated by generation, social standing, and degree of culpability \u2014 the elder Bolton killed E.J. for a ham, his son and Eady ambushed Clay citing preemptive self-defense, and Waite legitimizes all of it.",
+    "confidence": "high",
+    "quote": "\"It was that Glaine Bolton,\" she said. \"Him and Marcus Eady.\""
+  },
+  "red_herring": {
+    "value": "Travis Bolton's apparent redemption and generosity \u2014 allowing Bess and Clay to stay, providing a cow, a doe, a turkey \u2014 misdirects toward the idea of restorative justice and Christian transformation, masking that his 'charity' is guilt-management and that the Bolton family remains lethally dangerous.",
+    "confidence": "medium",
+    "quote": "Not a week after E. J. had been committed to the earth by Brother Hill, a milk cow had shown up with the Bolton brand on it."
+  },
+  "clue_fairness": {
+    "value": "The reader is shown every material fact simultaneously with Bess: the drag marks, the flies, the sheriff's averted hand, Clay's earlier church confrontation with the pistol, and Waite's prior history with Bess \u2014 all presented in scene before Waite renders his judgment, allowing the reader to reach the same conclusion about the absence of justice.",
+    "confidence": "medium",
+    "quote": "His green eyes followed the marks and paused at the blood on the plank steps and the gritty line of blood smeared across the porch."
+  },
+  "social_world": {
+    "value": "Post-Reconstruction rural Mississippi tenant-farming hierarchy: landowners (Boltons) hold absolute economic and moral authority; the sheriff is beholden to that class and enforces its norms; tenant women like Bess are structurally voiceless, their sons expendable; race, gender, and property ownership determine whose life is legally protectable.",
+    "confidence": "high",
+    "quote": "It ain't fair, it ain't right, but it ain't illegal, either."
+  },
+  "alibi": {
+    "value": "Glaine Bolton and Marcus Eady construct a preemptive-self-defense alibi \u2014 Clay was publicly witnessed threatening to kill Travis Bolton at the Methodist church, giving them legal cover to ambush him on the road; Waite validates this alibi by citing the witnesses and returning the pistol as evidence of intent.",
+    "confidence": "high",
+    "quote": "That's enough cause for Glaine Bolton and Marcus Eady to take up a post in the bushes and wait."
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated not through investigation but through the sheriff's own testimony: Waite openly states he would have done the same thing himself, collapsing the distinction between law and extrajudicial killing and revealing the structural impunity of the perpetrators without any detective figure needed.",
+    "confidence": "high",
+    "quote": "\"well, miss, I'd a shot him too.\""
+  },
+  "media_and_audience": {
+    "value": "The church congregation functions as the public audience \u2014 witnesses to Clay's threat who generate the social consensus that legitimizes his killing; the community narrative frames Clay as aggressor and the Boltons as defenders, with the sheriff as its spokesman, leaving Bess's counter-narrative without institutional support.",
+    "confidence": "high",
+    "quote": "Way I hear it... your boy and Travis Bolton had some words at the Coffeeville Methodist last week."
+  },
+  "investigator_wound": {
+    "value": "Sheriff Waite carries the wound of complicity: he gave Bess back the pistol years ago (his own admission), he was absent when Clay made the church threat, and he privately acknowledges the injustice while enforcing it \u2014 his self-justification ('I'm just a fellow by hisself with a lot of county to mind') reveals a conscience that has learned to suppress itself.",
+    "confidence": "medium",
+    "quote": "Only thing I wish... is that somebody'd come told me... But nobody warned me. You yourself didn't come tell me."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "TOM FRANKLIN",
+    "anthology_title": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George",
+    "story_index": 6,
+    "story_count": 22
+  }
+}

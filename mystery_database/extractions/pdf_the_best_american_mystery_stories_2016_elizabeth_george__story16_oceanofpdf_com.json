@@ -1,0 +1,87 @@
+{
+  "crime": {
+    "value": "Mail tampering and fraud: George systematically forges, alters, and modifies Muscovito's international financial contracts to sow discord between criminal partners. Central question: Will George's interference expose Muscovito's criminal enterprise or destroy him?",
+    "confidence": "high",
+    "quote": "What if Muscovito were to begin to receive contracts where the details of the deal were different? Where the terms were slightly altered?"
+  },
+  "victim": {
+    "value": "Alberto Muscovito: International financial fraudster running shell companies and money laundering schemes across multiple countries. Killable because he is a criminal liability to his overseas syndicate partners and has become a security risk through careless operations.",
+    "confidence": "high",
+    "quote": "Firms with numerous ethics violations. Fraud warnings from various business and trade associations"
+  },
+  "closed_world": {
+    "value": "A suburban residential neighborhood where George has worked as mailman for 35 years. The community is bounded by routine, predictability, and intimate social knowledge\u2014Muscovito's isolation and hidden criminality violate the neighborhood's covenant of transparency.",
+    "confidence": "high",
+    "quote": "The neighborhood has always had a rhythm... At half past two in the afternoon, the mailman. Part of the rhythm. Like the phases of the moon"
+  },
+  "culprit_and_motive": {
+    "value": "George Waite, the mailman, commits mail fraud to protect his beloved neighborhood from Muscovito's corrupting presence. His motive: preservation of community order, defense of neighbors he loves, and restoration of the neighborhood's 'natural rhythm' against modern atomization and criminality.",
+    "confidence": "high",
+    "quote": "In wanting to preserve the world around him, is George the one tampering with the rhythm of things, inserting himself into their natural processes?"
+  },
+  "resolution": {
+    "value": "No justice or order is restored. George is blackmailed into becoming a criminal accomplice by the international syndicate. They murder Muscovito, frame George using his own truck and planted evidence, coerce him into disposing the body, and conscript him as a money-laundering operative.",
+    "confidence": "high",
+    "quote": "Welcome to our neighborhood. You are now our partner. And of course you have no choice."
+  },
+  "investigator": {
+    "value": "George Waite serves as the primary lens. He is simultaneously investigator (researching Muscovito's crimes), protagonist (tampering with mail), and victim (ultimately coerced into criminal servitude). The reader experiences the mystery through his moral deterioration and fatal miscalculation.",
+    "confidence": "high",
+    "quote": "George is paralyzed. He has stopped breathing. He is only eyes. He is panic, terror personified."
+  },
+  "suspect_architecture": {
+    "value": "Three antagonists differentiated by role: Muscovito (fraudster/victim, financial crimes motive, isolated by design), two unnamed Eastern European operatives (enforcers/criminal partners, means via weapons and intelligence gathering, opportunity via surveillance of George). George himself occupies an inverted suspect position \u2014 perpetrator of mail fraud who becomes coerced accomplice. No traditional innocent suspects; architecture is predator-prey-turned-partner rather than whodunit spread.",
+    "confidence": "high",
+    "quote": "The two men sitting on a couch and chair...each of them, like Muscovito, holding a weapon."
+  },
+  "red_herring": {
+    "value": "The story's central misdirection is structural: the reader is led to believe George is the story's moral vigilante-hero acting against a villain, and that the climax will be George's exposure or escape. The actual red herring is Muscovito as the story's primary threat \u2014 he is executed mid-scene, revealing the real antagonists were the overseas partners all along. George's assumption that Muscovito summoned him for confrontation also misdirects; the operatives, not Muscovito, orchestrated the meeting.",
+    "confidence": "high",
+    "quote": "Muscovito uncrosses his arms to reveal he's holding a Walther 9mm...Right into Muscovito's forehead."
+  },
+  "clue_fairness": {
+    "value": "Clues are embedded and available to the reader in real time: the overseas legal documents from shell jurisdictions, the scrubbed internet presence of Muscovito, the absence of signature requirements on documents, and the operatives' knowledge of George's name, Maggie's death, and retirement date \u2014 all signal a surveillance operation watching George as closely as he watched Muscovito. The reader has access to all these details before the reveal that the partners had been tracking George.",
+    "confidence": "medium",
+    "quote": "We knew it was you. We could tell. So we looked a little further. Did some research. Just like you did, George."
+  },
+  "social_world": {
+    "value": "Suburban American neighbourhood as a rigid social contract of visibility, reciprocity, and belonging \u2014 enforced informally through pleasantries, casseroles, and waves. Muscovito violates this code (walls, blacked-out windows, no introductions). Beneath this is a transnational criminal financial hierarchy: shell corporations, offshore jurisdictions, and stateless operatives who operate by different but equally strict rules of conduct and loyalty. The postal service occupies a paradoxical position \u2014 state infrastructure weaponised by both George and the criminals.",
+    "confidence": "high",
+    "quote": "You've got to ingratiate yourself. Make yourself part of the scenery. You garden. Play some tennis and golf."
+  },
+  "alibi": {
+    "value": "No traditional alibi structure is present. Instead, the operatives construct a retroactive false alibi *against* George: his mail truck on Muscovito's security camera, manufactured handprints on the murder weapon, and a pre-paid post office box will be used to frame George for Muscovito's murder if he refuses cooperation. The alibi mechanic is inverted \u2014 it is a fabricated alibi of guilt rather than innocence, used as coercive leverage.",
+    "confidence": "high",
+    "quote": "Your truck in his driveway at the time of death, which Muscovito's security camera clearly shows...the murder weapon...will have your handprints on it."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is enacted rather than explained: the operatives demonstrate their knowledge of George's life (name, dead wife Maggie, retirement date, mail-tampering methods) to prove surveillance, then perform Muscovito's execution in front of George to demonstrate both capability and intent. The physical staging \u2014 handing George the murder weapon to acquire prints, wrapping the body in plastic, photographing George disposing of it \u2014 constitutes a live demonstration of the trap's mechanics rather than a verbal confession.",
+    "confidence": "high",
+    "quote": "We'll be taking photos of you doing it, for our own insurance...the murder weapon, which will in a moment have your handprints on it."
+  },
+  "media_and_audience": {
+    "value": "Almost entirely absent as an explicit element. The neighbourhood gossip network serves as a micro-public \u2014 neighbours grumble to George as a safe, neutral conduit, treating him as outside observer rather than actor. There is no press, no institutional investigation, no public narrative constructed around the crimes. Muscovito's financial crimes exist in deliberate obscurity; his disappearance will presumably go unnarrated. The story's world is defined by the *absence* of media scrutiny, which enables all criminal activity.",
+    "confidence": "low",
+    "quote": "George was safe to grumble to, always merely passing through, always merely a visitor."
+  },
+  "investigator_wound": {
+    "value": "George's wound is triple-layered: imminent retirement threatening loss of identity and routine; widowhood following Maggie's death leaving him isolated and purposeless; and a lifetime of invisibility as 'merely the mailman' \u2014 underestimated and overlooked. The case exploits all three: his need for meaning drives the mail-tampering, his loneliness makes him reckless, and his invisibility is ultimately what both enabled his scheme and made him useful to the operatives. His wound is the desire to matter.",
+    "confidence": "high",
+    "quote": "Retirement is approaching fast, Maggie is gone, and once he is no longer behind the whe[el]..."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "JONATHAN STONE",
+    "anthology_title": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George",
+    "story_index": 16,
+    "story_count": 22,
+    "backfilled_from": "book_slug[:30] filename-collision bug"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder by drowning. Henry drowns his wife Fiona in the swimming pool after she discovers he has been forging completed crossword puzzle answers. Central question: Will Fiona's death be investigated or ruled accidental given the isolated pool setting?",
+    "confidence": "high",
+    "quote": "He pried her fingers open and pushed her under the water... A foot kicked out at her, a foot stamped on her head."
+  },
+  "victim": {
+    "value": "Fiona, Henry's wife. She was 'killable' because she discovered his intellectual fraud (forging crossword answers) and began publicly undermining his false superiority, eroding the narcissistic self-image upon which his identity depended.",
+    "confidence": "high",
+    "quote": "Like Psyche, she had held the candle over him and seen his true face. His was not the brilliant intellect she had thought."
+  },
+  "closed_world": {
+    "value": "The private swimming pool enclosure in Henry and Fiona's home\u2014a glass-roofed, walled structure at the bottom of their garden. Early morning hours when no witnesses are present.",
+    "confidence": "high",
+    "quote": "The glass door to the pool was slightly ajar... It was still dark outside, though dawn was coming... Henry was not in the pool but sitting in one of the cane chairs"
+  },
+  "culprit_and_motive": {
+    "value": "Henry, Fiona's husband. Motive: narcissistic rage triggered by Fiona's loss of idealization. After she discovered his fraud, she began mocking his intelligence, intolerance, mediocrity, and physical appearance. He murders her to eliminate the witness to his false superiority.",
+    "confidence": "high",
+    "quote": "His face was such a mask of tragedy, there was so much naked misery there... He took two steps backward down the steps, put up his hands and pulled her down into the pool."
+  },
+  "resolution": {
+    "value": "No resolution. The story ends with Fiona's body at the pool bottom and Henry calmly leaving to do the crossword. No investigation, no detection, no restoration of order. The mystery concludes without detective work or justice.",
+    "confidence": "high",
+    "quote": "Henry waited to see if the body would float to the surface... so he left her and, wrapping himself in his toweling robe, went into the house."
+  },
+  "investigator": {
+    "value": "Fiona herself serves as the investigator of the mystery\u2014she discovers Henry's crossword fraud. However, she is simultaneously the victim. No external detective figure investigates the crime.",
+    "confidence": "medium",
+    "quote": "Fiona saw at once what he was doing... From today's Times he was copying into yesterday's Times the answers to the crossword puzzle."
+  },
+  "suspect_architecture": {
+    "value": "Single suspect/perpetrator story: Henry (husband) is the sole agent of the crime. No spread of suspects \u2014 the narrative is an intimate two-person study of victim (Fiona) and killer (Henry), differentiated by intelligence performance, social dominance, and marital power. Motive: wounded narcissism when Fiona withdraws her admiration. Means: private swimming pool. Opportunity: isolated domestic morning routine.",
+    "confidence": "high",
+    "quote": "He pried her fingers open and pushed her under the water."
+  },
+  "red_herring": {
+    "value": "The completed Times crossword displayed daily is a deliberate misdirection \u2014 it performs Henry's genius for Fiona (and the reader), masking his intellectual mediocrity. The reader is led, along with Fiona, to accept Henry's self-constructed identity as a first-class mind. The red herring is the crossword itself as proof of brilliance.",
+    "confidence": "high",
+    "quote": "it was deliberate, it was evidence of Henry's pride in his achievement, and she was deeply moved that he should want her to see it."
+  },
+  "clue_fairness": {
+    "value": "The clues are embedded and available to the reader simultaneously with Fiona: Henry never attempts Saturday's crossword (no Monday paper to copy from); he brings her tea and papers each morning (controlling what she sees); the newspaper is always folded to expose the completed puzzle. All facts are presented in scene before the reveal.",
+    "confidence": "high",
+    "quote": "Henry never did the crossword puzzle on a Saturday... the solution to Saturday's puzzle did not appear next day but not until a week later."
+  },
+  "social_world": {
+    "value": "Domestic marital hierarchy built on performed intellectual superiority. Henry constructs a patronage dynamic \u2014 he 'elevates' Fiona (the temp, the ordinary girl) by marrying her, and she repays with domestic labour, admiration, and self-effacement. Class is coded through IQ mythology, golf handicaps, Latin quotations, and mortgage strain versus inherited wealth.",
+    "confidence": "high",
+    "quote": "She had nothing but her admiration for him... It was her privilege to care for someone as brilliant as Henry."
+  },
+  "alibi": {
+    "value": "No formal alibi structure \u2014 this is not a whodunit. However, Henry's morning swimming routine functions as a de facto alibi frame: his solitary 6:30am pool sessions are established as a known, unwitnessed pattern, giving him structural opportunity. Fiona's death in the pool will appear consistent with her known inability to swim and her fear of water.",
+    "confidence": "medium",
+    "quote": "his preferred swimming time was six-thirty in the morning, long before she was up... 'I'm afraid of the water,' she confessed."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is purely visual and immediate: Fiona catches Henry physically copying answers from today's Times into yesterday's Times. No investigator \u2014 the reader witnesses the fraud directly through Fiona's eyes in real time. The mechanism is the two newspapers side by side, the Radio Times thrown over them, and Henry's face draining white.",
+    "confidence": "high",
+    "quote": "From today's Times he was copying into yesterday's Times the answers to the crossword puzzle... swiftly covering both newspapers with the Radio Times."
+  },
+  "media_and_audience": {
+    "value": "Absent in any external/institutional sense \u2014 the story is sealed within the domestic world. There is no press, police, or public. The 'audience' for Henry's performance is solely Fiona, and his crime-by-drowning is implicitly designed to read as accident (non-swimmer, deep pool, unsupervised). The story ends before any social narration of the death occurs.",
+    "confidence": "medium",
+    "quote": "Henry waited to see if the body would float to the surface... so he left her and, wrapping himself in his toweling robe, went into the house."
+  },
+  "investigator_wound": {
+    "value": "No external investigator exists. Fiona functions as the de facto investigator of Henry's fraud, and her wound is her own capacity for devotional self-abnegation \u2014 she has built her identity around his superiority, so the truth destroys not just her illusion of him but her sense of self. The Psyche/Cupid myth explicitly frames this: knowledge brings punishment.",
+    "confidence": "high",
+    "quote": "Like Psyche, she had held the candle over him and seen his true face... she loved him the more for it."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "filename": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "text_len": 21619,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "RUTH RENDELL",
+    "anthology_title": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch",
+    "story_index": 12,
+    "story_count": 15
+  }
+}

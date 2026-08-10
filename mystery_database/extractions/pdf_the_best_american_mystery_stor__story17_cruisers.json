@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Apparent murder-suicide: elderly man Whitey shoots his wife Edna while she sleeps, then shoots himself. Central question: was it mercy killing or murder?",
+    "confidence": "high",
+    "quote": "he was just down on the saloon couch, the rifle was still between his knees. And the wife \u2014 the blood on the pillow and sheets was all dried."
+  },
+  "victim": {
+    "value": "Edna, elderly woman in declining health whose husband Whitey may have killed out of mercy or desperation. She was a weather enthusiast and devoted to her husband.",
+    "confidence": "medium",
+    "quote": "Only thing she'll eat anymore...Used to do a three-course layout in that little galley of ours. Baked bread, pies. Now, it's just \u2014 you know."
+  },
+  "closed_world": {
+    "value": "Marina liveaboard community isolated by social boundaries and unwritten codes; residents bound by geography and tight-knit boat culture where privacy is sacred.",
+    "confidence": "medium",
+    "quote": "You just don't do it...It's an invasion of privacy. You hesitate to step on somebody's boat without an invitation. Especially the liveaboards."
+  },
+  "culprit_and_motive": {
+    "value": "Whitey is the culprit. Motive remains ambiguous: mercy killing of terminally or severely ill wife, or murder born from despair. No explicit motive is confirmed.",
+    "confidence": "medium",
+    "quote": "Like some kind of mercy-killing deal?...Who knows what the fuck goes on in people's heads?"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Emmett, a retired liveaboard resident and de facto community observer. Larry, another boat resident who discovers the bodies and reports to authorities, serves as witness.",
+    "confidence": "high",
+    "quote": "I hauled my ass back here and got my cell phone, tracked down the cops. I didn't go back in a second time, just gave them my statement."
+  },
+  "suspect_architecture": {
+    "value": "No formal suspect architecture exists; the story is a literary/character study. Whitey is the sole agent of violence (apparent murder-suicide of wife Edna then himself). No competing suspects are differentiated by motive or opportunity.",
+    "confidence": "low",
+    "quote": "He was just down on the saloon couch, the rifle was still between his knees. And the wife \u2014 the blood on the pillow"
+  },
+  "red_herring": {
+    "value": "The rumor that the deaths occurred three days earlier functions as mild misdirection, contradicted by Ricky's testimony that Whitey was at the bar just yesterday. Also, the community's gossip culture ('some wild stories were flying') frames all early information as potentially false.",
+    "confidence": "medium",
+    "quote": "I heard a rumor that it happened three days ago... 'No way. He came in just yesterday.' Ricky... 'About four. Sat at the end, three G and Ts'"
+  },
+  "clue_fairness": {
+    "value": "Key physical and timeline clues are presented directly to the reader through Larry's first-person account: the loud radio with no lights, the dried blood indicating Edna died days earlier, the rifle position, and Whitey's cryptic 'we've been thinking about tarpon' remark are all given to the reader simultaneously with Emmett.",
+    "confidence": "medium",
+    "quote": "the blood on the pillow and sheets was all dried. He must've caught her sleeping... 'We've been thinking about tarpon.'"
+  },
+  "social_world": {
+    "value": "A stratified marina community: wealthy mega-yacht owners (invisible, served by staff) at the top; liveaboard retirees (Emmett, Muriel, Whitey, Edna) in the middle; younger transient cruisers (Chase, Larry); local islanders (Roderick, Ricky) navigating racial and economic subordination; encroaching condo-resort capital displacing older waterfront culture.",
+    "confidence": "high",
+    "quote": "Black mon drown, authority don't inquire. White mon drown they declear mystery."
+  },
+  "alibi": {
+    "value": "Chase provides an incidental alibi for himself (at Zooma till 2am, then Daiquiri Shak until closing) that is unrequested and narrative-surplus, consistent with the story's texture rather than formal alibi construction. Whitey's public appearance at Ricky's bar functions as an alibi-like timestamp concealing that Edna was already dead.",
+    "confidence": "low",
+    "quote": "I was at Zooma till two... then I hit the Daquiri Shak with Ricky G. till it closed... I figure she was already gone three, four days"
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is delivered informally through Larry's eyewitness account rather than a formal investigative demonstration: physical evidence (dried blood, rifle position, radio left running, no lights) accumulates into a picture of murder-suicide. No detective formally demonstrates the solution; it emerges through community gossip and Larry's traumatized narration.",
+    "confidence": "medium",
+    "quote": "the blood on the pillow and sheets was all dried... the rifle was still between his knees... I'd forgot about the damn radio."
+  },
+  "media_and_audience": {
+    "value": "The marina rumor network (Crow's Nest bar gossip, jetty conversations) acts as informal media, distorting and delaying information. Roderick suppresses details pending an 'official version,' implying institutional management of the narrative. Racial commentary ('White mon drown they declear mystery') frames institutional narration as racially selective.",
+    "confidence": "high",
+    "quote": "Weat for official story. Then I tell you what part is a lie."
+  },
+  "investigator_wound": {
+    "value": "Emmett is not a formal investigator, but his psychological vulnerability is his own latent existential dread \u2014 the 'hole inside of him' he felt at sea, the temptation to let the wheel go. Whitey and Edna's fate mirrors and externalises Emmett's suppressed fear of purposelessness in retirement, making him reluctant to pursue the truth.",
+    "confidence": "medium",
+    "quote": "Suddenly Emmett doesn't want to know the details, dreads the responsibility of passing the news to others."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Cruisers",
+    "author": "JOHN\tSAYLES",
+    "anthology_title": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates",
+    "story_index": 17,
+    "story_count": 22
+  }
+}

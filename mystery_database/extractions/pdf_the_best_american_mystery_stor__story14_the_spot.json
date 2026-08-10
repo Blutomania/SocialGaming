@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder of Mansfield John by strangulation with a bolo tie during a sexual encounter arranged through sex trafficking. Central question: whether the killing was self-defense or premeditated.",
+    "confidence": "high",
+    "quote": "I dug a knee into his ribs, tightened the bolo tie around his throat, and rode him like a bronco until he stopped moving"
+  },
+  "victim": {
+    "value": "Mansfield John, a seed dealer and Sunday school teacher from rural Ohio, seeking commercial sex. Killable because he is sexually predatory, isolated from witnesses, and his death can be concealed within the transaction.",
+    "confidence": "high",
+    "quote": "A man with neat hair, parted clean on the left-hand side...his wife would be in the family room watching television"
+  },
+  "closed_world": {
+    "value": "A hotel room (Holiday Inn, 15 stories up overlooking Lake Erie) during a specific evening transaction. The crime occurs in isolation, with only Shank waiting below and the victim unaware of the girl's capacity for violence.",
+    "confidence": "high",
+    "quote": "the John will unchain the door, let it swing open...a room truncated and narrow, papered in gold foil, periscoping to a view of Lake Erie from fifteen stories up"
+  },
+  "culprit_and_motive": {
+    "value": "Meg (the girl), who kills Mansfield John in self-defense or retaliatory rage when he refuses to stop and strikes her. Motive: survival and resistance to sexual violence; possible secondary motive of protecting others from a predator.",
+    "confidence": "high",
+    "quote": "He struck me and said. Cross it. I said no. He hit me again...I dug a knee into his ribs, tightened the bolo tie around his throat"
+  },
+  "resolution": {
+    "value": "No investigative resolution occurs within the text. Instead, Meg confesses to Shank after the fact while driving through Lakewood. The narrative ends with her body later recovered at Niagara Falls by Kit Wilson, a body-recovery worker, suggesting her suicide or murder by Shank.",
+    "confidence": "medium",
+    "quote": "He had that string tie on the whole time...I dug a knee into his ribs, tightened the bolo tie around his throat, and rode him like a bronco until he stopped moving"
+  },
+  "investigator": {
+    "value": "Shank (also Jack Dunhill, Bone, the Bear, Stan Newhope, Winston Leonard, Michigan Pete, Bill Dempsey), the sex trafficker and pimp. The narrative unfolds through his perspective, knowledge, and speculations about events.",
+    "confidence": "high",
+    "quote": "As Shank waited for her down in the hotel lobby, he began to feel himself edging into pure speculation. He knew little about what really went on up in the room"
+  },
+  "suspect_architecture": {
+    "value": "Two primary figures: Shank (pimp/predator, multiple aliases, means and motive clear) and the Mansfield John (seed dealer, client, victim). Meg occupies perpetrator/victim duality. No investigator, no competing suspects \u2014 architecture is predator/prey rather than whodunit.",
+    "confidence": "medium",
+    "quote": "Jack Dunhill, aka Bone, aka the Bear, aka Stan Newhope, aka Winston Leonard, aka Michigan Pete, aka Bill Dempsey, aka Shank"
+  },
+  "red_herring": {
+    "value": "Shank's philosophical monologue about the water intake spot functions as misdirection \u2014 presenting him as a melancholic drifter-poet rather than a trafficker. The 'chance and fate' rhetoric obscures deliberate predation. Meg's apparent agency ('I did. I dug a knee into his ribs') briefly misdirects from her victimhood.",
+    "confidence": "medium",
+    "quote": "That's the mystery of chance. One minute you're one thing, the next you're another, and choice had nothing at all to do with it."
+  },
+  "clue_fairness": {
+    "value": "The narrative withholds and then retrospectively supplies key facts: Meg's age (14-15), the murder of the Mansfield John, and Shank's prior drowning of Maggie are all embedded in the text before the final reveal via the body recovery. The bolo tie detail is planted in Shank's briefing before Meg's confession confirms it as the murder weapon.",
+    "confidence": "medium",
+    "quote": "This John's a connoisseur of dry. Shank had warned her... those cold metal tips kept brushing me... Draw me tight. And so I did."
+  },
+  "social_world": {
+    "value": "Transactional underclass economy: trafficking routes along the Great Lakes, coded phone negotiations, lists of 'OHIO MEN IN NEED.' The Mansfield John represents respectable rural-commercial Christianity (seed business, Sunday-school teacher) secretly participating in exploitation. Power flows entirely through Shank's manipulation of vulnerability and religious language.",
+    "confidence": "high",
+    "quote": "OHIO MEN IN NEED, it said at the top in block lettering. Below were six names. He'd tried four of them already."
+  },
+  "alibi": {
+    "value": "Shank constructs a cover narrative for the Mansfield John's wife by instructing him to use agricultural code words ('soy' / 'alfalfa') so that phone negotiations sound like business deals. This functions as a pre-planted false alibi for the John, not Shank. Shank himself waits visibly in the hotel lobby, establishing his own spatial alibi.",
+    "confidence": "medium",
+    "quote": "Just say soy if you're going to bid lower on Meg, and alfalfa if we hit the magic number... his wife would be in the family room"
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is delivered through the body-recovery perspective of Kit Wilson, an outside observer who reconstructs Meg's story from physical evidence (bruised face, gap in teeth, age) and subsequent news information. The bolo tie murder is revealed earlier through Meg's confession in the car \u2014 a delayed, embedded disclosure rather than a formal denouement.",
+    "confidence": "high",
+    "quote": "Later he'd hear her name, Meg Allen, and learn that her history could be traced back as far as a hotel in Cleveland, where she had murdered a seed dealer."
+  },
+  "media_and_audience": {
+    "value": "Kit Wilson's scripted media responses reduce Meg to an anonymous typology ('Another slipper,' 'Another foolish tourist,' 'Another girl skinny-dipping'). The news crew encounter produces a rehearsed, institutional non-narrative that erases her identity and Shank's role entirely. The crime is packaged as accident or suicide.",
+    "confidence": "high",
+    "quote": "His Canuck voice would be clear and exact: We don't know where she came from. No idea why she did it... No, I don't get used to pulling them out."
+  },
+  "investigator_wound": {
+    "value": "There is no formal investigator. Kit Wilson, the closest functional equivalent, is psychologically numbed by repetition ('at least once a year the same girl') and institutionally positioned to close cases rather than open them. His wound is habituation \u2014 the inability to see the individual crime within the pattern.",
+    "confidence": "low",
+    "quote": "It seemed that at least once a year the same girl came over the falls to give him a bit role in the large drama."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "text_len": 24959,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The Spot",
+    "author": "DAVID MEANS",
+    "anthology_title": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen",
+    "story_index": 14,
+    "story_count": 21
+  }
+}

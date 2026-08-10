@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder of Big Art and Abel Snow; central question: will Willis Longtree survive the consequences of his entanglement with Sinestra Merchant, whose reckless actions set fatal events in motion?",
+    "confidence": "medium",
+    "quote": "What happened to Big Art, Sin? ...He didn't have to beat up Willis and hurt his hands."
+  },
+  "victim": {
+    "value": "Willis Longtree, illiterate young Black man with musical dreams, made vulnerable by poverty, lack of education, and love for a wealthy white woman playing a dangerous game with her father's enforcer.",
+    "confidence": "high",
+    "quote": "That poor boy has no idea what game she's playing with him. ...You'd be better off holding a gun to your head."
+  },
+  "closed_world": {
+    "value": "The Merchant estate and its surrounding Los Angeles environs; a world where racial, class, and gender hierarchies create a bounded social system from which Willis cannot easily escape.",
+    "confidence": "medium",
+    "quote": "The next room was a stupendous kitchen...The various workers stared at me, wondering if I was a new member of the hive."
+  },
+  "culprit_and_motive": {
+    "value": "Abel Snow, the Merchant family's enforcer, kills Big Art and attempts to kill Easy/Willis to protect family secrets and control. Sinestra's manipulation and her father's obsessive love enable the violence.",
+    "confidence": "high",
+    "quote": "Abel Snow said...He had a pistol in his hand. ...Take it like a man and it won't hurt."
+  },
+  "resolution": {
+    "value": "EttaMae Harris shoots Abel Snow in the temple with her concealed .25 caliber pistol, stopping him. Easy arranges for Willis's survival by securing medical care and a new identity (Little Jimmy Jones), while Etta reports to Merchant to control the narrative.",
+    "confidence": "high",
+    "quote": "EttaMae pulled a pistol out of the fold of her dress, aimed it at his head...Etta's bullet caught him in the temple."
+  },
+  "investigator": {
+    "value": "Easy Rawlins, a school custodian and informal private investigator, acts as lens. He is simultaneously emotional witness to his own romantic crisis and cool problem-solver for others, embodying the tension between personal devastation and pragmatic action.",
+    "confidence": "high",
+    "quote": "I was a maniac trapped by a woman who would neither lie nor tell the truth. ...I had a job to do for Etta."
+  },
+  "suspect_architecture": {
+    "value": "Primary antagonist Abel Snow (enforcer/killer for Merchant family); Sinestra Merchant (manipulative daughter who weaponizes men against each other); Lymon Merchant (patriarch whose possessive love of Sin drives violence); Willis Longtree (innocent victim falsely implicated by association). Snow has means and opportunity; Sin has motive (provocation of father); Lymon has authority and resources. Differentiated by race, class, and complicity.",
+    "confidence": "high",
+    "quote": "He loves Sin more than any of the other children. It's really unhealthy."
+  },
+  "red_herring": {
+    "value": "Bonnie's affair with Jogaye Cham is presented as the central crisis and potential crime of passion, misdirecting the reader from the main murder plot involving Abel Snow and the Merchant family. The lavender bouquet and Madagascar holiday consume Easy's \u2014 and the reader's \u2014 attention while the real danger (Snow hunting Willis) develops offstage.",
+    "confidence": "high",
+    "quote": "I was a maniac trapped by a woman who would neither lie nor tell the truth."
+  },
+  "clue_fairness": {
+    "value": "Easy reveals to the reader simultaneously that he had already steamed open the envelope and read the note before Bonnie arrived \u2014 the reader has access to the same decoded information (the Madagascar holiday) at the same moment Easy processes it. Willis's bloody bandaged hands are shown to the reader before Easy explains their cause.",
+    "confidence": "high",
+    "quote": "I'd read the note, steamed it open, and then glued it shut. It was written in French, but I used a school dictionary to decipher most of the words."
+  },
+  "social_world": {
+    "value": "Rigid California wealth hierarchy: the Merchant estate operates as a feudal system with patriarch Lymon at apex, enforcer Abel Snow as instrument of violence, domestic workers (Etta, Willis) entirely expendable, and white daughter Sin able to destroy Black men's lives through caprice with no accountability. Race compounds class \u2014 Willis's life is worth nothing against Snow's convenience.",
+    "confidence": "high",
+    "quote": "I guess shackin' up with a poor black hobo is about as mad as he's gonna get."
+  },
+  "alibi": {
+    "value": "Bonnie's partial alibi \u2014 her account of friendly professional service to Jogaye Cham on multiple flights \u2014 is technically true but strategically omits the private holiday on Madagascar. She neither lies outright nor tells the full truth, making her alibi structurally unfalsifiable and psychologically maddening for Easy.",
+    "confidence": "high",
+    "quote": "All she did was leave out the island of Madagascar... A big place to leave out."
+  },
+  "reveal_mechanic": {
+    "value": "The solution to Snow's guilt is demonstrated physically rather than verbally: Etta's pistol, concealed in the fold of her dress, proves she had anticipated lethal confrontation. Easy's inference that Snow's gun was the same weapon used on Art is offered as the legal leverage to neutralize Merchant \u2014 the physical weapon becomes both proof and bargaining chip.",
+    "confidence": "medium",
+    "quote": "I bet the gun in Abel's hand was the one he used on Art."
+  },
+  "media_and_audience": {
+    "value": "The crime operates entirely outside public or institutional framing \u2014 no police, no press, no formal narrative. The Merchant family's wealth ensures events are contained privately. Easy's solution is to leverage Sinestra's knowledge as blackmail insurance rather than seek legal remedy, acknowledging that official institutions offer no recourse for Black victims in this social world.",
+    "confidence": "medium",
+    "quote": "if that girl of his finds out about any killing in this house, she'd have somethin' on her old man till all the money runs out."
+  },
+  "investigator_wound": {
+    "value": "Easy's psychological wound is his romantic betrayal by Bonnie \u2014 her emotional infidelity with Jogaye Cham \u2014 which he is processing in real time throughout the case. The wound creates both dangerous rage (he nearly confronts Bonnie violently) and unexpected clarity, as his broken heart drives him forward into physical danger without his usual self-protective caution.",
+    "confidence": "high",
+    "quote": "If it wasn't for the broken heart driving me, I would have been scared too."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "filename": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Lavender",
+    "author": "WALTER\tMOSLEY",
+    "anthology_title": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly",
+    "story_index": 13,
+    "story_count": 23
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Remote Maine cabin, accessible only by dirt road; isolated setting where Marie is alone and cut off from help",
+    "confidence": "high",
+    "quote": "the clapboard bungalow she and Ernie had inherited from his father...Of course nothing worked. They'd turned everything off"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Marie, the homeowner/victim who confronts the intruder Tracey and becomes the lens through which the reader experiences the violation and psychological aftermath",
+    "confidence": "high",
+    "quote": "Marie felt her fear begin to settle into a morbid curiosity...a thin, reluctant vine of maternal compassion twined through Marie"
+  },
+  "suspect_architecture": {
+    "value": "Not a traditional mystery with multiple suspects. The 'intruder' is immediately identified as Tracey, a young homeless woman. A male accomplice arrives later. No suspect spread or differentiation in a classic detective sense.",
+    "confidence": "low",
+    "quote": "It was a girl. She came out of the trees into the sunlight, naked except for a towel bundled under one arm."
+  },
+  "red_herring": {
+    "value": "Marie's initial fear that the cabin disturbance is sinister or threatening is misdirected; the disorder turns out to be 'strictly female' and non-lethal, defusing the threat before the knife revelation resets tension.",
+    "confidence": "medium",
+    "quote": "Marie felt a little breathless, but not afraid, recognizing the disorder as strictly female."
+  },
+  "clue_fairness": {
+    "value": "Physical clues of intrusion are presented to the reader simultaneously with Marie: gravel disarranged, chairs moved, open jars, sleeping bag, knapsack \u2014 all observed before Marie draws conclusions.",
+    "confidence": "medium",
+    "quote": "She saw jam jars open on the counter, balled-up dishtowels, a box of oatmeal upended...a snaggled hairbrush, a red lipstick ground to a nub."
+  },
+  "social_world": {
+    "value": "Small-town Maine working-class family (mill worker Ernie, domestic Marie) versus drifting, dispossessed young woman (Tracey). Vietnam-era generational and class tensions frame the story; John's Berkeley choice signals class/ideological rupture.",
+    "confidence": "medium",
+    "quote": "John had missed Vietnam by six merciful months, then he'd chosen Berkeley, as far from his parents as he could get."
+  },
+  "alibi": {
+    "value": "No formal alibi structure present. Marie's own whereabouts are unquestioned; Tracey makes no claim of right to be there beyond possession by force. The broken phone eliminates Marie's ability to verify or summon help.",
+    "confidence": "low",
+    "quote": "\"Your phone doesn't work,\" the girl said peevishly."
+  },
+  "reveal_mechanic": {
+    "value": "The emotional resolution is demonstrated physically and psychologically: Tracey cuts Marie's head to simulate death for the male accomplice, blood as proof of survival strategy, and Ernie's arrival confirming Marie's internal prediction \u2014 the rescue validates her understanding of her marriage.",
+    "confidence": "medium",
+    "quote": "Tracey made a small cut near Marie's temple just above the hairline...\"You'll be okay,\" she said. \"But head wounds bleed like crazy.\""
+  },
+  "media_and_audience": {
+    "value": "The couple privately reframes the traumatic event as a myth \u2014 'that one autumn when those awful people broke into the cabin' \u2014 replacing the true emotional content (lost child, near-death) with a sanitised narrative shared only between themselves.",
+    "confidence": "high",
+    "quote": "They no longer looked back on this season as the autumn when they lost their second child...they recalled instead as that one autumn when those awful people...broke into the cabin."
+  },
+  "investigator_wound": {
+    "value": "Marie is physically weakened from an unnamed illness ('the thing it had suffered'), emotionally raw from sending her estranged son to college, and isolated by choice \u2014 her vulnerability is bodily, marital, and maternal simultaneously, all exploited by the hostage situation.",
+    "confidence": "high",
+    "quote": "The effort doubled her over, for Ernie was right: her body had not recovered from the thing it had suffered."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "filename": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "That\tOne\tAutumn",
+    "author": "MONICA\tWOOD",
+    "anthology_title": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly",
+    "story_index": 20,
+    "story_count": 23
+  }
+}

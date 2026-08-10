@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Felicia, a college student, murdered by arson in her dorm room during an alleged sexual assault",
+    "confidence": "high",
+    "quote": "he started the fire with Felicia's lighter, the one she'd passed around with the joint"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Simon, motivated by his friend Marty's coercion into arranged sexual encounter; Simon sets fire to eliminate evidence and escape aftermath of assault",
+    "confidence": "high",
+    "quote": "Marty wanted this for him\u2014had gone out of his way to arrange it\u2014and that hurt more than an outright rejection would have"
+  },
+  "resolution": {
+    "value": "Simon acquitted at trial despite Marty's confession; Marty pleads guilty to rape, conspiracy, and manslaughter (20-to-life) while Simon walks free by maintaining alibi",
+    "confidence": "high",
+    "quote": "Simon had done what his father had told him to do: Stick to the alibi and don't waver...they had nothing: no witnesses, no DNA, only Marty's testimony"
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": "Two perpetrators: Simon (primary \u2014 rape and arson/murder) and Marty (accomplice \u2014 arranged encounter, present during crime). Felicia is victim, not suspect. Father functions as accessory after the fact. No false suspects; architecture is dyadic guilt with institutional cover.",
+    "confidence": "high",
+    "quote": "Marty had made a deal...pleading guilty to rape and conspiracy to rape, plus manslaughter...in exchange for testifying against Simon"
+  },
+  "red_herring": {
+    "value": "Marty's ever-changing testimony serves as the principal misdirection \u2014 it implicates him so thoroughly and inconsistently that it exonerates Simon at trial, redirecting suspicion away from the true primary perpetrator onto the weaker accomplice.",
+    "confidence": "high",
+    "quote": "they had nothing: no witnesses, no DNA, only Marty's testimony, ever changing. In the end, Marty managed only to implicate himself."
+  },
+  "clue_fairness": {
+    "value": "This is literary fiction, not a detective mystery with a fair-play investigator; clues are withheld from the reader through ellipsis and narrative gap (the assault and murder occur in omitted middle sections), violating classic fair-play convention \u2014 absence is the structural choice.",
+    "confidence": "medium",
+    "quote": "He started the fire with Felicia's lighter...he ran, the flames fast and hot behind him"
+  },
+  "social_world": {
+    "value": "Kentucky provincial class hierarchy: wealthy furniture-store patriarch whose performative success buys silence and legal impunity; father-son patronage network where the father's approval and protection are conditional on masculine conformity; homophobia as social enforcement mechanism.",
+    "confidence": "high",
+    "quote": "Jefferson Wells owned a small chain of furniture stores...looking like a success was important. 'I'm a walking advertisement'"
+  },
+  "alibi": {
+    "value": "Father constructs alibi infrastructure by burning all physical evidence (clothes, condom, lighter) and coaching Simon: 'Stick to the alibi and don't waver, no matter what the police tell you.' Alibi holds because Marty's testimony is the only evidence and it collapses under its own inconsistency.",
+    "confidence": "high",
+    "quote": "Stick to the alibi and don't waver, no matter what the police tell you, no matter what evidence they produce."
+  },
+  "reveal_mechanic": {
+    "value": "There is no detective-reveal mechanic; the reader is positioned as the sole knower of Simon's guilt through his own interiority and action. The 'reveal' is retroactive and ironic \u2014 the acquittal and the vandalized car five years later confirm public suspicion while the legal system confirms impunity.",
+    "confidence": "medium",
+    "quote": "most people didn't recognize him...wanted to move on at some point, to forget that bad things happened. Simon wanted to forget."
+  },
+  "media_and_audience": {
+    "value": "Public protest outside the courthouse (signs, Felicia's photographs) represents community knowledge of guilt unsanctioned by law. The gap between legal acquittal and moral verdict is the story's central tension; the second vandalism of the Corvette is the community's extrajudicial verdict.",
+    "confidence": "high",
+    "quote": "the angry ones who'd protested the day he was acquitted, marching with signs outside the courtroom, a hundred different photos of Felicia"
+  },
+  "investigator_wound": {
+    "value": "No external investigator exists; Simon himself is the sole consciousness. His wound is his closeted sexuality \u2014 the crime originates in Marty's well-meaning but catastrophic attempt to 'fix' Simon's presumed heterosexual failure, and Simon's suppressed identity is both motive context and lifelong psychological sentence.",
+    "confidence": "medium",
+    "quote": "Marty's touch that night: the heat in his wet cheek, the only proof Simon had ever needed, the only higher power."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Proof of God",
+    "author": "HOLLY GODDARD JONES",
+    "anthology_title": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos",
+    "story_index": 7,
+    "story_count": 22
+  }
+}

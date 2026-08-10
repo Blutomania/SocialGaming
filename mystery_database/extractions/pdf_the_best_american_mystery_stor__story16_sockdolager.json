@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Wayne Ogden, a high school senior working as a door-to-door kitchenware salesman in 1930s Kansas, narrating his own experience",
+    "confidence": "high",
+    "quote": "Wayne Ogden... I didn't think it would help to mention that the next week I would be starting my senior year of high school."
+  },
+  "suspect_architecture": {
+    "value": "No formal mystery suspects; antagonists are social/sexual rivals. Shelton (bar owner, enforcer of age rules, pays off police), Stan Gerard (Kansas City crime boss, owns the bar, physical authority), Mildred (femme fatale who abandons Wayne for Gerard). Differentiated by power, age, and complicity in the illicit economy.",
+    "confidence": "low",
+    "quote": "\"The name's Stan Gerard, and I own this place.\" He stood up and moved toward me"
+  },
+  "red_herring": {
+    "value": "Wayne's self-presentation as an adult professional salesman misdirects both Mildred and the reader about his true age and status; his competence and sexual confidence mask that he is a high school senior, revealed only gradually.",
+    "confidence": "medium",
+    "quote": "I didn't think it would help to mention that the next week I would be starting my senior year of high school."
+  },
+  "clue_fairness": {
+    "value": "No classical mystery clue-fairness structure is present; this is not a whodunit. The narrative is first-person confessional with no withheld investigative information \u2014 the reader knows everything Wayne knows in real time.",
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Prohibition-era Kansas speakeasy economy: illegal liquor, police payoffs, visiting Kansas City mob figures, and a strict age/status hierarchy. Wayne is excluded by youth and class; Gerard and Shelton hold power through money and violence; Mildred navigates via sexual currency.",
+    "confidence": "high",
+    "quote": "\"I pay off the law, and one of their conditions for looking the other way is, they don't want to see any goddamn kids in here.\""
+  },
+  "alibi": {
+    "value": "No formal alibi structure. Wayne's whereabouts are fully accounted for by first-person narration; the arson is committed openly (to the reader) with no attempt at cover \u2014 the milk bottle and purloined underwear are traceable props he leaves in plain sight.",
+    "confidence": "low",
+    "quote": "From the glove compartment I extracted Mildred's purloined drawers, drenching them in the gasoline and stuffing them into the mouth of the bottle."
+  },
+  "reveal_mechanic": {
+    "value": "No mystery reveal mechanic; the story is a bildungsroman of humiliation and revenge. The 'reveal' is psychological: Wayne's final act of arson exposes his true adolescent impotence beneath the adult facade, confirmed when Mildred calls him 'a dear sweet boy' and Gerard mocks his voice.",
+    "confidence": "low",
+    "quote": "\"Mildred, let's go.\" I had hoped to keep the pleading tone out of my voice, but I heard it just like everyone else did, high-pitched and boyish."
+  },
+  "media_and_audience": {
+    "value": "The bar crowd functions as a live audience for both the humiliation and the spectacle of the burning Duesenberg. The crowd's 'oohs and aahs' transform Wayne's revenge into public theatre; he watches from shadow, framing it as aesthetic authorship rather than crime.",
+    "confidence": "medium",
+    "quote": "The crowd oohed and aahed at the sight of the fireball...and I felt a certain pride of authorship."
+  },
+  "investigator_wound": {
+    "value": "Wayne's wound is his age and the gap between his sexual/commercial precocity and his social powerlessness. The case (evening) exploits his need for adult recognition; each humiliation \u2014 Mildred's dismissal, Shelton's ejection, Gerard's beating \u2014 strikes the same vulnerability: he is still a boy.",
+    "confidence": "high",
+    "quote": "He took my drink off the table and handed it back to Gleason, and I suddenly felt like I was ten years old."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "filename": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Sockdolager",
+    "author": "SCOTT\tPHILLIPS",
+    "anthology_title": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly",
+    "story_index": 16,
+    "story_count": 23
+  }
+}

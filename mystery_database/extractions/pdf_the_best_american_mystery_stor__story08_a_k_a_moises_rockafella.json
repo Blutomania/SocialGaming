@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder of undercover police officer Simpson in La Caja projects; method: unknown at interrogation point; central question: who killed the cop and what was the motive?",
+    "confidence": "high",
+    "quote": "they wanted to find out what he knew about the recent murder of the undercover cop\u2014Simpson\u2014right in the middle of the projects"
+  },
+  "victim": {
+    "value": "Officer Simpson, undercover cop. Killable because he was investigating drug operations in La Caja and was identified as law enforcement to the criminal network.",
+    "confidence": "high",
+    "quote": "We know you're in bed with the Columbians. They're all over La Caja these days...help us catch this killer"
+  },
+  "closed_world": {
+    "value": "La Caja projects neighborhood in Los Angeles; criminal underworld of drug dealers, Crips, and Columbians operating within defined territorial boundaries.",
+    "confidence": "high",
+    "quote": "this murder went down...where this murder went down. We figure you might know something...You grew up in La Caja"
+  },
+  "culprit_and_motive": {
+    "value": "Cut Pemberton, a violent ex-con with a facial scar, recruited by Colombian drug traffickers. Motive: to eliminate Simpson (presented to Cut as a snitch) to impress the Columbian organization and consolidate power in La Caja.",
+    "confidence": "high",
+    "quote": "It was them goddamn Columbians that tolt Cut about Simpson. Cut came up with the idea of setting the guy up. He told us he was a snitch\u2014not no cop!"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Detective Manny Vargas (Homicide), joined by Detective Will Dockery and DEA Special Agent Roland Braddock. Primary lens is the police interrogation room; they pressure Fat Tommy O'Rourke (the suspect/witness) to reveal what he knows.",
+    "confidence": "high",
+    "quote": "This is Detective Manny Vargas of the Homicide Detail, Criminal Investigation Division of the Van Nuys Police Department. I am joined with Detective Will Dockery and DEA special agent Roland Braddock."
+  },
+  "suspect_architecture": {
+    "value": "Three principals: Fat Tommy (O'Rourke) \u2014 peripheral facilitator, motive to exit drug trade, opportunity via La Caja turf; Cut Pemberton \u2014 primary actor, motive to impress Colombians, means via violence; unnamed Colombians \u2014 organized crime backers who identified Simpson as a snitch. Fat Tommy is differentiated from Cut by his attempted withdrawal from criminal life; Cut is the triggerman. Colombians supplied intelligence. A fourth figure, Uncle Bunny, links Cut to Tommy through prior prison connection.",
+    "confidence": "high",
+    "quote": "\"It was them goddamn Columbians that tolt Cut about Simpson. Cut came up with the idea of setting the guy up.\""
+  },
+  "red_herring": {
+    "value": "The Colombians' framing of Simpson as a 'snitch' rather than an undercover cop is a deliberate misdirection deployed within the story's world \u2014 Cut tells his associates Simpson is merely an informant, concealing (or obscuring) his police status to lower resistance to the killing. Fat Tommy's own sustained presentation of innocence and religious reformation functions as a surface-level red herring to the interrogating detectives.",
+    "confidence": "medium",
+    "quote": "\"He told us he was a snitch\u2014not no cop! I tried to talk him out of it; I tried to reason with him\u2026\""
+  },
+  "clue_fairness": {
+    "value": "The text is literary crime fiction rather than a whodunit puzzle, so classic clue-fairness architecture is largely absent. However, the reader receives Cut's physical description, alias, scar, Spanish-speaking ability, and Georgia origin simultaneously with the detectives \u2014 all disclosed in Fat Tommy's confession in real time, with no information withheld from the reader that the detectives possess.",
+    "confidence": "low",
+    "quote": "\"Gots a cut 'cross his ear, go straight 'cross his lip, like he was wearing a veil on one side of his face.\""
+  },
+  "social_world": {
+    "value": "South-Central/San Fernando Valley drug economy layered over Black working-class family networks, Colombian cartel hierarchy, La Caja Crip gang structure, and LAPD/DEA institutional power. Fat Tommy occupies a middle tier \u2014 aspirant to respectability (Woodland Hills bungalow, church, Sears shirts) but dependent on and exposed by criminal networks above and below him. The Colombians hold power over Cut, who holds power over Tommy; the state (Vargas, Braddock, Dockery) sits above all.",
+    "confidence": "high",
+    "quote": "\"We know you're in bed with the Columbians. They're all over La Caja these days\u2026 You're looking at some serious time if you don't play ball.\""
+  },
+  "alibi": {
+    "value": "Fat Tommy's alibi is implicit rather than formally stated: he presents himself as a reformed Christian uninvolved in the murder, surrenders voluntarily, and denies presence at the scene. The alibi collapses not through physical contradiction but through psychological attrition \u2014 sixteen hours of interrogation cause him to involuntarily name Cut and confirm his own knowledge of the killing, destroying his claim of total ignorance.",
+    "confidence": "medium",
+    "quote": "\"I don't know nothin'. I didn't see nothin'\u2026 Was goddamn Cut who fount Simpson. Didn't even know he was a cop.\""
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is psychological and physiological: cocaine-induced disinhibition combined with prolonged sleep deprivation and thirst cause Fat Tommy's mouth to speak independently of his will. The mechanic is explicitly rendered \u2014 he observes his own mouth betraying him, unable to stop it. The Jheri curl gel beginning to drip marks the precise moment of psychological collapse, serving as a physical correlative to his breaking point.",
+    "confidence": "high",
+    "quote": "\"He felt himself crashing\u2026 he could feel the Jheri curl gel deluxe begin to drip against his collar.\""
+  },
+  "media_and_audience": {
+    "value": "Minimal external media presence; the story is focused tightly on the interrogation room. However, institutional packaging is prominent: the tape recorder, formal police report number (A-55503), and recitation of aliases construct Fat Tommy as a criminal subject for the state's narrative. Bea's coaching \u2014 white shirts, MLK tie, Bible \u2014 represents a counter-packaging strategy aimed at white institutional audience (cops, jury). The police deny him food, water, and lemonade as a coercive audience-management tactic.",
+    "confidence": "medium",
+    "quote": "\"White folks like white stuff\u2026 white houses, white picket fences, white bread, and white shirts.\""
+  },
+  "investigator_wound": {
+    "value": "No named investigator protagonist exists \u2014 the detectives (Vargas, Braddock, Dockery) are antagonists to Fat Tommy rather than point-of-view figures. No psychological wound or personal vulnerability is attributed to any detective. The investigator's wound element is absent from this text.",
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "A.k.a., Moises Rockafella",
+    "author": "EMORY HOLMES II",
+    "anthology_title": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow",
+    "story_index": 8,
+    "story_count": 19
+  }
+}

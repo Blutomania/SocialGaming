@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder by blunt force trauma. March Gilman struck twice on the head with a hammer after a car accident. Central question: Who killed Gilman after the accident, and why did multiple witnesses deny seeing the Leather Man?",
+    "confidence": "high",
+    "quote": "You came down to the road and hit him with something\u2014perhaps a hammer. There was evidence of two blows to the head."
+  },
+  "victim": {
+    "value": "March Gilman, 40-year-old feed grain businessman with a reputation for pursuing women. His philandering lifestyle and romantic entanglements made him a target for revenge.",
+    "confidence": "high",
+    "quote": "a man around forty with a successful feed grain business in town, and a reputation of chasing after the ladies"
+  },
+  "closed_world": {
+    "value": "Rural New England town of Northmont and surrounding roads in summer 1937. The accident occurs on Turk Hill Road near Putnam, creating a limited geographic area where the perpetrator must reside or have access.",
+    "confidence": "high",
+    "quote": "The summer of 1937 was when the Leather Man returned, and in Northmont we weren't ready for him."
+  },
+  "culprit_and_motive": {
+    "value": "Hannah Whycliffa, unmarried schoolteacher in her late thirties living in the family homestead. She murdered Gilman in a crime of passion, likely motivated by romantic rejection or sexual transgression by Gilman.",
+    "confidence": "high",
+    "quote": "I killed March Gilman. And I'll tell you what he did to deserve it!"
+  },
+  "resolution": {
+    "value": "Dr. Sam Hawthorne reconstructs the crime by identifying why three separate witnesses lied about seeing the Leather Man: blind crossing guard Seth Howlings couldn't see; innkeeper Pomroys stole extra money; Hannah Whycliffa feared the Leather Man was an avenging witness. Hawthorne produces the Leather Man himself as living proof, forcing Whycliffa's confession.",
+    "confidence": "high",
+    "quote": "We have a witness. He really exists, much as you wanted him not to. He's going to tell us what he saw."
+  },
+  "investigator": {
+    "value": "Dr. Sam Hawthorne, country physician and amateur detective in Northmont. Called to the accident scene, he becomes the primary investigator and uses logical deduction and knowledge of his small-town community to solve the crime.",
+    "confidence": "high",
+    "quote": "Ever since I'd moved to southern New England in the early 1920s (Dr. Sam Hawthorne told his guest, lifting the glass for a sip of brandy)"
+  },
+  "suspect_architecture": {
+    "value": "Primary suspect Hannah Whycliff (schoolteacher, opportunity via proximity, motive from Gilman's predatory conduct, means via blunt instrument); Zach Taylor (Australian wanderer, present at accident scene, withheld information, superficially fits Leather Man legend); The Pomroys (innkeepers, minor fraud, denied witness); Seth Howlings (railroad crossing guard, unknowingly blind, denied witness). Four figures who denied the Leather Man's existence, each for entirely different reasons, forming a layered suspect/witness architecture that delays identification of the true killer.",
+    "confidence": "high",
+    "quote": "Seth Howlings and the Pomroys had their own entirely different reasons for denying the existence of the Leather Man."
+  },
+  "red_herring": {
+    "value": "The supernatural resurrection of the historical Leather Man \u2014 a real 19th-century wanderer known to have died in 1889 \u2014 is deployed as a false trail suggesting the accident witness was a ghost or legend rather than a real person. This deflects investigation away from Hannah Whycliff and toward folklore, and causes the sheriff to dismiss Gilman's dying words as delirium.",
+    "confidence": "high",
+    "quote": "I don't believe in ghosts. The fella you're talkin' about's been dead nearly fifty years."
+  },
+  "clue_fairness": {
+    "value": "The critical physical clue \u2014 absence of skid marks on the gravel road \u2014 is presented to the reader at the same moment Hawthorne observes it during his morning examination of the scene, before he draws any conclusion from it. Similarly, Hannah Whycliff's claim that she heard the car skid is reported verbatim in her own dialogue, allowing the reader to register the contradiction independently.",
+    "confidence": "high",
+    "quote": "when I examined the road yesterday morning, just hours after the accident, the gravel was unmarked by any trace of skidding."
+  },
+  "social_world": {
+    "value": "Small-town rural New England in 1937: social standing defined by local prominence (Rotary membership, business ownership), gender constraints on unmarried women, and the authority gap between a respected physician-investigator and marginalised itinerants. Gilman's 'reputation of chasing after the ladies' is socially tolerated; Whycliff as a plain, unmarried schoolteacher has no recourse except violence. Wanderers like Taylor are presumptively criminal to police.",
+    "confidence": "high",
+    "quote": "He was a man around forty with a successful feed grain business in town, and a reputation of chasing after the ladies."
+  },
+  "alibi": {
+    "value": "Hannah Whycliff's alibi is that she was woken by the sound of the crash, threw on clothes, and called the sheriff \u2014 positioning herself as a passive bystander. It collapses on two counts: (1) no skid marks contradict her claim the car was speeding and skidding; (2) Zach Taylor's testimony establishes the car emerged from her driveway at low speed, placing her as the instigator rather than a witness.",
+    "confidence": "high",
+    "quote": "You told me you heard the car skid on the road...yet when I examined the road...the gravel was unmarked by any trace of skidding."
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated through the physical confrontation of Hannah Whycliff with the living Zach Taylor \u2014 whose existence she had tried to erase from the record. His presence as a real witness, combined with Hawthorne's logical reconstruction (no skid marks; car from driveway; two blows to head; sheriff's inadvertent coaching of her lie), causes her to confess spontaneously rather than face cross-examination.",
+    "confidence": "high",
+    "quote": "She thought you were someone else...She thought you were the avenging angel. No, he said with a grin. I'm just a chap on walkabout."
+  },
+  "media_and_audience": {
+    "value": "Local legend and rumour function as the story's media layer: townspeople have been circulating reports of the Leather Man's return all summer, priming the community to interpret any sighting as supernatural rather than investigative evidence. This folkloric noise suppresses credible witness testimony and allows Whycliff to weaponise collective credulity. The sheriff's institutional scepticism ('Rubbish!') ironically reinforces the cover-up by discrediting Gilman's dying words.",
+    "confidence": "high",
+    "quote": "Some people have seen him this summer. I've heard talk that he's back."
+  },
+  "investigator_wound": {
+    "value": "Hawthorne's wound is primarily professional and reputational: having drunk whiskey with Taylor and arrived at the Pomroy house visibly impaired, his credibility as a witness is undermined by the very people he needs to corroborate his account. His reliability as a doctor and observer \u2014 the foundation of his investigative authority \u2014 is publicly questioned by the sheriff, forcing him to solve the case to vindicate himself as much as to find the killer.",
+    "confidence": "medium",
+    "quote": "It was obvious he'd been drinking heavily, Sheriff. He couldn't even walk straight. Maybe he was with someone else, but not here."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "filename": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "EDWARD D. HOCH",
+    "anthology_title": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch",
+    "story_index": 7,
+    "story_count": 15
+  }
+}

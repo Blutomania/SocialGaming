@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Two murders: stabbing death of drug dealer Antone with scissors during sexual assault; and pushing death of Molly off Quarry Road cliff. Central question: will investigators correctly attribute crimes or remain misled by false suspect?",
+    "confidence": "high",
+    "quote": "Antone had a pair of scissors stuck in the middle of his beautiful back... I pushed her hard, sending her tumbling over the precipice."
+  },
+  "victim": {
+    "value": "Molly: pregnant dental hygienist, sexually promiscuous, involved in drug purchase and (possibly consensual) sexual encounter with Antone; killable because she witnessed the crime and posed liability to narrator; Antone: drug dealer with blind grandmother dependent on him.",
+    "confidence": "high",
+    "quote": "she was just an overweight dental hygienist from the suburbs\u2014and a bit of a slut... Molly, who turned out to be pregnant"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Kelley (narrator) murdered Molly from jealousy and self-preservation: Molly slept with narrator's ex-boyfriend Brandon; Molly witnessed/participated in Antone's death and posed criminal liability; narrator wanted to appear innocent while eliminating rival.",
+    "confidence": "high",
+    "quote": "My ex-boyfriend and my best friend, running around behind my back... I pushed her hard, sending her tumbling over the precipice."
+  },
+  "resolution": {
+    "value": "No resolution occurs. Police misattribute crimes: Antone's death goes largely unnoticed (one paragraph); Molly's murder is attributed to ex-boyfriend Keith. Narrator evades justice, frames another person, and enjoys proceeds of crime.",
+    "confidence": "high",
+    "quote": "The general consensus seems to be that Keith did it, and I don't see any reason to let him off the hook... I've never had $2,000 in cash to spend as I please."
+  },
+  "investigator": {
+    "value": "Kelley (narrator/culprit): first-person unreliable narrator who experiences events as participant-accomplice and controls the reader's understanding through her perspective and self-justifications.",
+    "confidence": "high",
+    "quote": "See, I was always thinking, unlike some people I could name... I'm being brave"
+  },
+  "suspect_architecture": {
+    "value": "Single unreliable narrator-perpetrator (Kelley) who commits two murders; Keith is the framed innocent suspect; Brandon implicated circumstantially via affair with Molly; Antone (drug dealer) presented as rapist/criminal to justify theft. Differentiation by class, race, and sexual history rather than conventional motive/means spread.",
+    "confidence": "high",
+    "quote": "The general consensus seems to be that Keith did it, and I don't see any reason to let him off the hook"
+  },
+  "red_herring": {
+    "value": "Keith is deliberately framed as prime suspect via Molly's sexual history (multiple partners including Brandon) and his own bad character; Antone's death is planted to suggest a drug-world revenge killing linking back to Molly, diverting investigation from Kelley entirely.",
+    "confidence": "high",
+    "quote": "I assumed the police would tie Antone's dead body to Molly's murder and figure it for a revenge killing"
+  },
+  "clue_fairness": {
+    "value": "All incriminating details are embedded in the narrator's first-person confession: the condom disposal, the $2,000 cash, the prior 'accidental' death of Eddie, the Quarry Road knowledge, and the alibi construction \u2014 all disclosed to the reader but framed as casual asides, satisfying fair-play convention through ironic disclosure.",
+    "confidence": "high",
+    "quote": "My high school boyfriend did, in fact, right after we broke up. It was a horrible accident."
+  },
+  "social_world": {
+    "value": "White suburban consumer femininity vs. Black urban drug economy; class encoded through brand names (Kate Spade, Versace, Manolos, Utz vs. Pringles Light); gender power dynamics (men who 'buy' women, women who weaponise sexuality); dental hygienist/service-class aspiration vs. disposable boyfriend economy.",
+    "confidence": "high",
+    "quote": "Pro: Brandon bought my drinks, and if you don't have to lay out cash for alcohol, you can buy a lot more shoes."
+  },
+  "alibi": {
+    "value": "Kelley's alibi is pre-constructed and watertight: she told her mother she went for a run; Molly told her mother she went shopping. The divergent cover stories mean each girl is independently accounted for, with Kelley's jogging route providing physical corroboration for her return home after pushing Molly.",
+    "confidence": "high",
+    "quote": "I phoned my mom and said I was going for a run. Molly told her mom she was going into the city to shop for a dress."
+  },
+  "reveal_mechanic": {
+    "value": "There is no external investigator reveal; the story is a first-person confessional in which Kelley herself enacts the reveal to the reader through cumulative ironic disclosure \u2014 the condom detail, the Eddie precedent, and the final Versace/Manolo purchase funded by stolen murder-scene cash all demonstrate guilt without any detective figure.",
+    "confidence": "high",
+    "quote": "I've never spent so much money on an outfit before. But then, I've never had $2,000 in cash to spend as I please."
+  },
+  "media_and_audience": {
+    "value": "Media attention is shaped by Molly's pregnancy and the three-day delay in finding her body, elevating an 'overweight dental hygienist' into front-page victim; Kelley monitors and manipulates the narrative, exploiting public sympathy for herself as grieving best friend while the press fixates on Keith and Molly's sexual history.",
+    "confidence": "high",
+    "quote": "Molly, who turned out to be pregnant...is still on the front page all these weeks later."
+  },
+  "investigator_wound": {
+    "value": "No conventional investigator is present. The absence of a wounded detective is a structural inversion: the perpetrator-narrator has the psychological wound (compulsive control, body-image obsession, romantic humiliation) that drives the crime, and the reader is positioned as the only investigator \u2014 wounded by complicity in Kelley's charming voice.",
+    "confidence": "medium",
+    "quote": "Me, I never do anything without thinking it through very carefully."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "text_len": 22877,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The Crack Cocaine Diet",
+    "author": "LAURA LIPPMAN",
+    "anthology_title": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow",
+    "story_index": 12,
+    "story_count": 19
+  }
+}

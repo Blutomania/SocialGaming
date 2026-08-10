@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Extortion and theft of stolen biotech samples (rare microorganisms from Yellowstone geysers); method: burglary of Bob's apartment, blackmail via phone threat for $2,000 ransom",
+    "confidence": "high",
+    "quote": "I have an important briefcase, full of water samples. I found it in your flat... I want two thousand dollars for your metal briefcase"
+  },
+  "victim": {
+    "value": "Bob: a bio pirate operating illegal theft of rare Yellowstone microorganisms worth unknown value; killable because he is a criminal engaged in environmental/biological contraband",
+    "confidence": "high",
+    "quote": "I heard that Bob is a bio pirate. He's a criminal... stealing the microbes and selling them."
+  },
+  "closed_world": {
+    "value": "Gardiner, Montana and Yellowstone Park region; two Czech immigrants with no resources, no legal work status, no law enforcement allies; isolated mountain town and park facilities",
+    "confidence": "high",
+    "quote": "Gardiner was packed together... Yet it was like a tiny island in an ocean of nothing... In every direction mountains, bare hillsides, empty valley"
+  },
+  "culprit_and_motive": {
+    "value": "Bob (Vladdy's motive: desperation, poverty, and Cherry's suggestion; Bob's decision: he chose not to pay the ransom and instead attempted to murder both extortionists to recover the briefcase)",
+    "confidence": "high",
+    "quote": "Bob made his choice not to pay... Some fuckin' nightmare... Bob raise a pistol and shoot Eddie point-blank in the forehead"
+  },
+  "resolution": {
+    "value": "No official justice; Vladdy kills Bob in self-defense using the briefcase and Bob's own gun, then disposes of both bodies (Eddie and Bob) into the Yellowstone reservoir; crime remains unsolved by authorities",
+    "confidence": "high",
+    "quote": "Vladdy buckled Eddie's and Bob's belts together and rolled them off of the dam... splash into the reservoir... He threw the pistol into the water"
+  },
+  "investigator": {
+    "value": "Vladdy (Vladimir), the protagonist: a Czech immigrant drawn into extortion; narrated through his perspective, decisions, and moral deterioration from desperation to murder",
+    "confidence": "high",
+    "quote": "Vladdy pressed his forehead against the cold glass of the van window... Vladdy kept his cheek pressed against the cold window as they left Yellowstone Park"
+  },
+  "suspect_architecture": {
+    "value": "Three principals: Bob (the bio pirate, means/opportunity as criminal operative, motive: recover stolen briefcase by lethal force); Vladdy (protagonist-turned-killer, motive: survival and profit, opportunity: desperate immigrant); Cherry (instigator, motive: financial gain, opportunity: insider knowledge from K-Bar gossip). Eddie is a secondary accomplice with minimal agency. No formal investigator or red-herring suspect pool \u2014 the cast is small and morally flattened, with victim and perpetrator roles inverting.",
+    "confidence": "high",
+    "quote": "Cherry nodded enthusiastically. 'Who knows what they're worth? Or better yet, who knows what someone would pay us to give them back'"
+  },
+  "red_herring": {
+    "value": "The briefcase contents function as a red herring: the narrative frames the microorganisms as extraordinarily valuable bioweapon/cancer-cure material driving the extortion plot, but the story never confirms their actual worth or legitimacy. Bob's willingness to pay $2,000 cash \u2014 rather than report the theft \u2014 seems to validate the bio-piracy premise, but his real motive may simply be eliminating witnesses cheaply. The reader is misdirected into treating the microbes as the story's MacGuffin of genuine value.",
+    "confidence": "medium",
+    "quote": "Bob had flashed his lights to see who had taken his briefcase. When he saw two out-of-place guys like Vladdy and Eddie... Bob made his choice not to pay."
+  },
+  "clue_fairness": {
+    "value": "The story is not a traditional mystery with a detective investigator, so classic clue-fairness architecture is largely absent. However, the reader is given the same information as Vladdy in real time: the Suburban's contents (maps, electrical equipment, hiking boots, empty briefcase space) are described during Vladdy's flashlight inspection before any interpretation. The cash bag's existence is revealed to reader and Vladdy simultaneously at the dam. No information is withheld from the reader that Vladdy possesses.",
+    "confidence": "medium",
+    "quote": "Turning on the flashlight, he saw rumpled clothing, rolls of maps, hiking boots, and electrical equipment with dials and gauges."
+  },
+  "social_world": {
+    "value": "A sharp power hierarchy of economic desperation versus institutional and criminal power: Czech immigrants at the absolute bottom (no money, no jobs, dependent on a stranger's charity), above them a working-poor American woman (Cherry, waitress/motel maid, divorced, economically marginal), above her the park's bureaucratic gatekeeping (the nonhiring man who controls access to legitimate work), and at the top Bob \u2014 a criminally connected operative with a vehicle, cash, a weapon, and the confidence to kill. The park concessionaire system exploits Eastern European labor. Vladdy's outsider status is the engine of his vulnerability.",
+    "confidence": "high",
+    "quote": "Yellowstone...sought Eastern Europeans to work making beds, washing dishes, and cleaning out the muck from the trail horses, jobs that American workers didn't want or need."
+  },
+  "alibi": {
+    "value": "Cherry's call to Vladdy that Bob 'ordered a pitcher just for himself' and is 'settling in for a while' at the K-Bar constitutes the operational alibi verification \u2014 it confirms Bob's absence from his apartment, enabling the break-in. The alibi is genuine in the sense that Bob is indeed at the bar, but it is weaponized as criminal intelligence rather than examined for truthfulness in a legal sense. There is no false alibi constructed by a suspect to evade investigation.",
+    "confidence": "medium",
+    "quote": "'He's here at the K-Bar, and he ordered a pitcher just for himself. He's settling in for a while.'"
+  },
+  "reveal_mechanic": {
+    "value": "The reveal mechanic is behavioral-economic rather than forensic: Bob bringing $2,000 cash to the meeting \u2014 the agreed sum \u2014 yet immediately shooting Eddie proves his intent was never to pay but to identify and eliminate the thieves. Vladdy's retrospective inference ('Bob had flashed his lights to see who had taken his briefcase... Bob made his choice not to pay') is the story's sole analytical reveal, delivered in the denouement. It reframes the entire meeting as a trap, not a transaction.",
+    "confidence": "high",
+    "quote": "It puzzled Vladdy for a moment, but then it made sense. Bob had flashed his lights to see who had taken his briefcase."
+  },
+  "media_and_audience": {
+    "value": "Entirely absent. There is no press, no institutional response, no public narrative constructed around the crimes. The story operates in a deliberately isolated, witnessed-by-no-one register \u2014 bodies dumped into a reservoir, a stolen Suburban driven back through the park at night, no witnesses. The crime will presumably never be publicly framed at all. The absence of media and audience is itself a structural element: the wilderness setting guarantees erasure.",
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "There is no detective investigator in this story. Vladdy functions as protagonist-criminal, not investigator. His psychological wound is immigrant displacement and economic humiliation \u2014 the nonhiring man, the twenty-dollar handout, the dependence on Cherry's pity \u2014 which drives him toward criminality as the only available upward mobility. This wound is exploited by the plot but not in the service of investigation. The story inverts the classic investigator-wound structure: the wound belongs to the perpetrator.",
+    "confidence": "low",
+    "quote": "He didn't have the money to go back. In fact, he told the man, they didn't even have the money for a room to wait in."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "C. J. BOX",
+    "anthology_title": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow",
+    "story_index": 2,
+    "story_count": 19
+  }
+}

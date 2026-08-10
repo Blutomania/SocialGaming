@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder by stabbing. Wesley Schmidt, a Pinkerton detective posing as a waiter, is killed with a switch knife in his car in Bloodfield (Southwest DC). Central question: Will the narrator's involvement be discovered, or will police blame a Black suspect in the neighborhood?",
+    "confidence": "high",
+    "quote": "I brought the knife across real fast and buried it into his armpit...His blood came out like someone was pouring it from a jug."
+  },
+  "victim": {
+    "value": "Wesley Schmidt, a Pinkerton detective hired to infiltrate the restaurant and investigate labor organizing meetings. He is 'killable' because he is an enforcer of capital; he likely murdered John Petersen (the narrator's friend) to suppress union activity, making him a threat the narrator must neutralize.",
+    "confidence": "high",
+    "quote": "I'm telling you, Schmidt is no waiter...Don't ever mention those meetings again, to anyone...Do you know what a Pinkerton man is?"
+  },
+  "closed_world": {
+    "value": "The restaurant on 15th and Penn Avenue where the narrator works as a busman, and the broader Greek immigrant community in Washington DC (Chinatown, church, coffeehouses). Schmidt's car in Bloodfield (Southwest DC) serves as the immediate crime scene.",
+    "confidence": "medium",
+    "quote": "The hotel was pretty fancy...I worked at St. Mary's...the coffeehouses down by the Navy Yard in Southeast."
+  },
+  "culprit_and_motive": {
+    "value": "The narrator (Bill/Vasili), a Greek immigrant busman. Motive: Revenge for John Petersen's murder and self-defense against a Pinkerton operative who represents capitalist suppression of labor organizing. Schmidt's boasting about manipulating workers ('they're like children') and his presence at union meetings made him a lethal threat.",
+    "confidence": "high",
+    "quote": "Pretty hard to swim, you got a bullet in your head...I just wanna know what happened to John."
+  },
+  "resolution": {
+    "value": "No formal resolution. The crime remains unsolved. Police will likely blame a Black resident of Bloodfield. The narrator expects either capture (if Raymond the cook testifies) or freedom. He plans to continue his life\u2014save money, open a restaurant, marry Irene\u2014while living under the shadow of unresolved consequences.",
+    "confidence": "medium",
+    "quote": "They're gonna find Schmidt in that neighborhood and they're gonna figure a colored guy killed him for his money...If Raymond tells them he saw me I'm gonna get the chair. If he doesn't, I'm gonna be free."
+  },
+  "investigator": {
+    "value": "The narrator himself\u2014Bill/Vasili, the Greek immigrant busman. The reader experiences the mystery through his first-person confession/reflection. He is simultaneously perpetrator, investigator (seeking truth about John's death), and potential suspect awaiting discovery.",
+    "confidence": "high",
+    "quote": "SOMEDAY I'M GONNA write all this down...Last night I had a dream...This is where I am right now."
+  },
+  "suspect_architecture": {
+    "value": "Single perpetrator (Vasili/Bill) and one victim (Schmidt). Schmidt is framed as a Pinkerton informant; Raymond the cook is a potential witness who could implicate or exonerate. No traditional multi-suspect spread \u2014 the architecture inverts convention by centering the killer as narrator.",
+    "confidence": "high",
+    "quote": "If Raymond tells them he saw me I'm gonna get the chair. If he doesn't, I'm gonna be free."
+  },
+  "red_herring": {
+    "value": "Vasili lures Schmidt with a fabricated whorehouse tip, misdirecting Schmidt (and initially the reader) about the purpose of the night drive. Separately, the murder scene is designed to make police believe a Black resident of Bloodfield killed Schmidt for robbery \u2014 a deliberate racial frame-up.",
+    "confidence": "high",
+    "quote": "They're gonna find Schmidt in that neighborhood and they're gonna figure a colored guy killed him for his money."
+  },
+  "clue_fairness": {
+    "value": "The story is first-person confession, so reader and narrator share identical information throughout. Blood under Vasili's fingernails is shown to the reader on page one, before any explanation is given \u2014 a classic fair-play plant that retrospectively confirms the killing.",
+    "confidence": "high",
+    "quote": "I got blood underneath my fingernails. I washed real good but it was hard to get it all."
+  },
+  "social_world": {
+    "value": "Depression-era Washington D.C. ethnic immigrant underclass (Greek, Italian, Irish, Polish) stratified against Anglo establishment. Labor organizing is suppressed by Pinkerton infiltrators; racial hierarchy marginalizes Black workers like Raymond. Debt, patronage, and ethnic loyalty networks govern mobility.",
+    "confidence": "high",
+    "quote": "Toula's father owed my father some lefta from back in the village, so it was all set up."
+  },
+  "alibi": {
+    "value": "No formal alibi is constructed by Vasili. Instead, the racial geography of Bloodfield functions as a structural alibi \u2014 police are expected to assume a Black suspect, deflecting investigation away from Vasili entirely. Schmidt's Pinkerton cover identity is itself a kind of institutional alibi.",
+    "confidence": "medium",
+    "quote": "They're gonna turn Bloodfield upside down."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is embedded in the opening frame: blood under the narrator's nails and the pre-dawn setting are disclosed before the backstory, so the confession structure itself is the mechanic \u2014 the reader assembles causation retroactively as Vasili narrates forward to the present moment.",
+    "confidence": "high",
+    "quote": "Let me go back some, to show how I got to where I am tonight."
+  },
+  "media_and_audience": {
+    "value": "John Petersen's death received only a brief Tribune notice with no follow-up, demonstrating how institutional media erases inconvenient working-class deaths. Vasili expects Schmidt's murder will be similarly misreported as a robbery, relying on press and police indifference to Black neighborhoods.",
+    "confidence": "high",
+    "quote": "It was just a short notice, and it didn't say nothing else."
+  },
+  "investigator_wound": {
+    "value": "Vasili is simultaneously perpetrator and investigator of John Petersen's murder. His wound is grief, displacement, and impotent rage at being powerless within American systems \u2014 the killing of Schmidt is the only justice available to him, at the cost of his last link to Greece (his father's knife).",
+    "confidence": "medium",
+    "quote": "I was crying 'cause my father had given me that knife, and now it was gone."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "filename": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The\tDead\tTheir\tEyes\tImplore\tUs",
+    "author": "GEORGE\tP.\tPELECANOS",
+    "anthology_title": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly",
+    "story_index": 15,
+    "story_count": 23
+  }
+}

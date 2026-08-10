@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Carnival cruise ship to Alaska; bounded maritime space with limited exit points and contained passenger population",
+    "confidence": "high",
+    "quote": "As she waited in line for the first dinner seating on this cruise to Alaska, she fingered the muscular weight of the bills."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Ginger Klein, elderly con artist and swindler experiencing cognitive decline; the narrative is filtered through her consciousness and memories",
+    "confidence": "high",
+    "quote": "Until a few months before, Ginger had been living in a worn pink studio apartment on Van Nuys Boulevard, storing her cash in margarine containers in her refrigerator."
+  },
+  "suspect_architecture": {
+    "value": "No traditional mystery suspect cast. The story's central moral ambiguity is between Ginger (lifelong swindler/thief) and Darlene (young woman she falsely accuses of theft), with Ginger herself as both criminal and victim. The only 'suspects' are Ginger's own dementia-distorted perceptions.",
+    "confidence": "low",
+    "quote": "\"Thief,\" she yelled. The girl blinked. \"What?\" she asked."
+  },
+  "red_herring": {
+    "value": "Ginger's confident self-presentation as a master swindler in full control functions as a red herring \u2014 obscuring from the reader and from Darlene the true state of her cognitive decline and the real reason her money is missing.",
+    "confidence": "medium",
+    "quote": "\"I'm a swindler.\" ... She shook out her purse. Now she had one dollar and thirty-seven cents."
+  },
+  "clue_fairness": {
+    "value": "The text plants early clues to Ginger's dementia that are visible to the careful reader: taking the wrong bus, failing to identify pliers, losing words, confusing photos, and the progressive narrative disorientation \u2014 all presented before the final breakdown.",
+    "confidence": "medium",
+    "quote": "She had succeeded for sixty-five years as a swindler because she always knew which bus to take."
+  },
+  "social_world": {
+    "value": "A stratified cruise-ship world of leisure-class couples and tour groups contrasted with Ginger's marginal existence in a Van Nuys studio. Class vulnerability underlies all: the elderly poor, the con economy of the San Fernando Valley, and cruise culture as aspirational performance.",
+    "confidence": "high",
+    "quote": "The room was filled with couples, friends, tour groups, glittering in their sequins, intent on having a good time."
+  },
+  "alibi": {
+    "value": "Not present as a formal mystery construct. Ginger's fabricated identities and false IDs throughout her life constitute a metaphorical alibi system, but there is no plot-level alibi that is tested or disproved.",
+    "confidence": "low",
+    "quote": "She cashed the checks at different fast cash stores around the San Fernando Valley, presenting them with one of her bountiful collection of false IDs."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is psychological and cumulative: Ginger's accusation of 'Thief!' against Darlene \u2014 who stole nothing \u2014 exposes the full extent of her dementia to the reader, confirmed by her forgetting Darlene's name and the physical collapse. The empty purse is the objective correlative.",
+    "confidence": "high",
+    "quote": "She pushed her hand deep into the purse, feeling its emptiness. Her coins fell onto the floor."
+  },
+  "media_and_audience": {
+    "value": "Absent as a formal element. There is no press, institution, or public narrative framing the events. The cruise ship's social audience witnesses Ginger's breakdown on deck but serves only as atmospheric backdrop, not as a mediating narrative force.",
+    "confidence": "low",
+    "quote": "She staggered through the crowd in their pale sweatsuits. \"Thief!\" she yelled."
+  },
+  "investigator_wound": {
+    "value": "Ginger is simultaneously investigator and subject: her wound is the dementia erasing her identity as a self-sufficient swindler. The case she cannot solve is her own dissolution. Her lifelong defense against vulnerability \u2014 self-reliance, con artistry, refusal of intimacy \u2014 is precisely what the disease destroys.",
+    "confidence": "high",
+    "quote": "She had never allowed herself weakness... everything she did with a man was faked... she often ate alone on holidays."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "KAREN E. BENDER",
+    "anthology_title": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow",
+    "story_index": 1,
+    "story_count": 19
+  }
+}

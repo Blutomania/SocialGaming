@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Post-hurricane New Orleans and surrounding Louisiana during disaster cleanup operations",
+    "confidence": "medium",
+    "quote": "Houses torn from foundations, boats in the streets, abandoned cars everywhere, no power, no sewer, no drinking water."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "First-person narrator\u2014a former prison inmate and enforcer with violent history who arrives in New Orleans post-hurricane",
+    "confidence": "high",
+    "quote": "I went to the private prison in Shelby and made my way to Deer Lodge... I left when they told me to leave."
+  },
+  "suspect_architecture": {
+    "value": "No traditional suspect architecture present. The narrator is the acknowledged killer of five men who attacked his brother; no investigative whodunit structure exists. The five victims are undifferentiated as a group.",
+    "confidence": "low",
+    "quote": "five men tried to kill my younger brother over some logging rights money"
+  },
+  "red_herring": {
+    "value": "The forensic framing around the shootings functions as institutional misdirection: three deaths ruled hunting accidents, two ruled impossible at their range \u2014 the court's own expert inadvertently provides cover for the narrator's skill.",
+    "confidence": "medium",
+    "quote": "No bullet could be accurate, at that range. That's what the forensic expert said."
+  },
+  "clue_fairness": {
+    "value": "No fair-play clue structure is present. This is a confessional first-person noir narrative, not a puzzle mystery; the narrator reveals his own guilt directly rather than through planted clues available to a reader-investigator.",
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Interlocking hierarchies of frontier criminality, debt networks, prison economy, and disaster capitalism: men who owe favors, contract killers, private prisons, and hurricane cleanup contractors exploiting displaced Gulf Coast poor.",
+    "confidence": "high",
+    "quote": "guys who owed me favors, guys who sometimes paid me to move the index finger of my right hand less than an inch"
+  },
+  "alibi": {
+    "value": "The narrator's effective alibi is geographic and physical impossibility: shots fired at ranges the court forensic expert deemed impossible, laundered as hunting accidents, distributing culpability into statistical improbability.",
+    "confidence": "medium",
+    "quote": "The other two were shot at distances that were deemed impossible by the court forensic expert."
+  },
+  "reveal_mechanic": {
+    "value": "No formal reveal mechanic exists. The story operates as sustained confession rather than mystery resolution; the narrator self-discloses culpability throughout without an external investigator or dramatic unmasking.",
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "The hurricane disaster functions as macro-level media spectacle that obscures individual crime: the court proceedings, Montana state police questions, and the overwhelmed post-Katrina institutional chaos all absorb and neutralize accountability.",
+    "confidence": "medium",
+    "quote": "Montana state police questions about five men and their sudden death with my name as the answer"
+  },
+  "investigator_wound": {
+    "value": "The narrator is simultaneously perpetrator and self-investigator; his wound is moral dissociation \u2014 eight years of prison and biblical vengeance theology have severed his sense of reality, leaving him unable to feel the world as real.",
+    "confidence": "medium",
+    "quote": "Things didn't seem real to me anymore. My brother met me at my release, eight years and he was doing well"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "St. Gabriel",
+    "author": "SCOTT WOLVEN",
+    "anthology_title": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos",
+    "story_index": 21,
+    "story_count": 22
+  }
+}

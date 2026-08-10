@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Death by arson: Jerry Buck found burned to death on Bullock Air Force Base runway; central question: was it accidental death from fuel spill or deliberate murder to silence knowledge of environmental hazard?",
+    "confidence": "high",
+    "quote": "he, ah, he's dead, Mr. Gesh. Soaked himself with gasoline, and. . .he burned."
+  },
+  "victim": {
+    "value": "Jerry Buck, Lakota Sioux drifter staying with old Joe Gesh; killable because he discovered or knew about the dangerous fuel spill on the runway that threatened the land transfer deal",
+    "confidence": "medium",
+    "quote": "A sidewalk Indian who'd traded the poverty of the reservation for an ugly death, far from his home and his people."
+  },
+  "closed_world": {
+    "value": "Bullock Air Force Base, Michigan\u2014a Strategic Air Command facility being decommissioned and transferred; bounded by fifteen-foot chain-link fence with bayonet wire; isolated runway area accessible only through controlled gate",
+    "confidence": "high",
+    "quote": "The air field looked secure enough, protected by a fifteen-foot chain-link fence crowned with coils of bayonet wire."
+  },
+  "culprit_and_motive": {
+    "value": "Sergeant Jenkins (Air Force base security officer); motive: to protect Air Force interests and prevent scandal of environmental hazard that could void the land transfer and expose military negligence regarding the fuel spill",
+    "confidence": "medium",
+    "quote": "I was just doing my damn job. Trying to protect my own people. The air force. It's the only family I've ever had."
+  },
+  "resolution": {
+    "value": "Delacroix confronts Jenkins with knowledge of the fuel spill and Jenkins's involvement; Jenkins attempts to shoot Delacroix but gun misfires (empty cylinder); Delacroix then orchestrates fireworks display that ignites the fuel spill, destroying evidence and incinerator, forcing Kanelos to abandon claims",
+    "confidence": "high",
+    "quote": "I pulled the trigger. A reflex. The hammer clicked on an empty cylinder. Jenkins winced, then his eyes narrowed."
+  },
+  "investigator": {
+    "value": "Delacroix, tribal constable from Algoma County and former Army serviceman; sent by Ojibwa Council to inspect base before land transfer; operates as insider-outsider with military background and tribal identity",
+    "confidence": "high",
+    "quote": "My name's Delacroix. I have an appointment to see the base commander, Colonel Webber."
+  },
+  "suspect_architecture": {
+    "value": "Three principal suspects with overlapping motives: Colonel Webber (military cover-up of crash/fuel spill, motive: institutional protection), Sergeant Jenkins (operational executor, motive: loyalty to air force as surrogate family, admits complicity), Kanelos (waste disposal profiteer, motive: tax-free operation, knew of fire hazard). Jenkins is the revealed killer/accessory; Webber the authorizing power; Kanelos the corrupt beneficiary. Supporting cast: Eva Redfern (negotiator, cleared), Dr. Klein (activist, cleared).",
+    "confidence": "high",
+    "quote": "\"Look, please try to understand. I was just doing my damn job. Trying to protect my own people.\" \"Your people?\" \"The air force.\""
+  },
+  "red_herring": {
+    "value": "Old Joe Gesh's ghost narrative functions as deliberate misdirection \u2014 the deaths of dogs and Jerry Buck are attributed to spirits of dead pilots haunting the runway in rain, diverting attention from the mundane truth of a classified plane crash cover-up and a jet-fuel spill that creates an invisible flammable hazard. The supernatural framing is presented with enough ethnographic authenticity to mislead both Delacroix and the reader.",
+    "confidence": "high",
+    "quote": "\"Because they wasn't touched. No wounds, no blood. They just\u2014take their souls...they come back in the rain. And hunt.\""
+  },
+  "clue_fairness": {
+    "value": "The fuel spill clue is made available to the reader in real time: Delacroix nearly gets killed on the runway at night, the runway later ignites from flares touching standing fuel-contaminated water, and Klein's prior knowledge of the fire hazard is referenced. The reader witnesses Delacroix's near-death on the runway before the explanation is delivered, and Klein's calculation of burn duration confirms the spill was a known, pre-existing condition.",
+    "confidence": "medium",
+    "quote": "\"Jenkins told me Delacroix was out on the runway last night, damn near got himself killed...He knows it's not safe out there.\""
+  },
+  "social_world": {
+    "value": "Intersecting hierarchies: U.S. military chain of command (Webber over Jenkins) enforcing institutional secrecy; federal/state government enabling base closure and land transfer; corporate waste-disposal capital (Kanelos) exploiting tribal sovereignty law for tax avoidance; Native American tribal council navigating dispossession and compromise; grassroots environmental activists (Klein) criminalized by the same state now ceding land. Power flows from military-industrial complex downward; tribal and activist actors occupy the margins.",
+    "confidence": "high",
+    "quote": "\"Since the state can't tax tribal land, Mr. Kanelos can operate the waste facility tax free, and we get roughly five thousand acres of land, gratis.\""
+  },
+  "alibi": {
+    "value": "Jenkins's alibi is implicit in his role as base security sergeant \u2014 his presence and movements are institutionally sanctioned, making his involvement in Jerry Buck's death invisible within the military chain of command. His 'alibi' is his authority itself: he could be anywhere on the base legitimately. The collapse occurs when Delacroix confronts him directly and Jenkins confesses he was 'doing his job,' confirming he had both access and opportunity with no credible denial.",
+    "confidence": "medium",
+    "quote": "\"I was just doing my damn job. Trying to protect my own people.\""
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is demonstrated physically and pyrotechnically rather than verbally: Delacroix fires flares onto the fuel-saturated runway, causing it to ignite catastrophically, proving in front of reporters, politicians, and Kanelos himself that a massive undisclosed fuel spill existed \u2014 the same hazard that killed Jerry Buck. The confession is thus extracted not by interrogation but by public, irrefutable physical demonstration, simultaneously exposing the cover-up and destroying the asset Kanelos sought to exploit.",
+    "confidence": "high",
+    "quote": "\"the runway burst into flame...dancing across the surface of the water, until the fires united in an inferno a half mile across\""
+  },
+  "media_and_audience": {
+    "value": "Jerry Buck's death is officially framed as accidental \u2014 a drunk Indian on a runway \u2014 suppressing the classified crash cover-up and fuel spill. The media are present at the land transfer ceremony as institutional validators. Delacroix strategically inverts this by staging the runway fire in front of reporters and cameramen, transforming a private corporate-military suppression into a public spectacle. Redfern then weaponizes the media record against Kanelos: 'I'd love to take his deposition under oath...about the fire hazard that killed Jerry Buck.'",
+    "confidence": "high",
+    "quote": "\"Reporters and cameramen streamed past us, drawn like moths to the flames.\""
+  },
+  "investigator_wound": {
+    "value": "Delacroix is a Native American tribal constable and military veteran navigating a deal that offers his people land but on structurally unjust terms. His wound is the accumulated historical wound of dispossession \u2014 he must choose between refusing a bad deal (and getting nothing) or accepting injustice for pragmatic survival. The case forces him to embody that wound personally: 'Native Americans have been swept into the corners...sometimes that means eating the dirt of injustice.' His veteran identity also creates tension \u2014 he instinctively salutes, then consciously refuses.",
+    "confidence": "high",
+    "quote": "\"my people have never gotten any other kind. And as you said, at least there's something for everybody. Even for us.\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "filename": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "DOUG ALLYN",
+    "anthology_title": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch",
+    "story_index": 2,
+    "story_count": 15
+  }
+}

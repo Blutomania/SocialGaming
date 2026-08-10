@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Theft of a valuable sapphire brooch from actress Maude Fenton's dressing room during theater rehearsal. Central question: who stole the brooch and how did they access it despite it being left unattended for only 2-3 minutes?",
+    "confidence": "high",
+    "quote": "My brooch is missing! My beautiful, beautiful brooch! Oh, for heaven's sake, Mr. Gillette, someone must have stolen it!"
+  },
+  "victim": {
+    "value": "Maude Fenton, actress playing Alice Faulkner in Gillette's Sherlock Holmes play. She is vulnerable because she received the expensive sapphire brooch as a gift from a gentleman who wishes to keep their relationship secret.",
+    "confidence": "high",
+    "quote": "I received the gift yesterday, but I would have been unlikely to flash it about...He does not want anyone\u2014he does not approve of ostentation."
+  },
+  "closed_world": {
+    "value": "A London theater during final rehearsal before opening night. The company is confined to the stage and backstage areas; all personnel are accounted for and known.",
+    "confidence": "high",
+    "quote": "The standing set of James Larrabee's drawing room...Gillette's stage manager...thought it would be a jolly lark to replace...with the lodgings of Sherlock Holmes at Baker Street"
+  },
+  "culprit_and_motive": {
+    "value": "Henry Quinn, the young actor playing Billy the Baker Street page. His motive was not theft for profit but acquisition of the brooch's pin as a fastener\u2014the company's costumes were several sizes too large and sewing pins were desperately needed to hold up trousers.",
+    "confidence": "high",
+    "quote": "For the pin...Our rehearsals have been slowed for want of sewing pins to hold up the men's trousers and pin back the ladies' frocks."
+  },
+  "resolution": {
+    "value": "Gillette exposes Quinn by claiming to have found traces of Satinette facial powder on his costume\u2014a bluff that causes Quinn to panic and flee, revealing his guilt through flight rather than forensic evidence. Quinn is apprehended after his ill-fitting trousers entangle him as he attempts to vault the orchestra pit.",
+    "confidence": "high",
+    "quote": "the traces of Satinette facial powder are clearly visible upon\u2014Wait! Stop him!...young Henry Quinn...suddenly darted forward and raced toward the rear exit."
+  },
+  "investigator": {
+    "value": "William Gillette, the actor playing Sherlock Holmes, who conducts an informal investigation of the theft while rehearsing for his London debut. He is both investigator and director, blurring the line between theatrical performance and actual detection.",
+    "confidence": "high",
+    "quote": "It was arranged that Gillette would question each member of the company individually...Gillette's stage manager...thought it would be a jolly lark to replace the standing set...so that Gillette might have an appropriate setting"
+  },
+  "suspect_architecture": {
+    "value": "Small closed theatrical company: Henry Quinn (page boy, actual thief \u2014 opportunity via errands, motive mundane), Selma Kendall (auburn-haired actress, knew of brooch, slip of tongue implicates her), Arthur Creeson (villain role, proximity), unnamed stagehands, Lyndal (narrator, alibi confirmed by rehearsal). All share means via backstage access; motive differentiated by value vs. utility of brooch.",
+    "confidence": "high",
+    "quote": "\"It's one of us, then?\" asked Mr. Allerford. \"Of course. That much should have been obvious to all of you.\""
+  },
+  "red_herring": {
+    "value": "The sapphire's monetary value is planted as the assumed motive, directing suspicion toward anyone who might profit financially. The true motive \u2014 Quinn needed the brooch's pin to fasten ill-fitting costumes \u2014 is hidden in plain sight throughout the story via repeated trouser complaints.",
+    "confidence": "high",
+    "quote": "\"But that's nonsense!\" cried Arthur Creeson. \"The sapphire is extraordinarily valuable! What other motivation could there be?\""
+  },
+  "clue_fairness": {
+    "value": "The trouser-pin problem is established early and repeatedly for the reader (multiple characters complain of ill-fitting costumes; Gillette dispatches Quinn specifically to find a fastener), making the true motive available to the reader well before Gillette's reveal. The powder clue is presented but later exposed as invalid, rewarding attentive readers who doubted it.",
+    "confidence": "high",
+    "quote": "\"Would you be so good as to fetch the wardrobe mistress? Or at least bring us some extra straight pins?\""
+  },
+  "social_world": {
+    "value": "Rigid theatrical hierarchy: Gillette as star-director wields absolute creative authority; Frohman as producer holds financial power but is repeatedly overruled; actors depend on Gillette's approval for their roles; Quinn as boy-page occupies the lowest rung, invisible and unquestioned, which enables both the theft and its delayed discovery. Transatlantic class tension (American vs. London audiences) also runs through the power dynamics.",
+    "confidence": "high",
+    "quote": "\"As far as America is concerned, you are Sherlock Holmes.\""
+  },
+  "alibi": {
+    "value": "Lyndal's alibi is explicitly constructed and confirmed: he was standing stage right beside Gillette during the first-act run-through when the theft occurred. Gillette notes with irony that his own script revision inadvertently created this alibi. Quinn has no alibi \u2014 his errand-running role gave him unsupervised backstage access during the window of the theft.",
+    "confidence": "high",
+    "quote": "\"Strange, my revision of the play has given you a perfect alibi... you should have been high on the list of suspects.\""
+  },
+  "reveal_mechanic": {
+    "value": "A theatrical bluff: Gillette fabricates a clue (Satinette facial powder on Quinn's costume) and delivers a confident deductive speech, psychologically pressuring the guilty party into flight \u2014 which functions as a behavioral confession. The story then undercuts the clue's validity, revealing the reveal itself as performance rather than deduction.",
+    "confidence": "high",
+    "quote": "\"It lured a confession out of Quinn, my friend, so it was not entirely in vain.\" / \"But you had no idea who the guilty party was! Not until the moment he lost his nerve and ran!\""
+  },
+  "media_and_audience": {
+    "value": "The theatrical context literalizes the media frame: the investigation is staged on a Baker Street set before the company as audience; Gillette performs detection as theater. The threat of London press ('the fine raking fire of the London critics') and Miss Fenton's unnamed gentleman friend's desire to keep the matter from the papers both suppress public disclosure of the crime.",
+    "confidence": "high",
+    "quote": "\"I doubt if her gentleman friend would appreciate seeing the matter aired in the press.\""
+  },
+  "investigator_wound": {
+    "value": "Gillette's wound is professional and identity-based: he is an American actor impersonating an English icon under the scrutiny of hostile London critics, repeatedly insisting 'I am not Sherlock Holmes.' The case forces him to actually perform Holmesian detection, exposing the gap between theatrical simulation and genuine reasoning \u2014 which he ultimately cannot close.",
+    "confidence": "high",
+    "quote": "\"I am not Sherlock Holmes,\" he said again. \"I am an actor playing Sherlock Holmes.\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "filename": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The\tAdventure\tof\tthe\tAgitated\tActress",
+    "author": "DANIEL\tSTASHOWER",
+    "anthology_title": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly",
+    "story_index": 17,
+    "story_count": 23
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Serial murder of young women by a predator known as 'the Ladykiller'; central question: how does the killer evade detection across multiple victims and jurisdictions while maintaining a double life?",
+    "confidence": "high",
+    "quote": "For the rest of his life he would have to act as though he had never sensed the possibilities with which this young woman...had presented him."
+  },
+  "victim": {
+    "value": "Lori Terry, a young woman from Milwaukee who defies the killer's expectations by fighting back instead of submitting to terror, making her 'killable' through her refusal to play the victim role he requires.",
+    "confidence": "high",
+    "quote": "She feinted and jabbed with the curved blade...she had offered him a blowjob! He had approved the tilt of her chin, the steadiness of her voice."
+  },
+  "closed_world": {
+    "value": "An isolated suburban storehouse disguised as 'Goods,' a private space where the killer operates unobserved, combined with his compartmentalized double life between Columbus and Milwaukee.",
+    "confidence": "high",
+    "quote": "That coat fit him like another skin...he felt himself turning into his other, deeper self."
+  },
+  "culprit_and_motive": {
+    "value": "Tillman 'Tilly' Hayward, a property manager living a 'real life' elsewhere, is the serial killer motivated by a compulsive need to control, dominate, and ritually murder women while maintaining his respectable facade.",
+    "confidence": "high",
+    "quote": "His real life took place elsewhere...his 'work'\u2014was done elsewhere. This separation was self-protective."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "The narrative is focalized through the killer's consciousness; Tillman Hayward himself serves as the primary lens, allowing readers access to his rationalizations and disturbed internal logic, but no formal investigator appears.",
+    "confidence": "high",
+    "quote": "Tilly knew himself to be a supreme compartmentalizer, and he did not doubt his power to squeeze the girl down into a little drawer in his mind."
+  },
+  "suspect_architecture": {
+    "value": "Single perpetrator (Tillman 'Tilly' Hayward, the 'Ladykiller') \u2014 no competing suspects presented. The narrative is interior and POV-locked to the killer, eliminating traditional multi-suspect architecture. Social camouflage is layered: respectable Columbus property manager, family man, visiting relative staying with Mags and Bob \u2014 all roles designed to disperse suspicion across mundane contexts rather than across multiple characters.",
+    "confidence": "high",
+    "quote": "He 'lived' in Columbus. His real life took place elsewhere. This separation was self-protective."
+  },
+  "red_herring": {
+    "value": "Tilly's professional identity as a property manager provides deliberate misdirection \u2014 his late-night excursion is framed to Mags and Bob as a legitimate property inspection ('Last-minute look at a property... on North Avenue, way east'). The false alibi functions as the red herring, redirecting suspicion toward banal business activity. Additionally, the 'Ladykiller' operates under shifting false names (Mac, Mark, Mike) that misdirect victims and potential witnesses.",
+    "confidence": "medium",
+    "quote": "\"Last-minute look at a property. I shouldn't be superlate, but don't wait up for me.\""
+  },
+  "clue_fairness": {
+    "value": "The text is not structured as a fair-play mystery \u2014 it is an interior psychological portrait from the killer's POV. Clues are embedded but not presented for reader-versus-investigator competition. The smell-synesthesia system does encode information (Lori's words carry distinctive scents, her capacity to control them is noted as exceptional and potentially evidential), but no external investigator exists to whom these clues could be fairly disclosed.",
+    "confidence": "low",
+    "quote": "Like very few people he had observed, Lori Terry had the gift of imbuing words and even whole sentences with fragrances all her own."
+  },
+  "social_world": {
+    "value": "Mid-century American bourgeois respectability layered over predatory double life. Power flows through property ownership (father-in-law Daniel Sullivan's apartments house Tilly's family), employment legitimacy, and masculine social ease. Class performance is Tilly's weapon: he presents as a well-dressed Chicago businessman at Lou's Rendezvous, exploiting the bar's mixed college-and-neighborhood-pond-scum social ecosystem. Institutions (family, commerce, property management) are shown as providing cover rather than accountability.",
+    "confidence": "high",
+    "quote": "Supposedly a businessman from Chicago...the Ladykiller dressed well, he was relaxed and good-looking. Knew how to make a person laugh."
+  },
+  "alibi": {
+    "value": "Tilly constructs a verbal alibi for Mags and Bob \u2014 a late-night property inspection on North Avenue \u2014 that is entirely fabricated. The alibi is geographically specific enough to sound plausible but unverifiable. He also pre-establishes a train departure time (11 a.m.) to account for his overnight absence. The physical evidence of his wounds complicates his return but is managed through self-bandaging and bleach cleaning of the crime scene.",
+    "confidence": "high",
+    "quote": "\"It's on North Avenue, way east, past that French restaurant over there. The next block.\" ... \"What time is your train tomorrow?\" \"Eleven in the morning.\""
+  },
+  "reveal_mechanic": {
+    "value": "The text does not contain a conventional mystery reveal \u2014 the killer's identity is known throughout. However, the story embeds an idiosyncratic forensic-synesthetic system: blood bubbles contain olfactory 'records' of the deceased's life and verbal character. The failure to raise bubbles from Lori Terry's pooled blood \u2014 'for only the second or at a stretch maybe third time in his life as the Ladykiller he failed to raise up even a single bubble' \u2014 functions as an inverted reveal, signaling her exceptionality and his partial defeat.",
+    "confidence": "medium",
+    "quote": "He failed to raise up even a single bubble. He nearly moaned in frustration, but held back: she had refused to speak in Cockney, she had held to her dignity."
+  },
+  "media_and_audience": {
+    "value": "The killer is known publicly only as 'the Ladykiller' \u2014 a media-style epithet that shapes his self-conception. True Detective magazine is a real mediating presence: Tilly gives a copy to his nephew Keith as a semi-conscious disclosure, using true-crime media as a coded form of confession and audience-seeking. The public/press dimension is largely absent as active force, but the killer performs for an imagined audience ('O Unseen') established in his notebook writing.",
+    "confidence": "medium",
+    "quote": "Probably he should never have given that True Detective to poor little Keith. It was like a secret handshake he could not as yet acknowledge."
+  },
+  "investigator_wound": {
+    "value": "No conventional investigator is present in the excerpt. The narrative is entirely killer-POV. If a wound exists, it belongs to Tilly himself: his compulsive need for an audience and for his victims to recognize the artistry of his 'performance' \u2014 a vulnerability Lori Terry directly exploits and refuses to satisfy. Her refusal to perform terror, and her counter-attack, constitutes the story's central psychological rupture of his self-narrative.",
+    "confidence": "low",
+    "quote": "Why, he wondered, should a sustained, lifelong performance be disgusting? Couldn't the cow see how interesting, how clever, his whole splendid balancing act had been?"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The\tProcess\tIs\ta\tProcess\tAll\tIts\tOwn",
+    "author": "PETER\tSTRAUB",
+    "anthology_title": "The_Best_American_Mystery_Stories_2017_-_John_Sandford",
+    "story_index": 17,
+    "story_count": 19
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Disappearance and murder of a woman (wife) who vanishes during a solo run at Queeny Park; central question: who is the mysterious male runner and did he abduct and kill her?",
+    "confidence": "high",
+    "quote": "her car is down with the police. They found it at Queeny Park. Locked. Parked where she always parks"
+  },
+  "victim": {
+    "value": "The narrator's wife, a woman who runs alone at Queeny Park and is targeted by an unknown male runner; she is vulnerable due to her isolation and the dark, remote location of her running route.",
+    "confidence": "high",
+    "quote": "I last saw her at breakfast... She'd mentioned it in passing... Some guy turned around running at Queeny Park and caught up to me"
+  },
+  "closed_world": {
+    "value": "Queeny Park\u2014a dark, isolated park with long stretches of woods and limited accessibility; the victim ran there regularly and was unseen when she vanished, making it a bounded crime location.",
+    "confidence": "high",
+    "quote": "Queeny Park is so wrong for a woman running alone. It's totally wrong... Long stretches in the woods. A long way from anywhere."
+  },
+  "culprit_and_motive": {
+    "value": "An unknown male serial killer who targeted the narrator's wife during her run. Motive: predatory serial murder (three bodies found buried near the interstate, suggesting opportunistic victim selection).",
+    "confidence": "high",
+    "quote": "They found the body. Sixty-three miles out of town, buried alongside an interstate. Two others within fifty yards of it."
+  },
+  "resolution": {
+    "value": "DNA evidence from the remains exonerates the narrator (husband, wrongly convicted) after 697 days in prison. The real killer's identity remains unknown; resolution comes through forensic DNA clearing the innocent man, not through identifying the actual murderer.",
+    "confidence": "high",
+    "quote": "There's semen in the remains. DNA... DNA wasn't mine... I'm given my walking papers"
+  },
+  "investigator": {
+    "value": "The narrator himself\u2014a crime novelist and the husband of the victim\u2014who investigates covertly before her disappearance, becomes the primary suspect, is wrongly convicted, exonerated, and then serves as witness to the injustice.",
+    "confidence": "high",
+    "quote": "I went out there to see if I could see the guy, see the car he climbed into... And now it does."
+  },
+  "suspect_architecture": {
+    "value": "Two suspects: the narrator-husband (motive implied by investigators \u2014 marital tension, voyeur website, covert surveillance; opportunity via knowledge of park) and the unnamed male runner (true perpetrator; serial killer, no identity established). The husband is falsely primary; the runner is absent-invisible. A third peripheral figure \u2014 the car stalker from a year prior \u2014 is a separate unresolved threat suggesting a broader predatory environment.",
+    "confidence": "high",
+    "quote": "when all else fails, look pretty hard at the husband. And now it's me squarely in the sights."
+  },
+  "red_herring": {
+    "value": "The husband's single covert visit to Queeny Park \u2014 intended as protective surveillance to identify the runner \u2014 is weaponised as evidence of culpability. His professional knowledge of crime fiction is used to suggest he would know how to commit and conceal a murder, inverting his innocence into apparent guilt. The voyeur website (Magic Movies) is a secondary red herring implying sexual dysfunction and violence where none exists.",
+    "confidence": "high",
+    "quote": "My one act of covert surveillance meant to protect her is used against me, and used effectively."
+  },
+  "clue_fairness": {
+    "value": "All exculpatory and incriminating details are rendered to the reader in real time through the narrator's first-person account: the runner's anonymity, the wife's failure to share information with friends, the husband's park visit, the Magic Movies site, and the eventual DNA evidence. The reader has access to every fact the investigators have, plus the narrator's interior knowledge of innocence \u2014 creating dramatic irony rather than withheld information.",
+    "confidence": "high",
+    "quote": "She'd never mentioned him to them. Embarrassed, maybe. Or private. Or a little bit of both."
+  },
+  "social_world": {
+    "value": "Upper-middle-class suburban St. Louis: the narrator is a successful thriller writer with a New York entertainment lawyer and a well-connected female attorney, signalling cultural capital. Yet this status backfires \u2014 his professional expertise in crime becomes the prosecution's primary weapon. Institutional power (police, jury system) overrides individual credibility. The jury of 'peers' is explicitly coded as socially distant and credulous.",
+    "confidence": "high",
+    "quote": "Who knows how to pull something like this off better than someone like me? If I decided to do this, would they expect to find much physical evidence?"
+  },
+  "alibi": {
+    "value": "The husband has no usable alibi for the morning of the disappearance \u2014 he is working alone above the garage. His one verifiable location-specific act (the covert park visit) is not an alibi but an additional incrimination. The true perpetrator has no alibi constructed or examined. The wife's running companions Laurel and Tracy function as partial alibis for the wife's routine but cannot account for the runner's identity.",
+    "confidence": "medium",
+    "quote": "My car must have been seen by someone. It was one morning. Only one. I went out there to see if I could see the guy."
+  },
+  "reveal_mechanic": {
+    "value": "Resolution via forensic DNA evidence recovered from the victim's remains found 63 miles away alongside an interstate, with two additional bodies nearby confirming a serial killer pattern. The DNA exclusion mechanically exonerates the husband. No detective solves the case through deduction; the reveal is procedural and biological, arriving after wrongful conviction \u2014 a structural inversion of the classic reveal.",
+    "confidence": "high",
+    "quote": "There's semen in the remains. DNA. Day eight hundred and seventy-four and a hearing, and I'm given my walking papers\u2014DNA wasn't mine."
+  },
+  "media_and_audience": {
+    "value": "The crime is narrated entirely from inside the wrongful-conviction experience with no named press coverage, but institutional audience response is central: police build an adversarial case, a jury of twelve convicts on circumstantial evidence, and close friends Laurel and Tracy abandon their trust in the husband. His public identity as a crime writer becomes the prosecution's narrative frame, weaponising his authorial reputation as proof of capability and premeditation.",
+    "confidence": "high",
+    "quote": "The twelve morons in the real box are nodding and looking at me like I'm Manson."
+  },
+  "investigator_wound": {
+    "value": "The narrator is simultaneously investigator and accused \u2014 his wound is his professional identity as a crime writer, which generates hyper-vigilance (correctly reading the runner as a threat) but destroys his credibility with every institution that should protect him. His writerly habit of imagining worst-case scenarios is pathologised by investigators and dismissed by his wife, leaving him unable to act protectively without incriminating himself. Post-exoneration, his wound is relational: his daughters cannot reconnect with him.",
+    "confidence": "high",
+    "quote": "You write too many of those books... I'm still in grief, still can't sleep... I think I scare them."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "text_len": 12934,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Queeny",
+    "author": "RIDLEY PEARSON",
+    "anthology_title": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen",
+    "story_index": 18,
+    "story_count": 21
+  }
+}

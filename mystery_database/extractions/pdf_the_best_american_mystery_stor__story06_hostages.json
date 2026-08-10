@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder of Lex Smutt by Gordon Urquhart; subsequent murder of Gordon Urquhart by Stella Dauphine. Central questions: Who killed Gordon and why? Where is the missing money?",
+    "confidence": "high",
+    "quote": "Gordon squeezes off a round that strikes just to the left of the mole. Smutt shudders...Gordon steps forward and puts two more in the back of the man's head."
+  },
+  "victim": {
+    "value": "Lex Smutt: a debtor who owes Mr. Happer $15,000 (mostly interest/vig); Gordon Urquhart: a debt collector working for Happer who becomes expendable when money goes missing.",
+    "confidence": "high",
+    "quote": "You're nine thousand short...Mr. Happer will just have to understand. Most of the fifteen is vig...interest."
+  },
+  "closed_world": {
+    "value": "New Orleans underworld: a network of river warehouses, cheap rooms, and criminal operations overseen by Mr. Happer. Characters are trapped within Happer's control and jurisdiction.",
+    "confidence": "medium",
+    "quote": "Gordon Urquhart's bedroom...A young-looking thirty, Stella has curly hair...she's popular in high school but proved a hindrance...throughout her twenties."
+  },
+  "culprit_and_motive": {
+    "value": "Stella Dauphine kills Gordon Urquhart. Motive: She is Mr. Happer's enforcer and either works with or for Happer to eliminate Gordon and recover/conceal the missing six thousand dollars.",
+    "confidence": "medium",
+    "quote": "She squeezes off a round, which strikes Gordon on the right side of his chest...I'll just whack you and toss the place. I'll still get my fee."
+  },
+  "resolution": {
+    "value": "Stella finds the money hidden in Gordon's flour container and delivers it to Mr. Happer. No official investigation or justice; the crime is resolved within the criminal hierarchy through violence and obedience.",
+    "confidence": "medium",
+    "quote": "An hour later, she finds the six thousand in the flour container on Gordon's kitchen counter. The giveaway\u2014what man has fresh flour in a container?"
+  },
+  "investigator": {
+    "value": "No official investigator. The reader experiences the mystery through multiple perspectives: first Mabel (the Hostages section), then Gordon as victim/perpetrator, finally Stella as enforcer. No detective pursues truth.",
+    "confidence": "high",
+    "quote": "Gordon checks his watch as he ascends the exterior stairs...It's nine o'clock a.m., sharp. He looks across the river at the unpainted Algiers Wharf."
+  },
+  "suspect_architecture": {
+    "value": "Two parallel criminal hierarchies: (1) 1930s bank robbery gang \u2014 Mabel (mastermind posing as hostage), Baby Emma (accomplice), Carter Docktrey (nominal leader), Lindsey (stone killer/organizer), Crazy Al and Bruno Zale (muscle), Fast Freddy (wheelman/card cheat), Sledge (enforcer); (2) New Orleans debt-collection world \u2014 Gordon Urquhart (hired collector), Stella Dauphine (rival/superior operative), Mr. Happer (crime boss). Both feature a hidden true leader concealed behind a decoy authority figure.",
+    "confidence": "high",
+    "quote": "Carter Docktrey...who thought he led the gang...stood in front of his overturned chair"
+  },
+  "red_herring": {
+    "value": "In the bank-robbery strand, Mabel and Baby Emma are staged as innocent hostages (old woman in feedsack dress, young girl in white ruffles) to deceive both the gang and the reader \u2014 they are in fact the criminal masterminds. In the New Orleans strand, Gordon is positioned as the primary threat to Stella, but the real misdirection is that Stella herself is working against both Gordon and Happer, concealing the six thousand she recovers.",
+    "confidence": "high",
+    "quote": "In this outfit, she and Baby Em made the perfect hostages."
+  },
+  "clue_fairness": {
+    "value": "The flour-container hiding place is a clue available to the reader before Stella explicitly names it as the find: the narrative describes Gordon as a hard man with no domestic habits, and Stella's discovery is flagged with an explanatory aside ('what man has fresh flour in a container?') \u2014 the domestic anomaly was visible in the scene description of the spartan room earlier. Similarly, Gordon's gloves and casing collection mirror Stella's identical procedure, signalling to the reader that both are professionals of the same type.",
+    "confidence": "medium",
+    "quote": "The giveaway \u2014 what man has fresh flour in a container?"
+  },
+  "social_world": {
+    "value": "A layered patronage-and-debt world: Mr. Happer sits at the apex, deploying operatives (Gordon, Stella) against debtors (Smutt). Loyalty and history ('you and the old man go back a long way') are currency but are ultimately subordinate to performance and Happer's suspicion. Below that, the 1932 Dust Bowl strand shows Depression-era power: bankers exploit farmers, gangs exploit both, and survival economics mean 'almost anybody would do anything for a price' \u2014 including hosting criminals for cash.",
+    "confidence": "high",
+    "quote": "It was 1932, and almost anybody would do anything for a price."
+  },
+  "alibi": {
+    "value": "The bank-robbery gang's collective alibi is constructed by Fast Freddy: he lays a false trail for police and dumps the getaway car while the gang hides in a farmer's wagon under a tarp, appearing to be ordinary farm traffic. The 'hostages' (Mabel and Baby Emma) function as a further alibi layer \u2014 their presence as apparent victims exonerates the gang from suspicion of pre-planning. Stella's alibi to Happer is that she found no money, when in fact she recovered the six thousand and kept it.",
+    "confidence": "high",
+    "quote": "Fast Freddy Okrentski...had laid down a false trail for the police and dumped the car while the gang rode out of town in the back of the farmer's wagon"
+  },
+  "reveal_mechanic": {
+    "value": "Two reveals: (1) Stella's recovery of the hidden money is demonstrated through domestic-anomaly detection \u2014 fresh flour in a bachelor's kitchen is a physical impossibility that betrays the hiding place, shown to the reader at the moment of discovery. (2) Stella's deeper betrayal of Happer is revealed through her final whispered words to the dead Gordon and her internal monologue ('I have tools, plenty of tools to work against this man'), converting the apparent resolution into a new threat layer.",
+    "confidence": "high",
+    "quote": "And I have tools, plenty of tools to work against this man, against all these men."
+  },
+  "media_and_audience": {
+    "value": "Minimal formal media presence, but institutional perception is actively managed: the police are misdirected by Freddy's false trail; the bank robbery is witnessed by a crowd of 'confused customers and tellers huddled together like the survivors of a natural disaster' whose testimony will shape the official narrative. In the New Orleans strand, Happer uses rumour as a control mechanism ('the word'll get out \u2014 make it easier later on'), treating reputational signal as a professional tool rather than a press phenomenon.",
+    "confidence": "medium",
+    "quote": "The word'll get out. Make it easier later on...that's what the big boys do."
+  },
+  "investigator_wound": {
+    "value": "There is no conventional detective investigator in either strand. The closest functional equivalent is Stella Dauphine, whose wound is a history of exploitation by men in power (office jobs where her body was an obstacle, now weaponised as a tool against those same men) and a long prior relationship with Happer that she is covertly working to subvert. Her psychological vulnerability \u2014 and motivation \u2014 is the accumulated debt of gendered power imbalance, made explicit in her final monologue.",
+    "confidence": "medium",
+    "quote": "So you and Mr. Happer go back a long way. Well, we go back a longer way."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "filename": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Hostages",
+    "author": "JAMES\tCRUMLEY",
+    "anthology_title": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly",
+    "story_index": 6,
+    "story_count": 23
+  }
+}

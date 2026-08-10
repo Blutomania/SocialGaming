@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": "Two primary suspects who are also the dual narrators and eventual murderers of each other: Bruce Kimball (broke stockbroker, motive: Stephanie's wealth) and Stephanie Morwell (cash-poor widow, motive: Bruce's life insurance policy). Each is simultaneously suspect and victim, differentiated by gender, class performance, and financial desperation concealed behind charm.",
+    "confidence": "high",
+    "quote": "Nearly three years a widow; time to remarry...income could become a worry. / I'm only hitting on one nostril, you know? I'm hurtin'."
+  },
+  "red_herring": {
+    "value": "Both characters perform romantic sincerity and mutual affection \u2014 Bruce's refusal to 'sponge,' Stephanie's schoolgirl name-writing \u2014 as deliberate misdirection masking purely mercenary motives. The honeymoon warmth and Stephanie's 'growing fond' of Bruce are false trails away from mutual predation.",
+    "confidence": "high",
+    "quote": "'I won't sponge on you,' he said, so firm and manly that I dropped to my knees that instant."
+  },
+  "clue_fairness": {
+    "value": "All financial distress clues are planted symmetrically for the reader in each narrator's voice before any scheme is revealed: Bruce's one-nostril cocaine habit signaling desperation, Stephanie's notepad of overdue bills beside the romantic name-writing. The reader has full access to both characters' concealed insolvency simultaneously.",
+    "confidence": "high",
+    "quote": "The rest of that page is filled with hastily jotted numbers: income, outgo, estimated expenses, overdue bills. Stephanie Kimball."
+  },
+  "social_world": {
+    "value": "Manhattan financial elite and its performative wealth: Wall Street broker-client patronage networks, Sutton Place apartments, Amagansett cottages, and the social obligation of appearing solvent. Both characters are sustained by the appearance of money rather than its reality, and their relationship is entirely mediated by this class performance.",
+    "confidence": "high",
+    "quote": "Bruce Kimball, with Rendall/LeBeau. Account exec. May I say I'm still making money for my clients?"
+  },
+  "alibi": {
+    "value": "No classical alibi construction is present in this non-investigative, dual-narrator short story. The story's structure bypasses alibi entirely \u2014 both parties' guilt is transparent to the reader through first-person confession, leaving no alibi to test or break.",
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is structural and ironic rather than investigative: the dual first-person narration places the reader in possession of both predators' schemes simultaneously, so the mutual murder plot is demonstrated through the convergence of their parallel insurance-policy consultations \u2014 each visiting their own new insurance agent after the marriage.",
+    "confidence": "high",
+    "quote": "I taxied downtown for a discussion with Oliver Swerdluff, my new insurance agent. (New since Robert's demise, I mean.)"
+  },
+  "media_and_audience": {
+    "value": "No press, institutional, or public-opinion framing of the crime appears in the text. The story is entirely private and interior, with no external audience perceiving or narrating the scheme.",
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "There is no investigator figure in this story. It is a crime story without detection, structured as mutual predator confession. No psychological wound of an investigator is present or relevant.",
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "filename": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "DONALD E. WESTLAKE",
+    "anthology_title": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch",
+    "story_index": 15,
+    "story_count": 15
+  }
+}

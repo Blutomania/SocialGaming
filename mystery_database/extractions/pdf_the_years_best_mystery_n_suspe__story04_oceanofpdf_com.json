@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "A dead body (possibly a missing person) - identity ambiguous; multiple missing persons (Franley, a medical student, the lady's husband) create competing victim claims",
+    "confidence": "medium",
+    "quote": "My husband disappeared about six months ago... One of our students is missing..."
+  },
+  "closed_world": {
+    "value": "Lake Michigan beach during one afternoon; physically bounded by shore and water, temporally bounded by daylight hours",
+    "confidence": "high",
+    "quote": "I stood and watched birds forage in the shallows of Lake Michigan... We sat and watched the waters and waited..."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "The body is revealed as flotsam (garbage, rope, tire, rotting wood, old clothes), not an actual corpse\u2014the apparent 'mystery' dissolves. But at the end, the boy pulls a real body from the water and releases it back into the lake, leaving the true crime unresolved.",
+    "confidence": "medium",
+    "quote": "came apart in our hands. Rotting fish drifted off with the rest of the junk... He had an arm, hauled a body up to the edge of the beach... gave a big heave that sent it out into deeper water."
+  },
+  "investigator": {
+    "value": "A newly hired school psychologist tasked with convincing the boy to recant his story; becomes complicit in an actual concealment",
+    "confidence": "high",
+    "quote": "I'd just been hired as the psychologist for a suburban school system... It was up to me to make friends with this kid, get him to trust me..."
+  },
+  "suspect_architecture": {
+    "value": "Four interested parties converge on the beach, each with motive to claim or deny the body: a wife whose husband vanished with their money (needs proof of death for insurance), an attorney representing a woman whose husband disappeared and who wants to marry her lover (needs death certificate), a medical school counselor whose rebellious student is missing (ambivalent \u2014 guilt vs. professional standards), and the boy's father (hotel owner who needs the body story suppressed for resort business). The investigator-narrator serves as a fifth perspective with institutional motive to manufacture a recantation.",
+    "confidence": "high",
+    "quote": "My job would start after he admitted defeat... I had a chance to show what I could do."
+  },
+  "red_herring": {
+    "value": "The flotsam 'body' \u2014 a tree limb tangled with old clothes, rope, tire, and garbage \u2014 serves as the story's central red herring, designed to make the boy (and reader) believe the case is closed and the sighting was a fantasy. Its dramatic revelation as junk discredits the boy publicly and clears the beach of witnesses, but the real body surfaces immediately after, proving the misdirection was structural to the plot.",
+    "confidence": "high",
+    "quote": "the 'body,' a tree limb with old clothes, a piece of tire, rope, garbage stuck to it, came apart in our hands."
+  },
+  "clue_fairness": {
+    "value": "The boy's repeated observation about the log washing up five times \u2014 used to explain the cyclical drift patterns of the lake \u2014 is presented to the reader at the same moment as the narrator receives it, establishing the physical mechanism by which a real body could return. The narrator's action of removing his shoes and rolling up his trousers is shown in real time, fair-signalling his intention to enter the water and his readiness to act when the moment comes.",
+    "confidence": "medium",
+    "quote": "See that log? It washed up close to shore five different times. I counted. Finally it got stuck."
+  },
+  "social_world": {
+    "value": "A lakeside resort economy built on affluence and reputation: hotel owners, wealthy vacationers in Mercedes and Cadillacs, designer beachwear, gold jewellery, silk ties. Institutional authority (police, school psychology, medical academia, law) is deployed not to find truth but to protect economic and social interests. The boy is structurally powerless \u2014 small, young, son of a man who needs him silenced \u2014 while every adult around him has a financial or professional stake in suppressing or exploiting the body's existence.",
+    "confidence": "high",
+    "quote": "I need rumors of a body washed up on the beach like I need another hole in my head."
+  },
+  "alibi": {
+    "value": "No formal alibi structure is constructed for any character; the story's missing persons are absent rather than alibied. The closest alibi-function is the collective adult consensus that no drowning has been reported in over a month, used by the police and resort interests as institutional cover to declare the boy's sighting impossible \u2014 a social alibi for inaction rather than an individual account of whereabouts.",
+    "confidence": "low",
+    "quote": "We haven't had a drowning reported in over a month. If there is a corpse, it'll cost more'n it's worth to identify."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is dual and sequential: the false body is exposed by physical contact (it disintegrates when grabbed), deflating the mystery publicly; then the true body surfaces in the aftermath, witnessed only by the boy and narrator. The boy's act of pushing the real body back into deeper water \u2014 and the west wind carrying away the narrator's shout \u2014 transforms the reveal into a suppression. The mechanism is environmental (lake drift patterns established earlier) and psychological (the boy's stated resolve to 'know what to do next time').",
+    "confidence": "high",
+    "quote": "He reached down and touched a cheek. Then he put his whole thirteen years on the line, gave a big heave."
+  },
+  "media_and_audience": {
+    "value": "The local newspaper report of the boy's sighting functions as the story's catalyst, drawing all interested parties to the beach. Press coverage is explicitly framed as an economic threat by the hotel-owner father and as an opportunity by the insurance-seeking wife and the attorney. The story's resolution depends on the body never becoming public record \u2014 the boy pushes it back, the wind erases the narrator's protest, and the father is given a sanitised version. The crime is managed into non-existence by controlling its media footprint.",
+    "confidence": "high",
+    "quote": "I need rumors of a body washed up on the beach like I need another hole in my head... local papers could announce it was all a hoax."
+  },
+  "investigator_wound": {
+    "value": "The narrator is a newly hired school psychologist on his first assignment, explicitly tasked not with finding truth but with manufacturing a socially convenient recantation to protect the school board president's business. His wound is institutional: his professional debut depends on making a truthful child lie. The story's final irony \u2014 that he was right to half-believe the boy, and that his moment of genuine connection enabled the cover-up \u2014 implicates his need to prove himself as the mechanism of injustice.",
+    "confidence": "high",
+    "quote": "I'd just been hired as the psychologist for a suburban school system... I had a chance to show what I could do."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "filename": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "text_len": 13396,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "JACKLYN BUTLER",
+    "anthology_title": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch",
+    "story_index": 4,
+    "story_count": 15
+  }
+}

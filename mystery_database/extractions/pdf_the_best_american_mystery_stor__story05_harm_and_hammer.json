@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Attempted murder of witness in federal protection program by rogue U.S. Marshal; central question: why would a trusted protector betray his charge?",
+    "confidence": "high",
+    "quote": "He sold me out. For money. The marshal is talking about making plans... 'Fred had some... money problems.'"
+  },
+  "victim": {
+    "value": "Callie Rustan (witness identity), young woman coerced into money-laundering scheme by her boss, now in witness protection; killable because she can expose the criminal network and the Marshal's complicity",
+    "confidence": "high",
+    "quote": "She knows that she and he can never have a future. But that's not the point... She trusts him."
+  },
+  "closed_world": {
+    "value": "Callie's townhouse rental in a cul-de-sac in the Southeast, isolated by winter weather and witness protection protocols that forbid contact with her past",
+    "confidence": "high",
+    "quote": "She parks in the driveway of her crappy townhouse rental... The complex where she lives was built in the eighties"
+  },
+  "culprit_and_motive": {
+    "value": "Marshal Fred, Callie's handler and protector, attempts her murder due to financial desperation from divorce and alimony; he has cut a deal with criminals seeking Callie and her former boss Eddie Timball to locate them",
+    "confidence": "high",
+    "quote": "He had to do something... It was the only thing I could think of. It's just... it's just a transaction."
+  },
+  "resolution": {
+    "value": "Callie kills Fred in self-defense using the hammers and musical instruments she has been practicing with in her garage; authorities arrive; she is extracted to a safe house and reassigned to a new identity",
+    "confidence": "high",
+    "quote": "The hammers rise together in unison. They drum their way down the man's skull... Sirens make terrible music."
+  },
+  "investigator": {
+    "value": "Callie herself, the witness and victim, experiences and survives the attempted murder; also Federal Marshal Margaret Bryan, who discovers Fred's betrayal and arrives to protect Callie",
+    "confidence": "high",
+    "quote": "Where's Fred? is all Callie can think to say... Margaret Bryan coldly declines a cup."
+  },
+  "suspect_architecture": {
+    "value": "Two antagonists with mirrored betrayal structure: Fred (trusted marshal, sold Callie out for money due to divorce/debt) and Eddie Timball (brokerage superior who coerced Callie into money laundering). Both men exploited positions of trust over her. Margaret Bryan serves as false-threat foil who resolves as ally. Callie herself occupies the morally ambiguous witness/perpetrator role.",
+    "confidence": "high",
+    "quote": "He cut a deal with the guy who was looking for you and Timball. You probably didn't know, but Fred had some . . . money problems."
+  },
+  "red_herring": {
+    "value": "Fred's monthly cul-de-sac visits and warm paternal behavior are constructed to read as genuine protective care, misdirecting both Callie and the reader from his corrupt intent. His reassignment is presented as bureaucratic routine, concealing that he was removed for cause. The unfamiliar black truck is planted as an external-threat signal, deflecting suspicion from the familiar face at the door.",
+    "confidence": "high",
+    "quote": "Relief floods her. She knows that voice. She opens the door to find Marshal Fred standing there."
+  },
+  "clue_fairness": {
+    "value": "Several clues are placed in plain sight for the reader before Callie consciously registers their significance: Fred arrives in street clothes and sneakers rather than his suit; he produces a non-service weapon ('Not his service weapon. Another one. Smaller, stubbier, older.'); the garage door opener is repeatedly noted as broken, establishing the trap before it is sprung. The ball-peen hammer in the overall loop is described earlier as part of her daily routine, making its use in self-defense a prepared-for detail.",
+    "confidence": "high",
+    "quote": "Not his service weapon. Another one. Smaller, stubbier, older."
+  },
+  "social_world": {
+    "value": "Federal witness protection bureaucracy as a rigid patronage hierarchy: marshals hold absolute power over protected witnesses' identities, locations, and freedoms. Callie is structurally voiceless \u2014 she cannot contact family, cannot refuse relocation, cannot question reassignments. This power asymmetry is what Fred exploits. Beneath it sits the financial world hierarchy (brokerage firm) where Timball's seniority made refusal impossible. Both systems punish the subordinate for the powerful's crimes.",
+    "confidence": "high",
+    "quote": "Don't call attention to yourself. Try to fit in. Join groups, but don't become a leader. Stay off the Internet. Avoid social media."
+  },
+  "alibi": {
+    "value": "Fred's alibi is his official reassignment \u2014 he appears to have been removed from Callie's case legitimately, providing cover for his unsupervised approach. His presence in street clothes rather than official dress functions as a costume alibi, allowing him to approach as a familiar private visitor rather than a marshal on duty. Bryan's frantic calls reveal the alibi's collapse: Fred was never sanctioned to be there.",
+    "confidence": "medium",
+    "quote": "Bryan called you? She nods. He swears under his breath. Hangs his head."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is delivered through behavioral incongruity accumulating in real time: wrong clothes, wrong weapon, wrong knowledge gap ('Who?' when Callie mentions Margaret). The psychological reveal lands on Fred's admission \u2014 'She's bleeding me dry' \u2014 which recontextualizes every prior kindness as grooming. The physical confirmation comes when he produces the non-service weapon, a concrete object the reader can evaluate independently of Callie's shock.",
+    "confidence": "high",
+    "quote": "'I'm sorry, Callie,' he says, and for a moment she buys the hurt in his eyes and voice. 'She's bleeding me dry.'"
+  },
+  "media_and_audience": {
+    "value": "The amateur tourist videos of Callie playing the anvil constitute an inadvertent public exposure mechanism that threatens her witness protection cover \u2014 the story's central media danger. Callie monitors amateur video websites obsessively. The videos represent the collision of folk-art documentation culture with federal identity concealment. There is no press or institutional media apparatus; the threat is distributed, democratic, and uncontrollable, which makes it more insidious.",
+    "confidence": "high",
+    "quote": "For weeks now, ever since she showed off at the farm, she's been surfing all the amateur video websites in search of them, without any luck."
+  },
+  "investigator_wound": {
+    "value": "Callie is both witness and de facto investigator of her own survival. Her wound is a pattern of misplaced trust in older, authoritative men who exploit her deference: first Timball, then Fred. Each time she survives by recognizing the pattern one beat too late. Her psychological arc \u2014 learning to distrust charm and kindness from men in power \u2014 is the story's thematic spine. Margaret Bryan's brusqueness, initially read as hostile, ultimately marks her as the only trustworthy authority precisely because she refuses to perform warmth.",
+    "confidence": "high",
+    "quote": "She had trusted Eddie Timball. She had trusted Fred. And now both of them were gone."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "filename": "The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Harm\tand\tHammer",
+    "author": "JOSEPH\tD\u2019AGNESE",
+    "anthology_title": "The_Best_American_Mystery_Stories_215_-_James_Patterson",
+    "story_index": 5,
+    "story_count": 19
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Brutal murder of young woman (Sabrina Jackson): skull and facial bones smashed with blunt object, limbs severed with axe-like weapon, body dumped in field near Toms River. Central question: Who is the killer and what is their motive for such extreme violence and mutilation?",
+    "confidence": "high",
+    "quote": "the victim, had been smashed with a blunt object, smashed, dented, and pierced, as if the unknown killer had wanted not merely to kill his victim but to obliterate her."
+  },
+  "victim": {
+    "value": "Sabrina Jackson, 23-year-old cocktail waitress and community college student from Easton, Pennsylvania. Described as spirited but troubled\u2014poor self-image, prone to risky relationships with men, seeking escape and reinvention ('beginning a new life').",
+    "confidence": "high",
+    "quote": "a part-time community college student studying computer technology and working as a cocktail waitress in Easton, Pennsylvania. The young woman had been reported missing by her family in mid-May."
+  },
+  "closed_world": {
+    "value": "Dispersed: victim last seen leaving Easton for Atlantic City with unknown male casino employee; body found months later near abandoned gravel pit in southern New Jersey. Investigation spans Pennsylvania-New Jersey region with no clear geographic containment.",
+    "confidence": "medium",
+    "quote": "The body had been dumped sometime in the late spring or early summer in a field above an abandoned gravel pit near Toms River in the southern part of the state, a half-hour drive from Atlantic City."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Partial: Dr. Cassity successfully reconstructs victim's face from shattered skull fragments using forensic sculpting; identification achieved through facial reconstruction sketches matched against missing persons photos and recovered silver earrings. Killer remains unidentified at text's end.",
+    "confidence": "high",
+    "quote": "Early in October the victim was identified: her name was Sabrina Jackson... photographs of her bore an uncanny resemblance to the sketches Kyle Cassity and his assistant had made."
+  },
+  "investigator": {
+    "value": "Dr. Kyle Cassity, 67-year-old forensic anthropologist and sculptor at William Paterson University. Expert reconstruction specialist and prosecution witness. Emotionally invested beyond professional duty\u2014conflates victim with his estranged illegitimate daughter.",
+    "confidence": "high",
+    "quote": "Dr. Kyle Cassity, he worked with the remains of victims. Often these were badly decomposed, mutilated, or broken, seemingly past reconstruction and identification. He was good at his work."
+  },
+  "suspect_architecture": {
+    "value": "Single unnamed male perpetrator implied; no formal suspect cast presented. The killer is characterized only by the extreme violence of the act and the ambiguous motive of leaving the body to be found. The 'new male friend' with a 'major position' at an Atlantic City casino is the sole named suspect-adjacent figure, never identified.",
+    "confidence": "low",
+    "quote": "nobody'd seen her...the rumor got to be, this guy had money like Donald Trump. He was a high-stakes gambler."
+  },
+  "red_herring": {
+    "value": "Sabrina's voicemail message and pattern of disappearing with men created a sustained false trail \u2014 family, friends, and police all assumed she had voluntarily left, delaying the missing persons investigation entirely. The 'new life' narrative actively misdirected attention away from foul play.",
+    "confidence": "high",
+    "quote": "Sabrina had disappeared in similar ways more than once in the past, in the company of men, and so her family and friends had been hesitant"
+  },
+  "clue_fairness": {
+    "value": "The story withholds rather than distributes clues fairly to the reader; it is a literary psychological study, not a fair-play detective puzzle. Physical evidence (silver earrings, hair, skeletal dimensions) is described but not presented as reader-solvable clues \u2014 the identification comes via broadcast, not deductive reasoning available to the reader.",
+    "confidence": "low",
+    "quote": "the silver earrings found with the remains were identified as hers."
+  },
+  "social_world": {
+    "value": "Two sharply contrasted social worlds: the credentialed, media-celebrated academic-forensic establishment (Cassity, William Paterson University, NJ Dept of Forensics) versus the working-class, semi-transient world of cocktail waitresses, community college night students, and Easton Pennsylvania row-house families. Power flows entirely from the institutional to the marginalized.",
+    "confidence": "high",
+    "quote": "a part-time community college student studying computer technology and working as a cocktail waitress in Easton, Pennsylvania"
+  },
+  "alibi": {
+    "value": "No alibi is constructed or tested in the text. The killer is never identified; the story is pre-alibi-phase. Notably, Cassity's own whereabouts and motivations are subtly rendered suspicious by the narrative's end, but no formal alibi structure is invoked.",
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "The forensic facial reconstruction from fragmented skull serves as the reveal mechanic \u2014 Cassity rebuilds the victim's face from bone geometry and hair, producing sketches that are broadcast publicly and recognized by those who knew Sabrina. The identification is achieved through art-science synthesis rather than deduction from motive.",
+    "confidence": "high",
+    "quote": "photographs of her bore an uncanny resemblance to the sketches Kyle Cassity and his assistant had made."
+  },
+  "media_and_audience": {
+    "value": "Media plays a dual role: Cassity is himself a media figure ('cover story in the Newark Star-Ledger') whose reconstruction is 'broadcast throughout the state, printed on flyers and posted on the Internet.' Simultaneously, press coverage of Sabrina posthumously slanders her ('printing ugly things about my daughter in the paper'), repackaging the victim as a wild, bar-haunting woman.",
+    "confidence": "high",
+    "quote": "'printing ugly things about my daughter in the paper...calling her wild, unpredictable. Like all my daughter did was hang out in bars.'"
+  },
+  "investigator_wound": {
+    "value": "Cassity's wound is his secret abandoned illegitimate daughter, born December 1976 and never known. The case of a young woman brutally obliterated and needing to be given back her face triggers his buried guilt and longing. The story closes with the wound fully activated \u2014 he watches a teenage girl on a bicycle with 'such longing, such love,' stroking his own artery, implying predatory desire that implicates him morally in the violence he investigates.",
+    "confidence": "high",
+    "quote": "His lost daughter. His mind drifted from the skull and on to her, who was purely abstract to him, not even a name."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "filename": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The\tSkull",
+    "author": "JOYCE\tCAROL\tOATES",
+    "anthology_title": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly",
+    "story_index": 14,
+    "story_count": 23
+  }
+}

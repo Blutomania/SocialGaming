@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Serial sexual assault, kidnapping, and breaking-and-entering: seven counts of rape committed by dentist Henry Calston against college-age women in their own homes. Central question: how did a seemingly ordinary, mild-mannered professional husband commit violent crimes undetected while living a domestic life?",
+    "confidence": "high",
+    "quote": "Calston faces seven counts each of sexual assault, kidnapping, and breaking and entering."
+  },
+  "victim": {
+    "value": "Seven college-age women, described as the type who visit makeup counters in giggling groups. They are 'killable' because they are young, vulnerable, and isolated in their own homes\u2014accessible to someone with knowledge of routine and access patterns.",
+    "confidence": "high",
+    "quote": "young, thin, tearful victims, all college students of the type who visit the makeup counter in giggling groups"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Henry Calston, Darlene's husband of several years. Motive is psychologically complex and remains partially obscure: childhood abuse by his father; possible emotional detachment masked by performative domesticity; Darlene's repeated demands for a 'stronger man' may have channeled his violence outward toward strangers rather than his wife.",
+    "confidence": "medium",
+    "quote": "he did it, and that I loved him, all of him, while he did it...Hadn't I loved his strength...tried to make him stronger, more forceful?"
+  },
+  "resolution": {
+    "value": "The trial proceeds with seven victims scheduled to testify. Henry is held without bail due to flight risk. The resolution is procedural and incomplete within the text: the case moves toward courtroom judgment rather than investigative revelation. Darlene, the investigator-witness, achieves personal resolution by leaving Henry after visiting him in jail.",
+    "confidence": "medium",
+    "quote": "All seven victims are scheduled to testify during the trial...The judge denied bail, saying Henry's past travel history and the nature of the crimes made him a flight risk."
+  },
+  "investigator": {
+    "value": "Darlene Calston, the wife. She is simultaneously suspect in her own complicity, victim of emotional manipulation, and investigator of truth. She experiences the mystery from intimate proximity\u2014living with the culprit\u2014while remaining ignorant of his crimes until public exposure.",
+    "confidence": "high",
+    "quote": "How can someone live with another and not see things, you will wonder, how could anyone marry, or love, such a person?"
+  },
+  "suspect_architecture": {
+    "value": "Single perpetrator (Henry Calston, dentist): wife-narrator discovers guilt retrospectively. No competing suspects \u2014 the architecture is inverted; guilt is confirmed, not deduced from a cast.",
+    "confidence": "high",
+    "quote": "All seven victims are scheduled to testify during the trial of accused rapist Henry Calston"
+  },
+  "red_herring": {
+    "value": "The narrator briefly entertains the possibility that a disgruntled patient framed Henry, and that the resemblance to the suspect sketch is coincidence \u2014 both floated then immediately deflated.",
+    "confidence": "high",
+    "quote": "I wonder if it is all a horrible coincidence, or if a disgruntled patient framed him"
+  },
+  "clue_fairness": {
+    "value": "Clues are embedded in the narrator's retrospective memory and shared with the reader simultaneously: the suspect drawing's resemblance, Henry's insomnia and night wanderings, his secret praying, his hands.",
+    "confidence": "medium",
+    "quote": "he always had insomnia and I, a heavy sleeper, never even knew which nights he wandered through our house"
+  },
+  "social_world": {
+    "value": "Suburban middle-class cul-de-sac respectability: dentist husband, makeup-counter wife, antique shopping, Hawaii vacations. Social capital collapses under media exposure; neighbours and friends withdraw.",
+    "confidence": "high",
+    "quote": "we lived on a cul-de-sac with wide open manicured lawns... Recently, they've stopped calling."
+  },
+  "alibi": {
+    "value": "Henry had no formal alibi \u2014 his alibi was the marriage itself: the narrator, a heavy sleeper, unknowingly provided cover. She never knew which nights he left the house.",
+    "confidence": "high",
+    "quote": "I, a heavy sleeper, never even knew which nights he wandered through our house and which nights he lay beside me"
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is somatic and psychological: the narrator looks at Henry's hands in the jail and, in that moment, knows with certainty he is guilty \u2014 no confession needed, no evidence recited.",
+    "confidence": "high",
+    "quote": "I suddenly know for certain, in a way that I had not known until now, that he did it, and that I loved him"
+  },
+  "media_and_audience": {
+    "value": "Extensive: grainy suspect sketch in newspapers, TV coverage outside the courthouse, National Enquirer interest in the wife's breakdown, high-profile lawyer, radio DJ mentions \u2014 crime as public spectacle.",
+    "confidence": "high",
+    "quote": "A pregnant reporter in a beige suit stands in front of the county courthouse and says, 'All seven victims are scheduled to testify'"
+  },
+  "investigator_wound": {
+    "value": "The narrator-as-investigator is wounded by complicity and desire: she loved Henry's strength and actively encouraged his dominance, and her deepest shame is that she feels excluded by \u2014 not protected from \u2014 his violence.",
+    "confidence": "high",
+    "quote": "my shame is that I feel worse that it was not enough for him to do those things to me"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The\tLove\tof\ta\tStrong\tMan",
+    "author": "OZ\tSPIES",
+    "anthology_title": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates",
+    "story_index": 19,
+    "story_count": 22
+  }
+}

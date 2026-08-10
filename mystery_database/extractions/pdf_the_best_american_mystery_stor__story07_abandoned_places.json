@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder of Valentine (father) by torture and throat-cutting in abandoned Forest Park Hospital basement, followed by murder of Bruce (Vickie's accomplice) by hammer blows. Central questions: Why did Vickie betray Valentine? Was the money ever found? Will Ian's revenge be discovered?",
+    "confidence": "high",
+    "quote": "the man slid that knife over his father's throat, unzipping his neck. The skin gaped on either side of that opening, giving his dad a second smile."
+  },
+  "victim": {
+    "value": "Valentine (Ian's father): a criminal involved in the Pulaski Bank heist who possessed hidden money. 'Killable' because he was hunted by the Brady Miller gang and betrayed by his wife Vickie, who conspired with accomplice Bruce to extract his hidden money through torture.",
+    "confidence": "high",
+    "quote": "Valentine started running with the Miller boys. They knew he was part of the hit on the Pulaski Bank last year, they just couldn't prove it."
+  },
+  "closed_world": {
+    "value": "The abandoned Forest Park Hospital in St. Louis's Dogtown neighborhood\u2014a decaying, isolated urban ruin scheduled for demolition. Its basement serves as the murder location, sealed from outside observation by darkness and structural isolation.",
+    "confidence": "high",
+    "quote": "the abandoned Forest Park Hospital along the east side of the neighborhood. Soon they would gut it, tearing it down to build another parking lot."
+  },
+  "culprit_and_motive": {
+    "value": "Vickie (Valentine's wife) and Bruce (her accomplice): Vickie was abused by Valentine and motivated by greed for the hidden money from the bank heist. She orchestrated Valentine's torture and murder, with Bruce executing the violence in exchange for a share of the stolen money.",
+    "confidence": "high",
+    "quote": "You know how much foundation I was using to cover the bruises from your daddy's fists? There's vice and then there's vice. Shit, it's sick."
+  },
+  "resolution": {
+    "value": "Ian discovers the crime in progress, witnesses his father's murder, and enacts vigilante justice by killing Bruce with a hammer. He deliberately spares Vickie, recognizing she is as much a victim of trauma as he is, allowing her to live with the guilt and horror of what she has witnessed and participated in.",
+    "confidence": "high",
+    "quote": "He paused, watching as she waited for the hammer to fall. She was as evil as the man on top of her, but more than that, she was pathetic... He dropped the hammer and walked away, abandoning that place."
+  },
+  "investigator": {
+    "value": "Ian (the adolescent son): a traumatized witness and eventual vigilante rather than an official detective. The narrative is filtered through his consciousness as he discovers his father's abandonment, overhears rumors of crime, follows Vickie to the hospital, and witnesses the murder firsthand.",
+    "confidence": "high",
+    "quote": "Shifting closer, Ian tried to catch a glimpse of his face, wondering if it was the man in his dad's bed... he turned and followed, staying along the edges of the light."
+  },
+  "suspect_architecture": {
+    "value": "Three principals: Vickie (stepmother, motive: extracting hidden bank-robbery money, means: lures Valentine to abandoned hospital, opportunity: insider knowledge of his whereabouts); Brady Miller gang associate 'Bruce' (hired muscle, means: physical torture and murder); Valentine (victim, complicit in Pulaski Bank robbery). Ian is a child witness who becomes the final actor.",
+    "confidence": "high",
+    "quote": "\"Tell me where you hid the money, brother.\" / \"Vickie sweetheart... I'll take my chances with you and Spastic Shortcake\""
+  },
+  "red_herring": {
+    "value": "Vickie's repeated performance of abandonment and loneliness \u2014 her 'lonely bed' monologue and apparent victimhood \u2014 misdirects both Ian and the reader from her active role as co-conspirator in Valentine's kidnapping and torture. Her domestic grievances mask operational intent.",
+    "confidence": "high",
+    "quote": "\"Mean fists or not, the bed gets lonely without someone in it.\" / \"Vickie's voice wavered like the dying battery in their flashlight\""
+  },
+  "clue_fairness": {
+    "value": "Several clues are planted in plain sight for the reader alongside Ian: Vickie stops hiding her smoking the day Valentine disappears (signalling foreknowledge); she never calls social services despite threatening to; the men's overheard conversation about the Pulaski Bank hit; Vickie's excessive makeup described as a 'painted mask.' All precede the reveal.",
+    "confidence": "high",
+    "quote": "\"Valentine started running with the Miller boys. They knew he was part of the hit on the Pulaski Bank last year, they just couldn't prove it.\""
+  },
+  "social_world": {
+    "value": "Working-class Irish Catholic St. Louis (Dogtown): organised crime networks (Miller boys), union labour (Val's union jacket), neighbourhood surveillance and gossip, Catholic institutional discipline (Sister Theresa, chapel), and domestic power imbalance \u2014 a child entirely dependent on an indifferent stepmother within a world structured by male violence and criminal patronage.",
+    "confidence": "high",
+    "quote": "\"He walked past green, white, and orange, the Irish flag painted on the curb\" / \"Valentine started running with the Miller boys\""
+  },
+  "alibi": {
+    "value": "Vickie constructs a false alibi of victimised abandonment \u2014 claiming she knows nothing of Valentine's whereabouts and performing grief/resentment \u2014 while she is in fact an active conspirator. Her alibi collapses when Ian witnesses her leading Bruce to the hospital and participating in the torture scene.",
+    "confidence": "high",
+    "quote": "\"I need a vice, and mine left, walked right out the door while you were at school. Didn't even tell me where he was going.\""
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is experiential and sensory rather than deductive: Ian physically infiltrates the abandoned hospital and witnesses the torture in real time from hiding \u2014 identifying his father's voice, then his body, then Vickie's complicity. Recognition is staged through sound (the scream, the voices) before sight, culminating in the knife stroke that literalises the story's title ('abandoned places') as both setting and condition.",
+    "confidence": "high",
+    "quote": "\"The rapid beating of Ian's heart stilled as he stared at the blonde on the poster and listened to his dad grunt through the half light.\""
+  },
+  "media_and_audience": {
+    "value": "There is no institutional or press mediation; the crime is contained entirely within neighbourhood gossip and overheard barbershop conversation. The community knows but suppresses \u2014 'shut your mouth, door's open' \u2014 enforcing a code of silence that leaves Ian with no external authority to turn to, making vigilante action the only available response.",
+    "confidence": "medium",
+    "quote": "\"You keep that up and you'll be neighboring with Valentine at the bottom of the Mississippi.\" / \"The kid's still out there, you big oaf.\""
+  },
+  "investigator_wound": {
+    "value": "Ian's wound is compound: paternal abandonment and the desperate need to believe his father will return, which has made him wilfully misread all evidence of Valentine's true character (criminality, domestic violence). The case forces him to simultaneously grieve an idealised father and witness the real one \u2014 broken, guilty, murdered \u2014 collapsing the anchor identity he has built his survival around.",
+    "confidence": "high",
+    "quote": "\"It wasn't always a steady anchor, but it'd always been there... Now that anchor had been ripped from him. What am I supposed to do?\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Abandoned\tPlaces",
+    "author": "S.\tL.\tCONEY",
+    "anthology_title": "The_Best_American_Mystery_Stories_2017_-_John_Sandford",
+    "story_index": 7,
+    "story_count": 19
+  }
+}

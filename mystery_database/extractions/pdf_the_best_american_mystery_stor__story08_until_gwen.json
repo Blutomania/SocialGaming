@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Gwen, the protagonist's lover, murdered by his father and buried at the fairground. She was 'killable' because she possessed knowledge of the diamond's location and was leverage against the protagonist.",
+    "confidence": "high",
+    "quote": "there she is, all black and rotted, bones exposed in some places, her rib cage reminding you of the scales of a large fish"
+  },
+  "closed_world": {
+    "value": "Sumner, West Virginia and the fairground where Gwen was buried. The protagonist is confined by his past, his father's control, and the geography of their shared criminal history.",
+    "confidence": "medium",
+    "quote": "every now and then someone finds a diamond...Plane went down near an open mineshaft...The fairground is empty, and you and your father walk around for a bit."
+  },
+  "culprit_and_motive": {
+    "value": "The protagonist's father murdered Gwen to eliminate her as a witness and leverage to find the valuable diamond. His motive is greed and control; he wanted the stone's value and needed to eliminate anyone who could betray his location.",
+    "confidence": "high",
+    "quote": "you know that the old man has brought you here to kill you...Define home...I drove her home"
+  },
+  "resolution": {
+    "value": "The protagonist exhumes Gwen's body with his father's forced participation, discovers the diamond hidden within her remains, then kills his father with a shovel in revenge and reclamation of agency.",
+    "confidence": "high",
+    "quote": "You hit him in the head with the shovel, and the old man says, 'Now, hold on', and you hit him again...you sit there until it's almost noon and weep"
+  },
+  "investigator": {
+    "value": "The protagonist himself\u2014Bobby\u2014serves as the narrator and investigator. He is simultaneously victim, suspect (imprisoned for 47 months), and avenger seeking truth about Gwen's disappearance.",
+    "confidence": "high",
+    "quote": "Your father picks you up from prison...you spent four years in prison remembering it...you know that the old man has brought you here to kill you."
+  },
+  "suspect_architecture": {
+    "value": "Two-person structure: the father (professional thief, con man, killer \u2014 motive: diamond, means: murder, opportunity: constant access) and Bobby (investigator/victim hybrid \u2014 motive: revenge/grief, means: knife and preparation). Secondary peripheral figures include Gentleman Pete (driver/witness, absent) and Mandy (likely killed by father, no motive of her own). The father is the sole antagonist; no spread of false suspects.",
+    "confidence": "high",
+    "quote": "He's a professional thief, a consummate con man, an expert in his field \u2014 and yet something far beyond professionalism is at his core"
+  },
+  "red_herring": {
+    "value": "The father's claim to have 'driven Mandy home' functions as a deliberate misdirection \u2014 implying she is alive and safe \u2014 when she has in fact been murdered and buried at the fairground. The evasive wordplay ('Define home') sustains the false trail. Similarly, the father's pursuit of Bobby as the diamond's location misdirects from Gwen having swallowed it.",
+    "confidence": "high",
+    "quote": "'Did I drive her home?' A smile bounces in the rubber of your father's face... 'Define home.'"
+  },
+  "clue_fairness": {
+    "value": "The Krazy Glue and knife are shown to the reader explicitly before deployment: Bobby buys them at the hardware store in full view of the narrative. The fresh square of tilled dirt at the fairground is described to the reader at the same moment Bobby and his father observe it. The diamond hidden inside Gwen's body is foreshadowed by George Brunda's missing diamond and Gwen's line about the rest home.",
+    "confidence": "high",
+    "quote": "go into the hardware store and buy a knife and a couple of lubes of Krazy Glue, stop at the car for a minute"
+  },
+  "social_world": {
+    "value": "A criminal underclass entirely outside legitimate social structures: no Social Security numbers, no birth certificates, no fixed identity. Power flows from violence and cunning rather than institutions. The father represents predatory patriarchal authority over a son with no legal existence. Victims are drawn from the equally marginal \u2014 miners, hookers, small-town grifters \u2014 with no recourse to law.",
+    "confidence": "high",
+    "quote": "You have no Social Security number or birth certificate, no passport. You've never held a job."
+  },
+  "alibi": {
+    "value": "The father's alibi for Mandy's disappearance is his repeated assertion that he 'drove her home.' This false alibi is constructed through strategic evasion and wordplay rather than a verifiable account, and collapses implicitly when Bobby finds the fresh grave at the fairground containing Mandy's body alongside Gwen's.",
+    "confidence": "high",
+    "quote": "'I drove her home,' your father says. 'Yeah?' 'Oh, sure.' 'Where'd she live?' 'Home,' he says"
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is staged as a physical demonstration: Bobby directs his father to dig up the grave with his bare hands, then instructs him to look closer at the skeletal remains \u2014 'Where her stomach used to be' \u2014 forcing the father to discover with his own eyes that the diamond was hidden inside Gwen's swallowed body. The glued gun (proven inoperable when the father tries to jack the slide) simultaneously demonstrates Bobby's counter-preparation.",
+    "confidence": "high",
+    "quote": "'Look closer,' you say. 'Where her stomach used to be.' The old man squats, peering... finally, he sees it. 'Well,' he says, 'I'll be damned.'"
+  },
+  "media_and_audience": {
+    "value": "Virtually absent as a formal element. The story exists entirely outside media and institutional perception \u2014 no press, no police procedural framing, no public narrative of the crimes. The only analogue is the prison system, which documented Bobby without truly knowing him. The invisibility of the characters to official record is itself thematically central.",
+    "confidence": "low",
+    "quote": "Now that you've been in prison, you've been documented, but even they'd had to make it up, take your name as much on faith as you."
+  },
+  "investigator_wound": {
+    "value": "Bobby's wound is grief and identity annihilation: Gwen was the only person who defined him and saw him fully. Her murder by his father destroyed both his love and his sense of self. The case is not an external investigation but a personal reckoning \u2014 he spent four years in prison planning around his knowledge of her death, driven entirely by the wound of losing the one person who made him real.",
+    "confidence": "high",
+    "quote": "Until Gwen, you had no idea who you were. None. During Gwen, you knew. After Gwen, you're back to wondering."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Until\tGwen",
+    "author": "DENNIS\tLEHANE",
+    "anthology_title": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates",
+    "story_index": 8,
+    "story_count": 22
+  }
+}

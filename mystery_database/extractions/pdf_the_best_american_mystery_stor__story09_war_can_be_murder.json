@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder of young soldier (Prevo) by strangulation/broken neck at Carolina Moon brothel. Central question: who killed the victim and why was he silenced?",
+    "confidence": "high",
+    "quote": "His head lay over on his shoulder, the neck bent much farther than it should have been."
+  },
+  "victim": {
+    "value": "Jerry Prevo, young Midwestern soldier involved in black market food theft ring from Fort Lewis, secretly homosexual, meeting his boyfriend at the brothel. Killable because he posed a security liability to the operation.",
+    "confidence": "high",
+    "quote": "a harmless pansy who used the Moon to meet his boyfriend...Prevo was in on the scheme. He was queer."
+  },
+  "closed_world": {
+    "value": "Carolina Moon brothel in Anchorage, Alaska during wartime\u2014a contained space where approximately 30 patrons were present, with limited access points and severe cold preventing easy escape.",
+    "confidence": "high",
+    "quote": "a half-dozen tables and a big bar...Maybe thirty people in here when the body was found...he could have let anybody in through the back door"
+  },
+  "culprit_and_motive": {
+    "value": "Major Allen, a married officer secretly in homosexual relationship with victim Prevo, killed him to prevent him from revealing the black market theft conspiracy after the Fort Lewis operation was compromised.",
+    "confidence": "high",
+    "quote": "'Jerry will talk,' he said. 'I know he will.'...he killed the pansy himself...he tried to shoot me last night just on the off chance I might know something"
+  },
+  "resolution": {
+    "value": "Hammett deduces the truth through connecting San Francisco police records, duty roster inconsistencies, and Tobin's background. When confronted, the MP shoots the Major; the conspiracy is exposed. Order restored through marshal's arrest and military authority, though scandal is suppressed by brass.",
+    "confidence": "high",
+    "quote": "The MP swung the gun toward Hammett...Don Miller stepped out of the hallway and laid a sap on the back of his head...The marshal was putting cuffs on the MP."
+  },
+  "investigator": {
+    "value": "Sergeant Sam Hammett, aging former Pinkerton detective now military staff writer, brought into the case through Marshal Olson's authority. He solves through experience, deduction, and network of informants.",
+    "confidence": "high",
+    "quote": "I was with the Pinks for a while...I know some people...This is your case, Oscar...let me tell you a story."
+  },
+  "suspect_architecture": {
+    "value": "Three main suspects differentiated by motive and access: MP Tobin (presence at scene, criminal past, San Francisco mob connections), Major Allen (homosexual relationship with victim, fear of exposure, military authority), and marginally Daphne/Zulu (opportunity via building access). Tobin has means and prior violence; Allen has motive (silencing Prevo to prevent scandal) and calculated premeditation. The two antagonists ultimately implicate each other.",
+    "confidence": "high",
+    "quote": "\"I didn't kill the guy,\" the MP said. \"It was him.\" He pointed to the major."
+  },
+  "red_herring": {
+    "value": "Hammett deliberately goads Tobin by fabricating 'love letters found in your foot-locker,' a nonexistent piece of evidence designed to provoke a reaction that exposes the true killer. The false trail of Tobin as the primary killer \u2014 sustained throughout \u2014 redirects attention from Major Allen, who has carefully constructed Tobin as the fall guy by actually planting evidence framing him as the victim's lover.",
+    "confidence": "high",
+    "quote": "\"And there's the love letters Michael found in your foot-locker.\" \"Love letters?\" the MP said. \"What love letters?\""
+  },
+  "clue_fairness": {
+    "value": "The duty roster showing Tobin was not on duty the night of the murder is shown to the reader at the same moment Hammett sees it, before its significance is explained. Similarly, the corpse's physical examination clues (neck angle, rolling the body) are described to the reader in real time. The MP's San Francisco backstory is introduced early via Hammett's direct confrontation, planting the connection to the mob ring before the solution.",
+    "confidence": "high",
+    "quote": "Hammett looked at the roster. Tobin's name wasn't on it. He took a notebook out of his coat pocket and wrote in it."
+  },
+  "social_world": {
+    "value": "WWII military hierarchy in Anchorage Alaska layered over a civilian frontier underworld: generals issue social orders, majors claim jurisdiction, MPs enforce racial and moral codes, while US Marshals hold civilian authority. Race structures every interaction \u2014 Hammett weaponises racial epithets to assert control and expose hypocrisy. The FBI surveillance subplot reveals the institutional power of anti-communist intelligence apparatus overriding all other justice concerns. The cover-up is enabled by the major's father's political connections.",
+    "confidence": "high",
+    "quote": "\"The brass don't want to embarrass the major's father, and they don't want the scandal getting back to the president and Congress.\""
+  },
+  "alibi": {
+    "value": "Tobin's alibi \u2014 that his patrol partner was sick and he was alone, happened to see soldiers leaving and investigated \u2014 is dismantled by the established fact that MPs always patrol in pairs on that side of city limits, and confirmed false by the duty roster showing he was not on duty at all that night. Major Allen's alibi is implied through his social presence at the banker's party, though his use of a back door exit is established by Tobin's own confession.",
+    "confidence": "high",
+    "quote": "\"My partner got sick,\" he said. \"I had to go it alone.\" / \"the duty roster said the sergeant wasn't even on duty that night.\""
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is accomplished through a dual psychological trap: Hammett presents a fabricated piece of evidence (the love letters) not to prove guilt but to shatter the alliance between the two suspects, forcing each to expose the other. The mechanism is social \u2014 exploiting the MP's homophobic terror and his dawning realisation that the major has framed him \u2014 rather than forensic. The confession is extracted by manufactured betrayal, not discovered evidence.",
+    "confidence": "high",
+    "quote": "Understanding flooded his face. \"You set me up!\" he screamed at the major. \"You set me up as a fairy!\""
+  },
+  "media_and_audience": {
+    "value": "The military institution actively suppresses and repackages the crime for public consumption: Major Allen's death is to be recorded as 'killed in the line of duty,' Tobin gets a quiet trial and life imprisonment, and the entire scandal is hushed to protect the major's father and avoid congressional embarrassment. The FBI's parallel surveillance reframes the entire investigation as irrelevant compared to the ideological 'next war' against communism, rendering the murder invisible to official record.",
+    "confidence": "high",
+    "quote": "\"This morning the general told me they were going to show Major Allen as killed in the line of duty... The whole thing's being hushed up.\""
+  },
+  "investigator_wound": {
+    "value": "Hammett's wound is his aging, marginalised status \u2014 too old for combat, famous enough to be patronised, alcoholic, politically suspect, and under FBI surveillance by his own companion. The case exploits his inability to fully act within legitimate institutions: he cannot arrest, cannot compel, and is himself the subject of investigation. His Pinkerton past gives him moral authority but also implicates him in the same corrupt systems he now opposes. He solves the case but the solution is immediately buried.",
+    "confidence": "high",
+    "quote": "\"This is the country I enlisted to protect?\" / \"the director says we are already fighting the next war... This other matter just isn't important.\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "filename": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "War\tCan\tBe\tMurder",
+    "author": "MIKE\tDOOGAN",
+    "anthology_title": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly",
+    "story_index": 9,
+    "story_count": 23
+  }
+}

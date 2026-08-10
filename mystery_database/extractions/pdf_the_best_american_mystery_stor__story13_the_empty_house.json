@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder of Father Jim, a Maryknoll priest, by Guatemalan military personnel; central question: what happened to Ryan (journalist) after Jim's death and who was responsible",
+    "confidence": "medium",
+    "quote": "It was awful to leave Jim's body in the square. But what could he do? Drag the body out of town?"
+  },
+  "victim": {
+    "value": "Father Jim, a Maryknoll missionary priest working with the poor in Guatemala during civil war; killable because he was American, a priest, and implicitly supporting leftist humanitarian causes",
+    "confidence": "high",
+    "quote": "Jim was a Maryknoll, which meant he was dispensing medicine, teaching literacy skills to the poor...encouraging dangerously leftist ideas."
+  },
+  "closed_world": {
+    "value": "Small town of Huehuetenango in the Guatemalan highlands during active civil war; bounded by military checkpoints, remote jungle terrain, and political violence with no functional law enforcement",
+    "confidence": "high",
+    "quote": "There were rumors of recent massacres in the mountains just outside Huehuetenango. Whole villages dumped in the woods."
+  },
+  "culprit_and_motive": {
+    "value": "Guatemalan military or paramilitary forces; motive is silencing perceived communist sympathizers and eliminating American witnesses to atrocities during civil war",
+    "confidence": "medium",
+    "quote": "The military blamed the EGP; the Catholic clergy blamed the military; the military blamed the clergy for supporting the EGP"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Ryan's unnamed younger brother, years later, traveling to Guatemala to understand what happened to Ryan and to himself; investigating through memory, interviews, and retracing Ryan's final journey",
+    "confidence": "high",
+    "quote": "Ultimately, I went to Guatemala with two hopes: perhaps I could find out who I was...and maybe my trip could bring a kind of solace to my mother."
+  },
+  "suspect_architecture": {
+    "value": "No classical suspect pool. Perpetrators are unnamed young soldiers (ages 16-18) acting under implied military command structure; individual culpability is diffuse and institutional. The military blames rebel group EGP; clergy blame the military \u2014 mutual accusation replaces differentiated suspects.",
+    "confidence": "medium",
+    "quote": "The military blamed the EGP; the Catholic clergy blamed the military; the military blamed the clergy for supporting the EGP"
+  },
+  "red_herring": {
+    "value": "The military's narrative that massacres and killings (including Jim's) were the work of communist rebels (EGP) functions as deliberate institutional misdirection, deflecting accountability from state actors onto guerrillas.",
+    "confidence": "medium",
+    "quote": "Maybe the men who'd done this had moved on, had frightened themselves with killing a gringo, a priest no less. Maybe they'd already been reprimanded"
+  },
+  "clue_fairness": {
+    "value": "The story is not a fair-play mystery; clues are withheld by design. The narrator-brother explicitly cannot access embassy records, Ryan's final movements are speculative, and the reader is told 'there is no way of knowing' what happened \u2014 opacity is thematic, not a puzzle to solve.",
+    "confidence": "low",
+    "quote": "There is no way of knowing if it was the same restaurant, if he'd even gone out to eat at all."
+  },
+  "social_world": {
+    "value": "Guatemalan civil-war power structure: military/paramilitary authority over civilian and clerical life; U.S. journalistic/diplomatic class unable or unwilling to intervene; Maryknoll missionaries occupying a dangerous middle position between state and poor; American tourists insulated by privilege and wilful ignorance.",
+    "confidence": "high",
+    "quote": "The political na\u00efvet\u00e9 of the Catholic project in Guatemala was the seed of Ryan's projected article. Though he sympathised with the ideals, it was suicidal."
+  },
+  "alibi": {
+    "value": "No alibi structure in the classical sense. The soldiers offer a false pretext ('questions only') as a functional alibi for the abduction, masking lethal intent behind bureaucratic politeness. The U.S. Embassy later offers institutional non-knowledge as its alibi for inaction.",
+    "confidence": "medium",
+    "quote": "\"Please come out. Questions only,\" the acned kid says, smiling."
+  },
+  "reveal_mechanic": {
+    "value": "There is no reveal. The story's architecture resists resolution: the narrator's investigative trip to Guatemala yields nothing, the embassy shows nothing, and Ryan's fate is rendered through free-indirect speculation rather than evidence. Absence of revelation is itself the structural statement.",
+    "confidence": "medium",
+    "quote": "What I found during those six weeks in Central America wasn't what I'd been looking for. Nothing had been resolved."
+  },
+  "media_and_audience": {
+    "value": "Ryan's journalist career frames the crime's media dimension: he believes a survivor's eyewitness account could force American newspapers to care about Guatemalan massacres, yet his own disappearance will go unrecorded. The world's indifference to atrocity \u2014 'the world just didn't care' \u2014 is both theme and structural irony.",
+    "confidence": "high",
+    "quote": "If Jim could hook him up with this woman not even American newspapers would be able to ignore the article. Ryan could, with some luck, make the world care."
+  },
+  "investigator_wound": {
+    "value": "The narrator-brother's wound is identity deficit and survivor's guilt: he feels his 'self was in some ways missing' and attributes this to Ryan's disappearance. His investigation is driven not by professional duty but by a need to forge selfhood through action \u2014 making him emotionally unreliable and his search structurally doomed.",
+    "confidence": "high",
+    "quote": "Perhaps I could find out who I was \u2014 I'd always felt my self was in some ways missing and was connected to the mystery of what had happened to Ryan"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The Empty House",
+    "author": "NATHAN OATES",
+    "anthology_title": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos",
+    "story_index": 13,
+    "story_count": 22
+  }
+}

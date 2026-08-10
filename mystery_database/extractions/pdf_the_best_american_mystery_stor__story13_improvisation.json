@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Will (protagonist) - poisoned with synthetic curare by two sisters posing as acting students; also Wilson McHenry, a crime boss, shot by Dillon as a contract killing",
+    "confidence": "medium",
+    "quote": "Did your champagne taste a little bitter? / Killing someone, yes. Duh, Susan."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Jessica and Susan (sisters) - motivated by acting exercise to understand 'private moments' of character assassination; Dillon - hired by Estaban Gomez to kill McHenry to silence him or consolidate power",
+    "confidence": "medium",
+    "quote": "A character who could kill. / Estaban is dead. Someone blew up his Mercedes."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Will (duped participant observing/experiencing the crime); Dillon (contract killer who becomes aware of McHenry's final act of agency through the fedora)",
+    "confidence": "medium",
+    "quote": "Will didn't know if it was curare or not. All he knew was he couldn't speak and he couldn't move. / Dillon let himself breathe again."
+  },
+  "suspect_architecture": {
+    "value": "Two perpetrators (sisters Jessica and Susan), one victim (Will). Jessica poses as seductive blonde to lure target; Susan disguises herself as mousy file clerk to appear as decoy victim. Both differentiated by role: Jessica as initiator/nurse with drug access, Susan as actor/accomplice. No additional suspects.",
+    "confidence": "high",
+    "quote": "\"That's right, he knows you're a nurse,\" Susan said. \"Beth Israel, you bet,\" Jessica said."
+  },
+  "red_herring": {
+    "value": "The entire three-way sexual encounter framing is a deliberate misdirection \u2014 Will (and the reader) is led to believe the 'kill somebody' talk is a mating ritual and the apartment invitation signals a m\u00e9nage \u00e0 trois, masking the sisters' actual murder plot. Susan's mousy file-clerk disguise further misdirects as apparent 'random victim.'",
+    "confidence": "high",
+    "quote": "\"it suddenly occurred to him that perhaps they weren't discussing murder at all, jokingly or otherwise. Was it possible that what Jessica had in mind was a three-way?\""
+  },
+  "clue_fairness": {
+    "value": "The poison clue is embedded fairly for the reader: Jessica mentions 'a small bottle of poison in my handbag' early in the bar scene, presented as joking roleplay. The champagne's possible bitter taste is flagged retrospectively by the sisters and available to the reader in the same moment Will registers it.",
+    "confidence": "high",
+    "quote": "\"I have a small bottle of poison in my handbag,\" Jessica said. \"Wouldn't that be better?\""
+  },
+  "social_world": {
+    "value": "Manhattan singles-bar mating hierarchy, where physical attractiveness and pickup-line wit confer power. Will operates within a veteran/masculine confidence framework; the sisters subvert this by weaponising the very scripts (seduction, roleplay, acting exercise) that the bar's social order makes available to them. Medical institutional access (Beth Israel) enables the crime.",
+    "confidence": "medium",
+    "quote": "\"This is merely a game, a variation on the mating ritual that took place in every singles bar in Manhattan on any given night.\""
+  },
+  "alibi": {
+    "value": "No traditional alibi structure is present in the McBain story. The sisters construct a performative alibi of innocence through their acting-exercise cover story, framing the entire evening as Macbeth rehearsal preparation, which explains away all suspicious behaviour retrospectively.",
+    "confidence": "medium",
+    "quote": "\"So that stuff in the bar was all part of the exercise, right?\" Will said. \"Well, sort of,\" Jessica said."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is pharmacological and physical: Will's sudden paralysis (inability to speak or move) demonstrates the poison has taken effect, confirmed by the sisters' clinical exposition of synthetic curare's mechanism (paralysis of respiratory nerve muscles, tablet form, dissolved in champagne). The reader understands the murder is real at the same moment Will does.",
+    "confidence": "high",
+    "quote": "\"Death comes from asphyxia. That means you can't breathe. Because the respiratory nerve muscles get paralyzed. Are you having trouble breathing yet, Will?\""
+  },
+  "media_and_audience": {
+    "value": "Absent from the McBain story. No press, institutional, or public-opinion framing of the crime is present; the murder occurs in a private apartment with no external witnesses or narrative audience constructed within the text.",
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Will's Gulf War combat experience is his wound: he has killed before and rationalised it, making him both desensitised to murder-talk and overconfident that he can distinguish real threat from game. This prior killing and his resulting cynicism about violence blind him to genuine danger.",
+    "confidence": "high",
+    "quote": "\"Been there,\" Will told her. \"Done that.\" \u2026 \"The Gulf War,\" he explained. \"Not the same thing at all,\" she said."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Improvisation",
+    "author": "ED MCBAIN",
+    "anthology_title": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow",
+    "story_index": 13,
+    "story_count": 19
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Mick Maguire, a boxer recovering from a career-threatening shoulder injury, narrates his struggle to survive financially and professionally while confronting mobbed-up promoter Tony Dukarski and his fighter Toro Esteban",
+    "confidence": "high",
+    "quote": "I dropped down on the stool in my corner, staring down at my shoelaces, seeing the wreckage of my life"
+  },
+  "suspect_architecture": {
+    "value": "Not a traditional mystery suspect cast. Primary antagonist is Tony 'Duke' Dukarski (mobbed-up promoter, motive: debt leverage and record-padding for Toro); enforcer Cheech Gamez (armed bodyguard); Toro Esteban (fighter/killer, means: physical violence). Pops Maguire is implicated in illegal betting and debt. No classic spread of suspects with alibi differentiation \u2014 this is crime-thriller territory with a small, clearly delineated power structure.",
+    "confidence": "medium",
+    "quote": "Tony Duke is not just a promoter, Pops, he's mobbed up."
+  },
+  "red_herring": {
+    "value": "The apparent fix \u2014 that Mick's fight against Toro is pre-arranged as a dive \u2014 functions as a structural misdirection. The reader and characters are led to believe Mick will cancel his bout via the ring doctor. Instead, Jilly's explosive assault on Dukarski dissolves the debt threat, and Mick chooses to fight anyway, subverting the expected resolution.",
+    "confidence": "medium",
+    "quote": "That was our fight plan... It was a good plan. Until the night of the fight. When it all went south."
+  },
+  "clue_fairness": {
+    "value": "The story is not a traditional whodunit, so clue fairness in the classic sense is limited. However, the shoulder's reduced range of motion is demonstrated to the reader in real time during sparring \u2014 the same moment Mick and Jilly discover it \u2014 before any plot consequences unfold. The debt figures and Dukarski's paper-buying are disclosed to the reader simultaneously with Mick.",
+    "confidence": "medium",
+    "quote": "My surgically repaired shoulder had a glitch. My range of motion had been reduced by an inch. One critical inch."
+  },
+  "social_world": {
+    "value": "Detroit boxing world stratified by family legacy, organized crime patronage, and debt. The Maguire dynasty (three-generation boxing family, gym owners) is subordinate to mob-connected promoters like Dukarski who control purses, IOUs, and fighter records. Women fighters (Jilly) occupy the lowest rung \u2014 'eye candy' \u2014 while ethnic/racial hierarchies shape how fighters are marketed and exploited.",
+    "confidence": "high",
+    "quote": "Chick boxers are mostly a diversion, eye candy tacked onto a program to pump up the crowd. No one takes them seriously."
+  },
+  "alibi": {
+    "value": "No traditional alibi construction present. The closest analogue is Pops's concealment of his illegal betting and debt from Mick \u2014 a deception of omission rather than a false whereabouts claim. Dukarski's use of Liam and Sean as unaware hostages at ringside functions as a coercive alibi for inaction on the Maguires' part.",
+    "confidence": "low",
+    "quote": "The boys don't know nothing. Hell, they're happy as clams to have front-row seats."
+  },
+  "reveal_mechanic": {
+    "value": "The central revelation is physical and kinetic: Mick's career-ending shoulder flaw is demonstrated through a missed block in sparring \u2014 a single inch of lost range of motion made visible when Jilly's hook slips under his elbow. The 'reveal' is embodied rather than deductive, confirmed by Pops ordering Mick to lower his elbow and seeing he already has.",
+    "confidence": "high",
+    "quote": "'All the way down!' 'That is all the way,' I said... 'That's as far as it freakin' goes.'"
+  },
+  "media_and_audience": {
+    "value": "The fight crowd functions as an unreliable audience that rewards spectacle over substance \u2014 Juba's showboating wins crowd approval despite his evasive tactics; Jilly's post-knockout leap into the seats and assault on Dukarski is received as entertainment by fans who fight to protect her. The announcer, the crowd, and the venue packaging (Motor City Stadium as Detroit's MSG) all shape how violence is narrativized and legitimized.",
+    "confidence": "high",
+    "quote": "Screw the fine points of pugilism. Your freakin' grandma can understand a knockdown."
+  },
+  "investigator_wound": {
+    "value": "Mick's wound is dual: a literal physical impairment (surgically repaired shoulder with permanent reduced range of motion ending his career) and a psychological one (the desperate need to prove himself after a humiliating loss, a six-month layoff, and the discovery that his prime-time future is gone). The case \u2014 confronting Dukarski and Toro \u2014 directly exploits his desperation to reclaim identity and self-worth.",
+    "confidence": "high",
+    "quote": "I was desperate to get back in the ring, desperate to get my life back on track."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Puncher\u2019s\tChance",
+    "author": "DOUG\tALLYN",
+    "anthology_title": "The_Best_American_Mystery_Stories_2017_-_John_Sandford",
+    "story_index": 1,
+    "story_count": 19
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder of Bette Kowalski by ritualistic stabbing mimicking Jack the Ripper killings; central question: how did the killer evade police in a crowded urban area and recreate historical murder patterns?",
+    "confidence": "high",
+    "quote": "He cut up Bette Kowalski the same way...Mary Kelly, the Ripper's last known victim."
+  },
+  "victim": {
+    "value": "Bette Kowalski, a woman vulnerable to violence; the killer chose victims matching the Ripper's historical pattern\u2014women in compromised circumstances.",
+    "confidence": "medium",
+    "quote": "That place draws almost as many hookers as jazz buffs...Someone just ducked down that alley."
+  },
+  "closed_world": {
+    "value": "Urban Detroit area around Paradise Theatre and surrounding streets; police cordoned zone with multiple officers and marked/unmarked vehicles.",
+    "confidence": "medium",
+    "quote": "The street in front of the popular swing club was a sea of department vehicles, marked and unmarked."
+  },
+  "culprit_and_motive": {
+    "value": "Leonard Corbett, descendant of Boston Corbett (Lincoln assassination figure), obsessed with Jack the Ripper history; motivated by hereditary psychopathy and psychological identification with historical killer.",
+    "confidence": "medium",
+    "quote": "Leonard Corbett...His room...plastered with black-and-white photographs showing dead women, some naked, exposing ghastly slashes."
+  },
+  "resolution": {
+    "value": "Detective McReary shoots Corbett in a darkened hallway during pursuit; Corbett is killed by gunfire after attacking with a knife; order restored through lethal force during apprehension.",
+    "confidence": "high",
+    "quote": "He kept jerking the trigger, emptying the chamber...It was only after he let go...that he realized his wrist was bleeding."
+  },
+  "investigator": {
+    "value": "Lieutenant Zagreb leads investigation with detectives Burke, McReary, and Canal; McReary becomes the key investigator who ultimately kills the suspect and is reassigned pending shooting inquiry.",
+    "confidence": "high",
+    "quote": "Zagreb borrowed her phone...Minutes later they were driving with the two-way radio turned up full blast."
+  },
+  "suspect_architecture": {
+    "value": "Multiple narratives, multiple perpetrators: In the Soviet thread, Col. Sidorov (narrator/protector) is implicated as both witness and possible agent; in the Amos thread, Tony Conrad is the sole identified perpetrator (Jet Ski hit-and-run killer of Jennifer); in the Detroit/Zagreb thread, Leonard Corbett is the Jack the Ripper-obsessed killer of Bette Kowalski. Each story has a clear culprit differentiated by motive (personal vengeance, ideology, obsession) with minimal red-herring suspects.",
+    "confidence": "high",
+    "quote": "Tony Conrad, then. Right before him."
+  },
+  "red_herring": {
+    "value": "In the Detroit thread, Leonard Corbett's army surplus 'FIRING RANGE' sign and odd collecting habits initially suggest a gun-based threat, misdirecting toward firearms violence before the autopsy kit and Ripper knife are revealed. The missing postmortem knife (absent from the bag) also functions as misdirection about the murder weapon's whereabouts. In the Amos thread, Pat's fear of 'the guy from away' briefly misdirects about who the real threat is.",
+    "confidence": "medium",
+    "quote": "None of these scalpels looks big enough for the murder weapon."
+  },
+  "clue_fairness": {
+    "value": "In the Detroit thread, the corkboard of Ripper victims, the autopsy kit, and the books on Jack the Ripper are all shown to the reader at the same moment the detectives discover them, allowing the reader to reach the same conclusion simultaneously. The Jet Ski scrapes and light-blue paint matching Jennifer's kayak are shown to Amos and reader together.",
+    "confidence": "high",
+    "quote": "The dark blue one with lightning bolts had a series of scrapes and gouges along one side, and there were smears of light-blue paint."
+  },
+  "social_world": {
+    "value": "Three distinct social worlds: (1) Soviet military-intelligence bureaucracy with rigid rank, denunciation culture, and ethnic persecution (GRU, Arzamas-16 closed city, anti-Jewish purges masked as resettlement); (2) rural New Hampshire working-class versus urban Chelsea, Massachusetts working-class ethnic neighbourhood with street-gang loyalty structures; (3) 1940s Detroit police hierarchy with lieutenant/detective grades and institutional shooting-investigation procedures.",
+    "confidence": "high",
+    "quote": "Every one of those happened to be, by purest coincidence, a Jew."
+  },
+  "alibi": {
+    "value": "Leonard Corbett's mother cannot provide an alibi for the Wednesday night of Bette Kowalski's murder \u2014 she was at work and does not know her son's whereabouts. His stated activity ('throwing himself a going-away party') is unverified and collapses when the Ripper kit and photographs are found. In the Soviet thread, Sidorov's formal report functions as a self-constructed alibi narrative.",
+    "confidence": "high",
+    "quote": "I wouldn't know, then. I'd have been at work. He may have stayed home, or he may have gone out for a beer."
+  },
+  "reveal_mechanic": {
+    "value": "In the Detroit thread, the reveal is physical-forensic: the autopsy kit, Ripper photographs, and specialist books establish motive and method; the missing postmortem knife (the actual weapon, still on Corbett's person) clinches it when he is cornered with a drawn blade. In the Amos thread, the physical evidence of scrapes and matching paint on the Jet Ski constitutes the reveal. McReary's post-case reading then adds a speculative historical reveal linking Boston Corbett to Jack the Ripper.",
+    "confidence": "high",
+    "quote": "He drew the knife from his belt and sprang..."
+  },
+  "media_and_audience": {
+    "value": "Largely absent from the excerpts as explicit press coverage, but institutional narration is prominent: Col. Sidorov's formal letter to a Soviet General frames the entire first story as an official report managing institutional perception of events. The Detroit squad's two-way radio dispatcher broadcast of the suspect description represents the crime entering public/institutional circulation. McReary's speculative Ripper-Corbett theory suggests how history and popular narrative shape criminal obsession.",
+    "confidence": "medium",
+    "quote": "Any cars in the vicinity of Woodward and Parsons...Suspect seen near the Paradise Theatre. Consider him armed and extremely dangerous."
+  },
+  "investigator_wound": {
+    "value": "McReary's wound is literal and symbolic: he is cut on the wrist in the climactic confrontation and relieved of his weapon pending investigation, placing his identity as a detective in suspension. His compulsive reading throughout (books on the Ripper, Lincoln assassination) suggests an intellectual compensatory drive. In the Amos thread, the investigator's wound is raw grief \u2014 Jennifer is his daughter, making the pursuit intensely personal and his willingness to absorb a beating part of his controlled, dissociated pain.",
+    "confidence": "high",
+    "quote": "His chest was cold and very tight."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The\tIncident\tof\t10\tNovember",
+    "author": "JEFFERY\tDEAVER",
+    "anthology_title": "The_Best_American_Mystery_Stories_2017_-_John_Sandford",
+    "story_index": 9,
+    "story_count": 19
+  }
+}

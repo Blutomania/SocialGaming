@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Multiple homicides: wife's throat slashed, two children bludgeoned to death with hammer, then drowned. Central question: Will the killer strike again and can he be apprehended before his next victim?",
+    "confidence": "high",
+    "quote": "Three bodies, two weapons, one missing suspect, much blood."
+  },
+  "victim": {
+    "value": "Caroldean Delreese (wife) and two young children, Davenport and Darchelle. Killable because they are family members of a deeply disturbed man with hidden rage masked by religious and social respectability.",
+    "confidence": "high",
+    "quote": "Jordan Delreese was bludgeoning his two young children to death...while he was watching Bewitched."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Jordan Delreese, deacon and soccer coach. Motive: profound psychological damage from childhood abuse, religious extremism, and pathological dishonesty. He kills to escape suffering and control, with no genuine remorse.",
+    "confidence": "high",
+    "quote": "I have come to hate this life and this unreasonable system of things. I have come to have no hope."
+  },
+  "resolution": {
+    "value": "Wylie Melville, the forensic consultant investigator, confronts Delreese in his office. Delreese reveals himself through micro-expressions and behavioral leaks. The resolution ends with Delreese's suicide by gunshot in Wylie's presence.",
+    "confidence": "high",
+    "quote": "He squeezed the trigger."
+  },
+  "investigator": {
+    "value": "Wylie Melville: forensic consultant, therapist, and actor who reads faces, furniture, and micro-expressions to discern truth. He operates as both an intuitive mind-reader and official consultant to Detective Carlos O'Brien.",
+    "confidence": "high",
+    "quote": "I read faces and furniture. I look at a person, at his expressions, his gestures, his clothing, his home, and I can tell you what he's thinking."
+  },
+  "suspect_architecture": {
+    "value": "Single identified perpetrator (Jordan Delreese) with no competing suspects. The architecture inverts the classical mystery: the killer's identity is known from the opening paragraph; tension derives from the investigator confirming and confronting him rather than from a field of suspects. No false candidates are offered.",
+    "confidence": "high",
+    "quote": "Jordan Delreese was bludgeoning his two young children to death, I was sitting in Dr. Hamburger's consulting room"
+  },
+  "red_herring": {
+    "value": "Jordan's performance of normalcy constitutes the story's central misdirection \u2014 not for the reader (who knows he is guilty) but for his parents and community. His public persona as deacon, soccer coach, devoted son functions as a sustained false trail. Within the investigative frame, Wylie's own susceptibility to being 'fooled' by Jordan's calm arrival at his office mirrors the red herring structure.",
+    "confidence": "medium",
+    "quote": "Carlos said, 'He's a deacon in his church.' 'Of course he is. And he's probably a scoutmaster.' 'Soccer coach.'"
+  },
+  "clue_fairness": {
+    "value": "The story is not structured as a fair-play puzzle mystery; it is a noir character study. However, the key diagnostic clues Wylie uses \u2014 Jordan's 'thin yet wide' unfelt smile, photoshopped brow lines, the wedding photo's forced pressure and angle \u2014 are described to the reader in full before Wylie articulates their meaning, satisfying a weak form of clue fairness.",
+    "confidence": "medium",
+    "quote": "Jordan's smile was thin, yet wide...Adequate but unfelt. His eyes were eager, yet slightly squinted."
+  },
+  "social_world": {
+    "value": "Southern Florida suburban religiosity, Jehovah's Witness community discipline, and patriarchal family hierarchy intersect. Jordan's violence is embedded in a world of church authority, punitive parenting, and performative respectability. The health-care system and its institutional indifference to the elderly form a secondary power structure threatening Wylie's father.",
+    "confidence": "high",
+    "quote": "You were committing an abominable sin, son...And look how you've turned out, Jordan. A success. A God-fearing, law-abiding man."
+  },
+  "alibi": {
+    "value": "Jordan constructs a multi-layered false alibi after the murders: he drives to North Beach, shops at Whole Foods, visits his parents, presents the children as alive and well ('fit as fiddles, never been better'), and explains his wife's absence with a domestic excuse (scrapbook project). The alibi collapses only because Wylie reads faces and behavior rather than accepting narrative.",
+    "confidence": "high",
+    "quote": "Jordan told his parents that the kids were swell, fit as fiddles, never been better...Caroldean's busy with her scrapbook project."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is psychological and semiotic: Wylie's 'robust mirror neurons' allow him to read micro-expressions, posture, and domestic objects as confessions. The mechanism is demonstrated through the wedding photograph analysis and culminates in the face-to-face confrontation where both men acknowledge mutual knowledge non-verbally ('I knew that he knew that I knew') before any verbal confession.",
+    "confidence": "high",
+    "quote": "I knew that he knew that I knew. 'No kids.' He clicked his tongue and shook his head. 'Fruitless.'"
+  },
+  "media_and_audience": {
+    "value": "Media presence is minimal but pointed: Jordan reads the Sun-Sentinel over breakfast after the murders, performs normalcy for Dr. Sanjay Gupta's handwashing advice sourced from CNN, and his religious community provides the reputational packaging that shields him. There is no press investigation; the public narrative of Jordan as pillar of the community remains intact until Wylie's private confrontation.",
+    "confidence": "medium",
+    "quote": "Dr. Sanjay Gupta on CNN said that's how long it takes to wash your hands properly."
+  },
+  "investigator_wound": {
+    "value": "Wylie's wound is threefold: a failed marriage (Georgia, 'dead to him'), the loss of his twin brother Cameron to violent drug-related death, and the consuming duty of caring for his Alzheimer's-stricken father. The case exploits all three \u2014 the gun-to-his-face moment triggers grief for Cameron and terror that his incapacitated father will be abandoned. His need to make sense of senseless violence is named by Delreese as his fatal transparency.",
+    "confidence": "high",
+    "quote": "You want to make sense of this so badly, you'll believe anything I tell you...You want the world to make sense, but it doesn't."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The Timing of Unfelt Smiles",
+    "author": "JOHN DUFRESNE",
+    "anthology_title": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen",
+    "story_index": 8,
+    "story_count": 21
+  }
+}

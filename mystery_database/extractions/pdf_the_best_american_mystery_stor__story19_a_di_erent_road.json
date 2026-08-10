@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Hospital bathroom during armed robbery; Olive, Henry, nurse, and doctor held hostage by two masked gunmen",
+    "confidence": "high",
+    "quote": "On the floor, with their backs against the separate walls, sat the nurse and the doctor and Henry."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Olive Kitteridge, hostage and witness reflecting on the traumatic event and its psychological aftermath one year later",
+    "confidence": "high",
+    "quote": "After a year had gone by, people in this small New England coastal town of Crosby agreed: both Kitteridges were changed by the event."
+  },
+  "suspect_architecture": {
+    "value": "No traditional mystery suspect cast present. The 'perpetrators' are two unnamed young men \u2014 Blue Mask (nervous, frightened teen) and Pig Face (dominant, violent) \u2014 differentiated by temperament and role: one controls the hostages, one manages the operation. Motive is drug theft. No investigator, no whodunit structure.",
+    "confidence": "low",
+    "quote": "a person in a blue ski mask...a tall man holding a rifle, wearing a big khaki vest with pocket flaps...a Halloween mask of a pink-cheeked, smiling pig"
+  },
+  "red_herring": {
+    "value": "No deliberate planted misdirection in the mystery-genre sense. The story's structural misdirection is thematic: the reader is led to expect the hostage crisis is the central wound, but the true crisis is the marriage \u2014 what was said in the bathroom, not the guns.",
+    "confidence": "low",
+    "quote": "it wasn't because they'd been held hostage in a bathroom\u2014which Andrea Bibber would think was the crisis"
+  },
+  "clue_fairness": {
+    "value": "Not a mystery narrative; no investigator or clue-fairness structure. However, Strout plants the emotional clues to the marriage's damage equally for reader and characters: Henry's changed eyes, Olive's private weeping, the fabric for the smock \u2014 all present before the final revelation.",
+    "confidence": "low",
+    "quote": "unable to help herself...with the fabric she bought at So-Fro today"
+  },
+  "social_world": {
+    "value": "Small New England coastal town (Crosby) with tight social observation networks. Class and status encoded through education, church affiliation, and family reputation. Olive's math-teacher authority, Pauline's Christian social gatekeeping, and Andrea Bibber's credentialed social-work class represent competing hierarchies.",
+    "confidence": "medium",
+    "quote": "Olive, years ago, had taught math at Crosby Junior High School...Andrea Bibber had never seemed to her to be anything more than a small, dull, asseverating mouse"
+  },
+  "alibi": {
+    "value": "No alibi structure in the mystery sense. The Kitteridges' own account of the evening functions as a kind of alibi for the state of their marriage \u2014 a pleasant dinner masking deep rupture \u2014 which is then dissolved by what was said under duress in the bathroom.",
+    "confidence": "low",
+    "quote": "the truth is, they had had a pleasant evening...the mushrooms stuffed with crabmeat were marvelous"
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is psychological and retrospective: fragmented 'paint-splotch' memory structure withholds the worst of what was said until late in the narrative, then delivers the marriage's true damage through Olive's internal admission that they 'said things that altered how they saw each other.'",
+    "confidence": "medium",
+    "quote": "they would never get over that night because they had said things that altered how they saw each other"
+  },
+  "media_and_audience": {
+    "value": "The town reads the hostage event through newspaper and TV reports, packaging it as a comprehensible public crime. The Kitteridges refuse to narrate it to others, creating a gap between public story and private truth. Crisis counseling discourse (Andrea Bibber) represents institutional repackaging of trauma.",
+    "confidence": "high",
+    "quote": "'It doesn't make sense two fellows barging into a hospital, hoping to get drugs.' Before people realized the Kitteridges were not going to say three words about the ordeal."
+  },
+  "investigator_wound": {
+    "value": "Olive functions as the wounded non-investigator: her psychological wound is her inability to apologize, her smothering of Christopher, and her father's suicide \u2014 all of which erupt under hostage conditions and permanently reframe her marriage. Henry's wound is his quiet, accumulated grievance finally spoken aloud.",
+    "confidence": "medium",
+    "quote": "'in all the years we've been married...I don't believe you've ever once apologized. For anything.'"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "A Di\u0000erent Road",
+    "author": "ELIZABETH STROUT",
+    "anthology_title": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos",
+    "story_index": 19,
+    "story_count": 22
+  }
+}

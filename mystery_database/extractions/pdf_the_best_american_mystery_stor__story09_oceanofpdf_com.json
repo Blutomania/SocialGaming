@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Corruption within Continental Investigations: The Portland bureau chief Harold Abernathy is taking bribes from local crime lord Nick Zartell and collaborating with Chinese opium operation run by Hung Lo. Central question: Can the corruption be exposed and the conspirators stopped before they escape or consolidate power?",
+    "confidence": "high",
+    "quote": "My letter informing the grand pooh-bahs of Continental Investigations that the head of their Portland bureau was in bed with the Mob had brought this stocky old coot to my door"
+  },
+  "victim": {
+    "value": "Harold Abernathy (corrupt detective) and indirectly the city of Portland itself, corrupted by organized crime. Abernathy is 'killable' because he betrayed his agency and allowed criminal infiltration; the city is victimized by systemic corruption.",
+    "confidence": "medium",
+    "quote": "This town is a disease. It gets into the blood and rots people from the inside out. And my boss is no exception. He's taking orders from the local crime lord."
+  },
+  "closed_world": {
+    "value": "Portland in 1953: a contained criminal ecosystem with eight burlesque clubs, seventeen gambling hells, and forty-three houses of ill repute, centered on the Boom Boom Room and Hung Lo's Hop House opium den. Key location is the tunnel connecting them to a Chinese laundry basement.",
+    "confidence": "high",
+    "quote": "In this bright new year of 1953, our fair city boasted eight burlesque clubs, seventeen gambling hells, and forty-three houses of ill repute. As the sole establishment qualifying in all three categories, the Boom was pretty much our Grand Central Station of crime."
+  },
+  "culprit_and_motive": {
+    "value": "Multiple culprits with overlapping motives: Abernathy (greed/coercion by Zartell); Nick Zartell (expanding criminal empire, silencing opposition); Hung Lo (consolidating opium trade). The Old Man orchestrates a controlled confrontation by deliberately triggering a three-way gang war to eliminate all parties.",
+    "confidence": "medium",
+    "quote": "The Old Man tipped Hung Lo that Abernathy and Zartell were staging a raid. This place is about to become a war zone."
+  },
+  "resolution": {
+    "value": "Abernathy escapes into the wind, hunted by both Zartell and Hung Lo. The planned raid becomes a three-way gang war in the opium den. The Old Man sacrifices both criminal factions against each other. Pete and the Old Man survive; Abernathy's fate remains open but dire. The agency gains a new Portland manager.",
+    "confidence": "high",
+    "quote": "In the wind. Trying to outrun Zartell's bounty hunters and Hung Lo's hatchet men... When they catch him, he'll wish he'd died in the opium den."
+  },
+  "investigator": {
+    "value": "Pete Collins: a young Korean War veteran and junior Continental operative, son of a murdered rumrunner. He serves as whistleblower and guide, working under the direction of the Old Man (a legendary retired Continental detective called back to investigate). Pete is both witness and participant.",
+    "confidence": "high",
+    "quote": "A punk kid, just back from fighting Commies in Korea, playing at the gumshoe game. A punk kid who'd accused his boss\u2014a man with thirty years of crime-fighting under his belt\u2014of betraying his own kind."
+  },
+  "suspect_architecture": {
+    "value": "Multiple antagonists with differentiated roles: Harold Abernathy (corrupt bureau chief, motive: bribery/Mob collusion), Nick Zartell (crime lord/brothel-casino owner, motive: power and racket protection), unnamed 'Chinese gentleman'/Hung Lo (opium trade rival, motive: territorial control), plus peripheral suspects including the corrupt police captain and mayor seen gambling together. Abernathy and Zartell are primary, with Hung Lo as a third-party threat creating a triangulated criminal architecture.",
+    "confidence": "high",
+    "quote": "Abernathy was too damn cozy with Nick Zartell, that we were putting both men under the lens, and that they may or may not be cooking up something involving opium."
+  },
+  "red_herring": {
+    "value": "The Old Man's manufactured false alarm ('Fire!') at Hung Lo's opium den is a deliberate operational misdirection, but the more structural red herring is the framing of Zartell as the primary target: Pete and the reader are led to believe the raid is aimed at Zartell, while the Old Man's actual plan pits Zartell, Hung Lo, and Abernathy against each other \u2014 using a fabricated safe containing 'evidence' to lure Zartell into a war zone.",
+    "confidence": "high",
+    "quote": "We gave Jablonsky a message for Zartell. Told him Abernathy and Hung Lo had gathered evidence against him and stored it here in a safe."
+  },
+  "clue_fairness": {
+    "value": "Clue fairness is partial and limited by the first-person noir narrator's deliberate withholding. The reader receives the eavesdropped phone fragment ('That Chinese gentleman is no baby to fool with') at the same time Pete does, and observes the secret tunnel exit firsthand. However, the Old Man's full scheme \u2014 tipping Hung Lo, baiting Zartell \u2014 is withheld from both Pete and reader until the climax, which compromises strict Knox-style fairness.",
+    "confidence": "medium",
+    "quote": "I heard Abernathy say, 'That Chinese gentleman is no baby to fool with. This will require extra funding.'"
+  },
+  "social_world": {
+    "value": "1953 Portland as a fully corrupt civic ecosystem: police captain and mayor openly gambling with racket bosses; the Continental agency's hierarchy (Old Man, bureau chief, operatives) mirrors the criminal hierarchy it investigates; class mobility is criminal \u2014 Pete's father rose from rumrunner to crime lieutenant; the Chinese community is economically marginalized but operationally powerful via laundry fronts and opium dens; women (Pete's mother, barmaids, strippers) occupy the intelligence periphery, invisible to male power but networked across all factions.",
+    "confidence": "high",
+    "quote": "The mottle-faced man peeking at the mayor's cards runs the East County slot-machine racket... the sharp-nosed lad with the pince-nez has slaughtered more men than Jimmy Cagney."
+  },
+  "alibi": {
+    "value": "No classical alibi-for-a-murder-scene is constructed, consistent with the hardboiled rather than classic whodunit form. The alibi-equivalent is Abernathy's professional cover: his thirty years of crime-fighting reputation serves as his 'alibi' against Pete's accusations, and Pete's lack of physical evidence means the allegation cannot be proven through normal means \u2014 forcing the Old Man's elaborate sting rather than a courtroom reveal.",
+    "confidence": "medium",
+    "quote": "'You've made serious allegations,' the Old Man said. 'Have any evidence to keep them company?' He read the answer on my face."
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated operationally rather than verbally: the Old Man engineers a three-way collision between Zartell, Hung Lo's forces, and Abernathy, exposing all criminal relationships through their violent convergence. The secret tunnel (discovered by following the Chinese employee against the current of the false fire alarm) physically proves the laundry-opium den connection. The reveal of the Old Man's full scheme comes from Mike under physical duress \u2014 Pete pinning him to the door frame \u2014 not from deductive monologue.",
+    "confidence": "high",
+    "quote": "The Old Man tipped Hung Lo that Abernathy and Zartell were staging a raid. This place is about to become a war zone."
+  },
+  "media_and_audience": {
+    "value": "Media is explicitly instrumentalised: Abernathy demands a journalist accompany the raid for maximum publicity, wanting the agency's name on the story. Pete plants his high-school friend from the Oregonian, intending to redirect the narrative. The Old Man's scheme subverts Abernathy's intended press coup \u2014 the 'respectable edition' story Abernathy envisions is replaced by the chaos the Old Man orchestrates. Institutional reputation (the Continental's name) is a core stakes element throughout.",
+    "confidence": "high",
+    "quote": "Once we pried the lid off Hung Lo's, he wanted publicity and plenty of it... I have just the guy. It just wouldn't be the story Abernathy expected."
+  },
+  "investigator_wound": {
+    "value": "Pete's wound is triple-layered: his father ('Slippery Ed Collins') was a criminal who died violently in Zartell's orbit, leaving only a jade ring; Zartell was his near-stepfather; and his mother remains emotionally entangled with Zartell, making Pete's professional mission inseparable from unresolved family trauma. He cannot cleanly pursue justice against Zartell without implicating his own origins, and his choice to save Zartell at personal physical cost (shot in leg and ear) dramatises the wound's unresolved grip.",
+    "confidence": "high",
+    "quote": "My entry into the crime-fighting business was based at least in part on a desire to even up with the universe... I kicked the panel shut and bawled, 'Nick! Where the hell are you?'"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "EVAN LEWIS",
+    "anthology_title": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George",
+    "story_index": 9,
+    "story_count": 22
+  }
+}

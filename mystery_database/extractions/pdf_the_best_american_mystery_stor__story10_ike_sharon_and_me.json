@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "House fire that killed Ike Lowell; central question: who set the fire and why\u2014was it Ike with smuggled accelerant, Charles Novak with his own invention, or someone else entirely?",
+    "confidence": "high",
+    "quote": "the fire that burned her house to the ground and in which Ike, who lived next door, had perished"
+  },
+  "victim": {
+    "value": "Charles Novak, engineer and husband, killed by carbon monoxide poisoning; made 'killable' by his infidelity, abandonment of family, and possession of knowledge about DP123 accelerant",
+    "confidence": "high",
+    "quote": "Carbon monoxide poisoning, I guess. Colleague came to pick him up to go to the airport. Couldn't rouse him."
+  },
+  "closed_world": {
+    "value": "Small prairie town with interconnected social circles\u2014school, bar, church league sports; narrator's apartment; Sharon's house; Charles's workplace in Michigan. Information flows through Greg the reporter.",
+    "confidence": "medium",
+    "quote": "I taught in a little school out on the prairie among the lakes for four years...sometimes drank beer in the Blue Moon Tap"
+  },
+  "culprit_and_motive": {
+    "value": "Charles Novak set the fire to eliminate his wife and children (obstacles to running away with lab technician). Later took his own life via carbon monoxide\u2014either remorse or to ensure insurance payout for family.",
+    "confidence": "high",
+    "quote": "He set that fire to kill us all...He would never, ever have died of carbon monoxide poisoning unless he wanted to."
+  },
+  "resolution": {
+    "value": "Sharon reveals to narrator that she possesses proof Charles invented DP123 and set the fire; she blackmailed him for divorce settlement using sealed evidence file threatening FBI exposure. Charles's suicide confesses remorse.",
+    "confidence": "high",
+    "quote": "I put everything in a sealed file and gave it to my attorney and told him to take it to the FBI if anything happened to me. Then I confronted Charles. He buckled like that."
+  },
+  "investigator": {
+    "value": "Bill, the narrator\u2014former friend of Ike, current lover of Sharon; outsider-within who witnesses Sharon's revelation and must reconcile competing theories of guilt while harboring uncertainty.",
+    "confidence": "high",
+    "quote": "I sat there trying to figure this thing out. Who really set that fire? Could Ike have actually smuggled that stuff into the country?"
+  },
+  "suspect_architecture": {
+    "value": "Three suspects for the arson: Ike Lowell (PTSD veteran, obsessive voyeur, means via military accelerant DP123, motive unclear/delusional); Charles Novak (chemical engineer, motive to kill family to flee with lover, means via timer/remote ignition of his own invented accelerant); Sharon Postlewaite (cool, manipulative, always watching \u2014 motive speculative, means unknown but hinted). Each is differentiated by access to the accelerant, psychological profile, and relationship to the victims.",
+    "confidence": "high",
+    "quote": "Could she have somehow started that fire? She'd said that she always knew when she was being watched."
+  },
+  "red_herring": {
+    "value": "The sustained implication that Ike Lowell set the fire \u2014 supported by his obsessive surveillance of Sharon, his PTSD instability, the FBI-designated military accelerant found at the scene, and Greg's inside knowledge \u2014 is the central red herring. The narrator and reader are led to believe Ike is guilty; Sharon's revelation that Charles invented DP123 and had motive, means, and engineering capability to use a timer inverts the presumption entirely.",
+    "confidence": "high",
+    "quote": "the only conclusion anyone could reach was that somehow Ike had brought the stuff home from Vietnam and used it to start the fire"
+  },
+  "clue_fairness": {
+    "value": "Several clues are embedded fairly in the narrative: Charles is introduced early as a chemical engineer with Dow Chemical; Sharon's preternatural composure and self-awareness ('I always knew when someone's watching') are shown before the reveal; Charles's obsessive use of timers and remote controls is described by Sharon in retrospect but the narrator's prior description of Charles as 'an engineer in every sense' plants the seed. However, the DP123 name and Charles's authorship of it are withheld until Sharon's revelation, limiting full fairness.",
+    "confidence": "medium",
+    "quote": "Charles was an engineer, Bill. Charles was a genius. He could set up a timer... Did you ever see our Christmas lights? All on timers."
+  },
+  "social_world": {
+    "value": "Small midwestern town with tight networks of observation and gossip: the narrator's world is structured by draft-deferment teaching, local journalism (Greg at the Courier), and working-class leisure (Blue Moon Tap, church basketball). Class distinctions operate quietly \u2014 Sharon's cosmetic transformation signals upward mobility; Charles's corporate engineering career (Dow Chemical) places him above the local milieu. Knowledge is power: who knows what about whom determines social leverage, as Sharon's sealed legal file and divorce settlement demonstrate.",
+    "confidence": "high",
+    "quote": "I put everything in a sealed file and gave it to my attorney... Then I confronted Charles. He buckled like that."
+  },
+  "alibi": {
+    "value": "Charles Novak's alibi for the night of the fire is that he was out of town \u2014 a fact the narrator initially accepts as disqualifying. Sharon dismantles it by demonstrating that Charles's engineering expertise with timers and remote controls made physical presence unnecessary; the alibi of absence is revealed as the mechanism of the crime rather than exculpation.",
+    "confidence": "high",
+    "quote": "'Charles was out of town.' 'Charles was an engineer, Bill. Charles was a genius. He could set up a timer...'"
+  },
+  "reveal_mechanic": {
+    "value": "The reveal operates through proprietary chemical knowledge: the accelerant DP123 is the lynchpin. The narrator identifies it as military/classified, implicating Ike; Sharon counters by naming it and identifying Charles as its inventor, which simultaneously establishes his exclusive means and demolishes the Ike hypothesis. The chemical name functions as a forensic signature pointing back to its creator. A secondary psychological reveal concerns Sharon's demonstrated pattern of always watching and performing for watchers, casting retrospective doubt on her innocence.",
+    "confidence": "high",
+    "quote": "'It's called DP123.' 'How do you know that?' 'I know because Charles invented it. It was his baby.'"
+  },
+  "media_and_audience": {
+    "value": "The local newspaper (the Courier) shapes the official narrative: Greg's inside access to the fire investigation created a suppressed or classified story (FBI top-secret designation) that never reached public consumption. The community received only fragments \u2014 insurance questions, smoke detector failures, the Novaks' abrupt departure \u2014 and filled gaps with assumption. The absence of a published truth allowed multiple private narratives to coexist, each character holding a different version of who set the fire.",
+    "confidence": "medium",
+    "quote": "Greg helped to write the story at the Courier; he was on the inside... the top-secret designation."
+  },
+  "investigator_wound": {
+    "value": "The narrator-investigator (Bill) is wounded by guilt, loyalty to a dead friend, and romantic desperation. His obsession with Ike's memory distorts his judgment; he reveals the arson accusation not out of duty but to seem 'daring and noble and heroic' to Sharon and win her back. His deeper wound is that he loves a woman who is in love with a dead man, and every act of investigation is contaminated by jealousy of Ike and fear that truth will destroy his own position rather than serve justice.",
+    "confidence": "high",
+    "quote": "the more I loved Sharon and the more desperate I felt about her, the angrier I got at Ike... I was practicing chivalry of a rather fractured, latter-day, and self-serving sort."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Ike,\tSharon,\tand\tMe",
+    "author": "PETER\tFERRY",
+    "anthology_title": "The_Best_American_Mystery_Stories_2017_-_John_Sandford",
+    "story_index": 10,
+    "story_count": 19
+  }
+}

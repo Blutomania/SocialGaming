@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Jimmy Thornton, undercover narcotics officer conducting a drug investigation into cocaine dealer Samantha Pitney",
+    "confidence": "high",
+    "quote": "He was in his thirties, shaggy hair, wiry build, dressed in a Runnin' Rebels T-shirt... logged in, parked at his desk, and wrote up his report"
+  },
+  "suspect_architecture": {
+    "value": "Three principals: Mike (drug dealer/father, motive to suppress paternity/exposure), Claudia (Cuban supplier, cold and controlling), Jimmy Thornton (undercover cop posing as customer, concealed law-enforcement identity). Nick Perino serves as unwitting connector/informant. Each has distinct means and role; Mike has personal motive, Claudia has organizational stake, Jimmy has institutional power.",
+    "confidence": "high",
+    "quote": "Jimmy Thornton said, 'You first blew into town, when was it, seventy-four?'...Mike paints a pretty vivid picture."
+  },
+  "red_herring": {
+    "value": "Jimmy Thornton is introduced as a potential romantic interest and sympathetic customer \u2014 his charm, ease with Natalie, self-deprecating humor, and apparent vulnerability all misdirect the reader from his true identity as an undercover narcotics officer building a case against Sam.",
+    "confidence": "high",
+    "quote": "He was a natural, carrying her on his shoulders to the park...He had Sam cradle her in her lap on the merry-go-round."
+  },
+  "clue_fairness": {
+    "value": "The reader is shown Jimmy's betrayal simultaneously with its completion: his filed report, the invented account replacing the real encounter, and his prior reconnaissance of Sam's customers at the Roundup are all rendered on the page before any investigator processes them \u2014 the reader sees the trap close in real time.",
+    "confidence": "high",
+    "quote": "He invented an encounter far more fitting with department guidelines than the one that had taken place, wrote it out, signed it."
+  },
+  "social_world": {
+    "value": "1980s Las Vegas low-strip economy: casino service workers, small-time dealers, mob-adjacent locals, and law enforcement form interlocking hierarchies. Patronage flows through informants (Nick as CI), supplier networks (Claudia at apex), and institutional power (LVMPD tower four blocks away). Class mobility is illusory \u2014 Sam's upward move into suede furniture and ferns mirrors Claudia's setup, signalling the ceiling.",
+    "confidence": "high",
+    "quote": "All of this happening in the shadow of the police tower on Stewart Avenue, all those cops just four blocks away."
+  },
+  "alibi": {
+    "value": "Jimmy constructs a false alibi for his own conduct by fabricating a department-compliant report that replaces the actual drug purchase scenario \u2014 the real encounter (domestic setting, child present, personal conversation) is erased and replaced with a procedurally clean fiction submitted to his sergeant.",
+    "confidence": "high",
+    "quote": "He invented an encounter far more fitting with department guidelines than the one that had taken place, wrote it out, signed it."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is delivered through procedural documentation: Jimmy's written report, the Scott Reagent field-test notation, and the formal identifier 'Samantha Pitney, White Female Adult' transform the intimate domestic scene the reader just witnessed into a criminal case file \u2014 the bureaucratic language is the mechanism that makes the betrayal legible.",
+    "confidence": "high",
+    "quote": "He wrote up his report: the purchase of one gram Cocaine HCL, field-tested positive with Scott Reagent...supplied by Samantha Pitney, White Female Adult."
+  },
+  "media_and_audience": {
+    "value": "No press or public narrative apparatus is depicted; the crime is processed entirely within institutional channels (police reports, CI files, the undercover office 'Halliwell Partners, Ltd.'). The concealment of the investigation behind a fictitious corporate front is the story's version of media packaging \u2014 law enforcement controls the only narrative that matters.",
+    "confidence": "medium",
+    "quote": "An anonymous set of offices with blinds drawn, a sign on the door reading HALLIWELL PARTNERS, LTD."
+  },
+  "investigator_wound": {
+    "value": "Jimmy Thornton shows signs of his own cocaine use (jitter in hands, head tic, bloodshot eyes, sniffing throughout the interrogation scene) \u2014 the investigator is compromised by the same substance he is prosecuting, creating a psychological wound of hypocrisy and self-deception that the narrative exposes but never resolves.",
+    "confidence": "high",
+    "quote": "Something about him said one-time jock...the red in those killer blue eyes...Back in his car, Jimmy horned the rest of the first gram."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Pretty Little Parasite",
+    "author": "DAVID CORBETT",
+    "anthology_title": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver",
+    "story_index": 6,
+    "story_count": 25
+  }
+}

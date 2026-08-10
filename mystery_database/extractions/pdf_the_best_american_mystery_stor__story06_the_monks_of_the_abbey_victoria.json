@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Theft of confidential fall TV schedule from locked office drawer at RCA Building; central question: which of four men with knowledge of the schedule's location stole it during the night of the break-in?",
+    "confidence": "high",
+    "quote": "Last night someone broke into my office. Pried open the drawer where I was keeping the fall schedule. Took it. Stole it."
+  },
+  "victim": {
+    "value": "Ken Compton, Vice-President of Programming; made vulnerable by his obsessive secrecy over the schedule and his isolation of it in his office, creating opportunity for theft by insiders.",
+    "confidence": "high",
+    "quote": "Ken Compton, Vice-President of Programming but second to no network chieftain in his wrath"
+  },
+  "closed_world": {
+    "value": "RCA Building on a specific night; investigation limited to four men (Spitz, Braverman, Dancer, Winslow) who knew the schedule existed and its location, ostensibly alibi'd by poker night at Abbey Victoria Hotel Room 622.",
+    "confidence": "high",
+    "quote": "there were only four people, other than myself, who knew that the schedule already existed and where it was kept."
+  },
+  "culprit_and_motive": {
+    "value": "Spitz, Braverman, and Dancer conspired to steal the schedule and sell it to CBS for cash; motive is financial gain. They created a false alibi (the 'Monks' poker club) and fabricated consistent corroborating stories to frame Winslow.",
+    "confidence": "high",
+    "quote": "My fellow Brothers must surely have struck a deal with someone at CBS...Whatever cash from CBS they were splitting, I was certain a modest percentage of their take could be found in the envelope now in Donna's hands."
+  },
+  "resolution": {
+    "value": "Compton traps Winslow by revealing the New Bamboo Palace closed three years ago, exposing his false alibi. Compton then reveals he already has consistent corroborating stories from the other three men (Spitz, Braverman, Dancer), implicating Winslow as the thief\u2014though the reader understands Winslow is innocent and the three men are the actual culprits.",
+    "confidence": "high",
+    "quote": "It's just a damn shame they closed the New Bamboo Palace three years ago."
+  },
+  "investigator": {
+    "value": "Dale Winslow, newest NBC executive and narrator; he is simultaneously a suspect in Compton's eyes and the reader's window into the truth. He discovers the conspiracy but cannot expose it without destroying himself.",
+    "confidence": "high",
+    "quote": "I understood now. There had never been a Monks of the Abbey Victoria. Not until I came on the scene...I was caught in a fool's mate."
+  },
+  "suspect_architecture": {
+    "value": "Four insider suspects \u2014 Spitz (attorney, cautious), Dancer (variety producer, theatrical), Braverman (PR, ingratiating), and newcomer Dale Winslow (outsider, no alibi cover). The three veterans are differentiated by role and motive: collective corporate espionage selling NBC schedules to CBS, with Winslow set up as the fall guy by virtue of his newness and lack of institutional loyalty.",
+    "confidence": "high",
+    "quote": "The four of us were attorney Shepard Spitz...Matty Dancer...Harv Braverman...and myself, Dale Winslow"
+  },
+  "red_herring": {
+    "value": "The 'Monks of the Abbey Victoria' poker club is itself a red herring \u2014 an elaborate false alibi apparatus constructed to appear as an innocent men's club, misdirecting Compton and framing Winslow. The initiation ritual, the memorisation test, and the fraternal secrecy are all engineered misdirection.",
+    "confidence": "high",
+    "quote": "There had never been a Monks of the Abbey Victoria. Not until I came on the scene. The one meeting I'd attended...had been the only meeting ever convened."
+  },
+  "clue_fairness": {
+    "value": "The New Bamboo Palace closure is shown to the reader simultaneously with the reveal \u2014 the reader witnesses Winslow describe the takeout order in detail before Compton drops the fact that the restaurant closed three years ago, making the clue retrospectively available. Additionally, Donna receiving the manila envelope with currency is shown to Winslow and reader together.",
+    "confidence": "high",
+    "quote": "'It's just a damn shame they closed the New Bamboo Palace three years ago.'"
+  },
+  "social_world": {
+    "value": "1950s broadcast television hierarchy \u2014 NBC's RCA Building as a corporate feudal structure with Compton as overlord, department heads as vassals, and network rivalry (NBC vs. CBS) as the engine of espionage. Institutional loyalty ('their blood ran peacock blue'), seniority, and access to secrets determine power and vulnerability.",
+    "confidence": "high",
+    "quote": "Heads had been known to roll in the RCA Building like cabbages in a coleslaw factory...conveyor belt to the waiting express elevator"
+  },
+  "alibi": {
+    "value": "The three conspirators construct a mutually corroborating false alibi (poker until 2 AM, pizza with anchovies, consistent details about Spitz winning $100) while Winslow, having been at the planetarium with Donna, offers the true-but-unsupportable alibi that exactly matches what he was told the club did \u2014 exposing him as inconsistent and unable to produce a witness.",
+    "confidence": "high",
+    "quote": "Each man's story was completely consistent with the others. Whereas you, Winslow, are totally at odds with all of them."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is delivered through a factual trap: Compton allows Winslow to construct a detailed, confident false account based on the fabricated 'monk' narrative, then demolishes it with a single verifiable fact \u2014 the New Bamboo Palace has been closed for three years. The specificity of Winslow's invented alibi (almond gai ding, egg rolls, shrimp toast) becomes the evidence of his guilt.",
+    "confidence": "high",
+    "quote": "'It's just a damn shame they closed the New Bamboo Palace three years ago.'"
+  },
+  "media_and_audience": {
+    "value": "The crime exists within a closed institutional audience \u2014 NBC management, the network's internal espionage paranoia, and the CBS rivalry. There is no press; instead, Compton functions as judge and jury, and the 'audience' for the crime's narrative is entirely internal to the corporation. The memo leak scandal and predecessor Ted Thissel's fall are precedents that shape how guilt is assigned.",
+    "confidence": "medium",
+    "quote": "Ted Thissel, my immediate predecessor, had been suspected of selling the previous season's fall schedule to CBS"
+  },
+  "investigator_wound": {
+    "value": "Winslow's wound is double: his marital infidelity with Donna makes his true alibi unspeakable, and his newness at the network strips him of institutional credibility and allies. His decency \u2014 protecting Braverman early in the story \u2014 is the exact vulnerability the conspirators exploited to identify and recruit him as a patsy.",
+    "confidence": "high",
+    "quote": "I was caught in a fool's mate, where my king could only toggle between two squares, either of which placed me lethally in check."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The Monks of the Abbey Victoria",
+    "author": "RUPERT HOLMES",
+    "anthology_title": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos",
+    "story_index": 6,
+    "story_count": 22
+  }
+}

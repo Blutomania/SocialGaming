@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Two police officers (Shield #647 and Shield #325) responding to dispatch calls across a city",
+    "confidence": "high",
+    "quote": "Officers take Scene Report, refer victim to Crisis Center."
+  },
+  "suspect_architecture": {
+    "value": "No traditional suspect architecture exists. The chain-saw vandal is an unnamed, unseen figure whose identity is never established \u2014 differentiated only by a trail of escalating property crimes across the city. The 'suspects' are diffuse and structural: a one-armed magazine salesman (red herring), anonymous juveniles, and an implied domestic perpetrator at 2200 Felicity Court whose motive connects to the picket signs ('LIFE,' 'MURDER') suggesting ideological or personal grievance.",
+    "confidence": "low",
+    "quote": "Officers assess scene, do math: Burlwood + Chain Saw = Woodcraft Apocalypse."
+  },
+  "red_herring": {
+    "value": "The one-armed magazine salesman functions as a structural red herring \u2014 introduced twice at Tall Ships Estates, escalating from trespass to threatening behavior, drawing investigative attention and narrative energy away from the chain-saw perpetrator whose crimes continue unimpeded in parallel.",
+    "confidence": "medium",
+    "quote": "One-armed magazine salesman kicking doors and threatening residents. Scuffle ensues. Officers sit on suspect, call for backup."
+  },
+  "clue_fairness": {
+    "value": "Clues are embedded in the dispatch log format and presented to the reader simultaneously with the officers: stolen chain saw described in precise detail early on; subsequent scenes of chain-saw vandalism use matching details (gas fumes, chain oil, sawdust). The picket signs at the final scene ('LIFE,' 'MURDER') retrospectively reframe all prior incidents. Reader and investigators receive identical information throughout.",
+    "confidence": "medium",
+    "quote": "cherry-red-enameled Thaesselhaeffer Sidewinder chain saw... daddy's sweet bitch stenciled in flaming orange-yellow letters"
+  },
+  "social_world": {
+    "value": "A layered municipal hierarchy: city patrol officers at the bottom, condescended to by State Patrol ('Prince of Freeways,' 'Ayatollah of the Asphalt'); DPW units as comic bureaucratic chorus; institutions (Parks & Rec, Animal Control, Crisis Center) processing disorder at arm's length. Officers are working-class functionaries navigating class friction \u2014 gated communities, retirement apartments, tamale restaurants \u2014 while themselves subject to departmental authority.",
+    "confidence": "high",
+    "quote": "State Patrol thanks officers for their assistance, flashes horsey smile, tips dopey hat. Officers sit slouched on Patrol Unit, watch State Patrol strut about."
+  },
+  "alibi": {
+    "value": "No formal alibi structure is present. The chain-saw perpetrator is never apprehended or questioned, so no alibi is constructed or tested. The officers themselves are the closest thing to figures whose whereabouts are tracked \u2014 their dispatch log constitutes an inadvertent alibi record for themselves as they repeatedly miss or avoid the domestic disturbance at 2200 Felicity Court.",
+    "confidence": "low",
+    "quote": "Officers cruise by, tap brakes, assess scene, nod assent, hightail it out of there."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is cumulative and environmental rather than declarative: the final scene at 2200 Felicity Court assembles physical evidence (chain-sawed picket signs reading 'LIFE' and 'MURDER,' sinkhole, mimosa odor echoing the earlier 'smell of death/life' incident, chain-saw sounds from the basement) into a convergence the officers \u2014 and reader \u2014 must enter rather than solve. No verbal solution is offered; the threshold crossing is the reveal.",
+    "confidence": "medium",
+    "quote": "a pile of freshly cut wood... LIFE one of them reads, MURDER reads another. Chain-sawed picket signs."
+  },
+  "media_and_audience": {
+    "value": "The police dispatch log format itself is the mediating institution \u2014 bureaucratic language ('Officers ascertain,' 'Scene Report,' 'notify Animal Control') packages violence, desire, and absurdity into identical administrative prose. There is no press or public opinion layer; instead the genre convention of the incident report is the medium that flattens and equalizes all events, creating ironic distance between institutional narration and human reality.",
+    "confidence": "high",
+    "quote": "Officers report report."
+  },
+  "investigator_wound": {
+    "value": "Officer #647's wound is loneliness and emotional guardedness \u2014 explicitly named ('the potential encroachment of love, maybe, into his cautious and lonely life'). Officer #325's wound is a related invisibility and self-suppression (quelling desire to linger in the touch of her own hair, the wedding ring she removes). The case's escalating danger forces both wounds into the open simultaneously, as professional duty and personal vulnerability converge at the final threshold.",
+    "confidence": "high",
+    "quote": "Officer ascertains the potential encroachment of love, maybe, into his cautious and lonely life. Officer swallows hard."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "text_len": 20353,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Officers\tWeep",
+    "author": "DANIEL\tOROZCO",
+    "anthology_title": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates",
+    "story_index": 14,
+    "story_count": 22
+  }
+}

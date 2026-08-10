@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder by poisoning (rhubarb leaf toxin in a tart); central question: will Nita's confession to the intruder expose her decades-old crime, or will his death silence both secrets?",
+    "confidence": "high",
+    "quote": "I baked two tarts. One had the poison in it and one didn't...She was sweet and grateful...So we had our little party."
+  },
+  "victim": {
+    "value": "Nita's husband's mistress/registrar office worker; killable because she threatened to destroy Nita's marriage and life with Rich, whom Nita had already destroyed another marriage to obtain.",
+    "confidence": "high",
+    "quote": "Everything we'd worked for was going to go to her...she'd poisoned my life, so I had to poison hers."
+  },
+  "closed_world": {
+    "value": "University campus registrar office during summer holidays when building was deserted; Nita knew back ways and no one saw her arrive or leave.",
+    "confidence": "high",
+    "quote": "The building was deserted, and as far as I know to this day nobody saw me arrive or leave. Of course, I knew some back ways."
+  },
+  "culprit_and_motive": {
+    "value": "Bett Underhill (Rich's first ex-wife), implied as the source of Nita's knowledge of plant poisons through her cookbook; Nita herself confesses to poisoning the registrar worker to save her marriage.",
+    "confidence": "medium",
+    "quote": "A Celebration of Familiar Fruits and Vegetables...She had learned a few things...Such as the poisonous aspects of certain familiar plants."
+  },
+  "resolution": {
+    "value": "No formal resolution. The intruder (murderer of three) dies in a car crash, taking Nita's confession with him. Nita considers turning herself in but remains paralyzed by fear and exhaustion, holding mutual silence.",
+    "confidence": "high",
+    "quote": "Killed. Instantly. Serves him right...a word outta you and there'll be a word outta me."
+  },
+  "investigator": {
+    "value": "Nita herself and the unnamed intruder who arrives by chance, forcing Nita to confess; reader experiences mystery through Nita's perspective as she becomes both investigatee and confessor.",
+    "confidence": "high",
+    "quote": "She knew that he wanted her to ask what he had done...Then, for the first time since he had entered the house, she thought of her cancer."
+  },
+  "suspect_architecture": {
+    "value": "Two figures carry criminal weight: Nita (concealed past murderer, motive: jealousy/preservation of marriage, means: rhubarb-leaf poison, opportunity: access to victim's workplace) and the unnamed intruder (fugitive triple murderer, means: physical violence, opportunity: isolated house). No formal detective-style suspect spread; the story inverts convention by making the 'victim' the prior killer.",
+    "confidence": "high",
+    "quote": "he's wanted for a triple murder...You were lucky you didn't run into him."
+  },
+  "red_herring": {
+    "value": "The intruder's stated reason for entering the house \u2014 checking the fuse box \u2014 is a deliberate false trail that briefly misleads both Nita and the reader about his intentions. More structurally, Nita's terminal cancer and grief-stricken widowhood position her as a purely sympathetic victim, concealing her identity as a murderer.",
+    "confidence": "high",
+    "quote": "You never did think I come here to look at the fuse box, did you? / Well, yes, Nita said. I did."
+  },
+  "clue_fairness": {
+    "value": "The key clue \u2014 rhubarb leaves as poison \u2014 is planted early and visibly for the reader: Bett's cookbook is on the shelf, and Nita reflects that she 'learned a few things that surprised her...such as the poisonous aspects of certain familiar and generally benign plants.' The reader has access to this information at the same moment Nita consciously acknowledges it.",
+    "confidence": "high",
+    "quote": "she had learned a few things that surprised her. Such as the poisonous aspects of certain familiar and generally benign plants."
+  },
+  "social_world": {
+    "value": "The story's power structure is university/institutional hierarchy: Rich as medieval literature professor, Nita as registrar's office worker (subordinate), Bett as accomplished published author. Nita's affair cost her her job ('quitting her job at the suggestion of the registrar'), Rich his deanship \u2014 institutional power enforcing sexual and class penalties asymmetrically.",
+    "confidence": "high",
+    "quote": "Nita quitting her job at the suggestion of the registrar, and Rich missing out on becoming dean of arts."
+  },
+  "alibi": {
+    "value": "Nita's alibi for the poisoning is spatial and temporal: she left the victim's office before symptoms manifested, the building was deserted, and no witness saw her arrive or leave. She also exploited her husband's absence at a Minneapolis symposium as cover. The alibi held permanently \u2014 'to this day nobody saw me arrive or leave.'",
+    "confidence": "high",
+    "quote": "I had to be out of the way, and so I was. The building was deserted, and as far as I know to this day nobody saw me."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is psychological and confessional: Nita discloses her past murder to the intruder as a calculated survival gambit \u2014 making herself too dangerous to kill (mutual incrimination). The reader receives the confession simultaneously. The mechanism is mutual blackmail: 'Nobody knows what I've told you' \u2014 transforming shared guilt into a d\u00e9tente that saves her life.",
+    "confidence": "high",
+    "quote": "Nobody knows what I've told you...Nobody knows yet, he said, and she thought, Thank God. He's on the right track."
+  },
+  "media_and_audience": {
+    "value": "The original murder was entirely absorbed by institutional silence \u2014 no press, no public narrative, the victim's death apparently accepted as natural or unremarked. Rich's death generates a social performance of grief (phone calls, sympathy notes, 'celebrating the life') that Nita actively refuses. The intruder's death is processed by police as justice: 'Serves him right' \u2014 institutional narrative closing the loop without exposing Nita.",
+    "confidence": "medium",
+    "quote": "He's wanted for a triple murder...Was he hurt? Killed. Instantly. Serves him right."
+  },
+  "investigator_wound": {
+    "value": "There is no external investigator; Nita is simultaneously perpetrator and the closest figure to a moral consciousness. Her wound is her terminal cancer and fresh widowhood \u2014 conditions that paradoxically liberate her from fear of the intruder ('she thought of her cancer. She thought of how it freed her, put her out of danger') and from social convention, enabling the cold strategic thinking that saves her.",
+    "confidence": "medium",
+    "quote": "she thought of her cancer. She thought of how it freed her, put her out of danger."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Free Radicals",
+    "author": "ALICE MUNRO",
+    "anthology_title": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver",
+    "story_index": 14,
+    "story_count": 25
+  }
+}

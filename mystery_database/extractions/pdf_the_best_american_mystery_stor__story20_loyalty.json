@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Maurie Moleva's cousin Dragon, a worker killed by defective military windshield washer fluid that lacked required HD-12 chemical; alternatively, soldiers in an Army helicopter crash caused by the same defect",
+    "confidence": "medium",
+    "quote": "within a few months, an Army helicopter gets caught in a desert storm and goes kerplunk in the Mojave. One survivor. Who says they went down because they couldn't get the sand off their frigging windshield."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Maurie Moleva deliberately removed HD-12 from military windshield washer fluid to save $2/gallon in production costs, resulting in vehicle/helicopter failures and deaths. Motive: profit maximization.",
+    "confidence": "high",
+    "quote": "he tells them on the assembly line, 'Leave it out.' ...the government is like, We need some chemical, HD-12 or whatever...he's got several hundred thousand troops in the jungles of Nam, no sand there"
+  },
+  "resolution": {
+    "value": "Federal grand jury investigation initiated; Maurie avoids prosecution through undisclosed means (possibly bribery or political protection via his lawyer Jack Barrish); Elstner, his junior associate, witnesses the cover-up but maintains silence",
+    "confidence": "medium",
+    "quote": "So we have a big federal grand jury investigation started up...Maurie strolled. Here's where I come into the picture."
+  },
+  "investigator": {
+    "value": "Paul Elstner, junior attorney at Maurie's defense lawyer's firm, who becomes complicit witness to Maurie's crime and cover-up; later the unnamed narrator (Elstner's law school friend) who learns the secret but chooses not to act",
+    "confidence": "high",
+    "quote": "There was this night...I get a call. Past midnight. It's Maurie...Finally he tells me to meet up with him instead."
+  },
+  "suspect_architecture": {
+    "value": "Primary perpetrator is Maurie Moleva (fraud/negligent homicide via omitting HD-12 from military windshield fluid); cousin Dragon as wronged whistleblower/witness; Jack Barrish as ethically compromised defense attorney; Elstner as knowing accessory after the fact. Differentiated by motive (greed, grievance, professional duty, self-preservation) and proximity to the crime.",
+    "confidence": "high",
+    "quote": "\"Maurie's answer is, 'Darn it, can you believe what knuckle-balls I got on my line? I need better help.'\" "
+  },
+  "red_herring": {
+    "value": "Maurie's defense that sloppy assembly-line workers (not deliberate fraud) caused the missing HD-12 is a deliberate misdirection \u2014 plausible enough that even the narrator initially accepts it, designed to deflect criminal intent onto unnamed laborers.",
+    "confidence": "high",
+    "quote": "\"Maurie's answer is, 'Darn it, can you believe what knuckle-balls I got on my line? I need better help.' That's not so bad, right? As a defense?\""
+  },
+  "clue_fairness": {
+    "value": "The narrator withholds Karen's surname (and thus her connection to Maurie) from the reader just as Elstner withheld it from him; the reader is given the same information lag as the narrator, making the revelation of Karen as Moleva's daughter a structurally fair delayed clue.",
+    "confidence": "medium",
+    "quote": "\"I had figured it out a while ago, probably by the second time I saw Karen. The details were a while coming back to me.\""
+  },
+  "social_world": {
+    "value": "Layered patronage networks: old-country ethnic loyalty (Maurie importing Dragon), employer-employee exploitation disguised as kinship, the small-city legal fraternity where defense attorneys enable client crimes, and the military-industrial contracting world where fraud is shielded by bureaucratic distance.",
+    "confidence": "high",
+    "quote": "\"Jack, you know, his business clients are all Kehwahnee hustlers just like him\" / \"Maurie pays Dragon's way, meets his plane, kisses Dragon's cheeks\""
+  },
+  "alibi": {
+    "value": "Maurie's alibi for criminal intent is managerial ignorance \u2014 he claims he gave no explicit order to omit HD-12 and blames line workers. This alibi is destroyed by Dragon's eyewitness testimony that Maurie personally directed the omission on the assembly line.",
+    "confidence": "high",
+    "quote": "\"'Nope,' says the AUSA. 'Nope, I got a witness.' 'Dragon.'\""
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is delivered through narrator inference and social recognition rather than forensic demonstration: the narrator pieces together Karen's identity as Moleva's daughter from accumulated social details, and Karen's nightmare (watching fire come toward her father without shouting) psychologically dramatises her suppressed knowledge of his guilt.",
+    "confidence": "medium",
+    "quote": "\"I was in a fire with my father. I was watching the fire come toward him and there wasn't anything I could do.\""
+  },
+  "media_and_audience": {
+    "value": "The crime is absorbed into institutional silence: federal grand jury investigation is ultimately neutered (Maurie 'strolled'), the military helicopter crash is treated as accident, and the story circulates only as a privately held secret between lawyers \u2014 never reaching public narrative or press accountability.",
+    "confidence": "medium",
+    "quote": "\"So we have a big federal grand jury investigation started up.\" / \"Maurie strolled.\""
+  },
+  "investigator_wound": {
+    "value": "The narrator-investigator's wound is his pattern of seeking moral redemption through women \u2014 he tells Karen about her father's crime hoping it will transform her (and himself), mirroring his lifelong tendency to pursue the wrong relationships. His failed marriage to Clarissa, taken from Elstner, underlies his compulsive need to believe revelation changes people.",
+    "confidence": "high",
+    "quote": "\"You're too old to believe people change because you want them to... You've always been trying to find the Holy Grail with women.\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Loyalty",
+    "author": "SCOTT\tTUROW",
+    "anthology_title": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates",
+    "story_index": 20,
+    "story_count": 22
+  }
+}

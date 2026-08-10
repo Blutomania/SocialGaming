@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Double murder (strangulation and shooting) at Apartment 311, Bon Vivant building. Central question: who killed Mac McKenzie and Teresa Vail, and why were they together?",
+    "confidence": "high",
+    "quote": "the man on the couch pitched sideways against the armrest with the ruby face and the cloth-covered extension cord wrapped around his neck. And the young woman slumped against his shoulder with the .22 in her hand"
+  },
+  "victim": {
+    "value": "Mac McKenzie: closeted homosexual oil executive living a double life; killable because his sexual orientation and affairs provided extortion leverage and triggered murderous shame in Paul Devore, a cowardly war profiteer.",
+    "confidence": "high",
+    "quote": "being a coward on the battlefield could be just as fatal to a career as being a homosexual. That's when you killed him."
+  },
+  "closed_world": {
+    "value": "Apartment 311 at the Bon Vivant, a three-story horseshoe-shaped apartment building on La Brea in post-WWII Los Angeles. Contained space where narrator observes entry/exit and discovers bodies.",
+    "confidence": "high",
+    "quote": "The Bon Vivant was horseshoe-shaped, with its opening toward the street... I crossed the damp courtyard and walked inside. Passed the bank of mail slots... Found Apartment 311 and gave the knob a quiet turn."
+  },
+  "culprit_and_motive": {
+    "value": "Paul Devore murdered Mac McKenzie out of shame and rage: a discharged coward hiding his wartime self-inflicted wound, he learned Mac earned military medals honorably. Devore kills to destroy the evidence (medals) and the man who embodied the heroism Devore could never claim.",
+    "confidence": "high",
+    "quote": "I grabbed the extension cord and started to choke him... Those goddamned medals. They looked ridiculous on his herringbone coat. Killing him was better than any money."
+  },
+  "resolution": {
+    "value": "Devore confesses during confrontation at Apartment 311. Eileen Burnham (accomplice/actress) shoots Devore in self-defense after her own accidental killing of Teresa. Police accept corroborated accounts; narrator destroys photographic evidence of Mac's homosexuality to protect his memory.",
+    "confidence": "high",
+    "quote": "Both guns exploded. Eileen staggered and fell to the carpet. Devore tumbled over the back of the couch... His eyes and mouth were open, frozen in a look of perplexed fear."
+  },
+  "investigator": {
+    "value": "Darrow Nash, private investigator hired for divorce evidence. Becomes de facto detective when discovering bodies, piecing together motives through investigation of secret apartment, hidden photographs, and forced confessions.",
+    "confidence": "high",
+    "quote": "I was a PI makes any real money in this town... I was waiting outside the Bon Vivant on La Brea... I was tailing Mac around ten p.m."
+  },
+  "suspect_architecture": {
+    "value": "Four principals differentiated by motive and role: Paul Devore (killer \u2014 greed/blackmail victim/war-cowardice concealment), Eileen Burnham (accomplice turned killer \u2014 love/money, morally ambiguous), Alice McKenzie (client/suspect \u2014 inheritance motive, arrived suspiciously at crime scene), Teresa Vail (victim, initially framed by staging as killer of Mac). Devore and Eileen share means and opportunity but diverge sharply on intent; Alice provides a plausible outside murderer until cleared.",
+    "confidence": "high",
+    "quote": "Killing him was better than any money. He aimed his gun at my head."
+  },
+  "red_herring": {
+    "value": "The crime scene is staged to look like a murder-suicide between the two lovers: Mac strangled, Teresa dead with a .22 in her hand and a bullet under her chin \u2014 misdirecting police (and reader) into assuming Teresa killed Mac then herself, concealing Devore as strangler and Eileen as Teresa's shooter.",
+    "confidence": "high",
+    "quote": "the man on the couch...with the extension cord wrapped around his neck. And the young woman slumped against his shoulder with the .22 in her hand"
+  },
+  "clue_fairness": {
+    "value": "Key clues are presented to the reader contemporaneously with Nash's discovery: the unlocked apartment door (suggesting staged scene), the shoe marks on the bedroom door (implying a struggle distinct from the posed bodies), the secret drawer containing matchbooks with men's names and incriminating photographs, and the extortion envelope \u2014 all described in scene before Nash interprets them.",
+    "confidence": "high",
+    "quote": "I reached a hand in and touched the back panel...Behind it in the secret space was another small rectangular box and a letter-sized envelope"
+  },
+  "social_world": {
+    "value": "Postwar Los Angeles oil-industry hierarchy layered over wartime shame: executives leverage authority over secretaries (Devore's sexual coercion of Eileen), wealth buys divorce lawyers and private eyes, homosexuality and battlefield cowardice are career-ending secrets enforced by social consensus, and veterans' medal culture creates a blackmail economy. Class is marked by car models, apartment names vs. architecture, and who can afford the Hollywood Hills.",
+    "confidence": "high",
+    "quote": "being a coward on the battlefield could be just as fatal to a career as being a homosexual"
+  },
+  "alibi": {
+    "value": "Devore's alibi is implicit denial of knowledge: he claims he took Alice to the apartment merely to show her 'Mac's home away from home' and 'didn't know he was dead.' This collapses when Nash establishes Devore knew it was Mac's apartment (not Teresa's), and Eileen's confession confirms Devore was present as the killer. Alice's suspicious arrival is similarly probed and partially exonerated.",
+    "confidence": "high",
+    "quote": "'I wanted her to see Mac's home away from home. I didn't know he was dead.' / 'But you knew it was Mac's place and not Teresa Vail's.'"
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated through a combination of physical evidence (secret drawer with photographs proving Mac's homosexuality and the extortion motive), the extortion letter, Eileen's live confession under emotional duress as she walks toward Devore's gun, and Devore's own admission of the strangulation method. Nash's wartime medical knowledge authenticates wound details and confirms the shooting sequence.",
+    "confidence": "high",
+    "quote": "'I grabbed the extension cord and started to choke him. He passed out.' / 'I killed Teresa,' she said."
+  },
+  "media_and_audience": {
+    "value": "The press reduces the case to lurid but superficial coverage ('a brief flurry of lurid articles in the newspapers') before it 'faded away.' The prosecutor and police accept a sanitised version \u2014 believing Mac entertained women, not men \u2014 because Nash suppresses the photographs. Institutional narrative (murder-suicide, limited extortion) is constructed to protect reputations, with the homosexual truth entirely erased from the public record.",
+    "confidence": "high",
+    "quote": "after a brief flurry of lurid articles in the newspapers, the case faded away"
+  },
+  "investigator_wound": {
+    "value": "Nash carries the moral and psychological damage of WWII combat \u2014 having witnessed mass death from Anzio to Dachau as a rifleman-turned-medic, he cultivated deliberate indifference to trauma as a survival mechanism. The case forces him to confront that facade: Teresa's mother's grief breaks through his hardness, Eileen's wound reactivates his battlefield medical identity, and the ending reveals his medals as symbols of guilt rather than heroism \u2014 mirroring Devore's cowardice with his own performed courage.",
+    "confidence": "high",
+    "quote": "The insignias, bars, and medals merely supplied the gilt of heroism to the endless guilt of the facade I wore. That I wear."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Lovers\tand\tThieves",
+    "author": "CHARLES\tJOHN\tHARPER",
+    "anthology_title": "The_Best_American_Mystery_Stories_2017_-_John_Sandford",
+    "story_index": 11,
+    "story_count": 19
+  }
+}

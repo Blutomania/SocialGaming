@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder of car dealership owner Dwight Duchek by gunshot. Central question: Who shot the dealer and why, given multiple suspects present at the lot?",
+    "confidence": "high",
+    "quote": "A car dealer shot dead. In his proximity, four people: a gentle unassuming older lady, the extremely pretty young woman, and rat boy here, Caesar DeLuca."
+  },
+  "victim": {
+    "value": "Dwight 'Happy Dan' Duchek, car dealership owner. Killable because he discovered Caesar DeLuca stealing customer vehicle information from dealership records and threatened to call police; his girlfriend Ms. Russell panicked and facilitated the murder.",
+    "confidence": "high",
+    "quote": "He threatens to call the cops. You can't have that... He has to step out to start processing the old lady's trade, an' the girl calls you up, panicking."
+  },
+  "closed_world": {
+    "value": "Happy Dan Duchek's Auto World dealership lot on Robie Street, a mid-sized car lot with showroom, manager's office, and detailing shop. The crime occurs during business hours with limited personnel present.",
+    "confidence": "high",
+    "quote": "He found the lot on Robie, not a first-rate dealership, but not too scuzzy a place... There was even a detailing shop at the back for well-heeled car enthusiasts."
+  },
+  "culprit_and_motive": {
+    "value": "Caesar DeLuca, car thief. Motive: Duchek discovered DeLuca was using Ms. Russell to access customer vehicle records in the detailing shop to identify high-value cars to steal. When Duchek threatened exposure, DeLuca killed him to prevent police involvement.",
+    "confidence": "high",
+    "quote": "somebody goes through the records there, they can find out who owns what in town... He calls you on it... You panic too... You're back in a minute, an' you use it to make those big holes in the guy."
+  },
+  "resolution": {
+    "value": "Leo Skorzeny deduces the entire crime through detective work: following DeLuca, observing his connection to Ms. Russell, reconstructing the theft scheme. He confronts DeLuca at a coastal chalet, physically battles him over a gun, and DeLuca falls to his death over a 60-foot cliff into the ocean. The gun and Skorzeny's logical reconstruction are the evidence.",
+    "confidence": "high",
+    "quote": "A flying header over the railing, sixty feet down to rocks and pounding surf... Skig put the gun back on the kitchen counter, careful how he touched it."
+  },
+  "investigator": {
+    "value": "Leo Skorzeny, a retired man living in a converted filling station, initially a suspect due to his threatening visit to the dealership. He becomes the de facto investigator motivated by protecting his friend Eva Kohl from false accusation.",
+    "confidence": "high",
+    "quote": "Name's Leo Skorzeny... You heard of me?... They made a little too much of it... I was there at the lot just before the guy got it... I'm gonna find out."
+  },
+  "suspect_architecture": {
+    "value": "Four suspects in proximity to the murder: Skig (investigator/suspect, means unclear, opportunity confirmed, motive absent), the extremely pretty young woman Russell (opportunity, access to victim's gun, romantic entanglement as motive), Caesar DeLuca (actual killer, motive: silencing threat to car-theft operation, means: victim's own gun), and Mrs. Eva Kohl (falsely implicated by police as alternative to Skig). Differentiated by class, age, criminal background, and relationship to the dealership.",
+    "confidence": "high",
+    "quote": "Which of these was most likely to have had something to do with it? Since the cops apparently didn't know about DeLuca, Skig was number one on the list."
+  },
+  "red_herring": {
+    "value": "Skig himself is the deliberate red herring: his known reputation, his presence at the lot just before the murder, and Russell's witness statement all point the police toward him. This misdirection is reinforced by the fat and thin cops treating him as primary suspect, obscuring DeLuca entirely from the investigation.",
+    "confidence": "high",
+    "quote": "she had to settle for the old lady... when you couldn't frame me... I got an alibi with the quack."
+  },
+  "clue_fairness": {
+    "value": "Key clues are planted visibly for the reader before Skig assembles them: the arguing couple under the dealership sign (establishing DeLuca\u2013Russell connection), the yellow Audi at Russell's apartment, Russell's lack of a tan disproving a shared Aruba trip, and the detailing shop at the back of the lot (the means of accessing car-ownership records). All observed by the reader in real time.",
+    "confidence": "high",
+    "quote": "Skig saw movement in the next row over. An extremely pretty young woman... talking heatedly with her hands to a young man in sagging-butt pants."
+  },
+  "social_world": {
+    "value": "Halifax working-class and criminal-underclass power dynamics: Skig operates as an informal neighbourhood enforcer with a fearsome enough reputation to cow a car dealer. The dealership hierarchy (Dan over Russell) enables exploitation of both female employees and elderly women customers. DeLuca represents organised petty crime preying on the affluent-car-owning class via insider data access. Police operate as a blunt institutional force indifferent to the actual criminal network.",
+    "confidence": "high",
+    "quote": "There's not a car salesman alive wouldn't hose a woman like that, unless he's a saint, and you got no halo floatin' over your head."
+  },
+  "alibi": {
+    "value": "Skig's alibi is genuine: his doctor's appointment (specialist clinic, confirmed cancellation slot) places him away from the dealership at the time of the shooting. The police likely discover this, shifting suspicion toward Russell and Mrs. Kohl. DeLuca has no alibi constructed or examined \u2014 his guilt is established by Skig's inference and physical confrontation, not by alibi collapse.",
+    "confidence": "high",
+    "quote": "he had an alibi with the quack. The cops had probably discovered that. Which left the girl\u2014and the older lady."
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated through Skig's layered confrontation strategy: first Russell (psychological pressure surfacing her guilt via reaction), then surveillance of DeLuca's car theft confirming his criminal operation, then the overheard cliff-house conversation where DeLuca inadvertently confirms his role, and finally the gun \u2014 still in DeLuca's possession \u2014 which Skig identifies as the physical tie linking DeLuca to the murder ('bein' a thief it's really tough for you to give up a perfectly good Smith').",
+    "confidence": "high",
+    "quote": "The gun ties you to it... I bet you still got it... not likely I'd pop somebody with their own gun. Not my style."
+  },
+  "media_and_audience": {
+    "value": "Institutional framing is present but minimal: police function as the public narrative-setters, initially packaging the crime as Skig's doing based on reputation alone, then pivoting to Mrs. Kohl as a convenient alternative. There is no press coverage shown; the 'audience' is effectively the police themselves, whose incuriosity about DeLuca allows the real story to go unexamined until Skig resolves it outside institutional channels.",
+    "confidence": "medium",
+    "quote": "They seem a little miffed at you, Leo... the fat cop and the thin cop had stopped by and braced him later."
+  },
+  "investigator_wound": {
+    "value": "Skig is dying \u2014 or believes he is. His recurring gut pain, repeated doctor visits, and fatalistic worldview ('one church service shy of a planting') create a man with nothing to lose who acts entirely outside self-interest. The wound is also grief: he converted his old filling station into a home after his wife Jeanette died, unable to remain where her presence lingered. His protectiveness of Mrs. Kohl \u2014 a vulnerable elderly woman \u2014 is the case's emotional pressure point, substituting for what he can no longer protect.",
+    "confidence": "high",
+    "quote": "couldn't stay in the house... Sensing her presence there was still too much for him, and at other times it was just too empty."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Car Trouble",
+    "author": "JAS. R. PETRIN",
+    "anthology_title": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos",
+    "story_index": 14,
+    "story_count": 22
+  }
+}

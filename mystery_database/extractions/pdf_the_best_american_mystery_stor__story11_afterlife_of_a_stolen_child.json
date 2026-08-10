@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Abduction and murder of a toddler (Joshua Goldberg, age 2) from outside a bakery in Bayside, Long Island. Central question: How was the child taken so quickly (within ~10 minutes) and what happened to his body?",
+    "confidence": "high",
+    "quote": "the day that would make headlines in the News and the Post"
+  },
+  "victim": {
+    "value": "Joshua Goldberg, 2-year-old boy. Killable because he is small, vulnerable, unattended briefly while mother shopped, and his vulnerability triggers the perpetrator's pathological need to silence crying.",
+    "confidence": "high",
+    "quote": "Joshua, whose second birthday they had so recently celebrated...His son squirmed and giggled and pulled his T-shirt up over his face."
+  },
+  "closed_world": {
+    "value": "The suburban beach community of Bayside, Long Island during summer. A small, tranquil town where residents walk or bike; the bakery is a central location on Main Street within a half-mile radius of homes and shops.",
+    "confidence": "high",
+    "quote": "Bayside was so tranquil, the summer regulars said, that you could hear the cedar shakes swell when it rained"
+  },
+  "culprit_and_motive": {
+    "value": "Darien, the creepy neighbor who sublets the house next door. Motive: pathological compulsion to abduct and kill children; Joshua's resemblance to Darien triggers sexual predation; he silences the child's crying through murder.",
+    "confidence": "high",
+    "quote": "Of course it was the replication in her son that seduced me...Silence is golden. It could save your child's life."
+  },
+  "resolution": {
+    "value": "No official resolution. The case remains unsolved. A man claiming to be Joshua appears decades later; DNA proves he is not the biological son but is accepted by Jessica. The narrative offers only ambiguity and the possibility of substitution as a palliative to unbearable loss.",
+    "confidence": "medium",
+    "quote": "the most terrible thing for all of us...is the not knowing, the never being able to know"
+  },
+  "investigator": {
+    "value": "Multiple unreliable narrators: the unnamed neighbor Darien (who confesses the crime but frames his perspective as observation); Joshua X/the claimant (obsessed with solving the case through research); and Jessica (the surviving sister seeking closure). No official detective authority.",
+    "confidence": "medium",
+    "quote": "I am a listener and I am a watcher and I'd wager that within a few weeks I know as much of everyone's business as the long-term residents"
+  },
+  "suspect_architecture": {
+    "value": "Three primary figures: Darien (confirmed predatory killer-neighbour, sublettor/nomad, self-confessed perpetrator), I-Joshua (adult claimant, possible con man or genuine stolen child, unreliable narrator), and the absent/structural suspects Simon and Melanie (briefly treated as potential conspirators by police). Darien holds all three elements\u2014means (proximity, opportunity during dental-appointment cover), motive (predatory sexual compulsion), and opportunity (offered to 'keep an eye on them'); I-Joshua occupies an ambiguous motive space (identity hunger vs. opportunism); police formally designate both Darien and implicitly Melanie as persons of interest.",
+    "confidence": "high",
+    "quote": "it was before the police declared me a \"person of interest.\""
+  },
+  "red_herring": {
+    "value": "I-Joshua's sustained self-presentation as the recovered stolen child functions as the story's central red herring. The narrative architecture invites readers to accept his claim through accumulating 'evidence' (photographs, DNA framing, Jessica's phantom-limb cure, Melanie's near-recognition), only for DNA to confirm he is not biologically related to Jessica\u2014and chapter 19's Darien confession retroactively signals Joshua was murdered. The claimant's emotionally compelling performance misdirects both in-story characters and readers away from the certainty of Joshua's death.",
+    "confidence": "high",
+    "quote": "There is, according to DNA tests, no genetic link between Jessica and myself. Nevertheless, we are inseparable now."
+  },
+  "clue_fairness": {
+    "value": "The story embeds its solution fairly but covertly across multiple narrator sections available to the reader before full comprehension is possible. Darien's chapter 16 confession ('I buried him in the backyard next door, not fifty feet from your sandbox') is given directly to the reader; chapter 19 confirms plural victims and preserved burial-site records. The DNA result (chapter 20) is also disclosed openly. All exculpatory and incriminating data are rendered in the text before any synthesising conclusion, consistent with Knox's rule of fair play.",
+    "confidence": "high",
+    "quote": "After I fucked his little ass, I buried him in the backyard next door, not fifty feet from your sandbox and swings"
+  },
+  "social_world": {
+    "value": "Affluent Manhattan-summer-Hamptons leisure class: status is performed through artisanal consumption (fresh-baked bread, free-range chickens, beeswax candles), conspicuous environmentalism, and the ritual of daily shopping as social theatre. This world's insularity and trust\u2014neighbours spray hedges together, children are left in strollers outside bakeries\u2014is the structural vulnerability Darien exploits. Class also inflects police suspicion (Melanie asked if she faked her collapse) and institutional power asymmetry between the nomadic, unpropertied Darien and the property-owning Goldbergs.",
+    "confidence": "high",
+    "quote": "the Goldbergs certainly cared about status in a conspicuously nonchalant way"
+  },
+  "alibi": {
+    "value": "Darien constructs a self-alibi by announcing a dental appointment in town\u2014ostensibly explaining his presence near the bakery\u2014while framing it to Simon as neighbourly surveillance ('I'll keep an eye on them for you'). This alibi is doubly false: it converts predatory intent into protective benevolence and supplies a legitimate reason to be seen in the same location as the abduction. The alibi is never formally broken within the narrative but is voided by Darien's own first-person confession in chapters 16 and 19.",
+    "confidence": "high",
+    "quote": "\"I've got a dental appointment in town,\" I said... \"I'll keep an eye on them for you.\""
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated through a convergence of three independent mechanisms rather than investigator deduction: (1) direct perpetrator confession in free indirect discourse (Darien's chapters 16 and 19, including the specific burial location and motivation); (2) DNA exclusion\u2014I-Joshua is biologically unrelated to Jessica, formally disproving his identity claim; (3) Jessica's somatic symptom (phantom pain in right shoulder and hip, as though 'arm and leg have been ripped off') which reads retrospectively as body-memory of the infant stroller moment, providing psychological corroboration. No single detective synthesises these\u2014the reader must do so.",
+    "confidence": "high",
+    "quote": "It feels, as though my arm and my leg have been ripped off, as though one side of my body has no skin."
+  },
+  "media_and_audience": {
+    "value": "The crime generates ongoing public narrative: it 'made headlines in the News and the Post'; there are police files, print interviews, and missing-children websites that I-Joshua trawls via search engines. Simon's breakdown after I-Joshua's phone call produces a New York Times interview ('first desperately hopeful, then angry, then incoherent'). The case remains culturally alive for fifty years, feeding a market of claimants. Darien monitors it via e-mail alerts and fantasises about posthumous press exposure of his archive as proof of 'superior intelligence'\u2014media as both threat and narcissistic reward.",
+    "confidence": "high",
+    "quote": "Simon...his interview with the New York Times following my phone call, an interview first desperately hopeful, then angry, then incoherent."
+  },
+  "investigator_wound": {
+    "value": "I-Joshua is the story's investigator-surrogate, and his wound is constitutive: a total amnesia before age six, an identity gap that may or may not be the abduction's afterlife. His compulsion to investigate is inseparable from his need to resolve an unbearable self-uncertainty ('I desperately need to be right'). He has been wrong before ('I have been this certain before but have been wrong'), meaning the investigation repeatedly reopens rather than heals the wound. The case exploits his hunger for origin, making him simultaneously the most motivated and least reliable investigator possible.",
+    "confidence": "high",
+    "quote": "I have been this certain before but have been wrong, and yet I desperately need to be right."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "filename": "The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Afterlife\tof\ta\tStolen\tChild",
+    "author": "JANETTE\tTURNER\tHOSPITAL",
+    "anthology_title": "The_Best_American_Mystery_Stories_215_-_James_Patterson",
+    "story_index": 11,
+    "story_count": 19
+  }
+}

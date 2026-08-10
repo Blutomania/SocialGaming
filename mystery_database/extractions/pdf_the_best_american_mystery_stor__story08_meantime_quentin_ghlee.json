@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Unnamed teenage boy with shaved head and earrings, injured from motorcycle accident, vulnerable and isolated",
+    "confidence": "medium",
+    "quote": "A slight kid, not much mass to him, with his head shaved bald and earrings up and down both ears."
+  },
+  "closed_world": {
+    "value": "Remote high desert mountain valley in Nevada, roads impassable nine months of year, isolated from law enforcement and civilization",
+    "confidence": "high",
+    "quote": "roads impassable nine months of the year, which not too many folks had found. A place where a man could finish a thought."
+  },
+  "culprit_and_motive": {
+    "value": "Quentin Ghlee, reclusive mining engineer; motivated by paranoid ideology about invasive populations and territorial control, views boy as contaminating influence",
+    "confidence": "medium",
+    "quote": "This half-grown rodent would return, to show his friends the valley...once people saw what they could get away with, they poured through the holes"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Reader observes through Ghlee's perspective as he encounters the boy; Ghlee functions as both potential perpetrator and focalization point",
+    "confidence": "medium",
+    "quote": "Ghlee felt the moment stop, as if neither of them were breathing...here came your classic rat, nose twitching as it emerged from the warrens"
+  },
+  "suspect_architecture": {
+    "value": "Single perpetrator clearly identified: Quentin Ghlee, isolated misanthropic miner with paranoid worldview. Victim is an unnamed teenage boy (possibly with companion Dewayne). No competing suspects \u2014 narrative is predator/prey, not whodunit. Differentiation is between predator (Ghlee, means: physical strength, remote location, pre-existing hidden compartment; motive: territorial eliminationism; opportunity: total isolation) and victim (injured, dependent, alone).",
+    "confidence": "high",
+    "quote": "he sped toward the incandescent moment of tying the boy to the chair in the shed."
+  },
+  "red_herring": {
+    "value": "Ghlee offers false benevolence \u2014 presenting himself as a rough-hewn 'knight-errant' willing to help an injured stranger, masking predatory intent. His face wound and eccentric manner function as misdirection: the boy (and reader) may read him as merely odd or dangerous in a comic-Western sense rather than as a genuine killer. The cougar warning is a manipulation tactic, not a real threat, used to isolate the boy from Dewayne.",
+    "confidence": "medium",
+    "quote": "'your basic . . . knight-errant, roaming the land to right all wrongs, stamp out discord, find folks ... in distress.'"
+  },
+  "clue_fairness": {
+    "value": "The hidden compartment under the lean-to \u2014 'an underground compartment weighted closed by a massive chair' \u2014 is disclosed to the reader in the opening paragraphs before its function is revealed at the story's end. The folding chair Ghlee sits in mirrors the chair that seals the underground space, available to the reader as a structural clue before the climax.",
+    "confidence": "high",
+    "quote": "a lean-to with storage beneath it for mining tools, an underground compartment weighted closed by a massive chair."
+  },
+  "social_world": {
+    "value": "Rural American West: a landscape of extreme isolation, resource extraction (mining, ranching), and libertarian self-sovereignty. Power accrues to those who have been longest on the land and can enforce their own law. Ghlee occupies the top of a private hierarchy by virtue of tenure, physical toughness, and weaponry. Outsiders (teenagers from Elko's gambling/drug economy, Mexican migrants, East Coast transplants) are coded as threats to be expelled or eliminated. No institutional authority functions here \u2014 BLM and Forest Service appear only as winter intruders.",
+    "confidence": "high",
+    "quote": "Out here, working on abandoned mines under a metal-blue sky, no one could get to him."
+  },
+  "alibi": {
+    "value": "No formal alibi structure is present \u2014 this is not a whodunit with alibi verification. However, Ghlee's cover story to the boy functions as a situational alibi: he claims to be a harmless eccentric going home to sleep, offering help. The boy cannot verify his intentions or destination. Ghlee also lies about his name ('Cain' instead of Quentin), constructing a false identity as a micro-alibi.",
+    "confidence": "medium",
+    "quote": "'Cain!' Ghlee lied, then suddenly sensed discovery and, excited by its danger, upped the stakes. He added his real last name."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is architectural and behavioral rather than deductive: the underground compartment introduced at the story's opening is confirmed as the intended crime scene by the final line. The mechanic is foreshadowing-as-blueprint \u2014 the reader is shown the murder apparatus before the murder, and the closing sentence locks the structure closed. No investigator is present; the reveal is delivered directly to the reader through Ghlee's internal monologue.",
+    "confidence": "high",
+    "quote": "he sped toward the incandescent moment of tying the boy to the chair in the shed."
+  },
+  "media_and_audience": {
+    "value": "Largely absent as an active element \u2014 the story's power derives from total removal from any audience or institutional gaze. The crime will occur in a location roads make impassable nine months of the year, where winter break-ins go unwitnessed and disappearances unreported. The implicit media/audience dynamic is one of erasure: no press, no witnesses, no public narrative will form around this victim. Ghlee's self-conception as a physical law of nature replaces social accountability entirely.",
+    "confidence": "medium",
+    "quote": "roads impassable nine months of the year, which not too many folks had found. A place where a man could finish a thought."
+  },
+  "investigator_wound": {
+    "value": "No investigator is present in this excerpt. The narrative is told from the perpetrator's point of view. If a wound is mappable, it belongs to Ghlee himself: his paranoid misanthropy, his shooting of and being shot by his wife, his brother's betrayal over uranium claims, and his permanent facial disfigurement all constitute a psychology of grievance that rationalizes violence as cosmological necessity rather than crime.",
+    "confidence": "low",
+    "quote": "Lifelong neighbors and business associates squeezed you now, turned on a man... his own brother had jumped uranium claims Ghlee had staked."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "text_len": 15500,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Meantime, Quentin Ghlee",
+    "author": "M.M.M. HAYES",
+    "anthology_title": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver",
+    "story_index": 8,
+    "story_count": 25
+  }
+}

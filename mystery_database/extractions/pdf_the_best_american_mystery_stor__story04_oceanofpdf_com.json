@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Prison escape by prisoner convicted of double murder; central question: will the escape succeed or will the prisoner die during the attempt?",
+    "confidence": "high",
+    "quote": "Billy planned to seal himself inside one of the waste containers... Nine minutes for Frank to load the barrel onto the truck, drive to the prison gate, then roll the barrel off."
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Maine State Prison in Thomaston and the 3.1-mile transport route to an abandoned warehouse; bounded by escape window of ~9 minutes and oxygen supply limit of ~20 minutes",
+    "confidence": "high",
+    "quote": "Maine State Prison in Thomaston... Darryl located an abandoned warehouse exactly 3.1 miles from the prison... Twenty minutes... is the amount of time an average-sized person can survive if sealed in a fifty-five-gallon drum."
+  },
+  "culprit_and_motive": {
+    "value": "Billy Firkin (prisoner) and his conspirators Mel (kitchen chief), Cousin Frank (truck driver), and brother Darryl execute escape plan; motive is freedom from life sentence for murder",
+    "confidence": "high",
+    "quote": "Billy planned to seal himself inside one of the waste containers... With Mel's help, Billy planned to seal himself inside one of the waste containers."
+  },
+  "resolution": {
+    "value": "The wrong barrel is unloaded; Billy suffocates in the truck. Mel and Barrett (guard) are revealed as conspirators in Billy's death, not escape. Order restored through successful murder disguised as failed escape.",
+    "confidence": "high",
+    "quote": "Darryl stared dumbfounded into the open barrel. It was full to the top with foul-smelling brownish lard... 'Well, I guess he'll think twice before he murders the nephew of a bull again,' Mel said."
+  },
+  "investigator": {
+    "value": "Reader experiences the mystery through Billy Firkin's limited perspective inside the barrel, then discovers the truth through Darryl's realization and final scene revelation",
+    "confidence": "high",
+    "quote": "Billy wasn't sure if the lack of oxygen was muddling his thoughts or if the truck really was moving again... Darryl stared dumbfounded into the open barrel."
+  },
+  "suspect_architecture": {
+    "value": "Five key figures form the conspiracy/counter-conspiracy: Billy (convicted double murderer, escapee), Mel (kitchen chief inmate, insider enabler), Cousin Frank (truck driver, greedy accomplice), Darryl (brother, outside getaway driver), Barrett (guard, revealed as Mel's co-conspirator). Differentiated by role: planner, inside facilitator, transport, extraction, and secret saboteur. Motive spread: self-interest (Billy), greed (Frank), loyalty (Darryl), revenge (Mel/Barrett \u2014 Billy killed a guard's nephew).",
+    "confidence": "high",
+    "quote": "\"Well, I guess he'll think twice before he murders the nephew of a bull again,\" Mel said."
+  },
+  "red_herring": {
+    "value": "The barrel marked with a large 'B' is presented as the definitive identifier for Billy's container, misdirecting both Billy and the reader into assuming Frank correctly identifies and offloads it. The letter B is actually placed on a decoy barrel full of grease \u2014 the marking system itself is the false trail, exploited by Mel and Barrett to ensure Billy dies in the wrong barrel while all evidence points to a genuine escape attempt.",
+    "confidence": "high",
+    "quote": "On the lid in black marker was a big letter B. \"I gotcha, Bill,\" he said as he pried off the lid... It was full to the top with foul-smelling brownish lard."
+  },
+  "clue_fairness": {
+    "value": "The reader is given all necessary clues simultaneously with the characters: Barrett's unusual pleasantness on escape day, Mel's enthusiastic idea to mark the barrel ('something ironic'), and Barrett being identified as the guard who casually drops his cigarette on the loading dock at the end. The final scene showing Mel and Barrett together is the fair-play reveal \u2014 all elements were visible but their significance withheld by narrative framing.",
+    "confidence": "high",
+    "quote": "\"It should be something ironic,\" Mel said. \"A big F.U. to the bulls.\""
+  },
+  "social_world": {
+    "value": "Maine State Prison's rigid carceral hierarchy \u2014 guards (bulls) over inmates \u2014 with embedded patronage networks: kitchen detail assignments require six months of deference, trustees owe loyalty to detail chiefs, and guards like Jeeter wield informal sadistic power unchecked. The story reveals that the hierarchy is corruptible from within: a guard (Barrett) and a trusted inmate (Mel) form a cross-rank conspiracy, inverting the apparent power structure.",
+    "confidence": "high",
+    "quote": "Prison trustees were required to stay out of trouble for their first six months... Six excruciatingly long months of 'yes boss, no boss, thank you boss.'"
+  },
+  "alibi": {
+    "value": "Billy's entire escape plan functions as his own alibi construction \u2014 he maintains normal morning routine (shaving, eating double helpings, mopping) to ensure no guard suspects his imminent disappearance. The alibi is undermined not by investigators but by the conspirators who helped build it: Mel and Barrett use Billy's meticulous normalcy performance against him, ensuring the escape proceeds far enough that Billy cannot be saved.",
+    "confidence": "medium",
+    "quote": "Everything had to appear status quo. The last thing he needed was for his cellmate to start asking questions or... some nosy bull like Jeeter smelling a rat."
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated through spatial and temporal convergence: Darryl opens the marked barrel and finds only grease, then checks his watch (two-fifty \u2014 twenty minutes elapsed, the exact Houdini survival limit established earlier). The reader connects the planted Houdini research detail \u2014 twenty minutes maximum survival in a sealed drum \u2014 with the timestamp to confirm Billy is already dead before Darryl's failed chase. The final dock scene then retroactively explains the mechanism: Mel switched which barrel bore the 'B' mark.",
+    "confidence": "high",
+    "quote": "Twenty minutes, according to the prison library book about Harry Houdini, is the amount of time an average-sized person can survive if sealed in a fifty-five-gallon drum."
+  },
+  "media_and_audience": {
+    "value": "Largely absent as an explicit element \u2014 there is no press, public narrative, or institutional framing device within the story. The crime and its resolution occur entirely within the closed world of the prison and its immediate surroundings, with no external audience. The story's irony is private, witnessed only by Mel and Barrett on the loading dock.",
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "There is no traditional investigator figure. However, Barrett functions as the story's hidden agent of justice, and his wound is the personal one: Billy murdered his nephew. This familial grief is the psychological engine driving Barrett's participation in the counter-plot \u2014 his institutional role as a 'good' professional guard (contrasted with Jeeter's sadism) masks a personal vendetta that he channels through the system rather than against it.",
+    "confidence": "medium",
+    "quote": "\"Well, I guess he'll think twice before he murders the nephew of a bull again,\" Mel said... Barrett said with a chuckle. \"I'm sure you're right.\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "text_len": 19748,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "BRUCE ROBERT COFFIN",
+    "anthology_title": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George",
+    "story_index": 4,
+    "story_count": 22
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Travis Hayes, a reformed addict and father, who is shot by Q (his former drug dealer) in retaliation for a debt unpaid years ago",
+    "confidence": "high",
+    "quote": "He stares into the barrel of the gun, several feet away yet gaping with its cold finality."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Q, Travis's former drug dealer, who shoots Travis (with an unloaded gun) as revenge for a debt of approximately $600 that Travis never repaid when he entered rehab years earlier",
+    "confidence": "high",
+    "quote": "I been lookin' for you for a long time... Travis took him for a bundle of dope and then some."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Travis Hayes himself, a protagonist experiencing the encounter as both victim and unreliable narrator dealing with his past catching up to him",
+    "confidence": "high",
+    "quote": "Everything stops. Travis steps outside himself, watches from beside himself yet somehow still inside himself"
+  },
+  "suspect_architecture": {
+    "value": "Not a traditional mystery with multiple suspects. Single antagonist Q (drug dealer/creditor) with clear motive (unpaid debt, reputation enforcement) and means (firearm, crew of three enforcers). Travis is simultaneously victim and morally compromised protagonist whose past crimes created the threat.",
+    "confidence": "medium",
+    "quote": "His name is Q. One among many of Travis's dealers before everything changed."
+  },
+  "red_herring": {
+    "value": "The near-death experience is rendered as vivid reality \u2014 Travis steps outside himself, feels bullet impacts, watches himself fall \u2014 before being revealed as a psychological flash-forward/imagination. The empty chamber click recontextualises the entire shooting sequence as a staged execution mock-up.",
+    "confidence": "high",
+    "quote": "Then there's the dry-fire click of an empty chamber. Travis opens his eyes. Q still has the gun raised, but again he's smiling."
+  },
+  "clue_fairness": {
+    "value": "The story is not a traditional detective mystery, so formal clue-fairness architecture is absent. However, Travis's lie about prison time is shown to the reader simultaneously with Q receiving it, and the arithmetic flaw (18-month-old child vs. 4+ years since last meeting) is presented openly before Q works it out.",
+    "confidence": "medium",
+    "quote": "It's been over four years since they've seen each other, and right now Q's face appears to be working out the math."
+  },
+  "social_world": {
+    "value": "Street-level drug economy of the South Side: dealers extend credit at punishing rates (50 cents on the dollar, doubling debt), enforce debts through violence and public humiliation, and operate by codes of loyalty and retribution. Travis has defected into suburban domesticity but remains bound by the old economy's rules.",
+    "confidence": "high",
+    "quote": "In the corporate world it's called 'delinquency.' In Q's world it's called 'lucky you're still breathing.'"
+  },
+  "alibi": {
+    "value": "Travis constructs a false alibi narrative for Q \u2014 claiming he was incarcerated in Belmont prison for years \u2014 but the alibi collapses when Cody's age (18 months) is arithmetically incompatible with the claimed timeline, exposing that Travis was free on the streets long after the debt was incurred.",
+    "confidence": "high",
+    "quote": "He's already said it before he realizes his mistake... Q's face appears to be working out the math. Things don't add up."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is temporal and arithmetical: Q performs mental arithmetic on Cody's stated age (18 months) against the known gap since Travis disappeared (4+ years), which arithmetically falsifies Travis's prison alibi. The mechanism is simple public math, not forensic technology.",
+    "confidence": "high",
+    "quote": "'That means you was still on the street for a long time before you went to the joint.' Caught in the lie, Travis goes blank."
+  },
+  "media_and_audience": {
+    "value": "Absent as a structural element. There is no press, institutional narrative, or public framing of the crime. The story is entirely private \u2014 the threat, the debt, and the mock execution occur in a Popeyes parking lot, invisible to the wider world, including Travis's wife Emma who knows nothing of his past.",
+    "confidence": "low",
+    "quote": "Emma never knew the other Travis, and never will if he can help it."
+  },
+  "investigator_wound": {
+    "value": "Travis is protagonist rather than investigator, but his wound is his recovery identity: four years of constructed normalcy (sobriety, marriage, fatherhood) built on concealment. The case exploits his terror that his past self will annihilate his present self \u2014 and his child's security \u2014 the moment the two worlds collide.",
+    "confidence": "high",
+    "quote": "Not a day has gone by over the last four and a half years that he hasn't been reminded of just how lucky he is."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "All\tThings\tCome\tAround",
+    "author": "WILLIAM\tSOLDAN",
+    "anthology_title": "The_Best_American_Mystery_Stories_2017_-_John_Sandford",
+    "story_index": 16,
+    "story_count": 19
+  }
+}

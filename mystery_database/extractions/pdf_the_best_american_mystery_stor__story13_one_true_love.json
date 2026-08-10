@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder of an unidentified young woman (homeless or prostitute) discovered in Rock Creek Park; central question: who killed her and why, given initial investigation's dead end",
+    "confidence": "medium",
+    "quote": "A body had just been discovered in Rock Creek Park, a young woman...the death would never be solved."
+  },
+  "victim": {
+    "value": "Anonymous young woman, likely a sex worker or homeless person, killed in Rock Creek Park; 'killable' due to her marginalized status and lack of social connections",
+    "confidence": "medium",
+    "quote": "a homeless woman or a prostitute...the death would never be solved. It could have been one of hers."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Bill Carroll (personal injury lawyer) is framed for the murder by Heloise Lewis; actual culprit unknown; motive for frame-up: blackmail\u2014Carroll threatened to expose Heloise as a sex worker unless she provided free services",
+    "confidence": "high",
+    "quote": "She met with him at a D.C. hotel...within an hour she was persuading police that she had seen a blue Mercedes...It was dark, but she had seen the man's face"
+  },
+  "resolution": {
+    "value": "Heloise fabricates witness testimony through Trini (GW coed) identifying Carroll's Mercedes at the scene; Carroll is questioned but charges don't stick due to lack of physical evidence; Heloise then threatens to recant and implicate Carroll further, forcing him to abandon his blackmail scheme",
+    "confidence": "high",
+    "quote": "Trini gave a partial plate...it took police only a day to track down Bill Carroll...Heloise told Bill she was prepared to recant everything"
+  },
+  "investigator": {
+    "value": "Heloise Lewis herself\u2014the protagonist and sex worker who orchestrates the false witness testimony and resolution; technically an unauthorized investigator who manipulates police",
+    "confidence": "high",
+    "quote": "She called her smartest girl, Trini...within an hour she was persuading police that she had seen a blue Mercedes"
+  },
+  "suspect_architecture": {
+    "value": "No traditional multi-suspect spread; the antagonist is singular \u2014 Bill Carroll, a blackmailing client. Secondary figures (Val, Brad, Scott's unnamed father) carry motive-adjacent weight but are not suspects in a crime. The 'victim' of the frame is Carroll himself, inverting the usual architecture: the protagonist is both investigator and perpetrator.",
+    "confidence": "medium",
+    "quote": "\"You're a whore,\" he announced. \"It's illegal.\" \"Yes\u2014for both of us.\""
+  },
+  "red_herring": {
+    "value": "The anonymous dead girl in Rock Creek Park is deployed as a deliberate narrative misdirection: Heloise engineers a false witness account linking Carroll to the murder, a crime he did not commit. The reader briefly entertains Carroll's guilt before the frame is revealed as Heloise's construction.",
+    "confidence": "high",
+    "quote": "Trini gave a partial plate\u2014a full one wouldn't have worked, not in the long run\u2014and it took police only a day to track down Bill Carroll."
+  },
+  "clue_fairness": {
+    "value": "The story is told entirely from Heloise's close third-person perspective, so the reader has access to all her reasoning and planning as it unfolds. The mechanics of the frame \u2014 Trini, the photo, the partial plate, the alibi construction \u2014 are disclosed to the reader at the same moment Heloise executes them, preserving fairness by transparency rather than retrospective revelation.",
+    "confidence": "medium",
+    "quote": "Heloise had Googled him, found a photo on the Internet, and e-mailed it to Trini, who subsequently had no problem picking him out of a lineup."
+  },
+  "social_world": {
+    "value": "A layered suburban-professional hierarchy: the cul-de-sac respectability economy (house, school, widow backstory), the sex-work patronage network (clients, associates, Melina the nanny), and law enforcement (Brad). Power flows through information asymmetry and debt \u2014 who knows what about whom, who owes whom silence. Carroll's attempt to exploit this hierarchy is his fatal miscalculation.",
+    "confidence": "high",
+    "quote": "Scott's father thought he was in her debt. She needed to maintain the equilibrium afforded by that lie."
+  },
+  "alibi": {
+    "value": "A double-layered alibi construction: Heloise provides Carroll a genuine alibi (they were together at the hotel) while simultaneously engineering a false witness placing him at the murder scene. She then weaponises her ability to recant the alibi as leverage. The alibi is simultaneously true and a trap \u2014 she can make truth sound like a lie and a lie sound like truth.",
+    "confidence": "high",
+    "quote": "She spoke with many a hesitation and pause, always telling the truth yet never sounding truthful. That's how good a liar Heloise was."
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated through Heloise's explicit strategic disclosure to Carroll: she walks him through the trap she has constructed \u2014 the witness, the lineup identification, her threat to recant \u2014 so that he computes his own vulnerability in real time. The reveal is coercive and dialogic rather than deductive, forcing Carroll (and the reader) to reconstruct what Heloise has engineered.",
+    "confidence": "high",
+    "quote": "\"I'm prepared to recant everything, go to the police and confess that I had lied to cover up for a long-time client.\""
+  },
+  "media_and_audience": {
+    "value": "Media perception is present but deliberately flat: the radio report of the dead girl is described as having a 'flatness' signalling the victim 'didn't matter.' The anonymity of sex workers in crime reporting is thematised \u2014 Heloise recognises the social indifference that makes the murder unsolvable and exploits it instrumentally. The Women's Full Employment Network reward gesture nods at public-facing performance of concern.",
+    "confidence": "high",
+    "quote": "She could tell from the flatness of the report that it was a person who didn't matter, a homeless woman or a prostitute."
+  },
+  "investigator_wound": {
+    "value": "Heloise is simultaneously investigator and protagonist; her wound is Scott \u2014 her son is her only vulnerability, the single point Carroll correctly identifies to breach her otherwise impregnable self-containment. Her capacity to protect Scott is her operational drive and her existential exposure, shaping every decision she makes under threat.",
+    "confidence": "high",
+    "quote": "He was shrewd, bringing Scott into the conversation. Scott was her soft spot, her only vulnerability."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "One True Love",
+    "author": "LAURA LIPPMAN",
+    "anthology_title": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen",
+    "story_index": 13,
+    "story_count": 21
+  }
+}

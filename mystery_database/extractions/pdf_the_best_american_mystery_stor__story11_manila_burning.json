@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Truck hijacking of pharmaceutical shipment; murder of Freddy Haas. Central question: whether the theft serves noble ends (folic acid for orphanage) or criminal exploitation.",
+    "confidence": "high",
+    "quote": "By hijacking a truck full of pharmaceutical supplies... That shipment will be picked up by one of the distributor's trucks and taken to a warehouse"
+  },
+  "victim": {
+    "value": "Freddy Haas, corrupt middleman exploiting the orphanage and planning sexual coercion of Carli. He is killable because he represents predatory corruption and threatens the mission.",
+    "confidence": "high",
+    "quote": "before agreeing to deliver the rest of the shipment extract from her a, ah, shall we say, little extra charge for my services"
+  },
+  "closed_world": {
+    "value": "Manila's Tondo district and E-Z Storage warehouse; a bounded socioeconomic and criminal underworld where theft and murder occur outside official law enforcement reach.",
+    "confidence": "medium",
+    "quote": "he dragged Haas out a back door, eased his body into a six-foot-deep open sewage trench"
+  },
+  "culprit_and_motive": {
+    "value": "Danny Cargo kills Haas to prevent sexual extortion of Carli and to protect the folic acid mission for cleft-palate prevention. Motive is defense of innocents and moral justice.",
+    "confidence": "high",
+    "quote": "As Haas turned away, Danny picked up the stiletto and buried its thin silver blade all the way into the side of the German's neck."
+  },
+  "resolution": {
+    "value": "Cargo delivers folic acid to the orphanage, surrenders remaining money to the poor of Smoky Mountain, and accepts return to Palayan penal farm as consequence, restoring moral order through self-sacrifice.",
+    "confidence": "high",
+    "quote": "Danny showered the impoverished of Tondo with money until the duffel was empty. Then, impoverished himself, he waded back down"
+  },
+  "investigator": {
+    "value": "Danny Cargo himself\u2014the protagonist experiencing the mystery from inside. Reader sees through his consciousness as he discovers the con, commits the crime, and accepts its consequences.",
+    "confidence": "high",
+    "quote": "For the first time, Cargo closely studied Angie O'Brien... Suddenly he was very tired, experiencing a fatigue that overcame the nervous tension"
+  },
+  "suspect_architecture": {
+    "value": "Small cast: Freddy Haas (villain, mercenary German with hidden agenda to exploit the women), Angie O'Brien/Sister Angela (manipulator using moral cause as cover), Carli (romantic lever on protagonist). Differentiated by motive \u2014 greed vs. charity vs. love \u2014 with Haas as overt threat and Angela as concealed schemer.",
+    "confidence": "high",
+    "quote": "Haas replied matter-of-factly. 'Don't ask foolish questions... The man has seen us, he can identify us.'"
+  },
+  "red_herring": {
+    "value": "Angie O'Brien presents herself as a secular pharmacist driven purely by humanitarian concern for cleft-palate children, concealing her identity as Sister Angela, a nun. Her apparent romantic spell over Cargo misdirects both him and the reader about her true nature and motivations.",
+    "confidence": "high",
+    "quote": "She stood in a white summer nun's habit... 'Hello, Danny.' ...Sister Angela? The words stung him sharply."
+  },
+  "clue_fairness": {
+    "value": "Clues to Angela's religious identity are present but understated: she works at a Catholic orphanage clinic for near-nothing, references 'the mother superior,' and the novitiate receptionist recognises her immediately by her nun's name. The reader has access to these signals before the reveal.",
+    "confidence": "medium",
+    "quote": "She has arrangements with others also... A regular group of very proficient thieves sell to us every day."
+  },
+  "social_world": {
+    "value": "Layered Philippine power structures: the state prison bureaucracy, the Catholic Church's institutional charity network, the black-market pharmaceutical supply chain, and the utterly disenfranchised scavengers of Tondo's Smoky Mountain \u2014 all interlocked by poverty, corruption, and patronage.",
+    "confidence": "high",
+    "quote": "Even the lowliest convict there was better off than those who fed off Smoky Mountain."
+  },
+  "alibi": {
+    "value": "No formal alibi construction is present. The story is a crime-action narrative rather than a whodunit, so alibi as a plot mechanism is absent.",
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is delivered through a single institutional title: the receptionist's correction of 'Angie O'Brien' to 'Sister Angela,' combined with the visual of the nun's habit, collapses the entire humanitarian-secular framing and exposes Angela's concealed religious identity and the romantic deception of Carli.",
+    "confidence": "high",
+    "quote": "'Oh, you mean Sister Angela. Just a moment, please.' Sister Angela? The words stung him sharply."
+  },
+  "media_and_audience": {
+    "value": "No press or public opinion apparatus is engaged. The crimes \u2014 hijacking, murder, disposal of a body \u2014 are absorbed invisibly into Manila's infrastructure of poverty and corruption. The sewage trench and Smoky Mountain function as a social world that erases evidence without institutional notice.",
+    "confidence": "medium",
+    "quote": "He eased his body into a six-foot-deep open sewage trench, waited until it sank, then tossed the bundle in after it."
+  },
+  "investigator_wound": {
+    "value": "Cargo's wound is his romantic attachment to Carli and his susceptibility to moral causes \u2014 both exploited deliberately by Sister Angela to recruit him for the hijacking. His year in prison has left him financially desperate and emotionally isolated, making him easy to manipulate through love and purpose.",
+    "confidence": "high",
+    "quote": "Cargo could not force his eyes away from her. He felt spellbound. 'All right,' he said."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Manila Burning",
+    "author": "CLARK HOWARD",
+    "anthology_title": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver",
+    "story_index": 11,
+    "story_count": 25
+  }
+}

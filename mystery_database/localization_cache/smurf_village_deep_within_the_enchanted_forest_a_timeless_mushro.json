@@ -1,0 +1,53 @@
+{
+  "name_examples": {
+    "male": [
+      "Smurfulus",
+      "Smurfonius",
+      "Smurfwick",
+      "Smurfen",
+      "Smurfadel"
+    ],
+    "female": [
+      "Smurfella",
+      "Smurfine",
+      "Smurfette",
+      "Smurfia",
+      "Smurflind"
+    ]
+  },
+  "occupation_map": {
+    "detective": "Village Wiseman and Seeker of Truths",
+    "village leader": "Grand Elder",
+    "alchemist": "Keeper of the Cauldron",
+    "gardener": "Tender of Blossoms",
+    "caretaker": "Guardian of the Gathering Hall",
+    "engineer": "Craftsmurf and Tinkerer of Works",
+    "mechanic": "Mender of Contraptions",
+    "scholar": "Keeper of the Great Smurf Tome",
+    "assistant": "Self-Appointed Apprentice",
+    "beautician": "Master of Adornment",
+    "festival decorator": "Keeper of the Festive Garlands",
+    "general helper": "Errand-Bearer of the Village",
+    "errand runner": "Bearer of Tasks Most Fumbled"
+  },
+  "forbidden_titles": [
+    "Mr.",
+    "Ms.",
+    "Dr.",
+    "Mrs.",
+    "Sir",
+    "Lord",
+    "Lady",
+    "Professor"
+  ],
+  "allowed_titles": [
+    "Elder",
+    "Grand Elder",
+    "Keeper",
+    "Master",
+    "Guardian",
+    "Tender"
+  ],
+  "pun_style": "Smurf-world names use cheerful compound words or whimsical descriptors that reflect the character's most notable trait or a gentle joke about their clumsiness or oddity. Puns are embedded in the epithet or suffix (e.g., a clumsy errand-runner becomes 'Smurfumbles the Trip-Footed'). Keep puns warm and cozy, never mocking.",
+  "notes": "All names retain the 'Smurf' root as the cultural identifier, with a playful epithet appended. Occupations use enchanted-forest, folk-tale appropriate language \u2014 think village-craft, hedge-wizardry, and pastoral medieval charm. No modern technology terms; gadgets become 'contraptions' or 'works of cleverness'. The village is timeless and communal, so roles emphasize service to the collective. Female names may keep closer to the original Smurfette tradition. Pun rule applies only to the witness (Clumsy Smurf); no pun on suspects or the detective."
+}

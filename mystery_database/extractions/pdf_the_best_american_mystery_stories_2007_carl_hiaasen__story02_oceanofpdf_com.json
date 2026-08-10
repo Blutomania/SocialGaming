@@ -1,0 +1,87 @@
+{
+  "crime": {
+    "value": "Serial stabbing murders of neighborhood animals with a decorative bodkin dagger, progressing from small animals to dogs; later, attempted murder of Sheriff Travis and murder of Molly Matthews herself. Central question: why is a young girl committing these escalating acts of violence?",
+    "confidence": "high",
+    "quote": "Someone was murdering the small animals of our neighborhood...their bodies were marred by clean-edged rectangular stab wounds."
+  },
+  "victim": {
+    "value": "Multiple victims: small animals (squirrels, rabbits), neighborhood pets (cats, dogs), Sheriff Travis (attempted murder), and ultimately Molly Matthews (suicide by her own blade). The narrator is also targeted. All are 'killable' due to Molly's delusional fantasy framework rooted in her parents' deaths.",
+    "confidence": "high",
+    "quote": "Both her parents had died in a car accident...her father would tell her stories about ancient princesses and tell her she herself had surely been one in a past life."
+  },
+  "closed_world": {
+    "value": "Severna Forest, Maryland\u2014a suburban neighborhood bounded by woods, ravines, a frozen river, and a kennel in an isolated clearing. The geography limits investigation and creates isolation for the narrator and Molly's actions.",
+    "confidence": "high",
+    "quote": "All Severna Forest was horrified by the death of the dog...There was nobody around; nobody lived within a mile and a half of the place."
+  },
+  "culprit_and_motive": {
+    "value": "Molly Matthews, 8-year-old neighbor. Motive: trauma from parents' death combined with her father's romantic fantasy about her being a reincarnated princess with a magical dagger meant to slay suitors. She uses violence to attempt to resurrect her parents' souls, believing the dagger consumes souls.",
+    "confidence": "high",
+    "quote": "She talked about her parents all summer...her father would tell her stories about ancient princesses...the dagger with which she had slain the beastly suitor."
+  },
+  "resolution": {
+    "value": "When Molly attempts to stab the narrator on the frozen river, he screams and flees; he breaks his silence by crying 'I want to live!' to his parents. Molly returns to the river and takes her own life with the dagger. The narrator betrays her to authorities; two innocent Black men are wrongly arrested for the Sheriff attack.",
+    "confidence": "high",
+    "quote": "I rushed down the stairs into my parents' bedroom...I woke them with my hysterical screaming...'I want to live!'...Molly was on her way back to the river, where she would turn her knife on herself."
+  },
+  "investigator": {
+    "value": "The narrator\u2014an 8-year-old boy, mute since his twin brother Colm's death, who witnesses Molly's crimes from the beginning and participates in several of them. He experiences the mystery from inside complicity, observing without reporting until he becomes the final intended victim.",
+    "confidence": "high",
+    "quote": "I hadn't spoken a word or uttered a sound since my brother's funeral...I knew that Molly had been murdering them...I didn't give much thought to it."
+  },
+  "suspect_architecture": {
+    "value": "Single perpetrator (Molly Matthews, orphaned child neighbour) with no false suspects formally constructed; the narrator-as-witness is the only other figure with knowledge, creating a two-person complicity structure rather than a spread of suspects",
+    "confidence": "high",
+    "quote": "I had known for months who was doing all the stabbing. I got that information on the first day of June 1979"
+  },
+  "red_herring": {
+    "value": "Sheriff Travis, when he recovers, falsely identifies two Black men from the nearby community as his attackers, redirecting the official investigation entirely away from Molly; two innocent men are arrested and identified in a lineup",
+    "confidence": "high",
+    "quote": "Two large black men had done it, he said...two men were arrested after Sheriff Travis identified them in a lineup."
+  },
+  "clue_fairness": {
+    "value": "The bodkin/dagger is shown to the reader simultaneously with the narrator's discovery of it \u2014 its ornate description, hidden burial spot, and clean-edged wounds on animals are all presented to the reader before the narrator consciously confirms Molly's guilt",
+    "confidence": "high",
+    "quote": "what Molly showed me...was a dagger...a rose etched in relief on the upper part of the blade...I knew that Molly had been murdering them"
+  },
+  "social_world": {
+    "value": "Wealthy suburban enclave (Severna Forest) structured by class privilege \u2014 wealthy cottage owners, a surgeon father, a stewardess mother, kennel rules protecting the rich from dog noise; institutional authority (Sheriff Travis) is shown as fallible and racially biased",
+    "confidence": "high",
+    "quote": "The whole point of the kennel was to separate the dogs from the houses between June and September, so their barking wouldn't disturb all the wealthy people"
+  },
+  "alibi": {
+    "value": "No formal alibi is constructed for Molly; her alibi is structural \u2014 she is a child, orphaned, polite to adults, and socially above suspicion. The narrator's silence makes him unable to testify, functioning as an inadvertent alibi for her",
+    "confidence": "medium",
+    "quote": "She was unfailingly polite with adults...Sheriff Travis claimed to be within a hair's breadth of catching the 'pervert,' but never came near Molly"
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is psychological and visceral: the narrator's own stabbing breaks his years-long traumatic muteness, producing a scream and then speech \u2014 the body's testimony replacing the voice grief had silenced, demonstrating complicity and survival simultaneously",
+    "confidence": "high",
+    "quote": "a cresting scream rose in me and broke out of my mouth...Despite my long silence the words came smoothly...'I want to live!' I told them"
+  },
+  "media_and_audience": {
+    "value": "The community's horror is directed by official narrative: the animal killings are attributed to a vague 'pervert,' Travis's stabbing is publicly blamed on two innocent Black men via newspaper, and the true perpetrator (a child) remains invisible to institutional scrutiny",
+    "confidence": "high",
+    "quote": "Police called on the community just outside the Severna Forest gates, and two men were arrested after Sheriff Travis identified them in a lineup. I saw them in the paper."
+  },
+  "investigator_wound": {
+    "value": "The narrator's wound is the death of his conjoined twin brother Colm \u2014 a grief so total it produced years of elective mutism, making him unable to report crimes he witnessed; his complicity in the killings is enabled entirely by this psychological collapse",
+    "confidence": "high",
+    "quote": "I hadn't spoken a word or uttered a sound since my brother's funeral...nothing could have made me talk, on that day or any of the days that stretched back to Colm's funeral"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "CHRIS ADRIAN",
+    "anthology_title": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen",
+    "story_index": 2,
+    "story_count": 21,
+    "backfilled_from": "book_slug[:30] filename-collision bug"
+  }
+}

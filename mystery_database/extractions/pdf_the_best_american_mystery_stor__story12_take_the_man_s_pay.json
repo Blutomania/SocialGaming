@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Death of Jane Denning, a prostitute, from apparent heroin overdose in a hotel room; body disposed of by being thrown from a window. Central question: was she dead before being thrown, or was she murdered by the disposal itself?",
+    "confidence": "high",
+    "quote": "The way she came down on her face... A fuckin' mess, huh? ...a large pool of blood spreading from a headless torso."
+  },
+  "victim": {
+    "value": "Jane Denning, 28-year-old prostitute working for Monroe Escort Service under alias 'Inga Johannson', mother of a fourth-grade child at Holy Savior in Brooklyn. 'Killable' because she was a sex worker in a closed professional circle, likely exploited and vulnerable.",
+    "confidence": "high",
+    "quote": "Her name was Jane Denning. She was twenty-eight years old and had a kid in fourth grade at Holy Savior in Brooklyn."
+  },
+  "closed_world": {
+    "value": "The Martinique Hotel in Manhattan, specifically a guest room on an upper floor. The crime is bounded by the hotel's physical structure, guest registry, and staff observation points, limiting knowledge of who entered/exited the victim's room.",
+    "confidence": "high",
+    "quote": "at the Martinique Hotel... the way she came down on her face... Mack Cowens, who was most likely bein' paid off, and she told him where she was goin'."
+  },
+  "culprit_and_motive": {
+    "value": "Hoshi Taiku, Japanese businessman. Motive: cultural shame and honor. Upon discovering the prostitute dead (possibly from overdose) in his hotel room, he disposed of her body by throwing her from the window to avoid dishonor to himself, his company, and his family\u2014a culture-driven choice rather than premeditated murder.",
+    "confidence": "high",
+    "quote": "A dead whore brings dishonor on your company, your country, your family, yourself... you don't want her discovered in your room."
+  },
+  "resolution": {
+    "value": "Detective Morrie Goldstein extracts a confession through psychological manipulation and cultural pressure, exploiting Taiku's fear and shame. Partner Vera Katakura delivers a physical blow that breaks his resistance. Taiku is formally charged with murder, arraigned, and bail is denied. Order is restored through institutional machinery (police, DA, courts) rather than investigation of forensic truth.",
+    "confidence": "high",
+    "quote": "A signed statement in hand before 1, the paperwork completed by 2... Taiku had already been arraigned and bail denied."
+  },
+  "investigator": {
+    "value": "Detective Morrie Goldstein, a massive NYPD detective at Midtown South precinct, working in partnership with Detective Vera Katakura. Goldstein is the primary lens\u2014he conducts the interrogation, applies pressure, and ultimately secures the confession through manipulation of Taiku's cultural psychology and fear.",
+    "confidence": "high",
+    "quote": "Detective Morrie Goldstein and his handcuffed prisoner as they enter the precinct... Goldstein steers Taiku around Cippolo's desk and up a flight of stairs to a large room."
+  },
+  "suspect_architecture": {
+    "value": "Single suspect (Hoshi Taiku): Japanese businessman with motive (cultural shame/honor), means (physical access, open window), and opportunity (alone with victim overnight in hotel room). No competing suspects; case is closed around him from the outset.",
+    "confidence": "high",
+    "quote": "\"You did okay for an amateur, Hoshi. First, you washed up the bathroom pretty good.\""
+  },
+  "red_herring": {
+    "value": "Taiku's rehearsed story that Jane Denning jumped \u2014 'Girl jump. She whore.' \u2014 is the false trail he constructs, casting the death as suicide/accident. The cleaned bathroom and disposed bag further stage the scene to mislead. Goldstein dismantles it with the hotel detective's tip.",
+    "confidence": "high",
+    "quote": "\"Girl jump,\" he finally says. \"She whore.\""
+  },
+  "clue_fairness": {
+    "value": "Partial fairness: the reader is shown the cleaned bathroom detail and disposed bag at the same moment Goldstein reveals it to Taiku. However, the hotel detective Mack Cowens's prior knowledge of Denning's whereabouts is withheld until Goldstein's summary, slightly disadvantaging the reader.",
+    "confidence": "medium",
+    "quote": "\"if Jane hadn't been tight with the hotel detective, it might've worked too. But she was well known to Mack Cowens\""
+  },
+  "social_world": {
+    "value": "Layered institutional hierarchy: NYPD rank (captain takes press credit, detectives do work), racial/ethnic power dynamics (Japanese vs. American, white cops vs. Black prisoner Speedo Brown), and Japanese corporate shame culture (superior hands subordinate an escort card to save face). Credit flows upward; risk flows down.",
+    "confidence": "high",
+    "quote": "\"Captain Anthony Borodski taking full credit for the successful investigation, though he hadn't arrived until after Hoshi Taiku was formally charged\""
+  },
+  "alibi": {
+    "value": "Taiku's alibi: he slept through the night, found the bed empty at dawn, closed the open window without looking down, and only learned of the death when Goldstein arrived. The alibi is false and carefully rehearsed but collapses against physical evidence (cleaned bathroom, disposed bag, Cowens's tip).",
+    "confidence": "high",
+    "quote": "\"The story is simple and carefully rehearsed, but Taiku's voice drops in pitch and volume as he proceeds. He is lying\""
+  },
+  "reveal_mechanic": {
+    "value": "Dual reveal: (1) psychological \u2014 Vera Katakura addresses Taiku in perfect Japanese, confronting him with his own cultural shame through a silent gaze and a slap, collapsing his resistance where Western interrogation failed; (2) evidential \u2014 Goldstein's itemised reconstruction of the disposal sequence (cleaned bathroom, dumped bag in service cart) demonstrates guilt without a confession.",
+    "confidence": "high",
+    "quote": "\"She reduced him to a puddle. The poor schmuck just melted on the spot.\""
+  },
+  "media_and_audience": {
+    "value": "A crowded press conference is stage-managed by Captain Borodski, who absorbs public credit while the actual investigators are sidelined at the rear of the dais. The Japanese embassy's outrage arrives too late. Media framing converts a nuanced, culturally tangled case into a clean institutional success story.",
+    "confidence": "high",
+    "quote": "\"a crowded press conference at 3:30 with Captain Anthony Borodski taking full credit...Goldstein and Katakura lounged at the rear of the dais\""
+  },
+  "investigator_wound": {
+    "value": "Vera Katakura carries a quiet moral wound: as a Japanese-American, she weaponises Taiku's cultural shame and sense of ethnic dishonor to break him, then holds herself alone responsible for having 'signed, sealed, and delivered him' to the state. Her efficiency and her guilt are inseparable.",
+    "confidence": "high",
+    "quote": "\"With malice aforethought, she'd signed, sealed, and delivered him into the hands of the state...she held herself responsible\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "text_len": 23466,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Take the Man\u2019s Pay",
+    "author": "ROBERT KNIGHTLY",
+    "anthology_title": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen",
+    "story_index": 12,
+    "story_count": 21
+  }
+}

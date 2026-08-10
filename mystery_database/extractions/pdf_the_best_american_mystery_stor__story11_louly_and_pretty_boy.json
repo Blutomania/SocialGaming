@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Joe Young is shot dead by Louly Ring during a standoff with marshals; order restored through law enforcement intervention and community restoration of Louly's reputation",
+    "confidence": "high",
+    "quote": "she aimed the revolver at Joe Young, cocked it and bam, shot him through the chest."
+  },
+  "investigator": {
+    "value": "Deputy U.S. Marshal Carl Webster, who investigates Pretty Boy Floyd's connections and arrives at the scene of the final confrontation",
+    "confidence": "high",
+    "quote": "I'm Deputy U.S. Marshal Carl Webster. We been making a book on Pretty Boy, noting down connections, everybody he knows."
+  },
+  "suspect_architecture": {
+    "value": "Not a traditional mystery structure. Two main male figures: Joe Young (dumb, dangerous, exploitative ex-con) and Charley 'Pretty Boy' Floyd (famous, romanticized outlaw). Louly is protagonist/victim, not detective. No formal suspect pool.",
+    "confidence": "low",
+    "quote": "\"He's got an old boy name of Birdwell with him. I hook up with Choc when I feel like it.\""
+  },
+  "red_herring": {
+    "value": "Louly's claim of abduction is a deliberate false narrative she constructs post-shooting to avoid prosecution \u2014 she went willingly but reframes the story as kidnapping for legal and reputational protection.",
+    "confidence": "high",
+    "quote": "\"He stole the car and made me go with him.\" \"Against your will,\" Carl Webster said. \"Stay with that you won't go to jail.\""
+  },
+  "clue_fairness": {
+    "value": "Not applicable as a mystery structure. However, Leonard plants signals readable by the audience before Carl Webster acts on them: Louly's hesitation naming Joe, her voluntary behavior throughout, and the stolen car details are all visible to the reader.",
+    "confidence": "low",
+    "quote": "\"She did hesitate before saying his name.\""
+  },
+  "social_world": {
+    "value": "Depression-era Oklahoma underclass: sharecropper exploitation (Otis extracting Louly's wages), gendered powerlessness, outlaw celebrity as escape route, and the media-law enforcement apparatus as the only alternative power structure Louly can leverage.",
+    "confidence": "high",
+    "quote": "\"Otis takes most of my wages.\" / \"You're sure getting a lot of mileage out of knowing Pretty Boy, aren't you?\""
+  },
+  "alibi": {
+    "value": "Louly constructs a retroactive alibi \u2014 abduction against her will \u2014 to explain her presence with Joe Young and the stolen car. Carl Webster tacitly accepts it despite knowing it is at least partially false.",
+    "confidence": "high",
+    "quote": "\"It's true, Carl,\" Louly said, showing him her big brown eyes. \"Really.\""
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is behavioral rather than forensic: Carl Webster sniffs the barrel of the .38 Louly hands him, confirming it was recently fired, and his silent stare communicates he understands exactly what happened without requiring her confession.",
+    "confidence": "high",
+    "quote": "\"Carl Webster... took the .38 from Louly and sniffed the end of the barrel and stared at her without saying anything.\""
+  },
+  "media_and_audience": {
+    "value": "Central to the story's resolution: newspapers progressively inflate Louly's connection to Pretty Boy Floyd across multiple headlines, culminating in 'GIRLFRIEND OF PRETTY BOY FLOYD GUNS DOWN MAD-DOG FELON' \u2014 a media narrative Louly actively cultivates and exploits for fame and income.",
+    "confidence": "high",
+    "quote": "\"By the time the story had appeared everywhere from Ft. Smith, Arkansas, to Toledo, Ohio, the favorite headline was GIRLFRIEND OF PRETTY BOY FLOYD GUNS DOWN MAD-DOG FELON.\""
+  },
+  "investigator_wound": {
+    "value": "Carl Webster is not a wounded investigator in the classical sense; however, he is charmed and disarmed by Louly's brown eyes and candor, and chooses complicity over prosecution \u2014 suggesting susceptibility to attractive female subjects that compromises objectivity.",
+    "confidence": "low",
+    "quote": "\"Every time she kept looking at him he'd start to smile.\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Louly and Pretty Boy",
+    "author": "ELMORE LEONARD",
+    "anthology_title": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow",
+    "story_index": 11,
+    "story_count": 19
+  }
+}

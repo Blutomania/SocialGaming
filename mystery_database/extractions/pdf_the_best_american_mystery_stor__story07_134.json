@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Drug distribution conspiracy and entrapment. Central question: Will Sam cooperate with undercover officer Jimmy to betray her supplier Claudia, or will she protect her daughter Natalie?",
+    "confidence": "high",
+    "quote": "Give me a name. It's that simple. A name, and we work this out. I'll do everything I can...for you, for Natalie \u2014 everything."
+  },
+  "victim": {
+    "value": "Sam Pitney: A single mother dealing cocaine to support herself and her daughter Natalie. 'Killable' because she is vulnerable (isolated, dependent on drug income, emotionally attached to undercover officer), legally exposed (drug trafficking), and trapped between competing threats (police coercion vs. supplier's violence).",
+    "confidence": "high",
+    "quote": "her daughter or her life, she couldn't save both. Maybe not today or tomorrow but someday soon, Claudia's threat would materialize"
+  },
+  "closed_world": {
+    "value": "Las Vegas underworld: a confined social ecosystem of police, drug dealers, addicts, and informants bound by corruption, addiction, and mutual leverage. Movement restricted by surveillance, trust networks, and geographic isolation (desert consequences).",
+    "confidence": "high",
+    "quote": "the desert was littered with their failures \u2014 and Sam would realize this is it, that pitiless point in time"
+  },
+  "culprit_and_motive": {
+    "value": "Jimmy Becker (undercover officer) and Claudia (supplier). Jimmy's motive: close the case under pressure from his sergeant, though complicated by addiction, attraction to Sam, and guilt over his own child. Claudia's motive: protect her operation and eliminate liability.",
+    "confidence": "medium",
+    "quote": "Sergeant Becker called Jimmy in...Your buys are light...Like when? Like now...Get CPS involved...get it over with."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Dual perspective: Jimmy Becker (corrupt undercover officer who is both investigator and moral agent) and Sam Pitney (suspect-victim whose internal crisis becomes the narrative lens). Reader experiences the mystery through both predator and prey.",
+    "confidence": "high",
+    "quote": "He'd nailed a witness or two in his time...but nothing compared to bedding a suspect. As fluid as things had become morally since he'd started working undercover"
+  },
+  "suspect_architecture": {
+    "value": "Three principals with interlocking complicity: Jimmy (corrupt undercover cop, buyer/addict), Sam (small-scale dealer, single mother), Claudia (mid-level supplier with violent enforcers). Each has differentiated motive and vulnerability: Jimmy's addiction and professional misconduct, Sam's economic desperation and maternal love, Claudia's cold commercial authority and implied threat network.",
+    "confidence": "high",
+    "quote": "I have men who take care of certain matters . . . The time will have passed for you to say or do anything to help yourself"
+  },
+  "red_herring": {
+    "value": "Jimmy's apparent emotional attachment to Sam and Natalie functions as a false trail suggesting he might protect or spare them, masking that he is the instrument of their destruction. His 'sensitivity' and guilt-ridden demeanor misdirect both Sam and the reader from his role as the operative closing the trap.",
+    "confidence": "high",
+    "quote": "she thought she saw something hovering behind the savage bloodshot blue...something haunted, like pity, even love"
+  },
+  "clue_fairness": {
+    "value": "The reader is given the same information as Sam regarding Jimmy's drug use, light buy weights, and Sergeant Becker's order to close the case \u2014 all planted in plain sight before the raid. The Scotch-and-spearmint detail and the bloated pupils are shown to the reader in real time, allowing retrospective recognition of his duplicity.",
+    "confidence": "medium",
+    "quote": "She could smell the Scotch on his breath, masked with spearmint. So that's what it was, she thought, all that time"
+  },
+  "social_world": {
+    "value": "A layered Las Vegas criminal-law enforcement ecosystem: corrupt police hierarchy (Becker over Jimmy) using undercover operations as cover for personal drug abuse; small dealers embedded in domestic/maternal social networks; mid-level supplier (Claudia) operating through genteel domestic camouflage. Power flows downward and is enforced through institutional threat, violence, and child welfare systems weaponized against the vulnerable.",
+    "confidence": "high",
+    "quote": "Get CPS involved, that's what they're there for. Make the calls, do the paperwork, get it over with."
+  },
+  "alibi": {
+    "value": "Jimmy constructs a professional alibi for his drug consumption by claiming buy shortages are due to 'field-testing' and the suspect's own indulgence \u2014 a false procedural cover that Becker sees through but chooses not to formally expose, making the alibi a mutual institutional fiction protecting both men.",
+    "confidence": "high",
+    "quote": "'I'm a gentleman. I always offer the lady a taste.' 'She needs to sample her own coke?' 'Not sampling, indulging. And there's always some lost in the field test.'"
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is psychological and sensory rather than forensic: Sam smells Scotch masked by spearmint on Jimmy's breath at the moment of arrest, retroactively recontextualizing all prior interactions \u2014 his trembling hands, jigging eyes, bloated pupils \u2014 as addiction rather than nerves or attraction, collapsing her misreading of him in a single perceptual beat.",
+    "confidence": "high",
+    "quote": "She could smell the Scotch on his breath, masked with spearmint...Mr. Sensitive drowning his guilt. Or was even his guilt phony?"
+  },
+  "media_and_audience": {
+    "value": "Institutional narrative control is exercised entirely within law enforcement and child welfare bureaucracies rather than press or public \u2014 the 'story' of Sam is written by police reports, CPS paperwork, and Becker's internal cover. There is no public audience; the crime is invisible, processed through administrative machinery that renders Sam voiceless.",
+    "confidence": "medium",
+    "quote": "A dozen agencies would be involved, imagine the questions."
+  },
+  "investigator_wound": {
+    "value": "Jimmy's wound is compound: a failed marriage, a lost son (Bobby, seven, 'somewhere'), active cocaine addiction, and moral corruption accelerated by undercover work. The case exploits his capacity for attachment \u2014 to Sam and especially to Natalie, who mirrors his absent son \u2014 forcing him to choose between vestigial conscience and institutional self-preservation, which he resolves by betrayal.",
+    "confidence": "high",
+    "quote": "Bobby was his name. Seven years old now. Somewhere...When he found himself thinking like that, he also found himself developing a mean thirst."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "text_len": 15860,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "134",
+    "author": "DAVID CORBETT",
+    "anthology_title": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver",
+    "story_index": 7,
+    "story_count": 25
+  }
+}

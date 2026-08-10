@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Macky, a crime boss, murdered by strangulation and neck-breaking during what he believed was a job negotiation. Killable because he represented a competitive threat to rival criminal Victor Tarasov.",
+    "confidence": "high",
+    "quote": "Victor Tarasov wanted me to say goodbye to you on his behalf, and I clutch his trachea by sticking three fingers just below his voice box"
+  },
+  "closed_world": {
+    "value": "An upstairs office in an abandoned West Covina warehouse, four miles outside town, with bodyguards stationed outside the door and a security goon downstairs. Physical isolation and controlled access limit escape routes.",
+    "confidence": "high",
+    "quote": "Christ, you could fight a war out here and never upset a civilian ear. It's a perfect place for a hit, all right."
+  },
+  "culprit_and_motive": {
+    "value": "Babe Crucci (the narrator, Leo's father), hired by Victor Tarasov to eliminate Macky, a rival mobster. Motive: payment from Tarasov, though framed as a favor leveraging Babe's criminal reputation and street connections.",
+    "confidence": "high",
+    "quote": "How much did Tarasov pay you to do that? Kid, I am flush"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Babe Crucci, the perpetrator himself. The narrative is his first-person account, so the 'investigation' is his internal justification and planning of the crime, with Leo as an unwitting witness-accomplice.",
+    "confidence": "high",
+    "quote": "I am A week out of San Quentin when my son pulls to the curb in his Crown Victoria Police Interceptor"
+  },
+  "suspect_architecture": {
+    "value": "Not a traditional whodunit structure. The 'crime' (Macky's murder) has a single perpetrator \u2014 Babe Crucci, hired by Tarasov \u2014 with Macky as victim and Leo (the cop son) as unwitting accessory. Supporting figures: Macky's three bodyguards (threat/obstacle), Chief/Barzi (ambiguous loyalist), Tarasov (offstage employer). Differentiation is by loyalty tier rather than suspect spread.",
+    "confidence": "medium",
+    "quote": "Three goons are in the reception area, probably Macky's A Team."
+  },
+  "red_herring": {
+    "value": "Babe frames the visit to Macky as a debt-resolution meeting on Leo's behalf, concealing his true purpose (assassination contract for Tarasov). The 'father protecting son' narrative misdirects both Leo and the reader from the premeditated hit. His repeated assurances 'I will handle Macky' function as deliberate concealment of intent.",
+    "confidence": "high",
+    "quote": "I almost reveal all there is to know about the meeting with Macky. I change my mind when I realize I cannot predict his reaction"
+  },
+  "clue_fairness": {
+    "value": "Multiple planted signals available to the reader before the reveal: Babe's explicit lies flagged in narration ('This is not a true statement'), the Dodgers tickets in his breast pocket suggesting pre-planned celebration, his insider knowledge of Tarasov, and Chief's warning. The narrator's self-awareness about deception is foregrounded throughout.",
+    "confidence": "high",
+    "quote": "'Victor Tarasov wanted me to say goodbye to you on his behalf' \u2014 preceded by 'This is not a true statement' markers earlier in scene"
+  },
+  "social_world": {
+    "value": "L.A. organized crime hierarchy with Italian-American mob traditions (Sacci, Macky's Godfather pretensions), Russian criminal encroachment (Tarasov), and a corrupted law-enforcement layer (Leo \u2014 addicted cop with excessive-force complaints). Loyalties are purchased; honor codes are performative currency used to manipulate. Patron-client debts structure every interaction.",
+    "confidence": "high",
+    "quote": "Macky pays me \u2014 all right? \u2014 and I gotta do my job. / 'I've always wanted you in my family. C'mere, you big wop'"
+  },
+  "alibi": {
+    "value": "No conventional alibi construction is present. Instead, the disarmament ritual ('a condition of the sit-down is that we be unarmed') functions as a false security guarantee \u2014 Macky's own procedural control is weaponised against him, and Babe's bare hands render the weapons-check alibi irrelevant.",
+    "confidence": "medium",
+    "quote": "A condition of the sit-down is that we be unarmed. Hand over your weapons."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is delivered via Babe's direct first-person narration with embedded instructional asides \u2014 precise anatomical technique for crushing a trachea and snapping a neck, narrated in real time with mock-pedagogical detachment. The solution is demonstrated physically and rhetorically simultaneously, implicating the reader as student.",
+    "confidence": "high",
+    "quote": "To learn how to crush a trachea, surround a fat carrot with, say, two sticks of celery... perform the above procedure with your dominant hand"
+  },
+  "media_and_audience": {
+    "value": "Largely absent as an explicit element. The crime occurs in a remote warehouse chosen precisely to avoid civilian witness ('you could fight a war out here and never upset a civilian ear'). Street reputation and underworld gossip ('much talk and conjecture on the street') serve as the story's substitute for press/public perception.",
+    "confidence": "low",
+    "quote": "We are, what, over four miles outside town? You could fight a war out here and never upset a civilian ear."
+  },
+  "investigator_wound": {
+    "value": "Babe is simultaneously perpetrator and de facto investigator of his own family wound: nine years of absence, a son estranged by neglect, a failed father-son bond. The case (Leo's debt crisis) is the vehicle through which Babe attempts to repair what his criminal life destroyed. His vulnerability is paternal guilt and the desperate need for his son's acceptance.",
+    "confidence": "high",
+    "quote": "It is shameful, I know, to get so excited just because my son agreed to eat a simple meal with me... I actually feel it pound against the two tickets"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "text_len": 23408,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "My Son",
+    "author": "ROBERT MCCLURE",
+    "anthology_title": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver",
+    "story_index": 13,
+    "story_count": 25
+  }
+}

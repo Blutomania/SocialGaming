@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Disappearance and presumed murder of a corrupt DEP officer; he arrives at a logging road rendezvous with money and blood evidence, then vanishes. Central question: who took him and why?",
+    "confidence": "medium",
+    "quote": "they found his patrol car empty on a logging road near the reservoir. The door was open, the cop radio was turned on. There was money and blood all over the place"
+  },
+  "victim": {
+    "value": "A DEP (Department of Environmental Protection) officer who was extorting money from loggers through intimidation, violence, and threats. He was 'killable' because he was a corrupt authority figure preying on vulnerable men in an isolated region.",
+    "confidence": "high",
+    "quote": "I want two hundred bucks...He took out a knife and stuck it in the sidewall of the front driver's-side tire...He had his gun in one hand and a knife in the other."
+  },
+  "closed_world": {
+    "value": "The Adirondack logging region of upstate New York near a reservoir; an isolated wilderness area with scattered logging operations, bars, and limited law enforcement oversight, creating a lawless space where violence can occur without witnesses.",
+    "confidence": "high",
+    "quote": "The toughest trick in the mountains and valleys was telling where the shot came from, what was the echo and what was the original report...The shape of the land gave birth to lies"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "No resolution; the crime remains unsolved. The investigation confirms the officer came to pay someone (suggesting he owed a debt or was being blackmailed), but the narrative ends without revealing who took him or why, leaving ambiguity intentional.",
+    "confidence": "medium",
+    "quote": "the BCI determined it was his money. He came to that spot to pay someone for something. But they didn't take his money. They took him."
+  },
+  "investigator": {
+    "value": "The protagonist narrator\u2014an unnamed timber thief and drifter who adopts false identities, has been victimized by the officer, and witnesses the officer's corruption firsthand. He is both observer and implicated party.",
+    "confidence": "high",
+    "quote": "Paul Wagner died the minute I hit the exit door...I was silent...The old guy didn't let up"
+  },
+  "suspect_architecture": {
+    "value": "No traditional suspect architecture. The narrative presents a corrupt DEP cop as the primary antagonist/victim, with the unnamed protagonist (a timber thief) and peripheral figures (Jimmy Work, landowner) as morally compromised parties rather than formal suspects. The DEP cop's disappearance implicates multiple unnamed parties he had extorted.",
+    "confidence": "low",
+    "quote": "they found his patrol car empty on a logging road near the reservoir... He came to that spot to pay someone for something. But they didn't take his money. They took him."
+  },
+  "red_herring": {
+    "value": "The protagonist's injuries are repeatedly misrepresented as logging accidents \u2014 first to hospital staff (chainsaw accident), then again for Jimmy Work's dog-bite wounds. These cover stories function as in-world misdirection but are not classically planted red herrings for the reader, as the reader is privy to the truth throughout.",
+    "confidence": "low",
+    "quote": "The doctors thought a tree had fallen on me, that's what the two guys who brought me in said."
+  },
+  "clue_fairness": {
+    "value": "The narrator is unreliable and withholds his true identity from other characters but not from the reader \u2014 the reader knows he lies about his name and circumstances. The ceramic spike on the truck floor is shown to the reader as physical evidence of the true accident before it is explained. However, this is noir confession, not detective fiction; clue fairness as a formal principle is not structurally operative.",
+    "confidence": "low",
+    "quote": "The foot-long ceramic spike that had caused some of the damage to my right arm and head after my saw hit it rolled around on the passenger's-side floor."
+  },
+  "social_world": {
+    "value": "A working-class Adirondack/upstate New York world of illegal timber theft, corrupt law enforcement (DEP cops), dog-fighting, ex-convicts, and itinerant laborers. Power is exercised through violence and institutional authority (badge and gun), with no recourse for those outside legal legitimacy. The DEP cop exploits the protagonist's criminality to extort him with impunity.",
+    "confidence": "high",
+    "quote": "He took his foot off the brake of his patrol car and tapped the back of my truck. 'I could total it,' he said. 'You're drunk, and this car isn't going to hurt me.'"
+  },
+  "alibi": {
+    "value": "The protagonist constructs a false identity (Paul Wagner) and a false alibi (logging accident) to avoid scrutiny during his 65-day hospital stay. The landowner and his son provide a false account to hospital staff. The DEP cop fabricates a traffic stop narrative ('you were speeding and weaving') to justify extortion. None of these alibis are formally investigated or collapsed by an investigator.",
+    "confidence": "medium",
+    "quote": "Paul Wagner wasn't going to be paying any hospital bill... Paul Wagner died the minute I hit the exit door."
+  },
+  "reveal_mechanic": {
+    "value": "There is no formal investigative reveal. The closest analogue is the BCI's forensic determination that the money found at the abandoned patrol car was the cop's own \u2014 suggesting he came to pay, not collect \u2014 which implies premeditated ambush by unknown parties. The reveal is institutional and offhand, not dramatized.",
+    "confidence": "low",
+    "quote": "the BCI determined it was his money. He came to that spot to pay someone for something. But they didn't take his money. They took him."
+  },
+  "media_and_audience": {
+    "value": "The story is told in first-person confession with no press or public audience depicted. The institutional response is minimal and backgrounded (BCI investigation of the cop's disappearance). The broader community is implicitly aware of corruption and violence but treats it as ambient \u2014 nurses recognize the protagonist as not a logger, the Indian doctor explicitly names the lie, but no one acts on it.",
+    "confidence": "medium",
+    "quote": "Goodbye Mister Whoever-you-are... Sixty-five days without a visitor and no phone in my room, no calls."
+  },
+  "investigator_wound": {
+    "value": "The protagonist is not a formal investigator but functions as the narrative consciousness. His wound is literal and psychological: physical damage from the chainsaw accident and beating has left him scarred, displaced, and living under a false name. His criminality and social illegitimacy mean he cannot seek justice and must absorb victimization (extortion, property destruction) in silence.",
+    "confidence": "medium",
+    "quote": "You're always all the men you've ever been... I couldn't afford a new truck. I took fifty dollars out of my pocket and handed it to him."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Barracuda",
+    "author": "SCOTT\tWOLVEN",
+    "anthology_title": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates",
+    "story_index": 21,
+    "story_count": 22
+  }
+}

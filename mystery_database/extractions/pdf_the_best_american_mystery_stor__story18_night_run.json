@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Interstate 95 highway at night between Georgia-Florida border and New Smyrna Beach; isolated stretch with no nearby exits",
+    "confidence": "medium",
+    "quote": "No exits for at least another few miles...It would be dangerous to stop."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Kirwan, the protagonist\u2014a traveling salesman for a brick/landscaping company who is the target of an armed road-rage incident",
+    "confidence": "high",
+    "quote": "He'd just crossed the Georgia-Florida line on I-95, running south...He'd give it another hour on the road, then find a motel."
+  },
+  "suspect_architecture": {
+    "value": "No traditional mystery suspect architecture present. The story is a road-rage thriller: one protagonist (Kirwan, exhausted travelling salesman) and one antagonist (unnamed bearded biker on a black Harley). No spread of suspects, motives, or opportunity differentiation in the classic sense.",
+    "confidence": "low",
+    "quote": "It was a big Harley with extended front forks, black all around, dual silver exhausts. The rider had a beard and mustache"
+  },
+  "red_herring": {
+    "value": "Kirwan's distracted mental state and near-miss lane-change create ambiguity about whether the biker's aggression is justified or paranoid escalation \u2014 the reader briefly entertains that Kirwan is the aggressor. His exhaustion-induced hallucination risk also seeds doubt about whether the threat is real.",
+    "confidence": "medium",
+    "quote": "Had he missed it in the rearview? Had he even checked the mirror before changing lanes? He wasn't sure."
+  },
+  "clue_fairness": {
+    "value": "No formal mystery clue structure is present. The narrative is told in close third-person from Kirwan's POV; the reader has identical information to the protagonist at all times. The gun, the chip in the windshield, and the biker's plate are all shown to reader and character simultaneously.",
+    "confidence": "low",
+    "quote": "Kirwan turned to look at him then and saw the gun. It was a dark automatic."
+  },
+  "social_world": {
+    "value": "Blue-collar commercial travelling world (brick-sample salesman, long-haul interstate driving culture) set against anonymous highway anonymity. Class tension implied between the respectable, rule-following Kirwan (65 mph, signals lane changes) and the lawless biker subculture. No institutional hierarchy.",
+    "confidence": "medium",
+    "quote": "The speed limit for this stretch of interstate was seventy, and Kirwan kept the Volvo at a safe sixty-five, let the other vehicles pass him."
+  },
+  "alibi": {
+    "value": "No alibi structure present in this thriller excerpt. There is no crime under investigation requiring an alibi; the story depicts a crime in real-time rather than retrospective investigation.",
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "No formal reveal mechanic in the mystery sense. The story's escalation is transparent and experiential. Per the author's note, the story was inspired by Matheson's 'Duel' and riffs on paranoia and exhaustion as perceptual distortion \u2014 the 'reveal' is whether the danger is real, confirmed by the gun.",
+    "confidence": "low",
+    "quote": "a driver so exhausted that his own senses are playing tricks on him, and where paranoia, fear, and danger are always waiting"
+  },
+  "media_and_audience": {
+    "value": "No press or institutional framing of the crime. The setting is isolated \u2014 two a.m., no other cars, no witnesses. The author's note references the anthology context (The Highway Kind) as the packaging frame, and Richard Matheson's 'Duel' as the cultural template the story consciously inhabits.",
+    "confidence": "low",
+    "quote": "my thoughts immediately went to that greatest of all road-rage stories, Richard Matheson's classic 'Duel.'"
+  },
+  "investigator_wound": {
+    "value": "Kirwan is not an investigator but functions as a vulnerable everyman. His wound is chronic exhaustion and isolation from long-haul driving, compounded by social timidity (his inability to respond to Lois Pettimore's advances mirrors his inability to assert himself against the biker). His passivity is the psychological pressure point the story exploits.",
+    "confidence": "medium",
+    "quote": "He'd look away, his face flushed, then flee as soon as he had their order sheets and contracts."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Night\tRun",
+    "author": "WALLACE\tSTROBY",
+    "anthology_title": "The_Best_American_Mystery_Stories_2017_-_John_Sandford",
+    "story_index": 18,
+    "story_count": 19
+  }
+}

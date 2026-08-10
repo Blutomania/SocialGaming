@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Child abduction and suspected child abuse. Joey Evans took his 6-year-old daughter Maggie and disappeared five months ago. The central question: Is the father abusing the child, or is the mother the actual abuser?",
+    "confidence": "high",
+    "quote": "He took her. Months ago. Months ago. God knows what he done to her, by this time."
+  },
+  "victim": {
+    "value": "Maggie Evans, six-year-old child. She is 'killable' because she is vulnerable, physically small, and caught between two parents\u2014one allegedly abusive, one allegedly protective but actually the real threat.",
+    "confidence": "high",
+    "quote": "Maggie is a pretty little girl. She got blond hair, just like mine. And Joey was looking at her...that way. The way my daddy done me."
+  },
+  "closed_world": {
+    "value": "Working-class neighborhood near Oscar Mayer meat-packing plant in Indiana/Illinois region; contained social circle of Evans family and associates (Agnes Evans, Bill's Golden Nugget bar, Hammond steel mill area).",
+    "confidence": "medium",
+    "quote": "A foul, pungent odor from Oscar Mayer permeated the working-class neighborhood the massive plant bordered"
+  },
+  "culprit_and_motive": {
+    "value": "Louise Evans (the mother), not Joey Evans. Louise projects her own childhood sexual abuse onto her husband, falsely believing he is abusing their daughter. Her motive is trauma-driven delusion and protective obsession rooted in her father's abuse of her.",
+    "confidence": "high",
+    "quote": "She got me all confused with him. Looked at me and saw her daddy\u2014thought I'd do the same things to Maggie he done to her."
+  },
+  "resolution": {
+    "value": "Ms. Tree (the private detective) discovers the truth when Louise's violent confrontation at Joey's house reveals Louise is the abuser, not the victim. The revelation comes through dialogue and Evans's account. Police arrive in response to the gunshot. The family's trauma is exposed but not 'solved'\u2014only acknowledged.",
+    "confidence": "high",
+    "quote": "But the only one imitating her father was Louise."
+  },
+  "investigator": {
+    "value": "Ms. Tree, a female private detective operating in Chicago. She is the lens through whom the reader experiences the mystery. She is hired by Louise to recover Maggie, leading her to gradually uncover that Louise is the real threat.",
+    "confidence": "high",
+    "quote": "Miss Tree?' she asked tentatively...I stood, paying her back the respect she was showing, and tried to put her at ease with a smile."
+  },
+  "suspect_architecture": {
+    "value": "Two suspects with inverted culpability: Joe Evans (father, apparent abuser/kidnapper) and Louise Evans (mother, apparent victim/client). Joe has means and opportunity via flight; Louise has motive framed as maternal rescue but is revealed as the actual abuser. A tertiary figure, Agnes Evans (Joe's sister), functions as a knowing accessory who shelters the pair. Bill provides logistical cover. The architecture is dyadic with a false-victim/true-perpetrator inversion at its core.",
+    "confidence": "high",
+    "quote": "Why the hell do you think I ran from her? I wasn't the one beating Maggie!"
+  },
+  "red_herring": {
+    "value": "Louise Evans is constructed throughout as the sympathetic, battered-mother client whose husband is the child abuser and kidnapper. Every surface detail \u2014 her frailty, tears, $200 retainer, descriptions of Joe as 'rough' \u2014 misdirects both Ms. Tree and the reader into believing Joe is the predatory villain, when Louise herself is the abusive parent imitating her own father.",
+    "confidence": "high",
+    "quote": "She told you I beat Maggie, right? And worse? Why the hell do you think I ran from her?"
+  },
+  "clue_fairness": {
+    "value": "The clues are present but embedded in plain sight: Louise slaps Maggie savagely during the retrieval scene before any revelation; her 'Kabuki face frozen with rage' and crazed eyes are shown directly to the reader; her own admission that her father abused her is disclosed early; and Ms. Tree's observation that 'the only one imitating her father was Louise' recapitulates evidence the reader already witnessed.",
+    "confidence": "high",
+    "quote": "Louise, her eyes crazed, her Kabuki face frozen with rage, slapped the little girl savagely; it rang like a gunshot."
+  },
+  "social_world": {
+    "value": "Working-class industrial Midwest: steel-mill workers, McDonald's employees, rent-to-own furniture, Oscar Mayer meat-packing neighborhoods. Power flows through gender and class \u2014 courts default custody to mothers, disadvantaging Joe's credible abuse claim; police inaction reflects institutional indifference to working-class domestic violence; Ms. Tree operates from a Gold Coast Michigan Avenue office, marking a class divide between investigator and client.",
+    "confidence": "high",
+    "quote": "The courts would've given Maggie to her mommy. They would never have believed me over her."
+  },
+  "alibi": {
+    "value": "Joe Evans constructs a de facto alibi of protective flight \u2014 his disappearance with Maggie is read by police and Ms. Tree as guilt, but functions as his only available defense against Louise's abuse. Agnes Evans provides a false cover identity ('Cindy' for Maggie, presenting her as 'a friend's kid') to alibi Joe's location. The alibi collapses not through forensic disproof but through Ms. Tree's in-person identification of Maggie.",
+    "confidence": "medium",
+    "quote": "That's not my little girl. Cindy is, uh, a friend of mine's kid. I look after her, days."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is psychological and behavioral: Louise's violent slap of Maggie mid-rescue \u2014 performed in real time before the reader \u2014 demolishes the constructed narrative. Joe's subsequent explanation reframes all prior evidence retroactively. The mechanism is dramatic irony resolved through witnessed action rather than deduction, forcing both Ms. Tree and the reader to reinterpret every earlier clue simultaneously.",
+    "confidence": "high",
+    "quote": "Her father did terrible things to her. She got me all confused with him... the only one imitating her father was Louise."
+  },
+  "media_and_audience": {
+    "value": "Institutional narrative dominates: police Missing Persons Bureau frames Joe as a flight risk rather than a protective parent; the legal system's presumption of maternal custody shapes everyone's assumptions including Ms. Tree's. There is no press coverage, but the story critiques how official and social narratives about gender and victimhood can suppress the truth of abuse and make the actual perpetrator invisible.",
+    "confidence": "medium",
+    "quote": "Louise Evans never filed charges of any kind... it isn't kidnapping when a natural parent takes a child along."
+  },
+  "investigator_wound": {
+    "value": "Ms. Tree's wound is her instinctive solidarity with women as victims of male violence \u2014 her professional identity is built on being the strong woman who protects the vulnerable from abusive men. The case exploits this exactly: Louise performs the archetypal battered-woman role, and Ms. Tree's gender-informed empathy blinds her to the inversion. Her tombstone joke and self-deprecating physicality also signal an outsider identity that makes her susceptible to clients who mirror vulnerability.",
+    "confidence": "high",
+    "quote": "I've read about you, Ms. Tree. You're a strong woman. Nobody messes with you... You killed bad men before."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "filename": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "MAX ALLAN COLLINS",
+    "anthology_title": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch",
+    "story_index": 5,
+    "story_count": 15
+  }
+}

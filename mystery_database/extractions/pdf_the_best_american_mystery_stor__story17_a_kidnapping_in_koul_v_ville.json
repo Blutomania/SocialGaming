@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Staged kidnapping of wealthy merchant's daughter Anna Nasser for $200,000 ransom. Central question: Was Anna a victim or conspirator in the scheme?",
+    "confidence": "high",
+    "quote": "Two hundred thousand dollars for the rich girl. Not all of these things turned out to be true, but there was a text message from the smaller airport, and there was a raspy voice."
+  },
+  "victim": {
+    "value": "Anna Nasser, 17-year-old daughter of wealthy supermarket owner Samir Nasser. 'Killable' due to her privileged status, strict parental control, and secret romantic relationship with Miami boyfriend\u2014making her vulnerable to manipulation and coercion.",
+    "confidence": "high",
+    "quote": "There's Anna Nasser, seventeen years old, standing in her white dress on the balcony of the Beirut Supermarket...His idea was that she'd become a brain surgeon...He demanded straight A's"
+  },
+  "closed_world": {
+    "value": "Koul\u00e8v-Ville, Haiti\u2014specifically the Baptist high school, the Beirut Supermarket, and the social circles of wealthy Haitian merchant families and street gangs (chim\u00e8res). The bounded world of Port-au-Prince society where everyone knows of Anna's disappearance and reappearance.",
+    "confidence": "high",
+    "quote": "Around the Baptist school at Koul\u00e8v-Ville...The middle floor was a children's boutique...I was the photographer who snapped the famous picture."
+  },
+  "culprit_and_motive": {
+    "value": "Anna Nasser (conspirator) and her Miami boyfriend (financier). Motive: Boyfriend lost $200,000+ at a cockfight, owed money to criminals threatening his family. Anna agreed under emotional duress ('I'll do it') after he invoked her love and promised future repayment from neurosurgery earnings.",
+    "confidence": "high",
+    "quote": "He said he'd lost a lot of money at a cockfight...The people he owed had made threats...Be quiet, I love you, I'll do it, she said."
+  },
+  "resolution": {
+    "value": "No formal legal resolution. Anna's boyfriend escaped to Miami with $10,000 of ransom money (impounded by customs but supervisor allowed him to flee). Charles Leblanc wrongfully imprisoned 13 months, then released via Canadian diplomatic intervention. Samir Nasser chooses denial and family protection over justice, installing Anna in the money-changing station behind bulletproof glass.",
+    "confidence": "high",
+    "quote": "Leblanc spent thirteen months, without charges, in a jail cell before the Canadian foreign ministry made one phone call and sprang him...What interests me is Samir Nasser...He decided...she had not done it"
+  },
+  "investigator": {
+    "value": "The unnamed narrator\u2014a photographer and journalist in Haiti who documented Anna's vigil and celebration, then learns the kidnapping was staged. The investigator operates as an outside observer processing gossip, rumors, and fragmented truth from the community.",
+    "confidence": "high",
+    "quote": "I was the photographer who snapped the famous picture...When I was downtown, I liked to ride the tap-taps to hear the local versions of the news I was supposed to be reporting"
+  },
+  "suspect_architecture": {
+    "value": "Three principals: Anna Nasser (insider conspirator, motive: love/rebellion against father's control), the Miami boyfriend (orchestrator, motive: gambling debts/financial desperation), and Charles Leblanc 'the white chim\u00e8re' (scapegoat/patsy, means: criminal reputation exploited). Leblanc is differentiated by his performative criminality making him a credible fall guy; the boyfriend by external leverage (debt threats); Anna by intimate access and filial resentment.",
+    "confidence": "high",
+    "quote": "I need you to tell me: Who is the most terrible person you know? It has to be a truly despicable person"
+  },
+  "red_herring": {
+    "value": "Charles Leblanc is the engineered red herring \u2014 Anna and her boyfriend deliberately selected him because his existing criminal reputation (gang associations, Glock-waving, chim\u00e8re connections) would make authorities and public immediately believe him capable of kidnapping, absorbing all suspicion and diverting investigation from the real conspirators.",
+    "confidence": "high",
+    "quote": "Tell Leblanc you have been thinking about him... Make sure twenty or thirty people see you get in his truck."
+  },
+  "clue_fairness": {
+    "value": "The narrator-as-photographer reveals clues available to the reader simultaneously with their own processing: the boyfriend departing with a bag of cash toward the airport, Anna's voluntary return under suspicious circumstances, the text message from the smaller airport, and the $10,000 found in luggage \u2014 all presented in scene before the 'elaborate lie' is named, allowing the reader to assemble the fraud independently.",
+    "confidence": "medium",
+    "quote": "even a few days later, when it was discovered that we had been marching and weeping and dancing in the service of an elaborate lie"
+  },
+  "social_world": {
+    "value": "Stratified Haiti: Lebanese-Christian mercantile elite (Nassers) atop a pyramid of port workers, chim\u00e8re gang underclass, UN peacekeepers, corrupt magistrates, Canadian missionaries, and Miami-connected boyfriends. Wealth buys outcomes \u2014 Leblanc jailed without charges while the boyfriend flies free; the magistrate openly acknowledges race and nationality override justice; Samir's phone calls move Chilean soldiers.",
+    "confidence": "high",
+    "quote": "He's white. He's Canadian. He gets books and magazines... I might bring him a television myself."
+  },
+  "alibi": {
+    "value": "Anna constructs a public alibi for her 'kidnapping' by staging a visible, witnessed departure: she drops her books in the parking lot dirt, draws helpers, and gets visibly into Leblanc's truck \u2014 manufacturing a witnessed abduction narrative. Leblanc has no counter-alibi; he is found in an opium den, which reads as guilt. The boyfriend's alibi collapses at customs when $10,000 is discovered in his luggage en route to the Caymans.",
+    "confidence": "high",
+    "quote": "she made a show of dropping her books in the parking lot dirt... when they were safely in her arms, she got into Leblanc's truck"
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is economic and logistical rather than forensic: Leblanc's father publicly asks on radio why the boyfriend \u2014 romantically connected to the 'kidnapped' girl \u2014 was found with the ransom money and allowed to board a plane. The chain of custody of the $200,000 ransom, moving from Nasser family to boyfriend's luggage to Cayman charter, demonstrates the fraud structurally. Samir's private acknowledgment to Anna ('tell me the faces, tell me the names') confirms he knows the truth before the public does.",
+    "confidence": "high",
+    "quote": "How did the boyfriend of the kidnapped girl end up with the ransom money her parents paid?"
+  },
+  "media_and_audience": {
+    "value": "The crime is immediately mythologized: tap-tap gossip produces wildly divergent ransom-note versions (written in blood on baby-skin paper, sewn in poison pouches, text messages, masked men). The candlelit vigil, famous photograph, fireworks, and mizik rasin dancing transform a fraud into a communal catharsis. Radio becomes the arena for competing truth claims \u2014 Leblanc's father vs. Samir Nasser \u2014 while the narrator-journalist is complicit in photographing and celebrating the lie.",
+    "confidence": "high",
+    "quote": "Smallpox doesn't spread any faster than gossip, and there's always a little bit of the devastating and true stowed away"
+  },
+  "investigator_wound": {
+    "value": "The narrator-journalist wound is complicity and na\u00efve belief: they took the famous photograph, danced in the streets, tasted the nectarine \u2014 fully invested emotionally in the community's relief \u2014 making them a participant in the lie rather than its exposer. Their vulnerability is the desire to witness beauty and solidarity in a violent place, which blinds them to the fabrication. The wound is also nostalgia: they no longer live beneath the Caribbean sky they miss, narrating from exile and loss.",
+    "confidence": "medium",
+    "quote": "I still could taste the nectarine in my mouth, the brown wet ridges of the pit on my tongue."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "filename": "The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "A\tKidnapping\tin\tKoul\u00e8v-Ville",
+    "author": "KYLE\tMINOR",
+    "anthology_title": "The_Best_American_Mystery_Stories_215_-_James_Patterson",
+    "story_index": 17,
+    "story_count": 19
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder of Sybil Blake's mother (and attempted murder of Sybil's father) by George Conte in a boating accident on Lake Champlain; central question: will George Conte (disguised as 'Mr. Starr') successfully murder his daughter Sybil to complete what he began?",
+    "confidence": "high",
+    "quote": "They had died in a boating accident on Lake Champlain, Sybil's mother at the age of twenty-six, Sybil's father at the age of thirty-one"
+  },
+  "victim": {
+    "value": "Sybil Blake, seventeen-year-old daughter of George Conte and murdered victim; 'killable' because she is the loose end of Conte's past crime and represents unfinished business from his original act of violence.",
+    "confidence": "high",
+    "quote": "He'd wanted to kill her too, of course\u2014that was the purpose of his coming home, wanting to get her, saying her mother wanted her."
+  },
+  "closed_world": {
+    "value": "Glencoe, California\u2014a small coastal town where Sybil lives with her adoptive aunt Lora Dell Blake; the park overlooking the ocean serves as the recurring site of contact between predator and prey.",
+    "confidence": "high",
+    "quote": "Glencoe was a small town, and the high school was about a mile away...this sun-washed coastal town midway between Santa Monica and Santa Barbara"
+  },
+  "culprit_and_motive": {
+    "value": "George Conte (disguised as 'Mr. Starr'), Sybil's biological father, who murdered her mother and attempted to murder her father in a boating accident; his motive is to eliminate his daughter as the surviving witness/consequence of his original crime.",
+    "confidence": "high",
+    "quote": "As 'Mr. Starr,' the amateur artist, the lover of the beautiful and the pure, he'd found her out, and he'd come for her."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Sybil Blake herself\u2014the intended victim who becomes her own investigator by discovering newspaper clippings revealing her father's true identity and crime, then confronting him directly in the park with a concealed knife.",
+    "confidence": "high",
+    "quote": "Sybil Blake returned the clippings to the envelope...She understood that those who love us can, and will, lie to us"
+  },
+  "suspect_architecture": {
+    "value": "Single suspect (George Conte/'Mr. Starr'), the victim's biological father, who murdered her mother and now seeks Sybil under a false identity as an artist. No competing suspects; the architecture is a slow-burn revelation of one predator's identity rather than a multi-suspect field. Motive: elimination of witness/unfinished business; means: concealed weapon implied, opportunity constructed through grooming.",
+    "confidence": "high",
+    "quote": "George Conte was out. As 'Mr. Starr,' the amateur artist, the lover of the beautiful and the pure, he'd found her out"
+  },
+  "red_herring": {
+    "value": "Mr. Starr's presentation as a harmless, eccentric, elderly artist with aesthetic and possibly spiritual intentions toward Sybil misdirects both Sybil and the reader away from his identity as her father and a murderer. His courtly manners, convalescent appearance, and genuine-seeming artistic activity function as a sustained false trail obscuring predatory intent.",
+    "confidence": "high",
+    "quote": "She was convinced it was not a sexual attraction but something purer, more spiritual, and yet\u2014why? Why her?"
+  },
+  "clue_fairness": {
+    "value": "Clues are embedded and available to the reader alongside Sybil: the bullet-scar on Mr. Starr's forehead, his knowledge of Sybil's real name without being told it, his specific interest in her mother, his origin from the same Vermont milieu, and the envelope marked 'MEDICAL INSURANCE' containing newspaper clippings. Each detail is described in scene text before Sybil consciously interprets it.",
+    "confidence": "high",
+    "quote": "That curious, ugly little hook of a scar in Mr. Starr's forehead\u2014its soft pale tissue gleamed in the whitish light."
+  },
+  "social_world": {
+    "value": "Coastal Southern California retirement/convalescent town (Glencoe) stratified by wealth and mobility: Mr. Starr's chauffeured limousine signals class power over a working-class guardian and her ward. Sybil's dependence on her aunt's modest state-employee salary creates economic vulnerability that Mr. Starr exploits. The employer/model transactional relationship replicates a patronage hierarchy enabling grooming.",
+    "confidence": "high",
+    "quote": "nearly twice what Sybil made baby-sitting or working as a librarian's assistant at the branch library near her home"
+  },
+  "alibi": {
+    "value": "George Conte's alibi construct is his false identity as 'Mr. Starr,' an artist new to the area, which provides a surface-innocent explanation for his presence and proximity to Sybil. His story of not driving due to a 'handicap' and his claim of being a stranger in town serve as narrative alibis deflecting suspicion. The alibi collapses when Sybil finds the newspaper clippings documenting his conviction.",
+    "confidence": "medium",
+    "quote": "I don't drive, myself, you see!\u2014a further handicap. I did, once, long ago, but\u2014circumstances intervened."
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated through Sybil's private discovery of a hidden archive: a folder marked 'MEDICAL INSURANCE' in her aunt's locked-but-accessible desk containing newspaper clippings about the Lake Champlain murder and George Conte's conviction. The reveal is documentary and physical, not dialogic \u2014 Sybil assembles the truth alone through reading evidence her aunt deliberately concealed.",
+    "confidence": "high",
+    "quote": "Sybil Blake returned the clippings to the envelope so conspicuously marked 'MEDICAL INSURANCE,' and returned the envelope to the very bottom"
+  },
+  "media_and_audience": {
+    "value": "The crime's public record exists only in archived newspaper clippings, suppressed within the family. Aunt Lora has constructed a sanitised narrative (boating accident, vague 'drinking') to shield Sybil from the truth. Institutional record (the trial, the sentence) is present but hidden; no ongoing press or public attention frames the threat. The absence of media visibility is itself a plot mechanism enabling Conte's re-emergence.",
+    "confidence": "medium",
+    "quote": "A charge of second-degree murder, and a sentence of only twelve to nineteen years. So, he was out."
+  },
+  "investigator_wound": {
+    "value": "Sybil is simultaneously the investigator and the victim. Her wound is orphanhood and suppressed grief \u2014 she has been denied knowledge of her own origins and her mother's death, leaving her psychologically hungry for connection and meaning, which Mr. Starr exploits. Her longing to understand her mother makes her susceptible to his interrogations and resistant to rational self-protection.",
+    "confidence": "high",
+    "quote": "Come with me, Sybil. Hurry. Now. It's been so long...Wasn't her mother waiting for her?"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "filename": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "JOYCE CAROL OATES",
+    "anthology_title": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch",
+    "story_index": 10,
+    "story_count": 15
+  }
+}

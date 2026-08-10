@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Series of three murders of women in Manhattan (the 'Upper East Side Slasher' killings), later revealed to be a cover for a contract murder of Rachel Garner, a hedge fund whistleblower. Detective Carrera is then murdered. Central questions: Who is the slasher? Why these victims? What is the actual motive?",
+    "confidence": "high",
+    "quote": "the so-called Upper East Side Slasher, allegedly responsible for the murders of three women in Manhattan and, earlier tonight, of Detective Albert Carrera"
+  },
+  "victim": {
+    "value": "Rachel Garner, a whistleblower about to expose money laundering at a hedge fund run by her employer. The other two victims were killed as cover for her murder. Detective Carrera becomes a victim when he gets too close to the truth.",
+    "confidence": "high",
+    "quote": "She was going to blow the whistle on her boss. He runs a hedge fund that's waist-deep in money laundering."
+  },
+  "closed_world": {
+    "value": "Manhattan/Central Park area, bounded by the investigation's focus on a specific geographic region (Upper East Side, Shakespeare Garden, Harlem Meer); the detective-civilian investigative partnership constrains information flow.",
+    "confidence": "medium",
+    "quote": "Upper East Side Slasher...murders of three women in Manhattan...Shakespeare Garden and Turtle Pond...Harlem Meer fishing area in Central Park"
+  },
+  "culprit_and_motive": {
+    "value": "Paul Winslow, a brilliant but socially isolated man who idolizes Professor Moriarty (not Holmes) and recruits George Lassiter, the actual murderer-for-hire, as his criminal 'assistant.' Paul's motive is to construct a criminal empire modeled on Moriarty's organization. Lassiter was hired by a hedge fund manager to kill Garner.",
+    "confidence": "high",
+    "quote": "I've decided to become a modern-day Moriarty...I wondered whom to pick...I began studying recent crimes...the Upper East Side Slasher. You had the most promise."
+  },
+  "resolution": {
+    "value": "Paul frames an innocent journalist, Franklyn Moss, for all the murders by planting evidence (knife, victim's finger, Ferragamo shoes, energy bars) in Moss's apartment and car, and murders Detective Carrera to eliminate the investigator. Moss is arrested; Paul remains undetected and recruits Lassiter as his criminal partner.",
+    "confidence": "high",
+    "quote": "I went to Moss's apartment and hid the knife and finger in his garage and car...police found evidence implicating him...He is being held without bond"
+  },
+  "investigator": {
+    "value": "Paul Winslow, a civilian consultant with deductive skills inspired by Sherlock Holmes, who poses as an amateur detective helping Detective Carrera but is actually orchestrating the entire crime. He is simultaneously investigator and culprit.",
+    "confidence": "high",
+    "quote": "I was impressed, what you told me in the park...I was wondering if you could take a look at them and tell us what you thought...Paul, you're a young man."
+  },
+  "suspect_architecture": {
+    "value": "Two primary figures: George Lassiter (hired killer posing as serial killer, means/opportunity clear, motive=contract) and Paul Winslow (the hidden Moriarty-figure, investigator revealed as architect). Franklyn Moss is a fabricated false suspect with planted evidence. Detective Carrera is a victim, not a suspect. The architecture inverts convention: the apparent investigator is the true villain.",
+    "confidence": "high",
+    "quote": "I've decided to become a modern-day Moriarty. And that means having an assistant just like my hero did."
+  },
+  "red_herring": {
+    "value": "Paul deliberately constructs a false criminal profile for Carrera pointing to Franklyn Moss: fabricating a fisherman hobby link, keyboarding habits suggesting a blogger, BMW ownership, lake house in Westchester, and fishing-line ligature marks \u2014 all planted to misdirect the investigation entirely away from Lassiter.",
+    "confidence": "high",
+    "quote": "I fed Carrera this mumbo-jumbo that that was the killer's hobby... I also fed the detective this nonsense that the killer probably spent a lot of time keyboarding"
+  },
+  "clue_fairness": {
+    "value": "Partially present but deliberately subverted. The reader is shown Paul's deductive brilliance early (the jelly fingerprint, the kindergarten deduction) framing him as Holmes-like. The twist that he models himself on Moriarty is withheld until the final reveal, making full clue fairness structurally compromised \u2014 though the Moriarty artwork on his wall and his admiration language are retrospective signals.",
+    "confidence": "medium",
+    "quote": "Sitting prominently on the wall in his living room was a very fine reproduction... of archenemies Holmes and Professor Moriarty"
+  },
+  "social_world": {
+    "value": "Manhattan class and institutional power: trust-fund isolation vs. NYPD bureaucracy; hedge-fund financial crime enabling contract murder; Carrera's corrupt credit-stealing behaviour (reviewing files privately to claim Paul's ideas) reflects institutional self-interest over justice. Paul's wealth insulates him from consequence and enables criminal ambition.",
+    "confidence": "high",
+    "quote": "Why bring the file to me here in my house to review... he asked my advice privately\u2014so he could steal my ideas and take credit"
+  },
+  "alibi": {
+    "value": "Paul's alibi is his very role as civilian consultant \u2014 his apparent cooperation with Carrera functions as social cover. Lassiter has no formal alibi constructed; his vulnerability is his return to the crime scene. The false alibi architecture belongs to the framing of Moss, not to any character's personal whereabouts claim.",
+    "confidence": "medium",
+    "quote": "You weren't much of a suspect... only the stupid ones give the cops advice... and good advice, in your case."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is a psychological and logical demonstration delivered by Paul to Lassiter in a private confrontation. Paul proves Lassiter is a contract killer (not a serial killer) through absence of sexual component, implausibility of the index-finger trophy, and pattern analysis. The TV news broadcast then externally confirms the frame-up of Moss has succeeded, validating Paul's plan in real time.",
+    "confidence": "high",
+    "quote": "There was no sexual component to the killings... no psychopathological archetype for taking an index finger trophy\u2014you improvised"
+  },
+  "media_and_audience": {
+    "value": "The press nickname 'Upper East Side Slasher' packages the crimes as sensational serial murder, which Paul exploits. The 24/7 news cycle is used as confirmation tool \u2014 Paul switches on cable news to show Lassiter the arrest of Moss in real time. Media framing of serial killers enables the contract-murder cover story to be believed publicly and institutionally.",
+    "confidence": "high",
+    "quote": "NYPD officials have reported that the so-called Upper East Side Slasher... has been arrested. He's been identified as Franklyn Moss, a journalist and blogger."
+  },
+  "investigator_wound": {
+    "value": "Paul's wound is his lifelong social isolation, depression, and bipolar disorder \u2014 his inability to connect with real people has been compensated by obsessive identification with fictional characters, specifically Sherlock Holmes. The case exploits this: his therapist frames his detective instincts as therapeutic progress, while Paul has actually channelled his outsider intelligence into criminal architecture, using the investigation as a stage for his Moriarty fantasy.",
+    "confidence": "high",
+    "quote": "Dr. Levine had assumed Paul worshipped Holmes, and the patient didn't think it wise to correct him; therapists presumably take role modelling of perpetrators like Moriarty... rather seriously."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "filename": "The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The\tAdventure\tof\tthe\tLaughing\tFisherman",
+    "author": "JEFFERY\tDEAVER",
+    "anthology_title": "The_Best_American_Mystery_Stories_215_-_James_Patterson",
+    "story_index": 6,
+    "story_count": 19
+  }
+}

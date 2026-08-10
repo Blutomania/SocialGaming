@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": "The introduction implicitly invokes fair-play tradition by lamenting that today's stories are 'less well plotted' than Golden Age works, referencing Christie, Carr, and Queen as exemplars of 'intricate plotting and exhaustive investigations' \u2014 the tradition in which clue fairness is a core architectural principle.",
+    "confidence": "medium",
+    "quote": "they are often less well plotted...intricate plotting and exhaustive investigations so beloved by Christie and Carr and Queen"
+  },
+  "social_world": {
+    "value": "The anthology's introduction maps a shifting social world within the mystery genre itself: a move from male-dominated authorship (15 men, 2 women in 1975) to near-parity (8 men, 6 women in 1992), and thematic engagement with violence against women, environmental concerns, and children in danger \u2014 signalling that the social power structures being interrogated in the stories have broadened significantly.",
+    "confidence": "medium",
+    "quote": "In 1975 we had fifteen men and two women among the authors. This year there are eight men and six women."
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "The introduction itself functions as a meta-level media framing device: the editor packages, narrates, and contextualises the year's crime fiction for a public audience, reflecting on how the genre's themes (serial killers, violence against women) have migrated from margins to mainstream \u2014 mirroring how such crimes are now packaged and consumed by broader culture.",
+    "confidence": "medium",
+    "quote": "These are subjects that do not lend themselves easily to the ministrations of master sleuths"
+  },
+  "investigator_wound": {
+    "value": "The introduction notes only four series detectives appear, two of whom 'operate in past times' \u2014 implicitly suggesting that contemporary wounds and pressures are too raw for the classic investigator figure, who must be displaced historically to function. The modern investigator's psychological vulnerability to present-day themes (serial killers, endangered children) is flagged as a structural problem.",
+    "confidence": "low",
+    "quote": "perhaps it's no accident that two of our four series detectives operate in past times"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "filename": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "text_len": 2991,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The Last Sara",
+    "author": "SUSAN B. KELLY",
+    "anthology_title": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch",
+    "story_index": 1,
+    "story_count": 15
+  }
+}

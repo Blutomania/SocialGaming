@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder of Duane Tragovic in the late 1960s: a beating death initially blamed on a sailor in an alley behind a bar, but actually committed by the victim's young wife using a saucepan to the back of the skull. Central question: who really killed Tragovic and why was the crime scene staged?",
+    "confidence": "high",
+    "quote": "When Duane turned his back, I took a saucepan from the kitchen counter, and I hit him. I just hit him once, but I hit him hard."
+  },
+  "victim": {
+    "value": "Duane Tragovic: a habitually abusive husband who repeatedly beat his 17-year-old wife Marlee, deliberately striking her in the small of the back to cause severe pain without visible marks. He was 'killable' because his pattern of domestic violence escalated to a final, unbearable beating.",
+    "confidence": "high",
+    "quote": "He would hit me in the small of the back where it was particularly painful, but where the marks wouldn't show. The last time was especially bad."
+  },
+  "closed_world": {
+    "value": "The domestic sphere of Marlee and Duane Tragovic's home in San Diego, circa late 1960s. The crime occurs in a contained family space, though the body is subsequently moved to the alley behind the Silk Hat Lounge to misdirect police investigation.",
+    "confidence": "medium",
+    "quote": "When I realized he was dead, I called my brothers. They said they would take care of it, and they did. They took care of it then, and together they've taken care of me ever since."
+  },
+  "culprit_and_motive": {
+    "value": "Marlee Tragovic (age 17 at the time): killed her abusive husband in self-defense/desperation after years of severe domestic violence. Motive: survival and cessation of relentless beatings that left her in chronic pain for life. Her brothers subsequently staged the crime scene and created a false suspect.",
+    "confidence": "high",
+    "quote": "Every time I moved, I ached from Duane's beatings...I've lived in constant pain all these years because of that last beating. But it was the last beating."
+  },
+  "resolution": {
+    "value": "John Pryor (the narrator) reconstructs the crime through forensic evidence analysis\u2014victim's small stature contradicts witness accounts of a large man, absence of facial injuries despite witness claims, and location of skull injury consistent with being struck from behind. Marlee voluntarily confesses to Charlie Thatcher on his deathbed, lifting the false guilt he carried as the scapegoated sailor.",
+    "confidence": "high",
+    "quote": "My friend said he hit the man repeatedly in the face, but Tragovic had no injuries to his face. The only injury he had was to the back of the skull."
+  },
+  "investigator": {
+    "value": "John Pryor: a former security business owner and motorcycle enthusiast who is not a professional detective but a close friend of Charlie Thatcher, the wrongly implicated sailor. He investigates as a personal favor to clear his dying friend's conscience, motivated by loyalty rather than official authority.",
+    "confidence": "high",
+    "quote": "I'm not the police, Mr. Bickman. I don't intend to go to the police. I'm here for my friend, nothing more."
+  },
+  "suspect_architecture": {
+    "value": "Three suspects with means/motive/opportunity: Louis Bickman (brother, large/strong, staged the alley fight as decoy), Bud Bickman (deceased brother, also protective, threatened victim), and Marlee Tragovic (actual killer, abused wife, opportunity at home). Charlie Thatcher is a fourth figure \u2014 the falsely implicated sailor who fought Bickman in the staged altercation.",
+    "confidence": "high",
+    "quote": "Bud even threatened to more than once \u2014 but they didn't. I did."
+  },
+  "red_herring": {
+    "value": "Louis Bickman deliberately staged a public fistfight in the alley with Charlie (a drunk sailor) to create witnessed 'evidence' of a brawl, misdirecting police toward a sailor suspect while the real killing had occurred elsewhere. The drunk wino witnesses and the alley location were constructed false trails.",
+    "confidence": "high",
+    "quote": "You picked a fight, Mr. Bickman, but it was never your intention to win that fight. You just wanted the winos to see someone getting worked over."
+  },
+  "clue_fairness": {
+    "value": "The physical discrepancy between the victim's autopsy description (5'4\", 140 lbs, no facial injuries, only rear skull wound) and Charlie's memory of fighting a large man with repeated facial blows is presented to the reader in the same scene Pry reasons through it, allowing the reader to reach the same conclusion simultaneously.",
+    "confidence": "high",
+    "quote": "My friend said he hit the man repeatedly in the face, but Tragovic had no injuries to his face. The only injury was to the back of the skull."
+  },
+  "social_world": {
+    "value": "Working-class San Diego \u2014 navy veterans, strip-mall security workers, bar owners, and domestic abuse victims with no institutional recourse. Power flows through personal loyalty networks (Pry/Charlie's 18-year bond, brothers' devotion to sister) rather than formal structures. Police and courts failed Marlee repeatedly; the brothers substituted private justice.",
+    "confidence": "high",
+    "quote": "He was charged a half-dozen times with battery against you. Twice he served jail time for it, but he didn't stop, did he?"
+  },
+  "alibi": {
+    "value": "The staged alley fight functions as a false alibi architecture for the brothers \u2014 by placing a visible 'killer' (the sailor/Charlie) at the scene, they deflected the alibi question entirely. The real killing happened at home; the body was transported. No one investigated the brothers because the sailor became the de facto suspect.",
+    "confidence": "high",
+    "quote": "I believe that you and your brother wanted to throw the police off... you were confident that they would not be able to give the police a very good accounting."
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated through physical evidence contradiction: victim's documented size (5'4\", 140 lbs) vs. Charlie's memory of a large opponent; victim's lack of facial injuries vs. Charlie's account of repeated face blows; and the singular rear skull wound consistent with a domestic blow from behind, not a street fight. Cross-referencing autopsy report against eyewitness testimony exposes the staging.",
+    "confidence": "high",
+    "quote": "The autopsy report put him at five-foot-four and a hundred and forty pounds... Tragovic had no injuries to his face. The only injury was to the back of the skull."
+  },
+  "media_and_audience": {
+    "value": "Minimal institutional media presence \u2014 the crime was a 35-year-old cold case never solved, suggesting it was quietly dropped once no sailor was charged. The bar's neighborhood context (wino witnesses, sailors, strip joints) meant the crime was socially invisible. No press coverage is referenced; the case exists only in a warehouse archive file.",
+    "confidence": "medium",
+    "quote": "He said he would have to send someone to the warehouse to scrounge around for the file, but with any luck, he could have a copy to me by the end of the day."
+  },
+  "investigator_wound": {
+    "value": "Pry's wound is grief and guilt over Charlie's imminent death, combined with deep personal loyalty. He hesitates repeatedly before entering \u2014 outside on the bike, at the landing \u2014 because Charlie is 'as close to me as an uncle.' The case forces him to excavate a truth that will either liberate or further burden a dying man he loves, making objectivity emotionally impossible.",
+    "confidence": "high",
+    "quote": "Charlie Thatcher was as close to me as an uncle, and I was not taking this well."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "filename": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The\tConfession",
+    "author": "ROBERT\tMCKEE",
+    "anthology_title": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly",
+    "story_index": 12,
+    "story_count": 23
+  }
+}

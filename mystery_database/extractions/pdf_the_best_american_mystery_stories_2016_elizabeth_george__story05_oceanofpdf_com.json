@@ -1,0 +1,87 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": "Two perpetrators: the older brother (shooter, motive unknown/unstated, means: father's gun, opportunity: school shooting event) and implicitly the absent father (veteran, gun owner). The brother is the active suspect; the father's gun and war history create a secondary shadow suspect. No alibi differentiation \u2014 the brother is caught in the act; the father is absent but implicated through weapon ownership.",
+    "confidence": "high",
+    "quote": "they are his brother's. They are across the table from him every morning, slanted toward a book"
+  },
+  "red_herring": {
+    "value": "The boy's recognition of the saint medal on the gun leads him \u2014 and the reader \u2014 to believe the shooter is his father (a war veteran, feared, admired, associated with guns and danger). This misdirection is sustained for several paragraphs before the boy realizes the shooter is too short to be his father and is in fact his brother.",
+    "confidence": "high",
+    "quote": "Dad, the boy thinks, even as he realizes that the man is not tall enough to be his father, is not tall enough to be a father at all."
+  },
+  "clue_fairness": {
+    "value": "The saint medal is shown to the reader at the same moment the boy sees it, giving the reader identical information. The brother's glasses, the ski hat identified as the mother's, and the gun from the locked case are all rendered in scene-level detail available to the reader before the boy's recognition is confirmed.",
+    "confidence": "high",
+    "quote": "over the eyeholes are glasses that could be anyone's, except that they are his brother's."
+  },
+  "social_world": {
+    "value": "A working-class school community stratified by age and institutional role: gym teacher (aging, losing authority over students), ESL teacher (newcomer, vulnerable outsider), children (powerless, rule-governed). The military-family subculture (veteran father, gun ownership, range visits) sits apart from the school world, creating a cultural gap that enables the violence. Institutional hierarchy (principal as authority figure) is invoked naively by children.",
+    "confidence": "medium",
+    "quote": "with each passing year the children like him more and listen to him less"
+  },
+  "alibi": {
+    "value": "No formal alibi structure is present. The brother's whereabouts are not contested \u2014 he is caught in the act. The father's absence from the scene functions as a passive alibi; the gun being taken from his locked case without his knowledge implicitly exonerates him from direct participation while implicating his household.",
+    "confidence": "low",
+    "quote": "he can see it locked in the case in the hall between the door to his room and the door to his brother's room"
+  },
+  "reveal_mechanic": {
+    "value": "Identity is revealed through layered physical recognition: first the saint medal (father's gun), then the shooter's insufficient height (not the father), then the distinctive glasses (brother's, seen every morning at breakfast), then the mother's ski hat (smelling of a dog). The reveal is tactile and domestic \u2014 ordinary objects in a violent context \u2014 culminating in the boy touching the warm gun barrel.",
+    "confidence": "high",
+    "quote": "The ski hat is their mother's. It is the one she wears when she shovels snow and it smells of a dog"
+  },
+  "media_and_audience": {
+    "value": "Media and institutional framing are absent from the story's diegesis but implied in future tense: the boy decides he will tell everyone his brother was silent and crazy, constructing a false public narrative. The story gestures at how school shootings are processed by news ('he has seen children lie this way before, on the news, in other countries') and how the boy will shape the official record.",
+    "confidence": "medium",
+    "quote": "He will insist that his brother was silent, that his brother was crazy, and he will dream of the girl with the cloud-shaped birthmark."
+  },
+  "investigator_wound": {
+    "value": "The gym teacher functions as the story's primary moral center and de facto investigator. His wound is dual: his cell phone \u2014 his only means of calling for help \u2014 is at home, a gift from his son meant as a joke about his character, and he carries the impossible arithmetic of the one versus the seventeen, unable to reconcile protecting the group with the single child who walked out. He dies having saved the children but failed the one.",
+    "confidence": "high",
+    "quote": "his hands are empty and he cannot weigh the one against the seventeen"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "text_len": 24094,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "LYDIA FITZPATRICK",
+    "anthology_title": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George",
+    "story_index": 5,
+    "story_count": 22,
+    "backfilled_from": "book_slug[:30] filename-collision bug"
+  }
+}

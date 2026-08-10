@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Bludgeoning death of 84-year-old mother-in-law with garden spade; killer has already confessed; central question: what drove the perpetrator to murder over years of domestic grievance?",
+    "confidence": "high",
+    "quote": "an old woman lays bludgeoned to death on the kitchen linoleum...a sheri 's deputy is bagging a spade, its blade mottled with dirt clods and blood"
+  },
+  "victim": {
+    "value": "Mother Carling, 84, elderly matriarch: domineering church busybody whose relentless criticism and controlling nature made her insufferable to live with, particularly her daughter-in-law",
+    "confidence": "high",
+    "quote": "Day in and day out, but especially around rummage sale time...Me me me me me...living with the old biddy"
+  },
+  "closed_world": {
+    "value": "Rural Kansas farmhouse and surrounding family property; small town of Kingman; domestic space where perpetrator and victim lived in enforced proximity",
+    "confidence": "high",
+    "quote": "a tiny clapboard farmhouse...Next to a rusted-out Model A...the couple's son...sits without evident emotion on a swaybacked sofa"
+  },
+  "culprit_and_motive": {
+    "value": "The younger Mrs. Carling (daughter-in-law); motive is cumulative psychological torment\u2014victim's constant criticism, control, and narcissism over years of cohabitation reached breaking point during rummage sale discussion",
+    "confidence": "high",
+    "quote": "This afternoon she got to talking about that rummage sale...I thought all right, let's find out how the church does without you...and I went outside and took the spade"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Unnamed newspaper photographer and journalist (unnamed protagonist) accompanying reporter Frank Elting; observes crime scene, interviews witnesses, documents events through photography and reportage",
+    "confidence": "high",
+    "quote": "It takes me and Frank Elting about an hour to get to the dirt road...I get a nice shot of the killer in mid-phrase...After I've taken four or five nice loony-looking pictures"
+  },
+  "suspect_architecture": {
+    "value": "No traditional mystery suspect architecture. Killer confesses immediately; the 'suspects' are peripheral figures differentiated by motive for relief: the son (placid, unburdened), the husband (mute widower), the killer (domestic grievance, church politics). Crimes across the story are similarly open\u2014no whodunit structure.",
+    "confidence": "low",
+    "quote": "a pair of sheriff's deputies are grilling the killer, who has already confessed"
+  },
+  "red_herring": {
+    "value": "The autoerotic asphyxiation death is initially framed as a possible suicide, then reframed as possible murder before being revealed as accidental\u2014a structural misdirection embedded in the investigator's routine scene-processing.",
+    "confidence": "medium",
+    "quote": "'I guess this one'll go down as a suicide, Doc?' 'That's what I'll write down, but I'm not convinced.' 'You think it's murder?' 'Accident.'"
+  },
+  "clue_fairness": {
+    "value": "Not applicable as a planned mystery device. The narrator is a press photographer, not a detective; clues are presented impressionistically (the semen puddle, the Vaseline jar, the packing crate) but without fair-play architecture for a reader to solve anything.",
+    "confidence": "low",
+    "quote": "A tiny puddle sits congealing beneath the organ, so small you'd never notice it if it weren't pointed out."
+  },
+  "social_world": {
+    "value": "Mid-century Wichita working and lower-middle class: press photographers vs. sheriff's deputies vs. local cops; VA hospital hierarchy (pimply junior doctor overruled by chief of staff); church committee politics; neighborhood property grudges; implicit homophobia enforced by institutional press norms.",
+    "confidence": "high",
+    "quote": "The Eagle won't print anything about queers anyway, even if it's just innuendo. Far as we're concerned, that particular vice isn't practiced in the Air Capital City."
+  },
+  "alibi": {
+    "value": "No alibi construction present as a mystery device. The killer volunteers a full confession including timeline; other 'crimes' (the Severys, the knife fight) have no alibi element.",
+    "confidence": "low",
+    "quote": "She hadn't even noticed I'd left the kitchen, she was just talking into the air."
+  },
+  "reveal_mechanic": {
+    "value": "The autoerotic asphyxiation case uses physical forensic evidence (semen puddle, naked body with sock detail, crouching posture required) to demonstrate accidental death over suicide or murder\u2014the closest the text comes to a classical reveal mechanic.",
+    "confidence": "medium",
+    "quote": "'I'm not going to check it, but I'd bet money that's human semen.' 'I think he was masturbating with a noose around his neck.'"
+  },
+  "media_and_audience": {
+    "value": "Central to the story's architecture: the narrator is a press photographer who steals victim photos for a personal album, prints 'loony-looking' killer portraits, and navigates what can and cannot be published. The press actively packages crime as spectacle while suppressing inconvenient truths (homosexuality, autoerotic death).",
+    "confidence": "high",
+    "quote": "'You're not going to print them pictures of Mrs. Carling, are you?' 'We've printed worse,' I tell him."
+  },
+  "investigator_wound": {
+    "value": "The narrator's wound is familial entrapment and class-inflected alienation: he is perpetually conscripted into the decaying world of his elderly relatives (Ivy, Pell), mirrors the domestic dysfunction he photographs professionally, and responds to violence with detached aestheticism and petty theft from the dead.",
+    "confidence": "medium",
+    "quote": "I slip into what I'm assuming is the old folks' bedroom and...steal a small framed picture of the old lady off the dresser and slip it into the inside pocket of my overcoat."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The Emerson, 1950",
+    "author": "SCOTT PHILLIPS",
+    "anthology_title": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos",
+    "story_index": 15,
+    "story_count": 22
+  }
+}

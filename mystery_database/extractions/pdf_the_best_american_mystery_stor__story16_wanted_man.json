@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Barret Wagner, a man involved with a motorcycle club and stolen cars/drugs operation, shot to death during a police raid at the Prater house",
+    "confidence": "medium",
+    "quote": "They'd made a terrible mess of Barret, as if he'd exploded, and Wes was the one who scraped and scrubbed the blood and meat off the walls"
+  },
+  "closed_world": {
+    "value": "The Prater estate and surrounding isolated grasslands near Lake Quelqueshue in rural Louisiana, a remote area south of an abandoned air base",
+    "confidence": "high",
+    "quote": "The place was out where the old Chenault Air Base used to be, a few acres of empty grassland south of the runway now overgrown and cracked with weeds"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Police raid led by Deputy Jimmy Dupres, acting on a tip from Wes Prater, results in Wagner's death during armed confrontation; Wes then cleans up the scene",
+    "confidence": "medium",
+    "quote": "All right, boys. Swarm. The deputies rushed the house, five of them scattering around the front and back."
+  },
+  "investigator": {
+    "value": "Deputy Jimmy Dupres, local law enforcement officer who conducts the raid and apprehends/kills Barret Wagner; Wes Prater serves as informant",
+    "confidence": "high",
+    "quote": "Deputy Dupres had set the megaphone on the car hood, and he grabbed her shoulders and squared her toward him."
+  },
+  "suspect_architecture": {
+    "value": "No formal mystery suspect architecture present. The text is literary fiction with morally implicated figures: Wes (complicit informant), Deputy Dupres (corrupt/self-serving lawman), Anneise (unreliable drifter), and Barret Wagner (fugitive, killed). Differentiated by motive (self-interest, lust, survival) rather than classic mystery construction.",
+    "confidence": "low",
+    "quote": "Mind, I never have had much respect for the type to sell out somebody, specially someone's practically family."
+  },
+  "red_herring": {
+    "value": "Wes's false identity as an Iraq war veteran/sergeant functions as sustained misdirection \u2014 Clara and the store owner believe it, and the reader is positioned inside Wes's perspective before the lie is fully exposed. The bobcat in the field, repeatedly 'sighted' and shot at, also misdirects attention from the human drama.",
+    "confidence": "medium",
+    "quote": "She and the woman who owned the store both believed he'd been in Iraq. He'd told Clara he just got back from the war; a sergeant."
+  },
+  "clue_fairness": {
+    "value": "Not applicable as a designed mystery element. The text does not withhold or plant clues for a reader-investigator dynamic. However, the tip Wes gave to Dupres is revealed simultaneously to Anneise and the reader at the scene, enacting a form of fairness by coincidence rather than craft.",
+    "confidence": "low",
+    "quote": "Be glad your brother gave us the tip. This way we're able to come in, get him out your life."
+  },
+  "social_world": {
+    "value": "Decayed rural Louisiana underclass: post-industrial collapse (stripped pine forests, shrinking refinery employment), veteran abandonment, small-town law enforcement as patronage network. Deputy Dupres leverages legal authority to displace Wes and claim both Anneise and the Prater house, illustrating institutional power over the dispossessed.",
+    "confidence": "high",
+    "quote": "She said that she and Jimmy Dupres would need to move in after their wedding."
+  },
+  "alibi": {
+    "value": "Wes fabricates an entire military identity \u2014 claiming to be an Iraq veteran sergeant \u2014 as a social alibi for his absence and psychological disintegration. This false account collapses implicitly through behavioral inconsistency and his drunken confession 'I was in the army' to his returning sister.",
+    "confidence": "medium",
+    "quote": "Stunned and exhaustingly drunk, unsure if her appearance was even real, he only said, 'I was in the army.'"
+  },
+  "reveal_mechanic": {
+    "value": "No formal mystery reveal mechanic. The closest structural equivalent is Dupres's public disclosure of Wes's informant role at the siege scene \u2014 a social unmasking that reframes all prior action and exposes Wes's betrayal to Anneise and the reader simultaneously, producing the story's moral climax.",
+    "confidence": "low",
+    "quote": "Wes gave you a tip? You ratted on Barret, Wes?"
+  },
+  "media_and_audience": {
+    "value": "No press or institutional media apparatus. Community perception operates through gossip, shame, and bodily gesture \u2014 residents 'hung their faces' or 'curled their nostrils' about the Prater estate. The refinery explosion functions as ambient public spectacle, witnessed but not narrated by any institution.",
+    "confidence": "medium",
+    "quote": "Many who were, when asked, often just hung their faces and shook their heads back and forth in a pitying gesture."
+  },
+  "investigator_wound": {
+    "value": "Wes Prater is simultaneously the closest figure to an investigator (of his own family's collapse) and the primary wounded subject. His wounds: survivor guilt over TJ's suicide, psychiatric hospitalization, a fabricated identity, and complicity in Barret's killing. The case he investigates is his own annihilation, and he nearly carries out the same death as his brother.",
+    "confidence": "high",
+    "quote": "He leaned forward and pulled the gun toward him till his chin rested on the barrel. Reaching down, his thumb hooked the trigger."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Wanted Man",
+    "author": "NIC PIZZOLATTO",
+    "anthology_title": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver",
+    "story_index": 16,
+    "story_count": 25
+  }
+}

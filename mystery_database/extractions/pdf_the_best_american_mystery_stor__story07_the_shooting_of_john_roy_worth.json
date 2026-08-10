@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Attempted murder of country singer John Roy Worth by sign painter Wally Czerbiak using a handgun at Fair Breeze Condos. Central question: what motivated an ordinary, seemingly unremarkable man to attempt assassination of a local celebrity?",
+    "confidence": "high",
+    "quote": "No,\" said Wally, taking the gun out of his pocket and aiming it at the singer."
+  },
+  "victim": {
+    "value": "John Roy Worth, Grammy-winning country singer and hometown celebrity. Killable because he represents escape, success, and meaning in a meaningless world\u2014embodying everything Wally feels he cannot be.",
+    "confidence": "high",
+    "quote": "John Roy Worth was everybody. John Roy Worth wasn't just a country singer who used to live in Bardo, Texas. John Roy was Texas, was the United States, was the world."
+  },
+  "closed_world": {
+    "value": "Fair Breeze Condos lobby and entrance\u2014a bounded residential building where Wally enters with intent, encounters the victim exiting an elevator, and the confrontation occurs within sight of a security desk with a single witness.",
+    "confidence": "high",
+    "quote": "He was just turning into the driveway of the Fair Breeze Condos on Second Street."
+  },
+  "culprit_and_motive": {
+    "value": "Wally Czerbiak, motivated by nihilism and existential despair. He shoots to become 'a shooting star'\u2014a brief bright light\u2014and to escape the hollow meaninglessness of his life as a sign painter, seeking transformation through violence and notoriety.",
+    "confidence": "high",
+    "quote": "Wally was going to be a shooting star. He was going to be a bright light for a few seconds. He was going to shoot a star. He was going to be a star."
+  },
+  "resolution": {
+    "value": "John Roy Worth proves faster and armed with his own registered handgun. He shoots Wally in self-defense, wounding him fatally. Wally survives despite his injuries through CPR, becoming ironically dependent on Worth's heroism rather than achieving his sought fame.",
+    "confidence": "high",
+    "quote": "John Roy lifted Wally's head and Wally suddenly, vividly saw the flying white unicorn and John Roy Worth astride it, cowboy hat in one hand, horse bucking in the clouds."
+  },
+  "investigator": {
+    "value": "No traditional investigator. The narrative is told through third-person omniscient access to Wally's consciousness, allowing readers to witness his motivation before the crime. Police arrive after the shooting but play no investigative role in the excerpt.",
+    "confidence": "medium",
+    "quote": "Richie said, \"Wally, no.\" Wally pulled the trigger."
+  },
+  "suspect_architecture": {
+    "value": "Single perpetrator (Wally Czerbiak) with transparent intent; no traditional suspect spread. Wally openly declares his plan to multiple witnesses (Monty, Rosenberg, Mrs. Armstrong, Richie) before acting. Motive is existential/nihilistic rather than personal grievance. John Roy Worth functions as unwitting victim-turned-defender. No competing suspects.",
+    "confidence": "high",
+    "quote": "\"I'm going to shoot someone today,\" said Wally softly"
+  },
+  "red_herring": {
+    "value": "The repeated misinterpretation of 'shoot' as photography creates a sustained verbal red herring. Multiple characters \u2014 Mrs. Armstrong, Richie \u2014 assume Wally means taking photographs, deflecting alarm and allowing him to proceed unchallenged. This linguistic misdirection substitutes for a traditional false-suspect trail.",
+    "confidence": "high",
+    "quote": "Mrs. Armstrong thought Wally meant he was going to take the singer's photograph."
+  },
+  "clue_fairness": {
+    "value": "The reader is given full access to Wally's interior reasoning, his list of rationalizations, the loaded gun in his pocket, and his step-by-step approach \u2014 all before the shooting attempt. No information is withheld from the reader that bears on the outcome. The twist (John Roy carries his own registered gun) is foreshadowed by his father being a retired cop and Worth's street-savvy behavior.",
+    "confidence": "medium",
+    "quote": "The gun in his pocket belonged to his father. Kept it loaded in a drawer in the shop."
+  },
+  "social_world": {
+    "value": "Small-town Texas hierarchy: the famous local-made-good (John Roy Worth, Grammy winner) versus permanently static working-class men (sign painter Wally, barber Monty, security guard/poet Richie, elderly Rosenberg). Celebrity culture creates an unbridgeable status gap. Worth's parents represent the retired-cop respectability class dismissive of artistic success. Fame is the only mobility ladder visible, and it is inaccessible.",
+    "confidence": "high",
+    "quote": "John Roy Worth's death would make Wally famous for a little while. He'd be interviewed by Diane Sawyer"
+  },
+  "alibi": {
+    "value": "No alibi structure is present; the story inverts the convention entirely. Wally not only lacks an alibi but actively publicizes his whereabouts and intentions to every person he encounters before the crime. The absence of concealment is the defining structural feature.",
+    "confidence": "low",
+    "quote": "\"I'm here to shoot John Roy Worth,\" ... Richie: \"Wally wants to shoot you. That all right?\""
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is psychological and ironic rather than deductive: Wally's attempt to become famous by killing a star results in Worth becoming the hero ('Shot it out with a crazy sign painter. Beat him to the draw. All over the news.'). The narrative resolution is demonstrated through Wally's own dying recognition \u2014 Worth is the one who will be mythologized, not Wally. The flying unicorn image Wally painted years ago becomes the symbol of Worth's heroic narrative, not Wally's.",
+    "confidence": "medium",
+    "quote": "\"You're the hero. Shot it out with a crazy sign painter. Beat him to the draw. All over the news.\""
+  },
+  "media_and_audience": {
+    "value": "Celebrity media culture is both motive and ironic punchline. Wally plans his crime with full awareness of how it will be packaged (Diane Sawyer interview, trial coverage, prison as structured narrative). Worth's shooting of Wally will generate the heroic press narrative Wally sought for himself. The story critiques how media transforms violence into celebrity currency \u2014 and awards it to the wrong party.",
+    "confidence": "high",
+    "quote": "He'd be interviewed by Diane Sawyer just before the weather on Good Morning America."
+  },
+  "investigator_wound": {
+    "value": "No traditional investigator figure is present; the story has no detective. The closest functional equivalent is Worth himself, whose wound is existential anonymity in his hometown and a father who cannot respect him. Wally's wound \u2014 slow thinking, inherited trade, fear of meaninglessness \u2014 drives the crime rather than the investigation. The protocol element is effectively absent in classical form.",
+    "confidence": "low",
+    "quote": "It was that or just keep painting signs till his fingers got too much arthritis like his father's"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "text_len": 19882,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The\tShooting\tof\tJohn\tRoy\tWorth",
+    "author": "STUART\tM.\tKAMINSKY",
+    "anthology_title": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates",
+    "story_index": 7,
+    "story_count": 22
+  }
+}

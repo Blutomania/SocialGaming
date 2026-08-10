@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "1924 family murder: five members killed (parents, teenage girl, two boys ages 8 and 4) by unknown assailant. Central question: who was the actual killer, given the suspected perpetrator may be innocent?",
+    "confidence": "high",
+    "quote": "In 1924, five members of a family...were murdered. A neighbor boy, apparently deranged with love over the daughter, vanished, and so remained the only suspect."
+  },
+  "victim": {
+    "value": "A family of five: parents and three children (ages 4, 8, and teenage girl). Their 'killability' stems from being in the wrong place at the wrong time; the teenage daughter may have been the primary target due to the neighbor boy's obsessive love.",
+    "confidence": "medium",
+    "quote": "A neighbor boy, apparently deranged with love over the daughter, vanished, and so remained the only suspect."
+  },
+  "closed_world": {
+    "value": "The town of Pluto, North Dakota (population declining, founded 1906), and specifically the isolated farmhouse on the eastern edge where the murders occurred\u2014a remote rural setting limiting suspects to those with access.",
+    "confidence": "medium",
+    "quote": "a small, charming clapboard farmhouse that sits on the eastern edge of town. Six hundred and forty acres of farmland stretch east from the house and barn."
+  },
+  "culprit_and_motive": {
+    "value": "Unknown. The suspected neighbor boy (deranged with love for the daughter) may be innocent. The narrator's discovery of her sister's valentine from the boy suggests mutual love, implying he fled from grief rather than guilt. The true killer remains unidentified.",
+    "confidence": "low",
+    "quote": "the valentine tells me that the boy's name should not have been scratched from the war memorial, that he was not the killer after all...But if it was not the boy, who was it?"
+  },
+  "resolution": {
+    "value": "Incomplete/ambiguous. The narrator discovers physical evidence (her sister's valentine with the boy's message) suggesting the suspected boy was innocent and had mutual love with the victim. His wartime death and name removal from memorial are re-evaluated, but the true murderer is never identified.",
+    "confidence": "medium",
+    "quote": "For my sister loved him in return, or she would not have carried his message upon her person...But if it was not the boy, who was it? There is no one to accuse."
+  },
+  "investigator": {
+    "value": "The narrator: the sole surviving victim (seven-month-old infant during murders), now an elderly retired physician and president of the town's historical society. She investigates through personal reminiscence and archival work.",
+    "confidence": "high",
+    "quote": "I was elected president of Pluto's historical society...I am becoming the repository of many untold stories...when they know that there is no use in keeping secrets"
+  },
+  "suspect_architecture": {
+    "value": "Single true killer (Warren Wolde, hired farmhand) concealed behind the long-assumed suspect, a neighbour boy who vanished after the 1924 family murders. The boy carried motive (deranged love) and opportunity (disappearance), making him the default suspect for decades. Wolde is differentiated by means (physical access as a farm labourer on adjacent land), motive (unstated but implied by his horror at the narrator and lifelong guilt payments), and opportunity (proximity). No other named suspects are formally developed.",
+    "confidence": "high",
+    "quote": "He reared from me in a horror that seemed so personal. There had been something of a recalled nightmare in his face"
+  },
+  "red_herring": {
+    "value": "The neighbour boy who vanished is the sustained false suspect. His disappearance immediately after the murders, his 'deranged love' for the daughter, and his erasure from the war memorial all construct him as the killer. The narrator's own late revelation \u2014 that her sister carried his valentine, proving reciprocated love and therefore grief rather than guilt as the motive for flight \u2014 dismantles this false trail explicitly.",
+    "confidence": "high",
+    "quote": "The valentine tells me that the boy's name should not have been scratched from the war memorial, that he was not the killer after all."
+  },
+  "clue_fairness": {
+    "value": "The story is narrated retrospectively by the survivor-investigator, who presents key clues to the reader at the same moment she consciously registers them: the pattern of folded bills left throughout her childhood, the valentine hidden on her sister's person, and Wolde's initial horror at seeing her face. Each clue is described in scene before its significance is interpreted, satisfying the fair-play principle within this literary-mystery frame.",
+    "confidence": "medium",
+    "quote": "Inside were hundreds upon hundreds of wadded bills...I recognized their folded pattern as identical to the bills that had turned up for me all through my childhood."
+  },
+  "social_world": {
+    "value": "A declining small-town North Dakota hierarchy: founding speculator families (Harps), the banker class, the professional class (the narrator as doctor), and the rural hired-labour underclass (Wolde). Power flows from land ownership and institutional roles (bank president, town council, historical society). The killer belongs to the invisible hired-man stratum \u2014 socially beneath suspicion and beneath the historical record \u2014 which is structurally what conceals him.",
+    "confidence": "high",
+    "quote": "He was a hired man who'd lived his life on a stock farm that abutted the farthest edges of our land. Warren Wolde was a taciturn crank."
+  },
+  "alibi": {
+    "value": "No formal alibi is constructed or tested for Wolde; his invisibility as a marginal hired hand effectively functions as a social alibi \u2014 he was never a named suspect and therefore never required to account for his whereabouts. The neighbour boy's 'alibi' is his death in military service abroad, which the community treats as closing the case, though it is never forensically examined.",
+    "confidence": "medium",
+    "quote": "He enlisted in Canada, and when notice of his death reached his aunt...the aunt insisted that his name be added to the list of the honorable dead."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is achieved through two converging physical objects: the folded bills left anonymously across decades (a behavioural signature the narrator finally matches to Wolde's posthumous legacy package), and the valentine found on the dead sister's body (which reframes the neighbour boy's motive from guilt to grief). The psychological corroboration is Wolde's visceral, uncontrollable horror upon first seeing the narrator \u2014 a face that recalled his crime.",
+    "confidence": "high",
+    "quote": "I recognized their folded pattern as identical to the bills that had turned up...and there had been something of a recalled nightmare in his face."
+  },
+  "media_and_audience": {
+    "value": "The crime is narrated and preserved through Pluto's historical society newsletter \u2014 an institutional record shaped by the narrator herself. Community memory is the operative medium: the war memorial (public stone inscription and its erasure), Veterans Day flag ceremonies, and oral history passed through founding families. These communal narratives actively misattribute guilt, demonstrating how institutional memory can enshrine a red herring as official truth.",
+    "confidence": "high",
+    "quote": "Unknown community members chipped it out of the stone, so that now a rough spot is all that marks his death, and on Veterans Day only sixteen flags are set."
+  },
+  "investigator_wound": {
+    "value": "The narrator is the sole survivor of the murders \u2014 a seven-month-old infant who slept through her family's killing. She is simultaneously the investigator, the primary victim, and the unknowing beneficiary of the killer's guilt. Her wound is the dissociation between her consciously happy life ('I have lived an ordinary and a satisfying life') and the suppressed trauma accessible only through physical contact with her family's clothing, which produces an involuntary grief she cannot name.",
+    "confidence": "high",
+    "quote": "Why, when I gather my family into my arms, do I catch my breath at the wild upsurge, as if a wind had lifted me, a black wing of air?"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Disaster\tStamps\tof\tPluto",
+    "author": "LOUISE\tERDRICH",
+    "anthology_title": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates",
+    "story_index": 3,
+    "story_count": 22
+  }
+}

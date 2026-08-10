@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Insider dealing on future options involving millions of pounds. Central question: Can Steve Lawless uncover Adam Scott's financial fraud before he escapes?",
+    "confidence": "high",
+    "quote": "INSIDER DEALING ON FUTURE OPTIONS\u2014DAWN ARREST"
+  },
+  "victim": {
+    "value": "Sara (multiple iterations): young professional women at risk of romantic/financial exploitation by Adam Scott, a beautiful but duplicitous futures trader with hidden criminal activity.",
+    "confidence": "high",
+    "quote": "She was ready to take the plunge. Except. . .that she had so much to lose."
+  },
+  "closed_world": {
+    "value": "London's financial sector and social elite (City of London, Docklands, Islington, specific wine bars and nightclubs); a world of professionals connected by word-of-mouth networks.",
+    "confidence": "medium",
+    "quote": "My clients were young women: stockbrokers, merchant bankers, barristers. They came to me by word of mouth, through the City Women's Network"
+  },
+  "culprit_and_motive": {
+    "value": "Adam Scott is the culprit\u2014insider dealer engaged in fraud involving millions. Motive: financial gain and reckless speculation in futures options. Sara Crook (the rival investigator) apprehended him through undercover work.",
+    "confidence": "high",
+    "quote": "Mr. Scott is being held on charges believed to involve millions of pounds."
+  },
+  "resolution": {
+    "value": "Sara Crook, a Detective Inspector with the Fraud Squad, conducts weeks of undercover work with colleague/fianc\u00e9 Jim Smith to gather crucial evidence. Adam Scott is arrested in dawn raid.",
+    "confidence": "high",
+    "quote": "Weeks of painstaking undercover work by vivacious Inspector Crook, 34, resulted in the arrest of insider dealer, Adam Scott, in the early hours of this morning."
+  },
+  "investigator": {
+    "value": "Stephanie 'Steve' Lawless: freelance private detective operating the Lawless Detective Agency in London, former City Police detective who resigned due to her surname becoming a liability. Unreliable narrator whose investigation is unknowingly usurped.",
+    "confidence": "high",
+    "quote": "I'm Stephanie Lawless; my friends call me Steve. I was with the City of London Police until a year ago and I was good at it."
+  },
+  "suspect_architecture": {
+    "value": "Single primary subject under investigation: Adam Scott, future options trader, beautiful and younger than Sara, with no obvious financial motive but concealing insider dealing. The 'real' investigator (DI Sara Crook) operates covertly as a client, making her both suspect-adjacent and solution-holder. No broad cast of suspects \u2014 architecture is dyadic: the man being watched and the woman watching.",
+    "confidence": "high",
+    "quote": "Adam Scott was a golden boy...At twenty-nine he had to be some years younger than Sara...Adam smelled like last week's kipper."
+  },
+  "red_herring": {
+    "value": "The entire framing of Adam Scott as a romantic fraudster \u2014 a gold-digging bigamist or sexual risk \u2014 is a red herring. Steve investigates him as a personal threat to a client's love life; the actual crime is financial insider dealing. Sara Crook's role as a lovestruck client is itself a false trail masking an undercover police operation.",
+    "confidence": "high",
+    "quote": "She was bright, Sara...woman's intuition...Bisexuality, maybe, or promiscuity...More usually it was just petty fraud, bad credit records."
+  },
+  "clue_fairness": {
+    "value": "The engagement ring on 'the Last Sara' is shown to the reader at the same moment Steve notices it, signalling high stakes. The repeated Superintendent Talbot speech ('catch Mother Teresa...always knows when people are lying') is given verbatim to the reader before its second appearance in the newspaper, making the twist reconstructable in retrospect. Jim Smith's identity as Sara Crook's fianc\u00e9 is withheld but his name is present throughout.",
+    "confidence": "high",
+    "quote": "I noticed that she wore a rather nice diamond and sapphire engagement ring...displaying her diamond and sapphire engagement ring for the camera."
+  },
+  "social_world": {
+    "value": "Late-1980s/early-1990s City of London: a world of gendered professional hierarchy, financial speculation, and institutional policing. Women (Sara archetypes) have achieved material success but remain romantically vulnerable and institutionally subordinate. The Wood Street Fraud Squad represents old-boy police networks; Steve's resignation over her name encodes the social cost of femininity in male institutions.",
+    "confidence": "high",
+    "quote": "My clients were young women: stockbrokers, merchant bankers, barristers...whispered over the coffee and brandy that Ms. Lawless was efficient, discreet."
+  },
+  "alibi": {
+    "value": "No conventional alibi structure for a murder suspect. Instead, Adam Scott's alibi is financial and social: legitimate Land Registry ownership of the penthouse, no hidden wife at St. Catherine's House, apparent clean record. This 'alibi of respectability' collapses when insider dealing is revealed. Sara Crook's alibi is her pose as a private client \u2014 a cover story that holds until the newspaper exposes the undercover operation.",
+    "confidence": "medium",
+    "quote": "A painstaking afternoon at St. Catherine's House had not turned up a wife hidden in the wardrobe...not only legitimately his but unencumbered by any mortgage."
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated through a newspaper front page \u2014 an external, documentary, public source that the investigator reads passively. The double photograph (Adam Scott dishevelled; Jim Smith with Sara Crook and her engagement ring) delivers the twist visually and textually simultaneously. The verbatim repetition of Talbot's praise speech, now attributed to a different detective, is the structural proof of Steve's displacement.",
+    "confidence": "high",
+    "quote": "Senior police officers were full of praise...She could catch Mother Teresa out fiddling her tax returns. She always knows when people are lying to her."
+  },
+  "media_and_audience": {
+    "value": "The Evening Standard functions as the reveal vehicle and reframes the entire narrative: what was a private, intimate investigation becomes a public triumph. The press packages Sara Crook as 'vivacious,' domesticates the story with the engagement ring, and erases Steve entirely. Institutional praise (Talbot's quotes) is recycled from Steve's past into Sara Crook's present, showing how media credit flows to those who remain inside institutions.",
+    "confidence": "high",
+    "quote": "PERSONAL TRIUMPH FOR CITY FRAUD SQUAD INSPECTOR...displaying her diamond and sapphire engagement ring for the camera."
+  },
+  "investigator_wound": {
+    "value": "Steve's wound is self-inflicted institutional exile: she resigned over her name, surrendering a sergeant's career, losing Jim Smith, and forfeiting the credit that accrues to those who stay. The case literalises her wound \u2014 she does the investigative work that enables a conviction she will never receive credit for, and the woman who took her place (in the squad and with Jim) is rewarded. Her self-identification as 'a quitter' is both defence and diagnosis.",
+    "confidence": "high",
+    "quote": "I'm a quitter...Unlike me, the Last Sara was not a quitter...Jim\u2014dear dependable Jim Smith, my childhood sweetheart\u2014with his arm tightly round Sara Crook."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "filename": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "text_len": 11729,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "SUSAN B. KELLY",
+    "anthology_title": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch",
+    "story_index": 8,
+    "story_count": 15
+  }
+}

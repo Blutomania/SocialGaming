@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Triple homicide (Dwayne Pingston, Peggy, Tater) committed during a confrontation over hidden stolen cash from a 6-year-old armored truck robbery ($175,000). Central question: Where is the money and who knew about it?",
+    "confidence": "high",
+    "quote": "There were more shots and then I heard a car drive away...Three dead people back there and my head hurts."
+  },
+  "victim": {
+    "value": "Dwayne Pingston (primary): Former ranch hand framed for the Brink's robbery by Brandon's father, imprisoned 6 years. Killable because he possessed knowledge of hidden cash stolen in the robbery and had a cellmate (Wade) who believed in the treasure.",
+    "confidence": "high",
+    "quote": "Pingston had told his cellmate Wade about the cash and promised him a cut of it when they got out...Wade kept Pingston safe so they could both cash out."
+  },
+  "closed_world": {
+    "value": "Remote Wyoming ranch property 18 miles from nearest town (Big Piney, pop. 552), accessed only by private two-track road leading to mountain meadows. Isolated during winter snowstorm with no phone or internet; Brandon and Marissa are trapped with the killers.",
+    "confidence": "high",
+    "quote": "We're out here in the middle of nowhere without phone or Internet...The old two-track beyond the willows was a private road, part of the ranch, and it led to a series of four vast mountain meadows and the foothills of the Wyoming Range."
+  },
+  "culprit_and_motive": {
+    "value": "Wade: Pingston's cellmate from Wyoming State Penitentiary. Motive: Revenge and greed. Pingston had promised Wade a cut of the $175,000 stolen cash hidden in the 1948 Power Wagon in exchange for protection in prison. Wade kills Pingston and family when the money isn't found, believing he was deceived.",
+    "confidence": "high",
+    "quote": "Wade had stood over him after he'd shot Pingston...Wade thought his old pal had deceived him all along. He went berserk and killed Pingston, then Pingston's family."
+  },
+  "resolution": {
+    "value": "Brandon discovers cash hidden in the Power Wagon via bank bands in the mouse nest Marissa found. Deduces that Pingston hid the money in the truck before arrest, and Wade killed out of belief he was betrayed. Brandon survives (Wade's bullet creased his skull, missing lethal shot) and plans to report Wade to sheriff. Money recovered; killer identified and fugitive.",
+    "confidence": "high",
+    "quote": "The strips of paper in his hands were blue and old...Stockman's Security Trust. That's the bank that got hit years ago...We've got to let the sheriff know to look for Peggy's Jeep so they can arrest Wade and send him back to Rawlins."
+  },
+  "investigator": {
+    "value": "Brandon: The protagonist and de facto investigator. Reluctant amateur who pieces together the crime through Pingston's confession, Wade's actions, and the accidental discovery of bank bands in the mouse nest. Lens is that of a traumatized survivor returning to his abusive childhood home.",
+    "confidence": "high",
+    "quote": "Brandon said, 'Stockman's Security Trust. That's the bank that got hit years ago. These are bands that held the piles of cash together. Where did you find them, Marissa?' He tried to piece together what happened."
+  },
+  "suspect_architecture": {
+    "value": "Four suspects with interlocking motives: Pingston (armed robbery, grievance against old man, wants Power Wagon), Peggy (loyal wife, complicit in intimidation), Wade (cellmate enforcer, promised cut of hidden cash, true killer), Tater (son, minor role). Differentiated by motive depth \u2014 Pingston seeks justice/property, Wade seeks money, Peggy seeks vindication, Tater is essentially coerced.",
+    "confidence": "high",
+    "quote": "Wade had stood over him after he'd shot Pingston and fired what he'd thought was a kill shot to his head."
+  },
+  "red_herring": {
+    "value": "Pingston's stated motive \u2014 wanting the Power Wagon for sentimental reasons and symbolic revenge \u2014 misdirects both Brandon and the reader from the true motive: recovering the hidden Brink's robbery cash concealed inside the truck. The truck-as-trophy story is a plausible cover that delays revelation of the real prize.",
+    "confidence": "high",
+    "quote": "I want that '48 Power Wagon... It means something to me... I know that truck as intimately as I do Peggy."
+  },
+  "clue_fairness": {
+    "value": "The shredded blue paper strips used as nesting material by the mice are presented to the reader in the same scene Marissa describes finding them, before Brandon interprets their significance. The reader sees 'Trust,' 'Security,' and 'Stockman's' printed on the strips simultaneously with Brandon, enabling fair deduction.",
+    "confidence": "high",
+    "quote": "The strips of paper in his hands were blue and old. But when he pieced them together he could see the words 'Trust,' 'Security,' and 'Stockman's'"
+  },
+  "social_world": {
+    "value": "Rural Wyoming rancher feudalism: landowning patriarchs control local law enforcement, judges, and hired labour. The old man's social dominance lets him weaponise the sheriff against Pingston. Oil-boom economic disruption briefly unsettles this hierarchy. Class resentment between established ranchers and itinerant oil workers underlies the original crime.",
+    "confidence": "high",
+    "quote": "Ranchers like your old man pretty much told them what to do and they did it."
+  },
+  "alibi": {
+    "value": "Pingston's alibi construct is inverted \u2014 he claims innocence of the Brink's robbery and frames the old man as the one who planted evidence and falsely accused him. The reader is given both versions (Pingston as guilty party vs. old man as co-conspirator who double-crossed his partner) without definitive resolution, leaving alibi ambiguity deliberate.",
+    "confidence": "medium",
+    "quote": "Either that, or my old man was in on the robbery all along and fingered his partner... We may never know how it all went down."
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated through a physical object decoded in real time: baby mice have shredded the bank cash-bundle wrappers as nesting material. Brandon physically pieces together the torn blue strips to read the bank's name, reconstructing the hidden-cash plot through a domestic, accidental act of preservation rather than investigation.",
+    "confidence": "high",
+    "quote": "He reached into the box of mice and grasped a fistful of the shredded paper... he could see the words 'Trust,' 'Security,' and 'Stockman's' printed on them."
+  },
+  "media_and_audience": {
+    "value": "The Brink's robbery was a public scandal in Sublette County ('quite the big story'), but institutional narrative was controlled by the rancher class \u2014 the old man's version became official record. No press scrutiny revisits the conviction. The crime's public perception is entirely shaped by local power, not evidence, illustrating how rural institutional capture silences counter-narratives.",
+    "confidence": "medium",
+    "quote": "It was quite the big story in Sublette County: an armed robbery at gunpoint... I remember reading something about that."
+  },
+  "investigator_wound": {
+    "value": "Brandon's wound is his traumatic childhood under an abusive father on this very ranch \u2014 he was taken by child services, never returned, and has suppressed the past. The case forces him back into the house he fled, reactivates memories of terror and helplessness, and compels him to reckon with his father's criminality. His outsider-accountant competence masks deep psychological displacement from his origins.",
+    "confidence": "high",
+    "quote": "Brandon had not been back to the ranch since that day... Don't forget, I grew up in this house."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Power\tWagon",
+    "author": "C.\tJ.\tBOX",
+    "anthology_title": "The_Best_American_Mystery_Stories_2017_-_John_Sandford",
+    "story_index": 5,
+    "story_count": 19
+  }
+}

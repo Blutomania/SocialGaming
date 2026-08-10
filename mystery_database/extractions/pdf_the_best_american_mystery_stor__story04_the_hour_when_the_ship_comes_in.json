@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Multiple homicides during a botched armed robbery of a house on Pomona; three men shot dead, plus shooting of partner Mason and accomplice PJ by protagonist Yancy",
+    "confidence": "high",
+    "quote": "PJ capped him. Just jammed the gun in his face and pow pow pow. Guy's head made like a melon."
+  },
+  "victim": {
+    "value": "Three men at the house (drug dealers or occupants mistaken for dealers); a young mother with a baby who witnesses the killings; Mason (Yancy's partner); PJ (Mason's nephew)",
+    "confidence": "high",
+    "quote": "Three guys sitting on the couch drinking cans of Diet Pepsi and watching tennis on TV."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Yancy (the protagonist) kills Mason and PJ to spare a young mother and her baby from execution; motivated by an inexplicable moral impulse that contradicts his life as a professional killer",
+    "confidence": "high",
+    "quote": "Just as Mason tightened on the trigger, Yancy shot him in the head. He shot PJ too... throwing away his life, that's what he had done."
+  },
+  "resolution": {
+    "value": "No formal resolution; Yancy walks toward the Queen Mary mortally wounded (shot four times by PJ), bleeding out on the beach, lying down to die as the sun sets",
+    "confidence": "high",
+    "quote": "He lay back on that pure white sand... Just a little rest, that's all he needed. He watched the Queen Mary floating there in the blazing sunset."
+  },
+  "investigator": {
+    "value": "Yancy himself; the reader experiences the mystery through his internal monologue and perspective as he flees and dies",
+    "confidence": "high",
+    "quote": "Yancy staggered down Pomona toward the beach, straightened his shoulders, and kept walking."
+  },
+  "suspect_architecture": {
+    "value": "Three perpetrators differentiated by role and temperament: Yancy (experienced, professional, moral ambiguity), Mason (veteran partner, ruthless pragmatist), PJ (Mason's nephew, volatile novice). No investigator suspects \u2014 the architecture is criminal rather than whodunit.",
+    "confidence": "high",
+    "quote": "Mason was sure. Mason was always sure. New guy, PJ, was jumpy. Mason's nephew. Bony kid who talked too much"
+  },
+  "red_herring": {
+    "value": "The house on Pomona was supposed to be a drug stash belonging to dealers, but it was the wrong address entirely \u2014 three innocent men watching tennis on Diet Pepsi, no drugs or cash present. The misdirection drives the entire catastrophe.",
+    "confidence": "high",
+    "quote": "Yancy knew as soon as they got inside that it was a mistake. Three guys sitting on the couch drinking cans of Diet Pepsi and watching tennis"
+  },
+  "clue_fairness": {
+    "value": "This is noir fiction, not a traditional mystery with planted fair-play clues for reader deduction. Physical evidence of Yancy's wound (blood trail, boot blood, gurgling breath) is consistently shown to the reader in real time, but no puzzle-clues are planted for independent solving.",
+    "confidence": "low",
+    "quote": "He turned the boot upside down and blood splashed onto the sand."
+  },
+  "social_world": {
+    "value": "Long Beach class stratification: Belmont Shore yuppies in Porsches vs. Mexican families from inland vs. professional criminals like Yancy navigating the margins. Criminal hierarchy of vouching and partnership (Mason vouches for PJ) mirrors legitimate patronage networks.",
+    "confidence": "high",
+    "quote": "Hamsters in Porsches. Beep-beep... Mexican maid cooking dinner... Welder at the port. Sucking in lead fumes for eighteen dollars an hour"
+  },
+  "alibi": {
+    "value": "No alibi structure is present in the traditional sense. Yancy is the perpetrator-as-protagonist; his physical deterioration on the beach is the inverse of alibi \u2014 a slow confession written in blood trail, wet footprints, and abandoned boots leading away from the crime scene.",
+    "confidence": "low",
+    "quote": "She looked back at him, hurrying now... Blood. She looked back at him, hurrying now, and Yancy hurried too."
+  },
+  "reveal_mechanic": {
+    "value": "The moral reveal is psychological and retrospective rather than evidentiary: Yancy cannot explain his own act of mercy. The story's engine is his circular, failing self-interrogation \u2014 why did he shoot Mason? \u2014 which substitutes for a detective's revelation. No answer is reached before death.",
+    "confidence": "high",
+    "quote": "He just wished he could figure out why he did what he had done at the house on Pomona... It was like his whole life up until now was wrong somehow."
+  },
+  "media_and_audience": {
+    "value": "The institutional response is present only as distant sirens and 'meat wagons' \u2014 the machinery of consequence closing in. The public witnesses (young mothers, wino, Bible missionaries, Mexican family) each briefly observe Yancy and move on, constructing no narrative, rendering him invisible even as he dies.",
+    "confidence": "medium",
+    "quote": "More sirens now. Meat wagons on the way... Mamacita pointed at Yancy\u2014look at that silly gringo!\u2014laughing, and Yancy waved back."
+  },
+  "investigator_wound": {
+    "value": "Yancy is both investigator and subject of the wound. His psychological vulnerability is a sudden, inexplicable moral awakening after a lifetime of professional violence \u2014 he cannot reconcile the self who killed twelve men with the self who sacrificed his life for a stranger and her baby.",
+    "confidence": "high",
+    "quote": "Throwing away his life, that's what he had done. Nothing wrong with his life...and yet he had tossed it aside with the squeeze of a trigger."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "text_len": 19404,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The Hour When the Ship Comes In",
+    "author": "ROBERT FERRIGNO",
+    "anthology_title": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos",
+    "story_index": 4,
+    "story_count": 22
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Suspected murder of Nathalie Jeffers, a circus performer wife, by her wealthy husband Callahan Jeffers. Central question: Did he kill her in their locked study, or did she escape?",
+    "confidence": "high",
+    "quote": "the guy who killed his wife"
+  },
+  "victim": {
+    "value": "Nathalie Jeffers, a circus trapeze artist married to wealthy Callahan Jeffers. She was 'killable' because she was trapped in an abusive marriage, confined to a minimalist house that 'whittled her down,' and her husband viewed her as ungrateful despite his lavish spending.",
+    "confidence": "high",
+    "quote": "She spun around on one of those things they dangle from the top of the tent...nothing made her happy"
+  },
+  "closed_world": {
+    "value": "Callahan Jeffers' restored Wesson mansion, specifically the locked study where Nathalie barricaded herself. The study locks from the inside, and Jeffers and Bruno waited outside all night, hearing nothing for two hours after she ordered a Delmonico cocktail.",
+    "confidence": "high",
+    "quote": "The study...where you last saw her?...It locks from the inside. She wouldn't come out."
+  },
+  "culprit_and_motive": {
+    "value": "Nathalie Jeffers (the supposed victim) orchestrated her own disappearance. Motive: escape her abusive husband Callahan, who beat her and confined her. She faked her death to ruin him socially while securing her freedom with help from designer Timothy Speed, who provided money and a car.",
+    "confidence": "high",
+    "quote": "She hatched a plan to ruin her husband...he'll never be mayor, either. He'll just be a rich guy who got away with murder."
+  },
+  "resolution": {
+    "value": "Davis, the bartender, deduces the truth when Nathalie orders the Delmonico: she threw the glass at the window to divert attention while she escaped via the chandelier (using her acrobatic skills) and exited through the front door. Timothy Speed helped her flee. Davis reveals to the narrator where the glass went, allowing Jeffers to remain unprosecuted but permanently ruined.",
+    "confidence": "high",
+    "quote": "She threw the glass at the window. Both broke. You couldn't tell one from the other...She must have swung down from that chandelier...and let her go"
+  },
+  "investigator": {
+    "value": "Mr. Jones, an unnamed regular customer at the Slow Night bar who observes the entire confession and deduces the truth by watching Davis reach for the martini glasses, recognizing the misdirection that Nathalie used.",
+    "confidence": "high",
+    "quote": "When you reached for those glasses...Nobody ever remembers to look up. The drink broke the window and made them look the wrong way."
+  },
+  "suspect_architecture": {
+    "value": "Primary suspect: Callahan Jeffers (accused wife-killer, motive: domestic violence, jealousy, affair); secondary: Timothy Speed (designer/alleged lover, opportunity: aided escape); Gregor (butler, opportunity: made final drink, possible conspirator); Bruno (alibi witness/accomplice, conflicted loyalty). Nathalie is the apparent victim who is actually alive.",
+    "confidence": "high",
+    "quote": "\"the guy who killed his wife\" / \"Timothy Speed. The designer\" / \"He woke up Gregor\" / \"Bruno and I went to the fights.\""
+  },
+  "red_herring": {
+    "value": "The missing cocktail glass is presented as a mysterious disappearance suggesting foul play or supernatural oddity, misdirecting both Jeffers and reader toward the study as a sealed crime scene with a vanished victim; the real explanation is the glass was thrown at the window as a diversion for Nathalie's escape.",
+    "confidence": "high",
+    "quote": "\"She threw the glass at the window. Both broke. You couldn't tell one from the other.\""
+  },
+  "clue_fairness": {
+    "value": "Davis reaches up for martini glasses from a rack above her head, a gesture the narrator notes and flags as overlooked ('Nobody ever remembers to look up'), mirroring Nathalie using the overhead chandelier to swing/descend. The chandelier and the shoeless feet are both described in Jeffers's account before the solution is given.",
+    "confidence": "high",
+    "quote": "\"When you reached for those glasses,\" I said. \"Nobody ever remembers to look up.\""
+  },
+  "social_world": {
+    "value": "Rigid class and gender hierarchy: wealthy industrialist Jeffers controls a domestic staff (Gregor), employs a decorator (Speed) as a social inferior, dismisses his circus-performer wife as unsuited to 'swells.' Davis occupies a liminal expert role \u2014 consulted by elites but condescended to as a 'bar skirt.' Cops drink free across the street, underscoring proximity of institutional power.",
+    "confidence": "high",
+    "quote": "\"why is it that people think a girl sitting around a deserted bar all day is less likely to be well-read?\""
+  },
+  "alibi": {
+    "value": "Jeffers and Bruno claim they sat together outside the locked study door all night, corroborating each other. The alibi is structurally mutual and unverifiable \u2014 Bruno is Jeffers's dependent friend. Gregor's 'dozing' is raised as a question, implying he may have been awake and complicit, further undermining the alibi's integrity.",
+    "confidence": "high",
+    "quote": "\"Bruno and I went to the fights... We sat in them.\" / \"Really dozing, you think?\" \"Really dozing, I think.\""
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated through a physical re-enactment: Davis mixes two Delmonicos and reaches up to retrieve martini glasses from an overhead rack, triggering the narrator's recognition that Nathalie used the chandelier to swing down silently. The Wesson-rug fabrication (Wesson never made rugs) also exposes Speed's fraud and confirms the design knowledge Davis uses to decode the scene.",
+    "confidence": "high",
+    "quote": "\"Maybe he watched her swing down from that chandelier, as skinny as she was\" / \"Wesson never made any rugs.\""
+  },
+  "media_and_audience": {
+    "value": "Jeffers is a publicly recognized figure \u2014 identifiable on sight, subject to newspaper coverage and police scrutiny. The case is framed as a media spectacle: he cannot go anywhere without being known as 'the guy who killed his wife.' Guidebook mythology around the Slow Night also shapes how outsiders perceive Davis and the bar, creating a layer of received narrative vs. reality.",
+    "confidence": "high",
+    "quote": "\"Everybody across the street'll want to buy a drink for the guy who killed his wife.\""
+  },
+  "investigator_wound": {
+    "value": "The unnamed narrator (Mr. Jones) is silently, hopelessly in love with Davis and acutely aware she already knows it \u2014 a wound of unrequited transparency. His passivity and self-effacement (always at the wrong bar stool, never telling her he loves her) means the case is experienced as emotional torment: he must watch Davis brilliantly manage an intimacy he cannot claim.",
+    "confidence": "high",
+    "quote": "\"Time and time I want to tell Davis that I love her, but she's so smart there's no way she hasn't figured it out already.\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Delmonico",
+    "author": "DANIEL\tHANDLER",
+    "anthology_title": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates",
+    "story_index": 4,
+    "story_count": 22
+  }
+}

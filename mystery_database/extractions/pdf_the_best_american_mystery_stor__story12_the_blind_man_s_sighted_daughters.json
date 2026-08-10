@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Mother (deceased years ago in a car accident; possibly murdered by father). Father (elderly, blind, currently vulnerable to harm by daughters).",
+    "confidence": "medium",
+    "quote": "a car found wrecked out in the country, a man and a woman were found dead in the car"
+  },
+  "closed_world": {
+    "value": "Rural house in Sparta, New York; family home where father is confined, daughters isolated as caregivers",
+    "confidence": "high",
+    "quote": "we were in the front room of the house and the old man was at the rear of the house"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Helen, the younger daughter, narrator reflecting on family secrets and her complicity in caring for (and potentially harming) her father",
+    "confidence": "high",
+    "quote": "Has he ever talked about it with you? My sister lowered her voice as if fearful of being overheard"
+  },
+  "suspect_architecture": {
+    "value": "No traditional suspect cast; the 'crime' is a decades-old double homicide (father implicated in killing a man and woman in a wrecked car) with the father as sole implied perpetrator, differentiated by his guilt-driven desire for confession and the two daughters as unwilling witnesses/potential accessories to assisted dying.",
+    "confidence": "medium",
+    "quote": "a car found wrecked out in the country, a man and a woman were found dead in the car, and his voice was hoarse and faltering"
+  },
+  "red_herring": {
+    "value": "Helen's lie that the Catholic Church no longer has confession ('reforms') misdirects the father \u2014 and potentially the reader \u2014 away from the possibility of formal disclosure of his past crime, obscuring whether confession and absolution remain a real avenue.",
+    "confidence": "medium",
+    "quote": "If you want to confess sins you say them to yourself, you don't involve others in your messes."
+  },
+  "clue_fairness": {
+    "value": "The past crime is seeded fairly but obliquely: the sisters' coded 'it,' the father's sudden unprompted reference to the wrecked car, and Helen's solo drive to locate the site (7.3 miles from the house) are all rendered in the narrative before any explicit accusation, giving the reader the same fragmentary evidence Helen holds.",
+    "confidence": "medium",
+    "quote": "on my odometer I clocked it, where the wrecked car was found is seven point three miles from this house."
+  },
+  "social_world": {
+    "value": "Patriarchal family hierarchy persisting into the father's decrepit old age: he controlled the family 'with a frown, a glance, a sudden fist,' reducing Helen to invisible caretaker while Abigail escaped to a 'rich and full' life in Peekskill; class and gender power concentrate suffering on the unmarried, stay-at-home daughter.",
+    "confidence": "high",
+    "quote": "a man who controlled his family with a frown, a glance, a sudden fist brought down flat on a table."
+  },
+  "alibi": {
+    "value": "The father's whereabouts the night of the 'double homicide' are deliberately unverifiable: the sisters, then children, only heard a car in the driveway late at night, and 'When had we heard Daddy come home that night was not a question that could be answered even if it had been asked.'",
+    "confidence": "high",
+    "quote": "When had we heard Daddy come home that night was not a question that could be answered even if it had been asked."
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated through accumulation of suppressed testimony rather than confrontation: the father's unprompted confession attempt, his request for a priest, his guilt-saturated stream-of-consciousness, and Helen's obsessive odometer measurement of the crime site together constitute a de facto admission without a formal reveal scene.",
+    "confidence": "medium",
+    "quote": "I can't\u2014can't\u2014you know I can't\u2014die without talking to a\u2014priest."
+  },
+  "media_and_audience": {
+    "value": "The past crime is referenced only as a local news fragment ('double homicide,' 'capsized,' 'bludgeoned') absorbed by the daughters in childhood; there is no ongoing public narrative or institutional scrutiny \u2014 the crime has been successfully buried, surviving only in the family's private code of silence.",
+    "confidence": "medium",
+    "quote": "I remember that word\u2014capsized. Like bludgeoned\u2014a word that, if you hear it, you can guess its meaning."
+  },
+  "investigator_wound": {
+    "value": "Helen is both investigator and victim: her wound is the decades of invisible damage inflicted by the father, manifested in her physical deterioration, twisted mouth, inability to process speech, and dissociative numbness \u2014 the very case she must 'solve' (what did he do, to whom) is inseparable from what destroyed her.",
+    "confidence": "high",
+    "quote": "Living with a blind man you gradually become invisible... Mirrors had become so leprous-looking in this house, I hadn't been able to see my reflection for months."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The Blind Man\u2019s Sighted Daughters",
+    "author": "JOYCE CAROL OATES",
+    "anthology_title": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos",
+    "story_index": 12,
+    "story_count": 22
+  }
+}

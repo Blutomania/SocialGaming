@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Bobby, a debtor who owes money to a loan shark and cannot pay the interest (vig); he is 'killable' due to his financial obligation and vulnerability",
+    "confidence": "medium",
+    "quote": "Where's the money, Bobby? ... You're light, Bobby. This won't even cover the vig."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "The narrator, a large bald enforcer for a loan shark, who breaks Bobby's thumbs as punishment for non-payment and to enforce debt collection",
+    "confidence": "high",
+    "quote": "What did I tell you last week? ... You told me you'd break my thumbs. That's right."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "The narrator himself\u2014a reflective enforcer who philosophizes about the nature of identity while committing violence; reader experiences his internal consciousness",
+    "confidence": "high",
+    "quote": "I thug. And indeed it follows then that I must, to myself at least, pose the following question \u2014 since I do thug, am I then a thug?"
+  },
+  "suspect_architecture": {
+    "value": "No traditional suspect ensemble; single first-person enforcer-narrator operating within a loan-shark hierarchy. Bobby is the debtor/victim. The 'suspect' architecture is inverted: the narrator is openly the perpetrator, Bobby is the only other named party, differentiated by class, physicality, and power.",
+    "confidence": "low",
+    "quote": "there is someone in his kitchen who, for all intents and purposes, has no legal right to be there"
+  },
+  "red_herring": {
+    "value": "No deliberate mystery misdirection is present. The narrator's intellectual framing (philosophical musings on identity, footnotes, cultural references) functions as tonal misdirection \u2014 obscuring the violence beneath academic register \u2014 but this is a literary device, not a planted false trail in the mystery-plotting sense.",
+    "confidence": "low",
+    "quote": "Rather than attempting to answer that question presently, though, I reach in front of me to the coffee table"
+  },
+  "clue_fairness": {
+    "value": "Not applicable in the traditional mystery sense. The narrator is omniscient and confessional; no investigator-reader information gap exists. All information, including the thumb-breaking technique and the future consequence for Bobby, is disclosed directly and simultaneously to the reader via footnotes.",
+    "confidence": "low",
+    "quote": "The proper technique for a clean thumbbreak is as follows: grasp the thumb at its base, as close as is possible to the hand"
+  },
+  "social_world": {
+    "value": "Loan-shark enforcement hierarchy: an unnamed boss-level principal to whom the narrator is accountable, the narrator as enforcer-intermediary, and Bobby as debtor-mark. Class tension is explicit \u2014 Bobby's upscale consumer goods (Pottery Barn, Williams-Sonoma, stainless restaurant fridge) contrast with his powerlessness. The vig system is designed to force property forfeiture.",
+    "confidence": "high",
+    "quote": "You're not the only one accountable here... vig: the exorbitant interest charged by a loan shark, specifically designed to be impossible to pay"
+  },
+  "alibi": {
+    "value": "No alibi structure present. The narrator does not conceal his whereabouts; the story is an open confession of trespass and assault. Bobby's arrival home is the only movement tracked, and no false account of whereabouts is constructed by either party.",
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "No mystery reveal mechanic in the conventional sense. The story's structural disclosure is through footnote 18, which reveals the escalating consequence framework \u2014 Bobby's future choice between thumb-severing and signing over home equity \u2014 functioning as a prospective rather than retrospective revelation of the criminal scheme's full architecture.",
+    "confidence": "low",
+    "quote": "Next time, just as Bobby's thumbs are about to be severed, he'll be given the option of releasing his interest in the $38,000 worth of equity"
+  },
+  "media_and_audience": {
+    "value": "Present as ironic counterpoint: the narrator watches Charlie Rose covering 'ethical ramifications of media coverage of national news events' immediately before committing assault \u2014 positioning mainstream media's ethical discourse against the unreported, intimate violence of criminal enforcement. The oxymoron is noted explicitly by the narrator.",
+    "confidence": "medium",
+    "quote": "I realize, of course, the oxymoronic possibilities of 'ethical ramifications' and 'media coverage' being used in the same sentence"
+  },
+  "investigator_wound": {
+    "value": "The narrator-as-enforcer carries the wound himself: alopecia areata, first suffered in eighth grade, is the single vulnerability that reliably breaks his professional composure. His identity crisis (verb vs. noun; 'I thug' vs. 'I am a thug') is the psychological wound the story exploits \u2014 self-conception destabilized by appearance and action.",
+    "confidence": "high",
+    "quote": "The reference to my alopecia is the single insult that, from the time I first lost my hair in the eighth grade, I have been completely unable to tolerate"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "filename": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "text_len": 16117,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Thug:\tSignification\tand\tthe\t(De)\tConstruction\tof\tSelf",
+    "author": "TYLER\tDILTS",
+    "anthology_title": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly",
+    "story_index": 8,
+    "story_count": 23
+  }
+}

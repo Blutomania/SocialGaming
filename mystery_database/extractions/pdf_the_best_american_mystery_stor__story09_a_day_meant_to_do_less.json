@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": "Not a traditional mystery structure; no formal suspect cast. The central ambiguity is whether the caregiver is Jack (loving son) or Donny (childhood abuser/predator) \u2014 a two-identity problem rather than a multi-suspect field. Franny's deteriorating cognition creates the only 'suspect' differentiation: her son Jack and her cousin Donny collapse into one figure, differentiated only by her perception.",
+    "confidence": "medium",
+    "quote": "He said, 'I'm going to give you a bath now, Momma,' and surely this was her end."
+  },
+  "red_herring": {
+    "value": "The entire caregiving framing functions as a red herring: Jack's hesitancy, tenderness, and clinical concern are presented as suspicious or predatory through Franny's perspective, misdirecting the reader toward threat when the action is genuine care. The phone call and the name 'Art Miller' briefly suggest an external plot, but resolve as a wrong number.",
+    "confidence": "medium",
+    "quote": "Then Donny said, 'Art Miller. Now there's one guy who can wait.'"
+  },
+  "clue_fairness": {
+    "value": "The dual-perspective structure withholds the identity resolution from the reader simultaneously with Franny \u2014 both reader and Franny receive the same sensory and behavioral data (tenderness vs. menace) and must interpret it. The physical detail of the bruised arch and the eyelid-blinking communication are presented to both reader and Jack at the same moment.",
+    "confidence": "medium",
+    "quote": "She winked her right eyelid, twice. Slowly. That was something new."
+  },
+  "social_world": {
+    "value": "Rural Southern Protestant family hierarchy: patriarchal marriage, parent-child obligation coded through Scripture ('honor thy father and thy mother'), sibling resentment, divorce as social rupture (Carl taking Eleanor and Millie to 'dental paradise'), and class anxiety expressed through education vs. ignorance tensions between Jack and his mother.",
+    "confidence": "high",
+    "quote": "That was in the Ten Commandments. It was given to Moses from God, and those girls knew it, too."
+  },
+  "alibi": {
+    "value": "No formal alibi structure present. The narrative operates on perceptual alibi: Jack's physical presence is constant and witnessed, but Franny's mind constructs an alternative identity (Donny) for him, meaning his 'alibi' as a caring son is simultaneously his 'guilt' in her reading. His whereabouts are never in question; his intentions are.",
+    "confidence": "low",
+    "quote": "He kept up his patter. 'The other one now, Mom,' he said."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is psychological and structural rather than forensic: the reader gradually understands that Franny has overlaid the identity of her childhood abuser Donny onto her son Jack. The mechanic is the convergence of sensory detail \u2014 humming, undressing, proximity \u2014 that triggers Franny's trauma memory, demonstrated through her interior monologue collapsing past and present.",
+    "confidence": "high",
+    "quote": "Donny began to hum. The song he was humming was carnal. She could feel it in her bones."
+  },
+  "media_and_audience": {
+    "value": "No press or institutional framing present. The closest analog is the domestic audience of family gossip and psychological jargon (Millie's therapist-speak, Johari's Window) that repackages Franny's behavior as pathology. The 'media' here is intrafamilial narrative \u2014 how children construct and circulate stories about a parent behind her back.",
+    "confidence": "low",
+    "quote": "She knew, then, that her children were ripping her up behind her back after she spent her whole life trying to make theirs good."
+  },
+  "investigator_wound": {
+    "value": "Jack is the de facto investigator of his mother's suffering and needs; his wound is the lifelong prohibition on physical intimacy with her (she barred him from her lap at twelve) and his trained self-distance, making the enforced caregiving an exposure of his most suppressed filial tenderness. Franny's wound is the unresolved childhood trauma of Donny's abuse, which the caregiving scene catastrophically reactivates.",
+    "confidence": "high",
+    "quote": "He was very aware of the proximity, already, of his parts to hers...she said there would be no more of that."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "A Day Meant to Do Less",
+    "author": "KYLE MINOR",
+    "anthology_title": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos",
+    "story_index": 9,
+    "story_count": 22
+  }
+}

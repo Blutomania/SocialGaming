@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Donny, a young member of the Duhurst family, trapped in a hole with a broken leg after an attempted robbery",
+    "confidence": "medium",
+    "quote": "The little Duhurst down in the hole had stopped talking shit... 'My fuckin' leg's broke!'"
+  },
+  "closed_world": {
+    "value": "Remote mountain property in New Hampshire with fenced cannabis cultivation area and surrounding forest; characters isolated by geography and night",
+    "confidence": "high",
+    "quote": "On the other side of the high fence were five hundred plants... The fence was twelve feet high and topped with razor wire. It was in the middle of the forest."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Rome, the property owner and cannabis operation manager, acting as the primary agent confronting the trapped intruder",
+    "confidence": "high",
+    "quote": "Rome stood up and looked into Ted's face... 'I'm gonna cut off one of his fingers,' Rome said. 'Two maybe. Three at the most.'"
+  },
+  "suspect_architecture": {
+    "value": "Multiple parties with competing claims and motives: Rome (land owner/grower, means and opportunity), the Duhurst family (old-money locals seeking to reclaim land, motive: dispossession), Brian (Rome's enforcer, opportunity), and Okie (trusted lieutenant, knowledge of operations). Differentiated by class, history with the land, and loyalty.",
+    "confidence": "medium",
+    "quote": "\"They came up here to rob me, and they left you alone!\" / \"This land was ours,\" Donny moaned."
+  },
+  "red_herring": {
+    "value": "The Duhursts are framed as the primary threat (robbery, old family grievance), but the more structurally dangerous figure is Ted, whose MicroWeather pitch gives him access to Rome's operation under cover of a legitimate business negotiation \u2014 misdirecting attention from insider risk to outside threat.",
+    "confidence": "low",
+    "quote": "\"What makes you any different?\" he asked. \"Your company?\""
+  },
+  "clue_fairness": {
+    "value": "The hole Rome digs is described in full procedural detail before it is used as a trap \u2014 dimensions, concealment method, location \u2014 giving the reader all information needed to anticipate its function as a pit trap for the Duhursts.",
+    "confidence": "high",
+    "quote": "He dug the hole eight feet wide and eight feet deep... he covered the hole with tree limbs and branches"
+  },
+  "social_world": {
+    "value": "Layered class hierarchy: old New England land-owning families (Duhursts) vs. self-made criminal entrepreneur (Rome) vs. transient queer/countercultural workers (Okie, the camp kids) vs. tech-class outsider (Ted, Phillips Exeter, Woodstock Vermont). Land ownership, money memory, and who can afford desperation structure every relationship.",
+    "confidence": "high",
+    "quote": "Ted's parents lived in Woodstock, Vermont... He'd attended Phillips Exeter, and not on scholarship. He'd skied!"
+  },
+  "alibi": {
+    "value": "Brian's surveillance of the Duhursts functions as a real-time alibi-tracking mechanism \u2014 his texts ('Following Duhursts,' 'On mountain road') establish the family's movements and implicitly account for Rome's actions as reactive rather than premeditated, though the pre-dug hole undermines that framing.",
+    "confidence": "medium",
+    "quote": "\"Following Duhursts,\" Brian had texted earlier, and then, right that second, \"On mountain road.\""
+  },
+  "reveal_mechanic": {
+    "value": "The bolt cutters \u2014 withheld until the final lines \u2014 reframe the entire scene. What appeared to be a territorial confrontation and bluster ('I'm gonna cut your head off') is revealed as a premeditated, specific mutilation plan, suggesting Rome's violence is calculated and instrumental rather than impulsive.",
+    "confidence": "high",
+    "quote": "Ted looked down at the bolt cutters in Rome's right hand. \"I'm gonna cut off one of his fingers,\" Rome said."
+  },
+  "media_and_audience": {
+    "value": "Absent from the excerpt \u2014 there is no press, institutional, or public-opinion framing of any crime or incident. The world of the text is deliberately insular and off-grid.",
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Rome functions as a de facto investigator/authority figure whose wound is his unresolved relationship with Kathy \u2014 it destabilizes his judgment, triggers visceral sickness, and is weaponized by Okie's observation that money erases the memory of desperation, cutting at Rome's self-image as a man who still understands suffering.",
+    "confidence": "medium",
+    "quote": "\"Why you look so sad,\" Okie said. \"A ghost called. The ghost called.\" / \"I did feel sick,\" Rome said. \"Like in my stomach.\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "text_len": 15507,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": ",\tRome\tthought.\tThat\twould\thave\tmade\ta\tbetter\tface\ttat.",
+    "author": "OLD\tFAMILY",
+    "anthology_title": "The_Best_American_Mystery_Stories_2017_-_John_Sandford",
+    "story_index": 4,
+    "story_count": 19
+  }
+}

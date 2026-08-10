@@ -1,0 +1,87 @@
+{
+  "crime": {
+    "value": "Death of Mrs. Stahl by blunt force trauma during a struggle; ambiguous death of prior tenant Larry by gas asphyxiation (ruled suicide but possibly murder); Penny's death by fire. Central question: Was Mrs. Stahl a serial killer using the bungalow to isolate and eliminate victims?",
+    "confidence": "medium",
+    "quote": "Then, with one hard jerk, the old woman fell to the ground with such ease, her head clacking against the courtyard tiles."
+  },
+  "victim": {
+    "value": "Multiple: Larry (prior tenant, possibly driven to suicide or murdered by Mrs. Stahl's obsession and voyeurism); Penny (vulnerable drifter, isolated by failed affair, financial desperation, and gaslit into psychological breakdown by Mrs. Stahl's behavior)",
+    "confidence": "high",
+    "quote": "He told me once she watched him, Larry did. She watched him through his bedroom blinds. While he made love."
+  },
+  "closed_world": {
+    "value": "Canyon Arms bungalow complex in Beachwood Canyon, Hollywood\u2014a secluded, self-contained courtyard of four bungalows surrounded by dense hedges and trees, geographically isolated from surrounding city, accessible only to residents and staff.",
+    "confidence": "high",
+    "quote": "tucked off behind hedges so deep you could disappear into them...the Canyon Arms had other advantages. Number Four, like all the bungalows, was already furnished"
+  },
+  "culprit_and_motive": {
+    "value": "Mrs. Stahl (landlady) is implied culprit in Larry's death; her motive is obsessive romantic fixation, possessiveness, and need to control tenants. She watches them, isolates them, possibly engineers deaths. Motive rooted in loneliness and pathological attachment.",
+    "confidence": "medium",
+    "quote": "I put up fresh wallpaper over every square inch after it happened. I covered everything with wallpaper."
+  },
+  "resolution": {
+    "value": "No formal resolution. Penny kills Mrs. Stahl in struggle; Detective Noble investigates but rules Penny's subsequent death accidental (pilot light explosion). Larry's death remains officially suicide. Mrs. Stahl's crimes go undetected. Detective leaves haunted, seeing 'little men' (visual projections from carnival lanterns)\u2014reality and madness blur.",
+    "confidence": "medium",
+    "quote": "Pilot light. Damn near took the roof off...Could've been much worse...They said they warned the girl not to go back inside. But she'd been drinking all day, saying crazy things."
+  },
+  "investigator": {
+    "value": "Penny (tenant/protagonist) investigates Mrs. Stahl's past and Larry's death through obsessive research and psychological spiral; Detective Noble (official investigator) arrives post-crisis but dismisses evidence as accident/madness. Penny's investigation is personal, intuitive, unreliable; Noble's is institutional, surface-level.",
+    "confidence": "high",
+    "quote": "Instead she took the bus downtown to the big library on South Fifth. She had an idea. The librarian, a boy with a bow tie, helped her find the obituaries."
+  },
+  "suspect_architecture": {
+    "value": "Small closed community: Mrs. Stahl (landlady/black widow, motive: obsessive possession, means: gas, opportunity: controls premises); Mr. D. (studio man, motive: silencing Penny, means: financial ruin/connections); Penny herself (unreliable protagonist whose sanity is suspect, potentially self-destructive). Secondary figures Mr. Flant and Benny are witnesses, not suspects. The architecture pivots on whether Mrs. Stahl murdered Larry or Penny is imagining it.",
+    "confidence": "high",
+    "quote": "\"Maybe it didn't happen at the oven. She found the body. What if she just turned on the gas while he was sleeping?\""
+  },
+  "red_herring": {
+    "value": "Mr. D. is constructed as the primary antagonist and source of Penny's destruction \u2014 she and the reader are led to believe he is engineering her downfall (job loss, bounced check, blacklist). In fact the true danger is Mrs. Stahl and the bungalow itself. The letter-writing and studio confrontation redirect attention toward a studio-power conspiracy while the real lethal threat is domestic and psychological.",
+    "confidence": "high",
+    "quote": "\"I think I know who's responsible. He kited me for seven hundred and forty dollars and now he's out to ruin me.\""
+  },
+  "clue_fairness": {
+    "value": "All material clues are shown to the reader simultaneously with Penny: the tapping in the walls, the grease and soot on her body suggesting sleepwalking near the oven, the mysteriously low rent, Mrs. Stahl's obsessive behaviour with the mattress, and crucially Benny's reaction behind the oven ('What's this?'). Larry's final inscription behind the wallpaper is revealed to reader and protagonist at the same moment by matchlight.",
+    "confidence": "high",
+    "quote": "\"The little men come out of the walls. I cut off their heads every night. My mind is gone. Tonight, I end my life.\""
+  },
+  "social_world": {
+    "value": "1953 Hollywood studio patronage economy: women's survival depends on sexual availability to powerful men (Mr. D.), with no institutional recourse. Class stratification runs from studio executives to makeup artists to kept women to ageing residents of cheap canyon bungalows. The Canyon Arms is a pocket of decayed Old Hollywood glamour where the powerless collect. Mrs. Stahl exercises the only power available to her \u2014 control of the domestic space and its inhabitants.",
+    "confidence": "high",
+    "quote": "\"I did my time. I earned the right.\" / \"you were a luscious piece of candy, he said, but now I gotta spit you out.\""
+  },
+  "alibi": {
+    "value": "No formal alibi is constructed or tested in the conventional sense. Mrs. Stahl's alibi for Larry's death is implicit \u2014 she 'found the body' and performed grief so loudly it was noted in the press. This alibi is what Penny begins to unpick: if Mrs. Stahl found him, she could have staged the scene after gassing him in his sleep. The alibi's weakness is its theatricality.",
+    "confidence": "medium",
+    "quote": "\"the body had been found by the 'handsome proprietress, one Mrs. Herman Stahl,' who 'fell to wailing' so loud it was heard all through the canyons\""
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated physically and sensorially: Penny strips wallpaper behind the oven by hand and reads Larry's knife-scratched inscription by a single lit match. The revelation is tactile and visual \u2014 palm pressed to the words \u2014 and immediately followed by the pilot-light explosion, collapsing the boundary between discovery and consequence. The 'little men' mystery is simultaneously explained (spinning carnival lanterns projecting dancing clown shadows) and irresolvable (Penny's madness).",
+    "confidence": "high",
+    "quote": "\"Leaning close, the match lit, she could see a faint scrawl etched deep... The sound that followed was the loudest she'd ever heard, the fire sweeping up her face.\""
+  },
+  "media_and_audience": {
+    "value": "The crime is invisible to official narrative: the detective's report reduces Penny to a drunk girl who ignored warnings, the death classified as a pilot-light accident. The press earlier romanticised Mrs. Stahl as a grieving proprietress. Penny's own letter-writing \u2014 her attempt to impose her narrative \u2014 is reframed as the behaviour of a scorned, unstable woman. Institutional machinery (studio security, police, press obituaries) consistently erases women's testimony.",
+    "confidence": "high",
+    "quote": "\"They said they warned the girl not to go back inside. But she'd been drinking all day, saying crazy things.\""
+  },
+  "investigator_wound": {
+    "value": "Detective Noble is a peripheral, late-arriving investigator whose wound is one of exhaustion and moral detachment: twenty years on the same precinct, three to the war, 'even the surprises were the same.' He briefly registers guilt \u2014 'Someone should think of her for a minute' \u2014 but cannot sustain it. His wound is the professional numbness that prevents him from seeing Penny as anything other than a case closed. The lantern-shadow revelation at the end suggests he glimpses the truth too late and at safe distance.",
+    "confidence": "medium",
+    "quote": "\"He thought about the girl... Someone should think of her for a minute, shouldn't he? He looked at his watch. Two a.m. But she won't see her little men tonight.\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "MEGAN ABBOTT",
+    "anthology_title": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George",
+    "story_index": 1,
+    "story_count": 22,
+    "backfilled_from": "book_slug[:30] filename-collision bug"
+  }
+}

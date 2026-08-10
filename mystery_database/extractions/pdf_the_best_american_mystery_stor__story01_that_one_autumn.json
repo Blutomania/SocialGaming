@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Publishing industry hierarchy: series editor (Otto Penzler) holds gatekeeping power over authors; literary periodicals vs. mainstream publishers; authors who refuse inclusion (Doctorow, Boyle) assert status autonomy against the anthology's authority structure.",
+    "confidence": "medium",
+    "quote": "T. Coraghessan Boyle said he wasn't a mystery writer and didn't want to be identified as one"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "The anthology itself functions as a packaging and legitimising mechanism for crime fiction; story titles deliberately obscure genre identity, meaning public/reader perception cannot reliably identify a crime story from its title alone.",
+    "confidence": "medium",
+    "quote": "check the table of contents for 'Thug: Signification and the (De) Construction of Self' and decide if it leaps out at you as a crime story"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "filename": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "text_len": 11810,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "That\tOne\tAutumn",
+    "author": "MONICA\tWOOD",
+    "anthology_title": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly",
+    "story_index": 1,
+    "story_count": 23
+  }
+}

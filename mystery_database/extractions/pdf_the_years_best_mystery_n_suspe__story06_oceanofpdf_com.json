@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Multiple infant girls killed by smothering, disguised as crib death; victims are killable because they are vulnerable, poor, and their deaths can be concealed within the system",
+    "confidence": "high",
+    "quote": "When the time came, when the opportunity appeared, Alison would do the same favor for this little girl she'd done for the two other little girls."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Alison Cage, income maintenance worker, motivated by a twisted mercy\u2014she believes poor children's lives are too sorrowful to endure and she is saving them from inevitable suffering",
+    "confidence": "high",
+    "quote": "Then it would be done and the little girl would not have to grow up and know the even greater sadness that awaited her."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Doctor Connery from the medical examiner's office, who is investigating crib death cases and exchanging pathological data, unaware that Alison is the perpetrator",
+    "confidence": "medium",
+    "quote": "Not even the handsome Doctor Connery had suspected anything. He'd just assumed that the other two girls had died from crib death."
+  },
+  "suspect_architecture": {
+    "value": "Single perpetrator story \u2014 Alison Cage is both protagonist and killer. No competing suspects are constructed; the twist is that the apparent investigator IS the murderer. Two prior victims (infant girls) confirmed, one current target (Doreen's daughter). Peter Forbes and Doctor Connery are present as peripheral characters with no culpability.",
+    "confidence": "high",
+    "quote": "Not even the handsome Doctor Connery had suspected anything. He'd just assumed that the other two girls had died from crib death."
+  },
+  "red_herring": {
+    "value": "The framing device of the incest case Peter describes functions as a red herring \u2014 the reader is primed to expect the story's moral horror to centre on the abusive father and his seven-year-old daughter, misdirecting attention from Alison as the actual threat. Doreen's welfare fraud (the man Ernie, the borrowed boys) also draws investigative focus away from Alison's predatory intent toward the infant.",
+    "confidence": "high",
+    "quote": "Here's a forty-three-year-old man and he's screwing his seven-year-old daughter and nobody'll listen."
+  },
+  "clue_fairness": {
+    "value": "The story is a first-person-adjacent tight third: all clues are embedded in Alison's perspective and available to the reader simultaneously. Her excessive emotional identification with infants ('They were like sisters'), her knowledge of prior crib deaths, and her internal resolution ('when the opportunity appeared') are all shown in the narrative text before the explicit confession sentence. The reader has full access to the same information Connery lacked.",
+    "confidence": "high",
+    "quote": "When the time came, when the opportunity appeared, Alison would do the same favor for this little girl she'd done for the two other little girls."
+  },
+  "social_world": {
+    "value": "Layered bureaucratic and class hierarchy: state social-services apparatus (Coughlin, Friedman above Peter and Alison), income maintenance workers as lowest-status employees surveilling impoverished Black and working-class clients. Racial and economic power asymmetry is explicit \u2014 Alison holds documentary power (photographs, forms, fraud evidence) over Doreen, who is entirely dependent. The agency's institutional incentive is benefit denial, not client welfare.",
+    "confidence": "high",
+    "quote": "The more benefits you could deny the people who made up your caseload, the more your bosses liked you."
+  },
+  "alibi": {
+    "value": "No traditional alibi structure is present \u2014 this is not a whodunit with alibi-breaking. However, the medical/institutional alibi is structural: crib death diagnoses function as the cover story for Alison's murders. Doctor Connery's acceptance of 'crib death' as explanation serves as an involuntary institutional alibi for Alison, validated by the medical examiner's office itself.",
+    "confidence": "medium",
+    "quote": "Not even the handsome Doctor Connery had suspected anything. He'd just assumed that the other two girls had died from crib death."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is delivered through free indirect discourse \u2014 an abrupt shift from Alison's empathetic interiority into explicit predatory intention. No external investigator discovers the truth; the reader alone receives it via Alison's unguarded internal monologue. The mechanic is psychological confession rather than deductive proof: the killer's own thoughts, rendered in third person, constitute the evidence.",
+    "confidence": "high",
+    "quote": "Soon, little one, Alison thought; soon you won't be so sad. I promise."
+  },
+  "media_and_audience": {
+    "value": "Institutional medical narrative \u2014 'crib death' \u2014 is the operative public framing. The medical examiner's office, by exchanging data across databases searching for trends, inadvertently legitimises the cover story. There is no press coverage depicted; the crimes are invisible to public opinion precisely because the institution of medicine has already classified them as natural deaths. Alison's good-citizen social-worker identity reinforces her invisibility as a perpetrator.",
+    "confidence": "high",
+    "quote": "He's exchanging information with other medical data banks. Seeing if they can't find a trend in these deaths."
+  },
+  "investigator_wound": {
+    "value": "Alison is simultaneously investigator and perpetrator; her wound is the story's psychological core. Profound existential loneliness, childlessness, and a conviction that the world is irremediably sad have curdled into a mercy-killing compulsion. Her wound \u2014 inability to bear the suffering she projects onto vulnerable infants \u2014 is the direct motive for murder. She frames infanticide as compassion, a dissociation rooted in her own thwarted desires for connection and motherhood.",
+    "confidence": "high",
+    "quote": "When she returned home...here was beautiful quiet Alison inexplicably alone...There was so much sorrow in the world and she could tell no one about it."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "filename": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "text_len": 17022,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "ED GORMAN",
+    "anthology_title": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch",
+    "story_index": 6,
+    "story_count": 15
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "I'm a Nobody, a racehorse who dies after running a rigged race at Antonio's urging to raise money for Leo Bernardi's debt",
+    "confidence": "medium",
+    "quote": "I'm a Nobody wavered, caught himself, and fell on his side...blood coming from his mouth, and stopped breathing."
+  },
+  "closed_world": {
+    "value": "Los Alamitos racetrack and surrounding bar/Long Beach establishments in early 1960s Los Angeles mob territory",
+    "confidence": "high",
+    "quote": "Los Alamitos was a fairly honest track...Joey and I both worked for a soldier named Alfredo Paretti."
+  },
+  "culprit_and_motive": {
+    "value": "Antonio Bernardi killed the horse by convincing it to run beyond its physical capacity to save his nephew Leo from violent debt collection",
+    "confidence": "high",
+    "quote": "He went in and wandered from one horse to another and then stopped...He put down a thousand on I'm a Nobody to win."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Larry Mulcahey, mob enforcer and track security guard who observes Antonio's activities and later kills Leo in retaliation for the horse's death",
+    "confidence": "high",
+    "quote": "I was an enforcer. I made sure debts got paid...It felt like a promise. So I went looking for Leo."
+  },
+  "suspect_architecture": {
+    "value": "Not a mystery with a suspect cast. The narrator Larry is the perpetrator of violence/crime; Antonio is morally ambiguous (horse whisperer enabling race outcomes); Leo Bernardi is the debtor/victim. No formal suspect architecture exists.",
+    "confidence": "low",
+    "quote": "Then Mr. Paretti told me to take care of a Leo Bernardi by the end of the week."
+  },
+  "red_herring": {
+    "value": "Antonio's visits to the barn appear to be race-fixing via drugs or physical tampering, but are revealed to be harmless conversation with horses. The misdirection is that conventional cheating methods (needles, pills) are suspected but absent.",
+    "confidence": "medium",
+    "quote": "Antonio hadn't slipped her a goofball... 'No drugs. No touching.' He drew himself up to his full height\u2014maybe five feet. 'Never.'"
+  },
+  "clue_fairness": {
+    "value": "Not applicable as a formal mystery structure. The narrator is omniscient about his own crimes. No investigator-reader clue-sharing dynamic exists; the story is a first-person confession with full disclosure to the reader.",
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Layered mob hierarchy: Chicago/New York above DeSimone (weak LA boss), then soldiers like Paretti, then low-level enforcers like Larry and Joey. Patronage and debt define relationships; ethnic networks (Irish Boston mob vs. Italian LA mob) structure access and loyalty.",
+    "confidence": "high",
+    "quote": "I didn't work for DeSimone directly, of course. Joey and I both worked for a soldier named Alfredo Paretti."
+  },
+  "alibi": {
+    "value": "Not structurally present. Larry narrates his own actions without needing to construct or deconstruct alibis. The closest instance is Larry telling Antonio to stay in the car during the Leo confrontation, which Antonio violates.",
+    "confidence": "low",
+    "quote": "I shook my head. I didn't turn around. 'You were supposed to stay in your car.'"
+  },
+  "reveal_mechanic": {
+    "value": "The supernatural/inexplicable element is revealed through consequence rather than logical deduction: I'm a Nobody wins at 13-to-1 and then dies from the effort, confirming Antonio genuinely communicated something extraordinary to the horse rather than cheating conventionally.",
+    "confidence": "medium",
+    "quote": "I'm a Nobody wavered, caught himself, and fell on his side... snorted, blood coming from his mouth, and stopped breathing."
+  },
+  "media_and_audience": {
+    "value": "The press frames Leo's killing as a brutal crime without understanding mob context. Larry retreats north to avoid scrutiny. Public narrative and mob reality are entirely separate; the papers 'loved the brutality' as spectacle while the organizational logic remains invisible.",
+    "confidence": "medium",
+    "quote": "The papers loved the 'brutality' of the crime, and I took a quiet trip up north to Crescent City for a while."
+  },
+  "investigator_wound": {
+    "value": "Larry's wound is his capacity for loyalty and sentiment in a profession requiring detachment. His affection for Antonio prevents him from reporting the old man's race-winning pattern, and Antonio's grief over I'm a Nobody becomes the emotional pivot that determines Leo's fate.",
+    "confidence": "medium",
+    "quote": "I kept thinking of I'm a Nobody, dying in front of us. It felt like a promise. So I went looking for Leo."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The\tSweet\tWarm\tEarth",
+    "author": "STEVEN\tPOPKES",
+    "anthology_title": "The_Best_American_Mystery_Stories_2017_-_John_Sandford",
+    "story_index": 15,
+    "story_count": 19
+  }
+}

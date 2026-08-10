@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Las Vegas Chinatown strip mall and surrounding connected businesses (restaurant, pet store, offices)",
+    "confidence": "medium",
+    "quote": "The Vegas Chinatown was nothing more than a bloated strip mall \u2014 three or four blocks of it painted red and yellow"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Robert, a former Oakland police officer, pursuing his ex-wife's new husband Sonny Nguyen after confrontation at a sushi restaurant",
+    "confidence": "high",
+    "quote": "In my twenty-five years on the Oakland force, I'd shot at people several times, in the arm, in the fleshy part of the thigh"
+  },
+  "suspect_architecture": {
+    "value": "Small cast centered on Sonny Nguyen (ex-wife's new husband; aggravated assault history, gambler's temperament, motive: protecting his new life) and his unnamed 'Junior' (loyal enforcer/son, means: physical threat, opportunity: controls restaurant access). Suzy herself is a peripheral figure of ambiguous agency. The investigator Robert is morally implicated as quasi-antagonist.",
+    "confidence": "medium",
+    "quote": "DPS did list a silver Porsche and a brand-new red BMW under his name \u2014 Sonny Nguyen... he once shot at a guy for insulting him"
+  },
+  "red_herring": {
+    "value": "Junior's insistence that 'no one by that name works here' and that he himself is the owner misdirects Robert (and reader) into doubting whether Sonny is present or connected to the restaurant at all, delaying the confrontation and obscuring Sonny's actual whereabouts.",
+    "confidence": "medium",
+    "quote": "I am the owner... I am not sure what I can do for you, sir."
+  },
+  "clue_fairness": {
+    "value": "The two cars in Sonny's driveway (red BMW and Suzy's old Toyota Camry) are described to the reader at the same moment Robert notices them, fairly signalling Suzy is home despite Sonny's denial, before Robert explicitly calls out the contradiction.",
+    "confidence": "high",
+    "quote": "A red BMW sat in the circular driveway behind the brown Toyota Camry I'd bought Suzy eight years ago."
+  },
+  "social_world": {
+    "value": "Overlapping immigrant and law-enforcement hierarchies in Las Vegas: Vietnamese diaspora business networks (restaurant ownership, gambling circles, family loyalty) set against a retired Oakland cop's fading institutional authority. Sonny's wealth, Junior's tailored suit, and the Mexican bouncer Menendez illustrate patronage and ethnic labour stratification beneath the Strip's surface.",
+    "confidence": "high",
+    "quote": "Nearly every establishment was a restaurant... a seven-foot, white-aproned Mexican sweeping the patio... a young Vietnamese man in a splendidly tailored charcoal suit"
+  },
+  "alibi": {
+    "value": "Sonny claims Suzy is sleeping at her mother's house and that he is alone, but the presence of her Toyota Camry in the driveway directly contradicts this. His lowered voice when warned not to wake her confirms the alibi is false and she is in the bedroom.",
+    "confidence": "high",
+    "quote": "'She not here. She sleep at her mother house tonight. Just me here.' ... He didn't want to wake her."
+  },
+  "reveal_mechanic": {
+    "value": "The alibi collapses not through confession or forensic evidence but through a mundane physical object \u2014 the parked Toyota Camry Robert himself bought Suzy years ago \u2014 combined with Sonny's involuntary glance toward the dark hallway and his instinct to lower his voice, psychologically demonstrating her presence without a word from her.",
+    "confidence": "high",
+    "quote": "'Then why are there two cars in the driveway?' He glanced toward the dark hallway... He didn't want to wake her."
+  },
+  "media_and_audience": {
+    "value": "Institutional and public framing is largely absent; the story operates in a private, off-the-books register. Robert has put his badge away deliberately, excising official narrative. The only 'audience' is Happy as informal intelligence source and the master files at Vegas Metro \u2014 bureaucratic records that frame Sonny without adjudicating him.",
+    "confidence": "low",
+    "quote": "Before shutting my eyes, I decided to put my badge away, deep in the recesses of my suitcase. I would not need it."
+  },
+  "investigator_wound": {
+    "value": "Robert's wound is the failure of his marriage to Suzy \u2014 the revelation that she 'don't talk about you much' after ten years, and that he was never truly known or valued by her. The entire investigation is driven by jealousy and unresolved grief rather than justice, and every encounter in the case re-opens his inadequacy as a husband and his inability to hold the life he thought he had.",
+    "confidence": "high",
+    "quote": "'She don't talk about you much, Bob.' I'd long figured this much was true, but it burned to hear it acknowledged so casually."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "35\u00b0",
+    "author": "VU TRAN",
+    "anthology_title": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver",
+    "story_index": 25,
+    "story_count": 25
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Death of 17-year-old Julie Novak by hypothermia, initially ruled accidental exposure but revealed to involve poisoned punch at a party; central question: whether to prosecute the mentally handicapped boy who unknowingly doped the punch or accept a settlement that obscures the truth.",
+    "confidence": "high",
+    "quote": "Julie Novak. When we found her in the snow, that's how she appeared... Her face and lips were a pale pastel blue, her brows and lashes rimed with frost."
+  },
+  "victim": {
+    "value": "Julie Novak, 17-year-old gifted high school student attending advanced courses at Vale Junior College, was 'killable' because she was at a wealthy family's unsupervised party and consumed drugs unknowingly placed in punch by a neglected handicapped child.",
+    "confidence": "high",
+    "quote": "Julie Novak... Seventeen. Poletown address, north of the river... she's from Valhalla High, not the college."
+  },
+  "closed_world": {
+    "value": "Champlin Hall, a wealthy mansion in Sugar Hill (the richest enclave in Valhalla), during an unsupervised weekend party while parents were in Toronto; the house and surrounding snow-covered grounds form the physical and social boundary of the crime.",
+    "confidence": "high",
+    "quote": "Champlin Hall, was an honest-to-God nineteenth-century mansion. A sprawling brick Beaux Arts estate with ornate stonework, towering Gothic windows."
+  },
+  "culprit_and_motive": {
+    "value": "Joey Champlin, 16-year-old mentally handicapped boy (IQ mid-60s) with impulse control problems, unknowingly poisoned the punch as a prank after being sent to bed by his sister; Carl Novak, Julie's father, later hired hitman Ox Sorsa to kill Derek Patel (mistakenly believing him responsible) after learning the truth.",
+    "confidence": "high",
+    "quote": "Joey confessed to his sister this morning. He has a history of difficulty with impulse control. He broke into the playroom, grabbed a fistful of pills, and dropped them in the punch as a prank."
+  },
+  "resolution": {
+    "value": "Institutional corruption prevents justice: prosecutor Bemis accepts $200k settlement to avoid charging Joey; Detective LaCrosse confronts this moral failure and forces changes in personnel but cannot prevent Novak's conviction for hiring the hitman; Sorsa dies in shootout with LaCrosse; truth remains partially obscured.",
+    "confidence": "high",
+    "quote": "The board conferred for twenty minutes. Then ruled the shooting as self-defense. Justified. I'd won, I suppose. It didn't feel like it."
+  },
+  "investigator": {
+    "value": "Detective Sergeant Dylan LaCrosse, a veteran cop with military service (Kabul) and local roots, who investigates the death but becomes morally implicated in the cover-up, ultimately confronting the system's failure to speak for the victim.",
+    "confidence": "high",
+    "quote": "As a Detroit cop, I saw victims almost daily, and even after transferring home to Valhalla, on Michigan's North Shore, I've seen more corpses than I care to."
+  },
+  "suspect_architecture": {
+    "value": "Primary perpetrator: Joey Champlin (mentally challenged 16-year-old, drugged punch as impulsive prank, no malicious motive). Secondary actors: Mark Champlin (negligent supervision, absent parent), Ox Sorsa (hired enforcer, killed Derek Patel on Novak's contract). Carl Novak (grieving father turned murder-contractor). Each is differentiated by culpability level, intent, and legal status \u2014 ranging from incapacity to premeditated murder-for-hire.",
+    "confidence": "high",
+    "quote": "Joey Champlin...grabbed a fistful of pills, and dropped them in the punch as a prank."
+  },
+  "red_herring": {
+    "value": "The scene is staged \u2014 by circumstance, not a villain \u2014 to appear as a natural hypothermia death: no tracks but the victim's, no signs of violence, no alcohol scent. This leads the initial investigation toward accident and away from the drugged punch. The apparent accidental framing is then exploited by the Champlin lawyers to engineer a cover-up, functioning as a structural red herring.",
+    "confidence": "medium",
+    "quote": "First impression, it's pretty much what it looks like. Hypothermia. There are no tracks but hers, no signs of violence."
+  },
+  "clue_fairness": {
+    "value": "The white satin prom dress on a teenager at a house party \u2014 noted as 'odd' and 'definitely off' by both Zina and Joni \u2014 is presented to the reader at the same moment the investigators observe it, signalling the scene was staged or the victim was specially dressed, pointing toward deliberate circumstances rather than casual accident.",
+    "confidence": "high",
+    "quote": "It's more like a prom dress than something you'd wear to a house party."
+  },
+  "social_world": {
+    "value": "Rigid North Shore class hierarchy: old lumber-baron mansion owners (Champlins) vs. working-class logger families (Novaks). Institutional patronage network links the Champlin patriarch to college accreditation negotiations, the DA (Todd, a personal friend), and well-connected lawyers. Power protects Joey at every level; the victim's family has no voice in the settlement room.",
+    "confidence": "high",
+    "quote": "Mark Champlin is heavily involved in those negotiations. A scandal at this time could derail the process, perhaps permanently."
+  },
+  "alibi": {
+    "value": "The parked cars dusted with undisturbed snow serve as a collective alibi for all house-party attendees \u2014 no one came or went after the snowfall, implicitly clearing them of removing or relocating the body. This alibi is genuine and corroborated physically, but it deflects attention from what happened inside the house before the snowfall.",
+    "confidence": "medium",
+    "quote": "No one had come or gone. The only fresh tire tracks were from the mail truck, my Jeep, and Van Duzen's prowlie."
+  },
+  "reveal_mechanic": {
+    "value": "The solution is revealed through confession-under-privilege: Joey tells his sister, who tells the family lawyer Avery, who discloses it in a closed negotiating session as leverage for a settlement rather than as evidence. The reveal is thus transactional and institutional rather than deductive \u2014 truth emerges as a bargaining chip, not from investigative proof.",
+    "confidence": "high",
+    "quote": "Joey confessed to his sister this morning. He's very sorry, but...I doubt the boy's capable of comprehending the damage he's done."
+  },
+  "media_and_audience": {
+    "value": "The crime is managed as a reputational and institutional crisis rather than a public murder investigation. The Champlin lawyers frame it as a 'regrettable accident,' the DA's office suppresses disclosure to protect college accreditation, and the settlement is designed to be invisible. The victim is narratively repackaged as a 'snow angel' \u2014 an aestheticised image that obscures the homicide.",
+    "confidence": "high",
+    "quote": "The Champlins will issue a public statement of regret for the incident and, privately, will proffer a financial settlement."
+  },
+  "investigator_wound": {
+    "value": "LaCrosse carries moral ambiguity about lethal force from his Kabul war service and Detroit policing, and cannot determine his own intentions when he confronted Sorsa alone \u2014 whether he hoped for surrender or for a killing. This unresolved self-knowledge means he cannot honestly answer the DA's question, leaving him permanently uncertain about his own culpability, mirroring the story's theme of justice without clean resolution.",
+    "confidence": "high",
+    "quote": "I'll know that I gave Ox Sorsa a choice because I hoped he'd surrender. Or because I hoped he wouldn't."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "filename": "The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The\tSnow\tAngel",
+    "author": "DOUG\tALLYN",
+    "anthology_title": "The_Best_American_Mystery_Stories_215_-_James_Patterson",
+    "story_index": 1,
+    "story_count": 19
+  }
+}

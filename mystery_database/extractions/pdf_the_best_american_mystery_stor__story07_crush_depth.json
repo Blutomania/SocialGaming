@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Sabotage of USS Thresher nuclear submarine in 1963, resulting in sinking and 129 deaths (crew and civilians). Method: placement of a concealed device by a shipyard worker that caused pipe failure, reactor shutdown, and crush depth. Central question: Who ordered the sabotage and why was it never prosecuted?",
+    "confidence": "high",
+    "quote": "How did you sink the Thresher? Wasn't meant to sink the damn thing. That wasn't the plan."
+  },
+  "victim": {
+    "value": "Gus (Augustus), elderly former pipefitter at Portsmouth Naval Shipyard. Killable because he is the sole living witness to a Cold War sabotage operation that, if revealed post-Soviet collapse, would damage U.S.-Russian relations during a period of d\u00e9tente and loan negotiations.",
+    "confidence": "high",
+    "quote": "all those poor sailors, all those poor families... seventeen civilians on board... guys from my own shipyard"
+  },
+  "closed_world": {
+    "value": "Portsmouth Naval Shipyard and Great Island Common park in New Castle, New Hampshire. The investigator conducts surveillance over four Wednesdays in a bounded social ritual (park bench meetings) where the target is predictably located, isolated, and vulnerable.",
+    "confidence": "high",
+    "quote": "Every time I come by here and you're sitting here, looking at the shipyard, it's a Wednesday. What a coincidence, eh?"
+  },
+  "culprit_and_motive": {
+    "value": "Michael (Russian intelligence operative using false identity). Motive: Gus is a liability from a sealed KGB dossier marked 'to be kept forever.' Post-Soviet collapse, files are being sold to Americans. Michael's mission is to eliminate witnesses to historical sabotage operations to prevent diplomatic fallout and preserve Russian-American rapprochement.",
+    "confidence": "high",
+    "quote": "when you got a country that's collapsing... everything's for sale. Everything! We found your dossier... got your real name, your job at the shipyard"
+  },
+  "resolution": {
+    "value": "Michael executes Gus using a poison pen injected into his neck at the base. Order is restored through assassination rather than justice: the crime remains officially unsolved, the witness is silenced, and geopolitical stability is maintained. The resolution is cynical and extra-legal.",
+    "confidence": "high",
+    "quote": "he took the pen and jabbed it into the base of Gus's neck... Michael checked the old man's neck for a pulse. Nothing."
+  },
+  "investigator": {
+    "value": "Michael, a Russian SVR (post-KGB) operative posing as an FBI agent. He is the villain masquerading as an investigator. The reader experiences the mystery through his perspective as he methodically identifies, befriends, and executes his target under false pretenses of historical documentation.",
+    "confidence": "high",
+    "quote": "Michael took out a leather wallet with a badge and identification and held it up for Gus to look at."
+  },
+  "suspect_architecture": {
+    "value": "Single true perpetrator (Gus, retired shipyard pipefitter) manipulated by a KGB handler posing as a US DoD peace operative named 'Chandler.' No competing suspects; the architecture is a lone-guilt study \u2014 an ideologically exploited working-class man whose motive is anti-nuclear grief, not greed, distinguished from the stereotypical traitor by his lack of payment and his decades of public penance.",
+    "confidence": "high",
+    "quote": "\"It wasn't for the money. Didn't get paid a dime.\""
+  },
+  "red_herring": {
+    "value": "The KGB handler 'Chandler' presents himself as a US Department of Defense peace operative fighting Pentagon hawks, complete with faked ID and a staged office near a SAC base \u2014 a deliberate institutional misdirection that made Gus believe he was aiding American peace efforts rather than Soviet espionage. The naval inquiry's official conclusion of accidental pipe failure is a second institutional red herring concealing sabotage.",
+    "confidence": "high",
+    "quote": "\"Showed me his ID, said he worked for the Department of Defense. Even took me to his office, just outside of the SAC base.\" \"All faked, wasn't it?\""
+  },
+  "clue_fairness": {
+    "value": "The code-word sequence ('kingfisher,' then 'osprey') is presented to the reader in real time as Michael deploys it across multiple Wednesday visits, allowing the reader to observe Gus's charged reactions before the reveal. The Wednesday-only vigil pattern and the date of the Thresher sinking (a Wednesday, April 10, 1963) are both stated openly before Michael draws the connection explicitly.",
+    "confidence": "high",
+    "quote": "\"Every time I come by here and you're sitting here, looking at the shipyard, it's a Wednesday... Went out on April 10, 1963. A Wednesday.\""
+  },
+  "social_world": {
+    "value": "Cold War military-industrial hierarchy: the Portsmouth Naval Shipyard sits at the intersection of blue-collar skilled labor (pipefitters, welders), naval institutional secrecy, DoD bureaucracy, and KGB infiltration networks. Class tension is explicit \u2014 Gus is a working man manipulated precisely because he lacks the institutional sophistication to detect a fake government operative. Post-Soviet collapse creates a new power vacuum where secrets become commodities sold for 'Benjamins.'",
+    "confidence": "high",
+    "quote": "\"When you got a country that's collapsing... everything's for sale. Everything! So we've had guys going over to Moscow... passing out the Benjamins, getting files and dossiers.\""
+  },
+  "alibi": {
+    "value": "Gus has no formal alibi constructed; his vulnerability is the opposite \u2014 thirty years of silent, undetected presence. His Wednesday vigil at the park, which functions as private atonement, inadvertently becomes the behavioral signature that allows Michael to locate and identify him. The absence of any cover story or flight attempt after the first code-word contact is itself treated as confirmatory evidence.",
+    "confidence": "medium",
+    "quote": "\"Where would I go? Shuffle off to my assisted living facility?... I'm old enough now I don't really give a shit.\""
+  },
+  "reveal_mechanic": {
+    "value": "The reveal operates through a graduated code-word protocol: three specific bird names ('kingfisher,' then 'osprey,' implied sequence) function as KGB contact-authentication signals. Gus's failure to deny recognition \u2014 his charged silences, physical reactions, and ultimate tears \u2014 confirms guilt without confession. The mechanism is psychological and procedural: the handler's tradecraft becomes the lie-detector.",
+    "confidence": "high",
+    "quote": "\"You told me the code words, in the right sequence. You should have figured it out, you and the rest of the FBI.\""
+  },
+  "media_and_audience": {
+    "value": "The official naval inquiry attributed the Thresher disaster to accidental pipe failure, and this institutional narrative has held for nearly thirty years \u2014 the crime is invisible to the public. The post-Soviet political climate (loans, McDonald's diplomacy) means the true story cannot be disclosed even now, as it would destroy the new US-Russia d\u00e9tente. The crime's solution must remain permanently secret; the 'media' is the official record itself, weaponised as suppression.",
+    "confidence": "high",
+    "quote": "\"What, you think the president will hold a news conference and say nearly thirty years of official history and explanations were wrong?\""
+  },
+  "investigator_wound": {
+    "value": "Michael (Misha) is a KGB operative posing as an FBI agent \u2014 his wound is the irony of his own institutional identity: he is the enemy he pretends to represent. A secondary wound surfaces in his supervisor's debriefing: his romantic sentimentality (lingering with Gus, omitting the dying man's 'thank you' from his report) makes him an imperfect instrument. He is drawn to the humanity of his targets in a profession that forbids it.",
+    "confidence": "high",
+    "quote": "\"Misha, you're a romantic at heart. You probably write poetry in your spare time... What did you leave out of your official report?\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "filename": "The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Crush\tDepth",
+    "author": "BRENDAN\tDUBOIS",
+    "anthology_title": "The_Best_American_Mystery_Stories_215_-_James_Patterson",
+    "story_index": 7,
+    "story_count": 19
+  }
+}

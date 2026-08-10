@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Triple homicide: shooting deaths of three men (two assassins and Katherine Flanagan, a marriage counselor). Central question: Who was Katherine Flanagan, what was her true identity and business, and why were she and her attackers killed?",
+    "confidence": "high",
+    "quote": "Katie and the fat man both lay on their backs...the fat man...lying with his arms and legs flung out...Katie was lying the same, staring up...the hole between her breasts still oozing."
+  },
+  "victim": {
+    "value": "Katherine Flanagan, LPC, IACP\u2014a marriage counselor with a mysterious past, a crescent scar ('emergency smile'), and cryptic references to having killed someone. She was 'killable' due to her unknown identity and involvement in dangerous activities (possibly IRA, cartel, or intelligence work).",
+    "confidence": "high",
+    "quote": "'That's my emergency smile. I take it with me wherever I go.' 'How did it happen?' 'This skinny fella was asking me too many questions one day, and I had to bump him off.'"
+  },
+  "closed_world": {
+    "value": "Katherine Flanagan's isolated house (office, bedroom, bathroom, lounge) overlooking the village of Kilduff, Ireland. The space constrains the action and ensures no external witnesses to the violence.",
+    "confidence": "high",
+    "quote": "the grand sweep of crimson drapery covering the wall of windows overlooking the village of Kilduff down below...the opulence of the place, the breadth and depth of the bed"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "No formal resolution. Lafferty witnesses the deaths but leaves no trace (wipes down all surfaces). He walks to the pub, blends into normal life. Peggy hears rumors (IRA supergrass, MI-5 hit, Mexican cartel) but Katherine's true identity remains unknown: 'There's no record of her at all. Nothing, nowhere.'",
+    "confidence": "high",
+    "quote": "'There's no record of her at all. Nothing, nowhere.' / 'Can you imagine if we'd been there? Can you just imagine?'"
+  },
+  "investigator": {
+    "value": "Terrance Lafferty\u2014not a detective but an accidental witness and participant. He experiences the mystery as an unwilling observer trapped in Katherine's house, then becomes a ghost-like figure who escapes and maintains silence.",
+    "confidence": "high",
+    "quote": "Lafferty, slippery with sweat...out of the line of fire, out of the line of vision, out of the picture altogether, might as well have never been there."
+  },
+  "suspect_architecture": {
+    "value": "Katherine Flanagan (false counselor, unknown affiliation \u2014 IRA, MI-5, or cartel suspected); two unnamed enforcers (fat man with daffodils, skinny man with gun); Lafferty (accidental witness, cleared by ignorance). Differentiated by role: killer/victim, hired muscle, hapless bystander. Motive obscured by competing institutional narratives.",
+    "confidence": "medium",
+    "quote": "They're saying she was a supergrass and the IRA clipped her. They're saying she was IRA and it was MI-5 took her out."
+  },
+  "red_herring": {
+    "value": "Katherine Flanagan's entire professional identity \u2014 her credentials (LPC, IACP), her polished office, her Ten Golden Rules, her marriage-counselor persona \u2014 is a fabricated cover. The reader is led to treat the adultery plot as the story's central deception, while the real misdirection is Flanagan's false legitimacy as a licensed professional.",
+    "confidence": "high",
+    "quote": "Sure, the IACP never heard of the woman. It was all a bloody hoax. Nobody knows who she is."
+  },
+  "clue_fairness": {
+    "value": "The crescent-shaped scar ('emergency smile') is shown to the reader in real time during Lafferty's encounter with Flanagan, before any danger materialises; it signals a violent history withheld from Lafferty but available to the attentive reader. The story later confirms Flanagan is a trained operative capable of killing.",
+    "confidence": "medium",
+    "quote": "This skinny fella was asking me too many questions one day, and I had to bump him off. / Who said it did? She smiled, eyes simmering."
+  },
+  "social_world": {
+    "value": "Rural Irish village life layered over covert paramilitary/intelligence networks. Surface social world: marriage, pub argument, nurse wife, turf accountant \u2014 ordinary working-class Catholic Ireland. Beneath: IRA, MI-5, and Colombian cartel competing for the same operative. Professional credentials (LPC, IACP) serve as class and trust signals easily forged.",
+    "confidence": "high",
+    "quote": "They're saying she was Colombian cartel and it was a Mexican hit squad done her in. There's no record of her at all. Nothing, nowhere."
+  },
+  "alibi": {
+    "value": "Lafferty's alibi for the triple killing is airtight by accident: he was naked on a sofa holding daffodils, visibly uninvolved, then walked publicly into the Pig and Whistle and argued with locals all night. His presence at the scene is his alibi \u2014 witnessed by the enforcers themselves, then by the pub crowd, leaving him credibly ignorant.",
+    "confidence": "medium",
+    "quote": "Pint in hand, arse on stool, Lafferty entered the fray... They argued well into the night."
+  },
+  "reveal_mechanic": {
+    "value": "The solution is revealed not through investigation but through Peggy's unwitting monologue the morning after: she delivers, as excited gossip from St. Christopher's hospital, the institutional confirmation that Flanagan never existed professionally. The reveal is received by Lafferty \u2014 sole witness to the truth \u2014 in silence, letting the reader close the gap.",
+    "confidence": "high",
+    "quote": "We sat there, in the same room with her, Terrance, you and me. Sure, the IACP never heard of the woman. It was all a bloody hoax."
+  },
+  "media_and_audience": {
+    "value": "The crime is immediately absorbed into competing conspiratorial narratives circulated by word of mouth at a hospital (St. Christopher's), with no official account stabilising: IRA supergrass, MI-5 asset, Colombian cartel operative. Institutional erasure ('no record of her at all') replaces journalism, leaving only rumour to construct the story.",
+    "confidence": "high",
+    "quote": "They're saying all kinds of things... There's no record of her at all. Nothing, nowhere. Can you imagine if we'd been there?"
+  },
+  "investigator_wound": {
+    "value": "Lafferty is not a conventional investigator, but the story exploits his defining wound: chronic absence \u2014 emotional, physical, marital. The very complaint Peggy voices in counselling ('He's never there') is what saves him; his instinct to disappear, to never be there, is both his flaw and his survival mechanism throughout the crisis.",
+    "confidence": "medium",
+    "quote": "He's never been there for me. Even when he's there, he isn't really there... What he wanted, the only thing, was to be someplace else altogether."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "DENNIS MCFADDEN",
+    "anthology_title": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George",
+    "story_index": 11,
+    "story_count": 22
+  }
+}

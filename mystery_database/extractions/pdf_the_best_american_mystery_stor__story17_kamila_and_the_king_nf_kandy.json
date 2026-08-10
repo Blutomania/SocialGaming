@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Kamila, a Polish woman who has been sexually assaulted by three Emirati men in hotel room 424",
+    "confidence": "high",
+    "quote": "They roared. She didn't tell Malsiri about the black horse rearing over her, a beast of fire, striking her down, smothering her."
+  },
+  "closed_world": {
+    "value": "Al Maghreb Hotel in Dubai\u2014a five-star hotel serving as a bounded social and professional space governed by its own hierarchy and rules",
+    "confidence": "high",
+    "quote": "At the Al Maghreb Hotel were Westerners or Arabs. He felt smart in his black suit, if also a trifle comical"
+  },
+  "culprit_and_motive": {
+    "value": "Three local Emirati men (Musabbah, Hard Rock Cafe boy, Eyeliner) who sexually assaulted Kamila; motive appears to be entitlement and exploitation of a vulnerable foreign sex worker",
+    "confidence": "high",
+    "quote": "Musabbah, a short, muscular man who boasted that he could lift a baby camel with one hand, had invited her to drink Scotch"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Malsiri, the hotel manager, who becomes the moral agent investigating whether to call police and seeking to determine truth and administer justice",
+    "confidence": "high",
+    "quote": "Call the police,'' she said in English. He had often seen her talking to older white men with florid faces"
+  },
+  "suspect_architecture": {
+    "value": "Three perpetrators clearly identified: Musabbah (ringleader, muscular, dominant), Hard Rock Cafe cap youth (pimple-faced, studied in America), and Eyeliner/skinny boy (kohl-wearing, youngest). All Emirati locals with wasta, differentiated by role and temperament. Kamila is simultaneously victim and legally suspect under UAE law. Andrzej (pimp) and the system itself function as structural accomplices.",
+    "confidence": "high",
+    "quote": "\"Room 424,\" she said, rolling her R's. \"Three Arabs. Drunk.\""
+  },
+  "red_herring": {
+    "value": "Musabbah's reassurance that they are Muslim and will not hurt her, along with their apparent agreement to negotiated terms (one at a time, oral only), functions as deliberate misdirection \u2014 both for Kamila and the reader \u2014 that they are manageable clients rather than violent predators.",
+    "confidence": "medium",
+    "quote": "\"We not hurt you. I swear. We Muslim.\""
+  },
+  "clue_fairness": {
+    "value": "Physical evidence of assault is presented directly to the reader simultaneously with Malsiri observing it: bruises, scratches, broken/bleeding fingernails, misbuttoned blouse, blood or nail polish on skirt, missing brassiere, smell of burning. All clues to what occurred in room 424 are shown before Kamila's account.",
+    "confidence": "high",
+    "quote": "Her arms and neck were bruised and scratched... Two of her fingernails were broken; one was bleeding."
+  },
+  "social_world": {
+    "value": "Rigidly stratified Gulf racial and legal hierarchy: Emirati locals at apex with 'wasta' (influence/connections), below them Westerners, then Asians and Africans. Hotel staff (Sri Lankan, Filipino) are functionally powerless. Police are Moroccan/Sudanese/Yemeni, themselves subordinate to Emirati officers. A Polish sex worker occupies near-bottom position; her complaint inverts legal jeopardy onto herself.",
+    "confidence": "high",
+    "quote": "Whites were above Asians and Africans but below locals, who were God's favorites."
+  },
+  "alibi": {
+    "value": "No formal alibi structure exists \u2014 the perpetrators' presence in room 424 is uncontested. The legal alibi is structural: Emirati wasta functions as a social alibi, making prosecution practically void regardless of evidence. Kamila's own movements and profession become her legal liability rather than theirs.",
+    "confidence": "medium",
+    "quote": "\"The Emiratis have the wasta.\" ... \"if the Emiratis were from poor families with no wasta. But how could he say anything so tactless?\""
+  },
+  "reveal_mechanic": {
+    "value": "The revelation unfolds through Kamila's incremental, controlled disclosure to Malsiri \u2014 she withholds the worst details (cigarette burns, bottle assault, anal rape) until trust is established, then forces herself to continue. The full crime is demonstrated narratively through her witnessed trauma signs and her own testimony, not investigative deduction. The moral reveal is Malsiri's internal decision point.",
+    "confidence": "medium",
+    "quote": "She forced herself to go on... \"And the bastards didn't even pay me,\" she ended."
+  },
+  "media_and_audience": {
+    "value": "The institutional audience (UAE police, newspapers, courts) is shown to repackage the crime: adultery law inverts victim into criminal, local newspapers would publish names and photos, but only if perpetrators lack wasta. The hotel's GM defers to a visiting sheikh, signaling institutional suppression. Emirati male onlookers in dishdashas stare but do not intervene \u2014 public gaze criminalises the victim.",
+    "confidence": "high",
+    "quote": "\"Their names and photos would be published in the newspapers... if the Emiratis were from poor families with no wasta.\""
+  },
+  "investigator_wound": {
+    "value": "Malsiri's wound is paternal guilt and moral cowardice: a childhood memory of watching kingfish suffocate rather than throwing them back, which he recognises as formative cowardice masked as compliance. His daughters \u2014 especially Yosodhara \u2014 represent the moral standard he fears failing. The case forces him to choose between family security and justice, re-enacting the fish episode.",
+    "confidence": "high",
+    "quote": "\"he knew it was only cowardice that kept him from flipping the fish into the ocean\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "text_len": 22966,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Kamila and the King nf Kandy",
+    "author": "GARRY CRAIG POWELL",
+    "anthology_title": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver",
+    "story_index": 17,
+    "story_count": 25
+  }
+}

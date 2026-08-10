@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder of six-year-old Kelly-Louise Traynor by claw hammer; victim abducted and killed. Central questions: how was the killer identified with minimal forensic evidence (one fingerprint, two hair strands)?",
+    "confidence": "high",
+    "quote": "The girl he'd snatched, her name was Kelly-Louise Traynor. Six years old. She was still out in his trunk. Still alive."
+  },
+  "victim": {
+    "value": "Kelly-Louise Traynor, six-year-old girl. Killable because she was vulnerable (small child), abducted by a serial offender (also murdered two other girls and two grown women).",
+    "confidence": "high",
+    "quote": "A couple of girls, I think. And two grown women. But they got him for the girl."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Sonny Mossman, serial killer. Motive: compulsion. He frequented the diner obsessively (stated compulsion), abducted and murdered victims. No deeper psychological motive articulated in excerpt.",
+    "confidence": "high",
+    "quote": "He said he could never pass by without stopping in. Best Burger was his favorite food."
+  },
+  "resolution": {
+    "value": "Mossman convicted via forensic evidence: one fingerprint on fire extinguisher in trunk, two blond hair strands in trunk carpet. He confessed initially then recanted; confession inadmissible. Murder weapon (claw hammer) never recovered but evidence sufficient for conviction.",
+    "confidence": "high",
+    "quote": "Fourth finger, right hand...on a fire extinguisher Mossman kept in the trunk. Two blond hair strands in the carpet."
+  },
+  "investigator": {
+    "value": "Detective (unnamed), who originally investigated Mossman's arrest. Now observes the execution night from diner where victim was last alive. Represents institutional authority but is passive observer rather than active investigator in narrative present.",
+    "confidence": "high",
+    "quote": "The detective squinted, having gone off thinking about something else."
+  },
+  "suspect_architecture": {
+    "value": "No traditional multi-suspect architecture; the killer (Mossman) is already convicted and awaiting execution. The story's tension derives from a two-person interaction \u2014 an unnamed detective and a penitentiary worker \u2014 observed by Sam, with the detective's identity withheld until the reveal. The 'architecture' is retrospective: Mossman differentiated by compulsion (stops at Best Burger), physical evidence (fingerprint, hair), and a known murder weapon.",
+    "confidence": "medium",
+    "quote": "The customer seated at the counter didn't look up."
+  },
+  "red_herring": {
+    "value": "The seated customer with a concealed handgun is staged to read as a criminal or threat, misdirecting both Sam and the reader into suspecting an imminent crime or robbery. His watchful eyes, shoulder holster, and note-writing on a napkin all suggest menace. He is in fact the detective who caught the killer.",
+    "confidence": "high",
+    "quote": "He had seen the customer's gun tucked under his arm when he'd first sat down. He'd seen his eyes, which looked prepossessed and somehow \u2014 almost \u2014 familiar."
+  },
+  "clue_fairness": {
+    "value": "Key clues are placed in plain sight for the reader simultaneously with Sam: the holstered gun visible from the start, the customer's eyes described as 'prepossessed and somehow \u2014 almost \u2014 familiar,' and the napkin note. The clinching clue \u2014 knowledge of the murder weapon ('a claw hammer') \u2014 is delivered aloud to both Sam and the reader at the same moment, honoring fair-play convention.",
+    "confidence": "high",
+    "quote": "'A claw hammer,' said the customer at the counter."
+  },
+  "social_world": {
+    "value": "A working-class roadside diner as social crossroads: Sam the blue-collar grill man reads people by shoes and car tags; the penitentiary system frames the world (guards, execution workers, state vehicles); capital punishment bureaucracy sits just off-stage. Power flows through institutional knowledge \u2014 who knows the case details, who was there.",
+    "confidence": "medium",
+    "quote": "'You work at the pen?' ... 'Your car,' said Sam. 'The blue state tags. We get a lot of guards loading up before and after shifts.'"
+  },
+  "alibi": {
+    "value": "Mossman's alibi-equivalent is his attempt to clean his car and hide it, which failed. The story reconstructs his movements: he stopped at the diner, ate a burger, while the abducted girl was alive in his trunk \u2014 a timeline the detective has established through investigation. No false alibi is formally tested; instead the alibi-destruction is the fingerprint on the fire extinguisher.",
+    "confidence": "medium",
+    "quote": "'He had hidden his car somewheres,' said Sam ... 'Finding it is what did him in.' 'Fourth finger, right hand ... On a fire extinguisher Mossman kept in the trunk.'"
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is triggered by insider knowledge of a suppressed forensic detail \u2014 the murder weapon \u2014 that was never made public. When the silent counter customer volunteers 'a claw hammer' unprompted, it identifies him as someone with intimate case knowledge, which cascades into Sam's full memory returning: the shoulder holster, the familiar eyes, the earlier visit with photographs. Knowledge of the withheld weapon is the unlock.",
+    "confidence": "high",
+    "quote": "'A claw hammer,' said the customer at the counter ... Sam put things together, first slowly, then all at once. The shoulder holster, the eyes."
+  },
+  "media_and_audience": {
+    "value": "The crime and execution exist as ambient public event \u2014 execution nights cause regional unease 'like the threat of bad weather'; the case is recalled through Sam's memory of investigators canvassing the diner afterward. The crime has been processed into institutional and community memory but not sensationalized within the scene; it registers as dread weather rather than spectacle.",
+    "confidence": "medium",
+    "quote": "Execution nights were generally slow. A feeling of unease settled over the entire region, like the threat of bad weather."
+  },
+  "investigator_wound": {
+    "value": "Subtly present: the detective does not go to watch the execution he made possible \u2014 he is 'on my way home,' stopping at the very diner where the killer once sat with a living child in his trunk. His compulsion to return to this place mirrors the killer's own compulsion, suggesting unresolved psychological weight. He occupies the killer's seat, a gesture of obsessive reconstruction rather than closure.",
+    "confidence": "medium",
+    "quote": "'Me?' said the detective. He shook his head. 'I'm on my way home.' ... 'Just stopped off here for a bite to eat.'"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "text_len": 9989,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Two Thousand Volts",
+    "author": "CHUCK HOGAN",
+    "anthology_title": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver",
+    "story_index": 9,
+    "story_count": 25
+  }
+}

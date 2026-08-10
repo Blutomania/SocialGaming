@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Attempted armed robbery of a small jewelry store; central question: will the protagonist, a security guard with a criminal record, be blamed for the crime despite preventing it?",
+    "confidence": "high",
+    "quote": "Leon throws a glance over his shoulder at the store, can't resist... The girls are right now telling Leon what they saw, how easy it would be"
+  },
+  "victim": {
+    "value": "Mr. Irving Mandelbaum, an 82-year-old jewelry store owner\u2014vulnerable due to age, isolation, and the protagonist's complex loyalty torn between self-preservation and duty.",
+    "confidence": "high",
+    "quote": "Irving Mandelbaum. I call him Mr. M or Boss. He's taken to using a cane lately, if he's going any distance"
+  },
+  "closed_world": {
+    "value": "A decaying hotel and adjacent jewelry store district in Los Angeles, where the protagonist lives and works, populated by ex-convicts, addicts, and the poor\u2014a world where crime is normalized.",
+    "confidence": "high",
+    "quote": "The hotel was built in 1928, and nobody's done anything to it since. Why should they? There's just a bunch of poor niggers living here"
+  },
+  "culprit_and_motive": {
+    "value": "Leon (J Bone's charming cousin, fresh from County jail) and his associates plan to rob the jewelry store for profit; motive is greed and criminal opportunism.",
+    "confidence": "high",
+    "quote": "That's J Bone's cousin. Fresh outta County... He and his boys walk across the lobby... the kind of brother you feel good just standing next to."
+  },
+  "resolution": {
+    "value": "The protagonist prevents the robbery by locking the store door and refusing entry when Leon attempts it with a gun. Leon and J Bone flee; the protagonist survives police interrogation despite his criminal record, and the store closes permanently.",
+    "confidence": "high",
+    "quote": "Once they find out about my record, the police get in their head that we were all in it together... The police don't finish investigating until after six."
+  },
+  "investigator": {
+    "value": "The unnamed protagonist\u2014an ex-convict security guard serving as both witness and reluctant moral actor, whose perspective shapes the reader's understanding of crime, loyalty, and redemption.",
+    "confidence": "high",
+    "quote": "I saw them girls in the store today... I been around... There's a way of being in prison, of making yourself invisible while still holding down your place."
+  },
+  "suspect_architecture": {
+    "value": "Three-man crew: Leon (charismatic ex-con mastermind, motive: easy score), J Bone (local insider, means: hotel access/knowledge), Dallas (muscle/hanger-on). Two female scouts with no named motive beyond complicity. Narrator D is ambiguous \u2014 police briefly consider him an inside man.",
+    "confidence": "high",
+    "quote": "Once they find out about my record, the police get in their head that we were all in it together"
+  },
+  "red_herring": {
+    "value": "Leon's bravado and the girls' visit appear to be a casual social encounter; their browsing behavior mimics genuine shopping interest, misdirecting Mr. M while concealing reconnaissance. Also, narrator's prison record misdirects police toward him as accomplice.",
+    "confidence": "high",
+    "quote": "They walk right past me, and if they see who I am, they don't show it... their eyes roam the store. They're making maps"
+  },
+  "clue_fairness": {
+    "value": "The reader receives all casing signals simultaneously with the narrator: the girls' roaming eyes, Leon and crew visible outside, the narrator's recognition of the girls from the party \u2014 all rendered in real-time first-person narration before any threat is confirmed.",
+    "confidence": "high",
+    "quote": "I look out the window again, and there's Leon standing on the curb with J Bone and Dallas."
+  },
+  "social_world": {
+    "value": "Stratified SRO underclass in downtown LA: Black and immigrant poor (Chinese, Mexican tenants) under negligent slumlord ownership; ex-cons navigating parole-era surveillance; small ethnic jewelry district with elderly Jewish owner; security guard as buffer between street predation and fragile legitimate commerce.",
+    "confidence": "high",
+    "quote": "There's just a bunch of poor niggers living here, Chinamen and wetbacks, dope fiends and drunks."
+  },
+  "alibi": {
+    "value": "Leon and crew construct a verbal alibi in real time when confronted: the girls 'was doing some shopping,' the men 'was waiting on them.' The alibi is tissue-thin and immediately legible as false to the narrator, though unverifiable to police.",
+    "confidence": "medium",
+    "quote": "\"They was doing some shopping,\" he says. \"We was waiting on them.\""
+  },
+  "reveal_mechanic": {
+    "value": "The narrator's prison-honed situational awareness \u2014 reading the girls' eye movements, recognizing Leon's suit outside, interpreting the absence of a glance as deliberate tradecraft \u2014 constitutes the reveal. No forensic device; the mechanism is experiential pattern recognition from incarceration.",
+    "confidence": "high",
+    "quote": "There's a way of being in prison, of making yourself invisible while still holding down your place. I feel like I'm on the yard again"
+  },
+  "media_and_audience": {
+    "value": "No press coverage depicted. Institutional audience is limited to police interrogation, which reframes the narrator as suspect due to his record. Mr. M's son privately credits the narrator as hero. The crime is contained, un-publicized, absorbed into the neighborhood's background noise of violence.",
+    "confidence": "medium",
+    "quote": "How did you know not to let them in? they ask me twenty different times in twenty different ways."
+  },
+  "investigator_wound": {
+    "value": "The narrator's wound is his lifelong susceptibility to charismatic men (Malcolm, Kay Jay, now Leon) who recruit him into crime \u2014 and his terror of repeating the pattern. Protecting the store is also self-protection against his own history; he cannot claim pure altruism.",
+    "confidence": "high",
+    "quote": "He keeps thanking me for protecting his father. 'You may have saved his life,' he says, and I wish I could say that's who I was thinking about."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "filename": "The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Apocrypha",
+    "author": "RICHARD\tLANGE",
+    "anthology_title": "The_Best_American_Mystery_Stories_215_-_James_Patterson",
+    "story_index": 12,
+    "story_count": 19
+  }
+}

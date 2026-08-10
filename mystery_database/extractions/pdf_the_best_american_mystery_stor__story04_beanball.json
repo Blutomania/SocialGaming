@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Coercion and assault: A Guatemalan operative (Franco Calloz) coerces a young baseball pitcher (Alberto Molinas) to commit assault by threatening to kill the pitcher's sister. The pitcher is forced to hit a batter (Ellington) in the head with a fastball during an American League game.",
+    "confidence": "high",
+    "quote": "He said that I was to hit Ellington in the head with a fastball when he came to bat. I need to hit him in the head or they would kill Lucinda."
+  },
+  "victim": {
+    "value": "Lucinda Molinas, a schoolteacher and Alberto's sister. She becomes a target because her brother is a valuable baseball prospect whom Calloz can leverage. She is tortured (finger severed) to coerce Alberto.",
+    "confidence": "high",
+    "quote": "The second day they cut off her finger... They cut off part of her finger and made her call Alberto."
+  },
+  "closed_world": {
+    "value": "A remote Guatemalan village (Rio Pallisades) and an American baseball stadium during a game. The village is isolated in jungle; the stadium is a contained public space where the final confrontation occurs.",
+    "confidence": "medium",
+    "quote": "The equatorial jungle grew right up to whitewashed buildings... Driscoll stood and looked at the man where he lay twisted in the baseball litter."
+  },
+  "culprit_and_motive": {
+    "value": "Franco Calloz, a Guatemalan operative living in New York, orchestrates the assault. His motive appears to involve organized crime control over athletes or criminal leverage. He receives orders from unknown superiors.",
+    "confidence": "medium",
+    "quote": "His name is Calloz... The man is from the capital, but he lives now in the United States."
+  },
+  "resolution": {
+    "value": "Alberto Molinas, seeking to protect his sister and redeem himself, throws a fastball that strikes Calloz in the neck at the baseball stadium, incapacitating him. Police are called; the gun is recovered. Order is restored through vigilante justice by the victim's brother.",
+    "confidence": "high",
+    "quote": "Alberto stepped and threw and Franco Calloz coughed... the baseball caught him in the neck and took him over the row of seats."
+  },
+  "investigator": {
+    "value": "G. Driscoll, a former professional baseball player and current talent scout who discovers the conspiracy. He investigates independently, learns the full story from Juvenal, and orchestrates the final confrontation with Calloz.",
+    "confidence": "high",
+    "quote": "I don't, Alberto. But I will find him... Driscoll stood up and started down... Let us have a word."
+  },
+  "suspect_architecture": {
+    "value": "Two primary antagonists differentiated by proximity and power: Franco Calloz (Guatemalan fixer living in NYC, organized the coercion, motive: political/financial, opportunity: direct access to Alberto pre-game) and Commander Herrera (Mexican renegade soldier in Guatemala, enforcer, motive: orders/control, opportunity: physical custody of Lucinda). Alberto Molinas functions as a coerced perpetrator rather than true suspect. Morgan Winchester (team owner) hovers as a possible higher authority behind Calloz.",
+    "confidence": "high",
+    "quote": "\"They came from your man in New York.\" ... \"His name is Calloz.\" ... \"The commander. His name is Herrera.\""
+  },
+  "red_herring": {
+    "value": "The apparent randomness of the beaning \u2014 publicly legible as a wild pitch or intentional but routine baseball aggression \u2014 misdirects investigators and media away from the organized coercion chain. Alberto's own guilt and the political framing ('it was political') obscure the transnational criminal conspiracy behind a veneer of Central American instability.",
+    "confidence": "medium",
+    "quote": "\"He said it was political.\""
+  },
+  "clue_fairness": {
+    "value": "The photograph of Commander Herrera's corpse on Driscoll's cell phone is shown to the reader in the confrontation scene simultaneously with its use as evidence against Calloz, maintaining fair-play parity. Alberto's coercion story is delivered to Driscoll and reader together on the veranda. The broken speed gun and Driscoll's improvised assessment are narrated in real time.",
+    "confidence": "medium",
+    "quote": "\"He held the cell phone up, snapping it open. He punched up the photograph of the commander, dead on the floor.\""
+  },
+  "social_world": {
+    "value": "Interlocking hierarchies of MLB scouting patronage (Winchester/Driscoll/Alberto), Central American paramilitary power (Herrera's renegade cadre operating in a lawless village vacuum), and transnational criminal brokerage (Calloz bridging Guatemala and New York). The village's lack of a constable for two years signals institutional abandonment that enables predation. Driscoll's access flows entirely from his status as a former major-leaguer with owner connections.",
+    "confidence": "high",
+    "quote": "\"There is none, not for almost two years.\" / \"They came from your man in New York.\""
+  },
+  "alibi": {
+    "value": "Driscoll's alibi \u2014 he was in Japan when Alberto beaned Ellington \u2014 is genuine and functions to establish his innocence while deepening his guilt about failing to prevent the crime. Calloz's presence at the ballpark is concealed behind his role as an anonymous fixer; his alibi collapses when Driscoll identifies him by name, causing Calloz's face to be 'rinsed with malice.'",
+    "confidence": "medium",
+    "quote": "\"I was in Japan. I should have been there; I could have changed things.\""
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated physically rather than deductively: Alberto throws a fastball striking Calloz in the throat in the empty stadium, simultaneously proving his weapon-grade arm and executing justice. The cell phone photograph of the dead commander shown to Calloz functions as the evidentiary reveal \u2014 a visual confession-extractor that forces Calloz to expose himself (drawing his pistol) in front of witnesses.",
+    "confidence": "high",
+    "quote": "\"Alberto stepped and threw and Franco Calloz coughed...the baseball caught him in the neck and took him over the row of seats.\""
+  },
+  "media_and_audience": {
+    "value": "The beaning is a public spectacle consumed by baseball fans and media as sports drama, which is precisely what shields the conspiracy. Driscoll instructs Winchester 'Don't let anything get to the papers,' indicating active suppression of the true narrative. The stadium crowd, including the birthday-party section, acts as an ironic festive audience oblivious to the criminal confrontation occurring in the box seats during the game.",
+    "confidence": "high",
+    "quote": "\"Don't let anything get to the papers.\""
+  },
+  "investigator_wound": {
+    "value": "Driscoll carries a traumatic career-ending head injury (a beanball) that left him unable to smile naturally and with recurring concussion symptoms. The case \u2014 built around a deliberate beaning he was positioned to prevent \u2014 directly exploits this wound. His inability to fully feel fear ('he didn't care about the gun now') and his compulsive return to baseball contexts suggest the injury has eroded normal self-preservation, making him recklessly effective.",
+    "confidence": "high",
+    "quote": "\"The barrel there felt like a touch Driscoll had been waiting for...He didn't care about the gun now or the shot to come.\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Beanball",
+    "author": "RON CARLSON",
+    "anthology_title": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver",
+    "story_index": 4,
+    "story_count": 25
+  }
+}

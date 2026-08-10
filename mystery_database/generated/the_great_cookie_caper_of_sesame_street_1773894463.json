@@ -1,0 +1,193 @@
+{
+  "title": "The Great Cookie Caper of Sesame Street",
+  "setting": {
+    "location": "Cookie Monster's brownstone apartment, 123 Sesame Street, and the immediately surrounding neighbourhood",
+    "time_period": "Present day, early autumn",
+    "environment": "A cheerful but currently grief-stricken urban street of colourful brownstones, corner shops, and a community garden. The night of the theft coincided with a city-wide street-repair project that fenced off both ends of Sesame Street with locked construction barriers, meaning every resident was hemmed in and no delivery truck could have entered or exited without being logged by the city crew's overnight checkpoint.",
+    "description": "Sesame Street is draped in the warm golds of early autumn, but Cookie Monster's wailing has silenced the usual morning bustle. The municipal construction crew sealed both street exits at 9 p.m. with padlocked barriers and a staffed checkpoint, making the block a closed loop \u2014 nobody came in or went out unrecorded between 9 p.m. and 6 a.m. Every neighbour is therefore both a suspect and an inescapable witness to everyone else."
+  },
+  "crime": {
+    "type": "theft",
+    "what_happened": "Every cookie in Cookie Monster's legendary personal collection \u2014 approximately 400 individually catalogued cookies stored across three locked tins, a glass display case, and a purpose-built refrigerated vault behind his kitchen wall \u2014 was removed overnight without any sign of forced entry. The vault's combination was known only to Cookie Monster himself, yet it was found neatly closed and re-locked, suggesting the thief either knew the combination or obtained it through manipulation.",
+    "when": "Between 11 p.m. and 5 a.m. on a Tuesday night into Wednesday morning",
+    "initial_discovery": "Cookie Monster woke at 5 a.m. for his traditional pre-dawn cookie breakfast, opened his kitchen vault, and found it completely empty. He then checked every tin and the display case \u2014 all bare. His howl of anguish woke the entire street. Elmo, who lives next door, was first on the scene and called for an investigation."
+  },
+  "characters": [
+    {
+      "name": "Cookie Monster",
+      "role": "victim",
+      "occupation": "Sesame Street resident and self-described Cookie Connoisseur; maintains the block's most famous private cookie collection, frequently toured by neighbours and used as collateral in community bake-sale fundraising pledges",
+      "motive": "N/A \u2014 victim",
+      "alibi": "Asleep in his bedroom from approximately 10:30 p.m.; Elmo heard his trademark snoring through the shared wall continuously until the 5 a.m. wail, confirming he did not stir during the night",
+      "secret": "Cookie Monster recently took out a large informal loan from Mr. Hooper's Store's current owner, Alan, using the cookie collection as collateral. He had not told anyone the collection was effectively pledged as security, and the paperwork \u2014 signed three weeks ago \u2014 was tucked inside the vault itself. If the collection is gone, Alan can legally claim Cookie Monster's apartment furnishings as substitute collateral."
+    },
+    {
+      "name": "Grover",
+      "role": "suspect",
+      "occupation": "Part-time waiter at the Furry Arms Hotel and freelance 'Super Grover' neighbourhood hero; recently taken a second job as a night-shift courier for a snack-delivery startup called NomNom Express",
+      "motive": "Grover secretly agreed to supply NomNom Express with a legendary 'celebrity cookie collection' to use as a viral marketing stunt, promising his employer a large and authenticated haul by Wednesday morning in exchange for a substantial bonus that would pay off his overdue Furry Arms staff-uniform cleaning bills and a personal debt to Alan's store",
+      "alibi": "Claims he was completing NomNom Express delivery runs from 10 p.m. to 3 a.m. and has a digital dispatch log to prove it; however, the log shows a suspicious 90-minute gap between 11:15 p.m. and 12:45 a.m. where no deliveries were recorded and his scooter's GPS tracker shows it stationary two blocks away",
+      "secret": "Grover obtained Cookie Monster's vault combination two weeks ago by offering to 'help organise' the collection as a birthday surprise, during which Cookie Monster dictated the combination aloud. Grover wrote it on a blue notepad he still carries in his courier satchel, a page of which was found torn out and left near the vault."
+    },
+    {
+      "name": "Count von Count",
+      "role": "suspect",
+      "occupation": "Sesame Street's resident mathematician and number enthusiast; serves as the volunteer record-keeper for the Sesame Street Community Property Registry, which catalogues valuable collections owned by residents for insurance purposes",
+      "motive": "The Count's obsessive cataloguing hobby has curdled into a possessive fixation: he secretly believes Cookie Monster's collection, being the most numerically impressive set of countable objects on the street, rightfully belongs in his own tower where he could count them properly and forever. He has made two formal (and rejected) offers to purchase the collection in the past year.",
+      "alibi": "States he was in his tower all night counting a new shipment of 10,000 rubber bats, a task he says took until 4 a.m.; his manservant Igor confirms this, but Igor is notoriously loyal and has covered for the Count before",
+      "secret": "The Count used his Registry access to make a detailed floor-plan schematic of Cookie Monster's kitchen and vault alcove, under the guise of updating insurance records three months ago. A copy of this schematic \u2014 annotated with the words 'optimal removal route' in purple ink \u2014 was found folded inside the Count's Registry binder, which he left on the community notice-board the day before the theft."
+    },
+    {
+      "name": "Rosita",
+      "role": "suspect",
+      "occupation": "Music teacher and cultural-exchange coordinator at the Sesame Street Community Centre; recently appointed head of the Annual Sesame Street Bake Sale, which was three days away from its fundraising deadline",
+      "motive": "Rosita had publicly promised the community centre's board that the bake sale would raise $500 to fix the centre's leaking roof, pledging Cookie Monster's collection as the star auction lot with his verbal permission. She secretly discovered that Cookie Monster had already pledged the same collection as loan collateral to Alan, meaning the auction promise was worthless and she would be exposed as incompetent \u2014 or worse, dishonest \u2014 before the entire street. Stealing the cookies first and hiding them, she reasoned, would let her stage a 'heroic recovery' and still run the auction before Alan could act on his collateral claim.",
+      "alibi": "Says she was at the community centre until midnight decorating for the bake sale, then walked home alone and went straight to bed; a neighbour, Mr. Noodle, says he saw a figure carrying a large cloth bag near the community centre around 11:30 p.m. but cannot confirm it was Rosita",
+      "secret": "Rosita has a spare key to Cookie Monster's apartment \u2014 he gave it to her six months ago so she could store bake-sale supplies in his hallway cupboard. She never returned it and never mentioned it to anyone. The key is still on her keyring, identifiable by the cookie-shaped keychain Cookie Monster would recognise immediately."
+    },
+    {
+      "name": "Elmo",
+      "role": "witness",
+      "occupation": "Next-door neighbour and Cookie Monster's closest friend on the street; currently a junior volunteer for the Sesame Street Neighbourhood Watch programme",
+      "motive": "N/A \u2014 witness",
+      "alibi": "Was in his apartment all night; heard Cookie Monster snoring through the wall and went to sleep around 10 p.m.; woke to the 5 a.m. wail and immediately entered Cookie Monster's apartment (the front door was unlocked) to find him in the empty kitchen",
+      "secret": "Elmo saw Rosita's distinctive turquoise scarf snagged on Cookie Monster's front-door letterbox when he arrived at 5 a.m., but quietly pocketed it because he did not want to believe Rosita could be guilty; he has since hidden it under his own doormat and has not mentioned it to anyone."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "Torn Page from a Blue Notepad",
+      "description": "A single page torn from a small blue spiral notepad, found on the floor of Cookie Monster's kitchen beside the vault door. It bears seven hand-written digits \u2014 matching Cookie Monster's vault combination exactly \u2014 written in Grover's rounded, looping handwriting. The page was identified as matching the notepad Grover carries in his courier satchel, which still has the indented impression of the missing page.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E2",
+      "name": "Turquoise Scarf Fragment",
+      "description": "A short fringe of turquoise wool caught on the sharp inner edge of Cookie Monster's brass letterbox slot, found at the front door. The fringe matches the distinctive hand-crocheted border of Rosita's favourite scarf, which she is known to wear every evening. It indicates that someone wearing that scarf pushed through or handled the front door during the night.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E3",
+      "name": "Grover's NomNom Express Dispatch Log \u2014 90-Minute Gap",
+      "description": "A printed GPS-corroborated delivery manifest retrieved from NomNom Express's dispatcher showing Grover's route on the night of the theft. The log has a conspicuous 90-minute blank between 11:15 p.m. and 12:45 a.m., and the GPS entry shows his scooter was parked stationary on a side street two blocks from Sesame Street \u2014 within easy walking distance of Cookie Monster's apartment. The dispatcher confirmed the gap is unexplained and Grover filed no note or break request for that window.",
+      "type": "documentary",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E4",
+      "name": "Annotated Floor-Plan Schematic in Count's Registry Binder",
+      "description": "A folded A4 sheet found inside Count von Count's Community Property Registry binder, which he left on the community notice-board the evening before the theft. The sheet shows a detailed floor plan of Cookie Monster's kitchen and vault alcove with handwritten annotations in purple ink, including arrows labelled 'optimal removal route' and a note reading 'approx. 400 units \u2014 three trips.' Although suspicious, the Count annotated all registered properties similarly for 'numerical efficiency studies,' and no physical evidence places him at the scene that night.",
+      "type": "documentary",
+      "relevance": "red_herring"
+    },
+    {
+      "id": "E5",
+      "name": "Rosita's Spare Apartment Key on Cookie-Shaped Keychain",
+      "description": "A brass key on a ceramic cookie-shaped keychain \u2014 clearly identifiable as the spare key Cookie Monster gave Rosita six months ago \u2014 found on Rosita's keyring when she is asked to show her keys during questioning. Cookie Monster immediately recognises both the key and the keychain, which he made himself. The key explains how entry was made without forced entry, and Rosita initially claims she forgot she still had it.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E6",
+      "name": "Large Empty Canvas Tote Bags Behind Community Centre Bins",
+      "description": "Three oversized canvas tote bags bearing the NomNom Express logo found stuffed behind the recycling bins at the rear of the community centre at 6 a.m. the morning after the theft. The bags smell strongly of chocolate chip and oatmeal raisin cookies and contain a few crumbs consistent with Cookie Monster's collection inventory. Their presence at the community centre links both Grover (as a NomNom courier) and Rosita (who had building access) to the same location.",
+      "type": "physical",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E7",
+      "name": "Community Centre Bake-Sale Pledge Ledger",
+      "description": "A handwritten fundraising ledger recovered from Rosita's desk at the community centre, showing that she had publicly committed to auctioning Cookie Monster's cookie collection as the headline lot, with an estimated value of $500 annotated beside it. A separate sticky note clipped to the ledger reads 'C.M. collection = Alan's collateral \u2014 cannot auction \u2014 PROBLEM.' This note reveals Rosita's awareness of the double-pledge conflict and documents her motive in her own handwriting.",
+      "type": "documentary",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E8",
+      "name": "Cookie Monster's Vault Combination Paperwork Inside the Vault",
+      "description": "Alan's informal loan agreement, found still inside the empty vault, lists the vault combination in plain text in a clause describing the collateral. The document is dated three weeks prior and is signed by both Cookie Monster and Alan. Its presence undisturbed inside the re-locked vault confirms that the thief used the combination to open and re-lock the vault \u2014 they did not break in \u2014 and that whoever took the cookies was sophisticated enough to re-secure the door. It also surfaces Cookie Monster's secret financial motive for wanting the collection to 'disappear' before Alan could act, briefly making him appear complicit before alibi evidence clears him.",
+      "type": "documentary",
+      "relevance": "supporting"
+    }
+  ],
+  "solution": {
+    "culprit": "Rosita",
+    "method": "Rosita used the spare apartment key she had never returned to enter Cookie Monster's apartment silently after midnight. She had learned the vault combination by reading the loan paperwork Cookie Monster carelessly showed her when asking for bake-sale fundraising advice two weeks earlier. She opened the vault and removed all cookies into the three NomNom Express canvas tote bags she had borrowed from Grover (under the pretence of needing large bags for bake-sale decoration transport), carried them to the community centre, and stored them in the locked supply room, intending to stage a 'recovery' the next day. She re-locked the vault and let herself out, not realising her scarf caught on the letterbox. Grover is implicated circumstantially \u2014 his combination note and the NomNom bags \u2014 but he was not present; Rosita borrowed the bags and accidentally created a false trail pointing at Grover.",
+    "motive": "Rosita had double-pledged Cookie Monster's collection \u2014 once as a bake-sale auction lot (with his verbal permission) and discovered it was already pledged as loan collateral to Alan. To avoid public humiliation and accusations of dishonesty before the community board, she stole the collection herself, planning to hide it briefly and then 'find' it heroically in time to run the auction before Alan could exercise his collateral claim, resolving both problems at once.",
+    "key_evidence": [
+      "E2",
+      "E5"
+    ],
+    "how_to_deduce": "Step 1 \u2014 Establish that no outsider could have committed the theft. The construction crew's sealed checkpoints and staffed overnight log confirm no vehicle or person entered or exited Sesame Street between 9 p.m. and 6 a.m., so the thief must be a current resident of the block. Step 2 \u2014 Eliminate forced-entry possibilities. The vault was found re-locked and undamaged; the front door showed no forced entry. This means the thief had both a working key to the apartment (E5) and knowledge of the vault combination (supported by E1 and E8). Only Rosita possessed a spare key (E5), identified by Cookie Monster on sight. Step 3 \u2014 Confirm Rosita's physical presence at the scene. The turquoise scarf fringe caught on the letterbox (E2) was witnessed by Elmo (who concealed it) and can be matched to the scarf Rosita was wearing that evening, placing her at Cookie Monster's front door during the night. Step 4 \u2014 Establish motive through documentary evidence. Rosita's own bake-sale ledger (E7), particularly the sticky note reading 'C.M. collection = Alan's collateral \u2014 cannot auction \u2014 PROBLEM,' proves she knew about the conflict and had a concrete personal reason to remove the collection before Alan could act. Step 5 \u2014 Resolve the Grover red herring. Although E3 (the GPS gap) and E4 (the floor-plan schematic) point suspiciously at Grover and the Count respectively, neither has a key to the apartment. The NomNom bags (E6) bear Grover's employer's logo but Rosita's own testimony, once confronted with E2 and E5 together, confirms she borrowed the bags from Grover's supply cupboard at the community centre \u2014 a detail Grover's dispatcher corroborates, as Rosita signed a bag-loan form. Grover's gap and notepad note (E1) show he wrote down the combination carelessly but left the notepad in his satchel; the torn page was left at the scene because Rosita tore it out to use as a memory aid and dropped it. The combination of the spare key, the scarf fragment, and the motive ledger uniquely points to Rosita as the sole culprit."
+  },
+  "gameplay_notes": {
+    "difficulty": "MEDIUM",
+    "estimated_playtime": "60\u201390 minutes",
+    "key_twists": [
+      "Elmo, the first witness on the scene, deliberately concealed the turquoise scarf fragment because he did not want to implicate Rosita \u2014 players must press him with specific questions about what he saw to unlock E2.",
+      "Grover appears strongly guilty due to his 90-minute GPS gap, the torn combination note in his handwriting, and the NomNom bags at the scene, making him the primary false suspect until players trace the bag-loan form and confirm Rosita borrowed them.",
+      "Cookie Monster's loan paperwork inside the vault (E8) briefly makes him look complicit in a staged theft to escape Alan's collateral claim, adding a second false-suspect thread before his continuous snoring alibi \u2014 corroborated by Elmo through the shared wall \u2014 eliminates him.",
+      "Count von Count's annotated floor-plan schematic (E4) is a genuine but innocent red herring: he does this for every registered collection, and his manservant Igor's alibi, while suspicious, is ultimately corroborated by a time-stamped bat-delivery receipt signed at 11 p.m. and a 4 a.m. counting-completion log.",
+      "The cookies are found intact in the community centre supply room \u2014 Rosita never intended to destroy or sell them, only to hide and 'recover' them, which means Cookie Monster gets his collection back once the case is solved."
+    ]
+  },
+  "_meta": {
+    "num_players": 4,
+    "setting_input": "Sesame Street \u2014 Cookie Monster's brownstone apartment and the surrounding neighbourhood"
+  },
+  "_provenance": {
+    "recipe": "corpus_0127_ebo(1) + corpus_0274_ebo(2) + corpus_0088_ebo(3) + corpus_0217_ebo(4) + corpus_0165_ebo(5) + corpus_0055_ebo(6) + corpus_0121_ebo(7) + corpus_0202_ebo(8)",
+    "slots": [
+      {
+        "source_id": "corpus_0127_ebo",
+        "part_index": 1,
+        "part_type": "crime_type"
+      },
+      {
+        "source_id": "corpus_0274_ebo",
+        "part_index": 2,
+        "part_type": "setting_element"
+      },
+      {
+        "source_id": "corpus_0088_ebo",
+        "part_index": 3,
+        "part_type": "motive"
+      },
+      {
+        "source_id": "corpus_0217_ebo",
+        "part_index": 4,
+        "part_type": "suspect_archetype"
+      },
+      {
+        "source_id": "corpus_0165_ebo",
+        "part_index": 5,
+        "part_type": "red_herring"
+      },
+      {
+        "source_id": "corpus_0055_ebo",
+        "part_index": 6,
+        "part_type": "reveal_mechanic"
+      },
+      {
+        "source_id": "corpus_0121_ebo",
+        "part_index": 7,
+        "part_type": "social_dynamic"
+      },
+      {
+        "source_id": "corpus_0202_ebo",
+        "part_index": 8,
+        "part_type": "evidence_type"
+      }
+    ],
+    "target_setting": "Sesame Street \u2014 Cookie Monster's brownstone apartment and the surrounding neighbourhood",
+    "generated_title": ""
+  },
+  "_coherence": {
+    "passed": true,
+    "blocking": 0,
+    "warnings": 0,
+    "witness_gaps": []
+  }
+}

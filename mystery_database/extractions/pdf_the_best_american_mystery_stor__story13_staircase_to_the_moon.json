@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder of Shinju Nakagawa by drowning/suffocation on Broome beach. Central question: Who killed the famous pearl model and why was a valuable South Sea pearl found in her mouth?",
+    "confidence": "high",
+    "quote": "My sister died here in Broome two months ago, the middle of January... an American couple on their honeymoon found my sister's body on the beach."
+  },
+  "victim": {
+    "value": "Shinju Nakagawa, famous jewelry model and twin sister. Killable because she was blackmailing Captain Lafroy over a rape he committed years earlier, and she discovered a stolen valuable pearl and became entangled in a theft scheme.",
+    "confidence": "high",
+    "quote": "Shinju was blackmailing me. Needed big bikkies for her habit... She threatened to ruin me. A rape charge by BSSP's favorite model? I'd lose everything."
+  },
+  "closed_world": {
+    "value": "Broome, Australia\u2014a small pearling town where characters are bound by the pearl industry, family ties, and limited escape routes. The crime centers on the pearling ship Adelaide and Sunset Point beach location.",
+    "confidence": "high",
+    "quote": "Broome was closing in on me... The sandy path to Sunset Point ended at a rock outcropping that rose high above the crystalline blue water."
+  },
+  "culprit_and_motive": {
+    "value": "Captain Lafroy (Tom Sr.), the ship's captain. Motive: Shinju was blackmailing him over a rape he committed on her years earlier; she also discovered a stolen pearl and threatened to expose him, jeopardizing his pension, reputation, and freedom. Financial desperation from wife's cancer bills compounded the motive.",
+    "confidence": "high",
+    "quote": "I lost control. That pearl was worth a mint... she'd put the pearl in her mouth and choked on it!... My wife's cancer bills wiped out our savings."
+  },
+  "resolution": {
+    "value": "Kashiko discovers the truth through the photo of Shinju holding the pearl. Confronts Captain Lafroy at Sunset Point. During a struggle, she slices his ear with a knife; both fall from the cliff. Lafroy dies; Kashiko survives. She confesses to detectives and provides the full account, leading to the case's closure.",
+    "confidence": "high",
+    "quote": "the photo popped open on the screen. I knew that hand as well as I knew my own. In her palm, Shinju held the pearl that had killed her... A second later I heard the captain's body hit the limestone below with a gruesome crack."
+  },
+  "investigator": {
+    "value": "Kashiko Nakagawa, the victim's twin sister and a pearl diver. She is simultaneously a suspect (due to her visible resentment of Shinju and presence at the funeral), a family member seeking answers, and an amateur detective investigating the pearl's origin through her work on the Adelaide.",
+    "confidence": "high",
+    "quote": "But maybe I could do something to help find my sister's killer. The pearl was unique. Only a few companies could have produced it... I was headed back out to sea."
+  },
+  "suspect_architecture": {
+    "value": "Three suspects differentiated by role and proximity: Captain Lafroy (killer, means/motive/opportunity \u2014 pearl theft, rape cover-up, financial ruin); Crowe (co-conspirator in pearl theft and diver's murder); Tom Lafroy Jr. (ambiguous informant, withholds information, emotional entanglement with investigator). Diver Simms is a victim falsely positionable as a loose-end criminal.",
+    "confidence": "high",
+    "quote": "\"Da says he can't get the Indian Princess records from BSSP... Sounds like it might have been a stray... So I went back to Jack's.\""
+  },
+  "red_herring": {
+    "value": "Shinju's death is staged to look like an accidental drowning \u2014 her body found on the beach during the chaotic Staircase to the Moon tourist season, with her drug addiction providing a ready alternative explanation for erratic behavior and death. The pearl swallowed is initially hidden; Lafroy himself is misdirected, believing she threw it off the cliff.",
+    "confidence": "high",
+    "quote": "\"He snorted under his breath. 'But she tricked me. She must have thrown a shell.'... She'd put the pearl in her mouth and choked on it!\""
+  },
+  "clue_fairness": {
+    "value": "The reader is shown Kashiko's premonitory wake-up at 10:42 PM on the Adelaide before the time of death is confirmed; the morgue attendant's drug-addled state and evasion are presented in scene; the twin-connection dream in October is narrated before the October diver's death at Coulomb Point is revealed, allowing the reader to correlate timelines.",
+    "confidence": "medium",
+    "quote": "\"I woke up gasping two nights before in my bunk on the Adelaide. The clock had glowed 10:42 P.M.\""
+  },
+  "social_world": {
+    "value": "The Australian pearling industry as a rigid patronage hierarchy: BSSP controls models, divers, and captains; captains guard oyster-bed coordinates and company records; the Lafroy family's captain status grants access and authority that suppresses investigation. Economic desperation (medical debt, lost savings) sits beneath industry prestige, enabling corruption.",
+    "confidence": "high",
+    "quote": "\"The company's worried the pearl was stolen... Da says he's tried contacting a couple of his captain buddies, but everyone's clamming up.\""
+  },
+  "alibi": {
+    "value": "Captain Lafroy has no explicit alibi scene, but his authority over the ship creates structural cover \u2014 he controls coordinates, dive assignments, and equipment, making sabotage of Kashiko's air hose unverifiable. His presence at Sunset Point is explained away in advance as plausible given ship operations, and he pre-constructs Kashiko's death as a nitrogen-poisoning accident.",
+    "confidence": "medium",
+    "quote": "\"You passed out from nitrogen poisoning. You fell, hitting your head against the rocks. A tragedy.\""
+  },
+  "reveal_mechanic": {
+    "value": "The physical pearl itself is the reveal mechanism: Shinju hid it in her mouth and died \u2014 it was found in her body and photographed. Kashiko recognizes her twin's hand in a photograph on a suspect's computer, confirming Shinju's knowing complicity and the pearl's provenance. The pearl connects theft, murder motive, and the killer's identity in one object.",
+    "confidence": "high",
+    "quote": "\"The photo popped open on the screen. I knew that hand as well as I knew my own. In her palm, Shinju held the pearl that had killed her.\""
+  },
+  "media_and_audience": {
+    "value": "Shinju's fame as a pearl-jewelry model for BSSP amplifies the murder's public dimension \u2014 gossip magazines, the Herald, and international campaigns make her death spectacular. Kashiko's own image (scar, leathers, pearls at the funeral) becomes tabloid fodder, framing family grief as spectacle and deflecting scrutiny from the industry onto personal dysfunction.",
+    "confidence": "high",
+    "quote": "\"Photos of me wearing her famous pearls and straddling my Ducati at the front of the motorcade plastered the Herald and later the Australian gossip magazines.\""
+  },
+  "investigator_wound": {
+    "value": "Kashiko carries a facial scar inflicted by Shinju to disfigure her and thereby save her from being raped by Lafroy \u2014 a wound she spent years misreading as cruelty or resentment. The case forces her to confront that she never forgave her sister for an act of self-sacrifice, and that her estrangement from Shinju may have contributed to her sister's isolation and death.",
+    "confidence": "high",
+    "quote": "\"She cut my face to save me from the same fate... I'd never forgiven Shinju for the ink-vine scar that runs down the right side of my face.\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "filename": "The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Staircase\tto\tthe\tMoon",
+    "author": "THERESA\tE.\tLEHR",
+    "anthology_title": "The_Best_American_Mystery_Stories_215_-_James_Patterson",
+    "story_index": 13,
+    "story_count": 19
+  }
+}

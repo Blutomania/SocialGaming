@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "An unnamed boy held captive in a basement, restrained by metal cuffs to a bed in a soundproofed room",
+    "confidence": "high",
+    "quote": "the boy restrained there, all skin and skinny bones, naked beneath a pile of blankets and howling in the black basement air"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Kelly frees the boy from the metal cuffs using a hacksaw, carries him to his truck, and delivers him to the hospital emergency room",
+    "confidence": "high",
+    "quote": "he would be inside, passing through the bright and sterile and inextinguishable light of the hospital, toward the company of others"
+  },
+  "investigator": {
+    "value": "Kelly, a metal scrapper who discovers the boy while dismantling the abandoned blue house; becomes the boy's rescuer rather than an investigator",
+    "confidence": "high",
+    "quote": "It wasn't until he cut the padlock's loop and opened the basement door that he heard the boy's voice"
+  },
+  "suspect_architecture": {
+    "value": "No traditional suspect architecture present. The perpetrator of the boy's captivity is entirely absent and unidentified; Kelly is the sole active agent, functioning as rescuer rather than investigator. No cast of suspects with differentiated means/motive/opportunity is constructed.",
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "The soundproofed basement functions as an inadvertent structural misdirection: Kelly interprets the house's silence as ordinary winter hush, not concealment of a crime. The boarding, the padlock, and the scrappable materials all redirect attention toward routine urban decay rather than active imprisonment.",
+    "confidence": "medium",
+    "quote": "He worked quietly in what he thought was the wintry hush of the house, but later he would be told about the amateur soundproofing"
+  },
+  "clue_fairness": {
+    "value": "Clues are presented to the reader simultaneously with Kelly: the padlocked basement door, the soundproofing materials, the copper plumbing that draws him downward are all described in scene before their significance is resolved. The locked door is shown before Kelly cuts it.",
+    "confidence": "medium",
+    "quote": "a basement door, closed and latched with a padlock. He'd cut the lock later, after the other work was done."
+  },
+  "social_world": {
+    "value": "Post-industrial Detroit urban decay with a stark underclass economic structure: scrappers subsisting on copper and steel salvage, abandoned zones, unemployed migrants. Kelly occupies the lowest rung \u2014 illegal scrapper \u2014 while institutional systems (hospitals, police) exist only at the story's edge.",
+    "confidence": "high",
+    "quote": "If he had been able to find work instead of resorting to scrapping. If there had not been the fire in the plant so that afterward he worked alone."
+  },
+  "alibi": {
+    "value": "Kelly's own presence at the scene is preemptively complicated: the narrative notes his footprints will be buried by snow and that 'afterward he wouldn't be able to convince himself there had been others, no matter how insistently he was asked' \u2014 foreshadowing that Kelly will need to account for his whereabouts.",
+    "confidence": "medium",
+    "quote": "Already his first footprints were buried beneath the accumulation and afterward he wouldn't be able to convince himself there had been others"
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is sensory and incremental rather than deductive: the boy's existence is disclosed through sound (the hoarse cry), then smell (captivity, sweat, piss), then touch (the cuffs hidden under blankets). Each sense layer confirms and deepens the horror, replacing abstraction with undeniable physical presence.",
+    "confidence": "high",
+    "quote": "this was not the incomprehensible idea of a boy abducted but the presence of such a boy, real enough."
+  },
+  "media_and_audience": {
+    "value": "Largely absent as an active element, but gestured at through future legal/social consequences: 'there would be no hiding what he'd done,' 'other uses for the basement, what might happen to Kelly if they were caught there.' Public narrative and institutional response exist only as dread on the horizon.",
+    "confidence": "low",
+    "quote": "there would be no hiding what he'd done"
+  },
+  "investigator_wound": {
+    "value": "Kelly's wound is moral-existential: a man who believes in 'the grimness of the world, the great loneliness of the vacuum' and doubts whether goodness buys anything, forced by accident into an act of rescue that collapses his self-conception as someone without responsibility or connection to others.",
+    "confidence": "high",
+    "quote": "You could be good but what did it buy you. You could be good and it meant more precisely because it bought you nothing."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "text_len": 14653,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "MATT BELL",
+    "anthology_title": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George",
+    "story_index": 3,
+    "story_count": 22
+  }
+}

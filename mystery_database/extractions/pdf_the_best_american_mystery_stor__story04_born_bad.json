@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Series of armed robberies (jewelry stores and boutiques) across multiple states by Liz Polemus; central question: will the detective daughter apprehend her criminal mother, and what will be the outcome of their confrontation?",
+    "confidence": "high",
+    "quote": "string of recent robberies in the Northwest and was living under a fake name in a bungalow here"
+  },
+  "victim": {
+    "value": "Liz Polemus\u2014a career criminal and master fence who raised her daughter Beth Anne in a criminal enterprise, attempting to induct her into armed robbery and burglary; 'killable' because she murdered her husband and represents the corrupting force that nearly destroyed her daughter's life.",
+    "confidence": "high",
+    "quote": "She'd managed to escape. She'd left Michigan for Portland, where she and Brad had started up her operation again"
+  },
+  "closed_world": {
+    "value": "Liz's isolated bungalow in Portland, Oregon\u2014a small, remote house miles from the nearest suburb, surrounded by pine forest, during a rainstorm. The confrontation unfolds within this confined domestic space.",
+    "confidence": "high",
+    "quote": "a small place miles from the nearest suburb...The rain continued to fall steadily, tumbling into the pines"
+  },
+  "culprit_and_motive": {
+    "value": "Beth Anne Polemus (detective, daughter) attempts to apprehend her mother Liz Polemus (career criminal). Liz's motive for potential violence: self-preservation and maintaining her criminal operation. Beth Anne's motive: duty as a law enforcement officer and personal reckoning with her corrupted childhood.",
+    "confidence": "high",
+    "quote": "A gun appeared in her daughter's hand and the black muzzle lolled in Liz's direction. 'Outside,' she whispered."
+  },
+  "resolution": {
+    "value": "Beth Anne apprehends Liz at gunpoint and takes her into custody. Order is restored through law enforcement authority; Liz is arrested and faces extradition to Michigan on murder charges (her husband's death). The resolution occurs off-page but is confirmed in dialogue with Officer Heath.",
+    "confidence": "high",
+    "quote": "the squad car bearing her mother had vanished some minutes ago...Wait'll you read the extradition order from Michigan"
+  },
+  "investigator": {
+    "value": "Beth Anne Polemus\u2014a Seattle police detective and the estranged daughter of the criminal. She serves as both investigator and personal participant in the mystery, experiencing the case through the lens of familial betrayal and her own struggle to escape her parents' legacy.",
+    "confidence": "high",
+    "quote": "her daughter was a detective with the Seattle police department and had helicoptered Beth Anne to Portland airport"
+  },
+  "suspect_architecture": {
+    "value": "Two principals only: Liz Polemus (presented as victim/mother, revealed as career criminal mastermind) and Beth Anne (presented as threatening daughter, revealed as detective). No ensemble cast; the story inverts the single suspect-victim dyad entirely at the twist.",
+    "confidence": "high",
+    "quote": "An informant had told the Oregon State Police that Liz Polemus was the one behind the string of recent robberies"
+  },
+  "red_herring": {
+    "value": "The entire first-person narrative perspective is a sustained red herring: Liz's interiority frames Beth Anne as the dangerous criminal antagonist \u2014 the gun in the car, the robbery flashback, the threat \u2014 while concealing that Liz herself is the wanted felon and Beth Anne the arresting officer.",
+    "confidence": "high",
+    "quote": "her heart shivered at the sight: a jacket, a clutter of papers and half-hidden beneath them a pistol and some plastic bags"
+  },
+  "clue_fairness": {
+    "value": "Clues are embedded but disguised by focalization: the injured arm ('never healed properly') signals the jewelry-store shooting; the sewing skills + designer gowns signal stolen-goods alteration; the lullaby sung to distract the child from ammunition reloading is disclosed only at the end \u2014 all were present in the text for the reader to interpret.",
+    "confidence": "high",
+    "quote": "She was reloading ammunition... She said if I didn't touch them she'd sing to me."
+  },
+  "social_world": {
+    "value": "Intergenerational criminal family enterprise (warehouse fencing operation inherited across three generations) versus law enforcement institutions. Class markers \u2014 frugal young mother, Formica table, cramped house \u2014 are weaponised as cover identity, inverting the expected social legibility of respectability.",
+    "confidence": "high",
+    "quote": "My grandfather? She nodded. That warehouse\u2026full of perped merch. My father owned a warehouse where they fenced the stuff."
+  },
+  "alibi": {
+    "value": "Liz's entire domestic persona \u2014 grieving widow, skilled seamstress, reclusive homemaker \u2014 functions as a sustained false alibi for her criminal identity. The alibi collapses via the extradition order, the informant tip, and Beth Anne's testimony about her childhood.",
+    "confidence": "high",
+    "quote": "She'd left Michigan for Portland, where she and Brad had started up her operation again, sticking with her forte\u2014knocking over jewelry stores"
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is delivered through Beth Anne's retrospective testimony to Detective Heath after the arrest, dismantling each element of Liz's sympathetic self-presentation scene by scene. The final image \u2014 the lullaby sung over ammunition reloading \u2014 provides the psychological capstone that recontextualises the story's opening.",
+    "confidence": "high",
+    "quote": "My mother was singing to me\u2026 She was reloading ammunition\u2026 I wanted to play with them. She said if I didn't touch them she'd sing."
+  },
+  "media_and_audience": {
+    "value": "Institutional framing is minimal and post-hoc: the crime is known only through OSP detective channels and an informant tip. No press or public dimension is dramatised. The story's 'audience' is entirely internal \u2014 the reader misled by Liz's self-narration.",
+    "confidence": "low",
+    "quote": "An informant had told the Oregon State Police that Liz Polemus was the one behind the string of recent robberies in the Northwest"
+  },
+  "investigator_wound": {
+    "value": "Beth Anne's wound is her criminal family of origin \u2014 she is investigating and arresting her own mother. Her entire life trajectory (volunteering, Latin club, criminal justice degree, therapy) is a flight from inherited criminality. The case forces her to confront the family she built her identity by escaping.",
+    "confidence": "high",
+    "quote": "I pulled in and walked up to the grave and tried to forgive him. But I couldn't\u2026 That's when I decided I had to leave Michigan."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Born Bad",
+    "author": "JEFFERY DEAVER",
+    "anthology_title": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow",
+    "story_index": 4,
+    "story_count": 19
+  }
+}

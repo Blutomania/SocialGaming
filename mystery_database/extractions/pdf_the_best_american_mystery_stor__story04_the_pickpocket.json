@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Christian Richelieu, a professional pickpocket narrating three anecdotes from his career",
+    "confidence": "high",
+    "quote": "MY name is Christian Richelieu... I have been a pickpocket since I was a boy"
+  },
+  "suspect_architecture": {
+    "value": "No traditional murder-mystery suspect cast. The narrator Christian Richelieu is both perpetrator and observer; Sebastien (young pickpocket from Lyon) emerges as the sole antagonist in the final incident, differentiated by greed and youth versus the narrator's disciplined professionalism. The 'victims' are unnamed marks with no agency.",
+    "confidence": "low",
+    "quote": "He said he intended to get rich quick and retire to Corsica. Before the age of thirty, he said."
+  },
+  "red_herring": {
+    "value": "The narrator's elaborate mentorship overture to Sebastien \u2014 sharing professional wisdom, buying him dinner, walking in the Tuileries \u2014 functions as misdirection: it appears to be a redemptive passing-of-the-torch moment, concealing that Sebastien is simultaneously picking the narrator's pocket during their walk.",
+    "confidence": "medium",
+    "quote": "Afterward we walked in the Jardin des Tuileries and I gave him some pointers... Repeating them brought back fond memories of Moses."
+  },
+  "clue_fairness": {
+    "value": "The clue is embedded but present: the narrator notes his afternoon earnings were placed in a coat pocket, and the walk with Sebastien is described in detail before the discovery. The reader has access to the same spatial and temporal information the narrator does, though the theft during the walk is only confirmed retrospectively.",
+    "confidence": "medium",
+    "quote": "I reached into the pocket where I had put my afternoon earnings. The pocket was empty."
+  },
+  "social_world": {
+    "value": "A stratified Parisian underworld with its own craft hierarchy: old-school voleurs \u00e0 la tire (disciplined, artisanal) versus modern clumsy violent amateurs. Overlaid on French class decline, immigrant communities (pied-noirs, South Americans, North Africans), tourists as marks sorted by nationality, and police as background power.",
+    "confidence": "high",
+    "quote": "Back then the practitioners of my trade respected the craft... Even a pickpocket took pride in his profession."
+  },
+  "alibi": {
+    "value": "When the narrator approaches Sebastien after the bungled pick, Sebastien immediately constructs a false alibi \u2014 denying he was near Place des Pyramides all day \u2014 which the narrator grudgingly acknowledges as showing good judgment. No alibi is tested forensically; it is noted as instinct.",
+    "confidence": "high",
+    "quote": "He denied the entire affair, claimed he hadn't been near the Place des Pyramides all day. He was adamant."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is physical and ironic: the narrator reaches into his own coat pocket and finds it empty, immediately recognising Sebastien as the thief. No investigation occurs; the solution arrives through the narrator's own bodily discovery, inverting his professional expertise against himself.",
+    "confidence": "high",
+    "quote": "As soon as I relaxed, the most unusual feeling came over me... I reached into the pocket where I had put my afternoon earnings. The pocket was empty."
+  },
+  "media_and_audience": {
+    "value": "No press or institutional framing. The story is narrated directly by the criminal as a first-person memoir. The 'audience' is an implied listener to whom the narrator addresses his craft philosophy. Victims who boast of being pickpocketed are noted as creating a vicarious public narrative around the crime.",
+    "confidence": "medium",
+    "quote": "I have overheard victims of pickpockets actually boast of their misfortune, having received a kind of vicarious thrill."
+  },
+  "investigator_wound": {
+    "value": "The narrator's wound is professional pride and the belief that mastery confers invulnerability. His supreme confidence on the day of the final incident \u2014 taking a cop's wallet, feeling 'at the top of my game' \u2014 is the exact psychological condition Sebastien exploits. The craft that defines his identity becomes the vector of his humiliation.",
+    "confidence": "high",
+    "quote": "Never had I worked with such precision or felt so much the master of my craft... Such insolence! How audacious!"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "filename": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The\tPickpocket",
+    "author": "CHRISTOPHER\tCOOK",
+    "anthology_title": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly",
+    "story_index": 4,
+    "story_count": 23
+  }
+}

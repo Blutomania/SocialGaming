@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Rape and murder of Darathea Mondragon, 18, near Raton, New Mexico rest stop; central question: who actually committed the crime, given circumstantial evidence points to innocent man?",
+    "confidence": "high",
+    "quote": "a woman named Darathea Mondragon had been raped and murdered by a person or persons unknown...The body was left by the road fifty yards from the rest stop."
+  },
+  "victim": {
+    "value": "Darathea Mondragon, 18-year-old from Texas hitchhiking to Rainbow Gathering; killed near rest stop where Kent ate lunch; innocuous drifter with no apparent connection to Kent",
+    "confidence": "high",
+    "quote": "a woman named Darathea Mondragon had been raped and murdered...She was eighteen, from Texas, and had last been heard of the previous day in El Paso."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Unknown; culprit never identified. Kent is innocent but suspected based on circumstantial evidence (fingerprints on Dr Pepper bottle). Ruiz and subsequent detectives pursue Kent despite lack of forensic or witness evidence.",
+    "confidence": "medium",
+    "quote": "Pity no witness had come forward, no forensic evidence pinned Kent to the crime. So the detective, along with his deputy, Lazaroff, set about getting the man to confess."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Kent himself\u2014the innocent suspect who becomes the lens through which reader experiences the mystery. Not an official investigator but rather the human subject of investigation.",
+    "confidence": "high",
+    "quote": "Kent wasn't sure where he'd been at that precise time...Ruiz trusted his hunch. He knew Kent was the one."
+  },
+  "suspect_architecture": {
+    "value": "Single wrongly-identified suspect (Kent) with no other suspects developed; the real perpetrator is entirely absent \u2014 'person or persons unknown.' Kent is differentiated by prior record and proximity, not evidence. The 'other man' (Dionne's other lover) is gestured at but never investigated.",
+    "confidence": "high",
+    "quote": "There were no further clues, no other potential suspects to consider."
+  },
+  "red_herring": {
+    "value": "Kent's criminal record and his presence near the crime scene function as the story's red herring \u2014 his prior drug/car-theft conviction and fingerprints on the Dr Pepper can are treated as guilt indicators, misdirecting detectives (and potentially readers) from the actual unknown perpetrator.",
+    "confidence": "high",
+    "quote": "Ruiz could smell Kent's guilt just looking at the printout of his priors."
+  },
+  "clue_fairness": {
+    "value": "The story is literary fiction rather than a fair-play mystery; clues are not structured for reader deduction. The key exculpatory fact \u2014 that Kent left the rest stop approximately one hour before the murder \u2014 is available to the reader but is buried and never formally foregrounded as a solvable puzzle.",
+    "confidence": "low",
+    "quote": "approximately one hour after he'd finished his lunch, less than half a mile away, a woman named Darathea Mondragon had been raped and murdered"
+  },
+  "social_world": {
+    "value": "Layered ethnic and class hierarchy in New Mexico: Hispanics vs. Latinos, Anglo institutional power (police, FBI, realtors), undocumented Mexican immigrants (Maria/Guadalupe's debt bondage to her cousin), and the working poor (truckers, seasonal laborers). Police authority operates with near-impunity over those with prior records.",
+    "confidence": "high",
+    "quote": "His ancestors had been in New Mexico before it became part of the United States... Kent plea-bargained it down to a count of possession."
+  },
+  "alibi": {
+    "value": "Kent's alibi is genuine but weak: he was driving south of the state line toward Taos around the time of the murder, having left the rest stop roughly an hour before it occurred. No corroborating witness exists. The alibi is never formally verified or destroyed \u2014 it simply cannot be proved.",
+    "confidence": "high",
+    "quote": "he must have been well south of the state line, heading toward Taos... He'd parked the truck near Raton."
+  },
+  "reveal_mechanic": {
+    "value": "There is no formal reveal; the story inverts the mystery genre \u2014 the 'solution' is that there is no solution. The crystal ball / tarot reading scene with Maria de Guadalupe substitutes for the detective's reveal, offering fate and unknowing rather than rational disclosure.",
+    "confidence": "medium",
+    "quote": "She looked at the cards and shook her head. 'You have much trouble in your life.'"
+  },
+  "media_and_audience": {
+    "value": "Institutional narrative (police, FBI) constructs Kent as guilty without evidence, effectively ruining his life. His employer blacklists him, his partner abandons him, and acquaintances shun him. Public/institutional opinion becomes the de facto verdict in the absence of a trial, illustrating how suspicion itself functions as punishment.",
+    "confidence": "high",
+    "quote": "Integrated Vattings blacklisted him, of course. And Dionne wrote him a letter stating that she wanted nothing to do with him."
+  },
+  "investigator_wound": {
+    "value": "Detective Ruiz's wound is hubris and tunnel vision \u2014 his 'intuition' from long experience becomes a liability, locking him onto the wrong man. Subsequent detectives (Slichter, Canella) repeat the pattern, each driven by career incentives (quick arrests, CUNC file clearance) rather than truth-seeking.",
+    "confidence": "medium",
+    "quote": "Ruiz trusted his hunch. He knew Kent was the one. When you've been at this as long as he had, you acquire an intuition."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Bola de la Fortuna",
+    "author": "JONATHAN TEL",
+    "anthology_title": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver",
+    "story_index": 22,
+    "story_count": 25
+  }
+}

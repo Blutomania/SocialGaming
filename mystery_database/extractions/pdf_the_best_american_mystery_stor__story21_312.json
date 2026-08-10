@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Multiple homicide: Five FBI agents killed in coordinated ambush (three agents on HooverWatch detail, two in backup sedan, plus limo driver). Method: gunshot execution. Central question: How did the killer gain access to secure FBI protective detail and execute agents without raising alarm?",
+    "confidence": "high",
+    "quote": "He'd killed five agents. Because no one would listen to Bryce about that vacant look in Cain's eye."
+  },
+  "victim": {
+    "value": "J. Edgar Hoover, FBI Director, 45+ years in power. Killable because: he enforced rigid moral codes on agents while harboring secrets; blackmailed political figures; his control and secrets made him target for agent with personal crisis (Cain's ex-fianc\u00e9e suicide attempt).",
+    "confidence": "high",
+    "quote": "The man who had no morals himself. J. Edgar Hoover. The one man who made all the rules at the FBI."
+  },
+  "closed_world": {
+    "value": "FBI institutional hierarchy and HooverWatch protection detail. Geographic: New York City alley near men's club, with established patrol patterns and FBI vehicle networks.",
+    "confidence": "high",
+    "quote": "Agents worked HooverWatch in pairs. There were two dead agents and two cars. If the second sedan was backup, there should have been four agents."
+  },
+  "culprit_and_motive": {
+    "value": "Walter Cain, FBI agent. Motive: Personal crisis (ex-fianc\u00e9e attempted suicide) combined with moral rebellion against Hoover's tyrannical enforcement of appearance-based morality, especially regarding Cain's engagement to a former prostitute.",
+    "confidence": "high",
+    "quote": "Cain had that look, that blank, my-life-is-over look... More than enough time to get rid of the morals police\u2014the one man who made all the rules."
+  },
+  "resolution": {
+    "value": "Bryce solves it via motor pool records (sedan checkout) and psychological profile. However, resolution is corrupted: FBI SAC Hart orders cover-up at higher government level. Cain will be prosecuted for unrelated charges; true motive suppressed. Truth is buried to prevent panic post-JFK assassination.",
+    "confidence": "high",
+    "quote": "That's precisely why we're going to handle it. We don't want a panic... Everything'll get taken care of at a much higher level than either you or me."
+  },
+  "investigator": {
+    "value": "Special Agent Bryce, FBI. Experienced investigator with institutional authority but institutional powerlessness. His investigation succeeds but is immediately appropriated and corrupted by higher authority. He witnesses justice defeated.",
+    "confidence": "high",
+    "quote": "He was expendable... Bryce would get some don't-tell promotion, and he'd stay there for as long as he had to."
+  },
+  "suspect_architecture": {
+    "value": "Single perpetrator (FBI Agent Walter Cain) with motive of personal grievance (fiancee's suicide attempt, Hoover's moral policing), means (insider knowledge of HooverWatch procedure), and opportunity (checked out FBI sedan to infiltrate the detail). The architecture is built on insider access rather than a spread of suspects; the investigator narrows to one through physical evidence (abandoned sedan, motor pool records) rather than competing suspects.",
+    "confidence": "high",
+    "quote": "The agent who had checked out the sedan was Walter Cain...Cain had had HooverWatch off and on throughout the past year."
+  },
+  "red_herring": {
+    "value": "The abandoned second sedan is initially read as belonging to a backup HooverWatch team (four agents, two cars), misdirecting attention toward a larger conspiracy or external attacker. In fact it belongs to the killer, who planned to drive it away as his escape vehicle but was stranded by the unexpected arrival of beat cops.",
+    "confidence": "high",
+    "quote": "The shooter had planned to come back. He'd planned to drive away in this car. But he got delayed."
+  },
+  "clue_fairness": {
+    "value": "The cigar smell mixed with cordite and blood, the three fresh cigarette butts at the curb, the absence of keys on the victims and in the ignition, and the vehicle registration identifying the sedan as FBI-issue are all presented to the reader in real time as Bryce observes them, before he draws his conclusions. The motor pool check \u2014 the final clinching clue \u2014 is reported to the reader simultaneously with Bryce's realisation.",
+    "confidence": "high",
+    "quote": "He crouched and poked just a little, finding three fairly fresh cigarette butts."
+  },
+  "social_world": {
+    "value": "Interlocking federal power hierarchies: FBI (Hoover's autocratic moral-surveillance empire), Justice Department (Kennedy as nominal superior), the White House (LBJ), and the NYPD \u2014 all in mutual tension. The Bureau's internal culture of 'lifestyle kills', approved marriages, and Hoover's blackmail files show how institutional power enforces conformity and punishes dissent. Kennedy and LBJ negotiate a gentleman's agreement over the files, illustrating how political survival overrides law.",
+    "confidence": "high",
+    "quote": "His philosophy...was that all crimes deserved investigation, no matter how distasteful you found the victims. Which was why he kept getting moved."
+  },
+  "alibi": {
+    "value": "Cain's alibi-by-absence: he should have been on extended leave (Bryce had recommended it less than twelve hours earlier), making his presence at the crime scene structurally impossible by institutional logic. The motor pool record demolishes this presumed alibi by proving he checked out the sedan \u2014 an institutional paper trail rather than a witness account.",
+    "confidence": "medium",
+    "quote": "He should've been on extended leave. Bryce had recommended it after he had told Cain that his ex-fiancee had tried to commit suicide."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is mechanically triggered by a single phone call to the motor pool \u2014 a bureaucratic paper trail (vehicle checkout record) that is both mundane and irrefutable. The physical logic of the abandoned sedan (locked door, no keys in ignition, planned escape vehicle) prepares the reader for the reveal, which then snaps into place through an institutional record rather than confrontation or confession.",
+    "confidence": "high",
+    "quote": "It took Bryce only one phone call. The guy who ran the motor pool told him who had checked out the sedan."
+  },
+  "media_and_audience": {
+    "value": "The FBI hierarchy immediately moves to suppress and reframe the crime: Hoover's death will be officially attributed to natural causes in his bed, the gay neighbourhood location will be erased, Cain will be prosecuted for a substitute offence, and no report will be written. The cover-up is institutional rather than press-driven, weaponising the Bureau's own information-control apparatus \u2014 the same apparatus Hoover built for blackmail \u2014 to manage the narrative.",
+    "confidence": "high",
+    "quote": "What're you going to say? That they died of natural causes in their beds? Their separate beds?"
+  },
+  "investigator_wound": {
+    "value": "Bryce's wound is his marginalisation within the Bureau for believing all crimes deserve equal investigation regardless of victim or lifestyle \u2014 a principled stance that has had him repeatedly reassigned. The case forces him to confront that his own institution will cover up five murders, and that his earlier warning about Cain was ignored. He ends by deciding to resign, recognising the Bureau's corruption is structural and his integrity is incompatible with it.",
+    "confidence": "high",
+    "quote": "He couldn't help feeling that if someone had listened to him before...then none of this would have happened."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "312",
+    "author": "KRISTINE KATHRYN RUSCH",
+    "anthology_title": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver",
+    "story_index": 21,
+    "story_count": 25
+  }
+}

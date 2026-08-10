@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Jakob Loomis, a missing boy; Cole, a snake hunter shot and nearly severed at the wrist; Therm, shot through the chest",
+    "confidence": "medium",
+    "quote": "On the television, Cole learned about the missing boy and made a mental note to keep an eye out for him."
+  },
+  "closed_world": {
+    "value": "Rural countryside property and surrounding woods\u2014isolated backyard, forest, burned-out school ruins, pond area",
+    "confidence": "high",
+    "quote": "Therm moved south and into the country where he wouldn't be bothered."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Three men collapse simultaneously in Therm's backyard\u2014Ferris (poisoned, shot Therm), Cole (wrist severed by Therm's ax), Therm (shot by Ferris)\u2014leaving ambiguity unresolved",
+    "confidence": "medium",
+    "quote": "The men take in the scent of the earth. Each locates a memory from when he was a child playing in the freshly cut grass, invincible and alive."
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": "Three morally compromised men converge by accident rather than design: Therm (guilty of killing parrot/snakes, hiding evidence), Cole (adulterer caught in bondage escapade), and Ferris (deputy acting recklessly after snakebite). No traditional suspects \u2014 guilt is distributed and situational, each man implicated in his own crisis.",
+    "confidence": "medium",
+    "quote": "the men feel the weight of their guilt, and then the moment breaks."
+  },
+  "red_herring": {
+    "value": "The bloodstained lawn and ax strongly imply Therm has murdered someone, misdirecting reader toward homicide; the true cause is a mowed-over snake nest. Similarly, Cole's handcuffs suggest escaped criminal or abduction victim, when the reality is a consensual bondage scenario gone wrong.",
+    "confidence": "high",
+    "quote": "What, that? That was an accident. I hit a snake, Therm says. A lot of blood for a snake!"
+  },
+  "clue_fairness": {
+    "value": "All information is available simultaneously to reader and characters: the blood, the ax, the handcuffs, Ferris's snakebite, and the sack of snakes are shown in real time. The reader witnesses each man's misreading of the others' situations with the same data the characters hold \u2014 no withheld revelation.",
+    "confidence": "medium",
+    "quote": "Ferris only sees the back of a small person kneeling, arms behind him, before the executioner. He thinks of the missing boy."
+  },
+  "social_world": {
+    "value": "Rural Southern underclass and its institutions: failed religion (snake-handling church), predatory law enforcement (Ferris), marginal self-employment (Therm as contract cartographer, Cole as snake hunter). Power is arbitrary and violent; no patronage network protects anyone. Marriage, property, and divorce settlements encode class grievance.",
+    "confidence": "medium",
+    "quote": "Therm moved south and into the country where he wouldn't be bothered. He was a contract cartographer."
+  },
+  "alibi": {
+    "value": "Cole's alibi for his whereabouts (fleeing a jealous husband) is self-reported and unverifiable; Therm's explanation for the blood (snake nest) is accepted by Cole without evidence. Ferris constructs no alibi \u2014 his pursuit of Cole is itself the error. All accounts are partial and self-serving.",
+    "confidence": "medium",
+    "quote": "I tried to get out of the handcuffs but couldn't... About the time that big boy comes busting in the front door, I manage to get out the back door."
+  },
+  "reveal_mechanic": {
+    "value": "The catastrophe is revealed not through deduction but through simultaneous dramatic irony: Ferris shoots Therm to 'rescue' the kneeling Cole (mistaking him for the missing boy), while Therm's ax blow severs Cole's wrist. Each man's fatal misreading is demonstrated through intercut perspectives converging at the same moment.",
+    "confidence": "high",
+    "quote": "Ferris congratulates himself for doing the right thing... Therm fingers the hole in his chest and recalls Cowboys and Indians."
+  },
+  "media_and_audience": {
+    "value": "The missing boy's flyer recurs at Food 4 U and Widgit's Hardware \u2014 public guilt distributed through community bulletin boards. Television broadcasts about the boy reach Cole; Ferris is conditioned by the police handbook's institutional narrative. The media's missing-child panic shapes every character's catastrophic misinterpretation.",
+    "confidence": "high",
+    "quote": "On the front door of the store was a black-and-white picture of the missing boy, smiling, that the clerk had just posted."
+  },
+  "investigator_wound": {
+    "value": "Ferris, the closest figure to an investigator, is literally wounded \u2014 snakebite poisoning his bloodstream and judgment simultaneously. His psychological wound is institutional: blind obedience to the police handbook ('protect the victim at all costs') causes him to misidentify the scene and shoot an innocent man while dying.",
+    "confidence": "high",
+    "quote": "The police handbook clearly says, in chapter three: at all costs protect the victim. He rests his face in the grass."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Jakob Loomis",
+    "author": "JASON OCKERT",
+    "anthology_title": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen",
+    "story_index": 17,
+    "story_count": 21
+  }
+}

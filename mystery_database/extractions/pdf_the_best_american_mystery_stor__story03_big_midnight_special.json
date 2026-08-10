@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Prison farm labor camp (Camp A) with enclosed yard, dorms, levee work details, and armed guards on horseback",
+    "confidence": "high",
+    "quote": "In the camp, the cleanup details work till noon, then the rest of the weekend is free... the gunbulls in the corn and soybean and sweet potato fields"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Arlen, an incarcerated protagonist narrating his own experience as a three-time offender navigating prison politics and internal conflict",
+    "confidence": "high",
+    "quote": "How do you survive in jail? You don't show fear, but you don't ever pretend you're something you're not."
+  },
+  "suspect_architecture": {
+    "value": "Three primary antagonists within a Louisiana prison farm: Jody Prejean (dominant manipulator, motive: control/power), Wiley Boone (enforcer, motive: advancement under Jody), and the hacks/night screw (institutional actors, motive: using Arlen as a covert hitter). Arlen himself is both protagonist and implicated agent. Differentiated by hierarchy, loyalty, and degrees of culpability.",
+    "confidence": "high",
+    "quote": "The hacks are setting you up... They've made me the hitter."
+  },
+  "red_herring": {
+    "value": "Arlen's warning to Jody that the guards are setting him up functions as potential misdirection \u2014 it could be read as a manipulation tactic by Arlen rather than a genuine warning, obscuring whether Arlen is himself being used or is acting autonomously. Wiley moving the guitar is staged ambiguously (count screw? earthquake?) to conceal the real threat to the Gibson.",
+    "confidence": "medium",
+    "quote": "Who moved my box, Wiley? / Guys cleaning up? The count screw? Maybe it was an earthquake."
+  },
+  "clue_fairness": {
+    "value": "The smashed guitar is revealed to the reader in the same moment as Arlen \u2014 the blanket's sagging twine and rattling wood are described before Arlen interprets them. The tapestry reading 'Every knee to me shall bend' is shown to the reader before its thematic significance is confirmed. Butterbean's guilty non-answer ('It.') is presented directly.",
+    "confidence": "high",
+    "quote": "the twine sags and the lines and shape of the blanket are no longer taut. Inside, I can hear the rattle of wood."
+  },
+  "social_world": {
+    "value": "A rigidly stratified Louisiana prison farm power structure: gunbulls (mounted, armed, institutional authority), night screws (intermediate enforcers with self-interest), big stripes and snitches (segregated), and general population ruled internally by Jody's patronage network. Trusty inmates hold coercive proxy power. Sexual exploitation, debt, and labor are currencies.",
+    "confidence": "high",
+    "quote": "His clothes are pressed by his favorite punk; another punk shampoos and clips his hair once a week."
+  },
+  "alibi": {
+    "value": "No formal alibi structure is present \u2014 this is not a whodunit with alibi-testing. However, Arlen's internal alibi for his own violent history is psychologically constructed and repeatedly undermined: he attributes his crimes to 'scag' and 'other people who live inside my skin,' a false self-exculpation the narrative dismantles.",
+    "confidence": "medium",
+    "quote": "My dreams tell me about the other people who live inside my skin, people who have done things that don't seem connected to the man I think I am."
+  },
+  "reveal_mechanic": {
+    "value": "The destruction of the Gibson guitar is the central reveal \u2014 not stated but physically demonstrated through tactile detail (sagging twine, rattling wood, altered contours). The story's climax reveals the institutional setup through Arlen's sudden recognition in the latrine confrontation, demonstrated by the night screw's inexplicable failure to send Arlen to segregation for insubordination.",
+    "confidence": "high",
+    "quote": "For sassing him I should be on my way to segregation. But I'm not. Then I realize how blind and foolish I have been."
+  },
+  "media_and_audience": {
+    "value": "There is no external press or public audience \u2014 the 'audience' is the internal prison population, which witnesses Arlen's final walk into the river as spectators at a performance. Prison legend and oral myth (Leadbelly stories, the Red Hat House lore) function as the narrative's media layer, shaping how violence and resistance are remembered and distorted.",
+    "confidence": "medium",
+    "quote": "All of the inmates are on their knees or crouched down... the convicts who seem to dot the levee like spectators at a ball game."
+  },
+  "investigator_wound": {
+    "value": "Arlen's wound is his compulsive honesty and inability to suppress his thoughts \u2014 a self-described 'disease' that repeatedly exposes him to danger. Compounded by a history of violence he cannot integrate into his self-image, a heroin addiction he is fighting, and a lightning strike that left a permanent quiver of fear in his voice contradicted by his capacity for lethal action.",
+    "confidence": "high",
+    "quote": "Saying my thoughts out loud is a disease I've got and no amount of grief or twelve-step meetings seems to cure it."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Big Midnight Special",
+    "author": "JAMES LEE BURKE",
+    "anthology_title": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver",
+    "story_index": 3,
+    "story_count": 25
+  }
+}

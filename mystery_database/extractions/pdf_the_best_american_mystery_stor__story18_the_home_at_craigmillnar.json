@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder by suffocation (pillow) of an 84-year-old nun in an elder care facility, staged to appear as natural cardiac death. Central question: How was the death concealed as natural causes without autopsy?",
+    "confidence": "high",
+    "quote": "I stooped over her bed, gripped her shoulder with one hand to hold her still, with the other yanked the pillow out from beneath her head, and pressed it over her face."
+  },
+  "victim": {
+    "value": "Sister Mary Alphonsus (Dorothy Milgrum), former mother superior of Craigmillnar orphanage, where she allegedly oversaw abuse and neglect of children in the 1950s-60s, resulting in deaths including the narrator's uncle Patrick.",
+    "confidence": "high",
+    "quote": "the old nun who'd run that terrible orphanage at Craigmillnar...widespread neglect and abuse...responsible for a number of deaths at Craigmillnar in the 1950s and 1960s."
+  },
+  "closed_world": {
+    "value": "Eau Claire elder care facility, specifically Unit D where Sister Mary Alphonsus resided; the orderly (narrator) had authorized access during early morning shift hours when patients are most vulnerable and deaths occur.",
+    "confidence": "high",
+    "quote": "at the elder care facility at Eau Claire where I have been an orderly for two years...Early shift is 6:30 A.M."
+  },
+  "culprit_and_motive": {
+    "value": "Francis Gough, orderly and Iraq War veteran, grandson of victims of Craigmillnar. Motive: familial vengeance for the death of his uncle Patrick and the suffering of his father Douglas and uncle Denis at the orphanage.",
+    "confidence": "high",
+    "quote": "I thought of my father Douglas, and of my uncle Denis. I thought of my uncle Patrick as a child, whom I had never seen. Buried in a pauper's grave, and his bones scattered and lost."
+  },
+  "resolution": {
+    "value": "No resolution; the crime remains unsolved and unsuspected. The death is officially ruled natural cardiac arrest, no autopsy is performed, no inquiry is launched. The narrator confesses internally but maintains perfect cover through his orderly role and the facility's indifference.",
+    "confidence": "high",
+    "quote": "Now that months have passed there is not much likelihood of a formal inquiry into the death of Sister Mary Alphonsus...The Oybwa County medical examiner has never contacted us."
+  },
+  "investigator": {
+    "value": "Francis Gough, the perpetrator himself, serves as the unreliable narrator through whose first-person perspective the reader experiences the crime. He is simultaneously murderer, witness, and the voice confessing to crimes that will never be officially investigated.",
+    "confidence": "high",
+    "quote": "I am an 'orderly'...I had immediately notified the nursing staff...It would be noted that Sister Mary Alphonsus was discovered to be unresponsive in her bed by the Unit D orderly, Francis Gough."
+  },
+  "suspect_architecture": {
+    "value": "Single suspect: Francis Gough (orderly/narrator), who is also the killer \u2014 no competing suspects are developed. The reader is denied a suspect field; the architecture is a confessional monologue that inverts the genre convention entirely.",
+    "confidence": "high",
+    "quote": "I stooped over her bed, gripped her shoulder with one hand to hold her still, with the other yanked the pillow out from beneath her head"
+  },
+  "red_herring": {
+    "value": "The gauzy curtain wound around the nun's head functions as a deliberate red herring: it draws speculation toward suicide, religious penance, or dementia-driven self-wrapping, diverting staff and physician from the true cause (smothering with a pillow). Francis plants it consciously.",
+    "confidence": "high",
+    "quote": "I lifted Sister Mary Alphonsus's limp head, to wind the strip of cheap gauzy curtain around it, and to hide her flushed and contorted face."
+  },
+  "clue_fairness": {
+    "value": "Clues are present but embedded in the killer-narrator's self-exculpatory framing: the smell of urine (incontinence at death by smothering), the tidied bedclothes, the fresh pillowcase, and the backpack disposal of the soiled pillowcase are all described \u2014 the reader has them before any investigator does.",
+    "confidence": "high",
+    "quote": "The soiled pillowcase I might have tossed into the laundry\u2026 I was cautious, taking time to fold the pillowcase neatly to slide it into my backpack"
+  },
+  "social_world": {
+    "value": "Layered institutional hierarchies: Catholic Church protecting abusive nuns via diocesan lawyers; elder-care facility stratified by physician/nurse/orderly rank; working-class Scottish-immigrant families crushed by both Church and state; veterans' marginalisation. Power protects Sister Mary Alphonsus until private violence bypasses all institutional channels.",
+    "confidence": "high",
+    "quote": "an attorney hired by the diocese had rebuffed their efforts with the argument that the nuns had long been retired and were not in good health"
+  },
+  "alibi": {
+    "value": "Francis's alibi is his own documented early-arrival routine and conscientious reputation. He arrives before shift, is known for punctuality, and his 'discovery' report at 7:08 AM is on record \u2014 the alibi is structural: he is the one who finds the body, making him the reporter not the suspect.",
+    "confidence": "high",
+    "quote": "It would be noted that Sister Mary Alphonsus was discovered to be unresponsive in her bed by the Unit D orderly, Francis Gough\u2026 Time: 7:08 A.M."
+  },
+  "reveal_mechanic": {
+    "value": "There is no external reveal \u2014 the story is a first-person confession delivered retrospectively. The mechanic is the narrator's own disclosure: the opening paragraph is revealed at the close to be a rehearsed alibi statement, recontextualising the entire narration as a prepared deception rather than honest testimony.",
+    "confidence": "high",
+    "quote": "I have memorized the opening. Early shift is 6:30 A.M. which was when I arrived at the elder care facility at Eau Claire"
+  },
+  "media_and_audience": {
+    "value": "Media coverage of the Craigmillnar survivors' campaign \u2014 newspaper headlines, blurred-face TV interviews, the attorney general's threatened charges \u2014 both motivates the murder and provides its cover: the nun's death is publicly absorbed as the natural end of a notorious figure, headline 'Good riddance,' with no criminal inquiry initiated.",
+    "confidence": "high",
+    "quote": "My father had kept a newspaper to show me, the front-page headlines\u2026 In a hoarse voice Dad said\u2014Good riddance to bad rubbage."
+  },
+  "investigator_wound": {
+    "value": "Francis is simultaneously investigator-narrator and killer. His wound is familial and generational: his father and uncle's suppressed trauma from Craigmillnar, the death of uncle Patrick in the orphanage, and his own Iraq-war exposure to violent death have fused into a moral framework that recasts murder as justice, making institutional truth-seeking feel inadequate.",
+    "confidence": "high",
+    "quote": "I thought of my father Douglas, and of my uncle Denis. I thought of my uncle Patrick as a child, whom I had never seen. Buried in a pauper's grave"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "filename": "The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The\tHome\tat\tCraigmillnar",
+    "author": "JOYCE\tCAROL\tOATES",
+    "anthology_title": "The_Best_American_Mystery_Stories_215_-_James_Patterson",
+    "story_index": 18,
+    "story_count": 19
+  }
+}

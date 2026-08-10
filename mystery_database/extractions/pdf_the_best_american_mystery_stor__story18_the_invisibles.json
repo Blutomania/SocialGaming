@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Serial abduction and murder of 31+ victims, including two teenage friends (Brianna and Randall) at Great Skate Arena parking lot; central question: how did the killer operate invisibly in plain sight despite being witnessed?",
+    "confidence": "high",
+    "quote": "The police discovered the bones of an estimated thirty-one people in the crawlspace beneath his house. Brianna and Randall's clothes were some of the first pieces of evidence found."
+  },
+  "victim": {
+    "value": "Brianna and Randall: teenage 'invisibles' who frequented the skating rink, socially unremarkable, liminal adolescents without parental oversight or community attachment; their invisibility made them killable.",
+    "confidence": "high",
+    "quote": "No one ever caught us smoking... No one knew what I thought, and I was little more than a statistic in attendance and grade books."
+  },
+  "closed_world": {
+    "value": "The Great Skate Arena and its parking lots form a bounded world where the crime occurs; the old parking lot is physically isolated by iron blocks and vegetation, accessible only from below via the highway.",
+    "confidence": "high",
+    "quote": "the old parking lot where we smoked was separated from the new parking lot by a row of massive iron blocks... Beyond this dark thicket, from below, came the sounds of the highway."
+  },
+  "culprit_and_motive": {
+    "value": "The Lake Erie killer: serial predator who targeted vulnerable, overlooked adolescents. Motive: opportunistic predation upon socially invisible youth who could disappear without triggering immediate alarm or investigation.",
+    "confidence": "medium",
+    "quote": "the man who became known as the Lake Erie killer was arrested in a small town in southern Michigan... He was older, around average height, with neat brown hair and glasses."
+  },
+  "resolution": {
+    "value": "Arrest in Michigan one year later; forensic evidence (clothing, bones, the maroon van) confirms the killer's identity and links him to victims. However, resolution is ambiguous: the arrested man does not match the narrator's memory of the watcher at the rink.",
+    "confidence": "medium",
+    "quote": "When the station broadcast footage of the police arresting the man who murdered my friends, he wasn't anyone I recognized... I only shook my head."
+  },
+  "investigator": {
+    "value": "Cynthia (narrator): teenage daughter of a disappeared mother, also an 'invisible,' who becomes obsessed with investigating her friends' disappearance through dreams, crime scene visits, and reluctant police interaction; Detective Volmar provides institutional investigation.",
+    "confidence": "high",
+    "quote": "Though the wait tortured me, I let two weeks pass before investigating the site where Randall and Brianna vanished... I drove around, often taking the road that led past the subdivision where they were heard screaming."
+  },
+  "suspect_architecture": {
+    "value": "Single unnamed killer (the 'Lake Erie killer') operating as an 'invisible' \u2014 unremarkable, overlooked, soft-faced with glasses \u2014 differentiated from the imagined/feared version (tall, blond, muscled). No competing suspects; architecture is one real perpetrator concealed by his own social invisibility and the narrator's distorted perception.",
+    "confidence": "high",
+    "quote": "He was older, around average height, with neat brown hair and glasses. He had soft cheeks, the sort of face I would never imagine hid plans to kill somebody."
+  },
+  "red_herring": {
+    "value": "The narrator's hallucinatory vision of the killer as a tall, blond, muscular, red-skinned man with black eyes \u2014 a gothic monster figure \u2014 misdirects both reader and narrator away from the true perpetrator's banal, invisible appearance. The maroon van's heart-shaped window and 'pervert/psycho ward escapee' speculation also function as red herrings about the killer's identity.",
+    "confidence": "high",
+    "quote": "Long, muscled arms hung out of his shirt...His blond hair was long and filthy, his skin a burned red, his black eyes bright and dense."
+  },
+  "clue_fairness": {
+    "value": "Physical evidence at the crime scene is presented to the reader simultaneously with the narrator: Brianna's broken cigarettes, her green bubble gum, Randall's taco wrappers \u2014 all available before any official interpretation. The old neighbor's testimony about watching the van follow the teenagers is also rendered in full to the reader.",
+    "confidence": "medium",
+    "quote": "Dried wads of Brianna's green bubble gum lay like moldy little brains all over the pavement. Cigarettes only she could have broken."
+  },
+  "social_world": {
+    "value": "A rural Midwestern social hierarchy built on visibility and invisibility: the overlooked (the 'invisibles') \u2014 working poor, the elderly, the marginal \u2014 exist beneath the notice of institutions (police, schools, families). This invisibility is both the killer's cover and the narrator's inheritance. Institutional power (police, detective) is present but ineffective precisely because it cannot see the invisible.",
+    "confidence": "high",
+    "quote": "No one ever caught us smoking...the obese woman in the ticket booth would give no sign...I was little more than a statistic in attendance and grade books."
+  },
+  "alibi": {
+    "value": "No formal alibi construction is present. The killer's alibi is effectively his social invisibility \u2014 he is never placed at the scene by any credible witness in time to be stopped. The old neighbor's delayed report functions as a failed alibi-breaker: he saw the van follow the teenagers but waited too long, allowing the perpetrator to escape accountability in the moment.",
+    "confidence": "low",
+    "quote": "I seen him follow them back in here, and I knew I made a mistake letting them have the place...I knew I couldn't help them then."
+  },
+  "reveal_mechanic": {
+    "value": "The solution is revealed through external news media (a televised arrest broadcast) rather than investigative deduction \u2014 a deliberately deflating mechanic. The narrator cannot confirm the arrested man as the figure she saw at the rink, leaving psychological uncertainty intact even after legal resolution. Physical evidence (van, clothing, bones) provides forensic confirmation the narrator cannot supply.",
+    "confidence": "high",
+    "quote": "When the station broadcast footage of the police arresting the man who murdered my friends, he wasn't anyone I recognized."
+  },
+  "media_and_audience": {
+    "value": "The crime is packaged by television news as a serial killer narrative with expert commentary comparing the 'Lake Erie killer' to other serial killers \u2014 a reductive, genre-coded framing that sits uneasily against the narrator's private, unresolved grief. The media resolution (arrest, broadcast, expert analysis) is experienced as hollow and insufficient by the narrator, who cannot reconcile the public story with her interior one.",
+    "confidence": "high",
+    "quote": "A serial killer expert who compared this killer to others...They wanted to see my fear vanish forever. I only shook my head."
+  },
+  "investigator_wound": {
+    "value": "Cynthia's wound is her mother's unexplained disappearance \u2014 she never resolved whether her mother was a victim of foul play, mental illness, or abandonment. The case of her missing friends reactivates this wound directly, and the killer's arrest forces the unbearable question of whether her mother's bones are among the unidentified remains. Her identity as an 'invisible' also means she distrusts her own perceptual reliability.",
+    "confidence": "high",
+    "quote": "What if my mother was one of the bodies they'd found, one of those so decayed it would never be identified? The more I thought about it the more possible it seemed."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The Invisibles",
+    "author": "HUGH SHEEHY",
+    "anthology_title": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos",
+    "story_index": 18,
+    "story_count": 22
+  }
+}
