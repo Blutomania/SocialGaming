@@ -61,6 +61,20 @@ below. Don't quietly re-prioritise them without asking.
 | Voice input | Text-only is fine for now. It was never wired into the Godot client, so parking costs nothing. Design still assumes voice is the eventual destination — keep honouring the `text`/`voice` transform split in `roundRules.js` rather than baking in text-only assumptions. |
 | Shareable Question polish | The current canvas card + Web Share implementation **is** the placeholder and is deliberately frozen there: one card, no hosting, no persistence. Do not extend it (no hosted links, no tap-to-reveal, no recap images) without the owner asking. Do not rip it out either — it's built and tested, so replacing it spends effort to end up with less. |
 
+## Glossary (owner-defined — use these names in code, comments, and discussion)
+
+| Term | Means | Notes |
+|---|---|---|
+| **Lobby** | The post-join screen: player roster + the 5-category form, ending in "Next — Pick Your Card". | `components/Lobby.jsx`. **Not** the create/join screen — that's `app/page.js`. Godot's `lobby.tscn` currently merges both and must be split to match this definition. |
+| **Logo** | The three-emoji mark (brain / pointing finger / group). | `public/brand/MYF_emoji_*.svg`. May appear **on its own**. |
+| **Title treatment** | The "Mind Your Friends" logotype. | `public/brand/wordmark-mono.svg` (derived) / `myf_title_trtmnt_trans.svg` (original). |
+| **Text treatment** | Synonym for **title treatment**. | Same thing — either name is fine. |
+
+**Composition rule:** the logo can appear without the title treatment, but the
+title treatment must never appear without the logo. Available space is usually
+what decides which is used; usage will be worked out organically, so treat this
+as a constraint to respect rather than a layout spec.
+
 ## Current To-Do
 1. ~~**Review Round variation types**~~ — 8 variations confirmed. See `GAME_DESIGN.md`.
 2. ~~**Review card mechanic**~~ — FCFS card resolution, fixed 6-card hand (1 picked +

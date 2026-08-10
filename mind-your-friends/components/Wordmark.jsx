@@ -1,10 +1,13 @@
 'use client';
 
-// The "Mind Your Friends" logotype.
+// The **title treatment** (a.k.a. text treatment) — see CLAUDE.md → Glossary.
+// The "logo" is the separate three-emoji mark, not this.
 //
-// Deliberately monochrome — black or white depending on background, never
-// recoloured (owner decision, August 2026). Only the emoji lockup varies in
-// colour per game.
+// Deliberately monochrome: black or white depending on background, never
+// recoloured.
+//
+// Composition rule: this must never appear without the logo beside it. The
+// logo may appear alone; the title treatment may not.
 //
 // Rendered as a CSS mask rather than an <img> or an inlined <svg>, for two
 // reasons:
