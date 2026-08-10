@@ -346,3 +346,89 @@ Set moderated to true only if you had to meaningfully change the intent.`;
 
   return parseJson(response.content[0].text);
 }
+
+// Generates the post-game superlative categories from what actually happened
+// in the game. One call, not one per category — same batching reason as
+// evaluateWorstAnswers: cheaper, and it lets Claude pick a *set* of awards
+// that don't all reward the same player.
+//
+// Deliberately grounded in the highlight reel and question log rather than
+// invented: a superlative nobody recognizes ("Most Diplomatic") is worse than
+// no superlative at all, because the room can't vote on it honestly.
+export async function generateSuperlatives({ highlightReel, questionLog, playerNames }) {
+  const anthropic = requireClient();
+
+  const moments = highlightReel.slice(-40).join('\n') || '(nothing notable was logged)';
+  const questions = questionLog
+    .map((q) => `Q${q.index + 1} [${q.category}] ${q.question} -> ${q.outcomeSummary}`)
+    .join('\n') || '(no questions recorded)';
+
+  const prompt = `A group of friends just finished a party trivia game. Here are the players:
+${playerNames.join(', ')}
+
+Memorable moments logged during the game:
+${moments}
+
+The questions asked and how they went:
+${questions}
+
+Invent 3-4 superlative award categories for the group to vote on, based on what
+ACTUALLY happened above. Rules:
+- Every category must be recognizable to someone who was in this game — reference
+  real events from the log, not generic party-game awards.
+- They should be funny and affectionate, not mean. This is a casual social game.
+- Do NOT decide the winners. The players vote; you only write the categories.
+- Vary them — don't write four awards that would all obviously go to one person.
+
+Respond with ONLY a JSON array, no other text:
+[
+  {
+    "id": "short_snake_case_id",
+    "title": "The award name",
+    "description": "one line explaining what it's for, referencing what happened"
+  }
+]`;
+
+  const response = await anthropic.messages.create({
+    model: MODEL,
+    max_tokens: 1024,
+    messages: [{ role: 'user', content: prompt }],
+  });
+
+  const parsed = parseJson(response.content[0].text);
+  return Array.isArray(parsed) ? parsed : [];
+}
+
+// Writes the host's announcement line for each superlative winner once voting
+// closes. Batched into a single call for the same reason as above.
+export async function narrateSuperlativeResults({ results }) {
+  const anthropic = requireClient();
+
+  // The id must appear in the prompt, or Claude has no way to echo it back and
+  // will helpfully return the title instead — which silently matches nothing
+  // on the other side.
+  const summary = results
+    .map((r) => `[${r.id}] ${r.title}: ${r.winnerNames.join(' & ')} (${r.voteCount} vote(s))`)
+    .join('\n');
+
+  const prompt = `You are the AI host of a party trivia game announcing the final superlative
+awards. Here are the categories and who the group voted for:
+
+${summary}
+
+Write one short, punchy announcement line per award — the kind a game show host
+delivers. Address winners by name. Affectionate teasing is good; meanness is not.
+
+Respond with ONLY a JSON array, in the same order as the awards above. Use the
+exact id shown in [square brackets], not the award title:
+[{ "id": "the_award_id", "quip": "the host's line" }]`;
+
+  const response = await anthropic.messages.create({
+    model: MODEL,
+    max_tokens: 768,
+    messages: [{ role: 'user', content: prompt }],
+  });
+
+  const parsed = parseJson(response.content[0].text);
+  return Array.isArray(parsed) ? parsed : [];
+}

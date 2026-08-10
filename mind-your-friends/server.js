@@ -3,6 +3,11 @@
 // calls into gameState, and broadcasts the resulting state. The client never
 // calls the Claude API directly.
 
+// MUST be first: populates process.env from .env.local before any module below
+// reads it at import scope (claudeClient.js builds its API client on import).
+// See lib/env.js for why this can't just be a call in this file's body.
+import './lib/env.js';
+
 import { createServer } from 'http';
 import next from 'next';
 import { Server } from 'socket.io';
@@ -20,6 +25,10 @@ const sockets = new Map();
 
 // How long the FCFS card window stays open before auto-resolving.
 const CARD_WINDOW_MS = 8000;
+
+// How long post-game superlative voting stays open before the votes that did
+// arrive get tallied anyway.
+const POST_GAME_VOTE_MS = 90000;
 
 app.prepare().then(() => {
   const httpServer = createServer((req, res) => handle(req, res));
@@ -140,6 +149,27 @@ app.prepare().then(() => {
       });
     });
 
+    // Post-game superlative voting (CLAUDE.md item 35). Uses an ack callback
+    // rather than the global 'error' event for the same reason attemptLineup
+    // does: a rejected vote should give local feedback, not replace the page.
+    socket.on('postgame:vote', ({ categoryId, targetPlayerId }, ack) => {
+      withMyGame(socket, async (game, playerId) => {
+        try {
+          gameState.castSuperlativeVote(game, playerId, categoryId, targetPlayerId);
+        } catch (err) {
+          if (typeof ack === 'function') ack({ ok: false, message: err.message });
+          return;
+        }
+        if (typeof ack === 'function') ack({ ok: true });
+        broadcast(io, game);
+
+        if (gameState.allSuperlativeVotesIn(game)) {
+          await gameState.resolveSuperlatives(game);
+          broadcast(io, game);
+        }
+      });
+    });
+
     socket.on('disconnect', () => {
       const entry = sockets.get(socket.id);
       if (entry) {
@@ -147,7 +177,20 @@ app.prepare().then(() => {
         if (game && game.phase !== 'LOBBY') {
           gameState.disconnectPlayer(game, socket.id);
           broadcast(io, game);
-          startGracePeriod(io, game, socket.id);
+          // No grace period once the game is over. People close the tab the
+          // moment they've seen the scores — starting a "wait for our friend?"
+          // vote at that point interrupts the post-game screens for everyone
+          // still there, to decide whether to resume a game that has ended.
+          if (game.phase !== 'GAME_OVER') {
+            startGracePeriod(io, game, socket.id);
+          } else if (gameState.allSuperlativeVotesIn(game)) {
+            // Their leaving may have been the last thing the tally was waiting
+            // on — re-check, or the rest of the room waits out the full timer.
+            gameState
+              .resolveSuperlatives(game)
+              .then(() => broadcast(io, game))
+              .catch((err) => console.error('Superlative tally failed:', err));
+          }
         }
       }
       sockets.delete(socket.id);
@@ -308,7 +351,46 @@ app.prepare().then(() => {
       if (game.phase !== 'RESULT') return; // already advanced by another path
       gameState.nextTurn(game);
       broadcast(io, game);
+      if (game.phase === 'GAME_OVER') startPostGame(io, game);
     }, gameState.RESULT_SCREEN_MS);
+  }
+
+  // Kicks off superlative voting once the game ends. Generation is a real
+  // Claude call, so the GAME_OVER screen broadcasts first and the voting UI
+  // appears a moment later rather than making everyone stare at a spinner.
+  //
+  // Failure here is deliberately non-fatal: the scoreboard, highlight reel and
+  // Shareable Question all work without superlatives, and losing the whole
+  // end-of-game screen because one flavor call failed would be a bad trade.
+  function startPostGame(io, game) {
+    gameState
+      .beginSuperlativeVoting(game)
+      .then(() => {
+        // Claude can return an empty set without throwing. Leaving postGame in
+        // place with no categories parks everyone on a "tallying up…" spinner
+        // for the full timer with nothing to vote on — drop it instead and let
+        // the plain scoreboard + Shareable Question stand on their own.
+        if (game.postGame && game.postGame.categories.length === 0) {
+          game.postGame = null;
+          broadcast(io, game);
+          return;
+        }
+        broadcast(io, game);
+        setTimeout(() => {
+          // One slow (or departed) player must not strand everyone on the
+          // voting screen — tally whatever came in.
+          if (game.postGame?.stage !== 'voting') return;
+          gameState
+            .resolveSuperlatives(game)
+            .then(() => broadcast(io, game))
+            .catch((err) => console.error('Superlative tally failed:', err));
+        }, POST_GAME_VOTE_MS);
+      })
+      .catch((err) => {
+        console.error('Superlative generation failed:', err);
+        game.postGame = null; // let the client fall back to the plain scoreboard
+        broadcast(io, game);
+      });
   }
 
   function startGracePeriod(io, game, disconnectedPlayerId) {
@@ -325,6 +407,11 @@ app.prepare().then(() => {
       gameState.resumeAfterDrop(game);
     }
     broadcast(io, game);
+    // resumeAfterDrop() can itself end the game (skipUnavailablePlayers runs
+    // out the question count). That's a second route to GAME_OVER that doesn't
+    // pass through scheduleNextTurn, so without this the post-game screens
+    // never appear for a game that ended by attrition.
+    if (game.phase === 'GAME_OVER') startPostGame(io, game);
   }
 
   function broadcast(io, game) {

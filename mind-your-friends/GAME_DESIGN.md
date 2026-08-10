@@ -379,10 +379,49 @@ gets a card-style screen with AI host narration: "Remember when Jake played
 Whoa Nellie and Sarah had to answer Marine Biology?" Players swipe/click
 through together.
 
-### Shareable Recap
-A generated image or shareable link summarizing the game: final scores,
-superlatives, 2–3 best highlights, player names. This is the growth mechanic —
-"look at this game we just played." Designed for group chats and social media.
+### Shareable Question — the growth mechanic
+**Superseded "Shareable Recap" (August 7, 2026).** The original spec here was a
+recap image: final scores, superlatives, best highlights. The problem with that
+is who it's *for*. A scoreboard is interesting to the five people who were in
+the room and nobody else — it's a souvenir, not a growth mechanic. It gets a
+polite like from people who weren't there.
+
+What actually travels is **the question itself**. Trivia already works online:
+people repost hard questions, argue in the replies, and tag friends to test
+them. So the shareable artifact is a question from the game, framed as a
+challenge to the sharer's own following.
+
+**How it works.** After the game, each player may optionally pick one question
+from the ones actually asked and generate a share card for it. Optional by
+design — most players won't, and the ones who do are self-selecting for a
+question that struck *them* as funny or brutal, which is exactly the editorial
+filter you want.
+
+**What's on the card:**
+- The question, as asked.
+- The category and its attribution ("from Sarah's 90s Hip Hop") — credits a real
+  person, which is itself a social hook.
+- A hook line drawn from what actually happened: *"4 of 5 friends got this
+  wrong."* This is the part that makes it a challenge rather than a flashcard.
+- **Not the answer.** Withholding it is the whole mechanic — the follower has to
+  guess, and guessing is what drives replies. A card with the answer on it is a
+  fact; a card without one is an argument.
+
+**Answer reveal** is a second card the sharer can post as a follow-up, or a
+tap-to-reveal if the card is ever hosted rather than downloaded.
+
+**No persistence required, deliberately.** MYF has no database by design (see
+`CLAUDE.md` → What NOT to Do). So the card renders client-side to a canvas and
+goes out via the Web Share API (`navigator.share` with a file) on mobile, with a
+download fallback on desktop. No hosted link, no storage, no server round-trip.
+If a hosted link is ever wanted for tap-to-reveal, that's a real infrastructure
+decision to make separately — not a prerequisite for this.
+
+**Caveat, unresolved:** questions are AI-generated per game, so a shared question
+is only as good as that generation. A question that was funny *in context*
+("remember Jake had to answer this in one word") may fall flat stripped of the
+room. Worth watching in playtest whether the cards people actually share are the
+ones the game would have predicted.
 
 ### "One More Round" Moments
 Post-game dares or challenges based on what happened. The AI host generates

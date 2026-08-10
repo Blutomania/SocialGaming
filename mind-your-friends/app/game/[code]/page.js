@@ -64,7 +64,7 @@ export default function GamePage() {
       </header>
 
       {game.phase === 'LOBBY' && <Lobby game={game} myId={myId} socket={socket} />}
-      {game.phase === 'GAME_OVER' && <ScoreBoard game={game} myId={myId} />}
+      {game.phase === 'GAME_OVER' && <ScoreBoard game={game} myId={myId} socket={socket} />}
       {game.phase !== 'LOBBY' && game.phase !== 'GAME_OVER' && (
         <GameBoard game={game} myId={myId} socket={socket} />
       )}

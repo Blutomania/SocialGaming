@@ -31,6 +31,72 @@ land first (see item 31/33 below). When that happens, pull `coherence/engine.py`
 `main` (now the real source of truth) rather than this branch's copy, which is stale relative to
 it in naming only — the classes are otherwise identical.
 
+## Priority Queue (as of August 7, 2026)
+
+The numbered list below is the full historical record and keeps growing. This is
+the short version — what to actually work on next, in order. Items link to their
+detail entries further down.
+
+**Owner steer (August 7, 2026): gameplay and core mechanics are the focus.**
+Text-only input is fine for now, and the sharing mechanic is to stay a basic
+placeholder. Two things drop down the list as a direct result — see PARKED
+below. Don't quietly re-prioritise them without asking.
+
+| # | Item | State |
+|---|---|---|
+| 0 | **Show progress during Start Game** — it takes ~250s and the UI says nothing, which reads as a hang (item 36). Blocks every playtest. | **START HERE** |
+| 1 | **Playtest the post-game social layer** — built (item 35), never played through | Blocked on 0 |
+| 2 | Godot: category-selection + card-pick screens (replaces stubbed lobby registration) | Next |
+| 3 | Godot: round-loop UI — WAGER → CARD → QUESTION → ANSWER → RESULT | Next |
+| 4 | **`server_py` parity: `questionLog` + `postGame`** — the Python backend has neither, so the Godot client cannot show any post-game screen until this lands | Real gap, blocks 5 |
+| 5 | Godot: GAME_OVER screen + post-game social layer | Blocked on 3+4 |
+| 6 | Live-test disconnect/reconnect + inactivity auto-advance against `server_py` | Ported, never exercised |
+| 7 | Merge PR #14 (coherence unification) — 2 trivial conflicts, both resolvable in minutes | Open PR, CYM-side |
+| 8 | Wire MYF's coherence to the shared Python engine — now possible, `server_py` is Python | Unblocked by the port |
+| 9 | Retire the Next.js prototype — **only** once Godot reaches parity and is playtested | Do not do early |
+
+**PARKED by owner decision, not by oversight:**
+
+| Item | Why parked |
+|---|---|
+| Voice input | Text-only is fine for now. It was never wired into the Godot client, so parking costs nothing. Design still assumes voice is the eventual destination — keep honouring the `text`/`voice` transform split in `roundRules.js` rather than baking in text-only assumptions. |
+| Shareable Question polish | The current canvas card + Web Share implementation **is** the placeholder and is deliberately frozen there: one card, no hosting, no persistence. Do not extend it (no hosted links, no tap-to-reveal, no recap images) without the owner asking. Do not rip it out either — it's built and tested, so replacing it spends effort to end up with less. |
+
+36. **[DIAGNOSED, August 10 2026] "Start Game does nothing" is not an error — it's a ~4-minute
+    silent wait.** Reproduced by driving `startGame()` directly (same call `game:start` makes),
+    with 3 players × 5 categories:
+    ```
+    allPlayersRegistered: true
+    OK in 250.8s     phase: CATEGORY   factBank categories: 15
+    ```
+    It **succeeds** — 15 categories, 6 category options, a round rule assigned. It just takes
+    **250 seconds**. `CATEGORIES_PER_FETCH_BATCH = 3` means 15 unique categories become 5
+    *sequential* `fetchFactsBatch()` calls at ~50s each. The docs' "~90s" estimate is wrong by
+    roughly 3x, and nothing in the UI says anything while it runs — the Lobby just sits there,
+    so it reads as a hang and the tester gives up. **No code is broken.** Three consequences:
+    - **UI:** the Lobby needs a progress state on `game:start` (even a spinner + "Building the
+      question bank — this takes a few minutes"). This is the actual fix for the reported bug.
+    - **Cost/latency:** the batches are sequential and independent — running them concurrently
+      (`Promise.all`) should cut this to roughly one batch's latency. Untested; the obvious win.
+    - **Godot, already broken by this:** `ApiClient.gd`'s `start_game()` passes a 120s timeout.
+      At 250s that request times out client-side every time. Must be raised (or the call made
+      fire-and-forget, driving the UI off the `game:state` push instead) before the Godot client
+      can ever start a game. Recorded here because it will otherwise be rediscovered the hard way.
+
+## Glossary (owner-defined — use these names in code, comments, and discussion)
+
+| Term | Means | Notes |
+|---|---|---|
+| **Lobby** | The post-join screen: player roster + the 5-category form, ending in "Next — Pick Your Card". | `components/Lobby.jsx`. **Not** the create/join screen — that's `app/page.js`. Godot's `lobby.tscn` currently merges both and must be split to match this definition. |
+| **Logo** | The three-emoji mark (brain / pointing finger / group). | `public/brand/MYF_emoji_*.svg`. May appear **on its own**. |
+| **Title treatment** | The "Mind Your Friends" logotype. | `public/brand/wordmark-mono.svg` (derived) / `myf_title_trtmnt_trans.svg` (original). |
+| **Text treatment** | Synonym for **title treatment**. | Same thing — either name is fine. |
+
+**Composition rule:** the logo can appear without the title treatment, but the
+title treatment must never appear without the logo. Available space is usually
+what decides which is used; usage will be worked out organically, so treat this
+as a constraint to respect rather than a layout spec.
+
 ## Current To-Do
 1. ~~**Review Round variation types**~~ — 8 variations confirmed. See `GAME_DESIGN.md`.
 2. ~~**Review card mechanic**~~ — FCFS card resolution, fixed 6-card hand (1 picked +
@@ -422,6 +488,65 @@ it in naming only — the classes are otherwise identical.
       the card-pick screen, then the round-loop UI (WAGER → CARD → QUESTION → ANSWER → RESULT).
       `GameState` already exposes accessors for all of those phases; none have UI yet.
 
+35. **[IN PROGRESS — priority 1] Post-game social layer: Superlative Voting + Shareable
+    Question.** Owner-chosen (August 7, 2026) as the next feature after the Godot port merged
+    to `main` (PR #15). Two pieces, built **in the Next.js prototype first** — deliberately,
+    because it's the only version that can be played end-to-end with real people today, and
+    the whole point of a social feature is finding out whether it lands. Same validation
+    convention as items 24/28/30/32. It gets ported to Godot after it's proven, not before.
+    - **Superlative Voting** — after GAME_OVER, a short voting round on 3–4 AI-generated
+      superlative categories drawn from what actually happened in the game ("Best Sabotage",
+      "Worst Answer", "Most Targeted"). Ties are shared wins, same convention as `getWinners()`.
+      Chosen over the cheaper alternatives because it's the only post-game option that
+      **captures player signal** rather than just generating more content — which is the root
+      `CLAUDE.md` design principle ("prefer code that captures signal over code that generates
+      more content with no signal").
+    - **Shareable Question** — owner's redesign of the spec'd "Shareable Recap", and a better
+      idea: the shareable artifact is **a question from the game**, framed as a challenge to
+      the sharer's own following, *not* a scoreboard. A scoreboard only means something to the
+      people who were in the room; a hard trivia question travels, because guessing it drives
+      replies. Optional per player, answer deliberately withheld from the card, no persistence
+      required (client-side canvas → Web Share API, download fallback). Full design in
+      `GAME_DESIGN.md` → "Shareable Question — the growth mechanic".
+    - **Known prerequisite:** `game.highlightReel` logs prose strings, not structured data, and
+      there is no record of the questions asked. Both features need a real `game.questionLog`
+      (question, answer, category + attribution, who answered, right/wrong, wager) — that's the
+      first build step, and it's also what makes the "4 of 5 friends got this wrong" hook line
+      possible.
+    - **BUILT (August 7, 2026).** What landed:
+      - `gameState.js`: `game.questionLog` + `logQuestion()`, called from `nextTurn()` — the one
+        funnel every resolution path (submitAnswer, claimSteal, expireSteal, resolveGroupAnswers,
+        both lineup paths) passes through, so there aren't six places to forget. Plus
+        `beginSuperlativeVoting()` / `castSuperlativeVote()` / `allSuperlativeVotesIn()` /
+        `resolveSuperlatives()`.
+      - `claudeClient.js`: `generateSuperlatives()` and `narrateSuperlativeResults()`, both
+        single batched calls (same reasoning as `evaluateWorstAnswers`).
+      - `server.js`: `postgame:vote` handler (ack callback, not the global `error` event —
+        same reason as `turn:attemptLineup`), post-game kickoff from `scheduleNextTurn`, and a
+        90s vote timer so one slow player can't strand the room.
+      - `components/`: `SuperlativeVoting.jsx`, `ShareableQuestion.jsx`, wired into
+        `ScoreBoard.jsx`.
+    - **Two real bugs found by testing, worth remembering:**
+      - `claimSteal()` sets `stolen: true` on a **failed** steal as well as a successful one —
+        `result.correct` is what separates them, and it refers to the *stealer*, not the
+        original answerer. Logging naively would have reported steals that never happened.
+      - `narrateSuperlativeResults()` returned quips keyed by award *title* instead of id,
+        because the prompt never showed Claude the ids. Every quip silently dropped. Fixed the
+        prompt and added a positional fallback so an id mismatch degrades instead of erasing.
+    - **Post-game state runs inside the GAME_OVER phase**, as `game.postGame`, rather than adding
+      new phases. Every phase-timeout and auto-advance helper in `gameState.js` assumes the
+      eight-phase loop; adding a tenth phase would mean auditing all of them for a state that
+      can't affect scoring.
+    - **`questionLog` is only exposed at GAME_OVER** — it contains every correct answer. Do not
+      move that out of the `phase === 'GAME_OVER'` branch in `playerView()`.
+    - **Verified:** `scripts/postgame-test.js` — 33 assertions, all passing, including every
+      `logQuestion` outcome shape, the answer-leak guard, and 2 real Claude calls. Builds clean
+      (`npm run build`). **NOT yet verified: a real game played through to GAME_OVER with these
+      screens on-screen.** The test builds a finished game object directly rather than playing
+      24 questions, so the UI itself is compile-verified only. That playtest is the next step,
+      and it's also the point of the feature — whether the social element *lands* is not
+      something a test can answer.
+
 ## Design Thesis: Casual-First
 This game targets casual, social players — not competitive optimizers. Every
 mechanic must optimize for surprise, laughs, and "oh no!" moments over strategic
@@ -512,10 +637,27 @@ need no variants. Never bake in text-only assumptions — voice is the destinati
 ## Common Tasks
 **Run locally**
 ```bash
-cp .env.local.example .env.local  # add ANTHROPIC_API_KEY
 npm install
-npm run dev   # starts on :3000
+cp .env.local.example .env.local   # then edit it and set ANTHROPIC_API_KEY
+npm run dev                         # starts on :3000
 ```
+
+`.env.local` is loaded by `lib/env.js`, which `server.js` imports first. Next.js
+only loads env files for its own runtime, not for a custom server — without that
+import the key is undefined and the first Claude call fails. Don't reorder that
+import, and don't replace it with a `loadEnvConfig()` call inside `server.js`:
+ESM evaluates every import before the importing file's body, and
+`claudeClient.js` builds its API client at import scope.
+
+**Short games for playtesting** — add to `.env.local` rather than prefixing the
+command (these are read at import time, so a shell prefix works too, but the
+file is harder to get wrong):
+```
+NEXT_PUBLIC_MYF_ROUNDS=1
+NEXT_PUBLIC_MYF_QUESTIONS_PER_ROUND=2
+```
+Reaches GAME_OVER in ~3 minutes instead of ~25, which is the only way to
+iterate on the post-game screens. Remove both for a real pacing test.
 
 **Add a round rule** — edit `lib/roundRules.js`: add entry with
 `{id, name, emoji, description, promptInstruction, timerSeconds}`. If the answer needs
