@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Serial strangulation of young women (Surrey Strangler); method: manual strangulation with sexual assault; central question: can Helen identify and stop the killer before he strikes again?",
+    "confidence": "high",
+    "quote": "the man who killed those women. I think it's Nelson"
+  },
+  "victim": {
+    "value": "Multiple young women killed by the Surrey Strangler; the immediate victim is Imogen, a television researcher from Manchester whom Helen confides in\u2014unknowingly, Nelson has killed her after she leaves the King's Arms hotel.",
+    "confidence": "high",
+    "quote": "It was some north country woman staying in the King's Arms...Said she was at a loose end tonight. She'd planned to drop in on an old college friend"
+  },
+  "closed_world": {
+    "value": "Suburban residential neighborhood in Surrey (Carpenter Avenue area and Ashdown Park); intimate domestic marriage between Helen and Nelson creates a social/relational closed world where Helen possesses critical knowledge.",
+    "confidence": "high",
+    "quote": "Each of those women was killed within thirty miles of here"
+  },
+  "culprit_and_motive": {
+    "value": "Nelson, Helen's husband, is the Surrey Strangler. Motive: compulsive sexual violence rooted in untreated mental illness; he was institutionalized for six years before meeting Helen and has been killing throughout their marriage.",
+    "confidence": "high",
+    "quote": "I was locked up for six years before I met you...That's why I did it so close to home tonight. I was making sure they'd get me"
+  },
+  "resolution": {
+    "value": "Nelson confesses voluntarily to Helen and calls police himself, driven by a desire to be caught. He is apprehended at his home by arriving police officers.",
+    "confidence": "high",
+    "quote": "He told them who he was and where he lived and what he had done. Then he replaced the phone and told Helen, 'They're sending a car.'"
+  },
+  "investigator": {
+    "value": "Helen, Nelson's wife, acting as an amateur investigator. She pieces together dates, times, and behavioral patterns, then serves as the confessor to whom Nelson reveals the truth.",
+    "confidence": "high",
+    "quote": "The dates, the places. Each of those women was killed within thirty miles of here...on a night when Nelson got in really late"
+  },
+  "suspect_architecture": {
+    "value": "Single confirmed perpetrator (Nelson, husband/serial killer); no competing suspects. Suspicion is focused entirely on Nelson from the outset, differentiated only by degree of certainty in Helen's mind. The architecture is deliberately minimal \u2014 the story's tension derives from Helen's paralysis, not a field of suspects.",
+    "confidence": "high",
+    "quote": "\"Immy, I believe Nelson is a murderer.\""
+  },
+  "red_herring": {
+    "value": "Sally next door is constructed as an apparent victim of Nelson's final killing \u2014 her unexplained absence, her husband Gerald's anxious doorstep visit, and Helen's deduction that Nelson could have offered her a lift all converge to make the reader believe Sally is dead. The twist reveals the victim is Imogen, not Sally.",
+    "confidence": "high",
+    "quote": "\"It was some north country woman staying in the King's Arms... Said she was something in television.\""
+  },
+  "clue_fairness": {
+    "value": "All material clues are shown to the reader simultaneously with Helen: the late returns on murder dates, the missing shirt and underwear, the scratch on Nelson's face attributed to a cat, the scratched hand and torn shirt on his final return. The reader has equal access to every indicator Helen assembles.",
+    "confidence": "high",
+    "quote": "\"Two long scratches were scored across the back of his right hand... His tie was twisted askew and there were buttons missing from his shirtfront.\""
+  },
+  "social_world": {
+    "value": "Suburban English domesticity with understated gendered power asymmetry: the Vietnamese wife trailing behind her husband carrying his briefcase; Helen passive and unable to act; Sally the 'free spirit' who models nude but is still bounded by marriage and children. The institutional world (police, TV) impinges as external authority Helen fears to contact.",
+    "confidence": "medium",
+    "quote": "\"Each day she walked to the station to meet him and trail respectfully home behind him, carrying his briefcase.\""
+  },
+  "alibi": {
+    "value": "Nelson's alibi is 'clients \u2014 sales rep for a computer games firm, sometimes has to see people in the evenings.' It is vague, unverifiable, and never collapses through investigation \u2014 instead Nelson himself confesses, rendering alibi-checking moot. The alibi functions structurally to delay Helen's action rather than to be formally disproved.",
+    "confidence": "high",
+    "quote": "\"Clients, he says. He's a sales rep for a firm that makes computer games. Sometimes he has to see people in the evenings.\""
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is psychological rather than evidential: Helen's oblique remark ('Maybe a psychiatrist could') triggers Nelson's collapse into tears and immediate confession. No deduction scene \u2014 guilt is unlocked by a single piercing phrase that bypasses his defences. The confession then delivers the double-twist (victim is Imogen, not Sally).",
+    "confidence": "high",
+    "quote": "\"She found herself saying, 'Maybe a psychiatrist could.' The hunted look... gave way first to horror, then, unexpectedly, to tears.\""
+  },
+  "media_and_audience": {
+    "value": "The 'Surrey Strangler' is a media-named serial killer case; newspaper coverage and a television detective appeal are the primary conduits of public information. The TV detective's direct address to potential witnesses ('someone out there knows this man') is the device that pressures Helen \u2014 and ironically the same media ecosystem that Imogen, a TV researcher, inhabits and is destroyed by.",
+    "confidence": "high",
+    "quote": "\"Did you see the detective on the television news speaking about it? He said someone must be withholding information.\""
+  },
+  "investigator_wound": {
+    "value": "Helen is not a professional investigator; her wound is intimate paralysis \u2014 an inability to act against someone she loves and depends on. Her passivity as a lover ('sometimes more like a duty than a pleasure') mirrors her paralysis as a witness. The case exploits her conflict between loyalty/self-doubt and moral responsibility, and her inaction directly causes Imogen's death.",
+    "confidence": "high",
+    "quote": "\"I'm always going to blame myself... Three times today she had got to the point of picking up the phone to call the police... then stopped.\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "filename": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "text_len": 21205,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "PETER LOVESEY",
+    "anthology_title": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch",
+    "story_index": 9,
+    "story_count": 15
+  }
+}

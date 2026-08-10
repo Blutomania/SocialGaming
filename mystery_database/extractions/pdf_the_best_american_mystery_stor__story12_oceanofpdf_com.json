@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Rob, the narrator's drug-dealing partner, killed by anhydrous ammonia gas poisoning through his bedroom window",
+    "confidence": "high",
+    "quote": "He thrashed and threw himself against the wall. He screamed. But he couldn't see, and so he never did find his way out of the room."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "The narrator kills Rob to recover thirty-three thousand dollars in drug money that Rob stole from under the narrator's porch",
+    "confidence": "high",
+    "quote": "I had thirty-three thousand dollars in a jar under my porch...Only dirt. The jar was gone."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "The narrator himself, a conflicted drug dealer and first-person witness to his own crime, whose perspective frames the entire story",
+    "confidence": "high",
+    "quote": "I was nineteen years old and out of my league with a tall blonde who'd already graduated from community college."
+  },
+  "suspect_architecture": {
+    "value": "No traditional mystery suspect cast. The narrator is both perpetrator and self-appointed investigator. Rob (drug partner, meth addict) is the only figure who functions as an antagonist/victim. Marissa's mother is a peripheral figure implicated in drug debt with rival dealers. No formal spread of means/motive/opportunity across multiple suspects.",
+    "confidence": "low",
+    "quote": "He thrashed and threw himself against the wall. He screamed. But he couldn't see, and so he never did find his way out of the room."
+  },
+  "red_herring": {
+    "value": "The narrator's framing of his visit to Marissa's mother's house as a 'pizza delivery' functions as misdirection \u2014 both within the story (Marissa initially reads it as a pizza delivery) and for the reader, who has not yet been told the narrator is a drug dealer. The Pizza Hut sign on the truck literalizes the false cover.",
+    "confidence": "medium",
+    "quote": "she gave me this funny look before yelling back into the house, 'Mom, did you order a pizza?'"
+  },
+  "clue_fairness": {
+    "value": "Minimal. The narrator withholds key information from the reader \u2014 his drug dealing is revealed gradually, the murder of Rob is disclosed only after the act, and the missing jar is presented as a mystery whose solution (Rob stole it) is implied but never fully confirmed. Reader does not have equal access to the narrator's knowledge.",
+    "confidence": "low",
+    "quote": "I went home, got down on my hands and knees, and reached under the porch. I reached as far as I could but felt only dirt."
+  },
+  "social_world": {
+    "value": "Rural Midwestern working-class economy: grain elevators, seasonal labor, closed small-town institutions (grocery, post office, school). Drug trade operates as a shadow economy beneath surface respectability. Class aspiration is a central tension \u2014 the narrator courts a woman above his station, attends Methodist church with bankers and doctors, and dreams of legitimate life while dealing meth.",
+    "confidence": "high",
+    "quote": "The women smiled, and the men put their arms around Marissa... They were her community... 'And who is this?' 'Oh,' she said, 'just somebody I met.'"
+  },
+  "alibi": {
+    "value": "No formal alibi construction. The narrator's cover identity as a pizza/newspaper/vacuum salesman and seasonal elevator worker functions as a practical alibi for his drug-dealing activities. The Pizza Hut sign on the delivery truck is the physical prop that collapses the separation between his two identities when Marissa sees him.",
+    "confidence": "low",
+    "quote": "In the moonlight filtering through the bare tree branches, you could just make out the car and the Pizza Hut sign on top."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is technical and material: anhydrous ammonia from the tank yard \u2014 previously established in procedural detail as a lethal substance that bonds to moisture in eyes and lungs \u2014 is repurposed as the murder weapon. The earlier exposition of its dangers is the planted mechanism. The missing money jar confirms Rob's betrayal and retroactively justifies (in the narrator's logic) the killing.",
+    "confidence": "high",
+    "quote": "I connected the other end to the tank and turned the valve. The smell of the ammonia was unbearable, even from twenty feet away."
+  },
+  "media_and_audience": {
+    "value": "Largely absent as a formal element. The crime exists in a social vacuum \u2014 no press, no institutional response depicted. The narrator's closing paragraph gestures at public narrative ('pillars of the community') but ironically: the story is told entirely from the perpetrator's private, self-justifying perspective with no external audience or scrutiny.",
+    "confidence": "low",
+    "quote": "A lot of people are able to become exactly the kind of person they want to become, good and upstanding, pillars of the community."
+  },
+  "investigator_wound": {
+    "value": "The narrator-as-investigator is wounded by class aspiration and romantic failure. His love for Marissa \u2014 and his inability to become the legitimate, worthy person she represents \u2014 drives every decision including the murder. His wound is the gap between who he is (drug dealer, killer) and who he wants to be, exploited by every interaction with Marissa and her respectable community.",
+    "confidence": "high",
+    "quote": "I can be a good person if you'll let me... 'I've made a lot of mistakes,' I said, 'but that wasn't one of them.'"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "MICHAEL NOLL",
+    "anthology_title": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George",
+    "story_index": 12,
+    "story_count": 22
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": "The source is an anthology foreword/introduction, not a single mystery narrative. No unified suspect cast exists. Individual stories feature varied configurations: 'Case Closed' implies police-world insiders; 'The Shoeshine Man's Regrets' reconstructs a decades-old crime with limited character focus; 'Old Boys, Old Girls' centers on a single marginalized man. No overarching suspect architecture is present.",
+    "confidence": "low",
+    "quote": "Few of these stories are detective fiction, a tale in which an official police officer, a private eye, or an amateur sleuth is confronted"
+  },
+  "red_herring": {
+    "value": "No deliberate red herring is described or constructed in this source. The text discusses mystery fiction thematically and anthologically, not the internal plotting mechanics of any single story. No false trail is identified as planned misdirection.",
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": "The source does not discuss clue fairness as a structural principle in any story included. It references the golden age tradition of 'constructing ingenious puzzles and challenging readers to solve them' but does not detail fair-play clue presentation in any specific narrative.",
+    "confidence": "low",
+    "quote": "constructing ingenious puzzles and challenging readers to solve them before Hercule Poirot, Gideon Fell, Ellery Queen, or Lord Peter Wimsey"
+  },
+  "social_world": {
+    "value": "Multiple social worlds are gestured at across the anthology: Boston demimonde of defense attorneys and ADAs (Higgins); racially turbulent Los Angeles (Mosley/Easy Rawlins); economically ravaged communities producing marginalized men (Wolven); police institutional culture with street ethics ('There is no right. There is no wrong . . . There just is' \u2014 Manfredo). Publishing hierarchy (Houghton Mifflin, series editor, guest editor) also structures the anthology's own power network.",
+    "confidence": "medium",
+    "quote": "a Boston demimonde of harassed, overworked, yet quixotically zealous defense attorneys and ADAs"
+  },
+  "alibi": {
+    "value": "No alibi construction or alibi collapse is described for any character in any story within this source. The text is meta-commentary on the anthology and mystery fiction broadly, not a narrative account of any crime investigation.",
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "No specific reveal mechanic is detailed for any story. The introduction notes that 'Disaster Stamps of Pluto' is a 'whodunit of uncommon delicacy' and that Handler's 'Delmonico' is a variation on the locked-room mystery, but neither the technical nor psychological mechanism of revelation is described.",
+    "confidence": "low",
+    "quote": "Daniel Handler's 'Delmonico' is an artful variation on the 'locked-room mystery' that pays homage to Hollywood noir"
+  },
+  "media_and_audience": {
+    "value": "Raiche's 'One Mississippi' is explicitly described as 'a testament of our gun-ridden TV-tabloid culture,' indicating media's role in framing violence. The anthology itself is framed as a corrective to popular/commercial pressures, with Penzler resisting publisher pressure to include 'bigger names' in favour of literary merit.",
+    "confidence": "medium",
+    "quote": "convincing as a testament of our gun-ridden TV-tabloid culture"
+  },
+  "investigator_wound": {
+    "value": "Dennis Lehane's 'Until Gwen' narrator is described as 'haunted,' linked to Lehane's Mystic River tradition of characters drawn to cold-case trauma. Michael Connelly's Harry Bosch, as 'the son of a murdered woman,' is temperamentally drawn to cold-case files. James Ellroy is described as 'haunted by a violent family past,' compelling him to revisit the scene of his mother's unsolved murder.",
+    "confidence": "medium",
+    "quote": "the haunted characters of Dennis Lehane's most celebrated novel Mystic River and the narrator of his brilliantly realized short story 'Until Gwen'"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "text_len": 23432,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Until\tGwen",
+    "author": "DENNIS\tLEHANE",
+    "anthology_title": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates",
+    "story_index": 1,
+    "story_count": 22
+  }
+}

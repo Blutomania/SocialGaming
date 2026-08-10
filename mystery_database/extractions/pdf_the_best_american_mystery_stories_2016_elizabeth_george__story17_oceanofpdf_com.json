@@ -1,0 +1,87 @@
+{
+  "crime": {
+    "value": "Art gallery robbery and assault. Del steals a painting and ties up the gallery owner (Square Specs). The central question is whether the tied-up owner has been discovered yet and what consequences will follow.",
+    "confidence": "high",
+    "quote": "I tied him up pretty good. I don't think he'd have gotten loose on his own. But by now..."
+  },
+  "victim": {
+    "value": "The gallery owner (Square Specs), an unnamed man assaulted and tied up during an art heist. Also implicitly: Louise and Del themselves, victims of their own criminal trajectory and deteriorating relationship.",
+    "confidence": "high",
+    "quote": "Do you think the cleaning lady found him, or a customer?"
+  },
+  "closed_world": {
+    "value": "The journey along Route 66 from Taos to Albuquerque: a series of small towns (Madrid, Santa Fe environs) and desert roads with limited escape routes. The old Nova car itself is a moving closed space.",
+    "confidence": "medium",
+    "quote": "After we bypassed Santa Fe proper, Del had us two-laning it again on a long road toward Albuquerque: miles and miles of dirt hills and scrubby little bushes"
+  },
+  "culprit_and_motive": {
+    "value": "Del (Delwood) is the primary culprit. His motive: to gather a down payment for a house through one final major robbery, enabling a legitimate fresh start with his sister's real estate business and a foreclosed property.",
+    "confidence": "high",
+    "quote": "I needed to get the down payment on it, so I figured, one more job. One big one and that'd be it."
+  },
+  "resolution": {
+    "value": "No formal resolution or investigation. Instead, an emotional/relational resolution: Louise confronts Del with his own gun, but Del reveals his genuine plan for legitimacy and surprises her with the stolen painting and sock-monkey keychain, dissolving her intent to leave or betray him.",
+    "confidence": "medium",
+    "quote": "Needless to say, I didn't kill him. And I didn't take my half and hit the highway."
+  },
+  "investigator": {
+    "value": "Louise, the narrator and accomplice. She experiences the mystery from inside the crime\u2014as both participant and potential defector\u2014and investigates Del's true motives and character through their tense journey and final confrontation.",
+    "confidence": "high",
+    "quote": "I hadn't been thinking about killing Delwood. Not really. But you know how people sometimes have just had enough."
+  },
+  "suspect_architecture": {
+    "value": "Two-person closed system: Louise (narrator, wavering accomplice with growing resentment and access to Del's pistol) and Delwood (planner-criminal, taciturn, controlling). No wider suspect pool; tension is entirely dyadic, with Louise simultaneously suspect, potential victim, and potential perpetrator.",
+    "confidence": "high",
+    "quote": "I HADN'T BEEN thinking about killing Delwood. Not really. But you know how people sometimes have just had enough."
+  },
+  "red_herring": {
+    "value": "Louise's stated intention to leave Del and take the money is framed as a near-certain double-cross throughout, misdirecting the reader toward an inevitable betrayal. Del's apparent ignorance of her plan is also a false trail \u2014 he already knows the gun is gone and has secretly arranged a legitimate future (house, sister, stolen painting as gift), inverting the expected outcome.",
+    "confidence": "high",
+    "quote": "I stole that painting you wanted too... I knew that story wasn't true, about your daddy... I knew it while you were telling it."
+  },
+  "clue_fairness": {
+    "value": "The sock-monkey key chain purchase is shown to the reader in real time as an unexplained $30 transaction Del makes without comment; its significance as a peace offering and signal that Del understood Louise's fabricated backstory is only revealed at the climax. The reader has the same information Louise does throughout.",
+    "confidence": "high",
+    "quote": "He opened his fist then. The sock-monkey key chain was in it. Crushed a little in his grip, but there it was."
+  },
+  "social_world": {
+    "value": "Precarious working-class Southwest economy: mobile-home-park renters living biweekly, petty crime funding tuition, artistic/bourgeois gallery culture contrasted against Louise and Del's economic exclusion. Class aspiration (suits, fancy restaurants, linen tops, $3,000 paintings) drives both crime and relational friction.",
+    "confidence": "high",
+    "quote": "I knew, just knew suddenly, that it had probably cost more than the money Del had stolen from the 7-Eleven the night I first met him."
+  },
+  "alibi": {
+    "value": "Del's cover story to the mobile-home-park manager (college degree, sister in California, buying a house) functions as a fabricated alibi for their sudden departure, concealing the robbery. Ironically, the alibi turns out to be substantially true \u2014 the sister and house are real \u2014 collapsing the distinction between lie and truth.",
+    "confidence": "high",
+    "quote": "The story we told back at the mobile home park, about me having a sister out in Victorville... I really do... She's in real estate."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is psychological and object-mediated: Del opens his clenched fist to produce the sock-monkey key chain, proving he heard and understood Louise's fabricated childhood story, knew it was a lie, and chose to honor its emotional truth anyway. The clenched fist \u2014 visible earlier as a sign of anger \u2014 recontextualizes as concealment of a gift.",
+    "confidence": "high",
+    "quote": "He opened his fist then. The sock-monkey key chain was in it. Crushed a little in his grip, but there it was."
+  },
+  "media_and_audience": {
+    "value": "Absent in any institutional or press sense; the story is entirely interior and fugitive. The only 'audience' is the reader, addressed directly by Louise's confessional first-person narration, which itself becomes a form of self-justifying performance \u2014 Louise packaging her own crime story for an imagined skeptical listener.",
+    "confidence": "medium",
+    "quote": "I know what you're thinking. You're thinking I was some bored, bubblegum-popping, Cosmo-reading girl..."
+  },
+  "investigator_wound": {
+    "value": "Louise is simultaneously investigator and suspect. Her wound is abandonment: her father left at age six, leaving her with a fabricated sock-monkey story as emotional scar tissue. This vulnerability makes her misread Del's silences as indifference and his practicality as emotional withholding, nearly triggering a betrayal rooted in unresolved childhood loss rather than actual grievance.",
+    "confidence": "high",
+    "quote": "'He really give you a sock monkey when he left?' I thought about that... 'No,' I told him, and I could hear the steel in my own voice."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "ART TAYLOR",
+    "anthology_title": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George",
+    "story_index": 17,
+    "story_count": 22,
+    "backfilled_from": "book_slug[:30] filename-collision bug"
+  }
+}

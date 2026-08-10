@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Blunt-force trauma murder during a burglary 40 years prior; central question: did the confessed killer actually commit the crime, or is he protecting someone else?",
+    "confidence": "high",
+    "quote": "Blunt-force trauma in a burglary. There's no physical evidence, and the warrant was sworn out on the basis of an eyewitness who's been dead for ten years."
+  },
+  "victim": {
+    "value": "Maurice Dickman, a wealthy, ostentatious businessman in West Baltimore 40 years ago. He was 'killable' because he flaunted his wealth and treated service workers with contempt.",
+    "confidence": "high",
+    "quote": "Maurice Dickman. We lived in the neighborhood, after all...He was a showy man. He thought awfully well of himself, because he had money and a business."
+  },
+  "closed_world": {
+    "value": "West Baltimore neighborhood in 1960s, where William Harrison worked as a handyman and odd-jobber. The crime scene is Dickman's home, and Harrison was seen leaving it by neighbor Edna Buford.",
+    "confidence": "high",
+    "quote": "Neighbor lady said she saw William Harrison leave the premises, acting strangely. She knew the guy because he did odd jobs in the neighborhood, even worked for her on occasion"
+  },
+  "culprit_and_motive": {
+    "value": "Mattie Harrison (William's sister) killed Dickman, likely over a romantic rejection or humiliation; William confessed to protect her, as he has protected her for 40 years. Motive: Mattie sought to marry up but was rejected; she threw back her head and cried.",
+    "confidence": "medium",
+    "quote": "Threw back her pretty head and cried...She could have gone back, even after she dropped out, but she just stomped her feet and threw back that pretty head of hers."
+  },
+  "resolution": {
+    "value": "Tess Monaghan, the private detective, deduces the truth through literary reference ('Miss Otis Regrets'\u2014a song about a woman who kills her lover) and confronts Harrison. A lawyer obtains a plea bargain of 5 years probation instead of prison, allowing William to continue protecting his sister.",
+    "confidence": "high",
+    "quote": "A plea bargain was offered instead\u2014five years probation...So Martin Tull got his stat and a more-or-less clean conscience. Miss Harrison got her protective older brother back, along with his Social Security checks."
+  },
+  "investigator": {
+    "value": "Tess Monaghan, a private detective who stumbles into the mystery when she and her friend Whitney witness the street altercation that triggers Harrison's arrest. She pursues the truth as an outsider with no official authority.",
+    "confidence": "high",
+    "quote": "Tess Monaghan and Whitney Talbot were standing outside the Brass Elephant...She had confided to Whitney that she was trying to sharpen her powers of observation. It was a reasonable exercise in self-improvement for a private detective"
+  },
+  "suspect_architecture": {
+    "value": "Two suspects for a 40-year-old murder: William Harrison (confessed, eyewitnessed leaving scene, had means/opportunity, odd-jobs connection to victim) and his sister Mattie Harrison (actual killer \u2014 laundress with access to the iron murder weapon, motive tied to the victim's character and her own thwarted ambitions, protected by brother's false confession).",
+    "confidence": "high",
+    "quote": "\"The kind,\" Tess said, \"that a man's laundress might use.\""
+  },
+  "red_herring": {
+    "value": "William Harrison's eager, detailed confession functions as the primary red herring \u2014 his composure, his temper (the soda can incident), his prior odd-jobs relationship with the victim, and his eyewitness placement at the scene all misdirect Tull and the reader toward accepting him as the genuine killer.",
+    "confidence": "high",
+    "quote": "\"He couldn't confess fast enough. Didn't want a lawyer, didn't ask any questions, just sat down and began talking as fast as he could.\""
+  },
+  "clue_fairness": {
+    "value": "The iron murder weapon is identified as the type requiring heating \u2014 a cast iron pressing iron used by laundresses \u2014 presented to the reader in dialogue before Tess articulates its implication. The song lyric 'Miss Otis Regrets' (about a woman who kills her lover) is quoted aloud by Harrison, available to the reader to interpret independently.",
+    "confidence": "high",
+    "quote": "\"Definitely, one of those old-fashioned ones, cast iron. The kind you had to heat.\""
+  },
+  "social_world": {
+    "value": "Baltimore's layered racial and class hierarchy: Black working-class residents denied mobility (segregated amusement parks, laundress vs. custodian status), white wealth on display (Humvee, country club, Orioles tickets), and the indifference of police to a Black victim's murder for 40 years. The Social Security bureaucracy ironically employs Harrison as custodian while his sister lacks pension.",
+    "confidence": "high",
+    "quote": "\"If Maurice Dickman had been a white man, I bet I wouldn't have been walking around all this time.\""
+  },
+  "alibi": {
+    "value": "Harrison has no alibi \u2014 he was positively placed at the scene by eyewitness Edna Buford, and he confesses. The alibi question is inverted: the true suspect (Mattie) has no alibi constructed or tested at all, her guilt emerging only through implication. Harrison's confession serves as a false alibi-for-guilt rather than an alibi-for-innocence.",
+    "confidence": "medium",
+    "quote": "\"I was seen coming from his house that night, sure as anything. That neighbor, Edna Buford, she didn't miss a trick on that block.\""
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is staged through two interlocking devices: (1) Harrison's inability to name the murder weapon unprompted (then his suspiciously triumphant recall after being told), exposing his confession as fabricated; (2) the misquoted song lyric \u2014 'threw back her pretty head' vs. 'lifted up her lovely head' from 'Miss Otis Regrets,' a song about a woman who murders her lover, pointing to Mattie as the true killer.",
+    "confidence": "high",
+    "quote": "\"'Miss Otis Regrets.' It's about a woman who kills her lover, and is then hanged on the gallows.\""
+  },
+  "media_and_audience": {
+    "value": "The 40-year-old murder of a Black man received negligible institutional follow-through \u2014 the warrant was lost, the case dormant. The street altercation scene is framed explicitly as 'street theater' for the valet-parking crowd. Public sympathy only mobilizes when a white woman (Tess) is struck, not when an elderly Black man is attacked \u2014 a pointed commentary on whose victimhood is legible.",
+    "confidence": "high",
+    "quote": "\"Sad to say, this physical contact galvanized the crowd in a way that his attack on an elderly black man had not.\""
+  },
+  "investigator_wound": {
+    "value": "Tess's wound is professional conscience and guilt: she inadvertently triggered Harrison's arrest by intervening in the fight and calling police. She is drawn to investigate not by assignment but by culpability, and must navigate the tension between institutional justice (Tull's stat) and human cost (an old man potentially dying in prison for a crime he may not have committed).",
+    "confidence": "high",
+    "quote": "\"I'm really sorry, Mr. Harrison, about the mess I've gotten you into.\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "text_len": 24794,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The\tShoeshine\tMan\u2019s\tRegrets",
+    "author": "LAURA\tLIPPMAN",
+    "anthology_title": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates",
+    "story_index": 9,
+    "story_count": 22
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Flyte, a cardsharp who cheated men out of money and ran away with Henry Pearsall's wife. He is killable because he is considered a blight on society\u2014a man beyond the law's reach in frontier towns.",
+    "confidence": "high",
+    "quote": "a cardsharp, a man who has cheated other men out of hundreds of dollars, thousands maybe, a man who is traveling with another man's wife"
+  },
+  "closed_world": {
+    "value": "The remote frontier mining town of Williamsville, isolated by geography and approaching storm. A man can tell much about a town by its 'ugly backside'\u2014it is small, contained, and cut off by the Pine River.",
+    "confidence": "high",
+    "quote": "Williamsville\u2014the sort of town Matthis knows so well he's wearied by this glimpse of it...untidy as a heap of crates dumped on the far bank of the great Pine River."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Matthis kills Flyte behind the saloon, but the narrative dissolves into surrealism or hallucination. Matthis is then himself killed by a mob in the cemetery by the river, suggesting either a cycle of revenge or the unreliability of the narrator's perception.",
+    "confidence": "medium",
+    "quote": "Flyte stands there with his mouth open, then all in one go he topples to the ground...then he's shoved hard in the chest. He stares down in wonder at the blood blooming on his shirt"
+  },
+  "investigator": {
+    "value": "Matthis, a professional hired killer who serves as the protagonist and unreliable narrator. He is not an official investigator but a paid executioner moving through the town to locate and kill Flyte.",
+    "confidence": "high",
+    "quote": "the bringer of death to men that other men want dead...It's become Matthis's habit not to notice lawmen, and in turn they look right through him"
+  },
+  "suspect_architecture": {
+    "value": "No traditional suspect pool; inverted structure \u2014 Matthis is the known killer, Flyte the target. Secondary moral suspect is client Henry Pearsall (revenge/jealousy motive, paying for contract killing). The woman shot at the end is an unintended victim. Differentiation is by role: contractor, target, collateral, absent client.",
+    "confidence": "medium",
+    "quote": "The man that Matthis has come to kill is called Flyte...Henry Pearsall, that wife's husband, who is paying half up front"
+  },
+  "red_herring": {
+    "value": "Flyte's staged drunkenness and stumbling exit from the card table reads as a setup or escape attempt, misleading Matthis (and reader) into thinking Flyte is aware of the hit \u2014 but he is merely relieving himself, unaware. The miners' self-satisfied looks amplify this false trail.",
+    "confidence": "high",
+    "quote": "a man like Flyte doesn't let himself get that drunk in the afternoon...not unless he's an utter fool"
+  },
+  "clue_fairness": {
+    "value": "The watch inscription 'Paul H. Dewar' is shown to the reader simultaneously with Matthis discovering it, raising the question of mistaken identity before the narrative resolves it ambiguously. The scorched shirt mark also doubles as both identifying detail and bullet placement clue, visible to reader and actor equally.",
+    "confidence": "high",
+    "quote": "He springs the cover open: Paul H. Dewar. What man is this, Matthis wonders, who carries another man's watch"
+  },
+  "social_world": {
+    "value": "Frontier mining-town hierarchy: wealthy clients (Pearsall) purchase extrajudicial justice; sheriffs are complicit by deliberate blindness; hired killers occupy a tolerated underclass role; miners are distrustful and powerless; women are entirely without resource or agency. Moral code is transactional and enforced by money, not law.",
+    "confidence": "high",
+    "quote": "a certain moral code is applied: men who are a blight on a town are removed, and if a man like Matthis should make his living by it"
+  },
+  "alibi": {
+    "value": "No alibi structure in the conventional mystery sense \u2014 the story is inverted. However, Matthis's own cognitive disintegration at the end functions as a collapsed alibi of identity: he cannot reliably account for which town, which killing, or which man, destabilising any retrospective account of his actions.",
+    "confidence": "low",
+    "quote": "he wonders if this is still Williamsville or if this is some other town and Williamsville was where he shot Flyte a month ago"
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is psychological and perceptual rather than deductive: Matthis's failure to recognise himself in the bar mirror \u2014 reacting to draw on his own reflection \u2014 externalises his fractured identity. The watch inscription then seeds doubt about whether Flyte is who Matthis was told. The ending dissolves certainty entirely, making the 'solution' irretrievably ambiguous.",
+    "confidence": "high",
+    "quote": "his hand drops for his gun, and only when the old man mirrors him...does Matthis understand he's looking at himself"
+  },
+  "media_and_audience": {
+    "value": "Absent in any institutional or press sense \u2014 the frontier setting deliberately excludes formal narrative apparatus. The killings will be absorbed into the town's silence; the moral framing is internal to Matthis and the client class. There is no public tribunal or press; complicity is structural and wordless.",
+    "confidence": "low",
+    "quote": "sheriffs of that kind don't last long out here...lawmen...look right through him\u2014to a dog scratching its ear in the middle of the street"
+  },
+  "investigator_wound": {
+    "value": "Matthis's wound is cognitive and existential: advancing age, physical decay, and a dissociating mind that can no longer distinguish past killings from present ones, or self from stranger. The case literalises his wound \u2014 he is both the instrument of death and its next recipient, undone by the very wariness that defined his competence.",
+    "confidence": "high",
+    "quote": "his face so old it looks rendered down to the bones...he has been taken unawares by himself before"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "text_len": 22759,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Williamsville",
+    "author": "GERRI\tBRIGHTWELL",
+    "anthology_title": "The_Best_American_Mystery_Stories_2017_-_John_Sandford",
+    "story_index": 6,
+    "story_count": 19
+  }
+}

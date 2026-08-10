@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Charlie (narrator), a young boy reflecting on childhood encounters with Bugsy Siegel in 1947 Houston",
+    "confidence": "high",
+    "quote": "I told Benny Siegel what Mr. Dunlop did to you. He promised to help."
+  },
+  "suspect_architecture": {
+    "value": "Not a traditional mystery structure. The central moral antagonist is Mr. Dunlop (landlord, bully, informer against Sister Felicie); Vernon Dunlop (physical threat to narrator); Benny Siegel (ambiguous figure \u2014 gangster/protector whose reliability is itself in question). No formal suspect pool.",
+    "confidence": "low",
+    "quote": "His name is Benjamin Siegel. / You're a gangster, Nick said."
+  },
+  "red_herring": {
+    "value": "Benny's apparent betrayal \u2014 his failure to appear as promised \u2014 leads the narrator and reader to conclude he abandoned them, when in fact he did act covertly (5 AM visit to Dunlop, calls to archdiocese). The absence of tire tracks amplifies the false impression of abandonment.",
+    "confidence": "high",
+    "quote": "I could see no tire imprint in the gray film left over from the last rain. I knelt down and touched the dust with my fingers."
+  },
+  "clue_fairness": {
+    "value": "The maroon convertible with whitewall tires is described precisely at first meeting and again at the 5 AM scene, giving the reader the same identifying detail as the narrator. Sister Felicie's later phone call confirming Benny's archdiocese calls is the resolution clue, available simultaneously to narrator and reader.",
+    "confidence": "medium",
+    "quote": "I could see fog on the street and a maroon convertible with whitewall tires parked in front of the Dunlops's house."
+  },
+  "social_world": {
+    "value": "Postwar Houston class stratification: the Dunlops as newly-moneyed exploitative landlords vs. impoverished narrator's family; parochial school nuns subject to parish priest and patrons; Benny Siegel as outside power operating beneath/above law; the Church hierarchy as institutional authority over Sister Felicie.",
+    "confidence": "high",
+    "quote": "As newly empowered landlords, the Dunlops cut no one any slack, did no repairs on their properties, and evicted a Mexican family."
+  },
+  "alibi": {
+    "value": "Benny's alibi for his non-appearance is constructed by the hotel clerk's denial ('no one registered here by that name'), creating a false account of non-presence. The 5 AM visit is then either real (confirmed by Sister Felicie's call) or dreamlike \u2014 the story deliberately leaves the alibi/presence question unresolved.",
+    "confidence": "medium",
+    "quote": "There's no one registered here by that name, the clerk said... We have no record of a guest with that name."
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated not through physical evidence (tire tracks are absent, undermining material proof) but through Sister Felicie's long-distance telephone call confirming Benny called the archdiocese twice on her behalf \u2014 an institutional record standing in place of forensic proof.",
+    "confidence": "high",
+    "quote": "Mr. Siegel. He's called the archdiocese twice... Can you do that for me, Charlie?"
+  },
+  "media_and_audience": {
+    "value": "Benny Siegel's identity is established through popular radio crime broadcasting ('Gangbusters'), shaping how the boys perceive him before meeting him. His death is reported through newspaper crime coverage. The public/media narrative frames him purely as gangster; the private narrative of the story counterpoints this.",
+    "confidence": "high",
+    "quote": "We heard your name on Gangbusters. Nick and me listen every Saturday night."
+  },
+  "investigator_wound": {
+    "value": "Charlie's psychological wound is the loss of his father (died in an accident, family evicted, downward social displacement), which makes him acutely vulnerable to betrayal by protective male figures. Benny's apparent abandonment re-opens this wound, triggering self-starvation and reckless confrontation with Vernon.",
+    "confidence": "high",
+    "quote": "You miss your dad? / I don't think about it much anymore. It was an accident. Why go around feeling bad about an accident?"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Why Bugsy Siegel Was a Friend of Mine",
+    "author": "JAMES LEE BURKE",
+    "anthology_title": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow",
+    "story_index": 3,
+    "story_count": 19
+  }
+}

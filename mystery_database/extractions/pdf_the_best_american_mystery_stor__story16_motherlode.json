@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Morsel and Ray, shot dead at the remote Montana property. Morsel appears to be a drug dealer in the Bakken oil field; Ray is a con man and failed opportunist drawn into her operation.",
+    "confidence": "medium",
+    "quote": "Then he saw Morsel on the floor with the channel changer in her hand. She'd been shot."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "David Jenkins, a cattle inseminator and courier who becomes entangled in the criminal operation and discovers the bodies upon returning from a drug delivery run.",
+    "confidence": "high",
+    "quote": "David felt an icy calm. Ray must have done this. He checked the car keys in his pocket and walked out of the house."
+  },
+  "suspect_architecture": {
+    "value": "Three principals: Ray (con man, fake gun, coercion), Morsel (drug courier, Oxycontin operation), and an unnamed thin man in khakis (Shale Services cap, likely the shooter/cartel enforcer). David functions as an unwitting fourth party drawn in by greed. Ray and Morsel are killed; the thin man holds actual power. Differentiation: Ray has motive of desperation and romance, Morsel has operational control and local knowledge, the thin man has lethal enforcement authority.",
+    "confidence": "high",
+    "quote": "When he got to it, a man was waiting for him... thin and precise in clean khakis and a Shale Services ball cap."
+  },
+  "red_herring": {
+    "value": "Ray's gun is a theatrical prop from a community production of 'Twelve Angry Men,' presented throughout as a genuine threat. The entire coercive dynamic of the story rests on this false premise, misdirecting both David and the reader into treating Ray as a dangerous criminal rather than a desperate bluffer. The real danger comes from an entirely different, unsignaled quarter.",
+    "confidence": "high",
+    "quote": "Ray, I think your gun's a toy. It's a fake. And looks like you are too."
+  },
+  "clue_fairness": {
+    "value": "The Powell Savings, Modesto, CA pocket liner is shown to the reader at the same moment David observes it, planting Ray's California connection before the Modesto delivery is revealed. The roll of money in Ray's pack versus his claimed 'last dime' is presented directly to the reader through David's observation, flagging the deception available for interpretation.",
+    "confidence": "medium",
+    "quote": "The flap of the pocket liner said Powell Savings, Modesto, CA."
+  },
+  "social_world": {
+    "value": "Rural Montana ranching economy layered over an informal criminal supply network (bootleg Oxycontin to Bakken oil field workers). The rancher community represents legitimate agrarian hierarchy; David occupies a marginal service role within it. The drug operation exploits the region's economic desperation and geographic isolation. IRS pressure signals the state's distant, belated awareness.",
+    "confidence": "high",
+    "quote": "She told me she was coining it, selling bootleg Oxycontin in the Bakken oil field, but she was lonely."
+  },
+  "alibi": {
+    "value": "Ray constructed a false alibi for David's benefit during the phone call: claiming he left his 'Beamer for an oil change' and that David volunteered a lift. This alibi is fabricated in real time to explain Ray's presence to Morsel. The thin man at the end has no alibi offered \u2014 his waiting presence is itself the implicit confession of having committed the murders while David was away.",
+    "confidence": "medium",
+    "quote": "Left the Beamer for an oil change, and Dave said he was headed this way. Wouldn't even let me split the gas."
+  },
+  "reveal_mechanic": {
+    "value": "The trunk opening is the story's terminal reveal mechanic: the contents are never named, but the gesture of revelation \u2014 David bending to insert the key with shaking hands, the lid rising \u2014 transfers knowledge to the thin man and implicitly to the reader. The earlier detail of the woman in Modesto silently loading the trunk retroactively confirms David's complicity. The final line 'David didn't feel a thing' functions as psychological punctuation to the physical reveal.",
+    "confidence": "high",
+    "quote": "The lid rose to reveal the contents of the trunk. David didn't feel a thing."
+  },
+  "media_and_audience": {
+    "value": "The crime operates in near-total institutional invisibility: remote Montana landscape, no press, no witnesses. The only external institutional signal is the IRS \u2014 two agents already inquiring \u2014 mentioned by Ray's wife in Modesto, suggesting financial surveillance rather than criminal investigation. The ranching community and caf\u00e9 social world are oblivious to the criminal layer beneath David's cover identity.",
+    "confidence": "medium",
+    "quote": "Tell Ray I said be careful. I've heard from two IRS guys already."
+  },
+  "investigator_wound": {
+    "value": "David is not a conventional investigator, but the story maps a wound onto him structurally: acute awareness of his own colorlessness and failed ambition. His curiosity about Ray and Morsel is explicitly driven by envy of Ray's chaotic vitality. This vulnerability \u2014 the hunger for a life that feels like more \u2014 is precisely what the criminal operation exploits to recruit him, making his wound the mechanism of his corruption.",
+    "confidence": "high",
+    "quote": "He brooded over how colorless his own life was in comparison with Ray's... what had he ever done?"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "filename": "The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Motherlode",
+    "author": "THOMAS\tMCGUANE",
+    "anthology_title": "The_Best_American_Mystery_Stories_215_-_James_Patterson",
+    "story_index": 16,
+    "story_count": 19
+  }
+}

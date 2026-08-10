@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Shooting of a child (Peeler) in the Idaho mountains; central question: who ordered the hit and why was the wrong target struck?",
+    "confidence": "high",
+    "quote": "They shot Peeler...I realized Peeler had Jack's coat on. He drew the fire."
+  },
+  "victim": {
+    "value": "Peeler, a child; killable because he wore Jack Cooley's army jacket, making him a mistaken target in a pressure campaign against Jack Cooley, a recently released ex-convict tied to organized crime.",
+    "confidence": "high",
+    "quote": "I realized Peeler had Jack's coat on...He walked around in it...I thought maybe you had some cigarettes in there."
+  },
+  "closed_world": {
+    "value": "Remote Idaho Panhandle mountain property where the Cooley family lives in isolation; accessible only by truck through snow; bounded by forest and family cemetery.",
+    "confidence": "high",
+    "quote": "I drove the Cooley family back to the tip of the Idaho Panhandle. By the time we got home, it was snowing lightly."
+  },
+  "culprit_and_motive": {
+    "value": "George Beck's associates/lawyer; motive is to pressure Jack Cooley into providing testimony or information about Beck's legal situation regarding a death in Eastern Washington.",
+    "confidence": "medium",
+    "quote": "Tomorrow, George is going to begin talking about Tim Shipman...George Beck had been in the woods...they were applying pressure."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Ed Snider (narrator), an undercover informant posing as a renter; he is forced by Beck's lawyer to spy on the Cooley family while being complicit in the surveillance that leads to the shooting.",
+    "confidence": "high",
+    "quote": "I realized that I had made myself that way, cut myself to fit. Purposefully become a piece of the puzzle."
+  },
+  "suspect_architecture": {
+    "value": "Multiple parties with competing interests: George Beck (criminal enforcer, motive to implicate Jack Cooley), Jack Cooley (ex-con with violent history, suspected of ongoing Dragoon activity), Beck's lawyer (coercion agent), and the unnamed narrator-informant (embedded operative, false identity). Means and opportunity distributed across criminal network and law enforcement proxies.",
+    "confidence": "high",
+    "quote": "Jack Cooley wasn't a Girl Scout. He'd started out with the Hammerskins and moved up to the elite Eighty-eight Dragoons."
+  },
+  "red_herring": {
+    "value": "Jack Cooley is presented as the dangerous target requiring surveillance, implying he is planning further criminal activity \u2014 but the actual violence is perpetrated by Beck's own people against Peeler, not by Cooley. Cooley's army jacket misdirects the shooter into targeting the wrong person.",
+    "confidence": "high",
+    "quote": "I realized Peeler had Jack's coat on. 'He drew the fire,' Pop said. 'He walked around in it the other morning.'"
+  },
+  "clue_fairness": {
+    "value": "The Kevlar vest clue is seeded fairly: the narrator mentions his bulletproof vest in context, and Peeler's survival is explained retrospectively by its presence \u2014 information available in the narrative but not foregrounded until the reveal. The smiley-face messages on logs also signal Peeler's covert awareness before its significance is explained.",
+    "confidence": "medium",
+    "quote": "He was wearing the Kevlar vest, my bulletproof. He'd been hit, twice, body shots. He was hurt, but he was alive."
+  },
+  "social_world": {
+    "value": "Interlocking patronage and debt networks: Carl Larson's off-grid landlord system, Dan's tax-free fuel racket enabled by a university fleet driver indebted to Carl's friends, George Beck's criminal leverage over the narrator via threatened exposure of Tim Shipman and the Larson girl. Law enforcement and criminal worlds overlap, with loyalty enforced through favors owed.",
+    "confidence": "high",
+    "quote": "Carl and some of Carl's friends sorted that out, so he's paying back, we're not paying him."
+  },
+  "alibi": {
+    "value": "The narrator constructs a false identity and backstory \u2014 'Ed Snider,' contract logger \u2014 as a cover for his informant role. George Beck was in the woods of Eastern Washington the day Elmer Cooley died; law enforcement cannot prove he pulled the trigger, making his whereabouts an unverified alibi under pressure.",
+    "confidence": "medium",
+    "quote": "George Beck had been in the woods of Eastern Washington the day Elmer Cooley died, and although they couldn't prove he pulled the trigger."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is physical and material: Peeler's survival is demonstrated by the presence of the narrator's own Kevlar vest on the boy's body, turning an apparent assassination into a near-miss. The mechanism \u2014 vest transfer \u2014 is confirmed by lifting the army jacket to expose the bulletproof, witnessed in real time by all parties.",
+    "confidence": "high",
+    "quote": "Jack rolled him over, pulled back the coat. He was wearing the Kevlar vest, my bulletproof."
+  },
+  "media_and_audience": {
+    "value": "The narrator frames the entire story as testimony given to investigators \u2014 'this is what I gave to the investigators' \u2014 meaning the crime is filtered through an official institutional lens from the outset. Law enforcement's selective prosecution logic is explicitly critiqued: they pursue deaths of their own hardest and assume guilt in others.",
+    "confidence": "high",
+    "quote": "THIS IS WHAT HAPPENED, the same story I gave to the investigators."
+  },
+  "investigator_wound": {
+    "value": "The narrator is compromised from the start: living under a false name, implicated in prior crimes (Tim Shipman, the Larson girl), and coerced into informing to protect himself. His wound is moral self-betrayal \u2014 he has made himself a tool of Beck's violence while wanting 'honest money and to get on the right track,' and the shooting of Peeler forces a reckoning with the cost of his complicity.",
+    "confidence": "high",
+    "quote": "I wanted to earn honest money and get on the right track. I wanted that a lot."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "SCOTT WOLVEN",
+    "anthology_title": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow",
+    "story_index": 19,
+    "story_count": 19
+  }
+}

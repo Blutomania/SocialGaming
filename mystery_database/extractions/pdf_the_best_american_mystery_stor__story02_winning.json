@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder of rape suspect by gunshot (two shots); central question: who killed the man and will the crime be solved or concealed?",
+    "confidence": "high",
+    "quote": "Two shots, just like Greg said. One near the bottom of his gut. One in the neck."
+  },
+  "victim": {
+    "value": "Accused rapist out on bail; 'killable' because he sexually assaulted Jenny (a police officer), was released on bail, and threatened to expose the assault, destroying her career and reputation.",
+    "confidence": "high",
+    "quote": "He said vile things about what he'd done to her. He said he'd tell everyone in prison."
+  },
+  "closed_world": {
+    "value": "Isolated house on Nine Mile Road near Missoula, Montana; snowed in during winter weather, limiting outside observation and escape routes.",
+    "confidence": "high",
+    "quote": "The snow was sticking heavily...whatever tracks had been made by her husband's tires had been smoothed over by a perfect layer of white."
+  },
+  "culprit_and_motive": {
+    "value": "Greg Sutton (Jenny's husband) commits the murder; motive is rage and the belief that justice has failed\u2014the rapist is 'getting away with it' on bail; Greg seeks retribution.",
+    "confidence": "high",
+    "quote": "He's winning...He did this to you, and nothing's happening. He's getting away with it."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Jenny Sutton, the rape victim and police officer; she investigates and conceals her husband's crime through forensic manipulation, evidence planting, and false reporting to authorities.",
+    "confidence": "high",
+    "quote": "She walked to the phone and dialed a cell phone number she knew by heart...Then she told Wayne the story."
+  },
+  "suspect_architecture": {
+    "value": "Single perpetrator (unnamed rapist); Greg as secondary actor who commits the murder; Jenny as architect of cover-up. No false suspects \u2014 moral complexity distributed across three figures differentiated by role: victim, avenger, orchestrator.",
+    "confidence": "high",
+    "quote": "Greg stood, leaving Jenny on her own in the bed. 'I don't understand. How could they let this happen to you?'"
+  },
+  "red_herring": {
+    "value": "Jenny constructs a false narrative for Wayne Harvey \u2014 that the rapist called the house, made threats, and that Greg drunkenly went to confront him \u2014 redirecting suspicion from premeditated cover-up to a crime-of-passion domestic response.",
+    "confidence": "high",
+    "quote": "The man called the house during dinner. He said vile things... Greg started drinking. She was at the Nine Mile house now and needed his help."
+  },
+  "clue_fairness": {
+    "value": "The reader is shown all forensic steps Jenny takes in real time \u2014 fired rounds replaced, boots stepped in blood, tarp burned, temperature manipulation of body \u2014 before any investigator arrives, allowing reader to reconstruct the frame.",
+    "confidence": "high",
+    "quote": "She held her familiar pistol and added two cartridges to fill the magazine. She fired two shots into a nearby tree."
+  },
+  "social_world": {
+    "value": "Rural Montana law enforcement hierarchy: female patrol officers are marginal, decoy duty is gendered and dangerous, institutional loyalty (Wayne, Anne Lawson, Judge Parker) governs what gets pursued or buried. The mill-worker husband sits outside this power structure entirely.",
+    "confidence": "high",
+    "quote": "Jenny was one of two female patrol officers under the age of thirty-five working for the Missoula County Sheriff's Department."
+  },
+  "alibi": {
+    "value": "Greg's alibi is constructed by Jenny: she ensures gunshot residue transfers to herself, burns his clothes, plants his coat at the scene, and manipulates time-of-death by cooling then rewarming the body, making her presence \u2014 not his \u2014 the forensic story.",
+    "confidence": "high",
+    "quote": "If they analyzed for gunshot residue, Greg would not be the one to test positive."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is withheld from in-story investigators but fully demonstrated to the reader through Jenny's methodical, itemised cover-up actions \u2014 the two replacement cartridges, the boot-blood transfer, the body temperature manipulation \u2014 which expose the frame's architecture without any detective figure perceiving it.",
+    "confidence": "high",
+    "quote": "The chill had kept the body fresh enough. Time of death wouldn't pose a problem."
+  },
+  "media_and_audience": {
+    "value": "Institutional audience only \u2014 no press depicted. The story Jenny tells Wayne and Anne Lawson will become the official narrative absorbed by the County Attorney's Office and the Sheriff's Department; professional courtesy and sympathy for a violated colleague ensure it will not be scrutinised.",
+    "confidence": "medium",
+    "quote": "She needed Anne Lawson from the County Attorney's Office to come out, too."
+  },
+  "investigator_wound": {
+    "value": "Jenny is simultaneously the investigator and the victim: her wound is the rape itself, which she must suppress, manage, and instrumentalise. Her professional competence is the mechanism of her psychological survival \u2014 and of the cover-up \u2014 creating an irresolvable tension between justice and self-preservation.",
+    "confidence": "high",
+    "quote": "For just a moment, only a moment, she felt her heart quicken with a strange sense of pleasure."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "text_len": 18955,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Winning",
+    "author": "ALAFAIR BURKE",
+    "anthology_title": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver",
+    "story_index": 2,
+    "story_count": 25
+  }
+}

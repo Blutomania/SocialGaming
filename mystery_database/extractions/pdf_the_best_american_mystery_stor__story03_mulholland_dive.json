@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder disguised as a single-vehicle accident on Mulholland Drive. A wealthy man's Porsche is forced off a cliff via deliberate obstruction (crash dummy placed in road); the crime poses the question: how was an accident reconstructionist manipulated into certifying a murder as accidental?",
+    "confidence": "high",
+    "quote": "He jerks the wheel to avoid the animal, then overcompensates, loses control... An accident, plain and simple."
+  },
+  "victim": {
+    "value": "A wealthy man in the midst of divorce proceedings, worth tens of millions, recently purchased a Porsche on lease. He is 'killable' because his soon-to-be ex-wife stands to inherit his estate and insurance payout, and he is isolated on a dangerous road at night with no witnesses.",
+    "confidence": "high",
+    "quote": "You're talking tens of millions, and on top of that he's supposedly in the middle of a divorce."
+  },
+  "closed_world": {
+    "value": "Mulholland Drive at night\u2014a narrow, winding mountain road with limited access points, heavy mist reducing visibility, and the specific curve where the victim loses control. The location is both isolated (no homes nearby) and bounded by its geography (cliffs on both sides).",
+    "confidence": "high",
+    "quote": "Mulholland was literally the backbone of Los Angeles...Mulholland was built for speed but it couldn't handle it."
+  },
+  "culprit_and_motive": {
+    "value": "Detective Clewiston, the accident reconstructionist hired to investigate the scene. His motive: he was paid by the victim's ex-wife to orchestrate the 'accident' so she could inherit the estate and collect insurance. He used a crash-test dummy (Arty) placed on the road to force the victim to swerve and crash.",
+    "confidence": "high",
+    "quote": "He jerks the wheel right to avoid the coyote. You brought a third party into this... Relax. Arty doesn't talk."
+  },
+  "resolution": {
+    "value": "Clewiston, while leaving the crime scene with a recorded confession on a throwaway phone, encounters the same hazard he engineered: a coyote crossing Mulholland. He swerves, loses control, crashes through the safety fence, and his car plunges into a backyard swimming pool where he drowns\u2014the same fate he orchestrated for his victim. Poetic justice via identical mechanism.",
+    "confidence": "high",
+    "quote": "In a moment he broke free and jerked the wheel right to avoid the coyote...The car turned 180 degrees before blowing backward through the safety fence."
+  },
+  "investigator": {
+    "value": "Detective Clewiston himself\u2014the official accident reconstructionist with institutional authority and expertise. The reader experiences the mystery through his perspective, only to discover he is the culprit. His investigation is the cover-up mechanism.",
+    "confidence": "high",
+    "quote": "He was the expert. He was the one they called in from home...Detective Clewiston. The reconstructionist."
+  },
+  "suspect_architecture": {
+    "value": "Two conspirators only: Clewiston (the corrupt reconstructionist-killer, means and opportunity) and the unnamed wife (motive: inheritance and insurance double-dip). No false suspects; architecture is a closed dyad concealed behind a professional investigation facade.",
+    "confidence": "high",
+    "quote": "\"You wanted it to happen, so it happened,\" he said. \"I told you I would take care of it.\""
+  },
+  "red_herring": {
+    "value": "The entire accident reconstruction process is the red herring \u2014 Clewiston performs a legitimate-seeming professional analysis (skid marks, coyote path, speed calculation) that conclusively points to accidental death, deliberately misdirecting Fairbanks and the reader away from murder.",
+    "confidence": "high",
+    "quote": "\"All the facts point to it being a driving mishap. An accident.\""
+  },
+  "clue_fairness": {
+    "value": "The crash test dummy 'Arty' is shown to the reader in the trunk early in the story \u2014 the same detail the reader later learns was the murder weapon used to cause the victim's swerve \u2014 satisfying fair-play convention by planting the key clue in plain sight.",
+    "confidence": "high",
+    "quote": "\"We call him Arty,\" Clewiston said. \"He was made by a company called Accident Reconstruction Technologies.\""
+  },
+  "social_world": {
+    "value": "LAPD institutional hierarchy (watch commanders, sergeants, detectives) intersects with celebrity wealth and divorce litigation; rank-protection culture pressures everyone to close the case cleanly, enabling Clewiston's cover-up to succeed through the system's own self-interest.",
+    "confidence": "high",
+    "quote": "\"In this department, the captains don't get blamed when things go sideways off the road. It's always the sergeants.\""
+  },
+  "alibi": {
+    "value": "Clewiston's alibi is structural rather than temporal: his official role as the called-in reconstructionist gives him authorised, documented presence at the crime scene, making his involvement appear professional duty rather than criminal staging.",
+    "confidence": "high",
+    "quote": "\"It was Mulholland, and the Mulholland calls all went to him.\""
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is delivered through recorded confession on a digital recorder Clewiston himself attached to his phone to blackmail the wife \u2014 the instrument of his control becomes the evidence of his guilt \u2014 combined with ironic poetic justice as he dies by the same coyote-swerve mechanism he engineered for the victim.",
+    "confidence": "high",
+    "quote": "\"He looked down at the recorder. He knew it would be the last time they talked\u2014until he needed more money from her.\""
+  },
+  "media_and_audience": {
+    "value": "The victim's celebrity status and ongoing high-value divorce drives institutional anxiety about media scrutiny \u2014 'five by five' procedural correctness is demanded not for justice but to pre-empt press blowback, and the insurance company is framed as the only external check on the official narrative.",
+    "confidence": "high",
+    "quote": "\"Once the ID gets out, we'll have the media all over this.\""
+  },
+  "investigator_wound": {
+    "value": "Clewiston's wound is inverted: his unimpeachable expertise and monopoly over Mulholland fatalities \u2014 the source of his professional pride and identity \u2014 is precisely the vulnerability that makes him corruptible and ultimately destroys him; his mastery breeds the hubris that kills him.",
+    "confidence": "medium",
+    "quote": "\"He was the expert. He was the one they called in from home... the Mulholland calls all went to him.\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Mulholland Dive",
+    "author": "MICHAEL CONNELLY",
+    "anthology_title": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos",
+    "story_index": 3,
+    "story_count": 22
+  }
+}

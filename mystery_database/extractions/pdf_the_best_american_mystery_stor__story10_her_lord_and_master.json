@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Stabbing death of Jim by Susan with a kitchen knife; central question: was this self-defense against abuse or premeditated murder by a willing participant in consensual rough sex?",
+    "confidence": "high",
+    "quote": "Susan stabbed him with a kitchen knife, one of those big ones. Just a single convulsive jab but it went straight in, severed the vena cava."
+  },
+  "victim": {
+    "value": "Jim, 35, Harvard-educated VP of Entertainment at a radio network; killable because he was engaged in an intense BDSM relationship where he wielded power over Susan, making him vulnerable to her violence and creating doubt about his narrative.",
+    "confidence": "high",
+    "quote": "He bled out lying on the kitchen floor, staring up at the ceiling while she screamed into the phone for an ambulance."
+  },
+  "closed_world": {
+    "value": "Manhattan professional and social world: radio network workplace, bars like McCord's, Jim's apartment, the DA's office handling the case; a community of colleagues and authorities who know the case and must judge it.",
+    "confidence": "medium",
+    "quote": "Jim being a bit of a muck-a-muck, it made the news. Then the feminists got a-hold of it, the real bully-girls who consider murdering your boyfriend a form of self-expression."
+  },
+  "culprit_and_motive": {
+    "value": "Susan stabbed Jim; motive is ambiguous\u2014either genuine self-defense against abuse or calculated murder of a man she seduced into a power dynamic she could weaponize, exploiting his narrative credibility.",
+    "confidence": "medium",
+    "quote": "I mean, you should've seen the way it turned him on. I mean, he could've stopped it...But he liked it so much\u2026And then there he is, hurting me like that, and all turned on by it."
+  },
+  "resolution": {
+    "value": "No resolution provided in excerpt. The DA's office waffles, charges are withheld pending investigation, Susan is released. The narrator plans to tell police on Monday, but the outcome remains open and ambiguous.",
+    "confidence": "low",
+    "quote": "So he waffled. Withheld charges for a day or two, pending further investigation. And, in the meantime, the prime suspect was set free."
+  },
+  "investigator": {
+    "value": "The narrator, a 38-year-old news editor and Jim's closest friend; he has privileged knowledge of Jim's account but is compromised by attraction to Susan and uncertainty about truth, making him an unreliable witness.",
+    "confidence": "high",
+    "quote": "It was obvious she'd killed him, but only I knew why. I'd been Jim's friend, and he'd told me everything."
+  },
+  "suspect_architecture": {
+    "value": "Single suspect only: Susan, whose guilt is stated outright from the opening line. No competing suspects. The architecture is inverted \u2014 the story withholds motive rather than identity. Differentiation is between Susan's self-presentation (abused victim) and the narrator's insider knowledge (consensual participant).",
+    "confidence": "high",
+    "quote": "It was obvious she'd killed him, but only I knew why."
+  },
+  "red_herring": {
+    "value": "The feminist/abuse narrative functions as a deliberate societal red herring: Susan's visible bruises, bleeding, and Jim's sex paddle construct an 'obvious' case of long-term abuse and self-defense, misdirecting press, public, and the DA from the consensual sadomasochistic arrangement the narrator knows to be true.",
+    "confidence": "high",
+    "quote": "According to the political dicta of the day, it was an obvious case of long-term abuse and long-delayed self-defense."
+  },
+  "clue_fairness": {
+    "value": "The narrator's privileged knowledge is signaled early and fairly: he tells the reader from the outset that 'only I knew why,' and all of Jim's confided details are relayed verbatim to the reader in real time, so the reader possesses the same exculpatory/complicating information the narrator brings to the police.",
+    "confidence": "high",
+    "quote": "It was obvious she'd killed him, but only I knew why. I'd been Jim's friend, and he'd told me everything."
+  },
+  "social_world": {
+    "value": "Manhattan media-professional hierarchy: Jim is VP at a radio network (elite, Harvard, sardonic entitlement); Susan is a glorified secretary from Queens with a chip-on-shoulder defensiveness about class and education. The power differential maps onto their sexual dynamic and shapes who is believed. Newsroom gossip culture polices women's sexuality openly.",
+    "confidence": "high",
+    "quote": "Susan was an Assistant Manager in Personnel, which meant she was the secretary in charge of scheduling."
+  },
+  "alibi": {
+    "value": "No formal alibi structure. Susan does not deny presence at the scene; the killing is undisputed. The legal contest is entirely over interpretation (abuse vs. consent), not location. Susan's alibi is moral rather than spatial: her bruises and wounds serve as a bodily alibi for self-defense.",
+    "confidence": "medium",
+    "quote": "Susan had gotten a good lawyer fast and had said nothing to anyone. The police suspected they'd find evidence of consensual rough sex."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is psychological and performative: Susan visits the narrator, implicitly offering herself as she offered herself to Jim, and the narrator recognizes the pattern \u2014 'Then I'm her Lord and Master. Just like Jim was.' The mechanic is the narrator catching himself replicating Jim's trajectory in real time, demonstrated by his own hand reaching for her hair.",
+    "confidence": "high",
+    "quote": "I reached out and grabbed her hair in my fist. Her black, black hair. It was even softer than I thought it would be."
+  },
+  "media_and_audience": {
+    "value": "The press and feminist commentators actively construct a competing narrative \u2014 linking Susan's name with 'ordeal,' running abuse sidebars \u2014 that pressures the DA and nearly overrides the police investigation. Media framing functions as an institutional force that almost determines legal outcome independent of evidence.",
+    "confidence": "high",
+    "quote": "The press...were running her story next to sidebars on sexual abuse, which was their way of being 'objective' while taking Susan's side entirely."
+  },
+  "investigator_wound": {
+    "value": "The narrator is wounded by prurience and complicity: he has vicariously consumed Jim's confessions with barely concealed arousal ('goose bumps,' 'stirring in the loins,' 'thin line of drool'), making him morally compromised as a witness. His wound is that his testimony \u2014 the truth \u2014 is inseparable from his own voyeuristic desire, and Susan exploits exactly this when she visits.",
+    "confidence": "high",
+    "quote": "I moistened my lips and tried to think about my dead friend... my skin feel hot, my stomach cold. An interesting combination."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "text_len": 19754,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Her Lord and Master",
+    "author": "ANDREW KLAVAN",
+    "anthology_title": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow",
+    "story_index": 10,
+    "story_count": 19
+  }
+}

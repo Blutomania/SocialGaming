@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "High school girl shot during gas station robbery in Cape May, New Jersey; possibly killed by narrator assuming false identity",
+    "confidence": "medium",
+    "quote": "A high school girl was behind the counter...I must have touched the trigger, because the gun went off. Maybe she lived."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Narrator (Bill Allen alias) committed robbery/shooting; motive unclear\u2014appears driven by identity crisis and accumulated criminal behavior under false name",
+    "confidence": "medium",
+    "quote": "Back in December...I tried to rob a gas station near Cape May, New Jersey...I wore a ski mask and carried a cheap, semiautomatic pistol."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "The narrator himself\u2014a fugitive assuming false identities, experiencing psychological fragmentation and recurring trauma",
+    "confidence": "high",
+    "quote": "Bill Allen was what caused me to jump every time the phone rang...each ring of the phone might be someone asking me to prove I was Bill Allen"
+  },
+  "suspect_architecture": {
+    "value": "No traditional suspect cast. The narrator is the sole criminal \u2014 a fugitive who shot a gas station clerk, living under the alias 'Bill Allen.' Robert Wilson and Frank Lord are morally ambiguous figures complicit in destruction of evidence, but not murder suspects. The architecture is confessional monologue, not whodunit.",
+    "confidence": "medium",
+    "quote": "I wore a ski mask and carried a cheap, semiautomatic pistol. I must have touched the trigger, because the gun went off."
+  },
+  "red_herring": {
+    "value": "The controlled burn permit functions as official legal cover \u2014 a false trail for authorities. Frank Lord's 'Mexican hay mixed in with corn' framing is itself a red herring layered over the real crime of marijuana cultivation, while the burn destroys evidence of both. The narrator's identity as 'Bill Allen' is a sustained red herring for anyone seeking him.",
+    "confidence": "medium",
+    "quote": "Just in case there's a little Mexican hay that got mixed in with my corn somehow."
+  },
+  "clue_fairness": {
+    "value": "The story is not structured as a traditional fair-play mystery. The narrator reveals his crime directly to the reader in a confessional mode, withholding nothing investigatively. All information the reader has is first-person admission, not planted clue. No investigator figure exists to whom clues are simultaneously revealed.",
+    "confidence": "low",
+    "quote": "Back in December, in the middle of another, different lie, I tried to rob a gas station near Cape May, New Jersey."
+  },
+  "social_world": {
+    "value": "Rural New England cash economy: off-books logging labor, no-paperwork employment, local judge informally tipping off a landowner, volunteer fire companies waved off with a permit. Power flows through land ownership (Lord), long-standing personal relationships, and institutional back-channels rather than formal law.",
+    "confidence": "high",
+    "quote": "Robert paid cash at the end of the week, didn't bother with Uncle Sam, didn't ask for references."
+  },
+  "alibi": {
+    "value": "The narrator's entire identity as 'Bill Allen from Glens Falls, New York, taking a summer off from college' is a constructed false alibi. It is fragile \u2014 any phone call might expose it. Robert's controlled burn provides a quasi-legal alibi for destroying Frank Lord's marijuana crop via a judge-issued permit.",
+    "confidence": "high",
+    "quote": "I was Bill Allen from Glens Falls, New York, and I was taking a summer off from college. I repeated that story as often and as loudly as possible."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is psychological and somatic rather than forensic: years later, tracing the Connecticut River on a road atlas, the narrator's fingertip reaches the oxbow and the map surface feels 'scorching hot.' The body remembers and convicts what the mind has suppressed. The final scene \u2014 both men named John Wilson \u2014 suggests dissociative identity, the self-as-evidence.",
+    "confidence": "high",
+    "quote": "For just that split second, right on the tip of my finger, the surface of the map was scorching hot."
+  },
+  "media_and_audience": {
+    "value": "Law enforcement and media are largely absent as active forces \u2014 the threat is implied (state police seeking a warrant, a tip about marijuana) rather than depicted. The crime against the gas station clerk exists only in the narrator's memory; no news coverage, no pursuit is shown. Institutional response is deflected by personal networks \u2014 a judge, a permit, a handshake.",
+    "confidence": "medium",
+    "quote": "He told me that the state police got a tip I was growing marijuana. They were trying to get a warrant to search my house and my fields."
+  },
+  "investigator_wound": {
+    "value": "The narrator is simultaneously criminal and unwilling self-investigator. His wound is guilt and cowardice: he resolves to turn himself in but cannot. The alias 'Bill Allen' is a psychic wound that requires constant maintenance. The final scene in a psychiatric ward suggests the wound has consumed him \u2014 he has become both fugitive and the man he wronged, sharing a name with Robert's jailed son.",
+    "confidence": "high",
+    "quote": "I never did find the courage to turn myself in, and things got worse."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "filename": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "text_len": 22460,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Controlled\tBurn",
+    "author": "SCOTT\tWOLVEN",
+    "anthology_title": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly",
+    "story_index": 19,
+    "story_count": 23
+  }
+}

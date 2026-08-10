@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": "Three figures: Ernie (violent, impulsive perpetrator with gun), narrator (passive accomplice, complicit witness), Marsha (manipulative, morally ambiguous participant). Tull is a peripheral victim. All three share means and opportunity; motive diffuse \u2014 thrill, drift, desire. Differentiated by agency: Ernie acts, narrator observes, Marsha narrates and deceives.",
+    "confidence": "high",
+    "quote": "Ernie yanked out his ridiculously long-barreled .44 Remington Magnum... I took Ernie's knife... Marsha maintained her place at the window"
+  },
+  "red_herring": {
+    "value": "Marsha's elaborate story of Charlene \u2014 the drifter from Sarnia, the abuse by King, the OD \u2014 is presented as confessional truth, then revealed as fabricated. It functions as a deliberate false trail diverting both the narrator and reader from Marsha's actual psychological state and history.",
+    "confidence": "high",
+    "quote": "I made that up, completely. I never knew a drifter named Charlene from Canada... I just felt like telling a story."
+  },
+  "clue_fairness": {
+    "value": "The narrator tells the reader in advance that Tull did not die ('I can assure you now, the guy didn't die that morning'), and that Ernie was still alive after being thrown overboard. These retrospective assurances are offered directly to the reader, levelling informational access. However, the Charlene fabrication is withheld until after the reader has processed it as fact \u2014 a deliberate asymmetry.",
+    "confidence": "medium",
+    "quote": "I can assure you now, the guy didn't die that morning. A year later we came face-to-face at an amusement park near Bay City"
+  },
+  "social_world": {
+    "value": "Decayed post-industrial Michigan: auto-worker fathers killed by paint-booth solvents, drifters discarded by institutions, a shithole town sinking into squalor. Power belongs to no one; the state (police, Army Corps) is present but impotent. Victimhood and perpetration collapse into the same class of people \u2014 all marginal, all expendable.",
+    "confidence": "high",
+    "quote": "our fathers had both worked to their deaths in the paint booth at Fisher Body... No one was going to spend large amounts of money on a face of a drifter"
+  },
+  "alibi": {
+    "value": "No formal alibi construction is present. The narrator's complicity is openly stated rather than denied. The nearest alibi-like structure is the group's balaclavas and their performance for CCTV cameras \u2014 a staged identity concealment rather than a false whereabouts claim. The Detroit Free Press article misidentifies them as Weathermen-type radicals, a false institutional alibi imposed from outside.",
+    "confidence": "medium",
+    "quote": "our heads in balaclavas... The accompanying article speculated on our significance... a highly disciplined group with strong connections to California"
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is confessional and psychological: Marsha retracts the Charlene story after sex, destabilising the narrator's (and reader's) grasp on truth. The mechanic is recursive \u2014 she then partially re-admits the story's truth ('I didn't say that. I just said you couldn't make that shit up'), leaving the reveal itself unreliable. Truth is demonstrated through the impossibility of pure fabrication.",
+    "confidence": "high",
+    "quote": "You weren't making that up, I said. \u2014 You couldn't make that shit up, she responded... \u2014 I didn't say that."
+  },
+  "media_and_audience": {
+    "value": "The Detroit Free Press packages the trio as politically significant radicals \u2014 'Weathermen-type' insurgents with California connections \u2014 transforming petty opportunistic crime into ideological spectacle. The criminals actively perform for the camera (V sign, 'Patty Hearst lives!'), co-authoring the media narrative. The gap between the squalid reality and the newspaper mythology is the story's central irony.",
+    "confidence": "high",
+    "quote": "The accompanying article speculated on our significance... a highly disciplined group with strong connections to California... Patty Hearst lives!"
+  },
+  "investigator_wound": {
+    "value": "The narrator-as-investigator is wounded by lovesickness and class grief: his father dead from Fisher Body paint fumes, his moral compass dissolved by desire for Marsha. He cannot investigate or judge because he is implicated, besotted, and numb \u2014 'at that time in my life, it was just one more industrial relic in my face.' His wound is an inability to perceive beauty or guilt clearly.",
+    "confidence": "medium",
+    "quote": "I was deeply in love with Marsha. Nothing else in the universe mattered... at that time in my life, it was just one more industrial relic in my face."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Sault\tSte.\tMarie",
+    "author": "DAVID\tMEANS",
+    "anthology_title": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates",
+    "story_index": 12,
+    "story_count": 22
+  }
+}

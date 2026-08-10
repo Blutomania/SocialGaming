@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder of serial suicide facilitator Ray by police officer Tom Grant using his Glock; central question: whether Tom's shooting of an unarmed man can be legally justified and covered up within the police department's institutional protection",
+    "confidence": "high",
+    "quote": "I emptied my clip into Ray. He fell down all bloody."
+  },
+  "victim": {
+    "value": "Ray, a predatory serial killer who operates a fake suicide hotline to lure vulnerable people and steal from their bodies after witnessing their deaths",
+    "confidence": "high",
+    "quote": "I invite myself in. I help them out. I get my kicks, and then I go rooting around for loot."
+  },
+  "closed_world": {
+    "value": "Tom Grant's apartment in New York City at 2 a.m., where Tom is initially alone with his gun contemplating suicide when Ray arrives in response to a help line call",
+    "confidence": "high",
+    "quote": "It was two in the morning... I picked up the phone and called."
+  },
+  "culprit_and_motive": {
+    "value": "Tom Grant, motivated by self-preservation and vigilante justice after recognizing Ray as a serial killer who preys on suicidal people; Tom transforms from suicidal victim to killer",
+    "confidence": "high",
+    "quote": "You're scum. You're worse than scum. You're a scavenger... I'd rather hurt you, but I'm going to take you in."
+  },
+  "resolution": {
+    "value": "Tom fabricates a burglary story and calls Captain Feliciano, who provides institutional cover by instructing Tom to claim he saw a gun and agreeing to ensure no investigation; the crime is officially closed as justified self-defense",
+    "confidence": "high",
+    "quote": "Just swear in court that you saw the butt of the gun poking out of his jacket... You don't have a thing to worry about. I'll see to it myself."
+  },
+  "investigator": {
+    "value": "Tom Grant himself\u2014a police officer who becomes both investigator and vigilante executioner, solving the mystery of Ray's predation through his own gun rather than institutional justice",
+    "confidence": "high",
+    "quote": "I'm a policeman... I had to use it once to stop a sixteen-year-old kid"
+  },
+  "suspect_architecture": {
+    "value": "Two principals: Grant (suicidal cop, means via Glock, motive self-destruction) and Ray (predatory 'help line' operator, motive theft/necrophilia, opportunity via false ad). No traditional innocent suspects; architecture is dyadic and inverted \u2014 the would-be victim becomes the killer.",
+    "confidence": "high",
+    "quote": "I emptied my clip into Ray. He fell down all bloody."
+  },
+  "red_herring": {
+    "value": "Ray's sustained performance of 'reverse psychology' \u2014 he claims throughout to be secretly saving Grant's life, not enabling his death. This misdirects both Grant and reader about Ray's true motive (robbery of corpses), masking a predatory criminal behind a paradoxical therapeutic persona.",
+    "confidence": "high",
+    "quote": "You were right! I was playing reverse psychology on you all along, and it worked. Another life saved. Damn, I'm good!"
+  },
+  "clue_fairness": {
+    "value": "Ray's necrophiliac/acquisitive motive is foreshadowed fairly: his 'lustful' and 'covetous' gaze, obsessive interest in gun details, and eager arrival in person at 2am are all shown to the reader before Grant articulates the deduction. The confession about looting victims is the confirmation of clues already visible.",
+    "confidence": "high",
+    "quote": "Ray looked at me with those intense eyes of his. He looked about ready to start slobbering. In fact, he looked lustful."
+  },
+  "social_world": {
+    "value": "NYPD institutional hierarchy: Captain Feliciano as patron who repeatedly absolves Grant of lethal shootings, creating a network of complicity. The department's psychiatric referral system is corrupt (confidentiality untrustworthy, IA leakage). Policing power insulates Grant from accountability and ultimately facilitates the cover-up of Ray's murder.",
+    "confidence": "high",
+    "quote": "Captain Feliciano insisted that I'd done the right thing. He even bought me a beer."
+  },
+  "alibi": {
+    "value": "Grant constructs a false alibi for Ray's murder in real time: he breaks his own door, invents a home-invasion narrative (armed burglar with a 'gun' that was actually Ray's fingers), and calls Feliciano to pre-establish the cover story. The alibi is fabricated post-hoc and corroborated by institutional complicity.",
+    "confidence": "high",
+    "quote": "Just swear in court that you saw the butt of the gun poking out of his jacket."
+  },
+  "reveal_mechanic": {
+    "value": "Grant deduces Ray's true nature through a psychological tell \u2014 Ray's 'lustful' expression while watching the gun go into Grant's mouth \u2014 combined with Ray's own confession about looting victims. The reveal is driven by behavioural observation plus Ray's self-incriminating candour when he believes Grant is about to die.",
+    "confidence": "high",
+    "quote": "I invite myself in. I help them out. I get my kicks, and then I go rooting around for loot. They can't take it with them."
+  },
+  "media_and_audience": {
+    "value": "The Village Voice classified ad is the story's media mechanism \u2014 Ray uses a public newspaper to recruit victims, packaging predation as a suicide hotline. Institutional framing (NYPD press narrative, court testimony) will re-package Ray's murder as a justified home-invasion shooting, with Feliciano managing the public record.",
+    "confidence": "high",
+    "quote": "LONELY? DEPRESSED? SUICIDAL? CALL THE 24-HOUR HELP LINE! 555-HELP 555-HELP 555-HELP"
+  },
+  "investigator_wound": {
+    "value": "Grant's wound is lethal guilt over killing an unarmed teenager (and subsequent victims with empty guns) combined with suicidal despair about being a 'bad cop' protected by patronage rather than merit. The case exploits his self-disgust: Ray's taunting about worthiness and manhood directly pressures this wound, but ultimately redirects it outward.",
+    "confidence": "high",
+    "quote": "I'm a bad cop, and you know it. I can't walk into any situation without my gun going off and leaving somebody dead."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "filename": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "After\tYou\u2019ve\tGone",
+    "author": "JOHN\tPEYTON\tCOOKE",
+    "anthology_title": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly",
+    "story_index": 5,
+    "story_count": 23
+  }
+}

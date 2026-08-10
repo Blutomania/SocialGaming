@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Ross Powell, a charismatic but emotionally manipulative man who abandoned multiple women over years; his death by apparent car accident over a cliff in France is later revealed as potentially staged or suspicious",
+    "confidence": "medium",
+    "quote": "He drove over a cliff. In France. Above Monte Carlo... It would have been just like him, wouldn't it?"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Possibly Ross Powell himself (faking death after embezzling from a savings and loan), or one of his scorned former lovers seeking revenge; the text suggests multiple women had motive to harm him",
+    "confidence": "low",
+    "quote": "If he'd stolen money from the savings and loan, if he'd faked his own death, he wouldn't want to be found"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Amy Giddens, a former lover of Ross Powell who travels to Portugal to determine if he is actually alive; she becomes both investigator and potential victim when confronted in an alley",
+    "confidence": "high",
+    "quote": "She walked into the dark, narrow street... she felt as if she were being followed... His hands meet in a circle around her neck."
+  },
+  "suspect_architecture": {
+    "value": "Multiple women wronged by Ross Powell serve as diffuse suspects, differentiated by degree of harm: one attacked him with a knife, one rammed his car twice deliberately, one attempted suicide when he left her. Friends at the memorial party collectively enumerate these women, invoking the Murder on the Orient Express model \u2014 many perpetrators, one victim. No single primary suspect is foregrounded; the architecture is a distributed pool of aggrieved ex-lovers, with Amy herself as the most intimate and emotionally complex candidate.",
+    "confidence": "high",
+    "quote": "\"Maybe they all got together and did it...like that Agatha Christie mystery...Murder on the Orient Express? Where they all took a stab\""
+  },
+  "red_herring": {
+    "value": "Ross Powell's death is officially reported as an accidental car crash \u2014 driving off a cliff above Monte Carlo in France \u2014 which functions as the central red herring. The framing (Princess Grace parallel, night-time, solo driver) naturalises the death as accident or reckless behaviour consistent with his character. The true picture, revealed gradually, is that Ross faked his death, possibly to escape financial crimes (stealing from a savings and loan), and is very much alive in Portugal.",
+    "confidence": "high",
+    "quote": "\"He drove over a cliff...In France. Above Monte Carlo...the car just sailed off a cliff into the Mediterranean.\""
+  },
+  "clue_fairness": {
+    "value": "Clues to Ross's survival are embedded in the narrative and available to the reader simultaneously with Amy: the body was never recovered ('they won't know for sure until they find...his body'), the crash happened at night with uncertainty about whether he was alone, and Amy's instinctive doubt is shown in real time. The bayberry aftershave match to Amy's candle, and Ross's known habit of escaping to sunny southern Europe, are disclosed to the reader before Amy consciously theorises his survival.",
+    "confidence": "medium",
+    "quote": "\"they think he was alone\u2014 / Think? / Well, the car just sailed off a cliff...they won't know for sure until they find...his body.\""
+  },
+  "social_world": {
+    "value": "The social world is a tight former advertising-department cohort from Kansas City's Macy's \u2014 copywriters and artists bound by shared bohemian history, nostalgia, and creative-class camaraderie. Gender power runs through the group: Ross exercised charismatic dominance over women while maintaining easy male friendship ('loyal, do anything for you'). The women absorb damage; the men memorialise him fondly. Amy's wound is partly social \u2014 she is the ex-girlfriend whose suffering is acknowledged but minimised within the group's affectionate eulogy.",
+    "confidence": "high",
+    "quote": "\"Kathy Weltner and Sam DeLucca had married in the old days when the whole gang...worked as copywriters or artists in the advertising department of Macy's\""
+  },
+  "alibi": {
+    "value": "Ross Powell's alibi for being 'dead' is the official French accident report \u2014 a car found over a cliff, presumed fatal impact, no confirmed body. This alibi is structurally false: Amy's detection in Portugal exposes him alive. The alibi's weakness is flagged early (no body recovered, uncertainty about whether he was alone), and its collapse is the story's climactic revelation when Amy sees him on the bar stool.",
+    "confidence": "high",
+    "quote": "\"the clerk also volunteered that there were no Americans at the hotel at all...Ross wouldn't use his real name, she realized.\""
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is physical and visceral rather than deductive: Amy sees Ross in person in the Albufera bar, he recognises her, smiles, and then \u2014 in the story's final lines \u2014 grabs her in an alley, kisses her forcibly, and closes his hands around her throat. The solution is demonstrated through sensory identification (his proportions, leather jacket, mustache, the specific smile) and then immediately transforms into threat. Recognition and danger collapse into a single moment, with the strangulation left as an open, ambiguous ending.",
+    "confidence": "high",
+    "quote": "\"He turned his face in her direction. It was undeniably Ross Powell...he grabbed her hair...his hands meet in a circle around her neck.\""
+  },
+  "media_and_audience": {
+    "value": "The crime is narrated entirely through secondhand social transmission: Kathy hears it 'from somebody who heard it from his mother,' and the memorial party becomes the communal processing forum. There is no press presence; the public narrative is shaped by gossip, nostalgia, and the group's collective mythology of Ross. The friends actively theorise his death as murder-by-woman and invoke a pop-cultural framework (Orient Express) to make sense of it, demonstrating how informal social narration replaces institutional investigation.",
+    "confidence": "high",
+    "quote": "\"I heard it from somebody who heard it from his mother...My theory is that he didn't accidentally go over that cliff at all...\""
+  },
+  "investigator_wound": {
+    "value": "Amy is the investigator, and her wound is unresolved romantic grief combined with self-deception about the relationship's nature. She spent years with a man who belittled and emotionally damaged her, left him, rebuilt her life \u2014 yet upon news of his death immediately romanticises him ('he'd cared about her too, in his own strange way'). This nostalgic vulnerability drives her to Portugal and blinds her to danger: she reads his violent kiss in the alley through the lens of erotic longing right up to the moment his hands close around her throat.",
+    "confidence": "high",
+    "quote": "\"Amy was awash in a passionate, sentimental longing for him...Oh God, if only she could love him one more time.\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "filename": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "NANCY PICKARD",
+    "anthology_title": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch",
+    "story_index": 11,
+    "story_count": 15
+  }
+}

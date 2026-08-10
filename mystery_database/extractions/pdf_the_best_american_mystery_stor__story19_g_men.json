@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Multiple homicides by gunshot: Five bodies found within six blocks in one hour, all shot in the back of the head with the same caliber weapon. Central question: Are the murders connected, and what is the motive for killing the FBI Director and Associate Director in a discreet alley near a clandestine gathering?",
+    "confidence": "high",
+    "quote": "Five dead in the space of an hour, all in a six-block radius... Shot in the back of the head... large caliber, close range."
+  },
+  "victim": {
+    "value": "J. Edgar Hoover, FBI Director, and Clyde A. Tolson, Associate Director\u2014public figures with immense power, secrets, and vulnerabilities. Hoover was 'killable' due to his proximity to a homosexual gathering and the blackmail material he possessed on others.",
+    "confidence": "high",
+    "quote": "the director of the FBI... Public Hero Number One. J. Edgar Hoover... All of Washington knew that Tolson was the closest thing Hoover had to a wife."
+  },
+  "closed_world": {
+    "value": "A six-block radius in Manhattan near Central Park, containing an exclusive weekly party in a penthouse apartment where prominent men gathered secretly. The neighborhood is bounded by proximity to both wealth and corruption, with narrow alleys and controlled access points.",
+    "confidence": "high",
+    "quote": "The neighborhood teetered between swank and corrupt... Weekly party for degenerates in the penthouse apartment every Thursday night... if they came out that door, then the shooters had to be waiting beside it."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Special Agent Frank Bryce, a junior FBI agent dispatched to secure the crime scene, working alongside New York detectives Seamus O'Reilly and Joseph McKinnon. Bryce discovers the victims' identities and must navigate political implications.",
+    "confidence": "high",
+    "quote": "Special Agent Frank Bryce of the FBI. I've been told to secure this scene... he opened the wallet, saw the familiar badge, and felt his breath catch."
+  },
+  "suspect_architecture": {
+    "value": "No named killer identified in excerpt; victims are Hoover and Tolson plus three others (5 dead). Suspects implied broadly: parties with motive include Kennedy political faction, organized crime, foreign agents, or a 'queer basher.' The suspect field is deliberately open, with institutional actors (FBI, AG's office, NYPD) each having potential motive and access, differentiated by proximity to Hoover's secrets.",
+    "confidence": "medium",
+    "quote": "Five dead in the space of an hour, all in a six-block radius."
+  },
+  "red_herring": {
+    "value": "The crime scene is initially read as a 'fag kill' \u2014 a homophobic hate crime or opportunistic violence \u2014 by coroner and crime scene personnel, who deprioritize response accordingly. This misdirection delays proper forensic processing and diverts investigative attention from the politically motivated assassination theory.",
+    "confidence": "high",
+    "quote": "They think it's a fag kill. They'll get here when they get here."
+  },
+  "clue_fairness": {
+    "value": "Key physical clues are presented to the reader simultaneously with investigators: entry wounds in the back of the skull, exit wounds destroying faces, single large-caliber shots at close range, bodies positioned as if posed, wallets with FBI badges, and the building's party history. The reader can reason about premeditated ambush from the same evidence O'Reilly and Bryce use.",
+    "confidence": "high",
+    "quote": "Shot in the back of the head. That's just damn strange... If they came out that door, then the shooters had to be waiting beside it."
+  },
+  "social_world": {
+    "value": "Layered institutional power: Hoover's FBI sits above local NYPD (standing orders protect the party; cops who complain are transferred). The AG Kennedy is nominally Hoover's boss but effectively powerless under LBJ. Hoover's blackmail files represent a shadow power structure overriding elected government. The 'exclusive gathering' is a patronage network of rich, famous men protected by institutional silence.",
+    "confidence": "high",
+    "quote": "You complain, you get moved to a different shift, maybe a different precinct."
+  },
+  "alibi": {
+    "value": "No formal alibi construction is present in the excerpt; the story is in early investigative phase. However, the question of whether the bodies are genuine or planted (a false-identity alibi for the real Hoover) is raised explicitly by Bryce, functioning as an alibi-adjacent puzzle element.",
+    "confidence": "medium",
+    "quote": "You think this was a plant? ... I don't know what to think. I'm not here to think."
+  },
+  "reveal_mechanic": {
+    "value": "In the excerpt, the reveal of identity is staged through the wallet-badge method \u2014 physical FBI credentials matched against known faces destroyed by exit wounds, with visual ID impossible. The mechanic sets up a deferred confirmation problem: identity must be established by documentation alone since faces are obliterated, leaving room for later revelation that the IDs are genuine or fraudulent.",
+    "confidence": "medium",
+    "quote": "Faces are gone... Exit wounds... Hoover was recognizable. His picture was on everything... He still had the wallet open in his hand."
+  },
+  "media_and_audience": {
+    "value": "The press is conspicuously absent because the crime has been pre-labeled a low-priority 'fag kill,' suppressing media attention. Institutional actors (FBI, AG, NYPD) are racing to control the narrative before it reaches press or the president. Hoover's own lifelong image management \u2014 'Public Hero Number One' \u2014 becomes an ironic frame around his squalid death in a cruising alley.",
+    "confidence": "high",
+    "quote": "How come there's no press?... Fag kill... No press, which surprised him."
+  },
+  "investigator_wound": {
+    "value": "Bryce is sleep-deprived and emotionally destabilized by his wife Mary's recent departure, which he cannot stop thinking about. He is also implicated in institutional harm: he delivered the news that destroyed colleague Cain's engagement, indirectly causing a suicide attempt. He is operating at a fraction of his capacity ('one tenth as sharp as usual') precisely when the highest-stakes case of his career arrives.",
+    "confidence": "high",
+    "quote": "He hadn't slept since Mary walked out... he was heading toward something big, and he was one tenth as sharp as usual."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "G-Men",
+    "author": "KRISTINE KATHRYN RUSCH",
+    "anthology_title": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver",
+    "story_index": 19,
+    "story_count": 25
+  }
+}

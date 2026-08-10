@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder of Andrew Murray, a pickpocket, beaten to death with a blunt instrument in a Grand Central Station lavatory seven years prior. Central question: Who killed Murray and why, given he had numerous enemies among criminals and debtors?",
+    "confidence": "high",
+    "quote": "Found dead in a public lavatory in Grand Central Station seven years ago, apparently beaten to death with a blunt instrument."
+  },
+  "victim": {
+    "value": "Andrew Murray, a small-time East Side pickpocket with subsistence income, chronic gambler and drinker who owed money to shylocks and borrowed heavily. 'Killable' because he was a liability to multiple criminals and had no protective social standing.",
+    "confidence": "high",
+    "quote": "He drank and gambled and liked to have whores on hand. He liked to live a flashy life on a very small income, and got in deep with shylocks, not to mention anyone dumb enough to give him a friendly loan."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Walter 'Poppy' Popvitch (the narrator) killed Miles Tucker, who surfaced as the last person seen with Murray and gave Poppy's name to police. Motive: self-preservation\u2014eliminating Tucker to sever the chain of evidence linking him to Murray's murder, though Poppy's involvement in Murray's death remains ambiguous.",
+    "confidence": "medium",
+    "quote": "I walked up and rang the bell. The rest happened quickly. The door opened, and an unfamiliar shape filled the space. I didn't pause to be sure, or to be clean. My knife came out, and I leaned in."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "The narrator, Walter 'Poppy' Popvitch, a small-time counterfeiter and grifter. He is simultaneously a suspect under police investigation and an active agent eliminating evidence through violence, making him both investigated and investigator of his own circumstances.",
+    "confidence": "high",
+    "quote": "This is what I did. I made people see what I wanted them to see... The cops saw what I wanted them to see. It's what I do."
+  },
+  "suspect_architecture": {
+    "value": "Minimal cast: protagonist Walt (con artist/counterfeiter, implicated by informant), Miles Tucker (small-time grifter, last seen with victim, provides Walt's name to police), Andrew Murray (victim, pickpocket with many enemies including shylocks and creditors). No traditional spread of suspects \u2014 the architecture inverts convention by making the narrator the actual killer.",
+    "confidence": "high",
+    "quote": "Tucker couldn't be tracked down for years...he provided your name as a get-out-of-jail-free card."
+  },
+  "red_herring": {
+    "value": "The police's working theory that Murray's death was a random 'pocketing gone wrong' by a civilian or one of his many creditors/enemies misdirects from the truth that a skilled grifter (Walt) committed a calculated murder. Henry's extensive list of Murray's enemies functions as a deliberate false trail.",
+    "confidence": "high",
+    "quote": "Police assumed it was a pocketing gone wrong and didn't wind themselves looking into it."
+  },
+  "clue_fairness": {
+    "value": "Clues are embedded but inverted \u2014 this is a noir first-person confession, not a whodunit. The reader has full access to Walt's methodical thinking, his evasiveness under police questioning, and his immediate move to locate Tucker after learning Tucker named him, all pointing to guilt before the act is committed.",
+    "confidence": "medium",
+    "quote": "I intended to remove myself from the equation."
+  },
+  "social_world": {
+    "value": "Underground criminal economy with its own hierarchy: grifters, informants, corrupt police contacts, shylocks, and fences. Loyalty is transactional \u2014 information is bought and sold, cops take side payments, and survival depends on knowing who owes whom. The Wallace Hotel serves as a node for this shadow society.",
+    "confidence": "high",
+    "quote": "Detective Paul Wilson was middle-aged, unhappy, and not averse to making a few bucks on the side."
+  },
+  "alibi": {
+    "value": "Walt constructs a passive alibi by allowing the police tail to observe him returning home normally, then secretly exits via rooftop and fire escapes to commit the murder, returns the same way, and resumes his visible domestic routine \u2014 so the watching cops see only an innocent man at home.",
+    "confidence": "high",
+    "quote": "I climbed back in the way I'd gone out...the cops saw what I wanted them to see. It's what I do."
+  },
+  "reveal_mechanic": {
+    "value": "There is no external investigator reveal; the story is a first-person confession structured as a con. The 'reveal' is the narrator's own calm, methodical narration of the killing \u2014 demonstrated through the same perceptual-manipulation logic ('making people see what I wanted them to see') that governs his counterfeiting schemes.",
+    "confidence": "high",
+    "quote": "My knife came out, and I leaned in...this is how it had to be done\u2014fast and thoughtless."
+  },
+  "media_and_audience": {
+    "value": "The institutional audience (police) is portrayed as lazy and indifferent \u2014 seeking a quick clearance rather than truth, willing to use unreliable informants. No press presence; the criminal underworld's gossip network (Henry) is the operative information medium, more accurate than official channels.",
+    "confidence": "medium",
+    "quote": "The cops were looking for a quick and easy clearance. They wanted names they could take to court, and I doubted they cared much about the truth."
+  },
+  "investigator_wound": {
+    "value": "Walt is simultaneously investigator and perpetrator \u2014 his wound is existential: a life of careful, small-scale survival that requires him to commit murder to protect it, revealing that his prized self-discipline and low-profile professionalism are ultimately as morally hollow as the counterfeit bills he passes.",
+    "confidence": "medium",
+    "quote": "So much effort, just to survive."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "text_len": 22802,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Ringing the Changes",
+    "author": "JEFF SOMERS",
+    "anthology_title": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow",
+    "story_index": 18,
+    "story_count": 19
+  }
+}

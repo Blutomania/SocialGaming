@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder of young woman Darathea Mondragon in July 1985; body found with torn clothes and broken neck in remote location. Central question: who killed her and left semen evidence at the scene?",
+    "confidence": "high",
+    "quote": "Her neck is broken. She is dead... a semen sample found on the body of Darathea Mondragon"
+  },
+  "victim": {
+    "value": "Darathea Mondragon, young hitchhiker traveling from El Paso to Boulder, Colorado. Vulnerable hitchhiker dependent on rides from strangers.",
+    "confidence": "high",
+    "quote": "Darathea Mondragon waits by the road in El Paso with her thumb out... and a different person offers a lift"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Convicted rapist serving 99 years at Los Lunas penitentiary; DNA match from semen sample. Motive: sexual assault and murder.",
+    "confidence": "high",
+    "quote": "a semen sample found on the body... DNA corresponding with that of a convicted rapist currently serving ninety-nine years"
+  },
+  "resolution": {
+    "value": "Detective Henderson uses modern DNA forensic methods (cheek swab, hair sample) which are tested and compared against database, exonerating Kent and identifying the true perpetrator who confesses.",
+    "confidence": "high",
+    "quote": "Detective Henderson... slid a swab over the inside of Kent's cheek... Laboratory tests proved conclusively that a semen sample... had DNA corresponding with... a convicted rapist"
+  },
+  "investigator": {
+    "value": "Detective Henderson, modern police investigator using forensic DNA technology; also implicitly Kent, the wrongly accused suspect whose perspective frames the narrative.",
+    "confidence": "high",
+    "quote": "Detective Henderson (despite his name, three-quarters Hispanic) had a degree in penology from UNM and wanted to prove the value of modern methods of police work"
+  },
+  "suspect_architecture": {
+    "value": "Single primary suspect (Kent, the trucker) repeatedly targeted by authorities over 16 years; actual perpetrator is an unnamed convicted rapist serving 99 years at Los Lunas \u2014 architecture is one innocent man falsely suspected versus one guilty man hidden offscreen until DNA reveal.",
+    "confidence": "high",
+    "quote": "a semen sample found on the body of Darathea Mondragon had DNA corresponding with that of a convicted rapist currently serving ninety-nine years"
+  },
+  "red_herring": {
+    "value": "The curandera's staged 'vision' session, orchestrated by detectives, is designed to make Kent appear guilty by eliciting incriminating-sounding confessions; his tearful 'yes' responses and 'it's my fault' misdirect toward guilt when he in fact only witnessed the aftermath of his own innocent presence near the scene.",
+    "confidence": "high",
+    "quote": "They were the ones who had pressured Maria de Guadalupe, threatening to have her deported as an illegal, and had orchestrated the episode."
+  },
+  "clue_fairness": {
+    "value": "The reader is given Kent's internal account of July 1985 \u2014 he parked, ate, smoked, and never touched Darathea \u2014 simultaneously with the detectives' coerced 'confession'; the exculpatory DNA evidence is broadcast on public TV news, available to Kent and reader at the same moment.",
+    "confidence": "medium",
+    "quote": "He had never touched her... Laboratory tests proved conclusively that a semen sample found on the body of Darathea Mondragon had DNA"
+  },
+  "social_world": {
+    "value": "Layered immigrant/working-class hierarchy in New Mexico: undocumented Latino workers exploitable by police deportation threats, Anglo laborers like Kent marginally more protected, wealthy spa clients at the top; institutional police power wielded against the vulnerable regardless of guilt.",
+    "confidence": "high",
+    "quote": "the Latino employees \u2014 semilegals from Mexico and El Salvador \u2014 never took advantage of this offer, being in a hurry to get back"
+  },
+  "alibi": {
+    "value": "Kent's alibi is his own internal memory: he stopped to eat a tamale, smoke a joint, drink a Dr Pepper, and never touched the victim \u2014 confirmed ultimately by DNA exonerating him; his 'it's my fault' confession refers only to his coincidental presence enabling the real killer's opportunity.",
+    "confidence": "high",
+    "quote": "'I never touched her.' ... 'It's my fault,' he said. 'It's all your fault,' the bruja echoed."
+  },
+  "reveal_mechanic": {
+    "value": "DNA forensic testing \u2014 a cheek swab and a single scalp hair collected by Detective Henderson \u2014 matches the semen found on the victim to a convicted rapist already in prison, definitively exonerating Kent; the solution is demonstrated scientifically and broadcast as a brief TV news item.",
+    "confidence": "high",
+    "quote": "Henderson did not handcuff the suspect... he put on latex gloves and requested Kent to open his mouth. Then Henderson slid a swab over the inside of Kent's cheek"
+  },
+  "media_and_audience": {
+    "value": "The crime's resolution is packaged as a minor TV news filler item \u2014 sandwiched between an Afghanistan war story and a human-interest joke piece about 'Mary Christmas' \u2014 trivialising 16 years of wrongful suspicion; the case's public significance is minimal, reflecting institutional indifference to working-class victims and suspects.",
+    "confidence": "high",
+    "quote": "just a short piece, after the serious story from Afghanistan and before the humorous spot about a woman in Penasco whose name really is Mary Christmas"
+  },
+  "investigator_wound": {
+    "value": "Maria de Guadalupe (the curandera-as-reluctant-investigator) carries guilt for having been coerced into entrapping an innocent man under threat of deportation; her wound is complicity through vulnerability, resolved only when she offers Kent wordless absolution at the story's close.",
+    "confidence": "medium",
+    "quote": "the fortuneteller \u2014 her eyes screwed up but without tears \u2014 said, 'I'm sorry, so sorry, please forgive me,' to the man who was being hauled out"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "text_len": 11647,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "344",
+    "author": "JONATHAN TEL",
+    "anthology_title": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver",
+    "story_index": 23,
+    "story_count": 25
+  }
+}

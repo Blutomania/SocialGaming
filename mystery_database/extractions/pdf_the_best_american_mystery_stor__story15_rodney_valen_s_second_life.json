@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Shotgun murder of Sarah Cornwall (Shane Valen's mother) by Shane Valen at the family ranch; central question: what compelled Shane to kill the woman who abandoned him, and why did she return after decades?",
+    "confidence": "high",
+    "quote": "I figured out Shane murdered his own mother. But them letters\u2014they're all in the original envelopes, all addressed to her, with Shane's return address on them."
+  },
+  "victim": {
+    "value": "Sarah Cornwall Valen: abandoned her son Shane at age 7 to return to Minneapolis; killable because her return threatened Shane's ownership of the family ranch and his constructed reality built through letters to her",
+    "confidence": "high",
+    "quote": "She left. Put his pickup in gear and left me standing there...leaving seven-year-old Shane to Rodney's care\u2014in other words, not much care at all."
+  },
+  "closed_world": {
+    "value": "The Valen ranch in rural South Dakota: isolated property where Shane lived alone with rattlesnakes; limited access; Shane's pickup was the only other vehicle present",
+    "confidence": "high",
+    "quote": "You could see the damn thing lit up, every room, off the Red Medicine Creek road. Didn't matter what time of night. Didn't matter if Shane's pickup was there or not."
+  },
+  "culprit_and_motive": {
+    "value": "Shane Valen killed his mother Sarah to prevent her from claiming ownership of the family ranch; motivated by desperation to preserve the only thing he possessed and his constructed identity as the dutiful son of a thriving rancher",
+    "confidence": "high",
+    "quote": "He had to kill her. Wasn't no reason she'd come back but she'd found out the truth and wanted the ranch...It was his land, goddamn it."
+  },
+  "resolution": {
+    "value": "Sheriff Greggy discovers Sarah's body in her car at the ranch, finds her preserved collection of Shane's letters tied with ribbon, reconstructs Shane's motive through reading the letters, and finds Shane dead by suicide with shotgun",
+    "confidence": "high",
+    "quote": "We got her body out, and there on the passenger seat under where she'd fallen is that packet tied with a ribbon...he knocks the pump forward and sticks the barrel in his mouth"
+  },
+  "investigator": {
+    "value": "Sheriff Greggy (unnamed, first-person narrator): rural peace officer who knew Shane's reputation for poaching and strange behavior; investigates the death and becomes obsessed with understanding Shane's motive through the letters",
+    "confidence": "high",
+    "quote": "Tried once. Turned on my rack and pulled the sonofabitch over\u2014this was in the middle of the afternoon\u2014just for a friendly chat."
+  },
+  "suspect_architecture": {
+    "value": "Effectively a single perpetrator (Shane Valen) with no competing suspects \u2014 the 'mystery' is not whodunit but why. Shane is differentiated by his entire family lineage as context for motive: poacher, recluse, letter-forger, son of a brutal line. The victim (Sarah Cornwall) is also implicated as an unwitting agent of her own death.",
+    "confidence": "high",
+    "quote": "Shane stared at her. He had to kill her. Wasn't no reason she'd come back but she'd found out the truth and wanted the ranch."
+  },
+  "red_herring": {
+    "value": "Shane's visible criminal behavior (poaching, trespassing, driving without headlights) functions as a red herring \u2014 it keeps the community focused on his lawbreaking while obscuring his far stranger secret: decades of fabricated letters constructing a fictional version of his dead father for his absent mother.",
+    "confidence": "high",
+    "quote": "what you think's his secret's just keeping anyone from thinking he's got others. Like a black hole."
+  },
+  "clue_fairness": {
+    "value": "The letters are presented verbatim to the reader exactly as the narrator-investigator reads them, including dates and invented details about the dead Rodney. The reader has equal access to the anachronisms (Rodney alive 15 years after his death, speaking Japanese) before the narrator explicitly interprets them.",
+    "confidence": "high",
+    "quote": "Rodney's been dead fifteen years\u2014and look at him, by God, still making pies but now he's also traveling around the country, raising horses"
+  },
+  "social_world": {
+    "value": "Rural South Dakota ranching community with rigid informal hierarchies: the peace officer (Greggy) as institutional authority, county commissioners above him constraining his actions, local lawyers (Orley Morgan) holding land secrets, and the Valen family as a dynasty of outsiders tolerated but never absorbed. Class is marked by land ownership, bloodline violence, and the contempt for outside interference (PETA, Rapid City Journal).",
+    "confidence": "high",
+    "quote": "the county commissioners was afraid the Rapid City Journal would show up and report a rattlesnake massacre... so I had orders: no bad press"
+  },
+  "alibi": {
+    "value": "There is no traditional alibi structure; Shane's alibi for his habitual poaching is his preternatural ability to evade detection \u2014 he always saw headlights first and pulled off the road, making himself impossible to catch in the act. This non-alibi ('you cut me?') becomes a character-defining motif: he cannot be caught without being 'cut.'",
+    "confidence": "medium",
+    "quote": "You ketch me, we kin speak agin... Couldn't even catch the sonofabitch actually driving at night without headlights. He always saw me first."
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated through the letters themselves \u2014 physical artifacts with material evidence of obsessive authorship (pen impressions through multiple pages, dried ink husks of pens, specific false dates cross-referenced against known facts like Rodney's death). The blood on the kitchen window is a secondary physical reveal. The psychological reveal is the narrator's reconstruction of Sarah mistaking Shane for the invented Rodney.",
+    "confidence": "high",
+    "quote": "pressing some of them letters so hard I could see imprints of the previous ones in the paper and maybe the ones previous to that, too."
+  },
+  "media_and_audience": {
+    "value": "The crime is managed and suppressed by institutional gatekeepers (county commissioners, local lawyer Orley Morgan) to avoid outside media scrutiny. The Rapid City Journal represents threatening outside narrative power. The community has its own oral narrative tradition (quadruple-drunk retellings, ghost stories of the Valen ancestor's wife) that shapes how the Valen family is understood \u2014 folklore as a competing media to official record.",
+    "confidence": "high",
+    "quote": "news of Shane and Sarah had made it to Rapid, and the county commissioners was afraid the Rapid City Journal would show up"
+  },
+  "investigator_wound": {
+    "value": "The narrator-investigator (Greggy) is haunted by his failure to intervene before the crime \u2014 his institutional role confines him to being 'always after-the-fact.' He is also seduced by the letters into compulsive reading, losing professional detachment. His wound is impotence: Shane was the only person who ever made him stand in a road abandoned, and now he cannot stop reading the dead man's fabrications.",
+    "confidence": "high",
+    "quote": "That's the trouble with being a peace officer\u2014you're always after-the-fact... the letters got a grip on me. I can't stop reading them."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Rodney Valen\u2019s Second Life",
+    "author": "KENT MEYERS",
+    "anthology_title": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen",
+    "story_index": 15,
+    "story_count": 21
+  }
+}

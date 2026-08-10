@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Accidental shooting death in school locker room. Central question: Was it truly accidental or premeditated murder disguised as accident?",
+    "confidence": "high",
+    "quote": "Rosalee pulls out a semiautomatic Smith & Wesson 40 VE... She points the cold black barrel at Ashlee."
+  },
+  "victim": {
+    "value": "Tabatha Roth, age 13. A vulnerable member of the clique with latent psychological instability (history of dangerous behavior toward her infant brother). 'Killable' because she was peripheral to the core cruelty but implicated in the menstrual humiliation prank.",
+    "confidence": "medium",
+    "quote": "it's several seconds before anyone notices that Tabatha is no longer standing. She is an awkward heap on the floor."
+  },
+  "closed_world": {
+    "value": "Oak View Middle School girls' locker room after second-period PE class. A bounded space with a single exit (where Rosalee stands) and high windows. Teacher briefly absent, creating temporal isolation.",
+    "confidence": "high",
+    "quote": "She steps into the girls' locker room at Oak View Middle School... there's no exit but the one Rosalee is standing in"
+  },
+  "culprit_and_motive": {
+    "value": "Rosalee Carrasco, age 13/14. Motive: systematic social cruelty and public humiliation (menstrual prank posted to Facebook). She seeks revenge and power inversion: 'She just wants them to listen to her, to be scared, to feel what it feels like to be powerless.'",
+    "confidence": "high",
+    "quote": "She wants a lot of things... to be scared, to feel what it feels like to be powerless... I want you to pay"
+  },
+  "resolution": {
+    "value": "No traditional mystery resolution. Rosalee surrenders peacefully to Ms. McCreary after psychological confrontation with Danielle. Legal system intervenes: Rosalee charged with 5 counts, convicted of 3, serves 4 years juvenile detention. Case closed by confession and arrest, not investigation.",
+    "confidence": "medium",
+    "quote": "Rosalee drops the gun... Rosalee will be charged with five counts. She will be convicted of three counts, and serve four years"
+  },
+  "investigator": {
+    "value": "Ms. Janet McCreary, the PE teacher who discovers the scene and performs de-escalation. However, she is a conflicted witness, not a true investigator\u2014she becomes a scapegoat and victim of institutional blame rather than an active solver of the mystery.",
+    "confidence": "medium",
+    "quote": "Ms. McCreary hears the shot... She takes a step closer... Ms. McCreary will spend much of the day in the police station, giving statements."
+  },
+  "suspect_architecture": {
+    "value": "Single perpetrator (Rosalee Carrasco) with clearly established motive (sustained bullying/humiliation); four victims differentiated by complicity level \u2014 Danielle (architect of cruelty), Ashlee (enforcer/enabler), Tabatha (passive participant/lookout), Charlotte (lowest-ranking, most sympathetic). Perpetrator and victims are structurally symmetric: each given equal biographical depth across three temporal sections (past/present/future).",
+    "confidence": "high",
+    "quote": "Rosalee pulls out a semiautomatic Smith & Wesson 40 VE... She points the cold black barrel at Ashlee."
+  },
+  "red_herring": {
+    "value": "Danielle's immediate reframing of the shooting as deliberate murder ('She killed Tabatha') misdirects both the other girls and the reader toward premeditated homicide, when the death was in fact an accidental ricochet. Rosalee's stated intent was only to frighten, not kill. The gun-as-threat is planned; the death is not.",
+    "confidence": "high",
+    "quote": "Danielle stands suddenly and says, 'She killed Tabatha' in a voice that is a sob and an accusation and a taunt."
+  },
+  "clue_fairness": {
+    "value": "This is literary fiction, not a mystery constructed around fair-play clue planting. The accidental nature of Tabatha's death is shown to the reader in real time through the ricochet sequence ('it makes a sharp ping on a pipe'), so the reader has equal access to the event as it unfolds. However, no investigator role exists, and no clues are withheld for revelation.",
+    "confidence": "low",
+    "quote": "it makes a sharp ping on a pipe, and it's several seconds before anyone notices that Tabatha is no longer standing."
+  },
+  "social_world": {
+    "value": "Rigid middle-school social hierarchy structured by wealth, race, and beauty. Danielle (richest, stocks) at apex; Ashlee second (real estate, mixed-race, self-concealing); Charlotte admitted only on sufferance; Rosalee (French-Chilean, scholarship family, working overtime parents) entirely excluded. Teachers complicit through negligence or exploitation (Mr. Pickert). Hierarchy reproduced and enforced through fashion, locker-room access, and Facebook public shaming.",
+    "confidence": "high",
+    "quote": "Ashlee was always second in command because her parents were not as rich as Danielle's...and because her mother was half black, though they never spoke of it."
+  },
+  "alibi": {
+    "value": "No traditional alibi structure exists. However, Danielle performs a social alibi post-incident: 'I never even spoke to the poor girl before this. She must have been obsessed with us.' This is a false account of relationship, not whereabouts \u2014 a reputational alibi that erases her documented role as architect of the menstruation-shaming prank.",
+    "confidence": "medium",
+    "quote": "\"I never even spoke to the poor girl before this. She must have been obsessed with us.\""
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is psychological and structural rather than evidentiary: the story's multi-character, tri-temporal architecture (past/present/future for each figure) accumulates the full context of culpability that no single character or authority ever assembles. The reader alone sees the complete causal chain. Danielle's future section \u2014 she barely remembers 'Rosa' \u2014 confirms she faces no reckoning; the reveal is ironic and systemic, not juridical.",
+    "confidence": "medium",
+    "quote": "she will think that maybe she knew someone once by that name."
+  },
+  "media_and_audience": {
+    "value": "Media coverage is shown as immediately distorting: reporters sneak onto campus, ambush Ashlee, and frame Rosalee as 'crazy.' The school district scapegoats Ms. McCreary rather than examine structural failures. Facebook was the original vector of the bullying (the menstruation photo goes viral, tagging 'everyone in the school'). Danielle 'dazzles before the paparazzi' and controls her own narrative successfully.",
+    "confidence": "high",
+    "quote": "He'll poke a mic in her face and ask if she knew Rosalee was crazy. She'll say, 'I didn't think she was crazy. I didn't think about her at all.'"
+  },
+  "investigator_wound": {
+    "value": "No detective figure is present. Ms. McCreary is the closest functional analog \u2014 she enters the scene and must decide whether to intervene. Her wound is her pregnancy and her institutional precarity: she hesitates fatally, raises her hand to her stomach, and her paralysis is shaped by self-preservation. Post-incident she aborts the pregnancy, framing it as revulsion at the world; her wound is maternal ambivalence colliding with institutional failure.",
+    "confidence": "medium",
+    "quote": "she stops, and raises her hand silently to her stomach...she will tell herself she finds unbearable the thought of bringing a child into a world where things like this happened."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "filename": "The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "text_len": 18797,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Rosalee\tCarrasco",
+    "author": "TOMIKO\tM.\tBRELAND",
+    "anthology_title": "The_Best_American_Mystery_Stories_215_-_James_Patterson",
+    "story_index": 3,
+    "story_count": 19
+  }
+}

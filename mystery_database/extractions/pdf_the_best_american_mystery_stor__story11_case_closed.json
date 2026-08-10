@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Sexual assault and assault with a knife in a subway station. A man grabbed a young woman, threatened her with a blade, and engaged in indecent exposure while restraining her. Central question: Can the perpetrator be identified and apprehended before he strikes again?",
+    "confidence": "high",
+    "quote": "grabbed her, threatened her with a blade, and was yanking on his own chain while he held her there. No rape. Abuse and assault, tops."
+  },
+  "victim": {
+    "value": "A young art student from Connecticut, attacked in the subway after her Manhattan art class. She is vulnerable as an out-of-towner unfamiliar with Brooklyn, physically isolated at night, and traumatized by the assault.",
+    "confidence": "high",
+    "quote": "My art class in Manhattan...Five-eight...Black. Long. Very dirty...His hair was so dirty, I could smell it."
+  },
+  "closed_world": {
+    "value": "The 62nd Precinct of Brooklyn (Bensonhurst neighborhood) during the night shift. The perpetrator operates within this defined police jurisdiction where detective McQueen and Rizzo have authority and local connections.",
+    "confidence": "medium",
+    "quote": "sitting in the car, in the heart of the Italian-American ghetto that was Brooklyn's Bensonhurst neighborhood...62nd Precinct station house"
+  },
+  "culprit_and_motive": {
+    "value": "Peter Flain, a heroin addict with a pattern of sexually assaulting women with a knife. His motive is psychological compulsion; he is a serial predator unable to achieve sexual climax, driven by pathology rather than rational purpose.",
+    "confidence": "high",
+    "quote": "about four, five years ago we had some schmuck...grabbing girls and forcing them into doorways...He'd hold them there and beat off...Psychological, probably."
+  },
+  "resolution": {
+    "value": "Flain is found dead in a bar bathroom, apparently from a heroin overdose. McQueen refuses Rizzo's proposal to fabricate a deathbed confession. The case is technically closed via 'Investigation abated by death' but without a conviction or guilty plea.",
+    "confidence": "high",
+    "quote": "Morte...The prick died on us!...Investigation abated by death!...he drops dead!"
+  },
+  "investigator": {
+    "value": "Detective Mike McQueen, a newly promoted third-grade detective (3 days on the job) with 6 years of patrol experience. He is idealistic, emotionally invested in the victim, and willing to fight institutional procedures to see justice done.",
+    "confidence": "high",
+    "quote": "McQueen was a six-year veteran...newly promoted...I want this case. If you're in, fine. If not, I go to the squad boss...and ask for the case"
+  },
+  "suspect_architecture": {
+    "value": "Single identified suspect (Peter Flain), a repeat offender with established MO (knife, sexual assault in doorways/alleyways), differentiated by prior pattern of similar crimes in the precinct 4-5 years earlier. No competing suspects; case is built on pattern recognition rather than a cast of suspects.",
+    "confidence": "high",
+    "quote": "about four, five years ago we had some schmuck running around the precinct grabbing girls and forcing them into doorways"
+  },
+  "red_herring": {
+    "value": "The story's central misdirection is structural rather than in-narrative: the apparent forward momentum toward a legitimate arrest and prosecution is a false trail \u2014 the 'case closed' is achieved via a fabricated deathbed confession, not genuine detection. Rizzo's insistence the case will go to sex crimes unit is a minor deflection from McQueen's goal.",
+    "confidence": "medium",
+    "quote": "Rapes go to sex crimes and they get handled by the broads and the guys with the master's degrees in fundamental and advanced bullshit."
+  },
+  "clue_fairness": {
+    "value": "The reader receives the same physical evidence as McQueen simultaneously: the victim's description of greasy black hair that smelled, shown in the interview scene, is directly matched to Flain's 'greasy black hair' when found in the bar restroom. No information is withheld from the reader that the detective uses.",
+    "confidence": "high",
+    "quote": "McQueen's eyes fell on the man's greasy black hair."
+  },
+  "social_world": {
+    "value": "NYPD institutional hierarchy with its patronage networks, precinct politics, and debt culture: McQueen's gold shield came via mayoral favoritism; Rizzo leverages informant relationships (Andrew the bartender) and ADA favors; seniority (14-year first-grade vs. 3-day third-grade) governs who sets ethical terms. Brooklyn vs. Manhattan class geography underlies all relationships.",
+    "confidence": "high",
+    "quote": "the gold shield handed to him personally by the mayor himself just three weeks later."
+  },
+  "alibi": {
+    "value": "No formal alibi structure is present. The suspect is located via informant tip and found in situ (overdosing in a bar bathroom). The alibi element is inverted: Rizzo proposes fabricating a false timeline \u2014 that Flain was alive and confessing when the detectives arrived \u2014 rather than breaking down a suspect's alibi.",
+    "confidence": "medium",
+    "quote": "Un-less when we got here, came in the john, this guy was still alive...And he says to us, 'I'm sorry.'"
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated through Rizzo's pattern-recognition detective work: the unresolved physiological detail (did the perpetrator ejaculate?) unlocks a prior case file in Rizzo's memory, identifying Flain by his specific MO. The reveal is procedural/experiential \u2014 veteran knowledge applied to a forensic behavioral detail \u2014 rather than physical evidence analysis.",
+    "confidence": "high",
+    "quote": "If this guy never came, well, we just may know who he is...sort of a signature."
+  },
+  "media_and_audience": {
+    "value": "Largely absent as an active force. Institutional audience (the precinct clearance system, the ADA, the squad boss) replaces public/press. The case's 'packaging' is entirely internal: what matters is whether it clears on the books. The fabricated confession is designed for institutional consumption, not public narrative.",
+    "confidence": "medium",
+    "quote": "Without a conviction or a plea, we don't clear this case. We don't get credit for it."
+  },
+  "investigator_wound": {
+    "value": "McQueen is a newly minted detective (3 days) whose shield was obtained through luck rather than merit, leaving him anxious to prove genuine investigative worth. The case exploits his need for validation and his unformed ethical boundaries \u2014 he is simultaneously attracted to the victim (acknowledged by Rizzo), hungry for professional legitimacy, and unprepared to resist a senior partner's moral corruption.",
+    "confidence": "high",
+    "quote": "his ears flushed red with the realization of what they were about to do. 'It's just wrong.'"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Case\tClosed",
+    "author": "LOU\tMANFREDO",
+    "anthology_title": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates",
+    "story_index": 11,
+    "story_count": 22
+  }
+}

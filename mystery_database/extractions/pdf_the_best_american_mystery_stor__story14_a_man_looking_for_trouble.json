@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Harold Timms, shot and killed; made 'killable' by his affair with the narrator's mother and his position as foreman over Bill, creating intolerable humiliation and rage",
+    "confidence": "high",
+    "quote": "By summer, though, he was fed up with Harold Timms, who happened to be his foreman on the section gang."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Bill (the uncle), motivated by unresolved post-Vietnam rage and humiliation at being subordinate to the man seducing his brother's wife; he writes later that he needed someone to 'pay for something'",
+    "confidence": "high",
+    "quote": "If it hadn't been Harold Timms, it would've been someone else. I was just pissed off, R.T. I wanted someone to have to pay for something."
+  },
+  "resolution": {
+    "value": "Bill surrenders immediately to the sheriff; arrested and imprisoned; institutional legal resolution through arrest and incarceration at Vandalia Prison",
+    "confidence": "high",
+    "quote": "Soon the sheriff's car pulled into my driveway...I'm going to have to take you in...Bill got into the back seat of the sheriff's car"
+  },
+  "investigator": {
+    "value": "Roger (the narrator), a sixteen-year-old witness and participant in the hunting trip; experiences the mystery through witness observation and emotional aftermath rather than investigation",
+    "confidence": "high",
+    "quote": "There's Mom...and as soon as I said it, I wished I hadn't."
+  },
+  "suspect_architecture": {
+    "value": "Three morally implicated figures: Uncle Bill (Vietnam-traumatized, rageful, becomes the killer), the father R.T. (passive enabler, motive of humiliation), and the mother Annie (adulteress, indirect cause). Harold Timms is the victim. Differentiated by means (Bill has the shotgun and violence), motive (Bill: rage/honour; R.T.: cuckoldry; Annie: complicity), and opportunity (all present in the woods). Roger functions as unwitting catalyst.",
+    "confidence": "high",
+    "quote": "\"I think I've been looking for something like this ever since I got out of the army and came back to the world.\""
+  },
+  "red_herring": {
+    "value": "The approaching car on the lane the night before \u2014 its taillights match an Olds '98 like Timms's, implying Timms was surveilling the teenagers, potentially redirecting suspicion or motivation. Roger withholds this identification from Connie, misdirecting both her and the reader about who knew what and when.",
+    "confidence": "medium",
+    "quote": "\"those long vertical rows of lights, set wide apart, were the taillights of an Olds '98 like her father's.\""
+  },
+  "clue_fairness": {
+    "value": "The reader is given the taillights identification simultaneously with Roger's private recognition, and is shown Bill's volcanic resentment, the shotguns, and the route to Kepper's Woods before the killing occurs \u2014 all evidence pointing to the outcome is embedded in the narrative fabric available to any attentive reader.",
+    "confidence": "medium",
+    "quote": "\"We waited and waited around a stand of hickory trees... Bill finally said, 'Fuck it. I'm done.'\" then father redirects to Kepper's Woods."
+  },
+  "social_world": {
+    "value": "Small-town rural Illinois, 1972: rigid working-class hierarchy where Timms is Bill's foreman (power over livelihood), community gossip enforces moral order, Vietnam service marks men as damaged outsiders, and land ownership carries generational identity (Kepper's Woods). Shame and social visibility govern all relationships.",
+    "confidence": "high",
+    "quote": "\"on the job he was tired of acting like he didn't know better... everyone in town knows he's getting it steady from your Annie.\""
+  },
+  "alibi": {
+    "value": "No formal alibi structure is constructed. The men enter the woods ostensibly for squirrel hunting \u2014 a plausible, innocent cover that collapses when they redirect to Kepper's Woods, where the father likely knew Timms and Annie would be. The hunting trip functions as an accidental or semi-deliberate alibi frame that unravels.",
+    "confidence": "medium",
+    "quote": "\"Let's walk on over to the end of the next field and see if there's any better hunting in Kepper's Woods. We're here.\""
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is psychological and retrospective: Roger's narration from adult distance assembles fragments \u2014 the taillights, the redirected walk, his own blurted 'There's Mom' \u2014 into the recognition that the killing was overdetermined, with Roger himself as an unwitting trigger. The confession comes through Bill's prison letters, not confrontation.",
+    "confidence": "high",
+    "quote": "\"even now I can't stop myself from believing that if I'd kept my mouth shut, perhaps we would have veered away from that oil lease\""
+  },
+  "media_and_audience": {
+    "value": "The town of Goldengate functions as the audience \u2014 gossip is the primary medium, universally informed about the affair before any violence. The crime's aftermath is narrated through institutional channels (sheriff, county jail, Vandalia Prison letters) rather than press. Community knowledge creates the pressure that drives Bill to act.",
+    "confidence": "high",
+    "quote": "\"It was generally known throughout Goldengate that Mr. Timms was keeping time with my mother.\""
+  },
+  "investigator_wound": {
+    "value": "Roger is the investigator-narrator whose wound is his own complicity: he loves Connie (Timms's daughter), secretly mirroring his mother's transgression; he feels he betrayed his father; and his blurted identification of his mother in the woods directly precipitates the killing. His guilt makes him an unreliable, self-punishing witness to his own story.",
+    "confidence": "high",
+    "quote": "\"'There's Mom,' I said, and as soon as I said it, I wished I hadn't.\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "filename": "The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "A\tMan\tLooking\tfor\tTrouble",
+    "author": "LEE\tMARTIN",
+    "anthology_title": "The_Best_American_Mystery_Stories_215_-_James_Patterson",
+    "story_index": 14,
+    "story_count": 19
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Yvonne Miller, an 'old girl' (worn-down sex worker) found dead in her room under unclear circumstances",
+    "confidence": "medium",
+    "quote": "At about four, the room was done and Yvonne lay covered in her unmade bed."
+  },
+  "closed_world": {
+    "value": "A converted boarding house ('warren') on the 900 block of N Street, Northwest, divided into rented rooms housing ex-offenders and marginalized residents",
+    "confidence": "high",
+    "quote": "a three-story building in the middle of the 900 block of N Street, Northwest...each large apartment had been divided into five rented rooms"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Caesar Matthews, a recently released convict (two-time killer) who discovers Yvonne dead and takes action to clean and prepare her body, but then leaves",
+    "confidence": "high",
+    "quote": "He came in from the park at two-forty-five one morning...He would not be long...Caesar said. Simon must have realized that was a lie"
+  },
+  "suspect_architecture": {
+    "value": "No traditional suspect architecture exists. Caesar Matthews is established as perpetrator from the opening sentence \u2014 two murders, one legally unprovable. The narrative inverts the mystery form: guilt is known, anonymity and institutional failure are the structural problem.",
+    "confidence": "low",
+    "quote": "They caught him after he had killed the second man. The law would never connect him to the first murder."
+  },
+  "red_herring": {
+    "value": "Caesar's own confused mental state during trial functions as a quasi-red herring: his fixation on the first victim (Golden Boy) rather than the charged victim (Antwoine) momentarily displaces culpability onto the wrong crime, but this is psychological, not a planted false trail.",
+    "confidence": "low",
+    "quote": "Who the fuck is this Antwoine bitch? Caesar sometimes thought during the trial. And where is Percy?"
+  },
+  "clue_fairness": {
+    "value": "Not applicable as a mystery construction element. The text is literary realist fiction, not a puzzle narrative. All information about both murders is disclosed to the reader simultaneously with or before any institutional reckoning \u2014 but there is no investigator for the reader to parallel.",
+    "confidence": "low",
+    "quote": "The law would never connect him to the first murder. So the victim...was destined to lie in his grave without anyone officially paying"
+  },
+  "social_world": {
+    "value": "Washington D.C.'s underclass hierarchy: Lorton prison's internal power structure (Multrey and Cathedral as apex figures, protection rackets, feminised captives); post-release warren housing with predatory moneylender Simon; ex-offender support organisations at the margins. Race, poverty, and institutional abandonment structure all relationships.",
+    "confidence": "high",
+    "quote": "The guards called Lorton the House of Multrey and Cathedral...they let everyone know that Caesar was good people, 'a protected body'"
+  },
+  "alibi": {
+    "value": "No alibi construction is present. Caesar's whereabouts at both killings are known; the legal problem is evidentiary connection to the first murder, not false alibi. Simon's casual question about noise from Yvonne's room gestures at post-hoc cover but is not developed as alibi mechanics.",
+    "confidence": "low",
+    "quote": "Was that you in there with Yvonny last night? Simon said...Quite a party, huh?"
+  },
+  "reveal_mechanic": {
+    "value": "No mystery reveal mechanic exists. The story's moral revelation is delivered through Caesar's final act of cleaning and dressing Yvonne's corpse \u2014 a private ceremony of humanisation \u2014 and the coin-flip ending, which externalises his suspended moral choice. Disclosure replaces detection.",
+    "confidence": "low",
+    "quote": "He bathed her, cleaned out her mouth...put them on her, and pinned a rusty cameo on the dress over her heart."
+  },
+  "media_and_audience": {
+    "value": "Institutional narration is minimal and impersonal: court proceedings, sentencing. The first victim is erased from the legal record entirely. No press, public opinion, or media representation appears. The absence of public narrative about the first murder is itself a social commentary on whose deaths are counted.",
+    "confidence": "medium",
+    "quote": "It was almost as if, at least on the books the law kept, Caesar had got away with a free killing."
+  },
+  "investigator_wound": {
+    "value": "No investigator figure exists. Caesar himself is the closest analogue to a protagonist under psychological pressure: his wound is accumulated self-destruction ('he had done far more to himself'), borderline dissociation during trial, and the unresolved grief for his mother \u2014 all converging in his final vigil over Yvonne.",
+    "confidence": "low",
+    "quote": "The world had done things to Caesar since he'd left his father's house for good at sixteen...but he had done far more to himself."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Old\tBoys,\tOld\tGirls",
+    "author": "EDWARD\tP.\tJONES",
+    "anthology_title": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates",
+    "story_index": 6,
+    "story_count": 22
+  }
+}

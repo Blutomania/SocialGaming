@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Death of Oliver's parents in a car accident two years prior, claimed by Oliver to be murder orchestrated by 'Moriarty'; later, confrontation with a disguised criminal ('the clown') at a bridge leading to the criminal's death by fall",
+    "confidence": "medium",
+    "quote": "I believe he killed my parents...Moriarty was behind it."
+  },
+  "victim": {
+    "value": "Oliver's parents (deceased two years prior, attorneys); the criminal 'Moriarty' disguised as a clown (dies in confrontation); implicitly Andy, a neglected boy used by criminal Uncle Jake for drug trafficking errands",
+    "confidence": "medium",
+    "quote": "The boy's parents were deceased, killed two years earlier when their car slid off an icy road while they were returning from a New Year's Eve party."
+  },
+  "closed_world": {
+    "value": "Saint Paul, Minnesota: Oliver's therapist's office and the city's neighborhoods; a carnival/circus setting on a bridge where the confrontation occurs; Helen's Dorchester neighborhood and Andy's building",
+    "confidence": "medium",
+    "quote": "I have an office in Saint Paul, in a building that was grand about the time Dillinger was big news...a neighborhood circus"
+  },
+  "culprit_and_motive": {
+    "value": "'Moriarty' (the disguised clown): criminal with unknown motive for killing Oliver's parents; Uncle Jake: exploits Andy for drug trafficking; Helen McKinnon (former crime figure): eliminates Jake to rescue Andy from exploitation",
+    "confidence": "medium",
+    "quote": "I've been following him...What a stupid question, Watson. Of course he's up to something. The real question is what?"
+  },
+  "resolution": {
+    "value": "Oliver orchestrates confrontation with 'Moriarty' at bridge using advance planning and a safety rope around his ankle; the criminal falls to his death while Oliver survives; Helen shoots Jake and calls her nephew Micky to dispose of evidence",
+    "confidence": "high",
+    "quote": "I had anticipated his move and held to him, my own weight carried him over the edge along with me...you had the rope around your ankle."
+  },
+  "investigator": {
+    "value": "Watson (child psychologist narrator in 'The Painted Smile'); Helen McKinnon (former crime figure investigating her neighborhood and Andy's circumstances in 'Dot Rat')",
+    "confidence": "high",
+    "quote": "I'm very curious about your costume...Tell me about your attire...I found myself looking forward to our next visit."
+  },
+  "suspect_architecture": {
+    "value": "Story 1 ('The Painted Smile'): Single antagonist \u2014 the clown/Moriarty figure \u2014 a fugitive criminal who evaded police in California, Portland, and Denver, now embedded near Oliver's guardian. Story 2 ('Dot Rat'): Jake (abusive guardian, drug runner for Russians), the Russian criminal organization (implied, off-page), and Uncle Jake's associates; Jake is the primary suspect/threat, the Russians secondary. Both stories have narrow suspect pools with a single principal villain rather than a spread of competing suspects.",
+    "confidence": "medium",
+    "quote": "He slipped them in California and Portland and Denver. There was no reason to believe he couldn't slip them here."
+  },
+  "red_herring": {
+    "value": "Story 1: Oliver's apparent delusion \u2014 his insistence that 'Moriarty is here' and that Moriarty killed his parents \u2014 is constructed by the narrative to read as the fantasy of a disturbed, grief-stricken child, misdirecting Watson (and the reader) into treating the threat as psychiatric rather than real. Story 2: Jake's initial presentation as a neglectful but legally recognized guardian misdirects from his role as a criminal operative using Andy as a drug courier.",
+    "confidence": "medium",
+    "quote": "I'm not crazy, Watson. Not delusional. I'm well aware that Sherlock Holmes is a literary fiction."
+  },
+  "clue_fairness": {
+    "value": "Story 1: The clues Oliver uses to deduce Watson's personal life (pale ring-finger strip, sea paintings, personal ads in wastebasket, dusty books) are all described in scene text before Oliver interprets them, giving the reader fair access. The rope around Oliver's ankle is not disclosed to the reader before the reveal, violating fair-play convention. Story 2: The clues to Jake's criminality (Andy 'carrying things,' the Wednesday visitors, Andy's evasiveness) are shown to the reader through Helen's observations before she acts on them.",
+    "confidence": "medium",
+    "quote": "Your left ring finger still bears a strip of skin much paler than the area around it... And in your wastebasket is the latest issue of City Pages folded to the personal ads section."
+  },
+  "social_world": {
+    "value": "Story 2 is richly structured around Boston/Dorchester criminal and ethnic power hierarchies: the McKinnon Irish-American crew (now retired but still feared), Russian organized crime moving into the territory, local drug distribution networks, corrupt or absent social services, and a neighborhood code of silence toward police. Helen's authority derives from her family's criminal legacy \u2014 'The McKinnon crew wasn't exactly the Winter Hill Gang, but it still ran Dorchester.' Story 1 operates within a softer social world of professional psychology and class-marked office settings.",
+    "confidence": "high",
+    "quote": "The McKinnon crew wasn't exactly the Winter Hill Gang, but it still ran Dorchester. If the boy was local, he should know the name."
+  },
+  "alibi": {
+    "value": "Story 1: The clown/Moriarty's disguise functions as a de facto alibi \u2014 never seen undisguised, identity uncertain, behaviorally identified rather than physically. Oliver's apparent fall is itself a false alibi of death (the crowd and Watson believe him dead). Story 2: No formal alibi structure is present; Jake does not account for his whereabouts at any specific time. The alibi element is largely absent across both stories.",
+    "confidence": "low",
+    "quote": "I've never seen him except in disguise... A wolf may don sheep's clothing, but he still behaves like a wolf."
+  },
+  "reveal_mechanic": {
+    "value": "Story 1: The reveal is physical and theatrical \u2014 Oliver survives the fall because he pre-tied a rope to his ankle and the tree base before the confrontation, disclosed only after Watson peers over the precipice. The mechanism is planning-as-evidence: the rope proves Oliver anticipated the murder attempt and engineered the outcome. Story 2: The reveal of Jake's criminality is environmental \u2014 rows of drug packages on the kitchen counter, visible when Helen peers through the door after shooting him, confirming what Andy's evasive answers implied.",
+    "confidence": "high",
+    "quote": "In disbelief, I stared below where young Holmes hung upside down... his right ankle secured with a rope that... was tied to the base of the tree."
+  },
+  "media_and_audience": {
+    "value": "Both stories deliberately suppress external media and institutional framing. In Story 1, the police are present at the bridge scene but function only procedurally; the case is not publicized or narrated by outside institutions. In Story 2, Helen explicitly distrusts police and operates outside institutional channels entirely \u2014 Micky will clean up the scene before authorities can arrive, and the Russians 'sure as hell wouldn't call the cops.' The social audience is the neighborhood itself, governed by omert\u00e0 rather than press or public opinion.",
+    "confidence": "medium",
+    "quote": "They wouldn't find any witnesses in this neighborhood, and they sure as hell wouldn't call the cops."
+  },
+  "investigator_wound": {
+    "value": "Watson/Watt (Story 1): Recently separated or divorced, a self-admitted dreamer who regrets not going to sea, occupying a failing office in a declining building \u2014 a man who has not become who he wanted to be, treating a boy who insists on becoming exactly who he is. Oliver's case directly mirrors and pressures Watson's wound: 'like me, and despite his protestations to the contrary, was someone wanting to be someone else.' Helen (Story 2): Widowed fifteen years, childless, insomniac, circling losses \u2014 Andy's vulnerability activates a suppressed maternal instinct and a need to protect that her former criminal life denied her.",
+    "confidence": "high",
+    "quote": "I found myself looking forward to our next visit... Oliver Holmes, who, like me... was someone wanting to be someone else."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The\tPainted\tSmile",
+    "author": "WILLIAM\tKENT\tKRUEGER",
+    "anthology_title": "The_Best_American_Mystery_Stories_2017_-_John_Sandford",
+    "story_index": 13,
+    "story_count": 19
+  }
+}

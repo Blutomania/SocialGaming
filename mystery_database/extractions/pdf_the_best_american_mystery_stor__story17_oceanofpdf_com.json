@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Rape and murder of fourteen-year-old Ina Grove; stabbing death of her uncle Leaf Pogue. Central questions: How did Brodie Painter evade capture so long? What was his true motive\u2014lust, revenge, or something darker involving the incestuous abuse preceding the crime?",
+    "confidence": "high",
+    "quote": "felonious assault on a fourteen-year-old girl named Ina Grove, and the prosecutor, Captain Stansfield, now has plans to petition Judge Armbruster for the gallows"
+  },
+  "victim": {
+    "value": "Ina Grove, fourteen years old, vulnerable to multiple forms of predation: sexually abused by her own uncle Leaf Pogue for a year; victim of incest; targeted by Brodie Painter; orphaned (father Anders Grove dead, mother Sheila dead in childbirth). Killable because isolated, kin-dependent, and already traumatized.",
+    "confidence": "high",
+    "quote": "Ina was rambunctious and would always hide where I could find her. We kept up the tease game for a year"
+  },
+  "closed_world": {
+    "value": "Irish Creek region in South Mountain, Rockbridge County, Virginia\u2014a remote, lawless frontier of dense laurel thickets, caves, and hollows where fugitives hide and local code of silence protects criminals. Bordered by Pedlar River; accessible only by difficult mountain passes and hidden paths.",
+    "confidence": "high",
+    "quote": "the dense recesses of South Mountain. Irish Creek in the county...with all South Mountain's caves and hells offering refuge"
+  },
+  "culprit_and_motive": {
+    "value": "Brodie Painter, a thirty-five-year-old man of 'uncertain race,' veteran of Spanish-American War. Motive: sexual predation and rage. He witnesses Ina with her uncle Leaf Pogue; becomes obsessed with her; intrudes on her; when confronted by Leaf with a blade, kills him in jealous fury over possession of the girl, then assaults and murders Ina.",
+    "confidence": "high",
+    "quote": "Brodie Painter appeared with a Colt Navy dangling from his hand...the most public catch between Roanoke and Staunton"
+  },
+  "resolution": {
+    "value": "Constable John Pink's intelligence network and Sheriff B.R. Sherburne's posse pursuit across South Mountain. Painter is located near his brother Dari's house; surrounded in an ambush; arrested after armed confrontation. Tried, convicted by magistrate panel, and hanged. The Pogue property is later sold to commercial interests, erasing the crime site.",
+    "confidence": "high",
+    "quote": "In what will no doubt be acclaimed the model of corpus juris efficiency, the trap was laid and sprung...the arrest"
+  },
+  "investigator": {
+    "value": "Multiple lenses: Primary is the unnamed diarist (likely a magistrate or official); Constable John Pink (tracker and field officer); Sheriff B.R. Sherburne (authority figure). Secondary lens: Ina Grove herself, whose fragmented account in old age reveals trauma and partial reconstruction. Tertiary: the spectral testimony of Leaf Pogue through s\u00e9ance (1965), confessing his own guilt.",
+    "confidence": "high",
+    "quote": "It was the year that rain was raining all the time...and the whole swirling tussle came back before me"
+  },
+  "suspect_architecture": {
+    "value": "Multiple figures implicated across time: Brodie Painter (convicted, hanged \u2014 outsider/mixed-race, violence history); Leaf Pogue (uncle/guardian, confesses via s\u00e9ance to prior abuse of Ina, killed during the crime); Tee Paul's p\u00e8re (parallel figure, covers up Smile's murder). True perpetrator ambiguous: Painter convicted publicly, but Pogue's ghost-narrative reveals his own predatory relationship with Ina and the killing rage that preceded his death.",
+    "confidence": "high",
+    "quote": "It was rage, all I saw, and after I slapped her a strong one, I pulled the razor, so we went round"
+  },
+  "red_herring": {
+    "value": "Brodie Painter is framed by the official record as the sole 'Irish Creek Desperado' responsible for rape and murder, diverting attention from Leaf Pogue's long-standing abuse of Ina. The legal apparatus, newspaper accounts, and community memory all fix guilt on Painter, while Pogue's posthumous confession reveals a far more complicated, hidden crime dynamic.",
+    "confidence": "high",
+    "quote": "for which one Brodie Painter was convicted and hanged"
+  },
+  "clue_fairness": {
+    "value": "The s\u00e9ance monologue attributed to Pogue's ghost and Ina's own fragmented account are both presented directly to the reader, embedding the true history of abuse and the fight's origin within the narrative before any interpretive authority adjudicates them. The reader has access to Pogue's confession and Ina's perspective that the official legal record never obtained.",
+    "confidence": "medium",
+    "quote": "she bloomed like the May apple all creamy and soft...I partook...One morning I claimed to her I'd be off a whole day"
+  },
+  "social_world": {
+    "value": "Rigid Appalachian/bayou underclass hierarchies: race (Painter of 'uncertain race' presumed guilty), gender (Ina voiceless in court), class (moonshiners, poachers vs. sheriff/magistrates/newspapers), and kinship obligation. Institutional law serves landed respectability; O'Malley Lumber's purchase in 1968 finalises erasure of the poor and outlaw class from the landscape entirely.",
+    "confidence": "high",
+    "quote": "The time of outlaws like Painter and Pogue has passed, and it would be a relief to see a commercial venture usher the infamous Irish Creek region"
+  },
+  "alibi": {
+    "value": "Pogue's own s\u00e9ance account reveals he staged an alibi by claiming to Ina he would 'be off a whole day decanting my usquebaugh' but circled back deliberately to catch Painter and Ina together \u2014 inverting the alibi structure: the apparent victim/uncle manufactured absence to entrap, not to escape suspicion himself.",
+    "confidence": "high",
+    "quote": "One morning I claimed to her I'd be off a whole day decanting my usquebaugh but circled back to catch them"
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated through layered, multi-generational documents: newspaper indictment, sheriff's journal, Ina's own fragmented memory, and finally Pogue's posthumous s\u00e9ance confession (1965) \u2014 each source contradicting or deepening the last. The ghost's first-person admission of abuse, jealousy, and the sequence of the fatal fight reveals what no court record captured, with the confession published in a marginal 'Alternative Magazine' that the official Gazette ignored.",
+    "confidence": "high",
+    "quote": "Why I come back to speak with the white tongue is to say I done her wrong...something ugly in me started taking low notice"
+  },
+  "media_and_audience": {
+    "value": "The Rockbridge County Gazette shapes public perception at every stage: indictment coverage frames Painter as 'desperado' of 'uncertain race'; sheriff's diary entries perform masculine institutional confidence for an imagined readership; the 1968 property sale article sanitises the history for commercial ends. The Roanoke Alternative Magazine (1965) is the sole outlet carrying Pogue's confession, ensuring it reaches only the credulous fringe.",
+    "confidence": "high",
+    "quote": "The fresh editor of the Rockbridge County Gazette is eager to announce the reward...childhood legends of a spectral hen girl haunting the region"
+  },
+  "investigator_wound": {
+    "value": "Sheriff Sherburne's diary reveals a man performing certainty ('Not one man jack among us doubted his culpability') while suppressing private doubt \u2014 he is institutionally committed to a conviction that validates his posse's dangerous pursuit. His wound is the need for legible, punishable guilt in a case whose true complexity (Pogue's abuse, Ina's agency) would dissolve the heroic narrative he is constructing for the newspaper and posterity.",
+    "confidence": "medium",
+    "quote": "Not one man jack among us doubted his culpability, so we moved through briar and blowdown with resolve"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "EMILY RABOTEAU",
+    "anthology_title": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow",
+    "story_index": 17,
+    "story_count": 19
+  }
+}

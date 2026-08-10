@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Abduction and murder of a child (Jocey Dempsy, age middle-school); method: unclear but involves physical violence; central question: what happened to the missing girl and where is her body?",
+    "confidence": "high",
+    "quote": "The girl, Jocey Dempsy, hadn't come home from school, had been gone over a day. Nobody in town had seen or heard from her."
+  },
+  "victim": {
+    "value": "Jocey Dempsy, a middle-school girl who took walks in the woods alone; her 'killability' stems from isolation, vulnerability as a child, and being in remote locations where she could be targeted without witnesses.",
+    "confidence": "high",
+    "quote": "Her middle-school portrait, a ponytail tied with red ribbon, braces, a blemish on her hawk nose, MISSING across the top."
+  },
+  "closed_world": {
+    "value": "Small rural town of Krafton, Indiana during winter flood season; geographically bounded by woods, flooded roads, and isolated cabins; socially bounded by tight-knit community where the sheriff (Helen) knows everyone.",
+    "confidence": "high",
+    "quote": "The streets of town were lined with ancient oak, the leafy tops of which stuck out from the water like massive shrubs...slate-shingled Victorians underwater to the second-floor windows."
+  },
+  "culprit_and_motive": {
+    "value": "Robert Joakes, a local man living in an isolated cabin; motive: sexual predation and violence against children; Helen discovers evidence (Jocey's clothes) in his root cellar.",
+    "confidence": "high",
+    "quote": "She'd found Jocey's clothes atop a mound of salted venison in the root cellar and sat thinking on the cellar steps with the girl's jeans across her lap."
+  },
+  "resolution": {
+    "value": "Helen Farraley (the sheriff) executes extrajudicial justice: she kills Joakes with a shotgun, stages it as a suicide, and disposes of Jocey's body in a quarry, where it surfaces in spring floods. The community tacitly accepts this outcome.",
+    "confidence": "high",
+    "quote": "Instead, she inserted the barrel of a shotgun into his mouth...The explosion in the small room made the pots in the cupboard rattle."
+  },
+  "investigator": {
+    "value": "Helen Farraley, Krafton's first and only law officer; a middle-aged former grocery store manager; she is simultaneously investigator, judge, and executioner\u2014a morally compromised lens through which the reader experiences the case.",
+    "confidence": "high",
+    "quote": "It'd been Freely, longtime mayor of Krafton, who decided any real town had a sheriff, and raised funds to buy an old cruiser...It'd been a joke that Helen, a middle-aged grocery store manager, had been nominated."
+  },
+  "suspect_architecture": {
+    "value": "Single perpetrator (Robert Joakes) who abducted and murdered Jocey Dempsy; no competing suspects presented. The mystery is not whodunit but what happened and how Helen will respond. Danny Martin functions as a minor antagonist (looter, fireworks) but is not a murder suspect.",
+    "confidence": "high",
+    "quote": "She'd found Jocey's clothes atop a mound of salted venison in the root cellar and sat thinking on the cellar steps"
+  },
+  "red_herring": {
+    "value": "Helen stages Joakes's death as a suicide by placing the shotgun in his hand and positioning his thumb on the trigger, misdirecting any investigation away from extrajudicial execution. The quarry disposal of Jocey's body is staged to look like an accidental childhood drowning.",
+    "confidence": "high",
+    "quote": "she worried momentarily as to which hand was his shooting hand, then chose his right, and worked his thumb onto the trigger"
+  },
+  "clue_fairness": {
+    "value": "This is literary fiction, not a fair-play mystery; clues are withheld from the reader. Helen's knowledge of what happened to Jocey in the woods is never directly shown \u2014 the reader only learns through Helen's concealment actions. The Christmas sweater as emotional token is shown but its significance is left opaque.",
+    "confidence": "low",
+    "quote": "what Helen knew, what she'd seen in those woods, would be too much for them, for everybody"
+  },
+  "social_world": {
+    "value": "Small rural Indiana town (Krafton) with informal patronage network: Freely as longtime mayor and benefactor installed Helen as sheriff as a democratic experiment. Helen owes her position entirely to Freely's sponsorship. Class markers \u2014 chambray dresses, waders, bar stools adrift \u2014 signal working-poor community. Helen is simultaneously insider (ten years at Freely's General) and outsider (first and only law officer, a joke candidate).",
+    "confidence": "high",
+    "quote": "It'd been Freely, longtime mayor of Krafton, who decided any real town had a sheriff... it was Freely who declared civilised democracies stuck by a vote"
+  },
+  "alibi": {
+    "value": "No formal alibi structure appears; this is not a whodunit. Helen constructs a false forensic alibi for herself post-execution: careful footprint erasure, breaking ice in a brook to obscure tracks, timing her exit to use dawn light as cover. Joakes's staged suicide is itself a false alibi for Helen's act.",
+    "confidence": "medium",
+    "quote": "stepping sideways into drifts so the snow would collapse, then on the exposed rocks behind his house, up the hill, breaking the ice"
+  },
+  "reveal_mechanic": {
+    "value": "No external investigator reveal occurs \u2014 the reader learns of Joakes's guilt and Helen's extrajudicial killings through Helen's own interior knowledge and physical actions (handling Jocey's clothes, staging the scene). The reveal is confessional and behavioural rather than deductive: Helen's trembling hands, her clutching of Connie's sweater, and her breakdown in the Oddfellows Hall expose her psychological state without public disclosure.",
+    "confidence": "medium",
+    "quote": "Helen's hands trembled; she'd lost control of her hands. She stuffed them in her pockets and clenched them into fists"
+  },
+  "media_and_audience": {
+    "value": "Jocey's disappearance is mediated through a missing-child poster in every shop window (school portrait, MISSING/REWARD) and later Evansville TV news coverage. The town's collective narrative will be shaped by Helen's staging: the quarry story of children accidentally drowning is the pre-existing local legend Helen exploits. Public perception is managed entirely by Helen; no press appears on the scene.",
+    "confidence": "high",
+    "quote": "The town told stories of children who'd fallen to their deaths in this quarry... They would all believe Jocey had just drowned"
+  },
+  "investigator_wound": {
+    "value": "Helen is a reluctant, amateur sheriff whose legitimacy is fragile (elected as a joke). Her wound is moral: she cannot deliver justice through legal means and knows it. Her swollen eye (unexplained, suggesting domestic violence or an earlier confrontation) signals her vulnerability. The case forces her to choose between law and what she calls 'the Big Peace' \u2014 a private, violent grace that destroys her psychologically, culminating in public collapse.",
+    "confidence": "high",
+    "quote": "Laws on killing, even God's demands, didn't allow for peace... what she'd begun to call in her mind the Big Peace"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "ALAN HEATHCOCK",
+    "anthology_title": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow",
+    "story_index": 7,
+    "story_count": 19
+  }
+}

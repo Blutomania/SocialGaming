@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Staged rape and murder conspiracy: Bobby orchestrates a fake rape of Rebel at the Delano Hotel to set up an insurance fraud lawsuit, but Rebel and Dmitri betray him, attempting to kill him at the freighter terminal. Central question: who orchestrated the double-cross and why?",
+    "confidence": "high",
+    "quote": "The rape didn't look real enough. So he added that touch himself...Dima's next."
+  },
+  "victim": {
+    "value": "Rebel (Rebecca Ellen O'Shaunessy): a bartender and poker regular who is 'killable' because she is a con artist and seductress used by McKool to attract players; she becomes expendable once she betrays Bobby in the murder plot.",
+    "confidence": "high",
+    "quote": "The kind of girl men would leave their wives for in a heartbeat...She set us both up."
+  },
+  "closed_world": {
+    "value": "Miami's underground poker ecosystem: McKool's warehouse poker room, the Delano Hotel, and the freighter terminal on the Miami River. A tight social world of gamblers, dealers, and fixers where McKool controls information and outcomes.",
+    "confidence": "high",
+    "quote": "McKool's has...easy access, drawing players from Boca to Homestead...I do a lot for McKool: recruit...deal when somebody calls in sick"
+  },
+  "culprit_and_motive": {
+    "value": "Rebel and Dmitri: they conspired to murder Bobby at the terminal to eliminate him as a witness/accomplice and possibly to steal the proceeds. Motive: Rebel's rage at being used; Dmitri's criminal opportunism. (McKool eliminates Dmitri to protect Bobby.)",
+    "confidence": "high",
+    "quote": "It pissed Dima off that you didn't beat me...He likes hurting me too much...Dima's next."
+  },
+  "resolution": {
+    "value": "No official resolution: McKool and Cartouche dispose of both bodies (placed on a bus bench, attributed to Russian mob), destroy evidence, and silence the case by controlling the narrative. Bobby trades his T-bird for the Explorer and walks free into his poker life.",
+    "confidence": "high",
+    "quote": "We'll dispose of the bodies...Last night never happened...And that's exactly what happened."
+  },
+  "investigator": {
+    "value": "Bobby Two-ways (John Bond): the narrator and active architect of the initial crime (staged rape). He is simultaneously perpetrator, intended victim, and survivor. His poker-honed decision-making and alliance with McKool drive the resolution.",
+    "confidence": "high",
+    "quote": "Focus, I told myself. Think, don't react...What are your options? What's the best play here?"
+  },
+  "suspect_architecture": {
+    "value": "Three-person conspiracy: Rebel (insider lure, motive: insurance fraud payout), Dmitri/Dima (muscle and fixer, motive: profit and control), Bobby as unwitting accomplice. Rebel differentiates as seductive manipulator; Dmitri as violent enforcer; Bobby as the mark who becomes the survivor. McKool and Cartouche emerge as pragmatic cleanup agents with their own hierarchy.",
+    "confidence": "high",
+    "quote": "\"She set us both up.\" \"Chicks can be that way,\" McKool said."
+  },
+  "red_herring": {
+    "value": "The staged rape at the Delano hotel is the central red herring: a fabricated crime scene designed to point law enforcement and the hotel toward a random attacker, while the real scheme is an insurance/civil litigation fraud. The disguise kit, platform shoes, limp, and camera-blind-spot maneuvering all construct a false perpetrator identity.",
+    "confidence": "high",
+    "quote": "\"It pissed Dima off that you didn't beat me. The rape didn't look real enough. So he added that touch himself.\""
+  },
+  "clue_fairness": {
+    "value": "The narrative gives the reader Rebel's tells simultaneously with Bobby: her stare at the pier is described identically to her poker bluff stare, allowing the reader to decode the betrayal at the same moment Bobby does. The poker-tell framework is established early as Bobby's interpretive lens, making the clue available in plain sight.",
+    "confidence": "high",
+    "quote": "\"Something about that look... It was the same way she stared when she was trying to run a bluff!\""
+  },
+  "social_world": {
+    "value": "Underground Miami poker economy with a strict patronage hierarchy: McKool at the apex (ex-Special Forces, controls access and credit), Bobby as trusted lieutenant (earns seat by providing services), dealers/kitchen staff as dependents, and fish/marks at the bottom. Favors, debts, and seat access are the currency of power. The legitimate world (lawyers, insurance) is gamed from outside.",
+    "confidence": "high",
+    "quote": "\"McKool uses Rebel like he uses me, like he uses everybody\u2014hustling here, cajoling there, pushing buttons, building up a stash of favors\""
+  },
+  "alibi": {
+    "value": "Bobby constructs an elaborate false-identity alibi for the staged rape: buzzcut, shaved body to eliminate DNA trace evidence, platform shoes to alter height, a pebble-induced limp to change gait, latex gloves, and camera-misdirection via a Holiday Inn keycard. The alibi is physical and forensic rather than testimonial, designed to make him unidentifiable rather than elsewhere.",
+    "confidence": "high",
+    "quote": "\"The limp disguised me as much as the shades and the platform shoes.\""
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is psychological and semiotic: Bobby recognizes Rebel's betrayal through a poker tell \u2014 the specific quality of her stare, which he has catalogued from the card table. The solution is demonstrated through the protagonist's professional skill (reading opponents) turning back on him, making the revelation both earned and ironic.",
+    "confidence": "high",
+    "quote": "\"It was the same way she stared when she was trying to run a bluff!\""
+  },
+  "media_and_audience": {
+    "value": "The Miami PD and press are fed a false narrative: the double homicide is packaged as a Russian mob execution, with Dmitri's expired visa and oligarch connection providing a ready-made organized-crime frame. The newspaper story closes the loop, confirming the institutional audience has accepted the misdirection entirely.",
+    "confidence": "high",
+    "quote": "\"POLICE SUSPECT RUSSIAN MOB HIT... a spokeswoman for Miami PD said Russian organized crime might be responsible.\""
+  },
+  "investigator_wound": {
+    "value": "Bobby's wound is his cultivated emotional detachment \u2014 he prides himself on never being 'sucked in' and not wanting too much \u2014 yet he cannot resist Rebel's distress call, exposing a suppressed chivalric impulse beneath the cynical poker-player persona. The case exploits precisely the vulnerability he believes he has armored away.",
+    "confidence": "high",
+    "quote": "\"Why couldn't my mother have raised a less chivalrous son?\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "T-Bird",
+    "author": "JOHN BOND",
+    "anthology_title": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen",
+    "story_index": 6,
+    "story_count": 21
+  }
+}

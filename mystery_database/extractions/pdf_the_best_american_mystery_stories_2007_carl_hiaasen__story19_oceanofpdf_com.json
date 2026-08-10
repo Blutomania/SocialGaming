@@ -1,0 +1,87 @@
+{
+  "crime": {
+    "value": "Murder by golf club striking temple; victim buried in sand bunker. Central question: Who killed Stevie and why was he hidden?",
+    "confidence": "high",
+    "quote": "the clubhead caught him in the temple, and he'd gone down like a shot bird. She'd buried him in the bunker, because it was convenient"
+  },
+  "victim": {
+    "value": "Stevie, a golf instructor at Rattlesnake Club who sexually assaulted Lucy (a minor) and mocked her when she became pregnant, making him 'killable' through his predatory behavior and rejection of responsibility.",
+    "confidence": "high",
+    "quote": "Stevie'd started to turn when the clubhead caught him in the temple... he'd laughed at her: 'So much for the fuckin' Tour,' he said"
+  },
+  "closed_world": {
+    "value": "Rattlesnake Golf Club and surrounding trailer park community, a bounded social world where all residents and workers interact, creating limited suspects with motive and opportunity.",
+    "confidence": "high",
+    "quote": "across the six-foot strip of grass that served as the front yard, past the corner of the Tobins' double-wide and over the fence, across the end of the driving range"
+  },
+  "culprit_and_motive": {
+    "value": "Lucy, 17-year-old golf prodigy, killed Stevie to eliminate an obstacle to her Tour career. She was pregnant by him; he rejected her with mockery. Her motive: fierce determination that 'nothing would stand in the way' of her goals.",
+    "confidence": "high",
+    "quote": "This was what it took to go on the Tour, she thought. A fierce determination: nothing would stand in the way."
+  },
+  "resolution": {
+    "value": "Willie Franklin is falsely arrested and convicted based on anonymous note and planted evidence (blood in his car trunk). Lucy frames him and escapes detection by destroying her list notes and allowing the official investigation to conclude with the wrong culprit.",
+    "confidence": "high",
+    "quote": "He never locked the back doors... She'd had it out in an instant, a lifelong familiar... planting blood evidence in Willie's Tahoe"
+  },
+  "investigator": {
+    "value": "Mitchell Drury, the investigator/sheriff, operates as the official lens but investigates with incomplete information. Lucy is the unreliable narrator through whose perspective we learn the truth he never discovers.",
+    "confidence": "high",
+    "quote": "Mitchell Drury... 'Got a note from somebody at the club\u2014said they saw him running off the course with his bag the night Stevie disappeared.'"
+  },
+  "suspect_architecture": {
+    "value": "Primary suspect is Willie Franklin, a known prior killer of Lucy's father, implicated by anonymous tip and physical evidence (blood, hair in trunk). Lucy is the actual killer, concealed behind her disciplined, list-driven persona. Mom is briefly considered a suspect given her recent romance with Stevie. The architecture is a two-layer misdirection: one named villain with prior history, one hidden killer who frames him.",
+    "confidence": "high",
+    "quote": "A third one said, Frame Willie. Ripped and burned."
+  },
+  "red_herring": {
+    "value": "Willie Franklin is the deliberate red herring \u2014 a man with established motive (prior murderer of Lucy's father) who is framed by Lucy planting Stevie's blood and a hair in his unlocked Tahoe. The anonymous typed note to police further directs suspicion onto him. Lucy pre-planned this framing as a list item.",
+    "confidence": "high",
+    "quote": "She went out to wipe it on the grass when she noticed the taillights blinking...the hulk of Willie Franklin's Tahoe. He never locked the back doors..."
+  },
+  "clue_fairness": {
+    "value": "Multiple fair-play clues are embedded and visible to the reader in real time: Lucy's list item 'Frame Willie' and 'RU-486' (revealing pregnancy and motive); her handling of the driver club; the blood she notices on the club post-murder; the anonymous note's 'high-level' language consistent with Lucy's self-correcting grammar. The reader has access to all these before the reveal.",
+    "confidence": "high",
+    "quote": "One note said, RU-486. Ripped and burned...A third one said, Frame Willie. Ripped and burned."
+  },
+  "social_world": {
+    "value": "A working-class trailer-park golf club milieu with rigid class and gender stratification: Lucy is a talented female pro trapped in poverty, surrounded by lecherous male golfers, an unstable mother, and a course culture where men freely exploit women (Stevie's statutory rape, Clark peering down her blouse). Escape via Tour success is her only upward mobility; the course's male hierarchy controls her fate.",
+    "confidence": "high",
+    "quote": "You're the only person ever come out of this club might make it as a pro...Stevie had to deal with the problem of statutory rape, which he knew all about."
+  },
+  "alibi": {
+    "value": "Lucy has no explicit alibi constructed by others, but her own rigid daily routine (100 practice turns, documented lessons, list-keeping) functions as a behavioral alibi \u2014 she appears too disciplined and goal-focused to be a killer. The actual murder occurs in a gap the narrative only reveals retrospectively. Willie Franklin's inability to alibi himself is exploited by the planted evidence.",
+    "confidence": "medium",
+    "quote": "She was on the eighty-fourth turn when the screaming started. The screaming didn't affect the drill."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is delivered through Lucy's private destruction of her list pages by candlelight \u2014 a confessional interior monologue in which she burns 'RU-486,' 'New job,' 'Frame Willie,' and 'Marry Stevie?' The reader reconstructs the full crime from these list items combined with the retrospective murder flashback. Physical evidence: the golf driver as weapon, blood wiped on grass, Stevie's remains planted in Willie's trunk.",
+    "confidence": "high",
+    "quote": "She reached across the familiar darkness, found her vest and took out the small book...Frame Willie. Ripped and burned."
+  },
+  "media_and_audience": {
+    "value": "The crime is processed through the small-community rumor network of the golf club \u2014 Donnie Dell relays police findings as excited gossip, bar patrons speculate, and the anonymous note to police shapes the official narrative. There is no formal press presence, but the club's social circuit acts as a news medium, rapidly packaging Willie Franklin as the guilty party.",
+    "confidence": "medium",
+    "quote": "Jim Doolittle got it straight from the cops...The cops found blood in Willie's trunk, and they matched it. He's absolutely fuckin' toast."
+  },
+  "investigator_wound": {
+    "value": "Detective Mitchell Drury is psychologically compromised by his attraction to Lucy (he gives her a 'movie-star grin,' she notes his 'shoulders and small butt') and by sympathy for her family \u2014 he visits personally to tell Lucy's mother about Willie's arrest because 'it's so much like what happened with your dad.' His protective instinct toward the victim's daughter blinds him to her as a suspect. He is also routed by Lucy's staged menstrual embarrassment, causing him to retreat.",
+    "confidence": "high",
+    "quote": "He must've been forty...But you sort of thought about him anyway...That weathered cowboy thing, with the shoulders and the small butt."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "JOHN SANDFORD",
+    "anthology_title": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen",
+    "story_index": 19,
+    "story_count": 21,
+    "backfilled_from": "book_slug[:30] filename-collision bug"
+  }
+}

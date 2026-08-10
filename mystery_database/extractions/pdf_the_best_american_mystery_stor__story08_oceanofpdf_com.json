@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Rural farmhouse and surrounding woods; limited escape routes due to disabled vehicles and terrain",
+    "confidence": "medium",
+    "quote": "The road was little wider than his car, a dim, rutted passageway...opened onto the yard and the one-story white farmhouse."
+  },
+  "culprit_and_motive": {
+    "value": "Evan (protagonist) uses force and chloroform to subdue Ray Perris and Cal to protect his marriage and home from invasion/intimidation",
+    "confidence": "high",
+    "quote": "You did not let a man ruin your marriage or even try to or begin to or even have it remotely in mind. That, you did something about."
+  },
+  "resolution": {
+    "value": "Evan incapacitates both men with chloroform and a rifle, loads them into the station wagon, drives them away, and abandons them on a roadside\u2014order restored through vigilante action rather than law",
+    "confidence": "high",
+    "quote": "He went back for Cal, then loaded both of them into the station wagon and drove down to the highway...It was over."
+  },
+  "investigator": {
+    "value": "Evan (the protagonist and victim of assault), whose perspective drives the narrative from discovery through self-directed resolution",
+    "confidence": "high",
+    "quote": "For perhaps a quarter of an hour more he remained in the shadows, thinking, asking himself questions and groping for the answers"
+  },
+  "suspect_architecture": {
+    "value": "Two antagonists: Ray Perris (ex-boyfriend, professional fighter, motive: jealousy/pride, means: physical violence, opportunity: invited visit) and Cal (cousin, enabler, motive: disruption/boredom, means: manipulation and alcohol). Evan is both victim and de facto investigator. Julie is the contested object. No traditional mystery cast \u2014 conflict is overt, not concealed.",
+    "confidence": "high",
+    "quote": "\"Why don't you deck him and get it over with.\" Cal nodded. \"I'm waiting for him.\" Perris said."
+  },
+  "red_herring": {
+    "value": "Perris's post-defeat claim that the entire visit was a harmless prank \u2014 'just clownin' around' and 'for something to do' \u2014 is a deliberate misdirection designed to defuse Evan's resistance and make Evan appear the aggressor, not a pre-planned false trail in the classic mystery sense.",
+    "confidence": "medium",
+    "quote": "\"Ev, we were just clownin' around! ... On the way out he says, 'We'll throw a scare into Evan.' You know, for something to do\""
+  },
+  "clue_fairness": {
+    "value": "This is not a mystery genre story with planted clues for reader deduction. All information available to Evan is presented to the reader in real time \u2014 the chloroform bottle, the hoof knife, the ventipane \u2014 with no withheld revelations. The reader solves Evan's plan simultaneously with Evan.",
+    "confidence": "medium",
+    "quote": "His hand went in, came out with a three-ounce bottle of chloroform; went in again... then his fingers closed on the steel handle of a hoof knife"
+  },
+  "social_world": {
+    "value": "Rural vs. urban class tension: Evan is a underpaid country vet with a farmer's tan and honest labour; Cal and Ray represent Detroit street culture, money, and masculine posturing. Cal explicitly weaponises income disparity ('He makes about four thousand a year. Tops') to undermine Evan's legitimacy as husband and provider.",
+    "confidence": "high",
+    "quote": "\"I can lose and make that in one night. Honey, if all you got out of school was him, you should've stayed home.\""
+  },
+  "alibi": {
+    "value": "Cal and Ray arrive hours late and offer a shifting alibi: first 'stopped for hunting,' then 'shot sixteen beer cans,' then 'picked up a case of beer.' The lateness itself is suspicious but unexplored as deception. Their stated innocent purpose ('visiting Julie') is retroactively reframed by Perris as a planned intimidation scheme.",
+    "confidence": "medium",
+    "quote": "\"We stopped for some hunting,\" Cal answered. \"Ray figured if we're going out in the woods let's have some fun.\""
+  },
+  "reveal_mechanic": {
+    "value": "The resolution is demonstrated physically and psychologically rather than verbally declared: Evan uses professional veterinary tools (chloroform, hoof knife) to subdue both men, fires warning shots to break Perris's nerve, and drives them a mile down the highway \u2014 the proof of success being Perris's screamed capitulation and final terrified sprint.",
+    "confidence": "high",
+    "quote": "\"Ev, you're a crazy man! They lock up guys like you!\" Now you're talking, Ray."
+  },
+  "media_and_audience": {
+    "value": "Absent in any institutional or press sense. The only 'audience' is the implied threat of the state police, invoked by Julie and then by Perris himself as a rhetorical weapon. Public perception is not a structural element; the crime and its resolution are entirely private and rural, deliberately kept from external narration.",
+    "confidence": "low",
+    "quote": "\"If the state police found them first, let Perris tell whatever he liked. Even the truth... It didn't matter to Evan what he did.\""
+  },
+  "investigator_wound": {
+    "value": "Evan's wound is his instilled decency and restraint \u2014 he has repeatedly absorbed Cal's provocations out of pity and social obligation, and his first impulse even now is to 'remain calm.' The case forces him to override his own habitual non-violence and use professional knowledge for coercion, testing whether his gentleness is strength or vulnerability.",
+    "confidence": "high",
+    "quote": "\"You did not let a man ruin your marriage or even try to or begin to... That, you did something about.\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "ELMORE LEONARD",
+    "anthology_title": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George",
+    "story_index": 8,
+    "story_count": 22
+  }
+}

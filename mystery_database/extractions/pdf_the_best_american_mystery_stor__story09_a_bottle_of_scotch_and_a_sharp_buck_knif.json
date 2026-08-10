@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Child sexual abuse and murder. Method: Predatory grooming and manipulation of vulnerable boy (Blinky/Alfie), leading to his suicide. Central question: What is the full extent of Glass's abuse, and did he directly cause or facilitate Blinky's death?",
+    "confidence": "high",
+    "quote": "Body Discovered at Battle Creek / Alfie Johnson, 12, Presumed Suicide"
+  },
+  "victim": {
+    "value": "Alfie Johnson (\"Blinky\"), 12-year-old boy from poor family in trailer park. Vulnerable due to social isolation, developmental difference (involuntary eye twitch), poverty, and lack of parental protection. Made 'killable' by his need for attention and material goods.",
+    "confidence": "high",
+    "quote": "Blinky just shoves his hands in his coat. 'Nah, Emmett. Um good.' His hands never leaving his coat and his elbows crooked out like broken bird wings."
+  },
+  "closed_world": {
+    "value": "Small rural California town (paper mill community) with interconnected school, neighborhoods, and trailer park. Social structure bounded by school hierarchy, teachers' authority, and isolated geography limiting escape routes or outside intervention.",
+    "confidence": "medium",
+    "quote": "It is late fall and coat season in the eastern part of northern California. Our mothers stuff us into puffy jackets, force homespun beanies all the way over our eyes"
+  },
+  "culprit_and_motive": {
+    "value": "Mr. Glass, schoolteacher and child predator. Motive: sexual gratification and control through grooming. Buys toys and gifts to isolate Blinky from peers, establishes private relationship, escalates to physical abuse. Motive for Blinky's suicide: psychological damage from abuse.",
+    "confidence": "high",
+    "quote": "There's 3 bedrooms\u2014a master, an office, and one full of brand-new, in-the-box toys. Simon Says and He-Man action figures. There's a Polaroid on his nightstand. Blinky. Smiling, holding a toy."
+  },
+  "resolution": {
+    "value": "Extra-judicial justice: Emmett, the 12-year-old narrator and Blinky's friend, discovers evidence of abuse, investigates independently using binoculars and rifle scope, then executes Glass via axe attack and knife murder. Father discovers crime, accepts son's actions with stoic complicity, helps dispose of body in burn barrel.",
+    "confidence": "high",
+    "quote": "I drive the ax handle into his stomach and he grunts in surprise, steps back, stoops to a knee. I bring the ax down on his back and side and shoulders and I go on until my arms are tired"
+  },
+  "investigator": {
+    "value": "Emmett, the 12-year-old protagonist and Blinky's peer-friend. Acts as accidental investigator driven by protective instinct and suspicion after observing Glass with Blinky in the hallway. Investigates through surveillance (binoculars, rifle scope), evidence gathering (Rubik's Cube test), and becomes vigilante executor of justice.",
+    "confidence": "high",
+    "quote": "I think about what I'm going to do. I think about Max's smile, and how I never want to be out of its brightness. 'Nothing,' I say. 'I thought he'd react to the cube, but he didn't.'"
+  },
+  "suspect_architecture": {
+    "value": "Single perpetrator (Mr. Glass, a teacher) with no competing suspects formally presented. Glass has means (access to vulnerable child, gifts as grooming tools), motive (predatory desire), and opportunity (institutional authority). Blinky's death ruled presumed suicide, eliminating official suspicion of Glass entirely. No alibi suspects or red-herring perpetrators \u2014 the architecture is a slow convergence on one figure.",
+    "confidence": "high",
+    "quote": "Mr. Glass straightens, pulls his hand away and squeezes it into a fist, then puts it behind his back. It's wrong somehow, intimate almost."
+  },
+  "red_herring": {
+    "value": "Blinky's unexplained new possessions (Sony Walkman, Rubik's Cube, Micro Machines, Garbage Pail cards) are initially framed as a petty-theft mystery, misdirecting both characters and reader from the true explanation: they are grooming gifts from Mr. Glass. The 'suicide' ruling by authorities is a second institutional red herring, foreclosing investigation of Glass.",
+    "confidence": "high",
+    "quote": "Think Blinky's stealing stuff? ... Where's Blinky even getting this stuff? Last week he had a set of Micro Machines..."
+  },
+  "clue_fairness": {
+    "value": "All key clues are shown to the reader simultaneously with the narrator: the bruising on Blinky's wrist revealed when the Rubik's Cube pulls back his cuff; Glass's intimate posture and fist-clenching in the hallway; the Polaroid of Blinky inside Glass's house holding a toy; the room full of new boxed toys. Each clue is described in scene before Emmett articulates his conclusion.",
+    "confidence": "high",
+    "quote": "It causes his cuff to ride up, reveals the blue and black just above his wrist. Blinky immediately pulls it back into place."
+  },
+  "social_world": {
+    "value": "Rural northern California working-class hierarchy: mill workers, diner waitresses, trailer-park residents (Blinky at the bottom), cop's family (Maxine, middle respectability), and school institutional authority (Glass). The teacher's power over a neglected, socially marginalised child with no protective adult is the structural condition enabling the crime. Institutional trust in teachers insulates Glass from suspicion.",
+    "confidence": "high",
+    "quote": "The rust on the window screen, the piece of aluminum that was bent in a storm two winters back, still flapping unchallenged in the breeze."
+  },
+  "alibi": {
+    "value": "Glass constructs no explicit alibi; instead he exploits the institutional alibi conferred by his role \u2014 a grieving, eulogising teacher at the funeral, publicly performing sorrow. The 'presumed suicide' verdict functions as a collective alibi for Glass, absorbing the crime into tragedy. His direct denial ('I didn't do anything to Alfie') is the only personal alibi offered, and it collapses against the Polaroid evidence.",
+    "confidence": "medium",
+    "quote": "Glass even speaks, tears rolling down his cheeks. 'Alfie was a beautiful boy... it is a little darker here without him.'"
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is delivered through a physical object \u2014 the Polaroid photograph of Blinky smiling inside Glass's house holding a toy \u2014 combined with spatial reasoning (Emmett identifies the background wall). The Rubik's Cube reaction test (Glass going 'sheet-white') provides psychological confirmation earlier. The room of new boxed toys corroborates the grooming pattern. No confession is required; the evidence speaks materially.",
+    "confidence": "high",
+    "quote": "There's a Polaroid on his nightstand. Blinky. Smiling, holding a toy... 'Why was this photo taken in this house? Right there on that wall.'"
+  },
+  "media_and_audience": {
+    "value": "The institutional narrative packages Blinky's death as 'presumed suicide,' published in the local newspaper with a headline that forecloses further inquiry. A school assembly deploys a counsellor with microphone and therapeutic language that distances rather than illuminates. Official discourse (press, school, assembly speaker) collectively neutralises the crime, leaving Emmett as the only actor who refuses the sanctioned narrative.",
+    "confidence": "high",
+    "quote": "Body Discovered at Battle Creek / Alfie Johnson, 12, Presumed Suicide"
+  },
+  "investigator_wound": {
+    "value": "Emmett's wound is layered: a child's helplessness before adult institutional power (his own father's emotional unavailability, his mother's absence, his habit of pretending bad things didn't happen \u2014 as with the chicken). He recognises Blinky's vulnerability because it mirrors his own unseen domestic suffering. The case forces him to confront the limits of childhood passivity and choose lethal action, which his father's ethos ('a bottle of Scotch and a sharp Buck knife') has already scripted for him.",
+    "confidence": "high",
+    "quote": "I just wanna prove it to myself... And I pretend like it didn't happen."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "filename": "The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "A\tBottle\tof\tScotch\tand\ta\tSharp\tBuck\tKnife",
+    "author": "SCOTT\tGRAND",
+    "anthology_title": "The_Best_American_Mystery_Stories_215_-_James_Patterson",
+    "story_index": 9,
+    "story_count": 19
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Drowning of Verna, a disabled camper ('Special'), by two young girls during a swimming session. Central question: whether the death was accident or deliberate murder by child perpetrators.",
+    "confidence": "high",
+    "quote": "Charlene and I kept our eyes on each other then...her eyes were wide and gleeful...we were doing just what was demanded of us"
+  },
+  "victim": {
+    "value": "Verna, a disabled camper ('Special') at summer camp, made 'killable' by her social vulnerability, intellectual disability, social isolation from regular campers, and the narrator's and Charlene's focused persecution of her.",
+    "confidence": "high",
+    "quote": "like most of the Specials, she had been set adrift and did not completely understand where she was or what she was doing there"
+  },
+  "closed_world": {
+    "value": "Summer camp on a lake, final swimming session on last day before dispersal. Limited witnesses due to chaos of parent arrivals, competing dramas (lost sandal, sand in eye, vomiting children), and supervisor inattention.",
+    "confidence": "high",
+    "quote": "Most of us were still paddling around in the shallows...The woman in charge of the Specials was standing where the water came barely up to her knees"
+  },
+  "culprit_and_motive": {
+    "value": "Narrator and Charlene, two nine-year-old girls. Motive: culmination of their shared persecution fantasy, social bonding through cruelty, desire for dominance and transgression. The act is described as satisfying an obscure compulsion to do 'what was demanded of us.'",
+    "confidence": "high",
+    "quote": "More as if we were doing just what was\u2014amazingly\u2014demanded of us, as if this was the absolute high point, the culmination, in our lives"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "The adult narrator, now older, reflecting retrospectively on the crime committed in childhood. She is both perpetrator and unreliable witness, reconstructing memory decades later while visiting a priest regarding Charlene.",
+    "confidence": "high",
+    "quote": "I suppose there was talk in our house, afterward...I have not kept up with Charlene. I don't even remember how we said goodbye."
+  },
+  "suspect_architecture": {
+    "value": "Two perpetrators only: the narrator and Charlene, both child campers, differentiated by confidence (Charlene dominant, narrator compliant). No competing adult suspects; the killing is collaborative and mutual, eliminating classic suspect spread. Motive is shared revulsion/fear of Verna; opportunity is the chaotic final swim.",
+    "confidence": "high",
+    "quote": "Charlene and I had our hands on her, on her rubber cap."
+  },
+  "red_herring": {
+    "value": "The chaos of the motorboat waves and the general swimming tumult is the structural red herring \u2014 the death is made to look like an accidental drowning during a disorderly swim, diverting suspicion from the two girls. The arriving parents, the screaming children, and the missing sandal further diffuse attention.",
+    "confidence": "high",
+    "quote": "This could have been an accident. As if we, in trying to get our balance, grabbed on to this nearby large rubbery object"
+  },
+  "clue_fairness": {
+    "value": "The pale blue rubber bathing cap with its raised pattern is described in precise tactile and visual detail at the moment of the killing, placing the physical evidence of deliberate sustained pressure directly before the reader. The narrator's own confession of eye-contact with Charlene mid-act is disclosed simultaneously.",
+    "confidence": "high",
+    "quote": "The raised pattern that made it less slippery... whose ridges pushed into my palms."
+  },
+  "social_world": {
+    "value": "A mid-century Canadian summer camp stratified by class (Lions Club charity places vs. fee-paying families), age-based counsellor authority, wartime institutional religion (United Church), and a rigid insider/outsider divide materialised by the arrival of the 'Specials' \u2014 intellectually disabled campers who destabilise the camp's social order and expose its provisional nature.",
+    "confidence": "high",
+    "quote": "Some of them had their way paid by the Lions Club or the Church and not by their parents."
+  },
+  "alibi": {
+    "value": "No formal alibi is constructed; instead the tumult of the wave serves as a collective alibi of confusion \u2014 every swimmer was thrown off balance simultaneously, making individual agency impossible to reconstruct. The narrator explicitly theorises this: 'we would have been forgiven. Young children. Terrified.'",
+    "confidence": "medium",
+    "quote": "We did not decide anything, in the beginning. We did not look at each other and decide to do what we subsequently did."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is delivered through the narrator's own first-person retrospective confession decades later \u2014 not an investigator's deduction but a psychological unburdening that reconstructs the act step by step. The mechanics of the cap's raised pattern pressed into palms function as the tactile proof of sustained intentional pressure, distinguishing murder from accident.",
+    "confidence": "high",
+    "quote": "Her head was determined to rise, like a dumpling in a stew... we kept our eyes on each other rather than looking down at what our hands were doing."
+  },
+  "media_and_audience": {
+    "value": "The crime is institutionally absorbed as a tragic accidental drowning of a disabled child ('one of the Specials') during end-of-camp chaos. The parents' voices in the opening \u2014 'There should have been supervision. Where were the Counselors?' \u2014 show the public narrative settling on institutional negligence, entirely erasing the girls' agency.",
+    "confidence": "high",
+    "quote": "There should have been supervision. Where were the Counselors? (My father.)"
+  },
+  "investigator_wound": {
+    "value": "The narrator IS the perpetrator-as-investigator: her wound is lifelong moral dissociation \u2014 the inability to feel remorse or seek absolution. Her visit to Charlene (now dying) and her refusal to summon the priest for herself ('It's not for me. What's done is done') reveals a psychological wound of foreclosed guilt and self-exiled conscience.",
+    "confidence": "high",
+    "quote": "Was I not tempted, during all this palaver? Not once? Not swayed by longing... No. Not really. It's not for me."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Child\u2019s Play",
+    "author": "ALICE MUNRO",
+    "anthology_title": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos",
+    "story_index": 10,
+    "story_count": 22
+  }
+}

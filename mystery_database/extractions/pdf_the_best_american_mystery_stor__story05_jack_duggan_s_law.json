@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder charge against Frederick Ellis. A man has been killed; Ellis is accused. Central question: Did Ellis commit the murder, or is he being framed/pressured by forces beyond the courtroom?",
+    "confidence": "medium",
+    "quote": "Frederick is in the cooler because the police are under the impression that he went and killed a guy, and they think that they can prove it."
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Boston legal system and criminal court apparatus (Suffolk Superior Court). The bounds are institutional: judges, prosecutors, defense counsel, bail conditions. Ellis cannot flee without immediate legal consequences.",
+    "confidence": "medium",
+    "quote": "Criminal, Suffolk Superior Court... charged with the forcible rape of Rose Walters... Judge Shanahan said."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Frederick Ellis is found dead in the water (gunshot wound). The murder case against him becomes moot. Order is restored by his death, not by courtroom verdict or exoneration.",
+    "confidence": "high",
+    "quote": "There was an object floating in the water. It was Ellis... The defendant appears to be dead."
+  },
+  "investigator": {
+    "value": "Jack Duggan, court-appointed defense attorney for Frederick Ellis. He investigates Ellis's background, visits his mother, prepares the defense, and witnesses the system's pressures firsthand.",
+    "confidence": "high",
+    "quote": "I was appointed by the court to represent Frederick Ellis on a murder charge because he doesn't have enough money to get his own lawyer."
+  },
+  "suspect_architecture": {
+    "value": "Ellis (defendant, accused murderer, connected to organised crime via Franco/Francesco); Franco/Francesco (organised crime driver/fixer, likely orchestrator of Ellis's death); Harold Gould (DA, politically motivated, wants Ellis convicted); unknown original murder victim. The cast is small and differentiated by institutional role rather than classic whodunit means/motive/opportunity spread \u2014 Ellis is both suspect and victim, organised crime provides lethal force, and the DA provides political pressure.",
+    "confidence": "medium",
+    "quote": "\"That punk,\" Gould said, \"is a murderer.\" / \"Frederick Ellis is dead\" ... \"Gunshot,\" Cynthia said."
+  },
+  "red_herring": {
+    "value": "The original murder charge against Ellis functions as a red herring at the macro level: the story's apparent mystery (did Ellis commit murder?) is displaced by the real crime (who killed Ellis?). Additionally, Ellis's claim of innocence and Duggan's diligent defence preparation misdirect attention toward courtroom resolution while the organised crime plot resolves the case violently outside court.",
+    "confidence": "medium",
+    "quote": "\"Ellis says he's innocent\" ... In the early morning ... There was an object floating in the water. It was Ellis."
+  },
+  "clue_fairness": {
+    "value": "Clue fairness is weakly present. The reader is shown the same signals Duggan receives: Ellis's nervous secret meetings with Francesco, his organised crime connections, his fear ('I am in the gravy up to my belt-buckle'), and the ominous 'the Man is concerned' \u2014 all available to the reader before the body is found. However, no formal investigative puzzle is posed to the reader; this is noir procedural fiction, not a classic fair-play mystery.",
+    "confidence": "low",
+    "quote": "\"I am in the gravy up to my belt-buckle... I think they are planning to cook me.\""
+  },
+  "social_world": {
+    "value": "Boston's interlocking legal-political-criminal power structures: the DA's office (Gould) exercises patronage over ADA Washburn, who depends on Gould for her job and income as a single mother; the judiciary (Shanahan, Wilcox) mediates between prosecution and defence; appointed defence counsel (Duggan) is economically marginalised and personally compromised by divorce; organised crime ('the Man', Francesco) operates as a parallel power structure that ultimately overrides all legal process.",
+    "confidence": "high",
+    "quote": "\"She needed the job that Harold Gould could take away from her if she became too saucy.\""
+  },
+  "alibi": {
+    "value": "No formal alibi construction is present. Duggan's whereabouts the night Ellis is killed are lightly gestured at ('hard night, Counselor?' / 'I did go home') but not developed as an alibi. The organised crime perpetrators are never placed or accounted for. Alibi as a structural mystery element is absent from this text.",
+    "confidence": "low",
+    "quote": "\"Hard night, Counselor?\" / \"Very,\" he said. / \"You should go home at night,\" she said. / \"I did,\" he said."
+  },
+  "reveal_mechanic": {
+    "value": "There is no formal detective-style reveal. The resolution is delivered flatly and bureaucratically: Cynthia announces Ellis's death as office news, cause of death stated as gunshot. The 'solution' \u2014 that organised crime killed Ellis to prevent his cooperation or testimony \u2014 is implied but never demonstrated or narrated. The story ends on Duggan's police-hearing victory, not a mystery reveal. This is a procedural character study, not a puzzle mystery.",
+    "confidence": "low",
+    "quote": "\"Frederick Ellis is dead\" ... \"Gunshot,\" Cynthia said. \"He's on the slab. Southern Mortuary.\""
+  },
+  "media_and_audience": {
+    "value": "Institutional narration substitutes for press coverage: the crime is framed and packaged by the DA's office (Gould's political imperatives), the court system (docket entries, hearings), and casual office gossip (Cynthia as mordant chorus). Public opinion is represented only through Gould's political anxiety. There is no press presence; the 'audience' for Ellis's fate is the closed world of Boston legal professionals.",
+    "confidence": "medium",
+    "quote": "\"Gould wants a murder one.\" / \"Then the hell with him,\" Cynthia said. She went back to her coffee and her newspaper."
+  },
+  "investigator_wound": {
+    "value": "Duggan's wound is his fractured family life and financial marginalisation: court-appointed, unpaid, divorced, visiting his children 'out on dates with my own damned kids.' He is a competent lawyer trapped in a system that undervalues and underpays him, forced to defend clients he dislikes for no money while his personal life has collapsed. The Ellis case exploits this \u2014 it demands emotional investment he cannot afford and ends without payment or resolution.",
+    "confidence": "high",
+    "quote": "\"Out on dates,\" he said. \"Out on dates with my own damned kids.\" / \"He didn't pay ya, did he?\" / \"Nope.\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Jack\tDuggan\u2019s\tLaw",
+    "author": "GEORGE\tV.\tHIGGINS",
+    "anthology_title": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates",
+    "story_index": 5,
+    "story_count": 22
+  }
+}

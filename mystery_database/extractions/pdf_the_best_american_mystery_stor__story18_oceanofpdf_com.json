@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Human trafficking and murder. Method: Armed guards transport kidnapped girls across US-Mexico border; victim shot execution-style during escape attempt. Central question: Will the trafficking network be exposed and dismantled, or does the syndicate's 'inexhaustible supply' ensure impunity?",
+    "confidence": "high",
+    "quote": "The bullet had caught her in midstride and her limbs now lay still in the terrible disarray of death."
+  },
+  "victim": {
+    "value": "Altagracia Guzman, 14-year-old geometry prize-winner kidnapped from Delicias, Mexico. Made 'killable' by her isolation\u2014grabbed alone after school, transported away from family and support systems, reduced to slave labor in prostitution ring.",
+    "confidence": "high",
+    "quote": "Two men grabbed her on her way home from school on a Friday...She was aware of being lifted off her feet and heard the opening of a metallic door."
+  },
+  "closed_world": {
+    "value": "The desert canyon corridor along the US-Mexico border in Imperial County, California. Bounded by the border fence to the south, dry riverbed terrain, and the armed guards controlling movement. Physical isolation creates the trapped 'closed world' where escape is theoretically possible but practically lethal.",
+    "confidence": "high",
+    "quote": "The canyon was in Imperial County, California...A fence separates the United States from Mexico...The land to the north of the border is four hundred square miles of dry and barren hillsides."
+  },
+  "culprit_and_motive": {
+    "value": "The rifleman (unnamed syndicate enforcer). Motive: Economic\u2014the syndicate profits from human trafficking. Altagracia's escape attempt threatens operational security and demonstrates that girls can resist. Her death serves as both punishment and warning to remaining captives, ensuring 'tractability.'",
+    "confidence": "high",
+    "quote": "The loss of the girl was regrettable...But now the other girls would be more tractable...More young girls were born and matured every day: this meant an inexhaustible supply of product."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "None present in text. The narrative employs third-person omniscient perspective that alternates between Altagracia's consciousness and the rifleman's perspective, but no detective, law enforcement agent, or investigative authority appears to pursue the crime or restore order.",
+    "confidence": "high",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": "No traditional mystery suspect cast. The perpetrators are a criminal syndicate operating as a collective: three named armed guards, an unnamed syndicate boss, and an implied network of buyers. Differentiation is by role (shooter, escort, logistics) rather than individual motive \u2014 all share economic motive. No false suspects or competing culprits.",
+    "confidence": "low",
+    "quote": "At the head of the canyon stood a man with a rifle... A third man stood some distance away. He cradled his rifle"
+  },
+  "red_herring": {
+    "value": "The escape sequence \u2014 Altagracia's flight, rescue, border crossing, and arrival home \u2014 is constructed as a complete, hopeful narrative arc that the reader accepts as real, only to be revealed as a dying hallucination or dream in the final section. The apparent rescue is the red herring.",
+    "confidence": "high",
+    "quote": "Altagracia lay on her face in the stones of Cottonwood Canyon. The bullet had caught her in midstride"
+  },
+  "clue_fairness": {
+    "value": "The dream-frame clue is planted fairly but subtly: Altagracia hears 'a girl's voice' in a dream saying 'You're just going to leave her here like this?' \u2014 a line later spoken verbatim by a real girl at the scene of her body. The reader receives this signal before the reveal.",
+    "confidence": "high",
+    "quote": "In a dream she heard a girl's voice. You're just going to leave her here like this?"
+  },
+  "social_world": {
+    "value": "A transnational human trafficking hierarchy: syndicate bosses, armed coyote-guards, brothel madams, corrupt police as customers, and border-crossing facilitators. Victims are commodified as 'product.' Voluntary helpers (Elizabeth, Michael, Peter) exist outside institutional power. Police are explicitly unsafe for victims.",
+    "confidence": "high",
+    "quote": "She remembered the police who had been her customers in La Merced... 'No police. I just want to go home.'"
+  },
+  "alibi": {
+    "value": "No alibi structure is present. The perpetrators are openly present at the scene; concealment is not a narrative concern. The text does not engage with alibi as a device.",
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "The structural reveal is temporal and narratological: sections I\u2013III are presented as continuous realist narration, but section IV retroactively reframes sections II\u2013III as the dying consciousness of a girl shot in section I. The repeated motif of the white tablecloth with blue embroidered edge anchors both the fantasy and the reveal.",
+    "confidence": "high",
+    "quote": "An exploding pain was beginning in the back of her head... and fell forward. / Altagracia lay on her face in the stones"
+  },
+  "media_and_audience": {
+    "value": "No press, public narrative, or institutional framing of the crime appears. The story is deliberately enclosed \u2014 the crime is invisible to the outside world. The absence of media attention is itself thematic: trafficking victims vanish without public record or institutional acknowledgment.",
+    "confidence": "medium",
+    "quote": "More young girls were born and matured every day: this meant an inexhaustible supply of product."
+  },
+  "investigator_wound": {
+    "value": "There is no investigator in this text. The closest figure is Elizabeth, whose professional role (court translator) gives her partial awareness, but she is a bystander, not an investigator, and carries no explored psychological wound. The narrative is entirely victim-focalized.",
+    "confidence": "low",
+    "quote": "My name is Elizabeth. I am a translator. I work for the court system in Imperial City."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "text_len": 23500,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "SUSAN THORNTON",
+    "anthology_title": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George",
+    "story_index": 18,
+    "story_count": 22
+  }
+}

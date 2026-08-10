@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Accidental homicide of neighbor Len Haynes by rifle shot; subsequent flight from justice and theft of father's estate valuables. Central question: Will Getty and Guinevere evade capture?",
+    "confidence": "high",
+    "quote": "Guinevere accidentally killed my neighbor, Len Haynes...As if compelled by an innate marksman's instinct, she squeezed the trigger, and he vanished with a little spray of blood"
+  },
+  "victim": {
+    "value": "Len Haynes, an ordinary but negligent neighbor whose death is accidental rather than motivated by his character or secrets. He is 'killable' only by chance.",
+    "confidence": "high",
+    "quote": "Haynes was not a good neighbor \u2014 often he left trash bags outside his door, and animals littered my yard with their contents"
+  },
+  "closed_world": {
+    "value": "No traditional closed world. The narrative spans open terrain, motels, highways, and ultimately an estate house. The closure is temporal and psychological rather than spatial.",
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Guinevere (shooter) and Getty (accomplice/narrator) are the culprits. Motive is not criminal intent but panic, escape, and love/complicity. Truck becomes a secondary antagonist motivated by opportunistic theft.",
+    "confidence": "high",
+    "quote": "She lifted the rifle she had somehow neglected to drop, drew a bead on the woman, thought better of this, and fired a shot in the air."
+  },
+  "resolution": {
+    "value": "No traditional resolution. Gwen and Truck escape with stolen Civil War artifacts after Truck shoots Getty in the thigh. Getty survives but is left behind, bleeding, offering them 'a small head start.'",
+    "confidence": "high",
+    "quote": "The car tore away in a storm of Union relics, and I sat there in the inky silence, bleeding...They would get at least a small head start."
+  },
+  "investigator": {
+    "value": "Getty, the narrator and accomplice. He experiences the mystery not as detective but as participant and witness to his own moral dissolution and Guinevere's escape.",
+    "confidence": "high",
+    "quote": "What did you do? ...We were out of the blind and running across the field."
+  },
+  "suspect_architecture": {
+    "value": "Two primary actors in the accidental killing: Guinevere (shooter, clear means and presence) and Getty (narrator, complicit by inaction). Truck introduced later as ambiguous threat/accomplice with unclear motives. Mrs. Haynes as sole witness/accuser. Antietam as peripheral figure with access to the family home. No formal investigation or detective framework; the 'suspects' are the fleeing perpetrators themselves, differentiated by agency (Gwen acts, Getty rationalizes, Truck exploits).",
+    "confidence": "medium",
+    "quote": "\"If this gets strange, I'll kill him,\" I said. \"That's what I am, a murderer, same as you.\""
+  },
+  "red_herring": {
+    "value": "The suggestion that the shooting was purely accidental and that turning themselves in would resolve everything functions as a false trail \u2014 Getty's rationalization that 'we've done nothing wrong' misdirects toward innocence, while the story accumulates evidence of escalating culpability (second warning shot, flight, theft). Truck's introduction as Gwen's 'cousin' is a social misdirection that collapses under scrutiny.",
+    "confidence": "medium",
+    "quote": "\"We've done nothing wrong, when you get down to it,\" I said, exhaling blue smoke."
+  },
+  "clue_fairness": {
+    "value": "This is literary fiction, not a constructed puzzle-mystery, so clue fairness as a formal principle is absent. The reader receives the same information as the narrator-investigator (Getty) in real time, but there is no withheld solution to be fairly seeded. Key details \u2014 the empty safe, Gwen's gun on the passenger seat, Truck's physicality \u2014 are rendered to the reader simultaneously with Getty's awareness of them.",
+    "confidence": "low",
+    "quote": "It came as a surprise, though, when I saw Gwen's bag on the passenger seat, reached in, and took her gun."
+  },
+  "social_world": {
+    "value": "Sharp class stratification: Getty is a self-exiled heir to pharmaceutical wealth (the 'Chateau Syphilis'), consciously slumming in Port Wescott among 'grounded pilots and injured farm-league phenoms, failed actors and businessmen, the disbarred, displaced, and dispossessed.' Gwen is unlicensed, trailer-dwelling, library-book-stealing. Truck is the working-class muscle who ultimately holds power through physical dominance. The story dramatizes how inherited privilege (the safe, the bonds, the Civil War collection) fails to translate into actual authority when confronted with raw force.",
+    "confidence": "high",
+    "quote": "He'd built a pharmaceutical empire by the age of thirty-five; I took potshots at rodents from a half-collapsed porch."
+  },
+  "alibi": {
+    "value": "No formal alibi structure exists in this non-detective narrative. The killing is witnessed and openly acknowledged by the perpetrators. The closest alibi-analogue is Getty's repeated self-justification \u2014 constructing a narrative of innocence ('we've done nothing wrong') \u2014 which functions as a psychological alibi rather than a factual one, and which collapses progressively across the story.",
+    "confidence": "low",
+    "quote": "\"I'm not,\" I said. \"Listen, you and I both know what happens next. We drive into town and straighten this thing out.\""
+  },
+  "reveal_mechanic": {
+    "value": "There is no mystery-genre reveal. The story's structural revelation is psychological: Getty's self-understanding crystallizes when he takes Gwen's gun and confronts Truck, only to be disarmed and shot. The 'solution' is Getty's recognition of his own passivity and predictability \u2014 'I had always been predictable, above all to myself' \u2014 demonstrated not by deduction but by failed action. The empty safe (expected to contain bonds) is the material emblem of this deflation.",
+    "confidence": "low",
+    "quote": "I had always been predictable, above all to myself. It came as a surprise, though, when I saw Gwen's bag on the passenger seat."
+  },
+  "media_and_audience": {
+    "value": "Almost entirely absent as a structural element. There is no press coverage, no public narrative, no institutional response depicted within the story's frame. The outside world impinges only as distant sirens and the implied threat of pursuit. The story is radically interior and insulated from social perception of the crime, which heightens the fugitive unreality of Getty's experience.",
+    "confidence": "low",
+    "quote": "Some time later there was a cry of sirens in the distance, and cold fingers probed the flap of my shorts."
+  },
+  "investigator_wound": {
+    "value": "Getty is simultaneously narrator, participant, and de facto investigator of his own moral condition. His wound is his seven-year emotional stasis, his inability to become anything other than a failed version of his father Sid, and his compulsive self-sabotage. The case (his complicity in a killing and subsequent flight) directly exploits his longing for transformation and his susceptibility to Gwen's 'animal confidence.' His wound is the gap between the self he narrates and the self he cannot will into existence.",
+    "confidence": "high",
+    "quote": "I'd been stuck in a kind of emotional holding pattern for going on seven years... I was looking down the barrel of turning thirty."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Reconstruction",
+    "author": "SAM\tSHAW",
+    "anthology_title": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates",
+    "story_index": 18,
+    "story_count": 22
+  }
+}

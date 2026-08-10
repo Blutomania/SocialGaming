@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Contract murder of two jeweler brothers (twins); method: shooting in their office; central question: will Whittemore escape retribution from the criminal organization that hired him after he kills the men who are extorting payment and threatening exposure?",
+    "confidence": "high",
+    "quote": "He shot the one at the window first and then turned slowly to the one who did the talking, giving him a moment to reflect on his Mexican standoff."
+  },
+  "victim": {
+    "value": "The jeweler twins (Paul and Bonnie's sons): arrogant, embezzling inheritors who cheated customers and are now extorting Whittemore by threatening sealed instructions to lawyers revealing his identity.",
+    "confidence": "high",
+    "quote": "Cheating people who've been coming into the store forty years, that's how this happened. Cheating young people come in to buy a wedding ring."
+  },
+  "closed_world": {
+    "value": "Philadelphia jewelry store on Seventh Street with an upstairs office; the bounded space is the office itself where the murders occur.",
+    "confidence": "medium",
+    "quote": "The jewelers took him upstairs to their office \u2014 they seemed to be in a hurry to get him off the showroom floor"
+  },
+  "culprit_and_motive": {
+    "value": "Whittemore, a contract killer hired by intermediaries to eliminate the twins because they inherited a family jewel business and began cheating customers and extorting the assassin. Motive: self-preservation\u2014the twins are reneging on payment terms and blackmailing him.",
+    "confidence": "high",
+    "quote": "Time constraints have been violated. The agreement's changed...my brother and I have left instructions with our lawyers, sealed instructions to be opened in the event anything unfortunate happens."
+  },
+  "resolution": {
+    "value": "Whittemore shoots both twins in their office. No official investigation or arrest shown in excerpt; the resolution is the act itself and Whittemore's reflection afterward, with ambiguity about future consequences from the criminal organization.",
+    "confidence": "medium",
+    "quote": "He shot the one at the window first and then turned slowly to the one who did the talking...Afterward, he stayed in the room a little longer than he should have, the cordite stinging his nose."
+  },
+  "investigator": {
+    "value": "Whittemore: a contract killer and suspect-narrator whose perspective dominates the text. He is simultaneously perpetrator, investigator of motives, and subject of investigation by the twins and the organization that hired him.",
+    "confidence": "high",
+    "quote": "The man who had been keeping track of the old man's habits was named Whittemore, and he noticed the hair in his plate as soon as the waitress set it on the table."
+  },
+  "suspect_architecture": {
+    "value": "Two suspects (the jeweler twins, Paul and Bonnie's heirs) who hired Whittemore to kill old man Eisner; twins differentiated by role (talker vs. silent), both share motive (business control), opportunity (contracted killing), and means (money/criminal middlemen). Eisner is the target, not a suspect.",
+    "confidence": "high",
+    "quote": "Identical, but he could already tell who was who."
+  },
+  "red_herring": {
+    "value": "The elaborate surveillance of Eisner's habits implies the story is building toward his murder, misdirecting the reader from the actual outcome \u2014 Whittemore spares Eisner and kills the twins instead. The meticulous routine documentation functions as a false trail toward a kill that never happens.",
+    "confidence": "medium",
+    "quote": "The man who had been keeping track of the old man's habits was named Whittemore"
+  },
+  "clue_fairness": {
+    "value": "The twins' overconfidence and their claim of sealed lawyer instructions are shown directly to the reader in dialogue, providing the same information Whittemore uses to make his lethal decision. The reader witnesses the twins' arrogance and miscalculation in real time before the shooting.",
+    "confidence": "medium",
+    "quote": "my brother and I have left instructions with our lawyers, sealed instructions to be opened in the event anything unfortunate happens."
+  },
+  "social_world": {
+    "value": "Philadelphia criminal contracting hierarchy: anonymous clients (twins) at top, anonymous middlemen who pass jobs and money, freelance operative (Whittemore) at bottom. Jeweler family business also encodes old-money loyalty vs. nouveau-riche twin heirs who cheated long-standing customers.",
+    "confidence": "high",
+    "quote": "He worked for himself. There were people in the middle, and everything went through them \u2014 the money and the jobs."
+  },
+  "alibi": {
+    "value": "Not present as a classical alibi construction. No character offers a false or genuine account of whereabouts that is tested or collapsed. The element is absent from this text.",
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated through Whittemore's silent decision: no explanation is given to the reader in advance; the shooting of the one at the window first, then the deliberate pause given to the talker, shows rather than states the verdict. The mechanic is behavioral/psychological \u2014 action as revelation.",
+    "confidence": "medium",
+    "quote": "He shot the one at the window first and then turned slowly to the one who did the talking, giving him a moment to reflect."
+  },
+  "media_and_audience": {
+    "value": "Absent. There is no press, public opinion, institutional framing, or external narration of the crime. The story is entirely interior and private \u2014 no media layer exists in this excerpt.",
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Whittemore's wound is severe mysophobia and dissociation from human contact \u2014 rooted in a past punishment (knee broken repeatedly by laughing enforcers) that left him physically and emotionally sealed off. The case forces contact with the germy, weeping, very human Eisner, cracking his armor.",
+    "confidence": "high",
+    "quote": "nothing human had touched him in a long time... shit the sheets if Whittemore didn't just sit there and let the old man hug him."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "filename": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "text_len": 16214,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The\tJeweler",
+    "author": "PETE\tDEXTER",
+    "anthology_title": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly",
+    "story_index": 7,
+    "story_count": 23
+  }
+}

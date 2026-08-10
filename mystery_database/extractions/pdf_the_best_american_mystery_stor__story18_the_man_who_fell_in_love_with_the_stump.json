@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Serial child abduction, torture, molestation, and murder across Midwest; central question: who is the vigilante who executed the killer and how was the perpetrator finally located?",
+    "confidence": "high",
+    "quote": "They eventually found twelve others. Eleven of them were girls between the ages of five and eleven...All of them had been tortured and molested."
+  },
+  "victim": {
+    "value": "Greg Day (alias Ringo Wink Pitchwinger), a prolific serial killer of children; 'killable' because he murdered at least 13 children across the Midwest over decades, making him a target for revenge justice.",
+    "confidence": "high",
+    "quote": "\"Greg Day?\" he asked. Wink nodded yes and the man raised his gun and blew Wink's head off."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Unknown vigilante (possibly rogue FBI agent, family member of victim, or bounty hunter) executes Greg Day/Wink; motive is revenge for murdered children or official justice.",
+    "confidence": "medium",
+    "quote": "I never did find out who the stranger was who had finished off Wink. Maybe it was a rogue FBI agent. Maybe it was the father or brother of one of the girls killed."
+  },
+  "resolution": {
+    "value": "FBI investigation uncovers Greg Day's identity and locates remains of 13 victims across multiple Midwest graveyards; vigilante killer eliminates Day before formal prosecution; narrator becomes suspect but is eventually cleared.",
+    "confidence": "high",
+    "quote": "A day later a team from the FBI showed up...On that very same day, they found the remains of the first child."
+  },
+  "investigator": {
+    "value": "First-person narrator (unnamed diner regular and bar patron); an unwitting accomplice who befriends the killer, becomes witness to execution, and is interrogated but ultimately exonerated.",
+    "confidence": "high",
+    "quote": "I had blood and bits of Wink all over me. At first the county sheriff thought I was involved somehow."
+  },
+  "suspect_architecture": {
+    "value": "Single perpetrator (Wink/Greg Day) revealed posthumously; no competing suspects during narrative. Investigator-narrator briefly treated as suspect by county sheriff and community rumor.",
+    "confidence": "high",
+    "quote": "At first the county sheriff thought I was involved somehow. Or at least that's the way it seemed."
+  },
+  "red_herring": {
+    "value": "Wink's eccentric, harmless persona \u2014 his silly jokes, bad clothes, drunken camaraderie, and apparent fondness for a tree stump \u2014 functions as sustained misdirection masking his identity as a serial child killer.",
+    "confidence": "high",
+    "quote": "My life was neither richer nor poorer for having known him... I remembered he looked strange, but I couldn't remember his face."
+  },
+  "clue_fairness": {
+    "value": "Clues are present but partially suppressed: Annie and Gifford both signal prior knowledge of Wink; the fake name yields no Google results; the stump visits are never explained. Reader has access to same data as narrator but significance is withheld until the FBI reveal.",
+    "confidence": "medium",
+    "quote": "I also think I've seen him before. I just can't figure out where... 'He's been around here before,' Gifford said."
+  },
+  "social_world": {
+    "value": "Post-industrial dying town (Tivoli, Indiana) stripped of economic and institutional power after auto plant closure; residual community of elderly left-behinds with weak law enforcement, social insularity, and strong stigma dynamics that punish association with outsiders.",
+    "confidence": "high",
+    "quote": "People were polite to me, but there was a certain brittleness whenever they talked to me."
+  },
+  "alibi": {
+    "value": "Wink claims he has never been in Indiana before, directly contradicting Annie's and Gifford's independent recollections; his alias 'Pitchwinger' produces zero records, undermining any verifiable identity or alibi structure.",
+    "confidence": "high",
+    "quote": "He said he'd never even been in the state of Indiana before... Your name doesn't exist. There's no such thing as a name Pitchwinger."
+  },
+  "reveal_mechanic": {
+    "value": "Revelation delivered externally by a silent gunman who names the real identity (Greg Day), confirmed by Wink's own nod; followed by FBI discovery of thirteen children's remains on and near the stump site, retroactively decoding all prior behavior.",
+    "confidence": "high",
+    "quote": "'Greg Day?' he asked. 'How did you find me?' Wink asked... the man raised his gun and blew Wink's head off."
+  },
+  "media_and_audience": {
+    "value": "No press coverage depicted within narrative; FBI arrives and departs with minimal engagement; community processes the crime through gossip, whisper, and social ostracism of the narrator rather than formal public discourse.",
+    "confidence": "medium",
+    "quote": "I heard the whispers and the gossip and the innuendos... Most people thought that somehow I was involved in the last child's death."
+  },
+  "investigator_wound": {
+    "value": "Narrator's defining trait is inability to imagine alternatives or act on instinct ('What-ifs made me feel uncomfortable'); this same incuriosity causes him to ignore every warning sign about Wink, making his psychological rigidity the direct enabler of his complicity.",
+    "confidence": "high",
+    "quote": "That was pretty much my problem, I guess. I wasn't one for imagining things. What-ifs made me feel uncomfortable."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "text_len": 21067,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The Man Who Fell in Love with the Stump",
+    "author": "RANDY RO H N",
+    "anthology_title": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver",
+    "story_index": 18,
+    "story_count": 25
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder of Moishe Abrams, a jukebox racketeer, by an unknown assailant using a razor blade in an alley. Central question: Who killed the 'jukebox king' and why\u2014was it the Italian mob encroaching on Detroit territory, or someone else entirely?",
+    "confidence": "high",
+    "quote": "Some dude stomped to death on the Corridor last night, beaten to death."
+  },
+  "victim": {
+    "value": "Moishe Abrams, an aging mobster and jukebox kingpin who controlled vending machines across Detroit. He was 'killable' because he was old, drunk, predictable, and his death triggered a power vacuum in organized crime operations.",
+    "confidence": "high",
+    "quote": "Moishe damn near is the Mob. Used to be muscle for the Purple Gang during Prohibition."
+  },
+  "closed_world": {
+    "value": "Detroit's Cass Corridor and surrounding neighborhoods during a sweltering August 1960 heat wave. A tightly controlled territory dominated by competing organized crime factions (Motown Syndicate vs. Chicago Italians) where violence is normalized and hidden.",
+    "confidence": "high",
+    "quote": "Brownie's Lounge on Dequinder was buzzing by seven, jammed tight by ten...mean streets all day long"
+  },
+  "culprit_and_motive": {
+    "value": "Jonas Diddley, a young blues musician, killed Moishe in self-defense with a razor after Moishe attacked him unprovoked on the street following a drunken night at Brownie's Lounge. Moishe's motive was random violence; Diddley's was survival.",
+    "confidence": "high",
+    "quote": "Old dude jumped me...just come out of the dark with a razor...I grabbed it, swung at him...He took off runnin'"
+  },
+  "resolution": {
+    "value": "Brownie and Fatback find Diddley, retrieve Moishe's bloody razor, and manipulate Tony Zeman Jr. (Moishe's heir) by presenting the evidence and suggesting Junior take credit for the killing. This allows Diddley to survive and shifts blame away from Brownie, while establishing Junior's authority.",
+    "confidence": "high",
+    "quote": "We'll be getting out here. And congratulations, Mr. Zeman. You're the new jukebox king."
+  },
+  "investigator": {
+    "value": "Leo 'Brownie' Brown, the bar owner, who is both suspect and investigator. He serves as the lens through which readers understand the crime, motivated by self-preservation and loyalty to his community rather than institutional justice.",
+    "confidence": "high",
+    "quote": "Leo Brown\u2014Brownie to his friends and everybody else\u2014was no coward...But he'd never heard an easy way to manage Moishe Abrams."
+  },
+  "suspect_architecture": {
+    "value": "Three suspect tiers: (1) Brownie himself (last known person with Moishe, motive: fear/financial debt); (2) Chicago Italian mob (territorial motive, means); (3) Jonas 'Diddley' \u2014 unknown street musician who actually killed Moishe in self-defense after being randomly attacked. Suspects differentiated by race, class, and proximity to organized crime.",
+    "confidence": "high",
+    "quote": "\"We know who killed Moishe,\" Red said. \"Them Italians.\" \"No,\" Leo said, shaking his head slowly. \"I don't think so.\""
+  },
+  "red_herring": {
+    "value": "The Italian Chicago mob is the primary red herring \u2014 characters and reader are led to assume a professional organized-crime hit ordered by Sicilian rivals moving in on Detroit jukebox territory, when in fact Moishe was killed in an improvised street altercation with a random young musician he randomly attacked.",
+    "confidence": "high",
+    "quote": "\"If the Italians took him out, they'd put it all over town so everybody'd know how bad they are.\""
+  },
+  "clue_fairness": {
+    "value": "The clue is present but partially withheld: the reader sees Brownie drop Moishe near Fatback's place and learns Fatback employs a young musician, but the connection between Diddley leaving Fatback's and encountering Moishe is only assembled later. Moishe's razor as physical evidence is shown to reader when Brownie finds it on the nightstand.",
+    "confidence": "medium",
+    "quote": "\"Brownie said, gingerly picking up Moishe's bloody razor from the nightstand.\""
+  },
+  "social_world": {
+    "value": "1960 Detroit racial and mob hierarchy: Jewish Purple Gang legacy (Moishe), Italian-American Syndicate (Zemans), Black working-class blues corridor (Brownie). Bar owners are financially indentured to mob through loans and vending machine kickbacks. Black men exist outside legal protection \u2014 deaths on the Corridor are ignored by police. UAW and auto-plant labor underpin the economic base.",
+    "confidence": "high",
+    "quote": "\"Moishe's people own the jukeboxes. All of 'em... They also own pieces of half the bars in Motown, including mine.\""
+  },
+  "alibi": {
+    "value": "Brownie's alibi \u2014 that he dropped Moishe off and drove away, tailed by a police cruiser \u2014 is genuine and verifiable. The police tail functions as an unwitting corroboration. Diddley has no alibi but his wounds and the embedded razor in his guitar case constitute physical alibi-equivalent proof of self-defense.",
+    "confidence": "medium",
+    "quote": "\"A prowl car tailed me out of the neighborhood, but I expect y'all know that already, since you've got more lines into Detroit P.D.\""
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated through physical evidence (Moishe's razor stuck in the guitar case, then recovered from Diddley's room) combined with wound testimony \u2014 Diddley's multiple razor cuts corroborate his account of a defensive struggle. The razor presented to Tony Junior closes the loop, converting private knowledge into social resolution.",
+    "confidence": "high",
+    "quote": "\"His razor stuck in the case. I grabbed it, swung at him a couple of times, just lookin' to back him off me.\""
+  },
+  "media_and_audience": {
+    "value": "The crime is institutionally invisible \u2014 a Black man beaten to death on the Corridor warrants no investigation ('A black man knifed to death on the Corridor? Do tell.'). The resolution depends not on legal justice but on mob perception management: Brownie advises Junior to claim credit for the killing to project power to the Italians, weaponizing rumor and reputation as the operative 'media.'",
+    "confidence": "high",
+    "quote": "\"You might want to put the word out that you happened to him... Show the Italians how quick you can take out the trash.\""
+  },
+  "investigator_wound": {
+    "value": "Brownie's wound is fear \u2014 specifically, the deep, remembered terror of Moishe's empty eyes after a witnessed murder years ago. He is a self-made man who hates feeling small and powerless, and the case forces him to act despite that fear. His financial debt to the mob compounds his vulnerability, making his courage contingent on survival calculus as much as moral agency.",
+    "confidence": "high",
+    "quote": "\"Down deep, where it mattered, Brownie was afraid of Moishe Abrams. Scared spitless. He didn't like the feeling. Didn't like feeling small.\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "filename": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The\tJukebox\tKing",
+    "author": "DOUG\tALLYN",
+    "anthology_title": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly",
+    "story_index": 2,
+    "story_count": 23
+  }
+}

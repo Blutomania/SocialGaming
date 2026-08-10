@@ -1,0 +1,195 @@
+{
+  "title": "The Stolen Star of Smurf Village",
+  "setting": {
+    "location": "Smurf Village, deep within the Enchanted Forest",
+    "time_period": "A timeless mushroom-house morning",
+    "environment": "A tight cluster of mushroom cottages surrounded by an impenetrable magical fog that Grand Elder Smurfagar the Wise accidentally triggered while testing a new spell. The fog disorients anyone who tries to wander beyond the village boundary, forcing all residents to remain inside until it lifts \u2014 trapping every suspect on the scene."
+  },
+  "crime": {
+    "type": "Theft of the Ancestral Smurf Star \u2014 a jeweled medallion passed down through the founding Smurf family for generations",
+    "what_happened": "The Ancestral Smurf Star, kept in a locked display case in the Village Hall, was stolen overnight. The glass case was shattered by a blade, and the locking mechanism was cut clean through. Three other display items were slashed and scattered, suggesting either rage or a deliberate attempt to obscure which item was the true target.",
+    "when": "Between midnight and 6:00 AM on the morning of the Grand Smurf Founding Festival",
+    "initial_discovery": "Harmony Smurf arrived at the Village Hall at dawn to rehearse his trumpet fanfare for the festival and found the broken case, the scattered relics, and the Star missing. He immediately alerted Grand Elder Smurfagar the Wise, who summoned all village residents to the central square."
+  },
+  "characters": [
+    {
+      "name": "Grand Elder Smurfagar the Wise",
+      "role": "detective",
+      "occupation": "Grand Elder and Keeper of the Cauldron",
+      "motive": "None \u2014 he is investigating the theft",
+      "alibi": "Grand Elder Smurfagar the Wise was in his laboratory all night brewing the fog-lifting antidote. His assistant, Smurfodex, Keeper of the Great Smurf Tome, checked on him at 2:00 AM and confirms he was there, surrounded by boiling cauldrons.",
+      "secret": "Grand Elder Smurfagar the Wise secretly knows the Star has a hidden compartment containing a map to a second cache of Smurf gold \u2014 information he has shared with no one but the victim's family. He fears the thief may be after the map, not merely the jewel."
+    },
+    {
+      "name": "Smurfeline, Tender of Blossoms",
+      "role": "victim",
+      "occupation": "Tender of Blossoms and Guardian of the Gathering Hall",
+      "motive": "N/A \u2014 she is the victim",
+      "alibi": "N/A \u2014 she was found unconscious near the broken display case, having been struck on the head by a blunt object when she apparently interrupted the thief mid-act",
+      "secret": "Smurfeline, Tender of Blossoms had recently discovered that the Star was not purely decorative \u2014 it contained the map Grand Elder Smurfagar the Wise mentioned \u2014 and she had written a private letter to Grand Elder Smurfagar the Wise about it that same evening. The letter was never delivered and is missing from her cottage."
+    },
+    {
+      "name": "Smurfwick the Craftsmurf",
+      "role": "suspect",
+      "occupation": "Craftsmurf and Tinkerer of Works",
+      "motive": "Handy secretly owes a debt to Gargamel \u2014 the wizard threatened to expose Handy's past unauthorized trades outside the village unless Handy delivered the Star to him. Handing it over would clear his debt and protect his reputation as the village's most trusted craftsman.",
+      "alibi": "Handy claims he spent the entire night in his workshop finishing the stage platform for the festival. However, no one can confirm he was there after midnight, and his workshop is only thirty meters from the Village Hall.",
+      "secret": "Handy possesses a set of precision blade tools \u2014 including a glass-cutting knife \u2014 that perfectly match the clean slice through the display case's lock. He has been secretly corresponding with Gargamel via enchanted notes hidden inside hollow bolts. One such note, partially burned, was found in his workshop hearth."
+    },
+    {
+      "name": "Smurfodex, Keeper of the Great Smurf Tome",
+      "role": "suspect",
+      "occupation": "Keeper of the Great Smurf Tome and Self-Appointed Apprentice to the Grand Elder",
+      "motive": "Brainy believes he is the rightful intellectual heir to Grand Elder Smurfagar the Wise's legacy and has long felt that the Star \u2014 and the secrets it contains \u2014 should belong to him as the keeper of village lore. He wants the map to find the Smurf gold cache independently, proving his superiority without Grand Elder Smurfagar the Wise's approval.",
+      "alibi": "Brainy says he checked on Grand Elder Smurfagar the Wise at 2:00 AM and then went directly to bed. His cottage neighbor, Smurfumbles the Trip-Footed, claims he heard Brainy's door open and close again around 3:30 AM but assumed Brainy was visiting the outhouse.",
+      "secret": "Brainy had secretly made a wax impression of the Village Hall display case key three weeks prior, intending to study the Star's inscription. He never used it \u2014 or so he claims. The wax mold is hidden beneath a floorboard in his library, and it matches the key perfectly."
+    },
+    {
+      "name": "Smurfadel, Master of Adornment",
+      "role": "suspect",
+      "occupation": "Master of Adornment and Keeper of the Festive Garlands",
+      "motive": "Vanity recently learned from a traveling merchant that the Ancestral Star's gemstone is an exceptionally rare mirror-cut sapphire worth a fortune outside the village. Desperate to fund a grand journey to a fabled city of mirrors he has dreamed of visiting, he covets the gem for its resale value.",
+      "alibi": "Vanity claims he was decorating the festival arch on the eastern edge of the village until 1:00 AM, then slept in his cottage. The decorations are indeed completed, but the arch is only a five-minute walk from the Village Hall, and no witness can place him in his cottage before dawn.",
+      "secret": "Vanity was seen by Smurfumbles the Trip-Footed at approximately 4:00 AM walking near the Village Hall carrying what Clumsy described as 'something shiny wrapped in his scarf.' Vanity denies this and claims Clumsy was half-asleep and confused. Vanity also possesses a hand-drawn copy of an old engineering diagram of the Village Hall's interior \u2014 with unauthorized annotations in a different handwriting that scholars would recognize as Handy's."
+    },
+    {
+      "name": "Smurfumbles the Trip-Footed",
+      "role": "witness",
+      "occupation": "Errand-Bearer of the Village and Dropper of Most Things",
+      "motive": "None \u2014 he is a witness",
+      "alibi": "Clumsy was in his cottage all night but woke twice due to insomnia. He heard Brainy's door at 3:30 AM and saw Vanity near the Village Hall at 4:00 AM. He reported both observations to Grand Elder Smurfagar the Wise immediately upon being questioned.",
+      "secret": "Clumsy accidentally overheard Handy and Vanity arguing three days ago near the well. Handy was insisting Vanity 'follow through with the plan' and Vanity was saying he 'wanted no part of the dangerous part.' Clumsy did not understand what they meant at the time and has only just remembered this exchange."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "Shattered Display Case with Blade Cut",
+      "description": "The glass display case in the Village Hall was broken from the outside, and the iron locking bar was sliced through with a single clean cut consistent with a precision blade rather than a blunt tool. The cut angle and depth match Smurfwick the Craftsmurf's glass-cutting knife, found in his workshop, which has a fresh nick on its edge consistent with cutting hardened iron.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E2",
+      "name": "Village Hall Engineering Diagram with Dual Handwriting",
+      "description": "A hand-drawn floor plan of the Village Hall was found tucked inside Smurfadel, Master of Adornment's decorating supply box. The base diagram is in Handy's precise drafting hand, showing the exact location of the display case, the skylight latch, and the rear door lock mechanism. Unauthorized annotations in a second, loopier handwriting \u2014 identified as Vanity's \u2014 mark the 'best entry point' and 'fastest exit route,' suggesting collaborative premeditation.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E3",
+      "name": "Partially Burned Enchanted Note in Handy's Hearth",
+      "description": "A small piece of parchment recovered from the ash in Handy's workshop fireplace bears the partial text '...deliver the Star before dawn or the village learns of your arrangement...' in a spidery script consistent with Gargamel's known correspondence style found in Grand Elder Smurfagar the Wise's threat archive. This confirms Handy's coercive motive and his communication channel with the villain outside the village.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E4",
+      "name": "Wax Key Impression Under Brainy's Floorboard",
+      "description": "A wax tablet bearing a perfect impression of the Village Hall display case key was found hidden beneath a loose floorboard in Smurfodex, Keeper of the Great Smurf Tome's personal library. The wax is three weeks old based on its hardening, and the impression is sharp \u2014 suggesting it was made carefully, not accidentally. While damning, closer inspection reveals it was never used to cast a copy key, and the Star was taken via blade-cut lock, not key entry.",
+      "type": "physical",
+      "relevance": "red_herring"
+    },
+    {
+      "id": "E5",
+      "name": "Clumsy's Testimony About Vanity Near the Hall",
+      "description": "Smurfumbles the Trip-Footed states that at approximately 4:00 AM he looked out his window and saw Smurfadel, Master of Adornment walking quickly past the Village Hall, holding something wrapped in his decorative scarf pressed tightly to his chest. Clumsy describes Vanity as moving 'like he didn't want anyone to see him,' glancing over his shoulder twice before disappearing around the mushroom storage shed.",
+      "type": "testimonial",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E6",
+      "name": "Vanity's Scarf with Sapphire Dust",
+      "description": "Vanity's signature silver scarf, found hanging in his cottage, has a faint dusting of blue crystalline powder along one inner fold. Laboratory analysis by Grand Elder Smurfagar the Wise confirms the powder is sapphire micro-fragments \u2014 the same type of gemstone that forms the Star's centerpiece. The dust pattern suggests the Star was wrapped in this scarf at some point during the night.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E7",
+      "name": "Clumsy's Account of Handy and Vanity's Argument",
+      "description": "Smurfumbles the Trip-Footed recalls overhearing a tense exchange between Handy and Vanity three days prior to the theft, in which Handy urged Vanity to 'follow through with the plan' and Vanity expressed reluctance about 'the dangerous part.' This testimonial evidence establishes that the theft was planned in advance and that both Handy and Vanity were involved, but it also suggests Vanity may have been a reluctant participant \u2014 pointing to Handy as the primary architect.",
+      "type": "testimonial",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E8",
+      "name": "Smurfeline, Tender of Blossoms's Missing Letter",
+      "description": "The letter Smurfeline, Tender of Blossoms was known to have written to Grand Elder Smurfagar the Wise \u2014 in which she intended to reveal her discovery of the Star's hidden map compartment \u2014 is absent from her cottage writing desk, where Brainy confirms he saw it earlier that day. The empty desk slot and a torn corner of parchment left behind suggest it was deliberately taken, implicating someone who knew the letter's contents and wanted to suppress the information about the hidden map.",
+      "type": "circumstantial",
+      "relevance": "supporting"
+    }
+  ],
+  "solution": {
+    "culprit": "Smurfwick the Craftsmurf (primary architect) and Smurfadel, Master of Adornment (accomplice who physically carried the Star)",
+    "method": "Handy used his precision glass-cutting knife to shatter the display case and slice the iron lock bar cleanly \u2014 a technique only a skilled engineer could execute quietly and efficiently. Vanity, who had memorized the Hall's layout using Handy's annotated diagram, entered through the rear door (whose latch Handy had pre-loosened during a routine 'maintenance inspection' two days earlier), retrieved the Star, wrapped it in his scarf, and exited while Handy maintained the appearance of working in his workshop as a passive alibi. When Smurfeline, Tender of Blossoms unexpectedly arrived and interrupted the act, Handy \u2014 already inside staging the diversion damage \u2014 struck her with a wooden mallet to silence her before fleeing. The Star was to be handed to Gargamel's messenger at the fog boundary at dawn in exchange for clearing Handy's debt.",
+    "motive": "Handy acted under coercive debt to Gargamel, who threatened to expose Handy's past unauthorized dealings. Vanity was recruited by Handy with promises of a share of Gargamel's payment, enough to fund Vanity's dream journey to the City of Mirrors. Greed and fear combined to drive both suspects.",
+    "key_evidence": [
+      "E1",
+      "E2",
+      "E3",
+      "E6"
+    ],
+    "how_to_deduce": "Step 1: Examine E1 \u2014 the blade cut on the display case lock matches Handy's precision glass-cutting knife (with a fresh nick), immediately placing Handy's specialized tools at the center of the crime. Step 2: Examine E2 \u2014 the Village Hall diagram found in Vanity's supplies bears Handy's drafting hand for the base plan and Vanity's handwriting for the entry/exit annotations, proving coordinated premeditation between both suspects. Step 3: Examine E3 \u2014 the partially burned note in Handy's hearth confirms he was being coerced by Gargamel, establishing his urgent motive and explaining why he needed to act on the night of the festival specifically (a deadline imposed by the note). Step 4: Examine E6 \u2014 sapphire dust from the Star's gemstone found inside Vanity's scarf physically places the stolen item in Vanity's possession after the theft, corroborating Clumsy's sighting (E5) and confirming Vanity as the carrier. Step 5: Eliminate Brainy \u2014 E4 (the wax key impression) initially implicates him, but the theft used a blade-cut method, not a copied key; Brainy never cast a working key, and his alibi with Grand Elder Smurfagar the Wise for part of the night holds. His suspicious behavior is a red herring rooted in his own separate scheme to study the Star. Step 6: Synthesize \u2014 Handy planned and executed the break-in using his engineering skills, Vanity retrieved and transported the Star, and both were overheard arguing about 'the plan' days earlier (E7), sealing the conspiracy between them."
+  },
+  "gameplay_notes": {
+    "difficulty": "MEDIUM",
+    "estimated_playtime": "45\u201360 minutes",
+    "key_twists": [
+      "Smurfodex, Keeper of the Great Smurf Tome's wax key impression makes him appear to be the prime suspect for the first half of the investigation, functioning as a deliberate red herring that misdirects players away from the Handy-Vanity conspiracy.",
+      "The Village Hall engineering diagram in Vanity's possession \u2014 with dual handwriting \u2014 is the pivotal 'aha' evidence that reframes the entire investigation from a solo theft to a premeditated partnership.",
+      "The revelation that the Star contains a secret map compartment (introduced through Grand Elder Smurfagar the Wise's secret and Smurfeline, Tender of Blossoms's missing letter) adds a layer of complexity: players must determine whether the thief knew about the map or was only after the gem's value, which ultimately points away from Brainy (who wanted the map) and toward Handy-Vanity (who wanted sellable wealth)."
+    ]
+  },
+  "_provenance": {
+    "recipe": "corpus_0181_ebo(1) + corpus_0078_ebo(2) + corpus_0203_ebo(3) + corpus_0352_ebo(4) + corpus_0108_ebo(5) + corpus_0161_ebo(6) + corpus_0147_ebo(7) + E(8)",
+    "slots": [
+      {
+        "source_id": "corpus_0181_ebo",
+        "part_index": 1,
+        "part_type": "crime_type"
+      },
+      {
+        "source_id": "corpus_0078_ebo",
+        "part_index": 2,
+        "part_type": "setting_element"
+      },
+      {
+        "source_id": "corpus_0203_ebo",
+        "part_index": 3,
+        "part_type": "motive"
+      },
+      {
+        "source_id": "corpus_0352_ebo",
+        "part_index": 4,
+        "part_type": "suspect_archetype"
+      },
+      {
+        "source_id": "corpus_0108_ebo",
+        "part_index": 5,
+        "part_type": "red_herring"
+      },
+      {
+        "source_id": "corpus_0161_ebo",
+        "part_index": 6,
+        "part_type": "reveal_mechanic"
+      },
+      {
+        "source_id": "corpus_0147_ebo",
+        "part_index": 7,
+        "part_type": "social_dynamic"
+      },
+      {
+        "source_id": "E",
+        "part_index": 8,
+        "part_type": "evidence_type"
+      }
+    ],
+    "target_setting": "Someone stole something from the Smurfs",
+    "generated_title": ""
+  },
+  "_coherence": {
+    "passed": false,
+    "blocking": 1,
+    "warnings": 1
+  }
+}

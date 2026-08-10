@@ -1,0 +1,87 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Loomis's daughter Izzy hired two men (Bobito as intermediary) to confront her father about his dismissal of thank-you cards and his emotional withdrawal from family life; motive is to shock him into recognizing his failings as a father and husband",
+    "confidence": "medium",
+    "quote": "she had seen it more clearly than he had, how fragile their little family was, how easily daddies lost faith in themselves"
+  },
+  "resolution": {
+    "value": "The confrontation culminates in physical confrontation at a Dunkin' Donuts parking lot where Loomis discovers the gun is a toy and the scar is fake; Izzy's intervention and concealment of the toy gun from police, combined with her false alibis, allows the situation to resolve without arrests",
+    "confidence": "medium",
+    "quote": "the toy pistol, which Izzy had stashed inside her shirt to conceal it from the cops"
+  },
+  "investigator": {
+    "value": "Loomis himself\u2014the protagonist gradually uncovers the mystery of who hired the men and why, moving from paranoia to understanding",
+    "confidence": "high",
+    "quote": "He realized what she had done, and then why"
+  },
+  "suspect_architecture": {
+    "value": "Two hired men (Tony Bennett, Scarface) as apparent antagonists; Izzy revealed as orchestrator; Kate and The Lesbian Anita as red-herring suspects; Bobito as unexpected ally. Means/motive differentiated: hired men have financial motive (unemployed, over-50), Izzy has emotional/familial motive, Loomis himself is implicit suspect in marital dispute.",
+    "confidence": "high",
+    "quote": "She kept sobbing that she was sorry, which was not a word he associated with her."
+  },
+  "red_herring": {
+    "value": "The two men are staged as mob enforcers with a real gun, creating the impression of organised criminal threat; the gun is a water pistol, the scar a prosthetic. Loomis \u2014 and the reader \u2014 is misdirected into believing Kate or The Lesbian Anita hired them as intimidation.",
+    "confidence": "high",
+    "quote": "The gun landed on the pavement with a hollow plasticky clatter... the weapon had a tiny plug in back, to keep the water inside."
+  },
+  "clue_fairness": {
+    "value": "Clues are present but easily dismissed: Scarface gestures theatrically 'as if the director of a community theater production had just stage-whispered at him'; Tony Bennett's gun outline is never actually seen; the red Scion is driven by Bobito, not a threat. All details available to reader before resolution.",
+    "confidence": "medium",
+    "quote": "He gestured toward the sky as if the director of a community theater production had just stage-whispered at him to gesture toward the sky."
+  },
+  "social_world": {
+    "value": "Boston suburban middle-class professional anxiety: biotech marketing culture, stay-at-home-mom domesticity, yuppie consumption guilt, library-science educated couple, security guard underclass, academic-rabbi celebrity. Power flows through domestic moral authority (Kate's Gratitude Agenda, thank-you-note etiquette) rather than wealth or law.",
+    "confidence": "high",
+    "quote": "done whoring himself to the hipster lords of Marketing, done creating content"
+  },
+  "alibi": {
+    "value": "No formal alibi construction; the story's analogue is Izzy's improvised cover story to police \u2014 that Loomis is diabetic and fell \u2014 which Bobito and Loomis corroborate in real time, successfully closing down the police inquiry.",
+    "confidence": "medium",
+    "quote": "My dad's a diabetic. He gets dizzy when he gets low blood sugar... I guess I fell."
+  },
+  "reveal_mechanic": {
+    "value": "Physical object as revelation: the toy pistol pressed against Loomis's ribs when he hugs Izzy exposes her as the orchestrator. Confirmed by recalled dialogue ('I told you guys, no being rough!') and Izzy's weeping confession. No verbal admission \u2014 the gun's hollow plastic clatter and Izzy's concealment complete the proof.",
+    "confidence": "high",
+    "quote": "a hard object pressed against his tender ribs, and he knew at once what it was: the toy pistol, which Izzy had stashed inside her shirt"
+  },
+  "media_and_audience": {
+    "value": "Opening paragraph explicitly ironises media packaging of violence ('TV vans... heartbroken androids... The suspect was a familiar and friendly presence in his workplace'). The police dispatcher and female officer reframe Loomis's victimhood as domestic-dispute narrative. Loomis's own internal broadcast of racial slurs mirrors media's dehumanising categorisation.",
+    "confidence": "high",
+    "quote": "later when the TV vans showed up and disgorged their heartbroken androids they would be able to utter sentences such as 'The suspect was a familiar...'"
+  },
+  "investigator_wound": {
+    "value": "Loomis is both investigator and subject: his wound is corrosive self-awareness of his own pettiness, marital bad faith, and loss of identity (library professional become biotech content-creator). The case \u2014 engineered by his daughter \u2014 forces him to confront how his domestic failures threaten family dissolution. His paranoia is simultaneously justified and self-indicting.",
+    "confidence": "high",
+    "quote": "he had seen it more clearly than he had, how fragile their little family was, how easily daddies lost faith in themselves"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "STEVE ALMOND",
+    "anthology_title": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George",
+    "story_index": 2,
+    "story_count": 22,
+    "backfilled_from": "book_slug[:30] filename-collision bug"
+  }
+}

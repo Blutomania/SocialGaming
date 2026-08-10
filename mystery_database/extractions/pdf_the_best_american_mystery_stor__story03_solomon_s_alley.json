@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Car bomb assassination. A white Navigator carrying Asad and his goons is destroyed by C-4 explosive on Canal Road. Central question: who detonated the device and why?",
+    "confidence": "high",
+    "quote": "the electronic command sent to the door opener's receiver, the receiver that would shoot thirty-six volts into the blasting cap, the blasting cap embedded in the quarter pound of C-4 plastic explosive"
+  },
+  "victim": {
+    "value": "Asad the Somali, a drug trafficker and street extortionist who muscled vendors into his supply network and beat Solomon. He was 'killable' because he made enemies through violent coercion.",
+    "confidence": "high",
+    "quote": "Asad had stood there and watched with his hard black marble eyes while Gehdi and Nadif punched Solomon to the ground then kicked the shit out of him."
+  },
+  "closed_world": {
+    "value": "Solomon's Alley in Georgetown, Washington D.C., a bounded commercial territory where street vendors, Somali traffickers, and police intersect. Solomon's position as observer locks the space.",
+    "confidence": "high",
+    "quote": "Solomon's Alley parallels M Street, Georgetown's main drag. Running behind Johnny Rockets, Ben & Jerry's, Old Glory Barbecue, and the Riggs Bank, the alley connects Wisconsin Avenue on the west to 31st Street one block east."
+  },
+  "culprit_and_motive": {
+    "value": "Waverly Ngame, the Nigerian vendor, likely orchestrated the bombing in retaliation for Asad's extortion and violent assault. Motive: self-defense, territorial integrity, and protection of his livelihood.",
+    "confidence": "medium",
+    "quote": "Ngame slammed Asad up against a lamppost and brought the blade against the Somali's throat just below the Adam's apple... 'You're right,' Ngame said to Asad in his best BBC voice, 'men have accidents.'"
+  },
+  "resolution": {
+    "value": "The bomb detonates on Canal Road, killing Asad and his goons. Forensic examination finds a garage door opener in the wreckage. Detective Phelps and forensics techs investigate, though resolution remains ambiguous\u2014culpability is inferred but not proven.",
+    "confidence": "medium",
+    "quote": "What's that in the hand?' 'Looks like a switch for a garage door. Best guess, these guys set off a bomb in their own vehicle.' 'How'd they manage that?' Calkins shrugged. 'They not gonna tell you, Jos\u00e9.'"
+  },
+  "investigator": {
+    "value": "Solomon, the homeless observer and guardian of the alley. He witnesses the entire escalation and serves as the reader's lens into the mystery, though he remains outside official investigation.",
+    "confidence": "high",
+    "quote": "Solomon watched the two cops get in their car and leave... Solomon, eyes half-closed, was drowsing in his canvas deck chair... Solomon smiled. One gimpy Somali. Man gonna remember this day, long as he live."
+  },
+  "suspect_architecture": {
+    "value": "Three rival criminal factions (Puerto Ricans, Jamaicans, American blacks) implicated in Skeeter Hodges murder with no named perpetrator; Asad the Somali as primary antagonist with two enforcers (Gehdi, Nadif) seeking street control; Ngame as apparent victim who turns out to be survivor. Suspects differentiated by ethnicity, street hierarchy, and degree of violence.",
+    "confidence": "high",
+    "quote": "The Puerto Ricans say it was the Jamaicans. The Jamaicans tell me it was the Puerto Ricans. And the American blacks...they all point fingers."
+  },
+  "red_herring": {
+    "value": "The Skeeter Hodges murder investigation functions as a red herring, drawing detectives Phelps and Kearney's attention away from the immediate threat to Ngame's life. The inter-gang finger-pointing about Skeeter's death distracts from the real plot: Asad's bombing of Ngame.",
+    "confidence": "high",
+    "quote": "You already find out who killed Skeeter? ...Not yet."
+  },
+  "clue_fairness": {
+    "value": "Solomon observes Gehdi enter the alley with a duffel bag, disappear toward Ngame's van and the parking garage, then return without the bag \u2014 all shown to the reader in real time. The garage door opener used to detonate the bomb is planted as a visible object before the explosion, allowing the reader to reconstruct the mechanism.",
+    "confidence": "high",
+    "quote": "Something moved, the slightest shift of black against the deeper black in the shadow of Ngame's van."
+  },
+  "social_world": {
+    "value": "Georgetown street economy with layered power: homeless Solomon as alley guardian, Nigerian street vendor Ngame as established independent operator, Somali crime boss Asad imposing a franchise network on vendors, and DCPD detectives as ambiguous overseers. Patronage runs through cash payments, protection deals, and vendor compliance. Ngame's ten-year tenure confers status; refusal to join Asad's network is the central power conflict.",
+    "confidence": "high",
+    "quote": "I have been here almost ten years. I am somebody here."
+  },
+  "alibi": {
+    "value": "Asad and his goons visibly leave Georgetown in the Navigator after the confrontation, establishing apparent departure as alibi \u2014 witnessed by Solomon. In fact, they circle back on Canal Road to execute the bombing. The false alibi is the Navigator's exit being mistaken for permanent withdrawal.",
+    "confidence": "high",
+    "quote": "The Navigator came up the garage ramp...took a right toward M Street and disappeared from view. 'Goodbye, Somalis,' Solomon whispered."
+  },
+  "reveal_mechanic": {
+    "value": "The forensic reveal is ironic and technical: the garage door opener found in the wreckage hand confirms the bombers triggered their own device \u2014 the C-4 had been moved from Ngame's van to the Navigator by Solomon (implied by his alley reconnaissance), so Asad detonated his own vehicle. The physical evidence (opener in the victim's hand, largest fragment in the ditch) demonstrates the reversal without explicit explanation.",
+    "confidence": "high",
+    "quote": "Looks like a switch for a garage door. Best guess, these guys set off a bomb in their own vehicle."
+  },
+  "media_and_audience": {
+    "value": "The street vendor community serves as an informal audience and information network \u2014 news of Ngame's confrontation with Asad reaches Eastern Market within hours. Detectives rely on street buzz rather than formal reporting. The crime's perception is managed through rumor and vendor observation rather than press or institutions.",
+    "confidence": "medium",
+    "quote": "Little while ago, we were over at Eastern Market. Buzz was, you had a run-in with Asad."
+  },
+  "investigator_wound": {
+    "value": "Solomon carries the wound of having been beaten by Asad's goons in his own alley \u2014 a violation of the one place that gave him identity and purpose. This shame drives his covert vigilance and ultimately his intervention (moving the bomb). His mental illness (Voice) creates vulnerability and self-doubt that he must manage to act effectively.",
+    "confidence": "high",
+    "quote": "That they had done those things to him there shamed him. The alley had provided for him, and when danger came, he had been unable to defend the alley."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "text_len": 20502,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Solomon\u2019s Alley",
+    "author": "ROBERT ANDREWS",
+    "anthology_title": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen",
+    "story_index": 3,
+    "story_count": 21
+  }
+}

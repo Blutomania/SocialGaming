@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Double murder by strangulation and throat laceration during a burglary; central question: how did an orangutan gain access to a fourth-floor window and commit murders that require human-level intent?",
+    "confidence": "high",
+    "quote": "The old woman fell to the floor... The daughter screamed louder than ever... I put my hands on her throat. I made her quiet."
+  },
+  "victim": {
+    "value": "An elderly fortuneteller and her adult daughter; killable because they possessed gold coins needed for a theft scheme, and the daughter witnessed the crime in progress.",
+    "confidence": "high",
+    "quote": "on Friday she will have a big bag full of gold coins in her house... A young woman had come in. Her back was to me and she was doing something to the door."
+  },
+  "closed_world": {
+    "value": "Paris, France\u2014specifically a fourth-floor apartment in a residential building accessible only through a window from the yard, creating an isolated crime scene.",
+    "confidence": "high",
+    "quote": "They lived on the fourth floor of a house... there is no way to get into the building but through a window on the fourth floor that can be entered from the yard"
+  },
+  "culprit_and_motive": {
+    "value": "Jupiter the orangutan, instrumentally manipulated by Goujon (the sailor) who promised Jupiter a return home to Borneo in exchange for committing the theft. Goujon's motive: financial gain from the gold coins.",
+    "confidence": "high",
+    "quote": "if we get them there will be enough to send you back to your Malayan hellhole and for me to live here for many years... Razor. You know how to open it?"
+  },
+  "resolution": {
+    "value": "Auguste Dupin deduces an orangutan committed the murders and publicly announces this, but Jupiter remains imprisoned in the Jardin des Plantes, choosing perpetual silence and feigned animality to avoid execution, rendering the crime officially 'solved' but unpunishable.",
+    "confidence": "medium",
+    "quote": "This Dupin is both a genius and a fool... he wasn't clever enough to realize that you are an animal who thinks... they will chop off your head"
+  },
+  "investigator": {
+    "value": "Auguste Dupin (absent detective operating outside the narrative); the primary investigative lens is Jupiter himself, whose first-person testimony reveals the crime's machinery while he conceals his own cognition from all authorities.",
+    "confidence": "medium",
+    "quote": "Auguste Dupin who lives in a ruined house... clever enough to realize that only an animal like you could have broken into that house"
+  },
+  "suspect_architecture": {
+    "value": "Two primary actors: Goujon (human, motive: profit from selling Jupiter and the stolen gold, means: manipulated Jupiter into committing the crime, opportunity: planned the heist and recruited Jupiter) and Jupiter the Ourang-Outang (means: physical ability to climb and enter the window, no true criminal motive, opportunity: directed by Goujon). Goujon is the true culprit; Jupiter is the unwitting instrument. A third figure, Dupin, functions as investigator rather than suspect.",
+    "confidence": "high",
+    "quote": "\"You can find another one. My God! With the money he would fetch in France you could hire armies to hunt the deep woods for them.\""
+  },
+  "red_herring": {
+    "value": "Goujon actively constructs a false narrative for the university professors, portraying the dead Professor as a mad criminal who had to be stopped, thereby deflecting suspicion from himself as the architect of both the Professor's murder and the robbery. The story of 'hunters' killing the Professor masks Goujon's deliberate orchestration of that death.",
+    "confidence": "high",
+    "quote": "\"The man who trained him was mad, gentlemen, quite mad. He wanted to experiment on children! ... I'm afraid he fought to the death.\""
+  },
+  "clue_fairness": {
+    "value": "The reader is given Jupiter's full first-person account of events \u2014 the killing, the razor, Goujon's flight, and Goujon's later admission \u2014 before Dupin's public reconstruction. All evidence Dupin uses (the physical impossibility of human entry, the Ourang-Outang's presence) is narrated directly to the reader through Jupiter's testimony, satisfying fair-play disclosure.",
+    "confidence": "medium",
+    "quote": "\"There was one man clever enough to realize that only an animal like you could have broken into that house. A strange fellow named Auguste Dupin.\""
+  },
+  "social_world": {
+    "value": "Colonial and scientific hierarchy in 19th-century Borneo and Paris: the European physician-scholar exercises absolute ownership over Jupiter; colonial powers (English, Dutch, Malay pirates) negotiate territory; Parisian academic institutions (Jardin des Plantes, university professors) commodify exotic specimens; Goujon exploits his uncle's Parisian underworld connections. Jupiter sits at the absolute bottom, legally property, not person.",
+    "confidence": "high",
+    "quote": "\"The English assume I am a French spy... this end of the island is run by the Dutch and the Dyaks, and they have no desire to lose the only physician.\""
+  },
+  "alibi": {
+    "value": "Goujon constructs an alibi of innocence by physically absenting himself during the killings (waiting below on the lightning rod) and then loudly denouncing Jupiter \u2014 'My God! You devil! What have you done?' \u2014 to establish himself as a horrified bystander rather than the planner of the crime. His alibi collapses only in Jupiter's private account.",
+    "confidence": "high",
+    "quote": "\"Outside from below the window I heard Goujon shouting, 'My God! You devil! What have you done?'\""
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated through Jupiter's deliberate silence: Dupin correctly deduces the physical perpetrator (an Ourang-Outang) but cannot access the deeper truth (that Jupiter thinks and signs) because Jupiter chooses to perform the role of 'mere beast.' The reveal is thus a negative proof \u2014 Jupiter's withheld intelligence is the mechanism that both confirms and conceals the full truth simultaneously.",
+    "confidence": "high",
+    "quote": "\"He was not clever enough to realize that you are an animal who thinks... My fingers itched to sign You are the fool.\""
+  },
+  "media_and_audience": {
+    "value": "Dupin's public reconstruction of the murders becomes a celebrated intellectual performance \u2014 he explains the crime to an admiring crowd in front of Jupiter's cage, framing it as a triumph of reasoning. The institutional audience (zoo visitors, professors, press implied) accepts the narrative of brute animal violence, erasing Goujon's culpability and Jupiter's interiority entirely.",
+    "confidence": "high",
+    "quote": "\"The men were telling him how clever he was. He looked at me and I thought, If I sign now... would he be ashamed that he was mistaken?\""
+  },
+  "investigator_wound": {
+    "value": "Dupin's wound is intellectual vanity: his confidence in his own rationalist method blinds him to the possibility that the 'animal' perpetrator possesses human-level cognition. His framework cannot accommodate Jupiter as a thinking subject, so he produces a solution that is physically correct but morally and factually incomplete \u2014 and Jupiter exploits this blind spot to survive.",
+    "confidence": "high",
+    "quote": "\"This Dupin is both a genius and a fool, I think. He tricked me... but he wasn't clever enough to realize that you are an animal who thinks.\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "ROBERT LOPRESTI",
+    "anthology_title": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George",
+    "story_index": 10,
+    "story_count": 22
+  }
+}

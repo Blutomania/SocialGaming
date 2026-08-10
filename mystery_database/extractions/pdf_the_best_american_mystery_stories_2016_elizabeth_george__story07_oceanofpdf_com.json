@@ -1,0 +1,87 @@
+{
+  "crime": {
+    "value": "Strangulation murder of child Rebecca Cline; theft of her silver dollar birthday gift. Central question: Did Jim Trusdale commit the crime, or was he framed by someone who stole his hat and left it at the scene?",
+    "confidence": "high",
+    "quote": "She had been strangled. Her silver dollar was gone. It was only when the grieving father took her in his arms that the men saw Trusdale's broad-brimmed leather hat."
+  },
+  "victim": {
+    "value": "Rebecca Cline, a young girl at her birthday party, killed in an alley. No indication of prior conflict with Trusdale; she appears to be a random victim of circumstance or deliberate framing.",
+    "confidence": "high",
+    "quote": "Around three o'clock that day, Rebecca Cline left her house at the south end of town to visit the apothecary on Main Street. Her mother had told her she could buy some candy with her birthday dollar"
+  },
+  "closed_world": {
+    "value": "Small frontier town during an incoming winter storm (the 'Wolf Winter'). Limited population, everyone knows each other. Town is about to become snowbound, creating urgency for justice.",
+    "confidence": "high",
+    "quote": "Big snow was coming, and the road to Fort Pierre would be impassable, perhaps for a week, perhaps for the entire winter. There were no plans to jug Trusdale in the local calaboose until spring."
+  },
+  "culprit_and_motive": {
+    "value": "Unknown killer. The narrative reveals Trusdale is innocent\u2014he swallowed the silver dollar when arrested and regurgitated it only after death. The true culprit remains unidentified; motive unknown. Implication: the town (or someone in it) knew or suspected the truth.",
+    "confidence": "medium",
+    "quote": "If he didn't, whoever did is still walking around."
+  },
+  "resolution": {
+    "value": "Trusdale is hanged on circumstantial evidence (his hat found at scene). After execution, undertaker Hines discovers the silver dollar in Trusdale's remains, proving he swallowed it. Sheriff Barclay realizes the injustice: Trusdale maintained innocence despite certainty of hanging.",
+    "confidence": "high",
+    "quote": "Something gleamed in the mess. Barclay leaned closer and saw it was a silver dollar. He reached down and plucked it from the crap."
+  },
+  "investigator": {
+    "value": "Sheriff Otis Barclay. He conducts the arrest and investigation with methodical skepticism, eventually believes Trusdale's innocence but cannot prove it before the execution. His growing doubt drives the narrative's moral tension.",
+    "confidence": "high",
+    "quote": "That was when Sheriff Barclay believed him."
+  },
+  "suspect_architecture": {
+    "value": "Single suspect only: Jim Trusdale, a dim, impoverished ranch hand. No competing suspects are developed. All means/motive/opportunity are circumstantially loaded onto him alone \u2014 his hat found under the victim, his presence in town, his inability to account for movements. The architecture is deliberately collapsed to one man, making the injustice possible.",
+    "confidence": "high",
+    "quote": "\"Jim Trusdale, I'm arresting you for the murder of Rebecca Cline. Do you have anything you want to say to that?\""
+  },
+  "red_herring": {
+    "value": "The missing hat is the central misdirection: Trusdale's inability to explain its absence reads as consciousness of guilt, but the hat was planted on the victim's body to frame him. The silver dollar functions as a second red herring \u2014 its absence from his person seems to confirm he spent stolen money, while in fact he had swallowed it, wrongly appearing to confirm guilt rather than innocence.",
+    "confidence": "high",
+    "quote": "\"It was only when the grieving father took her in his arms that the men saw Trusdale's broad-brimmed leather hat.\""
+  },
+  "clue_fairness": {
+    "value": "The story observes fairness partially but inverted: the key clue \u2014 the silver dollar recovered from Trusdale's bowels post-execution \u2014 is withheld from the reader until the final scene, making it a revelation rather than a puzzle the reader could solve. The hat's planted location under the girl's skirt is presented as evidence of guilt, not planted evidence. King withholds the exculpatory clue deliberately, subverting classic fair-play conventions.",
+    "confidence": "medium",
+    "quote": "\"Something gleamed in the mess. Barclay leaned closer and saw it was a silver dollar.\""
+  },
+  "social_world": {
+    "value": "Frontier territorial society with rigid informal hierarchy: the judge doubles as prosecutor (no checks on power), the mercantile owner serves as defense attorney only with victims' family approval, mob opinion drives verdict before trial begins. Trusdale is at the absolute bottom \u2014 mentally slow, fatherless in effect, brotherless, propertyless \u2014 making him the ideal scapegoat. Institutional justice is performative, serving community consensus over truth.",
+    "confidence": "high",
+    "quote": "\"Like a banker taking out a loan from himself and then paying himself interest\" \u2014 on Mizell serving as both judge and prosecutor."
+  },
+  "alibi": {
+    "value": "Trusdale's alibi is that he walked to town, had two drinks at the Chuck-a-Luck, and walked home \u2014 never encountering Rebecca Cline. His alibi is undermined by the hat found on the victim and the missing dollar. The alibi is true but unprovable; no one can confirm his movements after leaving the saloon. The court treats the planted physical evidence as refutation of his stated account.",
+    "confidence": "high",
+    "quote": "\"I walked from here, and had two drinks, and then I walked home. I guess the Chuck-a-Luck's where I lost my hat.\""
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is physiological and post-mortem: Trusdale's sphincter releases upon death by hanging, and the silver dollar \u2014 swallowed and re-swallowed throughout his imprisonment to conceal it \u2014 is found in his excrement on the mortuary cooling board. The mechanism proves he possessed the dollar all along, confirming guilt to Barclay, but the story leaves ambiguous whether this truly proves murder or only theft \u2014 or whether it was planted on him earlier.",
+    "confidence": "high",
+    "quote": "\"He must have swallowed it the first time when he saw our lanterns coming. And every time it came out he cleaned it off and swallowed it again.\""
+  },
+  "media_and_audience": {
+    "value": "The town functions as a collective media apparatus: the crowd lines the street on Trusdale's arrival, an old woman spits at him, someone throws a rock, children chant 'Hangman, hangman, come on down' outside his cell. The trial is public theater held in the municipal hall. The hanging draws most of the town despite bitter cold. Community consensus manufactures guilt, and the execution is a communal ritual of catharsis rather than justice.",
+    "confidence": "high",
+    "quote": "\"Hang that baby-killer!\" a man shouted, and someone threw a rock... people lined the street. At first they were quiet."
+  },
+  "investigator_wound": {
+    "value": "Sheriff Barclay's wound is his integrity within a system that does not reward it. He alone doubts Trusdale's guilt, notices the missing dollar, and performs a thorough search \u2014 but is unable to act on his instinct against overwhelming community pressure and institutional momentum. The wound is the detective's complicity in an execution he suspects is unjust, confirmed too late. He vomits after the hanging; the final image is him sitting alone with the recovered dollar, knowing he was right and did nothing.",
+    "confidence": "high",
+    "quote": "\"Fool that I am, I did.\" / He picked up the small bucket that had held Trusdale's last drink of beer and vomited."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "STEPHEN KING",
+    "anthology_title": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George",
+    "story_index": 7,
+    "story_count": 22,
+    "backfilled_from": "book_slug[:30] filename-collision bug"
+  }
+}

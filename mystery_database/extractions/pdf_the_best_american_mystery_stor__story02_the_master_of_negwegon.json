@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Throat-slashing murder of Josh Zuckerman, a 14-year-old boy, on Negwegon beach. Central question: Did Lee Weir, a traumatized Iraq War veteran, commit the killing, or is he being falsely accused?",
+    "confidence": "high",
+    "quote": "He was going to live that last ten minutes on a pristine stretch of Lake Huron shoreline named after a long-dead Chippewa chief: Negwegon."
+  },
+  "victim": {
+    "value": "Josh Zuckerman, 14-year-old caregiver for his invalid mother, seeking escape from caregiving duties. Killable because he was alone, vulnerable, and in the wrong place when a paranoid war veteran was experiencing a violent delusion.",
+    "confidence": "high",
+    "quote": "Josh was thrilled to be away from his invalid mother...Right now he had a break and was scary happy."
+  },
+  "closed_world": {
+    "value": "Negwegon State Park: a 7-mile stretch of undeveloped beach on Lake Huron, Michigan, isolated and roadless. Accessible only via difficult Sand Hill Trail. A wilderness refuge known to a tight group of childhood friends.",
+    "confidence": "high",
+    "quote": "Negwegon was a huge park that was hugely unknown. Locals called it 'the hidden beach.'"
+  },
+  "culprit_and_motive": {
+    "value": "Lee Weir, ex-Marine traumatized by Iraq War combat, experiencing paranoid delusions conflating the park with Fallujah and the Euphrates River. He killed Josh believing him to be an enemy combatant within a war zone.",
+    "confidence": "high",
+    "quote": "He couldn't understand why nobody was shooting...Frigging thing might be loaded with explosives...the desert sand of the Holy Land has an unquenchable thirst for human blood."
+  },
+  "resolution": {
+    "value": "Lee Weir is shot and killed by Red (a female officer and childhood friend) when she catches him attacking Hank with a combat knife in the water. The killing appears justifiable\u2014suicide by cop\u2014though ambiguity remains about Lee's true intent.",
+    "confidence": "high",
+    "quote": "Lee had you laid over the boat. I called to him to move away from you but he pulled a knife. I had no choice."
+  },
+  "investigator": {
+    "value": "Hank Sawyer, ex-law enforcement and childhood friend of both Lee and Frenchie. He is enlisted to find Lee, serving as mediator/negotiator rather than traditional detective. His conflicted loyalty drives the investigation.",
+    "confidence": "high",
+    "quote": "Frenchie trusts me completely. He'll know he did everything he could to save Lee. He thinks I'll bend over backward to bring Lee in alive."
+  },
+  "suspect_architecture": {
+    "value": "Single primary suspect (Lee Weir, PTSD-afflicted ex-Marine) with no competing suspects \u2014 the architecture is deliberately compressed to one man whose guilt is circumstantially strong but psychologically ambiguous; Frenchie believes Lee killed Josh Zuckerman, Hank doubts it, and no witnesses exist to confirm either.",
+    "confidence": "high",
+    "quote": "Frenchie sees it. And everything he says points to it. But I can't see it."
+  },
+  "red_herring": {
+    "value": "The apparent suicide-by-cop framing is undercut by a spatial clue that redirects guilt: Red shoots Lee believing he is drowning Hank, but Hank realises Lee was actually bringing him to shore \u2014 recontextualising Lee's final act as self-sacrifice rather than murder, and casting doubt on whether Lee killed Josh at all.",
+    "confidence": "high",
+    "quote": "Hank knew the water where Lee had attacked him was much farther out... For the boat and Lee to be this close to shore Lee would have had to be bringing him in."
+  },
+  "clue_fairness": {
+    "value": "The reader is given the spatial evidence simultaneously with Hank: the kayak's position close to shore with Lee's body draped over the stern is described in the scene text before Hank articulates its implication, allowing the reader to independently infer that Lee was saving Hank, not killing him.",
+    "confidence": "high",
+    "quote": "Close to shore in shallow water the kayak was floating unevenly, its bow forced skyward by the weight of the body draped over the stern."
+  },
+  "social_world": {
+    "value": "A tight patronage network centred on Frenchie Skiba \u2014 a Black community coach who stabilised two damaged boys (Hank and Lee) through sport, bestowing discipline, affection, and championship glory; this creates layered obligations across race, class, and institutional roles (sheriff's deputy, detective, cop) that govern who acts, who defers, and who bears guilt.",
+    "confidence": "high",
+    "quote": "Frenchie forged them together... They brought him championships."
+  },
+  "alibi": {
+    "value": "Lee Weir has no conventional alibi \u2014 he was alone and unseen in the wilderness park; the question of whether he killed Josh is never resolved by witness testimony, only by inference from PTSD-induced delusion and circumstantial physical evidence (blood on the Yamaha), leaving his guilt structurally unconfirmed.",
+    "confidence": "medium",
+    "quote": "Still, Frenchie might be wrong. After all, no witnesses."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is spatial and inferential rather than confessional: the position of the kayak close to shore \u2014 physically impossible if Lee had been drowning Hank further out \u2014 silently demonstrates that Lee was bringing Hank in to save him, reframing the entire climax and retroactively questioning Lee's guilt in the original murder.",
+    "confidence": "high",
+    "quote": "For the boat and Lee to be this close to shore Lee would have had to be bringing him in. But Red wouldn't have known that."
+  },
+  "media_and_audience": {
+    "value": "The crime is perceived through a military-trauma lens rather than press coverage: Frenchie frames the killing as the Iraq War's long reach into a Michigan beach ('the mess in Iraq kills the Zuckerman kid here'), and institutional actors (sheriff's department, 'the pack') are poised to deliver lethal force under the rubric of a fugitive manhunt, substituting due process with a paramilitary closure.",
+    "confidence": "medium",
+    "quote": "How's it work that the mess in Iraq kills the Zuckerman kid here on the beach? Man, that's the long way around."
+  },
+  "investigator_wound": {
+    "value": "Hank's wound is relational loyalty: Lee is his oldest rival-friend, forged by Frenchie's mentorship, and the case forces him to hunt \u2014 and potentially kill \u2014 the man who was his alter ego; compounded by his feelings for Red (herself entangled with Lee), making every tactical decision emotionally compromised.",
+    "confidence": "high",
+    "quote": "He grabbed for his Smith but hesitated, saw Lee dead, saw Red crying, and in those few short seconds Lee reached the kayak."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The\tMaster\tof\tNegwegon",
+    "author": "JIM\tALLYN",
+    "anthology_title": "The_Best_American_Mystery_Stories_2017_-_John_Sandford",
+    "story_index": 2,
+    "story_count": 19
+  }
+}

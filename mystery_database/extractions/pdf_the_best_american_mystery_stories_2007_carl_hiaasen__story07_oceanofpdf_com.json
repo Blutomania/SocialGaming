@@ -1,0 +1,87 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Red-bearded biker and an Indian woman, killed with a Winchester rifle during a drunken fight over a woman at a camping site",
+    "confidence": "medium",
+    "quote": "The one with the red beard killed the other two and an Indian woman for good measure. The three of them was drunk and fighting over the woman."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Red-bearded biker killed the others in a drunken altercation over a woman; the rifle used was Albert Hollister's Winchester, stolen or taken from his house without his knowledge",
+    "confidence": "medium",
+    "quote": "The killing got done with an 1894-model Winchester. Guess who it's registered to? How'd they end up with your rifle, Albert?"
+  },
+  "resolution": {
+    "value": "No formal resolution. Joe Bim Higgins informs Albert of the deaths two days after they occurred; Albert neither reports nor investigates further, accepting the deaths as consequence of the bikers' own violence",
+    "confidence": "medium",
+    "quote": "If she was hanging with that bunch, she bought her own ticket. Show some humility for a change. You didn't invent original sin."
+  },
+  "investigator": {
+    "value": "Albert Hollister, a retired university creative writing professor, who becomes emotionally entangled with the bikers after they harass a young woman and kill his horse",
+    "confidence": "high",
+    "quote": "Albert Hollister likes the heft of it, the coldness of the steel... Even though the Winchester is brand-new, just out of the box from Wal-Mart"
+  },
+  "suspect_architecture": {
+    "value": "Three Aryan Brotherhood bikers as collective antagonists, differentiated by appearance and behavior: red-bearded leader (dominant, threatening), black-glasses wearer (sexually aggressive, teardrop tattoos), silent third (menacing, tallow-skinned). No formal whodunit suspect spread; the perpetrators are known but the moral/legal reckoning is unresolved. The red-bearded man ultimately kills the other two and an innocent woman.",
+    "confidence": "medium",
+    "quote": "the one with the red beard killed the other two and an Indian woman for good measure. The three of them was drunk and fighting over the woman."
+  },
+  "red_herring": {
+    "value": "The assumption that the bikers stole Albert's rifle from his house functions as a red herring covering his attempted murder \u2014 Joe Bim accepts the theft narrative, deflecting from Albert's actual culpability. Albert's silence allows a false explanation to stand as truth.",
+    "confidence": "medium",
+    "quote": "I think they stole it out of your house, and you didn't know about it. That's why you didn't report it stolen."
+  },
+  "clue_fairness": {
+    "value": "The reader is shown the rifle being thrown into darkness and bouncing off an SUV roof before landing at the bikers' tent \u2014 establishing the physical chain of custody that later explains how the bikers possessed the murder weapon. The clue is presented in real time, available to the reader before the revelation.",
+    "confidence": "high",
+    "quote": "The rifle bounces muzzle-down off the roof of a passing SUV, arcing back into the air with new life, and lands right in front of the bikers' tent."
+  },
+  "social_world": {
+    "value": "Layered power hierarchies: rural Montana property-owner versus outlaw biker underclass; institutional prison violence (Angola gun bulls, parish jail guards, state executioner) versus the powerless inmate; the professional class (university creative-writing professor) concealing a history of victimization and suppressed rage beneath social respectability.",
+    "confidence": "high",
+    "quote": "the professor who taught creative writing at the university and whose presence at a faculty meeting was so innocuous it was not even remembered."
+  },
+  "alibi": {
+    "value": "No formal alibi construction in the mystery genre sense. However, Albert's silence and Joe Bim's alternative explanation (theft) function as a de facto false alibi for Albert's attempted murder \u2014 he never accounts for his whereabouts the night of the shooting, and the stolen-rifle narrative substitutes for interrogation.",
+    "confidence": "low",
+    "quote": "Maybe they found it somewhere."
+  },
+  "reveal_mechanic": {
+    "value": "The rifle's serial registration is the mechanical reveal: the weapon used in the bikers' murders is traced back to Albert as registered owner, forcing the question of how they obtained it. This transforms Albert from bystander to implicated party without direct confession, leaving moral resolution ambiguous rather than juridical.",
+    "confidence": "high",
+    "quote": "The killing got done with an 1894-model Winchester. Guess who it's registered to?"
+  },
+  "media_and_audience": {
+    "value": "Largely absent as a structural element. The crimes remain local and unofficial \u2014 no press coverage, no institutional investigation of Albert's role. Joe Bim as informal community conduit (phone call from Sand Point) substitutes for institutional media, keeping the story contained within a private moral register rather than public narrative.",
+    "confidence": "low",
+    "quote": "Got a call two days ago from Sand Point. The one with the red beard killed the other two and an Indian woman for good measure."
+  },
+  "investigator_wound": {
+    "value": "Albert is simultaneously investigator, victim, and perpetrator. His wound is compound: sexual violation by a prison guard at eighteen, witnessed state execution, accidental death of his father \u2014 all producing a suppressed capacity for lethal violence. The case (the bikers' aggression) directly reactivates this buried trauma, driving him to attempted murder and revealing that his self-image as a civilized man is a sustained fiction.",
+    "confidence": "high",
+    "quote": "He knows that the simian creature that lived in the guard and the executioner took root many years ago in his own breast."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "JAMES LEE BURKE",
+    "anthology_title": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen",
+    "story_index": 7,
+    "story_count": 21,
+    "backfilled_from": "book_slug[:30] filename-collision bug"
+  }
+}

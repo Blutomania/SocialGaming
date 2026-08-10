@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Two assassinations: JFK and RFK. Method: shooting. Central question: Who orchestrated the killings and what conspiracy network was responsible?",
+    "confidence": "high",
+    "quote": "working on a book. About the deaths of both JFK and his brother. And my research led to these photographs, and then to you"
+  },
+  "victim": {
+    "value": "Kevin Tanner, assistant professor of English. Killable because he possesses dangerous knowledge of the Kennedy assassinations and represents a threat to expose the conspiracy.",
+    "confidence": "high",
+    "quote": "an anonymous professor from an obscure college comes across documentation and facts about the murder of America's two young princes"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Richard's Children (conspiracy organization). Culprit: Mister Brown, the assassin. Motive: Eliminate Tanner before his book exposes the conspiracy. Brown follows orders from the organization's leadership to silence researchers.",
+    "confidence": "high",
+    "quote": "I did it because I was ordered to, that's why... You should have stuck with your Shakespeare"
+  },
+  "resolution": {
+    "value": "No traditional resolution. Tanner is killed by Brown before he can publish. The conspiracy remains unexposed. Brown survives due to organizational loyalty, and the conspiracy leadership continues operating.",
+    "confidence": "high",
+    "quote": "Don't you think he should be...taken care of, as well?... No. I don't think so... He deserves our loyalty. So he shall remain alive."
+  },
+  "investigator": {
+    "value": "Kevin Tanner, English professor. Initially an unwitting pawn manipulated by Lancaster/York to investigate the Kennedy assassinations, he becomes an amateur investigator pursuing leads but is killed before resolution.",
+    "confidence": "high",
+    "quote": "Kevin said, 'I really am a college professor, and I really am working on a book. About the deaths of both JFK and his brother.'"
+  },
+  "suspect_architecture": {
+    "value": "Three principal actors: Lancaster/York (manipulative handler, motive: eliminating threats to Richard's Children); Brown (operative-assassin, motive: loyalty and orders); unnamed 'Richard' (mastermind, wealthy philanthropist). Lancaster poses as ally but is villain; Brown feigns frailty to disarm Kevin. No genuine innocent suspects \u2014 architecture is a layered conspiracy funnel rather than classic multi-suspect spread.",
+    "confidence": "high",
+    "quote": "the man who sometimes called himself Lancaster and sometimes called himself York"
+  },
+  "red_herring": {
+    "value": "Lancaster presents himself and his organization as freedom-fighting opponents of Richard's Children (House of Lancaster vs. House of York), misdirecting Kevin \u2014 and the reader \u2014 into believing he is recruiting an ally. The entire mission is a trap to identify and eliminate curious investigators, not a genuine crusade for truth.",
+    "confidence": "high",
+    "quote": "To locate those people with sufficient imagination and interest to look into our activities, and then see how far they can go"
+  },
+  "clue_fairness": {
+    "value": "The clue is present but subtle: Lancaster's name doubles as 'York' (revealed at end), the red rose lapel pin signals House of Lancaster allegiance overtly, and Lancaster's implausible omniscience about Kevin's private finances and unpublished work is visible to the reader from the first meeting. The reader has access to the same signals Kevin ignores.",
+    "confidence": "medium",
+    "quote": "I know everything there is to know about you, Professor Tanner... your savings account of just over two thousand dollars"
+  },
+  "social_world": {
+    "value": "A centuries-old shadow power network (Richard's Children) operates through philanthropy, governments, and corporations. Set against it: academic precarity \u2014 Kevin's tenure anxiety and poverty make him exploitable. Class stratification is explicit: Oxbridge-accented Lancaster vs. struggling American assistant professor. Loyalty within the conspiracy overrides morality.",
+    "confidence": "high",
+    "quote": "these families, who front companies, governments, and armies... formed two alliances"
+  },
+  "alibi": {
+    "value": "Brown constructs a false alibi of physical helplessness \u2014 shuffling gait, metal walker, bedroom slippers \u2014 to disarm Kevin's suspicion. When he returns to kill Kevin, he moves 'with the grace of an old man who had kept himself in shape,' exposing the performance. The infirmity was a staged cover for his lethal capability.",
+    "confidence": "high",
+    "quote": "He didn't have a walker with him, not at all, and he moved with the grace of an old man who had kept himself in shape."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is behavioral and retrospective: Brown's sudden physical transformation (discarding the walker, moving gracefully, producing a pistol) collapses his alibi in real time. Simultaneously, the final scene reveals Lancaster = York and exposes the entire mission as a culling operation, demonstrated through Lancaster's debriefing dialogue with 'Richard.'",
+    "confidence": "high",
+    "quote": "'You should have stuck with your Shakespeare,' Brown said, his voice even and quite strong"
+  },
+  "media_and_audience": {
+    "value": "The conspiracy weaponizes the publishing and academic world as its detection mechanism: a book about the Kennedy assassinations would serve as a probe to surface dangerous researchers. The mainstream press and publishers are depicted as reactive validators, not investigators. Public narrative about the assassinations remains controlled precisely because no credible expos\u00e9 has survived.",
+    "confidence": "medium",
+    "quote": "The major news organizations, upset that such a scoop... perform their own research, based on the leads that this young professor has uncovered."
+  },
+  "investigator_wound": {
+    "value": "Kevin's wound is professional humiliation and financial desperation: his tenure is at risk, his book is stalled, and he has published only one obscure work. This insecurity makes him susceptible to Lancaster's offer of fame, money, and validation. His need to matter \u2014 to produce the 'biggest story of the millennium' \u2014 blinds him to the trap.",
+    "confidence": "high",
+    "quote": "Questions of tenure at old shabby Lovecraft U? Lancaster was right. When this book was done, he'd be considering offers from Yale and Harvard"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "filename": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Richard\u2019s\tChildren",
+    "author": "BRENDAN\tDUBOIS",
+    "anthology_title": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly",
+    "story_index": 10,
+    "story_count": 23
+  }
+}

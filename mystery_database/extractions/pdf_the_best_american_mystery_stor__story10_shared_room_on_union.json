@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Armed carjacking and kidnapping: A drug-addled gunman forces Justin and Janna into the trunk of their Volvo after robbing them. Central question: Will they survive the night trapped in an airless space, or will they suffocate before rescue arrives?",
+    "confidence": "high",
+    "quote": "The man got into the car...The man swung open the car door and shouted, What kind of vehicle is this, man?"
+  },
+  "victim": {
+    "value": "Justin and Janna, an engaged couple. Janna is vulnerable due to severe claustrophobia; Justin is impulsive and unprepared (no cell phone). Both are killable through circumstance and the criminal's desperate, drug-fueled unpredictability.",
+    "confidence": "high",
+    "quote": "I can't be in here, Justin. I can't! You knew that too. That I'm claustrophobic."
+  },
+  "closed_world": {
+    "value": "The trunk of a Volvo 240 on Union Street in a college town during late night/early dawn hours (1 A.M. to 5+ A.M.). A sealed metal box with minimal air exchange and no exit mechanism\u2014physical and temporal entrapment.",
+    "confidence": "high",
+    "quote": "In the deeps of the trunk, furled on their sides in mirror image, they lay with knees pressed together, faces close."
+  },
+  "culprit_and_motive": {
+    "value": "An unnamed drug-addled man (crystal meth or cocaine use evident) with desperate financial need. Motive: immediate cash acquisition and reckless survival under addiction; he cannot operate a manual transmission car and panics, trapping them.",
+    "confidence": "high",
+    "quote": "The pupils in the man's pale eyes were dilated with crystal meth, or coke, Justin guessed...I can't drive fucking stick!"
+  },
+  "resolution": {
+    "value": "An orderly heading to the maternity ward at 5 A.M. hears their cries for help, promises to call police or flag down help and run to the hospital. Police presumably arrive based on the orderly's report, though the narrative ends before explicit rescue.",
+    "confidence": "medium",
+    "quote": "The man was an orderly...on his way to the hospital to start his shift on the maternity ward...He would flag down the first car he saw, he said, and get somebody to phone the police."
+  },
+  "investigator": {
+    "value": "Justin, the victimized suspect/protagonist. The reader experiences the ordeal through his consciousness\u2014his fear, shame, blame-shifting, and eventual acceptance. His perspective as an observer of his own failure drives the narrative.",
+    "confidence": "high",
+    "quote": "That detached quarter of Justin's mind thought of an extra in a spaghetti western...His own guts were wheeling."
+  },
+  "suspect_architecture": {
+    "value": "Single perpetrator: an unnamed, drug-addled carjacker (possibly also drunk) with a pistol, differentiated by erratic behavior, meth/coke-dilated pupils, inability to drive a manual car, and use of a cell phone mid-crime. No multiple suspects or spread of motive/opportunity typical of mystery fiction. A secondary figure \u2014 the extortionate bystander who discovers the trapped couple \u2014 functions as a morally ambiguous antagonist but is not a criminal suspect in any mystery-plot sense.",
+    "confidence": "low",
+    "quote": "pocked and moon-colored under the sodium streetlights, eyes wide and vacated. A too-small baseball cap, hair long behind the ears"
+  },
+  "red_herring": {
+    "value": "No deliberate mystery-plot red herring is constructed. The pistol's authenticity is briefly questioned ('The pistol looked small to him, maybe a fake') but this is a realist detail of the characters' uncertainty, not a planted false trail for a reader to follow toward a wrong conclusion. The carjacker's cell-phone conversation briefly suggests a accomplice or larger operation, but is revealed mundanely to be a pizza order.",
+    "confidence": "low",
+    "quote": "And pineapple on just half this time, right? And don't call back. I might be longer, there's no car now."
+  },
+  "clue_fairness": {
+    "value": "Not applicable as a mystery-architecture element. The story is literary realist fiction, not a detective puzzle. Information is withheld or revealed according to close-third-person access to Justin's consciousness, not according to fair-play clue-distribution conventions. Readers learn facts (no cell phone, hidden twenty-dollar bill, Janna's claustrophobia) simultaneously with Justin, but there is no investigator decoding a crime.",
+    "confidence": "low",
+    "quote": "I always keep a twenty separate, she said, in case. Of course, Justin whispered."
+  },
+  "social_world": {
+    "value": "Precisely rendered: the gentrifying post-industrial Canadian city where welfare-dependent and psychiatric populations, student 'ghetto' drunks, and upwardly mobile young professionals (bohemians and academics) occupy the same streets uneasily. Class and education stratify every encounter \u2014 Justin's 'middle-class aversion to being discourteous,' his assumption the carjacker would know how to drive a standard ('pickup trucks and so on'), the couple's Volvo as class marker weaponized by the extortionate bystander.",
+    "confidence": "high",
+    "quote": "It's not like you can't afford it. Look at this car. This fucking Volvo."
+  },
+  "alibi": {
+    "value": "No alibi structure present. This is not a whodunit; the perpetrator is known and on-scene. The carjacker's whereabouts are not in question. The extortionate bystander offers no account requiring verification.",
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "No mystery-plot reveal mechanic is present. The story's central irony is disclosed in the epilogue paragraph: that in the years after, Justin and Janna publicly narrate the trunk episode as a story of mutual competence and solidarity, while privately they never speak of it \u2014 implying the night revealed fractures in their relationship that the public performance conceals but cannot repair.",
+    "confidence": "low",
+    "quote": "When they were alone together, in fact, they never spoke a word of it."
+  },
+  "media_and_audience": {
+    "value": "Operates at micro-social rather than mass-media scale: the couple's trauma is later packaged as a repeatable dinner-party narrative, collaboratively performed for guests on 'apt conversational cue.' The public story is one of courage and partnership; the private reality is silence and unspoken damage. No press, institutions, or public opinion engage with the crime itself.",
+    "confidence": "medium",
+    "quote": "in company, he and Janna would often discuss that night...they would speak of each other's actions that night only in proud, approving ways"
+  },
+  "investigator_wound": {
+    "value": "Justin functions as the closest analogue to an investigator \u2014 observant, analytically detached even under duress ('that aloof internal observer \u2014 that scientist'). His wound is his impulsiveness and lack of discipline, the inverse of Janna's over-control. The crisis exposes his inability to focus, his forgotten cell phone, his rageful outburst at the extortionate bystander, and his unacknowledged resentment of Janna's self-sufficiency \u2014 all of which undermine his self-image as protector.",
+    "confidence": "medium",
+    "quote": "He lacked focus but he had energy, good hunches...till now he had not let on to himself how her discipline...was coming to irk him."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "filename": "The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Shared\tRoom\ton\tUnion",
+    "author": "STEVEN\tHEIGHTON",
+    "anthology_title": "The_Best_American_Mystery_Stories_215_-_James_Patterson",
+    "story_index": 10,
+    "story_count": 19
+  }
+}

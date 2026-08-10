@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Serial sexual assault and drugging of women. Three men (Suttles, Clinginpeel, Flemma) lure married women to a rental cabin under false pretenses, drug them with GHB, and gang rape them on video for blackmail purposes. The central questions: How many victims exist, and can the ring be stopped before more women are victimized?",
+    "confidence": "high",
+    "quote": "Met Miz Sakstrup online, romanced her, got her all starry-eyed, then invited her here...Play-toy Weekend...they're old high school buddies...every year they come up here for Final Four, booze, and a doped-up girl to gangbang."
+  },
+  "victim": {
+    "value": "Wendee Sakstrup, a married woman from Spartanburg with children, was targeted because she had a good reputation and was vulnerable to blackmail. Her infidelity made her an ideal victim\u2014shame and fear of exposure would silence her.",
+    "confidence": "high",
+    "quote": "Suttles picked 'em smart. Married ladies with good reputations, easy to blackmail silent afterward."
+  },
+  "closed_world": {
+    "value": "Bear-y Loverly cabin: a remote rental property perched on a mountainside near Mount Bezetha in North Georgia, isolated from neighboring structures and accessible only by a narrow gravel switchback road.",
+    "confidence": "high",
+    "quote": "Set at the road's end near the crest of the mountain, it perched literally on the side of a terrifying steep slope...There wasn't another cabin within sight."
+  },
+  "culprit_and_motive": {
+    "value": "Billy Suttles (primary organizer) and his high school friends Clinginpeel and Flemma. Motive: predatory sadism and control. They deliberately target married women annually during Final Four weekend, drug and assault them, film the crimes, and use the videos to blackmail victims into silence.",
+    "confidence": "high",
+    "quote": "Clinginpeel said Suttles set up the whole thing...every year they come up here for Final Four, booze, and a doped-up girl to gangbang."
+  },
+  "resolution": {
+    "value": "Ben Perkins discovers the scheme through surveillance of Suttles and physical evidence (guest book entry revealing inconsistency). He interrupts the assault in progress, fights the three assailants, incapacitates them with severe injuries, and calls authorities. Suttles dies of heart failure before interrogation. Clinginpeel is arrested with skull fracture; Flemma with broken arm/leg. Authorities locate victims through video evidence.",
+    "confidence": "high",
+    "quote": "With a hard shove I flung him through the doorway...he landed on the stairs about halfway down...They found Suttles over by Fighting Town Creek. Dead."
+  },
+  "investigator": {
+    "value": "Ben Perkins, a Detroit-based private detective between jobs, visiting rural Georgia for a funeral. He becomes an accidental investigator when he notices suspicious behavior in the rental cabin, follows Suttles to a clandestine meeting, and stumbles upon the crime in progress.",
+    "confidence": "high",
+    "quote": "I'm a private detective or some such...Something Wendee had written about Billy in the guest book: He can't bear to be apart from me. So where was he headed, all by his lonesome?"
+  },
+  "suspect_architecture": {
+    "value": "Three male perpetrators (Billy Suttles, Clinginpeel, Flemma) operating as a coordinated gang; Suttles is the organiser/lure, the other two are accomplices. Victim Wendee Sakstrup is initially ambiguous (possible willing participant vs. dupe). No innocent suspects are seriously developed \u2014 the architecture is gang-crime rather than whodunit, with differentiation by role: Suttles romances victims online, Clinginpeel and Flemma are muscle/participants.",
+    "confidence": "high",
+    "quote": "every year they come up here for Final Four, booze, and a doped-up girl to gangbang"
+  },
+  "red_herring": {
+    "value": "Billy's stated errand ('I got errands') and the initial Piggly Wiggly destination mislead both Perkins and the reader into thinking his solo departure is innocent \u2014 a mundane shopping trip. Kantner explicitly articulates the false trail before it is dispelled by the Lexicon meeting two men at the Buick.",
+    "confidence": "high",
+    "quote": "Be quite the hoot if all I was doing was following him to the Piggly Wiggly in Blue Ridge to buy chips and salsa"
+  },
+  "clue_fairness": {
+    "value": "The guest-book inscription 'He can't bear to be apart from me' is shown verbatim to the reader at the same moment Perkins notices it, immediately triggering his suspicion about Billy's solo departure. The camcorder dangling from Clinginpeel's neck is visible in the scene before its significance (video blackmail of victims) is explained.",
+    "confidence": "high",
+    "quote": "Something Wendee had written about Billy in the guest book: He can't bear to be apart from me."
+  },
+  "social_world": {
+    "value": "Rural Appalachian extended-family networks (Perkins/Humfrey clans) contrast with predatory outsider male privilege. Class and gender power are central: wealthy, connected men (Suttles selects 'married ladies with good reputations') exploit isolated rental-cabin economy and women's vulnerability. Caroleen's financial precarity (mortgage reset, absent trucker husband) and dependence on rental income make her inadvertently complicit as landlady. Law enforcement is local and limited.",
+    "confidence": "high",
+    "quote": "Suttles picked 'em smart. Married ladies with good reputations, easy to blackmail silent afterward."
+  },
+  "alibi": {
+    "value": "Billy presents a false alibi-by-impression: his ostentatious farewell to Wendee ('I got errands') and his statement to Perkins to cease customer-satisfaction visits create the impression of a mundane solo outing. The alibi collapses when Perkins tails him and witnesses the pre-planned rendezvous with Clinginpeel and Flemma at the Buick.",
+    "confidence": "high",
+    "quote": "'I told you, I got errands.' Straightening, he smacked her shoulder. 'Don't start without me.'"
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is behavioural and surveillance-based: Perkins physically tails Billy, observes the transfer of overnight bags from the rental Buick into the Lexicon, and cross-references this with the guest-book clue. Confession is then obtained through Flemma flipping to police after being physically incapacitated, providing institutional corroboration. No single forensic trick \u2014 the mechanism is deductive surveillance plus coerced testimony.",
+    "confidence": "high",
+    "quote": "the two new guys transferred overnight bags from the Buick into the Lexicon... him that first flips gets the goodies"
+  },
+  "media_and_audience": {
+    "value": "The crime is effectively invisible to any public audience \u2014 victims are silenced by blackmail videos, never come forward, and the annual predation goes unreported. There is no press presence. Institutional awareness is limited to a single rural sheriff's deputy. The only 'audience' is the perpetrators' own self-mythology of a macho annual tradition, and Raeanne's moral commentary in the closing dialogue serves as the story's ethical tribunal.",
+    "confidence": "medium",
+    "quote": "They never came forward... Prob'ly the videos... Suttles picked 'em smart. Married ladies with good reputations, easy to blackmail"
+  },
+  "investigator_wound": {
+    "value": "Perkins is adrift \u2014 unemployed, homeless, financially embarrassed, estranged from his ex Raeanne, and in an undefined relationship with Mary Kate. He frames the Georgia trip explicitly as escape from 'bitchy exes and money woes, clamoring clients and cranky creditors.' The case restores him: it gives purpose to purposelessness. His wound is rootlessness and a fractured domestic identity, mirrored by Caroleen's own financial and marital collapse.",
+    "confidence": "high",
+    "quote": "unemployed and without a home of my own... what I got was, for this point in my life, even better"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Down Home Blues",
+    "author": "ROB KANTNER",
+    "anthology_title": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver",
+    "story_index": 12,
+    "story_count": 25
+  }
+}

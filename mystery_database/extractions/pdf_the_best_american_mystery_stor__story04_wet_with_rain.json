@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Child abduction and sexual abuse. A 12-year-old girl (Chiffon Henderson) is kidnapped from her bedroom and imprisoned in a crate in a basement. The central question: who took her and where is she being held?",
+    "confidence": "high",
+    "quote": "Chiffon Henderson had electrical tape wrapped around her mouth, wrists, and ankles...Paisley had kept her caged but possibly unmolested."
+  },
+  "victim": {
+    "value": "Chiffon Henderson, a 12-year-old girl described as quiet, considerate, and kind\u2014a sweet child unlike typical project kids. She is vulnerable due to her age and living situation in an under-resourced housing complex.",
+    "confidence": "high",
+    "quote": "She was quiet but...considerate, you know?...How sweet is that? Store-bought [cupcake], but still."
+  },
+  "closed_world": {
+    "value": "A basement in Edward Paisley's house on Wyman Street in Boston, accessible through a narrow tunnel system behind heating units. The girl is confined to a metal dog crate covered in a tarp secured with nine bungee cords.",
+    "confidence": "high",
+    "quote": "He worked his way past the heaters and entered a long thin space barely wide enough to accommodate any mammal with shoulders...a metal crate...covered by a blue painter's tarp, held to the frame by nine bungee cords."
+  },
+  "culprit_and_motive": {
+    "value": "Edward Paisley, a former school bus driver with a DUI conviction and suspended license, who was fired after tipping a bus. He is a sexual predator with a basement torture chamber designed for child abduction and abuse.",
+    "confidence": "high",
+    "quote": "Edward Paisley...Drove the bus off the side of the Legion Highway...the bus does tip...He told me all sorts of things were coming."
+  },
+  "resolution": {
+    "value": "Patrick Kenzie, a private investigator, discovers Chiffon in the basement crate. He uses a signed baseball bat to incapacitate Paisley, then breaks the high-intensity lights blinding the space. Bosch arrives and helps free Chiffon. Patrick calls 911 to report the crime while Paisley lies dying on the basement floor.",
+    "confidence": "high",
+    "quote": "Patrick Kenzie brandished a baseball bat...When her hands were free, Patrick knelt to get at the tape on her ankles...Patrick dialed 911 but didn't hit Send."
+  },
+  "investigator": {
+    "value": "Harry Bosch, an LA homicide detective working a cold case (Letitia Williams murder), who comes to Boston to investigate Edward Paisley as a suspect. He conducts surveillance and enters the basement. Patrick Kenzie, a Boston private investigator hired by Chiffon's mother, operates independently and rescues her.",
+    "confidence": "high",
+    "quote": "Harry Bosch...pulled the case four months ago and here he was in Boston...Patrick Kenzie brandished a baseball bat...Patrick had pulled back the curtain on the small window."
+  },
+  "suspect_architecture": {
+    "value": "Two named suspects differentiated by means and motive: Edward Paisley (physical abductor, opportunistic predator, identified via fingerprint match after DUI arrest) and Lonnie Cullen (deadbeat father with priors, detective's working theory). Paisley eliminated as red herring suspect by physical evidence; Cullen dismissed by investigator logic.",
+    "confidence": "high",
+    "quote": "Her father. Guy's got priors the way other guys have nose hair."
+  },
+  "red_herring": {
+    "value": "Detective Zebrowski's official theory that the father Lonnie Cullen abducted Chiffon is presented as plausible institutional misdirection, deflecting from Paisley. The 'boyfriend angle' is a secondary false trail also floated and abandoned.",
+    "confidence": "high",
+    "quote": "Deadbeat dads dodge their kids, they don't kidnap 'em, not the ones who've been out of the picture as long as Lonnie has."
+  },
+  "clue_fairness": {
+    "value": "The clue that opens Paisley as suspect is made available to the reader simultaneously with Patrick: Dontelle's mention of Paisley by name, his route history, and the DUI incident are narrated in dialogue before any investigator acts on them. The Arizona sports memorabilia in the man cave also signals Paisley's origins before the reveal.",
+    "confidence": "medium",
+    "quote": "Edward Paisley, Dontelle said, like the ties."
+  },
+  "social_world": {
+    "value": "Intersecting worlds of working-poor Boston (Ella Henderson's double-job poverty, housing project darkness, city bureaucratic neglect of broken lamps), municipal employment hierarchies (probationary bus-driver system, union protections), and cross-jurisdictional law enforcement (LAPD detective operating extrajudicially in Boston, local PI navigating badge politics).",
+    "confidence": "high",
+    "quote": "You're a cop. From out of town. I can barely get away with this shit, but you? They'll take your badge, man."
+  },
+  "alibi": {
+    "value": "No formal alibi structure is constructed for Paisley; his whereabouts are unknown at surveillance outset and confirmed only by physical presence. The con-artist strand (Lee Child section) features an elaborate fabricated identity and backstory as an alibi-adjacent deception \u2014 forged Wikipedia pages, invented appreciation society, false name 'John Pacino'.",
+    "confidence": "medium",
+    "quote": "Harry did the paperwork... we made it all Xeroxes of Xeroxes, which hides a lot of sins."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is physical and procedural: Paisley's fingerprints, entered into the system only after his DUI arrest, match crime-scene prints from a cold case. Timing is the mechanical hinge \u2014 had Bosch pulled the case eleven months earlier, no match would have existed. The crate with bungee cords and tarp demonstrates guilt materially rather than argumentatively.",
+    "confidence": "high",
+    "quote": "The arrest put his fingerprints into the system, where they were waiting for Bosch."
+  },
+  "media_and_audience": {
+    "value": "Institutional narrative management is present: Detective Zebrowski's 'operating theory' functions as the official public framing, suppressing alternative readings. The con-artist subplot (Child) is entirely about manufacturing public-record legitimacy \u2014 fake Wikipedia pages, a fictitious literary society \u2014 to exploit how institutions and individuals trust documented provenance.",
+    "confidence": "medium",
+    "quote": "They were faked to look like Wikipedia pages. Which is trickier than people think."
+  },
+  "investigator_wound": {
+    "value": "Bosch's wound is temporal guilt: the cold case (murder of Letitia Williams) went unsolved for fifteen years because the technology and the arrest record did not yet exist to catch Paisley. He is haunted by the gap between when he could have acted and when he finally can. Patrick's wound is relational \u2014 his pregnant wife Angie's appointment at Beth Israel emotionally entangles him with the missing girl's mother.",
+    "confidence": "high",
+    "quote": "If he had pulled the Williams case eleven months earlier... there would have been no resulting match."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "filename": "The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Wet\twith\tRain",
+    "author": "LEE\tCHILD",
+    "anthology_title": "The_Best_American_Mystery_Stories_215_-_James_Patterson",
+    "story_index": 4,
+    "story_count": 19
+  }
+}

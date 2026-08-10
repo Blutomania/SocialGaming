@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Multiple homicides by gunshot: FBI driver James Crawford shot in bulletproof limousine with window rolled down; two additional FBI agents shot in separate black sedans one block away. Central question: How were protected FBI personnel eliminated, and by whom, given the apparent absence of weapons on victims and security protocols (HooverWatch)?",
+    "confidence": "high",
+    "quote": "The right side of the skull was gone, the hair glistening with drying blood... A single entrance wound above the left ear had caused the damage."
+  },
+  "victim": {
+    "value": "James Crawford, FBI driver (one of only four Black FBI agents working for Hoover as personal staff); two additional FBI agents on HooverWatch protection detail. Killable because they were expendable personnel in Hoover's inner circle and their deaths serve a larger political purpose.",
+    "confidence": "high",
+    "quote": "You got here one James Crawford...he got identification says he's a feebee, but I ain't never heard of no colored feebee. There's only four."
+  },
+  "closed_world": {
+    "value": "A dark street in an urban area with multiple streetlights out, containing a bulletproof limousine and two black sedans parked within one block. The scene is secured by NYPD beat cops and FBI agents, limiting access and exit.",
+    "confidence": "medium",
+    "quote": "The night had gotten colder, and this street was even darker than the street he'd walked down. All of the streetlights were out."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Special Agent Bryce, FBI investigator dispatched to secure the crime scene and conduct investigation. He is an FBI insider critical of Bureau practices, already on 'shaky ground' with the organization, operating with minimal backup and aware the investigation could be deliberately sabotaged.",
+    "confidence": "high",
+    "quote": "He spoke up against it too many times, which was why he was on shaky ground at the Bureau."
+  },
+  "suspect_architecture": {
+    "value": "Multiple institutional actors with competing interests in Hoover's death and files: Helen Gandy (loyal secretary protecting files), the AG and President (hungry for the files), Haskell (undercover agent for the AG), Hoover's assistant directors (men in his pocket), and unknown assassins who killed Hoover, Tolson, Crawford, and HooverWatch agents. Suspects differentiated by institutional rank, loyalty, and access to Hoover's secrets.",
+    "confidence": "medium",
+    "quote": "The president would be utterly ravenous. He wouldn't let some old skirt...get in his way."
+  },
+  "red_herring": {
+    "value": "Gandy's stated reason for wanting entry \u2014 retrieving 'personal items' \u2014 is a misdirection from her real goal of securing Hoover's secret files before the President and AG can seize them. Her composed demeanor also misdirects Haskell into underestimating her urgency.",
+    "confidence": "high",
+    "quote": "But they both knew she wasn't talking about her personal things."
+  },
+  "clue_fairness": {
+    "value": "Physical evidence is presented to the reader simultaneously with the investigator: the rolled-down window in cold weather in a dangerous neighborhood, the missing weapon on Crawford, the matching wallet design across all three victims, and the absent holster are all described in scene before Bryce draws conclusions.",
+    "confidence": "high",
+    "quote": "Bryce took one last look at James Crawford. The man had rolled down his window, despite the cold, and in a bad section of town."
+  },
+  "social_world": {
+    "value": "Rigid FBI hierarchy built on Hoover's personal blackmail empire, intersecting with executive branch power (President, AG), local NYPD class and racial hierarchies, and institutional homophobia. Power flows from who knows where the bodies are buried, not from official rank.",
+    "confidence": "high",
+    "quote": "He'd learned where all the bodies were buried and used that to make everyone bow to his bidding."
+  },
+  "alibi": {
+    "value": "No explicit alibi construction for a named suspect is present in this excerpt. The movements of the assassins are entirely unknown; the investigation is still at the evidence-gathering stage.",
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Physical forensic incongruities serve as the reveal mechanism: Crawford's window rolled down in cold weather in a dangerous area (suggesting he knew or trusted his killer), no weapon on an agent who should have been armed, and matching bullet calibers across all victims point toward a coordinated, inside-access assassination rather than a random crime.",
+    "confidence": "medium",
+    "quote": "A single entrance wound above the left ear had caused the damage...Brunner says the shots are the same caliber."
+  },
+  "media_and_audience": {
+    "value": "Institutional suppression replaces public media: the NYPD's systemic policy of not investigating crimes near gay bars, the coroner's discretionary triage based on evidence of 'certain kinds of sex acts,' and the Bureau's information blackout mean the crime is being actively buried before any public narrative can form. Hoover's own press mythology is also invoked as a constructed false narrative.",
+    "confidence": "high",
+    "quote": "He wasn't the man his press made him out to be."
+  },
+  "investigator_wound": {
+    "value": "Bryce's wound is dual: professional disillusionment with the FBI's corruption and racial injustice has put him on 'shaky ground at the Bureau,' and he suspects he may have been deliberately isolated at this scene to be set up as having botched the investigation \u2014 making his integrity itself the weapon used against him.",
+    "confidence": "high",
+    "quote": "Maybe they'd put him on his own here to claim he'd botched the investigation, so that they would be able to cover it up."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "text_len": 13039,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "3\u00b06",
+    "author": "KRISTINE KATHRYN RUSCH",
+    "anthology_title": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver",
+    "story_index": 20,
+    "story_count": 25
+  }
+}

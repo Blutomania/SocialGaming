@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Bank robbery by switching contents of duffel bag with blank paper and newspapers. Central question: How did the robber execute a perfect theft when he was forced to abandon the money at the fence?",
+    "confidence": "high",
+    "quote": "The bag, packed full, was far too big to fit. Even from a distance, the cops could see his face. First it registered surprise, then frustration, then anger, then defeat."
+  },
+  "victim": {
+    "value": "The bank and its customers/employees are not truly victimized. The 'real victim' is the bank itself, which was robbed of approximately $960,000 in cash.",
+    "confidence": "medium",
+    "quote": "Nine hundred sixty thousand. If I counted right."
+  },
+  "closed_world": {
+    "value": "Palmetto Street bank branch located in a semicircular cul-de-sac with one cross street, no side alleys, and a police station at the east end. Only escape route is a wrought-iron fence with 8-inch-wide bars.",
+    "confidence": "high",
+    "quote": "The street was narrow and often clogged with delivery trucks and double-parked cars. Its west end was a sort of commercial cul-de-sac containing the bank and two other buildings with iron fences between them, and its east end was home to one of the city's largest police stations."
+  },
+  "culprit_and_motive": {
+    "value": "Owen McKay and his wife Molly Fremont McKay executed the robbery. Motive: financial desperation. Combined salaries barely paid rent; Molly quit modeling, unable to find agent work in struggling industry.",
+    "confidence": "high",
+    "quote": "Their combined salaries barely paid the rent. Three months ago, she had quit her teller job to try to get back into modeling. One night last month, as they sat in their apartment, Molly had an idea."
+  },
+  "resolution": {
+    "value": "The mystery is never formally resolved through investigative action. Police suspect the robber has a getaway car parked nearby, but Debbie Martingale theorizes he planned to escape on foot through the fence. The actual resolution: Molly executed the plan as the 'bag lady,' switched the duffel contents, and escaped with Owen via a van.",
+    "confidence": "medium",
+    "quote": "No getaway car would be found, because he hadn't planned that kind of getaway. He had planned to walk out\u2014either down the street or through the fence."
+  },
+  "investigator": {
+    "value": "Debbie Martingale, a bank teller and witness to the robbery. She pieces together clues about the escape route and theorizes about the robber's actual plan, though her theory remains unconfirmed and unpresented to authorities.",
+    "confidence": "high",
+    "quote": "She had watched, through the glass of the front door, as the robber jogged down the bank's tall steps...she was fairly convinced that any hesitation he'd shown before squeezing his body past those iron bars was play-acting, plain and simple."
+  },
+  "suspect_architecture": {
+    "value": "Two perpetrators: Owen McKay (ex-army shooter, executor of plan, insider knowledge via wife) and Molly McKay (mastermind, former bank teller, disguised as bag lady). No false suspects; complexity lies in Molly's hidden role.",
+    "confidence": "high",
+    "quote": "Molly Fremont McKay laughed and ran her fingers through her blond hair. 'I have good help,' she said."
+  },
+  "red_herring": {
+    "value": "The apparent getaway-car escape route misdirects police; the fence-squeezing drama looks like desperation but is pre-planned. The bag of fake bills substituted in the vault misdirects readers into thinking Owen succeeded.",
+    "confidence": "high",
+    "quote": "She was fairly convinced that any hesitation he'd shown before squeezing his body past those iron bars was play-acting, plain and simple."
+  },
+  "clue_fairness": {
+    "value": "Clues are embedded for the reader: the bag lady's bruised hip matching Owen's torn jeans, the empty duffel on the hotel table, the shopping cart, the gray wig and purple dress in a trash bag \u2014 all shown before the reveal.",
+    "confidence": "high",
+    "quote": "On the floor beside the table stood a shopping cart full of trash bags... she was holding it open in front of him."
+  },
+  "social_world": {
+    "value": "Small-bank hierarchy: branch manager Ramsey (absent, self-important), assistant manager Woodthorpe (petty authority, arrogance punctured literally), tellers as low-status women, police as street-level bureaucrats. Economic precarity drives the crime.",
+    "confidence": "high",
+    "quote": "Their combined salaries barely paid the rent. Three months ago, she had quit her teller job to try to get back into modeling."
+  },
+  "alibi": {
+    "value": "Molly's alibi is her physical disguise: she is present at the crime scene as the bag lady, not absent. Owen's alibi is his costumed anonymity. The real alibi construction is the substituted duffel \u2014 making the vault robbery appear to have failed.",
+    "confidence": "high",
+    "quote": "The bag already contained a gray wig, a purple flowered dress, a ragged black coat, and some kind of makeup kit."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is material and dual: the duffel returned to the bank contains fake bills (one ten over blank paper over newspapers), while the hotel room shows the real cash already counted ($960k) and the disguise props disassembled \u2014 proving the swap.",
+    "confidence": "high",
+    "quote": "It was a packet of blank paper with one ten on top... The rest of the bag was filled with stacks of old newspapers."
+  },
+  "media_and_audience": {
+    "value": "Reporters swarm the scene; branch manager Ramsey performs victimhood for press; Woodthorpe positions himself as hero for cameras. Police confidently announce the robber will be caught via DMV records \u2014 publicly wrong. Media narrative is entirely manipulated.",
+    "confidence": "high",
+    "quote": "The reporters need to know exactly how much money was involved in the robbery attempt... Ramsey had arrived looking like a kid who'd received a birthday balloon."
+  },
+  "investigator_wound": {
+    "value": "No formal investigator protagonist exists; the closest surrogate is teller Debbie Martingale, whose wound is institutional: she sees through the escape plan but withholds her theory, doubting herself and fearing Woodthorpe's authority over her.",
+    "confidence": "medium",
+    "quote": "Those were big questions, big enough to keep her from voicing her theory. Besides, she had other things to think about at the moment."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "filename": "The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Molly\u2019s\tPlan",
+    "author": "JOHN\tM.\tFLOYD",
+    "anthology_title": "The_Best_American_Mystery_Stories_215_-_James_Patterson",
+    "story_index": 8,
+    "story_count": 19
+  }
+}

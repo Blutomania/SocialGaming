@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Police sniper Keith O'Donnell violated protocol by shooting the hammer off a hostage-taker's gun instead of killing the suspect, raising questions about his fitness for duty and whether he can be trusted to use lethal force when required.",
+    "confidence": "high",
+    "quote": "I adjust my aim and squeeze the trigger... I shot the hammer off it, I didn't knock the gun out of his hand."
+  },
+  "victim": {
+    "value": "Valerie, a hostage Keith becomes emotionally attached to during the standoff. She is vulnerable and beautiful, making Keith unwilling to risk her death by following protocol to shoot the suspect rather than disarm him.",
+    "confidence": "medium",
+    "quote": "She had dark hair... She was beautiful. My eyes kept coming back to her... I didn't want that to happen."
+  },
+  "closed_world": {
+    "value": "A Miami police hostage crisis on Seventh Avenue with a workplace shooting scenario; two snipers positioned across the street with full visual access, a negotiator, and a Special Response Team standing by.",
+    "confidence": "high",
+    "quote": "I set up in a building across the street, in an office on the fourth floor... I had a nice view of the whole office."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Keith's actions are investigated by the department; he is suspended and sent to a police psychologist, Dr. Barbara Neal, who evaluates whether he can return to active duty. The resolution remains open\u2014Barbara recommends ongoing therapy to determine if Keith can fulfill his responsibilities.",
+    "confidence": "medium",
+    "quote": "I'll recommend you be returned to active duty\u2014once the investigation into yesterday is finished."
+  },
+  "investigator": {
+    "value": "Dr. Barbara Neal, a police department psychologist conducting a fitness-for-duty evaluation of Keith O'Donnell through therapeutic interviews to determine if his decision-making capacity has been compromised.",
+    "confidence": "high",
+    "quote": "She opened the door to the waiting room... 'Officer O'Donnell? I'm Dr. Neal.'"
+  },
+  "suspect_architecture": {
+    "value": "This is not a traditional whodunit; the 'suspect' is effectively a single individual \u2014 Officer Keith O'Donnell \u2014 whose conduct during a sniper incident is under review. The antagonists in the backstory are two hostage-takers (Guinness at the workplace shooting, Clarence in the car incident), neither of whom is a mystery suspect. There is no spread of suspects with competing means/motive/opportunity.",
+    "confidence": "low",
+    "quote": "Captain Smith had said they were a different breed."
+  },
+  "red_herring": {
+    "value": "The story plants the suggestion that Keith's hesitation stems from his attachment to a hostage woman (April), implying romantic obsession as the cause of his psychological change. This is a misdirection: the deeper reveal is that Keith had already begun developing a conscience about killing before he met April, as Barbara points out.",
+    "confidence": "medium",
+    "quote": "Remember, you worried about shooting that drug dealer before you and April ever talked about your job. Before you met Cory."
+  },
+  "clue_fairness": {
+    "value": "The reader is given Keith's own first-person narration of both incidents, experiencing his hesitation and emotional distraction in real time alongside Barbara. The key psychological clue \u2014 that his moral development preceded April \u2014 is embedded in his own account before Barbara articulates it, allowing a careful reader to reach the conclusion independently.",
+    "confidence": "medium",
+    "quote": "Sometimes even when Guinness was in sight at the other end of the room I'd be thinking about her, wanting to look at her again."
+  },
+  "social_world": {
+    "value": "A municipal police department hierarchy governs the story: Captain Smith, Sergeant Erb, snipers, negotiators, and the department psychologist each occupy defined roles with clear authority chains. Policy (shoot to kill vs. disarm) is institutionally mandated. The department's internal review process \u2014 suspension, psychological evaluation, fitness-for-duty determination \u2014 frames Keith's jeopardy entirely within bureaucratic power structures.",
+    "confidence": "high",
+    "quote": "Department policy is to shoot the suspect in that situation, not the gun."
+  },
+  "alibi": {
+    "value": "Not applicable in the traditional mystery sense. Keith's actions are fully witnessed and documented; there is no contested alibi. His account of both shooting incidents is a confession of what he did and did not do, not a claim of absence. The 'alibi' construct is replaced by an official report vs. personal testimony dynamic.",
+    "confidence": "low",
+    "quote": "I filed a report about it. If you really want all the facts you should probably read that."
+  },
+  "reveal_mechanic": {
+    "value": "The revelation is psychological and technical in tandem: Barbara (and the reader) learns that Keith's inability to shoot Clarence was not caused by his love for April but by a deeper moral evolution already underway. The technical proof is his choice to shoot the hammer off the gun \u2014 a near-impossible precision shot \u2014 demonstrating his competence while simultaneously proving he consciously refused to kill.",
+    "confidence": "high",
+    "quote": "I adjust my aim and squeeze the trigger... I just saw the gun jump out of my field of view. Or the hammer, to be more accurate."
+  },
+  "media_and_audience": {
+    "value": "The incident is framed through departmental and institutional perception rather than press coverage. Captain Smith interprets Keith's action as a policy violation requiring psychological review. Barbara privately sympathizes but must perform official neutrality. The 'brass' are expected to wish Keith had hot-dogged it rather than exercised mercy, inverting public heroism narratives.",
+    "confidence": "medium",
+    "quote": "Well, at least you can tell the brass I wasn't hot-dogging it. I'm sure they'll wish I was."
+  },
+  "investigator_wound": {
+    "value": "Barbara Neal is the investigator-figure. Her wound is inexperience and institutional naivety: she privately felt delight at Keith's merciful shot before her superior had to explain why department policy mandates lethal force. She must navigate a case that exposes the gap between her humanistic instincts and the violent operational reality she has only recently entered.",
+    "confidence": "high",
+    "quote": "She couldn't admit it, but her first reaction yesterday had been delight when she heard what Keith had done."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "filename": "The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The\tShot",
+    "author": "ERIC\tRUTTER",
+    "anthology_title": "The_Best_American_Mystery_Stories_215_-_James_Patterson",
+    "story_index": 19,
+    "story_count": 19
+  }
+}

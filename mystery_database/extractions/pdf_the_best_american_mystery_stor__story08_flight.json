@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Serial murder by smothering/asphyxiation in a nursing home; method: pillow suffocation disguised as heart failure; central question: how can a paralyzed patient expose a killer she cannot identify and has no credible way to report?",
+    "confidence": "high",
+    "quote": "When I hold the pillow over them, that is just the beginning. They finish the work themselves. The fear, you see. It's never been determined to be anything other than heart failure."
+  },
+  "victim": {
+    "value": "Multiple elderly nursing home residents selected for isolation\u2014those with few visitors or family to mourn them. Mina specifically targeted: a former botanist with knowledge and dignity, but limited external connections to raise alarm.",
+    "confidence": "high",
+    "quote": "What matters is who loves them. What it will do to the ones left behind... Who comes to visit her? Who would mourn?"
+  },
+  "closed_world": {
+    "value": "A nursing home facility with four converging hallways, a nurses' station, locked rooms, and vulnerable bedridden patients under medical supervision. Staff, aides, and night shifts form the only possible witness network.",
+    "confidence": "high",
+    "quote": "The only bright pool of light is over the nurses' station, where the four hallways converge... No one sleeps deeply."
+  },
+  "culprit_and_motive": {
+    "value": "An unidentified male patient or staff member who visits Rachel's room at night. Motive: to create lasting psychological impact on loved ones left behind\u2014he seeks legacy through trauma, not the act itself. The murders are means to an existential end.",
+    "confidence": "high",
+    "quote": "I don't choose them for themselves... What matters is... what it will do to the ones left behind. That is what I want to accomplish, something that lasts."
+  },
+  "resolution": {
+    "value": "Jenny (a young aide) believes Rachel's blink-based communication spelling out warnings. Jenny poses as a sleeping patient to witness the killer attempting Mina's murder. She physically restrains and subdues him when he attacks, breaking his bones in the struggle. He is arrested and removed.",
+    "confidence": "high",
+    "quote": "Before he can turn her arms are around him, and she drags him to the floor. I think I hear his bones break when he falls... They've taken him away."
+  },
+  "investigator": {
+    "value": "Rachel, a paralyzed patient with secondary progressive MS who cannot speak but retains full mental capacity. She is simultaneously victim, witness, and the investigative consciousness through whose perspective the reader experiences the mystery and moral urgency.",
+    "confidence": "high",
+    "quote": "I don't let go... One of us screaming, I don't know how long how much time... I close my eyes Yes, again Yes."
+  },
+  "suspect_architecture": {
+    "value": "Single unnamed male suspect \u2014 a frail, elderly male patient with intimate knowledge of the facility's routines and nocturnal access to rooms. No competing suspects; the architecture inverts the classic multi-suspect spread by giving the reader only one perpetrator, identity withheld, differentiated solely by physical frailty masking lethal capability and by his selection logic (choosing victims by who loves them, not by who they are).",
+    "confidence": "high",
+    "quote": "\"It's never been determined to be anything other than heart failure. Only to be expected. Nothing to raise any alarm.\""
+  },
+  "red_herring": {
+    "value": "Rachel's paralysis and cognitive isolation are positioned to make her nocturnal 'visits' readable as nightmare or MS-related hallucination, misdirecting both in-story characters and the reader toward a diagnosis of psychosis rather than witness testimony. The charge nurse's clinical dismissal of her hand movement as 'expected transient effect' reinforces this false trail.",
+    "confidence": "high",
+    "quote": "\"In the ones that I tell myself are just nightmares. Couldn't be real, couldn't be someone really coming into my room night after night\""
+  },
+  "clue_fairness": {
+    "value": "All evidentiary material is delivered through Rachel's direct sensory experience and is available to the reader simultaneously: cold dry hands on her face, the killer's stated modus operandi (pillow plus fear causing heart failure), his selection criteria (mourners not victims), the waltz rhythm tapped on her face, and the physical act of pressing her face into the pillow \u2014 all disclosed in real time before any confirmatory action.",
+    "confidence": "high",
+    "quote": "\"When I hold the pillow over them, that is just the beginning. They finish the work themselves. The fear, you see.\""
+  },
+  "social_world": {
+    "value": "A long-term care facility structured by radical power asymmetry: staff control every bodily function of patients, institutional hierarchy silences inconvenient testimony, and patients are sorted by degree of dependency and cognitive legibility. The killer exploits the lowest-power position (non-verbal, paralysed patient as witness) and institutional normalisation of death. Staff loyalty runs upward to the charge nurse, not laterally to patients.",
+    "confidence": "high",
+    "quote": "\"They'll think you're crazy, we're both crazy. They'll fire me. They'll sedate you.\""
+  },
+  "alibi": {
+    "value": "The killer has no formal alibi scene, but his alibi is structural: his frailty and patient status make him an implausible suspect, and all deaths are certified as natural cardiac events. His nocturnal movements go undetected because night-staff rounds are predictable and he operates in full darkness. His alibi collapses only when Jenny physically witnesses and restrains him in the act.",
+    "confidence": "medium",
+    "quote": "\"I can hear his slow careful footsteps as he leaves in the darkness.\""
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is kinetic rather than testimonial: Rachel's spasming hand \u2014 the single finger of recovered motor control developed through cold-pack therapy \u2014 knocks a glass vase against another, shattering it at the moment of the killing. The noise is the only communication available to her; it triggers Jenny's intervention. The mechanism thus literalises the entire story's theme: the smallest physical act as life-or-death.",
+    "confidence": "high",
+    "quote": "\"my hand spasms, knocks one vase against another, glass shattering, and at the noise Jenny flies out of the chair\""
+  },
+  "media_and_audience": {
+    "value": "The crime is institutionally invisible: deaths are classified as expected cardiac failure in an elderly population, generating no external investigation, press attention, or public alarm. The facility's bureaucratic normalisation of death functions as a suppression mechanism. The only 'audience' is the internal hierarchy, which actively reframes the witness's testimony as symptom.",
+    "confidence": "high",
+    "quote": "\"It's never been determined to be anything other than heart failure. Only to be expected. Nothing to raise any alarm.\""
+  },
+  "investigator_wound": {
+    "value": "Rachel's wound is her condition itself: secondary progressive MS has stripped her of voice, movement, and credibility, making her the ideal witness and the worst possible investigator. Her wound is also relational \u2014 her daughter and husband visit rarely or not at all, leaving her emotionally isolated. The case forces her to convert the very helplessness that defines her imprisonment into the one act of agency the story permits.",
+    "confidence": "high",
+    "quote": "\"Sometimes they don't come, for weeks, or months. Then they do. Then they're gone again. And if I could wish myself dead I would.\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Flight",
+    "author": "TRINA\tCOREY",
+    "anthology_title": "The_Best_American_Mystery_Stories_2017_-_John_Sandford",
+    "story_index": 8,
+    "story_count": 19
+  }
+}

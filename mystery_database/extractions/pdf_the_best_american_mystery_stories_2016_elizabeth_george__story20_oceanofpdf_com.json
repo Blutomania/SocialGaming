@@ -1,0 +1,87 @@
+{
+  "crime": {
+    "value": "Murder by stabbing during a mugging in Lilongwe, Malawi. Dr. Helen Gaynor is attacked by three thieves; one (Hastings Chiume) stabs her with a knife while cutting her purse chain, causing arterial bleeding.",
+    "confidence": "high",
+    "quote": "arterial blood spurting out from Hastings's knife cuts, blood she was trying to stem with her hands"
+  },
+  "victim": {
+    "value": "Dr. Helen Gaynor, 38-year-old white female doctor running a district hospital in Chitipa, Malawi. She is 'killable' because she is a foreigner carrying valuable medical supplies, walking alone near hotels where muggings are frequent, and she physically resists the attackers.",
+    "confidence": "high",
+    "quote": "unexceptional, white-skinned, thin, middle-aged female of thirty-eight years...she was furious with herself"
+  },
+  "closed_world": {
+    "value": "Lilongwe, Malawi's capital city, with specific focus on the area near fancy hotels and restaurants where muggings of tourists are known to occur frequently.",
+    "confidence": "medium",
+    "quote": "Everyone knew muggings were frequent near the fancy hotels and restaurants, where the mzungus came to spend money."
+  },
+  "culprit_and_motive": {
+    "value": "Hastings Chiume, a young local thief operating as part of a gang. Motive: opportunistic robbery; he recognizes Dr. Gaynor as the 'bitchy doctor' he encountered in Chitipa two weeks prior and wants her possessions.",
+    "confidence": "high",
+    "quote": "he recognized the woman in her T-shirt and sunglasses as the bitchy doctor who ran the hospital in Chitipa, whom he had bumped into that day two weeks ago"
+  },
+  "resolution": {
+    "value": "No formal criminal justice resolution. Hastings escapes; the American Embassy offers a reward but he does not turn himself in. He flees to Nairobi for a year, then establishes a legitimate pharmacy business and prospers.",
+    "confidence": "high",
+    "quote": "Later, did Hastings repent? Did he become a changed man, turn himself in...? Of course not."
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": "Minimal formal suspect architecture. One true perpetrator (Hastings Chiume, opportunistic street thief) and one false suspect implicitly cast by narrative suspicion (Robinson Tmembo, Dr. Gaynor's assistant, whose eagerness for her office key raises her unease). No investigator, no developed suspect pool.",
+    "confidence": "medium",
+    "quote": "some added eagerness that made her wonder just how trustworthy Robinson was, given the young man's frequent quest for her office key"
+  },
+  "red_herring": {
+    "value": "Robinson Tmembo functions as a structural red herring: Dr. Gaynor's final conscious preoccupation is his suspicious behaviour with her office key, directing both her attention and the reader's toward an insider threat, while the actual killer is an external street criminal encountered by chance.",
+    "confidence": "medium",
+    "quote": "her mind was anywhere on this day, it was on her assistant, Robinson Tmembo, and the alacrity with which he had just said he would guard over her office"
+  },
+  "clue_fairness": {
+    "value": "The reader is given the key recognition clue before the characters act on it: the narrative discloses that Dr. Gaynor briefly encountered her future killer two weeks prior in Chitipa, and both parties recognise each other at the moment of the fatal mugging, making the connection available to the reader throughout.",
+    "confidence": "high",
+    "quote": "she would have a brief encounter with the young man who would kill her two weeks later"
+  },
+  "social_world": {
+    "value": "Layered colonial and post-colonial hierarchy: white foreign doctor over local hospital staff, expatriate medical elite over townspeople, local petty criminal economy surviving on tourist and aid-worker wealth, government patronage enabling Hastings's later impunity. Aid dependency and racial/economic asymmetry structure every interaction.",
+    "confidence": "high",
+    "quote": "He married the daughter of a highly placed government official and had many children, for his life wasn't some work of fiction."
+  },
+  "alibi": {
+    "value": "No formal alibi construction present. The story does not operate within a whodunit framework requiring alibis; the perpetrator's identity and movements are disclosed omnisciently by the narrator rather than reconstructed through investigative verification.",
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is achieved through mutual visual recognition at the moment of the crime: both victim and killer independently identify each other from their earlier chance encounter, confirmed by the victim's direct accusation ('You're the one who stole my purse!') and the killer's internal corroboration.",
+    "confidence": "high",
+    "quote": "he recognized the woman in her T-shirt and sunglasses as the bitchy doctor who ran the hospital in Chitipa"
+  },
+  "media_and_audience": {
+    "value": "The crime is institutionally processed rather than publicly investigated: the American Embassy posts a reward, an autopsy is conducted by the victim's expatriate predecessor, and the case is eventually dropped after a year. Local religious fatalism ('God's great plan') and the assistant's indignant theodicy substitute for public accountability.",
+    "confidence": "high",
+    "quote": "the American Embassy offered a large reward of five thousand kwacha for information that led to the perpetrator or perpetrators of this unconscionable crime"
+  },
+  "investigator_wound": {
+    "value": "Absent. There is no investigator figure in the narrative. The story deliberately withholds a detective protagonist; the crime goes unsolved and unpunished, and no character's psychological vulnerability is placed under investigative pressure.",
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "SARAL WALDORF",
+    "anthology_title": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George",
+    "story_index": 20,
+    "story_count": 22,
+    "backfilled_from": "book_slug[:30] filename-collision bug"
+  }
+}

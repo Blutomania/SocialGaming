@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "An unnamed Mexican woman, sexually assaulted and brutalized by Joe Sprague and his cohorts during the sack of Laredo",
+    "confidence": "high",
+    "quote": "With the toe of his boot, he drew it aside, revealing a door set flush in the floor...a woman lying stiffly, her eyes closed tight"
+  },
+  "closed_world": {
+    "value": "The town of Laredo during military occupation by Sam Houston's Texian army; a small Mexican house serving as the assault site",
+    "confidence": "high",
+    "quote": "Before long we found ourselves on the outskirts of Laredo, the war storm raging in our blood...a woman lying stiffly"
+  },
+  "culprit_and_motive": {
+    "value": "Joe Sprague, McKendrick, and Blaine\u2014soldiers motivated by opportunism, lawlessness, and contempt for Mexican civilians during wartime looting",
+    "confidence": "high",
+    "quote": "She's mine,' said Joe, quickly undoing his buckle and dropping his trousers...this is exactly what I come for."
+  },
+  "resolution": {
+    "value": "The narrator (Ellet Mayfield) executes extrajudicial vengeance, murdering the three culprits in their sleep with a Barlow knife and fleeing into the chaparral",
+    "confidence": "high",
+    "quote": "That night, under cover of midnight darkness, I smote them with my Barlow knife. I slew them, first one then the other"
+  },
+  "investigator": {
+    "value": "Ellet Mayfield, the narrator and witness\u2014a conflicted soldier wracked by guilt for his inaction and complicity, who becomes the avenger",
+    "confidence": "high",
+    "quote": "I felt every bit as guilty as they should have felt...I had shaken the yoke of the plough, only to take on the yoke of a burden I could never shake"
+  },
+  "suspect_architecture": {
+    "value": "Four primary figures differentiated by moral complicity: Joe Sprague (ringleader, opportunist, violent aggressor), McKendrick (taciturn enforcer, minimal speech, physical threat), Blaine (crude follower, comic menace), and narrator Ellet Mayfield (reluctant participant, moral witness who ultimately becomes killer). The lieutenant functions as a peripheral moral contrast. Means and motive cluster around greed, violence, and frontier lawlessness; opportunity is provided by the chaos of military occupation.",
+    "confidence": "high",
+    "quote": "Joe and his freebooters were contributors to the cause of freedom."
+  },
+  "red_herring": {
+    "value": "Joe's staged 'Indian attack' alarm \u2014 musket shots fired to draw men away from the bear meat cache \u2014 functions as deliberate misdirection within the narrative, diverting soldiers from the real threat (Joe's violence and hoarding). The cry of 'Indians!' is a planned false trail that manipulates the group's attention and exposes the narrator's credulity.",
+    "confidence": "medium",
+    "quote": "It turned out that the entire alarm was a sham inspired by the taste for bear."
+  },
+  "clue_fairness": {
+    "value": "The hot coffee pot is presented to the reader simultaneously with Joe's deduction \u2014 the reader observes the detail before Joe interprets it, giving the audience the same evidential moment as the character. Similarly, the askew carpet concealing the trapdoor is described in real time, allowing the reader to register the clue before the revelation of the hidden woman.",
+    "confidence": "high",
+    "quote": "Hot coffee means people. People who had no time to clear out when we came a-calling."
+  },
+  "social_world": {
+    "value": "A fractured frontier military hierarchy in which formal rank is openly mocked ('There ain't no superior officers in the Texian army'), cattle rustlers operate with quasi-legal impunity by targeting only Mexican herds, and class markers (the lieutenant's pomaded hair, his wife's hand-sewn uniform, his ladies'-garments shop) are sources of ridicule. Mexican civilians occupy the lowest rung, stripped of legal protection entirely. Power runs through personal violence and group loyalty, not institution.",
+    "confidence": "high",
+    "quote": "They had prospered by raiding only Mexican herds, which the law was loath to prosecute."
+  },
+  "alibi": {
+    "value": "Joe constructs a false collective alibi during the bear-meat episode: he fires shots and raises an 'Indian' alarm to send the camp searching while he himself never leaves, standing guard with a smoking musket. When the narrator returns, Joe's alibi of 'I was guarding the camp' is exposed as the fabrication that enabled him to shoot a would-be thief without accountability.",
+    "confidence": "medium",
+    "quote": "I returned to camp only to find that Joe had never left. He stood guard over his bear, a smoking musket in his hand."
+  },
+  "reveal_mechanic": {
+    "value": "The physical evidence of still-hot coffee in an abandoned house demonstrates recent human presence \u2014 a deductive reveal from a material clue rather than confession or testimony. Joe's reasoning from the coffee's temperature to the concealed occupants models the classic detective reveal: observable physical state \u2192 inference of concealed truth \u2192 discovery of hidden person in the trapdoor.",
+    "confidence": "high",
+    "quote": "Joe said, 'Hot coffee means people. People who had no time to clear out when we came a-calling.'"
+  },
+  "media_and_audience": {
+    "value": "The Telegraph and Texas Register is cited as the vehicle that propagated myths of Mexican treasure ('Mountains of gold'), manufacturing public appetite for conquest. The narrator's enlistment is partly driven by this press-generated fantasy. Within the story, atrocities are absorbed into a collective euphemism ('seen the elephant'), normalising violence through shared soldier slang and rendering it invisible to any external moral audience.",
+    "confidence": "high",
+    "quote": "Any faithful reader of the Telegraph and Texas Register well knew. Mountains of gold and the landscape a moving black mass of livestock."
+  },
+  "investigator_wound": {
+    "value": "Ellet Mayfield's wound is his paralysis between moral knowledge and effective action: he witnesses the assault, intervenes physically but fails, cannot find authority to report to, and ultimately resolves his impotence through night-time vigilante killing. His deeper wound is complicity-by-inaction \u2014 he ate the bear meat, followed along, and his final act of violence is as much self-punishment as justice, leaving him permanently morally compromised.",
+    "confidence": "high",
+    "quote": "I felt every bit as guilty as they should have felt."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "BRENT SPENCER",
+    "anthology_title": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen",
+    "story_index": 20,
+    "story_count": 21
+  }
+}

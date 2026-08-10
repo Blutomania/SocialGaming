@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder of a child victim (implied); central question: how did the detective manipulate evidence and exploit the crime scene to frame an innocent man (Sonny Mossman) for execution?",
+    "confidence": "high",
+    "quote": "He pulled on his gloves and looked around...He then selected a hair bow from a drawer...slipped inside his jacket pocket."
+  },
+  "victim": {
+    "value": "A young girl, murdered by an unknown assailant; her body was placed in Sonny Mossman's car trunk, making her 'killable' because her death provided the detective opportunity for corruption.",
+    "confidence": "high",
+    "quote": "fed a guy who had a little girl locked up in the trunk of his car"
+  },
+  "closed_world": {
+    "value": "The penitentiary Death Tank (execution chamber) and the diner where the final meal is prepared; a system bounded by state authority, judicial finality, and the irreversibility of capital punishment.",
+    "confidence": "high",
+    "quote": "The Restraint Team ran the Death Tank because some cons lose it at the end...Sonny Mossman looked up from where he sat on the slab bed"
+  },
+  "culprit_and_motive": {
+    "value": "The detective; motive is to execute Sonny Mossman by framing him with planted evidence (fabricated fingerprint and hair from victim's room), possibly to close a case, hide his own knowledge, or enact vigilante justice.",
+    "confidence": "high",
+    "quote": "Using a prepared strip of tape, he lifted one perfect print...He slipped them into a manila coin envelope...He made the case."
+  },
+  "resolution": {
+    "value": "Incomplete/ambiguous. The detective's manipulation succeeds mechanically\u2014Mossman is executed ('two thousand volts')\u2014but no official exposure or justice occurs. The resolution is the execution itself, restoring institutional order while concealing systemic corruption.",
+    "confidence": "medium",
+    "quote": "Two thousand volts. Sam rolled over and hoped his appetite would return in the morning."
+  },
+  "investigator": {
+    "value": "Sam, the diner grill man; he serves as witness and moral mirror. He suspects the detective's corruption but cannot act. The reader experiences the mystery through his dawning awareness and complicity.",
+    "confidence": "high",
+    "quote": "Sam felt weird about the detective...Did the detective blame Sam for having served somebody he didn't know was a killer?"
+  },
+  "suspect_architecture": {
+    "value": "Minimal cast: convicted killer Sonny Mossman (the condemned, no active suspense role), unnamed detective (investigator-turned-schemer), Cooper (prison employee/delivery man, unwitting accomplice), Sam (grill man, passive witness). Mossman is the established guilty party for a child murder; the detective is the morally ambiguous actor planting evidence. No competing suspects \u2014 architecture is inverted, focused on justice-outside-law rather than whodunit.",
+    "confidence": "high",
+    "quote": "He had just found Mossman's abandoned car in the woods. Nobody else knew yet."
+  },
+  "red_herring": {
+    "value": "The thumping sound Cooper hears from the trunk briefly evokes the possibility of a living victim inside \u2014 mirroring Mossman's own crime of transporting a girl in a trunk \u2014 but it is merely the food sack tipping over. This false trail momentarily implicates Cooper in something sinister and echoes the original crime.",
+    "confidence": "high",
+    "quote": "he thought he heard a thumping inside the trunk. It stopped his heart for a second."
+  },
+  "clue_fairness": {
+    "value": "The reader is shown every element of the scheme in real time: the detective watching which burger goes into the bag, Sam stuffing napkins into the sack, Mossman finding a used napkin with writing on it, and the detective's flashback to lifting a print and collecting hair from the girl's room. All physical evidence of the planted message and framing materials is presented to the reader before Mossman encounters them.",
+    "confidence": "high",
+    "quote": "He saw the wet wrinkle first and realized that this was a used napkin... unfolding the napkin further, he saw the writing."
+  },
+  "social_world": {
+    "value": "Layered institutional hierarchy: the prison system (Restraint Team, Cooper as low-rung employee trading night shifts for tuition reimbursement, unnamed bosses issuing orders), the detective as lone moral agent outside that hierarchy, death-row protesters as powerless idealists, and Sam as working-class everyman caught between them. Power flows from the state downward; the detective exploits gaps in the chain of command.",
+    "confidence": "high",
+    "quote": "He worked at the pen because it was a night job and they reimbursed half his tuition... He did what he was told."
+  },
+  "alibi": {
+    "value": "The detective constructs a retrospective alibi of legitimacy by having planted genuine physical evidence (a fingerprint lifted from the girl's china tea set, two strands of her hair) \u2014 evidence that will appear to confirm Mossman's guilt through proper forensic channels, obscuring that it was planted. The 'alibi' here is institutional: the evidence will speak for itself, placing the detective above suspicion.",
+    "confidence": "medium",
+    "quote": "Using a prepared strip of tape, he lifted one perfect print... He then selected a hair bow... He made the case. He did his job."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is tactile and material: Mossman recognises the handwriting on the napkin from court papers \u2014 the name of his victim written in a hand he knows. The mechanism is handwriting identification, delivered through the intimacy of a last meal ritual, converting a mundane object (a napkin) into a devastating psychological confrontation.",
+    "confidence": "high",
+    "quote": "He recognized the penmanship right off. He knew it from the court papers. Sonny read the girl's name, and then his eyes lost focus."
+  },
+  "media_and_audience": {
+    "value": "The execution is a public spectacle framed by death-penalty protesters outside the prison gates with signs, bullhorns, and candles. Their presence packages the crime as a cause rather than a case, and the narrative ironises their moral certainty. The power grid flicker is registered across the county as a 'complicit blink,' making the execution a shared, ambient media event experienced even by Sam in the diner.",
+    "confidence": "high",
+    "quote": "Sam imagined an aerial view, lights dimming all across the county in one long, complicit blink."
+  },
+  "investigator_wound": {
+    "value": "The detective's wound is dual: a terminal prostate cancer diagnosis that converted him to vegetarianism and forced three years of abstinence from red meat, now broken to carry out this act \u2014 his body literally suffering for his moral transgression. More deeply, he cannot let the case rest on legitimate evidence alone, suggesting a wound of institutional distrust or a personal bond to the murdered girl that compels him to guarantee the outcome himself.",
+    "confidence": "high",
+    "quote": "Prostate cancer had turned him into a vegetarian... Three-plus years without red meat, until today. The meal burned like a cancer in his belly."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "text_len": 12851,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "154",
+    "author": "CHUCK HOGAN",
+    "anthology_title": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver",
+    "story_index": 10,
+    "story_count": 25
+  }
+}

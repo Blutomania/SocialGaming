@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Double homicide (Mary Beth and Luke) by an unknown assailant posing as a real estate client; central question: the identity and true nature of 'Boomer Smith' and his motive for targeting these women",
+    "confidence": "high",
+    "quote": "In a far corner, smeared with blood and casually tossed aside, was the pinstripe baseball cap"
+  },
+  "victim": {
+    "value": "Mary Beth (single mother struggling financially, emotionally vulnerable to flattery) and her nine-year-old son Luke (vulnerable child witness); they are 'killable' because they are isolated, economically desperate, and emotionally susceptible to manipulation",
+    "confidence": "high",
+    "quote": "Mary Beth had a nine-year-old son with asthma, Luke...Mary Beth would attend another Little League game with Luke, Carla would show another house"
+  },
+  "closed_world": {
+    "value": "An isolated modernist house in the hill country off Highway 165 near Driftwood, accessible only by farm roads, with no witnesses present; the victims are lured to a remote location during a hot afternoon when no one else is nearby",
+    "confidence": "high",
+    "quote": "Following another realtor's instructions she found the house: an angular rock, cypress, and glass monstrosity...along a dry creek bed...The house could barely be seen from the highway"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Carla (the surviving real estate agent and witness who discovers the bodies and the truth about 'Boomer's' identity through her own narrow escape from sexual assault and murder)",
+    "confidence": "high",
+    "quote": "she gazed out the window yet again to see the sun's last rays pick up something metallic in the hillside stand of cottonwoods. A car. It was out there in the woods...And then she knew."
+  },
+  "suspect_architecture": {
+    "value": "Single perpetrator ('Boomer Smith') operating under a false identity and fabricated persona. No competing suspects \u2014 the story is a slow reveal of one predator. Motive: serial sexual violence/murder. Opportunity: isolated rural property viewings. Differentiation achieved through false vulnerability (clumsiness, shyness) masking calculated predation.",
+    "confidence": "high",
+    "quote": "He's not even named Boomer, he used somebody else's name, and I don't even believe he's from Texas"
+  },
+  "red_herring": {
+    "value": "Boomer's performed awkwardness, social ineptitude, and apparent sexual paralysis function as sustained misdirection. His fumbling, inability to make eye contact, and clumsy physicality are read by Carla as harmless nerdiness, masking predatory calculation. The sapphire ring is also misdirected as an inappropriate gift rather than a killer's trophy.",
+    "confidence": "high",
+    "quote": "Boomer Smith...had a shy, goofy, awkward way about him and wouldn't even meet their gaze"
+  },
+  "clue_fairness": {
+    "value": "Multiple fair-play clues embedded for the reader: the ring previously belonging to another woman ('His signature'), Boomer's voice shifting to formal non-Texan diction, his refusal to view occupied properties, Luke's disturbed reaction to the switchblade, and the green car hidden in the cottonwoods \u2014 all visible to the reader before the final reveal.",
+    "confidence": "high",
+    "quote": "The ring, she knew, had belonged to some woman before her. His signature."
+  },
+  "social_world": {
+    "value": "Texas masculine ethos \u2014 beer, barbecue, football, casual violence \u2014 frames two economically precarious women navigating a real estate market dominated by larger firms. Gender power asymmetry is explicit: women must take precautions with male clients at isolated properties. Class vulnerability (failed marriages, struggling business, tight finances) makes the women susceptible to a high-value buyer.",
+    "confidence": "high",
+    "quote": "They figured they lived in a masculine ethos: beer and barbeque, football and bullshit, kisses and violence."
+  },
+  "alibi": {
+    "value": "Boomer offers alibis for delays \u2014 held up at the Driskill Hotel, business in Galveston \u2014 which are unverified and likely fabricated. His claim to be a cash-rich deal-maker from Harlingen is entirely unverified identity construction. The hidden green car in the woods retroactively collapses his alibi of being 'out front' and exposes premeditated staging.",
+    "confidence": "medium",
+    "quote": "Held up at the Driskill Hotel, he told them, and very sorry...he also said he had business in Galveston"
+  },
+  "reveal_mechanic": {
+    "value": "The reveal operates through convergent physical evidence: the green car (Mary Beth's Toyota) visible in the cottonwoods signals prior murder; the bloodied pinstripe baseball cap (Luke's) confirms the child's fate; the sapphire ring identified as a serial trophy ('His signature') ties Boomer to previous victims. Voice register shifts throughout serve as a psychological tell.",
+    "confidence": "high",
+    "quote": "In a far corner, smeared with blood and casually tossed aside, was the pinstripe baseball cap"
+  },
+  "media_and_audience": {
+    "value": "No press or institutional framing appears in the text. The story is entirely interior and diegetic \u2014 society outside is absent. The 'audience' for the crime is only Carla herself, making this a witness-as-victim structure rather than a public narrative mystery. No external perception or media packaging of the crime is present.",
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Carla's wound is loneliness and a longing for connection \u2014 her apartment filled with mechanical objects that move, her demanding mother who 'sensed the vacuum,' her pattern of failed relationships. This vulnerability makes her rationalize Boomer's red flags and extend maternal sympathy to a predator, directly enabling her victimization.",
+    "confidence": "high",
+    "quote": "She wanted somebody to love and care for; her mother had sensed the vacuum in her life...the only things that moved in her apartment were the mechanical sculptures."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Texas Heat",
+    "author": "WILLIAM HARRISON",
+    "anthology_title": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow",
+    "story_index": 6,
+    "story_count": 19
+  }
+}

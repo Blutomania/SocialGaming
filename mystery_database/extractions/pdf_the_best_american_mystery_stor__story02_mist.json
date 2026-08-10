@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Lisa Guillory, a recovering addict and widow navigating her internal psychological unraveling",
+    "confidence": "high",
+    "quote": "Lisa Guillory's dreams are indistinct and do not contain the images normally associated with nightmares."
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "Herman fabricates a debt and theft accusation against Lisa \u2014 claiming she stole $2,300 from Rodney's cashbox and owes $8,000 \u2014 to coerce her into prostitution/drug running, a false trail that misdirects Lisa (and reader) about whether she actually committed these acts.",
+    "confidence": "medium",
+    "quote": "'Cause you was so stoned out you got no memory of it... I'll do anyt'ing, Herman. I'll pay you tomorrow, Herman.'"
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Post-Katrina south Louisiana underclass: a hierarchy running from pimp-exploiter Herman Stanga (controlling crack queens, debt bondage, caterer cousin Rodney) down through addicts and war widows; AA sponsor networks as counter-institution; National Guard losses flattening individual grief into communal numbness; government indifference to insurance payouts.",
+    "confidence": "high",
+    "quote": "Herman prefers them white because there are black dudes who will always pay top dollar for white bread, no matter what kind of package."
+  },
+  "alibi": {
+    "value": "Lisa tells Tookie she is not going to use and is late for the employment office \u2014 a partial truth used to evade accountability; later Herman constructs a false alibi-in-reverse for Lisa, asserting she was present and lucid enough to steal from Rodney's cashbox, which she denies.",
+    "confidence": "medium",
+    "quote": "'I'm late for my appointment at the employment office.' / 'I ain't stole no money out of no office.'"
+  },
+  "reveal_mechanic": {
+    "value": "The knocking sound \u2014 Lisa's recurring auditory hallucination \u2014 is retroactively revealed as the literal memory of her sister and unbaptized child trapped and drowning beneath the Katrina floodwaters, disclosed only in the final dream-vision; the reader re-interprets all prior mentions of the sound through this single climactic confession.",
+    "confidence": "high",
+    "quote": "My sister was trying to hand up my li'l boy t'rou the hole in the roof, and they fell back in the water. I could hear them knocking."
+  },
+  "media_and_audience": {
+    "value": "The AA meeting congregation functions as a de facto audience that has heard so many Iraq-casualty stories that Lisa's grief is received with antagonism or boredom rather than sympathy; communal over-saturation of trauma narratives neutralises individual testimony and denies Lisa the public acknowledgement she seeks.",
+    "confidence": "high",
+    "quote": "The local National Guard unit lost five members in Iraq in one day alone, and no one has a patent now on stories of wounded and maimed and dead GIs."
+  },
+  "investigator_wound": {
+    "value": "Lisa is simultaneously the protagonist-investigator of her own survival and the wound itself: she cannot process Gerald's death, her drowned child, or Katrina because she is the last witness to all three; her addiction is the direct symptom of unprocessed guilt over her unbaptised child's death, which she can only approach obliquely through the knocking sound.",
+    "confidence": "high",
+    "quote": "My baby never got baptized. These t'ings ain't your fault, Lisa... You ain't learned that, you?"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Mist",
+    "author": "JAMES LEE BURKE",
+    "anthology_title": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos",
+    "story_index": 2,
+    "story_count": 22
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Conspiracy to commit murder and frame a corporate executive. Two hired killers sent to plant false evidence (an incriminating envelope) in the victim's home to provide motive for his assassination, intending to frame Indy Fi management.",
+    "confidence": "high",
+    "quote": "They were going to leave an envelope...A motive for a murder...They were going to kill me?"
+  },
+  "victim": {
+    "value": "Meredith Grondahl, assistant CFO of Central Indiana Finance (Indy Fi), subpoenaed to testify in a class-action lawsuit. He is targeted because his testimony could clarify accounting irregularities, though he is a company loyalist, not a whistleblower.",
+    "confidence": "high",
+    "quote": "He's an assistant to the chief financial officer, and he's supposed to testify about irregularities in their accounting procedures, but he's no whistle-blower."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Clocker, operator of a hedge fund that has shorted Indy Fi stock heavily and is backing the class-action lawsuit. Motive: eliminate Grondahl to create reasonable doubt about management's guilt and depress stock price further, allowing the short position to profit.",
+    "confidence": "medium",
+    "quote": "Clocker killed himself...His hedge fund had been shorting Indy Fi's stock all along, and he was behind the lawsuit"
+  },
+  "resolution": {
+    "value": "The two hired assassins kill each other in Grondahl's home during an argument over the planted evidence. Keller eliminates both, destroys the incriminating envelope, and warns Grondahl. Clocker's suicide prevents further conspiracy. Stock price recovers, short positions collapse, and justice occurs through market mechanism rather than legal prosecution.",
+    "confidence": "high",
+    "quote": "They got into an argument, and they bled all over your rug...They're not there anymore, either."
+  },
+  "investigator": {
+    "value": "Keller, a contract assassin hired to kill Grondahl, who discovers the conspiracy is designed to have him take the fall after the murder. He becomes an unwilling investigator and moral agent, exposing the plot to Grondahl and enabling his salvation.",
+    "confidence": "high",
+    "quote": "Some stranger...Some faceless assassin flown in from out of town...Because he happened to learn that once his job was done, they were planning to kill him."
+  },
+  "suspect_architecture": {
+    "value": "The plot involves multiple parties with competing motives: Clocker's hedge fund (shorting Indy Fi, driving lawsuit to depress stock price); two unnamed operatives sent to plant evidence; Keller himself hired as assassin; Grondahl as intended victim/unwitting pawn. Differentiated by role: financial manipulator, hired muscle, professional killer, innocent target.",
+    "confidence": "high",
+    "quote": "Their employer had already hired someone else for that job."
+  },
+  "red_herring": {
+    "value": "The envelope to be planted in Grondahl's desk \u2014 designed to fabricate a motive suggesting Grondahl was killed to suppress damaging testimony, misdirecting investigators toward Indy Fi management as culprits, when the real perpetrators are short-sellers engineering a stock manipulation.",
+    "confidence": "high",
+    "quote": "They were going to leave an envelope...In a desk drawer...A motive for a murder."
+  },
+  "clue_fairness": {
+    "value": "This is a hardboiled/caper story rather than a traditional fair-play mystery; clues are withheld from the reader in Keller's characteristic style \u2014 he understands the plot before revealing it to Grondahl and later to Dot, meaning the reader learns the solution simultaneously with other characters but after Keller. Fair-play principle is not observed in the classical sense.",
+    "confidence": "low",
+    "quote": "I think I get it...I wrote it down, and I'm going to read it back to you, to make sure I've got it all straight."
+  },
+  "social_world": {
+    "value": "Financial capitalism's underbelly: hedge funds, short-selling, class-action litigation used as market weapons, corporate insiders, and a professional assassination network operating beneath. Power flows from money \u2014 those who can short stocks and fund lawsuits can also fund killings. Grondahl is a mid-level corporate loyalist trapped in structures above his awareness.",
+    "confidence": "high",
+    "quote": "It's the people who shorted the stock who are behind the suit...their whole reason for bringing it seems to be to destroy confidence."
+  },
+  "alibi": {
+    "value": "Keller's alibi architecture is operational rather than testimonial: he maintains deniability by renting cars under different arrangements, switching motels, and transferring a tracking bug to another vehicle. His movements are deliberately obscured. No traditional alibi is constructed or broken; instead, Keller's invisibility IS his alibi.",
+    "confidence": "medium",
+    "quote": "Found the bug they put on my bumper, and switched it to the bumper of another Ford the same color as mine."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is delivered conversationally: Keller discloses the plot to Grondahl through oblique confession, letting Grondahl reconstruct events from partial information. The financial denouement \u2014 Clocker's staged suicide, the stock's recovery, the profitable short on the hedge fund \u2014 confirms the conspiracy retrospectively through market data rather than physical evidence.",
+    "confidence": "high",
+    "quote": "What really kick-started things was when Clocker killed himself...the price of Indy Fi's stock could go back where it belonged."
+  },
+  "media_and_audience": {
+    "value": "The crime is invisible to public media \u2014 no press coverage of the killings, no official investigation shown. The only 'audience' is the stock market itself, which registers the truth (Clocker's death, lawsuit collapse, stock recovery) without anyone naming the crime. Financial markets serve as the involuntary narrator of events the press never sees.",
+    "confidence": "medium",
+    "quote": "When he was out of the picture, and in a way that put the cloud right over his own head, well, the price of Indy Fi's stock could go back where it belonged."
+  },
+  "investigator_wound": {
+    "value": "Keller's wound is existential detachment: basketball depresses him for unnamed reasons, spicy food self-medicates unnamed pain, and stamp-collecting substitutes for human connection. His isolation makes him vulnerable to being used and discarded \u2014 which is exactly what the client planned. His wound is that he has no one to betray him TO, and almost no one to protect.",
+    "confidence": "medium",
+    "quote": "Basketball always depressed him...highly seasoned food put him right again. He thought it odd, didn't understand it, but knew it worked."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Keller\u2019s Double Dribble",
+    "author": "LAWRENCE BLOCK",
+    "anthology_title": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen",
+    "story_index": 5,
+    "story_count": 21
+  }
+}

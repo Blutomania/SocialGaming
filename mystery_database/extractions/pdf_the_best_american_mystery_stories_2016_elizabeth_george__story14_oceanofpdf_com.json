@@ -1,0 +1,87 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Rachel and Anne-Marie, a mother and daughter fleeing domestic abuse and control by Rachel's wealthy, abusive husband Gil",
+    "confidence": "high",
+    "quote": "He'd grabbed Rachel's arm so hard during a disagreement that she'd had bruises for weeks."
+  },
+  "closed_world": {
+    "value": "A hotel off I-80 in Omaha on Christmas Eve during a polar vortex, temporarily isolating Rachel and Anne-Marie from their pursuers",
+    "confidence": "medium",
+    "quote": "They couldn't really walk to the nearby restaurants, as much as Rachel wanted to...the severe cold."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Candy Mills from SYT organization arrives to extract Rachel and Anne-Marie to safety with a new van and new identities",
+    "confidence": "high",
+    "quote": "We'll have a new vehicle for you and a safe place to stay."
+  },
+  "investigator": {
+    "value": "Rachel, the victim herself, narrating her desperate flight and decision-making as she navigates escape",
+    "confidence": "high",
+    "quote": "She'd left a trail. It was impossible not to. If someone had followed her, they would have figured it out."
+  },
+  "suspect_architecture": {
+    "value": "Single true antagonist (Gil, the abusive wealthy husband) operating through proxies; surveillance apparatus masquerades as ordinary figures \u2014 most critically, a man in a Santa Claus suit who tracks Rachel across multiple states. Secondary ambiguous figures (taxi driver, hotel clerk Luke, 'Candy Mills') are briefly coded as potential threats before being resolved as neutral or allied. The architecture is thin on competing suspects but rich in distributed menace.",
+    "confidence": "medium",
+    "quote": "She had seen him. In truck stops and caf\u00e9s, smoking outside a gas station in Rawlins. She'd thought him a different Santa every time."
+  },
+  "red_herring": {
+    "value": "The recurring dark-blue SUV and beige sedan that seem to tail Rachel are presented as potential surveillance, inviting the reader to suspect a conventional pursuit. They are never confirmed as threats and function as paranoia-noise. More structurally, every ordinary helpful stranger \u2014 the talkative cab driver, Luke the hotel clerk \u2014 is briefly framed as a possible informant for Gil, misdirecting both Rachel and the reader before each is exonerated.",
+    "confidence": "medium",
+    "quote": "the dark-blue SUV she saw in Salt Lake might have had nothing to do with the dark-blue SUV that cut her off in Rock Springs."
+  },
+  "clue_fairness": {
+    "value": "The clue that the Santa figure is a single persistent tracker is planted fairly and in plain sight: Rachel observes a Santa at a truck stop in Rawlins, another outside a gas station, and one in the restaurant \u2014 each time dismissing it as seasonal ubiquity. The costume as disguise is available to the reader in real time. Anne-Marie's fearful reaction to the thin Santa in the diner is a second fair clue pointing to recognition rather than mere childhood anxiety.",
+    "confidence": "high",
+    "quote": "She'd thought him a different Santa every time. Santa was everywhere this season. It was the perfect disguise."
+  },
+  "social_world": {
+    "value": "The story maps a power structure defined by domestic wealth and private security versus an underground female solidarity network (SYT). Gil's money buys a 'private army' he calls security, giving him near-total surveillance over Rachel. Against this, a clandestine, resource-rich women's organisation operates outside institutional channels \u2014 shelters are explicitly ruled out as insufficient against his resources. The hotel clerk Luke, economically subordinate and working Christmas Eve, becomes an unexpected node of protection. Class and gender determine who can escape and how.",
+    "confidence": "high",
+    "quote": "A shelter couldn't take her in, and she had no money of her own. Plus, Gil had more resources than any women's organization."
+  },
+  "alibi": {
+    "value": "The Santa-suit operative's alibi is his costume: the universality of Santas during the Christmas season makes his repeated presence across hundreds of miles appear innocuous and unconnected. Rachel's own cover identities function as inverse alibis \u2014 fabricated whereabouts and names designed to make her untraceable. The tracker on the van is posited as the alibi-breaking evidence that will expose how he followed her from Winnemucca.",
+    "confidence": "medium",
+    "quote": "We think if there was a tracker, it was on the van... You said he followed from Winnemucca, right? He had a whole plan."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is achieved through retrospective pattern recognition triggered by Anne-Marie's accusation \u2014 'It was Santa' / 'He was everywhere.' Rachel mentally replays the sightings (truck stops, gas station, restaurant) and the disguise collapses into a single continuous presence. The mechanism is psychological and cumulative rather than forensic: the reader is asked to reassemble the same observed data Rachel dismissed, now reordered by the child's blunt identification.",
+    "confidence": "high",
+    "quote": "'He was everywhere,' Anne-Marie said. Rachel closed her eyes... Like that stupid song. He sees you..."
+  },
+  "media_and_audience": {
+    "value": "There is no press or public narrative around the crime; the social packaging is instead domestic and private. Gil's wealth controls the visible story \u2014 Rachel's flight cannot be reported, shelters cannot shelter her, and his 'security' framing normalises surveillance. The Christmas holiday itself functions as ambient media: the cultural saturation of Santa imagery is weaponised to make the operative invisible, embedding the threat inside a universally benign public spectacle.",
+    "confidence": "medium",
+    "quote": "She'd seen Santas everywhere, from the men manning the Salvation Army buckets... to the men standing outside malls, smoking."
+  },
+  "investigator_wound": {
+    "value": "Rachel is simultaneously investigator and victim, and her wound is shame-induced blindness: she stayed with Gil because she 'always thought women who stayed with men like him were doormats,' making her unable to read danger clearly without self-recrimination. This same pride delayed her escape and now distorts her threat assessment \u2014 she mistrusts helpers and trusts her own judgment even when it nearly costs her. Anne-Marie's psychological damage (fear of Santa, hatred of Christmas) is the wound made visible in a second body.",
+    "confidence": "high",
+    "quote": "She'd always thought women who stayed with men like him were doormats, so she tried to escape on her own. That's when she discovered he had his own private army."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "KRISTINE KATHRYN RUSCH",
+    "anthology_title": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George",
+    "story_index": 14,
+    "story_count": 22,
+    "backfilled_from": "book_slug[:30] filename-collision bug"
+  }
+}

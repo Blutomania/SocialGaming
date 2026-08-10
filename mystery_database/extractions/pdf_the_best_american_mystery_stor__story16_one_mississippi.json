@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Mass shooting on a subway train: 73 people shot in a systematic pattern (every other passenger), resulting in 68 deaths. Central question: Why did the perpetrator choose this specific method and victim selection?",
+    "confidence": "high",
+    "quote": "All in all he had shot seventy-three people. Sixty-eight of them died."
+  },
+  "victim": {
+    "value": "Primary victim: Jennifer (the narrator's wife), shot fatally as collateral damage when the narrator attempted to switch seats to protect her. Secondary victims: 72 other subway passengers, selected by alternating pattern rather than individual targeting.",
+    "confidence": "high",
+    "quote": "He stood back up and turned the gun at Jenny. He fired a single shot. It wouldn't kill her instantly. It would take almost four and a half days to do that."
+  },
+  "closed_world": {
+    "value": "A subway train stopped in a tunnel halfway between stations, with doors barricaded by passengers from adjacent cars using a cane wedge, and tunnel walls too close to allow escape through windows.",
+    "confidence": "high",
+    "quote": "the door to the next car was barricaded and the walls of the tunnel were too close to escape out the window"
+  },
+  "culprit_and_motive": {
+    "value": "Mathew Hunstad, 24, angry over employer's refusal to reimburse travel expenses. He interpreted the sarcastic suggestion to 'make more space on the subway' literally, deciding to kill half the passengers to reduce crowding for himself and his work materials.",
+    "confidence": "high",
+    "quote": "he got mad. He said he was taking a suggestion to make more room on the subway literally...if he killed half the people who rode at the same time he did, there would be plenty of room"
+  },
+  "resolution": {
+    "value": "Hunstad is subdued when the subway suddenly jerks forward after someone restarts the engine; passengers overpower him, breaking two fingers and disarming him. He is convicted on 68 counts of murder and 5 of attempted murder, accepts the death penalty without appeal, and is executed by lethal injection.",
+    "confidence": "high",
+    "quote": "Once on the ground, a man and a woman jumped at him, holding his arms. Another stepped on his hands until he let go of the guns."
+  },
+  "investigator": {
+    "value": "The narrator, a subway commuter and bereaved husband, serves as both witness and reflective consciousness. He experiences the crime firsthand, loses his wife, and is unwillingly selected to witness the execution\u2014making him simultaneously victim, observer, and reluctant participant in the justice system's aftermath.",
+    "confidence": "high",
+    "quote": "I never thought that I would be part of the news. Not the 'tonight at seven' part anyway, but then there I was on a subway car"
+  },
+  "suspect_architecture": {
+    "value": "Single perpetrator, identity revealed at story's end: Mathew Hunstad, a 24-year-old worker with clear motive (workplace grievance over travel expenses), means (multiple firearms), and opportunity (trapped subway car). No competing suspects; the architecture is deliberately collapsed into one unambiguous killer whose ordinariness is the horror.",
+    "confidence": "high",
+    "quote": "Nothing stood out. It was frightening to think that there was no discernible trait that separated him from anyone else"
+  },
+  "red_herring": {
+    "value": "The narrator's act of switching seats with Jenny is framed as a potential survival maneuver that the shooter will not notice \u2014 creating tension that the reader assumes will save Jenny. The shooter's whisper ('There's no switching places') dismantles this false hope, revealing the switch was observed and Jenny is punished for it. The misdirection is structural: the reader is led to believe the seat-swap succeeded.",
+    "confidence": "high",
+    "quote": "My hope was that I hadn't been noticed. No sign made me think I hadn't been successful."
+  },
+  "clue_fairness": {
+    "value": "The rhythmic 'every other passenger' pattern is demonstrated to the reader in real time, simultaneously with the narrator's perception of it. The reader can count seats alongside the narrator and reach the same conclusion about who is in danger before the narrator does \u2014 the seat-count arithmetic that determines Jenny's fate is available to the reader before the narrator consciously applies it.",
+    "confidence": "high",
+    "quote": "After watching for only a few seconds, I could see he was shooting every other passenger."
+  },
+  "social_world": {
+    "value": "Urban working-class commuter economy: employer-employee power imbalance over travel reimbursement, mass transit as leveler of class (workers, secretaries, department-store employees all share a car), and a post-trial public obsessed with execution-as-spectacle. The state's lottery system and closed-circuit viewing room reveal an institutional machinery that commodifies death for the victimized community.",
+    "confidence": "high",
+    "quote": "his employer told him that if he wanted the luxury of driving his own car then he would have to pay for it"
+  },
+  "alibi": {
+    "value": "No alibi is constructed or contested \u2014 Hunstad acts in full public view before over a hundred witnesses and never denies his actions. The narrator offers a minor personal alibi of omission: he tells the prison he cannot visit on Thursday because of work, concealing that he has not returned to work at all since the shooting.",
+    "confidence": "medium",
+    "quote": "I felt bad for lying, especially because I hadn't been to work at all since it happened. They didn't know that though."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is psychological and rhythmic: the 'one mississippi, two mississippi, three' countdown, introduced as the shooter's mechanical cadence, is replayed in the narrator's mind at the story's close as he sits in the park after Hunstad's execution \u2014 transferring the killer's timing into the survivor's grief. The mechanic demonstrates that the narrator has internalized the trauma rather than achieved closure.",
+    "confidence": "high",
+    "quote": "I counted it in my head, 'One mississippi, two mississippi, three.'"
+  },
+  "media_and_audience": {
+    "value": "The media apparatus is a sustained structural presence: the narrator actively avoids 'tonight at seven' news, yet becomes headline fodder himself; the execution is treated as a sold-out event with ticket-seekers, news van towers, protesters cheering for death, closed-circuit screens, and strangers offering hash for a front-row seat. The press and public transform private grief into public spectacle, inverting the narrator's desire for anonymity.",
+    "confidence": "high",
+    "quote": "Large groups of people stood around as if they were waiting for the last few tickets to a sold-out rock concert."
+  },
+  "investigator_wound": {
+    "value": "The narrator is not a detective but functions as the story's moral center and sole focalizer. His wound is survivor's guilt compounded by complicity: he switched seats to place himself in safety and thereby moved Jenny into the line of fire. The shooter's whispered accusation ('There's no switching places') externalizes this guilt. His refusal to attend the execution is the wound's behavioral expression \u2014 revenge or closure cannot undo his role in Jenny's death.",
+    "confidence": "high",
+    "quote": "'There's no switching places.' He stood back up and turned the gun at Jenny. He fired a single shot."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "text_len": 17501,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "One\tMississippi",
+    "author": "JOSEPH\tRAICHE",
+    "anthology_title": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates",
+    "story_index": 16,
+    "story_count": 22
+  }
+}

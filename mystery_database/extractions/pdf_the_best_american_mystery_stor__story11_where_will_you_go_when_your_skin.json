@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Aimee, a young woman shot twice in the face by her ex-partner Escue in a rage-fueled attack at a Quik Mart parking lot",
+    "confidence": "high",
+    "quote": "He shot her twice in the face. Somebody somewhere began to scream."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Escue, the culprit, killed Aimee in a jealous rage after she rejected him; The Jeepster (Leonard), her ex-lover, later possesses her body, driven by grief and inability to process her death",
+    "confidence": "medium",
+    "quote": "She rolled down the glass and gave him the finger...He had a .357 magnum in his hand."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "The Jeepster (Leonard), the grieving ex-lover who pursues Aimee's memory obsessively, confronts those connected to her death, and experiences the crime as psychological devastation rather than as an external observer",
+    "confidence": "high",
+    "quote": "I can't be still. It's like I can't stand it in my own skin."
+  },
+  "suspect_architecture": {
+    "value": "No traditional mystery suspect architecture. Perpetrator (Escue) is known from the outset \u2014 he murdered Aimee and killed himself. The Jeepster pursues peripheral figures (the Coors man, the counterman) as displaced targets of grief-rage, none of whom are genuinely culpable suspects in a mystery sense.",
+    "confidence": "low",
+    "quote": "I know Escue was broke and he borrowed ten bucks off the Coors man for the gas to get to where Aimee was working."
+  },
+  "red_herring": {
+    "value": "No deliberate mystery-plotting red herring is present. The Coors man functions as a displaced target \u2014 The Jeepster irrationally assigns partial guilt to him \u2014 but this is psychological grief logic, not authorial misdirection planted to mislead a reader about the killer's identity.",
+    "confidence": "low",
+    "quote": "You reckon that'll keep the dirt out of his face? I don't."
+  },
+  "clue_fairness": {
+    "value": "Not applicable as a mystery convention. The text is a literary short story with no investigator and no withheld solution. The full account of Aimee's murder is eventually narrated directly to the reader in past-tense omniscient prose, but this is revelation of backstory, not fair-play clue placement.",
+    "confidence": "low",
+    "quote": "For here's what happened, or what happened on the surface, here's what imprinted itself on the very ether."
+  },
+  "social_world": {
+    "value": "Rural Southern underclass defined by drug economy, criminality, and decayed agrarian wealth. Emile's fall from prosperous farm family to meth cook maps the hierarchy: old land-owning class collapsed into poverty and addiction. Law enforcement (the cop father, deputies) represents institutional power set against this world.",
+    "confidence": "high",
+    "quote": "Once the scion of a prosperous farm family, now he could only look back on long-lost days bathed in an amber haze of nostalgia."
+  },
+  "alibi": {
+    "value": "No alibi construction in the mystery-genre sense. Escue's crime is witnessed and he dies at the scene. The Jeepster's movements are tracked in real time. No character offers a false or verified whereabouts account that functions as a plot mechanism.",
+    "confidence": "low",
+    "quote": "He's broke. I don't think he's got the gas."
+  },
+  "reveal_mechanic": {
+    "value": "No mystery reveal mechanic. The truth of Aimee's murder is delivered through direct omniscient narration mid-story, framed as the 'news the summer wind whispered.' The method is lyrical disclosure, not deductive demonstration \u2014 the reader is told what happened, not shown evidence to reason from.",
+    "confidence": "low",
+    "quote": "For here's what happened, or what happened on the surface, here's what imprinted itself on the very ether and went everywhere at once."
+  },
+  "media_and_audience": {
+    "value": "The crime radiates outward through community reaction rather than press coverage: cafe patrons avert eyes, the funeral home mobilizes deputies, the father's public cursing performs communal condemnation. The Jeepster is legible to everyone as a sign of catastrophe \u2014 'the letter edged in black' \u2014 before he speaks.",
+    "confidence": "medium",
+    "quote": "He looked like the letter edged in black, the telegram shoved under your door at three o'clock in the morning."
+  },
+  "investigator_wound": {
+    "value": "The Jeepster functions as an anti-investigator: his wound is total and constitutive. He is the cause of Aimee's vulnerability (he brokered her for money, failed to protect her, refused to loan her a gun) and now pursues a grief that cannot be resolved. His psychological damage is the story's subject, not a tool for detection.",
+    "confidence": "medium",
+    "quote": "I can't stand it in my own skin... I never knew you could feel like this. I can't be still."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Where Will You Go When Your Skin",
+    "author": "WILLIAM GAY",
+    "anthology_title": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen",
+    "story_index": 11,
+    "story_count": 21
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Doreen, a slaughterhouse worker who is defrauded of $2,500 by Rich Randall, a union electrician hired to rewire her house who abandons the job after receiving advance payment",
+    "confidence": "high",
+    "quote": "I make out a check to Rich Randall for twenty-five hundred dollars... When I call Rich's number, the machine picks up... I leave so many messages on Rich Randall's answering machine"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Rich Randall, a drug smuggler in financial crisis due to his wife's arrest in Texas, takes Doreen's money as emergency funds to pay for her bail and legal fees while fabricating stories to justify his disappearance",
+    "confidence": "medium",
+    "quote": "They're holding my wife in jail! In Texas!... two thousand bucks bail to get her out... I have to come up with two thousand bucks... five hundred grand of really fine marijuana, drying out in some government warehouse"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Donenough, a working-class woman and victim of fraud who investigates on her own by calling Rich repeatedly, ultimately confronting him in person at the Quarry Bar and reporting him to Officer Lonny Bondorf",
+    "confidence": "medium",
+    "quote": "I leave so many messages on Rich Randall's answering machine that I'd be scared if he ever did call back... Did you just plan on never coming back, on never finishing what you started?"
+  },
+  "suspect_architecture": {
+    "value": "Single perpetrator (Rich Randall) with a chain of enablers: Duane Miller (referral), Butch/Marshall (criminal partners). Rich is differentiated by charm, false vulnerability, and a constructed sympathy narrative. No formal suspect spread \u2014 this is a confidence-crime story with one con artist and a victim-narrator.",
+    "confidence": "high",
+    "quote": "\"His name's Rich. Rich Randall. Real good electrician. He'll do you what needs done.\""
+  },
+  "red_herring": {
+    "value": "Rich's story about his wife Hailey being arrested in Texas for tax fraud at her employer \u2014 a sympathetic, urgent crisis designed to extract additional money and goodwill from Doreen, later revealed as cover for a drug-smuggling operation. The tax-fraud narrative is a deliberate misdirection layered over the real crime.",
+    "confidence": "high",
+    "quote": "\"The company's being investigated for tax fraud or something, and everyone who worked there during that time in question, they came and arrested them all.\""
+  },
+  "clue_fairness": {
+    "value": "All signals of Rich's untrustworthiness are presented to the reader simultaneously with Doreen: the union sweatshirt worn while doing off-the-books work, the escalating personal disclosures, the cocaine nostalgia, the absent work days, and the answering machine that never picks up. The reader has equal access to every red flag Doreen processes.",
+    "confidence": "high",
+    "quote": "\"His sweatshirt says local #329, union yes!\" [while explicitly doing unregistered off-books work]"
+  },
+  "social_world": {
+    "value": "Working-class rural Iowa: slaughterhouse workers, cheese-factory employees, off-books tradesmen navigating union rules, a cop as social anchor, and a bar as community hub. Power runs through trades knowledge, masculine authority over domestic spaces, and who controls information. Doreen is structurally vulnerable as a single woman homeowner with sudden cash.",
+    "confidence": "high",
+    "quote": "\"Only way some of these guys can make a go of it.\" / \"you'd have to be like Okay, sure, whatever you say.\""
+  },
+  "alibi": {
+    "value": "Rich's alibi for absence is the Texas wife-in-jail emergency, requiring him to fly out. It collapses when he reappears at the Quarry Bar a month later, locally present, having simply abandoned the job and taken the money. No Texas trip is corroborated; the alibi was constructed to forestall accountability.",
+    "confidence": "high",
+    "quote": "\"Of course, he's in Texas by now. If I believe that much.\" / [Rich reappears at the Quarry Bar a month later]"
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is behavioral and social rather than forensic: Rich's face in the bar cycles from friendly recognition to fear to performed blankness \u2014 a psychological tell that confirms guilt without confession. Doreen reads his micro-expressions in real time, and the reader witnesses the same sequence, constituting the story's climactic proof.",
+    "confidence": "high",
+    "quote": "\"His expression shifts from recognition to realization to fear. And then from fear...he crosses seamlessly into disdain.\""
+  },
+  "media_and_audience": {
+    "value": "The crime is contained within a small-community oral network rather than press. Doreen manages narrative strategically \u2014 lying to Lonny about a gun and drugs to mobilize police action, suppressing the real story to protect herself from appearing naive. Reputation and face-saving shape what gets reported and to whom.",
+    "confidence": "high",
+    "quote": "\"he started sort of hitting on me...do I want some drugs\u2014he's got pot...peach-flavored cocaine. I said, 'No thank you.'\""
+  },
+  "investigator_wound": {
+    "value": "Doreen's wound is chronic self-blame and deference to authority \u2014 she would have blamed herself for the car accident, never pressed charges without Lonny's intervention, and extended trust to Rich partly because she equates male competence with safety (her father's reassuring but flawed sureness). The con exploits her grief, loneliness, and habitual self-abnegation.",
+    "confidence": "high",
+    "quote": "\"I'd have found some way to think that sitting at a stoplight and getting head-onned by a drunk guy...was 100 percent my fault.\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Win\u2019s Girl",
+    "author": "THISBE NISSEN",
+    "anthology_title": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos",
+    "story_index": 11,
+    "story_count": 22
+  }
+}

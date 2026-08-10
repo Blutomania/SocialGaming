@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder by train (Amtrak). Eddie Milk is thrown onto railroad tracks and dragged 200 feet; death ruled suicide but is actually homicide. Central question: who killed Milky and why?",
+    "confidence": "high",
+    "quote": "The conductor had seen an obstruction on the tracks. He hit the brakes and the body was dragged two hundred feet, sparks igniting its clothes."
+  },
+  "victim": {
+    "value": "Eddie 'Milky' Milk, 31, unemployed former MBTA worker and small-time criminal living with his mother. Killable because he became an FBI informant wearing a wire, betraying his criminal associates Derrick Shanahan and Chippie Yarrow.",
+    "confidence": "high",
+    "quote": "feeling the sweat-dampened front pleat of his shirt, the thin wire that was sewn in there."
+  },
+  "closed_world": {
+    "value": "South Boston neighborhood (O Street, Broadway, Andrew Square, Hub Video). A tight-knit working-class world where everyone knows each other's business and criminal affiliations are intergenerational.",
+    "confidence": "high",
+    "quote": "house on O Street (Best thing about living on O Street? You only have to walk a block to P.), trudged up the stairs to the third-floor apartment"
+  },
+  "culprit_and_motive": {
+    "value": "Derrick Shanahan kills Milky out of suspicion and revenge. Motive: Derrick suspects Milky is an informant after detectives visit and release only Milky during a traffic stop, leaving Derrick and Yarrow to be arrested. Derrick kills to silence the informant before an upcoming crime.",
+    "confidence": "high",
+    "quote": "I knew I was right to top him... End of the month is officially back on."
+  },
+  "resolution": {
+    "value": "Yarrow, the actual FBI informant wearing the wire, records Derrick's admission of murder at Milky's funeral. The electronic surveillance captures Derrick's confession, enabling federal prosecution. Justice comes through the very wire-wearing that Derrick feared.",
+    "confidence": "high",
+    "quote": "feeling the sweat-dampened front pleat of his shirt, the thin wire that was sewn in there... only the passive electronic ear could hear."
+  },
+  "investigator": {
+    "value": "Chippie Yarrow, Derrick's criminal associate and unbeknownst FBI informant. He investigates from inside the criminal conspiracy, wearing a wire. The reader experiences mystery through his dual consciousness as both perpetrator and undercover witness.",
+    "confidence": "high",
+    "quote": "Yarrow made like he was crossing himself, feeling the sweat-dampened front pleat of his shirt, the thin wire that was sewn in there."
+  },
+  "suspect_architecture": {
+    "value": "Three principals: Derrick Shanahan (crime boss, murderer, motive: suspicion Milky is informant), Chippie Yarrow (associate, undercover wire, motive: justice), Eddie 'Milky' Milk (victim/addict, false informant cover story). Two corrupt detectives (Pendleton, Kyter) operate as antagonistic periphery. Suspects differentiated by class, criminal role, and access to Milky.",
+    "confidence": "high",
+    "quote": "Derrick said, 'I knew I was right to top him.' Yarrow froze, the Dixie cup of whiskey in his hand."
+  },
+  "red_herring": {
+    "value": "Milky's lie to his mother \u2014 that he is an undercover cop working a special project for the Boston Police \u2014 functions as misdirection both within the story (fooling Ma, nearly fooling the reader) and structurally: the reader suspects Milky may genuinely be an informant, obscuring that Yarrow is the actual undercover operative.",
+    "confidence": "high",
+    "quote": "Ma, it's this way, okay? I'm a cop. Not really a cop\u2014not a full cop. Not yet. But I'm on that track."
+  },
+  "clue_fairness": {
+    "value": "The wire on Yarrow is planted fairly for the reader: his shirt's 'sweat-dampened front pleat' and the 'thin wire that was sewn in there' are described in the same narrative moment Yarrow himself feels it, giving the reader simultaneous access to the reveal before its significance is stated.",
+    "confidence": "high",
+    "quote": "feeling the sweat-dampened front pleat of his shirt, the thin wire that was sewn in there."
+  },
+  "social_world": {
+    "value": "South Boston (Southie) working-class Irish-American world structured by transit-cop respectability, neighborhood loyalty, petty crime networks, and the shame economy of family reputation. Power flows through criminal crews (Derrick), corrupt police (Pendleton/Kyter), and the moral authority of mothers. Upward mobility (Billy moving to Swampscott) is contrasted with those trapped by addiction and block loyalty.",
+    "confidence": "high",
+    "quote": "Three men spoiled by a damaged woman, raised in a rent-controlled O Street walkup on the salary of a transit cop too timid to grift."
+  },
+  "alibi": {
+    "value": "Milky's false alibi to his mother \u2014 that his two-day absence was undercover police work \u2014 is constructed on the spot using a folded court summons (Summons to Appear from Suffolk County Jail) displayed only partially so only the official seal is visible, concealing its true nature as proof of arrest rather than employment.",
+    "confidence": "high",
+    "quote": "He took out the pink form, folding it so that she could see only the official seal...City of Boston, right there. Boston Police Department."
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated through Derrick's unsolicited, drunken admission of murder at the funeral ('I knew I was right to top him'), captured in real time by the concealed wire sewn into Yarrow's shirt \u2014 a technical reveal (the passive electronic ear) that transforms a private boast into legally actionable evidence without any interrogation.",
+    "confidence": "high",
+    "quote": "muttered something...that only the passive electronic ear could hear. 'Never lie to your mother.'"
+  },
+  "media_and_audience": {
+    "value": "Milky's death is officially ruled a suicide (like his father's), packaging the murder as tragic family pattern and closing institutional inquiry. Mrs. Milk privately reframes him as a martyred hero-cop, constructing a consoling false narrative. The funeral itself becomes a social theater where Derrick reads the detectives' appearance as confirmation of Milky's guilt, ironically inverting the truth.",
+    "confidence": "high",
+    "quote": "Milky's death was ruled a suicide, like his father. ...She had her hero now, a martyr to look down over her from the wall."
+  },
+  "investigator_wound": {
+    "value": "Yarrow's wound is moral complicity and proximity: he is embedded in the criminal crew, personally knew Milky, and must remain silent while Derrick orders and executes Milky's murder to protect the larger operation. His kneeling at the coffin and whispered prayer reveal guilt and grief \u2014 he could not save Milky without burning the case.",
+    "confidence": "medium",
+    "quote": "Yarrow went alone to Milky's place. He wanted to get to him before Derrick did."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "One Good One",
+    "author": "CHUCK HOGAN",
+    "anthology_title": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos",
+    "story_index": 5,
+    "story_count": 22
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "The isolated Irish valley of Ballynaslieve, a remote village cut off by mountains and damaged communications, where a small community faces displacement",
+    "confidence": "high",
+    "quote": "Mountains gathered about the road where the Land Rover died... In this part of Ireland a small-scale map would have had nothing on it."
+  },
+  "culprit_and_motive": {
+    "value": "Pat Kavanagh and the men of Ballynaslieve; motive is economic survival\u2014they destroy archaeological sites to prevent excavation delays that would cost them the Slieve Crum Power Scheme, their only hope for future prosperity",
+    "confidence": "high",
+    "quote": "We need that scheme. We need a future more than we need a past... It would be a terrible tragedy for Ballynaslieve."
+  },
+  "resolution": {
+    "value": "Ironic reversal: the power scheme is hydroelectric and will flood the valley anyway, destroying Ballynaslieve regardless. Grace chooses mercy over justice, lying to spare the community from knowing their violence was pointless",
+    "confidence": "high",
+    "quote": "All this bog between the mountains... will be flooded. Ballynaslieve would cease to exist... Every house there would disappear unless he stopped this scheme."
+  },
+  "investigator": {
+    "value": "Dr. David Grace, an archaeologist who witnesses the destruction and becomes both investigator and moral arbiter, ultimately choosing compassion over truth",
+    "confidence": "high",
+    "quote": "David Grace, hunched over the wheel... an archaeologist, not a fell-runner... He looked at the anguish in Pat Kavanagh's face and sighed."
+  },
+  "suspect_architecture": {
+    "value": "Single primary antagonist: Pat Kavanagh (publican/community leader), who orchestrates cover-ups with collective mob backing from unnamed villagers. No traditional murder suspects \u2014 the 'crime' is destruction of heritage. Kavanagh has motive (economic survival of Ballynaslieve), means (community authority and physical manpower), and opportunity (local knowledge and timing). The villagers are undifferentiated instruments, not independent suspects. No false implicated party.",
+    "confidence": "high",
+    "quote": "When Mrs. Pat showed her guest to his room, Kavanagh called a council of war."
+  },
+  "red_herring": {
+    "value": "The Neolithic passage grave is presented as the central discovery and threat to the power scheme, drawing both Grace's and the reader's attention. Its destruction appears to be the climactic act of suppression \u2014 but it is a misdirection from the Bronze Age earthworks, which are the more significant find and the second cover-up. Both are themselves subordinate to the final irony: the hydroelectric flood that will destroy Ballynaslieve itself, rendering all the cover-ups futile.",
+    "confidence": "high",
+    "quote": "Where it had stood, its tall stones buried to their shoulders in the rubble of the collapsed cairn, now there was only mud rutted with tracks."
+  },
+  "clue_fairness": {
+    "value": "The chalice is presented to the reader simultaneously with Grace \u2014 both discover it in the same moment of narration. The 'Hydroelectric Scheme' lettering on Bernstein's jacket is visible to the reader at the same moment Grace reads it, allowing the reader to anticipate the ironic resolution (flooding the valley) fractionally before Grace articulates it. The key structural clue \u2014 that a hydroelectric scheme requires a dam and flood-back \u2014 is available to any reader before Grace voices it.",
+    "confidence": "high",
+    "quote": "He hated his flash blue jacket with the words 'Slieve Crum Hydroelectric Scheme' emblazoned on the front."
+  },
+  "social_world": {
+    "value": "Rural Irish community power structure centred on Kavanagh as publican-patriarch, commanding deference and collective action. Against him: the lone academic outsider (Grace) with institutional authority but no local leverage. Above both: the American engineer Bernstein, representing transnational capital and state-backed development. Political representatives are mentioned as already co-opted by Kavanagh. The National Museum in Dublin is invoked as a distant institutional power that could override local interests but is inaccessible due to the downed phone line.",
+    "confidence": "high",
+    "quote": "Pat who got the backing of the area's political representatives."
+  },
+  "alibi": {
+    "value": "No traditional alibi in the murder-mystery sense. The nearest structural equivalent: Kavanagh's repeated denial of agency \u2014 'The forestry? It's nothing to do with me' and 'that was only Willie John Savage's mammy's old house.' These are false alibis of ignorance and misidentification rather than whereabouts, deployed to reframe criminal destruction as innocent coincidence. The ploughing is attributed to unnamed forestry contractors, distancing Kavanagh from direct culpability.",
+    "confidence": "medium",
+    "quote": "'The forestry? It's nothing to do with me.' 'Is that where your earthworks were? Sure, that was nothing more than drainage ditches.'"
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated through a physical object \u2014 the silver chalice \u2014 which proves the site's significance beyond Grace's testimony alone. The ironic counter-reveal operates through a corporate logo: the word 'Hydroelectric' on Bernstein's jacket exposes that the power scheme requires flooding, which will destroy Ballynaslieve itself. This visual/textual clue triggers the reversal without dialogue, demonstrated to reader and investigator simultaneously through the act of reading the jacket.",
+    "confidence": "high",
+    "quote": "A shape in the furrow caught his eye... he picked it carefully out of the earth and rinsed it in the waters of the lough, and the bowl took on a gun-metal glow."
+  },
+  "media_and_audience": {
+    "value": "No press or formal media present. The 'audience' is the village community itself, whose collective narrative (old Mrs. Savage's house, field drains, a teakettle) is weaponised to delegitimise Grace's professional findings. Kavanagh understands that without physical proof, Grace's expert testimony will be disbelieved by institutions: 'they won't risk large sums of public money on your word alone.' The chalice's destruction into the lough is the act of eliminating the only media-ready artefact that could shift public/institutional opinion.",
+    "confidence": "high",
+    "quote": "As long as you've no proof, nothing to show the museum people, there'll be no dig... they won't risk large sums of public money on your word alone."
+  },
+  "investigator_wound": {
+    "value": "Grace's wound is his professional passion for the past over the present \u2014 his 'radiance like religion' for archaeological truth. The case exploits this by forcing him to choose between saving irreplaceable heritage and saving a living community. His final capitulation (the lie about 'old Mrs. Savage's teakettle') is made possible only because the hydroelectric revelation shifts the moral calculus: protecting the community becomes, paradoxically, the same act as protecting the site from flooding. His wound is that his devotion to the past is weaponised against him, then redeemed by the same irony.",
+    "confidence": "high",
+    "quote": "A radiance like religion was in his eyes and, up to his knees in the lough, he held up the chalice in an almost Arthurian pledge."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "filename": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "text_len": 19680,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "JO BANNISTER",
+    "anthology_title": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch",
+    "story_index": 3,
+    "story_count": 15
+  }
+}

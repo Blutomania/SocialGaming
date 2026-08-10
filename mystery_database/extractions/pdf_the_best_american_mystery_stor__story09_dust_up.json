@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Execution-style murder of a federal witness (Harry Coelho) by organized crime operatives; central question: will the eyewitness (Pansy) and her video evidence survive to expose the killers?",
+    "confidence": "high",
+    "quote": "With a cool and steady hand, Beach Boy let off two silenced shots...a second blast hit him squarely in the chest and lifted him...over the precipice"
+  },
+  "victim": {
+    "value": "Harry Coelho, a federal prisoner/witness being transported from Clark County jail; killable because he is in custody and vulnerable during transport, targeted for elimination by organized crime",
+    "confidence": "high",
+    "quote": "Harry Coelho left the Clark County jail riding in the back seat of a midnight blue Crown Victoria...The snatch went smooth, by the book"
+  },
+  "closed_world": {
+    "value": "Red Rock Canyon, Nevada\u2014a remote desert environment with extreme heat, sandstorms, limited escape routes, and geographic isolation that traps the culprits and forces confrontation",
+    "confidence": "high",
+    "quote": "The old quarry made a box canyon. Its dead-end access road was too narrow for the Navigator to turn around, so it had to back out the way it came in."
+  },
+  "culprit_and_motive": {
+    "value": "Mickey Togs (orchestrator), Mango (triggerman), Otto (driver)\u2014organized crime operatives paid to eliminate a federal witness; motive is criminal contract murder for organized crime figures",
+    "confidence": "high",
+    "quote": "Do a little morning job for the Big Guys, be back on the Vegas Strip before lunch...One hundred K to Big Mango the triggerman, one hundred to Otto the Bump for driving"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Pansy Reynard, a Delta Force desert survival instructor and wildlife observer who witnesses the murder by accident while conducting a falcon nest watch; she becomes both investigator and hunter pursuing the killers through the desert",
+    "confidence": "high",
+    "quote": "I have it all on tape, you assholes. Come and get it...She set the lens of her palm-sized digital video recorder to zoom and started taping the scene"
+  },
+  "suspect_architecture": {
+    "value": "Three perpetrators with differentiated roles: Mickey Togs (mastermind/organizer, motive: $600K payday from unnamed 'Big Guys'), Otto the Bump (getaway driver, professional hired hand), Mango/Beach Boy (triggerman, Pacific Islander, hired muscle). A fourth figure \u2014 a bribed federal agent \u2014 is referenced but unseen. Victim Harry Coelho is a witness being silenced. Lyle functions as a secondary character whose unexplained absence creates brief suspicion.",
+    "confidence": "high",
+    "quote": "One hundred K to Big Mango the triggerman, one hundred to Otto the Bump for driving, another hundred to bribe a cooperative Federal squint"
+  },
+  "red_herring": {
+    "value": "Lyle's unexplained absence from the nest watch is framed with ambiguity \u2014 Pansy wonders whether he feared the desert or feared her company \u2014 briefly suggesting possible foreknowledge or involvement. His alibi (plague case in a ground squirrel) resolves the suspicion, but his no-show is narratively foregrounded as a potential misdirection.",
+    "confidence": "medium",
+    "quote": "She was curious to know which he had shunned, an evening in her company or the potential perils of the place."
+  },
+  "clue_fairness": {
+    "value": "The digital video recording Pansy makes of the murder is explicitly shown to the reader in real time as she films it, establishing the evidentiary record before any resolution. The reader observes the same footage-being-captured that will later constitute proof. The survival kit details (slingshot, steel balls, wine bottle) are itemized early, so Pansy's later improvisations are foreshadowed fairly.",
+    "confidence": "high",
+    "quote": "She set the lens of her palm-sized digital video recorder to zoom and started taping the scene as it unfolded below."
+  },
+  "social_world": {
+    "value": "Layered institutional hierarchies: organized crime operating under 'Big Guys' patronage; a corrupted federal marshal network (bribed 'Federal squint'); military-to-civilian overlap (Pansy as Delta Force instructor moonlighting with Fish and Game); bureaucratic Fish and Game office culture where paperwork and Chamber of Commerce politics delay wildlife response. Las Vegas casino economy provides the backdrop power structure.",
+    "confidence": "high",
+    "quote": "another hundred to bribe a cooperative Federal squint... Lieutenant Pansy Reynard, desert survival instructor with the Army's SFOD-D"
+  },
+  "alibi": {
+    "value": "Lyle's alibi for missing the nest watch \u2014 a possible plague case in a ground squirrel requiring containment from the Chamber of Commerce \u2014 is offered late and accepted by Pansy without verification. It functions structurally as an alibi (accounting for whereabouts during the crime window) though its truth is presented as given rather than tested.",
+    "confidence": "medium",
+    "quote": "I got jammed up here in the office with a possible plague case in a ground squirrel, Chamber of Commerce all in a lather"
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated through physical evidence and environmental attrition rather than deduction: the digital video recording documents the murder; the desert itself incapacitates the killers (sand fouling the engine, miring the SUV, heat exhaustion); Mango is neutralized by slingshot steel balls mistaken for gunfire. The dead falcon delivered to the lab triggers Lyle's confession of absence and sets up the denouement.",
+    "confidence": "medium",
+    "quote": "She placed a large bundle wrapped in a camouflage tarp onto his desk... two long, graceful wings opened out of the tarp chrysalis."
+  },
+  "media_and_audience": {
+    "value": "The rare Aplomado falcon hatchling is framed as a newsworthy public event ('singular, newsworthy even'), creating an implicit audience of raptor-watching communities and press. The murder is concealed within this naturalist context. Institutionally, the Chamber of Commerce suppresses plague news to protect Las Vegas tourism, demonstrating how civic image management shapes what crimes become visible.",
+    "confidence": "medium",
+    "quote": "Chamber of Commerce all in a lather that word would get out... no reported Aplomado falcon sightings in Nevada since 1910"
+  },
+  "investigator_wound": {
+    "value": "Pansy's wound is relational and professional: she is self-aware about being 'off-putting' and intimidating, and her investment in Lyle's companionship \u2014 packing wine, two kits, planning an evening under desert stars \u2014 exposes emotional vulnerability beneath the hyper-competent Delta Force exterior. The case forces her to act alone precisely in the domain where she most wanted partnership.",
+    "confidence": "medium",
+    "quote": "Pansy admitted that she could be just a little bit intimidating... she had packed two entire survival kits... a very good bottle of red wine"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Dust Up",
+    "author": "WENDY HORNSBY",
+    "anthology_title": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow",
+    "story_index": 9,
+    "story_count": 19
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder by gunshot during apparent carjacking. Dr. Wasim Mahmood shot and killed on Flagler near Currie Park; Mercedes abandoned in Delray Beach. Central question: who orchestrated the killing and why?",
+    "confidence": "high",
+    "quote": "Dr. Wasim Mahmood, prominent etc., etc., had suffered gunshot wounds during an apparent carjacking on Flagler near Currie Park and was pronounced dead on arrival at Good Samaritan."
+  },
+  "victim": {
+    "value": "Dr. Wasim Mahmood, Pakistani plastic surgeon with history of infidelity and suspected domestic abuse. Killable because: wealthy, unfaithful to current wife, allegedly burned first wife to death in Pakistan, and sexually predatory toward household staff.",
+    "confidence": "high",
+    "quote": "A guy gets tired of his wife in Pakistan? He burns her to death. Or has it done... thousands of women are burned every year 'cause their husbands are tired of them"
+  },
+  "closed_world": {
+    "value": "Palm Beach, Florida high-society enclave. The Mahmood household on Ocean Drive serves as the primary space; interactions bounded by the domestic staff, the doctor's medical practice, and the social world of wealthy residents.",
+    "confidence": "medium",
+    "quote": "She came to the home on Ocean Drive, only a few blocks from Donald Trump's, expecting to not have a good feeling for a woman named Mrs. Mahmood"
+  },
+  "culprit_and_motive": {
+    "value": "Lourdes (maid) and unidentified Colombian associates hired by Ginger (Mrs. Mahmood). Motive: Ginger fears being murdered by her husband (as happened to his first wife) and wants to escape the marriage with the house and money; pays 20,000 cash upfront for the killing.",
+    "confidence": "high",
+    "quote": "You pay the money, all of it before, and we don't speak of this again... 'If I give you close to twenty thousand in cash, today, right now, you still want to forget it?'"
+  },
+  "resolution": {
+    "value": "No formal resolution presented. Dr. Mahmood is cremated by his widow without delay. Police have 'no clues, nothing at all to go on.' The narrative ends with Lourdes hosting a celebratory party for Ginger with the Colombian associates\u2014suggesting the crime goes unpunished and uninvestigated.",
+    "confidence": "high",
+    "quote": "the police, who had no clues, nothing at all to go on... She said she was stopping to see friends and wouldn't be home until late."
+  },
+  "investigator": {
+    "value": "Lourdes, the Colombian maid and hired accomplice. Reader experiences the mystery through her perspective as she observes Ginger's mounting desperation, negotiates the murder contract, and witnesses the aftermath.",
+    "confidence": "high",
+    "quote": "Lourdes believed the woman was very close to telling what she was thinking about... She said, 'How would you feel if a load of wet concrete fell on your husband?'"
+  },
+  "suspect_architecture": {
+    "value": "Two primary figures: Lourdes (widow with prior involvement in husband's concrete murder, motive: survival/escape from abuse) and Mrs. Mahmood/Ginger (wife fearing imminent death, motive: wealth retention, freedom). Both share means via unnamed Colombian intermediaries. Dr. Mahmood functions as victim. No formal investigators appear as characters.",
+    "confidence": "high",
+    "quote": "\"There was a suspicion that friends of mine here from Colombia could be the ones did it.\""
+  },
+  "red_herring": {
+    "value": "The carjacking narrative serves as the official false trail \u2014 Dr. Mahmood's death is framed publicly as a random street crime, diverting suspicion from the domestic conspiracy. The abandoned Mercedes in Delray Beach reinforces the carjacking cover story.",
+    "confidence": "high",
+    "quote": "\"apparent carjacking on Flagler near Currie Park...His Mercedes was found abandoned on the street in Delray Beach.\""
+  },
+  "clue_fairness": {
+    "value": "The reader is shown Lourdes's prior murder of Mr. Zimmer (concrete burial, hands tied) before the plot against Dr. Mahmood fully crystallises, establishing her as an experienced killer. The Colombian intermediaries and the $20,000 cash exchange are narrated directly, giving the reader full knowledge of the conspiracy.",
+    "confidence": "high",
+    "quote": "\"How would you feel if a load of wet concrete fell on your husband?\""
+  },
+  "social_world": {
+    "value": "Layered immigrant-employer hierarchy in South Florida: Colombian mail-order brides at the bottom, Filipino maids, Pakistani professional-class doctor, and a white American ex-stripper occupying an unstable privileged position through marriage. Wealth, visa status, and gender power are the operative axes. Lourdes is nominally employed by the doctor, not the wife \u2014 a legal fiction of control.",
+    "confidence": "high",
+    "quote": "\"Technically she would be an employee of Dr. Mahmood's.\""
+  },
+  "alibi": {
+    "value": "No explicit alibi is constructed for Lourdes or Mrs. Mahmood within the text. The carjacking framing implicitly exonerates both by suggesting an unknown third party. The police visit Mrs. Mahmood but 'had no clues, nothing at all to go on,' indicating the alibi is the crime scene itself rather than a personal account.",
+    "confidence": "medium",
+    "quote": "\"spent time with the police, who had no clues, nothing at all to go on\""
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is social and theatrical rather than forensic: the final scene shows the two Colombian men at Lourdes's poolside party, making visible the network that executed the murder. The cumbia celebration and Lourdes wearing Mrs. Mahmood's swimsuit signal a power inversion \u2014 Lourdes now controls the house and the situation.",
+    "confidence": "high",
+    "quote": "\"The Colombian guys come to see you dance.\""
+  },
+  "media_and_audience": {
+    "value": "The newspaper frames Dr. Mahmood's death as a 'prominent' citizen's carjacking \u2014 institutional press packaging that neutralises domestic motive. Mrs. Mahmood stage-manages public perception by arranging immediate cremation, destroying physical evidence under the socially legible guise of grief.",
+    "confidence": "high",
+    "quote": "\"arranged to have Woz cremated without delay. She said, 'What do you think?' 'About what?' 'Having the fucker burned.'\""
+  },
+  "investigator_wound": {
+    "value": "No formal investigator is present; the story deliberately omits this role. The closest structural equivalent is Lourdes herself, whose wound is her history of abuse and murder \u2014 she reads Mrs. Mahmood's situation through the lens of her own victimhood and prior crime, making her both investigator-analogue and perpetrator.",
+    "confidence": "low",
+    "quote": "\"I accepted it with a feeling of relief, knowing I wouldn't be beaten no more.\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "filename": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "text_len": 24628,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "When\tthe\tWomen\tCome\tOut\tto\tDance",
+    "author": "ELMORE\tLEONARD",
+    "anthology_title": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly",
+    "story_index": 11,
+    "story_count": 23
+  }
+}

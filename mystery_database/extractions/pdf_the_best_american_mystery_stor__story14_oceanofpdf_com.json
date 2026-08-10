@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder of Lana Parsons (strangulation) and Mick Bright (gunshot); framed as rape and robbery. Central question: Who killed the girl and why, and how did the killer die?",
+    "confidence": "high",
+    "quote": "Karmen lay on the floor in the corner, naked. Her eyes were open and very, very bloodshot. Her throat was dark from strangulation."
+  },
+  "victim": {
+    "value": "Lana Parsons, daughter of Nora Parsons. Killable because she discovered her father was framed by detective Leonid McGill's investigation, which sent him to prison where he died. She sought revenge on McGill and her mother.",
+    "confidence": "high",
+    "quote": "I found a rusty old metal box in the garage...I guess it shouldn't surprise me that you hired a detective to prove that daddy was stealing from his company."
+  },
+  "closed_world": {
+    "value": "An apartment building on the Upper East Side in New York City; the specific apartment becomes the crime scene where victim and killer(s) are found.",
+    "confidence": "medium",
+    "quote": "We got an anonymous call five days ago...It was about a disturbance in an apartment building on the Upper East Side."
+  },
+  "culprit_and_motive": {
+    "value": "Lana Parsons killed Gert Longman (McGill's lover) and orchestrated her own death with Mick Bright to frame McGill for rape, robbery, and murder\u2014revenge for her father's imprisonment based on McGill's investigation.",
+    "confidence": "high",
+    "quote": "I waited for a long time to figure out what to do about it. Finally I decided to use the man you used to kill daddy to break your heart."
+  },
+  "resolution": {
+    "value": "No formal justice. McGill discovers the truth through the unmailed letters and evidence, destroys them, and evades prosecution. Lieutenant Kitteridge appears to know but takes no action. Joe Haller, innocent, hangs himself in prison.",
+    "confidence": "high",
+    "quote": "Leonid burned the letters Lana had intended to incriminate him...An item from the New York Post. It was a thumbnail article about a prisoner on Ryker's Island named Joe Haller. He'd been arrested for robbery. While waiting to stand trial he hung himself."
+  },
+  "investigator": {
+    "value": "Leonid McGill, private detective. He is simultaneously the intended victim of the frame, the investigator of his own case, and complicit in the original crime (false investigation) that sparked the revenge plot.",
+    "confidence": "high",
+    "quote": "L. T. McGill, P.I...Leonid washed his hands carefully and then removed any sign that he had been in the girl's apartment."
+  },
+  "suspect_architecture": {
+    "value": "Multiple entangled figures: Lana Parsons (vengeful daughter/killer), Mick Bright (addict accomplice/rapist), Nora Parsons (original client/manipulator), Richard Mallory (gigolo/con target), Joe Haller (framed patsy), Nestor Bendix (criminal associate). Differentiated by motive: Lana by filial revenge, Nora by self-preservation, Haller as innocent dupe, Bright as hired tool. McGill himself is morally compromised and nearly framed.",
+    "confidence": "high",
+    "quote": "She would expect him to have kept the expensive jewelry. Robbery, rape, and murder and he would have been as innocent as Joe Haller."
+  },
+  "red_herring": {
+    "value": "The Wyant brothers debt and threat of violence misdirects reader attention toward a mob-related danger as the story's central threat. Lieutenant Kitteridge's investigation into Nestor Bendix and the Amberson's Financials robbery functions as a sustained false trail, implying McGill's jeopardy lies in the armored-car case rather than the revenge plot Lana is executing.",
+    "confidence": "high",
+    "quote": "You were seen speaking to Nestor Bendix on January four... The money he had in the bag was from the armored car that had just made a drop at Amberson's."
+  },
+  "clue_fairness": {
+    "value": "Key clues are placed before the reader simultaneously with McGill: the name 'Karmen with a K' (later revealed as Lana Parsons using an alias), the .22 long-barrel pistol Nora Parsons reported losing 17 years prior, the dead girl's wallet showing 'Lana Parsons', and the two stamped envelopes in the killer's backpack. The reader has access to each physical object as McGill discovers it.",
+    "confidence": "high",
+    "quote": "The kid had used a .22 caliber long-barrel pistol. Leonid was sure that it was the pistol Nora Parsons said that she lost seventeen years before."
+  },
+  "social_world": {
+    "value": "Stratified New York of debt, patronage, and coercion: McGill operates between loan-shark enforcers (Wyant brothers, Bilko/Norman), corrupt or complicit police (Kitteridge), upper-crust real estate and domestic-service networks, and the criminal underworld. Secrets function as currency; power flows to those who hold information. Class is marked by office rents, suit quality, and who can afford to frame whom.",
+    "confidence": "high",
+    "quote": "Too many people had too many secrets. And secrets were the most valuable commodity in New York City."
+  },
+  "alibi": {
+    "value": "McGill constructs a false alibi at his own office door, impersonating a janitor to avoid identifying himself to Karmen/Lana. More structurally, the official verdict on Mick Bright's death ('fell on his own gun') functions as a false alibi for McGill, provided tacitly by Kitteridge, who clearly suspects the truth but accepts the convenient fiction.",
+    "confidence": "high",
+    "quote": "Best the detectives could tell the kid was high and fell on his own gun. It went off and nicked his heart... While saying this Carson stared deeply into McGill's eyes."
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated through physical documents: Lana's two stamped letters (one to her mother with the incriminating photograph, one to a lawyer with McGill's original report), which reconstruct the entire chain of causality. The reveal is self-contained in Lana's own handwriting \u2014 McGill reads himself into the frame and understands the full revenge architecture without any external exposition.",
+    "confidence": "high",
+    "quote": "I took the report Leonid McGill made about daddy. I'm sending it to my lawyer. Maybe he can prove some kind of conspiracy."
+  },
+  "media_and_audience": {
+    "value": "Institutional narrative management replaces press coverage: Kitteridge packages the double death as a drug-addled rape-robbery gone wrong, and McGill reads the Joe Haller story as a thumbnail item in the New York Post \u2014 a man who hanged himself awaiting trial, his innocence permanently buried under official record. The justice system itself becomes the medium that narrates and forecloses the truth.",
+    "confidence": "high",
+    "quote": "It was a thumbnail article about a prisoner on Ryker's Island named Joe Haller. He'd been arrested for robbery. While waiting to stand trial he hung himself in his cell."
+  },
+  "investigator_wound": {
+    "value": "McGill's wound is complicity and moral compromise: years earlier he dug up evidence that sent an innocent man (Parsons) to prison where he died, simply because a client paid him and he 'didn't argue.' The case forces him to confront that his professional amorality destroyed a family and generated a killer. His guilt is confirmed when he decides against exposing Nora \u2014 'Why hurt Nora when he was just as guilty?'",
+    "confidence": "high",
+    "quote": "His work for Lana's mother had driven the girl to murder and suicide... Why hurt Nora when he was just as guilty?"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "WALTER MOSLEY",
+    "anthology_title": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow",
+    "story_index": 14,
+    "story_count": 19
+  }
+}

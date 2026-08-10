@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": "Three primary figures with interlocking motives: Kathy (insider manipulator, former lover of Rome, orchestrating the investment meeting while flirting with the loan officer); Rome (marijuana kingpin, ex-lover, being asked for $350k, facing fence saboteurs from a rival/former employee faction); Ted (desperate founder, out of his depth, unknowing pawn). Secondary: Brian (Rome's enforcer, SELF MADE tattoos), Monarch (jealous girlfriend), Mr. White (loan officer). Differentiation: Kathy has motive and information asymmetry; Rome has means and criminal exposure; Ted has pure financial desperation. The fence-cutters (former employees) represent a separate threat vector.",
+    "confidence": "medium",
+    "quote": "\"He's a businessman. He's not going to give us the money out of the kindness of his heart.\""
+  },
+  "red_herring": {
+    "value": "The story plants the suggestion that the dangerous meeting with Rome is Ted's primary peril, misdirecting attention from Kathy's dual manipulation \u2014 she is simultaneously running a charm offensive on the loan officer (Mr. White) and exploiting her intimate history with Rome to extract money, concealing her real leverage and agenda from Ted. The 'angel investor' framing to Mr. White obscures the criminal nature of the source.",
+    "confidence": "medium",
+    "quote": "\"An angel investor then.\" \"Of a type,\" she said."
+  },
+  "clue_fairness": {
+    "value": "The reader is given parallel access to both scenes simultaneously \u2014 Ted driving to Rome's farm and Kathy dining with Mr. White \u2014 allowing the reader to assemble the full picture of Kathy's dual strategy before any single character can. Details such as Rome's identity as Kathy's ex ('I know you're married, Kath'), the gravel driveway as security measure, and Brian's SELF MADE tattoos (linking him to the gas station encounter Ted already witnessed) are all presented to the reader in real time.",
+    "confidence": "medium",
+    "quote": "\"SELF MADE, my ass,\" he thought. \"ROME'S GUY was more like it.\""
+  },
+  "social_world": {
+    "value": "A collision of three economic strata and their attendant power networks: Silicon Valley startup culture (Ted, the Caltech geeks, Google/Facebook as aspirational horizon); the rural criminal economy (Rome's cannabis operation, gutter punk trimmers, cartel-adjacent rivals, land-dispute old families); and the financial establishment (Mr. White, Stanford MBAs, bank loan officers). Kathy uniquely traverses all three, having originated in working-class Fresno (mother waitressing at Chat 'n' Chew), passed through the rave/counterculture world, and credentialed her way into both Silicon Valley and Rome's operation. Patronage flows through her as the crucial node.",
+    "confidence": "high",
+    "quote": "\"She was the one who'd student-loaned her way into the club. She was the one who'd grown tired of being poor.\""
+  },
+  "alibi": {
+    "value": "Kathy's stated alibi for not conducting the Rome meeting herself is that she must be at dinner with the loan officer to 'flirt out a few extra days on the repayment.' This is simultaneously true and a displacement \u2014 she is also the one who arranged the meeting with Rome and controls the information flow to both men. Rome's alibi for agreeing ('it's business') is undercut immediately by Monarch's reaction and his own momentary forgetting of who Monarch is. No formal alibi for a crime scene exists yet, but the architecture of false or partial explanations is established.",
+    "confidence": "medium",
+    "quote": "\"Kathy was out to dinner with the loan officer, trying to flirt out a few extra days on the repayment.\""
+  },
+  "reveal_mechanic": {
+    "value": "The story seeds a technical reveal mechanic through MicroWeather's core concept: radio waves from cell phones mapping pressure systems can predict weather 'down to the square inch.' This same logic \u2014 invisible signals betraying precise location and conditions \u2014 could function as the story's eventual investigative tool, revealing who was where and when. Additionally, the gravel driveway as an acoustic security system (Rome always hears approaching cars) and the bolt cutters with red rubber grips (brand-new, forensically datable) suggest physical evidence reveal mechanics are being constructed.",
+    "confidence": "low",
+    "quote": "\"The future\u2014whether it would rain, sleet, or snow\u2014would always be known, and down to the square inch.\""
+  },
+  "media_and_audience": {
+    "value": "The story critiques how technology and markets package reality: MicroWeather's pitch is explicitly about rebranding weather data as 'cool,' and Kathy internally strategizes that to persuade the loan officer you must 'give their wives cancer, shoot their children in the street' \u2014 i.e., weaponise disaster narrative. The Silicon Valley backdrop (Google, Facebook as visible gods) frames the startup world as a media-legitimacy machine. Rome's criminal economy is invisible to this public narrative entirely, existing in darkness literally and figuratively.",
+    "confidence": "medium",
+    "quote": "\"When in doubt, it was best to hit them with tragedy and disaster... Blow the world apart.\""
+  },
+  "investigator_wound": {
+    "value": "Ted functions as the de facto investigator-figure entering a dangerous unknown world, and his wound is his profound self-knowledge of inadequacy: he is explicitly 'the uncool one,' displaced from his own company's most critical moment by a wife who is more competent in every social register he needs. His wound is emasculation by competence \u2014 he cannot pitch coolly, cannot navigate criminal worlds, cannot read the room. This vulnerability is what Kathy has exploited structurally by sending him rather than going herself, and what Rome and Brian will inevitably read and use.",
+    "confidence": "medium",
+    "quote": "\"She should be the one texting her. But instead... Ted was texting: I'm here, Kath!! Now what?!\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "text_len": 18610,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The\tHuman\tVariable",
+    "author": "DAN\tBEVACQUA",
+    "anthology_title": "The_Best_American_Mystery_Stories_2017_-_John_Sandford",
+    "story_index": 3,
+    "story_count": 19
+  }
+}

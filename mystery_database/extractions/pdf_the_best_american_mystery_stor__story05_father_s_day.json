@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Heat-stroke death of a 15-month-old disabled child left in a parked car in 95-degree heat. Central question: Was this negligent accident or premeditated murder disguised as forgetfulness?",
+    "confidence": "high",
+    "quote": "The boy's body took up less than a quarter of the big metal bed... Fifteen months old."
+  },
+  "victim": {
+    "value": "William Helton, 15-month-old profoundly disabled child (blind, deaf, unable to walk, talk, or crawl). 'Killable' due to severe handicap that strained parental marriage and made him a burden.",
+    "confidence": "high",
+    "quote": "The kid was handicapped. Blind, deaf, a bunch of things wrong... He just cried a lot."
+  },
+  "closed_world": {
+    "value": "Real estate office (PPG) parking lot and interior on a Sunday morning; hospital emergency room. Small professional space where father's movements and timeline are traceable.",
+    "confidence": "high",
+    "quote": "I parked in my assigned space behind PPG, and I went in."
+  },
+  "culprit_and_motive": {
+    "value": "Stephen Helton (father) and Arlene Helton (mother). Motive: The disabled child's care was destroying their lives and marriage. Arlene couldn't tolerate him; Stephen executed a plan she devised, framing it as accidental forgetfulness.",
+    "confidence": "high",
+    "quote": "She was embarrassed that we had a kid like that!... She told me I had to do something about it!"
+  },
+  "resolution": {
+    "value": "Detective Bosch extracts confessions through strategic interrogation: planting false evidence (LA Times story of similar death), confronting Stephen with his wife's statement, and revealing knowledge of premeditation (no new nanny sought). Both parents will be prosecuted.",
+    "confidence": "high",
+    "quote": "It was her! She was embarrassed... She told me how to do something about it!"
+  },
+  "investigator": {
+    "value": "Harry Bosch, homicide detective with 20+ years experience. Mentors junior partner Ferras. Uses procedural rigor, psychological manipulation, and evidence synthesis to uncover premeditation beneath apparent accident.",
+    "confidence": "high",
+    "quote": "Bosch had worked thousands of cases, but nothing ever touched him like the sight of a young child's lifeless body."
+  },
+  "suspect_architecture": {
+    "value": "Two suspects: Stephen Helton (father, primary \u2014 means: left child in hot car, motive: burden of disabled child, opportunity: sole caretaker) and Arlene Helton (wife/mother, secondary \u2014 motive: embarrassment and lifestyle disruption, opportunity: directed plan via phone call). Differentiated by role: one executes, one instigates.",
+    "confidence": "high",
+    "quote": "It was her idea. She's the one who couldn't take it anymore... She told me I had to do something about it!"
+  },
+  "red_herring": {
+    "value": "The staged appearance of accidental neglect \u2014 a distracted father, a sleeping child, a busy real estate deal \u2014 designed to make the death look like a tragic but common hot-car accident rather than premeditated murder. The nanny departure and absent craigslist ad quietly undercut this framing.",
+    "confidence": "high",
+    "quote": "No ad on craigslist... You knew you weren't going to need one."
+  },
+  "clue_fairness": {
+    "value": "The absence of a new nanny advertisement on craigslist is presented to the reader simultaneously with Bosch receiving it via Ferras's file, allowing the reader to draw the same inference as Bosch. The body temperature reading and timeline discrepancy are also stated openly in the text.",
+    "confidence": "high",
+    "quote": "The note said, 'No ad on craigslist.'"
+  },
+  "social_world": {
+    "value": "Los Angeles real estate culture \u2014 competitive, commission-driven, image-conscious. The Heltons' professional identity (top-volume team, signing rooms, client hand-holding) frames their disabled child as an obstacle to status and mobility. Nanny labour turnover reflects class dynamics: caregiving devalued when the child is 'difficult'.",
+    "confidence": "high",
+    "quote": "why deal with a handicapped child if someone with a normal, healthy child will pay you the same thing?"
+  },
+  "alibi": {
+    "value": "Helton claims he forgot the child due to distraction from a phone call and a sleeping baby \u2014 an alibi of absent-mindedness rather than location. It partially collapses when Bosch notes he never posted a new nanny ad after the previous one quit, suggesting he knew he would not need one.",
+    "confidence": "high",
+    "quote": "I forgot he was there... I forgot I had him with me!"
+  },
+  "reveal_mechanic": {
+    "value": "Psychological entrapment: Bosch fabricates a claim that the wife has already accused Helton, exploiting his fear of being solely blamed. The false attribution ('she said it gave you the idea') provokes Helton to confess and redirect blame onto his wife, constituting an admission of planning.",
+    "confidence": "high",
+    "quote": "She mentioned a story you found in the L.A. Times... She was worried that it gave you the idea. / Oh, my God, I can't believe she..."
+  },
+  "media_and_audience": {
+    "value": "A real LA Times story about an accidental hot-car death (Lancaster robbery case) is used both as a blueprint the killers may have copied and as an interrogation prop by Bosch. The existence of prior press coverage normalises the crime type, which is part of why the staged accident was plausible.",
+    "confidence": "high",
+    "quote": "a story that ran in the L.A. Times ten months earlier... about the heat-stroke death of a child who had been left in a car"
+  },
+  "investigator_wound": {
+    "value": "Bosch is an absent father \u2014 his daughter lives 8,000 miles away, and in her ten years he has been with her on only one Father's Day. The case of a father who murders his child forces Bosch to interrogate his own failures of paternal presence, briefly destabilising his interrogation rhythm.",
+    "confidence": "high",
+    "quote": "In her ten years, he had been with her on only one Father's Day. What did that say about him?"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Father's Day",
+    "author": "MICHAEL CONNELLY",
+    "anthology_title": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver",
+    "story_index": 5,
+    "story_count": 25
+  }
+}

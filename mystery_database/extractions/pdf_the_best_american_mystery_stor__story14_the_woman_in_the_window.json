@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": "Two primary figures: the woman (motive: revenge/self-preservation, means: sewing shears hidden under cushion) and the man (motive: control/disposal, means: physical strength, history of violence including wartime killing). Each harbors murderous intent toward the other simultaneously, creating a closed two-person architecture with mutual means, motive, and opportunity converging at eleven a.m.",
+    "confidence": "high",
+    "quote": "Kill or be killed."
+  },
+  "red_herring": {
+    "value": "The woman's repeated denial \u2014 'No! None of this will happen, don't be ridiculous' \u2014 functions as misdirection, suggesting the violence is fantasy rather than imminent reality. The romantic framing (roses, chocolates, 'Tea for two') falsely packages the encounter as a lover's reunion, concealing the mutual lethal intent building beneath it.",
+    "confidence": "medium",
+    "quote": "No! None of this will happen, don't be ridiculous."
+  },
+  "clue_fairness": {
+    "value": "All evidence of impending violence is given to the reader in real time and symmetrically: the shears under the cushion are disclosed early and rechecked at the close; the man's throttling impulses and wartime 'tussle' history are narrated in his own internal voice; the eleven-fifteen deadline is declared by both parties independently. No information is withheld.",
+    "confidence": "high",
+    "quote": "Her fingers grope for the shears beneath the cushion. There!"
+  },
+  "social_world": {
+    "value": "Midcentury New York patriarchal economy: the man's wealth, marriage, and class position (Upper East Side, Chambers Street office, Delmonico's) grant him total structural power over the woman, a Polish-immigrant secretary from Hackensack whose apartment, rent, shoes, and social standing are entirely dependent on his patronage. Gender and class asymmetry are the operative power structure.",
+    "confidence": "high",
+    "quote": "Pretty damn good for a little Polack secretary from Hackensack, New Jersey."
+  },
+  "alibi": {
+    "value": "The man's alibi to his wife is a fabricated dental appointment in midtown; he also leaves a standing message with the maid \u2014 'Unavoidable delay at office. Don't wait dinner.' The woman's alibi structure is her Thursday day off, normalizing her availability. Both alibis are explicitly constructed lies presented to the reader as such.",
+    "confidence": "high",
+    "quote": "His excuse is a dental appointment in midtown. Unavoidable!"
+  },
+  "reveal_mechanic": {
+    "value": "No formal detective-story reveal mechanic is present; the story is a psychological pressure-cooker that ends on the threshold of violence without resolving it. The 'revelation' is structural: the reader simultaneously inhabits both would-be killers' interiority, so the solution \u2014 mutual lethal intent \u2014 is demonstrated through dual free indirect discourse rather than deductive exposition.",
+    "confidence": "low",
+    "quote": "Soon as he unlocks the door, soon as he sees her, he will know what it is he will do to her."
+  },
+  "media_and_audience": {
+    "value": "No press, institutional, or public-opinion apparatus appears in the text. The social audience is entirely private and domestic: the wife who suspects, the office colleagues who envy the woman's apartment, the maid who takes messages. The crime, if committed, would occur in complete social invisibility \u2014 which is itself a structural condition enabling it.",
+    "confidence": "low",
+    "quote": "Nighttime there is another self."
+  },
+  "investigator_wound": {
+    "value": "There is no investigator figure. The text is a literary story, not a detective narrative. However, the woman functions as a self-investigator whose wound is her compulsive craving for the man's desire even as she consciously hates him \u2014 her psychological vulnerability is erotic dependency that paralyzes her capacity to act on her own murderous clarity.",
+    "confidence": "low",
+    "quote": "Though she hates him, she craves that look in his face."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2017_-_John_Sandford.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The\tWoman\tin\tthe\tWindow",
+    "author": "JOYCE\tCAROL\tOATES",
+    "anthology_title": "The_Best_American_Mystery_Stories_2017_-_John_Sandford",
+    "story_index": 14,
+    "story_count": 19
+  }
+}

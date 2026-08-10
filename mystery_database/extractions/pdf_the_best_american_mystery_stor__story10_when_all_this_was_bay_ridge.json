@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Unknown woman in photograph, possibly deceased; identity and circumstances of death concealed by father's associates",
+    "confidence": "medium",
+    "quote": "Who she was? I asked who she is. Is she dead, Frank? Is that what Marty meant by letting the dead rest?"
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "No resolution achieved; narrator destroys photograph and leaves the mystery unresolved, following the code of silence",
+    "confidence": "medium",
+    "quote": "I walked, and bent down at street corners, depositing each strip in a separate sewer along Fourth Avenue."
+  },
+  "investigator": {
+    "value": "Daniel (narrator), son of deceased police officer, investigating a hidden photograph of his father with an unknown woman",
+    "confidence": "high",
+    "quote": "In my shirt pocket was a photograph of my father with a woman who was not my mother...There were no clues."
+  },
+  "suspect_architecture": {
+    "value": "No formal suspect cast. The 'crime' (father's affair, possibly a covered-up death) implicates a closed circle: bartender Marty (knowing gatekeeper), retired detective Frank Sanchez (insider with knowledge), and the deceased father (perpetrator). All share motive to conceal; differentiated by role \u2014 Marty suppresses via contempt, Frank via coded warning, father via death.",
+    "confidence": "medium",
+    "quote": "He knew, and if he knew they all knew. And a decision had been reached to tell me nothing."
+  },
+  "red_herring": {
+    "value": "Frank Sanchez's elaborate squad-room story about the shot drunk functions as deliberate misdirection \u2014 consuming Daniel's attention and positioning Frank as a candid truth-teller, while actually deflecting from the photograph's secret. The broken-arm alibi ('car accident chasing robbers') is a secondary false trail.",
+    "confidence": "medium",
+    "quote": "He'd told me that he'd broken his arm in a car accident, pursuing two black kids who had robbed a jewelry store."
+  },
+  "clue_fairness": {
+    "value": "The photograph is described in full detail to the reader at the same moment Daniel examines it \u2014 age of woman, embrace style, date on back, pre-death timing \u2014 giving the reader equal access. The bartender's performed perplexity is shown behaviorally before Daniel interprets it.",
+    "confidence": "high",
+    "quote": "The manner in which he pretended to scrutinize it told me that he recognized the woman immediately."
+  },
+  "social_world": {
+    "value": "Insular Irish-American working-class enclave (Olsen's bar) structured around ethnic loyalty, police-brotherhood omert\u00e0, and mutual protection. Power flows through who is 'inside' \u2014 retired cops, regular drinkers \u2014 enforced via silence and contempt toward outsiders. Ethnic hierarchy excludes Hispanics and Blacks even as it nominally absorbs them.",
+    "confidence": "high",
+    "quote": "The men in Olsen's would be pained to reveal their zip code to a stranger...It is no coincidence that the force has historically been predominantly Irish."
+  },
+  "alibi": {
+    "value": "No classical alibi structure present. The nearest equivalent is Frank's false account of how his arm was broken ('car accident') \u2014 revealed to Daniel only retrospectively as Daniel pieces together the cover-up, suggesting Frank was present at or connected to something requiring concealment.",
+    "confidence": "low",
+    "quote": "He'd told me that he'd broken his arm in a car accident, pursuing two black kids who had robbed a jewelry store."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is psychological and linguistic rather than forensic: Frank's slip from present to past tense ('Who she was') signals to Daniel \u2014 and the reader \u2014 that the woman is dead, transforming the photograph from evidence of an affair into possible evidence of something more sinister. No formal demonstration follows; the story ends on ambiguity.",
+    "confidence": "high",
+    "quote": "Who she was? I asked who she is. Is she dead, Frank? Is that what Marty meant by letting the dead rest?"
+  },
+  "media_and_audience": {
+    "value": "No press or public narrative. The 'audience' is the bar's closed community, which collectively narrates the crime as non-existent via enforced silence. The institutional equivalent is the police 'blue wall' \u2014 the bar itself is described as its civilian analogue, packaging the truth as something that must be let to 'lie'.",
+    "confidence": "medium",
+    "quote": "The row of ascetic faces...put me in mind of the legendary blue wall of silence in the police department."
+  },
+  "investigator_wound": {
+    "value": "Daniel's wound is his lifelong alienation from his father \u2014 a relationship defined by contempt, racism, and withheld approval \u2014 which simultaneously drives his need to know the truth and undermines his claim to it. The case forces him to want intimacy with a man he resented, and to confront that his father was a stranger.",
+    "confidence": "high",
+    "quote": "For the first time that I could recall, I was experiencing curiosity about some part of my father's life."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "text_len": 23420,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "When\tAll\tThis\tWas\tBay\tRidge",
+    "author": "TIM\tMcLOUGHLIN",
+    "anthology_title": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates",
+    "story_index": 10,
+    "story_count": 22
+  }
+}

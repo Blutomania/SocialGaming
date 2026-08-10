@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Arson and mass murder: house fire that killed three family members (Mama, Daddy, Johnny). Central question: Who set the fire and why was the narrator spared?",
+    "confidence": "high",
+    "quote": "The night my family burnt up I came to in a ditch...Mama and Daddy and Johnny were still burnt up. And all that talk about who set the fire and why..."
+  },
+  "victim": {
+    "value": "The narrator's family\u2014particularly Mama, Daddy, and Johnny. Also Vivian's rabbits, burned alive by Billy. The narrator herself was the intended but failed victim.",
+    "confidence": "high",
+    "quote": "Mama and Daddy and Johnny were still burnt up...They sure did scream. Jumpin around. All lit up."
+  },
+  "closed_world": {
+    "value": "A small rural railroad town with limited population: railroad station, school, post office, general store, and surrounding farms. Billy escapes via train.",
+    "confidence": "high",
+    "quote": "There was the railroad station, where Daddy worked, the school, the post office and the little store...Most folks lived out of town, on farms."
+  },
+  "culprit_and_motive": {
+    "value": "Billy (oldest brother) set the fires. Motive unclear but suggested by his cruelty and malice toward the narrator and animals. He torched Vivian's rabbits deliberately.",
+    "confidence": "medium",
+    "quote": "Everyone knows you set the fires...They sure did scream. Jumpin around. All lit up."
+  },
+  "resolution": {
+    "value": "Vivian shoots and kills Billy when he returns two years later, attempting to harm the narrator. Justice is delivered by Vivian with a shotgun, extrajudicial but final.",
+    "confidence": "high",
+    "quote": "She had the shotgun she kept behind the door and was pointing it at Billy...It caught Billy in the neck, and face, and blew him clean off the porch."
+  },
+  "investigator": {
+    "value": "April-May (the narrator), the surviving child victim. She observes, deduces, and ultimately witnesses the resolution. Vivian functions as protective investigator/executor.",
+    "confidence": "high",
+    "quote": "I reasoned out that Billy wasn't burnt up with Mama and Daddy and Johnny. Who else would have left me in a ditch with Jake?"
+  },
+  "suspect_architecture": {
+    "value": "Single perpetrator (Billy, the older brother) with no competing suspects formally presented. The crime \u2014 arson killing family members \u2014 has one culprit whose guilt is signalled early and confirmed at the climax. The 'architecture' is minimal: community speculation about who set the fire gestures at ambiguity, but no alternative suspects are developed. Juris functions as an implicit investigator rather than suspect.",
+    "confidence": "medium",
+    "quote": "all that talk about who set the fire and why, makes me want to do that thing Mama said little girls don't do"
+  },
+  "red_herring": {
+    "value": "April-May's performed ignorance of Billy's whereabouts constitutes the story's central misdirection \u2014 she kneels, folds her hands, and solemnly declares Billy 'burnt up with Mama and Daddy and Johnny,' adding an 'Amen' to seal the deception, deflecting Juris's investigation and temporarily sustaining the community's assumption that Billy perished in the fire.",
+    "confidence": "high",
+    "quote": "I expect he's burnt up with Mama and Daddy and Johnny... Then to top it off I said, 'Amen'"
+  },
+  "clue_fairness": {
+    "value": "The clues are embedded in the narrator's observations and shared directly with the reader in real time: Jake's presence without Billy (anomalous loyalty), the gasoline smell on April-May herself, Billy's known cruelty, the train as escape route, and Vivian's burnt rabbit hutch all point to Billy before the explicit accusation. The reader has access to every inference April-May draws.",
+    "confidence": "high",
+    "quote": "Who else would have left me in a ditch with Jake? Billy always treated me bad... Unless it was too hard getting Jake to hop a moving train."
+  },
+  "social_world": {
+    "value": "A small railroad-dependent community with clear social stratification: Juris commands deference ('you could tell people had him held up in regard'); Vivian owns half the town through inheritance and holds quiet authority; the Clarkes are respectable working professionals; the narrator's family are transient 'railroad folks' accorded no social capital. Outsiders are tolerated but never fully included, shaping who gets protected and who becomes 'flotsam.'",
+    "confidence": "high",
+    "quote": "We were railroad folks... anyone hadn't been born close by, never got to matter. Not that people were mean, they just didn't ask you over for coffee"
+  },
+  "alibi": {
+    "value": "Billy has no formal alibi \u2014 his alibi is the community's default assumption that he burned with the family. This assumption is manufactured by April-May's false testimony and sustained by Billy's absence. It collapses the moment Billy physically returns to town, appearing on Vivian's porch, annihilating the fiction of his death.",
+    "confidence": "high",
+    "quote": "'Where have you been?' was all Vivian said. Like she knew all along he wasn't dead, though I never told her"
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is psychological and confessional: April-May's suppressed memory breaks through involuntarily ('I heard myself hollering') when Billy taunts about the burning rabbits, triggering a flashbulb recollection \u2014 smoke, Jake dragging her to the ditch \u2014 that transforms implicit knowledge into explicit accusation. The mechanism is traumatic re-experiencing rather than deductive exposition.",
+    "confidence": "high",
+    "quote": "I remembered that night like I was still in it. The smoke, hanging on to Jake's neck, him pulling me outside, running with him to hide in the ditch."
+  },
+  "media_and_audience": {
+    "value": "The community's narrative apparatus is informal but powerful: gossip, collective assumption, and social sorting replace institutional investigation. There is no press or police shown; instead, 'all that talk about who set the fire and why' circulates unresolved, and the town manages the aftermath by distributing the survivor among available caregivers. Vivian's quiet verdict \u2014 'Everyone knows you set the fires' \u2014 represents the community's suppressed consensus finally spoken aloud.",
+    "confidence": "medium",
+    "quote": "all that talk about who set the fire and why... 'Everyone knows you set the fires. You better get out of here.'"
+  },
+  "investigator_wound": {
+    "value": "April-May is both witness and investigator, and her wound is layered: she is the intended victim of the crime she investigates, orphaned and socially classified as 'flotsam' with no standing to demand justice. Her psychological vulnerability \u2014 fear of Billy, ingrained survival-level silence about his cruelty, and the habit of protecting herself by concealing knowledge \u2014 is precisely what delayed and nearly prevented the resolution.",
+    "confidence": "high",
+    "quote": "Billy was just mean enough to do what he said. That's why I couldn't figure him putting me in the ditch with Jake."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Given Her History",
+    "author": "MELISSA VANBECK",
+    "anthology_title": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos",
+    "story_index": 20,
+    "story_count": 22
+  }
+}

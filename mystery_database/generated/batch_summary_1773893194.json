@@ -1,0 +1,114 @@
+[
+  {
+    "index": 1,
+    "setting": "France, 1917 \u2014 the Western Front, a muddy sector of trenches near the Somme",
+    "crime_type": "disappearance",
+    "status": "ERROR",
+    "elapsed_s": 145.1,
+    "error": "Expecting property name enclosed in double quotes: line 51 column 40 (char 3405)"
+  },
+  {
+    "index": 2,
+    "setting": "North Sea, 1952 \u2014 aboard a commercial fishing trawler found drifting forty miles off the Scottish coast",
+    "crime_type": "murder",
+    "status": "ERROR",
+    "elapsed_s": 120.1,
+    "error": "Unterminated string starting at: line 48 column 18 (char 3262)"
+  },
+  {
+    "index": 3,
+    "setting": "Prague, 1612 \u2014 the laboratory and apartments of a Royal Alchemist in the Hradcany district",
+    "crime_type": "theft",
+    "status": "ERROR",
+    "elapsed_s": 115.6,
+    "error": "Unterminated string starting at: line 41 column 18 (char 3185)"
+  },
+  {
+    "index": 4,
+    "setting": "Yucatan jungle, 1887 \u2014 a remote cenote considered sacred and secret by a local Maya community",
+    "crime_type": "theft",
+    "status": "ERROR",
+    "elapsed_s": 120.1,
+    "error": "Unterminated string starting at: line 44 column 18 (char 3270)"
+  },
+  {
+    "index": 5,
+    "setting": "Sesame Street \u2014 Cookie Monster's brownstone apartment and the surrounding neighbourhood",
+    "crime_type": "theft",
+    "status": "OK",
+    "elapsed_s": 1992.3,
+    "error": null
+  },
+  {
+    "index": 6,
+    "setting": "Rome, 1st century AD \u2014 the Circus Maximus, during the most lucrative chariot race of the year",
+    "crime_type": "sabotage",
+    "status": "ERROR",
+    "elapsed_s": 130.9,
+    "error": "Unterminated string starting at: line 42 column 18 (char 3112)"
+  },
+  {
+    "index": 7,
+    "setting": "A small English village, 1963 \u2014 a quaint house on Unicorn Lane, just off Teddy Bear Close",
+    "crime_type": "disappearance",
+    "status": "ERROR",
+    "elapsed_s": 126.2,
+    "error": "Expecting property name enclosed in double quotes: line 39 column 30 (char 3466)"
+  },
+  {
+    "index": 8,
+    "setting": "Deep space, 2187 \u2014 a research vessel in orbit around Pluto, crewed by an order of 'data-monks' who maintain the solar network's memory archives",
+    "crime_type": "murder",
+    "status": "ERROR",
+    "elapsed_s": 123.3,
+    "error": "Unterminated string starting at: line 39 column 15 (char 3370)"
+  },
+  {
+    "index": 9,
+    "setting": "Louisiana Territory, 1805 \u2014 a remote plantation house deep in the bayou, visited by a French government surveyor",
+    "crime_type": "murder",
+    "status": "ERROR",
+    "elapsed_s": 112.6,
+    "error": "Unterminated string starting at: line 41 column 18 (char 3212)"
+  },
+  {
+    "index": 10,
+    "setting": "The Hyborian Age \u2014 the top of a windowless sorcerer's tower in the city of Tarantia, Kingdom of Aquilonia",
+    "crime_type": "murder",
+    "status": "ERROR",
+    "elapsed_s": 112.5,
+    "error": "Unterminated string starting at: line 46 column 18 (char 3057)"
+  },
+  {
+    "index": 11,
+    "setting": "France, 1917 \u2014 a ruined farmhouse command post on the Western Front, the morning after an assault",
+    "crime_type": "disappearance",
+    "status": "ERROR",
+    "elapsed_s": 126.8,
+    "error": "Unterminated string starting at: line 38 column 18 (char 3284)"
+  },
+  {
+    "index": 12,
+    "setting": "North Sea, 1943 \u2014 aboard a Finnish Navy patrol vessel that has intercepted a drifting trawler in international waters",
+    "crime_type": "murder",
+    "status": "ERROR",
+    "elapsed_s": 225.2,
+    "error": "Expecting value: line 38 column 7 (char 3275)"
+  },
+  {
+    "index": 13,
+    "setting": "Yucatan, 14th century \u2014 inside a Maya temple complex during the feast of Tlacaxipehualiztli, when ritual heart sacrifice is performed",
+    "crime_type": "theft",
+    "status": "ERROR",
+    "elapsed_s": 171.9,
+    "error": "Unterminated string starting at: line 41 column 7 (char 2914)"
+  },
+  {
+    "index": 14,
+    "setting": "Central Asian steppe, 1206 \u2014 the forward camp of a Mongol scouting party riding ahead of Genghis Khan's main horde",
+    "crime_type": "murder",
+    "status": "ERROR",
+    "elapsed_s": 121.4,
+    "error": "Unterminated string starting at: line 39 column 14 (char 3103)"
+  }
+]

@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Shooting death of Josh, an encyclopedia salesman, during a confrontation outside Miranda and Duff's home. Central question: was the shooting justified self-defense or a deliberate act by Duff?",
+    "confidence": "high",
+    "quote": "And then a gunshot. How strange, she thought, that she knew immediately it was a gunshot, having never heard one before, except at the movies and on TV."
+  },
+  "victim": {
+    "value": "Josh, a young encyclopedia salesman and former clown, killed after pursuing an affair with Miranda. He was 'killable' due to his interference in Duff's marriage and his perceived threat to the household.",
+    "confidence": "high",
+    "quote": "Josh stepped closer... 'I have something for you,' Josh called to Miranda, continuing on. 'No,' said Miranda. 'I got something for you, too, you fuck,' replied Duff."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Duff Wheeler, who shot Josh. Motive: Duff believed Josh was either a drug enforcer sent by 'the Frenchman' to collect a debt, or a rival pursuing his wife. He acted from fear and perceived self-defense.",
+    "confidence": "medium",
+    "quote": "A henchman of the Frenchman, he wildly imagined... He tried to calm himself, but took the pistol from the glove box nonetheless, and slipped it into the waistband of his slacks."
+  },
+  "resolution": {
+    "value": "Police arrive and interrogate Duff with sympathy, treating the shooting as justified self-defense. One officer knew Duff from high school. The investigation closes without prosecution. Miranda destroys Josh's letter.",
+    "confidence": "high",
+    "quote": "They asked Duff the perfunctory questions, sympathetic of a man in defense of his wife and his home. One had played ball with Duff back at High."
+  },
+  "investigator": {
+    "value": "Miranda Wheeler, the wife, who witnesses the entire event and becomes the moral lens through which readers experience the crime's aftermath and its consequences.",
+    "confidence": "high",
+    "quote": "Miranda afterwards recalled being knocked to the parched lawn by the scuffle, the smell of the soil, and Duff's stiff, clean shirts blue-white in the dim streetlight."
+  },
+  "suspect_architecture": {
+    "value": "Three principals: Duff (husband, motive\u2014cocaine debt/paranoia, means\u2014pistol, opportunity\u2014arrives home to find stranger outside), Josh (young encyclopedia salesman/ex-clown, motive\u2014romantic obsession, no violent intent, victim), Miranda (wife, motive\u2014guilt/self-preservation, opportunity\u2014present at scene, covers up affair). Duff is shooter; Josh is victim; Miranda is complicit witness. A 'Frenchman' drug dealer hovers as off-page threat, briefly misdirecting Duff's paranoia.",
+    "confidence": "high",
+    "quote": "Duff took the pistol from the glove box nonetheless, and slipped it into the waistband of his slacks."
+  },
+  "red_herring": {
+    "value": "Duff mistakes Josh for a henchman sent by the Frenchman (his cocaine supplier) to collect a debt, firing on an innocent romantic intruder rather than a criminal enforcer. The orange wig Josh wears for courage reinforces Duff's paranoid misreading of the situation, misdirecting both Duff and the reader about the nature of the confrontation.",
+    "confidence": "high",
+    "quote": "A henchman of the Frenchman, he wildly imagined... scared of violent ex-hockey players and their psychotic, orange-haired thugs."
+  },
+  "clue_fairness": {
+    "value": "The pistol in Duff's glove box is shown to the reader in the same scene in which Duff retrieves it, before the shooting occurs. Josh's orange wig reappearance is similarly shown\u2014reader sees Josh pull it on for courage before the confrontation, giving the reader the same visual information Duff misreads. Miranda burning the letter is shown in real time, not concealed.",
+    "confidence": "medium",
+    "quote": "He pulled on the orange wig for courage, and strode to his car."
+  },
+  "social_world": {
+    "value": "Small Southern town stratified by athletic-masculine capital (Duff's faded high-school-star status), class aspiration (expensive suits, car dealership, credit-bought electronics), and institutional complicity (cops who played ball with Duff, sympathetic to 'man defending his home'). Drug economy runs beneath respectable surfaces. Miranda occupies a subordinate domestic role; Josh is a powerless itinerant youth.",
+    "confidence": "high",
+    "quote": "One had played ball with Duff back at High. They talked. The old, good times... sympathetic of a man in defense of his wife and his home."
+  },
+  "alibi": {
+    "value": "Duff's public alibi is 'defense of wife and home'\u2014corroborated by police friends and accepted without scrutiny. His actual state (cocaine-paranoid, armed, mistaking Josh for a drug-debt enforcer) is concealed. Miranda's alibi for the afternoon (whereabouts during affair) is tacitly constructed by her errand to pick up dry cleaning, and the letter implicating her is destroyed in the barbecue grill.",
+    "confidence": "high",
+    "quote": "Miranda... carefully burned the handwritten letter in the barbecue grill, gently feeding it into the small blue flame one page at a time."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is environmental and object-based rather than interrogative: the blood-stained white shirt left on the lawn and the encyclopedia volume 'Aardvark to Aztec' carried inside by Miranda together silently demonstrate what happened and what is being suppressed. No formal investigator processes the scene; the reader must assemble the truth from these physical residues and Miranda's internal knowledge.",
+    "confidence": "medium",
+    "quote": "On the empty front lawn, a blue-white shirt, darkly stained, forgotten."
+  },
+  "media_and_audience": {
+    "value": "The shooting is immediately framed as a domestic-defense narrative for neighborhood consumption (porch lights coming on, sirens, police visit). Miranda notes the world became 'newsworthy.' The official story\u2014sympathetic husband defending home\u2014is socially ratified through old-boy networks, while the actual triangle, the drug debt, and Miranda's complicity are erased. No press appears directly; the framing is done by community and police.",
+    "confidence": "high",
+    "quote": "The world became new, her life important. Newsworthy... sympathetic of a man in defense of his wife and his home."
+  },
+  "investigator_wound": {
+    "value": "There is no formal investigator in this text; the story is literary fiction rather than detective genre. Miranda functions as the closest surrogate\u2014her wound is guilt over the affair and complicity in Josh's death, which she manages through pragmatic erasure (burning the letter, making coffee, planning a beach vacation) rather than investigation. This element is structurally absent as a genre component.",
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "filename": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Aardvark\tto\tAztec",
+    "author": "CHRISTOPHER\tCHAMBERS",
+    "anthology_title": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly",
+    "story_index": 3,
+    "story_count": 23
+  }
+}

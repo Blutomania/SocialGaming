@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Private horse-racing compound near Reno with gated access, housing illegal gambling operation for Japanese whale gamblers",
+    "confidence": "medium",
+    "quote": "We've got the compound gated off and the whales pull up, with their limos and their drivers and their party girls."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "First-person narrator: former convict working for yakuza-connected Mr. Osaka, managing illegal horse-racing operation",
+    "confidence": "high",
+    "quote": "Do you want to work for Mr. Osaka? my brother asked."
+  },
+  "suspect_architecture": {
+    "value": "No traditional mystery suspect architecture present. The story is a noir crime narrative with identified criminal parties: the Posse (gang), the narrator (impersonator), Mr. Osaka (yakuza operator), and the brother. Antagonists are the Posse and rival contractors who attempted to muscle Osaka; no spread of suspects with differentiated means/motive/opportunity.",
+    "confidence": "low",
+    "quote": "a gang that was a branch of the Posse made a deal with me. They'd pay me to finish off another man's time in Idaho."
+  },
+  "red_herring": {
+    "value": "The narrator's false identity functions as a structural misdirection: the legal and institutional apparatus pursues 'the wrong man' \u2014 a deliberate false trail embedded in the plot. The Posse's arrangement means anyone investigating the incarcerated man is chasing a ghost.",
+    "confidence": "medium",
+    "quote": "The deputies that shackled me and took me to Orofino called me by a different name. I was inside under a new name."
+  },
+  "clue_fairness": {
+    "value": "No fair-play clue structure present. The story is a first-person noir told by the criminal insider; information is withheld or revealed at the narrator's discretion, not distributed equally to reader and investigator. There is no detective figure mediating clues.",
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Layered criminal and quasi-legitimate hierarchies: the Posse's prison-fixing network, the Idaho state corrections system, the federal judiciary, the yakuza operation under Mr. Osaka, and the exclusive world of Japanese 'whale' gamblers. Power flows through loyalty, silence, and money \u2014 not law.",
+    "confidence": "high",
+    "quote": "The yakuza control the horse racing and that means that the yakuza can sometimes control the whales."
+  },
+  "alibi": {
+    "value": "The narrator's entire incarceration is a false alibi in reverse: the state believes it holds a specific criminal, but the real man has been arrested in Montana, collapsing the fiction. The sealed court record functions as an institutional erasure of the alibi problem rather than its resolution.",
+    "confidence": "medium",
+    "quote": "the man you went as, the real man, just got arrested in Montana. It was only a matter of time before the Posse tried to get to you."
+  },
+  "reveal_mechanic": {
+    "value": "No classical reveal mechanic present. The truth of the narrator's identity is known to the reader throughout; the 'reveal' to the court is off-page and institutional (a federal writ), not dramatized as a logical demonstration. Resolution is escape, not exposure.",
+    "confidence": "low",
+    "quote": "The court is convinced that a sealed record and immediate release is the only way you'll be alive at the end of the week."
+  },
+  "media_and_audience": {
+    "value": "The crime is institutionally invisible by design: sealed court records, a false name, and the Posse's backroom dealings ensure no public narrative forms. The whale gambling operation is similarly hidden \u2014 private airfield, gated compound, no tickets or slips \u2014 a world that exists outside any public gaze.",
+    "confidence": "medium",
+    "quote": "No slips, no tickets. These guys are taking bets in the hundreds of thousands and never sweating."
+  },
+  "investigator_wound": {
+    "value": "No traditional investigator figure present. The narrator is the criminal protagonist. His psychological wound is displacement and lost identity \u2014 having traded his name and years for survival \u2014 but this is a noir existential condition, not a detective's vulnerability exploited by a case.",
+    "confidence": "low",
+    "quote": "I wasn't in the race to win anymore. I'd fallen on some hard times in Eastern Washington."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Pinwheel",
+    "author": "SCOTT WOLVEN",
+    "anthology_title": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen",
+    "story_index": 21,
+    "story_count": 21
+  }
+}

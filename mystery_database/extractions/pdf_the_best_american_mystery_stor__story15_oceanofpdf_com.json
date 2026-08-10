@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Shooting death of Lucas Pitman (a law enforcement officer) by his wife Lucretia with a Winchester .30-caliber rifle; central question: was this self-defense or murder, and what led to the act?",
+    "confidence": "high",
+    "quote": "Two bullets. For the first was not enough to stop him."
+  },
+  "victim": {
+    "value": "Lucas Pitman, a deputy sheriff with a violent, controlling temperament who stalks, manipulates, and physically threatens his young wife; 'killable' due to his abusive behavior and implied history of violence toward women",
+    "confidence": "high",
+    "quote": "A man's fingers closing around my throat. There is nothing so terrible as strangulation."
+  },
+  "closed_world": {
+    "value": "The Pitman-Rayburn household in Au Sable Forks, a remote Adirondack region where 'everyone is acquainted with everyone else since grade school'; a rural country house isolated by geography and social insularity",
+    "confidence": "high",
+    "quote": "in Au Sable Forks, which is the center and circumference of my world"
+  },
+  "culprit_and_motive": {
+    "value": "Lucretia Pitman (the narrator) kills her husband in an act of self-defense or desperation; motive is fear of imminent physical harm, strangulation, and escape from an abusive, controlling marriage",
+    "confidence": "high",
+    "quote": "It was to keep him from hurting me. It was to keep him at a distance."
+  },
+  "resolution": {
+    "value": "Everett Rayburn (Lucretia's father) arrives and orchestrates the narrative; they call 911 and his lawyer; Lucretia is instructed to tell the truth of self-defense, restoring legal and familial order through paternal intervention",
+    "confidence": "high",
+    "quote": "'Just tell the truth, Lucretia.' Which is what I will do, so help me God."
+  },
+  "investigator": {
+    "value": "Lucretia Pitman herself\u2014the narrator and protagonist\u2014experiences the mystery as victim, suspect, and unreliable witness to her own act; her consciousness frames the entire investigation",
+    "confidence": "high",
+    "quote": "I am waiting for him, hiding. I think that I am starkly sober as a creature that has been skinned alive"
+  },
+  "suspect_architecture": {
+    "value": "Single-suspect domestic violence narrative: husband Pitman (law enforcement officer, history of strangulation threats, armed, controlling) as sole perpetrator; no competing suspects. Narrator Lucretia is both victim and killer. Cousin Andrea peripherally implicated via suggested prior intimacy with Pitman, but functions as witness only.",
+    "confidence": "high",
+    "quote": "There has been this shivery thing between her and Pitman dating back to before Pitman and I were married."
+  },
+  "red_herring": {
+    "value": "The anonymous obscene phone caller is presented as a threatening stranger (UNAVAILABLE, sexually menacing), misdirecting both Lucretia and the reader toward an external threat; ultimately the terror driving the shooting is Pitman's domestic violence, not the caller. Also, Lucretia's drunken state is foregrounded to suggest unreliable agency, potentially misdirecting judgment of premeditation.",
+    "confidence": "high",
+    "quote": "UNAVAILABLE could be anyone. Like seeing on your doorstep a hulking individual wearing a paper bag over his head, or a ski mask."
+  },
+  "clue_fairness": {
+    "value": "Key clues are embedded in the narrator's retrospective account and available to the reader simultaneously: Pitman's prior strangulation games on Hunter Road, the loaded rifle's location described earlier, the murder/suicide of Amos Burdock (strangulation), and Pitman arriving home early. Phone records timestamped at 1:14 A.M. are disclosed to the reader before any official investigation.",
+    "confidence": "high",
+    "quote": "I called home at 1:14 A.M. Not 911. Phone records will show."
+  },
+  "social_world": {
+    "value": "Rural Adirondack class hierarchy: wealthy contractor Rayburns versus low-status Pitman clan ('feared and scorned in about equal measure'); law enforcement as a masculinist power structure shielding Pitman from accountability; patriarchal family authority (father disowning daughter); institutional impunity for police use of force ('never been reprimanded for excessive force').",
+    "confidence": "high",
+    "quote": "The Pitmans and their numerous kin were not generally respected. They were feared and scorned in about equal measure."
+  },
+  "alibi": {
+    "value": "No formal alibi construction for Pitman; instead, Lucretia's self-defense claim functions as the alibi-equivalent narrative she must construct for authorities. Daddy coaches her: 'What you will say, Lucretia, is\u2026' and 'Just tell the truth'\u2014framing the shooting as self-defense. Pitman's early return home (1 A.M. vs. usual 2:50 A.M.) is a temporal clue undermining any alibi for his absence.",
+    "confidence": "medium",
+    "quote": "It's a bad sign, Pitman arrives home early\u2026 tonight his headlights swing into the driveway at just 1 A.M. So I know."
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated through accumulation of embodied physical detail rather than deductive reasoning: two bullet casings (first shot insufficient), the rifle found on the floor, Daddy's wordless inspection of the body, and Lucretia's dissociated 'skinned-alive' state. The reveal is psychological and forensic simultaneously\u2014two bullets proving the killing was effortful, not cold execution.",
+    "confidence": "high",
+    "quote": "Two bullets. For the first was not enough to stop him."
+  },
+  "media_and_audience": {
+    "value": "Local newspaper coverage of the Burdock murder/suicide frames domestic homicide as a 'those people' spectacle for respectable classes; Lucretia's mother enacts this distancing ('Such an ugly story! Those people'). The narrative anticipates a public/legal audience\u2014phone records, 911 call, Daddy's lawyer\u2014suggesting the crime will be packaged as self-defense for institutional consumption.",
+    "confidence": "high",
+    "quote": "'Such an ugly story! Those people.' My mother spoke with repugnance, disdain. Those people referred to people who got themselves killed."
+  },
+  "investigator_wound": {
+    "value": "There is no external investigator; Lucretia herself is the only investigative consciousness, and her wound is total: six years of coercive control, sexual surveillance, strangulation threats, and her father's disownment have destroyed her capacity for self-protective action until the final moment. Her vulnerability is her love for Pitman coexisting with terror of him\u2014'I love him! Want him to forgive me.'",
+    "confidence": "medium",
+    "quote": "I love him! Want him to forgive me. I will beg him I didn't mean it, I was only pretending."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "JOYCE CAROL OATES",
+    "anthology_title": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow",
+    "story_index": 15,
+    "story_count": 19
+  }
+}

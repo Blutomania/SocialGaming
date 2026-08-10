@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder disguised as a scuba diving accident. Derek Marshall causes his wife Gina to rupture her lung by holding her breath during ascent, killing her to inherit her $10 million estate.",
+    "confidence": "high",
+    "quote": "She had a terrible accident about six months ago. We were scuba diving... she held her breath coming up. Ruptured a lung."
+  },
+  "victim": {
+    "value": "Gina Dalesandro: a shy, isolated heiress with $10 million in trust, emotionally vulnerable after her mother's death, easily manipulated by Derek Marshall who gained her trust through feigned affection.",
+    "confidence": "high",
+    "quote": "She is a shy, quiet woman who has never had to make any decisions for herself... She huddled with her mother in that house, afraid of everything."
+  },
+  "closed_world": {
+    "value": "A tropical island resort (St. Mary's) where a wedding occurs and where the detective shadows the couple on a guided volcano tour, creating a limited investigative window.",
+    "confidence": "medium",
+    "quote": "They flew to St. Mary's this morning to get married... We were on top of an active volcano."
+  },
+  "culprit_and_motive": {
+    "value": "Derek Marshall: law school intern who discovered the trust structure while working at the firm handling the Scolari estate. He married Gina specifically to inherit her $10 million upon her death, knowing he would become sole heir.",
+    "confidence": "high",
+    "quote": "I read the documents when I was Xeroxing them. That's how I knew the setup... That made me sole inheritor, even if she died intestate."
+  },
+  "resolution": {
+    "value": "No formal legal resolution. Derek confesses his crime to Haggerty one year later, boasting of his success. Since there is no physical evidence and the death was ruled accidental, Marshall escapes prosecution. Haggerty reopens the file, vowing lifelong pursuit.",
+    "confidence": "high",
+    "quote": "It doesn't matter. You'll never be able to prove this. It's not on paper anywhere... Reopen the file on Derek Marshall."
+  },
+  "investigator": {
+    "value": "Leo Haggerty: private detective hired by Gina's uncle Enzo Scolari to investigate Derek Marshall's motives before the wedding. Haggerty operates with incomplete information and insufficient time, ultimately failing to prevent the crime.",
+    "confidence": "high",
+    "quote": "Enzo Scolari motored into my office and motioned me to sit... I want you to stop my niece's wedding."
+  },
+  "suspect_architecture": {
+    "value": "Two suspects with distinct motives: Derek Marshall (gold-digger/murderer \u2014 motive: Gina's $10M inheritance, opportunity via intimate access) and Enzo Scolari (trustee/uncle \u2014 motive: retaining control of niece's trust funds, means: legal manipulation). Marshall is the true villain; Scolari is simultaneously client and alternate suspect, differentiated by naked self-interest vs. premeditated long-con.",
+    "confidence": "high",
+    "quote": "\"So you stand to lose the use of ten million dollars. Have I got that right?\" Scolari didn't even bother to debate that one with me."
+  },
+  "red_herring": {
+    "value": "Haggerty's bluff about Scolari activating trustee discretionary powers to freeze Gina's estate is presented as a genuine investigative intervention but is actually a fabricated red herring \u2014 a false legal maneuver designed to test Marshall's reaction. Marshall later reveals it convinced Gina of his sincerity rather than exposing him, inverting the intended effect.",
+    "confidence": "high",
+    "quote": "\"Your little stunt actually convinced Gina of my sincerity... for a bluff it wasn't half-bad.\""
+  },
+  "clue_fairness": {
+    "value": "Partial fairness: key behavioral clues are shown to the reader in real time \u2014 Marshall's roving eyes, tactile inspection of tapestries, and house-surveying like a 'creditor' are presented to Scolari and reader simultaneously. However, the decisive clue (Marshall's internship at the estate law firm) is withheld until Marshall's self-incriminating confession, violating strict clue-fairness.",
+    "confidence": "medium",
+    "quote": "\"He spent more time touching the tapestries than he did holding her hand. He went through the house like a creditor, not a guest.\""
+  },
+  "social_world": {
+    "value": "Patrician Italian-American dynastic wealth (Scolari Enterprises), with trust law as the instrument of patriarchal control. Gina is structurally powerless \u2014 sheltered by her deceased mother, managed by her uncle-trustee, and preyed upon by a legal insider who exploited his unpaid internship to map the estate's vulnerabilities. Class and legal knowledge are the operative power vectors.",
+    "confidence": "high",
+    "quote": "\"While I was in law school I worked one year as an unpaid intern at the law firm handling the estate of old man Scolari... I read the documents when I was Xeroxing them.\""
+  },
+  "alibi": {
+    "value": "No conventional temporal alibi is constructed. Marshall's alibi is structural: Gina's death is ruled accidental death by official verdict, with the mechanism (fatal misinformation during scuba ascent \u2014 telling her to hold her breath) leaving no forensic trace. The 'alibi' is the plausible accident scenario itself, validated by institutional authority.",
+    "confidence": "high",
+    "quote": "\"The official verdict was accidental death... I guess she misunderstood what I'd told her and she held her breath coming up. Ruptured a lung.\""
+  },
+  "reveal_mechanic": {
+    "value": "The villain self-reveals in a gloating return visit, a psychological compulsion mechanic \u2014 Marshall cannot resist returning to taunt Haggerty, thereby confessing the murder method (death by misinformation during scuba diving) and the inheritance scheme. The reveal is verbal and unwitnessed, legally unprovable, which Haggerty acknowledges. Resolution is deferred: Haggerty reopens the file.",
+    "confidence": "high",
+    "quote": "\"You'll never be able to prove this. It's not on paper anywhere.\" [...] \"Reopen the file on Derek Marshall.\""
+  },
+  "media_and_audience": {
+    "value": "Largely absent as an active structural element. The official institutional framing (accidental death verdict) functions as the sole 'media' layer \u2014 state authority packages Gina's murder as accident, providing Marshall's cover. No press, public opinion, or broader narrative apparatus is engaged. The crime remains private, witnessed only by Haggerty and Scolari.",
+    "confidence": "low",
+    "quote": "\"The official verdict was accidental death. Scolari was beside himself, as you can imagine.\""
+  },
+  "investigator_wound": {
+    "value": "Haggerty's wound is moral complicity and ineffectiveness: he is hired to protect Gina but his only intervention (the bluff) backfires by reinforcing her trust in her killer. He witnesses her happiness, feels self-loathing, and ultimately fails to save her. His psychological vulnerability is the gap between professional competence and moral outcome \u2014 the knowledge that doing good work still produced a dead woman.",
+    "confidence": "high",
+    "quote": "\"I'd rather Marshall had thrown acid in my face than the words she hurled at me... 'You do good work, Mr. Haggerty. I hope you're proud of yourself.'\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "filename": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "BENJAMIN M. SCHUTZ",
+    "anthology_title": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch",
+    "story_index": 14,
+    "story_count": 15
+  }
+}

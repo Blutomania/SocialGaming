@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Ben Sussman, a six-year-old child separated from his father on the subway; victimized by parental negligence and circumstance rather than deliberate harm",
+    "confidence": "high",
+    "quote": "his six-year-old Ben is already on the Coney Island-bound F train and the shiny metal doors are closing between them"
+  },
+  "closed_world": {
+    "value": "The F train subway line running from Manhattan through Brooklyn to Coney Island, with stops at Borough Park, Church Avenue, Ditmas, Kings Highway, and Avenue X",
+    "confidence": "high",
+    "quote": "the train cuts through Borough Park and pictures mirthless bearded Hasidim glowering down at his boy. The stops have unfamiliar names like Church Avenue, Ditmas, Kings Highway"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "A woman with dreadlocks on the train recognizes Ben's distress, protects him, and calls his mother from Coney Island to report his safety and location",
+    "confidence": "high",
+    "quote": "Some hairy puke started to bother him on the train so he got up and sat next to me because he saw I had a kid...The only thing is, he doesn't know what happened to his father"
+  },
+  "investigator": {
+    "value": "Peter Sussman, the father, who frantically searches for his son after the separation, though he is the responsible party rather than an investigator of a crime",
+    "confidence": "medium",
+    "quote": "He runs alongside it, yelling 'STOP' and gesturing wildly, as Ben stares through the scratchiettied glass in open-mouthed confusion"
+  },
+  "suspect_architecture": {
+    "value": "No traditional suspect architecture. This is a crime/thriller short with a single 'perpetrator' \u2014 Sussman himself, whose negligence causes the child's separation. The 'pirate' at the phone functions as antagonist, not suspect.",
+    "confidence": "low",
+    "quote": "Some asshole was trying to talk to me."
+  },
+  "red_herring": {
+    "value": "The story inverts the red herring: Sussman's catastrophizing imagination constructs false threats (wolf pack thugs, predatory strangers, Avenue X menace) that never materialize \u2014 Ben is safe, resourceful, and never truly endangered.",
+    "confidence": "medium",
+    "quote": "He pictures Ben surrounded by a roaming wolf pack on the train, a bunch of dead-eyed little thugs demanding the brand-new Game Boy Advance"
+  },
+  "clue_fairness": {
+    "value": "The resolution clue is withheld from reader until the final section: Ben had his mother's phone number memorized and knew to sit next to a woman with a child. This information is never planted for the reader in advance \u2014 it violates clue fairness.",
+    "confidence": "medium",
+    "quote": "He gave me your number and asked me to call."
+  },
+  "social_world": {
+    "value": "Brooklyn's layered social geography: divorced outer-borough salesman, urban distrust between strangers, class/race friction at the pay phone, post-divorce custody dynamics, and the indifferent professional class sleeping off Sunday mornings.",
+    "confidence": "high",
+    "quote": "Threatening swatches of Fort Greene and Williamsburg have only been glimpsed fleetingly through car service windows coming home from work late at night."
+  },
+  "alibi": {
+    "value": "No alibi structure present. The story is not whodunit in form; Sussman's distraction (ogling the woman) is the explicit, uncontested cause of the separation \u2014 confessed immediately, no false account constructed.",
+    "confidence": "low",
+    "quote": "Sussman only turns his head for, what, maybe two seconds, to check out that hoochie mama in the low-slung ram-riders"
+  },
+  "reveal_mechanic": {
+    "value": "Structural reveal via perspective shift: the final section switches to the woman with dreadlocks at Coney Island, retroactively demonstrating Ben's competence and safety \u2014 undercutting every catastrophe Sussman imagined. The 'avoid head-on collisions' road sign bridges the tonal turn.",
+    "confidence": "high",
+    "quote": "AVOID HEAD-ON COLLISIONS. / 'Hi, Mrs. Sussman, you don't know me, but I have your son.'"
+  },
+  "media_and_audience": {
+    "value": "No press or institutional media. The only 'audience' is Sussman's own internalized narrative \u2014 he frames his crisis as 'the beginning of a tragic story in the newspaper,' projecting public judgment onto an indifferent urban world.",
+    "confidence": "medium",
+    "quote": "This is a nightmare in broad daylight. This is the beginning of a tragic story in the newspaper."
+  },
+  "investigator_wound": {
+    "value": "Sussman is both victim and investigator. His wound is his history as a negligent, absent father post-divorce \u2014 the case literalizes his core failure. His panic is inseparable from guilt that pre-exists the incident.",
+    "confidence": "high",
+    "quote": "This was supposed to be the day when he finally assumed his proper responsibilities and proved he wasn't such a schmuck after all."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "text_len": 16827,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Going, Going, Gone",
+    "author": "PETER BLAUNER",
+    "anthology_title": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen",
+    "story_index": 4,
+    "story_count": 21
+  }
+}

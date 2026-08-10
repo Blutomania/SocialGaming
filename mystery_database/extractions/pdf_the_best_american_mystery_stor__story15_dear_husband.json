@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Filicide (murder of five children) by drowning in bathtub, committed between 6:10-6:50 a.m. Central question: Does the confessional letter constitute a reliable account of what happened in the house?",
+    "confidence": "high",
+    "quote": "one by one I drowned them in the tub, it was not so very different from bathing them"
+  },
+  "victim": {
+    "value": "Five children (Loell Jr., Rosalyn, Rosanna, Paul, Dolores Ann) aged 5 months to approximately 8 years, vulnerable due to youth, developmental delays (Loell Jr.), and complete dependence on maternal care.",
+    "confidence": "high",
+    "quote": "Upstairs, the children are peaceful at last. They have been placed on our bed in the exact order of their age"
+  },
+  "closed_world": {
+    "value": "The family home at 37 Fox Run Lane in New Meridian Estates, a suburban colonial house. The crime occurs in the early morning hours (6:10-6:50 a.m.) before the husband awakens in Atlanta and children depart for school.",
+    "confidence": "high",
+    "quote": "when the police come into this house this morning...Of the houses on Fox Run Lane, you would not believe that 37 is the house of shame"
+  },
+  "culprit_and_motive": {
+    "value": "Lauri Lynn McKeon (the mother/narrator). Motive: perceived failure as a mother and wife, accumulated humiliation, marital abuse, religious delusion interpreting drowning as God's mercy, escape from unending domestic exhaustion.",
+    "confidence": "high",
+    "quote": "It was my failure as a wife and the mother of your children that is my true crime...the flames of God...God's mercy, and God's pity"
+  },
+  "resolution": {
+    "value": "None presented. The text is a confessional letter; the implied resolution is institutional: police arrival, legal prosecution, execution ('strapped into the chair of infamy'). No investigative work or deduction occurs.",
+    "confidence": "low",
+    "quote": "I will dial 911 when it is time...I will be strapped into the chair of infamy, and flames will leap from my head"
+  },
+  "investigator": {
+    "value": "None. The text is a first-person confessional monologue from the perpetrator addressed to her husband. No detective, investigator, or independent observer lens exists.",
+    "confidence": "high",
+    "quote": "Dear Husband...you alone will know the truth of what has happened in this house...you alone have the right to condemn me"
+  },
+  "suspect_architecture": {
+    "value": "Single perpetrator, no traditional suspect spread: Lauri Lynn McKeon is the sole actor, explicitly confessing to drowning her five children. The 'architecture' collapses the whodunit form entirely \u2014 the text is the confession. The husband functions as a moral antagonist (abuse, neglect, absence) but bears no legal culpability as constructed here.",
+    "confidence": "high",
+    "quote": "one by one I drowned them in the tub, it was not so very different from bathing them"
+  },
+  "red_herring": {
+    "value": "The text deploys religious framework as sustained misdirection: Lauri Lynn frames the killings as divinely ordained mercy, not murder. God's instruction, Jesus's guidance, and the parable of abundance/deprivation are offered as the true explanation, diverting from the clinical reality of filicide driven by psychosis and domestic abuse.",
+    "confidence": "medium",
+    "quote": "God has instructed me, and Jesus Christ has guided my hand... I will not be punished by God for God has forgiven me"
+  },
+  "clue_fairness": {
+    "value": "The story is not a puzzle-mystery; clue fairness as a formal principle does not apply. However, Oates embeds all evidence simultaneously in the letter itself \u2014 the knives on the counter, the OxyContin count, the wet bedspread, the time window 6:10\u20136:50 a.m. \u2014 so reader and eventual investigator receive identical information simultaneously.",
+    "confidence": "low",
+    "quote": "On the counter, there are three knives... I have swallowed five OxyContin tablets... there are twelve m>re I am to swallow"
+  },
+  "social_world": {
+    "value": "Evangelical suburban middle-class Georgia: rigid patriarchal hierarchy (husband as breadwinner/authority), oppressive mother-in-law (Mother McKeon), church community as surveillance and judgment, honor-roll/athletic achievement culture weaponised against Lauri Lynn's perceived failure. Class anxiety about the house's appearance to neighbors and police reinforces social control.",
+    "confidence": "high",
+    "quote": "of the 'colonials' in New Meridian Estates, you would not believe that this is the house of shame"
+  },
+  "alibi": {
+    "value": "The husband's alibi is structurally embedded: he is at the Days Inn in Atlanta, asleep, during the 6:10\u20136:50 a.m. window. Lauri Lynn herself constructs and witnesses his alibi \u2014 'At the Days Inn in Atlanta, you would still be asleep' \u2014 which simultaneously exonerates him legally and indicts him morally as absent cause.",
+    "confidence": "high",
+    "quote": "At the Days Inn in Atlanta, you would still be asleep"
+  },
+  "reveal_mechanic": {
+    "value": "There is no investigator reveal; the confession letter IS the mechanism. The horror accumulates through the letter's own rhetorical drift \u2014 domestic complaint, religious justification, self-abasement \u2014 until the act is stated plainly mid-letter, retroactively reframing all prior domestic detail as the architecture of a crime scene.",
+    "confidence": "medium",
+    "quote": "Mommy! Rosanna cried but I did not heed her, for the strength of God flowed through my limbs"
+  },
+  "media_and_audience": {
+    "value": "Lauri Lynn anticipates and pre-empts public narrative: she explicitly rejects the 'TV woman' confessional mode, imagines police officers entering the house and the husband's contemptuous performance for them, and frames the letter as controlling the story before media and institutions can construct their own. The 'house of shame' visible from the street signals acute awareness of public perception.",
+    "confidence": "high",
+    "quote": "I am not a TV woman, to spill her guts to strangers, to reveal such shameful secrets, to receive applause"
+  },
+  "investigator_wound": {
+    "value": "No investigator is present; the story formally excludes the investigator figure. The wound is displaced onto the reader, who is positioned as the husband \u2014 the letter's sole addressee \u2014 implicating the reader in the complicity, abuse, and absence that created the conditions for the crime.",
+    "confidence": "low",
+    "quote": "you alone will know the truth of what has happened in this house... it is you I have wronged"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "text_len": 22523,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Dear Husband",
+    "author": "JOYCE CAROL OATES",
+    "anthology_title": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver",
+    "story_index": 15,
+    "story_count": 25
+  }
+}

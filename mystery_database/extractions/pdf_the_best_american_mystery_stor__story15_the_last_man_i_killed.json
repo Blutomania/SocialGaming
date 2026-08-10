@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Anna Scheinberg, a respected scholar and department head candidate whose career is destroyed through political manipulation and public revelation of her 1932 Nazi Party vote",
+    "confidence": "high",
+    "quote": "I voted for the Nationalsozialistische Deutsche Arbeiter Partei. I felt a rush of adrenaline."
+  },
+  "closed_world": {
+    "value": "O'Connell State University's Department of German Studies in 1965\u2014a bounded academic community where departmental politics, faculty relationships, and administrative decisions determine professional fate",
+    "confidence": "high",
+    "quote": "The president believed in being proactive, and the university had subsequently established regulations that, for the time, were relatively strict"
+  },
+  "culprit_and_motive": {
+    "value": "Tomas Landsberger (secretly former SS Captain Helmut Schlosser), motivated by ruthless Clausewitzian ambition to achieve the department headship by orchestrating Jonas's attack on Scheinberg and leveraging a major foundation's donation contingent on her withdrawal",
+    "confidence": "high",
+    "quote": "in a community of reasonable people, power devolves on the one who is prepared to be most ruthless"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Tomas Landsberger himself, the unreliable first-person narrator who confesses his own crimes while reflecting on his trajectory from Nazi war criminal to university president",
+    "confidence": "high",
+    "quote": "Although the war was the formative experience of my life, I came to an early understanding of academe"
+  },
+  "suspect_architecture": {
+    "value": "The narrator Tomas (real identity: SS Captain Helmut Schlosser) is the hidden perpetrator masquerading as a respectable academic. Nick Jonas is a pawn/tool used wittingly. Duncan is a complicit ally. Wisnesky is a hostile antagonist with a grudge. Anna Scheinberg is the victim of the academic conspiracy. The 'suspects' for Anna's downfall are diffused across Jonas (the visible attacker), the narrator (the orchestrator), and institutional forces \u2014 each differentiated by motive: Jonas wants tenure, narrator wants the headship, Wisnesky wants revenge.",
+    "confidence": "high",
+    "quote": "Jonas had done his job, and I didn't need him any more."
+  },
+  "red_herring": {
+    "value": "The narrator publicly defends Anna Scheinberg at the Search Committee meeting, performing solidarity and invoking collective German guilt to deflect suspicion from himself as orchestrator of her downfall. He appears to be her supporter while having engineered Jonas's ambush question.",
+    "confidence": "high",
+    "quote": "I second Dr. Neumann's point. I myself was a soldier in Hitler's army... All of us who grew up in Germany struggle with the issue of collective guilt."
+  },
+  "clue_fairness": {
+    "value": "The text is a first-person confessional narration \u2014 the reader has full access to the narrator's internal reasoning, including his calculation of voting outcomes, his coaching of Jonas, and his identity theft of Tomas Landsberger. The clues are embedded in plain sight within the narrator's self-satisfied reflections, satisfying fairness by virtue of the confessional mode.",
+    "confidence": "medium",
+    "quote": "I had become three years younger. Along with the uniform, I had left behind Captain Helmut Schlosser of the SS Security Police."
+  },
+  "social_world": {
+    "value": "A Midwestern US university in 1965: rigid academic hierarchy of department heads, tenured faculty, junior lecturers, and the university president as ultimate patron. Patronage networks (president-translator relationship, Pentagon-funded research grants, the Belinsky Foundation donation) determine outcomes. German-born vs. US-born faculty division adds ethnic/historical power stratification. Ruthlessness defeats liberal collegiality.",
+    "confidence": "high",
+    "quote": "In a community of reasonable people, power devolves on the one who is prepared to be most ruthless."
+  },
+  "alibi": {
+    "value": "The narrator's entire academic identity is a fabricated alibi \u2014 the stolen identity of private Tomas Landsberger, Wehrmacht soldier, provides a clean wartime record replacing his SS past. His civilian alibi (reclusive scholar traumatized by war, registered at Stuttgart, Marshall Plan scholar) is constructed fiction insulating him from his crimes as Helmut Schlosser.",
+    "confidence": "high",
+    "quote": "I was now Tomas Landsberger. Complete with identification disk, pay book, photographs of my family, and a detailed life history."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is delivered through the narrator's own retrospective confession rather than external detection. The identity theft is demonstrated via physical detail (SS tattoo concealed in POW camp, later removed in Brazil) and the war scene showing the murder and uniform swap. No investigator discovers the truth within the story \u2014 the reader alone receives the confession, making the reveal mechanic one of dramatic irony and self-incrimination.",
+    "confidence": "high",
+    "quote": "I stripped his uniform fast, to avoid more blood on it than I could readily explain... I fired another bullet so that there would be an appropriate hole in the SS jacket."
+  },
+  "media_and_audience": {
+    "value": "The local newspaper stringer at the Search Committee meeting transforms Anna's admission into a news item; national media amplification then makes her politically untenable. The Belinsky Foundation's threatened withdrawal of $12.5 million converts institutional reputation into financial leverage. Public opinion, framed by press editorials, determines faculty loyalty \u2014 colleagues wait 'to read the editorials before they know what to think.'",
+    "confidence": "high",
+    "quote": "They're waiting to read the editorials before they know what to think... It was a very small item in the local paper yesterday. But I've been fielding calls all day from the national media."
+  },
+  "investigator_wound": {
+    "value": "There is no traditional investigator in this story. The narrator is himself the criminal-as-investigator of his own past. His 'wound' is the recurrent dream of the last man he killed \u2014 the young soldier whose identity he stole \u2014 which wakes him nightly and requires von Clausewitz as a sedative. His psychological vulnerability is suppressed guilt, managed through intellectual rationalization of ruthlessness as philosophy.",
+    "confidence": "high",
+    "quote": "The dream always wakes me. I keep a copy of von Clausewitz's On War beside my bed to read until I fall asleep again."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "The\tLast\tMan\tI\tKilled",
+    "author": "DAVID\tRACHEL",
+    "anthology_title": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates",
+    "story_index": 15,
+    "story_count": 22
+  }
+}

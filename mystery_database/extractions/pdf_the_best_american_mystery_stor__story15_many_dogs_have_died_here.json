@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Multiple acts of violence and property destruction by a disturbed neighbor: tire slashing, assault causing facial injuries and tooth loss, apparent killing or disposal of a dog, intimidation through threats and home invasion during a storm.",
+    "confidence": "high",
+    "quote": "she'd taken the blade and carved a clean line through the top of the treading...she had slashed the two rear tires...I had lost a tooth."
+  },
+  "victim": {
+    "value": "The narrator (retired Air Force officer) and neighbors Harold and the Popovs are targets of violence. The deeper victim is Ramba, the neighbor, whose husband died in military deployment, making her psychologically fragile and 'killable' through her grief.",
+    "confidence": "medium",
+    "quote": "When my husband said goodbye to me, I knew he was going to die...Do you know what they put in his coffin? Do you know what they put there instead of his body?"
+  },
+  "closed_world": {
+    "value": "A suburban cul-de-sac with four houses and their residents; during the climactic storm, power goes out and communication lines are down, isolating the narrator and trapping him with the intruder in his own home.",
+    "confidence": "high",
+    "quote": "we had always prided ourselves in our quiet little cul-de-sac...The power went out...I redialed his number but got a busy signal. The lines must be down."
+  },
+  "culprit_and_motive": {
+    "value": "Ramba (the neighbor) commits the violence. Her motive is unresolved grief over her deployed husband's death in war; she acts out through destruction and intimidation, seeking acknowledgment of her pain and power over those she perceives as complicit or cowardly.",
+    "confidence": "medium",
+    "quote": "I have power over his cowardice. That there are consequences for daring to forget...when my husband said goodbye...I knew he was going to die."
+  },
+  "resolution": {
+    "value": "No institutional resolution occurs. The narrator confronts Ramba with a rifle in his kitchen. She walks past him into the storm and disappears. The narrator does not pursue or stop her; no arrest, trial, or formal justice is rendered.",
+    "confidence": "high",
+    "quote": "She walked forward but quickly veered to my left...she opened the front door...In an instant she was gone, lost in the mighty pull of the storm...I could not move."
+  },
+  "investigator": {
+    "value": "The narrator\u2014a retired Air Force officer living in the cul-de-sac\u2014is the primary lens. He is not an official investigator but an unwilling participant and victim who gradually uncovers fragments of truth through conversation and direct confrontation.",
+    "confidence": "high",
+    "quote": "I wasn't looking for trouble...I wasn't interested in escalating anything...And that's when it struck me, with crystal clarity...You know her, don't you?"
+  },
+  "suspect_architecture": {
+    "value": "Three neighborhood figures: Ramba (the new neighbor, means: Buck knife/physical violence, motive: grief/war trauma/territorial assertion), Harold Cummings (concealed prior knowledge of Ramba, motive: unclear complicity), and implicitly the deployed/dead husband (background presence). Popovs function as witnesses only. Harold is differentiated by psychological expertise deployed to suppress legitimate response.",
+    "confidence": "high",
+    "quote": "\"You know her, don't you? You sonofabitch.\" He grimaced and shook his head. \"It's more complicated than that.\""
+  },
+  "red_herring": {
+    "value": "The dog collar found in Harold's foyer is staged to implicate Harold in the dog's death and distract from Ramba's break-in; separately, Harold's repeated psychological framing of Ramba as merely a stressed new mover misdirects the narrator and reader from his concealed connection to her.",
+    "confidence": "high",
+    "quote": "\"The dog was already dead when I found it. Your friend, the professor, backed over it the other day.\""
+  },
+  "clue_fairness": {
+    "value": "The cell phone placed on the narrator's kitchen table \u2014 not there moments before \u2014 is shown to the reader simultaneously with the narrator noticing it, signaling Ramba's covert presence inside the house before the narrator consciously concludes she is there.",
+    "confidence": "high",
+    "quote": "\"my eye caught something on the table there. It was my cell phone, placed neatly where it had not been just a few moments earlier.\""
+  },
+  "social_world": {
+    "value": "A quiet suburban cul-de-sac whose social order is built on mutual non-interference and self-policing; military/civilian hierarchy underlies character differentiation (retired sergeant vs. retired professor); the Popovs as immigrant outsiders deferring to American neighbors; Harold's academic authority used to override the narrator's practical military instincts.",
+    "confidence": "high",
+    "quote": "\"we had always prided ourselves in our quiet little cul-de-sac, a place of calm and reflection, filled with residents whose principal occupation was minding their own damn business.\""
+  },
+  "alibi": {
+    "value": "Harold's text message claiming he is 'down in Silver Lake with my mother' functions as a false or at minimum suspicious alibi \u2014 arriving precisely when the narrator is most vulnerable inside his own home, and after Harold's open front door and the dog collar suggest he may be involved or missing.",
+    "confidence": "medium",
+    "quote": "\"I'm down in Silver Lake with my mother. Just checking to see if all is well. Hope you've battened down the hatches.\""
+  },
+  "reveal_mechanic": {
+    "value": "The revelation of Harold's concealed connection to Ramba is triggered not by evidence but by the narrator's sudden 'crystal clarity' intuition in the ER, confirmed verbally by Harold; the dog collar in Harold's foyer then physically corroborates the web of hidden relationships and Harold's guilt over the dog's death.",
+    "confidence": "medium",
+    "quote": "\"that's when it struck me, with the crystal clarity of a long-hidden truth suddenly revealed. 'You know her, don't you? You sonofabitch.'\""
+  },
+  "media_and_audience": {
+    "value": "There is no press or institutional framing of the crimes; instead the cul-de-sac community itself performs the packaging function \u2014 collectively nicknaming the neighbor 'Ramba' and constructing a consensus narrative that suppresses police involvement, effectively privatizing and containing the crime within neighborhood opinion.",
+    "confidence": "medium",
+    "quote": "\"a woman others in the cul-de-sac would dub 'Ramba'\""
+  },
+  "investigator_wound": {
+    "value": "The narrator is a newly retired military veteran seeking peace and irrelevance, psychologically vulnerable to grief about war's cost and his own emotional isolation (no family, vasectomy, failed relationships); Ramba's grief over her husband's war death directly mirrors and weaponizes his own suppressed war trauma and loneliness, paralyzing him at the story's climax.",
+    "confidence": "high",
+    "quote": "\"the taste of sorrow, the wreckage of war, the feeble cries of the dead and dying, the silence of children \u2014 all of it culminating in a barren loneliness that we had fought for\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "filename": "The_Best_American_Mystery_Stories_215_-_James_Patterson.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Many\tDogs\tHave\tDied\tHere",
+    "author": "JAMES\tMATHEWS",
+    "anthology_title": "The_Best_American_Mystery_Stories_215_-_James_Patterson",
+    "story_index": 15,
+    "story_count": 19
+  }
+}

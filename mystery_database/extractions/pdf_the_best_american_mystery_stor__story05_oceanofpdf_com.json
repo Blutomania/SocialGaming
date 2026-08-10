@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder of Shelley Altman by blunt force trauma (poker to back of head) in a remote wilderness park; central question: how was the crime coordinated and concealed, and who are the conspirators?",
+    "confidence": "high",
+    "quote": "And then something hit her hard, on the back of the head."
+  },
+  "victim": {
+    "value": "Shelley Altman, a troubled sophomore high school student with social insecurity, acne, and low self-esteem, made 'killable' by her knowledge of a murder plot and her role as an unwitting accomplice.",
+    "confidence": "high",
+    "quote": "It was the pink slips that decided it, in the end...She felt lightheaded and secure."
+  },
+  "closed_world": {
+    "value": "Grandview Park, a remote federal wilderness area in central Florida with dense vegetation, Spanish moss, and sparse population; accessible only by a single narrow trail with no nearby houses or witnesses.",
+    "confidence": "high",
+    "quote": "Grandview Park announced itself with a tall gate...It was a 'wilderness area,' designated as such by the federal government, and set aside to remain completely undeveloped."
+  },
+  "culprit_and_motive": {
+    "value": "Miss Caroline Edgerton, a serial killer who uses young, disaffected girls (Amanda Marsh) as accomplices to murder. She kills to eliminate threats and maintain control; Shelley becomes expendable once she knows too much.",
+    "confidence": "high",
+    "quote": "Miss Edgerton could remember when she had been at this for only six months\u2014but that was decades ago, and she had been younger then."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "The narrative perspective begins as Shelley Altman's internal experience, then shifts to Miss Edgerton's perspective, making both victim and culprit simultaneous focal points rather than a traditional single investigator.",
+    "confidence": "medium",
+    "quote": "Shelley seemed to be full of maybes today...She wished she could take off for the rest of the day and spend her time downtown, where there was nothing to do, but where nobody was watching her."
+  },
+  "suspect_architecture": {
+    "value": "Two apparent suspects (Shelley and Amanda) who appear to be planning murder of victim Miss Edgerton, but the true killer is Miss Edgerton herself \u2014 an experienced serial killer who uses the girls as unwitting instruments. Amanda is her current accomplice. The inversion of suspect/killer is the central architectural surprise.",
+    "confidence": "high",
+    "quote": "She'd been at this only six months, and this was only her third adventure. Miss Edgerton could remember when she had been at this for only six months"
+  },
+  "red_herring": {
+    "value": "The entire first-person narrative perspective of Shelley planning to murder Miss Edgerton is a deliberate red herring \u2014 the reader is led to believe Shelley is the predator and Miss Edgerton the victim, when the roles are precisely reversed. Shelley's surveillance of Miss Edgerton and plotting with Amanda misdirects toward a teen-killer story.",
+    "confidence": "high",
+    "quote": "It was one thing to murder a woman who was nothing more than a waste of light and air."
+  },
+  "clue_fairness": {
+    "value": "Several fair-play clues are embedded for the reader: Miss Edgerton's unusual decision to bring Edelweiss to work (controlling the scene), her calm demeanor when Shelley approaches, Amanda's unexplained absence at the park, and the cat being used as a distraction device \u2014 all visible to the reader before the reveal.",
+    "confidence": "medium",
+    "quote": "They get distracted by the cat."
+  },
+  "social_world": {
+    "value": "Small-town Florida high school hierarchy (cheerleaders, honor roll, student council) contrasted with adult institutional power (school office, law firm, Board of Education). Miss Edgerton occupies a liminal position \u2014 dismissed as 'only a secretary' yet moving freely through institutional spaces, which enables her crimes to go unseen.",
+    "confidence": "high",
+    "quote": "She didn't work at anything any more important than being a secretary."
+  },
+  "alibi": {
+    "value": "Miss Edgerton's alibi is embedded in plain sight: she is publicly known as the respectable, cat-loving neighbor and secretary, present in official school and legal settings throughout the day. Her visible, unremarkable routine functions as a structural alibi that makes her invisible as a suspect.",
+    "confidence": "medium",
+    "quote": "Miss Edgerton always looked businesslike, even though she didn't work at anything any more important than being a secretary."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is achieved through a sudden point-of-view shift in the final pages \u2014 the narrator pulls back from Shelley's perspective to show Miss Edgerton's external actions (watching the poker strike, directing Amanda, recalling decades of prior kills). The psychological reveal is that the reader's assumed predator/prey roles are inverted entirely.",
+    "confidence": "high",
+    "quote": "She had seen the poker arch and Shelley's body fall... She needed someone to handle the messy parts, and she had never much cared for the sight of blood."
+  },
+  "media_and_audience": {
+    "value": "The story operates largely without external media or public audience \u2014 it is an intimate, insular small-town setting. The absence of institutional scrutiny (police, press) is itself structural: Miss Edgerton's respectability and invisibility as a secretary/neighbor ensure no public narrative forms around her crimes.",
+    "confidence": "low",
+    "quote": "Matahatchee was full of them. Amanda could name six right off the top of her head"
+  },
+  "investigator_wound": {
+    "value": "There is no conventional investigator in this excerpt. The closest analogue is Shelley, whose psychological wound \u2014 social humiliation, powerlessness, hatred of authority figures \u2014 is exploited by Miss Edgerton to recruit her as an unwitting victim-participant. Shelley's rage blinds her to her own danger.",
+    "confidence": "medium",
+    "quote": "In some odd way that Shelley could not pin down, Miss Edgerton seemed to be at the root of all the trouble in the world"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "JANE HADDAM",
+    "anthology_title": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow",
+    "story_index": 5,
+    "story_count": 19
+  }
+}

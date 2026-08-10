@@ -1,0 +1,195 @@
+{
+  "title": "The Great Cookie Caper of Sesame Street",
+  "setting": {
+    "location": "Sesame Street \u2014 Cookie Monster's brownstone apartment and the surrounding neighbourhood blocks",
+    "time_period": "Present day, early autumn",
+    "environment": "A tight-knit urban brownstone block where everyone knows everyone's business; the stoops, the fix-it shop, the bakery, and the back alley are all within shouting distance of one another.",
+    "description": "Sesame Street is currently under a neighbourhood-watch lockdown imposed by the local Community Board after a series of minor thefts; no resident may leave the block without signing out with the Block Captain, and all four exits to the wider city are staffed by volunteer monitors until the investigation concludes. The warm smell of yesterday's baking still hangs in the air outside Cookie Monster's apartment, a cruel taunt given that every last cookie \u2014 Snickerdoodles, Oreos, Nutter Butters, the legendary triple-chocolate oat crumbles \u2014 has vanished overnight, leaving Cookie Monster slumped on his stoop in inconsolable blue-furred grief."
+  },
+  "crime": {
+    "type": "Theft",
+    "what_happened": "Sometime between 11 p.m. and 6 a.m., all of Cookie Monster's legendary cookie collection \u2014 estimated at over three hundred individual cookies stored in labelled tins, jars, and a custom-built refrigerated cabinet \u2014 was removed from his ground-floor apartment. The back window latch was forced open, and the cookies were transported away in bulk. No crumbs were left behind, which Cookie Monster himself describes as 'deeply unnatural.'",
+    "when": "Between 11:00 p.m. and 6:00 a.m. the previous night",
+    "initial_discovery": "At 6:15 a.m., Cookie Monster woke to prepare his morning snack and found his kitchen bare, his tins empty, his refrigerated cabinet wide open and cold. His wail of 'ME COOKIES \u2014 THEY GONE!' woke the entire block, bringing neighbours out onto their stoops and alerting Block Captain Gina, who immediately imposed the neighbourhood lockdown."
+  },
+  "characters": [
+    {
+      "name": "Cookie Monster",
+      "role": "victim",
+      "occupation": "Resident of Sesame Street and self-described Cookie Connoisseur; maintains the most extensive private cookie collection on the block",
+      "motive": "N/A \u2014 victim",
+      "alibi": "Was asleep in his bedroom from 11 p.m. onward, which is corroborated by neighbour Elmo who heard Cookie Monster's characteristic snoring through the shared wall well past midnight.",
+      "secret": "Cookie Monster had secretly entered into an informal agreement with a neighbourhood bakery supplier to sell duplicate cookies from his collection for extra money; he never disclosed this because he was ashamed it made his collection look less purely sentimental. This means he had a rough inventory list he never shared with anyone, which could help identify exactly which cookies were taken."
+    },
+    {
+      "name": "Hooper's Store Manager Alejandro",
+      "role": "suspect",
+      "occupation": "Manager of Hooper's General Store, which also stocks cookies and competes directly with Cookie Monster's informal cookie-trading operation",
+      "motive": "Cookie Monster's underground cookie-trading undercut Alejandro's store sales by roughly 30% over the past six months; Alejandro stood to recover significant lost revenue if the collection were destroyed or resold wholesale through an anonymous channel. He also held a personal grudge after Cookie Monster publicly embarrassed him at the block's Harvest Festival bake-off.",
+      "alibi": "Claims he was restocking shelves alone at Hooper's Store from 10 p.m. to 1 a.m., then went home. No one can independently confirm the restocking, but security camera footage from the store's exterior shows the lights were on inside until approximately 12:45 a.m.",
+      "secret": "Alejandro had obtained a copy of Cookie Monster's apartment key six months ago under the pretence of watering plants during a vacation, and never returned it. He told no one because he feared it would make him look guilty of any future incident involving the apartment \u2014 which it now does."
+    },
+    {
+      "name": "Prairie Dawn",
+      "role": "suspect",
+      "occupation": "Neighbourhood Events Coordinator and self-appointed Block Beautification Chair; she organises community fundraisers and has recently been planning a large charity bake sale",
+      "motive": "Prairie Dawn's charity bake sale was facing collapse after her supplier cancelled; stealing Cookie Monster's collection and reselling the cookies wholesale would have covered the fundraiser shortfall and kept her spotless community reputation intact. She had also been quietly furious at Cookie Monster for refusing to donate even a single cookie to her three previous fundraising drives.",
+      "alibi": "Says she was at the Community Centre until 11:30 p.m. finalising decorations for the upcoming event, verified by janitor Mr. Handford who locked up behind her; after that she claims she went straight home and read until sleeping around 1 a.m., unverified.",
+      "secret": "Prairie Dawn had recently forged a small amendment to the block's Community Pantry donation records to make it appear Cookie Monster had pledged a donation he never actually agreed to, intending to use it as leverage. She has not disclosed this because it would reveal both her desperation and a minor act of document fraud."
+    },
+    {
+      "name": "Snuffy (Mr. Snuffleupagus)",
+      "role": "suspect",
+      "occupation": "Freelance large-goods courier and neighbourhood odd-job worker; the only resident with a vehicle large enough to move hundreds of cookies in a single trip",
+      "motive": "Snuffy owes a significant debt to a wholesale snack distributor outside the neighbourhood who pressured him to procure a large, untraceable stock of cookies quickly or face serious financial consequences. Snuffy genuinely loves Cookie Monster but was terrified of the distributor and saw no other option.",
+      "alibi": "Claims he was parked overnight on the far end of Sesame Street in his large delivery van because his apartment building's boiler was broken and it was too cold to sleep there; says he was alone in the van all night. No corroborating witness can confirm he stayed in the van the entire time, though a neighbour saw the van parked there at 10:30 p.m.",
+      "secret": "Snuffy had previously used Cookie Monster's back-alley route as an unofficial shortcut for his deliveries and knew the layout of the apartment perfectly, including the flimsy back window latch that Cookie Monster had asked the building super to fix three times. He never mentioned knowing about the broken latch because he was afraid it would immediately point to him."
+    },
+    {
+      "name": "Gina (Block Captain)",
+      "role": "witness",
+      "occupation": "Veterinarian and elected Block Captain; responsible for imposing and overseeing the lockdown",
+      "motive": "N/A \u2014 witness",
+      "alibi": "Was asleep with her partner Marco from 10:30 p.m. until Cookie Monster's cry woke her at 6:15 a.m.; Marco confirms this fully.",
+      "secret": "Gina noticed tyre marks in the alley behind Cookie Monster's apartment the previous evening around 9:45 p.m. when she took out recycling, but did not think anything of it at the time and failed to mention it in her initial statement. She omitted it because she worried it would make the investigation look sloppy on her watch as Block Captain."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "Forced Back Window Latch",
+      "description": "The window latch on Cookie Monster's rear kitchen window has been bent outward with a flat implement; the damage is consistent with someone who knew the latch was already weak and applied force at exactly the right angle rather than breaking it randomly. It was found during the initial walkthrough of the apartment and initially suggests an outside break-in by someone who had cased the apartment beforehand.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E2",
+      "name": "Tyre Impressions in the Back Alley Mud",
+      "description": "A set of wide, deep tyre tracks is pressed into the soft mud of the alley directly behind Cookie Monster's building, consistent with a large commercial delivery vehicle; the tread pattern shows the vehicle was stationary for some time and then reversed out toward the north end of the alley. They were photographed by a neighbour's child and, combined with Gina's belated testimony, place a large van at the scene during the overnight window.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E3",
+      "name": "Apartment Key on Alejandro's Key Ring",
+      "description": "During an informal bag-check at the lockdown checkpoint, a key was spotted on Alejandro's key ring that does not correspond to Hooper's Store or his home; when pressed, he cannot immediately explain it. The key's grooves match the lock profile of Cookie Monster's front door, suggesting Alejandro retained unauthorised access to the apartment long after any legitimate reason expired.",
+      "type": "physical",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E4",
+      "name": "Annotated Delivery Route Diagram",
+      "description": "A hand-drawn schematic of Sesame Street's alley network was found tucked behind the sun visor in Snuffy's delivery van; it shows Cookie Monster's back alley circled in red with the notation 'window \u2014 don't need key' written in a second, hurried handwriting different from Snuffy's own neat block letters. The annotation strongly suggests a co-conspirator or a second person fed Snuffy operational details about the window access point.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E5",
+      "name": "Prairie Dawn's Forged Donation Ledger",
+      "description": "A Community Pantry donation register found in the Community Centre storage room contains an entry showing Cookie Monster pledged a large cookie donation, but the signature on the line is visibly inconsistent with other examples of Cookie Monster's signature on block documents. Handwriting comparison with Prairie Dawn's event planning notes shows strong similarities in letter formation, initially suggesting Prairie Dawn as the prime suspect with a documented grudge and fraudulent paper trail.",
+      "type": "documentary",
+      "relevance": "red_herring"
+    },
+    {
+      "id": "E6",
+      "name": "Wholesale Distributor Demand Letter",
+      "description": "A crumpled letter addressed to Snuffy was recovered from the floor of his van; it is from an outside wholesale snack company demanding delivery of 'a minimum three-hundred-unit untraceable cookie stock' within forty-eight hours or Snuffy would face collection proceedings on a substantial personal loan. The letter is dated three days before the theft and establishes Snuffy's urgent, concrete financial motivation to acquire a large cookie supply quickly.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E7",
+      "name": "Faint Blue Fur Fibres on the Window Frame",
+      "description": "Several short blue fur fibres are caught on a splinter of the forced window frame; at first glance they appear to implicate Cookie Monster himself or suggest he staged the theft. However, forensic comparison with fibre samples shows these fibres are significantly shorter and coarser than Cookie Monster's own fur, pointing instead to a stuffed toy or a fibre source from elsewhere \u2014 possibly the fur-trimmed hood of a jacket owned by another resident.",
+      "type": "physical",
+      "relevance": "red_herring"
+    },
+    {
+      "id": "E8",
+      "name": "Snuffy's Van Interior \u2014 Cookie Tin Residue",
+      "description": "A fine dusting of mixed cookie crumbs and the distinctive powdered sugar from Cookie Monster's labelled Snickerdoodle tin is found on the ribbed rubber mat of Snuffy's van cargo hold, along with a faint rectangular impression in the mat consistent with the dimensions of Cookie Monster's known custom cookie tins. This residue was overlooked in a casual visual inspection but identified when the cargo area was swept during the lockdown vehicle check.",
+      "type": "physical",
+      "relevance": "critical"
+    }
+  ],
+  "solution": {
+    "culprit": "Snuffy (Mr. Snuffleupagus)",
+    "method": "Snuffy used his prior knowledge of Cookie Monster's weak back window latch to silently force entry through the rear of the apartment between 1 a.m. and 4 a.m. He loaded the entire cookie collection \u2014 tins, jars, and cabinet contents \u2014 into his large delivery van parked in the back alley, then drove to the north end of the street intending to hold the cookies overnight before transferring them to the wholesale distributor at dawn. The neighbourhood lockdown was imposed before he could make the transfer, trapping the evidence in his van.",
+    "motive": "Snuffy was under severe financial pressure from a wholesale snack distributor to whom he owed a large personal loan; the distributor demanded an untraceable bulk cookie stock within forty-eight hours as repayment-in-kind. Desperate and ashamed, Snuffy targeted his friend's collection because he knew the apartment layout, knew the window was broken, and believed the sheer volume of cookies would satisfy the debt without anyone tracing the specific source.",
+    "key_evidence": [
+      "E2",
+      "E4",
+      "E6",
+      "E8"
+    ],
+    "how_to_deduce": "Step 1 \u2014 Establish vehicle access: The tyre impressions in the back alley mud (E2) confirm a large commercial vehicle was stationary behind Cookie Monster's apartment during the overnight theft window. Only one resident on the locked-down block owns and operates a vehicle of that size: Snuffy, whose van was parked on Sesame Street all night according to multiple sightings.\n\nStep 2 \u2014 Connect Snuffy to the entry method: The annotated delivery route diagram (E4) found in Snuffy's van shows Cookie Monster's back alley circled with the note 'window \u2014 don't need key,' written in a second hand. This proves Snuffy was specifically briefed on or himself knew about the broken window latch as the point of entry \u2014 knowledge ordinary residents would not have. Cross-referencing with testimony confirms Snuffy had used the alley as a delivery shortcut and was aware of the building's maintenance issues.\n\nStep 3 \u2014 Establish urgent motive: The wholesale distributor's demand letter (E6) found in Snuffy's van is dated three days before the theft and specifies a minimum three-hundred-unit cookie supply must be delivered or a personal loan will be called in. This creates a concrete, time-pressured financial motive that matches the timing of the theft exactly and explains why Snuffy would target a large, ready-to-move collection rather than steal opportunistically.\n\nStep 4 \u2014 Place the stolen goods in Snuffy's vehicle: Cookie crumbs and powdered sugar residue matching Cookie Monster's Snickerdoodle tin recipe, plus rectangular impressions consistent with Cookie Monster's custom tin dimensions, are found on the cargo mat of Snuffy's van (E8). This physically links the stolen property to Snuffy's vehicle and eliminates the possibility that the residue is coincidental or from Snuffy's own stock.\n\nStep 5 \u2014 Eliminate other suspects: Alejandro's retained key (E3) makes him look guilty but he had no vehicle capable of moving the volume of cookies, and store footage confirms his claimed presence at Hooper's during the critical early-morning hours. Prairie Dawn's forged ledger (E5) reveals motive and dishonesty but she lacks both the logistical means and any physical connection to the scene; the blue fur fibres (E7) initially seemed to implicate someone other than Snuffy but proved to be a coincidental fibre transfer from an unrelated source. Snuffy alone had motive, means, knowledge of entry, a vehicle of sufficient size, and physical traces of the stolen goods."
+  },
+  "gameplay_notes": {
+    "difficulty": "MEDIUM",
+    "estimated_playtime": "60\u201390 minutes",
+    "key_twists": [
+      "The annotated diagram in Snuffy's van was written by a second hand \u2014 players may initially suspect a co-conspirator, but the second handwriting turns out to be Snuffy's own hurried note-to-self written in a rush, distinct from his normal careful printing.",
+      "Prairie Dawn's forged donation ledger makes her look extremely guilty early in the investigation, functioning as the primary red herring that pulls player attention away from Snuffy.",
+      "The blue fur fibres on the window frame seem to directly implicate Cookie Monster in staging his own theft for insurance or sympathy, creating a false 'victim did it' theory that players must work to disprove.",
+      "Snuffy's apparent openness about parking on the street all night \u2014 which he volunteers freely \u2014 is actually the protective behaviour adapted from the lodger-hiding motif: he freely admits where the van was to avoid deeper questions about what was inside it.",
+      "The neighbourhood lockdown, intended to trap a thief, has instead trapped both the evidence and the stolen cookies inside Snuffy's van, meaning the cookies can theoretically be recovered intact \u2014 giving Cookie Monster a hopeful ending."
+    ]
+  },
+  "_meta": {
+    "num_players": 4,
+    "setting_input": "Sesame Street \u2014 Cookie Monster's brownstone apartment and the surrounding neighbourhood"
+  },
+  "_provenance": {
+    "recipe": "corpus_0281_ebo(1) + corpus_0088_ebo(2) + corpus_0207_ebo(3) + corpus_0188_ebo(4) + corpus_0126_ebo(5) + corpus_0184_ebo(6) + corpus_0213_ebo(7) + E(8)",
+    "slots": [
+      {
+        "source_id": "corpus_0281_ebo",
+        "part_index": 1,
+        "part_type": "crime_type"
+      },
+      {
+        "source_id": "corpus_0088_ebo",
+        "part_index": 2,
+        "part_type": "setting_element"
+      },
+      {
+        "source_id": "corpus_0207_ebo",
+        "part_index": 3,
+        "part_type": "motive"
+      },
+      {
+        "source_id": "corpus_0188_ebo",
+        "part_index": 4,
+        "part_type": "suspect_archetype"
+      },
+      {
+        "source_id": "corpus_0126_ebo",
+        "part_index": 5,
+        "part_type": "red_herring"
+      },
+      {
+        "source_id": "corpus_0184_ebo",
+        "part_index": 6,
+        "part_type": "reveal_mechanic"
+      },
+      {
+        "source_id": "corpus_0213_ebo",
+        "part_index": 7,
+        "part_type": "social_dynamic"
+      },
+      {
+        "source_id": "E",
+        "part_index": 8,
+        "part_type": "evidence_type"
+      }
+    ],
+    "target_setting": "Sesame Street \u2014 Cookie Monster's brownstone apartment and the surrounding neighbourhood",
+    "generated_title": ""
+  },
+  "_coherence": {
+    "passed": true,
+    "blocking": 0,
+    "warnings": 1,
+    "witness_gaps": []
+  }
+}

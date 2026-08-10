@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Kidnapping and extortion: Gleason abducts Carmen Stregg at gunpoint and demands $600,000 ransom, with the central question being whether the crime was genuinely coercive or a collaborative scheme between John Stregg and Gleason.",
+    "confidence": "high",
+    "quote": "Leave six hundred thousand dollars in a garbage bag next to the 'Adopted by the Flickertail Club' highway sign. No marked bills. No police."
+  },
+  "victim": {
+    "value": "Carmen Stregg, the wife of John Stregg. She is 'killable' because she stands between John and his affair with Jade; her trust in her husband and willingness to take pills make her vulnerable to manipulation.",
+    "confidence": "high",
+    "quote": "Carmen always been that way about taking pills\u2014a willing patient. Now she turned out to be a willing hostage, and Gleason had no more trouble with her."
+  },
+  "closed_world": {
+    "value": "Small-town North Dakota setting (New Otto), specifically the Stregg household and surrounding rural area. The town's isolation and the winter weather create the bounded space.",
+    "confidence": "medium",
+    "quote": "John Stregg opened his front door wide and there was Gleason, his girlfriend Jade's little brother. The boy stood, frail and skinny, in the snow with a sad look on his face."
+  },
+  "culprit_and_motive": {
+    "value": "Gleason (Jade's brother) carries out the kidnapping, but John Stregg engineered the scheme. Motive: John wants $600,000 to provide for Jade and their unborn child without divorcing Carmen or losing his bank position.",
+    "confidence": "high",
+    "quote": "He'd engineered the kidnapping scheme that had sent Gleason off to the army. Stregg had a vision. The baby resembled Gleason...Gleason was a kind of Christ figure, a martyr."
+  },
+  "resolution": {
+    "value": "Carmen discovers the truth when John confesses after finding comfort with her. She calls the police. John is imprisoned, taking all blame. Order is restored through legal punishment and John's removal from society.",
+    "confidence": "high",
+    "quote": "Then she went upstairs and called the police. In the years afterward, Stregg was sometimes asked by the friends he made behind bars what had caused him to confess."
+  },
+  "investigator": {
+    "value": "The reader investigates alongside John Stregg's internal perspective. Stregg himself becomes both investigator and culprit, revealing the scheme's logic and moral architecture as events unfold.",
+    "confidence": "medium",
+    "quote": "Stregg's heart lurched. He'd somehow known it...Stregg was ashamed to feel repelled by his wife's awkward need\u2014it was no different from his own need."
+  },
+  "suspect_architecture": {
+    "value": "Two principals: Gleason (juvenile, artistic, acting out of sibling loyalty, armed but incompetent) and Stregg (bank president, insider, the true architect of the crime). Carmen is the nominal victim with no criminal role. Jade is an absent catalyst. Differentiated by age, class, competence, and moral culpability \u2014 Gleason has means and presence, Stregg has motive, planning, and financial access.",
+    "confidence": "high",
+    "quote": "Stregg began to hope that he would find Jade hidden in the car. That this was some odd kind of prank."
+  },
+  "red_herring": {
+    "value": "Carmen's wildly inaccurate description of her abductor \u2014 large, muscular, stunningly handsome, a god \u2014 functions as a sustained red herring, misdirecting any investigation away from the scrawny, mild-eyed Gleason. Also, Stregg's visible weeping and apparent distress during the kidnapping misdirect Carmen and readers from his co-conspirator role.",
+    "confidence": "high",
+    "quote": "Her kidnapper was stunningly handsome, she said, a god! It was all so strange that Stregg almost felt like correcting her."
+  },
+  "clue_fairness": {
+    "value": "The story is not a traditional detective mystery and withholds no clue from the reader that the investigator possesses \u2014 there is no detective figure. However, the reader is given all the same information as Carmen (the de facto victim-investigator): Stregg's suspiciously calm cooperation, his tears during the tying, the too-convenient ransom logic, and the improbable description mismatch are all present in the text before Carmen calls the police.",
+    "confidence": "medium",
+    "quote": "Look, he's crying, Carmen said accusingly to Gleason, before her husband tied a scarf between her teeth."
+  },
+  "social_world": {
+    "value": "Small-town North Dakota banking dynasty: Stregg holds power only by marriage into Carmen's family \u2014 her father founded the bank, Carmen owns 51%. Stregg's position, wealth, and identity are entirely patronage-dependent. Class and gender inflect every relationship: Jade is younger, poorer, without institutional standing; Gleason is a powerless youth with no leverage except a jammed .22.",
+    "confidence": "high",
+    "quote": "If I divorced Carmen now, I wouldn't have a job. I took the bank over from her father... Carmen is a fifty-one-percent shareholder."
+  },
+  "alibi": {
+    "value": "Stregg constructs a passive alibi by remaining visibly bound in his own home after the kidnapping, while Gleason takes Carmen away. The self-applied tape and staged incapacitation are his alibi \u2014 he 'could not' have participated further. This alibi collapses entirely when he confesses, revealing the binding was self-administered under Gleason's instruction.",
+    "confidence": "high",
+    "quote": "He proceeded to instruct Stregg in how to do most of the work himself... Once Stregg had secured himself to the chair."
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is psychological and confessional, not forensic: post-coital emotional collapse triggers Stregg's full admission to Carmen in the entryway of their old home. The mechanism is shame and erotic vulnerability \u2014 Carmen's need dismantles his defences. Carmen then immediately calls the police, converting private confession into legal exposure.",
+    "confidence": "high",
+    "quote": "His remorse, and his shame, compelled him. And her need for him was so powerful... at the bottom Stregg cracked open and told her everything."
+  },
+  "media_and_audience": {
+    "value": "Local and regional press coverage is anticipated and instrumentalised by Stregg during the planning phase \u2014 he calculates the ransom amount specifically around how newspapers will round figures ('under half a million, the papers will say nearly half a million'). Police investigation is mentioned but rendered offstage; the bank's vulnerability to acquisition frames the financial crime as locally resonant.",
+    "confidence": "high",
+    "quote": "If it's under half a million, the papers will say nearly half a million anyway. So it might as well be over half a million."
+  },
+  "investigator_wound": {
+    "value": "There is no external detective; Stregg is simultaneously perpetrator and the closest figure to an investigator of his own conscience. His wound is self-knowledge: he knows he is unlovable without money and status, and this insecurity drove the entire scheme. Carmen, as victim-turned-accuser, is wounded by abandonment and near-death, which paradoxically opens her emotionally and enables the confession.",
+    "confidence": "medium",
+    "quote": "Do you think she'd stay with me just for me? Now, be honest. Without the money. Without the job. Just me."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Gleason",
+    "author": "LOUISE ERDRICH",
+    "anthology_title": "The_Best_American_Mystery_Stories_2007_-_Carl_Hiaasen",
+    "story_index": 9,
+    "story_count": 21
+  }
+}

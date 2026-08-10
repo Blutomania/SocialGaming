@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Double homicide: Bryce Campion and Marie-France Lapin shot in a hotel suite at the Three Crowns; central question: who gained access to the suite and why were they killed?",
+    "confidence": "high",
+    "quote": "she saw the blood and the hole in Bryce's forehead where no one should have a hole. And when she leaned over...the girl's hair was covering a section of her cheek that was red and pulpy"
+  },
+  "victim": {
+    "value": "Bryce Campion, actor/entertainer, and fianc\u00e9e Marie-France Lapin; killable because Bryce rejected his former secretary Jennifer, who was angry about his sudden engagement announcement on TV",
+    "confidence": "high",
+    "quote": "My own so-called boyfriend tells me the other day he's going to marry someone else...I've been his secretary, his lover, even his laundress."
+  },
+  "closed_world": {
+    "value": "The Three Crowns Hotel suite on the top floor; access controlled by keycard; confined space where Jennifer could arrange Dolores's presence and control the narrative",
+    "confidence": "high",
+    "quote": "He's on the top floor where the big suites are...You shove it into the slot above the handle...when the little light turns green, you can open the door."
+  },
+  "culprit_and_motive": {
+    "value": "Jennifer, Bryce's former secretary, motivated by rage and rejection when Bryce announced his engagement to Marie-France on television; she kills both to punish him",
+    "confidence": "high",
+    "quote": "Men need to be taken down a peg, don't you agree?...he's going to marry someone else...I've been his secretary, his lover, even his laundress."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Dolores, a mentally ill woman with delusional attachment to Bryce; she becomes the unwitting discoverer of the bodies and potential patsy, manipulated by Jennifer into the hotel suite",
+    "confidence": "high",
+    "quote": "She felt sad about Bryce and about the pretty girl too. But she knew in her heart that what Dr. Bradford had said was true. She and Bryce weren't really engaged."
+  },
+  "suspect_architecture": {
+    "value": "Two primary figures: Jennifer (Bryce's jilted secretary/lover, glittering eyes, gloves, scarf, clear motive of jealous rage over impending marriage) and Dolores (delusional stalker, no real motive or capability, functions as unwitting patsy). Bryce and Marie-France are victims. No other suspects presented.",
+    "confidence": "high",
+    "quote": "My own so-called boyfriend tells me the other day he's going to marry someone else\u2026 he's knocked up some blond bimbo"
+  },
+  "red_herring": {
+    "value": "Dolores herself is the primary red herring \u2014 her obsessive pursuit of Bryce, history of institutionalisation, and physical presence at the murder scene make her the apparent suspect, while Jennifer, who actually committed the murders, manipulates her as a deliberate frame.",
+    "confidence": "high",
+    "quote": "She took the card\u2026 'When you've told him \u2026 whatever you want to tell him, come back here and I'll give you your bag.'"
+  },
+  "clue_fairness": {
+    "value": "The temporary crown and broken pink fingernail are shown to the reader in the doughnut shop scene, then placed by Dolores at the crime scene \u2014 physical evidence linking Jennifer to the murder is fairly planted and visible to the reader before any investigator could interpret it.",
+    "confidence": "high",
+    "quote": "She noticed the little pink fingernail was caught in the folds, but it looked so pretty against the white sheet she decided to leave that"
+  },
+  "social_world": {
+    "value": "Las Vegas celebrity-entertainment hierarchy: Bryce at the top (headlining hotel performer), Jennifer as subordinate secretary/lover exploited then discarded, Dolores at the bottom (welfare-dependent, institutionalised, mentally ill). Power flows through celebrity access, money, and institutional authority (psychiatry, police, hotel management).",
+    "confidence": "high",
+    "quote": "I've been his secretary, his lover, even his laundress. I've answered thousands of letters from his retarded fans."
+  },
+  "alibi": {
+    "value": "Jennifer constructs a false alibi through misdirection: she sends Dolores up to the suite (already containing the bodies she has killed), claims she will park the car and retrieve Dolores's bag, then reappears in disguise with gloves and scarf \u2014 her absence during the murder window is covered by Dolores's presence at the scene.",
+    "confidence": "high",
+    "quote": "This time she was wearing a scarf, dark glasses, and black leather gloves, and she was holding out a plastic card with a strip on one side."
+  },
+  "reveal_mechanic": {
+    "value": "The solution is demonstrated through physical trace evidence: the temporary dental crown (unique, identifiable, dropped by Jennifer in the doughnut shop) and the broken pink acrylic fingernail, both left at the murder scene by Dolores who innocently carried them there, physically linking Jennifer to the crime.",
+    "confidence": "high",
+    "quote": "She pulled it out and dropped it near Bryce's hand. She noticed the little pink fingernail was caught in the folds"
+  },
+  "media_and_audience": {
+    "value": "Celebrity culture and entertainment media are the engine of the crime: a TV announcement of Bryce's engagement triggers both women's crises; Bryce's fame is packaged through hotel marquees, posters, and press commentary; Dolores's delusion is fed entirely by screen appearances and magazine coverage of a celebrity she has never actually met.",
+    "confidence": "high",
+    "quote": "Bryce Campion, best known for his role in Worlds Apart\u2026 announced their upcoming nuptials today in Las Vegas."
+  },
+  "investigator_wound": {
+    "value": "There is no conventional investigator protagonist; the point-of-view character is Dolores, whose wound is severe delusional psychosis \u2014 her inability to distinguish fantasy from reality (the 'marriage' to Bryce, Jonathan Finn declaring love) is both exploited by Jennifer and is the structural lens through which all evidence is filtered, making her an unreliable and vulnerable observer rather than a detective.",
+    "confidence": "medium",
+    "quote": "She knew in her heart that what Dr. Bradford had said was true. She and Bryce weren't really engaged. It was just a kind of dream."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "A Temporary Grown",
+    "author": "SUE PIKE",
+    "anthology_title": "The_Best_American_Mystery_Stories_2006_-_Scott_Turow",
+    "story_index": 16,
+    "story_count": 19
+  }
+}

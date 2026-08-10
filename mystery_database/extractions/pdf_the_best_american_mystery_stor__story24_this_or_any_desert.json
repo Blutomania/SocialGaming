@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Las Vegas and surrounding desert; narrator arrives from Oakland and checks into Motel 6 near Chinatown",
+    "confidence": "medium",
+    "quote": "I checked into the Motel 6 near Chinatown and fell asleep with my shoes on and my gun still strapped to my ankle."
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "First-person narrator, armed investigator or detective arriving in Las Vegas from Oakland",
+    "confidence": "high",
+    "quote": "my gun still strapped to my ankle. I slept stupid for nine hours straight and woke up at six in the morning"
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": "The beam of light from the pyramid casino is mistaken for a UFO, establishing a motif of misreading evidence \u2014 potentially seeding the reader to distrust first impressions.",
+    "confidence": "low",
+    "quote": "I thought the cloud was a UFO or something and nearly hit the truck ahead of me."
+  },
+  "clue_fairness": {
+    "value": "The narrator's gun strapped to ankle and badge are disclosed to the reader in passing, establishing investigator identity and arming details available to reader from the outset.",
+    "confidence": "low",
+    "quote": "my gun still strapped to my ankle"
+  },
+  "social_world": {
+    "value": "A transactional, low-trust urban underclass world: cash overrides authority (badge vs. money at motel desk), ethnic insularity, immigrant service economy in Las Vegas Chinatown fringe.",
+    "confidence": "medium",
+    "quote": "I thought about flashing him my badge, but instead I brandished three days' stay in advance, cash"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "Las Vegas's mythology (UFO-like beam visible from space, neon spectacle) frames how events are perceived and misread \u2014 the city's public image actively distorts witness perception.",
+    "confidence": "low",
+    "quote": "you can even see the beam from space... My disappointment surprised me."
+  },
+  "investigator_wound": {
+    "value": "Investigator is an outsider (Oakland origin, first time in Vegas), sleep-deprived, physically depleted, and prone to misperception \u2014 vulnerability established as cognitive and sensory unreliability.",
+    "confidence": "medium",
+    "quote": "My tired pulpy brain at the time, I thought the cloud was a UFO or something and nearly hit the truck ahead of me."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver.pdf",
+    "text_len": 1691,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "This or Any Desert",
+    "author": "V U TRAN",
+    "anthology_title": "The_Best_American_Mystery_Stories_2009_-_Jeffery_Deaver",
+    "story_index": 24,
+    "story_count": 25
+  }
+}

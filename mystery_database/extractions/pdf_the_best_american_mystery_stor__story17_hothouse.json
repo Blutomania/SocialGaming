@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Kelly's unnamed wife, killed by Kelly years prior in the North; now Kelly himself is shot by Wilson the security guard",
+    "confidence": "medium",
+    "quote": "When he'd killed her. Would he have, back home? No."
+  },
+  "closed_world": {
+    "value": "New York Botanical Garden conservatory dome, sealed by blizzard; only accessible occupants are Kelly, Jan Morse, and Wilson the guard",
+    "confidence": "high",
+    "quote": "A blizzard so bad the Botanical Garden was closed. It wasn't clear to Kelly he could climb the fence in this icy wind"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Kelly himself\u2014the escaped prisoner and fugitive\u2014observes and experiences events from his perspective; Jan Morse witnesses the confrontation",
+    "confidence": "high",
+    "quote": "John Kelly. Horticulturalist. She offered her hand."
+  },
+  "suspect_architecture": {
+    "value": "Single perpetrator narrative: Kelly is both fugitive and de facto protagonist-villain. No traditional suspect spread; guilt is established from the outset. Wilson functions as the only antagonist figure, with motive (reward) and opportunity (armed guard on site). Jan Morse is briefly ambiguous but quickly exonerated. Architecture is inverted \u2014 reader knows the killer; tension is whether he escapes, not who did it.",
+    "confidence": "high",
+    "quote": "\"He'd jumped the prisoner transport at the courthouse... it was that guard.\""
+  },
+  "red_herring": {
+    "value": "Kelly's claim to be a volunteer who 'got a call from Susan' is a deliberate in-story misdirection aimed at Jan Morse \u2014 and momentarily at the reader \u2014 suggesting he has a legitimate reason to be in the conservatory. The ruse delays recognition of his fugitive status and generates false normalcy around his presence.",
+    "confidence": "high",
+    "quote": "\"Volunteer,\" he said. \"Got a call.\" ... \"That's what Susan told me. On the phone.\""
+  },
+  "clue_fairness": {
+    "value": "The story is not a whodunit and does not deploy classic fair-play cluing. However, the reader is given Wilson's recognition cue simultaneously with Kelly: the narrowed-eyes guard at the gate is mentioned early, and his identity as Wilson is confirmed at the climax. The reader has all information Kelly has at the moment of recognition.",
+    "confidence": "medium",
+    "quote": "\"One guard gave him a squint, peered after with narrowed eyes\" / \"Saw you the other day, didn't I? At the gate.\""
+  },
+  "social_world": {
+    "value": "Compressed but legible hierarchy: institutional authority (Wilson, union contract, security protocols) vs. expert/professional authority (Dr. Morse, horticulturalist). Union rules explicitly shield Wilson from dangerous work, creating a power vacuum Kelly exploits. The carceral state looms over all \u2014 Wanted flyers, prisoner transport, reward system \u2014 as the overarching power structure determining Kelly's fate.",
+    "confidence": "high",
+    "quote": "\"Union contract, I can't make him.\" / \"Big reward.\" / \"They gave us your photo.\""
+  },
+  "alibi": {
+    "value": "Kelly constructs a false alibi in real time: he claims to live on Webster Street and to have received a phone call from Susan. The alibi is thin and begins to unravel under Jan's questioning before Wilson's recognition makes it moot. No alibi is offered for the original crime (killing his wife); guilt is admitted internally by Kelly himself.",
+    "confidence": "high",
+    "quote": "\"How did you get here so fast?\" \"I live on Webster.\" ... The start of doubt shaded her eyes."
+  },
+  "reveal_mechanic": {
+    "value": "Recognition via circulated photograph: Wilson identifies Kelly not through deduction but through institutional distribution of a wanted photo, confirmed by prior visual memory (the gate encounter). The reveal is abrupt and externally triggered rather than investigatively constructed \u2014 appropriate to a noir form where the system catches up rather than reason solving.",
+    "confidence": "high",
+    "quote": "\"They gave us your photo... Saw you the other day, didn't I? At the gate.\" He came closer, still talking."
+  },
+  "media_and_audience": {
+    "value": "The fugitive's visibility is managed through the public apparatus of wanted posters, borough-wide distribution to precincts, and front-page cold-weather coverage that paradoxically aids his concealment. The Bronx street environment \u2014 librarians who don't read wanted posters, fast-food workers indifferent to faces \u2014 represents a counter-public that resists the state's narrative packaging of Kelly as dangerous.",
+    "confidence": "high",
+    "quote": "\"Wanted flyers passed to every cop, taped to every cop house in every borough\" / \"librarians...weren't accustomed to men like him\""
+  },
+  "investigator_wound": {
+    "value": "There is no external investigator; Kelly is simultaneously perpetrator and point-of-view figure. His wound is the crime itself \u2014 the cold-weather killing of his wife, understood by him as environmentally determined. The blizzard re-traumatizes him, and the conservatory's warmth briefly dissolves his guilt. His 'wound' is geographic and psychological displacement: a tropical man destroyed by northern cold, literally and morally.",
+    "confidence": "medium",
+    "quote": "\"It had been a month like this, cold like this...when he'd killed her. Would he have, back home? No.\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "text_len": 21523,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Hothouse",
+    "author": "S.J. ROZAN",
+    "anthology_title": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos",
+    "story_index": 17,
+    "story_count": 22
+  }
+}

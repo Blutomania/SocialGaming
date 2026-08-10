@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_architecture": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "red_herring": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "clue_fairness": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "social_world": {
+    "value": "Publishing industry hierarchy: large conglomerate giants (Random House, Viking, Hachette, Simon & Schuster) vs. independent mid-size literary houses (Houghton Mifflin, Harcourt); editorial independence vs. commercial pressure networks.",
+    "confidence": "medium",
+    "quote": "No editor or executive has knocked on the door to offer \"suggestions\" about changes, no memos have appeared in the mailbox"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "media_and_audience": {
+    "value": "The anthology foreword explicitly addresses how mystery fiction is publicly perceived and packaged \u2014 dismissed by erudite readers as mere entertainment versus 'good' literary fiction \u2014 and how marketing categorisation shapes audience reception of the genre.",
+    "confidence": "medium",
+    "quote": "There are folks who fancy themselves too erudite to try a volume of mystery stories. They believe that one is mere entertainment"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "text_len": 17249,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "A Different Road",
+    "author": "ELIZABETH STROUT",
+    "anthology_title": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos",
+    "story_index": 1,
+    "story_count": 22
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Murder disguised as natural death via fraudulent will scheme. Young man Asuvius poisoned or killed; body disposed of and burned. A false will created to make it appear he died of illness, with witnesses summoned to verify the document.",
+    "confidence": "high",
+    "quote": "the sight of that young man's body, thrown into a rubbish pit and burned to ashes"
+  },
+  "victim": {
+    "value": "Asuvius, a wealthy young landowner from Larinum orphaned one year prior, whose recent inheritance of substantial farms and slaves made him a target. His youth, naivety, and absence of close family made him vulnerable to manipulation.",
+    "confidence": "high",
+    "quote": "having to take on his father's duties in such a hurry, and after such a terrible tragedy. All the big farms he owns, and all the slaves!"
+  },
+  "closed_world": {
+    "value": "The Subura district of Rome and its associated establishments (Priapus's Palace brothel, tenement apartments, local taverns), a contained social underworld where the crime was orchestrated and concealed.",
+    "confidence": "high",
+    "quote": "One can almost smell the passion! The crowded tenements, the strange odors, the spectacle of humanity!"
+  },
+  "culprit_and_motive": {
+    "value": "Vulpinus (the Fox) and Oppianicus murdered Asuvius to profit from a fraudulent will. Oppianicus orchestrated the plot; the Fox executed it. Motive: financial gain through inheritance fraud using a forged will.",
+    "confidence": "high",
+    "quote": "Yes! Yes, I murdered him, it's true! Oppianicus made me do it! It was Oppianicus's idea from the start, to create the false will and then murder Asuvius!"
+  },
+  "resolution": {
+    "value": "Asuvius's freedmen, mobilized by his sister's representatives, apprehend the Fox through mob action and present him before the commissioner. The Fox confesses under duress. Though the commissioner accepts a bribe to dismiss charges, the fraudulent will goes missing in Larinum, preventing the criminals from profiting.",
+    "confidence": "high",
+    "quote": "the fraudulent will went missing in Larinum. In consequence, the property of the late Asuvius was divided among his surviving blood relations."
+  },
+  "investigator": {
+    "value": "Gordianus the Finder, a private investigator of modest social standing in ancient Rome, engaged by Lucius Claudius. Acts as witness and guide; Lucius emerges as the true architect of justice through his own investigation and mobilization of the victim's freedmen.",
+    "confidence": "high",
+    "quote": "Gordianus the Finder, a citizen of ancient Rome and Cicero's hired investigator"
+  },
+  "suspect_architecture": {
+    "value": "Two primary villains: Oppianicus (mastermind, motive: inherit Asuvius's estate via forged will) and Vulpinus 'the Fox' (accomplice, motive: share in proceeds). Lucius Claudius initially appears a bumbling dupe but is revealed as a shrewd Roman noble. The architecture is lean \u2014 two conspirators, one naive victim, one unwitting witness \u2014 differentiated by social rank, cunning, and moral agency.",
+    "confidence": "high",
+    "quote": "\"Yes! Yes, I murdered him...Oppianicus made me do it! It was Oppianicus's idea from the start, to create the false will\""
+  },
+  "red_herring": {
+    "value": "The staged deathbed scene: Oppianicus summons Lucius to witness a will for a 'deathly ill' Asuvius, implying imminent natural death. This misdirects both Lucius and the reader into believing the will legitimate and the illness real, when in fact Asuvius was alive and well with Columba at that very hour.",
+    "confidence": "high",
+    "quote": "\"he appeared to be deathly ill...I saw him alive and well with my own eyes, this very morning!\""
+  },
+  "clue_fairness": {
+    "value": "The alibi clue \u2014 Columba confirming Asuvius wore his seal ring during their intimate morning together \u2014 is presented directly to the reader in dialogue before Gordianus draws his conclusion. The chronological contradiction (Asuvius simultaneously 'dying' and sleeping with Columba) is laid out transparently so the reader can deduce the forgery independently.",
+    "confidence": "high",
+    "quote": "\"Sometimes...one of them happens to be wearing a ring...Yes, I'm sure he was wearing his ring.\""
+  },
+  "social_world": {
+    "value": "Late-Roman Republic hierarchy: patrician rank (Lucius Claudius) grants respectability and access; freedmen serve as instruments of rough justice outside corrupt courts; slaves (Bethesda, Columba) are commodities bought and sold; advocates and commissioners are bribable. Justice flows through patronage and mob action rather than institutions.",
+    "confidence": "high",
+    "quote": "\"Roman justice prevailed\u2014which is to say that the honourable commissioner Quintus Manilius proved not too honourable to take a bribe\""
+  },
+  "alibi": {
+    "value": "Oppianicus and the Fox construct a false alibi for Asuvius's 'illness and death' by staging the deathbed scene on a specific morning. Columba's testimony demolishes it: Asuvius was with her the entire morning in question, confirmed by the intimate detail of his seal ring. The villains' alibi for themselves is never directly stated, exposing their scheme entirely through the victim's disproved alibi.",
+    "confidence": "high",
+    "quote": "\"he had slept the whole night with me...we didn't wake until quite late that morning. Even then, we didn't leave the room.\""
+  },
+  "reveal_mechanic": {
+    "value": "The Fox's guilt is demonstrated through psychological collapse rather than forensic proof: cornered by the mob of freedmen in the Forum, he confesses spontaneously and implicates Oppianicus before any formal charge is laid. Gordianus notes the mechanism explicitly \u2014 the wicked are cowards, and foxes step into traps of their own devising.",
+    "confidence": "high",
+    "quote": "\"the wicked are often cowards...human foxes as often as not step into traps of their own devising\""
+  },
+  "media_and_audience": {
+    "value": "The crime is narrated through Forum gossip, street spectacle, and the public filing of the fraudulent will at Larinum \u2014 Oppianicus weaponises legal bureaucracy and public display to legitimise the fraud. Justice is ultimately pursued via a street mob's theatrical procession to the commissioner's tribunal, making public opinion and spectacle the operative force where courts fail.",
+    "confidence": "medium",
+    "quote": "\"Oppianicus made a great production of showing Asuvius's will to anyone who cared to look and filing it with the clerks in the Forum\""
+  },
+  "investigator_wound": {
+    "value": "Gordianus carries a mild wound of class condescension and professional cynicism \u2014 he repeatedly assumes Lucius is foolish and dim, underestimating him throughout. His deeper vulnerability is disillusionment with Roman justice, which he knows is corrupt and which limits what he can deliver, leaving moral resolution incomplete.",
+    "confidence": "medium",
+    "quote": "\"I expected him to quickly lose interest and lapse into his customary boredom...He no longer appeared to me the least bit foolish or dim-witted.\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "filename": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "STEVEN SAYLOR",
+    "anthology_title": "The_Years_Best_Mystery_n_Suspense_Stories_1993_-_Edward_D_Hoch",
+    "story_index": 13,
+    "story_count": 15
+  }
+}

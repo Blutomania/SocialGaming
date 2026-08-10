@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Multiple homicides: three bodies found burned in trailer (shot beforehand), one body found in truck with gunshot wound to forehead. Central questions: Who killed the Olshansky family and why? Where is Carlos Olshansky? Was it a crime of passion, random violence, or connected to child exploitation?",
+    "confidence": "high",
+    "quote": "two bodies burned beyond recognition in the kitchen, and one in the neighboring bedroom...they'd all been shot beforehand."
+  },
+  "victim": {
+    "value": "The Olshansky family (Billie Jean, Danielle, Marya, Del) and Warren Nixon, a predatory child abuser. Primary vulnerability: Carlos Olshansky, beautiful adolescent boy, isolated through enrollment in religious school, targeted by pedophile Nixon; family killed possibly to conceal abuse or in violent conflict over the boy.",
+    "confidence": "high",
+    "quote": "Warren Nixon had photos of boys lying around, a computer full of child pornography...All young boys. Beautiful boys like Carlos Olshansky."
+  },
+  "closed_world": {
+    "value": "Small rural Colorado town with isolated trailer settlement in pi\u00f1on-juniper foothills. Limited population, interconnected social networks, limited escape routes. Community of observers who knew the family but remained inattentive; geographic isolation of the trailer compounds investigative difficulty.",
+    "confidence": "high",
+    "quote": "The Olshanskys lived out past the landfill in the pi\u00f1on-juniper foothills where there wasn't much water...there weren't many neighbors if you needed help."
+  },
+  "culprit_and_motive": {
+    "value": "Identity unresolved. Multiple theories: (1) Warren Nixon or an accomplice pedophile killed for jealousy/possession of Carlos; (2) Carlos himself, possibly coerced or drugged, killed Nixon and family in rage or self-defense; (3) Random perpetrators; (4) Del killed by jealous husband Larry Jefferson. Motive centers on sexual abuse of Carlos and family's intervention or knowledge.",
+    "confidence": "low",
+    "quote": "Had Carlos acted alone? He might have killed Warren Nixon and then his family...Or was Carlos involved? Who else but Carlos could have driven the second car?"
+  },
+  "resolution": {
+    "value": "No resolution. The mystery remains unsolved one year later. Carlos is missing or dead\u2014never found. Community moves on without closure. The investigative trail ends in speculation. Time passes, witnesses disperse, evidence fades, and the case becomes community history rather than solved crime.",
+    "confidence": "high",
+    "quote": "Maybe Carlos is dead. That would explain why no one has found him in the year since this happened...Only Carlos might tell us the truth. And where is he?"
+  },
+  "investigator": {
+    "value": "The town collective\u2014unnamed narrator representing community consciousness. Not an official detective but the townspeople themselves, who investigate through gossip, speculation, and hindsight. The community serves as unreliable investigator, reconstructing narrative while acknowledging their own blindness and inattention.",
+    "confidence": "high",
+    "quote": "WE SHOULD HAVE BEEN more alert, all of us, more aware...All that weekend we talked about the Olshanskys \u2014 who they were, why they'd come to town, why anyone would want to kill them."
+  },
+  "suspect_architecture": {
+    "value": "Multiple suspects with overlapping motives: Larry Jefferson (jealous husband, motive re Del/Emily affair); Warren Nixon (predatory church leader, opportunity via school); unknown 'disciple' or accomplice (hypothetical second perpetrator); Carlos himself (victim-turned-suspect, means and presence unclear). Suspects differentiated by motive type \u2014 domestic jealousy, predatory abuse, random violence \u2014 but none conclusively proven.",
+    "confidence": "high",
+    "quote": "Just like that, Carlos became both a victim and a suspect."
+  },
+  "red_herring": {
+    "value": "Larry Jefferson is presented as a strong suspect due to the Del/Emily affair establishing jealousy motive, prompting the sheriff to haul him from Pueblo \u2014 but he is immediately cleared, having no knowledge of Del. The 'random psychos' theory of opportunistic killers is raised and abandoned twice, functioning as a structural red herring.",
+    "confidence": "high",
+    "quote": "It was obvious right from the start Larry had no idea who Del Olshansky was."
+  },
+  "clue_fairness": {
+    "value": "This is literary crime fiction rather than classical detective fiction; clues are present but not formatted for solver fairness. Key details \u2014 Del's truck previously parked at the Jefferson turnout, Wilferd Barkley's testimony, Carlos's silence and dissociation, Warren Nixon's child pornography \u2014 are disclosed to the reader through communal narration, but no investigator figure consolidates them, so fairness is incidental rather than designed.",
+    "confidence": "low",
+    "quote": "Warren Nixon had photos of boys lying around, a computer full of child pornography, movies. All young boys."
+  },
+  "social_world": {
+    "value": "Rural small-town community stratified by respectability, belonging, and visibility. The Olshanskys occupy a permanently marginal position \u2014 late rent, torn clothes, unreliable \u2014 watched but not integrated. Institutional power (sheriff, social services, school) is shown as reactive, not preventive. Fringe religious sects operate outside civic life. Church authority over a child (Nixon's school) enables predation shielded by community indifference.",
+    "confidence": "high",
+    "quote": "The social service agencies, the sheriff for all his vigilance...didn't notice anything particularly wrong. Carlos went to the church school. It was the Olshanskys' choice."
+  },
+  "alibi": {
+    "value": "Emily Jefferson claims she saw and heard nothing the night of the killings despite Del's truck being parked in front of her house \u2014 her alibi is silence and weather ('it had been windy and snowy'). Larry Jefferson's alibi (attending a seminar in Pueblo) is genuine and verified. Warren Nixon's absence from church triggers discovery of his body; no alibi is possible post-mortem.",
+    "confidence": "medium",
+    "quote": "Emily Jefferson was home that night...but she hadn't seen or heard anything. It had been windy and snowy, and she'd built a fire in the stove."
+  },
+  "reveal_mechanic": {
+    "value": "There is no formal reveal mechanic; the story deliberately withholds resolution. The closest functional reveal is accumulative \u2014 Warren Nixon's apartment (child pornography, photos of boys) retroactively reframes Carlos's transfer to the church school and his dissociation as signs of abuse. The communal narrator assembles competing theories but cannot adjudicate. The mystery remains open.",
+    "confidence": "low",
+    "quote": "Warren Nixon had photos of boys lying around, a computer full of child pornography...Beautiful boys like Carlos Olshansky."
+  },
+  "media_and_audience": {
+    "value": "The collective first-person narrator ('we') functions as both community audience and unreliable media \u2014 retrospectively packaging the crime through guilt, speculation, and self-exculpation. Public opinion shifts through theories (random violence, jealous husband, predator network). The town's need to make sense of events is explicitly foregrounded as the narrating mechanism, and the community's prior inattention becomes its own indictment.",
+    "confidence": "high",
+    "quote": "All that weekend we talked about the Olshanskys \u2014 who they were, why they'd come to town, why anyone would want to kill them."
+  },
+  "investigator_wound": {
+    "value": "There is no individual investigator; the collective 'we' of the town substitutes for one. The community's wound is collective guilt \u2014 the knowledge that signs were visible and ignored, that social distance and self-interest prevented intervention. The narration is structured as a communal confession: 'We should have been more alert, all of us.' The wound is civic and moral rather than psychological and personal.",
+    "confidence": "medium",
+    "quote": "We should have been more alert, all of us, more aware."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates.pdf",
+    "text_len": 23532,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Public\tTrouble",
+    "author": "KENT\tNELSON",
+    "anthology_title": "The_Best_American_Mystery_Stories_2005_-_Joyce_Carol_Oates",
+    "story_index": 13,
+    "story_count": 22
+  }
+}

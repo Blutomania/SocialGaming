@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": "Double homicide by gunshot and blunt force trauma. Pat shot once in chest; Clyde shot twice (stomach and head) then covered with cereal. Nothing stolen. Central question: Who killed them and why, given the absence of robbery motive and the ritualistic desecration of Clyde's body?",
+    "confidence": "high",
+    "quote": "Pat and Clyde were murdered on pot roast night...He had been shot twice \u2014 once in the stomach and once in the head \u2014 and then covered with cereal"
+  },
+  "victim": {
+    "value": "Pat and Clyde: a middle-class couple. Pat was killable due to her affair with Mr. Mitchell (neighbor), creating a triangle of desire and resentment. Clyde was killable due to his impotence and emotional distance, making Pat vulnerable to seduction.",
+    "confidence": "high",
+    "quote": "Pat told him that Clyde had been impotent for years \u2014 a reaction, it seemed, from witnessing his father's death...Since the funeral she'd had two lovers. Mr. Mitchell was number three."
+  },
+  "closed_world": {
+    "value": "A suburban residential neighborhood on Bridge Street, bounded by the social intimacy of neighbors (Mitchells live adjacent to Pat and Clyde). The closed world is not geographic but social: the detective must investigate within a tight community where secrets bleed into one another.",
+    "confidence": "medium",
+    "quote": "pat and Clyde's on Bridge Street...Mr. Mitchell began an affair with their neighbor, Pat...It did not begin innocently."
+  },
+  "culprit_and_motive": {
+    "value": "Strongly suggested but unresolved: Mr. Mitchell (the neighbor) is the likely culprit. Motive: passionate affair with Pat, combined with resentment of his own wife (who took in Miguel and withheld intimacy as punishment). The murders occur immediately after an illicit encounter on the welcome mat.",
+    "confidence": "medium",
+    "quote": "On the day Pat was murdered, before she put the roast in the oven...she was having sex in the vestibule...He had seen Clyde leave for a bowling lesson"
+  },
+  "resolution": {
+    "value": "The mystery remains unresolved. Lieutenant Sales finds the welcome mat (with Pat's blood) and believes it is the key, but the narrative explicitly states the case cannot be solved: 'Home Sweet Home would lead him back to the beginning of a murder he could not solve.' No arrest, conviction, or definitive proof.",
+    "confidence": "high",
+    "quote": "Home Sweet Home would lead him back to the beginning of a murder he could not solve...There would be no scar, just the sense that he missed something"
+  },
+  "investigator": {
+    "value": "Lieutenant Sales: a former deep-sea diver scarred by a shark attack, now a detective. His lens is intuitive and emotional rather than forensic; he experiences the investigation as a spiritual quest ('held breath, like the moment before something important happens'). He fails to solve the crime despite this sensitivity.",
+    "confidence": "high",
+    "quote": "Lieutenant Sales...had once been a champion deep-sea diver, until a shark attack...pulled him from the waters...and induced him to join the force"
+  },
+  "suspect_architecture": {
+    "value": "Primary suspect: Mrs. Mitchell (knows of husband's affair with Pat, motive: jealousy/revenge, opportunity: neighbor). Secondary: Mr. Mitchell (affair with victim, motive: concealment, opportunity confirmed). Tertiary: organized crime linked to Clyde's father's death (lift tampering, debt). Red herring: Little Mike Findleman (disturbed youth, handled the mat). Lieutenant Sales cannot solve the case despite identifying all parties.",
+    "confidence": "high",
+    "quote": "Mr. Mitchell was sure whoever rigged the lift had killed Pat and her husband. He worried that he could be next."
+  },
+  "red_herring": {
+    "value": "The tampered hydraulic lift and organized crime angle \u2014 rumors that Clyde's father's fatal garage accident was engineered over a debt \u2014 misdirect both Mr. Mitchell and the reader toward an external criminal conspiracy, away from the domestic/neighborhood suspects.",
+    "confidence": "high",
+    "quote": "There were rumors, later on, that the lift had been tampered with \u2014 that Clyde's father had owed someone money."
+  },
+  "clue_fairness": {
+    "value": "The welcome mat (Home Sweet Home) is shown to the reader before Sales receives it: its absence noted by Little Mike, its use during the affair described, its recovery by Miguel from the trash can \u2014 all narrated openly. The mat's forensic contents (Pat's blood, gunpowder, footprints) are disclosed to the reader simultaneously with Sales's lab findings.",
+    "confidence": "high",
+    "quote": "Later, in the lab, the welcome mat would reveal tiny spots of Pat's blood, dog saliva, gunpowder, dead ants, mud, fertilizer, and footprints"
+  },
+  "social_world": {
+    "value": "Lower-middle-class suburban New England: marriages constrained by impotence, obligation, and infidelity; Clyde's mother's matriarchal stranglehold; Mr. Mitchell's class anxiety and affair as rebellion; the immigrant boy Miguel as powerless outsider; police doubling as weekend construction workers \u2014 institutional authority blended with working-class pragmatism.",
+    "confidence": "high",
+    "quote": "She pushed this sense of responsibility through him like fishhooks, plucking on the line, reeling him back in when she felt her hold slipping."
+  },
+  "alibi": {
+    "value": "Mr. Mitchell's alibi is implicit and unverified \u2014 he claims (by implication) he had left Pat's house before the murder, having seen Clyde leave for bowling. Mrs. Mitchell's whereabouts at the time of the shooting are never accounted for. Neither alibi is formally tested; Sales reaches the Mitchells but cannot close the case.",
+    "confidence": "medium",
+    "quote": "He had seen Clyde leave for a bowling lesson, and as he waited on the front porch for Pat to open the door, something had made him pick up the welcome mat."
+  },
+  "reveal_mechanic": {
+    "value": "The physical welcome mat serves as the central reveal object: its chain of custody (affair scene \u2192 trash can \u2192 Miguel \u2192 Sales) is the investigation's climax. However, the mat withholds the decisive evidence \u2014 Mitchell's knee impressions and Mrs. Mitchell's doorstep hesitation have been 'shaken off,' leaving the case formally unsolved. The reveal mechanic is one of ironic forensic incompleteness rather than resolution.",
+    "confidence": "high",
+    "quote": "Home Sweet Home would lead him back to the beginning of a murder he could not solve. There would be no scar, just the sense that he missed something."
+  },
+  "media_and_audience": {
+    "value": "The crime is absorbed into suburban routine rather than sensationalized: yellow police tape becomes a domestic visual, 'headlines changed,' funerals are planned, suspects are 'raised and then dismissed.' The community witnesses without intervening; the Kessler twins casually relay Mr. Mitchell's exposure. Institutional response is accidental and contingent rather than systematic.",
+    "confidence": "medium",
+    "quote": "The possibilities of these moments passed over her like shadows. When they were gone she was left standing chilled."
+  },
+  "investigator_wound": {
+    "value": "Lieutenant Sales carries a literal wound \u2014 a shark-attack scar that left him numb \u2014 as an emblem of his psychological state: drawn to danger and meaning yet ultimately unable to fully feel or close cases. His sensitivity to the mat (scar itching back to life) signals hope, but the story confirms he will fail, re-enacting his pattern of exhilaration followed by exhaustion and incompletion.",
+    "confidence": "high",
+    "quote": "He was exhilarated and then exhausted, as though his life had been drained, and he knew then that he had gone as far as he could go."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "filename": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Home\tSweet\tHome",
+    "author": "HANNAH\tTINTI",
+    "anthology_title": "The_Best_American_Mystery_Stories_4_-__Ant_-_Michael_Connelly",
+    "story_index": 18,
+    "story_count": 23
+  }
+}

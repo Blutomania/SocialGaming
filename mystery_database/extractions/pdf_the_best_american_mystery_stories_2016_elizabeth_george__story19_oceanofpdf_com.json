@@ -1,0 +1,87 @@
+{
+  "crime": {
+    "value": "Serial murders of 9 young people (8 male, 1 female) over multiple years at a lakeside cabin. Central question: How were these crimes hidden for decades, and what is the true nature of the 1994 car accident that killed the perpetrator?",
+    "confidence": "high",
+    "quote": "The victims had all been murdered by Russell Gramercy. They had been murdered by Russ. By Professor G."
+  },
+  "victim": {
+    "value": "Nine young people (runaways, hitchhikers, hustlers, and scholarship winners) killed by Russell Gramercy, a beloved chemistry professor and baseball coach whose public identity masked serial murder.",
+    "confidence": "high",
+    "quote": "All but one were identified...Four of them were runaways. Two were thought to have been hitchhiking...One was a National Merit Scholarship winner."
+  },
+  "closed_world": {
+    "value": "A small cedar-sheathed lakeside cabin (16x24 feet) in upstate New York that Russell Gramercy owned and visited alone under the pretext of academic work, isolated from family scrutiny.",
+    "confidence": "high",
+    "quote": "The Gramercy camp, sheathed with cedar clapboards, was small, only sixteen by twenty-four...Russell Gramercy winterized the structure himself...he went to the camp alone."
+  },
+  "culprit_and_motive": {
+    "value": "Russell Gramercy, chemistry professor and coach, murdered 9 young people at his isolated cabin. Motive: unknown, though the story suggests predatory targeting of vulnerable youth with no pattern except their youth.",
+    "confidence": "high",
+    "quote": "Forensics teams found traces of dried blood inside the cabin...One sample proved a DNA match with one of the victims...incriminating and very disturbing photos were found."
+  },
+  "resolution": {
+    "value": "Discovery of skeleton during septic system excavation triggers exhumation of 8 more bodies and forensic investigation. Resolution complicated by revelation that Chris Gramercy (the son/brother) may have deliberately shoved his father into the narrator's car, making the 'accident' possibly intentional murder.",
+    "confidence": "high",
+    "quote": "Though heavily pixilated, it showed Chris Gramercy shoving his father into the path of my oncoming car."
+  },
+  "investigator": {
+    "value": "The narrator\u2014the driver who killed Russell Gramercy in the 1994 accident\u2014becomes the de facto investigator decades later, haunted by guilt and driven to uncover the truth about whether the accident was truly accidental or if Chris deliberately murdered his father.",
+    "confidence": "high",
+    "quote": "I returned to Verplanck...I discovered the tape by a fluke...Obsessively, I watched the tape over and over, at times my face just inches from the screen."
+  },
+  "suspect_architecture": {
+    "value": "Two figures implicated in the father's death: Chris Gramercy (son, motive: to stop a serial killer father, means: physical proximity on road, opportunity: walking beside victim) and Russell Gramercy himself (stumble ruled accidental). Narrator is a false suspect in the eyes of the community. Russell Gramercy retroactively becomes the true criminal \u2014 a serial murderer of nine victims \u2014 inverting the apparent victim/perpetrator structure entirely.",
+    "confidence": "high",
+    "quote": "it showed Chris Gramercy shoving his father into the path of my oncoming car."
+  },
+  "red_herring": {
+    "value": "The entire framing of the narrator as the guilty party \u2014 a reckless, distracted driver who killed an innocent man \u2014 is the story's central misdirection. The reader is led to believe the moral weight lies with the narrator's negligence and failure to apologize, while Russell Gramercy is presented as a beloved professor, coach, and father. His serial murders are withheld until the story's pivot, revealing the 'victim' was a predator.",
+    "confidence": "high",
+    "quote": "The conclusions were inescapable...The victims had all been murdered by Russell Gramercy."
+  },
+  "clue_fairness": {
+    "value": "The soccer-match videotape is introduced early as a sensory detail \u2014 'the sound of kids playing' \u2014 recurring in the narrator's traumatic memory loop, before it is revealed as the forensic evidence. The reader is given the detail of Chris's proximity and reach ('I reached out to grab him') in Chris's own witness statement, planting the physical possibility of the shove before the reveal confirms it.",
+    "confidence": "high",
+    "quote": "I reached out to grab him, but then . . . just this unbelievable impact with that car"
+  },
+  "social_world": {
+    "value": "Small-college upstate New York community with interlocking hierarchies: academic authority (Russell as chemistry professor), athletic prestige (Chris as star pitcher scouted by majors), insurance/legal power over grieving families, and the social shame network of a backstop school. The narrator is positioned at the bottom \u2014 a freshman, a 'pathetic loser' \u2014 while the Gramercys occupy moral and institutional high ground that shields Russell's crimes.",
+    "confidence": "high",
+    "quote": "Howland College is a small liberal arts college...it was the ultimate backstop school, the place you wound up when your other scholastic plans didn't pan out."
+  },
+  "alibi": {
+    "value": "The narrator's alibi for sobriety is stated and re-stated insistently ('I had not been drinking\u2014not one drop') while he simultaneously confesses to lying to police about his speed. This double-register \u2014 truthful on alcohol, false on speed \u2014 establishes unreliable self-reporting. Chris's alibi of being a bystander attempting to save his father is undermined by the video evidence showing he shoved him.",
+    "confidence": "high",
+    "quote": "I know I lied about it later to the police, telling them that I was doing the posted thirty-five"
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is delivered through forensic video analysis of an amateur home video. A childhood soccer recording inadvertently captured the accident in its upper-left corner. A forensic video analyst in Queens crops, enlarges, and enhances the pixelated footage on a 60-inch monitor, showing Chris's shove \u2014 a technological demonstration that converts a suppressed private suspicion into physical, jury-grade evidence.",
+    "confidence": "high",
+    "quote": "Beckstein had cropped and blown up the footage...it showed Chris Gramercy shoving his father into the path of my oncoming car."
+  },
+  "media_and_audience": {
+    "value": "The community memorial service reframes Russell Gramercy as a secular saint, with speakers attributing saved lives to his mentorship. Public opinion at the college casts the narrator as a 'pathetic loser.' Insurance and legal machinery silences the narrator's family from contact with victims. When Russell's murders are exposed, the entire public narrative inverts \u2014 the mourned become complicit mourners, and the condemned narrator becomes an inadvertent savior.",
+    "confidence": "high",
+    "quote": "'I heard the kid who ran over Gramercy goes to school here.' 'Yeah...A freshman. Apparently some pathetic loser.'"
+  },
+  "investigator_wound": {
+    "value": "The narrator is both investigator and the originally accused. His wound is an eighteen-year guilt complex over an accident he did not cause through malice, compounded by never apologizing, never marrying, abandoning his education, and recurring nightmares. The case exploits his need for absolution \u2014 Daria's apology tour offers it, but the video revelation reactivates his obsession and forces him to choose between truth and mercy for a dead man's grieving sister.",
+    "confidence": "high",
+    "quote": "For the first time since the accident I broke down and cried...The nightmares and my obsessive thoughts about that day have lessened."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "OceanofPDF.com",
+    "author": "BRIAN TOBIN",
+    "anthology_title": "The_Best_American_Mystery_Stories_2016_-_Elizabeth_George",
+    "story_index": 19,
+    "story_count": 22,
+    "backfilled_from": "book_slug[:30] filename-collision bug"
+  }
+}

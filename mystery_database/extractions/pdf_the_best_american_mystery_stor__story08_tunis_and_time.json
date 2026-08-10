@@ -1,0 +1,86 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Khaled Khemir, a mathematician with potential knowledge damaging to CIA operatives, targeted for elimination by intelligence apparatus",
+    "confidence": "medium",
+    "quote": "Khaled Khemir could be 'taken out,' to use the absurd term...simply imprisoned without a trace or outright gotten rid of"
+  },
+  "closed_world": {
+    "value": "Tunis, Tunisia\u2014a foreign city serving as operational theater where Layton is isolated, dependent on CIA liaison Cunningham, with limited oversight",
+    "confidence": "high",
+    "quote": "Layton found himself working a second week in the city...Layton was set up comfortably enough in a white wedding-cake rise of an old hotel"
+  },
+  "culprit_and_motive": {
+    "value": "Cunningham, CIA operative, orchestrated Layton's mission to identify Khaled Khemir for assassination; motive: eliminating a potential threat or blackmail risk to intelligence operations",
+    "confidence": "medium",
+    "quote": "Cunningham was in on it from the start, he was using Layton...the assignment was only the ruse needed to bring Layton to Tunis"
+  },
+  "resolution": {
+    "value": "No traditional resolution; Layton is manipulated into unwitting complicity. Khaled Khemir disappears after traveling to Czech Republic the following month; truth emerges only later when his brother is deported",
+    "confidence": "medium",
+    "quote": "Layton didn't know then how Khaled Khemir would disappear...Layton learned that, and a lot else, only later"
+  },
+  "investigator": {
+    "value": "Layton, FBI agent ostensibly gathering intelligence on Palestinian supporters, but actually an unwitting pawn being used to identify a target for CIA elimination",
+    "confidence": "high",
+    "quote": "That a supposedly retired agent from the Bureau like Layton was in a place like Tunisia was an anomaly, to put it mildly"
+  },
+  "suspect_architecture": {
+    "value": "Two principal agents of harm: Cunningham (CIA, manipulative, uses institutional cover) and Layton (FBI, unwitting instrument). Khaled Khemir is the victim, not a suspect. Minor figures\u2014Youssef, the two French girls\u2014serve as atmospheric distractors with no culpable role. The 'suspect' field is narrow and asymmetric: one knowing perpetrator, one unknowing accomplice, one target.",
+    "confidence": "medium",
+    "quote": "Cunningham was in on it from the start, he was using Layton, and the assignment of Layton's gathering information from Khaled Khemir...was only the ruse"
+  },
+  "red_herring": {
+    "value": "The stated mission\u2014gathering intelligence on Palestinian supporters from informant Khaled Khemir\u2014is a fabricated cover story that redirects both Layton and the reader from the true purpose: confirming Khemir's identity so he can be 'taken out.' The academic Flaubert/Salammb\u00f4 cover identity functions as a secondary layer of misdirection.",
+    "confidence": "high",
+    "quote": "the assignment of Layton's gathering information from Khaled Khemir on Palestinian supporters was only the ruse needed to bring Layton to Tunis"
+  },
+  "clue_fairness": {
+    "value": "The clues are withheld from the reader in real time and delivered retrospectively in a parenthetical authorial aside after Layton's moment of false triumph. Cunningham's repeated insistence that Layton literally 'see' Khemir is planted in dialogue available to the reader, but its significance is only decoded in the delayed narrative reveal\u2014borderline unfair by Knox/Christie standards.",
+    "confidence": "medium",
+    "quote": "Cunningham, who kept pressing Layton for that identification, in the end was satisfied that this young man was, in fact, the Khaled Khemir"
+  },
+  "social_world": {
+    "value": "Layered Cold War institutional hierarchy: CIA over FBI ('CIA saw FBI as yokels'), Ivy League credentialism as social currency between agents, post-9/11 Arab World geopolitics, FBI's Hoover-era international ties via National Police Academy. Patronage flows from CIA downward; Layton is a retained outsider granted limited access, expendable once used.",
+    "confidence": "high",
+    "quote": "CIA saw FBI as yokels. And this Cunningham...surely didn't like the idea that Layton was supposedly needed at the moment"
+  },
+  "alibi": {
+    "value": "Cunningham's alibi is structural rather than temporal: his consular section cover at the embassy provides institutional legitimacy masking operational intent. Layton's own informal cover (Flaubert researcher) is his alibi to Tunisian authorities. Neither alibi is tested or broken within the narrative frame\u2014the deception is exposed only retrospectively.",
+    "confidence": "medium",
+    "quote": "his informal one, in case anybody got nosy, was a line about being an academic researching an article on Flaubert"
+  },
+  "reveal_mechanic": {
+    "value": "The reveal is delivered via retrospective parenthetical narration\u2014a typographically demarcated aside that breaks the story's present tense at the moment of Layton's peak false confidence. The mechanism is ironic juxtaposition: the truth intrudes precisely when Layton feels 'fucking great,' exposing his self-deception through narrative form rather than deductive confrontation.",
+    "confidence": "high",
+    "quote": "Layton didn't know then, of course, how Khaled Khemir would disappear...Layton learned that, and a lot else, only later"
+  },
+  "media_and_audience": {
+    "value": "The crime is entirely invisible to public perception\u2014no press, no institutional accountability, no named victim in any public record. The narrative notes the casual normalization of extrajudicial killing in media language ('taken out,' a term 'thrown about so lightly and casually even on the evening news'), indicting ambient post-9/11 American public discourse as complicit context.",
+    "confidence": "high",
+    "quote": "'taken out,' to use the absurd term thrown about so lightly and casually even on the evening news lately"
+  },
+  "investigator_wound": {
+    "value": "Layton's wound is a corrosive disillusionment with institutional life\u2014FBI careerism, Ivy League social performance, the gap between his youthful academic dreams and his actual work. He wants to believe he is finally acting with moral autonomy ('bucking the FBI,' 'gotten the better of Cunningham'), making him maximally vulnerable to the manipulation that exploits exactly that desire for self-respect.",
+    "confidence": "high",
+    "quote": "Rather than finally asserting himself bucking anybody, Layton would have to admit that he had been suckered, he was the one who actually fingered Khaled Khemir"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/_anthologies/_ready/The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "filename": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1",
+      "P2"
+    ],
+    "title": "Tunis and Time",
+    "author": "PETER LASALLE",
+    "anthology_title": "The_Best_American_Mystery_Stories_2008_-_George_Pelecanos",
+    "story_index": 8,
+    "story_count": 22
+  }
+}
