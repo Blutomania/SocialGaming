@@ -3,6 +3,11 @@
 // calls into gameState, and broadcasts the resulting state. The client never
 // calls the Claude API directly.
 
+// MUST be first: populates process.env from .env.local before any module below
+// reads it at import scope (claudeClient.js builds its API client on import).
+// See lib/env.js for why this can't just be a call in this file's body.
+import './lib/env.js';
+
 import { createServer } from 'http';
 import next from 'next';
 import { Server } from 'socket.io';

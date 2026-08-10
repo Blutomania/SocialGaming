@@ -601,10 +601,27 @@ need no variants. Never bake in text-only assumptions — voice is the destinati
 ## Common Tasks
 **Run locally**
 ```bash
-cp .env.local.example .env.local  # add ANTHROPIC_API_KEY
 npm install
-npm run dev   # starts on :3000
+cp .env.local.example .env.local   # then edit it and set ANTHROPIC_API_KEY
+npm run dev                         # starts on :3000
 ```
+
+`.env.local` is loaded by `lib/env.js`, which `server.js` imports first. Next.js
+only loads env files for its own runtime, not for a custom server — without that
+import the key is undefined and the first Claude call fails. Don't reorder that
+import, and don't replace it with a `loadEnvConfig()` call inside `server.js`:
+ESM evaluates every import before the importing file's body, and
+`claudeClient.js` builds its API client at import scope.
+
+**Short games for playtesting** — add to `.env.local` rather than prefixing the
+command (these are read at import time, so a shell prefix works too, but the
+file is harder to get wrong):
+```
+NEXT_PUBLIC_MYF_ROUNDS=1
+NEXT_PUBLIC_MYF_QUESTIONS_PER_ROUND=2
+```
+Reaches GAME_OVER in ~3 minutes instead of ~25, which is the only way to
+iterate on the post-game screens. Remove both for a real pacing test.
 
 **Add a round rule** — edit `lib/roundRules.js`: add entry with
 `{id, name, emoji, description, promptInstruction, timerSeconds}`. If the answer needs
