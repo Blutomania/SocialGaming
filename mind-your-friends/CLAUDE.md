@@ -44,7 +44,8 @@ below. Don't quietly re-prioritise them without asking.
 
 | # | Item | State |
 |---|---|---|
-| 1 | **Playtest the post-game social layer** — built (item 35), never played through | **START HERE** |
+| 0 | **Show progress during Start Game** — it takes ~250s and the UI says nothing, which reads as a hang (item 36). Blocks every playtest. | **START HERE** |
+| 1 | **Playtest the post-game social layer** — built (item 35), never played through | Blocked on 0 |
 | 2 | Godot: category-selection + card-pick screens (replaces stubbed lobby registration) | Next |
 | 3 | Godot: round-loop UI — WAGER → CARD → QUESTION → ANSWER → RESULT | Next |
 | 4 | **`server_py` parity: `questionLog` + `postGame`** — the Python backend has neither, so the Godot client cannot show any post-game screen until this lands | Real gap, blocks 5 |
@@ -60,6 +61,27 @@ below. Don't quietly re-prioritise them without asking.
 |---|---|
 | Voice input | Text-only is fine for now. It was never wired into the Godot client, so parking costs nothing. Design still assumes voice is the eventual destination — keep honouring the `text`/`voice` transform split in `roundRules.js` rather than baking in text-only assumptions. |
 | Shareable Question polish | The current canvas card + Web Share implementation **is** the placeholder and is deliberately frozen there: one card, no hosting, no persistence. Do not extend it (no hosted links, no tap-to-reveal, no recap images) without the owner asking. Do not rip it out either — it's built and tested, so replacing it spends effort to end up with less. |
+
+36. **[DIAGNOSED, August 10 2026] "Start Game does nothing" is not an error — it's a ~4-minute
+    silent wait.** Reproduced by driving `startGame()` directly (same call `game:start` makes),
+    with 3 players × 5 categories:
+    ```
+    allPlayersRegistered: true
+    OK in 250.8s     phase: CATEGORY   factBank categories: 15
+    ```
+    It **succeeds** — 15 categories, 6 category options, a round rule assigned. It just takes
+    **250 seconds**. `CATEGORIES_PER_FETCH_BATCH = 3` means 15 unique categories become 5
+    *sequential* `fetchFactsBatch()` calls at ~50s each. The docs' "~90s" estimate is wrong by
+    roughly 3x, and nothing in the UI says anything while it runs — the Lobby just sits there,
+    so it reads as a hang and the tester gives up. **No code is broken.** Three consequences:
+    - **UI:** the Lobby needs a progress state on `game:start` (even a spinner + "Building the
+      question bank — this takes a few minutes"). This is the actual fix for the reported bug.
+    - **Cost/latency:** the batches are sequential and independent — running them concurrently
+      (`Promise.all`) should cut this to roughly one batch's latency. Untested; the obvious win.
+    - **Godot, already broken by this:** `ApiClient.gd`'s `start_game()` passes a 120s timeout.
+      At 250s that request times out client-side every time. Must be raised (or the call made
+      fire-and-forget, driving the UI off the `game:state` push instead) before the Godot client
+      can ever start a game. Recorded here because it will otherwise be rediscovered the hard way.
 
 ## Glossary (owner-defined — use these names in code, comments, and discussion)
 
