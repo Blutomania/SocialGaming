@@ -25,6 +25,11 @@ extends Control
 @onready var room_code_label: Label = %RoomCodeLabel
 @onready var player_list: VBoxContainer = %PlayerList
 
+## True between the server's first startProgress push and the one that clears
+## it. Drives both the elapsed-time ticker in _process and the button states.
+var _starting: bool = false
+var _start_elapsed_seconds: float = 0.0
+
 
 func _ready() -> void:
 	create_button.pressed.connect(_on_create_pressed)
@@ -34,6 +39,7 @@ func _ready() -> void:
 
 	GameState.state_updated.connect(_on_state_updated)
 	GameState.phase_changed.connect(_on_phase_changed)
+	GameState.start_progress_changed.connect(_on_start_progress_changed)
 
 	_set_status("Enter a name, then create or join a room.")
 	_refresh_controls()
@@ -107,11 +113,17 @@ func _on_register_pressed() -> void:
 	)
 
 
+## The fact-bank build takes ~50s and the HTTP request stays in flight the
+## whole time, so this fires the request and then says nothing more about it:
+## the running commentary comes from the server's startProgress pushes
+## (_on_start_progress_changed), and the phase change to CATEGORY is what
+## signals success. The callback here only ever reports a failure.
 func _on_start_pressed() -> void:
 	if not GameState.can_start_game():
 		return
 	_set_busy(true)
-	_set_status("Starting -- building the fact bank, this can take a while...")
+	_start_elapsed_seconds = 0.0
+	_set_status("Starting...")
 	ApiClient.start_game(GameState.code, GameState.player_id, func(error: String, _data: Dictionary) -> void:
 		_set_busy(false)
 		if error != "":
@@ -129,6 +141,31 @@ func _on_state_updated(_view: Dictionary) -> void:
 func _on_phase_changed(phase: String, _previous: String) -> void:
 	if phase != GameState.PHASE_LOBBY:
 		_set_status("Game started (phase: %s)." % phase)
+
+
+## Room-wide, so every player's lobby narrates the wait -- not just the host
+## who pressed Start. The elapsed counter matters as much as the batch count:
+## the batches run concurrently and all land within a few seconds of each
+## other, so the count sits at 0 for most of the wait and only a ticking clock
+## proves the room is still alive.
+func _on_start_progress_changed(progress: Dictionary) -> void:
+	_starting = bool(progress.get("active", false))
+	if _starting:
+		_set_status(str(progress.get("label", "Starting...")))
+	_refresh_controls()
+
+
+func _process(delta: float) -> void:
+	if not _starting:
+		return
+	_start_elapsed_seconds += delta
+	var counts: Array = GameState.start_progress_counts()
+	var suffix := ""
+	if int(counts[1]) > 0:
+		suffix = " (%d/%d batches)" % [int(counts[0]), int(counts[1])]
+	_set_status("%s  [%ds]%s" % [
+		GameState.start_progress_label(), int(_start_elapsed_seconds), suffix,
+	])
 
 
 func _refresh_roster() -> void:
@@ -164,7 +201,9 @@ func _refresh_controls() -> void:
 	start_button.visible = in_session
 	start_button.disabled = not GameState.can_start_game()
 
-	if in_session and GameState.player_count() < GameState.MIN_PLAYERS:
+	if _starting:
+		start_button.text = "Starting..."
+	elif in_session and GameState.player_count() < GameState.MIN_PLAYERS:
 		var needed := GameState.MIN_PLAYERS - GameState.player_count()
 		start_button.text = "Waiting for %d more player(s)" % needed
 	elif in_session and not GameState.all_registered():

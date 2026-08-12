@@ -83,6 +83,11 @@ export function createGame(hostId, hostName) {
     // Contains correct answers, so playerView() only exposes it at GAME_OVER.
     questionLog: [],
     postGame: null,
+    // Non-null only while startGame() is building the fact bank. The build
+    // takes ~50s even with the batches running concurrently, which is long
+    // enough that a Lobby showing nothing reads as a hang — this is what the
+    // Lobby renders instead. See CLAUDE.md item 36.
+    startProgress: null,
   };
 }
 
@@ -142,17 +147,59 @@ export function allPlayersRegistered(game) {
 
 // Fetches facts for all player-submitted categories in batches.
 // Called once at game start — all questions are built from this bank.
-export async function buildFactBank(game) {
+//
+// `onProgress(completed, total)` is passed straight through to
+// fetchFactsBatch; see startGame() for where it comes from.
+export async function buildFactBank(game, onProgress) {
   const allCategories = [...new Set(game.players.flatMap((p) => p.categories))];
-  game.factBank = await fetchFactsBatch(allCategories);
+  game.factBank = await fetchFactsBatch(allCategories, onProgress);
   return game;
 }
 
-export async function startGame(game) {
+// Human-readable progress line for the Lobby. Kept here rather than in the
+// component so the Godot client shows the same words as the web client
+// without either having to re-derive them.
+function factBankProgressLabel(completed, total) {
+  if (total <= 0 || completed <= 0) return 'Building the question bank — this takes a minute…';
+  if (completed >= total) return 'Question bank ready — dealing cards…';
+  return `Building the question bank — ${completed} of ${total} batches done…`;
+}
+
+// `onUpdate(game)` — called synchronously whenever game.startProgress
+// changes, including once BEFORE the first Claude request goes out. The
+// server passes its broadcast function here; that first call is the one that
+// gets a progress state onto every client's Lobby immediately rather than
+// ~50s later. Progress is best-effort UI state, so a missing callback is
+// fine and startGame() behaves exactly as it did before.
+export async function startGame(game, onUpdate) {
   if (!allPlayersRegistered(game)) {
     throw new Error('All players must register before the game can start');
   }
-  await buildFactBank(game);
+
+  const setProgress = (progress) => {
+    game.startProgress = progress;
+    try {
+      onUpdate?.(game);
+    } catch (err) {
+      console.error('startGame progress callback failed:', err);
+    }
+  };
+
+  setProgress({ active: true, completed: 0, total: 0, label: factBankProgressLabel(0, 0) });
+
+  try {
+    await buildFactBank(game, (completed, total) => {
+      setProgress({ active: true, completed, total, label: factBankProgressLabel(completed, total) });
+    });
+  } catch (err) {
+    // Clear it on the way out, otherwise the Lobby is stuck on a progress bar
+    // that will never advance. The server broadcasts again on the error path
+    // so clients actually see the cleared state.
+    game.startProgress = null;
+    throw err;
+  }
+
+  game.startProgress = null;
   game.phase = 'CATEGORY';
   game.activePlayerIndex = 0;
   game.questionIndex = 0;
@@ -1018,6 +1065,9 @@ export function playerView(game, playerId) {
     heckleMessage: game.heckleMessage,
     highlightReel: game.highlightReel,
     skippedTurn: !!game.skippedTurn,
+    // Null except while the fact bank is building. Same shape for every
+    // player — this is room-wide progress, not per-player state.
+    startProgress: game.startProgress ?? null,
   };
 
   if (game.cardSlot) {

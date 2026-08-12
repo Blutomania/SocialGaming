@@ -302,13 +302,25 @@ class StartGameBody(BaseModel):
 @app.post("/games/{code}/start")
 def start_game_endpoint(code: str, body: StartGameBody):
     """Builds the fact bank (real Claude calls) — kept as a plain `def` so
-    FastAPI runs it in the thread pool, not blocking the event loop."""
+    FastAPI runs it in the thread pool, not blocking the event loop.
+
+    Broadcasts on every progress step, not just at the end: the build takes
+    ~50s and a client showing nothing for that long reads as a hang (see
+    CLAUDE.md item 36). The first broadcast fires before any Claude request
+    goes out. Clients should drive their UI off these pushes rather than off
+    this endpoint's response — the HTTP request is still in flight for the
+    whole build."""
     game = _get_game_or_404(code)
     try:
         with _games_lock:
-            gs.start_game(game)
+            gs.start_game(game, lambda g: _broadcast_sync(code, g))
     except gs.GameError as e:
         raise HTTPException(400, str(e))
+    except Exception:
+        # start_game() has already cleared startProgress; push it so clients
+        # drop the progress state instead of freezing on it.
+        _broadcast_sync(code, game)
+        raise
     _broadcast_sync(code, game)
     return {"ok": True}
 

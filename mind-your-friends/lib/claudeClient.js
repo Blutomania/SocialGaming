@@ -20,7 +20,17 @@ function buildClient() {
 
 const client = buildClient();
 
+// Test seam. scripts/start-progress-test.js swaps in a fake client so the
+// fact-bank plumbing (batch concurrency + progress callbacks) can be
+// exercised deterministically without spending real API calls. Nothing in
+// the game ever calls this; pass null to restore the real client.
+let clientOverride = null;
+export function __setClientForTests(fake) {
+  clientOverride = fake;
+}
+
 function requireClient() {
+  if (clientOverride) return clientOverride;
   if (!client) {
     throw new Error('No API key found. Set ANTHROPIC_API_KEY or ensure ingress token exists — see .env.local.example');
   }
@@ -38,16 +48,39 @@ function parseJson(text) {
 // Fetch structured factoids for a batch of categories. Called at game start
 // to build the fact bank — all questions are later constructed from these
 // factoids rather than generated from scratch per turn.
-export async function fetchFactsBatch(categories) {
+//
+// The batches are independent, so they run CONCURRENTLY (Promise.all) rather
+// than in sequence. That is the whole difference between a ~250s game start
+// and a ~50s one: with 3 players × 5 categories there are 15 unique categories
+// = 5 batches at ~50s each, and running them one after another was the single
+// reason "Start Game" read as a hang. See CLAUDE.md item 36.
+//
+// `onProgress(completed, total)` — optional; called once with (0, total)
+// before any request goes out, then again as each batch lands. Because the
+// batches are concurrent, `completed` is a count of finished batches, not an
+// index — they do not finish in order. The server uses this to push a live
+// progress state to the Lobby.
+export async function fetchFactsBatch(categories, onProgress) {
   const anthropic = requireClient();
-  const results = {};
 
   const batches = [];
   for (let i = 0; i < categories.length; i += CATEGORIES_PER_FETCH_BATCH) {
     batches.push(categories.slice(i, i + CATEGORIES_PER_FETCH_BATCH));
   }
 
-  for (const batch of batches) {
+  let completed = 0;
+  const report = (n) => {
+    // A throwing progress callback must never take the game start down with
+    // it — the fact bank is the real work, progress is decoration.
+    try {
+      onProgress?.(n, batches.length);
+    } catch (err) {
+      console.error('fetchFactsBatch progress callback failed:', err);
+    }
+  };
+  report(0);
+
+  const runBatch = async (batch) => {
     const categoryList = batch.map((c) => `"${c}"`).join(', ');
 
     const prompt = `You are an expert researcher. For each of the following categories: ${categoryList}
@@ -90,10 +123,14 @@ sourceType is the kind of reference this fact would be found in. Use one of: "en
 
     const text = response.content[0].text;
     const parsed = parseJson(text);
-    Object.assign(results, parsed);
-  }
+    report(++completed);
+    return parsed;
+  };
 
-  return results;
+  // Merged in batch order, not completion order, so an overlapping category
+  // name resolves the same way it did when these ran sequentially.
+  const parsedBatches = await Promise.all(batches.map(runBatch));
+  return Object.assign({}, ...parsedBatches);
 }
 
 // Generate a question for the active player.

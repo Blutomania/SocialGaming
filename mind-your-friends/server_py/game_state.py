@@ -74,6 +74,11 @@ def create_game(host_id: str, host_name: str) -> dict:
         "currentQuestion": None,
         "answererIndex": None,
         "highlightReel": [],
+        # Non-None only while start_game() is building the fact bank. The
+        # build takes ~50s even with the batches running concurrently, which
+        # is long enough that a lobby showing nothing reads as a hang — this
+        # is what the client renders instead. See CLAUDE.md item 36.
+        "startProgress": None,
     }
 
 
@@ -106,16 +111,68 @@ def all_players_registered(game: dict) -> bool:
     return len(game["players"]) >= MIN_PLAYERS and all(p["registered"] for p in game["players"])
 
 
-def build_fact_bank(game: dict) -> dict:
+def build_fact_bank(game: dict, on_progress=None) -> dict:
     all_categories = list({c for p in game["players"] for c in p["categories"]})
-    game["factBank"] = claude_client.fetch_facts_batch(all_categories)
+    game["factBank"] = claude_client.fetch_facts_batch(all_categories, on_progress)
     return game
 
 
-def start_game(game: dict) -> dict:
+def _fact_bank_progress_label(completed: int, total: int) -> str:
+    """Human-readable progress line for the lobby. Kept here rather than in
+    the client so the Godot client shows the same words as the web client
+    without either having to re-derive them (mirrors lib/gameState.js's
+    factBankProgressLabel)."""
+    if total <= 0 or completed <= 0:
+        return "Building the question bank — this takes a minute…"
+    if completed >= total:
+        return "Question bank ready — dealing cards…"
+    return f"Building the question bank — {completed} of {total} batches done…"
+
+
+def start_game(game: dict, on_update=None) -> dict:
+    """`on_update(game)` — called whenever game["startProgress"] changes,
+    including once BEFORE the first Claude request goes out. main.py passes
+    its broadcast function here; that first call is what gets a progress
+    state onto every client immediately rather than ~50s later. Progress is
+    best-effort UI state, so omitting the callback leaves start_game()
+    behaving exactly as it did before.
+
+    Note the progress callbacks arrive from fetch_facts_batch's worker
+    threads, so on_update must be safe to call off the main thread —
+    _broadcast_sync already is, by design."""
     if not all_players_registered(game):
         raise GameError("All players must register before the game can start")
-    build_fact_bank(game)
+
+    def set_progress(progress) -> None:
+        game["startProgress"] = progress
+        if on_update is None:
+            return
+        try:
+            on_update(game)
+        except Exception as e:  # noqa: BLE001
+            print(f"start_game progress callback failed: {e}")
+
+    set_progress({
+        "active": True, "completed": 0, "total": 0,
+        "label": _fact_bank_progress_label(0, 0),
+    })
+
+    def on_progress(completed: int, total: int) -> None:
+        set_progress({
+            "active": True, "completed": completed, "total": total,
+            "label": _fact_bank_progress_label(completed, total),
+        })
+
+    try:
+        build_fact_bank(game, on_progress)
+    except Exception:
+        # Clear it on the way out, otherwise the lobby is stuck on a progress
+        # bar that will never advance. main.py broadcasts again on the error
+        # path so clients actually see the cleared state.
+        game["startProgress"] = None
+        raise
+
+    game["startProgress"] = None
     game["phase"] = "CATEGORY"
     game["activePlayerIndex"] = 0
     game["questionIndex"] = 0
@@ -824,6 +881,9 @@ def player_view(game: dict, player_id: str) -> dict:
         "heckleMessage": game.get("heckleMessage"),
         "highlightReel": game["highlightReel"],
         "skippedTurn": bool(game.get("skippedTurn")),
+        # None except while the fact bank is building. Same shape for every
+        # player — this is room-wide progress, not per-player state.
+        "startProgress": game.get("startProgress"),
     }
 
     if game.get("cardSlot"):

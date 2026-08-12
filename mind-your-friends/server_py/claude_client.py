@@ -6,6 +6,8 @@ import json
 import os
 import random
 import re
+import threading
+from concurrent.futures import ThreadPoolExecutor
 
 from anthropic import Anthropic
 
@@ -47,19 +49,49 @@ def _parse_json(text: str):
     return json.loads(m.group(1) if m else trimmed)
 
 
-def fetch_facts_batch(categories: list[str]) -> dict:
+def fetch_facts_batch(categories: list[str], on_progress=None) -> dict:
     """Fetch structured factoids for a batch of categories. Called at game
     start to build the fact bank — all questions are later constructed from
-    these factoids rather than generated from scratch per turn."""
+    these factoids rather than generated from scratch per turn.
+
+    The batches are independent, so they run CONCURRENTLY in a thread pool
+    rather than in sequence — the same change as lib/claudeClient.js's
+    Promise.all, and for the same reason: 5 sequential ~50s batches is what
+    made game start take ~250s and read as a hang. See CLAUDE.md item 36.
+    The Anthropic SDK client is thread-safe, and this function is already
+    called off the event loop (start_game_endpoint is a plain `def`, so
+    FastAPI runs it in the thread pool), so blocking here is fine.
+
+    `on_progress(completed, total)` — optional; called once with (0, total)
+    before any request goes out, then again as each batch lands. `completed`
+    counts finished batches in completion order, not batch order. Called from
+    worker threads, so it must be cheap and thread-safe; main.py's callback
+    just fires a broadcast.
+    """
     anthropic = _require_client()
-    results: dict = {}
 
     batches = [
         categories[i:i + CATEGORIES_PER_FETCH_BATCH]
         for i in range(0, len(categories), CATEGORIES_PER_FETCH_BATCH)
     ]
 
-    for batch in batches:
+    progress_lock = threading.Lock()
+    completed = 0
+
+    def report(n: int) -> None:
+        # A throwing progress callback must never take the game start down
+        # with it — the fact bank is the real work, progress is decoration.
+        if on_progress is None:
+            return
+        try:
+            on_progress(n, len(batches))
+        except Exception as e:  # noqa: BLE001
+            print(f"fetch_facts_batch progress callback failed: {e}")
+
+    report(0)
+
+    def run_batch(batch: list[str]) -> dict:
+        nonlocal completed
         category_list = ", ".join(f'"{c}"' for c in batch)
 
         prompt = f"""You are an expert researcher. For each of the following categories: {category_list}
@@ -99,8 +131,22 @@ sourceType is the kind of reference this fact would be found in. Use one of: "en
         )
         text = response.content[0].text
         parsed = _parse_json(text)
-        results.update(parsed)
+        with progress_lock:
+            completed += 1
+            done = completed
+        report(done)
+        return parsed
 
+    with ThreadPoolExecutor(max_workers=max(1, len(batches))) as pool:
+        # list() re-raises the first failure, matching the old sequential
+        # behaviour where a bad batch aborted the whole fact-bank build.
+        parsed_batches = list(pool.map(run_batch, batches))
+
+    # Merged in batch order, not completion order, so an overlapping category
+    # name resolves the same way it did when these ran sequentially.
+    results: dict = {}
+    for parsed in parsed_batches:
+        results.update(parsed)
     return results
 
 

@@ -68,9 +68,21 @@ app.prepare().then(() => {
       });
     });
 
+    // The fact-bank build takes ~50s, so this handler broadcasts THREE times:
+    // once the moment startGame() sets its initial progress state (before any
+    // Claude call goes out), once per completed batch, and once when the game
+    // reaches CATEGORY. Without that first push the Lobby sits silent for the
+    // whole build and testers read it as a hang — see CLAUDE.md item 36.
     socket.on('game:start', () => {
       withMyGame(socket, async (game) => {
-        await gameState.startGame(game);
+        try {
+          await gameState.startGame(game, () => broadcast(io, game));
+        } catch (err) {
+          // startGame() has already cleared game.startProgress; broadcast so
+          // the Lobby drops the progress bar instead of freezing on it.
+          broadcast(io, game);
+          throw err; // withMyGame's rejection handler emits the error event
+        }
         broadcast(io, game);
       });
     });

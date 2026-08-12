@@ -4,12 +4,13 @@
 ##
 ## Ported from Choose Your Mystery's godot/scripts/autoloads/ApiClient.gd --
 ## same HTTP+WS wrapper shape, adapted to Mind Your Friends' actual endpoint
-## paths (see server_py/main.py). CYM's version is production-proven; this
-## one is UNTESTED (no Godot binary in this environment — see root
-## CLAUDE.md "No Godot binary in repo" and mind-your-friends/CLAUDE.md item
-## 33). Written to compile-check by inspection against CYM's working
-## reference, not verified by running it. Treat as a first draft to
-## exercise against a real Godot editor before trusting it.
+## paths (see server_py/main.py).
+##
+## Compiles and runs against Godot 4.6.stable headless, and is exercised
+## end-to-end against a real server_py by scenes/tests/lobby_smoke_test.tscn.
+## (The "no Godot binary in this environment" note that used to sit here was
+## wrong — see CLAUDE.md item 34 and docs/WIRING.md "Verifying the Godot
+## client" for how to run the compile check.)
 ##
 ## HTTP callbacks receive (error: String, data: Dictionary).
 ## error is "" on success, or an error message on failure.
@@ -26,7 +27,17 @@ extends Node
 signal ws_event(event_name: String, data: Dictionary)
 
 const SERVER_URL_DEFAULT: String = "http://localhost:8001"
-const REQUEST_TIMEOUT: float = 30.0  ## seconds; question generation can take ~5-10s, fact-bank build at game start can take up to ~90s
+const REQUEST_TIMEOUT: float = 30.0  ## seconds; question generation can take ~5-10s
+
+## Timeout for POST /games/{code}/start alone. The fact-bank build is the
+## longest single request in the game by an order of magnitude: ~50s with the
+## batches running concurrently, and ~250s before that fix landed (measured,
+## 3 players x 5 categories -- see CLAUDE.md item 36). The old 120s here timed
+## out client-side on every real game start. Set well above the measured worst
+## case: the request being slow is normal, and the UI is driven off the
+## "game:state" WS pushes anyway, so a generous ceiling costs nothing while a
+## tight one silently breaks starting a game.
+const START_GAME_TIMEOUT: float = 300.0
 var server_url: String = SERVER_URL_DEFAULT
 
 ## Active WebSocket peer (null when not in a game session)
@@ -92,10 +103,16 @@ func register(code: String, player_id: String, categories: Array, picked_card_id
 	}, callback)
 
 ## POST /games/{code}/start {playerId} -- triggers the real fact-bank Claude
-## call server-side; can take up to ~90s. Prefer waiting for the
-## "game:state" WS push (phase becomes CATEGORY) over this callback alone.
+## calls server-side; takes ~50s and the HTTP request stays in flight for the
+## whole build.
+##
+## Drive the UI off the "game:state" WS pushes, NOT off this callback. The
+## server pushes a room-wide progress state (view.startProgress -- see
+## GameState.start_progress()) before the first Claude call and again as each
+## batch lands, then a final push with phase CATEGORY. This callback only
+## reports that the request finished, and it arrives last.
 func start_game(code: String, player_id: String, callback: Callable) -> void:
-	_post("/games/%s/start" % code, {"playerId": player_id}, callback, 120.0)
+	_post("/games/%s/start" % code, {"playerId": player_id}, callback, START_GAME_TIMEOUT)
 
 # ---------------------------------------------------------------------------
 # Round actions -- see server_py/main.py's round/* endpoints. All of these

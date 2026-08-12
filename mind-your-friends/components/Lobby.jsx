@@ -1,8 +1,53 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CATEGORIES_PER_PLAYER } from '../lib/constants';
 import CardPicker from './CardPicker';
+
+// Shown while the server builds the fact bank on game:start. That takes ~50s
+// even with the batches running concurrently, and a Lobby that says nothing
+// for that long reads as a hang — which is exactly how the "Start Game does
+// nothing" bug was reported. See CLAUDE.md item 36.
+//
+// The elapsed counter is the point as much as the bar is: five concurrent
+// batches all land within a few seconds of each other, so the bar sits at 0/5
+// for most of the wait. A ticking clock is what tells a player the room is
+// alive; the bar only confirms it at the end.
+function StartProgress({ progress }) {
+  const [elapsed, setElapsed] = useState(0);
+  const startedAt = useRef(Date.now());
+
+  useEffect(() => {
+    const id = setInterval(() => setElapsed(Math.floor((Date.now() - startedAt.current) / 1000)), 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  const total = progress.total || 0;
+  const completed = progress.completed || 0;
+  const pct = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+  return (
+    <section className="rounded bg-game-card px-4 py-5 text-center space-y-3">
+      <p className="font-semibold">{progress.label || 'Starting the game…'}</p>
+      <div className="h-2 w-full overflow-hidden rounded bg-black/40">
+        <div
+          className="h-full bg-game-accent transition-all duration-500"
+          // 6% floor so there's a visible sliver of bar from the first frame —
+          // otherwise the whole widget looks broken until the first batch lands.
+          style={{ width: `${Math.max(pct, 6)}%` }}
+        />
+      </div>
+      <p className="text-sm text-gray-400">
+        {total > 0 ? `${completed} of ${total} batches · ` : ''}
+        {elapsed}s elapsed
+      </p>
+      <p className="text-xs text-gray-500">
+        Every question in the game is written from real facts about your categories.
+        Hang tight — this only happens once.
+      </p>
+    </section>
+  );
+}
 
 export default function Lobby({ game, myId, socket }) {
   const me = game.players.find((p) => p.id === myId);
@@ -28,6 +73,9 @@ export default function Lobby({ game, myId, socket }) {
 
   const allRegistered = game.players.length >= 2 && game.players.every((p) => p.registered);
   const isHost = game.players[0]?.id === myId;
+  // Room-wide, pushed by the server — every player sees the same thing while
+  // the host's Start Game is working, not just the host.
+  const starting = !!game.startProgress?.active;
 
   return (
     <div className="mx-auto max-w-2xl space-y-6">
@@ -86,14 +134,16 @@ export default function Lobby({ game, myId, socket }) {
         </section>
       )}
 
-      {me.registered && (
+      {me.registered && !starting && (
         <section className="text-center py-4">
           <p className="text-game-green font-semibold">You're ready!</p>
           <p className="text-gray-400 text-sm mt-1">Waiting for everyone else…</p>
         </section>
       )}
 
-      {isHost && (
+      {starting && <StartProgress progress={game.startProgress} />}
+
+      {isHost && !starting && (
         <button
           disabled={!allRegistered}
           className="w-full rounded bg-game-green px-4 py-2 font-semibold disabled:opacity-40"
