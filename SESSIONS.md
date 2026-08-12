@@ -2781,3 +2781,90 @@ Christie, P.D. James, Ronald Knox, Raymond Chandler, Tana French, Gillian Flynn,
 2. **Add `ANTHROPIC_API_KEY` secret** in HF Space settings (Settings → Variables and secrets)
 3. Wire `app.py` to `part_registry.py` (marked in to-do above — partially done in `f205194`)
 4. When pushing future fixes to HF: `git cherry-pick <commit>` onto `hf-deploy`, then `git push hf hf-deploy:main --force`
+
+---
+
+## Session 29 — August 12, 2026 (MYF: lobby progress, then eleven playtest changes)
+**Branch:** `claude/myf-lobby-progress-state-zc3myh` (off `main` at `a8c86fb`)
+**Scope:** Mind Your Friends only. No CYM files touched.
+
+### What was done
+
+**Part 1 — the reported "Start Game does nothing" bug (MYF CLAUDE.md item 36).**
+Not an error: a ~250s silent wait. Fixed both halves in both backends.
+- Fact-bank batches now run concurrently (`Promise.all` / `ThreadPoolExecutor`) instead of in a
+  loop: ~250s → ~50s. Results still merged in batch order so an overlapping category resolves
+  the same way it did before.
+- Added `game.startProgress` — set before the first Claude request goes out, updated per
+  completed batch, cleared on success or failure — riding the existing player-view broadcast, so
+  every player in the room sees the wait narrated, not just the host.
+- `ApiClient.gd`'s start timeout was 120s against a 250s call, so the Godot client timed out on
+  every real game start. Now `START_GAME_TIMEOUT` (300s), with `GameState.gd` exposing
+  `start_progress()`/`is_starting()` and a `start_progress_changed` signal.
+
+**Part 2 — the owner's playtest notes.** The owner ran real games mid-session and returned
+eleven notes. Three had genuine design forks in them and were put back to the owner before
+building (wager model under open answering; fact-fetch timing; category source). All eleven are
+built, **in the Next.js prototype only**. Full detail in MYF's `CLAUDE.md` item 37.
+- Mechanics: open answering (everyone races, first correct wins, only the active player risks
+  the wager), reading window + 40s clock, 8–20 word questions, one rule per round with round 1
+  deliberately plain, 3 tappable categories, instant start via lazy per-category facts.
+- UI: brand bar (title treatment left, per-game recoloured logo centre), two-column desktop
+  layout with a 9:16 host slot, uniform illustrated cards, one-at-a-time superlative voting with
+  Skip all.
+
+### Files modified
+**Backend/mechanics:** `lib/claudeClient.js`, `lib/gameState.js`, `lib/constants.js`,
+`lib/roundRules.js`, `server.js`, `server_py/claude_client.py`, `server_py/game_state.py`,
+`server_py/main.py` (Python side has Part 1 only — see the gap below)
+**New:** `lib/categories.js`, `lib/logoPaths.js` (generated), `components/BrandBar.jsx`,
+`components/Logo.jsx`, `components/HostStage.jsx`, `components/GameCard.jsx`,
+`scripts/build-logo.mjs`, `scripts/mechanics-test.js`, `server_py/test_start_progress.py`,
+`public/brand/logo-split.svg`
+**UI:** `components/Lobby.jsx`, `components/GameBoard.jsx`, `components/CardHand.jsx`,
+`components/CardPicker.jsx`, `components/SuperlativeVoting.jsx`, `app/game/[code]/page.js`,
+`app/globals.css`
+**Godot:** `godot/scripts/autoloads/ApiClient.gd`, `godot/scripts/autoloads/GameState.gd`,
+`godot/scripts/ui/lobby.gd`, `godot/scripts/tests/game_start_smoke_test.gd`
+**Docs:** MYF `CLAUDE.md`, `docs/WIRING.md`, `PLAYTEST.md` (new PT-4, PT-5)
+**Deleted:** `scripts/start-progress-test.js` (its subject no longer exists)
+
+### Decisions
+- **Steal round rule retired**, along with the whole STEAL phase. Open answering *is* Steal,
+  always on. Leaves eight round rules; whether a ninth is wanted is an open design call, and it
+  can't be Steal again.
+- **Reading window is a timestamp, not a phase.** Every phase-timeout and auto-advance helper in
+  `gameState.js` assumes the existing loop; a tenth phase would mean auditing all of them.
+- **Answer evaluations are serialized.** "First correct wins" has to mean first *submission* —
+  concurrent evaluation hands the win to whoever's API call returns first and can pay two
+  players for one question. Node gets the ordering from its event loop plus one promise chain;
+  Python will need a real per-game answer queue.
+- **Round 1 has no rule on purpose** — casual-first applied to onboarding.
+- **Test seam added** (`__setClientForTests` in `claudeClient.js`). The race, the de-dup and the
+  concurrency claims can't be tested against a real API whose timing is the variable under test.
+
+### Verification
+- `scripts/mechanics-test.js` — 51 assertions, zero API cost.
+- `server_py/test_start_progress.py` — 21 assertions, zero API cost, asserts both backends emit
+  the same `startProgress` shape.
+- Godot 4.6 headless: `--import` compile check clean; `lobby_smoke_test` 21/21 against a real
+  uvicorn; `game_start_smoke_test` extended with progress assertions, all passing.
+- Real browser (Chromium, 3 players, desktop width): instant start, round-1 banner, reading
+  countdown, a non-active player buzzing in to take the active player's question, plus the brand
+  bar and illustrated card hand.
+
+### Known gaps — read before picking this up
+1. **`server_py` has none of Part 2.** It still has the STEAL phase, per-turn round rules, a
+   blocking fact-bank build and 5 categories. The Godot client talks to `server_py`, so this
+   blocks all Godot work. Porting order and the traps are in MYF's `docs/WIRING.md` → "The
+   August 12 playtest changes".
+2. **The changed game has not been played by people.** PT-4 and PT-5 are the two questions only
+   a real table can answer.
+3. **`scripts/coherence-test.js` is broken on `main`**, pre-existing — imports `POINT_TIERS`,
+   removed from `lib/constants.js` when wagers became a range. Fixing it means deciding what
+   wager values it should sample.
+
+### Next steps
+1. Play a real game with the new mechanics; answer PT-4 and PT-5.
+2. Port Part 2 to `server_py`, with a Python equivalent of `mechanics-test.js`.
+3. Then the Godot category/card screens — built against 3 categories and the curated grid.

@@ -78,3 +78,60 @@ social problem, not a technical one. Only build auto-kick or penalty mechanics
 if testing shows it genuinely stalls games.
 
 ---
+
+## PT-4: Open Answering — Does the Wager Still Mean Anything?
+
+**Changed August 12, 2026** (owner playtest note 9), replacing the
+single-answerer model and retiring the Steal round rule with it.
+
+**Current design:** every player gets one attempt at the same question and the
+first correct answer wins. Only the **active** player has money on it — they
+win or lose the wager that was set for them. Everyone else plays for a flat
+`OPEN_ANSWER_POINTS` (100) and risks nothing. A wrong attempt locks that player
+out of the question but costs a non-active player nothing. Not answering at all
+costs the active player the same as answering wrong, so stalling isn't free.
+
+**The question:** does the wager still carry tension when someone else can take
+the question off you? "I cut, you choose" was built around one player being on
+the hook; open answering keeps that hook but adds a way to be robbed of the
+upside while keeping all of the downside.
+
+**What to watch for:**
+- Does the active player rush and lose points they'd have won with more time?
+- Does the wager-setter play differently now — is a big wager still a threat, or
+  has it become a gift to whoever reads fastest?
+- Is 100 the right flat rate? Too low and nobody bothers buzzing in; too high
+  and being the active player is strictly worse than not being one.
+- Does the reading window (5s, PT-5) do enough to stop this becoming a
+  reading-speed contest?
+- Do wrong-but-free attempts create noise — people guessing instantly to burn
+  the attempt before someone else answers?
+
+**Known consequence, not yet resolved:** retiring Steal leaves **eight** round
+rules where there were nine. Whether a ninth is wanted, and what it should be,
+is a design call that hasn't been made. Steal itself can't come back as-is —
+it was this mechanic rationed to one round in nine.
+
+---
+
+## PT-5: Reading Window — Is 5 Seconds Right?
+
+**Added August 12, 2026** (owner playtest note 8), alongside doubling the
+answer clock from 20s to 40s.
+
+**Current design:** the question appears, the answer input stays visibly locked
+for `READING_SECONDS` (5), then the buzzers open for the full answer clock.
+Questions are generated at 8–20 words specifically so they fit inside it.
+
+**The question:** does 5s cover reading for the slowest reader at the table
+without deadening the pace for everyone else?
+
+**What to watch for:**
+- Do people spend the window reading, or does it just feel like a stall?
+- Does anyone still get beaten to the buzzer purely on reading speed?
+- Does it want to scale with question length rather than being fixed?
+- Should the round rules move it — Lightning Round shortening it, Take Your
+  Time lengthening it — or does a rule-independent reading window matter more
+  as a fairness guarantee than as a pacing lever?
+
+---

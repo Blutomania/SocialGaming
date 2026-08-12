@@ -31,7 +31,7 @@ land first (see item 31/33 below). When that happens, pull `coherence/engine.py`
 `main` (now the real source of truth) rather than this branch's copy, which is stale relative to
 it in naming only — the classes are otherwise identical.
 
-## Priority Queue (as of August 7, 2026)
+## Priority Queue (as of August 12, 2026)
 
 The numbered list below is the full historical record and keeps growing. This is
 the short version — what to actually work on next, in order. Items link to their
@@ -42,16 +42,21 @@ Text-only input is fine for now, and the sharing mechanic is to stay a basic
 placeholder. Two things drop down the list as a direct result — see PARKED
 below. Don't quietly re-prioritise them without asking.
 
+**Owner playtest (August 12, 2026): eleven notes, all eleven built — in the
+Next.js prototype only.** See item 37. The prototype and `server_py` have now
+genuinely diverged, and `server_py` is what the Godot client talks to, so
+closing that gap is the top of this list.
+
 | # | Item | State |
 |---|---|---|
-| 0 | **Show progress during Start Game** — it takes ~250s and the UI says nothing, which reads as a hang (item 36). Blocks every playtest. | **START HERE** |
-| 1 | **Playtest the post-game social layer** — built (item 35), never played through | Blocked on 0 |
-| 2 | Godot: category-selection + card-pick screens (replaces stubbed lobby registration) | Next |
-| 3 | Godot: round-loop UI — WAGER → CARD → QUESTION → ANSWER → RESULT | Next |
-| 4 | **`server_py` parity: `questionLog` + `postGame`** — the Python backend has neither, so the Godot client cannot show any post-game screen until this lands | Real gap, blocks 5 |
-| 5 | Godot: GAME_OVER screen + post-game social layer | Blocked on 3+4 |
-| 6 | Live-test disconnect/reconnect + inactivity auto-advance against `server_py` | Ported, never exercised |
-| 7 | Merge PR #14 (coherence unification) — 2 trivial conflicts, both resolvable in minutes | Open PR, CYM-side |
+| 0 | **Play the changed game** — eleven playtest notes landed without a real multi-person game since. Two design questions are open and only a table can answer them: PT-4 (does the wager still bite when anyone can take the question?) and PT-5 (is a 5s reading window right?) | **START HERE** |
+| 1 | **`server_py` parity for the Aug 12 mechanics** — open answering, reading window, per-round rules, lazy fact bank, 3 categories. The Godot client cannot be built against the current design until this lands. Porting notes and ordering in `docs/WIRING.md` → "The August 12 playtest changes" | Blocks all Godot work |
+| 2 | Godot: category-selection + card-pick screens — build against **3** categories and the curated grid, not the old 5 free-text boxes | Blocked on 1 |
+| 3 | Godot: round-loop UI — WAGER → CARD → QUESTION → reading window → open ANSWER → RESULT | Blocked on 1 |
+| 4 | **A ninth round rule, or a deliberate eight** — retiring Steal left eight. Design call, not a port | Open decision |
+| 5 | **`server_py` parity: `questionLog` + `postGame`** — the Python backend has neither, so the Godot client cannot show any post-game screen | Real gap, blocks 6 |
+| 6 | Godot: GAME_OVER screen + post-game social layer | Blocked on 3+5 |
+| 7 | Live-test disconnect/reconnect + inactivity auto-advance against `server_py` | Ported, never exercised |
 | 8 | Wire MYF's coherence to the shared Python engine — now possible, `server_py` is Python | Unblocked by the port |
 | 9 | Retire the Next.js prototype — **only** once Godot reaches parity and is playtested | Do not do early |
 
@@ -62,8 +67,18 @@ below. Don't quietly re-prioritise them without asking.
 | Voice input | Text-only is fine for now. It was never wired into the Godot client, so parking costs nothing. Design still assumes voice is the eventual destination — keep honouring the `text`/`voice` transform split in `roundRules.js` rather than baking in text-only assumptions. |
 | Shareable Question polish | The current canvas card + Web Share implementation **is** the placeholder and is deliberately frozen there: one card, no hosting, no persistence. Do not extend it (no hosted links, no tap-to-reveal, no recap images) without the owner asking. Do not rip it out either — it's built and tested, so replacing it spends effort to end up with less. |
 
-36. **[DIAGNOSED, August 10 2026] "Start Game does nothing" is not an error — it's a ~4-minute
-    silent wait.** Reproduced by driving `startGame()` directly (same call `game:start` makes),
+**Known broken, unrelated to the above:** `scripts/coherence-test.js` doesn't
+run on `main` — it imports `POINT_TIERS`, which no longer exists in
+`lib/constants.js` (wagers became a 50–500 range). Fixing it means deciding
+what wager values it should sample now, which is a design call; it also spends
+real API calls, so it isn't part of any routine check.
+
+36. **[RESOLVED, August 12 2026 — superseded by item 37's lazy fact bank] "Start Game does
+    nothing" was not an error; it was a ~4-minute silent wait.** Fixed twice over: first by
+    running the batches concurrently and showing progress (~250s → ~50s), then by not building
+    the bank at start at all (~50s → instant). The diagnosis is kept below because the numbers
+    are the only real measurement of what a sequential fact-bank build costs.
+    Original entry: Reproduced by driving `startGame()` directly (same call `game:start` makes),
     with 3 players × 5 categories:
     ```
     allPlayersRegistered: true
@@ -87,7 +102,7 @@ below. Don't quietly re-prioritise them without asking.
 
 | Term | Means | Notes |
 |---|---|---|
-| **Lobby** | The post-join screen: player roster + the 5-category form, ending in "Next — Pick Your Card". | `components/Lobby.jsx`. **Not** the create/join screen — that's `app/page.js`. Godot's `lobby.tscn` currently merges both and must be split to match this definition. |
+| **Lobby** | The post-join screen: player roster + the category picker (3 tappable categories), ending in "Next — Pick Your Card". | `components/Lobby.jsx`. **Not** the create/join screen — that's `app/page.js`. Godot's `lobby.tscn` currently merges both and must be split to match this definition. |
 | **Logo** | The three-emoji mark (brain / pointing finger / group). | `public/brand/MYF_emoji_*.svg`. May appear **on its own**. |
 | **Title treatment** | The "Mind Your Friends" logotype. | `public/brand/wordmark-mono.svg` (derived) / `myf_title_trtmnt_trans.svg` (original). |
 | **Text treatment** | Synonym for **title treatment**. | Same thing — either name is fine. |
@@ -547,6 +562,95 @@ as a constraint to respect rather than a layout spec.
       and it's also the point of the feature — whether the social element *lands* is not
       something a test can answer.
 
+
+37. **[BUILT, August 12 2026] Owner playtest — eleven notes, all eleven built in the Next.js
+    prototype.** The owner ran real games and came back with a list. Three of them had genuine
+    forks in them, so those were put back to the owner before building; all three answers below
+    are the owner's, not assumed. **Nothing here is in `server_py` yet** — see the Priority
+    Queue and `docs/WIRING.md` → "The August 12 playtest changes" for the porting order.
+
+    **Core mechanics:**
+    - **(9) Everyone answers, first correct wins.** The whole room now races the same question.
+      One attempt each; a wrong one locks you out of that question. **Owner's call on the
+      wager:** only the active player risks points — they win or lose the wager set for them,
+      everyone else plays for a flat `OPEN_ANSWER_POINTS` (100) and risks nothing. Buzzing in
+      has to feel free or nobody does it; the wager has to still sting or "I cut, you choose"
+      stops meaning anything. Evaluations are **serialized** so "first correct" means first
+      *submission* — running them concurrently would hand the win to whoever's Claude call
+      returned first and could pay two players for one question. See PT-4 for what to watch.
+    - **This retired the Steal round rule and the whole STEAL phase.** Steal was exactly this
+      mechanic rationed to one round in nine. Eight rules remain; whether a ninth is wanted is
+      an open design call (Priority Queue item 4), and it can't be Steal again.
+    - **(8) Reading window + doubled clock.** The question and the timer used to arrive
+      together, making the clock partly a reading-speed test — worse now that the room races.
+      The question lands, `READING_SECONDS` (5) passes with the input visibly locked, then the
+      buzzers open for `BASE_TIMER_SECONDS`, now 40s (was 20s). Implemented as an
+      `answerOpensAt` timestamp, **not** a tenth phase: every phase-timeout and auto-advance
+      helper in `gameState.js` assumes the existing loop. See PT-5.
+    - **(1) Questions 8–20 words.** Hard constraint in both generation prompts, at most two
+      short sentences, no preamble. Matters more now that everyone races: a long question tests
+      reading speed, not knowledge.
+    - **(10) One rule per round, announced.** Rules were being redrawn every turn. Now assigned
+      per round, announced in a banner for the round's first turn, and kept on screen for the
+      whole round — a rule you have to remember is one people forget mid-round and feel cheated
+      by. **Round 1 is deliberately plain** so a new player learns the base game first, which is
+      the casual-first thesis applied to onboarding. Rules don't repeat until all have been used.
+    - **(2) Three categories, tappable.** Five typed boxes was the most laborious moment in the
+      game. **Owner's call:** a curated grid (30 categories, `lib/categories.js`, zero API cost)
+      plus "enter your own" — the free-text field stays because attribution jokes ("Bob's
+      Divorce") are a designed social beat and a fixed list can't produce them.
+    - **(3) Instant Start Game.** **Owner's call:** lazy per-category fetch plus background
+      prefetch. Facts are fetched when a category is first picked, behind the wager and card
+      windows where there's already time to fill, with `prefetchFactBank` quietly filling in the
+      rest; categories nobody picks are never paid for. `ensureCategoryFacts` is awaited in
+      `runQuestionPhase` as the correctness backstop — the early call on category pick is a head
+      start, not a race. Start went from ~250s to 1ms.
+
+    **UI and design:**
+    - **(4+5) Brand bar.** Title treatment hard left in fixed white, logo centred, room code
+      right. The logo recolours **per emoji, per game**, deterministic in the room code so
+      everyone in a room sees the same mark. The composition rule is respected by making the
+      logo unconditional and the wordmark the piece that drops on narrow screens.
+    - **The logo split is done and committed.** `scripts/build-logo.mjs` clusters the source
+      art's subpaths by horizontal extent and cuts on the two widest interior gaps. Two traps,
+      both of which failed silently on the first attempt and are documented in the script: the
+      extent parser needs real SVG command arities (`H`/`V` take one coordinate, so "every other
+      number is an x" puts y values on the x axis and smears every extent across the artboard),
+      and the artboard's hairline edge artifacts must be dropped or they outrank the real
+      inter-emoji gaps and both cuts land in the margins. Output: `lib/logoPaths.js` +
+      `public/brand/logo-split.svg`. Note the vector source is `MYF_emoji_two_trans.svg` —
+      `MYF_emoji_two_trans2.svg` is an embedded PNG with no paths at all and can't be split.
+    - **(6) Desktop layout.** Two columns above `lg`, with a **9:16** slot (TikTok's 1080×1920 —
+      the shape a generated talking-head clip will arrive in) held for the AI host. Deliberately
+      empty: the point of building the slot now is that screens get laid out around a host that
+      exists, instead of being rearranged later. Desktop only — on a phone the screen already is
+      that shape, and a 9:16 host there would leave no room for the game.
+    - **(7) Card art.** One `GameCard` component used by both the hand and the picker, so every
+      card is the same size everywhere and the card you picked is visually the card you play.
+      Colour and glyph are fixed per card id; warm for sabotage, cool for defence, so type reads
+      before the name. The art is CSS/emoji rather than commissioned illustration — this fixes
+      the sizing and feel so a real commission has a frame to fill.
+    - **(11) Superlatives one at a time.** The full list on one screen read as a form to fill in;
+      the awards are meant to land like announcements. One card at a time, sliding in from the
+      right, with the index derived from the ballot rather than held in state so a reconnect
+      resumes in the right place. **Skip all** needed a real server-side abstention:
+      `SKIPPED_VOTE` fills the ballot slot so the room isn't held behind the 90s timer, and is
+      excluded from the tally so "skipped" can't win an award.
+
+    **Bug found while testing this, not in the notes:** `playerView()` never sent
+    `roundRule.timerSeconds`, so every answer screen rendered a bare "s" where the countdown
+    should be. Invisible until the reading window put a real number next to it.
+
+    **Verification:** `scripts/mechanics-test.js` — 51 assertions, zero API cost, using the
+    `__setClientForTests` seam. It covers the things that can't be tested against a real API
+    because the API's own timing is the variable under test: the race with two correct answers
+    genuinely in flight, the one-attempt lockout, the wager asymmetry, timeout charging, and
+    fact-fetch de-duplication. Plus a real three-player Chromium run at desktop width through
+    instant start → round-1 banner → reading countdown → a non-active player buzzing in to take
+    the question. `scripts/start-progress-test.js` was deleted — its subject (a blocking
+    fact-bank build at start) no longer exists; `postgame-test.js` was updated for the new
+    outcome shapes.
+
 ## Design Thesis: Casual-First
 This game targets casual, social players — not competitive optimizers. Every
 mechanic must optimize for surprise, laughs, and "oh no!" moments over strategic
@@ -566,19 +670,24 @@ see `lib/claudeClient.js` for the pattern.
 ## Architecture
 ```
 server.js           # Socket.io event hub + question generation orchestrator
-lib/gameState.js    # In-memory state machine (8 phases: LOBBY → CATEGORY → WAGER → CARD → QUESTION → ANSWER → RESULT → GAME_OVER)
-                    # Also: disconnect/reconnect, inactivity detection, fact bank
+lib/gameState.js    # In-memory state machine (LOBBY → CATEGORY → WAGER → CARD → QUESTION → ANSWER → RESULT → GAME_OVER,
+                    # plus the transient EVALUATING used by submission-based rounds)
+                    # Also: open answering, disconnect/reconnect, inactivity detection, lazy fact bank
 lib/claudeClient.js # fetchFactsBatch(), generateQuestion(), evaluateAnswer(), moderateHeckle()
 lib/coherence.js    # Two-pass CE (roundConstraints → turnConstraints → validateQuestion) + pickFactoid()
 lib/cards.js        # Card definitions, dealRoundCards(), buildRoundHand()
+lib/categories.js   # Curated category suggestions for the lobby picker
+lib/logoPaths.js    # GENERATED by scripts/build-logo.mjs — the split three-emoji logo
 lib/roundRules.js   # Rule definitions + answer transforms
 lib/constants.js    # Shared constants (no Node-only deps — safe for client components)
 components/         # React UI per phase (Lobby, CardPicker, CategoryPicker, CardHand, GameBoard, ScoreBoard, VoiceInput)
+                    # plus chrome: BrandBar, Logo, Wordmark, HostStage, GameCard
 app/game/[code]/    # Game room page — Socket.io client, routes by phase
 ```
 
 ## Conventions
-- **Branch**: develop on `dev/mind-your-friends` — never commit directly to `main`
+- **Branch**: MYF now lives on `main` (the Godot port merged via PR #15). Work on a feature
+  branch off `main`; never commit directly to `main`. `dev/mind-your-friends` is superseded.
 - ESM throughout (`"type": "module"`); Socket.io server owns all game logic, never the client
 - Model: `claude-sonnet-4-6`
 - No comments unless the WHY is non-obvious
@@ -610,8 +719,10 @@ need no variants. Never bake in text-only assumptions — voice is the destinati
    Card Resolution)
 4. Server calls Claude → question (modified by active round rule and any
    resolved format-constraining card — see below)
-5. Active player answers within timer
-6. Claude evaluates answer (fuzzy match); points awarded/deducted
+5. Question is shown; after READING_SECONDS the buzzers open to the WHOLE room
+6. Every player gets one attempt; Claude evaluates in submission order and the
+   first correct answer wins. Only the active player's wager is at risk —
+   everyone else plays for a flat OPEN_ANSWER_POINTS (see item 37, PT-4)
 7. 4s result screen → next turn; after max rounds → GAME_OVER
 
 **The 10 cards (8 sabotage + 2 anti-sabotage, all single-use)** — see
@@ -669,11 +780,11 @@ transformation, add a case to `transformAnswer()` with both `text` and `voice` v
 statement; log a highlight via `logHighlight()` if it's a notable sabotage moment.
 
 ## Session Start Protocol
-1. `git checkout dev/mind-your-friends && git pull origin dev/mind-your-friends`
-2. Read **Current To-Do** above — item #31 (Godot port) is the next step.
+1. `git checkout main && git pull origin main`, then branch off it for the session's work.
+2. Read the **Priority Queue** above — that's the short list. Item 37 is the most recent work.
 3. Run `git log --oneline -10` to see what was last committed.
 4. Read `GAME_DESIGN.md` for the full game design.
-5. Read `PLAYTEST.md` for open playtest questions (PT-1 through PT-3).
+5. Read `PLAYTEST.md` for open playtest questions (PT-1 through PT-5).
 6. State your starting point in the first reply: branch, latest commit, what you'll do.
 
 > **Branch hygiene note (July 22, 2026):** four past sessions each independently forked MYF from
@@ -689,6 +800,6 @@ statement; log a highlight via `logHighlight()` if it's a notable sabotage momen
 > here so a future session isn't misdirected the way CYM's `CLAUDE.md` was before its own fix.
 
 ## What NOT to Do
-- Never push directly to `main` (403). Use `dev/mind-your-friends`.
+- Never push directly to `main` (403). Work on a feature branch off `main` and open a PR.
 - Never put Claude API calls in client-side React — only `server.js` touches the API.
 - Don't add a database yet — in-memory state is intentional for MVP.
