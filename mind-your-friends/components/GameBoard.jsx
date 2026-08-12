@@ -15,7 +15,7 @@ export default function GameBoard({ game, myId, socket }) {
   const rule = game.roundRule && game.roundRule.id !== 'none' ? game.roundRule : null;
 
   return (
-    <div className="mx-auto max-w-2xl space-y-4">
+    <div className="mx-auto w-full max-w-3xl space-y-4">
       <ScoreStrip game={game} myId={myId} />
 
       {game.roundAnnouncement && <RoundAnnouncement announcement={game.roundAnnouncement} />}

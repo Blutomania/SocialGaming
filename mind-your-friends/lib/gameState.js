@@ -1414,6 +1414,10 @@ export async function beginSuperlativeVoting(game) {
   return game;
 }
 
+// Sentinel stored in a ballot slot when a player abstains. Not a player id,
+// so the tally below skips it naturally.
+export const SKIPPED_VOTE = '__skipped__';
+
 export function castSuperlativeVote(game, voterId, categoryId, targetPlayerId) {
   if (game.phase !== 'GAME_OVER' || !game.postGame) {
     throw new Error('Voting is not open');
@@ -1424,7 +1428,10 @@ export function castSuperlativeVote(game, voterId, categoryId, targetPlayerId) {
   if (!game.postGame.categories.some((c) => c.id === categoryId)) {
     throw new Error(`Unknown superlative category: ${categoryId}`);
   }
-  if (!getPlayer(game, targetPlayerId)) {
+  // SKIPPED is an abstention: it fills the ballot slot so the room isn't held
+  // waiting on this player, but counts for nobody in the tally. Without it,
+  // "Skip all" would either stall the room or have to invent a vote.
+  if (targetPlayerId !== SKIPPED_VOTE && !getPlayer(game, targetPlayerId)) {
     throw new Error('You can only vote for a player in this game');
   }
 
@@ -1432,6 +1439,23 @@ export function castSuperlativeVote(game, voterId, categoryId, targetPlayerId) {
   // thing to be proud of, and policing it invites more argument than it saves.
   game.postGame.votes[voterId] = game.postGame.votes[voterId] ?? {};
   game.postGame.votes[voterId][categoryId] = targetPlayerId;
+  return game;
+}
+
+// Abstain from every remaining award in one go. The post-game screens are
+// optional fun, and a player who wants out has to be able to get out without
+// stranding everyone else behind the 90s timer.
+export function skipSuperlativeVoting(game, voterId) {
+  if (game.phase !== 'GAME_OVER' || !game.postGame) {
+    throw new Error('Voting is not open');
+  }
+  if (game.postGame.stage !== 'voting') {
+    throw new Error('Voting has already closed');
+  }
+  game.postGame.votes[voterId] = game.postGame.votes[voterId] ?? {};
+  for (const category of game.postGame.categories) {
+    game.postGame.votes[voterId][category.id] ??= SKIPPED_VOTE;
+  }
   return game;
 }
 
@@ -1469,7 +1493,10 @@ export async function resolveSuperlatives(game) {
     const tally = {};
     for (const ballot of Object.values(game.postGame.votes)) {
       const target = ballot[category.id];
-      if (target) tally[target] = (tally[target] ?? 0) + 1;
+      // SKIPPED_VOTE fills a ballot slot so the room can move on, but it is
+      // an abstention — it must not become a candidate in the tally, or
+      // "skipped" wins the award.
+      if (target && target !== SKIPPED_VOTE) tally[target] = (tally[target] ?? 0) + 1;
     }
 
     const top = Math.max(0, ...Object.values(tally));

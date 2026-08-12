@@ -190,7 +190,7 @@ export default function Lobby({ game, myId, socket }) {
   const starting = !!game.startProgress?.active;
 
   return (
-    <div className="mx-auto max-w-2xl space-y-6">
+    <div className="mx-auto w-full max-w-3xl space-y-6">
       <section>
         <h2 className="mb-2 text-xl font-semibold">Players ({game.players.length})</h2>
         <ul className="space-y-1">

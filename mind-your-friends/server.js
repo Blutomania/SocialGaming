@@ -171,6 +171,26 @@ app.prepare().then(() => {
       });
     });
 
+    // "Skip all" — abstain from every remaining award at once. Same ack-based
+    // error handling as postgame:vote.
+    socket.on('postgame:skip', (_payload, ack) => {
+      withMyGame(socket, async (game, playerId) => {
+        try {
+          gameState.skipSuperlativeVoting(game, playerId);
+        } catch (err) {
+          if (typeof ack === 'function') ack({ ok: false, message: err.message });
+          return;
+        }
+        if (typeof ack === 'function') ack({ ok: true });
+        broadcast(io, game);
+
+        if (gameState.allSuperlativeVotesIn(game)) {
+          await gameState.resolveSuperlatives(game);
+          broadcast(io, game);
+        }
+      });
+    });
+
     socket.on('disconnect', () => {
       const entry = sockets.get(socket.id);
       if (entry) {
