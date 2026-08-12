@@ -170,7 +170,7 @@ pair that the rule can meaningfully act on. Examples:
 | Take Your Time | No special constraint — any question works |
 | Lightning Round | No special constraint — any question works |
 | Double Down | No special constraint — any question works |
-| Steal | Must have a definitive correct answer (no opinion/subjective questions) |
+| Rebus | N/A — the puzzle comes from the curated bank, not from generation. The category still sets wager difficulty but does not shape the puzzle |
 | The Lineup | Must resolve to exactly one unambiguous correct option from a small fixed set — no free-text answer, same category as Steal's "definitive correct answer" requirement |
 
 This is a **generation-time constraint**, same pattern as format-constraining
@@ -235,8 +235,14 @@ how the question plays out on top of whatever question type is active. E.g.
 ---
 
 ## Round Rules (Variations)
-Each question is modified by an active round rule. Rules rotate across the game.
-Full rule list — 8 confirmed, 1 backburnered:
+**One rule per ROUND**, not per question (changed Aug 12, 2026). The rule is
+announced in a banner at the top of the round and stays on screen for its
+duration — a rule you have to remember is one people forget mid-round and then
+feel cheated by. **Round 1 has no rule at all**, deliberately: a new player
+should learn the base game before a rule bends it. Rules don't repeat until
+every rule has had a round.
+
+Full rule list — 9 live, 1 spec'd, 1 retired, 1 backburnered:
 
 | # | Name | What changes | Input-agnostic? |
 |---|---|---|---|
@@ -246,9 +252,11 @@ Full rule list — 8 confirmed, 1 backburnered:
 | 4 | Take Your Time | Timer doubled; host quip escalates | Yes |
 | 5 | ELI5 | Question phrased by a curious 5-year-old; Claude judges understanding | Yes |
 | 6 | Double Down | Wager auto-doubled, no backing out | Yes |
-| 7 | Steal | Wrong answer opens a steal window for other players | Yes |
-| 8 | Worst Answer Wins | Everyone submits; worst answer scores lowest (wins). Scored on 3 axes: factually wrong (1-10), creatively wrong (1-10), plausibility (1-10). Lowest total wins. | Yes |
-| 9 | The Lineup | Pick the right one from a lineup of look-alikes — see below | N/A — no free-text answer at all |
+| 7 | Worst Answer Wins | Everyone submits; worst answer scores lowest (wins). Scored on 3 axes: factually wrong (1-10), creatively wrong (1-10), plausibility (1-10). Lowest total wins. | Yes |
+| 8 | The Lineup | Pick the right one from a lineup of look-alikes — see below | N/A — no free-text answer at all |
+| 9 | Rebus | The answer is spelled out in emoji — see below | Yes |
+| — | Chain | Every answer in the round shares a theme — **spec'd, not built**, see below | Yes |
+| — | ~~Steal~~ | **Retired Aug 12, 2026.** Open answering made this the default behaviour of every question, so the rule was one round in nine where the normal rules applied. See PLAYTEST.md PT-4 | — |
 | — | Audience Poll | Others predict active player's answer *(out of v1 — backburnered)* | Yes |
 
 ### Worst Answer Wins — How It Works
@@ -263,20 +271,92 @@ correct/boring/implausible):
 Lowest total score wins. The sweet spot: completely false, wildly creative,
 yet somehow sounds convincing.
 
-### Steal — How It Works
-When the Steal round rule is active and the answerer gets it wrong:
-1. A "wrong" buzzer sound + visual fires for everyone.
-2. The game enters a **STEAL phase** (8-second window). Every player except the
-   original answerer sees a "STEAL!" button.
-3. **First to buzz in claims it** (FCFS, same pattern as card play). They must
-   submit their answer immediately.
-4. Correct steal: stealer gains the full wager. Wrong steal: stealer loses
-   half the wager. Either way, the window closes.
-5. If nobody buzzes in within 8 seconds, the window expires and play continues.
+### Rebus — How It Works
+The question is a string of emoji that spell or sound out the answer, plus a
+one-line hint of what kind of thing it is. 💯 + 🧑 → SURE + MAN → **Sherman**.
+The hint is not decoration: without it a rebus is a guessing game with no way
+in, which fails the casual-first test.
 
-**Redirect interaction**: if a Redirect card changed the answerer, the
-redirected player is the one excluded from the steal pool — the original
-active player can still steal.
+Two kinds, and the difference is marked in the data:
+- **Literal** — the pieces spell the answer exactly (☀️ + 🌼 = SUNFLOWER).
+- **Phonetic** — the pieces *sound* like it (🍩 + 🔑 = DOUGH + KEY = DONKEY).
+  These get an on-screen nudge: "say the pictures out loud."
+
+**Zero API calls.** Puzzles come from a curated bank (`lib/rebusData.js`),
+for the same reason The Lineup's colour flavour uses a curated hex table: a
+rebus whose pieces don't reconstruct its answer is *unsolvable*, and a room
+can't tell "we're stupid" from "the game is broken". Decomposing a word into
+sounds is among the things language models are least reliable at, so live
+generation would produce exactly that failure at some rate. Curation removes
+the failure mode rather than trying to catch it at runtime.
+
+**Structure: pieces, not puzzles.** The bank is a library of reusable *pieces*
+(`key -> {emoji, reads}`) plus puzzles that are just lists of piece keys. The
+same atoms recur constantly — MAN appears in six puzzles, SUN in four — so
+keying them means one emoji decision per concept instead of one per puzzle,
+and improving a piece improves everywhere it's used. It also gives any future
+generation path a fixed vocabulary to compose from, which is what makes an
+AI-proposed rebus checkable: "pick from these 113 pieces" can be validated
+mechanically, "invent a rebus" cannot.
+
+`scripts/mechanics-test.js` asserts every non-phonetic puzzle reconstructs its
+answer letter-for-letter, that every piece key resolves, and that no piece is
+orphaned. A broken puzzle can't ship.
+
+**The reveal shows the decomposition** (🟢 GREEN + 🏠 HOUSE = Greenhouse). A
+player who missed it has to find out *why*, or it's a trick rather than a
+puzzle.
+
+**Known limitation:** the puzzle ignores the picked category, same as The
+Lineup's colour flavour and for the same reason — the bank isn't categorized,
+and forcing a match would mean either a far larger bank or falling back to
+live generation. The category pick still happens; it sets wager difficulty and
+keeps the turn loop's attribution beat intact.
+
+### Chain — How It Works *(SPEC ONLY — not built)*
+Every answer in the round shares a theme. "Every answer this round contains a
+colour." "Every answer is a US state." The round announcement names the theme
+up front.
+
+**Why announce it rather than let the room discover it.** The obvious version
+hides the theme so spotting it is the thrill — but under open answering, the
+first player to spot it then wins every remaining question in the round. That
+isn't a mechanic, it's a landslide. Announcing it inverts the effect: the
+theme becomes a *hint*, which helps the players who need help, which is the
+casual-first thesis. The "ohhh" moment moves from spotting the pattern to
+seeing how each answer fits it.
+
+**The variant NOT chosen:** last-word-of-answer-N becomes first-word-of-
+question-N+1. It's brittle to generate and, more importantly, invisible to
+players mid-round — a pattern nobody notices isn't a mechanic.
+
+**The architectural cost, which is the real reason this is spec'd and not
+built.** Questions are built from the pre-generated fact bank, and the
+category is picked fresh each turn by the active player. Finding "a fact in
+*90s Movies* whose answer contains a colour" is a filter over ten factoids
+that will frequently come back empty. So a chain round needs one of:
+
+1. **Generate without the fact bank** — the no-factoid fallback path exists,
+   but it's the weaker one, and this rule would use it for a sixth of the game.
+2. **Generate the round's questions up front, one category for the whole
+   round** — defensible as design (a rule that changes the round's *structure*,
+   not just the question) and *cheaper to run*: one Claude call per round
+   instead of six. But it's the first round rule that would touch the turn
+   loop rather than just question generation, and it removes the per-turn
+   category pick for that round, which carries attribution and the Whoa Nellie
+   card's whole reason to exist.
+
+**Recommended shape if built:** option 2. One category for the round, chosen
+by the round's first active player. Theme announced with the rule. Six
+questions generated in a single call, each answer sharing the theme, validated
+before use — a chain where one answer doesn't fit is worse than no chain.
+
+**Open questions to settle before building:**
+- Does Whoa Nellie do anything in a chain round, or is it dead for that round?
+- If the theme is announced, is the round *easier* than a normal round, and
+  should the flat buzz-in rate drop to compensate?
+- Where does the theme list come from — curated (like the rebus bank and the
+  category grid) or generated per round?
 
 ### The Lineup — How It Works
 Not free-text at all — a multiple-choice "spot the real one" mechanic. 5

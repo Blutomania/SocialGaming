@@ -100,6 +100,15 @@ export const ROUND_RULES = {
     timerSeconds: BASE_TIMER_SECONDS * 2,
     submissionBased: true,
   },
+  rebus: {
+    id: 'rebus',
+    name: 'Rebus',
+    emoji: '🧩',
+    description: 'The answer is spelled out in emoji. Read the pictures, not the words.',
+    promptInstruction: null,
+    timerSeconds: BASE_TIMER_SECONDS,
+    rebusBased: true,
+  },
   theLineup: {
     id: 'theLineup',
     name: 'The Lineup',
@@ -111,14 +120,43 @@ export const ROUND_RULES = {
   },
 };
 
+// Playtesting affordance: pin every round to one rule.
+//
+//   MYF_FORCE_ROUND_RULE=rebus npm run dev
+//
+// Previous sessions each hacked this in locally and reverted it before
+// committing, which meant re-writing it every time and risking it shipping
+// by accident. It's a real, documented switch now. Unset in normal play, and
+// it overrides round 1's deliberately-plain rule too — otherwise testing a
+// rule costs a whole round to reach.
+function forcedRule() {
+  const id = process.env.MYF_FORCE_ROUND_RULE;
+  if (!id) return null;
+  const rule = ROUND_RULES[id];
+  if (!rule) {
+    console.warn(`MYF_FORCE_ROUND_RULE="${id}" is not a rule. Known: ${Object.keys(ROUND_RULES).join(', ')}`);
+    return null;
+  }
+  return rule;
+}
+
 // `exclude` — rule ids already used this game. A rule is only repeated once
 // every rule has had a turn, so a 4-round game shows four different twists
 // instead of rolling the same one twice.
 export function pickRandomRoundRule(exclude = []) {
+  const forced = forcedRule();
+  if (forced) return forced;
   const ids = Object.keys(ROUND_RULES);
   const fresh = ids.filter((id) => !exclude.includes(id));
   const pool = fresh.length > 0 ? fresh : ids;
   return ROUND_RULES[pool[Math.floor(Math.random() * pool.length)]];
+}
+
+// Round 1 is plain by design, but that makes any forced rule cost a whole
+// round to reach. This is the one place the force is allowed to override the
+// design invariant.
+export function forcedRuleForRoundOne() {
+  return forcedRule();
 }
 
 // Apply a round rule's answer transform, if any, for the given input mode.

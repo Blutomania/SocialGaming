@@ -8,7 +8,7 @@
 // mutation.
 
 import { buildRoundHand, pickRandomLanguageRegister } from './cards.js';
-import { pickRandomRoundRule, transformAnswer, NO_RULE } from './roundRules.js';
+import { pickRandomRoundRule, transformAnswer, NO_RULE, forcedRuleForRoundOne } from './roundRules.js';
 import {
   generateQuestion,
   generateLineupOptions,
@@ -21,6 +21,7 @@ import {
 } from './claudeClient.js';
 import { roundConstraints, turnConstraints, validateQuestion, pickFactoid } from './coherence.js';
 import { pickColorLineupEntry, buildColorOptions } from './lineupData.js';
+import { pickRebusPuzzle, resolveRebus } from './rebusData.js';
 import {
   ROUNDS,
   QUESTIONS_PER_ROUND,
@@ -288,7 +289,9 @@ function beginRoundIfNeeded(game) {
 
   game.roundNumber = round;
   if (round === 1) {
-    game.roundRule = NO_RULE;
+    // MYF_FORCE_ROUND_RULE wins here so a playtest doesn't have to burn a
+    // whole round to reach the rule under test. Unset, this is always NO_RULE.
+    game.roundRule = forcedRuleForRoundOne() ?? NO_RULE;
   } else {
     // Rules don't repeat until every one has had a turn, so a 4-round game
     // shows four different twists.
@@ -527,7 +530,9 @@ export async function runQuestionPhase(game) {
   });
 
   let result;
-  if (game.roundRule.lineupBased) {
+  if (game.roundRule.rebusBased) {
+    result = buildRebusQuestion(game);
+  } else if (game.roundRule.lineupBased) {
     result = await buildLineupQuestion(game, constraints);
   } else {
     const factoid = game.factBank
@@ -563,6 +568,41 @@ export async function runQuestionPhase(game) {
     game.submissions = {};
   }
   return game;
+}
+
+// --- Rebus (emoji-wordplay round rule) ---
+//
+// Zero API calls: puzzles come from the curated bank in lib/rebusData.js.
+// That's deliberate and it's the same call made for The Lineup's colour
+// flavour — a rebus whose pieces don't reconstruct the answer is unsolvable,
+// and a room can't tell "we're stupid" from "the game is broken". Asking
+// Claude to build one live invites exactly that failure, because
+// decomposing a word into sounds is the thing language models are worst at.
+//
+// Known limitation, same shape as the colour flavour's: the puzzle ignores
+// the picked category. The bank isn't categorized, and forcing a match would
+// mean either a much larger bank or falling back to live generation, which is
+// the thing this avoids. The category pick still happens — it sets the wager
+// difficulty and keeps the turn loop and its attribution beat intact.
+function buildRebusQuestion(game) {
+  game.usedRebusAnswers ??= [];
+  const puzzle = pickRebusPuzzle(game.usedRebusAnswers);
+  game.usedRebusAnswers.push(puzzle.answer);
+
+  const pieces = resolveRebus(puzzle);
+  return {
+    question: `Read the emoji: ${puzzle.hint}`,
+    answer: puzzle.answer,
+    hostQuip: 'Say what you see.',
+    rebus: {
+      pieces: pieces.map((p) => p.emoji),
+      // Withheld from the client until RESULT — see playerView. Handing over
+      // the readings mid-question is handing over the answer.
+      reads: pieces.map((p) => p.reads),
+      hint: puzzle.hint,
+      phonetic: !!puzzle.phonetic,
+    },
+  };
 }
 
 // --- The Lineup (pick-one round rule) ---
@@ -1294,6 +1334,17 @@ export function playerView(game, playerId) {
     view.question = game.currentQuestion.question;
     view.hostQuip = game.currentQuestion.hostQuip;
 
+    if (game.currentQuestion.rebus) {
+      const rebus = game.currentQuestion.rebus;
+      // Pieces are the puzzle itself, so they're safe to send. `reads` is the
+      // solution spelled out — same withholding rule as the free-text answer
+      // below.
+      view.rebus = { pieces: rebus.pieces, hint: rebus.hint, phonetic: rebus.phonetic };
+      if (phase === 'RESULT' || phase === 'GAME_OVER') {
+        view.rebus.reads = rebus.reads;
+      }
+    }
+
     if (game.currentQuestion.lineup) {
       // Options are safe pre-reveal (that's the multiple-choice UI itself) —
       // only correctOptionId is withheld until RESULT/GAME_OVER, same
@@ -1306,7 +1357,18 @@ export function playerView(game, playerId) {
 
     if (phase === 'RESULT' || phase === 'GAME_OVER') {
       view.answer = game.currentQuestion.answer;
-      if (game.currentQuestion.lineup) {
+      if (game.currentQuestion.rebus) {
+      const rebus = game.currentQuestion.rebus;
+      // Pieces are the puzzle itself, so they're safe to send. `reads` is the
+      // solution spelled out — same withholding rule as the free-text answer
+      // below.
+      view.rebus = { pieces: rebus.pieces, hint: rebus.hint, phonetic: rebus.phonetic };
+      if (phase === 'RESULT' || phase === 'GAME_OVER') {
+        view.rebus.reads = rebus.reads;
+      }
+    }
+
+    if (game.currentQuestion.lineup) {
         view.lineup.correctOptionId = game.currentQuestion.lineup.correctOptionId;
       }
     }

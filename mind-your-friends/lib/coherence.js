@@ -54,6 +54,7 @@ export function roundConstraints(roundRule) {
     wagerMultiplier: rule.wagerMultiplier ?? 1,
     stealOnWrong: rule.stealOnWrong ?? false,
     lineupBased: rule.lineupBased ?? false,
+    rebusBased: rule.rebusBased ?? false,
     promptInstructions: rule.promptInstruction ? [rule.promptInstruction] : [],
     answerFormat: rule.id === 'oneWordOnly' ? 'single-word' : rule.lineupBased ? 'lineup' : 'phrase',
   };
@@ -120,6 +121,7 @@ export function turnConstraints(roundCtx, { category, wager, resolvedCard }) {
     timerSeconds,
     stealOnWrong: roundCtx.stealOnWrong,
     lineupBased: roundCtx.lineupBased,
+    rebusBased: roundCtx.rebusBased,
     roundRuleId: roundCtx.roundRuleId,
     roundRuleName: roundCtx.roundRuleName,
     promptInstructions,

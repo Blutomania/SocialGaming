@@ -41,6 +41,8 @@ import {
   CATEGORIES_PER_FETCH_BATCH,
 } from '../lib/constants.js';
 import { BASE_TIMER_SECONDS, ROUND_RULES } from '../lib/roundRules.js';
+import { REBUS_PIECES, REBUS_PUZZLES, resolveRebus, pickRebusPuzzle } from '../lib/rebusData.js';
+import { roundConstraints } from '../lib/coherence.js';
 
 let failures = 0;
 function check(condition, description) {
@@ -87,11 +89,15 @@ function fakeClient({ latencyMs = 0 } = {}) {
         if (prompt.startsWith('Question:')) {
           state.evalCalls += 1;
           const given = prompt.match(/Player's answer: (.*)/)[1];
+          // Compare against the expected answer carried in the prompt rather
+          // than a fixed string: rebus rounds supply their own answers, and
+          // hardcoding one would make every rebus attempt read as wrong.
+          const expected = prompt.match(/Expected answer: (.*)/)[1];
           state.evalOrder.push(given);
           return {
             content: [{
               text: JSON.stringify({
-                correct: given.trim().toLowerCase() === CORRECT_ANSWER.toLowerCase(),
+                correct: given.trim().toLowerCase() === expected.trim().toLowerCase(),
                 feedback: `You said ${given}`,
               }),
             }],
@@ -393,6 +399,90 @@ async function main() {
     } else {
       console.log('  SKIP  round 3 — game length is configured to end first');
     }
+  }
+
+  // --- Rebus round ---------------------------------------------------------
+  console.log('\n--- Rebus data integrity ---');
+  {
+    // These assertions are the reason the curated bank is safe to trust. A
+    // rebus whose pieces don't reconstruct its answer is unsolvable, and
+    // nobody would notice until a real room sat staring at it.
+    let unknownPieces = 0;
+    let literalMismatches = 0;
+    for (const puzzle of REBUS_PUZZLES) {
+      let parts;
+      try {
+        parts = resolveRebus(puzzle);
+      } catch {
+        unknownPieces += 1;
+        continue;
+      }
+      if (puzzle.phonetic) continue;
+      const built = parts.map((p) => p.reads).join('').toUpperCase();
+      const want = puzzle.answer.toUpperCase().replace(/[^A-Z]/g, '');
+      if (built !== want) {
+        console.log(`    "${puzzle.answer}" builds "${built}"`);
+        literalMismatches += 1;
+      }
+    }
+    check(unknownPieces === 0, `every puzzle resolves its pieces (${unknownPieces} broken)`);
+    check(literalMismatches === 0,
+      `every non-phonetic puzzle spells its answer exactly (${literalMismatches} mismatched)`);
+    check(REBUS_PUZZLES.length >= QUESTIONS_PER_ROUND,
+      `bank has enough puzzles for a full round (${REBUS_PUZZLES.length} vs ${QUESTIONS_PER_ROUND})`);
+    check(REBUS_PUZZLES.every((p) => p.hint && p.hint.length > 0),
+      'every puzzle has a hint — without one a rebus has no way in');
+
+    const usedKeys = new Set(REBUS_PUZZLES.flatMap((p) => p.pieces));
+    const orphans = Object.keys(REBUS_PIECES).filter((k) => !usedKeys.has(k));
+    check(orphans.length === 0, `no orphaned pieces in the library (${orphans.join(', ') || 'none'})`);
+  }
+
+  console.log('\n--- Rebus round play ---');
+  {
+    __setClientForTests(fakeClient());
+    const game = registeredGame();
+    startGame(game);
+    await prefetchFactBank(game);
+
+    // Force the round rule, same convention as previous round-rule work.
+    // Constraints have to be recomputed with it — they're derived at round
+    // start, so swapping the rule alone leaves them describing the old one.
+    game.roundRule = ROUND_RULES.rebus;
+    game.roundConstraints = roundConstraints(game.roundRule);
+    await toOpenAnswer(game, { wager: 200 });
+
+    check(game.phase === 'ANSWER', `a rebus turn reaches ANSWER (got ${game.phase})`);
+    check(!!game.currentQuestion.rebus, 'the question carries a rebus');
+    check(game.currentQuestion.rebus.pieces.length >= 2, 'with at least two pieces');
+
+    // The solution must not ride along with the puzzle.
+    const midView = playerView(game, 'p1');
+    check(!!midView.rebus, 'the client is sent the puzzle');
+    check(midView.rebus.reads === undefined,
+      'but NOT the readings — those spell the answer out');
+    check(midView.answer === undefined, 'and not the answer itself');
+
+    const answer = game.currentQuestion.answer;
+    await submitAnswer(game, 'p1', answer, 'text');
+    check(game.phase === 'RESULT', 'solving it ends the question');
+
+    const revealView = playerView(game, 'p1');
+    check(Array.isArray(revealView.rebus.reads),
+      'the reveal includes the decomposition — otherwise a player who missed it never learns why');
+    check(revealView.rebus.reads.length === revealView.rebus.pieces.length,
+      'one reading per piece');
+  }
+
+  console.log('\n--- Rebus repeats ---');
+  {
+    const used = [];
+    for (let i = 0; i < QUESTIONS_PER_ROUND; i++) {
+      const puzzle = pickRebusPuzzle(used);
+      used.push(puzzle.answer);
+    }
+    check(new Set(used).size === used.length,
+      `a full round draws ${used.length} different puzzles`);
   }
 
   __setClientForTests(null);

@@ -53,7 +53,7 @@ closing that gap is the top of this list.
 | 1 | **`server_py` parity for the Aug 12 mechanics** — open answering, reading window, per-round rules, lazy fact bank, 3 categories. The Godot client cannot be built against the current design until this lands. Porting notes and ordering in `docs/WIRING.md` → "The August 12 playtest changes" | Blocks all Godot work |
 | 2 | Godot: category-selection + card-pick screens — build against **3** categories and the curated grid, not the old 5 free-text boxes | Blocked on 1 |
 | 3 | Godot: round-loop UI — WAGER → CARD → QUESTION → reading window → open ANSWER → RESULT | Blocked on 1 |
-| 4 | **A ninth round rule, or a deliberate eight** — retiring Steal left eight. Design call, not a port | Open decision |
+| 4 | **Build the Chain round** — spec'd in `GAME_DESIGN.md`, deliberately not built: it needs a decision on round-level category selection first (option 2 in the spec). Rebus already filled Steal's slot, so this is expansion, not a gap | Spec'd, blocked on a design call |
 | 5 | **`server_py` parity: `questionLog` + `postGame`** — the Python backend has neither, so the Godot client cannot show any post-game screen | Real gap, blocks 6 |
 | 6 | Godot: GAME_OVER screen + post-game social layer | Blocked on 3+5 |
 | 7 | Live-test disconnect/reconnect + inactivity auto-advance against `server_py` | Ported, never exercised |
@@ -651,6 +651,45 @@ as a constraint to respect rather than a layout spec.
     fact-bank build at start) no longer exists; `postgame-test.js` was updated for the new
     outcome shapes.
 
+38. **[BUILT, August 12 2026] Rebus round rule — the ninth rule, replacing retired Steal.**
+    Owner idea from the same session: the answer spelled out in emoji (💯 + 🧑 → SURE + MAN →
+    Sherman), plus a one-line hint of what kind of thing it is. The hint is load-bearing, not
+    decoration — without it a rebus is a guessing game with no way in.
+    - **Zero API calls.** Puzzles come from a curated bank, `lib/rebusData.js`. Same call as The
+      Lineup's colour flavour and for a sharper reason: a rebus whose pieces don't reconstruct
+      its answer is *unsolvable*, and a room can't tell "we're stupid" from "the game is
+      broken". Sub-word phonetic decomposition is among the least reliable things to ask a
+      language model for, so live generation would produce that failure at some rate. Curation
+      removes the failure mode rather than trying to catch it at runtime.
+    - **Owner's structural call: a library of PIECES, not self-contained puzzles.**
+      `REBUS_PIECES` is `key -> {emoji, reads}`; `REBUS_PUZZLES` are lists of piece keys. 113
+      pieces, 82 puzzles. The atoms recur constantly (MAN in six puzzles, SUN in four), so this
+      is one emoji decision per concept rather than per puzzle, and a piece improved once
+      improves everywhere. It also gives a future generation path a fixed vocabulary — "compose
+      from these 113 pieces" is mechanically checkable, "invent a rebus" is not. That's the
+      route to growing the bank without reintroducing the reliability problem.
+    - **Literal vs phonetic is marked in the data and enforced by tests.** Non-phonetic puzzles
+      must reconstruct their answer letter-for-letter; the test asserts it over the whole bank,
+      so a typo can't ship. Phonetic ones (`phonetic: true`) opt out deliberately and get an
+      on-screen nudge to say the pictures out loud.
+    - **The reveal shows the decomposition** (🟢 GREEN + 🏠 HOUSE = Greenhouse). A player who
+      missed it has to learn why, or it's a trick rather than a puzzle.
+    - **Known limitation:** the puzzle ignores the picked category, same as the colour flavour
+      and for the same reason. Documented in `GAME_DESIGN.md` rather than fixed.
+    - **`MYF_FORCE_ROUND_RULE=rebus npm run dev`** — previous sessions each hacked a local force
+      in and reverted it before committing (items 30, 32, 33). It's a real documented switch now,
+      in `roundRules.js`. It overrides round 1's plain rule too, so testing a rule doesn't cost a
+      whole round to reach.
+    - **Verified:** the bank's integrity assertions plus a forced rebus round in a real browser —
+      🟢 + 🏠 with the hint "Warm, glass, and an effect", solution withheld from the client until
+      RESULT. `scripts/mechanics-test.js` is now 68 assertions, still zero API cost.
+    - **Chain round spec'd, not built** (`GAME_DESIGN.md` → "Chain — How It Works"). It needs a
+      decision first: chain answers must share a theme, but questions come from a per-category
+      fact bank picked fresh each turn, so "a fact in *90s Movies* whose answer contains a
+      colour" usually comes back empty. The recommended shape is one category for the whole
+      round with the six questions generated in a single call — cheaper to run than six, but the
+      first round rule to touch the turn loop rather than just question generation.
+
 ## Design Thesis: Casual-First
 This game targets casual, social players — not competitive optimizers. Every
 mechanic must optimize for surprise, laughs, and "oh no!" moments over strategic
@@ -774,6 +813,10 @@ iterate on the post-game screens. Remove both for a real pacing test.
 `{id, name, emoji, description, promptInstruction, timerSeconds}`. If the answer needs
 transformation, add a case to `transformAnswer()` with both `text` and `voice` variants
 (see Input modes above). Input-agnostic rules need no transform case.
+
+**Test one round rule** — `MYF_FORCE_ROUND_RULE=rebus npm run dev` pins every round
+(including round 1) to that rule. Use it instead of hacking `pickRandomRoundRule` locally,
+which is what earlier sessions did and had to remember to revert.
 
 **Add a card** — edit `lib/cards.js`: add definition (and to `COMMON_CARD_IDS` or
 `PICKABLE_CARD_IDS`). Apply the effect in `gameState.js → resolveCardSlot()`'s switch

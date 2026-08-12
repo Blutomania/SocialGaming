@@ -25,10 +25,11 @@ export default function GameBoard({ game, myId, socket }) {
         {game.questionIndex + 1}/{TOTAL_QUESTIONS} total)
       </div>
 
-      {/* The rule stays on screen for the whole round, not just the
-          announcement turn — a rule you have to remember is a rule people
-          forget mid-round and then feel cheated by. */}
-      {rule && (
+      {/* The rule stays on screen for the rest of the round — a rule you have
+          to remember is one people forget mid-round and then feel cheated by.
+          Hidden on the announcement turn itself, where the banner above is
+          already saying the same words twice. */}
+      {rule && !game.roundAnnouncement && (
         <div className="rounded-lg border border-game-gold/40 bg-game-gold/10 px-4 py-2 text-center">
           <span className="text-lg">{rule.emoji}</span>{' '}
           <span className="font-semibold text-game-gold">{rule.name}</span>
@@ -58,6 +59,48 @@ export default function GameBoard({ game, myId, socket }) {
           Warming up questions… {game.factPrefetch.completed}/{game.factPrefetch.total}
         </p>
       )}
+    </div>
+  );
+}
+
+// The puzzle itself. Deliberately enormous — the emoji ARE the question, so
+// they get the size a question line would normally get, and the hint sits
+// under them as the way in rather than as the main event.
+function RebusPuzzle({ rebus }) {
+  return (
+    <div className="space-y-2">
+      <div className="flex flex-wrap items-center justify-center gap-3">
+        {rebus.pieces.map((emoji, i) => (
+          <span key={i} className="flex items-center gap-3">
+            {i > 0 && <span className="text-2xl text-gray-600">+</span>}
+            <span className="text-5xl sm:text-6xl">{emoji}</span>
+          </span>
+        ))}
+      </div>
+      <p className="text-lg font-semibold">{rebus.hint}</p>
+      {rebus.phonetic && (
+        <p className="text-xs text-gray-500">Say the pictures out loud — this one sounds it out.</p>
+      )}
+    </div>
+  );
+}
+
+// The reveal. Showing the decomposition is the whole payoff: without it a
+// player who missed it never finds out WHY, which is the difference between
+// a puzzle and a trick.
+function RebusReveal({ rebus, answer }) {
+  if (!rebus?.reads) return null;
+  return (
+    <div className="flex flex-wrap items-center justify-center gap-2 text-sm text-gray-300">
+      {rebus.pieces.map((emoji, i) => (
+        <span key={i} className="flex items-center gap-2">
+          {i > 0 && <span className="text-gray-600">+</span>}
+          <span className="text-2xl">{emoji}</span>
+          <span className="font-mono uppercase">{rebus.reads[i]}</span>
+        </span>
+      ))}
+      <span className="text-gray-600">=</span>
+      <span className="font-semibold text-white">{answer}</span>
     </div>
   );
 }
@@ -202,7 +245,12 @@ function OpenAnswerPhase({ game, myId, socket }) {
         <p className="italic text-game-pink">Heckle: "{game.heckleMessage}"</p>
       )}
       <p className="text-game-gold">{game.hostQuip}</p>
-      <p className="text-xl font-semibold leading-snug">{game.question}</p>
+
+      {game.rebus ? (
+        <RebusPuzzle rebus={game.rebus} />
+      ) : (
+        <p className="text-xl font-semibold leading-snug">{game.question}</p>
+      )}
 
       <p className="text-sm text-gray-400">
         {answerer.name}&apos;s question · {game.currentWager} pts for {isAnswerer ? 'you' : 'them'}
@@ -399,7 +447,11 @@ function ResultPhase({ game }) {
       <p className={`text-2xl font-bold ${result.correct ? 'text-game-green' : 'text-game-red'}`}>
         {headline}
       </p>
-      <p className="text-sm text-gray-400">Correct answer: {game.answer}</p>
+      {game.rebus ? (
+        <RebusReveal rebus={game.rebus} answer={game.answer} />
+      ) : (
+        <p className="text-sm text-gray-400">Correct answer: {game.answer}</p>
+      )}
       {result.feedback && <p>{result.feedback}</p>}
       {misses.length > 0 && (
         <div className="pt-2 text-sm text-gray-400">
