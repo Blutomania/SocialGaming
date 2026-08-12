@@ -689,6 +689,12 @@ as a constraint to respect rather than a layout spec.
       colour" usually comes back empty. The recommended shape is one category for the whole
       round with the six questions generated in a single call — cheaper to run than six, but the
       first round rule to touch the turn loop rather than just question generation.
+      **Owner's call: Whoa Nellie restarts the chain.** That settled more than it looks —
+      the opening theme is announced (kind, no landslide) but a theme installed by Whoa Nellie
+      is *not*, so the base round helps weak players while the sabotage makes the remainder
+      cruel. Two open questions left, both in the spec: whether an announced theme makes the
+      round easier enough to need a lower buzz-in rate, and where themes come from (curated
+      like the rebus bank, or generated per round).
 
 ## Design Thesis: Casual-First
 This game targets casual, social players — not competitive optimizers. Every

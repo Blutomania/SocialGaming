@@ -351,10 +351,43 @@ by the round's first active player. Theme announced with the rule. Six
 questions generated in a single call, each answer sharing the theme, validated
 before use — a chain where one answer doesn't fit is worse than no chain.
 
-**Open questions to settle before building:**
-- Does Whoa Nellie do anything in a chain round, or is it dead for that round?
-- If the theme is announced, is the round *easier* than a normal round, and
-  should the flat buzz-in rate drop to compensate?
+**Whoa Nellie restarts the chain** (owner's call). The card keeps its identity
+— it has always been the context ambush — and gains its most dramatic possible
+version: the room is mid-pattern, and one card tears it up. New theme from this
+question on.
+
+That also resolves the announced-vs-hidden tension above, by splitting the
+difference along the line the card draws:
+
+- The round's **opening** theme is announced. Kind by default, no landslide.
+- A theme installed by **Whoa Nellie is not announced.** The room has to spot
+  the new one themselves.
+
+So the base round helps the players who need help, and the sabotage makes the
+rest of the round cruel — which is the right way round, and gives the card real
+teeth without letting one sharp player run away with a whole round. The
+landslide risk is bounded to whatever is left of the round.
+
+Attribution works as it does today: "Bob tore up the chain — new theme, and
+you're on your own."
+
+**Mechanical consequences of the restart, to design against:**
+- **Cost:** one extra generation call for that round. Acceptable — the card is
+  single-use and there's one card slot per question, so it can fire at most
+  once per round.
+- **Latency:** regenerating six questions mid-turn is slower than the single
+  question Whoa Nellie re-triggers today. Generate the *next* question
+  immediately and the rest in the background — the same lazy-then-prefetch
+  shape already built for the fact bank.
+- **Only regenerate what's left.** Questions already played stay played; their
+  scores stand.
+- **Edge case:** played on a round's last question, a restart is pointless.
+  Fall back to the normal category-swap behaviour there rather than building a
+  one-question chain.
+
+**Open questions still to settle before building:**
+- If the opening theme is announced, is the round *easier* than a normal round,
+  and should the flat buzz-in rate drop to compensate?
 - Where does the theme list come from — curated (like the rebus bank and the
   category grid) or generated per round?
 
