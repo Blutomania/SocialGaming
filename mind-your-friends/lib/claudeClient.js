@@ -133,6 +133,17 @@ sourceType is the kind of reference this fact would be found in. Use one of: "en
   return Object.assign({}, ...parsedBatches);
 }
 
+// Every generated question has to obey this, whatever else the round rule or
+// cards are asking for. Questions were running long enough that reading them
+// ate the clock (playtest, Aug 12) — and now that the whole room races to
+// answer, a long question punishes slow readers rather than people who don't
+// know the answer.
+const LENGTH_RULE = `LENGTH IS A HARD CONSTRAINT. The question must be 8-20 words,
+readable out loud in under 10 seconds, and at most two short sentences. No
+preamble, no scene-setting, no "In this question..." — ask the thing directly.
+If the factoid is complicated, ask about the single most interesting part of it
+rather than trying to fit all of it in.`;
+
 // Generate a question for the active player.
 //
 // `constraints` — assembled by the Coherence Engine (lib/coherence.js).
@@ -168,11 +179,13 @@ ${instructions}
 Turn this factoid into an engaging trivia question using the given angle.
 The answer MUST be exactly: ${factoid.answer}
 
+${LENGTH_RULE}
+
 Respond with ONLY a JSON object, no other text:
 {
-  "question": "the trivia question text",
+  "question": "the trivia question text (8-20 words)",
   "answer": "${factoid.answer}",
-  "hostQuip": "a short, personalized, game-show-host-style line addressed to ${activePlayerName} introducing the question"
+  "hostQuip": "one short game-show-host line addressed to ${activePlayerName} introducing the question — under 12 words"
 }`;
   } else {
     prompt = `You are the AI host of "Mind Your Friends," a fast-paced multiplayer
@@ -184,11 +197,13 @@ ${instructions}
 By default, the correct answer should be a short phrase of MORE than 3 words,
 unless a card or round rule overrides this.
 
+${LENGTH_RULE}
+
 Respond with ONLY a JSON object, no other text:
 {
-  "question": "the trivia question text",
+  "question": "the trivia question text (8-20 words)",
   "answer": "the correct answer",
-  "hostQuip": "a short, personalized, game-show-host-style line addressed to ${activePlayerName} introducing the question"
+  "hostQuip": "one short game-show-host line addressed to ${activePlayerName} introducing the question — under 12 words"
 }`;
   }
 

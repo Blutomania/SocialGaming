@@ -1,28 +1,40 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CategoryPicker from './CategoryPicker';
 import CardHand from './CardHand';
 import VoiceInput from './VoiceInput';
 import { MIN_WAGER, MAX_WAGER, TOTAL_QUESTIONS, QUESTIONS_PER_ROUND } from '../lib/constants';
 
 export default function GameBoard({ game, myId, socket }) {
-  const round = Math.floor(game.questionIndex / QUESTIONS_PER_ROUND) + 1;
+  const round = game.roundNumber ?? Math.floor(game.questionIndex / QUESTIONS_PER_ROUND) + 1;
   const questionInRound = (game.questionIndex % QUESTIONS_PER_ROUND) + 1;
+  // Round 1 runs with no rule on purpose, so a new player learns the base
+  // game first; the server sends id 'none' for it rather than null so nothing
+  // downstream has to null-check.
+  const rule = game.roundRule && game.roundRule.id !== 'none' ? game.roundRule : null;
 
   return (
     <div className="mx-auto max-w-2xl space-y-4">
       <ScoreStrip game={game} myId={myId} />
 
+      {game.roundAnnouncement && <RoundAnnouncement announcement={game.roundAnnouncement} />}
+
       <div className="text-center text-sm text-gray-400">
         Round {round} · Question {questionInRound}/{QUESTIONS_PER_ROUND} (
         {game.questionIndex + 1}/{TOTAL_QUESTIONS} total)
-        {game.roundRule && (
-          <span className="ml-2">
-            {game.roundRule.emoji} {game.roundRule.name}
-          </span>
-        )}
       </div>
+
+      {/* The rule stays on screen for the whole round, not just the
+          announcement turn — a rule you have to remember is a rule people
+          forget mid-round and then feel cheated by. */}
+      {rule && (
+        <div className="rounded-lg border border-game-gold/40 bg-game-gold/10 px-4 py-2 text-center">
+          <span className="text-lg">{rule.emoji}</span>{' '}
+          <span className="font-semibold text-game-gold">{rule.name}</span>
+          <span className="ml-2 text-sm text-gray-300">{rule.description}</span>
+        </div>
+      )}
 
       <div className="rounded-lg bg-game-card p-4">
         {game.phase === 'CATEGORY' && <CategoryPicker game={game} myId={myId} socket={socket} />}
@@ -33,11 +45,46 @@ export default function GameBoard({ game, myId, socket }) {
         {game.phase === 'EVALUATING' && (
           <p className="text-center">🏆 The host is judging everyone's wrongness…</p>
         )}
-        {game.phase === 'STEAL' && <StealPhase game={game} socket={socket} />}
         {game.phase === 'RESULT' && <ResultPhase game={game} />}
       </div>
 
       {game.phase === 'CARD' && <CardHand game={game} myId={myId} socket={socket} />}
+
+      {/* The bank fills in behind the game (see gameState's fact-bank
+          section). Surfaced quietly so a slow first question reads as
+          "still warming up" rather than "broken" — never as a blocker. */}
+      {game.factPrefetch?.active && (
+        <p className="text-center text-xs text-gray-600">
+          Warming up questions… {game.factPrefetch.completed}/{game.factPrefetch.total}
+        </p>
+      )}
+    </div>
+  );
+}
+
+// Shown for the first turn of each round. Round 1's banner says explicitly
+// that there is no rule yet, so its absence reads as deliberate rather than
+// as something failing to load.
+function RoundAnnouncement({ announcement }) {
+  const plain = announcement.ruleId === 'none';
+  return (
+    <div className="rounded-lg bg-game-accent/20 px-4 py-4 text-center">
+      <p className="text-xs uppercase tracking-widest text-gray-400">Round {announcement.round}</p>
+      {plain ? (
+        <>
+          <p className="mt-1 text-2xl font-bold">Straight trivia</p>
+          <p className="mt-1 text-sm text-gray-300">
+            No twist this round — get your bearings. Rules start next round.
+          </p>
+        </>
+      ) : (
+        <>
+          <p className="mt-1 text-2xl font-bold">
+            {announcement.emoji} {announcement.name}
+          </p>
+          <p className="mt-1 text-sm text-gray-300">{announcement.description}</p>
+        </>
+      )}
     </div>
   );
 }
@@ -118,14 +165,36 @@ function AnswerPhase({ game, myId, socket }) {
   if (game.roundRule.lineupBased) {
     return <LineupPhase game={game} socket={socket} />;
   }
+  return <OpenAnswerPhase game={game} myId={myId} socket={socket} />;
+}
+
+// Open answering: the whole room races the same question, first correct
+// answer wins (CLAUDE.md item 37). Two windows, one after the other — the
+// question lands and everyone reads it, then the buzzer opens. Before that
+// the input is visibly locked, so nobody is racing a clock they haven't
+// finished reading.
+function OpenAnswerPhase({ game, myId, socket }) {
+  const [answer, setAnswer] = useState('');
+  const [inputMode, setInputMode] = useState('text');
+  const [now, setNow] = useState(Date.now());
+
+  useEffect(() => {
+    const id = setInterval(() => setNow(Date.now()), 250);
+    return () => clearInterval(id);
+  }, []);
 
   const answerer = game.players[game.answererIndex];
   const isAnswerer = answerer.id === myId;
-  const [answer, setAnswer] = useState('');
-  const [inputMode, setInputMode] = useState('text');
-  const timer = game.timerSecondsOverride ?? game.roundRule.timerSeconds;
+  const timer = game.roundRule.timerSeconds;
+  const readingLeft = Math.max(0, Math.ceil(((game.answerOpensAt ?? 0) - now) / 1000));
+  const open = readingLeft === 0;
+  const spent = game.spentAttempts ?? [];
 
-  const submit = () => socket.emit('turn:submitAnswer', { answer, inputMode });
+  const submit = () => {
+    if (!open || !game.iCanAnswer || !answer.trim()) return;
+    socket.emit('turn:submitAnswer', { answer, inputMode });
+    setAnswer('');
+  };
 
   return (
     <div className="space-y-3 text-center">
@@ -133,37 +202,66 @@ function AnswerPhase({ game, myId, socket }) {
         <p className="italic text-game-pink">Heckle: "{game.heckleMessage}"</p>
       )}
       <p className="text-game-gold">{game.hostQuip}</p>
-      <p className="text-lg font-semibold">{game.question}</p>
+      <p className="text-xl font-semibold leading-snug">{game.question}</p>
+
       <p className="text-sm text-gray-400">
-        Wager: {game.currentWager} · {timer}s · {answerer.name} answers
+        {answerer.name}&apos;s question · {game.currentWager} pts for {isAnswerer ? 'you' : 'them'}
+        {' · '}
+        {game.openAnswerPoints} for anyone else who beats {isAnswerer ? 'you' : 'them'} to it
       </p>
 
-      {isAnswerer ? (
-        <div className="flex gap-2">
-          <input
-            className="flex-1 rounded bg-game-dark px-3 py-2"
-            placeholder="Your answer…"
-            value={answer}
-            onChange={(e) => {
-              setAnswer(e.target.value);
-              setInputMode('text');
-            }}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') submit();
-            }}
-          />
-          <VoiceInput
-            onTranscript={(transcript) => {
-              setAnswer(transcript);
-              setInputMode('voice');
-            }}
-          />
-          <button className="rounded bg-game-accent px-4 py-2 font-semibold" onClick={submit}>
-            Submit
-          </button>
-        </div>
-      ) : (
-        <p className="text-gray-400">Waiting for {answerer.name} to answer…</p>
+      {!open && (
+        <p className="text-lg font-semibold text-game-blue">
+          Read it… buzzers open in {readingLeft}
+        </p>
+      )}
+
+      {open && game.iCanAnswer && (
+        <>
+          <p className="text-sm text-gray-400">{timer}s — anyone can answer, first correct wins</p>
+          <div className="flex gap-2">
+            <input
+              autoFocus
+              className="flex-1 rounded bg-game-dark px-3 py-2"
+              placeholder="Your answer…"
+              value={answer}
+              onChange={(e) => {
+                setAnswer(e.target.value);
+                setInputMode('text');
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') submit();
+              }}
+            />
+            <VoiceInput
+              onTranscript={(transcript) => {
+                setAnswer(transcript);
+                setInputMode('voice');
+              }}
+            />
+            <button className="rounded bg-game-accent px-4 py-2 font-semibold" onClick={submit}>
+              Submit
+            </button>
+          </div>
+          <p className="text-xs text-gray-500">
+            One shot each. Get it wrong and you&apos;re out of this question — but it costs you
+            nothing{isAnswerer ? '… except your wager.' : '.'}
+          </p>
+        </>
+      )}
+
+      {open && !game.iCanAnswer && (
+        <p className="text-gray-400">
+          {game.myAttempt
+            ? `You said "${game.myAttempt.answer}" — not it. Watch the others.`
+            : 'Waiting…'}
+        </p>
+      )}
+
+      {spent.length > 0 && (
+        <p className="text-xs text-gray-500">
+          Already tried: {spent.map((a) => a.name).join(', ')}
+        </p>
       )}
     </div>
   );
@@ -176,7 +274,7 @@ function AnswerPhase({ game, myId, socket }) {
 function SubmissionAnswerPhase({ game, socket }) {
   const [answer, setAnswer] = useState('');
   const [inputMode, setInputMode] = useState('text');
-  const timer = game.timerSecondsOverride ?? game.roundRule.timerSeconds;
+  const timer = game.roundRule.timerSeconds;
 
   const submit = () => socket.emit('turn:submitAnswer', { answer, inputMode });
   const remaining = game.totalToSubmit - game.submittedCount;
@@ -229,7 +327,7 @@ function SubmissionAnswerPhase({ game, socket }) {
 // expected common case, not a failure.
 function LineupPhase({ game, socket }) {
   const [wrongId, setWrongId] = useState(null);
-  const timer = game.timerSecondsOverride ?? game.roundRule.timerSeconds;
+  const timer = game.roundRule.timerSeconds;
   const isColor = game.lineup?.flavor === 'color';
 
   const pick = (optionId) => {
@@ -271,54 +369,6 @@ function LineupPhase({ game, socket }) {
   );
 }
 
-function StealPhase({ game, socket }) {
-  const [answer, setAnswer] = useState('');
-  const [inputMode, setInputMode] = useState('text');
-
-  const submit = () => socket.emit('turn:claimSteal', { answer, inputMode });
-
-  if (game.stealClaimed) {
-    return <p className="text-center text-gray-300">Steal claimed — evaluating…</p>;
-  }
-
-  if (!game.stealEligible) {
-    return (
-      <p className="text-center text-gray-300">
-        Wrong answer! Waiting to see if anyone steals the wager…
-      </p>
-    );
-  }
-
-  return (
-    <div className="space-y-3 text-center">
-      <p className="font-semibold text-game-red">Wrong answer! Buzz in to steal the wager.</p>
-      <div className="flex gap-2">
-        <input
-          className="flex-1 rounded bg-game-dark px-3 py-2"
-          placeholder="Your steal answer…"
-          value={answer}
-          onChange={(e) => {
-            setAnswer(e.target.value);
-            setInputMode('text');
-          }}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') submit();
-          }}
-        />
-        <VoiceInput
-          onTranscript={(transcript) => {
-            setAnswer(transcript);
-            setInputMode('voice');
-          }}
-        />
-        <button className="rounded bg-game-red px-4 py-2 font-semibold" onClick={submit}>
-          Steal!
-        </button>
-      </div>
-    </div>
-  );
-}
-
 function ResultPhase({ game }) {
   if (game.skippedTurn) {
     return <p className="text-center text-xl">Turn skipped!</p>;
@@ -333,24 +383,33 @@ function ResultPhase({ game }) {
     return <LineupResults game={game} result={result} />;
   }
 
-  const halfWager = Math.round(result.wager / 2);
-  const headline = result.stolen
-    ? result.correct
-      ? `${result.stealerName} stole it! +${result.wager}`
-      : `${result.stealerName}'s steal missed! -${halfWager}`
+  const answerer = game.players[game.answererIndex];
+  const headline = result.buzzedIn
+    ? `${result.winnerName} buzzed in and took it! +${result.points}`
     : result.correct
-    ? `Correct! +${result.wager}`
-    : `Wrong! -${result.wager}`;
+    ? `${result.winnerName ?? 'Correct'}! +${result.points}`
+    : `Nobody got it — ${answerer?.name ?? 'the answerer'} drops ${result.wager}`;
+
+  // Every attempt, so the room sees who swung and missed — that's the part
+  // people talk about, and it's invisible if only the winner is shown.
+  const misses = (result.attempts ?? []).filter((a) => !a.correct && a.answer);
 
   return (
     <div className="space-y-2 text-center">
       <p className={`text-2xl font-bold ${result.correct ? 'text-game-green' : 'text-game-red'}`}>
         {headline}
       </p>
-      <p className="text-sm text-gray-400">
-        Correct answer: {game.answer}
-      </p>
-      <p>{result.feedback}</p>
+      <p className="text-sm text-gray-400">Correct answer: {game.answer}</p>
+      {result.feedback && <p>{result.feedback}</p>}
+      {misses.length > 0 && (
+        <div className="pt-2 text-sm text-gray-400">
+          {misses.map((a) => (
+            <p key={a.playerId}>
+              <span className="text-gray-300">{a.name}</span> said &ldquo;{a.answer}&rdquo;
+            </p>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

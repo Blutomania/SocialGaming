@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { CATEGORIES_PER_PLAYER } from '../lib/constants';
+import { CATEGORY_SUGGESTIONS } from '../lib/categories';
 import CardPicker from './CardPicker';
 
 // Shown while the server builds the fact bank on game:start. That takes ~50s
@@ -49,25 +50,136 @@ function StartProgress({ progress }) {
   );
 }
 
+// Tap to pick, type only if you want to. Five typed category boxes was the
+// most laborious moment in the game (playtest, Aug 12); this is the fix,
+// alongside dropping 5 to 3. The free-text field stays because a category
+// credited to "Bob's Divorce" is the joke — attribution is a designed beat,
+// and a fixed list can't produce it.
+function CategoryChooser({ chosen, onChange, onDone }) {
+  const [own, setOwn] = useState('');
+
+  function toggle(category) {
+    if (chosen.includes(category)) {
+      onChange(chosen.filter((c) => c !== category));
+    } else if (chosen.length < CATEGORIES_PER_PLAYER) {
+      onChange([...chosen, category]);
+    }
+  }
+
+  function addOwn() {
+    const value = own.trim();
+    if (!value || chosen.includes(value) || chosen.length >= CATEGORIES_PER_PLAYER) return;
+    onChange([...chosen, value]);
+    setOwn('');
+  }
+
+  const full = chosen.length >= CATEGORIES_PER_PLAYER;
+
+  return (
+    <section className="space-y-4">
+      <div>
+        <h2 className="text-xl font-semibold">
+          Pick {CATEGORIES_PER_PLAYER} categories
+        </h2>
+        <p className="mt-1 text-sm text-gray-400">
+          They go into the shared pool, with your name on them — everyone sees who picked what.
+        </p>
+      </div>
+
+      {/* Chosen row doubles as the counter: three slots, filled or empty. */}
+      <div className="flex flex-wrap gap-2">
+        {Array.from({ length: CATEGORIES_PER_PLAYER }).map((_, i) => {
+          const value = chosen[i];
+          return value ? (
+            <button
+              key={value}
+              onClick={() => onChange(chosen.filter((c) => c !== value))}
+              className="rounded-full bg-game-accent px-3 py-1 text-sm font-semibold"
+              title="Remove"
+            >
+              {value} ✕
+            </button>
+          ) : (
+            <span
+              key={`empty-${i}`}
+              className="rounded-full border border-dashed border-gray-600 px-3 py-1 text-sm text-gray-500"
+            >
+              empty
+            </span>
+          );
+        })}
+      </div>
+
+      <div className="space-y-3">
+        {CATEGORY_SUGGESTIONS.map(({ group, items }) => (
+          <div key={group}>
+            <p className="mb-1 text-xs uppercase tracking-wide text-gray-500">{group}</p>
+            <div className="flex flex-wrap gap-2">
+              {items.map((item) => {
+                const isChosen = chosen.includes(item);
+                return (
+                  <button
+                    key={item}
+                    onClick={() => toggle(item)}
+                    disabled={!isChosen && full}
+                    className={`rounded-full px-3 py-1 text-sm transition ${
+                      isChosen
+                        ? 'bg-game-accent font-semibold'
+                        : 'bg-game-card hover:bg-gray-700 disabled:opacity-30'
+                    }`}
+                  >
+                    {item}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="flex gap-2">
+        <input
+          className="flex-1 rounded bg-game-card px-3 py-2 placeholder-gray-400"
+          placeholder="Or enter your own…"
+          value={own}
+          disabled={full}
+          onChange={(e) => setOwn(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && addOwn()}
+        />
+        <button
+          className="rounded bg-game-blue px-4 py-2 font-semibold disabled:opacity-40"
+          disabled={full || !own.trim()}
+          onClick={addOwn}
+        >
+          Add
+        </button>
+      </div>
+
+      <button
+        className="w-full rounded bg-game-accent px-4 py-2 font-semibold hover:opacity-90 disabled:opacity-40"
+        disabled={!full}
+        onClick={onDone}
+      >
+        {full ? 'Next — Pick Your Card' : `Pick ${CATEGORIES_PER_PLAYER - chosen.length} more`}
+      </button>
+    </section>
+  );
+}
+
 export default function Lobby({ game, myId, socket }) {
   const me = game.players.find((p) => p.id === myId);
-  const [categories, setCategories] = useState(Array(CATEGORIES_PER_PLAYER).fill(''));
+  const [categories, setCategories] = useState([]);
   const [step, setStep] = useState('categories'); // 'categories' | 'cards' | 'done'
 
   if (!me) return null;
 
   function submitCategories() {
-    const trimmed = categories.map((c) => c.trim()).filter(Boolean);
-    if (trimmed.length !== CATEGORIES_PER_PLAYER) {
-      alert(`Enter all ${CATEGORIES_PER_PLAYER} categories`);
-      return;
-    }
+    if (categories.length !== CATEGORIES_PER_PLAYER) return;
     setStep('cards');
   }
 
   function handleCardPick(pickedCardId) {
-    const trimmed = categories.map((c) => c.trim()).filter(Boolean);
-    socket.emit('player:register', { categories: trimmed, pickedCardId });
+    socket.emit('player:register', { categories, pickedCardId });
     setStep('done');
   }
 
@@ -94,38 +206,7 @@ export default function Lobby({ game, myId, socket }) {
       </section>
 
       {!me.registered && step === 'categories' && (
-        <section className="space-y-4">
-          <div>
-            <h2 className="mb-2 text-xl font-semibold">
-              Pick {CATEGORIES_PER_PLAYER} categories you like
-            </h2>
-            <p className="text-sm text-gray-400 mb-3">
-              These go into the shared pool — questions will be drawn from everyone's categories.
-            </p>
-            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-              {categories.map((val, i) => (
-                <input
-                  key={i}
-                  className="rounded bg-game-card px-3 py-2 placeholder-gray-400"
-                  placeholder={`Category ${i + 1} (e.g. Pop Music)`}
-                  value={val}
-                  onChange={(e) => {
-                    const next = [...categories];
-                    next[i] = e.target.value;
-                    setCategories(next);
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-
-          <button
-            className="w-full rounded bg-game-accent px-4 py-2 font-semibold hover:opacity-90"
-            onClick={submitCategories}
-          >
-            Next — Pick Your Card
-          </button>
-        </section>
+        <CategoryChooser chosen={categories} onChange={setCategories} onDone={submitCategories} />
       )}
 
       {!me.registered && step === 'cards' && (

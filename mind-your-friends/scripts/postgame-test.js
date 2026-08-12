@@ -68,34 +68,37 @@ nextTurn(missed);
 check(missed.questionLog[0].outcome === 'wrong', 'wrong answer -> outcome "wrong"');
 check(missed.questionLog[0].roomMissedIt === true, 'wrong answer -> roomMissedIt true');
 
-// The trap: claimSteal sets `stolen: true` whether the steal succeeded OR
-// failed. A failed steal must not be reported as a successful one.
-const stoleIt = turnFixture({
-  roundRule: { id: 'steal', name: 'Steal' },
-  lastResult: { correct: true, stolen: true, stealerName: 'Bob', wager: 200 },
+// Open answering: someone other than the active player buzzed in and won.
+// `buzzedIn` is only ever set alongside a winner, which is what keeps this
+// out of the trap the old Steal rule fell into — `stolen: true` was set on
+// FAILED steals too, so logging it naively reported steals that never
+// happened. Both shapes are asserted here to keep that fixed.
+const buzzedIn = turnFixture({
+  roundRule: { id: 'none', name: 'No Rule' },
+  lastResult: { correct: true, buzzedIn: true, winnerName: 'Bob', points: 100, wager: 200 },
 });
-nextTurn(stoleIt);
-check(stoleIt.questionLog[0].outcome === 'stolen', 'successful steal -> outcome "stolen"');
+nextTurn(buzzedIn);
+check(buzzedIn.questionLog[0].outcome === 'buzzed', 'buzz-in win -> outcome "buzzed"');
 check(
-  stoleIt.questionLog[0].outcomeSummary.includes('Bob stole it'),
-  'successful steal names the stealer'
+  buzzedIn.questionLog[0].outcomeSummary.includes('Bob took it'),
+  'buzz-in win names who took it'
 );
-check(stoleIt.questionLog[0].roomMissedIt === false, 'successful steal -> roomMissedIt false');
+check(buzzedIn.questionLog[0].roomMissedIt === false, 'buzz-in win -> roomMissedIt false');
 
-const failedSteal = turnFixture({
-  roundRule: { id: 'steal', name: 'Steal' },
-  lastResult: { correct: false, stolen: true, stealerName: 'Bob', wager: 200 },
+const nobodyGotIt = turnFixture({
+  roundRule: { id: 'none', name: 'No Rule' },
+  lastResult: { correct: false, buzzedIn: false, winnerName: null, wager: 200 },
 });
-nextTurn(failedSteal);
+nextTurn(nobodyGotIt);
 check(
-  failedSteal.questionLog[0].outcome === 'wrong',
-  'FAILED steal -> outcome "wrong", not "stolen"'
+  nobodyGotIt.questionLog[0].outcome === 'wrong',
+  'a question nobody won -> outcome "wrong", not "buzzed"'
 );
 check(
-  !failedSteal.questionLog[0].outcomeSummary.includes('stole it'),
-  'failed steal does not claim someone stole it'
+  !nobodyGotIt.questionLog[0].outcomeSummary.includes('took it'),
+  'and does not claim anyone took it'
 );
-check(failedSteal.questionLog[0].roomMissedIt === true, 'failed steal -> roomMissedIt true');
+check(nobodyGotIt.questionLog[0].roomMissedIt === true, 'nobody-got-it -> roomMissedIt true');
 
 const spotted = turnFixture({
   roundRule: { id: 'theLineup', name: 'The Lineup', lineupBased: true },
@@ -178,8 +181,8 @@ game.questionLog = [
     answer: 'The Notorious B.I.G.',
     category: '90s Hip Hop',
     categoryAttribution: 'Cara',
-    outcome: 'stolen',
-    outcomeSummary: 'Alice missed it — Cara stole it.',
+    outcome: 'buzzed',
+    outcomeSummary: 'Alice hesitated and Cara took it.',
     roomMissedIt: false,
   },
 ];

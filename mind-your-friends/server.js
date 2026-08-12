@@ -68,22 +68,14 @@ app.prepare().then(() => {
       });
     });
 
-    // The fact-bank build takes ~50s, so this handler broadcasts THREE times:
-    // once the moment startGame() sets its initial progress state (before any
-    // Claude call goes out), once per completed batch, and once when the game
-    // reaches CATEGORY. Without that first push the Lobby sits silent for the
-    // whole build and testers read it as a hang — see CLAUDE.md item 36.
+    // Start is instant now: no fact bank is built here. The bank fills in
+    // behind the game — see gameState's fact-bank section — so the room is
+    // on the category screen immediately instead of watching a progress bar.
     socket.on('game:start', () => {
-      withMyGame(socket, async (game) => {
-        try {
-          await gameState.startGame(game, () => broadcast(io, game));
-        } catch (err) {
-          // startGame() has already cleared game.startProgress; broadcast so
-          // the Lobby drops the progress bar instead of freezing on it.
-          broadcast(io, game);
-          throw err; // withMyGame's rejection handler emits the error event
-        }
+      withMyGame(socket, (game) => {
+        gameState.startGame(game);
         broadcast(io, game);
+        gameState.prefetchFactBank(game, () => broadcast(io, game));
       });
     });
 
@@ -92,6 +84,11 @@ app.prepare().then(() => {
         gameState.recordPlayerAction(game, playerId);
         gameState.pickCategory(game, playerId, category);
         broadcast(io, game);
+        // Start fetching this category's facts NOW rather than at question
+        // time: the wager and card windows are about to run, which is free
+        // cover for the round trip. runQuestionPhase awaits the same promise,
+        // so this is a head start, not a race.
+        gameState.ensureCategoryFacts(game, category);
       });
     });
 
@@ -126,22 +123,14 @@ app.prepare().then(() => {
           return;
         }
 
+        // Open answering: every player gets one attempt at the same question
+        // and the first correct one ends it. A wrong attempt just locks that
+        // player out, so the turn is only over when the phase actually moves.
         await gameState.submitAnswer(game, playerId, answer, inputMode);
         broadcast(io, game);
-        if (game.phase === 'STEAL') {
-          startStealWindow(io, game);
-        } else {
+        if (game.phase === 'RESULT') {
           scheduleNextTurn(io, game);
         }
-      });
-    });
-
-    socket.on('turn:claimSteal', ({ answer, inputMode }) => {
-      withMyGame(socket, async (game, playerId) => {
-        gameState.recordPlayerAction(game, playerId);
-        await gameState.claimSteal(game, playerId, answer, inputMode);
-        broadcast(io, game);
-        scheduleNextTurn(io, game);
       });
     });
 
@@ -306,10 +295,14 @@ app.prepare().then(() => {
     startAnswerTimer(io, game);
   }
 
+  // One timer covers the whole ANSWER phase: the reading window plus the
+  // answer clock (see gameState.getAnswerWindowMs). The reading window is a
+  // timestamp on the game, not a phase of its own, so nothing else in this
+  // file's timer bookkeeping has to learn about it.
   function startAnswerTimer(io, game) {
-    const ms = gameState.getTimerSeconds(game) * 1000;
+    const ms = gameState.getAnswerWindowMs(game);
     setTimeout(() => {
-      if (game.phase !== 'ANSWER') return; // already resolved (all submitted, or STEAL/skip path)
+      if (game.phase !== 'ANSWER') return; // already resolved (someone got it, all submitted, or skip path)
 
       if (game.roundRule.submissionBased) {
         gameState.autoFillMissingSubmissions(game);
@@ -324,15 +317,15 @@ app.prepare().then(() => {
         return;
       }
 
+      // Nobody got it in time. The active player is still charged their
+      // wager if they never attempted -- see expireAnswerWindow.
       const answererId = game.players[game.answererIndex].id;
-      gameState.recordAutoAdvance(game, answererId);
-      gameState
-        .submitAnswer(game, answererId, '', 'text')
-        .then(() => {
-          broadcast(io, game);
-          scheduleNextTurn(io, game);
-        })
-        .catch((err) => recoverFromFailedTurn(io, game, err));
+      if (!game.answerAttempts?.[answererId]) {
+        gameState.recordAutoAdvance(game, answererId);
+      }
+      gameState.expireAnswerWindow(game);
+      broadcast(io, game);
+      scheduleNextTurn(io, game);
     }, ms);
   }
 
@@ -347,15 +340,6 @@ app.prepare().then(() => {
     await gameState.resolveGroupAnswers(game);
     broadcast(io, game);
     scheduleNextTurn(io, game);
-  }
-
-  function startStealWindow(io, game) {
-    setTimeout(() => {
-      if (game.phase !== 'STEAL') return;
-      gameState.expireSteal(game);
-      broadcast(io, game);
-      scheduleNextTurn(io, game);
-    }, gameState.STEAL_WINDOW_MS);
   }
 
   function scheduleNextTurn(io, game) {

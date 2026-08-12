@@ -26,10 +26,26 @@ export const TOTAL_QUESTIONS = ROUNDS * QUESTIONS_PER_ROUND; // 24 by default
 export const MIN_WAGER = 50;
 export const MAX_WAGER = 500;
 export const RESULT_SCREEN_MS = 4000;
-export const STEAL_WINDOW_MS = 8000;
 export const MIN_PLAYERS = 3;
 export const MAX_PLAYERS = 6;
-export const CATEGORIES_PER_PLAYER = 5;
+
+// 3, not 5. Typing five categories was the single most laborious moment in
+// the lobby (playtest, Aug 12) — and with the tappable category grid most
+// players never type at all now. See CATEGORY_SUGGESTIONS in lib/categories.js.
+export const CATEGORIES_PER_PLAYER = 3;
+
+// Points for anyone other than the active player who buzzes in with the
+// right answer. Flat and modest by design: the active player is the one who
+// wagered, so they're the one who can win big or lose big. Everybody else is
+// playing for a steady trickle and risks nothing — that's what makes buzzing
+// in feel free rather than scary. See "open answering" in gameState.js.
+export const OPEN_ANSWER_POINTS = 100;
+
+// How long the question sits on screen before the answer clock starts, so
+// nobody is racing a timer they haven't finished reading. Questions are
+// generated at 8–20 words (see claudeClient.generateQuestion), which reads in
+// well under this.
+export const READING_SECONDS = 5;
 export const CATEGORY_OPTIONS_COUNT = 6;
 export const CARD_PICK_TIMER_MS = 40000;
 export const RANDOM_CARDS_PER_ROUND = 2;
