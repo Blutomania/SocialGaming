@@ -294,6 +294,28 @@ Full list in `SESSIONS.md`. Top priorities:
    safe to delete, plus a further 21 stale unmerged branches the owner is triaging on their own
    schedule (see `SESSIONS.md` Session 18). **`dev/mind-your-friends` is a separate, real second
    project sharing this repo — do not touch it in any cleanup pass.**
+
+   **`dev/cryptic-challenge` is NOT a third project (verified Session 29, August 17 2026).**
+   The name has repeatedly been read — including by a Claude session, which cited it as evidence
+   of a third studio title — as though it were a sibling of CYM and MYF. It is not. Verified
+   against the actual refs, not the name:
+   - It points at commit `ea5af2f`, and **`dev/choose-your-mystery` points at the exact same
+     commit.** Two names, one ref.
+   - That commit is a March 31, 2026 snapshot of the **pre-Godot Streamlit CYM tree** (`app.py`,
+     `cli.py`, `corpus_loader.py`, `run_corpus_pipeline.py` — what now lives in `deprecated/`).
+   - Zero unique commits vs `main`. Everything on it is already here.
+   - Searched every branch's full history: **no file with "cryptic" in its name has ever
+     existed**, and no commit message mentions it.
+
+   So it is a stale duplicate pointer with a misleading name — nothing to archive, nothing to
+   preserve. Owner cleared it for deletion; it needs the GitHub UI, since `git push --delete`
+   hits the same 403 that blocks pushes to `main` and no branch-delete tool is exposed via the
+   GitHub MCP server (a Session 29 attempt was also blocked by the permission classifier).
+   Recreatable with `git branch dev/cryptic-challenge ea5af2f` if ever wanted.
+
+   **Caveat that outlives the branch:** if a real "Cryptic Challenge" project exists, its work is
+   **not in this repo** and deleting this pointer archives nothing. Don't treat the branch as
+   that project's record.
 10. **[DONE, Session 22; extended Session 26]** RAG (retrieval-augmented generation) for mystery
     best-practices — **wired into generation.** `craft_grounding.py` parses `RESEARCH_FINDINGS.md`,
     `SCREEN_CRAFT_FINDINGS.md`, and `PARTY_CRAFT_FINDINGS.md` into a retrievable, confidence-tiered

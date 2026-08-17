@@ -732,7 +732,17 @@ app/game/[code]/    # Game room page — Socket.io client, routes by phase
 
 ## Conventions
 - **Branch**: MYF now lives on `main` (the Godot port merged via PR #15). Work on a feature
-  branch off `main`; never commit directly to `main`. `dev/mind-your-friends` is superseded.
+  branch off `main`; never commit directly to `main`. `dev/mind-your-friends` is superseded —
+  as of August 17, 2026 it carries **zero unique commits vs `main`**, so it is now a stale
+  pointer rather than a live line of work. Do not start from it.
+- **`dev/cryptic-challenge` is not a third project** (verified August 17, 2026). This repo hosts
+  **two** titles — Choose Your Mystery and Mind Your Friends — and the branch name has misled
+  readers into assuming a third, including a Claude session that cited it as evidence of one.
+  It points at commit `ea5af2f`, the *same commit* `dev/choose-your-mystery` points at: a March
+  2026 snapshot of CYM's pre-Godot Streamlit tree, with zero unique commits vs `main`. No file
+  named "cryptic" has ever existed on any branch. Nothing to archive; the deletion needs the
+  GitHub UI (403 blocks `git push --delete`). Full write-up in the root `CLAUDE.md` item 9.
+  If a real Cryptic Challenge project exists, its work is **not in this repo**.
 - ESM throughout (`"type": "module"`); Socket.io server owns all game logic, never the client
 - Model: `claude-sonnet-4-6`
 - No comments unless the WHY is non-obvious
