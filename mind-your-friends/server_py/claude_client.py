@@ -41,6 +41,16 @@ def _require_client():
     return _client
 
 
+def __set_client_for_tests(client) -> None:
+    """Swap in a fake Anthropic client. Mirrors the JS __setClientForTests
+    seam, and exists for the same reason: the mechanics this backend has to
+    get right are ORDERING claims — "first correct wins by submission order" —
+    and a race cannot be tested against a real API whose response times are
+    the variable under test. Pass None to restore the real client."""
+    global _client
+    _client = client if client is not None else _build_client()
+
+
 def _parse_json(text: str):
     """Claude sometimes wraps JSON replies in a ```json ... ``` fence despite
     being asked for raw JSON — strip it before parsing."""
@@ -150,6 +160,16 @@ sourceType is the kind of reference this fact would be found in. Use one of: "en
     return results
 
 
+# Applied to BOTH generation prompts. Matters more than it looks now that the
+# whole room races the same question: a long question tests reading speed, not
+# knowledge, and the reading window is sized for questions that obey this.
+_LENGTH_RULE = """LENGTH IS A HARD CONSTRAINT. The question must be 8-20 words,
+readable out loud in under 10 seconds, and at most two short sentences. No
+preamble, no scene-setting, no "In this question..." — ask the thing directly.
+If the factoid is complicated, ask about the single most interesting part of it
+rather than trying to fit all of it in."""
+
+
 def generate_question(*, constraints, factoid, active_player_name, player_names):
     """Generate a question for the active player.
 
@@ -177,11 +197,13 @@ Question angle: {angle}
 Turn this factoid into an engaging trivia question using the given angle.
 The answer MUST be exactly: {factoid['answer']}
 
+{_LENGTH_RULE}
+
 Respond with ONLY a JSON object, no other text:
 {{
-  "question": "the trivia question text",
+  "question": "the trivia question text (8-20 words)",
   "answer": "{factoid['answer']}",
-  "hostQuip": "a short, personalized, game-show-host-style line addressed to {active_player_name} introducing the question"
+  "hostQuip": "one short game-show-host line addressed to {active_player_name} introducing the question — under 12 words"
 }}"""
     else:
         prompt = f"""You are the AI host of "Mind Your Friends," a fast-paced multiplayer
@@ -193,11 +215,13 @@ players: {other_players}).
 By default, the correct answer should be a short phrase of MORE than 3 words,
 unless a card or round rule overrides this.
 
+{_LENGTH_RULE}
+
 Respond with ONLY a JSON object, no other text:
 {{
-  "question": "the trivia question text",
+  "question": "the trivia question text (8-20 words)",
   "answer": "the correct answer",
-  "hostQuip": "a short, personalized, game-show-host-style line addressed to {active_player_name} introducing the question"
+  "hostQuip": "one short game-show-host line addressed to {active_player_name} introducing the question — under 12 words"
 }}"""
 
     response = anthropic.messages.create(

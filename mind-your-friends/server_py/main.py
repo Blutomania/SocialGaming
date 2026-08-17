@@ -10,7 +10,8 @@
 # not `async def`. A single process-wide `_games_lock` guards all game-dict
 # mutation — coarser than per-game locking, but simple and correct for an
 # MVP's expected concurrency; revisit if it becomes a bottleneck. Timers
-# (card window, answer countdown, steal window, result-screen advance) use
+# (card window, reading + exclusive windows, answer countdown, result-screen
+# advance) use
 # `threading.Timer`, matching server.js's `setTimeout` calls exactly —
 # CYM's own lazy per-touch timeout checking doesn't fit here, since MYF's
 # phases must advance even with zero client activity.
@@ -25,7 +26,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 import game_state as gs
-from constants import RESULT_SCREEN_SECONDS, STEAL_WINDOW_SECONDS
+from constants import RESULT_SCREEN_SECONDS
 
 app = FastAPI(title="Mind Your Friends")
 app.add_middleware(
@@ -160,52 +161,81 @@ def _finish_card_phase(code: str, game: dict) -> None:
             _schedule_next_turn(code, game)
             return
 
-        with _games_lock:
-            gs.run_question_phase(game)
+        # NOT under _games_lock: run_question_phase waits on the lazy fact
+        # fetch and then makes a Claude call, and holding the lock across
+        # either would freeze every other request in the room. The phase is
+        # QUESTION for its duration, which is what keeps other actions out.
+        gs.run_question_phase(game)
         _broadcast_sync(code, game)
+        _start_active_window_timer(code, game)
         _start_answer_timer(code, game)
     except Exception as e:
         _recover_from_failed_turn(code, game, e)
 
 
 def _start_answer_timer(code: str, game: dict) -> None:
+    """One timer for the whole ANSWER phase. The reading window and the
+    exclusive window are timestamps on the game, not phases of their own, so
+    nothing else in this file's timer bookkeeping has to learn about them."""
     with _games_lock:
-        seconds = gs.get_timer_seconds(game)
+        seconds = gs.get_answer_window_seconds(game)
 
     def fire():
         with _games_lock:
             if game["phase"] != "ANSWER":
                 return  # already resolved
-
             round_rule = game["roundRule"]
             if round_rule.get("submissionBased"):
                 gs.auto_fill_missing_submissions(game)
             elif round_rule.get("lineupBased"):
                 gs.expire_lineup(game)
             else:
-                answerer_id = game["players"][game["answererIndex"]]["id"]
+                # Nobody got it in time. The answerer has normally been
+                # settled with already — by their own answer or pass, or by
+                # _start_active_window_timer charging them for freezing.
+                gs.expire_answer_window(game)
 
         if round_rule.get("submissionBased"):
             _evaluate_group_answers(code, game)
             return
 
-        if round_rule.get("lineupBased"):
-            _broadcast_sync(code, game)
-            _schedule_next_turn(code, game)
-            return
+        _broadcast_sync(code, game)
+        _schedule_next_turn(code, game)
 
-        try:
-            with _games_lock:
-                gs.record_auto_advance(game, answerer_id)
-                gs.submit_answer(game, answerer_id, "", "text")
-                phase = game["phase"]
-            _broadcast_sync(code, game)
-            if phase == "STEAL":
-                _start_steal_window(code, game)
-            else:
-                _schedule_next_turn(code, game)
-        except Exception as e:
-            _recover_from_failed_turn(code, game, e)
+    threading.Timer(seconds, fire).start()
+
+
+def _start_active_window_timer(code: str, game: dict) -> None:
+    """Flow B's exclusive window. A second timer inside the same ANSWER
+    phase; expire_active_window no-ops if the answerer already acted, since
+    answering or passing opened the buzzer then."""
+    with _games_lock:
+        if game["roundRule"].get("submissionBased") or game["roundRule"].get("lineupBased"):
+            return
+        seconds = gs.get_active_window_total_seconds(game)
+
+    def fire():
+        with _games_lock:
+            if game["phase"] != "ANSWER":
+                return
+            answerer = game["players"][game["answererIndex"]]
+            # Read before the call — expire_active_window writes the attempt.
+            froze = answerer["id"] not in game["answerAttempts"] and not answerer["droppedOut"]
+            if not gs.expire_active_window(game):
+                return
+            # Never acting on your own question is the inactivity signal, and
+            # the answerer's own window closing is the exact moment it is
+            # known. Passing is a real action, so a player who folds is not
+            # marked away for it.
+            if froze:
+                gs.record_auto_advance(game, answerer["id"])
+            phase = game["phase"]
+
+        _broadcast_sync(code, game)
+        # Locking also closes here, which can end the question outright when
+        # nobody committed an answer to buzz with.
+        if phase == "RESULT":
+            _schedule_next_turn(code, game)
 
     threading.Timer(seconds, fire).start()
 
@@ -224,17 +254,6 @@ def _evaluate_group_answers(code: str, game: dict) -> None:
         _schedule_next_turn(code, game)
     except Exception as e:
         _recover_from_failed_turn(code, game, e)
-
-
-def _start_steal_window(code: str, game: dict) -> None:
-    def fire():
-        with _games_lock:
-            if game["phase"] != "STEAL":
-                return
-            gs.expire_steal(game)
-        _broadcast_sync(code, game)
-        _schedule_next_turn(code, game)
-    threading.Timer(STEAL_WINDOW_SECONDS, fire).start()
 
 
 def _schedule_next_turn(code: str, game: dict) -> None:
@@ -301,27 +320,19 @@ class StartGameBody(BaseModel):
 
 @app.post("/games/{code}/start")
 def start_game_endpoint(code: str, body: StartGameBody):
-    """Builds the fact bank (real Claude calls) — kept as a plain `def` so
-    FastAPI runs it in the thread pool, not blocking the event loop.
-
-    Broadcasts on every progress step, not just at the end: the build takes
-    ~50s and a client showing nothing for that long reads as a hang (see
-    CLAUDE.md item 36). The first broadcast fires before any Claude request
-    goes out. Clients should drive their UI off these pushes rather than off
-    this endpoint's response — the HTTP request is still in flight for the
-    whole build."""
+    """Instant now: no fact bank is built here. The bank fills in behind the
+    game, so the room lands on the category screen immediately instead of
+    watching a progress bar before anything has happened (CLAUDE.md item 36
+    was about the ~250s version of this; item 37 note 3 removed it)."""
     game = _get_game_or_404(code)
     try:
         with _games_lock:
-            gs.start_game(game, lambda g: _broadcast_sync(code, g))
+            gs.start_game(game)
     except gs.GameError as e:
         raise HTTPException(400, str(e))
-    except Exception:
-        # start_game() has already cleared startProgress; push it so clients
-        # drop the progress state instead of freezing on it.
-        _broadcast_sync(code, game)
-        raise
     _broadcast_sync(code, game)
+    # Fire-and-forget warm-up on its own thread; broadcasts as it progresses.
+    gs.prefetch_fact_bank(game, lambda g: _broadcast_sync(code, g))
     return {"ok": True}
 
 
@@ -340,6 +351,14 @@ def pick_category_endpoint(code: str, body: PickCategoryBody):
         except gs.GameError as e:
             raise HTTPException(400, str(e))
     _broadcast_sync(code, game)
+
+    # Start fetching this category's facts NOW rather than at question time:
+    # the wager and card windows are about to run, which is free cover for the
+    # round trip. run_question_phase waits on the same fetch, so this is a
+    # head start, not a race. Off-thread — the lock must not be held across it.
+    threading.Thread(
+        target=gs.ensure_category_facts, args=(game, body.category), daemon=True
+    ).start()
     return {"ok": True}
 
 
@@ -390,7 +409,13 @@ class SubmitAnswerBody(BaseModel):
 
 @app.post("/games/{code}/round/submit-answer")
 def submit_answer_endpoint(code: str, body: SubmitAnswerBody):
-    """Claude-calling — plain `def`, runs in FastAPI's thread pool."""
+    """The answerer's live answer inside their own exclusive window.
+
+    Claude-calling — plain `def`, so it runs in FastAPI's thread pool. Note
+    the deliberate two-step: the attempt is CLAIMED under _games_lock (which
+    fixes its place in the evaluation order) and then RESOLVED with the lock
+    released, because the evaluation is an API call and holding the lock
+    across it would freeze the whole room on every answer."""
     game = _get_game_or_404(code)
     with _games_lock:
         gs.record_player_action(game, body.playerId)
@@ -409,30 +434,84 @@ def submit_answer_endpoint(code: str, body: SubmitAnswerBody):
 
     try:
         with _games_lock:
-            gs.submit_answer(game, body.playerId, body.answer, body.inputMode)
-            phase = game["phase"]
+            attempt = gs.submit_answer(game, body.playerId, body.answer, body.inputMode)
     except gs.GameError as e:
         raise HTTPException(400, str(e))
+
+    # Buzzer is already open (submit_answer moved it), so tell the room before
+    # spending the evaluation — that is seconds of shared clock.
     _broadcast_sync(code, game)
-    if phase == "STEAL":
-        _start_steal_window(code, game)
-    else:
+    try:
+        gs.resolve_answer_attempt(game, attempt, body.inputMode, lock=_games_lock)
+    except Exception as e:
+        _recover_from_failed_turn(code, game, e)
+        return {"ok": True}
+
+    with _games_lock:
+        phase = game["phase"]
+    _broadcast_sync(code, game)
+    if phase == "RESULT":
         _schedule_next_turn(code, game)
     return {"ok": True}
 
 
-@app.post("/games/{code}/round/claim-steal")
-def claim_steal_endpoint(code: str, body: SubmitAnswerBody):
+class LockAnswerBody(BaseModel):
+    playerId: str
+    answer: str
+    inputMode: str = "text"
+
+
+@app.post("/games/{code}/round/lock-answer")
+def lock_answer_endpoint(code: str, body: LockAnswerBody):
+    """Commit an answer during the answerer's exclusive window. Not evaluated
+    and not revealed — it only becomes a real attempt if its owner buzzes."""
     game = _get_game_or_404(code)
     with _games_lock:
         gs.record_player_action(game, body.playerId)
+    _apply_locked(code, game, gs.lock_answer, body.playerId, body.answer, body.inputMode)
+    return {"ok": True}
+
+
+class PlayerOnlyBody(BaseModel):
+    playerId: str
+
+
+@app.post("/games/{code}/round/buzz-in")
+def buzz_in_endpoint(code: str, body: PlayerOnlyBody):
+    """Play a committed answer. The buzz sets the order; the answer was fixed
+    before the answerer fumbled. Same two-step lock discipline as
+    submit-answer above."""
+    game = _get_game_or_404(code)
+    with _games_lock:
+        gs.record_player_action(game, body.playerId)
+
     try:
         with _games_lock:
-            gs.claim_steal(game, body.playerId, body.answer, body.inputMode)
+            attempt, input_mode = gs.buzz_in(game, body.playerId)
     except gs.GameError as e:
         raise HTTPException(400, str(e))
+
+    try:
+        gs.resolve_answer_attempt(game, attempt, input_mode, lock=_games_lock)
+    except Exception as e:
+        _recover_from_failed_turn(code, game, e)
+        return {"ok": True}
+
+    with _games_lock:
+        phase = game["phase"]
     _broadcast_sync(code, game)
-    _schedule_next_turn(code, game)
+    if phase == "RESULT":
+        _schedule_next_turn(code, game)
+    return {"ok": True}
+
+
+@app.post("/games/{code}/round/pass")
+def pass_answer_endpoint(code: str, body: PlayerOnlyBody):
+    """The answerer folds. Costs them nothing and opens the buzzer at once."""
+    game = _get_game_or_404(code)
+    with _games_lock:
+        gs.record_player_action(game, body.playerId)
+    _apply_locked(code, game, gs.pass_answer, body.playerId)
     return {"ok": True}
 
 

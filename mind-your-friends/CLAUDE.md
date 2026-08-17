@@ -879,6 +879,27 @@ as a constraint to respect rather than a layout spec.
       chain; Python needs a real per-game answer queue, and the evaluation is an API call so it
       must not hold `_games_lock` while it waits or the whole room freezes on every answer.
 
+44. **[TABLED by owner, August 17 2026 — not started]** Two follow-ups to the wager and
+    difficulty-colour work committed the same day (`f31612f`), recorded in the owner's own words so the intent isn't paraphrased away:
+
+    > 1. Wage tier simplification
+    > 2. expanding color scene to blue-green or yellow-green (to increase differential)
+
+    Context for whoever picks these up, kept separate from the owner's wording above:
+    - **(1)** refers to the five-rung ladder `12 / 25 / 50 / 100 / 200` (`WAGER_TIERS` in
+      `lib/constants.js`). Simplification most likely means fewer rungs — the sim in
+      `scripts/economy-sim.js` shows the bottom two tiers swing only 3% and 6% of a typical
+      winning margin, so 12 and 25 are close to indistinguishable in play and are the obvious
+      candidates to merge or drop. Re-run that script after any change; it reads the ladder
+      straight from constants.
+    - **(2)** refers to `lib/difficultyColors.js`. Today the ramp is a single hue (green, 132°)
+      varying only in lightness and saturation, which is why the middle steps read as similar.
+      Widening the hue span — toward blue-green at one end and yellow-green at the other —
+      buys real perceptual separation without leaving "green". Change `HUE` to a per-step array
+      in `scripts/build-difficulty-colors.mjs` and re-run it; do **not** hand-edit the generated
+      hexes, and keep every step at or above 4.5:1 on the slate ground (the generator refuses to
+      write a ramp that fails this, which is the guardrail, not a formality).
+
 43. **[PROPOSED — not done] Rename "open answering" to "buzz-in".** The term reads as "answering
     into an open text field", which is not what it means (it means *open to everyone*; the input
     format is a separate axis — The Lineup is "open" and is a pick-list). The codebase already

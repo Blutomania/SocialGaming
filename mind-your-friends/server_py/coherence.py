@@ -18,28 +18,48 @@
 import random
 
 from cards import CARDS, pick_random_language_register
-from constants import BASE_TIMER_SECONDS, MAX_WAGER, MIN_WAGER
+from constants import BASE_TIMER_SECONDS, WAGER_TIERS, wager_tier_index
 
 BLOCKING = "blocking"
 WARNING = "warning"
 INFO = "info"
 
 _DIFFICULTY_PROMPT = {
+    "trivial": "Generate a very easy question — almost everyone should get this one.",
     "easy": "Generate an easy question that most people would know the answer to.",
     "medium": "Generate a moderately challenging question — not trivial, but fair.",
     "hard": "Generate a difficult question that requires specific knowledge.",
+    "brutal": "Generate a genuinely hard question — most of the room should miss it.",
 }
 
 _FORMAT_CARD_IDS = {"boxedIn", "languageBarrier"}
 
 
+# One difficulty per rung of the wager ladder, so the stake the room watched
+# somebody choose is the stake the question is actually written to. The old
+# mapping normalised a continuous range into three buckets, which meant two
+# visibly different wagers routinely produced identically-pitched questions.
+_DIFFICULTY_BY_TIER = ["trivial", "easy", "medium", "hard", "brutal"]
+
+# The fact bank only knows three difficulties (they come from the research
+# prompt in claude_client.py), so the five-rung ladder maps down for filtering.
+# Deliberately not widened to five: that would mean re-generating every cached
+# fact bank to add two values the bank has never produced.
+_BANK_DIFFICULTY = {
+    "trivial": "easy",
+    "easy": "easy",
+    "medium": "medium",
+    "hard": "hard",
+    "brutal": "hard",
+}
+
+
 def _wager_to_difficulty(wager: int) -> str:
-    normalized = (wager - MIN_WAGER) / (MAX_WAGER - MIN_WAGER)
-    if normalized <= 0.33:
-        return "easy"
-    if normalized <= 0.66:
-        return "medium"
-    return "hard"
+    return _DIFFICULTY_BY_TIER[wager_tier_index(wager)]
+
+
+def _bank_difficulty(difficulty: str) -> str:
+    return _BANK_DIFFICULTY.get(difficulty, difficulty)
 
 
 def round_constraints(round_rule: dict) -> dict:
@@ -111,6 +131,7 @@ def turn_constraints(round_ctx: dict, *, category: str, wager: int, resolved_car
     return {
         "category": category,
         "difficulty": difficulty,
+        "difficultyTier": wager_tier_index(wager),
         "wager": wager,
         "effectiveWager": effective_wager,
         "answerFormat": answer_format,
@@ -139,7 +160,7 @@ def pick_factoid(fact_bank: dict, category: str, constraints: dict):
             return False
         if answer_format == "phrase" and f["answerWordCount"] < 2:
             return False
-        return f["difficulty"] == constraints["difficulty"]
+        return f["difficulty"] == _bank_difficulty(constraints["difficulty"])
 
     matching = [f for f in facts if matches(f)]
     pool = matching if matching else [f for f in facts if f["answerWordCount"] <= format_max]
