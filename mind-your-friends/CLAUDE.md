@@ -767,20 +767,50 @@ as a constraint to respect rather than a layout spec.
     - **Vertical is native, and originates on the phone.** 9:16 *is* the phone screen; the
       television merely frames it. Given players live on their phones, that's the right way round.
       Build the format phone-first.
-    - **[OPEN — decide before building] Cost control is not solved by the takeover alone.** A host
-      moment per question is 24+ generated clips a game. Two rules to fix first:
-      (a) **Pre-generate everything impersonal into a reusable bank** — "here comes the Rebus
-      round" is identical in every game ever played, so it costs zero per game. Same discipline as
-      the rebus puzzle bank and the localisation cache. (b) **Only name-bearing moments generate
-      live** ("Priya just played Whoa Nellie on Marcus") — which is also where the value is, so
-      the spend lands where it earns. Suggested opening budget: 4 round openings + the reveal from
-      the bank, a small capped number of personal clips generated live, cap in config.
-    - **[OPEN] Three behaviours the takeover raises:** does the answer timer run during a host
-      moment (currently assumed no, and starts when a host-*asked* question finishes speaking); can
-      a player skip it (a bank clip that can't be skipped becomes the thing everyone talks over by
-      game five); and what holds the screen while a *live* clip is still generating — bank clips
-      are instant but personal ones have latency, and that needs a defined state, not a blank pause.
-      The lazy-then-show shape the fact bank already uses is the obvious model.
+    - **Host = one character, attitude varies per game.** Owner's call, superseding the earlier
+      "host custom to the game" idea. The game picks an attitude (snarky, funny, rude, obscene,
+      …); the character itself is fixed. **This is what makes pre-packaged animation possible** —
+      attitudes × moment-types is a finite asset matrix filled once and shipped, not a generation
+      problem. No per-game rendering, no latency, no per-match bill.
+    - **Split the performance from the specifics.** A pre-packaged clip can't say "Priya just
+      played Whoa Nellie on Marcus" — it doesn't need to. The **clip carries attitude and
+      reaction**; the **names arrive as text** on the plate beneath it (the host-moment caption
+      line). Text generation is orders of magnitude cheaper than video and is already happening.
+      That's how the moment feels personal with zero video generated per game.
+    - **"Funny" is the attitude that fights this model.** Snark and rudeness are *postures* — the
+      stance is the point, so they survive being seen twenty times. A joke is a one-shot: by the
+      tenth play it is *worse* than neutral, not merely stale. A comic attitude therefore needs
+      substantially more variants per moment than the others. Plan the asymmetry; don't discover it.
+    - **Coarse attitudes are a packaging decision too:** make it a room-level choice set visibly in
+      the lobby rather than a surprise, and note that on Steam the spiciest preset sets the store
+      age rating for the whole title.
+    - **[SETTLED] No answer timer during a host moment.** Banter never costs anyone answering time.
+      If the host is *asking* the question, the clock starts when it stops talking.
+    - **[SETTLED] The hold screen is the standings, not a spinner.** While a clip loads, show the
+      scoreboard plus a **score-progression chart** — how the scores changed across rounds. A
+      loading state asks players to wait; the standings give them something they wanted anyway, so
+      the wait stops being one. It also does the job a party game needs between questions: let the
+      room argue about who's winning. Intended to double as socially shareable content.
+    - **Player colours are validated, not chosen by eye.** Fixed order, generated in OKLCH and
+      checked against the slate ground for lightness band, chroma, contrast and colour-blind
+      separation — all pass at 4 players and at 8:
+      `#D67069, #4D97DE, #C87F2C, #8B85DE, #65A556, #B576C3, #9E9621, #00A9B1`.
+      **Assign by seat; never cycle or reorder** — the order is what the CVD separation was solved
+      for, so reordering silently breaks it. Chart form: lines (change-over-time + identity),
+      direct-labelled at the end, legend present, no hover layer (a television and a shared image
+      have no pointer).
+    - **[OPEN] Does the parked "Shareable Question polish" item unpark?** That item explicitly
+      freezes the canvas + Web Share card and says not to extend it without the owner asking. The
+      shareable standings chart is adjacent. Read as a *narrow* unpark — a new shareable artefact,
+      not licence to revisit the question card — but confirm, since the note exists to prevent
+      exactly this kind of drift. The existing canvas/Web Share path can be reused to render it.
+    - **[OPEN] Which cut gets shared?** On the host screen every player's line matters equally; on
+      a phone the postable version is probably *your* line highlighted with the rest muted — same
+      data, one accent, survives thumbnail size where four equal lines won't.
+    - **[OPEN] Can a player skip a host moment?** A bank clip that can't be skipped becomes the
+      thing everyone talks over by the fifth game.
+    - **[DEFERRED by owner]** General cost estimation for host video — banked for a later
+      conversation, since no animation is being pulled in yet.
 
 ## Design Thesis: Casual-First
 This game targets casual, social players — not competitive optimizers. Every
@@ -832,6 +862,13 @@ app/game/[code]/    # Game room page — Socket.io client, routes by phase
 - ESM throughout (`"type": "module"`); Socket.io server owns all game logic, never the client
 - Model: `claude-sonnet-4-6`
 - No comments unless the WHY is non-obvious
+- **Prose spelling: British** — `colour`, `defence`, `behaviour`, `personalise`. This is what the
+  codebase already does in comments and player-facing strings (`GameCard.jsx` "Colours run warm
+  for sabotage, cool for defence"; `Logo.jsx`, `rebusData.js`, `gameState.js`). **Identifiers and
+  CSS stay American** — `color`, `backgroundColor`, `PLAYER_COLORS` — because the language and the
+  DOM spell it that way and renaming those is not on the table. So the split is: anything a person
+  reads is British, anything a parser reads is American. `lib/lineupData.js` and one string in
+  `claudeClient.js` are inconsistent with this; not worth a dedicated pass, fix them when touched.
 
 ## Game Design Context
 **Input modes — text and voice:**
