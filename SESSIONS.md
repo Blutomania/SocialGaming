@@ -2997,3 +2997,133 @@ it. Porting the Aug 12 flow and then immediately rewriting it would build the sa
    mixed into the port.
 4. Owner action, one click: delete `dev/cryptic-challenge` (and optionally `dev/mind-your-friends`)
    via the GitHub UI — both are stale pointers with zero unique commits.
+
+---
+
+## Session 31 — August 17, 2026 (MYF: Flow B built, pre-committed answers, the wager ladder, server_py port)
+
+**Branch:** `claude/flow-b-implementation-2lwwmt` (started from Session 30's tip, `ec485ac` — the
+harness handed over a branch pointing at `main`, which was 7 days stale and missing all of
+Session 30; checked before working, per this file's own branch-hygiene warning).
+
+Session 30 stopped at "build Flow B, then play it". This session built it, and the owner
+redesigned two mechanics mid-build, so the shape that landed is not quite the shape that was
+spec'd. All the design calls below are the owner's.
+
+### What landed, in order
+
+**1. Flow B — the answerer's exclusive window** (`dd67a48`). After the 5s reading window the
+answerer gets `ACTIVE_WINDOW_SECONDS` (8, capped at 25% of the round rule's clock) alone with
+their own question. Answering or passing opens the buzzer immediately; the window expiring
+charges them the wager. The pass/timeout split Session 30 flagged as load-bearing is built
+exactly as written: **folding is a decision and costs nothing, freezing is a failure and costs
+the wager.**
+
+**2. Pre-committed answers** (`3c3eac3`) — **owner's redesign, mid-build.** Everyone except the
+answerer types and LOCKS an answer *during* the answerer's exclusive window; a buzz plays that
+committed answer, and you cannot type one after the fumble. Owner's stated aim was anti-cheat,
+and it does that — the moment worth looking something up is the one after the answerer fails,
+with the whole remaining clock, and that moment no longer accepts new answers. It also does two
+things the owner didn't ask for but which are arguably bigger: buzzing stops being a **typing
+race** and becomes one tap, and the room is **busy** during the exclusive window rather than
+watching. Owner confirmed: no lock, no buzz — a player who never committed sits it out.
+
+Two rules that took real thought, both load-bearing:
+- **The lock deadline never moves.** A pass brings the *buzzer* forward but not the lock
+  deadline. Tying them would mean folding at second one cuts the room off mid-sentence and the
+  question dies with nobody able to buzz.
+- **A question nobody can answer ends immediately** rather than running the clock down. Found
+  while writing the tests, not by design — with pre-commitment it is now genuinely possible for
+  a fumbled question to be unanswerable, which the old free-for-all could never produce.
+
+**3. The buzz payout: 0.75× the wager, not a flat 100.** Owner asked whether a flat 100 was a
+lot or a little and said they had no context for the point space. That is answerable with
+arithmetic, so `scripts/economy-sim.js` (`ad62d67`) now models it — zero API cost, payout
+formula imported rather than copied so it can't drift, every behavioural assumption a named
+knob. Owner proposed 1.5×, then 0.75×. **0.75× is right and 1.5× is not**, for a reason that
+isn't the one I first gave: the setter-bias objection applies to both but is small at 0.75×
+(break-even moves from 50% to ~55%). What actually kills 1.5× is that a buzzer would earn 300 on
+a question the answerer could only win 200 on **while risking nothing**, inverting the risk
+hierarchy of the whole game. Any share under 1 keeps it upright. The owner's own point in favour
+is the best one: **a share scales with whatever wager range gets settled later.**
+
+**4. The wager ladder, the pie, and difficulty-coloured questions** (`f31612f`) — all owner-led.
+- **`12 / 25 / 50 / 100 / 200`** replaces the 50–500 slider, which the owner flagged as feeling
+  arbitrary. It was, measurably: 46 values across a range whose ends were both wrong (a 50 swung
+  ~4% of a typical winning margin, a 500 swung 43%), at a resolution finer than any decision a
+  person can make. A doubling ladder anchored at 100 = the whole pie is self-describing, and
+  spreads 3/6/12/23/47%.
+- **The pie** (`components/WagerPie.jsx`) — owner's idea. 200 is an oversized pie with a dashed
+  ring outside the crust, the only tier that breaks the shape's own scale.
+- **Question text printed in a green keyed to the tier.** Honest rather than decorative: the
+  wager genuinely drives difficulty, and difficulty is now five rungs matching the ladder
+  instead of three buckets normalised from a continuous range.
+- **The colour ramp is generated and contrast-validated** (`scripts/build-difficulty-colors.mjs`,
+  which refuses to write a ramp with any step under 4.5:1). This mattered: the owner's reference
+  spectrum ran to `#26501A`, which on the slate ground is **1.2:1** — invisible. **The tension
+  worth not rediscovering: on a dark ground, "darker" and "readable" pull against each other.**
+  The ramp deepens by saturation instead, pale mint to full sage. A literal light-to-dark green
+  needs the question on a *light* plate, i.e. a change to item 40's plate device — flagged to the
+  owner as a separate decision rather than quietly reversed.
+
+**5. `server_py` port** (`0324ef8`) — the answer flow, per-round rules and the lazy fact bank,
+i.e. everything item 42 had paused. Start went from a blocking build to **9ms**, measured.
+
+### The hard part, and how it was actually solved
+
+Session 30 predicted it correctly: "first correct wins" must mean first *submission*, not first
+API response. Node gets that free from one event loop plus one promise chain.
+
+What the note didn't say, and what matters: **a plain `threading.Lock` does not substitute.**
+Python locks make no FIFO promise, so two threads blocked on one can be granted in either order —
+exactly the coin flip this exists to avoid. The fix is a **ticket lock**: each attempt takes a
+ticket in the same critical section that claims its attempt slot (so the order cannot be
+interleaved), then waits its turn on a `threading.Condition` with **no game lock held**, because
+the evaluation is an API call and holding `_games_lock` across it would freeze the whole room.
+`main.py`'s endpoints do that two-step explicitly — claim under the lock, resolve with it
+released.
+
+`server_py/test_mechanics.py` proves it rather than assuming it: it starts the **later** claim's
+thread **first**. A naive implementation hands the win to the wrong player there.
+
+### Found by running it, not by reading it
+
+`claude_client.py` never received the JS `LENGTH_RULE`, so the Python backend had **no 8–20 word
+constraint on questions at all**. A real generated question came back at ~45 words — which under
+a shared buzzer tests reading speed rather than knowledge, and is longer than the reading window
+is sized for. Applied to both generation prompts. This is the argument for live-running a port
+instead of trusting a careful translation.
+
+### Verification
+
+- `scripts/mechanics-test.js` — **105 assertions**, zero API cost.
+- `server_py/test_mechanics.py` — **63 assertions**, zero API cost, including the thread race.
+- `scripts/postgame-test.js` — still passing.
+- `npm run build` — clean.
+- A real `uvicorn` process driven over HTTP + WebSocket: instant start, round-1 announcement,
+  background prefetch, and every Flow B gate returning the right code (lock refused during
+  reading / accepted after / immutable once set; buzz refused in the exclusive window and refused
+  with no lock; pass accepted; committed buzz accepted; `RESULT` reporting `activeOutcome:
+  "passed"` with `wagerLost: false`).
+- `test_start_progress.py` deleted — its subject, a blocking fact-bank build at start, no longer
+  exists. Same call the JS side made with `start-progress-test.js`.
+
+### NOT done — read this before assuming the feature is finished
+
+**Nothing here has been played by real people.** Four numbers are guesses: the 8s exclusive
+window, the 5s reading window, whether the lock window gives enough time to commit, and whether
+0.75× makes buzzing feel worth doing. PLAYTEST.md PT-4 through PT-8 are the watch-list. **No
+further mechanic work should go in front of a table.**
+
+Also not done: `questionLog`/`postGame` in `server_py` (MYF `CLAUDE.md` item 46 — the only thing
+still blocking a Godot post-game screen), and the owner-tabled item 44 (wager tier
+simplification; widening the colour ramp toward blue-green/yellow-green).
+
+### Next session
+
+1. **Play it.** Instructions were given to the owner; short-game env vars in MYF `CLAUDE.md` →
+   Common Tasks reach GAME_OVER in ~3 minutes instead of ~25.
+2. Then `questionLog`/`postGame` in `server_py` (item 46), which unblocks the Godot post-game
+   screen.
+3. Item 44's two owner-tabled follow-ups, once a table has been played — both are tuning
+   decisions and a playtest may change what the right tuning is.

@@ -81,8 +81,9 @@ if testing shows it genuinely stalls games.
 
 ## PT-4: Open Answering — Does the Wager Still Mean Anything?
 
-**ANSWERED BY DESIGN, August 17 2026 — see GAME_DESIGN.md → "The Round Loop
-(Flow B)". Still needs a table to confirm.** Walking a three-player hypothetical
+**ANSWERED BY DESIGN AND NOW BUILT, August 17 2026 — see GAME_DESIGN.md → "The
+Round Loop". Still needs a table to confirm.** Built on both backends the same
+day; nothing below has been validated by real players. Walking a three-player hypothetical
 through the live rules made the failure concrete: if a faster player always
 takes the question, the active player watches their own wager get claimed and
 neither wins nor loses. Flow B gives the active player an exclusive ~8s window
@@ -144,3 +145,81 @@ without deadening the pace for everyone else?
   as a fairness guarantee than as a pacing lever?
 
 ---
+
+---
+
+## PT-6: The Exclusive Window — Is 8 Seconds Right?
+
+**Added August 17 2026, alongside building Flow B.** This is the number most
+likely to be wrong in the whole design.
+
+**Current design:** after the 5s reading window the answerer has
+`ACTIVE_WINDOW_SECONDS` (8) alone with their own question, capped at 25% of the
+round rule's clock so Lightning Round gets 5s rather than 8 of its 20.
+
+**The question:** too short and first refusal is a formality — the answerer is
+still reading the question when the room takes it. Too long and everyone else
+is watching somebody think.
+
+**What to watch for:**
+- Does the answerer ever actually *use* the full window, or is it always
+  answered/passed in the first three seconds?
+- Does the room get bored during it, or does locking an answer in keep them busy
+  (that is what pre-commitment is supposed to buy)?
+- Is the Lightning Round cap right, or does a 5s exclusive window on a 20s clock
+  feel like no window at all?
+- **Spotlight interaction, flagged but not resolved:** the card shortens the
+  clock to 5s, so the 25% cap gives a **1-second** exclusive window. The card's
+  whole point is forcing the *active player* to answer immediately, and a 1s
+  window arguably hands their question straight to the room instead. The spec
+  was implemented literally rather than special-cased; if a table confirms this
+  feels wrong, the fix is a floor on the exclusive window, not a Spotlight
+  exception.
+
+---
+
+## PT-7: Pre-Committed Answers — Does Locking In Feel Good or Feel Like Homework?
+
+**Added August 17 2026** (owner's change: everyone but the answerer commits an
+answer during the exclusive window, and a buzz plays that committed answer).
+
+**Current design:** you type an answer while the answerer has the question, you
+lock it, and you cannot change it or type a new one later. No lock, no buzz.
+
+**The question:** the mechanic is designed to close a lookup window and kill a
+typing race. Does it read that way at a table, or does it read as being asked to
+do paperwork while someone else plays?
+
+**What to watch for:**
+- Do people actually lock in, or do they sit out most questions? (`lockedCount`
+  is on screen — watch whether it climbs.)
+- Is the lock window long enough to type a real answer, or are people
+  auto-locked mid-word by the deadline?
+- Does "you HAD it and didn't buzz" land as the laugh it's designed to be, when
+  the unplayed answers are revealed?
+- Does anyone lock a joke answer purely to have the buzz available? (Free, and
+  probably good, but worth knowing.)
+- Does not being able to answer at all — because you didn't commit — feel fair,
+  or feel like a rule you got caught by?
+
+---
+
+## PT-8: Is 0.75× the Wager the Right Buzz Payout?
+
+**Added August 17 2026**, replacing a flat 100.
+
+**Current design:** a buzz-in win pays `BUZZ_WAGER_SHARE` (0.75) of the wager.
+`scripts/economy-sim.js` puts that at roughly 44% of a typical player's score
+movement — nearly co-equal with the wager game.
+
+**The question:** the wager is supposed to be the main event and buzzing the
+vulture prize. Is 44% still "vulture", or have the two games become co-equal?
+
+**What to watch for:**
+- Does the answerer feel robbed when a fumble gets taken, or is that the joke?
+- Does anyone deliberately pass on a big wager because handing the room 150 is
+  cheaper than risking 200? (That would be a real exploit — worth watching.)
+- Does a big wager still read as a threat to the answerer, or has it become a
+  bounty the room is hoping for?
+- The dial is one constant. 0.50× lands at 37%, flat 100 at 45%, 1.5× at 56%
+  and is ruled out on principle (see GAME_DESIGN.md → "What a buzz is worth").

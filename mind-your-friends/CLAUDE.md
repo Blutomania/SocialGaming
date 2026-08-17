@@ -47,14 +47,19 @@ Next.js prototype only.** See item 37. The prototype and `server_py` have now
 genuinely diverged, and `server_py` is what the Godot client talks to, so
 closing that gap is the top of this list.
 
+**Update, August 17 2026: Flow B is built on BOTH backends** (items 41, 42, 45), along with the
+five-tier wager ladder and difficulty-coloured questions. **Nothing has been played by real
+people yet** — that is now the top of the list, and no further mechanic work should go in front
+of it. See PLAYTEST.md PT-4 through PT-8 for what to watch.
+
 | # | Item | State |
 |---|---|---|
-| 0 | **Build Flow B, then play it.** Flow B (GAME_DESIGN.md → "The Round Loop") is the agreed answer to PT-4 and is **not built yet**. Build it in the **Next.js prototype first** — that is the only place it can actually be played — then port. PT-5 (is 5s the right reading window?) still needs the same table. | **START HERE** |
-| 1 | **`server_py` parity for the Aug 12 mechanics** — open answering, reading window, per-round rules, lazy fact bank, 3 categories. The Godot client cannot be built against the current design until this lands. Porting notes and ordering in `docs/WIRING.md` → "The August 12 playtest changes". **Partially done — see item 41.** Deliberately paused mid-way so Flow B lands in the prototype first; porting the current answer flow and then immediately replacing it would be building the same mechanic twice. | Blocks all Godot work |
+| 0 | **PLAY IT.** Flow B, pre-committed answers and the wager ladder are all built and tested but entirely unvalidated by a real table. Four numbers are guesses: the 8s exclusive window, the 5s reading window, whether the lock window gives enough time to commit, and whether 0.75x makes buzzing feel worth it. | **START HERE** |
+| 1 | ~~`server_py` parity for the Aug 12 mechanics~~ — **done** (item 42), except `questionLog`/`postGame`, which moved to item 46 and now blocks only the post-game screen. | Done |
 | 2 | Godot: category-selection + card-pick screens — build against **3** categories and the curated grid, not the old 5 free-text boxes | Blocked on 1 |
 | 3 | Godot: round-loop UI — WAGER → CARD → QUESTION → reading window → open ANSWER → RESULT | Blocked on 1 |
 | 4 | **Build the Chain round** — spec'd in `GAME_DESIGN.md`, deliberately not built: it needs a decision on round-level category selection first (option 2 in the spec). Rebus already filled Steal's slot, so this is expansion, not a gap | Spec'd, blocked on a design call |
-| 5 | **`server_py` parity: `questionLog` + `postGame`** — the Python backend has neither, so the Godot client cannot show any post-game screen | Real gap, blocks 6 |
+| 5 | **`server_py` parity: `questionLog` + `postGame`** — the Python backend has neither, so the Godot client cannot show any post-game screen. Full porting notes in item 46. | Real gap, blocks 6 |
 | 6 | Godot: GAME_OVER screen + post-game social layer | Blocked on 3+5 |
 | 7 | Live-test disconnect/reconnect + inactivity auto-advance against `server_py` | Ported, never exercised |
 | 8 | Wire MYF's coherence to the shared Python engine — now possible, `server_py` is Python | Unblocked by the port |
@@ -832,7 +837,7 @@ as a constraint to respect rather than a layout spec.
     - **[DEFERRED by owner]** General cost estimation for host video — banked for a later
       conversation, since no animation is being pulled in yet.
 
-41. **[AGREED, NOT BUILT — August 17 2026] Flow B: the active player answers first.**
+41. **[BUILT, August 17 2026 — prototype AND `server_py`] Flow B: the active player answers first.**
     Full spec in `GAME_DESIGN.md` → "The Round Loop — Flow B". This is the agreed answer to
     **PT-4** and supersedes both the original single-answerer loop and the Aug 12 free-for-all.
     - **The problem it fixes.** Under the Aug 12 rules, if a faster player always takes the
@@ -854,30 +859,92 @@ as a constraint to respect rather than a layout spec.
       doesn't become mostly-exclusive.
     - **Doesn't apply to** `submissionBased` (Worst Answer Wins) or `lineupBased` (The Lineup),
       which keep their own answer flows. Rebus is ordinary free text and does use Flow B.
-    - **Build order matters: prototype first, then port.** The `server_py` port (item 42) was
+    - **Build order held: prototype first, then port.** The `server_py` port (item 42) was
       paused deliberately at a clean boundary rather than porting the current answer flow and
-      then immediately replacing it. Flow B also needs a real table before it's trusted — the 8s
-      number is the guess most likely to be wrong.
+      then immediately replacing it. Both sides now have Flow B.
+    - **PRE-COMMITTED ANSWERS (owner's call, same day) — the mechanic changed shape.** Everyone
+      except the answerer types and LOCKS an answer during the answerer's exclusive window; a
+      buzz plays that committed answer, and you cannot type one after the fumble. This closes
+      the lookup window (the moment worth cheating in is the one after the answerer fails, with
+      the whole remaining clock to search — that moment no longer accepts new answers), turns
+      buzzing from a typing race into a one-tap decision, and keeps the room busy during the
+      exclusive window instead of watching. **No lock, no buzz** — owner confirmed a player who
+      never committed sits the question out.
+      Two rules keep it fair, and both are load-bearing: the **lock deadline never moves** (a
+      pass brings the *buzzer* forward but not the deadline, or folding at second one would cut
+      the room off mid-sentence and the question would die unanswerable), and **a commitment is
+      immutable** (one you can revise until the last instant is not a commitment). A question
+      nobody can answer ends immediately rather than running the clock down, and the unplayed
+      commitments are revealed at the result — "you HAD it and sat on it" is the loudest moment
+      the mechanic produces.
+    - **The buzz payout is `BUZZ_WAGER_SHARE` (0.75) of the wager, not a flat 100.** Owner
+      proposed 1.5x, then 0.75x; 0.75x is right and 1.5x is not. Under 1 the risk hierarchy
+      stays the right way up; at 1.5x a buzzer earns 300 on a question the answerer could only
+      win 200 on while risking nothing, which makes being the active player something to avoid.
+      A share is also self-anchoring where a flat number is not, and — the owner's own point —
+      it scales with whatever wager range is settled on later.
+    - **Verified:** `scripts/mechanics-test.js` is now 105 assertions, zero API cost;
+      `server_py/test_mechanics.py` is 63, also zero cost, and includes the thread race that
+      proves the Python ticket lock. Plus a real uvicorn process driven over HTTP + WebSocket.
+      **Still not played by real people** — the 8s window and whether the lock window gives
+      enough time to commit are both untested guesses.
 
-42. **[IN PROGRESS — August 17 2026] `server_py` parity port.** Detail in `docs/WIRING.md` →
+42. **[MOSTLY DONE — August 17 2026] `server_py` parity port.** Detail in `docs/WIRING.md` →
     "The August 12 playtest changes", which remains the porting guide.
-    - **Done and pushed:** constants (3 categories not 5, 40s base timer not 20s, reading window,
-      open-answer points); round rules (Steal retired, Rebus added, `NO_RULE` for round 1,
-      no-repeat picker with an exclude list, `MYF_FORCE_ROUND_RULE` switch); the rebus bank
-      (113 pieces / 82 puzzles, **generated** from `lib/rebusData.js` by
-      `scripts/build-rebus-py.mjs` rather than hand-typed, and passing the same integrity checks
-      as the JS suite). `test_start_progress.py` de-hardcoded (it assumed 15 categories, which
-      silently encoded the old 5-category game) and passing.
-    - **Not started:** the answer flow itself (now Flow B, not the Aug 12 flow), the reading
-      window, per-round rule assignment in `game_state.py`, the lazy fact bank,
-      `questionLog`/`postGame`, and a Python mirror of `scripts/mechanics-test.js`.
-    - **Dead code left in place, intentionally:** `claim_steal`/`expire_steal` in `game_state.py`
-      and the claim-steal endpoint in `main.py` are now unreachable (nothing sets `stealOnWrong`),
-      but removing them belongs with the answer-flow rewrite rather than in a constants commit.
-    - **The hard part, when it's picked up:** "first correct wins" must mean first *submission*,
-      not first API response. Node gets that ordering free from its event loop plus one promise
-      chain; Python needs a real per-game answer queue, and the evaluation is an API call so it
-      must not hold `_games_lock` while it waits or the whole room freezes on every answer.
+    - **Done:** constants and the wager ladder; round rules (Steal retired, Rebus added,
+      `NO_RULE` for round 1, no-repeat picker, `MYF_FORCE_ROUND_RULE`); the rebus bank
+      (generated from `lib/rebusData.js`, not hand-typed); **the whole Flow B answer flow**
+      (reading window, exclusive window + 25% cap, pass vs freeze, pre-committed answers,
+      buzz-in, dead-air kill); the 0.75x buzz payout; five-rung difficulty; **per-round rule
+      assignment with announcements**; and **the lazy fact bank** — start went from a blocking
+      build to 9ms, measured against a real server.
+    - **THE HARD PART, and how it was actually solved.** "First correct wins" must mean first
+      *submission*, not first API response. Node gets that free from one event loop plus one
+      promise chain. Python does not, and a plain `threading.Lock` does **not** substitute —
+      Python locks make no FIFO promise, so two threads blocked on one can be granted in either
+      order, which is exactly the coin flip this has to avoid. The fix is a **ticket lock**:
+      each attempt takes a ticket in the same critical section that claims its attempt slot
+      (so the order cannot be interleaved), then waits its turn on a `threading.Condition` with
+      **no game lock held**, because the evaluation is an API call and holding `_games_lock`
+      across it would freeze the whole room on every answer. `main.py`'s endpoints perform that
+      two-step explicitly: claim under the lock, resolve with it released.
+      `test_mechanics.py` proves it by starting the LATER claim's thread FIRST — a naive
+      implementation gives the win to the wrong player there.
+    - **Steal is gone**, not just unreachable: `claim_steal`/`expire_steal`, the `STEAL` phase,
+      the steal window and its endpoint. This was the answer-flow rewrite the previous note said
+      to remove them alongside.
+    - **Found by RUNNING it, not by reading the port:** `claude_client.py` never received the JS
+      `LENGTH_RULE`, so Python questions had no 8–20 word constraint at all — a real generated
+      question came back at ~45 words, which under a shared buzzer tests reading speed rather
+      than knowledge and is longer than the reading window is sized for. Now applied to both
+      generation prompts. Worth remembering as the argument for live-running a port rather than
+      trusting a careful translation.
+    - **Verified:** `server_py/test_mechanics.py` — 63 assertions, zero API cost, including the
+      thread race. Plus a real `uvicorn` process driven over HTTP + WebSocket: instant start,
+      round-1 announcement, background prefetch, and every Flow B gate returning the right code
+      (lock refused during reading, accepted after, immutable once set; buzz refused in the
+      exclusive window and refused with no lock; pass accepted; committed buzz accepted;
+      `RESULT` reporting `activeOutcome: "passed"` with `wagerLost: false`).
+    - **`test_start_progress.py` deleted** — its subject, a blocking fact-bank build at start,
+      no longer exists. Same call the JS side made with `start-progress-test.js`.
+    - **STILL NOT PORTED: `questionLog` and `postGame`.** See item 46 — this is now the only
+      thing blocking a Godot post-game screen.
+
+43. **[PROPOSED — not done] Rename "open answering" to "buzz-in".** The term reads as "answering
+    into an open text field", which is not what it means (it means *open to everyone*; the input
+    format is a separate axis — The Lineup is "open" and is a pick-list). The codebase already
+    says "buzz" 27 times against "open answering" 14, including in the Chain spec's "buzz-in
+    rate", so the better name is already the house term. Mechanical rename across both backends
+    plus docs: `openAnswerEligible` → `buzzEligible`, `resolveOpenAnswer` → `resolveBuzz`,
+    `answerOpensAt` → `buzzerOpensAt`. Do it as **one atomic pass, not during the port** — a
+    rename mixed into a translation hides any real bug in a diff full of renames.
+    **Partly overtaken by Flow B (August 17 2026), and the remaining rename has changed shape.**
+    `OPEN_ANSWER_POINTS` is gone on its own — the buzz payout is now `BUZZ_WAGER_SHARE`, already
+    the house term. More importantly, **`answerOpensAt` → `buzzerOpensAt` is now WRONG**: Flow B
+    added a genuinely separate `buzzOpensAt` (when the room may buzz), while `answerOpensAt`
+    means only "the reading window is over". If this pass ever runs, rename `answerOpensAt` →
+    `readingEndsAt` instead; renaming it to `buzzerOpensAt` would collide with a real field that
+    means something else.
 
 44. **[TABLED by owner, August 17 2026 — not started]** Two follow-ups to the wager and
     difficulty-colour work committed the same day (`f31612f`), recorded in the owner's own words so the intent isn't paraphrased away:
@@ -900,15 +967,60 @@ as a constraint to respect rather than a layout spec.
       hexes, and keep every step at or above 4.5:1 on the slate ground (the generator refuses to
       write a ramp that fails this, which is the guardrail, not a formality).
 
-43. **[PROPOSED — not done] Rename "open answering" to "buzz-in".** The term reads as "answering
-    into an open text field", which is not what it means (it means *open to everyone*; the input
-    format is a separate axis — The Lineup is "open" and is a pick-list). The codebase already
-    says "buzz" 27 times against "open answering" 14, including in the Chain spec's "buzz-in
-    rate", so the better name is already the house term. Mechanical rename across both backends
-    plus docs: `openAnswerEligible` → `buzzEligible`, `resolveOpenAnswer` → `resolveBuzz`,
-    `OPEN_ANSWER_POINTS` → `BUZZ_IN_POINTS`, `answerOpensAt` → `buzzerOpensAt`. Do it as **one
-    atomic pass, not during the port** — a rename mixed into a translation hides any real bug in
-    a diff full of renames.
+45. **[BUILT, August 17 2026] The wager ladder, the pie, and difficulty-coloured questions.**
+    Owner-driven, in one session, after the 50–500 slider was flagged as "arbitrary now, as we
+    review it". It was — and the reason is measurable, not a matter of taste.
+    - **Five tiers: `12 / 25 / 50 / 100 / 200`** (`WAGER_TIERS`). A doubling ladder anchored so
+      **100 is the whole pie**, which makes every rung self-describing. The slider offered 46
+      values across a range whose ends were both wrong: a 50 swung ~4% of a typical winning
+      margin (noise) and a 500 swung 43% (one question deciding half the night), at a resolution
+      finer than any decision a person can make. The ladder spreads 3 / 6 / 12 / 23 / 47%.
+      Off-ladder values are **rejected, not clamped**, on both backends.
+    - **The pie** (`components/WagerPie.jsx`) — owner's idea, and on the nose on purpose: a new
+      player must understand the stake without being told, and "how much of the pie" is a thing
+      everyone already knows. Left on desktop, atop on mobile. 200 is a full oversized pie with
+      a dashed ring outside the crust — the only tier that breaks the shape's own scale, which
+      is the point of it.
+    - **Question text is printed in a green keyed to the tier** (`lib/difficultyColors.js`).
+      This is honest rather than decorative: the wager genuinely drives difficulty
+      (`coherence.js` turns it into the generation instruction AND the fact-bank filter), and
+      difficulty is now **five rungs** — `trivial/easy/medium/hard/brutal` — matching the ladder
+      instead of normalising a continuous range into three buckets, which had two visibly
+      different wagers producing identically-pitched questions. The fact bank still only knows
+      three difficulties, so the five map down for filtering; widening it would mean
+      re-generating every cached bank.
+    - **The colour ramp is GENERATED, never picked by eye** — `scripts/build-difficulty-colors.mjs`,
+      same discipline item 40 applied to the player colours, and the generator **refuses to
+      write** a ramp with any step under 4.5:1 on the slate ground. That guardrail is the whole
+      reason the script exists: the owner's reference spectrum ran to `#26501A`, which against
+      `#2F4459` is about **1.2:1** — invisible, not merely dim.
+      **The unavoidable tension, worth not rediscovering:** on a dark ground "darker" and
+      "readable" pull directly against each other. So the ramp deepens by **saturation**, from a
+      pale mint to a full sage-green, rather than by darkness. It reads as "deeper green =
+      harder question", which is the owner's direction, reached by a different road.
+      **A literal light-to-dark green would need the question on a LIGHT plate**, which is a
+      change to item 40's plate device — a separate decision, not a quiet reversal of a settled
+      one. See item 44 for the owner's tabled follow-up on widening the hue span instead.
+    - **`scripts/economy-sim.js`** — a Monte Carlo of the scoring economy, added because "is 100
+      a lot or a little?" cannot be answered by staring at the constant. Zero API cost, and
+      explicitly **not** a test of the state machine: it models the scoring rules, imports the
+      payout formula from `constants.js` so that number can't drift, and makes every behavioural
+      assumption a named knob. Re-run it after touching the ladder or the share.
+
+46. **[NOT STARTED — the last real gap before Godot post-game work] `server_py` needs
+    `questionLog` and `postGame`.** The Python backend records nothing about the questions it
+    asked and has no post-game stage, so a Godot client physically cannot render any end-of-game
+    screen — there is no data to render. The JS prototype has both (item 35): `logQuestion()`
+    called from `nextTurn()` as the single funnel every resolution path passes through, and
+    `game.postGame` living **inside** the `GAME_OVER` phase rather than as new phases.
+    - Port `logQuestion()` first and keep the same funnel — logging from each resolution path
+      instead would be six places to forget, and Flow B added outcomes (`passed`) that would be
+      missed in at least one of them.
+    - Keep the answer-leak guard: `questionLog` carries every correct answer and must ship
+      **only** in the `GAME_OVER` branch of `player_view()`.
+    - Superlative voting needs `generate_superlatives()` / `narrate_superlative_results()` in
+      `claude_client.py`; note the JS version's bug worth not repeating — quips keyed by award
+      *title* instead of id silently dropped every one of them.
 
 ## Design Thesis: Casual-First
 This game targets casual, social players — not competitive optimizers. Every

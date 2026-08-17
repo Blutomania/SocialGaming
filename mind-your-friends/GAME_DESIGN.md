@@ -39,6 +39,43 @@ within those layers must pass the "hear it and get it" test:
 If any element needs a paragraph to explain, it's too complex for this game.
 When in doubt, cut it.
 
+### The wager ladder
+
+**Five tiers: 12 / 25 / 50 / 100 / 200** (decided August 17 2026). A doubling
+ladder anchored so that **100 is the whole pie** — every rung is a fraction of
+one, and the wager screen draws it that way: an eighth, a quarter, a half, all
+of it, and more pie than there is.
+
+This replaced a 50–500 slider in 10-point steps, which was arbitrary in a way
+that mattered. It offered 46 values across a range whose ends were both wrong —
+a 50 swung about 4% of a typical winning margin (noise), a 500 swung 43% (one
+question deciding half the night) — at a resolution far finer than any decision
+a person can actually make, and nothing on screen said what a big number was
+supposed to mean.
+
+The ladder spreads properly instead. Share of a typical winner-to-loser margin,
+from `scripts/economy-sim.js`:
+
+| Tier | Wager | Swings | Share of the margin | A buzz pays |
+|---|---|---|---|---|
+| Sliver | 12 | 24 | 3% | 10 |
+| Slice | 25 | 50 | 6% | 20 |
+| Half | 50 | 100 | 12% | 40 |
+| Whole pie | 100 | 200 | 23% | 75 |
+| DOUBLE | 200 | 400 | 47% | 150 |
+
+Two consequences worth keeping:
+
+- **Five buttons is a decision you can make in two seconds and say out loud**
+  ("you're getting the whole pie"). A slider never was.
+- **The wager is a real difficulty signal.** It becomes the difficulty
+  instruction in the generation prompt *and* the filter on the fact bank, one
+  rung per tier — so the question genuinely gets harder as the pie grows, and
+  the question text is printed in a colour keyed to that tier.
+
+Off-ladder values are **rejected, not clamped**: the screen offers five buttons,
+so anything else is a stale client, and a wager of 137 is one no pie can draw.
+
 ### Category + Wager: "I Cut, You Choose"
 The category/wager split follows the classic fair-division mechanism
 ([Yale SOM](https://insights.som.yale.edu/insights/better-way-to-divide-the-pie)):
@@ -78,15 +115,16 @@ Lands comfortably inside the 20-30 min target with buffer under the hard cap.
 
 ## The Round Loop — "Flow B"
 
-**Status: agreed August 17 2026, not yet built.** This supersedes both the
-original single-answerer loop and the Aug 12 free-for-all. What changed and why
-is in "Why the active player answers first" below.
+**Status: BUILT August 17 2026** in the Next.js prototype and in `server_py`.
+Not yet played by real people — see "Still needs a table" below. This supersedes
+both the original single-answerer loop and the Aug 12 free-for-all. What changed
+and why is in "Why the active player answers first" below.
 
 Each question follows this phase order (server enforces):
 
 1. **Active player picks a category** — from the six offered options.
-2. **Next player (to their left) sets the wager**, 50–500. Adversarial by
-   design; see "I Cut, You Choose" above.
+2. **Next player (to their left) sets the wager** — one of five tiers, see
+   "The wager ladder" below. Adversarial by design; see "I Cut, You Choose".
 3. **Card window.** Anyone may play a sabotage or defence card at the active
    player (see Card Mechanic).
 4. **Server calls Claude → generates the question**, modified by the active
@@ -112,12 +150,52 @@ Each question follows this phase order (server enforces):
    and the wager would stop mattering again — the exact problem Flow B exists to
    fix.
 10. **Buzzer open to everyone else** for the remainder of the answer clock.
-    One attempt each; first correct answer wins a flat `OPEN_ANSWER_POINTS`
-    (100). A wrong guess locks you out of this question and costs nothing.
+    One attempt each; the first correct answer wins `BUZZ_WAGER_SHARE` (0.75)
+    of the wager. A wrong guess locks you out of this question and costs
+    nothing.
 11. **Claude evaluates each attempt** (fuzzy match), serialised so that "first
-    correct" means first *submission*, never first API response.
+    correct" means first *buzz*, never first API response.
 12. **4s result screen → next turn.** Turn passes in fixed rotation regardless
     of who answered. **Answering never earns another turn.**
+
+### Pre-committed answers — you buzz with what you already wrote
+
+**Owner's call, August 17 2026.** Everyone except the answerer types their
+answer **during the answerer's exclusive window** and locks it in. A buzz then
+plays that committed answer. You cannot type one after the fumble.
+
+Three things follow, and all three are the point:
+
+- **It closes the lookup window.** The moment worth cheating in is the one
+  *after* the answerer fails, with the whole remaining clock to search. That
+  moment no longer accepts new answers.
+- **Buzzing stops being a typing race.** It becomes one tap — a decision about
+  whether to commit, not a test of words-per-minute. That is the right outcome
+  for a game whose thesis is casual-first.
+- **The room is busy during the exclusive window** instead of watching. No dead
+  air, and everyone is invested in whether the answerer fumbles.
+
+**No lock, no buzz.** A player who never committed sits the question out. That
+is the whole mechanism — an escape hatch for the uncommitted would reopen the
+lookup window it exists to close.
+
+Two rules keep it fair:
+
+- **The lock deadline never moves.** It is fixed at the *scheduled* end of the
+  exclusive window. The answerer passing brings the **buzzer** forward but not
+  the **lock deadline** — otherwise folding at second one would cut the room off
+  mid-sentence and the question would die with nobody able to buzz.
+- **A commitment is immutable.** One you can revise until the last instant is
+  not a commitment, and the mechanic rests on having decided early.
+
+**A question nobody can answer ends immediately** rather than running the clock
+down. Once locking closes, if no eligible player holds a committed answer, there
+is no way to resolve the question and no reason to make the room watch a buzzer
+nobody can press.
+
+**The unplayed answers are revealed at the result.** This is the loudest moment
+the mechanic produces: *"you HAD it and sat on it"* is the line people shout at
+each other, and it is invisible unless the room is shown the commitments.
 
 ### Why the active player answers first
 
@@ -147,7 +225,7 @@ by taking anything away from someone who never got a turn to try.
 | `READING_SECONDS` | 5 | Nobody may answer. Already built. |
 | `ACTIVE_WINDOW_SECONDS` | 8 | **New.** Carved *out of* the round rule's answer clock, not added to it, so total question length is unchanged. |
 | Exclusive-window cap | 25% of the rule's clock | So Lightning Round (20s) gets a 5s exclusive window rather than 8s of its 20. Without this, halving the clock makes the round mostly-exclusive. |
-| `OPEN_ANSWER_POINTS` | 100 | Flat, for anyone but the active player. |
+| `BUZZ_WAGER_SHARE` | 0.75 | A buzz-in win pays this share of the wager, for anyone but the answerer. See "What a buzz is worth" below. |
 
 The buzzer opens on **whichever comes first**: the active player answering, the
 active player passing, or the exclusive window expiring. A pass must open it
@@ -159,9 +237,34 @@ declined is exactly the dead air this game keeps trying to remove.
 structures — everyone submits, or everyone taps. Rebus is ordinary free text and
 does use Flow B.
 
+### What a buzz is worth
+
+**0.75x the wager, not a flat number** (decided August 17 2026, replacing a flat
+100). Two reasons:
+
+- **It is self-anchoring.** "Three-quarters of what they were playing for" needs
+  no explanation. A flat 100 floats free of every other number on screen, which
+  is exactly why nobody could tell whether 100 was a lot or a little.
+- **It scales with the question's danger.** A big wager buys a harder question,
+  so taking a hard one should pay more than taking an easy one.
+
+**The share must stay below 1.** At 1.5x a buzzer would earn 300 on a question
+the answerer could only win 200 on, while risking nothing — which inverts the
+risk hierarchy of the whole game and makes being the active player something to
+avoid. Under 1, that hierarchy stays the right way up.
+
+It also barely disturbs "I cut, you choose". Any wager-linked payout gives the
+setter — who is also a buzzer on that question — some interest in setting high,
+but at 0.75x it moves their break-even from "will they get this?" at 50% to
+about 55%. At 1.5x the whole decision starts to collapse.
+
+`scripts/economy-sim.js` models this; re-run it after changing the share or the
+ladder rather than arguing about it.
+
 **Still needs a table.** Flow B is a reasoned answer to PT-4, not a validated
-one. The specific number in step 6 (8 seconds) is the guess most likely to be
-wrong: too short and it is a formality, too long and the room is waiting.
+one. Two numbers are the guesses most likely to be wrong: the 8-second exclusive
+window (too short and it is a formality, too long and the room is waiting), and
+whether the lock window gives people enough time to commit an answer at all.
 
 ---
 
