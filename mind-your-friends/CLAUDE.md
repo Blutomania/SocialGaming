@@ -732,9 +732,13 @@ as a constraint to respect rather than a layout spec.
     Follows from item 39; these are settled calls, not proposals.
     - **Ground: slate blue.** Owner's call after trying white, grey and charcoal. The faded
       question marks sit on it as texture, not content.
-    - **Mark strength ~10–14% (12% nominal), field kept dense.** The two trade off: faint marks
-      can afford far more density, and density is what stops the field reading as a flat tint.
-      This number is load-bearing for everything below — see the plate rule.
+    - **Mark strength 10%, field kept dense** (owner's call, August 17 2026 — the quiet end of the
+      10–14% range originally proposed). The two trade off: faint marks can afford far more
+      density, and density is what stops the field reading as a flat tint. This number is
+      load-bearing for everything below — see the plate rule.
+      **If it ever needs adjusting, add density, not opacity.** 10% sits close enough to the floor
+      that a dim projector could push the plates toward invisible; the fix preserves the aesthetic,
+      raising opacity doesn't. Worth one check on a real television before it's final.
     - **The plate device (the core rule).** Text sits on a solid rectangle of *the ground colour
       with the texture switched off* — a hole cut through the field, not a panel laid on top.
       No radius, no border, no shadow: a card floats above the field, a plate is part of it.
