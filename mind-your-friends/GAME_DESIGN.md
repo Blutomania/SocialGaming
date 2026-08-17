@@ -76,15 +76,92 @@ Lands comfortably inside the 20-30 min target with buffer under the hard cap.
 
 ---
 
-## The Round Loop
+## The Round Loop — "Flow B"
+
+**Status: agreed August 17 2026, not yet built.** This supersedes both the
+original single-answerer loop and the Aug 12 free-for-all. What changed and why
+is in "Why the active player answers first" below.
+
 Each question follows this phase order (server enforces):
-1. Active player picks a category
-2. Next player sets the wager (50–500 pts)
-3. All players may play cards (see Card Mechanic below)
-4. Server calls Claude → generates question (modified by active round rule)
-5. Active player answers within the timer
-6. Claude evaluates answer (fuzzy match); points awarded or deducted
-7. 4s result screen → next turn
+
+1. **Active player picks a category** — from the six offered options.
+2. **Next player (to their left) sets the wager**, 50–500. Adversarial by
+   design; see "I Cut, You Choose" above.
+3. **Card window.** Anyone may play a sabotage or defence card at the active
+   player (see Card Mechanic).
+4. **Server calls Claude → generates the question**, modified by the active
+   round rule.
+5. **Reading window (`READING_SECONDS`, 5s).** The question is on screen and
+   *nobody* can answer. Nobody should be racing a clock they haven't finished
+   reading.
+6. **The active player's exclusive window (`ACTIVE_WINDOW_SECONDS`, 8s).** Only
+   they may answer. It is their wager, so they get first refusal on their own
+   question.
+7. **Active player answers correctly → they win the wager.** Question ends.
+8. **Active player answers wrong → they lose the wager,** and the buzzer opens
+   to the room immediately.
+9. **Active player passes → the buzzer opens immediately and they lose
+   nothing.** Passing is a real decision, not a forfeit: with 500 on a category
+   you don't know, folding is legitimate play.
+   **A pass is an explicit action. Running out of time is not.** If the active
+   player neither answers nor passes and their window simply expires, they lose
+   the wager exactly as if they'd answered wrong — the existing "stalling isn't
+   free" rule (`expireAnswerWindow`) is preserved. The distinction is the point:
+   folding is a decision and costs nothing, freezing is a failure and costs the
+   wager. Without it, "pass" would just be a free opt-out of every hard question
+   and the wager would stop mattering again — the exact problem Flow B exists to
+   fix.
+10. **Buzzer open to everyone else** for the remainder of the answer clock.
+    One attempt each; first correct answer wins a flat `OPEN_ANSWER_POINTS`
+    (100). A wrong guess locks you out of this question and costs nothing.
+11. **Claude evaluates each attempt** (fuzzy match), serialised so that "first
+    correct" means first *submission*, never first API response.
+12. **4s result screen → next turn.** Turn passes in fixed rotation regardless
+    of who answered. **Answering never earns another turn.**
+
+### Why the active player answers first
+
+The Aug 12 change opened every question to the whole room, which fixed the real
+problem it was aimed at (two players sitting silent while a third floundered)
+but created a quieter one: **if a faster player always takes the question, the
+wager never bites.** The active player watches their own question get taken and
+neither wins nor loses anything. That is PLAYTEST.md **PT-4**, and Flow B is the
+answer to it.
+
+Restoring first refusal (step 6) puts the wager back where "I Cut, You Choose"
+needs it. The wager-setter's power only balances the category-picker if the
+category-picker is the one exposed to it. If anyone can claim the wager, the
+setter stops setting a punishment and starts setting **a bounty they might
+collect themselves** — so they would always set maximum, and the most
+interesting decision in the game collapses.
+
+Buzzing survives, but its character changes from **race** to **vulture**: you
+are pouncing on a fumble, not outrunning the person whose question it is. That
+is a better fit for casual-first — the fast player still gets rewarded, but not
+by taking anything away from someone who never got a turn to try.
+
+### Parameters
+
+| Parameter | Value | Note |
+|---|---|---|
+| `READING_SECONDS` | 5 | Nobody may answer. Already built. |
+| `ACTIVE_WINDOW_SECONDS` | 8 | **New.** Carved *out of* the round rule's answer clock, not added to it, so total question length is unchanged. |
+| Exclusive-window cap | 25% of the rule's clock | So Lightning Round (20s) gets a 5s exclusive window rather than 8s of its 20. Without this, halving the clock makes the round mostly-exclusive. |
+| `OPEN_ANSWER_POINTS` | 100 | Flat, for anyone but the active player. |
+
+The buzzer opens on **whichever comes first**: the active player answering, the
+active player passing, or the exclusive window expiring. A pass must open it
+*immediately* — making the room wait out a window the active player has already
+declined is exactly the dead air this game keeps trying to remove.
+
+**Does not apply to round rules with their own answer flow.** Worst Answer Wins
+(`submissionBased`) and The Lineup (`lineupBased`) keep their existing
+structures — everyone submits, or everyone taps. Rebus is ordinary free text and
+does use Flow B.
+
+**Still needs a table.** Flow B is a reasoned answer to PT-4, not a validated
+one. The specific number in step 6 (8 seconds) is the guess most likely to be
+wrong: too short and it is a formality, too long and the room is waiting.
 
 ---
 

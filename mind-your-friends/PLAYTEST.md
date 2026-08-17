@@ -81,6 +81,15 @@ if testing shows it genuinely stalls games.
 
 ## PT-4: Open Answering — Does the Wager Still Mean Anything?
 
+**ANSWERED BY DESIGN, August 17 2026 — see GAME_DESIGN.md → "The Round Loop
+(Flow B)". Still needs a table to confirm.** Walking a three-player hypothetical
+through the live rules made the failure concrete: if a faster player always
+takes the question, the active player watches their own wager get claimed and
+neither wins nor loses. Flow B gives the active player an exclusive ~8s window
+first, so the wager is genuinely theirs, and buzzing becomes vulture rather than
+race. The watch-list below still applies — it is now the list for testing Flow B
+rather than for deciding whether a fix is needed.
+
 **Changed August 12, 2026** (owner playtest note 9), replacing the
 single-answerer model and retiring the Steal round rule with it.
 

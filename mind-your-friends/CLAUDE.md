@@ -49,8 +49,8 @@ closing that gap is the top of this list.
 
 | # | Item | State |
 |---|---|---|
-| 0 | **Play the changed game** — eleven playtest notes landed without a real multi-person game since. Two design questions are open and only a table can answer them: PT-4 (does the wager still bite when anyone can take the question?) and PT-5 (is a 5s reading window right?) | **START HERE** |
-| 1 | **`server_py` parity for the Aug 12 mechanics** — open answering, reading window, per-round rules, lazy fact bank, 3 categories. The Godot client cannot be built against the current design until this lands. Porting notes and ordering in `docs/WIRING.md` → "The August 12 playtest changes" | Blocks all Godot work |
+| 0 | **Build Flow B, then play it.** Flow B (GAME_DESIGN.md → "The Round Loop") is the agreed answer to PT-4 and is **not built yet**. Build it in the **Next.js prototype first** — that is the only place it can actually be played — then port. PT-5 (is 5s the right reading window?) still needs the same table. | **START HERE** |
+| 1 | **`server_py` parity for the Aug 12 mechanics** — open answering, reading window, per-round rules, lazy fact bank, 3 categories. The Godot client cannot be built against the current design until this lands. Porting notes and ordering in `docs/WIRING.md` → "The August 12 playtest changes". **Partially done — see item 41.** Deliberately paused mid-way so Flow B lands in the prototype first; porting the current answer flow and then immediately replacing it would be building the same mechanic twice. | Blocks all Godot work |
 | 2 | Godot: category-selection + card-pick screens — build against **3** categories and the curated grid, not the old 5 free-text boxes | Blocked on 1 |
 | 3 | Godot: round-loop UI — WAGER → CARD → QUESTION → reading window → open ANSWER → RESULT | Blocked on 1 |
 | 4 | **Build the Chain round** — spec'd in `GAME_DESIGN.md`, deliberately not built: it needs a decision on round-level category selection first (option 2 in the spec). Rebus already filled Steal's slot, so this is expansion, not a gap | Spec'd, blocked on a design call |
@@ -831,6 +831,63 @@ as a constraint to respect rather than a layout spec.
       thing everyone talks over by the fifth game.
     - **[DEFERRED by owner]** General cost estimation for host video — banked for a later
       conversation, since no animation is being pulled in yet.
+
+41. **[AGREED, NOT BUILT — August 17 2026] Flow B: the active player answers first.**
+    Full spec in `GAME_DESIGN.md` → "The Round Loop — Flow B". This is the agreed answer to
+    **PT-4** and supersedes both the original single-answerer loop and the Aug 12 free-for-all.
+    - **The problem it fixes.** Under the Aug 12 rules, if a faster player always takes the
+      question, the active player's wager never bites — they watch their own question get
+      claimed and neither win nor lose. That also quietly breaks "I Cut, You Choose": if
+      *anyone* can claim the wager, the setter is no longer setting a punishment but a **bounty
+      they might collect themselves**, so they'd always set maximum.
+    - **The change is one step.** After the 5s reading window, the active player gets an
+      exclusive ~8s window on their own question. Answer right → win the wager. Answer wrong →
+      lose it, buzzer opens. Pass → buzzer opens immediately, lose nothing. Everyone else then
+      races for a flat 100, one attempt each. Turn order never changes — **answering never earns
+      another turn** (that was the runaway-leader failure in the rejected Flow A).
+    - **Pass ≠ timeout, and this distinction is load-bearing.** An explicit pass costs nothing;
+      letting the window expire still costs the wager, preserving `expireAnswerWindow`'s existing
+      "stalling isn't free" rule. Without the split, "pass" becomes a free opt-out of every hard
+      question and the wager stops mattering again — reintroducing the exact problem Flow B fixes.
+    - **New parameter:** `ACTIVE_WINDOW_SECONDS` = 8, carved *out of* the round rule's answer
+      clock rather than added to it, and capped at 25% of that clock so Lightning Round's 20s
+      doesn't become mostly-exclusive.
+    - **Doesn't apply to** `submissionBased` (Worst Answer Wins) or `lineupBased` (The Lineup),
+      which keep their own answer flows. Rebus is ordinary free text and does use Flow B.
+    - **Build order matters: prototype first, then port.** The `server_py` port (item 42) was
+      paused deliberately at a clean boundary rather than porting the current answer flow and
+      then immediately replacing it. Flow B also needs a real table before it's trusted — the 8s
+      number is the guess most likely to be wrong.
+
+42. **[IN PROGRESS — August 17 2026] `server_py` parity port.** Detail in `docs/WIRING.md` →
+    "The August 12 playtest changes", which remains the porting guide.
+    - **Done and pushed:** constants (3 categories not 5, 40s base timer not 20s, reading window,
+      open-answer points); round rules (Steal retired, Rebus added, `NO_RULE` for round 1,
+      no-repeat picker with an exclude list, `MYF_FORCE_ROUND_RULE` switch); the rebus bank
+      (113 pieces / 82 puzzles, **generated** from `lib/rebusData.js` by
+      `scripts/build-rebus-py.mjs` rather than hand-typed, and passing the same integrity checks
+      as the JS suite). `test_start_progress.py` de-hardcoded (it assumed 15 categories, which
+      silently encoded the old 5-category game) and passing.
+    - **Not started:** the answer flow itself (now Flow B, not the Aug 12 flow), the reading
+      window, per-round rule assignment in `game_state.py`, the lazy fact bank,
+      `questionLog`/`postGame`, and a Python mirror of `scripts/mechanics-test.js`.
+    - **Dead code left in place, intentionally:** `claim_steal`/`expire_steal` in `game_state.py`
+      and the claim-steal endpoint in `main.py` are now unreachable (nothing sets `stealOnWrong`),
+      but removing them belongs with the answer-flow rewrite rather than in a constants commit.
+    - **The hard part, when it's picked up:** "first correct wins" must mean first *submission*,
+      not first API response. Node gets that ordering free from its event loop plus one promise
+      chain; Python needs a real per-game answer queue, and the evaluation is an API call so it
+      must not hold `_games_lock` while it waits or the whole room freezes on every answer.
+
+43. **[PROPOSED — not done] Rename "open answering" to "buzz-in".** The term reads as "answering
+    into an open text field", which is not what it means (it means *open to everyone*; the input
+    format is a separate axis — The Lineup is "open" and is a pick-list). The codebase already
+    says "buzz" 27 times against "open answering" 14, including in the Chain spec's "buzz-in
+    rate", so the better name is already the house term. Mechanical rename across both backends
+    plus docs: `openAnswerEligible` → `buzzEligible`, `resolveOpenAnswer` → `resolveBuzz`,
+    `OPEN_ANSWER_POINTS` → `BUZZ_IN_POINTS`, `answerOpensAt` → `buzzerOpensAt`. Do it as **one
+    atomic pass, not during the port** — a rename mixed into a translation hides any real bug in
+    a diff full of renames.
 
 ## Design Thesis: Casual-First
 This game targets casual, social players — not competitive optimizers. Every

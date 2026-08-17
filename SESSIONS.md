@@ -2929,9 +2929,71 @@ evidence of this repo's own 2.1 MB and 1.2 MB brand SVGs.
 may not work. Full detail, including the palette consequences and the working "paper and objects"
 thesis, in MYF `CLAUDE.md` item 39.
 
+### Aesthetic direction — settled in-session (MYF items 39/40)
+Owner explored white, then grey/charcoal/slate, and landed on **slate blue `#2F4459`** with faded
+question marks at **10% mark strength** over a dense field. Formalised as tokens in
+`tailwind.config.js`, not just prose. Key derived rules, all recorded in MYF `CLAUDE.md` item 40:
+- **The plate device** (from a Mapme reference deck the owner supplied): text sits on a rectangle
+  of *the ground colour with the texture switched off* — a hole cut through the field, not a panel
+  on top. No radius, border or shadow. Ground and plate are **one token**, deliberately.
+- **Mark strength and the plate device are the same decision.** The plate is only visible because
+  the texture around it isn't, so the two can't be tuned independently. If a real television needs
+  more separation, **add density, not opacity**.
+- Host video = a **centre-screen takeover**, not a persistent window (owner's call, on cost).
+  Because it replaces play content rather than sharing space, nothing reflows — which was the one
+  real objection to making it non-permanent. Vertical originates on the phone.
+- Host is **one character whose attitude varies** (snarky/rude/obscene), not a per-game custom
+  host — this is what makes pre-packaged animation viable. Clip carries the attitude, names arrive
+  as text. Flagged: "funny" is the one attitude that fights the model, since a joke is a one-shot
+  and a posture isn't.
+- Hold screen while a clip loads = **standings + a score-progression chart**, not a spinner.
+  Player colours generated in OKLCH and **validated** against the slate ground (lightness, chroma,
+  contrast, CVD) at 4 and 8 players — fixed order, must not be reordered.
+
+### Flow B — the round loop, agreed this session (MYF item 41)
+The owner walked a three-player hypothetical ("Flow A") through the live rules, which made **PT-4**
+concrete: under the Aug 12 free-for-all, a faster player takes the question and the active player's
+wager never bites. Worse, it breaks "I Cut, You Choose" — if anyone can claim the wager, the setter
+is placing a **bounty they might collect themselves**, so they'd always set maximum.
+
+**Flow B** (full spec in `GAME_DESIGN.md` → "The Round Loop"): after the 5s reading window the
+active player gets an **exclusive ~8s window** on their own question. Right → wins the wager.
+Wrong → loses it, buzzer opens. Pass → buzzer opens immediately, costs nothing. Everyone else then
+races for a flat 100, one attempt each. **Answering never earns another turn** (the runaway-leader
+failure in the rejected Flow A).
+
+Two things worth not re-deriving:
+- **Pass ≠ timeout.** An explicit pass is free; letting the window expire still costs the wager,
+  preserving `expireAnswerWindow`'s "stalling isn't free" rule. Without the split, pass becomes a
+  free opt-out of every hard question and the wager stops mattering again.
+- Also corrected a **stale Round Loop section** in `GAME_DESIGN.md` that still described the
+  pre-Aug-12 single-answerer loop.
+
+### `server_py` port — started, deliberately paused (MYF item 42)
+The blocker the owner asked about. Two backends exist: `server.js` (Next.js prototype, where all
+design work lands) and `server_py/` (**what Godot talks to**). Every change since Aug 12 went into
+the first only, so `server_py` encodes a *different game* — 20s timer vs 40, 5 categories vs 3,
+retired Steal still present, no reading window. Any Godot screen built today targets a game that
+no longer exists.
+
+**Landed:** constants, round rules (Steal out, Rebus in, `NO_RULE`, no-repeat picker,
+`MYF_FORCE_ROUND_RULE`), and the rebus bank — **generated** from `lib/rebusData.js` via a new
+`scripts/build-rebus-py.mjs` rather than hand-typed, since 113 pieces and 82 puzzles retyped is a
+silent-divergence machine. Passes the same integrity checks as the JS suite.
+Also fixed `test_start_progress.py`, which hardcoded `15` categories and so silently encoded the
+old 5-category game.
+
+**Paused on purpose** at a clean boundary: the next piece is the answer flow, and Flow B replaces
+it. Porting the Aug 12 flow and then immediately rewriting it would build the same mechanic twice.
+
 ### Next steps
-1. **Waiting on owner:** ground colour (grey / charcoal / slate blue vs white). Everything else in
-   item 39 depends on it.
-2. Unchanged and still the real blocker: `server_py` parity (item 1), then the Godot screens.
-3. Owner action, one click: delete `dev/cryptic-challenge` (and optionally
-   `dev/mind-your-friends`) via the GitHub UI.
+1. **Build Flow B in the Next.js prototype** (MYF item 41) — the only place it can be played.
+   Then play it: PT-4's watch-list is now Flow B's test list, and PT-5 needs the same table.
+   The 8s exclusive window is the number most likely to be wrong.
+2. **Resume the `server_py` port** (item 42) once Flow B settles. The hard part is unchanged:
+   "first correct wins" must mean first *submission*, not first API response — Python needs a real
+   per-game answer queue, and the evaluation must not hold `_games_lock` while it waits.
+3. **Optional, cheap:** the "open answering" → "buzz-in" rename (item 43). One atomic pass, never
+   mixed into the port.
+4. Owner action, one click: delete `dev/cryptic-challenge` (and optionally `dev/mind-your-friends`)
+   via the GitHub UI — both are stale pointers with zero unique commits.
