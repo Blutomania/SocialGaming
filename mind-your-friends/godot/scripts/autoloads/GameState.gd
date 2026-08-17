@@ -38,6 +38,13 @@ signal players_changed(players: Array)
 ## Fired once when the server reports GAME_OVER.
 signal game_over(winners: Array)
 
+## Fired whenever the room-wide "building the question bank" progress changes,
+## including the first push (before any Claude call) and the final one that
+## clears it. `progress` is {active, completed, total, label}; `active` is
+## false on the clearing push. Scenes showing a lobby should react to this --
+## the build takes ~50s and a silent screen reads as a hang.
+signal start_progress_changed(progress: Dictionary)
+
 # --- Phase constants ---------------------------------------------------------
 # Mirrors the phase strings set in server_py/game_state.py. Using constants
 # rather than bare strings so a typo is a compile-time-ish error in one place.
@@ -138,6 +145,7 @@ func _on_ws_event(event_name: String, data: Dictionary) -> void:
 func _apply_view(next_view: Dictionary) -> void:
 	var previous_phase: String = phase
 	var previous_roster: Array = _roster_fingerprint()
+	var previous_progress: Dictionary = start_progress()
 
 	view = next_view
 	phase = str(next_view.get("phase", ""))
@@ -149,6 +157,10 @@ func _apply_view(next_view: Dictionary) -> void:
 
 	if _roster_fingerprint() != previous_roster:
 		players_changed.emit(players())
+
+	var current_progress: Dictionary = start_progress()
+	if current_progress != previous_progress:
+		start_progress_changed.emit(current_progress)
 
 	if phase == PHASE_GAME_OVER and previous_phase != PHASE_GAME_OVER:
 		game_over.emit(winners())
@@ -219,8 +231,43 @@ func all_registered() -> bool:
 
 ## Whether the Start Game button should be live. The server re-checks this in
 ## start_game(); this is purely so the button isn't clickable too early.
+## False while the fact bank is already building, so the button can't be
+## pressed twice.
 func can_start_game() -> bool:
-	return phase == PHASE_LOBBY and player_count() >= MIN_PLAYERS and all_registered()
+	return (
+		phase == PHASE_LOBBY
+		and player_count() >= MIN_PLAYERS
+		and all_registered()
+		and not is_starting()
+	)
+
+
+## Room-wide fact-bank build progress: {active, completed, total, label}.
+## Empty dict when no build is running (the server sends null then). Pushed to
+## every player, not just the host who pressed Start.
+func start_progress() -> Dictionary:
+	var raw: Variant = view.get("startProgress")
+	return raw if raw is Dictionary else {}
+
+
+## True while the server is building the question bank on game start. Expect
+## this to stay true for ~50s -- that is normal, not a stall.
+func is_starting() -> bool:
+	return bool(start_progress().get("active", false))
+
+
+## Server-authored progress line, e.g. "Building the question bank — 2 of 5
+## batches done…". Written server-side (game_state._fact_bank_progress_label)
+## so the Godot and web clients say the same thing.
+func start_progress_label() -> String:
+	return str(start_progress().get("label", ""))
+
+
+## Fact-bank build progress as [completed_batches, total_batches]. Both 0
+## before the first batch lands.
+func start_progress_counts() -> Array:
+	var progress: Dictionary = start_progress()
+	return [int(progress.get("completed", 0)), int(progress.get("total", 0))]
 
 
 func is_room_full() -> bool:

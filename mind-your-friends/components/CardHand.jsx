@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { CARD_INFO } from '../lib/cards';
+import GameCard from './GameCard';
 
 // Shown to every player during the CARD phase. First card played wins the
 // FCFS slot (see GAME_DESIGN.md -> Card Resolution); everyone else's
@@ -31,17 +32,11 @@ export default function CardHand({ game, myId, socket }) {
   return (
     <div className="space-y-2">
       <h3 className="text-sm font-semibold text-gray-300">Your hand</h3>
-      <div className="flex flex-wrap gap-2">
+      {/* Fixed columns rather than flex-wrap: every card the same size is the
+          point (playtest note 7), and wrapping let the last row stretch. */}
+      <div className="grid grid-cols-4 gap-2 sm:grid-cols-6">
         {me.hand.map((id) => (
-          <button
-            key={id}
-            disabled={slotTaken}
-            onClick={() => play(id)}
-            title={CARD_INFO[id].description}
-            className="rounded border border-game-accent px-3 py-2 text-sm hover:bg-game-accent/20 disabled:opacity-30"
-          >
-            {CARD_INFO[id].name}
-          </button>
+          <GameCard key={id} cardId={id} disabled={slotTaken} onClick={play} />
         ))}
         {me.hand.length === 0 && <p className="text-sm text-gray-500">No cards left.</p>}
       </div>

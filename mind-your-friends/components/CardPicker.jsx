@@ -1,5 +1,6 @@
 'use client';
 
+import GameCard from './GameCard';
 import { useState, useEffect, useCallback } from 'react';
 import { CARDS, ALL_CARD_IDS, HALF_OFF } from '../lib/cards';
 import { CARD_PICK_TIMER_MS } from '../lib/constants';
@@ -60,31 +61,17 @@ export default function CardPicker({ onPick }) {
         You also have <span className="text-game-green font-semibold">{HALF_OFF.name}</span> every round — {HALF_OFF.description.toLowerCase()}
       </div>
 
-      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-        {ALL_CARD_IDS.map((id) => {
-          const card = CARDS[id];
-          const isSelected = selectedId === id;
-          return (
-            <button
-              key={id}
-              onClick={() => setSelectedId(id)}
-              className={`rounded border-2 px-3 py-3 text-left transition ${
-                isSelected
-                  ? 'border-game-accent bg-game-accent/20'
-                  : 'border-transparent bg-game-card hover:border-gray-600'
-              }`}
-            >
-              <div className="font-semibold">
-                {card.name}
-                <span className={`ml-2 text-xs ${card.type === 'anti-sabotage' ? 'text-game-green' : 'text-game-red'}`}>
-                  {card.type === 'anti-sabotage' ? 'Defense' : 'Sabotage'}
-                </span>
-              </div>
-              <div className="mt-1 text-xs text-gray-400">{card.description}</div>
-            </button>
-          );
-        })}
+      {/* Same card component, same size, as the in-game hand — so the card
+          you picked here is visually the card you play later. */}
+      <div className="grid grid-cols-3 gap-2 sm:grid-cols-5">
+        {ALL_CARD_IDS.map((id) => (
+          <GameCard key={id} cardId={id} selected={selectedId === id} onClick={setSelectedId} />
+        ))}
       </div>
+
+      {selectedId && (
+        <p className="text-center text-sm text-gray-400">{CARDS[selectedId].description}</p>
+      )}
 
       <button
         disabled={!selectedId}

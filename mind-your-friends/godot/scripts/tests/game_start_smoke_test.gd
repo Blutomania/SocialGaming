@@ -1,10 +1,12 @@
 ## Headless end-to-end test for the LOBBY -> CATEGORY transition.
 ##
-## COSTS REAL MONEY. start_game() builds the fact bank, which is ~5-7 real
-## Claude API calls and can take up to ~90 seconds. Kept as a SEPARATE scene
-## from lobby_smoke_test.tscn deliberately so the everyday smoke test stays
-## free and instantly repeatable -- run this one only when the game-start path
-## itself is what changed.
+## COSTS REAL MONEY. start_game() builds the fact bank, which is 5 real Claude
+## API calls (3 players x 5 categories = 15 unique categories at
+## CATEGORIES_PER_FETCH_BATCH = 3) and takes ~50s -- they run concurrently
+## server-side. Kept as a SEPARATE scene from lobby_smoke_test.tscn
+## deliberately so the everyday smoke test stays free and instantly
+## repeatable -- run this one only when the game-start path itself is what
+## changed.
 ##
 ## Run:
 ##   cd server_py && python3 -m uvicorn main:app --port 8001 &
@@ -60,11 +62,34 @@ func _run() -> void:
 			saw_phase_change[0] = true
 	)
 
-	print("  starting game (fact bank build, may take ~90s)...")
+	# The lobby has to say something during the ~50s build or it reads as a
+	# hang (CLAUDE.md item 36). Collect every startProgress push so we can
+	# assert the room was actually told what was happening, and when.
+	var progress_pushes: Array = []
+	GameState.start_progress_changed.connect(func(progress: Dictionary) -> void:
+		progress_pushes.append(progress.duplicate())
+	)
+
+	print("  starting game (fact bank build, ~50s)...")
 	var started := await _post(func(cb: Callable) -> void:
 		ApiClient.start_game(code, host_id, cb)
-	, 150.0)
+	, ApiClient.START_GAME_TIMEOUT)
 	_check(started["error"] == "", "start_game succeeded (error: '%s')" % started["error"])
+
+	# Asserted before the phase wait below: these pushes must have arrived
+	# WHILE the request above was still in flight, which is the entire point.
+	_check(progress_pushes.size() > 0,
+		"the room was pushed progress during the build (got %d pushes)" % progress_pushes.size())
+	if progress_pushes.size() > 0:
+		var first: Dictionary = progress_pushes[0]
+		_check(bool(first.get("active", false)), "the first progress push is active")
+		_check(not str(first.get("label", "")).is_empty(),
+			"progress pushes carry a label (got '%s')" % str(first.get("label", "")))
+		print("  first progress line: %s" % str(first.get("label", "")))
+	var cleared: Dictionary = progress_pushes[progress_pushes.size() - 1] if progress_pushes.size() > 0 else {}
+	_check(not bool(cleared.get("active", false)),
+		"the last progress push clears it -- the lobby must not freeze on a stale bar")
+	_check(not GameState.is_starting(), "is_starting() is false once the build finishes")
 
 	var reached := await _wait_until(
 		func() -> bool: return GameState.phase == GameState.PHASE_CATEGORY, 150.0)

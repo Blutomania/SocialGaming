@@ -39,6 +39,43 @@ within those layers must pass the "hear it and get it" test:
 If any element needs a paragraph to explain, it's too complex for this game.
 When in doubt, cut it.
 
+### The wager ladder
+
+**Five tiers: 12 / 25 / 50 / 100 / 200** (decided August 17 2026). A doubling
+ladder anchored so that **100 is the whole pie** — every rung is a fraction of
+one, and the wager screen draws it that way: an eighth, a quarter, a half, all
+of it, and more pie than there is.
+
+This replaced a 50–500 slider in 10-point steps, which was arbitrary in a way
+that mattered. It offered 46 values across a range whose ends were both wrong —
+a 50 swung about 4% of a typical winning margin (noise), a 500 swung 43% (one
+question deciding half the night) — at a resolution far finer than any decision
+a person can actually make, and nothing on screen said what a big number was
+supposed to mean.
+
+The ladder spreads properly instead. Share of a typical winner-to-loser margin,
+from `scripts/economy-sim.js`:
+
+| Tier | Wager | Swings | Share of the margin | A buzz pays |
+|---|---|---|---|---|
+| Sliver | 12 | 24 | 3% | 10 |
+| Slice | 25 | 50 | 6% | 20 |
+| Half | 50 | 100 | 12% | 40 |
+| Whole pie | 100 | 200 | 23% | 75 |
+| DOUBLE | 200 | 400 | 47% | 150 |
+
+Two consequences worth keeping:
+
+- **Five buttons is a decision you can make in two seconds and say out loud**
+  ("you're getting the whole pie"). A slider never was.
+- **The wager is a real difficulty signal.** It becomes the difficulty
+  instruction in the generation prompt *and* the filter on the fact bank, one
+  rung per tier — so the question genuinely gets harder as the pie grows, and
+  the question text is printed in a colour keyed to that tier.
+
+Off-ladder values are **rejected, not clamped**: the screen offers five buttons,
+so anything else is a stale client, and a wager of 137 is one no pie can draw.
+
 ### Category + Wager: "I Cut, You Choose"
 The category/wager split follows the classic fair-division mechanism
 ([Yale SOM](https://insights.som.yale.edu/insights/better-way-to-divide-the-pie)):
@@ -76,15 +113,158 @@ Lands comfortably inside the 20-30 min target with buffer under the hard cap.
 
 ---
 
-## The Round Loop
+## The Round Loop — "Flow B"
+
+**Status: BUILT August 17 2026** in the Next.js prototype and in `server_py`.
+Not yet played by real people — see "Still needs a table" below. This supersedes
+both the original single-answerer loop and the Aug 12 free-for-all. What changed
+and why is in "Why the active player answers first" below.
+
 Each question follows this phase order (server enforces):
-1. Active player picks a category
-2. Next player sets the wager (50–500 pts)
-3. All players may play cards (see Card Mechanic below)
-4. Server calls Claude → generates question (modified by active round rule)
-5. Active player answers within the timer
-6. Claude evaluates answer (fuzzy match); points awarded or deducted
-7. 4s result screen → next turn
+
+1. **Active player picks a category** — from the six offered options.
+2. **Next player (to their left) sets the wager** — one of five tiers, see
+   "The wager ladder" below. Adversarial by design; see "I Cut, You Choose".
+3. **Card window.** Anyone may play a sabotage or defence card at the active
+   player (see Card Mechanic).
+4. **Server calls Claude → generates the question**, modified by the active
+   round rule.
+5. **Reading window (`READING_SECONDS`, 5s).** The question is on screen and
+   *nobody* can answer. Nobody should be racing a clock they haven't finished
+   reading.
+6. **The active player's exclusive window (`ACTIVE_WINDOW_SECONDS`, 8s).** Only
+   they may answer. It is their wager, so they get first refusal on their own
+   question.
+7. **Active player answers correctly → they win the wager.** Question ends.
+8. **Active player answers wrong → they lose the wager,** and the buzzer opens
+   to the room immediately.
+9. **Active player passes → the buzzer opens immediately and they lose
+   nothing.** Passing is a real decision, not a forfeit: with 500 on a category
+   you don't know, folding is legitimate play.
+   **A pass is an explicit action. Running out of time is not.** If the active
+   player neither answers nor passes and their window simply expires, they lose
+   the wager exactly as if they'd answered wrong — the existing "stalling isn't
+   free" rule (`expireAnswerWindow`) is preserved. The distinction is the point:
+   folding is a decision and costs nothing, freezing is a failure and costs the
+   wager. Without it, "pass" would just be a free opt-out of every hard question
+   and the wager would stop mattering again — the exact problem Flow B exists to
+   fix.
+10. **Buzzer open to everyone else** for the remainder of the answer clock.
+    One attempt each; the first correct answer wins `BUZZ_WAGER_SHARE` (0.75)
+    of the wager. A wrong guess locks you out of this question and costs
+    nothing.
+11. **Claude evaluates each attempt** (fuzzy match), serialised so that "first
+    correct" means first *buzz*, never first API response.
+12. **4s result screen → next turn.** Turn passes in fixed rotation regardless
+    of who answered. **Answering never earns another turn.**
+
+### Pre-committed answers — you buzz with what you already wrote
+
+**Owner's call, August 17 2026.** Everyone except the answerer types their
+answer **during the answerer's exclusive window** and locks it in. A buzz then
+plays that committed answer. You cannot type one after the fumble.
+
+Three things follow, and all three are the point:
+
+- **It closes the lookup window.** The moment worth cheating in is the one
+  *after* the answerer fails, with the whole remaining clock to search. That
+  moment no longer accepts new answers.
+- **Buzzing stops being a typing race.** It becomes one tap — a decision about
+  whether to commit, not a test of words-per-minute. That is the right outcome
+  for a game whose thesis is casual-first.
+- **The room is busy during the exclusive window** instead of watching. No dead
+  air, and everyone is invested in whether the answerer fumbles.
+
+**No lock, no buzz.** A player who never committed sits the question out. That
+is the whole mechanism — an escape hatch for the uncommitted would reopen the
+lookup window it exists to close.
+
+Two rules keep it fair:
+
+- **The lock deadline never moves.** It is fixed at the *scheduled* end of the
+  exclusive window. The answerer passing brings the **buzzer** forward but not
+  the **lock deadline** — otherwise folding at second one would cut the room off
+  mid-sentence and the question would die with nobody able to buzz.
+- **A commitment is immutable.** One you can revise until the last instant is
+  not a commitment, and the mechanic rests on having decided early.
+
+**A question nobody can answer ends immediately** rather than running the clock
+down. Once locking closes, if no eligible player holds a committed answer, there
+is no way to resolve the question and no reason to make the room watch a buzzer
+nobody can press.
+
+**The unplayed answers are revealed at the result.** This is the loudest moment
+the mechanic produces: *"you HAD it and sat on it"* is the line people shout at
+each other, and it is invisible unless the room is shown the commitments.
+
+### Why the active player answers first
+
+The Aug 12 change opened every question to the whole room, which fixed the real
+problem it was aimed at (two players sitting silent while a third floundered)
+but created a quieter one: **if a faster player always takes the question, the
+wager never bites.** The active player watches their own question get taken and
+neither wins nor loses anything. That is PLAYTEST.md **PT-4**, and Flow B is the
+answer to it.
+
+Restoring first refusal (step 6) puts the wager back where "I Cut, You Choose"
+needs it. The wager-setter's power only balances the category-picker if the
+category-picker is the one exposed to it. If anyone can claim the wager, the
+setter stops setting a punishment and starts setting **a bounty they might
+collect themselves** — so they would always set maximum, and the most
+interesting decision in the game collapses.
+
+Buzzing survives, but its character changes from **race** to **vulture**: you
+are pouncing on a fumble, not outrunning the person whose question it is. That
+is a better fit for casual-first — the fast player still gets rewarded, but not
+by taking anything away from someone who never got a turn to try.
+
+### Parameters
+
+| Parameter | Value | Note |
+|---|---|---|
+| `READING_SECONDS` | 5 | Nobody may answer. Already built. |
+| `ACTIVE_WINDOW_SECONDS` | 8 | **New.** Carved *out of* the round rule's answer clock, not added to it, so total question length is unchanged. |
+| Exclusive-window cap | 25% of the rule's clock | So Lightning Round (20s) gets a 5s exclusive window rather than 8s of its 20. Without this, halving the clock makes the round mostly-exclusive. |
+| `BUZZ_WAGER_SHARE` | 0.75 | A buzz-in win pays this share of the wager, for anyone but the answerer. See "What a buzz is worth" below. |
+
+The buzzer opens on **whichever comes first**: the active player answering, the
+active player passing, or the exclusive window expiring. A pass must open it
+*immediately* — making the room wait out a window the active player has already
+declined is exactly the dead air this game keeps trying to remove.
+
+**Does not apply to round rules with their own answer flow.** Worst Answer Wins
+(`submissionBased`) and The Lineup (`lineupBased`) keep their existing
+structures — everyone submits, or everyone taps. Rebus is ordinary free text and
+does use Flow B.
+
+### What a buzz is worth
+
+**0.75x the wager, not a flat number** (decided August 17 2026, replacing a flat
+100). Two reasons:
+
+- **It is self-anchoring.** "Three-quarters of what they were playing for" needs
+  no explanation. A flat 100 floats free of every other number on screen, which
+  is exactly why nobody could tell whether 100 was a lot or a little.
+- **It scales with the question's danger.** A big wager buys a harder question,
+  so taking a hard one should pay more than taking an easy one.
+
+**The share must stay below 1.** At 1.5x a buzzer would earn 300 on a question
+the answerer could only win 200 on, while risking nothing — which inverts the
+risk hierarchy of the whole game and makes being the active player something to
+avoid. Under 1, that hierarchy stays the right way up.
+
+It also barely disturbs "I cut, you choose". Any wager-linked payout gives the
+setter — who is also a buzzer on that question — some interest in setting high,
+but at 0.75x it moves their break-even from "will they get this?" at 50% to
+about 55%. At 1.5x the whole decision starts to collapse.
+
+`scripts/economy-sim.js` models this; re-run it after changing the share or the
+ladder rather than arguing about it.
+
+**Still needs a table.** Flow B is a reasoned answer to PT-4, not a validated
+one. Two numbers are the guesses most likely to be wrong: the 8-second exclusive
+window (too short and it is a formality, too long and the room is waiting), and
+whether the lock window gives people enough time to commit an answer at all.
 
 ---
 
@@ -170,7 +350,7 @@ pair that the rule can meaningfully act on. Examples:
 | Take Your Time | No special constraint — any question works |
 | Lightning Round | No special constraint — any question works |
 | Double Down | No special constraint — any question works |
-| Steal | Must have a definitive correct answer (no opinion/subjective questions) |
+| Rebus | N/A — the puzzle comes from the curated bank, not from generation. The category still sets wager difficulty but does not shape the puzzle |
 | The Lineup | Must resolve to exactly one unambiguous correct option from a small fixed set — no free-text answer, same category as Steal's "definitive correct answer" requirement |
 
 This is a **generation-time constraint**, same pattern as format-constraining
@@ -235,8 +415,14 @@ how the question plays out on top of whatever question type is active. E.g.
 ---
 
 ## Round Rules (Variations)
-Each question is modified by an active round rule. Rules rotate across the game.
-Full rule list — 8 confirmed, 1 backburnered:
+**One rule per ROUND**, not per question (changed Aug 12, 2026). The rule is
+announced in a banner at the top of the round and stays on screen for its
+duration — a rule you have to remember is one people forget mid-round and then
+feel cheated by. **Round 1 has no rule at all**, deliberately: a new player
+should learn the base game before a rule bends it. Rules don't repeat until
+every rule has had a round.
+
+Full rule list — 9 live, 1 spec'd, 1 retired, 1 backburnered:
 
 | # | Name | What changes | Input-agnostic? |
 |---|---|---|---|
@@ -246,9 +432,11 @@ Full rule list — 8 confirmed, 1 backburnered:
 | 4 | Take Your Time | Timer doubled; host quip escalates | Yes |
 | 5 | ELI5 | Question phrased by a curious 5-year-old; Claude judges understanding | Yes |
 | 6 | Double Down | Wager auto-doubled, no backing out | Yes |
-| 7 | Steal | Wrong answer opens a steal window for other players | Yes |
-| 8 | Worst Answer Wins | Everyone submits; worst answer scores lowest (wins). Scored on 3 axes: factually wrong (1-10), creatively wrong (1-10), plausibility (1-10). Lowest total wins. | Yes |
-| 9 | The Lineup | Pick the right one from a lineup of look-alikes — see below | N/A — no free-text answer at all |
+| 7 | Worst Answer Wins | Everyone submits; worst answer scores lowest (wins). Scored on 3 axes: factually wrong (1-10), creatively wrong (1-10), plausibility (1-10). Lowest total wins. | Yes |
+| 8 | The Lineup | Pick the right one from a lineup of look-alikes — see below | N/A — no free-text answer at all |
+| 9 | Rebus | The answer is spelled out in emoji — see below | Yes |
+| — | Chain | Every answer in the round shares a theme — **spec'd, not built**, see below | Yes |
+| — | ~~Steal~~ | **Retired Aug 12, 2026.** Open answering made this the default behaviour of every question, so the rule was one round in nine where the normal rules applied. See PLAYTEST.md PT-4 | — |
 | — | Audience Poll | Others predict active player's answer *(out of v1 — backburnered)* | Yes |
 
 ### Worst Answer Wins — How It Works
@@ -263,20 +451,125 @@ correct/boring/implausible):
 Lowest total score wins. The sweet spot: completely false, wildly creative,
 yet somehow sounds convincing.
 
-### Steal — How It Works
-When the Steal round rule is active and the answerer gets it wrong:
-1. A "wrong" buzzer sound + visual fires for everyone.
-2. The game enters a **STEAL phase** (8-second window). Every player except the
-   original answerer sees a "STEAL!" button.
-3. **First to buzz in claims it** (FCFS, same pattern as card play). They must
-   submit their answer immediately.
-4. Correct steal: stealer gains the full wager. Wrong steal: stealer loses
-   half the wager. Either way, the window closes.
-5. If nobody buzzes in within 8 seconds, the window expires and play continues.
+### Rebus — How It Works
+The question is a string of emoji that spell or sound out the answer, plus a
+one-line hint of what kind of thing it is. 💯 + 🧑 → SURE + MAN → **Sherman**.
+The hint is not decoration: without it a rebus is a guessing game with no way
+in, which fails the casual-first test.
 
-**Redirect interaction**: if a Redirect card changed the answerer, the
-redirected player is the one excluded from the steal pool — the original
-active player can still steal.
+Two kinds, and the difference is marked in the data:
+- **Literal** — the pieces spell the answer exactly (☀️ + 🌼 = SUNFLOWER).
+- **Phonetic** — the pieces *sound* like it (🍩 + 🔑 = DOUGH + KEY = DONKEY).
+  These get an on-screen nudge: "say the pictures out loud."
+
+**Zero API calls.** Puzzles come from a curated bank (`lib/rebusData.js`),
+for the same reason The Lineup's colour flavour uses a curated hex table: a
+rebus whose pieces don't reconstruct its answer is *unsolvable*, and a room
+can't tell "we're stupid" from "the game is broken". Decomposing a word into
+sounds is among the things language models are least reliable at, so live
+generation would produce exactly that failure at some rate. Curation removes
+the failure mode rather than trying to catch it at runtime.
+
+**Structure: pieces, not puzzles.** The bank is a library of reusable *pieces*
+(`key -> {emoji, reads}`) plus puzzles that are just lists of piece keys. The
+same atoms recur constantly — MAN appears in six puzzles, SUN in four — so
+keying them means one emoji decision per concept instead of one per puzzle,
+and improving a piece improves everywhere it's used. It also gives any future
+generation path a fixed vocabulary to compose from, which is what makes an
+AI-proposed rebus checkable: "pick from these 113 pieces" can be validated
+mechanically, "invent a rebus" cannot.
+
+`scripts/mechanics-test.js` asserts every non-phonetic puzzle reconstructs its
+answer letter-for-letter, that every piece key resolves, and that no piece is
+orphaned. A broken puzzle can't ship.
+
+**The reveal shows the decomposition** (🟢 GREEN + 🏠 HOUSE = Greenhouse). A
+player who missed it has to find out *why*, or it's a trick rather than a
+puzzle.
+
+**Known limitation:** the puzzle ignores the picked category, same as The
+Lineup's colour flavour and for the same reason — the bank isn't categorized,
+and forcing a match would mean either a far larger bank or falling back to
+live generation. The category pick still happens; it sets wager difficulty and
+keeps the turn loop's attribution beat intact.
+
+### Chain — How It Works *(SPEC ONLY — not built)*
+Every answer in the round shares a theme. "Every answer this round contains a
+colour." "Every answer is a US state." The round announcement names the theme
+up front.
+
+**Why announce it rather than let the room discover it.** The obvious version
+hides the theme so spotting it is the thrill — but under open answering, the
+first player to spot it then wins every remaining question in the round. That
+isn't a mechanic, it's a landslide. Announcing it inverts the effect: the
+theme becomes a *hint*, which helps the players who need help, which is the
+casual-first thesis. The "ohhh" moment moves from spotting the pattern to
+seeing how each answer fits it.
+
+**The variant NOT chosen:** last-word-of-answer-N becomes first-word-of-
+question-N+1. It's brittle to generate and, more importantly, invisible to
+players mid-round — a pattern nobody notices isn't a mechanic.
+
+**The architectural cost, which is the real reason this is spec'd and not
+built.** Questions are built from the pre-generated fact bank, and the
+category is picked fresh each turn by the active player. Finding "a fact in
+*90s Movies* whose answer contains a colour" is a filter over ten factoids
+that will frequently come back empty. So a chain round needs one of:
+
+1. **Generate without the fact bank** — the no-factoid fallback path exists,
+   but it's the weaker one, and this rule would use it for a sixth of the game.
+2. **Generate the round's questions up front, one category for the whole
+   round** — defensible as design (a rule that changes the round's *structure*,
+   not just the question) and *cheaper to run*: one Claude call per round
+   instead of six. But it's the first round rule that would touch the turn
+   loop rather than just question generation, and it removes the per-turn
+   category pick for that round, which carries attribution and the Whoa Nellie
+   card's whole reason to exist.
+
+**Recommended shape if built:** option 2. One category for the round, chosen
+by the round's first active player. Theme announced with the rule. Six
+questions generated in a single call, each answer sharing the theme, validated
+before use — a chain where one answer doesn't fit is worse than no chain.
+
+**Whoa Nellie restarts the chain** (owner's call). The card keeps its identity
+— it has always been the context ambush — and gains its most dramatic possible
+version: the room is mid-pattern, and one card tears it up. New theme from this
+question on.
+
+That also resolves the announced-vs-hidden tension above, by splitting the
+difference along the line the card draws:
+
+- The round's **opening** theme is announced. Kind by default, no landslide.
+- A theme installed by **Whoa Nellie is not announced.** The room has to spot
+  the new one themselves.
+
+So the base round helps the players who need help, and the sabotage makes the
+rest of the round cruel — which is the right way round, and gives the card real
+teeth without letting one sharp player run away with a whole round. The
+landslide risk is bounded to whatever is left of the round.
+
+Attribution works as it does today: "Bob tore up the chain — new theme, and
+you're on your own."
+
+**Mechanical consequences of the restart, to design against:**
+- **Cost:** one extra generation call for that round. Acceptable — the card is
+  single-use and there's one card slot per question, so it can fire at most
+  once per round.
+- **Latency:** regenerating six questions mid-turn is slower than the single
+  question Whoa Nellie re-triggers today. Generate the *next* question
+  immediately and the rest in the background — the same lazy-then-prefetch
+  shape already built for the fact bank.
+- **Only regenerate what's left.** Questions already played stay played; their
+  scores stand.
+- **Edge case:** played on a round's last question, a restart is pointless.
+  Fall back to the normal category-swap behaviour there rather than building a
+  one-question chain.
+
+**Open questions still to settle before building:**
+- If the opening theme is announced, is the round *easier* than a normal round,
+  and should the flat buzz-in rate drop to compensate?
+- Where does the theme list come from — curated (like the rebus bank and the
+  category grid) or generated per round?
 
 ### The Lineup — How It Works
 Not free-text at all — a multiple-choice "spot the real one" mechanic. 5

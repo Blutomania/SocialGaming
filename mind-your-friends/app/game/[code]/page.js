@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { io } from 'socket.io-client';
+import BrandBar from '../../../components/BrandBar';
+import HostStage from '../../../components/HostStage';
 import Lobby from '../../../components/Lobby';
 import GameBoard from '../../../components/GameBoard';
 import ScoreBoard from '../../../components/ScoreBoard';
@@ -55,19 +57,24 @@ export default function GamePage() {
   const socket = socketRef.current;
 
   return (
-    <main className="min-h-screen p-4 md:p-8">
-      <header className="mb-4 flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-game-accent">Mind Your Friends</h1>
-        <span className="rounded bg-game-card px-3 py-1 font-mono text-lg tracking-widest">
-          {game.code}
-        </span>
-      </header>
+    <main className="mx-auto min-h-screen max-w-7xl p-4 md:p-8">
+      <BrandBar code={game.code} />
 
-      {game.phase === 'LOBBY' && <Lobby game={game} myId={myId} socket={socket} />}
-      {game.phase === 'GAME_OVER' && <ScoreBoard game={game} myId={myId} socket={socket} />}
-      {game.phase !== 'LOBBY' && game.phase !== 'GAME_OVER' && (
-        <GameBoard game={game} myId={myId} socket={socket} />
-      )}
+      {/* Two columns on a desktop, one on a phone. The game used to be a
+          single narrow column centred in a sea of empty space on anything
+          wider than a phone (playtest note 6); the host's 9:16 stage is what
+          that space is for. */}
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
+        <div className="min-w-0">
+          {game.phase === 'LOBBY' && <Lobby game={game} myId={myId} socket={socket} />}
+          {game.phase === 'GAME_OVER' && <ScoreBoard game={game} myId={myId} socket={socket} />}
+          {game.phase !== 'LOBBY' && game.phase !== 'GAME_OVER' && (
+            <GameBoard game={game} myId={myId} socket={socket} />
+          )}
+        </div>
+
+        <HostStage />
+      </div>
     </main>
   );
 }

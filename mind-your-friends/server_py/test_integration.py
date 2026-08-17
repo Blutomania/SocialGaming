@@ -16,6 +16,9 @@ import time
 import requests
 import websocket
 
+sys.path.insert(0, ".")
+from constants import READING_SECONDS
+
 BASE = "http://localhost:8001"
 WS_BASE = "ws://localhost:8001"
 
@@ -27,6 +30,13 @@ def post(path, **body):
     if r.status_code >= 400:
         raise RuntimeError(f"{path} -> {r.status_code}: {r.text}")
     return r.json()
+
+
+def post_expect_error(path, **body):
+    """For the calls this suite asserts are REFUSED — a rejected buzz is the
+    guarantee under test, not a failure."""
+    r = requests.post(f"{BASE}{path}", json=body, timeout=30)
+    return r.status_code >= 400
 
 
 class WSListener:
@@ -106,7 +116,7 @@ def run():
     print("phase: WAGER OK")
 
     print(f"wager player ({wager_player_id}) sets wager...")
-    post(f"/games/{code}/round/set-wager", playerId=wager_player_id, amount=250)
+    post(f"/games/{code}/round/set-wager", playerId=wager_player_id, amount=100)
     state = listener.wait_for_phase("CARD", timeout=15)
     print("phase: CARD OK")
 
@@ -141,32 +151,32 @@ def run():
     else:
         answerer_idx = state["answererIndex"]
         answerer_id = state["players"][answerer_idx]["id"]
-        print(f"Standard round ({round_rule['name']}) — submitting a plausible answer as {answerer_id}...")
-        post(f"/games/{code}/round/submit-answer", playerId=answerer_id, answer="test answer", inputMode="text")
-        # either RESULT (correct/wrong, no steal) or STEAL (wrong + stealOnWrong)
-        deadline = time.time() + 20
-        last = None
-        while time.time() < deadline:
-            with listener._lock:
-                phases = [e["data"]["phase"] for e in listener.events if e["event"] == "game:state"]
-            if phases and phases[-1] in ("RESULT", "STEAL"):
-                last = phases[-1]
-                break
-            time.sleep(0.3)
-        print("phase after submit:", last)
-        assert last in ("RESULT", "STEAL"), f"expected RESULT or STEAL, got {last}"
+        others = [p["id"] for p in state["players"] if p["id"] != answerer_id]
 
-        if last == "STEAL":
-            with listener._lock:
-                steal_state = next(
-                    e["data"] for e in reversed(listener.events)
-                    if e["event"] == "game:state" and e["data"]["phase"] == "STEAL"
-                )
-            stealer_id = next(p["id"] for p in steal_state["players"] if p["id"] != answerer_id)
-            print(f"Wrong answer opened STEAL — {stealer_id} buzzes in...")
-            post(f"/games/{code}/round/claim-steal", playerId=stealer_id, answer="test steal answer", inputMode="text")
-            state = listener.wait_for_phase("RESULT", timeout=15)
-            print("STEAL RESULT OK, lastResult:", state["lastResult"])
+        # Flow B. The room commits answers during the answerer's exclusive
+        # window, the answerer fumbles, and a committed player buzzes in.
+        # Sleeping past the reading window is the point, not incidental — the
+        # server rejects everything before it, which is the guarantee.
+        print(f"Standard round ({round_rule['name']}) — waiting out the reading window...")
+        time.sleep(READING_SECONDS + 0.5)
+
+        print(f"{others[0]} locks an answer in before the buzzer opens...")
+        post(f"/games/{code}/round/lock-answer", playerId=others[0], answer="a committed answer", inputMode="text")
+
+        print(f"{others[1]} tries to buzz during the exclusive window — should be refused...")
+        refused = post_expect_error(f"/games/{code}/round/buzz-in", playerId=others[1])
+        assert refused, "buzzing during the answerer's exclusive window must be rejected"
+
+        print(f"answerer {answerer_id} passes...")
+        post(f"/games/{code}/round/pass", playerId=answerer_id)
+
+        print(f"{others[0]} buzzes in with their committed answer...")
+        post(f"/games/{code}/round/buzz-in", playerId=others[0])
+        state = listener.wait_for_phase("RESULT", timeout=25)
+        result = state["lastResult"]
+        print("RESULT OK:", result["activeOutcome"], result["winnerName"], result["points"])
+        assert result["activeOutcome"] == "passed", f'expected a recorded fold, got {result["activeOutcome"]}'
+        assert result["wagerLost"] is False, "a fold must not cost the wager"
 
     listener.close()
     print("\n=== INTEGRATION TEST PASSED ===")

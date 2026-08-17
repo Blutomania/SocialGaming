@@ -1,12 +1,32 @@
-// 8 round rule variations. See GAME_DESIGN.md → Round Rules.
+// Round rule variations. See GAME_DESIGN.md → Round Rules.
 // Audience Poll is out for v1. Hot Take removed (see PLAYTEST.md PT-2).
-// Assigned randomly each turn (pickRandomRoundRule).
+// Steal removed (see PLAYTEST.md PT-3): open answering made it the default.
+//
+// Assigned once per ROUND, not per turn (pickRandomRoundRule) — round 1 is
+// deliberately plain so a new player learns the base game before a rule bends
+// it, and every round after that has exactly one rule, announced at the top of
+// the round and kept on screen for its duration.
 //
 // Rules that constrain the answer format define both `transform.text` and
 // `transform.voice` — see GAME_DESIGN.md → Input Modes. Rules with no answer
 // constraint are input-agnostic and have no `transform`.
 
-export const BASE_TIMER_SECONDS = 20;
+// Doubled from 20s (playtest, Aug 12): 20s was measured against a question
+// the player had already read, but in practice the clock and the question
+// arrived together. Reading is now its own phase (READING_SECONDS) and this
+// is time to actually think.
+export const BASE_TIMER_SECONDS = 40;
+
+// Round 1's "rule". Not in ROUND_RULES, never picked at random, and hidden by
+// the UI — it exists so nothing downstream has to null-check game.roundRule.
+export const NO_RULE = {
+  id: 'none',
+  name: 'No Rule',
+  emoji: '',
+  description: 'Straight trivia — no twist this round.',
+  promptInstruction: null,
+  timerSeconds: BASE_TIMER_SECONDS,
+};
 
 export const ROUND_RULES = {
   backItUp: {
@@ -70,15 +90,6 @@ export const ROUND_RULES = {
     timerSeconds: BASE_TIMER_SECONDS,
     wagerMultiplier: 2,
   },
-  steal: {
-    id: 'steal',
-    name: 'Steal',
-    emoji: '🦹',
-    description: 'Wrong answer opens a steal window for other players.',
-    promptInstruction: null,
-    timerSeconds: BASE_TIMER_SECONDS,
-    stealOnWrong: true,
-  },
   worstAnswerWins: {
     id: 'worstAnswerWins',
     name: 'Worst Answer Wins',
@@ -88,6 +99,15 @@ export const ROUND_RULES = {
       'Generate a factual question with a clear correct answer. All players will submit intentionally wrong answers. The question must have a definitive factual answer so "wrongness" is measurable.',
     timerSeconds: BASE_TIMER_SECONDS * 2,
     submissionBased: true,
+  },
+  rebus: {
+    id: 'rebus',
+    name: 'Rebus',
+    emoji: '🧩',
+    description: 'The answer is spelled out in emoji. Read the pictures, not the words.',
+    promptInstruction: null,
+    timerSeconds: BASE_TIMER_SECONDS,
+    rebusBased: true,
   },
   theLineup: {
     id: 'theLineup',
@@ -100,10 +120,43 @@ export const ROUND_RULES = {
   },
 };
 
-export function pickRandomRoundRule() {
+// Playtesting affordance: pin every round to one rule.
+//
+//   MYF_FORCE_ROUND_RULE=rebus npm run dev
+//
+// Previous sessions each hacked this in locally and reverted it before
+// committing, which meant re-writing it every time and risking it shipping
+// by accident. It's a real, documented switch now. Unset in normal play, and
+// it overrides round 1's deliberately-plain rule too — otherwise testing a
+// rule costs a whole round to reach.
+function forcedRule() {
+  const id = process.env.MYF_FORCE_ROUND_RULE;
+  if (!id) return null;
+  const rule = ROUND_RULES[id];
+  if (!rule) {
+    console.warn(`MYF_FORCE_ROUND_RULE="${id}" is not a rule. Known: ${Object.keys(ROUND_RULES).join(', ')}`);
+    return null;
+  }
+  return rule;
+}
+
+// `exclude` — rule ids already used this game. A rule is only repeated once
+// every rule has had a turn, so a 4-round game shows four different twists
+// instead of rolling the same one twice.
+export function pickRandomRoundRule(exclude = []) {
+  const forced = forcedRule();
+  if (forced) return forced;
   const ids = Object.keys(ROUND_RULES);
-  const id = ids[Math.floor(Math.random() * ids.length)];
-  return ROUND_RULES[id];
+  const fresh = ids.filter((id) => !exclude.includes(id));
+  const pool = fresh.length > 0 ? fresh : ids;
+  return ROUND_RULES[pool[Math.floor(Math.random() * pool.length)]];
+}
+
+// Round 1 is plain by design, but that makes any forced rule cost a whole
+// round to reach. This is the one place the force is allowed to override the
+// design invariant.
+export function forcedRuleForRoundOne() {
+  return forcedRule();
 }
 
 // Apply a round rule's answer transform, if any, for the given input mode.

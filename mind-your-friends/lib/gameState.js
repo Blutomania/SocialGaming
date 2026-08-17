@@ -8,7 +8,7 @@
 // mutation.
 
 import { buildRoundHand, pickRandomLanguageRegister } from './cards.js';
-import { pickRandomRoundRule, transformAnswer } from './roundRules.js';
+import { pickRandomRoundRule, transformAnswer, NO_RULE, forcedRuleForRoundOne } from './roundRules.js';
 import {
   generateQuestion,
   generateLineupOptions,
@@ -21,14 +21,17 @@ import {
 } from './claudeClient.js';
 import { roundConstraints, turnConstraints, validateQuestion, pickFactoid } from './coherence.js';
 import { pickColorLineupEntry, buildColorOptions } from './lineupData.js';
+import { pickRebusPuzzle, resolveRebus } from './rebusData.js';
 import {
   ROUNDS,
   QUESTIONS_PER_ROUND,
   TOTAL_QUESTIONS,
   MIN_WAGER,
   MAX_WAGER,
+  WAGER_TIERS,
+  WAGER_VALUES,
+  wagerTierIndex,
   RESULT_SCREEN_MS,
-  STEAL_WINDOW_MS,
   MIN_PLAYERS,
   MAX_PLAYERS,
   CATEGORIES_PER_PLAYER,
@@ -36,6 +39,11 @@ import {
   DISCONNECT_GRACE_MS,
   AUTO_ADVANCE_AWAY_THRESHOLD,
   LINEUP_COLOR_FLAVOR_CHANCE,
+  BUZZ_WAGER_SHARE,
+  buzzPointsForWager,
+  READING_SECONDS,
+  ACTIVE_WINDOW_SECONDS,
+  ACTIVE_WINDOW_MAX_SHARE,
 } from './constants.js';
 
 export {
@@ -44,13 +52,17 @@ export {
   TOTAL_QUESTIONS,
   MIN_WAGER,
   MAX_WAGER,
+  WAGER_TIERS,
+  WAGER_VALUES,
   RESULT_SCREEN_MS,
-  STEAL_WINDOW_MS,
   MIN_PLAYERS,
   MAX_PLAYERS,
   CATEGORIES_PER_PLAYER,
   CATEGORY_OPTIONS_COUNT,
   DISCONNECT_GRACE_MS,
+  BUZZ_WAGER_SHARE,
+  READING_SECONDS,
+  ACTIVE_WINDOW_SECONDS,
 };
 
 function generateGameCode() {
@@ -83,6 +95,20 @@ export function createGame(hostId, hostName) {
     // Contains correct answers, so playerView() only exposes it at GAME_OVER.
     questionLog: [],
     postGame: null,
+    // Round-level state. roundNumber is 1-based; usedRuleIds keeps a rule
+    // from repeating until every rule has had a round.
+    roundNumber: 0,
+    usedRuleIds: [],
+    roundAnnouncement: null,
+    // playerId -> attempt, for open answering. Reset every turn.
+    answerAttempts: {},
+    // Epoch ms when the buzzer opens (reading window over). Null outside ANSWER.
+    answerOpensAt: null,
+    // Non-null only while startGame() is building the fact bank. The build
+    // takes ~50s even with the batches running concurrently, which is long
+    // enough that a Lobby showing nothing reads as a hang — this is what the
+    // Lobby renders instead. See CLAUDE.md item 36.
+    startProgress: null,
   };
 }
 
@@ -140,30 +166,164 @@ export function allPlayersRegistered(game) {
   return game.players.length >= MIN_PLAYERS && game.players.every((p) => p.registered);
 }
 
-// Fetches facts for all player-submitted categories in batches.
-// Called once at game start — all questions are built from this bank.
-export async function buildFactBank(game) {
+// --- Fact bank -------------------------------------------------------------
+//
+// Facts are fetched per category, on demand, instead of all of them up front
+// (playtest, Aug 12). Building the whole bank at Start Game meant a wait
+// before anyone had touched the game — the worst possible place to put one,
+// because nothing has happened yet to make it feel earned. Now Start Game is
+// instant, the categories nobody picks are never paid for at all, and the
+// fetch for a category that IS picked happens behind the wager and card
+// windows, where there is already time to fill.
+//
+// Two entry points, and both are needed:
+//   ensureCategoryFacts() — correctness. Awaited before a question is
+//     generated, so a category always has facts by the time it matters.
+//   prefetchFactBank() — smoothness. Fired at game start; quietly fills in
+//     everything else so the awaited call above is almost always a no-op.
+
+// De-duplicates concurrent fetches for the same category: the prefetch and a
+// player's pick can easily target the same category at the same moment, and
+// paying twice for that would be the exact cost this design is avoiding.
+function trackFetch(game, categories, promise) {
+  game._factFetches ??= {};
+  for (const c of categories) game._factFetches[c] = promise;
+  const clear = () => {
+    for (const c of categories) {
+      if (game._factFetches[c] === promise) delete game._factFetches[c];
+    }
+  };
+  promise.then(clear, clear);
+  return promise;
+}
+
+export function ensureCategoryFacts(game, category) {
+  if (!category) return Promise.resolve();
+  game.factBank ??= {};
+  if (game.factBank[category]) return Promise.resolve();
+  if (game._factFetches?.[category]) return game._factFetches[category];
+
+  const promise = fetchFactsBatch([category])
+    .then((facts) => {
+      Object.assign(game.factBank, facts);
+    })
+    .catch((err) => {
+      // Deliberately swallowed. generateQuestion() already has a no-factoid
+      // fallback path, so a failed fetch costs question quality, not the
+      // turn — and a thrown error here would take the whole turn down.
+      console.error(`Fact fetch failed for "${category}":`, err.message);
+    });
+
+  return trackFetch(game, [category], promise);
+}
+
+// Fire-and-forget. `onUpdate(game)` is the server's broadcast, so the room can
+// see how much of the bank is warm.
+export function prefetchFactBank(game, onUpdate) {
+  game.factBank ??= {};
+  game._factFetches ??= {};
+  const all = [...new Set(game.players.flatMap((p) => p.categories))];
+  const missing = all.filter((c) => !game.factBank[c] && !game._factFetches[c]);
+  if (missing.length === 0) return Promise.resolve();
+
+  const setProgress = (progress) => {
+    game.factPrefetch = progress;
+    try {
+      onUpdate?.(game);
+    } catch (err) {
+      console.error('prefetch progress callback failed:', err);
+    }
+  };
+
+  const promise = fetchFactsBatch(missing, (completed, total) => {
+    setProgress({ active: completed < total, completed, total });
+  })
+    .then((facts) => {
+      Object.assign(game.factBank, facts);
+    })
+    .catch((err) => {
+      console.error('Fact-bank prefetch failed:', err.message);
+    })
+    .finally(() => {
+      setProgress(null);
+    });
+
+  return trackFetch(game, missing, promise);
+}
+
+// Kept for tests and any caller that genuinely wants the whole bank warm
+// before continuing.
+export async function buildFactBank(game, onProgress) {
   const allCategories = [...new Set(game.players.flatMap((p) => p.categories))];
-  game.factBank = await fetchFactsBatch(allCategories);
+  game.factBank = await fetchFactsBatch(allCategories, onProgress);
   return game;
 }
 
-export async function startGame(game) {
+// Start is now instant — there is no fact-bank build to wait for. The
+// `onUpdate` callback is still accepted and still fires once, so the server
+// and the Godot client keep their existing contract (and so a future
+// blocking step at start has somewhere to report from).
+export function startGame(game, onUpdate) {
   if (!allPlayersRegistered(game)) {
     throw new Error('All players must register before the game can start');
   }
-  await buildFactBank(game);
+  game.factBank ??= {};
+  game.startProgress = null;
   game.phase = 'CATEGORY';
   game.activePlayerIndex = 0;
   game.questionIndex = 0;
   dealRoundHands(game);
   beginTurn(game);
+  try {
+    onUpdate?.(game);
+  } catch (err) {
+    console.error('startGame callback failed:', err);
+  }
   return game;
 }
 
-function beginTurn(game) {
-  game.roundRule = pickRandomRoundRule();
+// 1-based round number for the question about to be played.
+export function currentRoundNumber(game) {
+  return Math.floor(game.questionIndex / QUESTIONS_PER_ROUND) + 1;
+}
+
+// Round rules are assigned once per ROUND, not per turn (playtest, Aug 12).
+// Round 1 is deliberately plain: a new player should learn the base game
+// before a rule bends it, which is the casual-first thesis applied to
+// onboarding. Every round after that gets exactly one rule, announced at the
+// top of the round and kept on screen for its whole duration.
+function beginRoundIfNeeded(game) {
+  const round = currentRoundNumber(game);
+  if (game.roundNumber === round && game.roundRule) return;
+
+  game.roundNumber = round;
+  if (round === 1) {
+    // MYF_FORCE_ROUND_RULE wins here so a playtest doesn't have to burn a
+    // whole round to reach the rule under test. Unset, this is always NO_RULE.
+    game.roundRule = forcedRuleForRoundOne() ?? NO_RULE;
+  } else {
+    // Rules don't repeat until every one has had a turn, so a 4-round game
+    // shows four different twists.
+    game.roundRule = pickRandomRoundRule(game.usedRuleIds);
+    game.usedRuleIds.push(game.roundRule.id);
+  }
   game.roundConstraints = roundConstraints(game.roundRule);
+
+  // Cleared one turn later (see nextTurn) — it exists to be announced, and
+  // the rule itself stays on screen for the round via view.roundRule.
+  game.roundAnnouncement = {
+    round,
+    ruleId: game.roundRule.id,
+    name: game.roundRule.name,
+    emoji: game.roundRule.emoji,
+    description: game.roundRule.description,
+  };
+}
+
+function beginTurn(game) {
+  beginRoundIfNeeded(game);
+  game.answerAttempts = {};
+  game.answerOpensAt = null;
   game.currentCategory = null;
   game.currentCategoryAttribution = null;
   game.currentWager = null;
@@ -226,7 +386,14 @@ export function setWager(game, playerId, amount) {
   if (playerId !== getWagerPlayer(game).id) {
     throw new Error('Only the wager-decider sets the wager');
   }
-  let wager = Math.max(MIN_WAGER, Math.min(MAX_WAGER, Math.round(amount)));
+  // Snap to the ladder rather than clamping a free number: the wager screen
+  // offers five buttons, so anything else arriving here is a stale client or
+  // a malformed payload, and silently accepting 137 would put a value on the
+  // board that no pie can draw.
+  if (!WAGER_VALUES.includes(amount)) {
+    throw new Error(`Wager must be one of ${WAGER_VALUES.join(', ')}`);
+  }
+  let wager = amount;
   if (game.roundRule.wagerMultiplier) {
     wager *= game.roundRule.wagerMultiplier; // Double Down
   }
@@ -367,6 +534,11 @@ export async function resolveCardSlot(game) {
 export async function runQuestionPhase(game) {
   assertPhase(game, 'QUESTION');
 
+  // Correctness backstop for the lazy fact bank: the prefetch has usually
+  // covered this already (started at game start, and the wager + card windows
+  // have run since the pick), in which case this resolves immediately.
+  await ensureCategoryFacts(game, game.currentCategory);
+
   const constraints = turnConstraints(game.roundConstraints, {
     category: game.currentCategory,
     wager: game.currentWager,
@@ -374,7 +546,9 @@ export async function runQuestionPhase(game) {
   });
 
   let result;
-  if (game.roundRule.lineupBased) {
+  if (game.roundRule.rebusBased) {
+    result = buildRebusQuestion(game);
+  } else if (game.roundRule.lineupBased) {
     result = await buildLineupQuestion(game, constraints);
   } else {
     const factoid = game.factBank
@@ -396,10 +570,73 @@ export async function runQuestionPhase(game) {
   game.currentQuestion = result;
   game.turnConstraints = constraints;
   game.phase = 'ANSWER';
+  game.answerAttempts = {};
+  // The question and the clock used to arrive together, so the timer was
+  // partly a reading-speed test (playtest, Aug 12). Now the question lands,
+  // the room reads it, and only then does the buzzer open. Rules with their
+  // own answer flow (Worst Answer Wins, The Lineup) keep their existing
+  // behaviour and open immediately.
+  const ownAnswerFlow = game.roundRule.submissionBased || game.roundRule.lineupBased;
+  const readingMs = ownAnswerFlow ? 0 : READING_SECONDS * 1000;
+  game.answerOpensAt = Date.now() + readingMs;
+  // Flow B: the answerer alone may act between answerOpensAt and buzzOpensAt.
+  // Rules with their own answer flow have no exclusive window at all —
+  // everyone submits (Worst Answer Wins) or everyone taps (The Lineup) — so
+  // the two timestamps coincide and every gate below is a no-op for them.
+  //
+  // An answerer who has already dropped out never gets a window: the room
+  // would otherwise sit through it waiting for somebody who isn't there.
+  const answerer = game.players[game.answererIndex];
+  const exclusiveMs = ownAnswerFlow || answerer?.droppedOut
+    ? 0
+    : getActiveWindowSeconds(game) * 1000;
+  game.buzzOpensAt = game.answerOpensAt + exclusiveMs;
+  // The deadline for locking in an answer. Set from the SCHEDULED end of the
+  // exclusive window and never moved, unlike buzzOpensAt, which the answerer
+  // can bring forward by answering or passing. If a pass at second one also
+  // slammed the lock window shut, everyone else would be cut off mid-sentence
+  // and the question would die with nobody able to buzz.
+  game.lockClosesAt = game.buzzOpensAt;
+  game.lockedAnswers = {};
   if (game.roundRule.submissionBased) {
     game.submissions = {};
   }
   return game;
+}
+
+// --- Rebus (emoji-wordplay round rule) ---
+//
+// Zero API calls: puzzles come from the curated bank in lib/rebusData.js.
+// That's deliberate and it's the same call made for The Lineup's colour
+// flavour — a rebus whose pieces don't reconstruct the answer is unsolvable,
+// and a room can't tell "we're stupid" from "the game is broken". Asking
+// Claude to build one live invites exactly that failure, because
+// decomposing a word into sounds is the thing language models are worst at.
+//
+// Known limitation, same shape as the colour flavour's: the puzzle ignores
+// the picked category. The bank isn't categorized, and forcing a match would
+// mean either a much larger bank or falling back to live generation, which is
+// the thing this avoids. The category pick still happens — it sets the wager
+// difficulty and keeps the turn loop and its attribution beat intact.
+function buildRebusQuestion(game) {
+  game.usedRebusAnswers ??= [];
+  const puzzle = pickRebusPuzzle(game.usedRebusAnswers);
+  game.usedRebusAnswers.push(puzzle.answer);
+
+  const pieces = resolveRebus(puzzle);
+  return {
+    question: `Read the emoji: ${puzzle.hint}`,
+    answer: puzzle.answer,
+    hostQuip: 'Say what you see.',
+    rebus: {
+      pieces: pieces.map((p) => p.emoji),
+      // Withheld from the client until RESULT — see playerView. Handing over
+      // the readings mid-question is handing over the answer.
+      reads: pieces.map((p) => p.reads),
+      hint: puzzle.hint,
+      phonetic: !!puzzle.phonetic,
+    },
+  };
 }
 
 // --- The Lineup (pick-one round rule) ---
@@ -627,17 +864,218 @@ export function getTimerSeconds(game) {
   return game.turnConstraints?.timerSeconds ?? game.roundRule.timerSeconds;
 }
 
-// Evaluates the answerer's submission via Claude and applies scoring.
-// If the Steal round rule is active and the answer is wrong, transitions
-// to the STEAL phase instead of RESULT (see claimSteal / expireSteal).
+// Total time the ANSWER phase is open: the reading window plus the answer
+// clock. The server arms one timer for the whole thing (see startAnswerTimer)
+// — the reading window is enforced by answerOpensAt, not a separate phase,
+// deliberately: every phase-timeout and auto-advance helper in this file
+// assumes the existing phase loop, and a tenth phase would mean auditing all
+// of them for a state that can't affect scoring.
+export function getAnswerWindowMs(game) {
+  return (READING_SECONDS + getTimerSeconds(game)) * 1000;
+}
+
+// Flow B: how long the answerer has the question to themselves. Carved out of
+// the answer clock rather than added to it — the question is the same length
+// either way — and capped at a share of that clock so a halved timer doesn't
+// become a mostly-exclusive round.
+export function getActiveWindowSeconds(game) {
+  const clock = getTimerSeconds(game);
+  return Math.round(Math.min(ACTIVE_WINDOW_SECONDS, clock * ACTIVE_WINDOW_MAX_SHARE));
+}
+
+// Time from the start of the ANSWER phase to the buzzer opening: the reading
+// window plus the exclusive window. server.js arms one timer for this and
+// another for the whole phase (getAnswerWindowMs).
+export function getActiveWindowMs(game) {
+  return (READING_SECONDS + getActiveWindowSeconds(game)) * 1000;
+}
+
+// Everyone who could still buzz in on this question: not out of the game,
+// hasn't already swung, and — since a buzz plays a pre-committed answer —
+// has one locked in.
+function openAnswerEligible(game) {
+  return game.players.filter(
+    (p) =>
+      !p.droppedOut &&
+      !game.answerAttempts?.[p.id] &&
+      (isAnswerer(game, p.id) || game.lockedAnswers?.[p.id] !== undefined)
+  );
+}
+
+function isAnswerer(game, playerId) {
+  return game.players[game.answererIndex]?.id === playerId;
+}
+
+// What a buzz-in win pays on this question: a share of the wager it was being
+// played for. See BUZZ_WAGER_SHARE for why it's a share and not a flat rate.
+export function getBuzzPoints(game) {
+  return buzzPointsForWager(game.currentWager);
+}
+
+// --- Answering: Flow B ------------------------------------------------------
+//
+// Three windows, one after the other, all inside the ANSWER phase:
+//
+//   1. Reading (READING_SECONDS) — nobody may act.
+//   2. Exclusive (getActiveWindowSeconds) — the answerer may answer or pass;
+//      either one opens the buzzer immediately. Meanwhile everyone ELSE is
+//      committing an answer they cannot yet play.
+//   3. Open — anyone holding a committed answer may buzz. One attempt each,
+//      first correct buzz wins getBuzzPoints().
+//
+// Step 2 is Flow B (GAME_DESIGN.md → "The Round Loop", agreed Aug 17). The
+// Aug 12 free-for-all had no such window, so a faster player could take every
+// question and the active player's wager never bit — worse, it broke "I cut,
+// you choose": if anyone can claim the wager, the setter is no longer setting
+// a punishment but a bounty they might collect themselves, so they'd always
+// set maximum. See PLAYTEST.md PT-4.
+//
+// Only the answerer has money on it. They win or lose the wager; everyone
+// else risks nothing. That asymmetry is the point: buzzing in has to feel
+// free, or nobody does it, and the wager has to still sting, or "I cut, you
+// choose" stops meaning anything. Buzzing is vulture rather than race — you
+// pounce on a fumble instead of outrunning someone who never got a turn.
+//
+// PRE-COMMITMENT (owner's call, Aug 17). A buzz plays an answer you locked in
+// BEFORE you knew you'd get the chance — you cannot type one after the fumble.
+// Three things fall out of that, all of them wanted:
+//   - It closes the lookup window. The moment worth cheating in is the one
+//     after the answerer fails, with the whole remaining clock to search; that
+//     moment no longer accepts new answers.
+//   - Buzzing stops being a typing race and becomes a decision — one tap. The
+//     fast typist loses their edge, which is the right outcome for a game
+//     whose thesis is casual-first.
+//   - The room is busy during the exclusive window instead of watching. No
+//     dead air, and everyone is invested in whether the answerer fumbles.
+// No lock, no buzz: a player who never committed sits this one out.
 export async function submitAnswer(game, playerId, rawAnswer, inputMode) {
   assertPhase(game, 'ANSWER');
-  const answerer = game.players[game.answererIndex];
-  if (playerId !== answerer.id) {
-    throw new Error('Only the answerer may submit an answer');
+  if (game.roundRule.submissionBased || game.roundRule.lineupBased) {
+    throw new Error('This round rule has its own answer flow');
+  }
+  if (!isAnswerer(game, playerId)) {
+    throw new Error('Not your question — lock an answer in and buzz instead');
+  }
+  const player = getPlayer(game, playerId);
+  if (player.droppedOut) {
+    throw new Error('You are out of this game');
+  }
+  const now = Date.now();
+  if (now < (game.answerOpensAt ?? 0)) {
+    throw new Error('Still reading — nobody can answer yet');
+  }
+  if (game.answerAttempts[playerId]) {
+    throw new Error('You already had your shot at this one');
   }
 
-  const transformed = transformAnswer(game.roundRule, rawAnswer, inputMode);
+  // Claim the attempt slot synchronously, before any await: two taps from the
+  // same player would otherwise both pass the check above and queue twice.
+  const attempt = { playerId, name: player.name, answer: rawAnswer, correct: null };
+  game.answerAttempts[playerId] = attempt;
+
+  // The answerer has spoken, so the room is in. Opened on SUBMISSION, not on
+  // the evaluation coming back: the answer is a real Claude call, and making
+  // everyone wait it out would hand seconds of a shared clock to whoever the
+  // API happened to be slow for. Ordering is safe regardless — evaluations
+  // are serialised in queueAttempt, so this answer is still judged first.
+  game.buzzOpensAt = now;
+
+  await queueAttempt(game, attempt, inputMode);
+  return game;
+}
+
+// Commit an answer you may or may not get to play. Non-answerers only, and
+// only before lockClosesAt.
+//
+// Immutable once set: a commitment you can revise until the last instant is
+// not a commitment, and the whole mechanic rests on having decided early.
+export function lockAnswer(game, playerId, rawAnswer, inputMode) {
+  assertPhase(game, 'ANSWER');
+  if (game.roundRule.submissionBased || game.roundRule.lineupBased) {
+    throw new Error('This round rule has its own answer flow');
+  }
+  if (isAnswerer(game, playerId)) {
+    throw new Error('This one is yours to answer, not to lock in');
+  }
+  const player = getPlayer(game, playerId);
+  if (player.droppedOut) {
+    throw new Error('You are out of this game');
+  }
+  const trimmed = (rawAnswer ?? '').trim();
+  if (!trimmed) {
+    throw new Error('Nothing to lock in');
+  }
+  const now = Date.now();
+  if (now < (game.answerOpensAt ?? 0)) {
+    throw new Error('Still reading — nobody can act yet');
+  }
+  if (now >= (game.lockClosesAt ?? 0)) {
+    throw new Error('Too late — answers are locked for this question');
+  }
+  if (game.lockedAnswers[playerId] !== undefined) {
+    throw new Error('You already locked one in — no changing it now');
+  }
+
+  game.lockedAnswers[playerId] = { answer: trimmed, inputMode: inputMode ?? 'text' };
+  return game;
+}
+
+// Play the answer you committed earlier. The buzz decides the order; the
+// answer itself was decided before you knew you'd get to use it.
+export async function buzzIn(game, playerId) {
+  assertPhase(game, 'ANSWER');
+  if (game.roundRule.submissionBased || game.roundRule.lineupBased) {
+    throw new Error('This round rule has its own answer flow');
+  }
+  const player = getPlayer(game, playerId);
+  if (player.droppedOut) {
+    throw new Error('You are out of this game');
+  }
+  if (Date.now() < (game.buzzOpensAt ?? 0)) {
+    const answerer = game.players[game.answererIndex];
+    throw new Error(`${answerer.name} gets first shot at their own question`);
+  }
+  if (game.answerAttempts[playerId]) {
+    throw new Error('You already had your shot at this one');
+  }
+  const locked = game.lockedAnswers[playerId];
+  if (locked === undefined) {
+    throw new Error('You did not lock an answer in for this one');
+  }
+
+  const attempt = {
+    playerId,
+    name: player.name,
+    answer: locked.answer,
+    correct: null,
+    buzzed: true,
+  };
+  game.answerAttempts[playerId] = attempt;
+
+  await queueAttempt(game, attempt, locked.inputMode);
+  return game;
+}
+
+// Evaluations are serialized rather than run in parallel, so "first correct
+// wins" is decided by BUZZ order. Evaluating concurrently would hand the win
+// to whoever's Claude call happened to return first, which is a coin flip,
+// and would let two players both be paid for the same question.
+function queueAttempt(game, attempt, inputMode) {
+  const run = () => resolveOpenAnswer(game, attempt, inputMode);
+  game._answerChain = (game._answerChain ?? Promise.resolve()).then(run, run);
+  return game._answerChain;
+}
+
+async function resolveOpenAnswer(game, attempt, inputMode) {
+  // Somebody already won (or the window closed) while this was queued.
+  if (game.phase !== 'ANSWER') {
+    attempt.correct = false;
+    attempt.moot = true;
+    return;
+  }
+
+  const player = getPlayer(game, attempt.playerId);
+  const transformed = transformAnswer(game.roundRule, attempt.answer, inputMode);
   const result = await evaluateAnswer({
     question: game.currentQuestion.question,
     correctAnswer: game.currentQuestion.answer,
@@ -645,80 +1083,254 @@ export async function submitAnswer(game, playerId, rawAnswer, inputMode) {
     roundRule: game.roundRule,
   });
 
+  // Re-check: the window can close while the evaluation is in flight.
+  if (game.phase !== 'ANSWER') {
+    attempt.correct = false;
+    attempt.moot = true;
+    return;
+  }
+
+  attempt.correct = !!result.correct;
+  attempt.feedback = result.feedback;
+
+  const answerer = game.players[game.answererIndex];
+  const isActivePlayer = attempt.playerId === answerer.id;
   const wager = game.currentWager;
-  game.lastResult = { ...result, wager, playerAnswer: rawAnswer };
 
   if (result.correct) {
-    answerer.score += wager;
-    game.phase = 'RESULT';
-  } else {
-    answerer.score -= wager;
+    const points = isActivePlayer ? wager : getBuzzPoints(game);
+    player.score += points;
     logHighlight(
       game,
-      `${answerer.name} wagered ${wager} and answered "${rawAnswer}" — wrong!`
+      isActivePlayer
+        ? `${player.name} took their own question for ${points} pts.`
+        : `${player.name} pounced on ${answerer.name}'s question for ${points} pts!`
     );
-
-    if (game.roundRule?.stealOnWrong) {
-      game.phase = 'STEAL';
-      game.stealSlot = null;
-      game.stealEligible = game.players
-        .filter((p) => p.id !== answerer.id)
-        .map((p) => p.id);
-    } else {
-      game.phase = 'RESULT';
-    }
+    finishOpenAnswer(game, { ...result, winner: attempt, points });
+    return;
   }
 
+  if (isActivePlayer) {
+    player.score -= wager;
+    logHighlight(game, `${player.name} wagered ${wager} and answered "${attempt.answer}" — wrong!`);
+  }
+
+  // Everyone who could play an answer has now had their shot and nobody got
+  // it. Deliberately not decided while locking is still open: a player who
+  // hasn't committed yet still might, and ending the question out from under
+  // them would punish thinking. Once the lock window closes,
+  // expireActiveWindow re-checks the same condition.
+  if (!anyoneStillToPlay(game)) {
+    finishOpenAnswer(game, { ...result, winner: null, points: 0 });
+  }
+}
+
+// Folding. The answerer declines their own question, the buzzer opens
+// immediately, and it costs them nothing.
+//
+// Passing must be an EXPLICIT action, and it must not be reachable by simply
+// doing nothing — see expireActiveWindow. A free opt-out from any hard
+// question would put the wager right back where Flow B found it.
+//
+// It opens the buzzer at once, deliberately: making the room sit out a window
+// the answerer has already declined is exactly the dead air this game keeps
+// trying to remove.
+export function passAnswer(game, playerId) {
+  assertPhase(game, 'ANSWER');
+  if (game.roundRule.submissionBased || game.roundRule.lineupBased) {
+    throw new Error('This round rule has its own answer flow');
+  }
+  const answerer = game.players[game.answererIndex];
+  if (!isAnswerer(game, playerId)) {
+    throw new Error('Only the player whose question it is can pass');
+  }
+  const now = Date.now();
+  if (now < (game.answerOpensAt ?? 0)) {
+    throw new Error('Still reading — nobody can act yet');
+  }
+  if (game.answerAttempts[playerId]) {
+    throw new Error('You already had your shot at this one');
+  }
+  if (now >= (game.buzzOpensAt ?? 0)) {
+    throw new Error('Too late to pass — the buzzer is already open');
+  }
+
+  // Recorded as a spent attempt so the rest of the file needs no new concept:
+  // it is what stops them buzzing back in on a question they folded on, and
+  // what stops expireAnswerWindow charging them for it later.
+  game.answerAttempts[playerId] = {
+    playerId,
+    name: answerer.name,
+    answer: '',
+    correct: false,
+    passed: true,
+  };
+  game.buzzOpensAt = now;
+  logHighlight(game, `${answerer.name} passed on ${game.currentWager} pts — over to the room.`);
   return game;
 }
 
-// FCFS steal: first eligible player to buzz in claims the steal attempt.
-export async function claimSteal(game, playerId, rawAnswer, inputMode) {
-  assertPhase(game, 'STEAL');
-  if (game.stealSlot) {
-    throw new Error('Steal already claimed — too slow!');
+// The exclusive window closing with the answerer having done nothing at all.
+//
+// This is the load-bearing half of the pass/timeout split: folding is a
+// decision and costs nothing, freezing is a failure and costs the wager,
+// exactly as answering wrong would (the "stalling isn't free" rule that
+// expireAnswerWindow has always enforced). Collapse the two and "pass"
+// becomes a free opt-out of every hard question.
+//
+// Returns true when it changed anything, so the caller knows to broadcast.
+export function expireActiveWindow(game) {
+  if (game.phase !== 'ANSWER') return false;
+  if (game.roundRule.submissionBased || game.roundRule.lineupBased) return false;
+
+  const answerer = game.players[game.answererIndex];
+  // They answered or passed inside the window, so the buzzer opened then, not
+  // now. Locking still closes at this instant though, and that can be the
+  // moment the question becomes unanswerable by anyone.
+  if (game.answerAttempts[answerer.id]) return closeQuestionIfNobodyLeft(game);
+
+  game.buzzOpensAt = Date.now();
+  if (!answerer.droppedOut) {
+    answerer.score -= game.currentWager;
+    game.answerAttempts[answerer.id] = {
+      playerId: answerer.id,
+      name: answerer.name,
+      answer: '',
+      correct: false,
+      timedOut: true,
+    };
+    logHighlight(game, `${answerer.name} froze and dropped ${game.currentWager} pts — buzzers open!`);
   }
-  if (!game.stealEligible.includes(playerId)) {
-    throw new Error('Not eligible to steal');
-  }
 
-  game.stealSlot = playerId;
-  const stealer = getPlayer(game, playerId);
+  closeQuestionIfNobodyLeft(game);
+  return true;
+}
 
-  const transformed = transformAnswer(game.roundRule, rawAnswer, inputMode);
-  const result = await evaluateAnswer({
-    question: game.currentQuestion.question,
-    correctAnswer: game.currentQuestion.answer,
-    playerAnswer: transformed,
-    roundRule: game.roundRule,
-  });
+// Is there anybody left who could still play an answer on this question?
+//
+// Two ways to be one of those people: holding a committed answer you haven't
+// buzzed yet, or still being able to commit one. The second half is why this
+// isn't just an eligibility count — ending a question out from under someone
+// who is mid-sentence would punish thinking.
+function anyoneStillToPlay(game) {
+  if (openAnswerEligible(game).length > 0) return true;
+  if (Date.now() >= (game.lockClosesAt ?? 0)) return false;
+  return game.players.some(
+    (p) =>
+      !p.droppedOut &&
+      !isAnswerer(game, p.id) &&
+      !game.answerAttempts[p.id] &&
+      game.lockedAnswers[p.id] === undefined
+  );
+}
 
-  const wager = game.currentWager;
-  if (result.correct) {
-    stealer.score += wager;
-    logHighlight(game, `${stealer.name} stole it for ${wager} pts!`);
+// A buzzer nobody can press is just dead air. With pre-committed answers a
+// room where nobody locked one in has no way to resolve the question and
+// would otherwise sit watching the clock run down — end it there instead.
+function closeQuestionIfNobodyLeft(game) {
+  if (game.phase !== 'ANSWER') return false;
+  if (anyoneStillToPlay(game)) return false;
+
+  logHighlight(
+    game,
+    Object.keys(game.lockedAnswers ?? {}).length === 0
+      ? 'Nobody had an answer locked in — the points go unclaimed.'
+      : 'Nobody got it — the points go unclaimed.'
+  );
+  finishOpenAnswer(game, { winner: null, points: 0 });
+  return true;
+}
+
+function finishOpenAnswer(game, { winner, points, ...result }) {
+  const answerer = game.players[game.answererIndex];
+  const answererAttempt = game.answerAttempts[answerer.id];
+  // What became of the person whose wager it was. The result screen and the
+  // question log both need to tell "passed" (costs nothing) apart from
+  // "froze" (costs the wager) — they look identical from the outside
+  // otherwise, and reporting a fold as a forfeit is a lie about the score.
+  const activeOutcome = !answererAttempt
+    ? 'none'
+    : answererAttempt.passed
+    ? 'passed'
+    : answererAttempt.timedOut
+    ? 'timedOut'
+    : answererAttempt.correct
+    ? 'correct'
+    : 'wrong';
+
+  game.lastResult = {
+    ...result,
+    correct: !!winner,
+    wager: game.currentWager,
+    // The winner's own words, or the active player's failed attempt when
+    // nobody got it — ResultPhase shows whichever exists.
+    playerAnswer: winner ? winner.answer : answererAttempt?.answer || null,
+    winnerId: winner ? winner.playerId : null,
+    winnerName: winner ? winner.name : null,
+    points: points ?? 0,
+    // True when someone other than the active player took it — the thing
+    // worth putting a headline on.
+    buzzedIn: !!winner && winner.playerId !== answerer.id,
+    activeOutcome,
+    wagerLost: activeOutcome === 'wrong' || activeOutcome === 'timedOut',
+    buzzPoints: getBuzzPoints(game),
+    attempts: Object.values(game.answerAttempts).map((a) => ({
+      playerId: a.playerId,
+      name: a.name,
+      answer: a.answer,
+      correct: !!a.correct,
+      passed: !!a.passed,
+      timedOut: !!a.timedOut,
+    })),
+    // Answers that were locked in and never got played — the question ended
+    // first. Revealed because it's the best social content the mechanic
+    // produces: "you HAD it and didn't buzz" is the line people shout at each
+    // other, and it's invisible unless the room is shown the commitments.
+    unplayedAnswers: Object.entries(game.lockedAnswers ?? {})
+      .filter(([id]) => !game.answerAttempts[id])
+      .map(([id, locked]) => ({
+        playerId: id,
+        name: getPlayer(game, id).name,
+        answer: locked.answer,
+      })),
+  };
+  game.phase = 'RESULT';
+}
+
+// Called when the answer window expires with nobody having got it right.
+//
+// Under Flow B the answerer has almost always been dealt with already — by
+// expireActiveWindow when they froze, or by their own answer or pass. The
+// charge below still stands for the paths that skip the exclusive window
+// (a dropped-out answerer's slot, or a rule that opens the buzzer at once),
+// and never double-charges: a spent attempt of any kind takes the else branch.
+export function expireAnswerWindow(game) {
+  if (game.phase !== 'ANSWER') return game;
+  if (game.roundRule.submissionBased || game.roundRule.lineupBased) return game;
+
+  const answerer = game.players[game.answererIndex];
+  if (!game.answerAttempts[answerer.id] && !answerer.droppedOut) {
+    answerer.score -= game.currentWager;
+    game.answerAttempts[answerer.id] = {
+      playerId: answerer.id,
+      name: answerer.name,
+      answer: '',
+      correct: false,
+      timedOut: true,
+    };
+    logHighlight(game, `${answerer.name} ran out of time and lost ${game.currentWager} pts.`);
   } else {
-    stealer.score -= Math.round(wager / 2);
-    logHighlight(game, `${stealer.name} tried to steal but got it wrong — loses ${Math.round(wager / 2)} pts!`);
+    logHighlight(game, 'Nobody got it — the points go unclaimed.');
   }
 
-  game.lastResult = { ...result, wager, playerAnswer: rawAnswer, stolen: true, stealerName: stealer.name };
-  game.phase = 'RESULT';
-  return game;
-}
-
-// Called when the steal window expires with no takers.
-export function expireSteal(game) {
-  if (game.phase !== 'STEAL') return;
-  logHighlight(game, 'Nobody stole — moving on!');
-  game.phase = 'RESULT';
+  finishOpenAnswer(game, { winner: null, points: 0 });
   return game;
 }
 
 // Advances to the next question/turn, or GAME_OVER once TOTAL_QUESTIONS is reached.
 // Appends the turn that just resolved to game.questionLog. Called from
-// nextTurn() rather than from each resolution path (submitAnswer, claimSteal,
-// expireSteal, resolveGroupAnswers, the two lineup paths) because nextTurn is
+// nextTurn() rather than from each resolution path (submitAnswer,
+// expireAnswerWindow, resolveGroupAnswers, the two lineup paths) because nextTurn is
 // the single funnel every one of them passes through — logging in six places
 // would mean six places to forget.
 function logQuestion(game) {
@@ -739,21 +1351,32 @@ function logQuestion(game) {
     outcomeSummary = winnerName
       ? `${winnerName} spotted it first.`
       : 'Nobody in the room spotted it.';
-  } else if (result.stolen) {
-    // claimSteal sets `stolen: true` whether the steal SUCCEEDED or FAILED —
-    // result.correct is what distinguishes them, and it refers to the stealer,
-    // not the original answerer.
-    const stealer = result.stealerName ?? 'someone else';
-    outcome = result.correct ? 'stolen' : 'wrong';
-    outcomeSummary = result.correct
-      ? `${answerer?.name ?? 'The answerer'} missed it — ${stealer} stole it.`
-      : `${answerer?.name ?? 'The answerer'} missed it, and so did ${stealer}.`;
+  } else if (result.buzzedIn) {
+    // Someone other than the active player took it. `buzzedIn` is only ever
+    // true alongside a winner, so this can't report a steal that didn't
+    // happen — the trap the old `stolen` flag fell into, which was set on
+    // failed steals too.
+    //
+    // How they came to lose it matters: a fold and a freeze read the same
+    // from outside, and "hesitated" is only true of one of them.
+    outcome = 'buzzed';
+    const gaveItUp = {
+      passed: 'passed and',
+      wrong: 'got it wrong and',
+      timedOut: 'froze and',
+    }[result.activeOutcome] ?? 'hesitated and';
+    outcomeSummary = `${answerer?.name ?? 'The answerer'} ${gaveItUp} ${result.winnerName} took it.`;
   } else if (result.correct) {
     outcome = 'correct';
     outcomeSummary = `${answerer?.name ?? 'The answerer'} got this one.`;
+  } else if (result.activeOutcome === 'passed') {
+    outcome = 'passed';
+    outcomeSummary = `${answerer?.name ?? 'The answerer'} passed and nobody else got it either.`;
   } else {
     outcome = 'wrong';
-    outcomeSummary = `${answerer?.name ?? 'The answerer'} missed this one.`;
+    // Nobody in the room got it, not just the active player — everyone had a
+    // shot at it once the buzzer opened.
+    outcomeSummary = `Nobody got this one past ${answerer?.name ?? 'the answerer'}.`;
   }
 
   game.questionLog.push({
@@ -771,7 +1394,7 @@ function logQuestion(game) {
     outcomeSummary,
     // The room failing a question is the strongest share hook — it turns the
     // card into a challenge ("nobody here got this") rather than a flashcard.
-    roomMissedIt: outcome === 'wrong' || outcome === 'unclaimed',
+    roomMissedIt: outcome === 'wrong' || outcome === 'unclaimed' || outcome === 'passed',
     lineup: game.currentQuestion.lineup
       ? {
           options: game.currentQuestion.lineup.options,
@@ -785,6 +1408,9 @@ export function nextTurn(game) {
   assertPhase(game, 'RESULT');
   logQuestion(game);
   game.skippedTurn = false;
+  // The announcement gets exactly one turn on screen; the rule itself stays
+  // visible for the whole round via view.roundRule.
+  game.roundAnnouncement = null;
   game.questionIndex += 1;
   if (game.questionIndex >= TOTAL_QUESTIONS) {
     game.phase = 'GAME_OVER';
@@ -1012,12 +1638,30 @@ export function playerView(game, playerId) {
           description: game.roundRule.description,
           submissionBased: !!game.roundRule.submissionBased,
           lineupBased: !!game.roundRule.lineupBased,
+          // The client renders the clock from this. It was missing, so every
+          // answer screen showed a bare "s" where the seconds should be —
+          // invisible until the reading window put a real countdown next to
+          // it. Card effects can shorten it (Spotlight), hence the helper
+          // rather than the raw rule value.
+          timerSeconds: getTimerSeconds(game),
         }
       : null,
     categoryOptions: game.categoryOptions ?? null,
+    roundNumber: game.roundNumber ?? 1,
+    totalRounds: ROUNDS,
+    // Set for exactly one turn at the top of each round; the client shows it
+    // as a banner. Null the rest of the time.
+    roundAnnouncement: game.roundAnnouncement ?? null,
     heckleMessage: game.heckleMessage,
     highlightReel: game.highlightReel,
     skippedTurn: !!game.skippedTurn,
+    // Null except while the fact bank is building. Same shape for every
+    // player — this is room-wide progress, not per-player state.
+    startProgress: game.startProgress ?? null,
+    // Background fact-bank warm-up. Not blocking anything — shown as a quiet
+    // footer so a slow first question reads as "still loading" rather than
+    // "broken".
+    factPrefetch: game.factPrefetch ?? null,
   };
 
   if (game.cardSlot) {
@@ -1030,6 +1674,22 @@ export function playerView(game, playerId) {
   if (game.currentQuestion) {
     view.question = game.currentQuestion.question;
     view.hostQuip = game.currentQuestion.hostQuip;
+    // Which rung of the wager ladder this question was written to. The client
+    // prints the question in the matching green — see lib/difficultyColors.js.
+    // Derived from the wager rather than sent as a colour so the palette stays
+    // a client concern and can be re-tuned without touching the server.
+    view.difficultyTier = wagerTierIndex(game.currentWager);
+
+    if (game.currentQuestion.rebus) {
+      const rebus = game.currentQuestion.rebus;
+      // Pieces are the puzzle itself, so they're safe to send. `reads` is the
+      // solution spelled out — same withholding rule as the free-text answer
+      // below.
+      view.rebus = { pieces: rebus.pieces, hint: rebus.hint, phonetic: rebus.phonetic };
+      if (phase === 'RESULT' || phase === 'GAME_OVER') {
+        view.rebus.reads = rebus.reads;
+      }
+    }
 
     if (game.currentQuestion.lineup) {
       // Options are safe pre-reveal (that's the multiple-choice UI itself) —
@@ -1043,15 +1703,54 @@ export function playerView(game, playerId) {
 
     if (phase === 'RESULT' || phase === 'GAME_OVER') {
       view.answer = game.currentQuestion.answer;
+
       if (game.currentQuestion.lineup) {
         view.lineup.correctOptionId = game.currentQuestion.lineup.correctOptionId;
       }
     }
   }
 
-  if (phase === 'STEAL') {
-    view.stealEligible = game.stealEligible?.includes(playerId) && !game.stealSlot;
-    view.stealClaimed = !!game.stealSlot;
+  // Flow B. Deliberately does NOT include other players' answer TEXT while
+  // the window is open — only who has burned their attempt — so nobody can
+  // copy a neighbour's wording.
+  //
+  // The two timestamps are sent raw and the client compares them against its
+  // own clock: a view is only rebuilt when the server broadcasts, so anything
+  // computed from Date.now() here would be stale the moment it arrived, and
+  // both windows are short enough for that to matter.
+  if (phase === 'ANSWER' && !game.roundRule?.submissionBased && !game.roundRule?.lineupBased) {
+    const mine = game.answerAttempts?.[playerId];
+    const amAnswerer = isAnswerer(game, playerId);
+    const out = !!game.players[myIndex]?.droppedOut;
+    const myLock = game.lockedAnswers?.[playerId];
+    view.answerOpensAt = game.answerOpensAt ?? null;
+    view.buzzOpensAt = game.buzzOpensAt ?? null;
+    view.lockClosesAt = game.lockClosesAt ?? null;
+    view.activeWindowSeconds = getActiveWindowSeconds(game);
+    view.iAmAnswerer = amAnswerer;
+    // Attempt-spent only, so it stays true for the answerer during their own
+    // exclusive window; whether the window is open to ME is the client's
+    // clock comparison against the timestamps above.
+    view.iCanAnswer = amAnswerer && !mine && !out;
+    view.iCanPass = amAnswerer && !mine && !out;
+    view.iCanLock = !amAnswerer && !mine && !out && myLock === undefined;
+    view.iCanBuzz = !amAnswerer && !mine && !out && myLock !== undefined;
+    // My own commitment comes back to me so a reconnect doesn't lose it.
+    // Nobody else's does — see unplayedAnswers, which reveals them all once
+    // the question is over and there is nothing left to spoil.
+    view.myLockedAnswer = myLock ? myLock.answer : null;
+    view.lockedCount = Object.keys(game.lockedAnswers ?? {}).length;
+    view.myAttempt = mine
+      ? { answer: mine.answer, correct: mine.correct, passed: !!mine.passed, timedOut: !!mine.timedOut }
+      : null;
+    view.spentAttempts = Object.values(game.answerAttempts ?? {}).map((a) => ({
+      playerId: a.playerId,
+      name: a.name,
+      correct: a.correct,
+      passed: !!a.passed,
+      timedOut: !!a.timedOut,
+    }));
+    view.buzzPoints = getBuzzPoints(game);
   }
 
   if ((phase === 'ANSWER' || phase === 'EVALUATING') && game.roundRule?.submissionBased) {
@@ -1061,7 +1760,7 @@ export function playerView(game, playerId) {
     view.totalToSubmit = eligible.length;
   }
 
-  if (game.lastResult && (phase === 'RESULT' || phase === 'GAME_OVER' || phase === 'STEAL')) {
+  if (game.lastResult && (phase === 'RESULT' || phase === 'GAME_OVER')) {
     view.lastResult = game.lastResult;
   }
 
@@ -1140,6 +1839,10 @@ export async function beginSuperlativeVoting(game) {
   return game;
 }
 
+// Sentinel stored in a ballot slot when a player abstains. Not a player id,
+// so the tally below skips it naturally.
+export const SKIPPED_VOTE = '__skipped__';
+
 export function castSuperlativeVote(game, voterId, categoryId, targetPlayerId) {
   if (game.phase !== 'GAME_OVER' || !game.postGame) {
     throw new Error('Voting is not open');
@@ -1150,7 +1853,10 @@ export function castSuperlativeVote(game, voterId, categoryId, targetPlayerId) {
   if (!game.postGame.categories.some((c) => c.id === categoryId)) {
     throw new Error(`Unknown superlative category: ${categoryId}`);
   }
-  if (!getPlayer(game, targetPlayerId)) {
+  // SKIPPED is an abstention: it fills the ballot slot so the room isn't held
+  // waiting on this player, but counts for nobody in the tally. Without it,
+  // "Skip all" would either stall the room or have to invent a vote.
+  if (targetPlayerId !== SKIPPED_VOTE && !getPlayer(game, targetPlayerId)) {
     throw new Error('You can only vote for a player in this game');
   }
 
@@ -1158,6 +1864,23 @@ export function castSuperlativeVote(game, voterId, categoryId, targetPlayerId) {
   // thing to be proud of, and policing it invites more argument than it saves.
   game.postGame.votes[voterId] = game.postGame.votes[voterId] ?? {};
   game.postGame.votes[voterId][categoryId] = targetPlayerId;
+  return game;
+}
+
+// Abstain from every remaining award in one go. The post-game screens are
+// optional fun, and a player who wants out has to be able to get out without
+// stranding everyone else behind the 90s timer.
+export function skipSuperlativeVoting(game, voterId) {
+  if (game.phase !== 'GAME_OVER' || !game.postGame) {
+    throw new Error('Voting is not open');
+  }
+  if (game.postGame.stage !== 'voting') {
+    throw new Error('Voting has already closed');
+  }
+  game.postGame.votes[voterId] = game.postGame.votes[voterId] ?? {};
+  for (const category of game.postGame.categories) {
+    game.postGame.votes[voterId][category.id] ??= SKIPPED_VOTE;
+  }
   return game;
 }
 
@@ -1195,7 +1918,10 @@ export async function resolveSuperlatives(game) {
     const tally = {};
     for (const ballot of Object.values(game.postGame.votes)) {
       const target = ballot[category.id];
-      if (target) tally[target] = (tally[target] ?? 0) + 1;
+      // SKIPPED_VOTE fills a ballot slot so the room can move on, but it is
+      // an abstention — it must not become a candidate in the tally, or
+      // "skipped" wins the award.
+      if (target && target !== SKIPPED_VOTE) tally[target] = (tally[target] ?? 0) + 1;
     }
 
     const top = Math.max(0, ...Object.values(tally));

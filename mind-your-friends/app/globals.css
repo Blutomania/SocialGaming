@@ -5,3 +5,27 @@
 body {
   @apply bg-game-dark text-white min-h-screen;
 }
+
+/* Superlative voting deals one award at a time, each sliding in from the
+   right as the last is answered (playtest note 11). Keyed remounts in
+   SuperlativeVoting.jsx are what replay this. */
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(40%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-right {
+  animation: slide-in-right 260ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide-in-right {
+    animation: none;
+  }
+}

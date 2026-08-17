@@ -31,7 +31,7 @@ land first (see item 31/33 below). When that happens, pull `coherence/engine.py`
 `main` (now the real source of truth) rather than this branch's copy, which is stale relative to
 it in naming only — the classes are otherwise identical.
 
-## Priority Queue (as of August 7, 2026)
+## Priority Queue (as of August 12, 2026)
 
 The numbered list below is the full historical record and keeps growing. This is
 the short version — what to actually work on next, in order. Items link to their
@@ -42,16 +42,26 @@ Text-only input is fine for now, and the sharing mechanic is to stay a basic
 placeholder. Two things drop down the list as a direct result — see PARKED
 below. Don't quietly re-prioritise them without asking.
 
+**Owner playtest (August 12, 2026): eleven notes, all eleven built — in the
+Next.js prototype only.** See item 37. The prototype and `server_py` have now
+genuinely diverged, and `server_py` is what the Godot client talks to, so
+closing that gap is the top of this list.
+
+**Update, August 17 2026: Flow B is built on BOTH backends** (items 41, 42, 45), along with the
+five-tier wager ladder and difficulty-coloured questions. **Nothing has been played by real
+people yet** — that is now the top of the list, and no further mechanic work should go in front
+of it. See PLAYTEST.md PT-4 through PT-8 for what to watch.
+
 | # | Item | State |
 |---|---|---|
-| 0 | **Show progress during Start Game** — it takes ~250s and the UI says nothing, which reads as a hang (item 36). Blocks every playtest. | **START HERE** |
-| 1 | **Playtest the post-game social layer** — built (item 35), never played through | Blocked on 0 |
-| 2 | Godot: category-selection + card-pick screens (replaces stubbed lobby registration) | Next |
-| 3 | Godot: round-loop UI — WAGER → CARD → QUESTION → ANSWER → RESULT | Next |
-| 4 | **`server_py` parity: `questionLog` + `postGame`** — the Python backend has neither, so the Godot client cannot show any post-game screen until this lands | Real gap, blocks 5 |
-| 5 | Godot: GAME_OVER screen + post-game social layer | Blocked on 3+4 |
-| 6 | Live-test disconnect/reconnect + inactivity auto-advance against `server_py` | Ported, never exercised |
-| 7 | Merge PR #14 (coherence unification) — 2 trivial conflicts, both resolvable in minutes | Open PR, CYM-side |
+| 0 | **PLAY IT.** Flow B, pre-committed answers and the wager ladder are all built and tested but entirely unvalidated by a real table. Four numbers are guesses: the 8s exclusive window, the 5s reading window, whether the lock window gives enough time to commit, and whether 0.75x makes buzzing feel worth it. | **START HERE** |
+| 1 | ~~`server_py` parity for the Aug 12 mechanics~~ — **done** (item 42), except `questionLog`/`postGame`, which moved to item 46 and now blocks only the post-game screen. | Done |
+| 2 | Godot: category-selection + card-pick screens — build against **3** categories and the curated grid, not the old 5 free-text boxes | Blocked on 1 |
+| 3 | Godot: round-loop UI — WAGER → CARD → QUESTION → reading window → open ANSWER → RESULT | Blocked on 1 |
+| 4 | **Build the Chain round** — spec'd in `GAME_DESIGN.md`, deliberately not built: it needs a decision on round-level category selection first (option 2 in the spec). Rebus already filled Steal's slot, so this is expansion, not a gap | Spec'd, blocked on a design call |
+| 5 | **`server_py` parity: `questionLog` + `postGame`** — the Python backend has neither, so the Godot client cannot show any post-game screen. Full porting notes in item 46. | Real gap, blocks 6 |
+| 6 | Godot: GAME_OVER screen + post-game social layer | Blocked on 3+5 |
+| 7 | Live-test disconnect/reconnect + inactivity auto-advance against `server_py` | Ported, never exercised |
 | 8 | Wire MYF's coherence to the shared Python engine — now possible, `server_py` is Python | Unblocked by the port |
 | 9 | Retire the Next.js prototype — **only** once Godot reaches parity and is playtested | Do not do early |
 
@@ -62,8 +72,18 @@ below. Don't quietly re-prioritise them without asking.
 | Voice input | Text-only is fine for now. It was never wired into the Godot client, so parking costs nothing. Design still assumes voice is the eventual destination — keep honouring the `text`/`voice` transform split in `roundRules.js` rather than baking in text-only assumptions. |
 | Shareable Question polish | The current canvas card + Web Share implementation **is** the placeholder and is deliberately frozen there: one card, no hosting, no persistence. Do not extend it (no hosted links, no tap-to-reveal, no recap images) without the owner asking. Do not rip it out either — it's built and tested, so replacing it spends effort to end up with less. |
 
-36. **[DIAGNOSED, August 10 2026] "Start Game does nothing" is not an error — it's a ~4-minute
-    silent wait.** Reproduced by driving `startGame()` directly (same call `game:start` makes),
+**Known broken, unrelated to the above:** `scripts/coherence-test.js` doesn't
+run on `main` — it imports `POINT_TIERS`, which no longer exists in
+`lib/constants.js` (wagers became a 50–500 range). Fixing it means deciding
+what wager values it should sample now, which is a design call; it also spends
+real API calls, so it isn't part of any routine check.
+
+36. **[RESOLVED, August 12 2026 — superseded by item 37's lazy fact bank] "Start Game does
+    nothing" was not an error; it was a ~4-minute silent wait.** Fixed twice over: first by
+    running the batches concurrently and showing progress (~250s → ~50s), then by not building
+    the bank at start at all (~50s → instant). The diagnosis is kept below because the numbers
+    are the only real measurement of what a sequential fact-bank build costs.
+    Original entry: Reproduced by driving `startGame()` directly (same call `game:start` makes),
     with 3 players × 5 categories:
     ```
     allPlayersRegistered: true
@@ -87,7 +107,7 @@ below. Don't quietly re-prioritise them without asking.
 
 | Term | Means | Notes |
 |---|---|---|
-| **Lobby** | The post-join screen: player roster + the 5-category form, ending in "Next — Pick Your Card". | `components/Lobby.jsx`. **Not** the create/join screen — that's `app/page.js`. Godot's `lobby.tscn` currently merges both and must be split to match this definition. |
+| **Lobby** | The post-join screen: player roster + the category picker (3 tappable categories), ending in "Next — Pick Your Card". | `components/Lobby.jsx`. **Not** the create/join screen — that's `app/page.js`. Godot's `lobby.tscn` currently merges both and must be split to match this definition. |
 | **Logo** | The three-emoji mark (brain / pointing finger / group). | `public/brand/MYF_emoji_*.svg`. May appear **on its own**. |
 | **Title treatment** | The "Mind Your Friends" logotype. | `public/brand/wordmark-mono.svg` (derived) / `myf_title_trtmnt_trans.svg` (original). |
 | **Text treatment** | Synonym for **title treatment**. | Same thing — either name is fine. |
@@ -547,6 +567,461 @@ as a constraint to respect rather than a layout spec.
       and it's also the point of the feature — whether the social element *lands* is not
       something a test can answer.
 
+
+37. **[BUILT, August 12 2026] Owner playtest — eleven notes, all eleven built in the Next.js
+    prototype.** The owner ran real games and came back with a list. Three of them had genuine
+    forks in them, so those were put back to the owner before building; all three answers below
+    are the owner's, not assumed. **Nothing here is in `server_py` yet** — see the Priority
+    Queue and `docs/WIRING.md` → "The August 12 playtest changes" for the porting order.
+
+    **Core mechanics:**
+    - **(9) Everyone answers, first correct wins.** The whole room now races the same question.
+      One attempt each; a wrong one locks you out of that question. **Owner's call on the
+      wager:** only the active player risks points — they win or lose the wager set for them,
+      everyone else plays for a flat `OPEN_ANSWER_POINTS` (100) and risks nothing. Buzzing in
+      has to feel free or nobody does it; the wager has to still sting or "I cut, you choose"
+      stops meaning anything. Evaluations are **serialized** so "first correct" means first
+      *submission* — running them concurrently would hand the win to whoever's Claude call
+      returned first and could pay two players for one question. See PT-4 for what to watch.
+    - **This retired the Steal round rule and the whole STEAL phase.** Steal was exactly this
+      mechanic rationed to one round in nine. Eight rules remain; whether a ninth is wanted is
+      an open design call (Priority Queue item 4), and it can't be Steal again.
+    - **(8) Reading window + doubled clock.** The question and the timer used to arrive
+      together, making the clock partly a reading-speed test — worse now that the room races.
+      The question lands, `READING_SECONDS` (5) passes with the input visibly locked, then the
+      buzzers open for `BASE_TIMER_SECONDS`, now 40s (was 20s). Implemented as an
+      `answerOpensAt` timestamp, **not** a tenth phase: every phase-timeout and auto-advance
+      helper in `gameState.js` assumes the existing loop. See PT-5.
+    - **(1) Questions 8–20 words.** Hard constraint in both generation prompts, at most two
+      short sentences, no preamble. Matters more now that everyone races: a long question tests
+      reading speed, not knowledge.
+    - **(10) One rule per round, announced.** Rules were being redrawn every turn. Now assigned
+      per round, announced in a banner for the round's first turn, and kept on screen for the
+      whole round — a rule you have to remember is one people forget mid-round and feel cheated
+      by. **Round 1 is deliberately plain** so a new player learns the base game first, which is
+      the casual-first thesis applied to onboarding. Rules don't repeat until all have been used.
+    - **(2) Three categories, tappable.** Five typed boxes was the most laborious moment in the
+      game. **Owner's call:** a curated grid (30 categories, `lib/categories.js`, zero API cost)
+      plus "enter your own" — the free-text field stays because attribution jokes ("Bob's
+      Divorce") are a designed social beat and a fixed list can't produce them.
+    - **(3) Instant Start Game.** **Owner's call:** lazy per-category fetch plus background
+      prefetch. Facts are fetched when a category is first picked, behind the wager and card
+      windows where there's already time to fill, with `prefetchFactBank` quietly filling in the
+      rest; categories nobody picks are never paid for. `ensureCategoryFacts` is awaited in
+      `runQuestionPhase` as the correctness backstop — the early call on category pick is a head
+      start, not a race. Start went from ~250s to 1ms.
+
+    **UI and design:**
+    - **(4+5) Brand bar.** Title treatment hard left in fixed white, logo centred, room code
+      right. The logo recolours **per emoji, per game**, deterministic in the room code so
+      everyone in a room sees the same mark. The composition rule is respected by making the
+      logo unconditional and the wordmark the piece that drops on narrow screens.
+    - **The logo split is done and committed.** `scripts/build-logo.mjs` clusters the source
+      art's subpaths by horizontal extent and cuts on the two widest interior gaps. Two traps,
+      both of which failed silently on the first attempt and are documented in the script: the
+      extent parser needs real SVG command arities (`H`/`V` take one coordinate, so "every other
+      number is an x" puts y values on the x axis and smears every extent across the artboard),
+      and the artboard's hairline edge artifacts must be dropped or they outrank the real
+      inter-emoji gaps and both cuts land in the margins. Output: `lib/logoPaths.js` +
+      `public/brand/logo-split.svg`. Note the vector source is `MYF_emoji_two_trans.svg` —
+      `MYF_emoji_two_trans2.svg` is an embedded PNG with no paths at all and can't be split.
+    - **(6) Desktop layout.** Two columns above `lg`, with a **9:16** slot (TikTok's 1080×1920 —
+      the shape a generated talking-head clip will arrive in) held for the AI host. Deliberately
+      empty: the point of building the slot now is that screens get laid out around a host that
+      exists, instead of being rearranged later. Desktop only — on a phone the screen already is
+      that shape, and a 9:16 host there would leave no room for the game.
+    - **(7) Card art.** One `GameCard` component used by both the hand and the picker, so every
+      card is the same size everywhere and the card you picked is visually the card you play.
+      Colour and glyph are fixed per card id; warm for sabotage, cool for defence, so type reads
+      before the name. The art is CSS/emoji rather than commissioned illustration — this fixes
+      the sizing and feel so a real commission has a frame to fill.
+    - **(11) Superlatives one at a time.** The full list on one screen read as a form to fill in;
+      the awards are meant to land like announcements. One card at a time, sliding in from the
+      right, with the index derived from the ballot rather than held in state so a reconnect
+      resumes in the right place. **Skip all** needed a real server-side abstention:
+      `SKIPPED_VOTE` fills the ballot slot so the room isn't held behind the 90s timer, and is
+      excluded from the tally so "skipped" can't win an award.
+
+    **Bug found while testing this, not in the notes:** `playerView()` never sent
+    `roundRule.timerSeconds`, so every answer screen rendered a bare "s" where the countdown
+    should be. Invisible until the reading window put a real number next to it.
+
+    **Verification:** `scripts/mechanics-test.js` — 51 assertions, zero API cost, using the
+    `__setClientForTests` seam. It covers the things that can't be tested against a real API
+    because the API's own timing is the variable under test: the race with two correct answers
+    genuinely in flight, the one-attempt lockout, the wager asymmetry, timeout charging, and
+    fact-fetch de-duplication. Plus a real three-player Chromium run at desktop width through
+    instant start → round-1 banner → reading countdown → a non-active player buzzing in to take
+    the question. `scripts/start-progress-test.js` was deleted — its subject (a blocking
+    fact-bank build at start) no longer exists; `postgame-test.js` was updated for the new
+    outcome shapes.
+
+38. **[BUILT, August 12 2026] Rebus round rule — the ninth rule, replacing retired Steal.**
+    Owner idea from the same session: the answer spelled out in emoji (💯 + 🧑 → SURE + MAN →
+    Sherman), plus a one-line hint of what kind of thing it is. The hint is load-bearing, not
+    decoration — without it a rebus is a guessing game with no way in.
+    - **Zero API calls.** Puzzles come from a curated bank, `lib/rebusData.js`. Same call as The
+      Lineup's colour flavour and for a sharper reason: a rebus whose pieces don't reconstruct
+      its answer is *unsolvable*, and a room can't tell "we're stupid" from "the game is
+      broken". Sub-word phonetic decomposition is among the least reliable things to ask a
+      language model for, so live generation would produce that failure at some rate. Curation
+      removes the failure mode rather than trying to catch it at runtime.
+    - **Owner's structural call: a library of PIECES, not self-contained puzzles.**
+      `REBUS_PIECES` is `key -> {emoji, reads}`; `REBUS_PUZZLES` are lists of piece keys. 113
+      pieces, 82 puzzles. The atoms recur constantly (MAN in six puzzles, SUN in four), so this
+      is one emoji decision per concept rather than per puzzle, and a piece improved once
+      improves everywhere. It also gives a future generation path a fixed vocabulary — "compose
+      from these 113 pieces" is mechanically checkable, "invent a rebus" is not. That's the
+      route to growing the bank without reintroducing the reliability problem.
+    - **Literal vs phonetic is marked in the data and enforced by tests.** Non-phonetic puzzles
+      must reconstruct their answer letter-for-letter; the test asserts it over the whole bank,
+      so a typo can't ship. Phonetic ones (`phonetic: true`) opt out deliberately and get an
+      on-screen nudge to say the pictures out loud.
+    - **The reveal shows the decomposition** (🟢 GREEN + 🏠 HOUSE = Greenhouse). A player who
+      missed it has to learn why, or it's a trick rather than a puzzle.
+    - **Known limitation:** the puzzle ignores the picked category, same as the colour flavour
+      and for the same reason. Documented in `GAME_DESIGN.md` rather than fixed.
+    - **`MYF_FORCE_ROUND_RULE=rebus npm run dev`** — previous sessions each hacked a local force
+      in and reverted it before committing (items 30, 32, 33). It's a real documented switch now,
+      in `roundRules.js`. It overrides round 1's plain rule too, so testing a rule doesn't cost a
+      whole round to reach.
+    - **Verified:** the bank's integrity assertions plus a forced rebus round in a real browser —
+      🟢 + 🏠 with the hint "Warm, glass, and an effect", solution withheld from the client until
+      RESULT. `scripts/mechanics-test.js` is now 68 assertions, still zero API cost.
+    - **Chain round spec'd, not built** (`GAME_DESIGN.md` → "Chain — How It Works"). It needs a
+      decision first: chain answers must share a theme, but questions come from a per-category
+      fact bank picked fresh each turn, so "a fact in *90s Movies* whose answer contains a
+      colour" usually comes back empty. The recommended shape is one category for the whole
+      round with the six questions generated in a single call — cheaper to run than six, but the
+      first round rule to touch the turn loop rather than just question generation.
+      **Owner's call: Whoa Nellie restarts the chain.** That settled more than it looks —
+      the opening theme is announced (kind, no landslide) but a theme installed by Whoa Nellie
+      is *not*, so the base round helps weak players while the sabotage makes the remainder
+      cruel. Two open questions left, both in the spec: whether an announced theme makes the
+      round easier enough to need a lower buzz-in rate, and where themes come from (curated
+      like the rebus bank, or generated per round).
+
+39. **[IN PROGRESS — owner exploring, August 17 2026] Visual identity, built from the background
+    up.** Owner supplied a reference background: **faded question marks — randomly sized,
+    strewn and rotated** — originally on white. Scoped by owner to **MYF only**; do not
+    generalise this into a studio-wide or cross-title design layer.
+    - **Asset, not generated (decided).** The image goes in the repo as a file. The
+      "different screen shapes need a generator" argument was raised and **withdrawn as wrong**
+      — a scattered texture has no focal point, so `cover`-cropping a phone screen loses
+      nothing. Generating only becomes worth it if file weight starts hurting, or if the field
+      should ever *react* (thicken as the timer runs down, tint toward the round rule's colour)
+      — nobody has asked for that; don't pre-build it.
+    - **Export as 2× WebP/PNG, not SVG.** Evidence is in this repo: `myf_title_trtmnt_trans.svg`
+      is 2.1 MB and `wordmark-mono.svg` is 1.2 MB, because vector files pay per path point. A
+      few hundred question marks is that same shape of file, except it sits behind *every*
+      screen instead of appearing once.
+    - **[OPEN — owner exploring] Ground colour.** White was tried first and the owner's read is
+      that it **may not work**. Exploring the same faded-question-mark treatment on **grey,
+      charcoal and slate blue** before deciding. Everything below waits on this.
+    - **Whatever the ground, this replaces the current palette.** MYF is `#0d0d1a` near-black
+      with a purple accent today. Gold `#f59e0b` is near-invisible on a light ground, and the
+      eleven card gradients in `GameCard.jsx` were tuned to glow against near-black — on a pale
+      ground the light end of each washes out (Insurance's green is the clearest case). Re-tune
+      them as part of this, which is small now and large once an illustrator has drawn eleven
+      finished cards.
+    - **Working thesis, to keep or discard once the ground is picked:** a low-contrast field
+      hands all contrast to the content, so **the ground is paper and the game pieces are
+      objects sitting on it** — cards keep saturated colour and gain real shadows, the
+      scoreboard is a card on a table rather than a HUD, the question is printed matter. A
+      tabletop game seen from above, which is what MYF actually is.
+    - A tunable stand-in field with the game's own UI composited on top was built for judging
+      these calls (published as a Claude artifact, not committed — it is a viewing aid, not a
+      deliverable, and deliberately not the shipping implementation).
+
+40. **[DECIDED, August 17 2026] Screen system — ground, plates, chrome and the host moment.**
+    Follows from item 39; these are settled calls, not proposals.
+    - **Ground: slate blue `#2F4459`.** Owner's call after trying white, grey and charcoal, and
+      formalised August 17 2026. This is *the* ground colour — the plate device below is this same
+      value, so it is a single token, not two that happen to match. Defined as `game.slate` in
+      `tailwind.config.js`.
+      The faded question marks sit on it as texture, not content:
+      | Role | Value | Notes |
+      |---|---|---|
+      | Ground / plate | `#2F4459` | one token; plates are the ground with texture off |
+      | Mark — brick | `#B03A42` | dominant, ~34% of marks |
+      | Mark — deep red | `#8C2730` | ~16% |
+      | Mark — cool grey | `#9BA5AD` | ~22% |
+      | Mark — steel | `#7E9AAB` | ~16% |
+      | Mark — light grey | `#C6CCD1` | ~12% |
+      | Text on ground | `#EEF3F7` | 8.99:1 — passes AAA |
+      | Muted text | `#B9C4CF` | 5.67:1 — passes AA |
+      | Accent | `#E8737F` | 3.44:1 — large text and non-text only, never body copy |
+      Marks are given as full-strength colours and composited at the 10% mark strength; do **not**
+      pre-multiply them, or the ground can never be re-tuned without re-deriving all five.
+    - **Mark strength 10%, field kept dense** (owner's call, August 17 2026 — the quiet end of the
+      10–14% range originally proposed). The two trade off: faint marks can afford far more
+      density, and density is what stops the field reading as a flat tint. This number is
+      load-bearing for everything below — see the plate rule.
+      **If it ever needs adjusting, add density, not opacity.** 10% sits close enough to the floor
+      that a dim projector could push the plates toward invisible; the fix preserves the aesthetic,
+      raising opacity doesn't. Worth one check on a real television before it's final.
+    - **The plate device (the core rule).** Text sits on a solid rectangle of *the ground colour
+      with the texture switched off* — a hole cut through the field, not a panel laid on top.
+      No radius, no border, no shadow: a card floats above the field, a plate is part of it.
+      Derived from a reference deck the owner supplied (Mapme), where full-bleed white bands
+      interrupt a faded map texture.
+      **This is why the mark strength matters:** the plate is only visible because the texture
+      around it isn't. Too faint or too sparse and the plate reads as an odd empty stripe rather
+      than a deliberate one. Don't tune one without re-checking the other.
+    - **Applies to all persistent chrome,** not just questions: round data (upper left), the
+      logo + round rule (top centre), the timer (upper right), the scoreboard. Once the plate
+      means "this is chrome, read it", the eye stops decoding each box separately.
+    - **Layout rule: plates are for what must be read, objects are for what must be grabbed.**
+      Questions and answers get plates. Cards stay physical objects with their saturated colour
+      and shadows — they're the thing you throw at someone. The round rule lives *in* the plate
+      with the question, since Rebus/ELI5/Boxed In all change how an answer must be given.
+    - **Question type is light, generous and centred,** not heavy bold. The reference's calm comes
+      from restraint, the plate's cleanliness carries the legibility, and it suits "casual-first,
+      stress-free" better than shouting.
+    - **Logo: centred top, round rule immediately right of it.** Use the real mark from
+      `lib/logoPaths.js` with `Logo.jsx`'s existing six-palette rotation — already deterministic
+      in the room code, which is the colour variance the owner wanted. **Open:** those palettes
+      were chosen against the old near-black ground; they survive slate but the amber in a couple
+      of triples is now the weakest of its three. Worth one pass now slate is final.
+    - **Host video = a centre-screen takeover, NOT a persistent window.** Owner's call, on cost
+      grounds — *"keeping costs low is paramount above all (or almost all) else."* The host
+      appears centre, vertical, delivers banter or asks a question, then disappears and regular
+      game content returns. It is a **screen state, not a panel**: because it replaces the play
+      content rather than sharing space with it, nothing resizes, which was the one real
+      objection to a non-permanent window. Idle cost is zero.
+    - **Vertical is native, and originates on the phone.** 9:16 *is* the phone screen; the
+      television merely frames it. Given players live on their phones, that's the right way round.
+      Build the format phone-first.
+    - **Host = one character, attitude varies per game.** Owner's call, superseding the earlier
+      "host custom to the game" idea. The game picks an attitude (snarky, funny, rude, obscene,
+      …); the character itself is fixed. **This is what makes pre-packaged animation possible** —
+      attitudes × moment-types is a finite asset matrix filled once and shipped, not a generation
+      problem. No per-game rendering, no latency, no per-match bill.
+    - **Split the performance from the specifics.** A pre-packaged clip can't say "Priya just
+      played Whoa Nellie on Marcus" — it doesn't need to. The **clip carries attitude and
+      reaction**; the **names arrive as text** on the plate beneath it (the host-moment caption
+      line). Text generation is orders of magnitude cheaper than video and is already happening.
+      That's how the moment feels personal with zero video generated per game.
+    - **"Funny" is the attitude that fights this model.** Snark and rudeness are *postures* — the
+      stance is the point, so they survive being seen twenty times. A joke is a one-shot: by the
+      tenth play it is *worse* than neutral, not merely stale. A comic attitude therefore needs
+      substantially more variants per moment than the others. Plan the asymmetry; don't discover it.
+    - **Coarse attitudes are a packaging decision too:** make it a room-level choice set visibly in
+      the lobby rather than a surprise, and note that on Steam the spiciest preset sets the store
+      age rating for the whole title.
+    - **[SETTLED] No answer timer during a host moment.** Banter never costs anyone answering time.
+      If the host is *asking* the question, the clock starts when it stops talking.
+    - **[SETTLED] The hold screen is the standings, not a spinner.** While a clip loads, show the
+      scoreboard plus a **score-progression chart** — how the scores changed across rounds. A
+      loading state asks players to wait; the standings give them something they wanted anyway, so
+      the wait stops being one. It also does the job a party game needs between questions: let the
+      room argue about who's winning. Intended to double as socially shareable content.
+    - **Player colours are validated, not chosen by eye.** Fixed order, generated in OKLCH and
+      checked against the slate ground for lightness band, chroma, contrast and colour-blind
+      separation — all pass at 4 players and at 8:
+      `#D67069, #4D97DE, #C87F2C, #8B85DE, #65A556, #B576C3, #9E9621, #00A9B1`.
+      **Assign by seat; never cycle or reorder** — the order is what the CVD separation was solved
+      for, so reordering silently breaks it. Chart form: lines (change-over-time + identity),
+      direct-labelled at the end, legend present, no hover layer (a television and a shared image
+      have no pointer).
+    - **[OPEN] Does the parked "Shareable Question polish" item unpark?** That item explicitly
+      freezes the canvas + Web Share card and says not to extend it without the owner asking. The
+      shareable standings chart is adjacent. Read as a *narrow* unpark — a new shareable artefact,
+      not licence to revisit the question card — but confirm, since the note exists to prevent
+      exactly this kind of drift. The existing canvas/Web Share path can be reused to render it.
+    - **[OPEN] Which cut gets shared?** On the host screen every player's line matters equally; on
+      a phone the postable version is probably *your* line highlighted with the rest muted — same
+      data, one accent, survives thumbnail size where four equal lines won't.
+    - **[OPEN] Can a player skip a host moment?** A bank clip that can't be skipped becomes the
+      thing everyone talks over by the fifth game.
+    - **[DEFERRED by owner]** General cost estimation for host video — banked for a later
+      conversation, since no animation is being pulled in yet.
+
+41. **[BUILT, August 17 2026 — prototype AND `server_py`] Flow B: the active player answers first.**
+    Full spec in `GAME_DESIGN.md` → "The Round Loop — Flow B". This is the agreed answer to
+    **PT-4** and supersedes both the original single-answerer loop and the Aug 12 free-for-all.
+    - **The problem it fixes.** Under the Aug 12 rules, if a faster player always takes the
+      question, the active player's wager never bites — they watch their own question get
+      claimed and neither win nor lose. That also quietly breaks "I Cut, You Choose": if
+      *anyone* can claim the wager, the setter is no longer setting a punishment but a **bounty
+      they might collect themselves**, so they'd always set maximum.
+    - **The change is one step.** After the 5s reading window, the active player gets an
+      exclusive ~8s window on their own question. Answer right → win the wager. Answer wrong →
+      lose it, buzzer opens. Pass → buzzer opens immediately, lose nothing. Everyone else then
+      races for a flat 100, one attempt each. Turn order never changes — **answering never earns
+      another turn** (that was the runaway-leader failure in the rejected Flow A).
+    - **Pass ≠ timeout, and this distinction is load-bearing.** An explicit pass costs nothing;
+      letting the window expire still costs the wager, preserving `expireAnswerWindow`'s existing
+      "stalling isn't free" rule. Without the split, "pass" becomes a free opt-out of every hard
+      question and the wager stops mattering again — reintroducing the exact problem Flow B fixes.
+    - **New parameter:** `ACTIVE_WINDOW_SECONDS` = 8, carved *out of* the round rule's answer
+      clock rather than added to it, and capped at 25% of that clock so Lightning Round's 20s
+      doesn't become mostly-exclusive.
+    - **Doesn't apply to** `submissionBased` (Worst Answer Wins) or `lineupBased` (The Lineup),
+      which keep their own answer flows. Rebus is ordinary free text and does use Flow B.
+    - **Build order held: prototype first, then port.** The `server_py` port (item 42) was
+      paused deliberately at a clean boundary rather than porting the current answer flow and
+      then immediately replacing it. Both sides now have Flow B.
+    - **PRE-COMMITTED ANSWERS (owner's call, same day) — the mechanic changed shape.** Everyone
+      except the answerer types and LOCKS an answer during the answerer's exclusive window; a
+      buzz plays that committed answer, and you cannot type one after the fumble. This closes
+      the lookup window (the moment worth cheating in is the one after the answerer fails, with
+      the whole remaining clock to search — that moment no longer accepts new answers), turns
+      buzzing from a typing race into a one-tap decision, and keeps the room busy during the
+      exclusive window instead of watching. **No lock, no buzz** — owner confirmed a player who
+      never committed sits the question out.
+      Two rules keep it fair, and both are load-bearing: the **lock deadline never moves** (a
+      pass brings the *buzzer* forward but not the deadline, or folding at second one would cut
+      the room off mid-sentence and the question would die unanswerable), and **a commitment is
+      immutable** (one you can revise until the last instant is not a commitment). A question
+      nobody can answer ends immediately rather than running the clock down, and the unplayed
+      commitments are revealed at the result — "you HAD it and sat on it" is the loudest moment
+      the mechanic produces.
+    - **The buzz payout is `BUZZ_WAGER_SHARE` (0.75) of the wager, not a flat 100.** Owner
+      proposed 1.5x, then 0.75x; 0.75x is right and 1.5x is not. Under 1 the risk hierarchy
+      stays the right way up; at 1.5x a buzzer earns 300 on a question the answerer could only
+      win 200 on while risking nothing, which makes being the active player something to avoid.
+      A share is also self-anchoring where a flat number is not, and — the owner's own point —
+      it scales with whatever wager range is settled on later.
+    - **Verified:** `scripts/mechanics-test.js` is now 105 assertions, zero API cost;
+      `server_py/test_mechanics.py` is 63, also zero cost, and includes the thread race that
+      proves the Python ticket lock. Plus a real uvicorn process driven over HTTP + WebSocket.
+      **Still not played by real people** — the 8s window and whether the lock window gives
+      enough time to commit are both untested guesses.
+
+42. **[MOSTLY DONE — August 17 2026] `server_py` parity port.** Detail in `docs/WIRING.md` →
+    "The August 12 playtest changes", which remains the porting guide.
+    - **Done:** constants and the wager ladder; round rules (Steal retired, Rebus added,
+      `NO_RULE` for round 1, no-repeat picker, `MYF_FORCE_ROUND_RULE`); the rebus bank
+      (generated from `lib/rebusData.js`, not hand-typed); **the whole Flow B answer flow**
+      (reading window, exclusive window + 25% cap, pass vs freeze, pre-committed answers,
+      buzz-in, dead-air kill); the 0.75x buzz payout; five-rung difficulty; **per-round rule
+      assignment with announcements**; and **the lazy fact bank** — start went from a blocking
+      build to 9ms, measured against a real server.
+    - **THE HARD PART, and how it was actually solved.** "First correct wins" must mean first
+      *submission*, not first API response. Node gets that free from one event loop plus one
+      promise chain. Python does not, and a plain `threading.Lock` does **not** substitute —
+      Python locks make no FIFO promise, so two threads blocked on one can be granted in either
+      order, which is exactly the coin flip this has to avoid. The fix is a **ticket lock**:
+      each attempt takes a ticket in the same critical section that claims its attempt slot
+      (so the order cannot be interleaved), then waits its turn on a `threading.Condition` with
+      **no game lock held**, because the evaluation is an API call and holding `_games_lock`
+      across it would freeze the whole room on every answer. `main.py`'s endpoints perform that
+      two-step explicitly: claim under the lock, resolve with it released.
+      `test_mechanics.py` proves it by starting the LATER claim's thread FIRST — a naive
+      implementation gives the win to the wrong player there.
+    - **Steal is gone**, not just unreachable: `claim_steal`/`expire_steal`, the `STEAL` phase,
+      the steal window and its endpoint. This was the answer-flow rewrite the previous note said
+      to remove them alongside.
+    - **Found by RUNNING it, not by reading the port:** `claude_client.py` never received the JS
+      `LENGTH_RULE`, so Python questions had no 8–20 word constraint at all — a real generated
+      question came back at ~45 words, which under a shared buzzer tests reading speed rather
+      than knowledge and is longer than the reading window is sized for. Now applied to both
+      generation prompts. Worth remembering as the argument for live-running a port rather than
+      trusting a careful translation.
+    - **Verified:** `server_py/test_mechanics.py` — 63 assertions, zero API cost, including the
+      thread race. Plus a real `uvicorn` process driven over HTTP + WebSocket: instant start,
+      round-1 announcement, background prefetch, and every Flow B gate returning the right code
+      (lock refused during reading, accepted after, immutable once set; buzz refused in the
+      exclusive window and refused with no lock; pass accepted; committed buzz accepted;
+      `RESULT` reporting `activeOutcome: "passed"` with `wagerLost: false`).
+    - **`test_start_progress.py` deleted** — its subject, a blocking fact-bank build at start,
+      no longer exists. Same call the JS side made with `start-progress-test.js`.
+    - **STILL NOT PORTED: `questionLog` and `postGame`.** See item 46 — this is now the only
+      thing blocking a Godot post-game screen.
+
+43. **[PROPOSED — not done] Rename "open answering" to "buzz-in".** The term reads as "answering
+    into an open text field", which is not what it means (it means *open to everyone*; the input
+    format is a separate axis — The Lineup is "open" and is a pick-list). The codebase already
+    says "buzz" 27 times against "open answering" 14, including in the Chain spec's "buzz-in
+    rate", so the better name is already the house term. Mechanical rename across both backends
+    plus docs: `openAnswerEligible` → `buzzEligible`, `resolveOpenAnswer` → `resolveBuzz`,
+    `answerOpensAt` → `buzzerOpensAt`. Do it as **one atomic pass, not during the port** — a
+    rename mixed into a translation hides any real bug in a diff full of renames.
+    **Partly overtaken by Flow B (August 17 2026), and the remaining rename has changed shape.**
+    `OPEN_ANSWER_POINTS` is gone on its own — the buzz payout is now `BUZZ_WAGER_SHARE`, already
+    the house term. More importantly, **`answerOpensAt` → `buzzerOpensAt` is now WRONG**: Flow B
+    added a genuinely separate `buzzOpensAt` (when the room may buzz), while `answerOpensAt`
+    means only "the reading window is over". If this pass ever runs, rename `answerOpensAt` →
+    `readingEndsAt` instead; renaming it to `buzzerOpensAt` would collide with a real field that
+    means something else.
+
+44. **[TABLED by owner, August 17 2026 — not started]** Two follow-ups to the wager and
+    difficulty-colour work committed the same day (`f31612f`), recorded in the owner's own words so the intent isn't paraphrased away:
+
+    > 1. Wage tier simplification
+    > 2. expanding color scene to blue-green or yellow-green (to increase differential)
+
+    Context for whoever picks these up, kept separate from the owner's wording above:
+    - **(1)** refers to the five-rung ladder `12 / 25 / 50 / 100 / 200` (`WAGER_TIERS` in
+      `lib/constants.js`). Simplification most likely means fewer rungs — the sim in
+      `scripts/economy-sim.js` shows the bottom two tiers swing only 3% and 6% of a typical
+      winning margin, so 12 and 25 are close to indistinguishable in play and are the obvious
+      candidates to merge or drop. Re-run that script after any change; it reads the ladder
+      straight from constants.
+    - **(2)** refers to `lib/difficultyColors.js`. Today the ramp is a single hue (green, 132°)
+      varying only in lightness and saturation, which is why the middle steps read as similar.
+      Widening the hue span — toward blue-green at one end and yellow-green at the other —
+      buys real perceptual separation without leaving "green". Change `HUE` to a per-step array
+      in `scripts/build-difficulty-colors.mjs` and re-run it; do **not** hand-edit the generated
+      hexes, and keep every step at or above 4.5:1 on the slate ground (the generator refuses to
+      write a ramp that fails this, which is the guardrail, not a formality).
+
+45. **[BUILT, August 17 2026] The wager ladder, the pie, and difficulty-coloured questions.**
+    Owner-driven, in one session, after the 50–500 slider was flagged as "arbitrary now, as we
+    review it". It was — and the reason is measurable, not a matter of taste.
+    - **Five tiers: `12 / 25 / 50 / 100 / 200`** (`WAGER_TIERS`). A doubling ladder anchored so
+      **100 is the whole pie**, which makes every rung self-describing. The slider offered 46
+      values across a range whose ends were both wrong: a 50 swung ~4% of a typical winning
+      margin (noise) and a 500 swung 43% (one question deciding half the night), at a resolution
+      finer than any decision a person can make. The ladder spreads 3 / 6 / 12 / 23 / 47%.
+      Off-ladder values are **rejected, not clamped**, on both backends.
+    - **The pie** (`components/WagerPie.jsx`) — owner's idea, and on the nose on purpose: a new
+      player must understand the stake without being told, and "how much of the pie" is a thing
+      everyone already knows. Left on desktop, atop on mobile. 200 is a full oversized pie with
+      a dashed ring outside the crust — the only tier that breaks the shape's own scale, which
+      is the point of it.
+    - **Question text is printed in a green keyed to the tier** (`lib/difficultyColors.js`).
+      This is honest rather than decorative: the wager genuinely drives difficulty
+      (`coherence.js` turns it into the generation instruction AND the fact-bank filter), and
+      difficulty is now **five rungs** — `trivial/easy/medium/hard/brutal` — matching the ladder
+      instead of normalising a continuous range into three buckets, which had two visibly
+      different wagers producing identically-pitched questions. The fact bank still only knows
+      three difficulties, so the five map down for filtering; widening it would mean
+      re-generating every cached bank.
+    - **The colour ramp is GENERATED, never picked by eye** — `scripts/build-difficulty-colors.mjs`,
+      same discipline item 40 applied to the player colours, and the generator **refuses to
+      write** a ramp with any step under 4.5:1 on the slate ground. That guardrail is the whole
+      reason the script exists: the owner's reference spectrum ran to `#26501A`, which against
+      `#2F4459` is about **1.2:1** — invisible, not merely dim.
+      **The unavoidable tension, worth not rediscovering:** on a dark ground "darker" and
+      "readable" pull directly against each other. So the ramp deepens by **saturation**, from a
+      pale mint to a full sage-green, rather than by darkness. It reads as "deeper green =
+      harder question", which is the owner's direction, reached by a different road.
+      **A literal light-to-dark green would need the question on a LIGHT plate**, which is a
+      change to item 40's plate device — a separate decision, not a quiet reversal of a settled
+      one. See item 44 for the owner's tabled follow-up on widening the hue span instead.
+    - **`scripts/economy-sim.js`** — a Monte Carlo of the scoring economy, added because "is 100
+      a lot or a little?" cannot be answered by staring at the constant. Zero API cost, and
+      explicitly **not** a test of the state machine: it models the scoring rules, imports the
+      payout formula from `constants.js` so that number can't drift, and makes every behavioural
+      assumption a named knob. Re-run it after touching the ladder or the share.
+
+46. **[NOT STARTED — the last real gap before Godot post-game work] `server_py` needs
+    `questionLog` and `postGame`.** The Python backend records nothing about the questions it
+    asked and has no post-game stage, so a Godot client physically cannot render any end-of-game
+    screen — there is no data to render. The JS prototype has both (item 35): `logQuestion()`
+    called from `nextTurn()` as the single funnel every resolution path passes through, and
+    `game.postGame` living **inside** the `GAME_OVER` phase rather than as new phases.
+    - Port `logQuestion()` first and keep the same funnel — logging from each resolution path
+      instead would be six places to forget, and Flow B added outcomes (`passed`) that would be
+      missed in at least one of them.
+    - Keep the answer-leak guard: `questionLog` carries every correct answer and must ship
+      **only** in the `GAME_OVER` branch of `player_view()`.
+    - Superlative voting needs `generate_superlatives()` / `narrate_superlative_results()` in
+      `claude_client.py`; note the JS version's bug worth not repeating — quips keyed by award
+      *title* instead of id silently dropped every one of them.
+
 ## Design Thesis: Casual-First
 This game targets casual, social players — not competitive optimizers. Every
 mechanic must optimize for surprise, laughs, and "oh no!" moments over strategic
@@ -566,22 +1041,44 @@ see `lib/claudeClient.js` for the pattern.
 ## Architecture
 ```
 server.js           # Socket.io event hub + question generation orchestrator
-lib/gameState.js    # In-memory state machine (8 phases: LOBBY → CATEGORY → WAGER → CARD → QUESTION → ANSWER → RESULT → GAME_OVER)
-                    # Also: disconnect/reconnect, inactivity detection, fact bank
+lib/gameState.js    # In-memory state machine (LOBBY → CATEGORY → WAGER → CARD → QUESTION → ANSWER → RESULT → GAME_OVER,
+                    # plus the transient EVALUATING used by submission-based rounds)
+                    # Also: open answering, disconnect/reconnect, inactivity detection, lazy fact bank
 lib/claudeClient.js # fetchFactsBatch(), generateQuestion(), evaluateAnswer(), moderateHeckle()
 lib/coherence.js    # Two-pass CE (roundConstraints → turnConstraints → validateQuestion) + pickFactoid()
 lib/cards.js        # Card definitions, dealRoundCards(), buildRoundHand()
+lib/categories.js   # Curated category suggestions for the lobby picker
+lib/logoPaths.js    # GENERATED by scripts/build-logo.mjs — the split three-emoji logo
 lib/roundRules.js   # Rule definitions + answer transforms
 lib/constants.js    # Shared constants (no Node-only deps — safe for client components)
 components/         # React UI per phase (Lobby, CardPicker, CategoryPicker, CardHand, GameBoard, ScoreBoard, VoiceInput)
+                    # plus chrome: BrandBar, Logo, Wordmark, HostStage, GameCard
 app/game/[code]/    # Game room page — Socket.io client, routes by phase
 ```
 
 ## Conventions
-- **Branch**: develop on `dev/mind-your-friends` — never commit directly to `main`
+- **Branch**: MYF now lives on `main` (the Godot port merged via PR #15). Work on a feature
+  branch off `main`; never commit directly to `main`. `dev/mind-your-friends` is superseded —
+  as of August 17, 2026 it carries **zero unique commits vs `main`**, so it is now a stale
+  pointer rather than a live line of work. Do not start from it.
+- **`dev/cryptic-challenge` is not a third project** (verified August 17, 2026). This repo hosts
+  **two** titles — Choose Your Mystery and Mind Your Friends — and the branch name has misled
+  readers into assuming a third, including a Claude session that cited it as evidence of one.
+  It points at commit `ea5af2f`, the *same commit* `dev/choose-your-mystery` points at: a March
+  2026 snapshot of CYM's pre-Godot Streamlit tree, with zero unique commits vs `main`. No file
+  named "cryptic" has ever existed on any branch. Nothing to archive; the deletion needs the
+  GitHub UI (403 blocks `git push --delete`). Full write-up in the root `CLAUDE.md` item 9.
+  If a real Cryptic Challenge project exists, its work is **not in this repo**.
 - ESM throughout (`"type": "module"`); Socket.io server owns all game logic, never the client
 - Model: `claude-sonnet-4-6`
 - No comments unless the WHY is non-obvious
+- **Prose spelling: British** — `colour`, `defence`, `behaviour`, `personalise`. This is what the
+  codebase already does in comments and player-facing strings (`GameCard.jsx` "Colours run warm
+  for sabotage, cool for defence"; `Logo.jsx`, `rebusData.js`, `gameState.js`). **Identifiers and
+  CSS stay American** — `color`, `backgroundColor`, `PLAYER_COLORS` — because the language and the
+  DOM spell it that way and renaming those is not on the table. So the split is: anything a person
+  reads is British, anything a parser reads is American. `lib/lineupData.js` and one string in
+  `claudeClient.js` are inconsistent with this; not worth a dedicated pass, fix them when touched.
 
 ## Game Design Context
 **Input modes — text and voice:**
@@ -610,8 +1107,10 @@ need no variants. Never bake in text-only assumptions — voice is the destinati
    Card Resolution)
 4. Server calls Claude → question (modified by active round rule and any
    resolved format-constraining card — see below)
-5. Active player answers within timer
-6. Claude evaluates answer (fuzzy match); points awarded/deducted
+5. Question is shown; after READING_SECONDS the buzzers open to the WHOLE room
+6. Every player gets one attempt; Claude evaluates in submission order and the
+   first correct answer wins. Only the active player's wager is at risk —
+   everyone else plays for a flat OPEN_ANSWER_POINTS (see item 37, PT-4)
 7. 4s result screen → next turn; after max rounds → GAME_OVER
 
 **The 10 cards (8 sabotage + 2 anti-sabotage, all single-use)** — see
@@ -664,16 +1163,20 @@ iterate on the post-game screens. Remove both for a real pacing test.
 transformation, add a case to `transformAnswer()` with both `text` and `voice` variants
 (see Input modes above). Input-agnostic rules need no transform case.
 
+**Test one round rule** — `MYF_FORCE_ROUND_RULE=rebus npm run dev` pins every round
+(including round 1) to that rule. Use it instead of hacking `pickRandomRoundRule` locally,
+which is what earlier sessions did and had to remember to revert.
+
 **Add a card** — edit `lib/cards.js`: add definition (and to `COMMON_CARD_IDS` or
 `PICKABLE_CARD_IDS`). Apply the effect in `gameState.js → resolveCardSlot()`'s switch
 statement; log a highlight via `logHighlight()` if it's a notable sabotage moment.
 
 ## Session Start Protocol
-1. `git checkout dev/mind-your-friends && git pull origin dev/mind-your-friends`
-2. Read **Current To-Do** above — item #31 (Godot port) is the next step.
+1. `git checkout main && git pull origin main`, then branch off it for the session's work.
+2. Read the **Priority Queue** above — that's the short list. Item 37 is the most recent work.
 3. Run `git log --oneline -10` to see what was last committed.
 4. Read `GAME_DESIGN.md` for the full game design.
-5. Read `PLAYTEST.md` for open playtest questions (PT-1 through PT-3).
+5. Read `PLAYTEST.md` for open playtest questions (PT-1 through PT-5).
 6. State your starting point in the first reply: branch, latest commit, what you'll do.
 
 > **Branch hygiene note (July 22, 2026):** four past sessions each independently forked MYF from
@@ -689,6 +1192,6 @@ statement; log a highlight via `logHighlight()` if it's a notable sabotage momen
 > here so a future session isn't misdirected the way CYM's `CLAUDE.md` was before its own fix.
 
 ## What NOT to Do
-- Never push directly to `main` (403). Use `dev/mind-your-friends`.
+- Never push directly to `main` (403). Work on a feature branch off `main` and open a PR.
 - Never put Claude API calls in client-side React — only `server.js` touches the API.
 - Don't add a database yet — in-memory state is intentional for MVP.

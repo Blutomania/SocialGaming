@@ -2781,3 +2781,349 @@ Christie, P.D. James, Ronald Knox, Raymond Chandler, Tana French, Gillian Flynn,
 2. **Add `ANTHROPIC_API_KEY` secret** in HF Space settings (Settings → Variables and secrets)
 3. Wire `app.py` to `part_registry.py` (marked in to-do above — partially done in `f205194`)
 4. When pushing future fixes to HF: `git cherry-pick <commit>` onto `hf-deploy`, then `git push hf hf-deploy:main --force`
+
+---
+
+## Session 29 — August 12, 2026 (MYF: lobby progress, then eleven playtest changes)
+**Branch:** `claude/myf-lobby-progress-state-zc3myh` (off `main` at `a8c86fb`)
+**Scope:** Mind Your Friends only. No CYM files touched.
+
+### What was done
+
+**Part 1 — the reported "Start Game does nothing" bug (MYF CLAUDE.md item 36).**
+Not an error: a ~250s silent wait. Fixed both halves in both backends.
+- Fact-bank batches now run concurrently (`Promise.all` / `ThreadPoolExecutor`) instead of in a
+  loop: ~250s → ~50s. Results still merged in batch order so an overlapping category resolves
+  the same way it did before.
+- Added `game.startProgress` — set before the first Claude request goes out, updated per
+  completed batch, cleared on success or failure — riding the existing player-view broadcast, so
+  every player in the room sees the wait narrated, not just the host.
+- `ApiClient.gd`'s start timeout was 120s against a 250s call, so the Godot client timed out on
+  every real game start. Now `START_GAME_TIMEOUT` (300s), with `GameState.gd` exposing
+  `start_progress()`/`is_starting()` and a `start_progress_changed` signal.
+
+**Part 2 — the owner's playtest notes.** The owner ran real games mid-session and returned
+eleven notes. Three had genuine design forks in them and were put back to the owner before
+building (wager model under open answering; fact-fetch timing; category source). All eleven are
+built, **in the Next.js prototype only**. Full detail in MYF's `CLAUDE.md` item 37.
+- Mechanics: open answering (everyone races, first correct wins, only the active player risks
+  the wager), reading window + 40s clock, 8–20 word questions, one rule per round with round 1
+  deliberately plain, 3 tappable categories, instant start via lazy per-category facts.
+- UI: brand bar (title treatment left, per-game recoloured logo centre), two-column desktop
+  layout with a 9:16 host slot, uniform illustrated cards, one-at-a-time superlative voting with
+  Skip all.
+
+### Files modified
+**Backend/mechanics:** `lib/claudeClient.js`, `lib/gameState.js`, `lib/constants.js`,
+`lib/roundRules.js`, `server.js`, `server_py/claude_client.py`, `server_py/game_state.py`,
+`server_py/main.py` (Python side has Part 1 only — see the gap below)
+**New:** `lib/categories.js`, `lib/logoPaths.js` (generated), `components/BrandBar.jsx`,
+`components/Logo.jsx`, `components/HostStage.jsx`, `components/GameCard.jsx`,
+`scripts/build-logo.mjs`, `scripts/mechanics-test.js`, `server_py/test_start_progress.py`,
+`public/brand/logo-split.svg`
+**UI:** `components/Lobby.jsx`, `components/GameBoard.jsx`, `components/CardHand.jsx`,
+`components/CardPicker.jsx`, `components/SuperlativeVoting.jsx`, `app/game/[code]/page.js`,
+`app/globals.css`
+**Godot:** `godot/scripts/autoloads/ApiClient.gd`, `godot/scripts/autoloads/GameState.gd`,
+`godot/scripts/ui/lobby.gd`, `godot/scripts/tests/game_start_smoke_test.gd`
+**Docs:** MYF `CLAUDE.md`, `docs/WIRING.md`, `PLAYTEST.md` (new PT-4, PT-5)
+**Deleted:** `scripts/start-progress-test.js` (its subject no longer exists)
+
+### Decisions
+- **Steal round rule retired**, along with the whole STEAL phase. Open answering *is* Steal,
+  always on. Leaves eight round rules; whether a ninth is wanted is an open design call, and it
+  can't be Steal again.
+- **Reading window is a timestamp, not a phase.** Every phase-timeout and auto-advance helper in
+  `gameState.js` assumes the existing loop; a tenth phase would mean auditing all of them.
+- **Answer evaluations are serialized.** "First correct wins" has to mean first *submission* —
+  concurrent evaluation hands the win to whoever's API call returns first and can pay two
+  players for one question. Node gets the ordering from its event loop plus one promise chain;
+  Python will need a real per-game answer queue.
+- **Round 1 has no rule on purpose** — casual-first applied to onboarding.
+- **Test seam added** (`__setClientForTests` in `claudeClient.js`). The race, the de-dup and the
+  concurrency claims can't be tested against a real API whose timing is the variable under test.
+
+### Verification
+- `scripts/mechanics-test.js` — 51 assertions, zero API cost.
+- `server_py/test_start_progress.py` — 21 assertions, zero API cost, asserts both backends emit
+  the same `startProgress` shape.
+- Godot 4.6 headless: `--import` compile check clean; `lobby_smoke_test` 21/21 against a real
+  uvicorn; `game_start_smoke_test` extended with progress assertions, all passing.
+- Real browser (Chromium, 3 players, desktop width): instant start, round-1 banner, reading
+  countdown, a non-active player buzzing in to take the active player's question, plus the brand
+  bar and illustrated card hand.
+
+### Known gaps — read before picking this up
+1. **`server_py` has none of Part 2.** It still has the STEAL phase, per-turn round rules, a
+   blocking fact-bank build and 5 categories. The Godot client talks to `server_py`, so this
+   blocks all Godot work. Porting order and the traps are in MYF's `docs/WIRING.md` → "The
+   August 12 playtest changes".
+2. **The changed game has not been played by people.** PT-4 and PT-5 are the two questions only
+   a real table can answer.
+3. **`scripts/coherence-test.js` is broken on `main`**, pre-existing — imports `POINT_TIERS`,
+   removed from `lib/constants.js` when wagers became a range. Fixing it means deciding what
+   wager values it should sample.
+
+### Next steps
+1. Play a real game with the new mechanics; answer PT-4 and PT-5.
+2. Port Part 2 to `server_py`, with a Python equivalent of `mechanics-test.js`.
+3. Then the Godot category/card screens — built against 3 categories and the curated grid.
+
+---
+
+## Session 30 — August 17, 2026 (MYF: loose-end audit, branch truth, aesthetic direction opened)
+
+**Branch:** `claude/mindyourfriends-game-ui-clqce8`
+**Starting commit:** `a8c86fb` (tip of `main`) — see the branch note below, this was wrong
+**Status:** Paused by owner mid-design-exploration; nothing half-built in code
+
+### Branch hazard, caught at session start
+The harness assigned a **fresh branch off `main`**, not the previous session's branch. Session 29's
+six MYF commits were sitting on `claude/myf-lobby-progress-state-zc3myh`, unmerged, **with no open
+PR** (the repo had zero open PRs). That is the same auto-assignment failure documented for CYM on
+July 9 and for MYF on July 22 — third occurrence. The assigned branch happened to sit exactly at
+those commits' base, so it was fast-forwarded rather than started in parallel. **Check this every
+session; do not trust the handed branch name.**
+
+### Loose-end audit (owner asked for verification before new work)
+Ran, rather than assumed:
+- `scripts/mechanics-test.js` — all pass (zero API cost), incl. rebus bank integrity (82 puzzles).
+- `server_py/test_start_progress.py` — all pass, incl. its cross-backend parity assertion.
+- All JS and Python sources parse/compile; no `TODO`/`FIXME` markers anywhere in MYF source.
+- Chain spec in `GAME_DESIGN.md` is complete — three mechanical notes + two open questions.
+- **Item 36's Godot consequence is already closed:** `ApiClient.gd` carries
+  `START_GAME_TIMEOUT = 300.0`. It was still being tracked as open.
+
+**One real find, fixed (`c4f201f`):** the rebus commit left a duplicated copy of the rebus
+view-building block inside `playerView()`'s RESULT/GAME_OVER branch, with its own redundant phase
+check. Dead rather than wrong — it set exactly what the first copy set — but it read as if
+reveal-time rebus data came from a separate path.
+
+**Sharpened item 1 (`server_py` parity):** it is not a missing-features gap, it encodes a
+*different game*. Base timer 20s vs 40s, 5 categories vs 3, still has retired `steal` and no
+`rebus`, no reading phase. A Godot client built against it today would target the pre-playtest
+design.
+
+### `dev/cryptic-challenge` is not a third project (`b7b1f43`)
+Verified against refs, not the name: it points at `ea5af2f` — **the same commit
+`dev/choose-your-mystery` points at** — a March 2026 snapshot of CYM's pre-Godot Streamlit tree,
+zero unique commits vs `main`. No file named "cryptic" has ever existed on any branch, and no
+commit message mentions it. Recorded in **both** projects' `CLAUDE.md` at the owner's request,
+since either project's next session could repeat the misreading (this session did, initially,
+citing it as evidence of a third studio title). Deletion still needs the GitHub UI — `git push
+--delete` hits the same 403 as `main`, and a Session 30 attempt was also blocked by the permission
+classifier. Caveat recorded too: if a real Cryptic Challenge project exists, **its work is not in
+this repo**, so deleting the pointer archives nothing.
+
+Also noted: `dev/mind-your-friends` is now at **zero unique commits vs `main`** — a stale pointer
+rather than a live branch. Documented only; Session 18 marked it do-not-touch.
+
+### Aesthetic direction opened (MYF item 39)
+Owner supplied a reference background — faded question marks, randomly sized/strewn/rotated, on
+white — and scoped the aesthetic work to **MYF only**. Decided: ship it as an image asset, not a
+generator (the "different screen shapes" argument for generating was raised and **withdrawn as
+wrong** — a scattered texture has no composition to crop). Export as 2× WebP/PNG, not SVG, on the
+evidence of this repo's own 2.1 MB and 1.2 MB brand SVGs.
+
+**Owner paused here** to explore the same treatment on **grey, charcoal and slate blue** — white
+may not work. Full detail, including the palette consequences and the working "paper and objects"
+thesis, in MYF `CLAUDE.md` item 39.
+
+### Aesthetic direction — settled in-session (MYF items 39/40)
+Owner explored white, then grey/charcoal/slate, and landed on **slate blue `#2F4459`** with faded
+question marks at **10% mark strength** over a dense field. Formalised as tokens in
+`tailwind.config.js`, not just prose. Key derived rules, all recorded in MYF `CLAUDE.md` item 40:
+- **The plate device** (from a Mapme reference deck the owner supplied): text sits on a rectangle
+  of *the ground colour with the texture switched off* — a hole cut through the field, not a panel
+  on top. No radius, border or shadow. Ground and plate are **one token**, deliberately.
+- **Mark strength and the plate device are the same decision.** The plate is only visible because
+  the texture around it isn't, so the two can't be tuned independently. If a real television needs
+  more separation, **add density, not opacity**.
+- Host video = a **centre-screen takeover**, not a persistent window (owner's call, on cost).
+  Because it replaces play content rather than sharing space, nothing reflows — which was the one
+  real objection to making it non-permanent. Vertical originates on the phone.
+- Host is **one character whose attitude varies** (snarky/rude/obscene), not a per-game custom
+  host — this is what makes pre-packaged animation viable. Clip carries the attitude, names arrive
+  as text. Flagged: "funny" is the one attitude that fights the model, since a joke is a one-shot
+  and a posture isn't.
+- Hold screen while a clip loads = **standings + a score-progression chart**, not a spinner.
+  Player colours generated in OKLCH and **validated** against the slate ground (lightness, chroma,
+  contrast, CVD) at 4 and 8 players — fixed order, must not be reordered.
+
+### Flow B — the round loop, agreed this session (MYF item 41)
+The owner walked a three-player hypothetical ("Flow A") through the live rules, which made **PT-4**
+concrete: under the Aug 12 free-for-all, a faster player takes the question and the active player's
+wager never bites. Worse, it breaks "I Cut, You Choose" — if anyone can claim the wager, the setter
+is placing a **bounty they might collect themselves**, so they'd always set maximum.
+
+**Flow B** (full spec in `GAME_DESIGN.md` → "The Round Loop"): after the 5s reading window the
+active player gets an **exclusive ~8s window** on their own question. Right → wins the wager.
+Wrong → loses it, buzzer opens. Pass → buzzer opens immediately, costs nothing. Everyone else then
+races for a flat 100, one attempt each. **Answering never earns another turn** (the runaway-leader
+failure in the rejected Flow A).
+
+Two things worth not re-deriving:
+- **Pass ≠ timeout.** An explicit pass is free; letting the window expire still costs the wager,
+  preserving `expireAnswerWindow`'s "stalling isn't free" rule. Without the split, pass becomes a
+  free opt-out of every hard question and the wager stops mattering again.
+- Also corrected a **stale Round Loop section** in `GAME_DESIGN.md` that still described the
+  pre-Aug-12 single-answerer loop.
+
+### `server_py` port — started, deliberately paused (MYF item 42)
+The blocker the owner asked about. Two backends exist: `server.js` (Next.js prototype, where all
+design work lands) and `server_py/` (**what Godot talks to**). Every change since Aug 12 went into
+the first only, so `server_py` encodes a *different game* — 20s timer vs 40, 5 categories vs 3,
+retired Steal still present, no reading window. Any Godot screen built today targets a game that
+no longer exists.
+
+**Landed:** constants, round rules (Steal out, Rebus in, `NO_RULE`, no-repeat picker,
+`MYF_FORCE_ROUND_RULE`), and the rebus bank — **generated** from `lib/rebusData.js` via a new
+`scripts/build-rebus-py.mjs` rather than hand-typed, since 113 pieces and 82 puzzles retyped is a
+silent-divergence machine. Passes the same integrity checks as the JS suite.
+Also fixed `test_start_progress.py`, which hardcoded `15` categories and so silently encoded the
+old 5-category game.
+
+**Paused on purpose** at a clean boundary: the next piece is the answer flow, and Flow B replaces
+it. Porting the Aug 12 flow and then immediately rewriting it would build the same mechanic twice.
+
+### Next steps
+1. **Build Flow B in the Next.js prototype** (MYF item 41) — the only place it can be played.
+   Then play it: PT-4's watch-list is now Flow B's test list, and PT-5 needs the same table.
+   The 8s exclusive window is the number most likely to be wrong.
+2. **Resume the `server_py` port** (item 42) once Flow B settles. The hard part is unchanged:
+   "first correct wins" must mean first *submission*, not first API response — Python needs a real
+   per-game answer queue, and the evaluation must not hold `_games_lock` while it waits.
+3. **Optional, cheap:** the "open answering" → "buzz-in" rename (item 43). One atomic pass, never
+   mixed into the port.
+4. Owner action, one click: delete `dev/cryptic-challenge` (and optionally `dev/mind-your-friends`)
+   via the GitHub UI — both are stale pointers with zero unique commits.
+
+---
+
+## Session 31 — August 17, 2026 (MYF: Flow B built, pre-committed answers, the wager ladder, server_py port)
+
+**Branch:** `claude/flow-b-implementation-2lwwmt` (started from Session 30's tip, `ec485ac` — the
+harness handed over a branch pointing at `main`, which was 7 days stale and missing all of
+Session 30; checked before working, per this file's own branch-hygiene warning).
+
+Session 30 stopped at "build Flow B, then play it". This session built it, and the owner
+redesigned two mechanics mid-build, so the shape that landed is not quite the shape that was
+spec'd. All the design calls below are the owner's.
+
+### What landed, in order
+
+**1. Flow B — the answerer's exclusive window** (`dd67a48`). After the 5s reading window the
+answerer gets `ACTIVE_WINDOW_SECONDS` (8, capped at 25% of the round rule's clock) alone with
+their own question. Answering or passing opens the buzzer immediately; the window expiring
+charges them the wager. The pass/timeout split Session 30 flagged as load-bearing is built
+exactly as written: **folding is a decision and costs nothing, freezing is a failure and costs
+the wager.**
+
+**2. Pre-committed answers** (`3c3eac3`) — **owner's redesign, mid-build.** Everyone except the
+answerer types and LOCKS an answer *during* the answerer's exclusive window; a buzz plays that
+committed answer, and you cannot type one after the fumble. Owner's stated aim was anti-cheat,
+and it does that — the moment worth looking something up is the one after the answerer fails,
+with the whole remaining clock, and that moment no longer accepts new answers. It also does two
+things the owner didn't ask for but which are arguably bigger: buzzing stops being a **typing
+race** and becomes one tap, and the room is **busy** during the exclusive window rather than
+watching. Owner confirmed: no lock, no buzz — a player who never committed sits it out.
+
+Two rules that took real thought, both load-bearing:
+- **The lock deadline never moves.** A pass brings the *buzzer* forward but not the lock
+  deadline. Tying them would mean folding at second one cuts the room off mid-sentence and the
+  question dies with nobody able to buzz.
+- **A question nobody can answer ends immediately** rather than running the clock down. Found
+  while writing the tests, not by design — with pre-commitment it is now genuinely possible for
+  a fumbled question to be unanswerable, which the old free-for-all could never produce.
+
+**3. The buzz payout: 0.75× the wager, not a flat 100.** Owner asked whether a flat 100 was a
+lot or a little and said they had no context for the point space. That is answerable with
+arithmetic, so `scripts/economy-sim.js` (`ad62d67`) now models it — zero API cost, payout
+formula imported rather than copied so it can't drift, every behavioural assumption a named
+knob. Owner proposed 1.5×, then 0.75×. **0.75× is right and 1.5× is not**, for a reason that
+isn't the one I first gave: the setter-bias objection applies to both but is small at 0.75×
+(break-even moves from 50% to ~55%). What actually kills 1.5× is that a buzzer would earn 300 on
+a question the answerer could only win 200 on **while risking nothing**, inverting the risk
+hierarchy of the whole game. Any share under 1 keeps it upright. The owner's own point in favour
+is the best one: **a share scales with whatever wager range gets settled later.**
+
+**4. The wager ladder, the pie, and difficulty-coloured questions** (`f31612f`) — all owner-led.
+- **`12 / 25 / 50 / 100 / 200`** replaces the 50–500 slider, which the owner flagged as feeling
+  arbitrary. It was, measurably: 46 values across a range whose ends were both wrong (a 50 swung
+  ~4% of a typical winning margin, a 500 swung 43%), at a resolution finer than any decision a
+  person can make. A doubling ladder anchored at 100 = the whole pie is self-describing, and
+  spreads 3/6/12/23/47%.
+- **The pie** (`components/WagerPie.jsx`) — owner's idea. 200 is an oversized pie with a dashed
+  ring outside the crust, the only tier that breaks the shape's own scale.
+- **Question text printed in a green keyed to the tier.** Honest rather than decorative: the
+  wager genuinely drives difficulty, and difficulty is now five rungs matching the ladder
+  instead of three buckets normalised from a continuous range.
+- **The colour ramp is generated and contrast-validated** (`scripts/build-difficulty-colors.mjs`,
+  which refuses to write a ramp with any step under 4.5:1). This mattered: the owner's reference
+  spectrum ran to `#26501A`, which on the slate ground is **1.2:1** — invisible. **The tension
+  worth not rediscovering: on a dark ground, "darker" and "readable" pull against each other.**
+  The ramp deepens by saturation instead, pale mint to full sage. A literal light-to-dark green
+  needs the question on a *light* plate, i.e. a change to item 40's plate device — flagged to the
+  owner as a separate decision rather than quietly reversed.
+
+**5. `server_py` port** (`0324ef8`) — the answer flow, per-round rules and the lazy fact bank,
+i.e. everything item 42 had paused. Start went from a blocking build to **9ms**, measured.
+
+### The hard part, and how it was actually solved
+
+Session 30 predicted it correctly: "first correct wins" must mean first *submission*, not first
+API response. Node gets that free from one event loop plus one promise chain.
+
+What the note didn't say, and what matters: **a plain `threading.Lock` does not substitute.**
+Python locks make no FIFO promise, so two threads blocked on one can be granted in either order —
+exactly the coin flip this exists to avoid. The fix is a **ticket lock**: each attempt takes a
+ticket in the same critical section that claims its attempt slot (so the order cannot be
+interleaved), then waits its turn on a `threading.Condition` with **no game lock held**, because
+the evaluation is an API call and holding `_games_lock` across it would freeze the whole room.
+`main.py`'s endpoints do that two-step explicitly — claim under the lock, resolve with it
+released.
+
+`server_py/test_mechanics.py` proves it rather than assuming it: it starts the **later** claim's
+thread **first**. A naive implementation hands the win to the wrong player there.
+
+### Found by running it, not by reading it
+
+`claude_client.py` never received the JS `LENGTH_RULE`, so the Python backend had **no 8–20 word
+constraint on questions at all**. A real generated question came back at ~45 words — which under
+a shared buzzer tests reading speed rather than knowledge, and is longer than the reading window
+is sized for. Applied to both generation prompts. This is the argument for live-running a port
+instead of trusting a careful translation.
+
+### Verification
+
+- `scripts/mechanics-test.js` — **105 assertions**, zero API cost.
+- `server_py/test_mechanics.py` — **63 assertions**, zero API cost, including the thread race.
+- `scripts/postgame-test.js` — still passing.
+- `npm run build` — clean.
+- A real `uvicorn` process driven over HTTP + WebSocket: instant start, round-1 announcement,
+  background prefetch, and every Flow B gate returning the right code (lock refused during
+  reading / accepted after / immutable once set; buzz refused in the exclusive window and refused
+  with no lock; pass accepted; committed buzz accepted; `RESULT` reporting `activeOutcome:
+  "passed"` with `wagerLost: false`).
+- `test_start_progress.py` deleted — its subject, a blocking fact-bank build at start, no longer
+  exists. Same call the JS side made with `start-progress-test.js`.
+
+### NOT done — read this before assuming the feature is finished
+
+**Nothing here has been played by real people.** Four numbers are guesses: the 8s exclusive
+window, the 5s reading window, whether the lock window gives enough time to commit, and whether
+0.75× makes buzzing feel worth doing. PLAYTEST.md PT-4 through PT-8 are the watch-list. **No
+further mechanic work should go in front of a table.**
+
+Also not done: `questionLog`/`postGame` in `server_py` (MYF `CLAUDE.md` item 46 — the only thing
+still blocking a Godot post-game screen), and the owner-tabled item 44 (wager tier
+simplification; widening the colour ramp toward blue-green/yellow-green).
+
+### Next session
+
+1. **Play it.** Instructions were given to the owner; short-game env vars in MYF `CLAUDE.md` →
+   Common Tasks reach GAME_OVER in ~3 minutes instead of ~25.
+2. Then `questionLog`/`postGame` in `server_py` (item 46), which unblocks the Godot post-game
+   screen.
+3. Item 44's two owner-tabled follow-ups, once a table has been played — both are tuning
+   decisions and a playtest may change what the right tuning is.

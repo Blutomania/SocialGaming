@@ -68,10 +68,14 @@ app.prepare().then(() => {
       });
     });
 
+    // Start is instant now: no fact bank is built here. The bank fills in
+    // behind the game — see gameState's fact-bank section — so the room is
+    // on the category screen immediately instead of watching a progress bar.
     socket.on('game:start', () => {
-      withMyGame(socket, async (game) => {
-        await gameState.startGame(game);
+      withMyGame(socket, (game) => {
+        gameState.startGame(game);
         broadcast(io, game);
+        gameState.prefetchFactBank(game, () => broadcast(io, game));
       });
     });
 
@@ -80,6 +84,11 @@ app.prepare().then(() => {
         gameState.recordPlayerAction(game, playerId);
         gameState.pickCategory(game, playerId, category);
         broadcast(io, game);
+        // Start fetching this category's facts NOW rather than at question
+        // time: the wager and card windows are about to run, which is free
+        // cover for the round trip. runQuestionPhase awaits the same promise,
+        // so this is a head start, not a race.
+        gameState.ensureCategoryFacts(game, category);
       });
     });
 
@@ -114,22 +123,72 @@ app.prepare().then(() => {
           return;
         }
 
+        // Flow B: the answerer alone for the exclusive window, then everyone.
+        // One attempt each and the first correct one ends it; a wrong attempt
+        // just locks that player out, so the turn is only over when the phase
+        // actually moves.
         await gameState.submitAnswer(game, playerId, answer, inputMode);
         broadcast(io, game);
-        if (game.phase === 'STEAL') {
-          startStealWindow(io, game);
-        } else {
+        if (game.phase === 'RESULT') {
           scheduleNextTurn(io, game);
         }
       });
     });
 
-    socket.on('turn:claimSteal', ({ answer, inputMode }) => {
+    // Commit an answer during the answerer's exclusive window. Not evaluated
+    // and not revealed — it only becomes a real attempt if its owner buzzes.
+    // Ack rather than the global 'error' event: missing the lock deadline is
+    // an ordinary outcome, not a page-replacing failure.
+    socket.on('turn:lockAnswer', ({ answer, inputMode }, ack) => {
+      withMyGame(socket, (game, playerId) => {
+        gameState.recordPlayerAction(game, playerId);
+        try {
+          gameState.lockAnswer(game, playerId, answer, inputMode);
+        } catch (err) {
+          if (typeof ack === 'function') ack({ ok: false, message: err.message });
+          return;
+        }
+        if (typeof ack === 'function') ack({ ok: true });
+        // Broadcast: the room sees the locked-in COUNT rise (never the
+        // answers), which is most of the tension this mechanic creates.
+        broadcast(io, game);
+      });
+    });
+
+    // Play a committed answer. The buzz sets the order; the answer was fixed
+    // before the answerer fumbled.
+    socket.on('turn:buzzIn', (_payload, ack) => {
       withMyGame(socket, async (game, playerId) => {
         gameState.recordPlayerAction(game, playerId);
-        await gameState.claimSteal(game, playerId, answer, inputMode);
+        try {
+          await gameState.buzzIn(game, playerId);
+        } catch (err) {
+          if (typeof ack === 'function') ack({ ok: false, message: err.message });
+          return;
+        }
+        if (typeof ack === 'function') ack({ ok: true });
         broadcast(io, game);
-        scheduleNextTurn(io, game);
+        if (game.phase === 'RESULT') {
+          scheduleNextTurn(io, game);
+        }
+      });
+    });
+
+    // Flow B: the answerer folds. Costs them nothing and opens the buzzer at
+    // once. Ack callback rather than the global 'error' event — same reason
+    // as turn:attemptLineup: losing a race to the buzzer opening should give
+    // local feedback, not replace the whole page.
+    socket.on('turn:passAnswer', (_payload, ack) => {
+      withMyGame(socket, (game, playerId) => {
+        gameState.recordPlayerAction(game, playerId);
+        try {
+          gameState.passAnswer(game, playerId);
+        } catch (err) {
+          if (typeof ack === 'function') ack({ ok: false, message: err.message });
+          return;
+        }
+        if (typeof ack === 'function') ack({ ok: true });
+        broadcast(io, game);
       });
     });
 
@@ -156,6 +215,26 @@ app.prepare().then(() => {
       withMyGame(socket, async (game, playerId) => {
         try {
           gameState.castSuperlativeVote(game, playerId, categoryId, targetPlayerId);
+        } catch (err) {
+          if (typeof ack === 'function') ack({ ok: false, message: err.message });
+          return;
+        }
+        if (typeof ack === 'function') ack({ ok: true });
+        broadcast(io, game);
+
+        if (gameState.allSuperlativeVotesIn(game)) {
+          await gameState.resolveSuperlatives(game);
+          broadcast(io, game);
+        }
+      });
+    });
+
+    // "Skip all" — abstain from every remaining award at once. Same ack-based
+    // error handling as postgame:vote.
+    socket.on('postgame:skip', (_payload, ack) => {
+      withMyGame(socket, async (game, playerId) => {
+        try {
+          gameState.skipSuperlativeVoting(game, playerId);
         } catch (err) {
           if (typeof ack === 'function') ack({ ok: false, message: err.message });
           return;
@@ -291,13 +370,44 @@ app.prepare().then(() => {
     }
     await gameState.runQuestionPhase(game);
     broadcast(io, game);
+    startActiveWindowTimer(io, game);
     startAnswerTimer(io, game);
   }
 
-  function startAnswerTimer(io, game) {
-    const ms = gameState.getTimerSeconds(game) * 1000;
+  // Flow B's exclusive window. A second timer inside the same ANSWER phase,
+  // not a phase of its own — same reasoning as the reading window: every
+  // phase-timeout and auto-advance helper here assumes the existing loop.
+  //
+  // Fires whether or not the answerer acted; expireActiveWindow no-ops if
+  // they did, since answering or passing already opened the buzzer.
+  function startActiveWindowTimer(io, game) {
+    if (game.roundRule.submissionBased || game.roundRule.lineupBased) return;
     setTimeout(() => {
-      if (game.phase !== 'ANSWER') return; // already resolved (all submitted, or STEAL/skip path)
+      if (game.phase !== 'ANSWER') return;
+      const answerer = game.players[game.answererIndex];
+      // Read before the call — expireActiveWindow is what writes the attempt.
+      const froze = !game.answerAttempts?.[answerer.id] && !answerer.droppedOut;
+      if (!gameState.expireActiveWindow(game)) return;
+      // Never acting on your own question is the inactivity signal. It used
+      // to be read when the whole window closed; under Flow B the answerer's
+      // own window closing is the exact moment it's known, and passing is a
+      // real action, so a player who folds is not marked away for it.
+      if (froze) gameState.recordAutoAdvance(game, answerer.id);
+      broadcast(io, game);
+      // This is also the moment locking closes, so it can end the question
+      // outright when nobody committed an answer to buzz with.
+      if (game.phase === 'RESULT') scheduleNextTurn(io, game);
+    }, gameState.getActiveWindowMs(game));
+  }
+
+  // One timer covers the whole ANSWER phase: the reading window plus the
+  // answer clock (see gameState.getAnswerWindowMs). The reading window is a
+  // timestamp on the game, not a phase of its own, so nothing else in this
+  // file's timer bookkeeping has to learn about it.
+  function startAnswerTimer(io, game) {
+    const ms = gameState.getAnswerWindowMs(game);
+    setTimeout(() => {
+      if (game.phase !== 'ANSWER') return; // already resolved (someone got it, all submitted, or skip path)
 
       if (game.roundRule.submissionBased) {
         gameState.autoFillMissingSubmissions(game);
@@ -312,15 +422,13 @@ app.prepare().then(() => {
         return;
       }
 
-      const answererId = game.players[game.answererIndex].id;
-      gameState.recordAutoAdvance(game, answererId);
-      gameState
-        .submitAnswer(game, answererId, '', 'text')
-        .then(() => {
-          broadcast(io, game);
-          scheduleNextTurn(io, game);
-        })
-        .catch((err) => recoverFromFailedTurn(io, game, err));
+      // Nobody got it in time. The answerer has normally been settled with
+      // already — by their own answer or pass, or by startActiveWindowTimer
+      // charging them for freezing (which is also where the inactivity signal
+      // is now recorded, so there is no second recordAutoAdvance here).
+      gameState.expireAnswerWindow(game);
+      broadcast(io, game);
+      scheduleNextTurn(io, game);
     }, ms);
   }
 
@@ -335,15 +443,6 @@ app.prepare().then(() => {
     await gameState.resolveGroupAnswers(game);
     broadcast(io, game);
     scheduleNextTurn(io, game);
-  }
-
-  function startStealWindow(io, game) {
-    setTimeout(() => {
-      if (game.phase !== 'STEAL') return;
-      gameState.expireSteal(game);
-      broadcast(io, game);
-      scheduleNextTurn(io, game);
-    }, gameState.STEAL_WINDOW_MS);
   }
 
   function scheduleNextTurn(io, game) {

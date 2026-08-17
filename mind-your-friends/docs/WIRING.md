@@ -223,3 +223,71 @@ client will actually talk to, so it's the right test shape going forward, not ju
 Update the checkboxes above as work lands, in this same doc, rather than trusting `CLAUDE.md`'s
 narrative summary alone to stay accurate — this table is the single source of truth for "what's
 actually done" during the port.
+
+---
+
+## The August 12 playtest changes — what a porter needs to know
+
+The owner played the Next.js prototype on August 12, 2026 and returned eleven
+notes. All eleven landed **in the prototype only**. `server_py/` has not been
+updated for any of them, which is the single most important thing to know
+before touching the Godot client — the two backends now genuinely differ, and
+`server_py` is the one the Godot client talks to.
+
+### Mechanics that changed shape (these need porting, in this order)
+
+| Change | JS | `server_py` today | Port note |
+|---|---|---|---|
+| **Open answering** — everyone gets one attempt at the same question, first correct wins | `submitAnswer`/`resolveOpenAnswer`/`expireAnswerWindow` in `lib/gameState.js` | still single-answerer + STEAL phase | The biggest one. Needs `answerAttempts`, the wager asymmetry, and a serialized evaluation path — see below |
+| **Steal retired** | `steal` rule and the whole STEAL phase deleted | `round_rules.py` still has `steal`; `main.py` still has the claim-steal endpoint | Delete rather than port. Open answering *is* Steal, always on |
+| **Reading window** | `answerOpensAt` timestamp; `getAnswerWindowMs()` covers reading + answering in one timer | no reading window | Do NOT add a phase for it. Every phase-timeout helper assumes the existing loop |
+| **Round rules per round** | `beginRoundIfNeeded()`; round 1 is `NO_RULE`; `usedRuleIds` prevents repeats | rule redrawn every turn | Also needs `roundAnnouncement`, which the client renders as a banner for one turn |
+| **Lazy fact bank** | `ensureCategoryFacts()` + `prefetchFactBank()`; `startGame` is synchronous | `start_game` still builds the whole bank inline | This is why `ApiClient.gd`'s start timeout stopped mattering — see below |
+| **3 categories, curated list** | `CATEGORIES_PER_PLAYER = 3`, `lib/categories.js` | still 5 | The Godot category screen (priority-queue item 2) should be built against 3 and the curated grid, not 5 free-text boxes |
+| **Question length** | hard 8–20 word rule in both prompts | old prompts | Straight prompt copy |
+
+### Why evaluations are serialized
+
+`submitAnswer` chains its Claude evaluations through `game._answerChain` rather
+than running them concurrently. This is not incidental: with N players racing
+the same question, "first correct wins" has to mean first *submission*, not
+first *response*. Evaluating in parallel hands the win to whoever's API call
+returns quickest — a coin flip — and lets two players both be paid for the same
+question.
+
+Node gets the ordering for free from its single-threaded event loop plus that
+one promise chain. **Python does not.** `server_py` already runs every mutation
+under `_games_lock`, but the evaluation itself is an I/O wait that must not hold
+that lock for the whole call, or the room freezes for every answer. The port
+needs a per-game answer queue, not just the existing lock.
+
+### Start is instant now
+
+`startGame` no longer builds the fact bank, so the `startProgress` push and
+`ApiClient.gd`'s 300s `START_GAME_TIMEOUT` are both belt-and-braces rather than
+load-bearing. Leave them: the timeout costs nothing and the progress field is
+what `prefetchFactBank` reports through (`view.factPrefetch`). What matters for
+the port is that facts arrive per-category, awaited in `runQuestionPhase` and
+kicked off early on category pick — the correctness backstop and the latency
+hiding are two separate calls on purpose.
+
+### The logo split
+
+`scripts/build-logo.mjs` turns the two-path source art into three
+independently colourable emoji (`lib/logoPaths.js`, `public/brand/logo-split.svg`).
+Its output is committed, so the Godot client can consume `logo-split.svg`
+directly — three `<g>` elements, `emoji-1/2/3` — rather than re-deriving the
+split. Re-run the script only if the source art changes; the two things that
+make it work (real SVG command arities in the extent parser, and dropping the
+artboard's hairline edge artifacts before finding gaps) are both documented in
+its header, because both were wrong on the first attempt and failed silently.
+
+### Regression suite
+
+`scripts/mechanics-test.js` — 51 assertions, zero API cost, via the
+`__setClientForTests` seam in `claudeClient.js`. It covers the race (two
+correct answers genuinely in flight at once), the one-attempt lockout, the
+wager asymmetry, timeout charging, fact-fetch de-duplication, and round-rule
+assignment. **Port this alongside the mechanics** — a Python equivalent of
+these assertions is what will prove the two backends actually agree, and the
+race and de-dup ones are exactly where they're most likely to silently differ.
