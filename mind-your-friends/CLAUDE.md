@@ -728,6 +728,60 @@ as a constraint to respect rather than a layout spec.
       these calls (published as a Claude artifact, not committed — it is a viewing aid, not a
       deliverable, and deliberately not the shipping implementation).
 
+40. **[DECIDED, August 17 2026] Screen system — ground, plates, chrome and the host moment.**
+    Follows from item 39; these are settled calls, not proposals.
+    - **Ground: slate blue.** Owner's call after trying white, grey and charcoal. The faded
+      question marks sit on it as texture, not content.
+    - **Mark strength ~10–14% (12% nominal), field kept dense.** The two trade off: faint marks
+      can afford far more density, and density is what stops the field reading as a flat tint.
+      This number is load-bearing for everything below — see the plate rule.
+    - **The plate device (the core rule).** Text sits on a solid rectangle of *the ground colour
+      with the texture switched off* — a hole cut through the field, not a panel laid on top.
+      No radius, no border, no shadow: a card floats above the field, a plate is part of it.
+      Derived from a reference deck the owner supplied (Mapme), where full-bleed white bands
+      interrupt a faded map texture.
+      **This is why the mark strength matters:** the plate is only visible because the texture
+      around it isn't. Too faint or too sparse and the plate reads as an odd empty stripe rather
+      than a deliberate one. Don't tune one without re-checking the other.
+    - **Applies to all persistent chrome,** not just questions: round data (upper left), the
+      logo + round rule (top centre), the timer (upper right), the scoreboard. Once the plate
+      means "this is chrome, read it", the eye stops decoding each box separately.
+    - **Layout rule: plates are for what must be read, objects are for what must be grabbed.**
+      Questions and answers get plates. Cards stay physical objects with their saturated colour
+      and shadows — they're the thing you throw at someone. The round rule lives *in* the plate
+      with the question, since Rebus/ELI5/Boxed In all change how an answer must be given.
+    - **Question type is light, generous and centred,** not heavy bold. The reference's calm comes
+      from restraint, the plate's cleanliness carries the legibility, and it suits "casual-first,
+      stress-free" better than shouting.
+    - **Logo: centred top, round rule immediately right of it.** Use the real mark from
+      `lib/logoPaths.js` with `Logo.jsx`'s existing six-palette rotation — already deterministic
+      in the room code, which is the colour variance the owner wanted. **Open:** those palettes
+      were chosen against the old near-black ground; they survive slate but the amber in a couple
+      of triples is now the weakest of its three. Worth one pass now slate is final.
+    - **Host video = a centre-screen takeover, NOT a persistent window.** Owner's call, on cost
+      grounds — *"keeping costs low is paramount above all (or almost all) else."* The host
+      appears centre, vertical, delivers banter or asks a question, then disappears and regular
+      game content returns. It is a **screen state, not a panel**: because it replaces the play
+      content rather than sharing space with it, nothing resizes, which was the one real
+      objection to a non-permanent window. Idle cost is zero.
+    - **Vertical is native, and originates on the phone.** 9:16 *is* the phone screen; the
+      television merely frames it. Given players live on their phones, that's the right way round.
+      Build the format phone-first.
+    - **[OPEN — decide before building] Cost control is not solved by the takeover alone.** A host
+      moment per question is 24+ generated clips a game. Two rules to fix first:
+      (a) **Pre-generate everything impersonal into a reusable bank** — "here comes the Rebus
+      round" is identical in every game ever played, so it costs zero per game. Same discipline as
+      the rebus puzzle bank and the localisation cache. (b) **Only name-bearing moments generate
+      live** ("Priya just played Whoa Nellie on Marcus") — which is also where the value is, so
+      the spend lands where it earns. Suggested opening budget: 4 round openings + the reveal from
+      the bank, a small capped number of personal clips generated live, cap in config.
+    - **[OPEN] Three behaviours the takeover raises:** does the answer timer run during a host
+      moment (currently assumed no, and starts when a host-*asked* question finishes speaking); can
+      a player skip it (a bank clip that can't be skipped becomes the thing everyone talks over by
+      game five); and what holds the screen while a *live* clip is still generating — bank clips
+      are instant but personal ones have latency, and that needs a defined state, not a blank pause.
+      The lazy-then-show shape the fact bank already uses is the obvious model.
+
 ## Design Thesis: Casual-First
 This game targets casual, social players — not competitive optimizers. Every
 mechanic must optimize for surprise, laughs, and "oh no!" moments over strategic
