@@ -22,6 +22,8 @@ import {
   TOTAL_QUESTIONS,
   MIN_WAGER,
   MAX_WAGER,
+  WAGER_TIERS,
+  WAGER_VALUES,
   BUZZ_WAGER_SHARE,
   buzzPointsForWager,
 } from '../lib/constants.js';
@@ -44,14 +46,16 @@ const ASSUMPTIONS = {
   games: 20000,
 };
 
-// Wager-setting policies. The setter is adversarial by design ("I cut, you
-// choose"), so a uniform draw across the range is the least realistic of
-// these — it's here as the baseline the others are read against.
+// Wager-setting policies over the five-rung ladder. The setter is adversarial
+// by design ("I cut, you choose"), so an even draw across the tiers is the
+// least realistic of these — it's here as the baseline the others read
+// against.
+const pick = (xs) => xs[Math.floor(Math.random() * xs.length)];
 const POLICIES = {
-  uniform: () => MIN_WAGER + Math.random() * (MAX_WAGER - MIN_WAGER),
-  // What people actually do: mostly reach for the top of the range, because
-  // a big number is funnier and the downside is somebody else's.
-  adversarial: () => (Math.random() < 0.6 ? MAX_WAGER : MIN_WAGER + Math.random() * (MAX_WAGER - MIN_WAGER)),
+  uniform: () => pick(WAGER_VALUES),
+  // What people actually do: reach for the top of the ladder, because a big
+  // number is funnier and the downside is somebody else's.
+  adversarial: () => (Math.random() < 0.5 ? MAX_WAGER : pick(WAGER_VALUES)),
 };
 
 function roundTo(value, step) {
@@ -177,7 +181,7 @@ report('Adversarial', POLICIES.adversarial);
 console.log('\n=== What one question is worth ===');
 const t = simulate({ ...ASSUMPTIONS, wagerFor: POLICIES.adversarial });
 const avgSpread = mean(t.finalSpreads);
-for (const w of [MIN_WAGER, 100, 250, MAX_WAGER]) {
+for (const w of WAGER_VALUES) {
   const swing = w * 2; // winning it vs losing it
   console.log(
     `  A ${String(w).padStart(3)} wager swings ${String(swing).padStart(4)} pts ` +

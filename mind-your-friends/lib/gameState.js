@@ -28,6 +28,9 @@ import {
   TOTAL_QUESTIONS,
   MIN_WAGER,
   MAX_WAGER,
+  WAGER_TIERS,
+  WAGER_VALUES,
+  wagerTierIndex,
   RESULT_SCREEN_MS,
   MIN_PLAYERS,
   MAX_PLAYERS,
@@ -49,6 +52,8 @@ export {
   TOTAL_QUESTIONS,
   MIN_WAGER,
   MAX_WAGER,
+  WAGER_TIERS,
+  WAGER_VALUES,
   RESULT_SCREEN_MS,
   MIN_PLAYERS,
   MAX_PLAYERS,
@@ -381,7 +386,14 @@ export function setWager(game, playerId, amount) {
   if (playerId !== getWagerPlayer(game).id) {
     throw new Error('Only the wager-decider sets the wager');
   }
-  let wager = Math.max(MIN_WAGER, Math.min(MAX_WAGER, Math.round(amount)));
+  // Snap to the ladder rather than clamping a free number: the wager screen
+  // offers five buttons, so anything else arriving here is a stale client or
+  // a malformed payload, and silently accepting 137 would put a value on the
+  // board that no pie can draw.
+  if (!WAGER_VALUES.includes(amount)) {
+    throw new Error(`Wager must be one of ${WAGER_VALUES.join(', ')}`);
+  }
+  let wager = amount;
   if (game.roundRule.wagerMultiplier) {
     wager *= game.roundRule.wagerMultiplier; // Double Down
   }
@@ -1662,6 +1674,11 @@ export function playerView(game, playerId) {
   if (game.currentQuestion) {
     view.question = game.currentQuestion.question;
     view.hostQuip = game.currentQuestion.hostQuip;
+    // Which rung of the wager ladder this question was written to. The client
+    // prints the question in the matching green — see lib/difficultyColors.js.
+    // Derived from the wager rather than sent as a colour so the palette stays
+    // a client concern and can be re-tuned without touching the server.
+    view.difficultyTier = wagerTierIndex(game.currentWager);
 
     if (game.currentQuestion.rebus) {
       const rebus = game.currentQuestion.rebus;

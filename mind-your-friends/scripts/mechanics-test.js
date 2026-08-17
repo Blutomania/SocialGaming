@@ -259,7 +259,7 @@ async function main() {
     const game = registeredGame();
     startGame(game);
     await prefetchFactBank(game);
-    await toActiveWindow(game, { wager: 300 });
+    await toActiveWindow(game, { wager: 100 });
 
     const answerer = game.players[game.answererIndex];
     const other = game.players.find((p) => p.id !== answerer.id);
@@ -285,7 +285,7 @@ async function main() {
     // The answerer takes their own question for the full wager.
     await submitAnswer(game, answerer.id, CORRECT_ANSWER, 'text');
     check(game.phase === 'RESULT', 'the answerer answering correctly ends it');
-    check(answerer.score === 300, `and wins the whole wager (${answerer.score})`);
+    check(answerer.score === 100, `and wins the whole wager (${answerer.score})`);
     check(game.lastResult.buzzedIn === false, 'nobody buzzed in');
     check(game.lastResult.unplayedAnswers.length === 1,
       'the answer that never got played is revealed');
@@ -319,7 +319,7 @@ async function main() {
     const game = registeredGame();
     startGame(game);
     await prefetchFactBank(game);
-    await toActiveWindow(game, { wager: 400 });
+    await toActiveWindow(game, { wager: 200 });
 
     const answerer = game.players[game.answererIndex];
     const other = game.players.find((p) => p.id !== answerer.id);
@@ -344,7 +344,7 @@ async function main() {
     const game = registeredGame();
     startGame(game);
     await prefetchFactBank(game);
-    await toActiveWindow(game, { wager: 400 });
+    await toActiveWindow(game, { wager: 200 });
 
     const answerer = game.players[game.answererIndex];
     const other = game.players.find((p) => p.id !== answerer.id);
@@ -352,13 +352,13 @@ async function main() {
 
     game.lockClosesAt = 0; // the exclusive window runs out
     expireActiveWindow(game);
-    check(answerer.score === -400,
+    check(answerer.score === -200,
       `freezing costs the wager, exactly like a wrong answer (${answerer.score})`);
     check(game.phase === 'ANSWER', 'and the room still gets its shot');
 
     // The charge happens once, not again when the whole window closes.
     expireAnswerWindow(game);
-    check(answerer.score === -400, `and is never charged twice (${answerer.score})`);
+    check(answerer.score === -200, `and is never charged twice (${answerer.score})`);
     check(game.lastResult.activeOutcome === 'timedOut', 'the result tells a freeze from a fold');
     check(game.lastResult.wagerLost === true, 'and reports the wager as lost');
   }
@@ -424,14 +424,14 @@ async function main() {
     const game = registeredGame();
     startGame(game);
     await prefetchFactBank(game);
-    await toOpenAnswer(game, { wager: 400 });
+    await toOpenAnswer(game, { wager: 200 });
 
-    check(getBuzzPoints(game) === 300, `0.75 x 400 = ${getBuzzPoints(game)}`);
+    check(getBuzzPoints(game) === 150, `0.75 x 200 = ${getBuzzPoints(game)}`);
     check(getBuzzPoints(game) < game.currentWager,
       'a buzz never out-earns the wager it was played for — otherwise being the active player is strictly worse');
     check(BUZZ_WAGER_SHARE < 1, 'the share is below 1 by design');
 
-    game.currentWager = 250;
+    game.currentWager = 25;
     check(getBuzzPoints(game) % 5 === 0,
       `and rounds to something a scoreboard can show (${getBuzzPoints(game)})`);
   }
@@ -483,14 +483,14 @@ async function main() {
     const game = registeredGame();
     startGame(game);
     await prefetchFactBank(game);
-    await toActiveWindow(game, { wager: 150 });
+    await toActiveWindow(game, { wager: 100 });
 
     const answerer = game.players[game.answererIndex];
     for (const p of game.players) {
       if (p.id !== answerer.id) lockAnswer(game, p.id, 'wrong', 'text');
     }
     await submitAnswer(game, answerer.id, 'nope', 'text');
-    check(answerer.score === -150, `the active player pays for being wrong (${answerer.score})`);
+    check(answerer.score === -100, `the active player pays for being wrong (${answerer.score})`);
     check(game.phase === 'ANSWER', 'and the buzzer opens rather than ending the turn');
 
     for (const p of game.players) {
@@ -508,7 +508,7 @@ async function main() {
     const game = registeredGame();
     startGame(game);
     await prefetchFactBank(game);
-    await toActiveWindow(game, { wager: 250 });
+    await toActiveWindow(game, { wager: 200 });
 
     const answerer = game.players[game.answererIndex];
     await submitAnswer(game, answerer.id, 'nope', 'text');
@@ -518,7 +518,7 @@ async function main() {
     expireActiveWindow(game);
     check(game.phase === 'RESULT',
       'with nobody holding an answer the question ends instead of running the clock down');
-    check(answerer.score === -250, `and the wrong answer still cost the wager (${answerer.score})`);
+    check(answerer.score === -200, `and the wrong answer still cost the wager (${answerer.score})`);
   }
 
   // --- Timing out costs the same as answering wrong -----------------------
@@ -528,12 +528,12 @@ async function main() {
     const game = registeredGame();
     startGame(game);
     await prefetchFactBank(game);
-    await toOpenAnswer(game, { wager: 250 });
+    await toOpenAnswer(game, { wager: 200 });
 
     const answerer = game.players[game.answererIndex];
     expireAnswerWindow(game);
     check(game.phase === 'RESULT', 'the window closing ends the question');
-    check(answerer.score === -250,
+    check(answerer.score === -200,
       `saying nothing costs the same as being wrong (${answerer.score}) — otherwise stalling is free`);
   }
 

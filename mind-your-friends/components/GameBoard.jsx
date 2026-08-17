@@ -4,7 +4,9 @@ import { useEffect, useRef, useState } from 'react';
 import CategoryPicker from './CategoryPicker';
 import CardHand from './CardHand';
 import VoiceInput from './VoiceInput';
-import { MIN_WAGER, MAX_WAGER, TOTAL_QUESTIONS, QUESTIONS_PER_ROUND } from '../lib/constants';
+import WagerPie from './WagerPie';
+import { WAGER_TIERS, TOTAL_QUESTIONS, QUESTIONS_PER_ROUND } from '../lib/constants';
+import { difficultyColor } from '../lib/difficultyColors';
 
 export default function GameBoard({ game, myId, socket }) {
   const round = game.roundNumber ?? Math.floor(game.questionIndex / QUESTIONS_PER_ROUND) + 1;
@@ -149,40 +151,78 @@ function ScoreStrip({ game, myId }) {
   );
 }
 
+// Five tiers, not a slider. The pie beside each one is the whole explanation:
+// a bigger wedge is a bigger stake and a harder question, and nobody has to be
+// told that. See WAGER_TIERS in lib/constants.js for why the ladder replaced
+// a continuous 50–500 range.
+//
+// Laid out beside the selection on desktop and above it on a phone, per the
+// owner's call — the pie is the thing you look at while deciding, so it wants
+// the reading position, not a corner.
 function WagerPicker({ game, myId, socket }) {
   const wagerPlayer = game.players[(game.activePlayerIndex + 1) % game.players.length];
-  const [amount, setAmount] = useState(MIN_WAGER);
+  const [picked, setPicked] = useState(null);
+  const activeName = game.players[game.activePlayerIndex].name;
 
   if (wagerPlayer.id !== myId) {
-    return <p className="text-center text-gray-300">{wagerPlayer.name} is setting the wager…</p>;
+    return (
+      <div className="space-y-3 text-center">
+        <p className="text-slate-muted">{wagerPlayer.name} is deciding how much to put on it…</p>
+        <div className="flex justify-center gap-2 opacity-40">
+          {WAGER_TIERS.map((t) => (
+            <WagerPie key={t.value} tier={t} size={44} />
+          ))}
+        </div>
+      </div>
+    );
   }
 
+  const tier = picked ?? WAGER_TIERS[1];
+
   return (
-    <div className="space-y-3 text-center">
-      <h2 className="text-xl font-semibold">
-        Set {game.players[game.activePlayerIndex].name}'s wager
-      </h2>
-      {game.roundRule.wagerMultiplier && (
-        <p className="text-sm text-game-gold">
-          {game.roundRule.name}: this wager will be doubled automatically!
+    <div className="flex flex-col gap-5 lg:flex-row lg:items-center">
+      {/* The pie: atop on mobile, to the left on desktop. */}
+      <div className="flex shrink-0 flex-col items-center gap-2 lg:w-48">
+        <WagerPie tier={tier} selected size={140} />
+        <p className="text-2xl font-semibold">{tier.value}</p>
+        <p className="text-sm text-slate-muted">{tier.label}</p>
+      </div>
+
+      <div className="flex-1 space-y-3 text-center">
+        <h2 className="text-xl font-semibold">Set {activeName}&apos;s wager</h2>
+        <p className="text-sm text-slate-muted">
+          The bigger the wedge, the harder the question {activeName} gets.
         </p>
-      )}
-      <input
-        type="range"
-        min={MIN_WAGER}
-        max={MAX_WAGER}
-        step={10}
-        value={amount}
-        onChange={(e) => setAmount(Number(e.target.value))}
-        className="w-full"
-      />
-      <p className="font-mono text-2xl">{amount}</p>
-      <button
-        className="rounded bg-game-accent px-6 py-2 font-semibold hover:opacity-90"
-        onClick={() => socket.emit('turn:setWager', { amount })}
-      >
-        Confirm
-      </button>
+        {game.roundRule.wagerMultiplier && (
+          <p className="text-sm text-game-gold">
+            {game.roundRule.name}: this wager will be doubled automatically!
+          </p>
+        )}
+
+        <div className="flex flex-wrap justify-center gap-2">
+          {WAGER_TIERS.map((t) => (
+            <button
+              key={t.value}
+              onClick={() => setPicked(t)}
+              className={`flex flex-col items-center gap-1 rounded px-3 py-2 transition ${
+                t.value === tier.value
+                  ? 'bg-game-accent/40 ring-2 ring-game-accent'
+                  : 'bg-game-dark hover:bg-game-accent/20'
+              }`}
+            >
+              <WagerPie tier={t} selected={t.value === tier.value} size={40} />
+              <span className="font-mono text-sm">{t.value}</span>
+            </button>
+          ))}
+        </div>
+
+        <button
+          className="rounded bg-game-accent px-6 py-2 font-semibold hover:opacity-90"
+          onClick={() => socket.emit('turn:setWager', { amount: tier.value })}
+        >
+          Lock in {tier.value}
+        </button>
+      </div>
     </div>
   );
 }
@@ -295,7 +335,16 @@ function OpenAnswerPhase({ game, myId, socket }) {
       {game.rebus ? (
         <RebusPuzzle rebus={game.rebus} />
       ) : (
-        <p className="text-xl font-semibold leading-snug">{game.question}</p>
+        // Printed in the green for its wager tier: palest for the easiest
+        // question, deepest for the hardest. See lib/difficultyColors.js —
+        // every step is contrast-checked against the ground, because the
+        // question is the one thing on screen that must always be readable.
+        <p
+          className="text-xl font-semibold leading-snug"
+          style={{ color: difficultyColor(game.difficultyTier) }}
+        >
+          {game.question}
+        </p>
       )}
 
       <p className="text-sm text-gray-400">

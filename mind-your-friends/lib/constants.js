@@ -23,8 +23,50 @@ function positiveInt(raw, fallback) {
 export const ROUNDS = positiveInt(process.env.NEXT_PUBLIC_MYF_ROUNDS, 4);
 export const QUESTIONS_PER_ROUND = positiveInt(process.env.NEXT_PUBLIC_MYF_QUESTIONS_PER_ROUND, 6);
 export const TOTAL_QUESTIONS = ROUNDS * QUESTIONS_PER_ROUND; // 24 by default
-export const MIN_WAGER = 50;
-export const MAX_WAGER = 500;
+// The wager ladder. Five tiers, each a fraction of a pie, with 100 = the
+// whole pie and 200 = more pie than there is.
+//
+// This replaced a 50–500 slider in 10-point steps, which was arbitrary in a
+// way that mattered: it offered 46 values across a range whose ends were both
+// wrong (a 50 wager swung about 4% of a typical winning margin — noise — and a
+// 500 swung 43%, i.e. one question could decide half the night), at a
+// resolution far finer than any decision a person can actually make. Nothing
+// on screen told you what a big number was supposed to mean.
+//
+// A doubling ladder anchored at 100 = 100% fixes that by making the number
+// self-describing: the tier IS the picture. Five buttons is also a decision
+// you can make in two seconds and say out loud ("you're getting the whole
+// pie"), which a slider never was.
+export const WAGER_TIERS = [
+  { value: 12, label: 'Sliver', fraction: 1 / 8 },
+  { value: 25, label: 'Slice', fraction: 1 / 4 },
+  { value: 50, label: 'Half', fraction: 1 / 2 },
+  { value: 100, label: 'Whole pie', fraction: 1 },
+  // More pie than exists. Drawn as a full, oversized pie — the only tier that
+  // breaks the circle's own scale, which is the point of it.
+  { value: 200, label: 'DOUBLE', fraction: 1, super: true },
+];
+
+export const WAGER_VALUES = WAGER_TIERS.map((t) => t.value);
+export const MIN_WAGER = WAGER_VALUES[0];
+export const MAX_WAGER = WAGER_VALUES[WAGER_VALUES.length - 1];
+
+// Which rung of the ladder a wager sits on. Tolerant of values that aren't
+// exactly a tier — Double Down multiplies past the top, Half-Off lands
+// between rungs — by taking the nearest, so callers never have to special-case
+// a card effect.
+export function wagerTierIndex(wager) {
+  let best = 0;
+  let bestGap = Infinity;
+  WAGER_VALUES.forEach((value, i) => {
+    const gap = Math.abs(value - (wager ?? 0));
+    if (gap < bestGap) {
+      bestGap = gap;
+      best = i;
+    }
+  });
+  return best;
+}
 export const RESULT_SCREEN_MS = 4000;
 export const MIN_PLAYERS = 3;
 export const MAX_PLAYERS = 6;

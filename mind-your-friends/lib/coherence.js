@@ -13,7 +13,7 @@
 
 import { CARDS, pickRandomLanguageRegister } from './cards.js';
 import { ROUND_RULES, BASE_TIMER_SECONDS } from './roundRules.js';
-import { MIN_WAGER, MAX_WAGER } from './constants.js';
+import { wagerTierIndex, WAGER_TIERS } from './constants.js';
 
 // --- Severity levels (shared vocabulary with Choose Your Mystery CE) ---
 
@@ -23,19 +23,40 @@ export const INFO = 'info';
 
 // --- Difficulty mapping ---
 
-function wagerToDifficulty(wager) {
-  const range = MAX_WAGER - MIN_WAGER;
-  const normalized = (wager - MIN_WAGER) / range;
-  if (normalized <= 0.33) return 'easy';
-  if (normalized <= 0.66) return 'medium';
-  return 'hard';
-}
+// One difficulty per rung of the wager ladder, so the stake the room watched
+// somebody choose is the stake the question is actually written to. The old
+// mapping normalised a continuous 50-500 range into three buckets, which meant
+// two visibly different wagers routinely produced identically-pitched
+// questions.
+const DIFFICULTY_BY_TIER = ['trivial', 'easy', 'medium', 'hard', 'brutal'];
 
 const DIFFICULTY_PROMPT = {
+  trivial: 'Generate a very easy question — almost everyone should get this one.',
   easy: 'Generate an easy question that most people would know the answer to.',
   medium: 'Generate a moderately challenging question — not trivial, but fair.',
   hard: 'Generate a difficult question that requires specific knowledge.',
+  brutal: 'Generate a genuinely hard question — most of the room should miss it.',
 };
+
+// The fact bank only knows three difficulties (they come from the research
+// prompt in claudeClient.js), so the five-rung ladder maps down for filtering.
+// Deliberately not widened to five: that would mean re-generating every cached
+// fact bank to add two values the bank has never produced.
+const BANK_DIFFICULTY = {
+  trivial: 'easy',
+  easy: 'easy',
+  medium: 'medium',
+  hard: 'hard',
+  brutal: 'hard',
+};
+
+function wagerToDifficulty(wager) {
+  return DIFFICULTY_BY_TIER[wagerTierIndex(wager)];
+}
+
+function bankDifficulty(difficulty) {
+  return BANK_DIFFICULTY[difficulty] ?? difficulty;
+}
 
 // --- Format-constraining cards (affect question generation) ---
 
@@ -115,6 +136,7 @@ export function turnConstraints(roundCtx, { category, wager, resolvedCard }) {
   return {
     category,
     difficulty,
+    difficultyTier: wagerTierIndex(wager),
     wager,
     effectiveWager,
     answerFormat,
@@ -143,7 +165,7 @@ export function pickFactoid(factBank, category, constraints) {
   const matching = facts.filter((f) => {
     if (f.answerWordCount > formatMax) return false;
     if (constraints.answerFormat === 'phrase' && f.answerWordCount < 2) return false;
-    if (f.difficulty === constraints.difficulty) return true;
+    if (f.difficulty === bankDifficulty(constraints.difficulty)) return true;
     return false;
   });
 
