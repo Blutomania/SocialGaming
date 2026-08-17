@@ -34,12 +34,28 @@ export const MAX_PLAYERS = 6;
 // players never type at all now. See CATEGORY_SUGGESTIONS in lib/categories.js.
 export const CATEGORIES_PER_PLAYER = 3;
 
-// Points for anyone other than the active player who buzzes in with the
-// right answer. Flat and modest by design: the active player is the one who
-// wagered, so they're the one who can win big or lose big. Everybody else is
-// playing for a steady trickle and risks nothing — that's what makes buzzing
-// in feel free rather than scary. See "open answering" in gameState.js.
-export const OPEN_ANSWER_POINTS = 100;
+// What a buzz-in win pays: a share of the wager the question was being played
+// for. Anyone but the answerer, and they still risk nothing — that asymmetry
+// is what makes buzzing feel free rather than scary.
+//
+// A share rather than a flat number, decided August 17 2026, for two reasons.
+// It is self-anchoring: "three-quarters of what they were playing for" needs
+// no explanation, where a flat 100 floats free of every other number on
+// screen and can't be judged. And it scales with the question's danger — a
+// big wager usually means a category the answerer is in trouble on, and
+// taking a hard question should pay more than taking an easy one.
+//
+// It MUST stay below 1. At 1.5x a buzzer would earn 750 on a question the
+// answerer could only win 500 on, while risking nothing — which inverts the
+// risk hierarchy of the whole game and makes being the active player
+// something to avoid. Below 1 that hierarchy stays the right way up, and the
+// wager-setter's decision survives: it only shifts their break-even from
+// "will they get this?" at 50% to about 55%.
+export const BUZZ_WAGER_SHARE = 0.75;
+
+// Buzz winnings are rounded to this, so the scoreboard stays legible —
+// 0.75 x a 250 wager is 187.5, which nobody wants to read.
+export const BUZZ_POINTS_ROUNDING = 5;
 
 // How long the question sits on screen before the answer clock starts, so
 // nobody is racing a timer they haven't finished reading. Questions are

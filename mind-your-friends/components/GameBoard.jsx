@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import CategoryPicker from './CategoryPicker';
 import CardHand from './CardHand';
 import VoiceInput from './VoiceInput';
@@ -222,7 +222,8 @@ function OpenAnswerPhase({ game, myId, socket }) {
   const [answer, setAnswer] = useState('');
   const [inputMode, setInputMode] = useState('text');
   const [now, setNow] = useState(Date.now());
-  const [passError, setPassError] = useState(null);
+  const [actionError, setActionError] = useState(null);
+  const autoLocked = useRef(false);
 
   useEffect(() => {
     const id = setInterval(() => setNow(Date.now()), 250);
@@ -234,23 +235,53 @@ function OpenAnswerPhase({ game, myId, socket }) {
   const timer = game.roundRule.timerSeconds;
   const readingLeft = Math.max(0, Math.ceil(((game.answerOpensAt ?? 0) - now) / 1000));
   const exclusiveLeft = Math.max(0, Math.ceil(((game.buzzOpensAt ?? 0) - now) / 1000));
+  const lockLeft = Math.max(0, Math.ceil(((game.lockClosesAt ?? 0) - now) / 1000));
   const reading = readingLeft > 0;
   const exclusive = !reading && exclusiveLeft > 0;
-  // Mine to answer if it's my exclusive window, or if the buzzer is open to
-  // everyone. The server enforces the same thing — this only keeps the input
-  // from appearing where it would be rejected.
-  const canType = !reading && (isAnswerer || !exclusive) && game.iCanAnswer;
   const spent = game.spentAttempts ?? [];
 
+  // The answerer types a live answer; everyone else types a commitment they
+  // may never get to play. Same box, different verb — the server rejects
+  // whichever one isn't yours, this only keeps it off screen.
+  const canAnswer = !reading && isAnswerer && game.iCanAnswer;
+  const canLock = !reading && lockLeft > 0 && game.iCanLock;
+  const canBuzz = !reading && !exclusive && game.iCanBuzz;
+  const canType = canAnswer || canLock;
+
   const submit = () => {
-    if (!canType || !answer.trim()) return;
+    if (!canAnswer || !answer.trim()) return;
     socket.emit('turn:submitAnswer', { answer, inputMode });
     setAnswer('');
   };
 
+  const lockIn = (text = answer) => {
+    if (!text.trim()) return;
+    socket.emit('turn:lockAnswer', { answer: text, inputMode }, (res) => {
+      if (res && res.ok === false) setActionError(res.message);
+    });
+  };
+
+  // Nobody should lose a question to a missing button press. If there's text
+  // in the box when locking is about to close, commit it — the deadline is
+  // meant to stop late answers, not to punish someone who typed one in time
+  // and didn't tap.
+  useEffect(() => {
+    if (autoLocked.current || !game.iCanLock || !answer.trim()) return;
+    if (now < (game.lockClosesAt ?? 0) - 400) return;
+    if (now >= (game.lockClosesAt ?? 0)) return;
+    autoLocked.current = true;
+    lockIn(answer);
+  });
+
+  const buzz = () => {
+    socket.emit('turn:buzzIn', {}, (res) => {
+      if (res && res.ok === false) setActionError(res.message);
+    });
+  };
+
   const pass = () => {
     socket.emit('turn:passAnswer', {}, (res) => {
-      if (res && res.ok === false) setPassError(res.message);
+      if (res && res.ok === false) setActionError(res.message);
     });
   };
 
@@ -270,18 +301,17 @@ function OpenAnswerPhase({ game, myId, socket }) {
       <p className="text-sm text-gray-400">
         {answerer.name}&apos;s question · {game.currentWager} pts for {isAnswerer ? 'you' : 'them'}
         {' · '}
-        {game.openAnswerPoints} for anyone else who beats {isAnswerer ? 'you' : 'them'} to it
+        {game.buzzPoints} for anyone else who takes it off {isAnswerer ? 'you' : 'them'}
       </p>
 
       {reading && (
         <p className="text-lg font-semibold text-game-blue">
-          Read it… {isAnswerer ? 'your window opens' : `${answerer.name} goes first`} in{' '}
-          {readingLeft}
+          Read it… {isAnswerer ? 'your window opens' : 'answers open'} in {readingLeft}
         </p>
       )}
 
       {/* The room's view of the exclusive window. Said plainly, because a
-          locked input with no explanation reads as a bug. */}
+          locked-out buzzer with no explanation reads as a bug. */}
       {exclusive && !isAnswerer && (
         <p className="text-lg font-semibold text-game-blue">
           {answerer.name}&apos;s shot — buzzers open in {exclusiveLeft}
@@ -296,21 +326,23 @@ function OpenAnswerPhase({ game, myId, socket }) {
 
       {canType && (
         <>
-          {!exclusive && (
-            <p className="text-sm text-gray-400">{timer}s — anyone can answer, first correct wins</p>
+          {canLock && (
+            <p className="text-sm text-gray-400">
+              Lock an answer in now — {lockLeft}s. You can only buzz with one.
+            </p>
           )}
           <div className="flex gap-2">
             <input
               autoFocus
               className="flex-1 rounded bg-game-dark px-3 py-2"
-              placeholder="Your answer…"
+              placeholder={canLock ? 'Your answer, ready to go…' : 'Your answer…'}
               value={answer}
               onChange={(e) => {
                 setAnswer(e.target.value);
                 setInputMode('text');
               }}
               onKeyDown={(e) => {
-                if (e.key === 'Enter') submit();
+                if (e.key === 'Enter') canAnswer ? submit() : lockIn();
               }}
             />
             <VoiceInput
@@ -319,15 +351,18 @@ function OpenAnswerPhase({ game, myId, socket }) {
                 setInputMode('voice');
               }}
             />
-            <button className="rounded bg-game-accent px-4 py-2 font-semibold" onClick={submit}>
-              Submit
+            <button
+              className="rounded bg-game-accent px-4 py-2 font-semibold"
+              onClick={() => (canAnswer ? submit() : lockIn())}
+            >
+              {canAnswer ? 'Submit' : 'Lock It In'}
             </button>
           </div>
 
-          {/* Folding is a real move — with 500 on a category you don't know,
-              handing it to the room is legitimate play, and it's the only
-              way out of the wager that costs nothing. */}
-          {exclusive && isAnswerer && game.iCanPass && (
+          {/* Folding is a real move — with a big wager on a category you don't
+              know, handing it to the room is legitimate play, and it's the
+              only way out of the wager that costs nothing. */}
+          {canAnswer && exclusive && game.iCanPass && (
             <button
               className="rounded border border-gray-600 px-4 py-2 text-sm text-gray-300 hover:bg-game-dark"
               onClick={pass}
@@ -337,33 +372,58 @@ function OpenAnswerPhase({ game, myId, socket }) {
           )}
 
           <p className="text-xs text-gray-500">
-            {exclusive && isAnswerer
+            {canAnswer
               ? `One shot. Wrong or out of time costs you ${game.currentWager} — passing costs nothing.`
-              : `One shot each. Get it wrong and you're out of this question — but it costs you nothing${
-                  isAnswerer ? '… except your wager.' : '.'
-                }`}
+              : `A locked answer can't be changed, and you can't type one later. ${game.buzzPoints} pts if you buzz it in first.`}
           </p>
         </>
       )}
 
-      {passError && <p className="text-sm text-game-red">{passError}</p>}
+      {/* One tap, no typing. The decision was made when the answer was locked
+          in; this is only about whether you dare play it first. */}
+      {canBuzz && (
+        <>
+          <button
+            className="w-full rounded bg-game-red px-4 py-6 text-2xl font-bold hover:opacity-90"
+            onClick={buzz}
+          >
+            BUZZ — &ldquo;{game.myLockedAnswer}&rdquo;
+          </button>
+          <p className="text-xs text-gray-500">
+            {timer}s on the clock. First correct buzz takes {game.buzzPoints}.
+          </p>
+        </>
+      )}
 
-      {!reading && !exclusive && !canType && (
+      {actionError && <p className="text-sm text-game-red">{actionError}</p>}
+
+      {!reading && !canType && !canBuzz && (
         <p className="text-gray-400">
           {game.myAttempt?.passed
             ? 'You passed — it belongs to the room now.'
             : game.myAttempt?.timedOut
             ? `Your window closed without an answer — that's ${game.currentWager} gone.`
             : game.myAttempt
-            ? `You said "${game.myAttempt.answer}" — not it. Watch the others.`
-            : 'Waiting…'}
+            ? `You played "${game.myAttempt.answer}" — not it. Watch the others.`
+            : game.myLockedAnswer
+            ? `Locked in: "${game.myLockedAnswer}" — wait for the buzzer.`
+            : exclusive
+            ? 'Waiting…'
+            : "You didn't lock one in — this one's out of your hands."}
         </p>
+      )}
+
+      {/* The count, never the answers. Watching "2 locked and ready" climb
+          while the answerer sweats is most of the tension here. */}
+      {game.lockedCount > 0 && (
+        <p className="text-xs text-gray-500">{game.lockedCount} locked and ready</p>
       )}
 
       {spent.length > 0 && (
         <p className="text-xs text-gray-500">
-          {spent.map((a) => `${a.name}${a.passed ? ' (passed)' : a.timedOut ? ' (froze)' : ''}`).join(', ')}
-          {' — done'}
+          Done: {spent
+            .map((a) => `${a.name}${a.passed ? ' (passed)' : a.timedOut ? ' (froze)' : ''}`)
+            .join(', ')}
         </p>
       )}
     </div>
@@ -531,7 +591,21 @@ function ResultPhase({ game }) {
         <div className="pt-2 text-sm text-gray-400">
           {misses.map((a) => (
             <p key={a.playerId}>
-              <span className="text-gray-300">{a.name}</span> said &ldquo;{a.answer}&rdquo;
+              <span className="text-gray-300">{a.name}</span> played &ldquo;{a.answer}&rdquo;
+            </p>
+          ))}
+        </div>
+      )}
+
+      {/* The answers nobody got to play. This is the loudest moment the
+          lock-in mechanic produces — somebody in the room had it and sat on
+          it, and only the reveal tells them so. */}
+      {(result.unplayedAnswers ?? []).length > 0 && (
+        <div className="pt-2 text-sm text-gray-500">
+          <p className="text-xs uppercase tracking-widest">Never played</p>
+          {result.unplayedAnswers.map((a) => (
+            <p key={a.playerId}>
+              <span className="text-gray-300">{a.name}</span> had &ldquo;{a.answer}&rdquo;
             </p>
           ))}
         </div>

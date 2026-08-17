@@ -135,6 +135,45 @@ app.prepare().then(() => {
       });
     });
 
+    // Commit an answer during the answerer's exclusive window. Not evaluated
+    // and not revealed — it only becomes a real attempt if its owner buzzes.
+    // Ack rather than the global 'error' event: missing the lock deadline is
+    // an ordinary outcome, not a page-replacing failure.
+    socket.on('turn:lockAnswer', ({ answer, inputMode }, ack) => {
+      withMyGame(socket, (game, playerId) => {
+        gameState.recordPlayerAction(game, playerId);
+        try {
+          gameState.lockAnswer(game, playerId, answer, inputMode);
+        } catch (err) {
+          if (typeof ack === 'function') ack({ ok: false, message: err.message });
+          return;
+        }
+        if (typeof ack === 'function') ack({ ok: true });
+        // Broadcast: the room sees the locked-in COUNT rise (never the
+        // answers), which is most of the tension this mechanic creates.
+        broadcast(io, game);
+      });
+    });
+
+    // Play a committed answer. The buzz sets the order; the answer was fixed
+    // before the answerer fumbled.
+    socket.on('turn:buzzIn', (_payload, ack) => {
+      withMyGame(socket, async (game, playerId) => {
+        gameState.recordPlayerAction(game, playerId);
+        try {
+          await gameState.buzzIn(game, playerId);
+        } catch (err) {
+          if (typeof ack === 'function') ack({ ok: false, message: err.message });
+          return;
+        }
+        if (typeof ack === 'function') ack({ ok: true });
+        broadcast(io, game);
+        if (game.phase === 'RESULT') {
+          scheduleNextTurn(io, game);
+        }
+      });
+    });
+
     // Flow B: the answerer folds. Costs them nothing and opens the buzzer at
     // once. Ack callback rather than the global 'error' event — same reason
     // as turn:attemptLineup: losing a race to the buzzer opening should give
@@ -355,6 +394,9 @@ app.prepare().then(() => {
       // real action, so a player who folds is not marked away for it.
       if (froze) gameState.recordAutoAdvance(game, answerer.id);
       broadcast(io, game);
+      // This is also the moment locking closes, so it can end the question
+      // outright when nobody committed an answer to buzz with.
+      if (game.phase === 'RESULT') scheduleNextTurn(io, game);
     }, gameState.getActiveWindowMs(game));
   }
 

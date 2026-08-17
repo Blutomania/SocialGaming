@@ -27,15 +27,23 @@ import {
   resolveCardSlot,
   runQuestionPhase,
   submitAnswer,
+  lockAnswer,
+  buzzIn,
+  passAnswer,
+  expireActiveWindow,
   expireAnswerWindow,
   getAnswerWindowMs,
+  getActiveWindowSeconds,
+  getBuzzPoints,
   nextTurn,
   playerView,
   currentRoundNumber,
 } from '../lib/gameState.js';
 import {
   CATEGORIES_PER_PLAYER,
-  OPEN_ANSWER_POINTS,
+  BUZZ_WAGER_SHARE,
+  ACTIVE_WINDOW_SECONDS,
+  ACTIVE_WINDOW_MAX_SHARE,
   READING_SECONDS,
   QUESTIONS_PER_ROUND,
   CATEGORIES_PER_FETCH_BATCH,
@@ -244,33 +252,188 @@ async function main() {
     check(BASE_TIMER_SECONDS === 40, `answer clock doubled to 40s (got ${BASE_TIMER_SECONDS}s)`);
   }
 
-  // --- Open answering: anyone can win ------------------------------------
-  console.log('\n--- Open answering ---');
+  // --- Flow B: the answerer's exclusive window -----------------------------
+  console.log('\n--- Flow B: first refusal ---');
   {
     __setClientForTests(fakeClient());
     const game = registeredGame();
     startGame(game);
     await prefetchFactBank(game);
-    await toOpenAnswer(game, { wager: 300 });
+    await toActiveWindow(game, { wager: 300 });
 
     const answerer = game.players[game.answererIndex];
     const other = game.players.find((p) => p.id !== answerer.id);
 
-    await submitAnswer(game, answerer.id, 'nope', 'text');
-    check(game.phase === 'ANSWER', 'a wrong answer does not end the question');
-    check(answerer.score === -300, `the active player pays for being wrong (${answerer.score})`);
+    // The window is carved OUT of the answer clock, not added to it.
+    check(getAnswerWindowMs(game) === (READING_SECONDS + BASE_TIMER_SECONDS) * 1000,
+      'the exclusive window does not lengthen the question');
+    check(getActiveWindowSeconds(game) === ACTIVE_WINDOW_SECONDS,
+      `a 40s clock gives the full ${ACTIVE_WINDOW_SECONDS}s window (got ${getActiveWindowSeconds(game)}s)`);
 
-    await submitAnswer(game, other.id, CORRECT_ANSWER, 'text');
-    check(game.phase === 'RESULT', 'the first correct answer ends the question');
-    check(other.score === OPEN_ANSWER_POINTS,
-      `a non-active player wins the flat rate, not the wager (${other.score})`);
-    check(game.lastResult.buzzedIn === true, 'the result records that someone buzzed in');
-    check(game.lastResult.winnerName === other.name, `winner is named (${game.lastResult.winnerName})`);
-    check(game.lastResult.attempts.length === 2, 'every attempt is recorded for the result screen');
+    // Nobody else can play a locked answer while it is still the answerer's.
+    lockAnswer(game, other.id, CORRECT_ANSWER, 'text');
+    let threw = null;
+    try {
+      await buzzIn(game, other.id);
+    } catch (err) {
+      threw = err;
+    }
+    check(threw !== null, 'buzzing during the exclusive window is rejected');
+    check(game.phase === 'ANSWER', 'and does not take the question');
+    check(other.score === 0, 'and pays nothing');
 
-    const view = playerView(game, other.id);
-    check(view.lastResult.attempts.some((a) => a.answer === 'nope'),
-      'the room gets to see the misses, not just the win');
+    // The answerer takes their own question for the full wager.
+    await submitAnswer(game, answerer.id, CORRECT_ANSWER, 'text');
+    check(game.phase === 'RESULT', 'the answerer answering correctly ends it');
+    check(answerer.score === 300, `and wins the whole wager (${answerer.score})`);
+    check(game.lastResult.buzzedIn === false, 'nobody buzzed in');
+    check(game.lastResult.unplayedAnswers.length === 1,
+      'the answer that never got played is revealed');
+    check(game.lastResult.unplayedAnswers[0].answer === CORRECT_ANSWER,
+      'including what it actually was — "you HAD it" is the point');
+  }
+
+  // --- The 25% cap ---------------------------------------------------------
+  console.log('\n--- Exclusive window is capped ---');
+  {
+    __setClientForTests(fakeClient());
+    const game = registeredGame();
+    startGame(game);
+    await prefetchFactBank(game);
+    game.roundRule = ROUND_RULES.lightningRound;
+    game.roundConstraints = roundConstraints(game.roundRule);
+    await toActiveWindow(game, { wager: 200 });
+
+    const clock = ROUND_RULES.lightningRound.timerSeconds;
+    const window = getActiveWindowSeconds(game);
+    check(window === Math.round(clock * ACTIVE_WINDOW_MAX_SHARE),
+      `a halved clock gets a capped window, not ${ACTIVE_WINDOW_SECONDS}s (${window}s of ${clock}s)`);
+    check(window < ACTIVE_WINDOW_SECONDS,
+      'so a short round never becomes mostly-exclusive');
+  }
+
+  // --- Passing is free, freezing is not ------------------------------------
+  console.log('\n--- Pass vs freeze ---');
+  {
+    __setClientForTests(fakeClient());
+    const game = registeredGame();
+    startGame(game);
+    await prefetchFactBank(game);
+    await toActiveWindow(game, { wager: 400 });
+
+    const answerer = game.players[game.answererIndex];
+    const other = game.players.find((p) => p.id !== answerer.id);
+    lockAnswer(game, other.id, CORRECT_ANSWER, 'text');
+
+    passAnswer(game, answerer.id);
+    check(answerer.score === 0, `folding costs nothing (${answerer.score})`);
+    check(game.buzzOpensAt <= Date.now(),
+      'and opens the buzzer at once — no waiting out a declined window');
+    check(game.lockClosesAt > Date.now(),
+      'but does NOT slam the lock window shut on everyone still typing');
+
+    await buzzIn(game, other.id);
+    check(game.phase === 'RESULT', 'the room can then take it');
+    check(other.score === getBuzzPoints(game), `for the buzz share (${other.score})`);
+    check(game.lastResult.activeOutcome === 'passed', 'the result records a fold, not a forfeit');
+    check(game.lastResult.wagerLost === false, 'and does not report points the answerer kept');
+  }
+
+  {
+    __setClientForTests(fakeClient());
+    const game = registeredGame();
+    startGame(game);
+    await prefetchFactBank(game);
+    await toActiveWindow(game, { wager: 400 });
+
+    const answerer = game.players[game.answererIndex];
+    const other = game.players.find((p) => p.id !== answerer.id);
+    lockAnswer(game, other.id, 'nope', 'text');
+
+    game.lockClosesAt = 0; // the exclusive window runs out
+    expireActiveWindow(game);
+    check(answerer.score === -400,
+      `freezing costs the wager, exactly like a wrong answer (${answerer.score})`);
+    check(game.phase === 'ANSWER', 'and the room still gets its shot');
+
+    // The charge happens once, not again when the whole window closes.
+    expireAnswerWindow(game);
+    check(answerer.score === -400, `and is never charged twice (${answerer.score})`);
+    check(game.lastResult.activeOutcome === 'timedOut', 'the result tells a freeze from a fold');
+    check(game.lastResult.wagerLost === true, 'and reports the wager as lost');
+  }
+
+  // --- Pre-committed answers ----------------------------------------------
+  console.log('\n--- Locked answers ---');
+  {
+    __setClientForTests(fakeClient());
+    const game = registeredGame();
+    startGame(game);
+    await prefetchFactBank(game);
+    await toActiveWindow(game, { wager: 200 });
+
+    const answerer = game.players[game.answererIndex];
+    const [first, second] = game.players.filter((p) => p.id !== answerer.id);
+
+    lockAnswer(game, first.id, CORRECT_ANSWER, 'text');
+    let threw = null;
+    try {
+      lockAnswer(game, first.id, 'changed my mind', 'text');
+    } catch (err) {
+      threw = err;
+    }
+    check(threw !== null, 'a locked answer cannot be revised');
+    check(game.lockedAnswers[first.id].answer === CORRECT_ANSWER, 'the original stands');
+
+    // Nobody sees anybody else's commitment while the question is live.
+    const view = playerView(game, second.id);
+    check(view.lockedCount === 1, 'the room sees how many are ready');
+    check(view.myLockedAnswer === null, 'but not what they said');
+    check(view.iCanLock === true, 'a player who has not committed still can');
+    check(playerView(game, first.id).iCanBuzz === true, 'a committed player can buzz');
+    check(playerView(game, second.id).iCanBuzz === false, 'an uncommitted one cannot');
+
+    // Locking closes with the exclusive window, and never reopens.
+    game.lockClosesAt = 0;
+    game.buzzOpensAt = 0;
+    threw = null;
+    try {
+      lockAnswer(game, second.id, CORRECT_ANSWER, 'text');
+    } catch (err) {
+      threw = err;
+    }
+    check(threw !== null,
+      'no locking in after the buzzer opens — that is the lookup window this closes');
+    threw = null;
+    try {
+      await buzzIn(game, second.id);
+    } catch (err) {
+      threw = err;
+    }
+    check(threw !== null, 'and no answer means no buzz at all');
+
+    await buzzIn(game, first.id);
+    check(game.phase === 'RESULT', 'the committed player takes it');
+    check(first.score === getBuzzPoints(game), `for the buzz share (${first.score})`);
+  }
+
+  // --- The buzz share ------------------------------------------------------
+  console.log('\n--- Buzz payout scales with the wager ---');
+  {
+    __setClientForTests(fakeClient());
+    const game = registeredGame();
+    startGame(game);
+    await prefetchFactBank(game);
+    await toOpenAnswer(game, { wager: 400 });
+
+    check(getBuzzPoints(game) === 300, `0.75 x 400 = ${getBuzzPoints(game)}`);
+    check(getBuzzPoints(game) < game.currentWager,
+      'a buzz never out-earns the wager it was played for — otherwise being the active player is strictly worse');
+    check(BUZZ_WAGER_SHARE < 1, 'the share is below 1 by design');
+
+    game.currentWager = 250;
+    check(getBuzzPoints(game) % 5 === 0,
+      `and rounds to something a scoreboard can show (${getBuzzPoints(game)})`);
   }
 
   // --- One shot each, and a wrong shot is free for non-active players -----
@@ -280,29 +443,37 @@ async function main() {
     const game = registeredGame();
     startGame(game);
     await prefetchFactBank(game);
-    await toOpenAnswer(game, { wager: 200 });
+    await toActiveWindow(game, { wager: 200 });
 
     const answerer = game.players[game.answererIndex];
-    const other = game.players.find((p) => p.id !== answerer.id);
+    const [first, second] = game.players.filter((p) => p.id !== answerer.id);
+    lockAnswer(game, first.id, 'wrong', 'text');
+    lockAnswer(game, second.id, CORRECT_ANSWER, 'text');
+    game.lockClosesAt = 0;
+    game.buzzOpensAt = 0;
 
-    await submitAnswer(game, other.id, 'wrong', 'text');
-    check(other.score === 0, `a non-active player risks nothing (${other.score})`);
+    await buzzIn(game, first.id);
+    check(first.score === 0, `a non-active player risks nothing (${first.score})`);
+    check(game.phase === 'ANSWER', 'a wrong buzz does not end the question');
 
     let threw = null;
     try {
-      await submitAnswer(game, other.id, CORRECT_ANSWER, 'text');
+      await buzzIn(game, first.id);
     } catch (err) {
       threw = err;
     }
     check(threw !== null, 'a second attempt from the same player is rejected');
-    check(game.phase === 'ANSWER', 'and does not win the question');
 
-    const view = playerView(game, other.id);
-    check(view.iCanAnswer === false, 'the view tells that player they are locked out');
-    check(playerView(game, answerer.id).iCanAnswer === true, 'others can still answer');
+    const view = playerView(game, first.id);
+    check(view.iCanBuzz === false, 'the view tells that player they are locked out');
     check(view.spentAttempts.length === 1, 'the room sees who has already swung');
     check(view.spentAttempts[0].answer === undefined,
-      "but not what they said — nobody can copy a neighbour's wording");
+      "but not what they played — nobody can copy a neighbour's wording");
+
+    await buzzIn(game, second.id);
+    check(game.phase === 'RESULT', 'the first correct buzz ends it');
+    check(second.score === getBuzzPoints(game), `and is paid the share (${second.score})`);
+    check(game.lastResult.buzzedIn === true, 'the result records that someone buzzed in');
   }
 
   // --- Everyone misses ----------------------------------------------------
@@ -312,17 +483,42 @@ async function main() {
     const game = registeredGame();
     startGame(game);
     await prefetchFactBank(game);
-    await toOpenAnswer(game, { wager: 150 });
+    await toActiveWindow(game, { wager: 150 });
+
+    const answerer = game.players[game.answererIndex];
+    for (const p of game.players) {
+      if (p.id !== answerer.id) lockAnswer(game, p.id, 'wrong', 'text');
+    }
+    await submitAnswer(game, answerer.id, 'nope', 'text');
+    check(answerer.score === -150, `the active player pays for being wrong (${answerer.score})`);
+    check(game.phase === 'ANSWER', 'and the buzzer opens rather than ending the turn');
 
     for (const p of game.players) {
-      if (game.phase !== 'ANSWER') break;
-      await submitAnswer(game, p.id, 'wrong', 'text');
+      if (game.phase === 'ANSWER' && p.id !== answerer.id) await buzzIn(game, p.id);
     }
     check(game.phase === 'RESULT', 'the question ends once everyone has had a shot');
     check(game.lastResult.correct === false, 'and is recorded as unclaimed');
-    const answerer = game.players[game.answererIndex];
-    check(answerer.score === -150, `only the active player lost points (${answerer.score})`);
     check(game.players.filter((p) => p.score === 0).length === 2, 'the other two are untouched');
+  }
+
+  // --- Nobody committed ----------------------------------------------------
+  console.log('\n--- No locked answers, no dead air ---');
+  {
+    __setClientForTests(fakeClient());
+    const game = registeredGame();
+    startGame(game);
+    await prefetchFactBank(game);
+    await toActiveWindow(game, { wager: 250 });
+
+    const answerer = game.players[game.answererIndex];
+    await submitAnswer(game, answerer.id, 'nope', 'text');
+    check(game.phase === 'ANSWER', 'still open while locking is live');
+
+    game.lockClosesAt = 0;
+    expireActiveWindow(game);
+    check(game.phase === 'RESULT',
+      'with nobody holding an answer the question ends instead of running the clock down');
+    check(answerer.score === -250, `and the wrong answer still cost the wager (${answerer.score})`);
   }
 
   // --- Timing out costs the same as answering wrong -----------------------
@@ -341,28 +537,34 @@ async function main() {
       `saying nothing costs the same as being wrong (${answerer.score}) — otherwise stalling is free`);
   }
 
-  // --- First CORRECT wins, decided by submission order --------------------
+  // --- First CORRECT wins, decided by buzz order --------------------------
   console.log('\n--- Race resolution ---');
   {
     // Evaluations take real time here, so two correct answers are genuinely
-    // in flight at once. Submission order must decide it, not whichever
-    // Claude call happens to come back first.
+    // in flight at once. Buzz order must decide it, not whichever Claude
+    // call happens to come back first.
     const fake = fakeClient({ latencyMs: 60 });
     __setClientForTests(fake);
     const game = registeredGame();
     startGame(game);
     await prefetchFactBank(game);
-    await toOpenAnswer(game, { wager: 200 });
+    await toActiveWindow(game, { wager: 200 });
 
-    const [first, second] = game.players.filter((p, i) => i !== game.answererIndex);
-    const a = submitAnswer(game, first.id, CORRECT_ANSWER, 'text');
-    const b = submitAnswer(game, second.id, CORRECT_ANSWER, 'text').catch(() => {});
+    const answerer = game.players[game.answererIndex];
+    const [first, second] = game.players.filter((p) => p.id !== answerer.id);
+    lockAnswer(game, first.id, CORRECT_ANSWER, 'text');
+    lockAnswer(game, second.id, CORRECT_ANSWER, 'text');
+    game.lockClosesAt = 0;
+    game.buzzOpensAt = 0;
+
+    const a = buzzIn(game, first.id);
+    const b = buzzIn(game, second.id).catch(() => {});
     await Promise.all([a, b]);
 
     check(game.lastResult.winnerId === first.id,
-      `the earlier submission won (${game.lastResult.winnerName})`);
+      `the earlier buzz won (${game.lastResult.winnerName})`);
     check(second.score === 0, `the later one was not also paid (${second.score})`);
-    check(first.score === OPEN_ANSWER_POINTS, `exactly one player was paid (${first.score})`);
+    check(first.score === getBuzzPoints(game), `exactly one player was paid (${first.score})`);
   }
 
   // --- Round rules --------------------------------------------------------

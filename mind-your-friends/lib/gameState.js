@@ -36,7 +36,8 @@ import {
   DISCONNECT_GRACE_MS,
   AUTO_ADVANCE_AWAY_THRESHOLD,
   LINEUP_COLOR_FLAVOR_CHANCE,
-  OPEN_ANSWER_POINTS,
+  BUZZ_WAGER_SHARE,
+  BUZZ_POINTS_ROUNDING,
   READING_SECONDS,
   ACTIVE_WINDOW_SECONDS,
   ACTIVE_WINDOW_MAX_SHARE,
@@ -54,7 +55,7 @@ export {
   CATEGORIES_PER_PLAYER,
   CATEGORY_OPTIONS_COUNT,
   DISCONNECT_GRACE_MS,
-  OPEN_ANSWER_POINTS,
+  BUZZ_WAGER_SHARE,
   READING_SECONDS,
   ACTIVE_WINDOW_SECONDS,
 };
@@ -578,6 +579,13 @@ export async function runQuestionPhase(game) {
     ? 0
     : getActiveWindowSeconds(game) * 1000;
   game.buzzOpensAt = game.answerOpensAt + exclusiveMs;
+  // The deadline for locking in an answer. Set from the SCHEDULED end of the
+  // exclusive window and never moved, unlike buzzOpensAt, which the answerer
+  // can bring forward by answering or passing. If a pass at second one also
+  // slammed the lock window shut, everyone else would be cut off mid-sentence
+  // and the question would die with nobody able to buzz.
+  game.lockClosesAt = game.buzzOpensAt;
+  game.lockedAnswers = {};
   if (game.roundRule.submissionBased) {
     game.submissions = {};
   }
@@ -870,25 +878,39 @@ export function getActiveWindowMs(game) {
   return (READING_SECONDS + getActiveWindowSeconds(game)) * 1000;
 }
 
-// Everyone who could still buzz in on this question.
+// Everyone who could still buzz in on this question: not out of the game,
+// hasn't already swung, and — since a buzz plays a pre-committed answer —
+// has one locked in.
 function openAnswerEligible(game) {
-  return game.players.filter((p) => !p.droppedOut && !game.answerAttempts?.[p.id]);
+  return game.players.filter(
+    (p) =>
+      !p.droppedOut &&
+      !game.answerAttempts?.[p.id] &&
+      (isAnswerer(game, p.id) || game.lockedAnswers?.[p.id] !== undefined)
+  );
 }
 
 function isAnswerer(game, playerId) {
   return game.players[game.answererIndex]?.id === playerId;
 }
 
+// What a buzz-in win pays on this question: a share of the wager it was being
+// played for. See BUZZ_WAGER_SHARE for why it's a share and not a flat rate.
+export function getBuzzPoints(game) {
+  const raw = (game.currentWager ?? 0) * BUZZ_WAGER_SHARE;
+  return Math.round(raw / BUZZ_POINTS_ROUNDING) * BUZZ_POINTS_ROUNDING;
+}
+
 // --- Answering: Flow B ------------------------------------------------------
 //
 // Three windows, one after the other, all inside the ANSWER phase:
 //
-//   1. Reading (READING_SECONDS) — nobody may answer.
-//   2. Exclusive (getActiveWindowSeconds) — only the answerer may act. It is
-//      their wager, so they get first refusal on their own question. They can
-//      answer, or pass; either one opens the buzzer immediately.
-//   3. Open — everyone else races for a flat OPEN_ANSWER_POINTS, one attempt
-//      each, first correct answer wins.
+//   1. Reading (READING_SECONDS) — nobody may act.
+//   2. Exclusive (getActiveWindowSeconds) — the answerer may answer or pass;
+//      either one opens the buzzer immediately. Meanwhile everyone ELSE is
+//      committing an answer they cannot yet play.
+//   3. Open — anyone holding a committed answer may buzz. One attempt each,
+//      first correct buzz wins getBuzzPoints().
 //
 // Step 2 is Flow B (GAME_DESIGN.md → "The Round Loop", agreed Aug 17). The
 // Aug 12 free-for-all had no such window, so a faster player could take every
@@ -900,12 +922,28 @@ function isAnswerer(game, playerId) {
 // Only the answerer has money on it. They win or lose the wager; everyone
 // else risks nothing. That asymmetry is the point: buzzing in has to feel
 // free, or nobody does it, and the wager has to still sting, or "I cut, you
-// choose" stops meaning anything. Buzzing is now vulture rather than race —
-// you pounce on a fumble instead of outrunning someone who never got a turn.
+// choose" stops meaning anything. Buzzing is vulture rather than race — you
+// pounce on a fumble instead of outrunning someone who never got a turn.
+//
+// PRE-COMMITMENT (owner's call, Aug 17). A buzz plays an answer you locked in
+// BEFORE you knew you'd get the chance — you cannot type one after the fumble.
+// Three things fall out of that, all of them wanted:
+//   - It closes the lookup window. The moment worth cheating in is the one
+//     after the answerer fails, with the whole remaining clock to search; that
+//     moment no longer accepts new answers.
+//   - Buzzing stops being a typing race and becomes a decision — one tap. The
+//     fast typist loses their edge, which is the right outcome for a game
+//     whose thesis is casual-first.
+//   - The room is busy during the exclusive window instead of watching. No
+//     dead air, and everyone is invested in whether the answerer fumbles.
+// No lock, no buzz: a player who never committed sits this one out.
 export async function submitAnswer(game, playerId, rawAnswer, inputMode) {
   assertPhase(game, 'ANSWER');
   if (game.roundRule.submissionBased || game.roundRule.lineupBased) {
     throw new Error('This round rule has its own answer flow');
+  }
+  if (!isAnswerer(game, playerId)) {
+    throw new Error('Not your question — lock an answer in and buzz instead');
   }
   const player = getPlayer(game, playerId);
   if (player.droppedOut) {
@@ -914,11 +952,6 @@ export async function submitAnswer(game, playerId, rawAnswer, inputMode) {
   const now = Date.now();
   if (now < (game.answerOpensAt ?? 0)) {
     throw new Error('Still reading — nobody can answer yet');
-  }
-  const mine = isAnswerer(game, playerId);
-  if (!mine && now < (game.buzzOpensAt ?? 0)) {
-    const answerer = game.players[game.answererIndex];
-    throw new Error(`${answerer.name} gets first shot at their own question`);
   }
   if (game.answerAttempts[playerId]) {
     throw new Error('You already had your shot at this one');
@@ -933,17 +966,93 @@ export async function submitAnswer(game, playerId, rawAnswer, inputMode) {
   // the evaluation coming back: the answer is a real Claude call, and making
   // everyone wait it out would hand seconds of a shared clock to whoever the
   // API happened to be slow for. Ordering is safe regardless — evaluations
-  // are serialised below, so this answer is still judged first.
-  if (mine) game.buzzOpensAt = now;
+  // are serialised in queueAttempt, so this answer is still judged first.
+  game.buzzOpensAt = now;
 
-  // Evaluations are serialized rather than run in parallel, so "first correct
-  // wins" is decided by SUBMISSION order. Evaluating concurrently would hand
-  // the win to whoever's Claude call happened to return first, which is a
-  // coin flip, and would let two players both be paid for the same question.
+  await queueAttempt(game, attempt, inputMode);
+  return game;
+}
+
+// Commit an answer you may or may not get to play. Non-answerers only, and
+// only before lockClosesAt.
+//
+// Immutable once set: a commitment you can revise until the last instant is
+// not a commitment, and the whole mechanic rests on having decided early.
+export function lockAnswer(game, playerId, rawAnswer, inputMode) {
+  assertPhase(game, 'ANSWER');
+  if (game.roundRule.submissionBased || game.roundRule.lineupBased) {
+    throw new Error('This round rule has its own answer flow');
+  }
+  if (isAnswerer(game, playerId)) {
+    throw new Error('This one is yours to answer, not to lock in');
+  }
+  const player = getPlayer(game, playerId);
+  if (player.droppedOut) {
+    throw new Error('You are out of this game');
+  }
+  const trimmed = (rawAnswer ?? '').trim();
+  if (!trimmed) {
+    throw new Error('Nothing to lock in');
+  }
+  const now = Date.now();
+  if (now < (game.answerOpensAt ?? 0)) {
+    throw new Error('Still reading — nobody can act yet');
+  }
+  if (now >= (game.lockClosesAt ?? 0)) {
+    throw new Error('Too late — answers are locked for this question');
+  }
+  if (game.lockedAnswers[playerId] !== undefined) {
+    throw new Error('You already locked one in — no changing it now');
+  }
+
+  game.lockedAnswers[playerId] = { answer: trimmed, inputMode: inputMode ?? 'text' };
+  return game;
+}
+
+// Play the answer you committed earlier. The buzz decides the order; the
+// answer itself was decided before you knew you'd get to use it.
+export async function buzzIn(game, playerId) {
+  assertPhase(game, 'ANSWER');
+  if (game.roundRule.submissionBased || game.roundRule.lineupBased) {
+    throw new Error('This round rule has its own answer flow');
+  }
+  const player = getPlayer(game, playerId);
+  if (player.droppedOut) {
+    throw new Error('You are out of this game');
+  }
+  if (Date.now() < (game.buzzOpensAt ?? 0)) {
+    const answerer = game.players[game.answererIndex];
+    throw new Error(`${answerer.name} gets first shot at their own question`);
+  }
+  if (game.answerAttempts[playerId]) {
+    throw new Error('You already had your shot at this one');
+  }
+  const locked = game.lockedAnswers[playerId];
+  if (locked === undefined) {
+    throw new Error('You did not lock an answer in for this one');
+  }
+
+  const attempt = {
+    playerId,
+    name: player.name,
+    answer: locked.answer,
+    correct: null,
+    buzzed: true,
+  };
+  game.answerAttempts[playerId] = attempt;
+
+  await queueAttempt(game, attempt, locked.inputMode);
+  return game;
+}
+
+// Evaluations are serialized rather than run in parallel, so "first correct
+// wins" is decided by BUZZ order. Evaluating concurrently would hand the win
+// to whoever's Claude call happened to return first, which is a coin flip,
+// and would let two players both be paid for the same question.
+function queueAttempt(game, attempt, inputMode) {
   const run = () => resolveOpenAnswer(game, attempt, inputMode);
   game._answerChain = (game._answerChain ?? Promise.resolve()).then(run, run);
-  await game._answerChain;
-  return game;
+  return game._answerChain;
 }
 
 async function resolveOpenAnswer(game, attempt, inputMode) {
@@ -978,7 +1087,7 @@ async function resolveOpenAnswer(game, attempt, inputMode) {
   const wager = game.currentWager;
 
   if (result.correct) {
-    const points = isActivePlayer ? wager : OPEN_ANSWER_POINTS;
+    const points = isActivePlayer ? wager : getBuzzPoints(game);
     player.score += points;
     logHighlight(
       game,
@@ -995,8 +1104,12 @@ async function resolveOpenAnswer(game, attempt, inputMode) {
     logHighlight(game, `${player.name} wagered ${wager} and answered "${attempt.answer}" — wrong!`);
   }
 
-  // Everyone eligible has now had their shot and nobody got it.
-  if (openAnswerEligible(game).length === 0) {
+  // Everyone who could play an answer has now had their shot and nobody got
+  // it. Deliberately not decided while locking is still open: a player who
+  // hasn't committed yet still might, and ending the question out from under
+  // them would punish thinking. Once the lock window closes,
+  // expireActiveWindow re-checks the same condition.
+  if (!anyoneStillToPlay(game)) {
     finishOpenAnswer(game, { ...result, winner: null, points: 0 });
   }
 }
@@ -1060,21 +1173,60 @@ export function expireActiveWindow(game) {
   if (game.roundRule.submissionBased || game.roundRule.lineupBased) return false;
 
   const answerer = game.players[game.answererIndex];
-  // They answered or passed inside the window; the buzzer opened then, not now.
-  if (game.answerAttempts[answerer.id]) return false;
+  // They answered or passed inside the window, so the buzzer opened then, not
+  // now. Locking still closes at this instant though, and that can be the
+  // moment the question becomes unanswerable by anyone.
+  if (game.answerAttempts[answerer.id]) return closeQuestionIfNobodyLeft(game);
 
   game.buzzOpensAt = Date.now();
-  if (answerer.droppedOut) return true;
+  if (!answerer.droppedOut) {
+    answerer.score -= game.currentWager;
+    game.answerAttempts[answerer.id] = {
+      playerId: answerer.id,
+      name: answerer.name,
+      answer: '',
+      correct: false,
+      timedOut: true,
+    };
+    logHighlight(game, `${answerer.name} froze and dropped ${game.currentWager} pts — buzzers open!`);
+  }
 
-  answerer.score -= game.currentWager;
-  game.answerAttempts[answerer.id] = {
-    playerId: answerer.id,
-    name: answerer.name,
-    answer: '',
-    correct: false,
-    timedOut: true,
-  };
-  logHighlight(game, `${answerer.name} froze and dropped ${game.currentWager} pts — buzzers open!`);
+  closeQuestionIfNobodyLeft(game);
+  return true;
+}
+
+// Is there anybody left who could still play an answer on this question?
+//
+// Two ways to be one of those people: holding a committed answer you haven't
+// buzzed yet, or still being able to commit one. The second half is why this
+// isn't just an eligibility count — ending a question out from under someone
+// who is mid-sentence would punish thinking.
+function anyoneStillToPlay(game) {
+  if (openAnswerEligible(game).length > 0) return true;
+  if (Date.now() >= (game.lockClosesAt ?? 0)) return false;
+  return game.players.some(
+    (p) =>
+      !p.droppedOut &&
+      !isAnswerer(game, p.id) &&
+      !game.answerAttempts[p.id] &&
+      game.lockedAnswers[p.id] === undefined
+  );
+}
+
+// A buzzer nobody can press is just dead air. With pre-committed answers a
+// room where nobody locked one in has no way to resolve the question and
+// would otherwise sit watching the clock run down — end it there instead.
+function closeQuestionIfNobodyLeft(game) {
+  if (game.phase !== 'ANSWER') return false;
+  if (anyoneStillToPlay(game)) return false;
+
+  logHighlight(
+    game,
+    Object.keys(game.lockedAnswers ?? {}).length === 0
+      ? 'Nobody had an answer locked in — the points go unclaimed.'
+      : 'Nobody got it — the points go unclaimed.'
+  );
+  finishOpenAnswer(game, { winner: null, points: 0 });
   return true;
 }
 
@@ -1110,6 +1262,7 @@ function finishOpenAnswer(game, { winner, points, ...result }) {
     buzzedIn: !!winner && winner.playerId !== answerer.id,
     activeOutcome,
     wagerLost: activeOutcome === 'wrong' || activeOutcome === 'timedOut',
+    buzzPoints: getBuzzPoints(game),
     attempts: Object.values(game.answerAttempts).map((a) => ({
       playerId: a.playerId,
       name: a.name,
@@ -1118,6 +1271,17 @@ function finishOpenAnswer(game, { winner, points, ...result }) {
       passed: !!a.passed,
       timedOut: !!a.timedOut,
     })),
+    // Answers that were locked in and never got played — the question ended
+    // first. Revealed because it's the best social content the mechanic
+    // produces: "you HAD it and didn't buzz" is the line people shout at each
+    // other, and it's invisible unless the room is shown the commitments.
+    unplayedAnswers: Object.entries(game.lockedAnswers ?? {})
+      .filter(([id]) => !game.answerAttempts[id])
+      .map(([id, locked]) => ({
+        playerId: id,
+        name: getPlayer(game, id).name,
+        answer: locked.answer,
+      })),
   };
   game.phase = 'RESULT';
 }
@@ -1541,15 +1705,25 @@ export function playerView(game, playerId) {
   if (phase === 'ANSWER' && !game.roundRule?.submissionBased && !game.roundRule?.lineupBased) {
     const mine = game.answerAttempts?.[playerId];
     const amAnswerer = isAnswerer(game, playerId);
+    const out = !!game.players[myIndex]?.droppedOut;
+    const myLock = game.lockedAnswers?.[playerId];
     view.answerOpensAt = game.answerOpensAt ?? null;
     view.buzzOpensAt = game.buzzOpensAt ?? null;
+    view.lockClosesAt = game.lockClosesAt ?? null;
     view.activeWindowSeconds = getActiveWindowSeconds(game);
     view.iAmAnswerer = amAnswerer;
     // Attempt-spent only, so it stays true for the answerer during their own
     // exclusive window; whether the window is open to ME is the client's
-    // clock comparison against the two timestamps above.
-    view.iCanAnswer = !mine && !game.players[myIndex]?.droppedOut;
-    view.iCanPass = amAnswerer && !mine && !game.players[myIndex]?.droppedOut;
+    // clock comparison against the timestamps above.
+    view.iCanAnswer = amAnswerer && !mine && !out;
+    view.iCanPass = amAnswerer && !mine && !out;
+    view.iCanLock = !amAnswerer && !mine && !out && myLock === undefined;
+    view.iCanBuzz = !amAnswerer && !mine && !out && myLock !== undefined;
+    // My own commitment comes back to me so a reconnect doesn't lose it.
+    // Nobody else's does — see unplayedAnswers, which reveals them all once
+    // the question is over and there is nothing left to spoil.
+    view.myLockedAnswer = myLock ? myLock.answer : null;
+    view.lockedCount = Object.keys(game.lockedAnswers ?? {}).length;
     view.myAttempt = mine
       ? { answer: mine.answer, correct: mine.correct, passed: !!mine.passed, timedOut: !!mine.timedOut }
       : null;
@@ -1560,7 +1734,7 @@ export function playerView(game, playerId) {
       passed: !!a.passed,
       timedOut: !!a.timedOut,
     }));
-    view.openAnswerPoints = OPEN_ANSWER_POINTS;
+    view.buzzPoints = getBuzzPoints(game);
   }
 
   if ((phase === 'ANSWER' || phase === 'EVALUATING') && game.roundRule?.submissionBased) {
