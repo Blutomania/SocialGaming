@@ -123,14 +123,33 @@ app.prepare().then(() => {
           return;
         }
 
-        // Open answering: every player gets one attempt at the same question
-        // and the first correct one ends it. A wrong attempt just locks that
-        // player out, so the turn is only over when the phase actually moves.
+        // Flow B: the answerer alone for the exclusive window, then everyone.
+        // One attempt each and the first correct one ends it; a wrong attempt
+        // just locks that player out, so the turn is only over when the phase
+        // actually moves.
         await gameState.submitAnswer(game, playerId, answer, inputMode);
         broadcast(io, game);
         if (game.phase === 'RESULT') {
           scheduleNextTurn(io, game);
         }
+      });
+    });
+
+    // Flow B: the answerer folds. Costs them nothing and opens the buzzer at
+    // once. Ack callback rather than the global 'error' event — same reason
+    // as turn:attemptLineup: losing a race to the buzzer opening should give
+    // local feedback, not replace the whole page.
+    socket.on('turn:passAnswer', (_payload, ack) => {
+      withMyGame(socket, (game, playerId) => {
+        gameState.recordPlayerAction(game, playerId);
+        try {
+          gameState.passAnswer(game, playerId);
+        } catch (err) {
+          if (typeof ack === 'function') ack({ ok: false, message: err.message });
+          return;
+        }
+        if (typeof ack === 'function') ack({ ok: true });
+        broadcast(io, game);
       });
     });
 
@@ -312,7 +331,31 @@ app.prepare().then(() => {
     }
     await gameState.runQuestionPhase(game);
     broadcast(io, game);
+    startActiveWindowTimer(io, game);
     startAnswerTimer(io, game);
+  }
+
+  // Flow B's exclusive window. A second timer inside the same ANSWER phase,
+  // not a phase of its own — same reasoning as the reading window: every
+  // phase-timeout and auto-advance helper here assumes the existing loop.
+  //
+  // Fires whether or not the answerer acted; expireActiveWindow no-ops if
+  // they did, since answering or passing already opened the buzzer.
+  function startActiveWindowTimer(io, game) {
+    if (game.roundRule.submissionBased || game.roundRule.lineupBased) return;
+    setTimeout(() => {
+      if (game.phase !== 'ANSWER') return;
+      const answerer = game.players[game.answererIndex];
+      // Read before the call — expireActiveWindow is what writes the attempt.
+      const froze = !game.answerAttempts?.[answerer.id] && !answerer.droppedOut;
+      if (!gameState.expireActiveWindow(game)) return;
+      // Never acting on your own question is the inactivity signal. It used
+      // to be read when the whole window closed; under Flow B the answerer's
+      // own window closing is the exact moment it's known, and passing is a
+      // real action, so a player who folds is not marked away for it.
+      if (froze) gameState.recordAutoAdvance(game, answerer.id);
+      broadcast(io, game);
+    }, gameState.getActiveWindowMs(game));
   }
 
   // One timer covers the whole ANSWER phase: the reading window plus the
@@ -337,12 +380,10 @@ app.prepare().then(() => {
         return;
       }
 
-      // Nobody got it in time. The active player is still charged their
-      // wager if they never attempted -- see expireAnswerWindow.
-      const answererId = game.players[game.answererIndex].id;
-      if (!game.answerAttempts?.[answererId]) {
-        gameState.recordAutoAdvance(game, answererId);
-      }
+      // Nobody got it in time. The answerer has normally been settled with
+      // already — by their own answer or pass, or by startActiveWindowTimer
+      // charging them for freezing (which is also where the inactivity signal
+      // is now recorded, so there is no second recordAutoAdvance here).
       gameState.expireAnswerWindow(game);
       broadcast(io, game);
       scheduleNextTurn(io, game);

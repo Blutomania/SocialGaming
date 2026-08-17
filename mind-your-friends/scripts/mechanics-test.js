@@ -132,9 +132,10 @@ function registeredGame() {
   return game;
 }
 
-// Drives a game from CATEGORY to an open ANSWER phase with the reading
-// window already elapsed, so a test can get straight to the buzzers.
-async function toOpenAnswer(game, { category, wager = 200 } = {}) {
+// Drives a game from CATEGORY to an ANSWER phase with the reading window
+// already elapsed. The answerer's exclusive window is still live, so this is
+// the state Flow B's own assertions need.
+async function toActiveWindow(game, { category, wager = 200 } = {}) {
   const pick = category ?? game.categoryOptions[0].category;
   pickCategory(game, game.players[game.activePlayerIndex].id, pick);
   const wagerPlayer = game.players[(game.activePlayerIndex + 1) % game.players.length];
@@ -142,6 +143,14 @@ async function toOpenAnswer(game, { category, wager = 200 } = {}) {
   await resolveCardSlot(game);
   await runQuestionPhase(game);
   game.answerOpensAt = 0; // reading window over
+  return game;
+}
+
+// …and on to the buzzer being open to the whole room, for the assertions
+// about what happens once anyone can answer.
+async function toOpenAnswer(game, opts = {}) {
+  await toActiveWindow(game, opts);
+  game.buzzOpensAt = 0; // exclusive window over
   return game;
 }
 

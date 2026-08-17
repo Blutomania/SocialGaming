@@ -38,6 +38,8 @@ import {
   LINEUP_COLOR_FLAVOR_CHANCE,
   OPEN_ANSWER_POINTS,
   READING_SECONDS,
+  ACTIVE_WINDOW_SECONDS,
+  ACTIVE_WINDOW_MAX_SHARE,
 } from './constants.js';
 
 export {
@@ -54,6 +56,7 @@ export {
   DISCONNECT_GRACE_MS,
   OPEN_ANSWER_POINTS,
   READING_SECONDS,
+  ACTIVE_WINDOW_SECONDS,
 };
 
 function generateGameCode() {
@@ -560,10 +563,21 @@ export async function runQuestionPhase(game) {
   // the room reads it, and only then does the buzzer open. Rules with their
   // own answer flow (Worst Answer Wins, The Lineup) keep their existing
   // behaviour and open immediately.
-  const readingMs = game.roundRule.submissionBased || game.roundRule.lineupBased
-    ? 0
-    : READING_SECONDS * 1000;
+  const ownAnswerFlow = game.roundRule.submissionBased || game.roundRule.lineupBased;
+  const readingMs = ownAnswerFlow ? 0 : READING_SECONDS * 1000;
   game.answerOpensAt = Date.now() + readingMs;
+  // Flow B: the answerer alone may act between answerOpensAt and buzzOpensAt.
+  // Rules with their own answer flow have no exclusive window at all —
+  // everyone submits (Worst Answer Wins) or everyone taps (The Lineup) — so
+  // the two timestamps coincide and every gate below is a no-op for them.
+  //
+  // An answerer who has already dropped out never gets a window: the room
+  // would otherwise sit through it waiting for somebody who isn't there.
+  const answerer = game.players[game.answererIndex];
+  const exclusiveMs = ownAnswerFlow || answerer?.droppedOut
+    ? 0
+    : getActiveWindowSeconds(game) * 1000;
+  game.buzzOpensAt = game.answerOpensAt + exclusiveMs;
   if (game.roundRule.submissionBased) {
     game.submissions = {};
   }
@@ -840,26 +854,54 @@ export function getAnswerWindowMs(game) {
   return (READING_SECONDS + getTimerSeconds(game)) * 1000;
 }
 
+// Flow B: how long the answerer has the question to themselves. Carved out of
+// the answer clock rather than added to it — the question is the same length
+// either way — and capped at a share of that clock so a halved timer doesn't
+// become a mostly-exclusive round.
+export function getActiveWindowSeconds(game) {
+  const clock = getTimerSeconds(game);
+  return Math.round(Math.min(ACTIVE_WINDOW_SECONDS, clock * ACTIVE_WINDOW_MAX_SHARE));
+}
+
+// Time from the start of the ANSWER phase to the buzzer opening: the reading
+// window plus the exclusive window. server.js arms one timer for this and
+// another for the whole phase (getAnswerWindowMs).
+export function getActiveWindowMs(game) {
+  return (READING_SECONDS + getActiveWindowSeconds(game)) * 1000;
+}
+
 // Everyone who could still buzz in on this question.
 function openAnswerEligible(game) {
   return game.players.filter((p) => !p.droppedOut && !game.answerAttempts?.[p.id]);
 }
 
-// --- Open answering ---------------------------------------------------------
+function isAnswerer(game, playerId) {
+  return game.players[game.answererIndex]?.id === playerId;
+}
+
+// --- Answering: Flow B ------------------------------------------------------
 //
-// The whole room races the same question and the first correct answer wins
-// (playtest, Aug 12 — watching two players sit silent while a third
-// floundered was the moment this became obvious). Everyone gets exactly one
-// attempt; a wrong one locks you out of this question but costs you nothing.
+// Three windows, one after the other, all inside the ANSWER phase:
 //
-// Only the ACTIVE player has money on it. They're the one the wager was set
-// for, so they win or lose it; everyone else is playing for a flat
-// OPEN_ANSWER_POINTS and risks nothing. That asymmetry is the point: buzzing
-// in has to feel free, or nobody does it, and the wager has to still sting,
-// or "I cut, you choose" stops meaning anything.
+//   1. Reading (READING_SECONDS) — nobody may answer.
+//   2. Exclusive (getActiveWindowSeconds) — only the answerer may act. It is
+//      their wager, so they get first refusal on their own question. They can
+//      answer, or pass; either one opens the buzzer immediately.
+//   3. Open — everyone else races for a flat OPEN_ANSWER_POINTS, one attempt
+//      each, first correct answer wins.
 //
-// This replaces the Steal round rule, which was exactly this mechanic
-// available one round in nine. See PLAYTEST.md PT-3.
+// Step 2 is Flow B (GAME_DESIGN.md → "The Round Loop", agreed Aug 17). The
+// Aug 12 free-for-all had no such window, so a faster player could take every
+// question and the active player's wager never bit — worse, it broke "I cut,
+// you choose": if anyone can claim the wager, the setter is no longer setting
+// a punishment but a bounty they might collect themselves, so they'd always
+// set maximum. See PLAYTEST.md PT-4.
+//
+// Only the answerer has money on it. They win or lose the wager; everyone
+// else risks nothing. That asymmetry is the point: buzzing in has to feel
+// free, or nobody does it, and the wager has to still sting, or "I cut, you
+// choose" stops meaning anything. Buzzing is now vulture rather than race —
+// you pounce on a fumble instead of outrunning someone who never got a turn.
 export async function submitAnswer(game, playerId, rawAnswer, inputMode) {
   assertPhase(game, 'ANSWER');
   if (game.roundRule.submissionBased || game.roundRule.lineupBased) {
@@ -869,8 +911,14 @@ export async function submitAnswer(game, playerId, rawAnswer, inputMode) {
   if (player.droppedOut) {
     throw new Error('You are out of this game');
   }
-  if (Date.now() < (game.answerOpensAt ?? 0)) {
-    throw new Error('Still reading — the buzzer is not open yet');
+  const now = Date.now();
+  if (now < (game.answerOpensAt ?? 0)) {
+    throw new Error('Still reading — nobody can answer yet');
+  }
+  const mine = isAnswerer(game, playerId);
+  if (!mine && now < (game.buzzOpensAt ?? 0)) {
+    const answerer = game.players[game.answererIndex];
+    throw new Error(`${answerer.name} gets first shot at their own question`);
   }
   if (game.answerAttempts[playerId]) {
     throw new Error('You already had your shot at this one');
@@ -880,6 +928,13 @@ export async function submitAnswer(game, playerId, rawAnswer, inputMode) {
   // same player would otherwise both pass the check above and queue twice.
   const attempt = { playerId, name: player.name, answer: rawAnswer, correct: null };
   game.answerAttempts[playerId] = attempt;
+
+  // The answerer has spoken, so the room is in. Opened on SUBMISSION, not on
+  // the evaluation coming back: the answer is a real Claude call, and making
+  // everyone wait it out would hand seconds of a shared clock to whoever the
+  // API happened to be slow for. Ordering is safe regardless — evaluations
+  // are serialised below, so this answer is still judged first.
+  if (mine) game.buzzOpensAt = now;
 
   // Evaluations are serialized rather than run in parallel, so "first correct
   // wins" is decided by SUBMISSION order. Evaluating concurrently would hand
@@ -929,7 +984,7 @@ async function resolveOpenAnswer(game, attempt, inputMode) {
       game,
       isActivePlayer
         ? `${player.name} took their own question for ${points} pts.`
-        : `${player.name} buzzed in and stole it out from under ${answerer.name} for ${points} pts!`
+        : `${player.name} pounced on ${answerer.name}'s question for ${points} pts!`
     );
     finishOpenAnswer(game, { ...result, winner: attempt, points });
     return;
@@ -946,34 +1001,134 @@ async function resolveOpenAnswer(game, attempt, inputMode) {
   }
 }
 
+// Folding. The answerer declines their own question, the buzzer opens
+// immediately, and it costs them nothing.
+//
+// Passing must be an EXPLICIT action, and it must not be reachable by simply
+// doing nothing — see expireActiveWindow. A free opt-out from any hard
+// question would put the wager right back where Flow B found it.
+//
+// It opens the buzzer at once, deliberately: making the room sit out a window
+// the answerer has already declined is exactly the dead air this game keeps
+// trying to remove.
+export function passAnswer(game, playerId) {
+  assertPhase(game, 'ANSWER');
+  if (game.roundRule.submissionBased || game.roundRule.lineupBased) {
+    throw new Error('This round rule has its own answer flow');
+  }
+  const answerer = game.players[game.answererIndex];
+  if (!isAnswerer(game, playerId)) {
+    throw new Error('Only the player whose question it is can pass');
+  }
+  const now = Date.now();
+  if (now < (game.answerOpensAt ?? 0)) {
+    throw new Error('Still reading — nobody can act yet');
+  }
+  if (game.answerAttempts[playerId]) {
+    throw new Error('You already had your shot at this one');
+  }
+  if (now >= (game.buzzOpensAt ?? 0)) {
+    throw new Error('Too late to pass — the buzzer is already open');
+  }
+
+  // Recorded as a spent attempt so the rest of the file needs no new concept:
+  // it is what stops them buzzing back in on a question they folded on, and
+  // what stops expireAnswerWindow charging them for it later.
+  game.answerAttempts[playerId] = {
+    playerId,
+    name: answerer.name,
+    answer: '',
+    correct: false,
+    passed: true,
+  };
+  game.buzzOpensAt = now;
+  logHighlight(game, `${answerer.name} passed on ${game.currentWager} pts — over to the room.`);
+  return game;
+}
+
+// The exclusive window closing with the answerer having done nothing at all.
+//
+// This is the load-bearing half of the pass/timeout split: folding is a
+// decision and costs nothing, freezing is a failure and costs the wager,
+// exactly as answering wrong would (the "stalling isn't free" rule that
+// expireAnswerWindow has always enforced). Collapse the two and "pass"
+// becomes a free opt-out of every hard question.
+//
+// Returns true when it changed anything, so the caller knows to broadcast.
+export function expireActiveWindow(game) {
+  if (game.phase !== 'ANSWER') return false;
+  if (game.roundRule.submissionBased || game.roundRule.lineupBased) return false;
+
+  const answerer = game.players[game.answererIndex];
+  // They answered or passed inside the window; the buzzer opened then, not now.
+  if (game.answerAttempts[answerer.id]) return false;
+
+  game.buzzOpensAt = Date.now();
+  if (answerer.droppedOut) return true;
+
+  answerer.score -= game.currentWager;
+  game.answerAttempts[answerer.id] = {
+    playerId: answerer.id,
+    name: answerer.name,
+    answer: '',
+    correct: false,
+    timedOut: true,
+  };
+  logHighlight(game, `${answerer.name} froze and dropped ${game.currentWager} pts — buzzers open!`);
+  return true;
+}
+
 function finishOpenAnswer(game, { winner, points, ...result }) {
   const answerer = game.players[game.answererIndex];
+  const answererAttempt = game.answerAttempts[answerer.id];
+  // What became of the person whose wager it was. The result screen and the
+  // question log both need to tell "passed" (costs nothing) apart from
+  // "froze" (costs the wager) — they look identical from the outside
+  // otherwise, and reporting a fold as a forfeit is a lie about the score.
+  const activeOutcome = !answererAttempt
+    ? 'none'
+    : answererAttempt.passed
+    ? 'passed'
+    : answererAttempt.timedOut
+    ? 'timedOut'
+    : answererAttempt.correct
+    ? 'correct'
+    : 'wrong';
+
   game.lastResult = {
     ...result,
     correct: !!winner,
     wager: game.currentWager,
     // The winner's own words, or the active player's failed attempt when
     // nobody got it — ResultPhase shows whichever exists.
-    playerAnswer: winner ? winner.answer : game.answerAttempts[answerer.id]?.answer ?? null,
+    playerAnswer: winner ? winner.answer : answererAttempt?.answer || null,
     winnerId: winner ? winner.playerId : null,
     winnerName: winner ? winner.name : null,
     points: points ?? 0,
     // True when someone other than the active player took it — the thing
     // worth putting a headline on.
     buzzedIn: !!winner && winner.playerId !== answerer.id,
+    activeOutcome,
+    wagerLost: activeOutcome === 'wrong' || activeOutcome === 'timedOut',
     attempts: Object.values(game.answerAttempts).map((a) => ({
       playerId: a.playerId,
       name: a.name,
       answer: a.answer,
       correct: !!a.correct,
+      passed: !!a.passed,
+      timedOut: !!a.timedOut,
     })),
   };
   game.phase = 'RESULT';
 }
 
 // Called when the answer window expires with nobody having got it right.
-// The active player still loses their wager if they never attempted — not
-// answering has to cost the same as answering wrong, or stalling is free.
+//
+// Under Flow B the answerer has almost always been dealt with already — by
+// expireActiveWindow when they froze, or by their own answer or pass. The
+// charge below still stands for the paths that skip the exclusive window
+// (a dropped-out answerer's slot, or a rule that opens the buzzer at once),
+// and never double-charges: a spent attempt of any kind takes the else branch.
 export function expireAnswerWindow(game) {
   if (game.phase !== 'ANSWER') return game;
   if (game.roundRule.submissionBased || game.roundRule.lineupBased) return game;
@@ -1026,15 +1181,26 @@ function logQuestion(game) {
     // true alongside a winner, so this can't report a steal that didn't
     // happen — the trap the old `stolen` flag fell into, which was set on
     // failed steals too.
+    //
+    // How they came to lose it matters: a fold and a freeze read the same
+    // from outside, and "hesitated" is only true of one of them.
     outcome = 'buzzed';
-    outcomeSummary = `${answerer?.name ?? 'The answerer'} hesitated and ${result.winnerName} took it.`;
+    const gaveItUp = {
+      passed: 'passed and',
+      wrong: 'got it wrong and',
+      timedOut: 'froze and',
+    }[result.activeOutcome] ?? 'hesitated and';
+    outcomeSummary = `${answerer?.name ?? 'The answerer'} ${gaveItUp} ${result.winnerName} took it.`;
   } else if (result.correct) {
     outcome = 'correct';
     outcomeSummary = `${answerer?.name ?? 'The answerer'} got this one.`;
+  } else if (result.activeOutcome === 'passed') {
+    outcome = 'passed';
+    outcomeSummary = `${answerer?.name ?? 'The answerer'} passed and nobody else got it either.`;
   } else {
     outcome = 'wrong';
-    // Nobody in the room got it, not just the active player — open answering
-    // means everyone had a shot at it.
+    // Nobody in the room got it, not just the active player — everyone had a
+    // shot at it once the buzzer opened.
     outcomeSummary = `Nobody got this one past ${answerer?.name ?? 'the answerer'}.`;
   }
 
@@ -1053,7 +1219,7 @@ function logQuestion(game) {
     outcomeSummary,
     // The room failing a question is the strongest share hook — it turns the
     // card into a challenge ("nobody here got this") rather than a flashcard.
-    roomMissedIt: outcome === 'wrong' || outcome === 'unclaimed',
+    roomMissedIt: outcome === 'wrong' || outcome === 'unclaimed' || outcome === 'passed',
     lineup: game.currentQuestion.lineup
       ? {
           options: game.currentQuestion.lineup.options,
@@ -1364,18 +1530,35 @@ export function playerView(game, playerId) {
     }
   }
 
-  // Open answering: everyone races the same question. Deliberately does NOT
-  // include other players' answer TEXT while the window is open — only who
-  // has burned their attempt — so nobody can copy a neighbour's wording.
+  // Flow B. Deliberately does NOT include other players' answer TEXT while
+  // the window is open — only who has burned their attempt — so nobody can
+  // copy a neighbour's wording.
+  //
+  // The two timestamps are sent raw and the client compares them against its
+  // own clock: a view is only rebuilt when the server broadcasts, so anything
+  // computed from Date.now() here would be stale the moment it arrived, and
+  // both windows are short enough for that to matter.
   if (phase === 'ANSWER' && !game.roundRule?.submissionBased && !game.roundRule?.lineupBased) {
     const mine = game.answerAttempts?.[playerId];
+    const amAnswerer = isAnswerer(game, playerId);
     view.answerOpensAt = game.answerOpensAt ?? null;
+    view.buzzOpensAt = game.buzzOpensAt ?? null;
+    view.activeWindowSeconds = getActiveWindowSeconds(game);
+    view.iAmAnswerer = amAnswerer;
+    // Attempt-spent only, so it stays true for the answerer during their own
+    // exclusive window; whether the window is open to ME is the client's
+    // clock comparison against the two timestamps above.
     view.iCanAnswer = !mine && !game.players[myIndex]?.droppedOut;
-    view.myAttempt = mine ? { answer: mine.answer, correct: mine.correct } : null;
+    view.iCanPass = amAnswerer && !mine && !game.players[myIndex]?.droppedOut;
+    view.myAttempt = mine
+      ? { answer: mine.answer, correct: mine.correct, passed: !!mine.passed, timedOut: !!mine.timedOut }
+      : null;
     view.spentAttempts = Object.values(game.answerAttempts ?? {}).map((a) => ({
       playerId: a.playerId,
       name: a.name,
       correct: a.correct,
+      passed: !!a.passed,
+      timedOut: !!a.timedOut,
     }));
     view.openAnswerPoints = OPEN_ANSWER_POINTS;
   }

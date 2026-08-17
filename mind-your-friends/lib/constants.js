@@ -46,6 +46,20 @@ export const OPEN_ANSWER_POINTS = 100;
 // generated at 8–20 words (see claudeClient.generateQuestion), which reads in
 // well under this.
 export const READING_SECONDS = 5;
+
+// Flow B (GAME_DESIGN.md → "The Round Loop"). After the reading window the
+// active player gets this long alone with their own question before the
+// buzzer opens to the room. It is their wager, so they get first refusal on
+// it — without that, a faster player takes every question and the wager never
+// bites, which is what PT-4 was about.
+//
+// Carved OUT of the round rule's answer clock, never added to it, so the
+// total length of a question is unchanged.
+export const ACTIVE_WINDOW_SECONDS = 8;
+
+// …and capped at this share of the clock, so a halved clock doesn't become a
+// mostly-exclusive round: Lightning Round's 20s gets 5s, not 8 of its 20.
+export const ACTIVE_WINDOW_MAX_SHARE = 0.25;
 export const CATEGORY_OPTIONS_COUNT = 6;
 export const CARD_PICK_TIMER_MS = 40000;
 export const RANDOM_CARDS_PER_ROUND = 2;

@@ -211,15 +211,18 @@ function AnswerPhase({ game, myId, socket }) {
   return <OpenAnswerPhase game={game} myId={myId} socket={socket} />;
 }
 
-// Open answering: the whole room races the same question, first correct
-// answer wins (CLAUDE.md item 37). Two windows, one after the other — the
-// question lands and everyone reads it, then the buzzer opens. Before that
-// the input is visibly locked, so nobody is racing a clock they haven't
-// finished reading.
+// Flow B (GAME_DESIGN.md → "The Round Loop"). Three windows inside one
+// phase: everyone reads, then the answerer has their own question to
+// themselves, then the buzzer opens to the room.
+//
+// The two boundaries arrive as timestamps and are compared against the local
+// clock on a 250ms tick — the server only pushes state when something
+// changes, so a countdown derived server-side would freeze between pushes.
 function OpenAnswerPhase({ game, myId, socket }) {
   const [answer, setAnswer] = useState('');
   const [inputMode, setInputMode] = useState('text');
   const [now, setNow] = useState(Date.now());
+  const [passError, setPassError] = useState(null);
 
   useEffect(() => {
     const id = setInterval(() => setNow(Date.now()), 250);
@@ -227,16 +230,28 @@ function OpenAnswerPhase({ game, myId, socket }) {
   }, []);
 
   const answerer = game.players[game.answererIndex];
-  const isAnswerer = answerer.id === myId;
+  const isAnswerer = game.iAmAnswerer ?? answerer.id === myId;
   const timer = game.roundRule.timerSeconds;
   const readingLeft = Math.max(0, Math.ceil(((game.answerOpensAt ?? 0) - now) / 1000));
-  const open = readingLeft === 0;
+  const exclusiveLeft = Math.max(0, Math.ceil(((game.buzzOpensAt ?? 0) - now) / 1000));
+  const reading = readingLeft > 0;
+  const exclusive = !reading && exclusiveLeft > 0;
+  // Mine to answer if it's my exclusive window, or if the buzzer is open to
+  // everyone. The server enforces the same thing — this only keeps the input
+  // from appearing where it would be rejected.
+  const canType = !reading && (isAnswerer || !exclusive) && game.iCanAnswer;
   const spent = game.spentAttempts ?? [];
 
   const submit = () => {
-    if (!open || !game.iCanAnswer || !answer.trim()) return;
+    if (!canType || !answer.trim()) return;
     socket.emit('turn:submitAnswer', { answer, inputMode });
     setAnswer('');
+  };
+
+  const pass = () => {
+    socket.emit('turn:passAnswer', {}, (res) => {
+      if (res && res.ok === false) setPassError(res.message);
+    });
   };
 
   return (
@@ -258,15 +273,32 @@ function OpenAnswerPhase({ game, myId, socket }) {
         {game.openAnswerPoints} for anyone else who beats {isAnswerer ? 'you' : 'them'} to it
       </p>
 
-      {!open && (
+      {reading && (
         <p className="text-lg font-semibold text-game-blue">
-          Read it… buzzers open in {readingLeft}
+          Read it… {isAnswerer ? 'your window opens' : `${answerer.name} goes first`} in{' '}
+          {readingLeft}
         </p>
       )}
 
-      {open && game.iCanAnswer && (
+      {/* The room's view of the exclusive window. Said plainly, because a
+          locked input with no explanation reads as a bug. */}
+      {exclusive && !isAnswerer && (
+        <p className="text-lg font-semibold text-game-blue">
+          {answerer.name}&apos;s shot — buzzers open in {exclusiveLeft}
+        </p>
+      )}
+
+      {exclusive && isAnswerer && game.iCanPass && (
+        <p className="text-lg font-semibold text-game-blue">
+          Your question, your call — {exclusiveLeft}s before the room can take it
+        </p>
+      )}
+
+      {canType && (
         <>
-          <p className="text-sm text-gray-400">{timer}s — anyone can answer, first correct wins</p>
+          {!exclusive && (
+            <p className="text-sm text-gray-400">{timer}s — anyone can answer, first correct wins</p>
+          )}
           <div className="flex gap-2">
             <input
               autoFocus
@@ -291,16 +323,38 @@ function OpenAnswerPhase({ game, myId, socket }) {
               Submit
             </button>
           </div>
+
+          {/* Folding is a real move — with 500 on a category you don't know,
+              handing it to the room is legitimate play, and it's the only
+              way out of the wager that costs nothing. */}
+          {exclusive && isAnswerer && game.iCanPass && (
+            <button
+              className="rounded border border-gray-600 px-4 py-2 text-sm text-gray-300 hover:bg-game-dark"
+              onClick={pass}
+            >
+              Pass — throw it to the room (costs you nothing)
+            </button>
+          )}
+
           <p className="text-xs text-gray-500">
-            One shot each. Get it wrong and you&apos;re out of this question — but it costs you
-            nothing{isAnswerer ? '… except your wager.' : '.'}
+            {exclusive && isAnswerer
+              ? `One shot. Wrong or out of time costs you ${game.currentWager} — passing costs nothing.`
+              : `One shot each. Get it wrong and you're out of this question — but it costs you nothing${
+                  isAnswerer ? '… except your wager.' : '.'
+                }`}
           </p>
         </>
       )}
 
-      {open && !game.iCanAnswer && (
+      {passError && <p className="text-sm text-game-red">{passError}</p>}
+
+      {!reading && !exclusive && !canType && (
         <p className="text-gray-400">
-          {game.myAttempt
+          {game.myAttempt?.passed
+            ? 'You passed — it belongs to the room now.'
+            : game.myAttempt?.timedOut
+            ? `Your window closed without an answer — that's ${game.currentWager} gone.`
+            : game.myAttempt
             ? `You said "${game.myAttempt.answer}" — not it. Watch the others.`
             : 'Waiting…'}
         </p>
@@ -308,7 +362,8 @@ function OpenAnswerPhase({ game, myId, socket }) {
 
       {spent.length > 0 && (
         <p className="text-xs text-gray-500">
-          Already tried: {spent.map((a) => a.name).join(', ')}
+          {spent.map((a) => `${a.name}${a.passed ? ' (passed)' : a.timedOut ? ' (froze)' : ''}`).join(', ')}
+          {' — done'}
         </p>
       )}
     </div>
@@ -432,11 +487,29 @@ function ResultPhase({ game }) {
   }
 
   const answerer = game.players[game.answererIndex];
+  const answererName = answerer?.name ?? 'the answerer';
+  // A fold and a freeze both end with the answerer not answering, but only
+  // one of them costs the wager — so the headline must not report them the
+  // same way. `wagerLost` is the server's own record of which happened.
   const headline = result.buzzedIn
     ? `${result.winnerName} buzzed in and took it! +${result.points}`
     : result.correct
     ? `${result.winnerName ?? 'Correct'}! +${result.points}`
-    : `Nobody got it — ${answerer?.name ?? 'the answerer'} drops ${result.wager}`;
+    : result.wagerLost
+    ? `Nobody got it — ${answererName} drops ${result.wager}`
+    : result.activeOutcome === 'passed'
+    ? `${answererName} passed — and nobody else got it either`
+    : 'Nobody got it.';
+
+  // Only alongside a buzz-in win: otherwise the headline has already said it,
+  // and saying it twice reads as a bug rather than as emphasis.
+  const asideForActive = !result.buzzedIn
+    ? null
+    : result.activeOutcome === 'passed'
+      ? `${answererName} passed on ${result.wager} — it cost them nothing.`
+      : result.activeOutcome === 'timedOut'
+      ? `${answererName} never answered — ${result.wager} gone.`
+      : null;
 
   // Every attempt, so the room sees who swung and missed — that's the part
   // people talk about, and it's invisible if only the winner is shown.
@@ -447,6 +520,7 @@ function ResultPhase({ game }) {
       <p className={`text-2xl font-bold ${result.correct ? 'text-game-green' : 'text-game-red'}`}>
         {headline}
       </p>
+      {asideForActive && <p className="text-sm text-gray-400">{asideForActive}</p>}
       {game.rebus ? (
         <RebusReveal rebus={game.rebus} answer={game.answer} />
       ) : (
