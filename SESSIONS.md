@@ -2868,3 +2868,70 @@ built, **in the Next.js prototype only**. Full detail in MYF's `CLAUDE.md` item 
 1. Play a real game with the new mechanics; answer PT-4 and PT-5.
 2. Port Part 2 to `server_py`, with a Python equivalent of `mechanics-test.js`.
 3. Then the Godot category/card screens — built against 3 categories and the curated grid.
+
+---
+
+## Session 30 — August 17, 2026 (MYF: loose-end audit, branch truth, aesthetic direction opened)
+
+**Branch:** `claude/mindyourfriends-game-ui-clqce8`
+**Starting commit:** `a8c86fb` (tip of `main`) — see the branch note below, this was wrong
+**Status:** Paused by owner mid-design-exploration; nothing half-built in code
+
+### Branch hazard, caught at session start
+The harness assigned a **fresh branch off `main`**, not the previous session's branch. Session 29's
+six MYF commits were sitting on `claude/myf-lobby-progress-state-zc3myh`, unmerged, **with no open
+PR** (the repo had zero open PRs). That is the same auto-assignment failure documented for CYM on
+July 9 and for MYF on July 22 — third occurrence. The assigned branch happened to sit exactly at
+those commits' base, so it was fast-forwarded rather than started in parallel. **Check this every
+session; do not trust the handed branch name.**
+
+### Loose-end audit (owner asked for verification before new work)
+Ran, rather than assumed:
+- `scripts/mechanics-test.js` — all pass (zero API cost), incl. rebus bank integrity (82 puzzles).
+- `server_py/test_start_progress.py` — all pass, incl. its cross-backend parity assertion.
+- All JS and Python sources parse/compile; no `TODO`/`FIXME` markers anywhere in MYF source.
+- Chain spec in `GAME_DESIGN.md` is complete — three mechanical notes + two open questions.
+- **Item 36's Godot consequence is already closed:** `ApiClient.gd` carries
+  `START_GAME_TIMEOUT = 300.0`. It was still being tracked as open.
+
+**One real find, fixed (`c4f201f`):** the rebus commit left a duplicated copy of the rebus
+view-building block inside `playerView()`'s RESULT/GAME_OVER branch, with its own redundant phase
+check. Dead rather than wrong — it set exactly what the first copy set — but it read as if
+reveal-time rebus data came from a separate path.
+
+**Sharpened item 1 (`server_py` parity):** it is not a missing-features gap, it encodes a
+*different game*. Base timer 20s vs 40s, 5 categories vs 3, still has retired `steal` and no
+`rebus`, no reading phase. A Godot client built against it today would target the pre-playtest
+design.
+
+### `dev/cryptic-challenge` is not a third project (`b7b1f43`)
+Verified against refs, not the name: it points at `ea5af2f` — **the same commit
+`dev/choose-your-mystery` points at** — a March 2026 snapshot of CYM's pre-Godot Streamlit tree,
+zero unique commits vs `main`. No file named "cryptic" has ever existed on any branch, and no
+commit message mentions it. Recorded in **both** projects' `CLAUDE.md` at the owner's request,
+since either project's next session could repeat the misreading (this session did, initially,
+citing it as evidence of a third studio title). Deletion still needs the GitHub UI — `git push
+--delete` hits the same 403 as `main`, and a Session 30 attempt was also blocked by the permission
+classifier. Caveat recorded too: if a real Cryptic Challenge project exists, **its work is not in
+this repo**, so deleting the pointer archives nothing.
+
+Also noted: `dev/mind-your-friends` is now at **zero unique commits vs `main`** — a stale pointer
+rather than a live branch. Documented only; Session 18 marked it do-not-touch.
+
+### Aesthetic direction opened (MYF item 39)
+Owner supplied a reference background — faded question marks, randomly sized/strewn/rotated, on
+white — and scoped the aesthetic work to **MYF only**. Decided: ship it as an image asset, not a
+generator (the "different screen shapes" argument for generating was raised and **withdrawn as
+wrong** — a scattered texture has no composition to crop). Export as 2× WebP/PNG, not SVG, on the
+evidence of this repo's own 2.1 MB and 1.2 MB brand SVGs.
+
+**Owner paused here** to explore the same treatment on **grey, charcoal and slate blue** — white
+may not work. Full detail, including the palette consequences and the working "paper and objects"
+thesis, in MYF `CLAUDE.md` item 39.
+
+### Next steps
+1. **Waiting on owner:** ground colour (grey / charcoal / slate blue vs white). Everything else in
+   item 39 depends on it.
+2. Unchanged and still the real blocker: `server_py` parity (item 1), then the Godot screens.
+3. Owner action, one click: delete `dev/cryptic-challenge` (and optionally
+   `dev/mind-your-friends`) via the GitHub UI.

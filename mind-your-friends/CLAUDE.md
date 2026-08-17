@@ -696,6 +696,38 @@ as a constraint to respect rather than a layout spec.
       round easier enough to need a lower buzz-in rate, and where themes come from (curated
       like the rebus bank, or generated per round).
 
+39. **[IN PROGRESS — owner exploring, August 17 2026] Visual identity, built from the background
+    up.** Owner supplied a reference background: **faded question marks — randomly sized,
+    strewn and rotated** — originally on white. Scoped by owner to **MYF only**; do not
+    generalise this into a studio-wide or cross-title design layer.
+    - **Asset, not generated (decided).** The image goes in the repo as a file. The
+      "different screen shapes need a generator" argument was raised and **withdrawn as wrong**
+      — a scattered texture has no focal point, so `cover`-cropping a phone screen loses
+      nothing. Generating only becomes worth it if file weight starts hurting, or if the field
+      should ever *react* (thicken as the timer runs down, tint toward the round rule's colour)
+      — nobody has asked for that; don't pre-build it.
+    - **Export as 2× WebP/PNG, not SVG.** Evidence is in this repo: `myf_title_trtmnt_trans.svg`
+      is 2.1 MB and `wordmark-mono.svg` is 1.2 MB, because vector files pay per path point. A
+      few hundred question marks is that same shape of file, except it sits behind *every*
+      screen instead of appearing once.
+    - **[OPEN — owner exploring] Ground colour.** White was tried first and the owner's read is
+      that it **may not work**. Exploring the same faded-question-mark treatment on **grey,
+      charcoal and slate blue** before deciding. Everything below waits on this.
+    - **Whatever the ground, this replaces the current palette.** MYF is `#0d0d1a` near-black
+      with a purple accent today. Gold `#f59e0b` is near-invisible on a light ground, and the
+      eleven card gradients in `GameCard.jsx` were tuned to glow against near-black — on a pale
+      ground the light end of each washes out (Insurance's green is the clearest case). Re-tune
+      them as part of this, which is small now and large once an illustrator has drawn eleven
+      finished cards.
+    - **Working thesis, to keep or discard once the ground is picked:** a low-contrast field
+      hands all contrast to the content, so **the ground is paper and the game pieces are
+      objects sitting on it** — cards keep saturated colour and gain real shadows, the
+      scoreboard is a card on a table rather than a HUD, the question is printed matter. A
+      tabletop game seen from above, which is what MYF actually is.
+    - A tunable stand-in field with the game's own UI composited on top was built for judging
+      these calls (published as a Claude artifact, not committed — it is a viewing aid, not a
+      deliverable, and deliberately not the shipping implementation).
+
 ## Design Thesis: Casual-First
 This game targets casual, social players — not competitive optimizers. Every
 mechanic must optimize for surprise, laughs, and "oh no!" moments over strategic
