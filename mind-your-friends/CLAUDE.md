@@ -730,8 +730,24 @@ as a constraint to respect rather than a layout spec.
 
 40. **[DECIDED, August 17 2026] Screen system — ground, plates, chrome and the host moment.**
     Follows from item 39; these are settled calls, not proposals.
-    - **Ground: slate blue.** Owner's call after trying white, grey and charcoal. The faded
-      question marks sit on it as texture, not content.
+    - **Ground: slate blue `#2F4459`.** Owner's call after trying white, grey and charcoal, and
+      formalised August 17 2026. This is *the* ground colour — the plate device below is this same
+      value, so it is a single token, not two that happen to match. Defined as `game.slate` in
+      `tailwind.config.js`.
+      The faded question marks sit on it as texture, not content:
+      | Role | Value | Notes |
+      |---|---|---|
+      | Ground / plate | `#2F4459` | one token; plates are the ground with texture off |
+      | Mark — brick | `#B03A42` | dominant, ~34% of marks |
+      | Mark — deep red | `#8C2730` | ~16% |
+      | Mark — cool grey | `#9BA5AD` | ~22% |
+      | Mark — steel | `#7E9AAB` | ~16% |
+      | Mark — light grey | `#C6CCD1` | ~12% |
+      | Text on ground | `#EEF3F7` | 8.99:1 — passes AAA |
+      | Muted text | `#B9C4CF` | 5.67:1 — passes AA |
+      | Accent | `#E8737F` | 3.44:1 — large text and non-text only, never body copy |
+      Marks are given as full-strength colours and composited at the 10% mark strength; do **not**
+      pre-multiply them, or the ground can never be re-tuned without re-deriving all five.
     - **Mark strength 10%, field kept dense** (owner's call, August 17 2026 — the quiet end of the
       10–14% range originally proposed). The two trade off: faint marks can afford far more
       density, and density is what stops the field reading as a flat tint. This number is
