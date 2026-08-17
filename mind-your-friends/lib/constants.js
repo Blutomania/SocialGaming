@@ -57,6 +57,13 @@ export const BUZZ_WAGER_SHARE = 0.75;
 // 0.75 x a 250 wager is 187.5, which nobody wants to read.
 export const BUZZ_POINTS_ROUNDING = 5;
 
+// The payout itself, as a pure function of the wager. Lives here rather than
+// in gameState so scripts/economy-sim.js can model the economy against the
+// real formula instead of a copy of it that quietly drifts.
+export function buzzPointsForWager(wager) {
+  return Math.round(((wager ?? 0) * BUZZ_WAGER_SHARE) / BUZZ_POINTS_ROUNDING) * BUZZ_POINTS_ROUNDING;
+}
+
 // How long the question sits on screen before the answer clock starts, so
 // nobody is racing a timer they haven't finished reading. Questions are
 // generated at 8–20 words (see claudeClient.generateQuestion), which reads in

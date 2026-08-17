@@ -37,7 +37,7 @@ import {
   AUTO_ADVANCE_AWAY_THRESHOLD,
   LINEUP_COLOR_FLAVOR_CHANCE,
   BUZZ_WAGER_SHARE,
-  BUZZ_POINTS_ROUNDING,
+  buzzPointsForWager,
   READING_SECONDS,
   ACTIVE_WINDOW_SECONDS,
   ACTIVE_WINDOW_MAX_SHARE,
@@ -897,8 +897,7 @@ function isAnswerer(game, playerId) {
 // What a buzz-in win pays on this question: a share of the wager it was being
 // played for. See BUZZ_WAGER_SHARE for why it's a share and not a flat rate.
 export function getBuzzPoints(game) {
-  const raw = (game.currentWager ?? 0) * BUZZ_WAGER_SHARE;
-  return Math.round(raw / BUZZ_POINTS_ROUNDING) * BUZZ_POINTS_ROUNDING;
+  return buzzPointsForWager(game.currentWager);
 }
 
 // --- Answering: Flow B ------------------------------------------------------
