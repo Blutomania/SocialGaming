@@ -1357,18 +1357,8 @@ export function playerView(game, playerId) {
 
     if (phase === 'RESULT' || phase === 'GAME_OVER') {
       view.answer = game.currentQuestion.answer;
-      if (game.currentQuestion.rebus) {
-      const rebus = game.currentQuestion.rebus;
-      // Pieces are the puzzle itself, so they're safe to send. `reads` is the
-      // solution spelled out — same withholding rule as the free-text answer
-      // below.
-      view.rebus = { pieces: rebus.pieces, hint: rebus.hint, phonetic: rebus.phonetic };
-      if (phase === 'RESULT' || phase === 'GAME_OVER') {
-        view.rebus.reads = rebus.reads;
-      }
-    }
 
-    if (game.currentQuestion.lineup) {
+      if (game.currentQuestion.lineup) {
         view.lineup.correctOptionId = game.currentQuestion.lineup.correctOptionId;
       }
     }
