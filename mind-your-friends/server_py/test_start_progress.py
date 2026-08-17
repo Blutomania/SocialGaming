@@ -22,7 +22,7 @@ import time
 
 import claude_client
 import game_state as gs
-from constants import CATEGORIES_PER_FETCH_BATCH
+from constants import CATEGORIES_PER_FETCH_BATCH, CATEGORIES_PER_PLAYER
 
 failures = 0
 
@@ -91,9 +91,12 @@ def install_fake(**kwargs) -> FakeClient:
     return fake
 
 
-# 3 players x 5 categories = 15 unique categories = 5 batches, the exact
+# 3 players x CATEGORIES_PER_PLAYER unique categories, batched — the exact
 # shape CLAUDE.md item 36 measured at 250s.
-EXPECTED_BATCHES = -(-15 // CATEGORIES_PER_FETCH_BATCH)
+# Derived, not hardcoded: CATEGORIES_PER_PLAYER moved 5 -> 3 in the Aug 12
+# playtest changes, and a literal here silently encodes the old game.
+TOTAL_CATEGORIES = 3 * CATEGORIES_PER_PLAYER  # 3 players in these fixtures
+EXPECTED_BATCHES = -(-TOTAL_CATEGORIES // CATEGORIES_PER_FETCH_BATCH)
 
 
 def registered_game() -> dict:
@@ -101,7 +104,7 @@ def registered_game() -> dict:
     gs.add_player(game, "p2", "Bob")
     gs.add_player(game, "p3", "Cara")
     for pid, prefix, card in (("p1", "Alice", "insurance"), ("p2", "Bob", "insurance"), ("p3", "Cara", "skip")):
-        gs.register_player(game, pid, [f"{prefix} Category {n}" for n in range(1, 6)], card)
+        gs.register_player(game, pid, [f"{prefix} Category {n}" for n in range(1, CATEGORIES_PER_PLAYER + 1)], card)
     return game
 
 
@@ -119,7 +122,7 @@ def run() -> int:
         elapsed = time.time() - started
 
         check(fake.messages.calls == EXPECTED_BATCHES,
-              f"15 categories became {EXPECTED_BATCHES} batches (got {fake.messages.calls})")
+              f"{TOTAL_CATEGORIES} categories became {EXPECTED_BATCHES} batches (got {fake.messages.calls})")
         check(fake.messages.concurrent_peak == EXPECTED_BATCHES,
               f"all {EXPECTED_BATCHES} batches were in flight at once (peak {fake.messages.concurrent_peak})")
         # Sequential would be 5 x 0.2s = 1.0s+; concurrent is one batch's
@@ -127,8 +130,8 @@ def run() -> int:
         # can't produce a false pass.
         check(elapsed < BATCH_LATENCY * 2.5,
               f"finished in one batch's latency, not five ({elapsed:.2f}s, sequential would be ~{BATCH_LATENCY * EXPECTED_BATCHES:.1f}s)")
-        check(len(game["factBank"]) == 15,
-              f"fact bank merged all 15 categories (got {len(game['factBank'])})")
+        check(len(game["factBank"]) == TOTAL_CATEGORIES,
+              f"fact bank merged all {TOTAL_CATEGORIES} categories (got {len(game['factBank'])})")
         check(game["phase"] == "CATEGORY", f"phase advanced to CATEGORY (got {game['phase']})")
 
         # --- Part 2: progress reaches clients during the build -------------
