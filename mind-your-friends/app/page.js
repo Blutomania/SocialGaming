@@ -37,15 +37,17 @@ export default function HomePage() {
       <BrandBar />
 
       <div className="flex flex-col items-center gap-6 pt-6">
-        {/* The treatment is the hero here, not a heading in type — this used
-            to be the game's name set in purple, which was neither the mark nor
-            a colour that survived the repaint. */}
-        <Wordmark width={440} className="mt-4" />
+        {/* Four imperatives, and the fourth is the game's name doing double
+            duty as the punchline of the list — so it is set as the mark
+            itself, not as type imitating it. The break before it is the beat,
+            which is why it is a separate block rather than a fourth line.
 
-        {/* Four imperatives, and the last one is the game's name doing double
-            duty as the punchline of the list. The line break before it is the
-            beat, so it is a separate block rather than a fourth list item. */}
-        <div className="text-center">
+            There is deliberately no hero treatment above this any more: with
+            the mark in the top-left chrome AND here, a third copy at hero size
+            made one screen say the game's name three times. The punchline is
+            the copy worth keeping, because it is the one the sentence is
+            walking towards. */}
+        <div className="flex flex-col items-center pt-6 text-center">
           <p className="text-lg leading-relaxed text-gray-300">
             Prove Your Knowledge
             <br />
@@ -53,9 +55,7 @@ export default function HomePage() {
             <br />
             Use Your Strategy
           </p>
-          <p className="mt-6 text-2xl font-bold uppercase tracking-[0.2em] text-white">
-            Mind Your Friends
-          </p>
+          <Wordmark width={300} className="mt-6" />
         </div>
 
       <input

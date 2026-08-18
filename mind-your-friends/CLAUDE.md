@@ -1162,9 +1162,11 @@ as a constraint to respect rather than a layout spec.
       item. `Wordmark` grew an optional `width` for this, as an inline style rather than another
       utility class: a class passed through `className` does not reliably beat the component's
       own, since Tailwind's output order decides that.
-      **[OPEN] The name is now on this page three times** — top-left chrome, hero, and the
-      punchline. Each one was individually asked for; together they are a lot. The fix is to drop
-      one, and which one is a call for the owner.
+      **[RESOLVED same day] The hero copy is gone.** The name briefly appeared three times on
+      this one page — top-left chrome, hero, and punchline — because each had been asked for
+      separately. Owner dropped the hero, so the mark now appears as chrome and as the punchline,
+      and the punchline is set as **the mark itself rather than type imitating it**: it is the
+      word the sentence is walking towards, so it should be the real thing.
     - **Generating Question, and every screen with a box on it.** One box colour everywhere, as a
       `.panel` component class in `globals.css` rather than a repeated utility string — a repeated
       string is exactly how they diverged in the first place (a tinted panel here, a gold-bordered
