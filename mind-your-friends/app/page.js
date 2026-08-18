@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { io } from 'socket.io-client';
 import BrandBar from '../components/BrandBar';
+import Wordmark from '../components/Wordmark';
 
 // A short-lived socket just to create/join — the game page opens its own.
 export default function HomePage() {
@@ -36,10 +37,26 @@ export default function HomePage() {
       <BrandBar />
 
       <div className="flex flex-col items-center gap-6 pt-6">
-      <p className="text-center max-w-md text-gray-300">
-        A real-time multiplayer trivia game. Sabotage your friends, dodge their cards,
-        and answer questions a personalized AI host throws your way.
-      </p>
+        {/* The treatment is the hero here, not a heading in type — this used
+            to be the game's name set in purple, which was neither the mark nor
+            a colour that survived the repaint. */}
+        <Wordmark width={440} className="mt-4" />
+
+        {/* Four imperatives, and the last one is the game's name doing double
+            duty as the punchline of the list. The line break before it is the
+            beat, so it is a separate block rather than a fourth list item. */}
+        <div className="text-center">
+          <p className="text-lg leading-relaxed text-gray-300">
+            Prove Your Knowledge
+            <br />
+            Play Your Cards
+            <br />
+            Use Your Strategy
+          </p>
+          <p className="mt-6 text-2xl font-bold uppercase tracking-[0.2em] text-white">
+            Mind Your Friends
+          </p>
+        </div>
 
       <input
         className="w-64 rounded bg-game-card px-4 py-2 text-white placeholder-gray-400"

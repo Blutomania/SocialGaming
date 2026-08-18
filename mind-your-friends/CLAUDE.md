@@ -1154,6 +1154,17 @@ as a constraint to respect rather than a layout spec.
       **value, not index**, so item 44's tabled "wager tier simplification" moves them with the
       ladder instead of stranding them on whatever ends up first and last. The middle three rungs
       render an empty label line so the row doesn't jump height.
+    - **Lobby (the join screen).** The purple name-in-type is replaced by the title treatment
+      itself at hero size, and the "A real-time multiplayer trivia game…" paragraph by four
+      imperatives — *Prove Your Knowledge / Play Your Cards / Use Your Strategy / MIND YOUR
+      FRIENDS* — where the last line is the game's name doing double duty as the punchline of the
+      list. The break before it is the beat, so it is a separate block rather than a fourth list
+      item. `Wordmark` grew an optional `width` for this, as an inline style rather than another
+      utility class: a class passed through `className` does not reliably beat the component's
+      own, since Tailwind's output order decides that.
+      **[OPEN] The name is now on this page three times** — top-left chrome, hero, and the
+      punchline. Each one was individually asked for; together they are a lot. The fix is to drop
+      one, and which one is a call for the owner.
     - **Generating Question, and every screen with a box on it.** One box colour everywhere, as a
       `.panel` component class in `globals.css` rather than a repeated utility string — a repeated
       string is exactly how they diverged in the first place (a tinted panel here, a gold-bordered

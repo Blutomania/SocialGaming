@@ -31,16 +31,22 @@
 // treatment can't be squashed by a stray class.
 export const WORDMARK_ASPECT = 587 / 69;
 
-export default function Wordmark({ className = '', title = 'Mind Your Friends' }) {
+// `width` is for the one place the treatment is the hero rather than chrome —
+// the lobby's centre column. Left off, it takes the responsive bar sizes: at
+// phone widths the top bar holds three things and this is the one with room to
+// shrink. It no longer DISAPPEARS below sm — the owner asked for it on every
+// page, and "every page" includes a phone.
+//
+// An inline width rather than another utility class, because a class passed in
+// through `className` doesn't reliably beat the ones below — Tailwind's output
+// order decides that, not the order they're written here.
+export default function Wordmark({ className = '', width, title = 'Mind Your Friends' }) {
   return (
     <img
       src="/brand/myf_title_trtmnt_trans.svg"
       alt={title}
-      // Sized in CSS rather than by a width prop so it can be responsive: at
-      // phone widths the bar holds three things and this is the one that has
-      // room to shrink. It no longer DISAPPEARS below sm — the owner asked
-      // for it on every page, and "every page" includes a phone.
-      className={`h-auto w-[150px] sm:w-[220px] lg:w-[260px] ${className}`}
+      style={width ? { width, maxWidth: '100%' } : undefined}
+      className={`h-auto ${width ? '' : 'w-[150px] sm:w-[220px] lg:w-[260px]'} ${className}`}
     />
   );
 }
