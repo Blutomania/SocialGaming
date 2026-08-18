@@ -38,18 +38,23 @@ export default function GamePage() {
     return () => socket.disconnect();
   }, [params.code]);
 
+  // Both of these are pages in their own right as far as a player is
+  // concerned, so they carry the same chrome as the rest — the brand bar is
+  // not something that appears once the game state arrives.
   if (error) {
     return (
-      <main className="flex min-h-screen items-center justify-center p-8">
-        <p className="text-game-red">{error}</p>
+      <main className="mx-auto min-h-screen max-w-7xl p-4 md:p-8">
+        <BrandBar />
+        <p className="pt-10 text-center text-game-red">{error}</p>
       </main>
     );
   }
 
   if (!game) {
     return (
-      <main className="flex min-h-screen items-center justify-center p-8">
-        <p>Connecting…</p>
+      <main className="mx-auto min-h-screen max-w-7xl p-4 md:p-8">
+        <BrandBar />
+        <p className="pt-10 text-center">Connecting…</p>
       </main>
     );
   }

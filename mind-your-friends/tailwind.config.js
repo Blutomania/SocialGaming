@@ -34,7 +34,16 @@ export default {
         game: {
           dark: '#0d0d1a',
           card: '#1a1a2e',
-          accent: '#7c3aed',
+          // Owner's call, August 18 2026: the purple this used to be (#7c3aed)
+          // "does not work". Gold reads as the game's own colour rather than a
+          // framework default, and it is the one accent that survives both
+          // grounds — 12.3:1 on game.dark, 6.41:1 on the slate ground, so it
+          // passes AA as body text on either.
+          //
+          // It is a LIGHT accent, which the purple was not: anything using it
+          // as a background needs dark text on top (text-game-dark), never the
+          // inherited white. White on this gold is 1.7:1 — illegible.
+          accent: '#F7C948',
           gold: '#f59e0b',
           green: '#10b981',
           red: '#ef4444',

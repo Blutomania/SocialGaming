@@ -741,8 +741,11 @@ as a constraint to respect rather than a layout spec.
       these calls (published as a Claude artifact, not committed — it is a viewing aid, not a
       deliverable, and deliberately not the shipping implementation).
 
-40. **[DECIDED, August 17 2026] Screen system — ground, plates, chrome and the host moment.**
-    Follows from item 39; these are settled calls, not proposals.
+40. **[DECIDED, August 17 2026 — GROUND NOW BUILT, August 18 2026] Screen system — ground,
+    plates, chrome and the host moment.**
+    Follows from item 39; these are settled calls, not proposals. **The ground half of this
+    item is live** as of item 48 — slate plus the question-mark field, on every page. The
+    **plate device below is still unbuilt**: panels are still the pre-slate dark navy.
     - **Ground: slate blue `#2F4459`.** Owner's call after trying white, grey and charcoal, and
       formalised August 17 2026. This is *the* ground colour — the plate device below is this same
       value, so it is a single token, not two that happen to match. Defined as `game.slate` in
@@ -1066,6 +1069,103 @@ as a constraint to respect rather than a layout spec.
     - **What this means for PLAYTEST.md PT-4 → PT-8:** the August 18 table was measuring a broken
       clock, so its timing verdicts are not evidence about the 8s window, the 5s reading window
       or the lock window. Those questions are still open and want a re-run on the fixed build.
+
+48. **[BUILT, August 18 2026] Aesthetics pass 1 — the ground, the title treatment, the logo, and
+    the end of purple.** Four owner instructions, taken as given; the notes here are about how
+    each was implemented, not whether.
+    - **The question-mark field is now on every page** — item 40's ground, built rather than
+      merely decided. `scripts/build-question-field.mjs` generates
+      `public/brand/question-field.svg`; `app/globals.css` lays it over the slate ground on
+      `body`, so every screen inherits it and no page can forget to.
+      Generated, not hand-placed, for the reason the difficulty ramp and the player colours are:
+      the spec is *numbers* — five mark colours in fixed shares (34/22/16/16/12), one mark
+      strength, one density — and a hand-placed field drifts from all of them the first time
+      someone nudges it. The generator is seeded, so re-running it is a no-op diff.
+      Three things in it are load-bearing: **the ground is not baked into the tile** (transparent
+      PNG-style overlay + `background-color`, so re-tuning the ground is one CSS value and no
+      regeneration); **the tile wraps** (marks crossing an edge are redrawn opposite, or the
+      repeat shows as bands of empty ground); and the marks are drawn as **geometry, not a `?`
+      glyph in a font** — a `<text>` element in a background SVG renders in whatever font the
+      viewing machine has, which is not something a style guide can specify.
+      Mark strength stays at 10% per item 40. **If it needs adjusting, add density, not opacity.**
+    - **The official title treatment, upper left, on every page.** `Wordmark.jsx` now renders
+      `public/brand/myf_title_trtmnt_trans.svg` as an `<img>`. It previously rendered
+      `wordmark-mono.svg` as a CSS mask so `currentColor` could recolour it — **a mask keeps only
+      the silhouette**, and this artwork is 29 stacked grey levels whose texture is the whole
+      point of it being the official mark. So the artwork ships as artwork and the colour control
+      goes with it, which costs nothing: the treatment was already "fixed monochrome, never
+      recoloured" by its own rule. It reads on a dark ground because the texture runs light.
+      It also no longer disappears below `sm` — "every page" includes a phone.
+    - **The logo is 66% bigger and one size everywhere:** `LOGO_HEIGHT = 73` (was 44 in the bar,
+      with a 40 default underneath it — two sizes, which is how it drifted). Exported from
+      `Logo.jsx` so a call site passing a height explicitly still passes *this* height.
+    - **The bar had to relayout to hold it.** Three items will not fit across 390px once the logo
+      is fixed at 73px, and the logo is not the one that gives. Phone gets two rows (treatment +
+      code, then the logo beneath); `sm` and up keeps the single row with the logo **genuinely
+      centred on the page** — explicit column starts, not `justify-between`, which would centre it
+      in whatever space the other two leave over.
+    - **Purple is gone: `game.accent` `#7c3aed` → `#F7C948`.** Owner: the purple "does not work".
+      The important consequence is that **the accent is now a LIGHT colour where it used to be a
+      dark one** — white text on this gold is 1.7:1, illegible — so every solid `bg-game-accent`
+      surface got `text-game-dark` in the same pass (12.3:1). Translucent tints (`/20`, `/40`)
+      keep white text and were checked, not assumed: 10.62:1 and 6.08:1. The gold itself is
+      12.3:1 on `game.dark` and 6.41:1 on the slate ground, so it passes AA as body text on
+      either — which the purple did not.
+    - **Verified by looking at it**, not only by building: Chromium screenshots of the home page
+      and the lobby at 1280px and at 390px. That is what caught the phone-width break, which the
+      build was perfectly happy with.
+    - **[OPEN — one owner call this pass deliberately did not make]** `#7c3aed` also appears three
+      times in `LOGO_PALETTES` (`Logo.jsx`), where it is one of the three emoji colours, not text.
+      The instruction was about purple *text*, so the palettes were left alone — but the same
+      purple the owner rejected is still on screen in the mark, and item 40 already carries an
+      open note that those palettes want a pass now the ground is slate. **Those are one decision,
+      not two.** See SESSIONS.md Session 32.
+    - **Not done, and next in this direction:** the **plate device**. Item 40's core rule is that
+      text sits on a rectangle of the ground colour with the texture switched off. Panels today
+      are still the pre-slate dark navy (`game.card` `#1a1a2e`), which reads as a card floating
+      *above* the field rather than a hole cut *through* it. That is the repaint item 40
+      anticipated, and it is also most of what the owner's "too much going on, I read and I
+      answer" note will want.
+
+49. **[BUILT, August 18 2026] Aesthetics pass 2 — three screens, owner-directed, screenshot by
+    screenshot.** Working method worth keeping: the owner sends a screenshot of the screen plus a
+    numbered list of changes to it, and each one is verified by driving the real app in headless
+    Chromium and looking at the result. Two of the items below were **wrong as specified and only
+    a rendering showed it** (see the first bullet).
+    - **Card Select.** Names moved to the top of the card at up to 2x size, card type to the
+      bottom, cards 33% smaller (`CARD_WIDTH = 98`, replacing "whatever `w-full` in a 5-up grid
+      worked out to" — which meant cards were a different size in the picker than in the hand,
+      so "every card the same size" was only ever true within one layout).
+      **"2x bigger" and "33% smaller" fight, and a screenshot is what proved it:** at a flat 28px,
+      "Whoa Nellie" rendered as "Who / a / Nelli / e". So 28px is a **ceiling**, and the name is
+      sized to what the card can hold — measured on the longest *word*, since two lines are fine
+      (owner: "Whoa Nellie can go on two lines") and it is the unbreakable word that sets the
+      limit. Hyphens count as break points, so `Half-Off` is sized by `Half-`, not by all eight
+      characters. Short names (Skip, 50% Off) get the full 2x; Spotlight and Insurance get the
+      13px floor.
+      Half-Off now sits in the grid's upper left with a check mark rather than being explained in
+      a sentence above it (that sentence is deleted), and it is **shown, not offered** — no
+      `onClick`, so it renders as a div and can't be tapped. A picked card joins it at the front
+      of the row, also checked. The check needed a **floated spacer** rather than padding: it
+      obstructs only the first line, so only the first line should give up the width — padding
+      indents every line of a two-line name for a badge that isn't beside them.
+    - **Set Wager.** "Slice" removed from under the pie; `EASIEST` / `HARDEST` under the ends of
+      the ladder; the Lock In button made smaller to make room. The end labels are keyed by
+      **value, not index**, so item 44's tabled "wager tier simplification" moves them with the
+      ladder instead of stranding them on whatever ends up first and last. The middle three rungs
+      render an empty label line so the row doesn't jump height.
+    - **Generating Question, and every screen with a box on it.** One box colour everywhere, as a
+      `.panel` component class in `globals.css` rather than a repeated utility string — a repeated
+      string is exactly how they diverged in the first place (a tinted panel here, a gold-bordered
+      one there, each defensible alone). **This is also where the plate device lands** when item
+      40's repaint happens: one change, not one per component.
+      The round announcement's top line is now `Round 1: Question 1 of 6` and the floating
+      `Round 1 · Question 1/4 (1/4 total)` between the boxes is gone. Both were the same fact
+      written twice; `RoundLine` is now one component, rendered as the first line **inside**
+      whichever box leads the page — the announcement box when there is one, the main panel
+      otherwise, so turns without an announcement don't silently lose the count.
+      The active player's score chip was the third box colour on that screen; it now uses the same
+      fill as every other box with a gold ring for the highlight.
 
 ## Design Thesis: Casual-First
 This game targets casual, social players — not competitive optimizers. Every

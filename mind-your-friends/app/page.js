@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { io } from 'socket.io-client';
+import BrandBar from '../components/BrandBar';
 
 // A short-lived socket just to create/join — the game page opens its own.
 export default function HomePage() {
@@ -27,8 +28,14 @@ export default function HomePage() {
   }
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen gap-6 p-8">
-      <h1 className="text-4xl font-bold text-game-accent">Mind Your Friends</h1>
+    // The brand bar sits at the top of every page now, so the title treatment
+    // is upper left here exactly as it is in game — this page used to say the
+    // game's name in plain purple type instead, which was neither the official
+    // treatment nor in the right place.
+    <main className="mx-auto min-h-screen max-w-7xl p-4 md:p-8">
+      <BrandBar />
+
+      <div className="flex flex-col items-center gap-6 pt-6">
       <p className="text-center max-w-md text-gray-300">
         A real-time multiplayer trivia game. Sabotage your friends, dodge their cards,
         and answer questions a personalized AI host throws your way.
@@ -42,7 +49,7 @@ export default function HomePage() {
       />
 
       <button
-        className="w-64 rounded bg-game-accent px-4 py-2 font-semibold hover:opacity-90"
+        className="w-64 rounded bg-game-accent px-4 py-2 font-semibold text-game-dark hover:opacity-90"
         onClick={createGame}
       >
         Create Game
@@ -65,6 +72,7 @@ export default function HomePage() {
       </div>
 
       {error && <p className="text-game-red">{error}</p>}
+      </div>
     </main>
   );
 }
