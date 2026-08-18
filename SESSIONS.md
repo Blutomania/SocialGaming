@@ -3000,6 +3000,99 @@ it. Porting the Aug 12 flow and then immediately rewriting it would build the sa
 
 ---
 
+## Session 32 — August 18, 2026 (MYF: the first Flow B playtest, and the bug it found)
+
+**Branch:** `claude/myf-flow-b-playtest-xv2lqh`, started from `main` @ `f4a5efe` (PR #19's merge,
+i.e. Session 31's tip — checked, not assumed, per this file's branch-hygiene warning).
+
+Session 31 ended with "play it". The owner played it — three players — and reported that the
+timing felt good **except** that one question, three turns in, had an answer window that was over
+almost as soon as it opened. Everything below came out of chasing that one observation.
+
+### It was a bug, not a tuning problem
+
+**Every server timer was scoped to a phase, not to a turn**, on both backends. `server.js` and
+`server_py/main.py` each arm four timers — the card window, Flow B's exclusive window, the answer
+window, and the next-turn scheduler — and each fire-time guard was `if (game.phase !== 'X')
+return`. That reads as sufficient. It is not, and the reason is the whole bug: **every turn walks
+the same phases.** A timer left over from a question that ended early doesn't find a phase
+mismatch and no-op; it finds the *next* question sitting in exactly the phase it was armed for,
+and acts on it.
+
+Concretely, on the default 40s clock (a 45s ANSWER phase):
+- A question answered at second 8 leaves its 45s answer timer pending with 37s to run.
+- The next question opens once the turn cycle completes (RESULT screen + category + wager + card
+  window + generation).
+- The leftover timer then fires partway through that question and **expires it**, with the
+  on-screen countdown still visibly running — the client derives its countdown from
+  `answerOpensAt`/`buzzOpensAt`, which belong to the current question and know nothing about it.
+- Truncation ≈ `answerWindow − whenTheLastQuestionResolved − turnCycle`, so it needs a fast
+  question *and* a fast cycle to bite — which is why it surfaces a few turns in rather than
+  immediately.
+- **It compounds.** A question truncated at second 20 leaves a timer with 25s still on it, so the
+  question after that one is shorter again, until a window is shorter than the turn cycle.
+
+**The worse half, same cause.** A stale *exclusive-window* timer reads `answererIndex` at fire
+time — the NEW answerer — sees no attempt from them, and therefore charges them their wager for
+freezing on a question they had barely seen, locks them out of it (`"You already had your shot at
+this one"`), and records an inactivity strike. Two strikes marks a player away and starts skipping
+their turns. That one is a scoring error, not just a pacing one, and it is the part that would
+have quietly poisoned the playtest's other numbers.
+
+### The fix
+
+A turn sequence number, not a rewrite. `game.turnSeq` / `game["turnSeq"]`, bumped in
+`beginTurn()` / `_begin_turn()` — the single funnel every turn start already passes through,
+including `resumeAfterDrop`. Each timer captures it when armed and returns early if it has moved
+by the time it fires. Four timers per backend, one line each, no behaviour change to any timer
+doing its own job.
+
+### Verification
+
+- **`server_py/test_turn_timers.py` (new, zero API cost).** Drives `main.py`'s real
+  `threading.Timer` callbacks in-process — `_broadcast_sync` no-ops with no captured event loop,
+  so no uvicorn is needed — on a shortened clock, and asserts both halves: a finished turn's
+  timers cannot touch the next turn (window intact, answerer not charged, not locked out, no
+  inactivity strike), **and** a turn's own timers still fire on their own deadline with the freeze
+  charge landing correctly. The second half is not padding: the cheap way to pass the first half
+  is to make every timer a no-op.
+- **Confirmed it actually catches the bug**: with the guard stashed, 4 assertions fail; restored,
+  all 11 pass. A regression test that was never seen to fail isn't one.
+- `server_py/test_mechanics.py` (63), `scripts/mechanics-test.js` (105), `scripts/postgame-test.js`,
+  and `npm run build` — all still green.
+
+**Known asymmetry, stated rather than papered over:** the JS fix is the same four lines but has no
+automated coverage. `server.js`'s orchestration lives inside `app.prepare().then(...)` and isn't
+importable, so there's no harness to hang a test on — that was true before this change too. Worth
+restructuring if a second orchestration bug turns up; not worth it for this one.
+
+### What this costs the playtest
+
+PLAYTEST.md PT-4 → PT-8 are **not** answered by this session. Any question that followed a
+quickly-answered one was running on a clock shorter than the design says, so the table was
+measuring a broken clock and its timing verdicts aren't evidence about the 8s exclusive window,
+the 5s reading window, or whether the lock window is long enough. A banner saying so is now at the
+top of PLAYTEST.md. The one number that survives is a negative: nothing about the *wager ladder*
+or the 0.75x payout depends on the timers, so those are still open on their own terms.
+
+The owner's second note from the same session — the answer screen has too much on it, and the
+experience wants to be "I read, I answer" — is a real design item and is where the next session
+starts.
+
+### Next session
+
+1. **Interface cleanup on the answer screen** — owner's stated priority, and the reason it comes
+   first: it's what they watched fail at a table. "I read, I answer."
+2. **Re-run the playtest on the fixed build**, then read PT-4 → PT-8 for real.
+3. Still queued and untouched: `questionLog`/`postGame` in `server_py` (item 46, the only thing
+   blocking a Godot post-game screen), and item 44's two owner-tabled tuning follow-ups (wager
+   tier simplification; widening the colour ramp), both of which the re-run may change.
+4. Still unresolved from PT-6, and now worth deciding rather than watching: Spotlight's 1-second
+   exclusive window. It was the other candidate explanation for the short window this session
+   chased, and it remains implemented literally per spec.
+
+---
+
 ## Session 31 — August 17, 2026 (MYF: Flow B built, pre-committed answers, the wager ladder, server_py port)
 
 **Branch:** `claude/flow-b-implementation-2lwwmt` (started from Session 30's tip, `ec485ac` — the

@@ -47,6 +47,14 @@ Next.js prototype only.** See item 37. The prototype and `server_py` have now
 genuinely diverged, and `server_py` is what the Godot client talks to, so
 closing that gap is the top of this list.
 
+**Playtest, August 18 2026 (3 players): a real bug, found by playing.** A question three turns
+in had an answer window that was over almost as soon as it started. Cause: every server timer
+was guarded by phase alone, so a timer armed for one turn fired on the *next* turn sitting in the
+same phase — see item 47, fixed on both backends. **The four Flow B numbers are still not
+validated**, because the table that would have validated them was measuring a broken clock.
+Owner's other note from the same session: the answer screen has too much on it — the experience
+wants to be "I read, I answer".
+
 **Update, August 17 2026: Flow B is built on BOTH backends** (items 41, 42, 45), along with the
 five-tier wager ladder and difficulty-coloured questions. **Nothing has been played by real
 people yet** — that is now the top of the list, and no further mechanic work should go in front
@@ -1021,6 +1029,43 @@ as a constraint to respect rather than a layout spec.
     - Superlative voting needs `generate_superlatives()` / `narrate_superlative_results()` in
       `claude_client.py`; note the JS version's bug worth not repeating — quips keyed by award
       *title* instead of id silently dropped every one of them.
+
+47. **[FIXED, August 18 2026 — found in the first real playtest] Server timers were scoped to a
+    phase, not to a turn.** Every timer in `server.js` and `server_py/main.py` (the card window,
+    Flow B's exclusive window, the answer window, and the next-turn scheduler) was armed for one
+    turn and guarded at fire time by `game.phase` alone. That guard reads as sufficient and is
+    not: **every turn walks the same phases**, so a timer left over from a question that ended
+    early does not no-op — it lands on the NEXT question, which is sitting in exactly the phase
+    it was looking for, and acts on it.
+    - **What it did to a table.** A question answered quickly leaves its 45s answer timer
+      pending. That timer fires partway through the following question and expires it — the
+      answer window ends with the on-screen countdown still running, because the client derives
+      the countdown from `answerOpensAt`/`buzzOpensAt` and those are the *current* question's.
+      **It compounds:** the truncated question leaves a timer with an even larger remainder, so
+      each successive question is shorter than the last until one is shorter than the turn cycle.
+      Truncation ≈ `answerWindow − whenTheLastQuestionResolved − turnCycle`, which is why it
+      showed up on the third question of a game and not the first.
+    - **The worse half, same cause.** A stale *exclusive-window* timer reads
+      `game["answererIndex"]` at fire time — the NEW answerer — finds no attempt from them,
+      and so charges them their wager for freezing on a question they had barely seen, locks
+      them out of it (`"You already had your shot at this one"`), and records an inactivity
+      strike against them. Two strikes marks a player away and starts skipping their turns.
+    - **The fix is a turn sequence number**, not a rewrite: `game.turnSeq` / `game["turnSeq"]`,
+      bumped in `beginTurn()` / `_begin_turn()` — the single funnel every turn start already
+      passes through, including `resumeAfterDrop`. Each timer captures it when armed and returns
+      early if it has moved by the time it fires. Four timers per backend, one line each.
+    - **Verified:** `server_py/test_turn_timers.py` (new, zero API cost) drives main.py's real
+      `threading.Timer` callbacks in-process on a shortened clock and asserts both halves — a
+      finished turn's timers cannot touch the next turn, and a turn's own timers still fire on
+      their own deadline. Confirmed it fails (4 assertions) with the guard reverted, which is the
+      only thing that makes it a regression test rather than decoration.
+    - **Known asymmetry:** the JS fix is the same four lines but has no automated coverage —
+      `server.js`'s orchestration lives inside `app.prepare().then(...)` and is not importable,
+      so there is no harness to hang a test on, today or before this change. Worth restructuring
+      if a second orchestration bug ever shows up; not worth it for this one.
+    - **What this means for PLAYTEST.md PT-4 → PT-8:** the August 18 table was measuring a broken
+      clock, so its timing verdicts are not evidence about the 8s window, the 5s reading window
+      or the lock window. Those questions are still open and want a re-run on the fixed build.
 
 ## Design Thesis: Casual-First
 This game targets casual, social players — not competitive optimizers. Every

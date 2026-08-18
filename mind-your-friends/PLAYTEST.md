@@ -3,6 +3,15 @@
 Questions to validate through playtesting (surveys, observation, or A/B testing).
 Each item describes the tension, the current design choice, and what to watch for.
 
+> **August 18 2026 — the first Flow B table does not count as validation of PT-4 → PT-8.**
+> Three players, and the timing "felt good" except for a question whose answer window was over
+> almost as soon as it opened. That turned out to be a real bug, not a tuning problem: server
+> timers were guarded by phase and not by turn, so a timer armed for one question fired on the
+> next one and expired it (MYF `CLAUDE.md` item 47, fixed on both backends). Any question that
+> followed a quickly-answered one was running on a clock shorter than the design says, and the
+> effect compounds across a game. **The four numbers below are still guesses** — re-run the
+> table on the fixed build before reading anything into how the pacing felt.
+
 ---
 
 ## PT-1: Card Resolution — FCFS vs. Stacking

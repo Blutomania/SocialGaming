@@ -348,8 +348,15 @@ app.prepare().then(() => {
     scheduleNextTurn(io, game);
   }
 
+  // Every timer below captures game.turnSeq when it's armed and bails if the
+  // turn has moved on by the time it fires. The phase guard alone is not
+  // enough and never was: every turn walks the same phases, so a timer left
+  // over from a turn that ended early lands on the NEXT turn sitting in the
+  // same phase and expires it. See MYF CLAUDE.md item 47.
   function startCardWindow(io, game) {
+    const seq = game.turnSeq;
     setTimeout(() => {
+      if (game.turnSeq !== seq) return; // armed for a turn that's already over
       if (game.phase !== 'CARD') return; // already resolved by a card play
       finishCardPhase(io, game).catch((err) => recoverFromFailedTurn(io, game, err));
     }, CARD_WINDOW_MS);
@@ -382,7 +389,9 @@ app.prepare().then(() => {
   // they did, since answering or passing already opened the buzzer.
   function startActiveWindowTimer(io, game) {
     if (game.roundRule.submissionBased || game.roundRule.lineupBased) return;
+    const seq = game.turnSeq;
     setTimeout(() => {
+      if (game.turnSeq !== seq) return; // armed for a turn that's already over
       if (game.phase !== 'ANSWER') return;
       const answerer = game.players[game.answererIndex];
       // Read before the call — expireActiveWindow is what writes the attempt.
@@ -406,7 +415,9 @@ app.prepare().then(() => {
   // file's timer bookkeeping has to learn about it.
   function startAnswerTimer(io, game) {
     const ms = gameState.getAnswerWindowMs(game);
+    const seq = game.turnSeq;
     setTimeout(() => {
+      if (game.turnSeq !== seq) return; // armed for a turn that's already over
       if (game.phase !== 'ANSWER') return; // already resolved (someone got it, all submitted, or skip path)
 
       if (game.roundRule.submissionBased) {
@@ -446,7 +457,9 @@ app.prepare().then(() => {
   }
 
   function scheduleNextTurn(io, game) {
+    const seq = game.turnSeq;
     setTimeout(() => {
+      if (game.turnSeq !== seq) return; // armed for a turn that's already over
       if (game.phase !== 'RESULT') return; // already advanced by another path
       gameState.nextTurn(game);
       broadcast(io, game);

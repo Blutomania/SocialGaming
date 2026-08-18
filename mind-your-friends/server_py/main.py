@@ -133,9 +133,19 @@ def _recover_from_failed_turn(code: str, game: dict, err: Exception) -> None:
     _schedule_next_turn(code, game)
 
 
+# Every timer below captures game["turnSeq"] when it is armed and bails if the
+# turn has moved on by the time it fires. The phase guard alone is not enough
+# and never was: every turn walks the same phases, so a timer left over from a
+# turn that ended early lands on the NEXT turn sitting in the same phase and
+# expires it. See MYF CLAUDE.md item 47.
 def _start_card_window(code: str, game: dict) -> None:
+    with _games_lock:
+        seq = game["turnSeq"]
+
     def fire():
         with _games_lock:
+            if game["turnSeq"] != seq:
+                return  # armed for a turn that's already over
             if game["phase"] != "CARD":
                 return  # already resolved by a card play
         _finish_card_phase(code, game)
@@ -179,9 +189,12 @@ def _start_answer_timer(code: str, game: dict) -> None:
     nothing else in this file's timer bookkeeping has to learn about them."""
     with _games_lock:
         seconds = gs.get_answer_window_seconds(game)
+        seq = game["turnSeq"]
 
     def fire():
         with _games_lock:
+            if game["turnSeq"] != seq:
+                return  # armed for a turn that's already over
             if game["phase"] != "ANSWER":
                 return  # already resolved
             round_rule = game["roundRule"]
@@ -213,9 +226,12 @@ def _start_active_window_timer(code: str, game: dict) -> None:
         if game["roundRule"].get("submissionBased") or game["roundRule"].get("lineupBased"):
             return
         seconds = gs.get_active_window_total_seconds(game)
+        seq = game["turnSeq"]
 
     def fire():
         with _games_lock:
+            if game["turnSeq"] != seq:
+                return  # armed for a turn that's already over
             if game["phase"] != "ANSWER":
                 return
             answerer = game["players"][game["answererIndex"]]
@@ -257,8 +273,13 @@ def _evaluate_group_answers(code: str, game: dict) -> None:
 
 
 def _schedule_next_turn(code: str, game: dict) -> None:
+    with _games_lock:
+        seq = game["turnSeq"]
+
     def fire():
         with _games_lock:
+            if game["turnSeq"] != seq:
+                return  # armed for a turn that's already over
             if game["phase"] != "RESULT":
                 return  # already advanced by another path
             gs.next_turn(game)
