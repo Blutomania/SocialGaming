@@ -480,6 +480,15 @@ Full list in `SESSIONS.md`. Top priorities:
     own Python port lands** (see MYF's `CLAUDE.md` item 31/32) — its `lib/coherence.js` is
     JavaScript and can't subclass a Python `RuleSet` without a bridge, which is exactly the
     premature-integration mistake this sequencing avoids. Branch: `claude/coherence-engine-unification`.
+    **[COMPLETED, Session 33 — August 20 2026] MYF's Python side is now wired, so the pillar has
+    two real consumers.** `mind-your-friends/server_py/coherence_rules.py` (renamed from
+    `coherence.py`, which it had to be — a top-level module named `coherence` and the `coherence`
+    package cannot both sit on `sys.path`, and `server_py/` always wins, so the import resolved to
+    MYF's own file) defines `QuestionRuleSet`, a real `coherence.engine.RuleSet` subclass.
+    `mind-your-friends/server_py/test_coherence_engine.py` asserts that both titles use the
+    **identical** `RuleSet` / `CoherenceReport` / `Issue` classes rather than two copies that
+    merely share field names — the check that would actually catch the framework forking. Full
+    detail in MYF's `CLAUDE.md` item 51.
 
 > **DO NOT re-run the frozen bulk corpus pipeline** (`deprecated/run_corpus_pipeline.py`). Expand
 > the corpus only via `scripts/extract_from_pdfs.py`, adding one quality source at a time.

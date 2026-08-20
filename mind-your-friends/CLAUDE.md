@@ -31,6 +31,15 @@ land first (see item 31/33 below). When that happens, pull `coherence/engine.py`
 `main` (now the real source of truth) rather than this branch's copy, which is stale relative to
 it in naming only — the classes are otherwise identical.
 
+**Resolved, August 20 2026 (item 51).** MYF's Python side is wired. `server_py/coherence_rules.py`
+(renamed from `coherence.py` — it had to be, see item 51) defines `QuestionRuleSet`, a real
+subclass of the shared `coherence.engine.RuleSet`, and `server_py/test_coherence_engine.py`
+asserts that both titles use the *identical* `RuleSet` / `CoherenceReport` / `Issue` classes
+rather than two copies with matching field names. So the pillar has two consumers now, and the
+claim is tested rather than asserted. `lib/coherence.js` remains JS and remains unwired, which is
+correct: the Next.js prototype is still the behavioural reference and is scheduled for retirement,
+not for a bridge.
+
 ## Priority Queue (as of August 12, 2026)
 
 The numbered list below is the full historical record and keeps growing. This is
@@ -81,7 +90,7 @@ the top of the list** — item 47's fix and this screen both want a real table.
 | 5 | **`server_py` parity: `questionLog` + `postGame`** — the Python backend has neither, so the Godot client cannot show any post-game screen. Full porting notes in item 46. | Real gap, blocks 6 |
 | 6 | Godot: GAME_OVER screen + post-game social layer | Blocked on 3+5 |
 | 7 | Live-test disconnect/reconnect + inactivity auto-advance against `server_py` | Ported, never exercised |
-| 8 | Wire MYF's coherence to the shared Python engine — now possible, `server_py` is Python | Unblocked by the port |
+| 8 | ~~Wire MYF's coherence to the shared Python engine~~ — **done** (item 51). `server_py/coherence.py` is now `coherence_rules.py` and its `QuestionRuleSet` subclasses the shared `coherence.engine.RuleSet`. | Done |
 | 9 | Retire the Next.js prototype — **only** once Godot reaches parity and is playtested | Do not do early |
 
 **PARKED by owner decision, not by oversight:**
@@ -1261,6 +1270,47 @@ as a constraint to respect rather than a layout spec.
       `server_py/test_mechanics.py` (63) and `server_py/test_turn_timers.py` (12) all pass;
       `npm run build` clean; all six states rendered and looked at in Chromium at 1280 and 390.
       No server code was touched this session.
+
+51. **[BUILT, August 20 2026] MYF's coherence rules are wired to the shared engine — the pillar
+    now genuinely has two consumers.** Item 8, unblocked by the `server_py` port and requested by
+    the owner. Until this, `coherence/engine.py` had exactly one real consumer (CYM's
+    `coherence_validator.py`, Session 28) and MYF's Python side redeclared its own
+    `BLOCKING`/`WARNING`/`INFO` and returned a hand-rolled `{"passed", "issues"}` dict.
+    - **`server_py/coherence.py` is now `coherence_rules.py`, and it HAD to be.** This is the
+      whole reason the job was not a ten-line change. A top-level module named `coherence` and a
+      package named `coherence` cannot both live on `sys.path`: whichever comes first wins, and
+      `server_py/` is always first, so `from coherence.engine import RuleSet` resolved to MYF's
+      own file and died with `"'coherence' is not a package"`. No import ordering fixes that —
+      only the rename does. It is also the better name: the file assembles constraints and
+      validates questions, and *the engine is the shared thing it plugs into*. It now sits
+      parallel to CYM's `coherence_validator.py` instead of shadowing the framework both depend
+      on. Four import sites updated; nothing else referenced it.
+    - **`QuestionRuleSet(RuleSet)`** backs `validate_question()`, which keeps its signature and
+      its single call site but now returns a real `coherence.engine.CoherenceReport`. Same shape
+      as CYM's `MysteryRuleSet` — the two titles validate completely different objects and share
+      the vocabulary for saying so.
+    - **The repo-root path entry is APPENDED, not inserted**, so `server_py`'s own modules keep
+      winning any future name collision. Inserting would re-create the class of problem the
+      rename just fixed, one module along.
+    - **Two things fell out of using the real report rather than a dict.** Issues now carry
+      `repair_hint`s, which the shared `Issue` always had room for and MYF was discarding. And the
+      call site logs on **warnings** as well as failures — the old `if not validation["passed"]`
+      silently swallowed every WARNING, which is exactly where "the round rule was ignored by
+      generation" shows up. That was a real blind spot, not a formatting change.
+    - **`server_py/test_coherence_engine.py`** (new, zero API cost, 23 assertions) in two halves,
+      because the claim "we share an engine" has been made in this repo before it was true — this
+      file's own Project Overview carries a correction saying so.
+      *The plumbing:* `QuestionRuleSet` subclasses the shared `RuleSet`, returns the shared
+      `CoherenceReport`, and — the checks that would catch two divergent copies of the framework —
+      CYM's `MysteryRuleSet` subclasses that same class and `coherence_validator.Issue is Issue`.
+      *The behaviour:* every rule re-asserted case by case, since a rewire that quietly changed
+      what passes would be invisible in the plumbing checks and would surface only as bad
+      questions at a real table.
+    - **`lib/coherence.js` is untouched and stays that way.** JS cannot subclass a Python
+      `RuleSet`, the prototype is still the behavioural reference, and it is scheduled for
+      retirement rather than a bridge — which is the sequencing item 31 asked for.
+    - **Verified:** `test_coherence_engine.py` (23), `test_mechanics.py` (63) and
+      `test_turn_timers.py` (12) all pass; `main.py` imports clean.
 
 ## Design Thesis: Casual-First
 This game targets casual, social players — not competitive optimizers. Every

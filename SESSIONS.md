@@ -3147,6 +3147,56 @@ mystery short stories that is implausible. They also occupy filenames, and dedup
 so a re-run skips them unless they are deleted first. Listed by name in root `CLAUDE.md` item 7.
 Not diagnosed — it needs someone to look at one against its source PDF.
 
+### Part 3 — MYF: two live-type title treatments, and the coherence engine wired
+
+**The metallic logotype is retired** (item 50 in MYF `CLAUDE.md` is the answer screen; this is
+item 52's territory). The owner supplied two font treatments — F1 (a heavy condensed sans) and D1
+(Bebas Neue) — to be shown 50/50. The old asset was 2.1MB of path data whose 29 grey levels ran
+`#0b0b06` → `#f4f3f1`, i.e. drawn for a light ground: on slate, roughly two-thirds of it fell
+under 3.5:1 and simply was not there, which is what read as "dim". Live type has none of that,
+weighs nothing, and is real text — selectable, searchable, screen-readable.
+
+Both faces load via `next/font/google`, which **self-hosts** the woff2 at build time (verified in
+`.next/static/media` — neither falls back), so there is no runtime request to Google and the game
+renders with no internet. Both colours were measured against the ground rather than trusted:
+6.14:1 and 6.02:1, which clears AA and — the useful part — puts the pair within 0.12 of itself, so
+neither half reads as heavier than the other.
+
+**The part that was wrong first, and is why `scripts/wordmark-test.js` exists.** "50/50 randomly"
+hides two properties, and the obvious implementation gets the second one wrong. A second
+polynomial hash then `% 2` measures as a *perfect* 50.00/50.00 split and is still **perfectly
+correlated** with the logo's palette rotation: every odd multiplier collapses to the same parity
+bit mod 2, and because 6 is even, `hash % 6` carries that identical parity. Palette 0 always drew
+one treatment, palette 1 always the other — twelve visual combinations quietly became six, and
+nothing about the overall split revealed it. Salting the seed does not help; it only swaps which
+half is which. Fixed by mixing the bits (murmur3 finaliser) before the modulus. The test walks all
+331,776 possible room codes and checks the **joint** distribution, not the marginal one: worst
+deviation within a palette is now 0.36 points.
+
+Selection is deterministic in the room code, exactly as `Logo.jsx` already defines it for the
+palette and for its stated reason — a mark that differs per screen reads as a rendering bug. So
+50/50 means across *games*.
+
+**MYF's coherence rules are now wired to the shared engine** (item 51, MYF item 8 — the owner's
+cross-title ask from the top of the session). The pillar had one real consumer, CYM's
+`coherence_validator.py`; it has two now, and `server_py/test_coherence_engine.py` asserts both
+titles use the *identical* `RuleSet` / `CoherenceReport` / `Issue` classes rather than two copies
+sharing field names — the check that would actually catch the framework forking.
+
+**The obstacle was a name collision, and it is worth remembering because it will recur.**
+`server_py/coherence.py` and the root `coherence/` package cannot both sit on `sys.path`: whichever
+is found first wins, `server_py/` is always first, so `from coherence.engine import RuleSet`
+resolved to MYF's own file and raised `"'coherence' is not a package"`. No import ordering fixes
+it. The file is now `coherence_rules.py` — the more accurate name regardless, since it assembles
+constraints and validates questions while the engine is the shared thing it plugs into — and the
+repo-root `sys.path` entry is **appended**, not inserted, so `server_py`'s own modules keep winning
+future collisions.
+
+One real behavioural gain came free with using the engine's report instead of a dict: the call site
+now logs on **warnings** as well as failures. The old `if not validation["passed"]` swallowed every
+WARNING, which is precisely where "generation ignored the round rule" shows up. That was a blind
+spot, not a formatting difference.
+
 ### Next session
 
 1. **Re-run the playtest.** Two reasons now: item 47's timer fix has never been played, and the
