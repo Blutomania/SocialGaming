@@ -24,7 +24,7 @@ sys.path.insert(0, ".")
 
 import claude_client
 import game_state as gs
-from coherence import round_constraints
+from coherence_rules import round_constraints
 from constants import (
     ACTIVE_WINDOW_MAX_SHARE,
     ACTIVE_WINDOW_SECONDS,

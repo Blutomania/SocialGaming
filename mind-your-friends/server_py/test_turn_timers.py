@@ -27,7 +27,7 @@ sys.path.insert(0, ".")
 import claude_client
 import game_state as gs
 import main
-from coherence import round_constraints
+from coherence_rules import round_constraints
 from constants import CATEGORIES_PER_PLAYER, READING_SECONDS
 from round_rules import NO_RULE
 

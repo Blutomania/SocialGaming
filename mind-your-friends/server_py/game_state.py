@@ -16,7 +16,7 @@ import time
 
 import claude_client
 from cards import build_round_hand
-from coherence import pick_factoid, round_constraints, turn_constraints, validate_question
+from coherence_rules import pick_factoid, round_constraints, turn_constraints, validate_question
 from constants import (
     ACTIVE_WINDOW_MAX_SHARE,
     ACTIVE_WINDOW_SECONDS,
@@ -604,9 +604,13 @@ def run_question_phase(game: dict) -> dict:
             player_names=[p["name"] for p in game["players"]],
         )
 
-    validation = validate_question(result, constraints)
-    if not validation["passed"]:
-        print("CE validation failed:", validation["issues"])
+    # A coherence.engine.CoherenceReport now, not a dict — so the log line can
+    # say how bad it is rather than dumping the raw list, and WARNING-level
+    # findings (a round rule the generation quietly ignored) are visible
+    # instead of being silently filtered out by a pass/fail check.
+    report = validate_question(result, constraints)
+    if not report.passed or report.warning_count:
+        print(report.format_text("MYF QUESTION COHERENCE"))
 
     game["currentQuestion"] = result
     game["turnConstraints"] = constraints
