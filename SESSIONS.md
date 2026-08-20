@@ -3000,7 +3000,7 @@ it. Porting the Aug 12 flow and then immediately rewriting it would build the sa
 
 ---
 
-## Session 33 — August 20, 2026 (MYF: the answer screen, and the plate device landing)
+## Session 33 — August 20, 2026 (MYF: the answer screen and the plate device; CYM: registry staleness closed)
 
 **Branch:** `claude/myf-cym-games-review-6ne9rs`, started from `main` @ `27ebc89`.
 
@@ -3084,18 +3084,45 @@ was cut, never what.
 and `server_py/test_turn_timers.py` (12) all pass; `npm run build` clean; every state rendered and
 looked at in Chromium at both widths. No server code was touched.
 
-### Also established this session (CYM side, from the review pass — not acted on)
+### Part 2 — CYM: the part registry now notices when the corpus has moved on
 
-**`mystery_database/part_registry.json` is stale again.** Checked in: 4,807 parts / 556 sources.
-A fresh `populate_from_test_corpus()` + `load_extractions()` build: **4,952 / 569**. So 13 sources
-and 145 parts are currently invisible to generation. This is exactly the recurrence root
-`CLAUDE.md` item 14 predicted — `load_registry()` still rebuilds only when the file is *missing*,
-never when it is stale. Zero-cost to fix and to regenerate; not done this session because the
-session's task was MYF.
+Found by measurement during the review pass, then fixed in the same session once the MYF work was
+committed. **It was live in the repo until this session:** `part_registry.json` held 4,807 parts /
+556 sources against a fresh build's **4,952 / 569**, so 13 sources — extracted at real API cost,
+written to disk correctly — were simply never sampled by generation.
 
-The same pass answers root `CLAUDE.md` item 7's "next session should check" list: **the anthology
-extraction runs did happen** — 281 `pdf_*` extractions now, up from 75, 570 extraction files
-total — and **the registry was not regenerated afterwards**, which is why it is stale.
+**Worth being precise about what the bug was, because it is easy to misread as a data-migration
+problem.** Nothing was in the wrong place and nothing needed moving. `part_registry.json` is a
+*derived index*: generation samples it, never the extraction files themselves. `load_registry()`
+rebuilt it only when the file was **missing**, never when it was out of date, so extraction runs
+landed on disk and the index quietly stayed as it was. Nothing errored — which is precisely why it
+survived twice, for months each time (March 11 → Session 23, ~75 sources; Session 23 → Session 33,
+13 sources / 145 parts).
+
+**The check is a corpus fingerprint**, in a sidecar `part_registry.meta.json`: the hashed set of
+extraction filenames, plus a schema version. Filenames are the right unit because
+`load_extractions()` derives every `source_id` from the filename stem, so a change to that set is
+exactly a change to the sources covered.
+
+**It is deliberately not mtime-based**, which is what item 14 originally proposed (copying
+`craft_grounding.py`'s index cache). A fresh `git clone` stamps every file with the checkout time,
+so mtimes here carry no information about what was built when — comparing them would either miss
+real staleness or rebuild on every clone. The cost of that choice is written down rather than
+hidden: an extraction file edited *in place*, keeping its name, is not detected; `force=True` is
+the escape hatch.
+
+`REGISTRY_SCHEMA_VERSION` covers the second staleness mode, the one no amount of looking at the
+corpus can catch: Session 23 changed `KEY_TO_IDX`, so identical files produced different parts and
+the cache had no way to know.
+
+**`scripts/test_registry_staleness.py`** (new, zero API cost) asserts both halves, because the
+cheap way to pass "it detects staleness" is to rebuild unconditionally. That an unchanged corpus
+genuinely reuses the cache is proved by corrupting the cached file and confirming the corruption
+**survives** — a rebuild would have repaired it.
+
+The same review pass answers root `CLAUDE.md` item 7's "next session should check" list: the
+anthology extraction runs did happen (281 `pdf_*` extractions, up from 75; 570 extraction files
+total), and the registry was not regenerated afterwards, which is why it was stale.
 
 ### Next session
 
@@ -3109,7 +3136,8 @@ total — and **the registry was not regenerated afterwards**, which is why it i
    `public/brand/myf_title_trtmnt_trans.svg`, keep 587×69, no code change. It is visibly dim in
    every screenshot taken this session.
 4. Still queued and untouched: `questionLog`/`postGame` in `server_py` (item 46), item 44's two
-   tabled tuning follow-ups, and wiring MYF's coherence to the shared Python engine (item 8).
+   tabled tuning follow-ups, and wiring MYF's coherence to the shared Python engine (item 8) —
+   the last of those being the cross-title work the owner opened this session asking about.
 
 ---
 

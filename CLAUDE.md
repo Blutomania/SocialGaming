@@ -295,9 +295,9 @@ Full list in `SESSIONS.md`. Top priorities:
      145 parts are currently invisible to generation** — they are extracted, on disk, and not
      being sampled. Against the Session 23 baseline (369 / 2,833) the corpus has grown a lot; the
      registry is simply behind it again.
-   - This is exactly the recurrence item 14 predicted. Fixing it is two things and neither costs
-     an API call: regenerate the registry, and give `load_registry()` the staleness check it still
-     does not have (see item 14). Not done in Session 33 — that session's task was MYF-side.
+   - This is exactly the recurrence item 14 predicted. **[FIXED, Session 33]** Both halves done,
+     no API calls: the registry is regenerated (4,952 / 569 committed), and `load_registry()` now
+     has a real staleness check — see item 14.
 8. **[FUTURE]** Phase 4 — Steam integration (GodotSteam plugin)
 9. **[ONGOING]** Repo-wide branch cleanup (Session 18) — 9 fully-merged branches identified as
    safe to delete, plus a further 21 stale unmerged branches the owner is triaging on their own
@@ -394,12 +394,28 @@ Full list in `SESSIONS.md`. Top priorities:
     someone manually deletes `part_registry.json`. Worth a real fix (e.g. mtime comparison against
     `extractions/`, matching the pattern `craft_grounding.py`'s index cache already uses) as a
     follow-up, not done this session. Full detail in `SESSIONS.md` Session 23.
-    **[CONFIRMED RECURRED, Session 33 — August 20 2026]** It went stale again, exactly as
-    predicted: 4,807 parts / 556 sources checked in versus 4,952 / 569 on a fresh build — 13
-    sources and 145 parts extracted but not sampled. `load_registry()` at `part_registry.py:584`
-    still only rebuilds when the file is **missing**. This is no longer a hypothetical follow-up;
-    it is a bug that has now silently eaten corpus growth twice, and it will do it a third time
-    after the next extraction run. See item 7 for the measurement.
+    **[RECURRED AND NOW FIXED, Session 33 — August 20 2026]** It went stale again exactly as
+    predicted — 4,807 parts / 556 sources checked in versus 4,952 / 569 on a fresh build, i.e. 13
+    sources extracted at real API cost and then never sampled. Regenerated, and the root cause is
+    now closed:
+    - **The check is a corpus fingerprint**, written to a sidecar `part_registry.meta.json`: the
+      hashed set of extraction filenames plus a schema version. Filenames are the right unit
+      because `load_extractions()` derives every `source_id` from the filename stem, so a change
+      to that set is exactly a change to the sources covered.
+    - **Not mtime-based, on purpose** — unlike `craft_grounding.py`'s index cache, which this item
+      originally proposed copying. A fresh `git clone` stamps every file with the checkout time,
+      so mtimes here carry no information about what was built when; comparing them would either
+      miss real staleness or rebuild on every clone. **The cost of that choice, stated plainly:**
+      an extraction file edited *in place* under the same name is not detected. `force=True` (or
+      deleting the JSON) is the escape hatch.
+    - **`REGISTRY_SCHEMA_VERSION` covers the other staleness mode**, which no amount of looking at
+      the corpus can catch: Session 23 changed `KEY_TO_IDX`, so identical files produced different
+      parts and the cache had no way to know. Bump it whenever `_atomize_extraction` / `KEY_TO_IDX`
+      / `PART_TYPES` changes what a given extraction yields.
+    - **`scripts/test_registry_staleness.py`** (new, zero API cost) asserts both halves — a
+      moved-on corpus rebuilds, and an unchanged one does *not*, since the cheap way to pass the
+      first is to rebuild unconditionally. The second is proved by corrupting the cached file and
+      confirming the corruption survives.
 13. **[DONE, Session 23]** Fixed a silent extraction-failure bug found while reviewing anthology
     output quality: `extract_pdf()`/`extract_pdf_anthology()` used to catch a malformed Claude
     response and silently save the same null-placeholder shape used for a genuine "nothing found"
