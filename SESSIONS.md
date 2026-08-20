@@ -3000,6 +3000,119 @@ it. Porting the Aug 12 flow and then immediately rewriting it would build the sa
 
 ---
 
+## Session 33 — August 20, 2026 (MYF: the answer screen, and the plate device landing)
+
+**Branch:** `claude/myf-cym-games-review-6ne9rs`, started from `main` @ `27ebc89`.
+
+### First: the branch the harness handed over was stale
+
+The session opened on a branch created at `f4a5efe` — that is `main`, *not* Session 32's tip, so
+it did not contain the timer fix or either aesthetics pass. This is precisely the failure mode
+both `CLAUDE.md` files document and warn about, and it was caught by checking the branch against
+`main` before doing anything, per that warning. The branch had zero unique commits, so it
+fast-forwarded onto Session 32's work with nothing lost.
+
+**PR #20 is merged** (`27ebc89`), on the owner's call — `mergeable_state: clean`, base equal to
+`main`'s tip, nothing stacked behind it. The session branch was then restarted from the new `main`.
+
+### The answer screen (MYF `CLAUDE.md` item 50)
+
+Owner's second note from the August 18 playtest — "too much going on… I read, I answer" — was the
+top unstarted item. Item 48 predicted the plate device would be most of what it needed, and that
+held up.
+
+**The plate landed** (item 40's core rule, decided August 17, unbuilt until now). `.panel` is now
+the ground colour with the texture switched off, no radius, no border, no shadow. Two things are
+written down at the class because both are easy to break later: the `background-color` is the
+*same token* as the ground rather than a colour that matches it, and the plate is only visible
+because the 10% marks around it are not.
+
+**Plates stack, and the gap between them turned out to be load-bearing.** At 10% mark strength a
+16px gap is likely to contain no mark at all, so two adjacent plates merge into one tall block and
+the device silently stops reading. `space-y-4` → `space-y-6` fixed it. This is the practical
+corollary of item 40's own rule, and it is invisible until you put two plates next to each other
+and look.
+
+**A quiet thing the plate fixed for free:** `lib/difficultyColors.js` proved every step of its
+ramp against the slate ground, but the question had been sitting on `game.card` since the ramp was
+generated. Nothing was ever broken — a darker box only raised the ratio — but the guarantee was
+theoretical. Now the plate *is* the ground, so the measured number and the rendered pixel finally
+describe the same thing.
+
+**The decluttering, in one sentence: everything said more than once is now said once.** Four
+blocks each paired a countdown with a sentence (reading, the room's view of the exclusive window,
+the answerer's view of it, the lock hint); they were never on screen together, so they were never
+four things — they are one `AnswerStatus` selected by one if/else. Rendering them as four
+independent `&&` blocks is what made the screen read as having four instructions even though one
+was ever visible. The stake was on screen three times in three phrasings; it is now one line. The
+locked count and the spent list are one margin line. The round rule keeps its words and loses its
+box, sitting with the question where item 40 puts it. The standings are one plate rather than one
+box per player.
+
+**One settled decision was deliberately revisited, and it is flagged as such:** item 49 made
+`RoundLine` "the first line inside whichever box leads the page". It now has one fixed home — the
+standings band — which keeps that decision's actual point (the fact is written once, never twice)
+while taking a line out of the reading column and putting round data upper-left where item 40 says
+chrome goes. A one-line revert if the owner disagrees.
+
+### The preview harness, and what looking at things actually bought
+
+`app/dev/answer` renders every Flow B moment from fixtures — instantly, for nothing, `?only=N` for
+one at a time. Judging this screen previously meant playing a real three-player game with real
+Claude calls until the state you wanted came up, and "the room's view during the exclusive window"
+could not be produced on demand at all.
+
+It reports any element overflowing the viewport, because a horizontal overflow has now broken a
+phone twice and both times the build was happy while the screenshot showed only that *something*
+was cut, never what.
+
+**It paid for itself on its first run, in both directions:**
+
+- A 390px "break" that was about to be chased was **not a bug**. Headless Chromium was laying the
+  page out at 500px and screenshotting the left 390 of it. Without the reporter printing
+  `viewport 500`, a working layout would have been "fixed". **`--window-size` does not set the
+  layout viewport in headless Chromium** — drive it through Playwright's `viewport` option or the
+  width being judged is not the width that was asked for.
+- The real bug it found: **`flex-1` does not let the answer input shrink**, because a flex item
+  defaults to `min-width: auto`. Submit sat 22px off the right edge at 390px — and *only* on the
+  answerer's screen, since "Submit" is one word and cannot wrap its way out of the squeeze the way
+  "Lock It In" does. `min-w-0`. All six states are now clean at 390 and at 1280.
+
+### Verification
+
+`scripts/mechanics-test.js` (105), `scripts/postgame-test.js`, `server_py/test_mechanics.py` (63)
+and `server_py/test_turn_timers.py` (12) all pass; `npm run build` clean; every state rendered and
+looked at in Chromium at both widths. No server code was touched.
+
+### Also established this session (CYM side, from the review pass — not acted on)
+
+**`mystery_database/part_registry.json` is stale again.** Checked in: 4,807 parts / 556 sources.
+A fresh `populate_from_test_corpus()` + `load_extractions()` build: **4,952 / 569**. So 13 sources
+and 145 parts are currently invisible to generation. This is exactly the recurrence root
+`CLAUDE.md` item 14 predicted — `load_registry()` still rebuilds only when the file is *missing*,
+never when it is stale. Zero-cost to fix and to regenerate; not done this session because the
+session's task was MYF.
+
+The same pass answers root `CLAUDE.md` item 7's "next session should check" list: **the anthology
+extraction runs did happen** — 281 `pdf_*` extractions now, up from 75, 570 extraction files
+total — and **the registry was not regenerated afterwards**, which is why it is stale.
+
+### Next session
+
+1. **Re-run the playtest.** Two reasons now: item 47's timer fix has never been played, and the
+   answer screen has been rebuilt. PT-4 → PT-8 are still open and the August 18 verdicts are not
+   evidence.
+2. **Open owner decisions, unchanged and none blocking:** the three `#7c3aed` entries in
+   `LOGO_PALETTES`; Spotlight's 1-second exclusive window (PT-6); whether the lobby punchline
+   stays the mark. New this session: whether `RoundLine` should stay in the standings band.
+3. **Owner action item, still open:** the metallic title treatment renovation. Drop-in at
+   `public/brand/myf_title_trtmnt_trans.svg`, keep 587×69, no code change. It is visibly dim in
+   every screenshot taken this session.
+4. Still queued and untouched: `questionLog`/`postGame` in `server_py` (item 46), item 44's two
+   tabled tuning follow-ups, and wiring MYF's coherence to the shared Python engine (item 8).
+
+---
+
 ## Session 32 — August 18, 2026 (MYF: the first Flow B playtest, and the bug it found)
 
 **Branch:** `claude/myf-flow-b-playtest-xv2lqh`, started from `main` @ `f4a5efe` (PR #19's merge,

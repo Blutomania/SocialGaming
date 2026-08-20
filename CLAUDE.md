@@ -285,10 +285,19 @@ Full list in `SESSIONS.md`. Top priorities:
    Also unrun this session: the 4-file `_novels/` batch (*39 Steps*, *Behold Here's Poison*,
    *Mystery of the Chinese Ring*, *Whose Body?*) — never got even a `--dry-run` yet.
 
-   **Next session should check:** did the 10-file `_ready/` extraction run, did the 4-file novels
-   batch get dry-run and run, was `mystery_database/part_registry.json` deleted and regenerated
-   afterward (mandatory — the staleness bug in item 14 below is still unfixed), and compare new
-   source/part counts against the last-known baseline (369 sources / 2,833 parts, Session 23).
+   **[CHECKED, Session 33 — August 20 2026]** That "next session should check" list is now
+   answered, by measurement rather than by asking:
+   - **The extraction runs happened.** `mystery_database/extractions/` holds **570 files**, of
+     which **281 are `pdf_*`** — up from 75. So the `_ready/` anthology batch (and more) was run.
+   - **The registry was NOT regenerated afterwards, and is stale right now.** Checked-in
+     `part_registry.json`: **4,807 parts / 556 sources**. A fresh
+     `populate_from_test_corpus()` + `load_extractions()`: **4,952 / 569**. So **13 sources and
+     145 parts are currently invisible to generation** — they are extracted, on disk, and not
+     being sampled. Against the Session 23 baseline (369 / 2,833) the corpus has grown a lot; the
+     registry is simply behind it again.
+   - This is exactly the recurrence item 14 predicted. Fixing it is two things and neither costs
+     an API call: regenerate the registry, and give `load_registry()` the staleness check it still
+     does not have (see item 14). Not done in Session 33 — that session's task was MYF-side.
 8. **[FUTURE]** Phase 4 — Steam integration (GodotSteam plugin)
 9. **[ONGOING]** Repo-wide branch cleanup (Session 18) — 9 fully-merged branches identified as
    safe to delete, plus a further 21 stale unmerged branches the owner is triaging on their own
@@ -385,6 +394,12 @@ Full list in `SESSIONS.md`. Top priorities:
     someone manually deletes `part_registry.json`. Worth a real fix (e.g. mtime comparison against
     `extractions/`, matching the pattern `craft_grounding.py`'s index cache already uses) as a
     follow-up, not done this session. Full detail in `SESSIONS.md` Session 23.
+    **[CONFIRMED RECURRED, Session 33 — August 20 2026]** It went stale again, exactly as
+    predicted: 4,807 parts / 556 sources checked in versus 4,952 / 569 on a fresh build — 13
+    sources and 145 parts extracted but not sampled. `load_registry()` at `part_registry.py:584`
+    still only rebuilds when the file is **missing**. This is no longer a hypothetical follow-up;
+    it is a bug that has now silently eaten corpus growth twice, and it will do it a third time
+    after the next extraction run. See item 7 for the measurement.
 13. **[DONE, Session 23]** Fixed a silent extraction-failure bug found while reviewing anthology
     output quality: `extract_pdf()`/`extract_pdf_anthology()` used to catch a malformed Claude
     response and silently save the same null-placeholder shape used for a genuine "nothing found"

@@ -63,13 +63,17 @@ of it. See PLAYTEST.md PT-4 through PT-8 for what to watch.
 **Session 32 close (August 18 2026).** Branch `claude/myf-flow-b-playtest-xv2lqh`, four commits,
 **open as PR #20 — not merged.** The playtest found a real bug (item 47) and the aesthetics passes
 (items 48, 49) followed it. **Owner is renovating the metallic title treatment artwork** — a
-drop-in file swap at `public/brand/myf_title_trtmnt_trans.svg`, no code change, keep 587×69. The
-answer-screen cleanup ("I read, I answer") is still the top unstarted item, and the plate device
-is probably most of what it needs.
+drop-in file swap at `public/brand/myf_title_trtmnt_trans.svg`, no code change, keep 587×69.
+
+**Session 33 (August 20 2026). PR #20 is MERGED** (`27ebc89`) — `main` now carries the timer fix
+and both aesthetics passes. The answer-screen cleanup is **done** (item 50), and the plate device
+landed with it, so item 40's core rule is no longer outstanding. The item-48 prediction held: the
+plate was most of what "I read, I answer" needed. **The playtest re-run on the fixed build is now
+the top of the list** — item 47's fix and this screen both want a real table.
 
 | # | Item | State |
 |---|---|---|
-| 0 | **PLAY IT.** Flow B, pre-committed answers and the wager ladder are all built and tested but entirely unvalidated by a real table. Four numbers are guesses: the 8s exclusive window, the 5s reading window, whether the lock window gives enough time to commit, and whether 0.75x makes buzzing feel worth it. | **START HERE** |
+| 0 | **PLAY IT.** Flow B, pre-committed answers and the wager ladder are all built and tested but entirely unvalidated by a real table. Four numbers are guesses: the 8s exclusive window, the 5s reading window, whether the lock window gives enough time to commit, and whether 0.75x makes buzzing feel worth it. The August 18 table was measuring a broken clock (item 47) and the screen has since been rebuilt (item 50), so this wants a fresh run on both counts. | **START HERE** |
 | 1 | ~~`server_py` parity for the Aug 12 mechanics~~ — **done** (item 42), except `questionLog`/`postGame`, which moved to item 46 and now blocks only the post-game screen. | Done |
 | 2 | Godot: category-selection + card-pick screens — build against **3** categories and the curated grid, not the old 5 free-text boxes | Blocked on 1 |
 | 3 | Godot: round-loop UI — WAGER → CARD → QUESTION → reading window → open ANSWER → RESULT | Blocked on 1 |
@@ -1186,6 +1190,77 @@ as a constraint to respect rather than a layout spec.
       otherwise, so turns without an announcement don't silently lose the count.
       The active player's score chip was the third box colour on that screen; it now uses the same
       fill as every other box with a gold ring for the highlight.
+
+50. **[BUILT, August 20 2026] Answer-screen cleanup + the plate device — item 40's core rule is
+    now live.** Owner's note from the August 18 playtest: "too much going on… I read, I answer."
+    Item 48 predicted the plate would be most of it, and that turned out to be right.
+    - **The plate.** `.panel` is now a solid rectangle of the ground colour with the texture
+      switched off — no radius, no border, no shadow. A hole cut *through* the field rather than
+      a panel laid on top of it. One class, so it lands on every box at once, which is exactly why
+      item 49 made it a class in the first place. The two dependencies are written at the class:
+      the `background-color` is the **same token** as the ground (`--ground`), not a colour that
+      happens to match; and the plate is only visible because the 10% marks around it aren't —
+      don't tune one without re-checking the other.
+    - **Plates stack, so the gap between them is load-bearing.** `space-y-4` → `space-y-6` on the
+      board: at 10% mark strength a 16px gap is statistically likely to contain no mark at all, so
+      two adjacent plates merge into one tall block and the device stops reading. This is the
+      practical corollary of item 40's "the plate is only visible because the texture isn't", and
+      it is not obvious until you look at two of them.
+    - **A quiet consequence worth knowing.** `lib/difficultyColors.js` proved every step of its
+      ramp against the slate **ground** (`#2F4459`), but the question has been sitting on
+      `game.card` `#1a1a2e` since the ramp was generated. Now that the plate *is* the ground, the
+      measured contrast and the rendered pixel finally describe the same thing. Nothing was
+      broken before — a darker box only ever raised the ratio — but the guarantee was theoretical.
+    - **One instruction, computed as one value.** The screen could carry fourteen blocks at once.
+      Four of them each paired a countdown with a sentence — the reading window, the room's view
+      of the exclusive window, the answerer's view of it, and the lock hint — and were never on
+      screen together, so they were never four things. They are now one `AnswerStatus` (verb +
+      clock + an optional short clause), selected by one if/else chain. **Rendering them as four
+      independent `&&` blocks is what made the screen read as four instructions**, even though
+      only one was ever visible.
+    - **Everything that was said more than once is now said once.** The stake appeared three
+      times in three different phrasings (a header line, the answerer's fine print, the buzzer's
+      fine print) — now one `StakeLine`. The locked count and the spent list are one
+      `AnswerMargin`. The two long fine-print sentences are gone: anything needing a sentence is a
+      rule the player learned in round 1, and reprinting it every question is most of what "too
+      much going on" was made of.
+    - **The round rule keeps its words and loses its box** (`RuleChip`), sitting with the question
+      per item 40 — Rebus/ELI5/Boxed In all change how an answer must be *given*, so at the moment
+      of answering the rule is part of reading the question. The description stays: what cost the
+      screen was the box, not the words.
+    - **The standings are one plate, not one box per player,** and `RoundLine` moved into it.
+      That relocates item 49's placement decision and deliberately keeps its point — the fact is
+      written once, never twice. It now has one fixed home rather than "whichever box leads the
+      page", which is also where item 40 puts round data (upper left). **Flag if you disagree:**
+      this is the one change this session made to a settled owner-facing decision.
+    - **`app/dev/answer` — a dev-only preview harness, and it is a real asset, not scaffolding.**
+      Every Flow B moment rendered from fixtures: instantly, for nothing, and on demand. Judging
+      this screen used to mean playing a real three-player game with real Claude calls until the
+      state you wanted came up — and "the room's view during the exclusive window" could not be
+      produced reliably at all. `?only=N` renders one state. Its fixtures mirror `playerView()`'s
+      ANSWER branch by hand, so they are a rendering aid and **not** a contract test: if that
+      branch changes shape the page renders something wrong rather than failing.
+    - **It reports any element overflowing the viewport,** because a horizontal overflow has now
+      broken a phone layout twice (the brand bar at 390px in item 49, and this screen) and both
+      times the build was perfectly happy while the screenshot showed only that *something* was
+      cut, never what. It names the innermost offending element and the pixel count.
+    - **That reporter paid for itself on its first run, twice.** A 390px "break" I was about to
+      chase turned out to be **headless Chromium laying the page out at 500px and screenshotting
+      the left 390** — no bug at all, and I would have "fixed" a working layout. The real one it
+      found: **`flex-1` does not let the answer input shrink**, because a flex item defaults to
+      `min-width: auto`, so Submit sat 22px off the right edge at 390px — and *only* on the
+      answerer's screen, since "Submit" is one word and cannot wrap its way out of the squeeze the
+      way "Lock It In" does. Fixed with `min-w-0`.
+      **Worth remembering for any future screenshot pass:** `--window-size` does not set
+      Chromium's layout viewport in headless mode (it clamped to 500px here). Drive it through
+      Playwright's `viewport` option, or the widths you are judging are not the widths you asked
+      for.
+    - **Also fixed while in there:** a spent attempt that was simply wrong rendered as a bare name
+      in a list where every other outcome was labelled `(passed)` / `(froze)`. Now `(missed)`.
+    - **Verified:** `scripts/mechanics-test.js` (105), `scripts/postgame-test.js`,
+      `server_py/test_mechanics.py` (63) and `server_py/test_turn_timers.py` (12) all pass;
+      `npm run build` clean; all six states rendered and looked at in Chromium at 1280 and 390.
+      No server code was touched this session.
 
 ## Design Thesis: Casual-First
 This game targets casual, social players — not competitive optimizers. Every
