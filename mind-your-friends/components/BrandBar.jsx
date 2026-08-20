@@ -8,8 +8,10 @@
 // the logo — which is why the logo is unconditional here. Neither piece drops
 // on narrow screens any more; the title treatment shrinks instead.
 //
-// The title treatment is the official artwork and is never recoloured. The
-// logo is the piece that changes colour per game.
+// Both marks vary per game and both are deterministic in the room code, so
+// every player at one table sees the same pair: the logo draws one of six
+// colour triples, the title treatment one of two type treatments. The two are
+// salted apart so they don't move in lockstep.
 
 import Logo, { LOGO_HEIGHT } from './Logo';
 import Wordmark from './Wordmark';
@@ -29,7 +31,7 @@ export default function BrandBar({ code }) {
     // leave over — hence explicit column starts rather than justify-between.
     <header className="mb-4 grid grid-cols-[1fr_auto] items-center gap-x-2 gap-y-3 sm:grid-cols-3">
       <div className="justify-self-start sm:col-start-1 sm:row-start-1">
-        <Wordmark />
+        <Wordmark code={code} />
       </div>
 
       <div className="justify-self-end sm:col-start-3 sm:row-start-1">

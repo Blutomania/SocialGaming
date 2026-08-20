@@ -159,18 +159,24 @@ function OverflowReport() {
 export default function AnswerPreview() {
   const [now, setNow] = useState(null);
   const [only, setOnly] = useState(null);
+  // `?code=ABCD` swaps the room code, which is what selects the logo palette
+  // and the title treatment — the only way to see both marks without starting
+  // two real games.
+  const [code, setCode] = useState(null);
 
   useEffect(() => {
     setNow(Date.now());
-    const q = new URLSearchParams(window.location.search).get('only');
-    setOnly(q === null ? null : Number(q));
+    const q = new URLSearchParams(window.location.search);
+    const n = q.get('only');
+    setOnly(n === null ? null : Number(n));
+    setCode(q.get('code'));
   }, []);
 
   if (now === null) return null;
 
   // `?only=N` renders a single state, which is how you judge one screen
   // instead of six: a screenshot of the stack is always mostly other screens.
-  const all = states(now);
+  const all = states(now).map(([label, game]) => [label, code ? { ...game, code } : game]);
   const shown = only === null || Number.isNaN(only) ? all : [all[only]].filter(Boolean);
 
   return (
