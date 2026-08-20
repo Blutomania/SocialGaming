@@ -3197,7 +3197,42 @@ now logs on **warnings** as well as failures. The old `if not validation["passed
 WARNING, which is precisely where "generation ignored the round rule" shows up. That was a blind
 spot, not a formatting difference.
 
+### Part 4 — CYM: BACKGROUND designed (no code written)
+
+Owner-initiated diversion at the end of the session: bring MYF's look and feel to CYM. **Design
+only — nothing was built.** Full spec, decisions and open questions in root `CLAUDE.md` item 17;
+the short version:
+
+CYM gets MYF's *system* (ground colour + a faded strewn mark tile), **not** its motif — the
+question marks stay MYF's, and CYM's marks are the mystery's own title, so the two titles read as
+siblings rather than one game reskinned. This knowingly reverses MYF item 39's "MYF only, do not
+generalise" line, at the owner's direction.
+
+**The design changed shape mid-conversation, and the owner's version is better.** The first
+proposal worked around the fact that `title` does not exist until generation ends (112s–1992s in
+the real batch data): stream the generation call and parse `title` out early, since it is field #1
+in the schema. That is sound and costs nothing extra, but it modifies the main generation path.
+The owner's counter — **prompt the player for a title alongside the setting and use theirs** —
+removes the streaming dependency entirely, touches no generation code, and makes the original
+two-state spec literally true. It is also what players already do: `submit_prompt`'s own docstring
+examples are "Smurf murder mystery" and "Mystery on Mars". Streaming is kept only as the fallback
+for a blank title.
+
+Decided: the **server** computes a seeded layout and **both clients render it** — CYM has two
+(the Godot host screen and `server/static/mobile.html`), and one layout means the TV and every
+phone show the identical field instead of two renderers drifting.
+
+**The unresolved item is moderation, and it is the owner's call.** A player-supplied string would
+be rendered large, repeated, on every screen, for a whole game, on a TV, in a Steam title — the
+highest-visibility user-generated content surface in the product, and MYF already built
+`moderateHeckle()` for a much smaller one. It cannot ride along on generation because the
+background appears before any Claude call.
+
 ### Next session
+
+**Pick up here: root `CLAUDE.md` item 17.** Two owner decisions are outstanding (moderation; and
+whether the player's title feeds into generation or only decorates). Everything else is settled
+enough to build.
 
 1. **Re-run the playtest.** Two reasons now: item 47's timer fix has never been played, and the
    answer screen has been rebuilt. PT-4 → PT-8 are still open and the August 18 verdicts are not

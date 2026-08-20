@@ -490,6 +490,90 @@ Full list in `SESSIONS.md`. Top priorities:
     merely share field names — the check that would actually catch the framework forking. Full
     detail in MYF's `CLAUDE.md` item 51.
 
+17. **[DESIGNED, NOT BUILT — Session 33, August 20 2026] CYM BACKGROUND — the mystery's own title
+    as the page texture.** Owner-initiated: bring MYF's look and feel across to CYM. Design is
+    settled to the point of being buildable; **nothing has been written**. Two questions are still
+    open (below) and both are the owner's.
+
+    **Shared vocabulary (owner-defined — use these names).** MYF's `CLAUDE.md` glossary already
+    defines two of the three; BACKGROUND is new and belongs in both files:
+    | Term | MYF today | CYM equivalent |
+    |---|---|---|
+    | **BACKGROUND** | slate ground + strewn faded question marks | slate ground + the strewn mystery TITLE |
+    | **LOGO** | the three-emoji mark, top centre | none yet — not part of this |
+    | **TITLE TREATMENT** | the logotype, top left | none yet — not part of this |
+
+    **What CYM gets, and what it does not.** CYM gets the *system* — a ground colour plus a faded,
+    strewn, rotated, randomly-sized mark tile — **not the motif**. The question marks stay MYF's
+    (owner, explicitly). CYM's marks are the mystery's own title, so the two titles read as
+    siblings rather than as one game reskinned. This **reverses MYF item 39's** "scoped by owner to
+    MYF only, do not generalise into a cross-title design layer" — knowingly, at the owner's
+    direction. MYF item 39 needs that line rewritten when this is built.
+
+    **The state machine.** Ground colour alone until a mystery is named; the field then builds in,
+    and re-skins on same-room replay (`prompt_vote` → `next-mystery/start`), which is a free payoff
+    of the same mechanism.
+
+    **How the title arrives — the owner's answer, and it is the better one.** The first design
+    routed around the fact that `title` does not exist until generation ends (112s–1992s, per the
+    real batch summaries): stream the generation call, parse `title` out early since it is field #1
+    in the schema, add a `short_title` beside it. That works and costs no extra API calls, but it
+    changes the main generation path. **The owner's proposal supersedes it: prompt the player for a
+    title alongside the setting, and use theirs.** No streaming, no schema change, nothing touching
+    `llm()`, and the original spec ("plain until the prompt is entered, field after") becomes
+    literally true. It is also closer to what players already do — `submit_prompt`'s own docstring
+    examples are "Smurf murder mystery" and "Mystery on Mars", i.e. already title-shaped.
+    Keep the streaming approach in the back pocket **only** as the fallback for a blank title.
+    - "Encapsulated" = **as few words as possible** (owner). With a player-supplied title this is
+      enforceable at the input (`maxlength` + placeholder) rather than hoped for from generation —
+      which matters, because the 16 real titles on disk run 8 to 39 characters and a field of
+      "Whiteout" behaves nothing like a field of "Daggers in the Forum: The Ides of March".
+    - Free win: leftover suggestions already drive the post-game `prompt_vote`; if each carries a
+      title, that screen becomes a list of *named* mysteries instead of raw setting text.
+    - The change is small: one field on `SubmitPromptRequest` and on the stored
+      `{name, prompt_text, ts}` dict in `submit_prompt` (`server/main.py`).
+
+    **Architecture (decided): the server computes the layout, both clients render it.** CYM has
+    **two** clients — the Godot host screen and `server/static/mobile.html`, the phone client every
+    player actually looks at. The server emits a seeded layout (`{text, x, y, rotation, size,
+    colour}`); Godot draws it in `_draw()`, the phone as inline SVG. One implementation, two
+    surfaces, and the TV and every phone show the identical field. Shipping an image instead would
+    mean rasterising for Godot and a data-URI for the phone — two renderers and two chances to
+    drift.
+
+    **Risks, in the order they will bite:**
+    - **Moderation is the real one, and it is new.** A player-supplied string rendered large,
+      repeated, on every screen, for a whole game, on a TV, in a Steam title. It is the
+      highest-visibility user-generated content surface in the product. MYF already built
+      `moderateHeckle()` for a far *smaller* surface. It cannot ride along on generation, because
+      the background appears before any Claude call — so it needs handling at submit time, which is
+      its own API call or a local filter. **Owner decision, not yet made.**
+    - **Legibility.** MYF sits at 10% mark strength for an abstract glyph. Words are read
+      involuntarily, and CYM's screens carry far more text (clues, transcripts, evidence). Expect
+      to need *below* 10%, plus rotation and edge-cropping so most instances are partial. Test on a
+      real screen; do not settle it by argument.
+    - **Fonts:** OFL-licensed only (owner). One existing title is "Schatten am Checkpoint", so
+      localisation means non-English titles and the set needs the glyph coverage. Note MYF draws
+      its marks as **geometry, not font glyphs**, precisely because a background `<text>` renders
+      in whatever font the machine has — that concern returns for the phone client, which needs the
+      faces actually loaded or the two screens will not match.
+
+    **The two open questions, both the owner's:**
+    1. **Moderation** — what happens to a player title before it becomes wallpaper?
+    2. **Does the player's title feed INTO generation, or only decorate?** Recommendation: both —
+       pass it as context so Claude writes a mystery that fits its name, and use it for display,
+       otherwise the wall says one thing and the case file another. Wrinkle if so: the saved-mystery
+       slug derives from `mystery_dict["title"]` (`server/main.py`), so decide whether the player's
+       title *replaces* Claude's or sits beside it as a display title. Recommendation: replace,
+       with Claude's as the fallback when the field is left blank.
+
+    **Unrelated, noticed while checking and worth one look before building on generation:** an old
+    batch summary in `mystery_database/generated/` shows **13 of 14 generations failing** on JSON
+    parse errors (`Unterminated string`, `Expecting property name`). It is from March and 16
+    mysteries have generated cleanly since, so it is probably long fixed — but a background keyed
+    to the title inherits whatever the current failure rate is. Worth one real generation run to
+    confirm before building on top of it.
+
 > **DO NOT re-run the frozen bulk corpus pipeline** (`deprecated/run_corpus_pipeline.py`). Expand
 > the corpus only via `scripts/extract_from_pdfs.py`, adding one quality source at a time.
 > **DO NOT touch `deprecated/`** except the one restored exception noted above. It exists for
