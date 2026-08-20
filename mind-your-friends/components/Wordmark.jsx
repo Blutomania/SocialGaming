@@ -3,48 +3,50 @@
 // The **title treatment** (a.k.a. text treatment) — see CLAUDE.md → Glossary.
 // The "logo" is the separate three-emoji mark, not this.
 //
-// Deliberately monochrome: black or white depending on background, never
-// recoloured.
+// This is the OFFICIAL artwork, public/brand/myf_title_trtmnt_trans.svg
+// (owner, August 18 2026: the official title treatment, upper left, on every
+// page). It is a textured metallic logotype — 29 stacked grey levels, from
+// near-black through to near-white — and the texture is the point of it.
 //
-// Composition rule: this must never appear without the logo beside it. The
-// logo may appear alone; the title treatment may not.
+// WHY <img> AND NOT A CSS MASK. The previous version rendered
+// wordmark-mono.svg as a mask so `currentColor` could recolour it. A mask
+// keeps only the silhouette: every one of those 29 levels collapses to one
+// flat colour, which throws away exactly what makes this the official mark
+// rather than a lettering shape. So the artwork ships as artwork, and the
+// colour control goes away with it — correctly, since the treatment is
+// fixed and never recoloured anyway (that rule predates this change).
 //
-// Rendered as a CSS mask rather than an <img> or an inlined <svg>, for two
-// reasons:
+// It reads on a dark ground because the texture runs light; on a light ground
+// it would need different artwork, not a different fill.
 //
-//   1. `currentColor` cannot cross an <img src> boundary. An externally
-//      loaded SVG renders with its own baked-in fill, so `<img>` gives no
-//      colour control at all — the logo would be stuck one colour on every
-//      background.
-//   2. Inlining the markup would work, but the asset is ~1.2MB of path data;
-//      inlining puts all of it in the HTML payload on every render. As a mask
-//      the browser fetches it once and caches it, and `background-color` (which
-//      defaults to `currentColor` here) drives the colour.
+// Composition rule (unchanged): this must never appear without the logo
+// beside it. The logo may appear alone; the title treatment may not.
 //
-// The source art is an auto-traced textured logotype — 29 stacked grey levels
-// flattened into a single silhouette. See public/brand/wordmark-mono.svg.
-export default function Wordmark({ className = '', width = 320, title = 'Mind Your Friends' }) {
-  const height = Math.round((width * 69) / 587); // preserve the 587x69 aspect
+// Payload note: the asset is ~2.1MB of path data. As an <img> the browser
+// fetches it once and caches it across pages, which is the reason it is a
+// plain <img> src rather than inlined markup — inlining would put all of it
+// in the HTML on every render.
 
+// The source art's aspect. Height is derived, never set independently, so the
+// treatment can't be squashed by a stray class.
+export const WORDMARK_ASPECT = 587 / 69;
+
+// `width` is for the one place the treatment is the hero rather than chrome —
+// the lobby's centre column. Left off, it takes the responsive bar sizes: at
+// phone widths the top bar holds three things and this is the one with room to
+// shrink. It no longer DISAPPEARS below sm — the owner asked for it on every
+// page, and "every page" includes a phone.
+//
+// An inline width rather than another utility class, because a class passed in
+// through `className` doesn't reliably beat the ones below — Tailwind's output
+// order decides that, not the order they're written here.
+export default function Wordmark({ className = '', width, title = 'Mind Your Friends' }) {
   return (
-    <span
-      role="img"
-      aria-label={title}
-      className={className}
-      style={{
-        display: 'inline-block',
-        width,
-        height,
-        backgroundColor: 'currentColor',
-        WebkitMaskImage: 'url(/brand/wordmark-mono.svg)',
-        maskImage: 'url(/brand/wordmark-mono.svg)',
-        WebkitMaskRepeat: 'no-repeat',
-        maskRepeat: 'no-repeat',
-        WebkitMaskSize: 'contain',
-        maskSize: 'contain',
-        WebkitMaskPosition: 'center',
-        maskPosition: 'center',
-      }}
+    <img
+      src="/brand/myf_title_trtmnt_trans.svg"
+      alt={title}
+      style={width ? { width, maxWidth: '100%' } : undefined}
+      className={`h-auto ${width ? '' : 'w-[150px] sm:w-[220px] lg:w-[260px]'} ${className}`}
     />
   );
 }

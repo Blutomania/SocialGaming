@@ -87,6 +87,12 @@ export function createGame(hostId, hostName) {
     cardSlot: null, // { playerId, cardId, payload }
     currentQuestion: null, // { question, answer, hostQuip }
     answererIndex: null,
+    // Bumped by beginTurn() on every turn start. Server timers capture it when
+    // they're armed and compare it when they fire, so a timer belonging to a
+    // finished turn can't act on the turn that replaced it. Phase alone is not
+    // enough: every turn passes through the same phases, so a stale ANSWER
+    // timer lands squarely on the NEXT question's ANSWER phase.
+    turnSeq: 0,
     highlightReel: [],
     // Structured record of every question actually asked, appended by
     // logQuestion() as each turn resolves. The highlight reel is prose meant
@@ -322,6 +328,7 @@ function beginRoundIfNeeded(game) {
 
 function beginTurn(game) {
   beginRoundIfNeeded(game);
+  game.turnSeq += 1;
   game.answerAttempts = {};
   game.answerOpensAt = null;
   game.currentCategory = null;

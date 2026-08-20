@@ -2,8 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
+/* The ground (CLAUDE.md item 40): slate blue with the question-mark field
+   scattered over it, on every screen. The field is texture, not content.
+
+   Two halves, deliberately kept apart: the ground is a background-COLOR and
+   the marks are a transparent background-IMAGE laid over it. The tile bakes
+   in no ground of its own, so re-tuning the ground is one value here and no
+   regeneration of the asset (scripts/build-question-field.mjs).
+
+   background-attachment: fixed so the field belongs to the screen rather than
+   to the page — a texture that scrolls with the content reads as wallpaper
+   sliding past, which is exactly what it must not look like. */
+:root {
+  --ground: #2F4459;
+}
+
 body {
-  @apply bg-game-dark text-white min-h-screen;
+  @apply text-white min-h-screen;
+  background-color: var(--ground);
+  background-image: url('/brand/question-field.svg');
+  background-size: 600px 600px;
+  background-repeat: repeat;
+  background-attachment: fixed;
+}
+
+/* One box colour for every box on screen (owner, August 18 2026: "change the
+   background of all background boxes to be the same").
+ 
+   It is a class rather than a repeated `rounded-lg bg-game-card`, because the
+   instruction was to make them the same and a repeated utility string is
+   exactly how they stopped being the same — a tinted panel here, a bordered
+   one there, each defensible on its own screen.
+ 
+   This is also where the plate device lands when it lands (CLAUDE.md item 40):
+   plates are the ground colour with the texture switched off, which is one
+   change here rather than one per component. */
+@layer components {
+  .panel {
+    @apply rounded-lg bg-game-card;
+  }
 }
 
 /* Superlative voting deals one award at a time, each sliding in from the

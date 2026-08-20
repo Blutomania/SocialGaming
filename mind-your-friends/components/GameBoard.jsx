@@ -5,7 +5,7 @@ import CategoryPicker from './CategoryPicker';
 import CardHand from './CardHand';
 import VoiceInput from './VoiceInput';
 import WagerPie from './WagerPie';
-import { WAGER_TIERS, TOTAL_QUESTIONS, QUESTIONS_PER_ROUND } from '../lib/constants';
+import { WAGER_TIERS, QUESTIONS_PER_ROUND } from '../lib/constants';
 import { difficultyColor } from '../lib/difficultyColors';
 
 export default function GameBoard({ game, myId, socket }) {
@@ -20,26 +20,32 @@ export default function GameBoard({ game, myId, socket }) {
     <div className="mx-auto w-full max-w-3xl space-y-4">
       <ScoreStrip game={game} myId={myId} />
 
-      {game.roundAnnouncement && <RoundAnnouncement announcement={game.roundAnnouncement} />}
-
-      <div className="text-center text-sm text-gray-400">
-        Round {round} · Question {questionInRound}/{QUESTIONS_PER_ROUND} (
-        {game.questionIndex + 1}/{TOTAL_QUESTIONS} total)
-      </div>
+      {game.roundAnnouncement && (
+        <RoundAnnouncement
+          announcement={game.roundAnnouncement}
+          round={round}
+          questionInRound={questionInRound}
+        />
+      )}
 
       {/* The rule stays on screen for the rest of the round — a rule you have
           to remember is one people forget mid-round and then feel cheated by.
           Hidden on the announcement turn itself, where the banner above is
           already saying the same words twice. */}
       {rule && !game.roundAnnouncement && (
-        <div className="rounded-lg border border-game-gold/40 bg-game-gold/10 px-4 py-2 text-center">
+        <div className="panel px-4 py-2 text-center">
           <span className="text-lg">{rule.emoji}</span>{' '}
           <span className="font-semibold text-game-gold">{rule.name}</span>
           <span className="ml-2 text-sm text-gray-300">{rule.description}</span>
         </div>
       )}
 
-      <div className="rounded-lg bg-game-card p-4">
+      <div className="panel p-4">
+        {/* The round/question line leads the page's first box whichever box
+            that is, so it never floats between them again. */}
+        {!game.roundAnnouncement && (
+          <RoundLine round={round} questionInRound={questionInRound} className="mb-3 text-center" />
+        )}
         {game.phase === 'CATEGORY' && <CategoryPicker game={game} myId={myId} socket={socket} />}
         {game.phase === 'WAGER' && <WagerPicker game={game} myId={myId} socket={socket} />}
         {game.phase === 'CARD' && <CardPhase game={game} myId={myId} socket={socket} />}
@@ -110,11 +116,24 @@ function RebusReveal({ rebus, answer }) {
 // Shown for the first turn of each round. Round 1's banner says explicitly
 // that there is no rule yet, so its absence reads as deliberate rather than
 // as something failing to load.
-function RoundAnnouncement({ announcement }) {
+// "Round 1: Question 1 of 4" — one component, so the line reads identically
+// wherever it appears (owner, August 18 2026). It used to exist twice: once as
+// "ROUND 1" inside the announcement and once as "Round 1 · Question 1/4 (1/4
+// total)" floating between the boxes. The floating copy is gone; this is what
+// replaced both.
+function RoundLine({ round, questionInRound, className = '' }) {
+  return (
+    <p className={`text-xs tracking-wide text-gray-400 ${className}`}>
+      Round {round}: Question {questionInRound} of {QUESTIONS_PER_ROUND}
+    </p>
+  );
+}
+
+function RoundAnnouncement({ announcement, round, questionInRound }) {
   const plain = announcement.ruleId === 'none';
   return (
-    <div className="rounded-lg bg-game-accent/20 px-4 py-4 text-center">
-      <p className="text-xs uppercase tracking-widest text-gray-400">Round {announcement.round}</p>
+    <div className="panel px-4 py-4 text-center">
+      <RoundLine round={round} questionInRound={questionInRound} />
       {plain ? (
         <>
           <p className="mt-1 text-2xl font-bold">Straight trivia</p>
@@ -141,7 +160,9 @@ function ScoreStrip({ game, myId }) {
         <div
           key={p.id}
           className={`rounded px-3 py-1 text-sm ${
-            i === game.activePlayerIndex ? 'bg-game-accent/40' : 'bg-game-card'
+            i === game.activePlayerIndex
+              ? 'bg-game-card ring-2 ring-game-accent'
+              : 'bg-game-card'
           }`}
         >
           {p.name}{p.id === myId && ' (you)'}: <span className="font-mono">{p.score}</span>
@@ -159,6 +180,15 @@ function ScoreStrip({ game, myId }) {
 // Laid out beside the selection on desktop and above it on a phone, per the
 // owner's call — the pie is the thing you look at while deciding, so it wants
 // the reading position, not a corner.
+// The ladder's ends, named (owner, August 18 2026). Keyed by value rather
+// than by index so that changing WAGER_TIERS — item 44's tabled "wager tier
+// simplification" is exactly that — moves the labels with it instead of
+// leaving them on whatever now happens to sit first and last.
+const EDGE_LABELS = {
+  [WAGER_TIERS[0].value]: 'Easiest',
+  [WAGER_TIERS[WAGER_TIERS.length - 1].value]: 'Hardest',
+};
+
 function WagerPicker({ game, myId, socket }) {
   const wagerPlayer = game.players[(game.activePlayerIndex + 1) % game.players.length];
   const [picked, setPicked] = useState(null);
@@ -185,7 +215,6 @@ function WagerPicker({ game, myId, socket }) {
       <div className="flex shrink-0 flex-col items-center gap-2 lg:w-48">
         <WagerPie tier={tier} selected size={140} />
         <p className="text-2xl font-semibold">{tier.value}</p>
-        <p className="text-sm text-slate-muted">{tier.label}</p>
       </div>
 
       <div className="flex-1 space-y-3 text-center">
@@ -212,12 +241,21 @@ function WagerPicker({ game, myId, socket }) {
             >
               <WagerPie tier={t} selected={t.value === tier.value} size={40} />
               <span className="font-mono text-sm">{t.value}</span>
+              {/* Only the two ends are labelled: the ladder is a scale, and a
+                  scale needs its ends named, not every rung. The empty span on
+                  the middle three keeps all five buttons the same height —
+                  without it the row jumps as the labels appear. */}
+              <span className="h-3 text-[0.65rem] font-semibold uppercase tracking-wide text-slate-muted">
+                {EDGE_LABELS[t.value] ?? ''}
+              </span>
             </button>
           ))}
         </div>
 
+        {/* Smaller than it was, to leave the ladder its Easiest/Hardest line
+            without the column growing (owner, August 18 2026). */}
         <button
-          className="rounded bg-game-accent px-6 py-2 font-semibold hover:opacity-90"
+          className="rounded bg-game-accent px-4 py-1.5 text-sm font-semibold text-game-dark hover:opacity-90"
           onClick={() => socket.emit('turn:setWager', { amount: tier.value })}
         >
           Lock in {tier.value}
@@ -401,7 +439,7 @@ function OpenAnswerPhase({ game, myId, socket }) {
               }}
             />
             <button
-              className="rounded bg-game-accent px-4 py-2 font-semibold"
+              className="rounded bg-game-accent px-4 py-2 font-semibold text-game-dark"
               onClick={() => (canAnswer ? submit() : lockIn())}
             >
               {canAnswer ? 'Submit' : 'Lock It In'}
@@ -523,7 +561,7 @@ function SubmissionAnswerPhase({ game, socket }) {
               setInputMode('voice');
             }}
           />
-          <button className="rounded bg-game-accent px-4 py-2 font-semibold" onClick={submit}>
+          <button className="rounded bg-game-accent px-4 py-2 font-semibold text-game-dark" onClick={submit}>
             Lock In
           </button>
         </div>

@@ -39,7 +39,14 @@ export function paletteForGame(code) {
   return LOGO_PALETTES[hash % LOGO_PALETTES.length];
 }
 
-export default function Logo({ code, height = 40, className = '', title = 'Mind Your Friends' }) {
+// ONE size, everywhere (owner, August 18 2026: 66% bigger than it was, and
+// the same on every page). It is exported rather than left as a default so
+// that a call site which passes a height explicitly still passes THIS height —
+// the previous 44px in the top bar quietly overrode the 40px default, which is
+// how two sizes existed at all.
+export const LOGO_HEIGHT = 73; // 44 x 1.66
+
+export default function Logo({ code, height = LOGO_HEIGHT, className = '', title = 'Mind Your Friends' }) {
   const [vbX, vbY, vbW, vbH] = LOGO_VIEWBOX.split(/[\s,]+/).map(Number);
   const palette = paletteForGame(code);
 

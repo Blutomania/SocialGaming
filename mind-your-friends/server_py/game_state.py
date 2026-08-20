@@ -87,6 +87,13 @@ def create_game(host_id: str, host_name: str) -> dict:
         "cardSlot": None,
         "currentQuestion": None,
         "answererIndex": None,
+        # Bumped by _begin_turn() on every turn start. main.py's timers capture
+        # it when they're armed and compare it when they fire, so a timer
+        # belonging to a finished turn cannot act on the turn that replaced it.
+        # Phase alone is not enough: every turn passes through the same phases,
+        # so a stale ANSWER timer lands squarely on the NEXT question's ANSWER
+        # phase. See MYF CLAUDE.md item 47.
+        "turnSeq": 0,
         "highlightReel": [],
         # Non-None only while start_game() is building the fact bank. The
         # build takes ~50s even with the batches running concurrently, which
@@ -347,6 +354,7 @@ def _begin_round_if_needed(game: dict) -> None:
 
 def _begin_turn(game: dict) -> None:
     _begin_round_if_needed(game)
+    game["turnSeq"] += 1
     game["answerAttempts"] = {}
     game["lockedAnswers"] = {}
     game["answerOpensAt"] = None

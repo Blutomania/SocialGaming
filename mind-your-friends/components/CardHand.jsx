@@ -32,9 +32,11 @@ export default function CardHand({ game, myId, socket }) {
   return (
     <div className="space-y-2">
       <h3 className="text-sm font-semibold text-gray-300">Your hand</h3>
-      {/* Fixed columns rather than flex-wrap: every card the same size is the
-          point (playtest note 7), and wrapping let the last row stretch. */}
-      <div className="grid grid-cols-4 gap-2 sm:grid-cols-6">
+      {/* Wrap, not fixed columns: the card carries its own width now
+          (GameCard.CARD_WIDTH), so every card is the same size by
+          construction — which is what the old fixed-column grid was for, and
+          it did it only within a single layout. */}
+      <div className="flex flex-wrap gap-2">
         {me.hand.map((id) => (
           <GameCard key={id} cardId={id} disabled={slotTaken} onClick={play} />
         ))}
@@ -49,7 +51,7 @@ export default function CardHand({ game, myId, socket }) {
             value={heckleText}
             onChange={(e) => setHeckleText(e.target.value)}
           />
-          <button className="rounded bg-game-accent px-3 py-2" onClick={playHeckle}>
+          <button className="rounded bg-game-accent px-3 py-2 text-game-dark" onClick={playHeckle}>
             Send
           </button>
         </div>

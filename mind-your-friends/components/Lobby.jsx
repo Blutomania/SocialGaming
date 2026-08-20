@@ -94,7 +94,7 @@ function CategoryChooser({ chosen, onChange, onDone }) {
             <button
               key={value}
               onClick={() => onChange(chosen.filter((c) => c !== value))}
-              className="rounded-full bg-game-accent px-3 py-1 text-sm font-semibold"
+              className="rounded-full bg-game-accent px-3 py-1 text-sm font-semibold text-game-dark"
               title="Remove"
             >
               {value} ✕
@@ -124,7 +124,7 @@ function CategoryChooser({ chosen, onChange, onDone }) {
                     disabled={!isChosen && full}
                     className={`rounded-full px-3 py-1 text-sm transition ${
                       isChosen
-                        ? 'bg-game-accent font-semibold'
+                        ? 'bg-game-accent font-semibold text-game-dark'
                         : 'bg-game-card hover:bg-gray-700 disabled:opacity-30'
                     }`}
                   >
@@ -156,7 +156,7 @@ function CategoryChooser({ chosen, onChange, onDone }) {
       </div>
 
       <button
-        className="w-full rounded bg-game-accent px-4 py-2 font-semibold hover:opacity-90 disabled:opacity-40"
+        className="w-full rounded bg-game-accent px-4 py-2 font-semibold text-game-dark hover:opacity-90 disabled:opacity-40"
         disabled={!full}
         onClick={onDone}
       >

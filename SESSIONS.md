@@ -3000,6 +3000,171 @@ it. Porting the Aug 12 flow and then immediately rewriting it would build the sa
 
 ---
 
+## Session 32 — August 18, 2026 (MYF: the first Flow B playtest, and the bug it found)
+
+**Branch:** `claude/myf-flow-b-playtest-xv2lqh`, started from `main` @ `f4a5efe` (PR #19's merge,
+i.e. Session 31's tip — checked, not assumed, per this file's branch-hygiene warning).
+
+Session 31 ended with "play it". The owner played it — three players — and reported that the
+timing felt good **except** that one question, three turns in, had an answer window that was over
+almost as soon as it opened. Everything below came out of chasing that one observation.
+
+### It was a bug, not a tuning problem
+
+**Every server timer was scoped to a phase, not to a turn**, on both backends. `server.js` and
+`server_py/main.py` each arm four timers — the card window, Flow B's exclusive window, the answer
+window, and the next-turn scheduler — and each fire-time guard was `if (game.phase !== 'X')
+return`. That reads as sufficient. It is not, and the reason is the whole bug: **every turn walks
+the same phases.** A timer left over from a question that ended early doesn't find a phase
+mismatch and no-op; it finds the *next* question sitting in exactly the phase it was armed for,
+and acts on it.
+
+Concretely, on the default 40s clock (a 45s ANSWER phase):
+- A question answered at second 8 leaves its 45s answer timer pending with 37s to run.
+- The next question opens once the turn cycle completes (RESULT screen + category + wager + card
+  window + generation).
+- The leftover timer then fires partway through that question and **expires it**, with the
+  on-screen countdown still visibly running — the client derives its countdown from
+  `answerOpensAt`/`buzzOpensAt`, which belong to the current question and know nothing about it.
+- Truncation ≈ `answerWindow − whenTheLastQuestionResolved − turnCycle`, so it needs a fast
+  question *and* a fast cycle to bite — which is why it surfaces a few turns in rather than
+  immediately.
+- **It compounds.** A question truncated at second 20 leaves a timer with 25s still on it, so the
+  question after that one is shorter again, until a window is shorter than the turn cycle.
+
+**The worse half, same cause.** A stale *exclusive-window* timer reads `answererIndex` at fire
+time — the NEW answerer — sees no attempt from them, and therefore charges them their wager for
+freezing on a question they had barely seen, locks them out of it (`"You already had your shot at
+this one"`), and records an inactivity strike. Two strikes marks a player away and starts skipping
+their turns. That one is a scoring error, not just a pacing one, and it is the part that would
+have quietly poisoned the playtest's other numbers.
+
+### The fix
+
+A turn sequence number, not a rewrite. `game.turnSeq` / `game["turnSeq"]`, bumped in
+`beginTurn()` / `_begin_turn()` — the single funnel every turn start already passes through,
+including `resumeAfterDrop`. Each timer captures it when armed and returns early if it has moved
+by the time it fires. Four timers per backend, one line each, no behaviour change to any timer
+doing its own job.
+
+### Verification
+
+- **`server_py/test_turn_timers.py` (new, zero API cost).** Drives `main.py`'s real
+  `threading.Timer` callbacks in-process — `_broadcast_sync` no-ops with no captured event loop,
+  so no uvicorn is needed — on a shortened clock, and asserts both halves: a finished turn's
+  timers cannot touch the next turn (window intact, answerer not charged, not locked out, no
+  inactivity strike), **and** a turn's own timers still fire on their own deadline with the freeze
+  charge landing correctly. The second half is not padding: the cheap way to pass the first half
+  is to make every timer a no-op.
+- **Confirmed it actually catches the bug**: with the guard stashed, 4 assertions fail; restored,
+  all 11 pass. A regression test that was never seen to fail isn't one.
+- `server_py/test_mechanics.py` (63), `scripts/mechanics-test.js` (105), `scripts/postgame-test.js`,
+  and `npm run build` — all still green.
+
+**Known asymmetry, stated rather than papered over:** the JS fix is the same four lines but has no
+automated coverage. `server.js`'s orchestration lives inside `app.prepare().then(...)` and isn't
+importable, so there's no harness to hang a test on — that was true before this change too. Worth
+restructuring if a second orchestration bug turns up; not worth it for this one.
+
+### What this costs the playtest
+
+PLAYTEST.md PT-4 → PT-8 are **not** answered by this session. Any question that followed a
+quickly-answered one was running on a clock shorter than the design says, so the table was
+measuring a broken clock and its timing verdicts aren't evidence about the 8s exclusive window,
+the 5s reading window, or whether the lock window is long enough. A banner saying so is now at the
+top of PLAYTEST.md. The one number that survives is a negative: nothing about the *wager ladder*
+or the 0.75x payout depends on the timers, so those are still open on their own terms.
+
+The owner's second note from the same session — the answer screen has too much on it, and the
+experience wants to be "I read, I answer" — is a real design item and is where the next session
+starts.
+
+### Part 2 — the aesthetics work (same session, after the fix)
+
+Owner's steer: "again we are starting with aesthetics". Four global instructions, then three
+screens one at a time, each arriving as a screenshot plus a numbered list.
+
+**Global (MYF `CLAUDE.md` item 48).** The question-mark field is now on every page — item 40's
+ground, built rather than only decided, generated by `scripts/build-question-field.mjs` and laid
+on `body` so no screen can forget it. The official title treatment
+(`myf_title_trtmnt_trans.svg`) replaced the traced mono mask, upper left, on every page including
+phones: **a CSS mask keeps only the silhouette**, and this artwork's 29 grey levels are the point
+of it. The logo is 66% bigger and one size everywhere (`LOGO_HEIGHT = 73`, replacing a 44 in the
+bar overriding a 40 default). Purple is gone — `game.accent` `#7c3aed` → `#F7C948`.
+
+The accent swap has one non-obvious consequence worth remembering: **the accent went from a dark
+colour to a light one**, so every solid `bg-game-accent` surface needed dark text in the same
+pass. White on this gold is 1.7:1.
+
+**Three screens (item 49).** Card Select (names atop at up to 2x, type at bottom, cards 33%
+smaller, Half-Off shown in-grid with a check instead of explained in a sentence); Set Wager
+("Slice" gone, EASIEST/HARDEST on the ends of the ladder, smaller Lock In); Generating Question
+(one `.panel` colour for every box, `Round 1: Question 1 of 6` as the announcement's top line,
+the floating duplicate between the boxes deleted).
+
+**What the method actually bought.** Every change was checked by driving the real app in headless
+Chromium and looking at the screenshot. Three things were caught that way and by nothing else:
+the brand bar broke at 390px once the logo was fixed at 73px (the build was perfectly happy);
+"2x names" and "33% smaller cards" are mutually impossible at face value — "Whoa Nellie" rendered
+as "Who / a / Nelli / e", which is what turned a flat size into a ceiling with a fit calculation
+under it; and the in-hand check mark ran over the longest names until the spacer became a float
+rather than padding.
+
+**Deliberately not done, and flagged to the owner:** `#7c3aed` still appears three times in
+`LOGO_PALETTES`, where it is one of the three emoji colours rather than text. The instruction was
+about purple *text*, and item 40 already carries an open note that those palettes want a pass now
+the ground is slate — they are one decision, not two. Also not done: the **plate device** (item
+40's core rule). Panels are still the pre-slate dark navy, which reads as a card floating above
+the field rather than a hole cut through it. `.panel` is the single place that changes when it
+happens.
+
+### Where this session ended
+
+**Branch `claude/myf-flow-b-playtest-xv2lqh`, four commits, open as PR #20 (not merged).**
+
+| Commit | What |
+|---|---|
+| `7c4adb5` | Turn-scoped timer guards, both backends + `test_turn_timers.py` |
+| `cb19f6c` | Question-mark ground, official title treatment, logo size, purple → gold; Card Select, Set Wager, Generating Question |
+| `cd6ce04` | Lobby: treatment as hero, four imperatives |
+| `dc6f3d7` | Lobby: hero dropped, punchline set as the mark |
+
+**Owner has taken an action item off this list:** they are renovating the metallic title
+treatment artwork themselves. The integration is already a drop-in — `Wordmark.jsx` renders
+`public/brand/myf_title_trtmnt_trans.svg` as a plain `<img>`, so a new file at that path needs no
+code change. Keep the 587×69 aspect and nothing reflows. **The renovation brief, from measuring
+the current asset:** its 29 grey levels run `#0b0b06` → `#f4f3f1`, i.e. it was drawn for a light
+ground, and on slate everything below about `#9d9c94` falls under 3.5:1 and simply is not there.
+Roughly two-thirds of the artwork is invisible, which is what reads as "dim". A recolour will not
+fix that — the shading has to be re-pitched into the top half of the value scale, **or** the
+treatment needs a light plate under it, which is a change to item 40's plate device and therefore
+one decision with it, not two.
+
+### Next session
+
+1. **Interface cleanup on the answer screen** — owner's stated priority since the playtest, and
+   still not started: "too much going on… I read, I answer." Note that the plate device (item 40)
+   is probably most of what this needs, and `.panel` in `globals.css` is now the single place it
+   lands.
+2. **Re-run the playtest on the fixed build**, then read PT-4 → PT-8 for real. The August 18
+   table measured a broken clock; its timing verdicts are not evidence.
+3. **Merge PR #20** (or say what's blocking it). Four commits, all verified, nothing else stacked
+   behind it.
+4. **Open owner decisions**, none blocking:
+   - The three `#7c3aed` entries in `LOGO_PALETTES` — the same purple that was rejected as text,
+     still on screen in the emoji mark. One decision with item 40's "palettes want a pass now the
+     ground is slate", not two.
+   - The plate device itself (item 40's core rule): panels are still pre-slate dark navy.
+   - Spotlight's 1-second exclusive window (PT-6) — worth deciding rather than watching, and it
+     was the other candidate explanation for this session's short window.
+   - Lobby punchline: currently set as the mark itself rather than type. A one-line revert if the
+     owner wanted type.
+5. Still queued and untouched: `questionLog`/`postGame` in `server_py` (item 46, the only thing
+   blocking a Godot post-game screen), and item 44's two tabled tuning follow-ups (wager tier
+   simplification; widening the colour ramp), both of which the playtest re-run may change.
+
+---
+
 ## Session 31 — August 17, 2026 (MYF: Flow B built, pre-committed answers, the wager ladder, server_py port)
 
 **Branch:** `claude/flow-b-implementation-2lwwmt` (started from Session 30's tip, `ec485ac` — the
