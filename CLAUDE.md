@@ -289,15 +289,32 @@ Full list in `SESSIONS.md`. Top priorities:
    answered, by measurement rather than by asking:
    - **The extraction runs happened.** `mystery_database/extractions/` holds **570 files**, of
      which **281 are `pdf_*`** — up from 75. So the `_ready/` anthology batch (and more) was run.
-   - **The registry was NOT regenerated afterwards, and is stale right now.** Checked-in
-     `part_registry.json`: **4,807 parts / 556 sources**. A fresh
-     `populate_from_test_corpus()` + `load_extractions()`: **4,952 / 569**. So **13 sources and
-     145 parts are currently invisible to generation** — they are extracted, on disk, and not
-     being sampled. Against the Session 23 baseline (369 / 2,833) the corpus has grown a lot; the
-     registry is simply behind it again.
-   - This is exactly the recurrence item 14 predicted. **[FIXED, Session 33]** Both halves done,
-     no API calls: the registry is regenerated (4,952 / 569 committed), and `load_registry()` now
-     has a real staleness check — see item 14.
+   - **The registry WAS regenerated — and still lost 13 sources.** Checked-in
+     `part_registry.json` was **4,807 parts / 556 sources** against a fresh build's **4,952 /
+     569**, so 13 sources and 145 parts were extracted, on disk, and never sampled.
+     **Do not read this as "nobody remembered to regenerate" — an earlier draft of this note said
+     that and it was wrong.** `20c3ee3` (owner, August 10) is titled "anthology extractions +
+     regenerated part_registry" and did exactly that. The 20 extraction files missing from the
+     index it produced were added *in that same commit*, and they cluster: ten stories from
+     *Best American 2016 (Elizabeth George)* and three from *2007 (Hiaasen)* — the 13 that yield
+     parts — plus 7 that yield none (see below). That is the signature of a regeneration run while
+     those two books were still extracting, with everything committed together afterwards. Git
+     cannot show the ordering (one commit, no intermediate timestamps), but nothing else explains
+     the clustering.
+     **Why this matters for the fix:** the failure was not neglect, it was a race between a long
+     extraction run and a manual regeneration step. Doing the conscientious thing still silently
+     lost 13 sources, which is precisely what an automatic check fixes and a reminder does not.
+   - **[FIXED, Session 33]** Both halves done, no API calls: the registry is regenerated
+     (4,952 / 569 committed), and `load_registry()` now has a real staleness check — see item 14.
+   - **[OPEN, found in the same pass] 7 anthology extractions are all-null and contribute nothing.**
+     `pdf_the_best_american_mystery_stor__story19_a_quiet_place_to_hide`,
+     `__story21_remembering_the_rain`, `__story21_trip_to_reno_...`, `__story22_doggy_style`,
+     `__story22_the_heroism_of_lieutenant_wills_...`, `__story22_the_women_s_room`,
+     `__story22_these_two_guys_thuglit_november`. Every P1 field is `null` with `confidence: "low"`
+     and **no `_meta.extraction_warnings`**, so by item 13's logic they read as a genuine "nothing
+     found" rather than a caught parse failure — which is implausible for seven mystery short
+     stories. They occupy filenames, so the dedup-by-filename rule means a re-run will skip them
+     unless they are deleted first. Worth a look before the next batch; not diagnosed here.
 8. **[FUTURE]** Phase 4 — Steam integration (GodotSteam plugin)
 9. **[ONGOING]** Repo-wide branch cleanup (Session 18) — 9 fully-merged branches identified as
    safe to delete, plus a further 21 stale unmerged branches the owner is triaging on their own

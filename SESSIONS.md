@@ -3094,10 +3094,26 @@ written to disk correctly — were simply never sampled by generation.
 **Worth being precise about what the bug was, because it is easy to misread as a data-migration
 problem.** Nothing was in the wrong place and nothing needed moving. `part_registry.json` is a
 *derived index*: generation samples it, never the extraction files themselves. `load_registry()`
-rebuilt it only when the file was **missing**, never when it was out of date, so extraction runs
-landed on disk and the index quietly stayed as it was. Nothing errored — which is precisely why it
-survived twice, for months each time (March 11 → Session 23, ~75 sources; Session 23 → Session 33,
-13 sources / 145 parts).
+rebuilt it only when the file was **missing**, never when it was out of date.
+
+**And the diagnosis this session first reached was wrong, so it is worth writing down correctly.**
+The initial read — carried in this file and in two commit messages before being corrected — was
+"the extraction runs happened and nobody regenerated the registry afterwards". Checking the
+history rather than the file counts says otherwise: `20c3ee3` (owner, August 10, "Corpus:
+anthology extractions + regenerated part_registry") **did** regenerate it, and no extraction files
+were added after it at all.
+
+What actually happened is worse. The 20 extraction files absent from the index that commit
+produced were added **in that same commit**, and they cluster — ten stories from *Best American
+2016 (Elizabeth George)*, three from *2007 (Hiaasen)*, which are the 13 that yield parts, plus 7
+that yield none. That is the signature of the regeneration running while those two books were
+still extracting, with everything committed together afterwards. Git cannot prove the ordering
+(one commit, no intermediate timestamps) and nothing else explains the clustering.
+
+**So the failure mode was a race, not neglect** — a long extraction run against a manual
+regeneration step — which is the stronger argument for the check: doing the conscientious thing
+still silently lost 13 sources, and a reminder in a doc would not have helped. The March 11 →
+Session 23 instance (~75 sources) was the plain "never rebuilt" version of the same gap.
 
 **The check is a corpus fingerprint**, in a sidecar `part_registry.meta.json`: the hashed set of
 extraction filenames, plus a schema version. Filenames are the right unit because
@@ -3121,8 +3137,15 @@ genuinely reuses the cache is proved by corrupting the cached file and confirmin
 **survives** — a rebuild would have repaired it.
 
 The same review pass answers root `CLAUDE.md` item 7's "next session should check" list: the
-anthology extraction runs did happen (281 `pdf_*` extractions, up from 75; 570 extraction files
-total), and the registry was not regenerated afterwards, which is why it was stale.
+anthology extraction runs did happen — 281 `pdf_*` extractions, up from 75; 570 extraction files
+total — run locally by the owner and landed in `20c3ee3`.
+
+**One thing found on the way and left open:** 7 of those anthology extractions are all-null —
+every P1 field `null` at `confidence: "low"`, with **no `_meta.extraction_warnings`**, so by item
+13's logic they read as a genuine "nothing found" rather than a caught parse failure. For seven
+mystery short stories that is implausible. They also occupy filenames, and dedup is by filename,
+so a re-run skips them unless they are deleted first. Listed by name in root `CLAUDE.md` item 7.
+Not diagnosed — it needs someone to look at one against its source PDF.
 
 ### Next session
 
