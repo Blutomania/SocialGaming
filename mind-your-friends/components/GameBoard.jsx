@@ -17,22 +17,26 @@ export default function GameBoard({ game, myId, socket }) {
   const rule = game.roundRule && game.roundRule.id !== 'none' ? game.roundRule : null;
 
   return (
-    <div className="mx-auto w-full max-w-3xl space-y-4">
-      <ScoreStrip game={game} myId={myId} />
+    // space-y-6, not 4: the gap between plates is where the field shows
+    // through, and that is the only thing that makes two stacked plates read
+    // as two plates rather than as one tall block. At 10% mark strength a
+    // 16px gap is statistically likely to contain no mark at all.
+    <div className="mx-auto w-full max-w-3xl space-y-6">
+      <ScoreStrip game={game} myId={myId} round={round} questionInRound={questionInRound} />
 
       {game.roundAnnouncement && (
-        <RoundAnnouncement
-          announcement={game.roundAnnouncement}
-          round={round}
-          questionInRound={questionInRound}
-        />
+        <RoundAnnouncement announcement={game.roundAnnouncement} />
       )}
 
       {/* The rule stays on screen for the rest of the round — a rule you have
           to remember is one people forget mid-round and then feel cheated by.
           Hidden on the announcement turn itself, where the banner above is
-          already saying the same words twice. */}
-      {rule && !game.roundAnnouncement && (
+          already saying the same words twice, and on the ANSWER screen, where
+          item 40 puts it inside the question's own plate instead: Rebus, ELI5
+          and Boxed In all change how an answer must be GIVEN, so at the moment
+          of answering the rule is part of reading the question rather than a
+          box above it. */}
+      {rule && !game.roundAnnouncement && game.phase !== 'ANSWER' && (
         <div className="panel px-4 py-2 text-center">
           <span className="text-lg">{rule.emoji}</span>{' '}
           <span className="font-semibold text-game-gold">{rule.name}</span>
@@ -41,11 +45,6 @@ export default function GameBoard({ game, myId, socket }) {
       )}
 
       <div className="panel p-4">
-        {/* The round/question line leads the page's first box whichever box
-            that is, so it never floats between them again. */}
-        {!game.roundAnnouncement && (
-          <RoundLine round={round} questionInRound={questionInRound} className="mb-3 text-center" />
-        )}
         {game.phase === 'CATEGORY' && <CategoryPicker game={game} myId={myId} socket={socket} />}
         {game.phase === 'WAGER' && <WagerPicker game={game} myId={myId} socket={socket} />}
         {game.phase === 'CARD' && <CardPhase game={game} myId={myId} socket={socket} />}
@@ -121,19 +120,24 @@ function RebusReveal({ rebus, answer }) {
 // "ROUND 1" inside the announcement and once as "Round 1 · Question 1/4 (1/4
 // total)" floating between the boxes. The floating copy is gone; this is what
 // replaced both.
+// Item 49 made this one component rendered as the first line of whichever box
+// led the page. It now has a single fixed home instead — the standings band —
+// which keeps that decision's actual point (the fact is written once, never
+// twice) while taking a line out of the reading column, and puts the round
+// data upper-left where item 40 says chrome goes. Where it lives is now a
+// property of the band, not of which box happens to be first.
 function RoundLine({ round, questionInRound, className = '' }) {
   return (
-    <p className={`text-xs tracking-wide text-gray-400 ${className}`}>
+    <p className={`text-xs tracking-wide text-slate-muted ${className}`}>
       Round {round}: Question {questionInRound} of {QUESTIONS_PER_ROUND}
     </p>
   );
 }
 
-function RoundAnnouncement({ announcement, round, questionInRound }) {
+function RoundAnnouncement({ announcement }) {
   const plain = announcement.ruleId === 'none';
   return (
     <div className="panel px-4 py-4 text-center">
-      <RoundLine round={round} questionInRound={questionInRound} />
       {plain ? (
         <>
           <p className="mt-1 text-2xl font-bold">Straight trivia</p>
@@ -153,21 +157,27 @@ function RoundAnnouncement({ announcement, round, questionInRound }) {
   );
 }
 
-function ScoreStrip({ game, myId }) {
+// One plate, not one box per player. N boxes across the top is N things the
+// eye decodes separately before it ever reaches the question, and the
+// standings are ambient — they want to read as a single band of chrome.
+//
+// The active player is marked with the accent rather than with a ring, because
+// a ring redraws the box that the plate just dissolved.
+function ScoreStrip({ game, myId, round, questionInRound }) {
   return (
-    <div className="flex flex-wrap gap-2">
-      {game.players.map((p, i) => (
-        <div
-          key={p.id}
-          className={`rounded px-3 py-1 text-sm ${
-            i === game.activePlayerIndex
-              ? 'bg-game-card ring-2 ring-game-accent'
-              : 'bg-game-card'
-          }`}
-        >
-          {p.name}{p.id === myId && ' (you)'}: <span className="font-mono">{p.score}</span>
-        </div>
-      ))}
+    <div className="panel flex flex-wrap items-center justify-center gap-x-6 gap-y-1 px-4 py-2 text-sm sm:justify-between">
+      <RoundLine round={round} questionInRound={questionInRound} />
+      <div className="flex flex-wrap justify-center gap-x-6 gap-y-1">
+        {game.players.map((p, i) => {
+          const active = i === game.activePlayerIndex;
+          return (
+            <span key={p.id} className={active ? 'text-game-accent' : 'text-slate-muted'}>
+              {p.name}{p.id === myId && ' (you)'}{' '}
+              <span className={`font-mono ${active ? '' : 'text-slate-text'}`}>{p.score}</span>
+            </span>
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -280,13 +290,98 @@ function CardPhase({ game }) {
 }
 
 function AnswerPhase({ game, myId, socket }) {
-  if (game.roundRule.submissionBased) {
-    return <SubmissionAnswerPhase game={game} socket={socket} />;
+  const inner = game.roundRule.submissionBased ? (
+    <SubmissionAnswerPhase game={game} socket={socket} />
+  ) : game.roundRule.lineupBased ? (
+    <LineupPhase game={game} socket={socket} />
+  ) : (
+    <OpenAnswerPhase game={game} myId={myId} socket={socket} />
+  );
+
+  return (
+    <div className="space-y-3 text-center">
+      <RuleChip rule={game.roundRule} />
+      {inner}
+    </div>
+  );
+}
+
+// The rule, as a line rather than as a box of its own (item 40). The
+// description stays — "a rule you have to remember is one people forget
+// mid-round and then feel cheated by" is why the standalone panel exists, and
+// that is just as true at the moment of answering. What was costing this
+// screen was the BOX, not the words.
+function RuleChip({ rule }) {
+  if (!rule || rule.id === 'none') return null;
+  return (
+    <p className="text-xs text-slate-muted">
+      <span className="uppercase tracking-[0.2em] text-game-accent">
+        {rule.emoji} {rule.name}
+      </span>
+      <span className="ml-2">{rule.description}</span>
+    </p>
+  );
+}
+
+// One instruction, one clock. This replaces four separate blocks that each
+// carried a countdown and a sentence of their own — the reading window, the
+// room's view of the exclusive window, the answerer's view of it, and the lock
+// hint. They were never on screen at the same time, so they were never four
+// things; they were one thing wearing four faces, and rendering them as four
+// independent `&&` blocks is what made the screen read as four instructions.
+//
+// `note` is capped at a short clause on purpose. Anything needing a sentence
+// is a rule the player learned in round 1, and reprinting it every question is
+// most of what "too much going on" was made of.
+function AnswerStatus({ verb, seconds, note }) {
+  return (
+    <div className="space-y-1">
+      <div className="flex items-baseline justify-center gap-3">
+        <span className="text-sm uppercase tracking-[0.25em] text-slate-muted">{verb}</span>
+        {seconds != null && (
+          <span className="font-mono text-3xl tabular-nums text-slate-text">{seconds}</span>
+        )}
+      </div>
+      {note && <p className="text-xs text-slate-muted">{note}</p>}
+    </div>
+  );
+}
+
+// The stake, stated once. It used to be on screen three times at once — a
+// header line, the answerer's fine print and the buzzer's fine print — each
+// phrased differently, which is how a player ends up reading all three to
+// check that they agree with each other.
+function StakeLine({ wager, buzzPoints, isAnswerer, answererName }) {
+  return (
+    <p className="text-xs text-slate-muted">
+      <span className="font-mono text-slate-text">{wager}</span> on it for{' '}
+      {isAnswerer ? 'you' : answererName}
+      {' · '}
+      <span className="font-mono text-slate-text">{buzzPoints}</span> to whoever takes it
+    </p>
+  );
+}
+
+// Ambient, and therefore one line at the foot: how many answers are loaded,
+// and who has already spent their shot. Neither is an instruction, so neither
+// belongs anywhere near the one that is.
+function AnswerMargin({ lockedCount, spent }) {
+  const bits = [];
+  if (lockedCount > 0) bits.push(`${lockedCount} locked and ready`);
+  if (spent.length > 0) {
+    // Every entry says what happened. A bare name used to mean "answered and
+    // got it wrong" purely by implication — the only outcome with no label —
+    // which reads as an unexplained name in a list of explained ones. In the
+    // ANSWER phase a spent attempt that neither passed nor timed out can only
+    // be a wrong answer; a correct one would have ended the question.
+    bits.push(
+      spent
+        .map((a) => `${a.name} (${a.passed ? 'passed' : a.timedOut ? 'froze' : 'missed'})`)
+        .join(', ')
+    );
   }
-  if (game.roundRule.lineupBased) {
-    return <LineupPhase game={game} socket={socket} />;
-  }
-  return <OpenAnswerPhase game={game} myId={myId} socket={socket} />;
+  if (bits.length === 0) return null;
+  return <p className="text-xs text-gray-500">{bits.join(' · ')}</p>;
 }
 
 // Flow B (GAME_DESIGN.md → "The Round Loop"). Three windows inside one
@@ -296,6 +391,12 @@ function AnswerPhase({ game, myId, socket }) {
 // The two boundaries arrive as timestamps and are compared against the local
 // clock on a 250ms tick — the server only pushes state when something
 // changes, so a countdown derived server-side would freeze between pushes.
+//
+// LAYOUT follows the owner's playtest note ("too much going on… I read, I
+// answer"), so the screen is three zones and never more: the question, then
+// ONE instruction with ONE clock, then the controls that instruction refers
+// to. Everything else — the stake, the locked count, who has already gone —
+// is chrome and sits below the fold of attention, stated once each.
 function OpenAnswerPhase({ game, myId, socket }) {
   const [answer, setAnswer] = useState('');
   const [inputMode, setInputMode] = useState('text');
@@ -310,7 +411,6 @@ function OpenAnswerPhase({ game, myId, socket }) {
 
   const answerer = game.players[game.answererIndex];
   const isAnswerer = game.iAmAnswerer ?? answerer.id === myId;
-  const timer = game.roundRule.timerSeconds;
   const readingLeft = Math.max(0, Math.ceil(((game.answerOpensAt ?? 0) - now) / 1000));
   const exclusiveLeft = Math.max(0, Math.ceil(((game.buzzOpensAt ?? 0) - now) / 1000));
   const lockLeft = Math.max(0, Math.ceil(((game.lockClosesAt ?? 0) - now) / 1000));
@@ -363,65 +463,103 @@ function OpenAnswerPhase({ game, myId, socket }) {
     });
   };
 
+  // Exactly one of these is live at a time, which is the whole point of the
+  // rewrite: the screen shows one instruction, so it has to be computed as one
+  // value rather than as a stack of `&&` blocks that merely happened not to
+  // overlap. The ordering is the priority order — what YOU can do beats what
+  // is being done to you.
+  let status = null;
+  let outMessage = null;
+
+  if (reading) {
+    status = { verb: 'Read it', seconds: readingLeft };
+  } else if (canAnswer) {
+    status = exclusive
+      ? {
+          verb: 'Your shot',
+          seconds: exclusiveLeft,
+          note: game.iCanPass ? 'Passing costs you nothing' : null,
+        }
+      : // The exclusive window is over and they still haven't answered: there
+        // is no clock that belongs to them any more, so printing one would be
+        // a lie. What changed is who they are racing.
+        { verb: 'Your shot', seconds: null, note: 'The room can take it now' };
+  } else if (canLock) {
+    status = { verb: 'Lock one in', seconds: lockLeft, note: 'No lock, no buzz' };
+  } else if (canBuzz) {
+    status = { verb: 'Buzzers open', seconds: null };
+  } else if (exclusive) {
+    status = {
+      verb: `${answerer.name}'s shot`,
+      seconds: exclusiveLeft,
+      note: game.myLockedAnswer ? `Locked: “${game.myLockedAnswer}”` : null,
+    };
+  } else {
+    outMessage = game.myAttempt?.passed
+      ? 'You passed — it belongs to the room now.'
+      : game.myAttempt?.timedOut
+      ? `Your window closed without an answer — that's ${game.currentWager} gone.`
+      : game.myAttempt
+      ? `You played “${game.myAttempt.answer}” — not it.`
+      : game.myLockedAnswer
+      ? 'Locked in — waiting for the buzzer.'
+      : "You didn't lock one in — this one's out of your hands.";
+  }
+
   return (
-    <div className="space-y-3 text-center">
-      {game.heckleMessage && (
-        <p className="italic text-game-pink">Heckle: "{game.heckleMessage}"</p>
+    <div className="space-y-4 text-center">
+      {/* The host, then the question. Quip and heckle are flavour and now read
+          as flavour: one small muted line above the question rather than two
+          full-size paragraphs competing with it. */}
+      {(game.hostQuip || game.heckleMessage) && (
+        <p className="text-sm text-slate-muted">
+          {game.heckleMessage && (
+            <span className="italic text-game-pink">
+              Heckle: &ldquo;{game.heckleMessage}&rdquo;{' '}
+            </span>
+          )}
+          {game.hostQuip}
+        </p>
       )}
-      <p className="text-game-gold">{game.hostQuip}</p>
 
       {game.rebus ? (
         <RebusPuzzle rebus={game.rebus} />
       ) : (
-        // Printed in the green for its wager tier: palest for the easiest
-        // question, deepest for the hardest. See lib/difficultyColors.js —
-        // every step is contrast-checked against the ground, because the
-        // question is the one thing on screen that must always be readable.
+        // Light and generous rather than heavy bold (item 40): the plate under
+        // it carries the legibility, so the question does not have to shout to
+        // be the biggest thing on screen.
+        //
+        // Printed in the green for its wager tier — palest for the easiest
+        // question, deepest for the hardest. See lib/difficultyColors.js: every
+        // step of that ramp was contrast-checked against the slate GROUND,
+        // which is exactly what the plate beneath it now is, so the measured
+        // number and the rendered pixel finally describe the same thing.
         <p
-          className="text-xl font-semibold leading-snug"
+          className="text-2xl font-light leading-snug"
           style={{ color: difficultyColor(game.difficultyTier) }}
         >
           {game.question}
         </p>
       )}
 
-      <p className="text-sm text-gray-400">
-        {answerer.name}&apos;s question · {game.currentWager} pts for {isAnswerer ? 'you' : 'them'}
-        {' · '}
-        {game.buzzPoints} for anyone else who takes it off {isAnswerer ? 'you' : 'them'}
-      </p>
-
-      {reading && (
-        <p className="text-lg font-semibold text-game-blue">
-          Read it… {isAnswerer ? 'your window opens' : 'answers open'} in {readingLeft}
-        </p>
-      )}
-
-      {/* The room's view of the exclusive window. Said plainly, because a
-          locked-out buzzer with no explanation reads as a bug. */}
-      {exclusive && !isAnswerer && (
-        <p className="text-lg font-semibold text-game-blue">
-          {answerer.name}&apos;s shot — buzzers open in {exclusiveLeft}
-        </p>
-      )}
-
-      {exclusive && isAnswerer && game.iCanPass && (
-        <p className="text-lg font-semibold text-game-blue">
-          Your question, your call — {exclusiveLeft}s before the room can take it
-        </p>
+      {status ? (
+        <AnswerStatus {...status} />
+      ) : (
+        <p className="text-sm text-slate-muted">{outMessage}</p>
       )}
 
       {canType && (
-        <>
-          {canLock && (
-            <p className="text-sm text-gray-400">
-              Lock an answer in now — {lockLeft}s. You can only buzz with one.
-            </p>
-          )}
+        <div className="space-y-2">
           <div className="flex gap-2">
+            {/* min-w-0 is load-bearing, not tidying: a flex item defaults to
+                `min-width: auto`, so `flex-1` alone will not let an <input>
+                shrink below its intrinsic size (~20 characters). At 390px that
+                pushed the button 22px off the right edge — and only on the
+                answerer's screen, because "Submit" is one word and cannot wrap
+                its way out of the squeeze the way "Lock It In" does. */}
             <input
               autoFocus
-              className="flex-1 rounded bg-game-dark px-3 py-2"
+              className="min-w-0 flex-1 rounded bg-game-dark px-3 py-2"
               placeholder={canLock ? 'Your answer, ready to go…' : 'Your answer…'}
               value={answer}
               onChange={(e) => {
@@ -451,68 +589,35 @@ function OpenAnswerPhase({ game, myId, socket }) {
               only way out of the wager that costs nothing. */}
           {canAnswer && exclusive && game.iCanPass && (
             <button
-              className="rounded border border-gray-600 px-4 py-2 text-sm text-gray-300 hover:bg-game-dark"
+              className="rounded border border-slate-muted/40 px-4 py-2 text-sm text-slate-muted hover:bg-game-dark"
               onClick={pass}
             >
-              Pass — throw it to the room (costs you nothing)
+              Pass — throw it to the room
             </button>
           )}
-
-          <p className="text-xs text-gray-500">
-            {canAnswer
-              ? `One shot. Wrong or out of time costs you ${game.currentWager} — passing costs nothing.`
-              : `A locked answer can't be changed, and you can't type one later. ${game.buzzPoints} pts if you buzz it in first.`}
-          </p>
-        </>
+        </div>
       )}
 
       {/* One tap, no typing. The decision was made when the answer was locked
           in; this is only about whether you dare play it first. */}
       {canBuzz && (
-        <>
-          <button
-            className="w-full rounded bg-game-red px-4 py-6 text-2xl font-bold hover:opacity-90"
-            onClick={buzz}
-          >
-            BUZZ — &ldquo;{game.myLockedAnswer}&rdquo;
-          </button>
-          <p className="text-xs text-gray-500">
-            {timer}s on the clock. First correct buzz takes {game.buzzPoints}.
-          </p>
-        </>
+        <button
+          className="w-full rounded bg-game-red px-4 py-6 text-2xl font-bold hover:opacity-90"
+          onClick={buzz}
+        >
+          BUZZ — &ldquo;{game.myLockedAnswer}&rdquo;
+        </button>
       )}
 
       {actionError && <p className="text-sm text-game-red">{actionError}</p>}
 
-      {!reading && !canType && !canBuzz && (
-        <p className="text-gray-400">
-          {game.myAttempt?.passed
-            ? 'You passed — it belongs to the room now.'
-            : game.myAttempt?.timedOut
-            ? `Your window closed without an answer — that's ${game.currentWager} gone.`
-            : game.myAttempt
-            ? `You played "${game.myAttempt.answer}" — not it. Watch the others.`
-            : game.myLockedAnswer
-            ? `Locked in: "${game.myLockedAnswer}" — wait for the buzzer.`
-            : exclusive
-            ? 'Waiting…'
-            : "You didn't lock one in — this one's out of your hands."}
-        </p>
-      )}
-
-      {/* The count, never the answers. Watching "2 locked and ready" climb
-          while the answerer sweats is most of the tension here. */}
-      {game.lockedCount > 0 && (
-        <p className="text-xs text-gray-500">{game.lockedCount} locked and ready</p>
-      )}
-
-      {spent.length > 0 && (
-        <p className="text-xs text-gray-500">
-          Done: {spent
-            .map((a) => `${a.name}${a.passed ? ' (passed)' : a.timedOut ? ' (froze)' : ''}`)
-            .join(', ')}
-        </p>
-      )}
+      <StakeLine
+        wager={game.currentWager}
+        buzzPoints={game.buzzPoints}
+        isAnswerer={isAnswerer}
+        answererName={answerer.name}
+      />
+      <AnswerMargin lockedCount={game.lockedCount ?? 0} spent={spent} />
     </div>
   );
 }
