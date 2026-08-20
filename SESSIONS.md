@@ -3118,17 +3118,50 @@ the ground is slate — they are one decision, not two. Also not done: the **pla
 the field rather than a hole cut through it. `.panel` is the single place that changes when it
 happens.
 
+### Where this session ended
+
+**Branch `claude/myf-flow-b-playtest-xv2lqh`, four commits, open as PR #20 (not merged).**
+
+| Commit | What |
+|---|---|
+| `7c4adb5` | Turn-scoped timer guards, both backends + `test_turn_timers.py` |
+| `cb19f6c` | Question-mark ground, official title treatment, logo size, purple → gold; Card Select, Set Wager, Generating Question |
+| `cd6ce04` | Lobby: treatment as hero, four imperatives |
+| `dc6f3d7` | Lobby: hero dropped, punchline set as the mark |
+
+**Owner has taken an action item off this list:** they are renovating the metallic title
+treatment artwork themselves. The integration is already a drop-in — `Wordmark.jsx` renders
+`public/brand/myf_title_trtmnt_trans.svg` as a plain `<img>`, so a new file at that path needs no
+code change. Keep the 587×69 aspect and nothing reflows. **The renovation brief, from measuring
+the current asset:** its 29 grey levels run `#0b0b06` → `#f4f3f1`, i.e. it was drawn for a light
+ground, and on slate everything below about `#9d9c94` falls under 3.5:1 and simply is not there.
+Roughly two-thirds of the artwork is invisible, which is what reads as "dim". A recolour will not
+fix that — the shading has to be re-pitched into the top half of the value scale, **or** the
+treatment needs a light plate under it, which is a change to item 40's plate device and therefore
+one decision with it, not two.
+
 ### Next session
 
-1. **Interface cleanup on the answer screen** — owner's stated priority, and the reason it comes
-   first: it's what they watched fail at a table. "I read, I answer."
-2. **Re-run the playtest on the fixed build**, then read PT-4 → PT-8 for real.
-3. Still queued and untouched: `questionLog`/`postGame` in `server_py` (item 46, the only thing
-   blocking a Godot post-game screen), and item 44's two owner-tabled tuning follow-ups (wager
-   tier simplification; widening the colour ramp), both of which the re-run may change.
-4. Still unresolved from PT-6, and now worth deciding rather than watching: Spotlight's 1-second
-   exclusive window. It was the other candidate explanation for the short window this session
-   chased, and it remains implemented literally per spec.
+1. **Interface cleanup on the answer screen** — owner's stated priority since the playtest, and
+   still not started: "too much going on… I read, I answer." Note that the plate device (item 40)
+   is probably most of what this needs, and `.panel` in `globals.css` is now the single place it
+   lands.
+2. **Re-run the playtest on the fixed build**, then read PT-4 → PT-8 for real. The August 18
+   table measured a broken clock; its timing verdicts are not evidence.
+3. **Merge PR #20** (or say what's blocking it). Four commits, all verified, nothing else stacked
+   behind it.
+4. **Open owner decisions**, none blocking:
+   - The three `#7c3aed` entries in `LOGO_PALETTES` — the same purple that was rejected as text,
+     still on screen in the emoji mark. One decision with item 40's "palettes want a pass now the
+     ground is slate", not two.
+   - The plate device itself (item 40's core rule): panels are still pre-slate dark navy.
+   - Spotlight's 1-second exclusive window (PT-6) — worth deciding rather than watching, and it
+     was the other candidate explanation for this session's short window.
+   - Lobby punchline: currently set as the mark itself rather than type. A one-line revert if the
+     owner wanted type.
+5. Still queued and untouched: `questionLog`/`postGame` in `server_py` (item 46, the only thing
+   blocking a Godot post-game screen), and item 44's two tabled tuning follow-ups (wager tier
+   simplification; widening the colour ramp), both of which the playtest re-run may change.
 
 ---
 

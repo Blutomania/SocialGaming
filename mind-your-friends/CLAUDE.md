@@ -60,6 +60,13 @@ five-tier wager ladder and difficulty-coloured questions. **Nothing has been pla
 people yet** — that is now the top of the list, and no further mechanic work should go in front
 of it. See PLAYTEST.md PT-4 through PT-8 for what to watch.
 
+**Session 32 close (August 18 2026).** Branch `claude/myf-flow-b-playtest-xv2lqh`, four commits,
+**open as PR #20 — not merged.** The playtest found a real bug (item 47) and the aesthetics passes
+(items 48, 49) followed it. **Owner is renovating the metallic title treatment artwork** — a
+drop-in file swap at `public/brand/myf_title_trtmnt_trans.svg`, no code change, keep 587×69. The
+answer-screen cleanup ("I read, I answer") is still the top unstarted item, and the plate device
+is probably most of what it needs.
+
 | # | Item | State |
 |---|---|---|
 | 0 | **PLAY IT.** Flow B, pre-committed answers and the wager ladder are all built and tested but entirely unvalidated by a real table. Four numbers are guesses: the 8s exclusive window, the 5s reading window, whether the lock window gives enough time to commit, and whether 0.75x makes buzzing feel worth it. | **START HERE** |
