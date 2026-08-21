@@ -222,7 +222,7 @@ P1 causal chain must be unbroken: crime → victim → closed world → culprit/
 - Run `coherence_validator.check_mystery()` after — attach result as `_coherence` in the JSON
 
 ### 3. Does it drive down cost?
-API calls are the primary cost driver.
+API calls are the primary cost driver. **Measured economics, levers and the traps are in `docs/AI_COST_PLAYBOOK.md`** (Session 34) — read it before adding a generation-schema field, a play-time API call, or a corpus re-extraction. Headline: output tokens are 95% of a generation call, so prompt caching saves ~5% and is the wrong lever; the right one is writing fixed text at generation time instead of calling per action (10.8× on a four-player game).
 
 | Rule | Detail |
 |---|---|
