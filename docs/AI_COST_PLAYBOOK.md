@@ -134,18 +134,99 @@ spinner); right for every corpus job, which is where the bulk spend actually liv
 The held-back P1→P2 re-extraction of 75 sources (item 12) is the largest uncommitted spend on the
 books. Whenever it happens, it should happen in batch.
 
-## Lever 6 — right-size the model per job
+## Lever 6 — right-size the model per job *(corrected by measurement, Session 34)*
 
-Model choice is per call, not per project. Extraction is mechanical — read a text, fill named fields.
+**An earlier draft of this document said "put extraction on Haiku for a 3× cut on the corpus line."
+Both halves of that were wrong.** `scripts/extract_from_pdfs.py` has always had
+`DEFAULT_MODEL = "claude-haiku-4-5-20251001"`, so it was recommending something already done — and
+the corpus line is far too small for a 3× cut to matter.
 
-| Model | In / Out per 1M | Fits |
+### The P1→P2 job is much smaller and cheaper than "75 sources" sounds
+
+Measured on the real corpus: of 281 `pdf_*` extractions, **206 are already P1+P2** (as are all 283
+`ebook_*`). Exactly **75 are P1-only** — the 12 novels and 63 Hitchcock-anthology stories. Each
+samples a median 22.5K chars, so the whole re-extraction costs:
+
+| Model | Per source | All 75 |
+|---|---:|---:|
+| `claude-haiku-4-5` *(pipeline default)* | ~$0.015 | **~$1.15** |
+| `claude-sonnet-4-6` | ~$0.052 | ~$3.90 |
+| `claude-opus-5` | ~$0.118 | ~$8.90 |
+
+**The entire model choice is worth about $7.75.** Halving it with the Batch API saves $4. Cost is
+not the axis to decide this on — quality is.
+
+### What is actually lost, measured
+
+`scripts/compare_extraction_models.py` runs one source through several models and scores them
+**mechanically**, against the only consumer that matters: `part_registry._atomize_extraction`, which
+turns extraction fields into sampling parts on 8 axes. Prose quality is not the metric; parts are. A
+beautiful extraction that atomizes to nothing is worth nothing to generation.
+
+Seven Hitchcock stories, all three models (~$1.30 of real spend):
+
+| | Full 13-part extractions | Failure mode |
 |---|---:|---|
-| `claude-sonnet-4-6` *(pinned today)* | $3 / $15 | Mystery generation — this is the product |
-| `claude-haiku-4-5` | $1 / $5 | Extraction, classification, field-filling |
+| Haiku | 5 / 7 | lost **axis 8 (alibi)** twice |
+| Sonnet | 6 / 7 | one **JSON parse failure** — billed in full, returned nothing |
+| Opus | 7 / 7 | none |
 
-Extraction on Haiku is a **3× cut on the corpus line**; stacked with batching, ~6×. Generation stays
-on Sonnet — it is the one call whose quality a player experiences, and the wrong place to save a
-dollar.
+**The mechanism behind Haiku's losses is specific and worth understanding**, because it is not
+inaccuracy. `_atomize_extraction` **silently skips any field marked `confidence: "low"`.** On
+*Games for Adults*, an inverted story with no literal alibi, Haiku returned an empty value at low
+confidence — arguably the honest answer — and the registry dropped it. Sonnet and Opus both wrote
+"no alibi structure exists" and then extracted the **functional equivalent**: the concealment
+strategy doing the alibi's job (*"no witnesses, no neighbors, directions withheld so the victims
+cannot say where they went, their own car used so no vehicle is traced"*). That is a reusable
+mystery device. An empty field is not.
+
+The same gap shows up qualitatively where all three succeed. On *Pseudo Identity*:
+
+> **Haiku** — "Howard registers at midtown hotel at 11:15 PM… office records show him present until
+> 11:15; sandwich break documented"
+> **Opus** — "signing the building register out and in around a supper break, slipping out unsigned
+> at 6:45 to kill at 7:30, returning unsigned, leaving officially at 11:15… he even had his
+> secretary place unanswered calls home"
+
+Neither is wrong. Haiku records that an alibi existed; Opus records **how the gap in it was
+manufactured**. The corpus exists to hand generation reusable devices, and the mechanism is the
+reusable part.
+
+### This is already costing coverage in the corpus on disk
+
+Across the 206 existing P1P2 extractions (produced by the pipeline default, i.e. Haiku):
+
+| Axis | Filled | |
+|---|---:|---|
+| 7 social_dynamic | 96.6% | |
+| 5 red_herring | 91.3% | P2-only |
+| 6 reveal_mechanic | 89.3% | |
+| 3 motive | 81.1% | |
+| **4 suspect_archetype** | **80.1%** | P2-only |
+| **8 alibi** | **74.3%** | P2-only |
+| 2 setting_element | 70.4% | |
+| 1 crime_type | 63.1% | |
+
+**133 of 206 files yield fewer than the maximum 13 parts; the mean is 10.3.** The single largest
+cause is low-confidence fields being dropped: 41 alibis, 33 clue_fairness, 28 suspect_architecture.
+
+### Recommendation
+
+**Run the 75 on Opus.** It is the only model that scored 7/7, it fills the three axes the job exists
+to fill, and the whole difference from the cheapest option is under $8 — less than the cost of
+discovering later that a quarter of the re-extraction has an empty alibi axis and doing it again.
+
+Two caveats worth keeping:
+- **Seven stories is a small sample**, and all from one anthology. The 206-file coverage figures are
+  the large-sample evidence; the bake-off explains *why* those figures look as they do.
+- **Sonnet's parse failure was one instance**, not a proven rate — but it is the same failure class
+  as Session 23's silent extraction bug, and the retry logic added then is what would absorb it.
+
+Two changes worth making regardless of model:
+- **Record the model in `_meta`.** None of the 281 extractions says which model produced it, so
+  "which of these came from Haiku" is currently an inference from the default, not a fact.
+- **Reconsider dropping low-confidence fields silently.** It is defensible — low-confidence parts
+  would pollute generation — but it is discarding 41 alibi fields with no record that it happened.
 
 ---
 
