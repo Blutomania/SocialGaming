@@ -45,6 +45,11 @@ check work against it before starting, because it changes what counts as a block
   held-back anthologies and the 7 all-null extractions (item 7) are all real work that buys
   nothing a playtester will notice.
 
+**The playtest gameflow is specified in `docs/PLAYTEST_FLOW.md`** (owner, Session 34) — the
+seven screens, the decisions behind them, the one-call cost shape, and the build order. Read it
+before touching any playtest-path screen; it supersedes the older Phase 2/3 screen descriptions
+in this file wherever they disagree, for playtest purposes only.
+
 **The stage-1 test is blunt:** can somebody who is not the owner sit at a PC, start the game, play
 a whole mystery, and reach the result screen without a Godot error? Anything that fails that is
 urgent; anything that does not, is not.
@@ -694,6 +699,7 @@ Both are zero-API-cost, need no Godot binary, and each has already caught a real
 |---|---|
 | `scripts/check_godot_wiring.py` | Broken `$NodePath`s, `@onready` type mismatches, interactive controls the script never references, autoload calls that do not exist or take the wrong arity. Found `result_screen.gd` reaching for `$MainVBox/…` when the scene nests under `ScrollContainer/MainVBox/…` — the whole end-of-game screen. |
 | `scripts/check_mystery_playable.py` | A saved mystery whose `solution.culprit` names no listed suspect, an empty suspect list, or a blocking coherence failure that was served anyway. |
+| `scripts/test_crime_scene_map.py` | The derived crime-scene layout: overlapping rooms, rooms off-canvas, a row that leaves a hole, a witness placed outside the room they are said to be in, or a layout that is not identical run to run. |
 
 Godot reports both classes of failure only at runtime, and the second one not even then — it
 looks like the player guessed wrong.
