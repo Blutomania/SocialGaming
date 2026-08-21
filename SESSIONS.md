@@ -3228,6 +3228,48 @@ highest-visibility user-generated content surface in the product, and MYF alread
 `moderateHeckle()` for a much smaller one. It cannot ride along on generation because the
 background appears before any Claude call.
 
+### Part 5 — CYM: the BACKGROUND generator built, and the brand artwork measured
+
+**Built:** `background_field.py` — where the mystery's own title is strewn across the page. Pure,
+deterministic, zero API calls, and independent of both open owner decisions, which is why it could
+go ahead while those wait. Python and runtime rather than a build script, because CYM's motif is a
+title that does not exist until a player types it. The server computes the layout and both clients
+draw it; it returns JSON placements, not an image.
+
+Three things came out of *rendering* it rather than reasoning about it, and each is now a test in
+`scripts/test_background_field.py` (31 assertions, zero cost):
+
+- **Sizing must ignore title length.** Scaling each mark so the whole title spans a set fraction
+  of the tile — the obvious approach — shrank a 39-character title to 15px and, because thin
+  strips carry less ink, made the budget ask for *more* of them. Sixty tiny strips is a mat, not a
+  texture. Size is now absolute and long titles crop at the edge.
+- **Placement must be a jittered grid.** At 8–40 marks, uniform randomness reliably left a bare
+  quarter of the tile, which reads as a rendering failure rather than as sparseness.
+- **Mark strength does not need to go below MYF's 10%.** The prediction that it would — because
+  words are read involuntarily where an abstract glyph is not — was wrong: the marks are mostly
+  rotated and cropped, so they do not read as words. 5% is too faint, 7% is the default, 10% also
+  works. Still wants a real screen.
+
+**A bug no rendering would have caught:** the published 8% brass appeared 0% of the time, always.
+Shares were rounded independently (which overshoots the total) and the bag was then truncated from
+the end — where the smallest share happens to be declared. Fixed with largest-remainder
+apportionment, then again with a *weighted* remainder draw, because deterministic largest-remainder
+handed the leftover slots to the same colours in every field forever: a systematic 7-point bias.
+**`mind-your-friends/scripts/build-question-field.mjs` has the same round-then-truncate shape** and
+is fine today only because its numbers happen to sum to exactly 44.
+
+**Brand artwork.** The owner supplied two marks, then re-cut them as true vectors. Both rounds are
+in `brand/`; full status in root `CLAUDE.md` item 17. Headline: the re-cut achieved its goal (real
+paths, no base64), and the contrast problem is unchanged because it converted format rather than
+values — 53% and 73% of ink at or below 2.5:1 on the slate ground. Being vector makes the fix
+cheap: a fill rewrite instead of a pixel filter, which matters because the pixel filter tried here
+produced rainbow speckle on the near-black regions.
+
+`scripts/check_brand_contrast.py` (new, zero cost) measures any mark against the ground. It crops
+to the SVG viewBox — one asset carried 22,445 opaque artifact pixels outside its viewBox that
+dragged a measurement from 49% to 62% — and reports a distribution rather than a mean, because
+these marks are bimodal and an average would describe no pixel in them.
+
 ### Next session
 
 **Pick up here: root `CLAUDE.md` item 17.** Two owner decisions are outstanding (moderation; and

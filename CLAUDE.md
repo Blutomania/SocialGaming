@@ -567,6 +567,34 @@ Full list in `SESSIONS.md`. Top priorities:
        title *replaces* Claude's or sits beside it as a display title. Recommendation: replace,
        with Claude's as the fallback when the field is left blank.
 
+    **Brand artwork — where it stands (Session 33).** `brand/` holds four files and a README.
+    `negative_logo.svg` / `organic_logo.svg` were the first pass: raster PNGs in an SVG wrapper,
+    not vector, and `organic_logo.svg` carries an export artifact of 22,445 opaque pixels outside
+    its viewBox. `NEWnegative_CYM.svg` / `NEWorganic_cym.svg` are the owner's re-cut and are
+    **genuine vectors** — 66 and 126 `<path>` elements, zero base64. That was the stated goal and
+    it is met.
+    - **The contrast problem is unchanged, and that is expected** — the re-cut converted format,
+      not values. Measured on the slate ground by `scripts/check_brand_contrast.py`: the negative
+      mark went 49% → 53% of ink at or below 2.5:1, the organic monogram 49% → 73%. The monogram's
+      *outright invisible* band did drop from 22.7% to 0.1%, but it moved into "barely" rather
+      than up the scale.
+    - **Being vector now makes the fix cheap and safe**, which is the real payoff. A value
+      re-pitch is a fill-colour rewrite across the paths, not a pixel filter. Worth knowing why
+      that matters: the pixel filter tried in this session produced rainbow speckle on the
+      negative mark, because its near-black regions have near-zero saturation with tiny hue noise
+      and raising lightness amplified that noise into visible colour. On vector paths there is no
+      noise to amplify.
+    - **Neither mark is wired to any client.** No CYM screen references either file. They are
+      artwork plus a measurement, not implemented chrome.
+    - **The structural question is still open and is the owner's:** these are specified as
+      *different marks per device* — negative mark upper-left on desktop/TV, organic monogram top-
+      centre on phones. Unlike MYF, CYM's Godot host screen and its phone clients are in the same
+      room at the same time, so the room would display two identities simultaneously. That may be
+      wanted (a TV poster and a phone icon); it should be decided rather than arrived at.
+    - Also unresolved: the negative mark reintroduces a question-mark motif to CYM, which item 17
+      otherwise scopes to MYF. A noir question mark is a different object from a strewn field, so
+      this may well be fine — but deliberately, not by drift.
+
     **Unrelated, noticed while checking and worth one look before building on generation:** an old
     batch summary in `mystery_database/generated/` shows **13 of 14 generations failing** on JSON
     parse errors (`Unterminated string`, `Expecting property name`). It is from March and 16

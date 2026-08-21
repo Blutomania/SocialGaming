@@ -69,12 +69,22 @@ def load(path: Path) -> Image.Image:
 
     src = path.read_text(errors="replace")
     embedded = re.search(r"base64,([A-Za-z0-9+/=]+)", src)
+
     if not embedded:
-        raise SystemExit(
-            f"{path}: real vector SVG — rasterise it first, this reads pixels.\n"
-            "  (Worth knowing on its own: a true vector mark can be recoloured "
-            "in place, which a raster cannot.)"
-        )
+        # A real vector SVG. Rasterise it and measure the pixels, rather than
+        # counting declared fill colours: these marks are built from ~130 paths
+        # approximating a gradient, so an unweighted colour census would treat
+        # a hairline highlight and half the mark as one vote each.
+        try:
+            import cairosvg
+        except ImportError:
+            raise SystemExit(
+                f"{path} is a real vector SVG; measuring it needs a rasteriser.\n"
+                "  pip install cairosvg"
+            )
+        png = cairosvg.svg2png(url=str(path), scale=2)
+        return Image.open(io.BytesIO(png)).convert("RGBA")
+
     img = Image.open(io.BytesIO(base64.b64decode(embedded.group(1)))).convert("RGBA")
 
     box = re.search(r'viewBox="([\d.\s-]+)"', src)
@@ -120,6 +130,6 @@ def report(path: Path) -> None:
 
 
 if __name__ == "__main__":
-    targets = sys.argv[1:] or ["brand/negative_logo.svg", "brand/organic_logo.svg"]
+    targets = sys.argv[1:] or sorted(str(p) for p in Path("brand").glob("*.svg"))
     for t in targets:
         report(Path(t))
