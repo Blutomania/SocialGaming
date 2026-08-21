@@ -98,7 +98,14 @@ func _refresh_phase_ui() -> void:
 	match ip:
 		GameState.InvestPhase.WITNESS:
 			phase_label.text = "Phase 1 — Witness Interrogation"
-			budget_label.text = "%d questions remaining" % GameState.witness_budget
+			# Budgets are handed out by the server on game create/join, so in
+			# single-player they are all 0 -- which rendered as "0 questions
+			# remaining" on a screen that in fact allows unlimited questions
+			# (_on_legacy_reply deliberately never calls _check_phase_complete).
+			if _is_multiplayer:
+				budget_label.text = "%d questions remaining" % GameState.witness_budget
+			else:
+				budget_label.text = "Ask as many questions as you like."
 		GameState.InvestPhase.INVESTIGATION:
 			phase_label.text = "Phase 2 — Crime Scene Investigation"
 			budget_label.text = "%d investigations remaining" % GameState.investigation_budget

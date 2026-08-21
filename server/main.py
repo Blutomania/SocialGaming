@@ -2430,4 +2430,11 @@ def get_mystery(slug: str):
         raise HTTPException(status_code=404, detail="mystery not found")
     mystery_file = sorted(matches)[-1]
     with open(mystery_file) as f:
-        return json.load(f)
+        data = json.load(f)
+    # _slug is assigned *after* _save_mystery() in the generation pipeline, so
+    # it is never written to disk -- every file on disk lacks it. The client
+    # reads mystery["_slug"] to save a viability rating, so a mystery loaded
+    # from here used to rate into the void: the request was skipped entirely
+    # on an empty slug. Derive it from the filename, exactly as /mysteries does.
+    data.setdefault("_slug", slug)
+    return data

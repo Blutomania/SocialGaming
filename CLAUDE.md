@@ -668,6 +668,36 @@ Full list in `SESSIONS.md`. Top priorities:
     to the title inherits whatever the current failure rate is. Worth one real generation run to
     confirm before building on top of it.
 
+18. **[OPEN — found Session 34, August 21 2026] A BLOCKING coherence report does not stop a
+    mystery being saved, served, or played.** Not a coherence-engine failure — the opposite. The
+    engine catches this exactly: `P1.C4.culprit_not_in_characters`, severity `BLOCKING`, message
+    *"Chain is broken; players can never identify them."* `_run_coherence()` records the verdict
+    into `_coherence` and the pipeline then saves and serves the mystery regardless.
+    Live example on disk: `the_stolen_star_of_smurf_village_1775239921.json` recorded
+    `{"passed": false, "blocking": 1}` and is fully playable — its two-culprit `solution.culprit`
+    is prose, so under `accusation.gd`'s original exact-match every accusation was wrong,
+    including both correct ones. **The game could not be won, and the player was told they were
+    wrong.**
+    Session 34 fixed the *symptom* at two altitudes (substring matching in `accusation.gd` with a
+    short-name guard; an on-screen warning when no suspect can be the answer) and added
+    `scripts/check_mystery_playable.py` to catch it before a playtest. **The cause is untouched
+    and is a design call:** should generation refuse to save a BLOCKING mystery, retry it, or keep
+    serving it with a louder warning? Retrying costs API calls, which is why it was not decided
+    unilaterally. Worth settling before stage 2 — the coherence engine is a funding pillar, and
+    "it detects the defect and ships it anyway" is a question someone will ask.
+
+### Pre-playtest checkers (Session 34) — run these before handing anyone a build
+
+Both are zero-API-cost, need no Godot binary, and each has already caught a real bug:
+
+| Script | Catches |
+|---|---|
+| `scripts/check_godot_wiring.py` | Broken `$NodePath`s, `@onready` type mismatches, interactive controls the script never references, autoload calls that do not exist or take the wrong arity. Found `result_screen.gd` reaching for `$MainVBox/…` when the scene nests under `ScrollContainer/MainVBox/…` — the whole end-of-game screen. |
+| `scripts/check_mystery_playable.py` | A saved mystery whose `solution.culprit` names no listed suspect, an empty suspect list, or a blocking coherence failure that was served anyway. |
+
+Godot reports both classes of failure only at runtime, and the second one not even then — it
+looks like the player guessed wrong.
+
 > **DO NOT re-run the frozen bulk corpus pipeline** (`deprecated/run_corpus_pipeline.py`). Expand
 > the corpus only via `scripts/extract_from_pdfs.py`, adding one quality source at a time.
 > **DO NOT touch `deprecated/`** except the one restored exception noted above. It exists for

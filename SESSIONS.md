@@ -3124,10 +3124,78 @@ cries wolf gets ignored:
 to make it check nothing: a bad node path, a wrong declared type, and a wrong argument count were
 each introduced and each caught, then reverted.
 
+### Walking the rest of the screens by hand — four more, and one of them is a pillar failing
+
+The wiring check covers node paths and autoload calls. It cannot see whether one screen writes
+what the next screen reads, so the single-player PC path was walked by hand: MainMenu →
+MysteryGeneration → CaseDisplay → Interrogation → Accusation → ResultScreen.
+
+**First, the good news, because it was the thing most likely to be broken.** In single-player
+every budget is 0 — they are handed out by the server on game create/join, and single-player never
+creates a game. `_check_phase_complete()` advances to the multiplayer `ShareSelection` screen the
+moment a budget hits 0, which from a standing start would have bounced the player out of the game
+immediately. It does not happen: `_on_legacy_reply` (the single-player reply path) deliberately
+never calls it. That is correct and was presumably deliberate, but nothing said so, so it is worth
+recording as verified rather than re-checked every session.
+
+**The visible half of that was still wrong:** the same zero rendered as *"0 questions remaining"*
+on a screen that in fact allows unlimited questions. A playtester reads that as "I am out". Now
+reads "Ask as many questions as you like." in single-player.
+
+**`_slug` is assigned after the file is written, so no saved mystery has ever had one.**
+`_run_generation_pipeline` calls `_save_mystery(mystery_dict)` and *then* sets
+`mystery_dict["_slug"]`, so the slug exists only on the in-memory dict returned to the client.
+Confirmed against disk: **0 of 18 saved mysteries contain `_slug`.** Both rating widgets read
+`GameState.current_mystery.get("_slug", "")` and skip the request when it is empty, so rating a
+mystery loaded from the browse list did nothing — and `result_screen.gd` dims the buttons anyway,
+so it looked like it had saved. That is Design Principle 1's creator feedback loop, silently
+dead on exactly the path Session 34 had just made clickable. Fixed in `get_mystery()`, which now
+derives `_slug` from the filename the same way `/mysteries` already does — one place, and it fixes
+the 18 files already on disk rather than only new ones.
+
+**CaseDisplay's rating row destroyed its own label.** `_build_viability_buttons()` freed every
+child of `ViabilityRow` and then re-added `viability_label` — but that label *is* a child of
+`ViabilityRow` in the scene, so `add_child()` raises "already has a parent", and the `queue_free()`
+then deleted it at the end of the frame. Now frees only the buttons it added.
+
+**And the real find: a mystery can be unwinnable, the engine knows, and nothing acts on it.**
+`accusation.gd` scored an accusation with `_selected_suspect == culprit`. One saved mystery —
+*The Stolen Star of Smurf Village*, from the Smurf prompt that is `submit_prompt`'s own docstring
+example — has a two-culprit solution, so `solution.culprit` is prose:
+`"Smurfwick the Craftsmurf (primary architect) and Smurfadel, Master of Adornment (accomplice who
+physically carried the Star)"`. Under exact equality **every** accusation on that mystery is
+wrong, including both correct ones. The game cannot be won.
+
+The part worth sitting with: **`coherence_validator.py` catches this precisely.** It raises
+`P1.C4.culprit_not_in_characters`, severity `BLOCKING`, message *"Chain is broken; players can
+never identify them."* The mystery recorded `{"passed": false, "blocking": 1}` — and was saved,
+served, and displayed anyway, with a red badge on CaseDisplay among a dozen other fields. The
+coherence engine is not the thing that failed here; the pipeline's willingness to ignore its
+verdict is. That is worth knowing before the pillar is described to anyone in stage 2.
+
+Two fixes, deliberately at different altitudes:
+- `accusation.gd` now matches exact-first, then substring, with a guard so a short name cannot
+  match inside a longer one ("Smurf" must not score as "Smurfwick the Craftsmurf"). Checked
+  against all 16 real mysteries: it rescues the Smurf case to both real culprits and changes
+  nothing else. It makes the game winnable without pretending the data is clean.
+- The accusation screen now says so on screen when no listed suspect can be the answer, instead
+  of letting a generation defect reach the player as their own mistake.
+- **Not fixed, and it is a design call:** whether the pipeline should refuse to save or serve a
+  mystery whose coherence report is BLOCKING, or regenerate it. That costs API calls and is a real
+  decision. Logged as item 18.
+
+**`scripts/check_mystery_playable.py`** (new, zero cost) asks the narrow pre-playtest question:
+does `solution.culprit` resolve to a listed suspect under accusation.gd's own rule, are there any
+suspects at all, and did coherence record a blocking failure that was served anyway. All 18 saved
+mysteries pass as winnable; the Smurf one is flagged with both notes.
+
 ### Verification
 
 `python3 scripts/check_godot_wiring.py` → clean across 8 scenes and 3 autoloads, plus the three
-negative tests above. No Python was touched, so no server test could regress.
+negative tests above. `scripts/check_mystery_playable.py` → 18 checked, 0 unwinnable.
+`scripts/test_registry_staleness.py` → passes. `server/main.py` parses. The culprit-matching rule
+was validated against all 16 real mysteries, including an adversarial short-name case built to
+break the guard.
 
 There is no Godot binary in this environment, so **nothing was actually run in the engine.** The
 ResultScreen fix is verified against the scene file, not against a running game. **This wants one
@@ -3138,11 +3206,13 @@ notice sits where it should.
 
 1. **Run the PC playtest.** That is stage 1 and everything below is subordinate to it. The result
    screen has never worked, so nobody has seen the end of a game — expect this to surface more.
-2. **Re-run `check_godot_wiring.py` first**, and after any scene edit. It costs nothing and it
-   already caught one screen-breaking bug.
-3. **Item 17 is stage 3 now** but its remaining half-question is still worth answering while it is
+2. **Re-run both checkers first** (`check_godot_wiring.py`, `check_mystery_playable.py`), and
+   again after any scene edit. They cost nothing and between them they already caught a broken
+   final screen, a dead feedback loop and an unwinnable mystery.
+3. **Decide item 18** — should a BLOCKING coherence report stop a mystery being saved or served?
+4. **Item 17 is stage 3 now** but its remaining half-question is still worth answering while it is
    fresh: does the BACKGROUND field strew the title, or something else?
-4. Untouched and unchanged: MYF's playtest re-run, `server_py`'s `questionLog`/`postGame`, CYM's 7
+5. Untouched and unchanged: MYF's playtest re-run, `server_py`'s `questionLog`/`postGame`, CYM's 7
    all-null anthology extractions, and the 11 held-back anthology PDFs.
 
 ---
