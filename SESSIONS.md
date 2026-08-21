@@ -3000,6 +3000,94 @@ it. Porting the Aug 12 flow and then immediately rewriting it would build the sa
 
 ---
 
+## Session 34 — August 21, 2026 (CYM: the moderation call, and the saved-mystery dropdown was dead)
+
+**Branch:** `claude/session-33-summary-6m0y5u`, at `034131f` — checked against `origin/main`
+rather than assumed, per this file's standing branch-hygiene warning. It *is* `main`'s tip, zero
+unmerged commits, clean tree. No stale-branch problem this time.
+
+Short session, owner-directed, two of item 17's blockers cleared.
+
+### Moderation: none yet, and the disclaimer is the point
+
+Owner's call on item 17's first open question: **no moderation** — no wordlist, no
+`moderateHeckle()`-style Claude pass. The room is people who chose to play together and can see
+who typed it.
+
+What ships with that decision is the owner's own addition and it is the interesting half: a line
+of text under the prompt entry box reading **"Not moderated for play testing"**. Owner's framing —
+*"this will not only give us some cover, but act as a reminder going forward."* That second job is
+the real one. The failure mode for "no moderation yet" is not that it is wrong today; it is that
+it is invisible, so it stops being a decision and becomes the status quo by default. A disclaimer
+sitting under the box every time anyone types a prompt cannot be forgotten the way a line in a
+markdown file can.
+
+It is explicitly **not** the Steam answer. A user-typed string rendered TV-sized for a whole game
+still needs a real one before release; item 17's risk entry says so in the same place.
+
+`godot/scenes/ui/MysteryGeneration.tscn` → `VBox/ModerationNoticeLabel`, sitting directly under
+`PromptInput`, muted grey at 12px so it reads as a footnote rather than as an instruction.
+
+**Where it does *not* appear, and why that is not an oversight:** `server/static/mobile.html` has
+**no prompt entry box at all**. Session 26 built the room-first flow — players suggest prompts
+while waiting, `POST /games/{id}/prompts` — entirely server-side; the phone client's lobby section
+still only lists players. When that box gets built, the same line goes under it.
+
+### The reusable-mystery dropdown: in the build, and inert since it was written
+
+Owner asked whether it was still in the build. Yes — and it had never worked.
+
+`MainMenu` → "Browse Saved Mysteries" → `GET /mysteries` → a popup `ItemList` labelled by each
+mystery's `title`. The endpoint is real and returns title, difficulty, coherence result and
+viability rating. `main_menu.gd` has a complete `_on_browse_item_selected` handler that loads the
+chosen slug and hands it to `CaseDisplay`.
+
+**None of the popup's signals were connected.** `_ready()` wired the four menu buttons and
+stopped; `MainMenu.tscn` has zero `[connection]` sections. So `_on_browse_item_selected` was dead
+code, clicking a row did nothing, and the popup could not be dismissed either — a Godot `Window`
+does not hide itself on `close_requested`, the handler has to. The list rendered correctly, which
+is presumably why it read as finished.
+
+Fixed: `item_selected`, the Close button, and `close_requested` are now wired.
+
+**Two things it still is not**, both flagged rather than built, because both are design calls:
+- **Single-player only.** A selected mystery goes straight to `CaseDisplay.tscn`. The server has
+  supported multiplayer reuse since Session 26 — `CreateGameRequest.mystery_slug` is documented
+  "skip prompt-collection, attach an already-generated mystery immediately" — but no UI reaches
+  it, so a group cannot replay a saved case together. Given the owner said *reusable*, this is
+  very likely what was actually meant, and it is the obvious next step.
+- **Absent from the phone client.** `mobile.html` has no mystery list.
+
+### Item 17's second question is half-answered
+
+Owner: *"Title is just for generation, but should also be used in a drop down menu of reusable
+mysteries."* So the title **feeds generation** rather than only decorating, and it is the handle
+the saved list is browsed by — which the dropdown above already does today.
+
+What "just for generation" does *not* settle is whether the BACKGROUND still strews the title, or
+something else. Recorded as open in item 17 rather than guessed at, because the whole design rests
+on it.
+
+### Verification
+
+Both changes are Godot-side; there is no Godot binary in this environment, so neither was run.
+`MysteryGeneration.tscn` was edited as text and its node block matches the file's existing shape;
+the three `main_menu.gd` connections reference nodes that exist in `MainMenu.tscn` at the paths
+given. No Python was touched, so no server test could regress. **This wants one F5 in the editor
+to confirm the popup now clicks through and the notice sits where it should.**
+
+### Next session
+
+1. **Answer item 17's remaining half** — does the BACKGROUND field use the title or not? Everything
+   else in item 17 is settled enough to build.
+2. **Multiplayer reuse of a saved mystery.** The server side already exists; it needs a host-screen
+   path from the browse list into `create_game(mystery_slug=…)`.
+3. Unchanged and still queued: MYF's playtest re-run (needs real people — the timer fix has never
+   been played and the answer screen is new), `server_py`'s `questionLog`/`postGame`, CYM's 7
+   all-null anthology extractions, and the 11 held-back anthology PDFs.
+
+---
+
 ## Session 33 — August 20, 2026 (MYF: the answer screen and the plate device; CYM: registry staleness closed)
 
 **Branch:** `claude/myf-cym-games-review-6ne9rs`, started from `main` @ `27ebc89`.

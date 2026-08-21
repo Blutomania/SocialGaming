@@ -18,6 +18,7 @@ extends Control
 @onready var status_label: Label = $StatusLabel
 @onready var browse_popup: Window = $BrowsePopup          ## Created in scene
 @onready var browse_list: ItemList = $BrowsePopup/VBox/ItemList
+@onready var browse_close_button: Button = $BrowsePopup/VBox/CloseButton
 
 var _saved_mysteries: Array = []
 
@@ -30,6 +31,14 @@ func _ready() -> void:
 	multiplayer_button.pressed.connect(_on_multiplayer)
 	browse_button.pressed.connect(_on_browse)
 	quit_button.pressed.connect(get_tree().quit)
+
+	# The browse popup's own signals. None of these were connected before, so the
+	# popup opened, listed the saved mysteries, and then did nothing at all:
+	# clicking a row was inert and the window could not be dismissed (a Godot
+	# Window does not hide itself on close_requested — the handler has to).
+	browse_list.item_selected.connect(_on_browse_item_selected)
+	browse_close_button.pressed.connect(browse_popup.hide)
+	browse_popup.close_requested.connect(browse_popup.hide)
 
 	# Verify backend is reachable on startup
 	status_label.text = "Checking backend…"

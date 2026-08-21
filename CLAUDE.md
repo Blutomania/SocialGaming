@@ -547,7 +547,17 @@ Full list in `SESSIONS.md`. Top priorities:
       highest-visibility user-generated content surface in the product. MYF already built
       `moderateHeckle()` for a far *smaller* surface. It cannot ride along on generation, because
       the background appears before any Claude call — so it needs handling at submit time, which is
-      its own API call or a local filter. **Owner decision, not yet made.**
+      its own API call or a local filter.
+      **[DECIDED, Session 34 — August 21 2026] None yet.** No filter and no moderation call: the
+      room is people who chose to play together and can see who typed it. What ships instead is a
+      **visible disclaimer under the prompt entry box — "Not moderated for play testing"** (live in
+      `godot/scenes/ui/MysteryGeneration.tscn` as `VBox/ModerationNoticeLabel`). It does two jobs:
+      it is cover during play testing, and it is a standing reminder that this is unresolved, so
+      the decision cannot quietly become the status quo by being invisible. **It is not a Steam
+      answer** — a TV-sized, whole-game, user-typed string still needs a real one before release.
+      When the phone client finally grows a prompt-suggestion box (Session 26's room-first flow is
+      server-only today — `server/static/mobile.html` has no prompt entry at all), the same line
+      goes under it.
     - **Legibility.** MYF sits at 10% mark strength for an abstract glyph. Words are read
       involuntarily, and CYM's screens carry far more text (clues, transcripts, evidence). Expect
       to need *below* 10%, plus rotation and edge-cropping so most instances are partial. Test on a
@@ -558,14 +568,33 @@ Full list in `SESSIONS.md`. Top priorities:
       in whatever font the machine has — that concern returns for the phone client, which needs the
       faces actually loaded or the two screens will not match.
 
-    **The two open questions, both the owner's:**
-    1. **Moderation** — what happens to a player title before it becomes wallpaper?
-    2. **Does the player's title feed INTO generation, or only decorate?** Recommendation: both —
-       pass it as context so Claude writes a mystery that fits its name, and use it for display,
-       otherwise the wall says one thing and the case file another. Wrinkle if so: the saved-mystery
-       slug derives from `mystery_dict["title"]` (`server/main.py`), so decide whether the player's
-       title *replaces* Claude's or sits beside it as a display title. Recommendation: replace,
-       with Claude's as the fallback when the field is left blank.
+    **The two open questions — question 1 is answered, question 2 is half-answered:**
+    1. **Moderation** — **answered, Session 34: none yet, disclaimer instead.** See the risk entry
+       above for what shipped and what it does not cover.
+    2. **Does the player's title feed INTO generation, or only decorate?** Owner, Session 34:
+       *"Title is just for generation, but should also be used in a drop down menu of reusable
+       mysteries."* So the title **feeds generation** — it is not decoration-only — and it is the
+       handle the saved-mystery list is browsed by. **Still to pin down before building:** whether
+       "just for generation" also means the BACKGROUND field should be strewn with something other
+       than the title, or with the title as well. Do not assume; ask.
+       The slug wrinkle stands either way: the saved-mystery slug derives from
+       `mystery_dict["title"]` (`server/main.py`), so decide whether the player's title *replaces*
+       Claude's or sits beside it. Recommendation: replace, with Claude's as the blank-field
+       fallback — the dropdown then lists what the player named, which is the point of question 2.
+
+    **Reusable-mystery dropdown — it exists, and Session 34 fixed it.** Owner asked whether it was
+    still in the build. It is, on the Godot host screen only: MainMenu's "Browse Saved Mysteries"
+    → `GET /mysteries` → a popup `ItemList` labelled by each mystery's `title`. **It had been
+    inert since it was written** — `main_menu.gd` connected its four buttons and none of the
+    popup's own signals, so `_on_browse_item_selected` was dead code, clicking a row did nothing,
+    and the window could not even be dismissed (a Godot `Window` does not hide itself on
+    `close_requested`). Now wired. Two things it still is not:
+    - **Single-player only.** Selecting a saved mystery goes straight to `CaseDisplay.tscn`. The
+      server has supported multiplayer reuse all along — `CreateGameRequest.mystery_slug` is
+      documented "skip prompt-collection, attach an already-generated mystery immediately" — but
+      no UI reaches it, so a group cannot replay a saved case together. That is the version the
+      owner's "reusable" almost certainly means, and it is a real next step.
+    - **Absent from the phone client.** `mobile.html` has no mystery list.
 
     **Brand artwork — where it stands (Session 33).** `brand/` holds four files and a README.
     `negative_logo.svg` / `organic_logo.svg` were the first pass: raster PNGs in an SVG wrapper,
