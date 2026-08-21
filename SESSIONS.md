@@ -3000,7 +3000,7 @@ it. Porting the Aug 12 flow and then immediately rewriting it would build the sa
 
 ---
 
-## Session 34 — August 21, 2026 (CYM: the moderation call, and the saved-mystery dropdown was dead)
+## Session 34 — August 21, 2026 (CYM: PC-playtest priority set; a wiring check found the result screen broken)
 
 **Branch:** `claude/session-33-summary-6m0y5u`, at `034131f` — checked against `origin/main`
 rather than assumed, per this file's standing branch-hygiene warning. It *is* `main`'s tip, zero
@@ -3068,22 +3068,81 @@ What "just for generation" does *not* settle is whether the BACKGROUND still str
 something else. Recorded as open in item 17 rather than guessed at, because the whole design rests
 on it.
 
+### The priority order, memorialized
+
+Owner set the sequence mid-session: **PC playtest → funding → phone + robust gen-AI calls**, with
+*"obviously it can change."* Written into root `CLAUDE.md` as its own **Delivery Priority**
+section near the top, above Architecture, because it decides what counts as a blocker rather than
+describing a feature.
+
+It immediately settled a question this same session had raised. The saved-mystery browse loading
+into single-player `CaseDisplay` instead of `create_game(mystery_slug=…)` had been flagged as "a
+real next step"; the owner pointed at the priority order, and they are right — the PC playtest
+needs one person at one machine replaying a saved case, which is what the single-player route
+already does. Group replay is stage 3. Recorded as deliberate in item 17 so it does not get
+re-flagged as an oversight next session.
+
+Same logic retires several other standing "gaps" until stage 3: `mobile.html`'s missing prompt box
+and mystery list, Steam-grade moderation, and every remaining API-cost item (the P1P2
+re-extraction, the 11 held-back anthologies, the 7 all-null extractions) — all real, none of them
+things a playtester would notice.
+
+### Then the actual stage-1 work: a wiring check, and it found a broken final screen
+
+If the PC client is the only surface that has to work, the browse popup's dead signals stop being
+a curiosity and start being a pattern worth checking for. **Every scene in this project has zero
+`[connection]` blocks** — all wiring is done in `_ready()` by code — which is a consistent
+convention and also why a forgotten `.connect()` is invisible: nothing in the scene file records
+that a button was ever meant to do anything.
+
+**`scripts/check_godot_wiring.py`** (new, zero API cost, no Godot binary needed) checks four
+things across every scene/script pair: every `$NodePath` resolves, every `@onready var x: T`
+matches the node's real type, every interactive control is referenced at all (a lint, reported as
+NOTE), and every `GameState.` / `ApiClient.` / `NetworkManager.` member exists and is called with
+an arity the definition accepts.
+
+**It found a hard failure on its first run, on the last screen of the game.** `result_screen.gd`
+dereferenced `$MainVBox/VerdictLabel` and four siblings, but `ResultScreen.tscn` nests all of them
+under `ScrollContainer/MainVBox/…`. All five `@onready` lookups missed. That is the screen a
+playtester reaches at the end of **every** playthrough — the verdict, the solution, the viability
+rating that is Design Principle 1's entire creator feedback loop, and both buttons. Fixed by
+correcting the paths.
+
+Worth noting *why* it survived this long: it is invisible everywhere except at runtime. The scene
+is well-formed, the script is well-formed, and nothing connects the two until Godot loads the
+scene — so reading either file alone shows nothing wrong.
+
+**Two false positives were fixed in the checker rather than tolerated**, since a checker that
+cries wolf gets ignored:
+- GDScript `enum` declarations are referenced as `GameState.Phase.WITNESS`. The first hand-run
+  flagged seven of these as missing members. The enum name is a member; it is now parsed as one.
+- `main_menu.gd`'s doc comment says *"calls ApiClient.list_mysteries()"*, which the arity check
+  read as a real zero-argument call against a one-argument definition. Comments are now stripped
+  (quote-aware) before any analysis.
+
+**The checker was negative-tested three ways**, because the cheap way to make a checker green is
+to make it check nothing: a bad node path, a wrong declared type, and a wrong argument count were
+each introduced and each caught, then reverted.
+
 ### Verification
 
-Both changes are Godot-side; there is no Godot binary in this environment, so neither was run.
-`MysteryGeneration.tscn` was edited as text and its node block matches the file's existing shape;
-the three `main_menu.gd` connections reference nodes that exist in `MainMenu.tscn` at the paths
-given. No Python was touched, so no server test could regress. **This wants one F5 in the editor
-to confirm the popup now clicks through and the notice sits where it should.**
+`python3 scripts/check_godot_wiring.py` → clean across 8 scenes and 3 autoloads, plus the three
+negative tests above. No Python was touched, so no server test could regress.
+
+There is no Godot binary in this environment, so **nothing was actually run in the engine.** The
+ResultScreen fix is verified against the scene file, not against a running game. **This wants one
+F5** to confirm the browse popup clicks through, the results screen renders, and the moderation
+notice sits where it should.
 
 ### Next session
 
-1. **Answer item 17's remaining half** — does the BACKGROUND field use the title or not? Everything
-   else in item 17 is settled enough to build.
-2. **Multiplayer reuse of a saved mystery.** The server side already exists; it needs a host-screen
-   path from the browse list into `create_game(mystery_slug=…)`.
-3. Unchanged and still queued: MYF's playtest re-run (needs real people — the timer fix has never
-   been played and the answer screen is new), `server_py`'s `questionLog`/`postGame`, CYM's 7
+1. **Run the PC playtest.** That is stage 1 and everything below is subordinate to it. The result
+   screen has never worked, so nobody has seen the end of a game — expect this to surface more.
+2. **Re-run `check_godot_wiring.py` first**, and after any scene edit. It costs nothing and it
+   already caught one screen-breaking bug.
+3. **Item 17 is stage 3 now** but its remaining half-question is still worth answering while it is
+   fresh: does the BACKGROUND field strew the title, or something else?
+4. Untouched and unchanged: MYF's playtest re-run, `server_py`'s `questionLog`/`postGame`, CYM's 7
    all-null anthology extractions, and the 11 held-back anthology PDFs.
 
 ---

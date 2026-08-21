@@ -16,6 +16,41 @@ Current phase: **Phase 3d — Lobby flow, room codes, QR display on host screen*
 
 ---
 
+## Delivery Priority (owner, Session 34 — August 21, 2026)
+
+**The order is: PC playtest → funding → phone + robust gen-AI calls.** Owner's words, and their
+caveat: *"obviously it can change."* Treat this as the current sequence, not a contract — but do
+check work against it before starting, because it changes what counts as a blocker.
+
+| # | Stage | What it means in this repo |
+|---|---|---|
+| 1 | **PC playtest** | The Godot desktop client is the **only** surface that has to work. Get a human through a whole game on one machine. |
+| 2 | **Funding** | The playtest is evidence for the pitch. The studio-engine pillars (coherence engine, corpus) need to be real, which they now are. |
+| 3 | **Phone + robust gen AI** | `server/static/mobile.html`, the room-first prompt flow, moderation that survives Steam, and the BACKGROUND work in item 17. |
+
+**What this reprioritises, concretely — read before calling something a gap:**
+
+- **Phone-client gaps are not blockers.** `mobile.html` has no prompt entry box, no mystery list,
+  and no lobby suggestion UI. All true, all fine until stage 3.
+- **Saved-mystery reuse staying single-player is correct, not an oversight** (owner confirmed when
+  it was raised as a next step). The browse list loads a mystery into `CaseDisplay`; it does not
+  route through `create_game(mystery_slug=…)`. Group replay is a stage-3 feature even though the
+  server has supported it since Session 26.
+- **Moderation stays as decided** — none, with the visible "Not moderated for play testing"
+  disclaimer. That is a stage-1 answer by construction; the Steam answer is stage 3.
+- **Nothing already built gets removed.** The multiplayer server work (lockstep rounds, the 8
+  endpoints, prompt voting, same-room replay) stays exactly as it is. It is not being extended,
+  only not being extended *yet*.
+- **New API cost needs a reason that serves stage 1.** The P1P2 re-extraction (item 12), the 11
+  held-back anthologies and the 7 all-null extractions (item 7) are all real work that buys
+  nothing a playtester will notice.
+
+**The stage-1 test is blunt:** can somebody who is not the owner sit at a PC, start the game, play
+a whole mystery, and reach the result screen without a Godot error? Anything that fails that is
+urgent; anything that does not, is not.
+
+---
+
 ## Architecture
 
 ```
@@ -589,11 +624,13 @@ Full list in `SESSIONS.md`. Top priorities:
     popup's own signals, so `_on_browse_item_selected` was dead code, clicking a row did nothing,
     and the window could not even be dismissed (a Godot `Window` does not hide itself on
     `close_requested`). Now wired. Two things it still is not:
-    - **Single-player only.** Selecting a saved mystery goes straight to `CaseDisplay.tscn`. The
-      server has supported multiplayer reuse all along — `CreateGameRequest.mystery_slug` is
-      documented "skip prompt-collection, attach an already-generated mystery immediately" — but
-      no UI reaches it, so a group cannot replay a saved case together. That is the version the
-      owner's "reusable" almost certainly means, and it is a real next step.
+    - **Single-player only — and that is deliberate, not a gap.** Selecting a saved mystery goes
+      straight to `CaseDisplay.tscn`. The server has supported multiplayer reuse all along
+      (`CreateGameRequest.mystery_slug`, "skip prompt-collection, attach an already-generated
+      mystery immediately"), but no UI reaches it. This was raised as a next step and the owner
+      pointed at the Delivery Priority section above: group replay is a stage-3 feature. The PC
+      playtest needs one person at one machine replaying a saved case, which is exactly what the
+      single-player route already does.
     - **Absent from the phone client.** `mobile.html` has no mystery list.
 
     **Brand artwork — where it stands (Session 33).** `brand/` holds four files and a README.
