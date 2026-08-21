@@ -31,6 +31,15 @@ land first (see item 31/33 below). When that happens, pull `coherence/engine.py`
 `main` (now the real source of truth) rather than this branch's copy, which is stale relative to
 it in naming only — the classes are otherwise identical.
 
+**Resolved, August 20 2026 (item 51).** MYF's Python side is wired. `server_py/coherence_rules.py`
+(renamed from `coherence.py` — it had to be, see item 51) defines `QuestionRuleSet`, a real
+subclass of the shared `coherence.engine.RuleSet`, and `server_py/test_coherence_engine.py`
+asserts that both titles use the *identical* `RuleSet` / `CoherenceReport` / `Issue` classes
+rather than two copies with matching field names. So the pillar has two consumers now, and the
+claim is tested rather than asserted. `lib/coherence.js` remains JS and remains unwired, which is
+correct: the Next.js prototype is still the behavioural reference and is scheduled for retirement,
+not for a bridge.
+
 ## Priority Queue (as of August 12, 2026)
 
 The numbered list below is the full historical record and keeps growing. This is
@@ -63,13 +72,17 @@ of it. See PLAYTEST.md PT-4 through PT-8 for what to watch.
 **Session 32 close (August 18 2026).** Branch `claude/myf-flow-b-playtest-xv2lqh`, four commits,
 **open as PR #20 — not merged.** The playtest found a real bug (item 47) and the aesthetics passes
 (items 48, 49) followed it. **Owner is renovating the metallic title treatment artwork** — a
-drop-in file swap at `public/brand/myf_title_trtmnt_trans.svg`, no code change, keep 587×69. The
-answer-screen cleanup ("I read, I answer") is still the top unstarted item, and the plate device
-is probably most of what it needs.
+drop-in file swap at `public/brand/myf_title_trtmnt_trans.svg`, no code change, keep 587×69.
+
+**Session 33 (August 20 2026). PR #20 is MERGED** (`27ebc89`) — `main` now carries the timer fix
+and both aesthetics passes. The answer-screen cleanup is **done** (item 50), and the plate device
+landed with it, so item 40's core rule is no longer outstanding. The item-48 prediction held: the
+plate was most of what "I read, I answer" needed. **The playtest re-run on the fixed build is now
+the top of the list** — item 47's fix and this screen both want a real table.
 
 | # | Item | State |
 |---|---|---|
-| 0 | **PLAY IT.** Flow B, pre-committed answers and the wager ladder are all built and tested but entirely unvalidated by a real table. Four numbers are guesses: the 8s exclusive window, the 5s reading window, whether the lock window gives enough time to commit, and whether 0.75x makes buzzing feel worth it. | **START HERE** |
+| 0 | **PLAY IT.** Flow B, pre-committed answers and the wager ladder are all built and tested but entirely unvalidated by a real table. Four numbers are guesses: the 8s exclusive window, the 5s reading window, whether the lock window gives enough time to commit, and whether 0.75x makes buzzing feel worth it. The August 18 table was measuring a broken clock (item 47) and the screen has since been rebuilt (item 50), so this wants a fresh run on both counts. | **START HERE** |
 | 1 | ~~`server_py` parity for the Aug 12 mechanics~~ — **done** (item 42), except `questionLog`/`postGame`, which moved to item 46 and now blocks only the post-game screen. | Done |
 | 2 | Godot: category-selection + card-pick screens — build against **3** categories and the curated grid, not the old 5 free-text boxes | Blocked on 1 |
 | 3 | Godot: round-loop UI — WAGER → CARD → QUESTION → reading window → open ANSWER → RESULT | Blocked on 1 |
@@ -77,7 +90,7 @@ is probably most of what it needs.
 | 5 | **`server_py` parity: `questionLog` + `postGame`** — the Python backend has neither, so the Godot client cannot show any post-game screen. Full porting notes in item 46. | Real gap, blocks 6 |
 | 6 | Godot: GAME_OVER screen + post-game social layer | Blocked on 3+5 |
 | 7 | Live-test disconnect/reconnect + inactivity auto-advance against `server_py` | Ported, never exercised |
-| 8 | Wire MYF's coherence to the shared Python engine — now possible, `server_py` is Python | Unblocked by the port |
+| 8 | ~~Wire MYF's coherence to the shared Python engine~~ — **done** (item 51). `server_py/coherence.py` is now `coherence_rules.py` and its `QuestionRuleSet` subclasses the shared `coherence.engine.RuleSet`. | Done |
 | 9 | Retire the Next.js prototype — **only** once Godot reaches parity and is playtested | Do not do early |
 
 **PARKED by owner decision, not by oversight:**
@@ -1186,6 +1199,118 @@ as a constraint to respect rather than a layout spec.
       otherwise, so turns without an announcement don't silently lose the count.
       The active player's score chip was the third box colour on that screen; it now uses the same
       fill as every other box with a gold ring for the highlight.
+
+50. **[BUILT, August 20 2026] Answer-screen cleanup + the plate device — item 40's core rule is
+    now live.** Owner's note from the August 18 playtest: "too much going on… I read, I answer."
+    Item 48 predicted the plate would be most of it, and that turned out to be right.
+    - **The plate.** `.panel` is now a solid rectangle of the ground colour with the texture
+      switched off — no radius, no border, no shadow. A hole cut *through* the field rather than
+      a panel laid on top of it. One class, so it lands on every box at once, which is exactly why
+      item 49 made it a class in the first place. The two dependencies are written at the class:
+      the `background-color` is the **same token** as the ground (`--ground`), not a colour that
+      happens to match; and the plate is only visible because the 10% marks around it aren't —
+      don't tune one without re-checking the other.
+    - **Plates stack, so the gap between them is load-bearing.** `space-y-4` → `space-y-6` on the
+      board: at 10% mark strength a 16px gap is statistically likely to contain no mark at all, so
+      two adjacent plates merge into one tall block and the device stops reading. This is the
+      practical corollary of item 40's "the plate is only visible because the texture isn't", and
+      it is not obvious until you look at two of them.
+    - **A quiet consequence worth knowing.** `lib/difficultyColors.js` proved every step of its
+      ramp against the slate **ground** (`#2F4459`), but the question has been sitting on
+      `game.card` `#1a1a2e` since the ramp was generated. Now that the plate *is* the ground, the
+      measured contrast and the rendered pixel finally describe the same thing. Nothing was
+      broken before — a darker box only ever raised the ratio — but the guarantee was theoretical.
+    - **One instruction, computed as one value.** The screen could carry fourteen blocks at once.
+      Four of them each paired a countdown with a sentence — the reading window, the room's view
+      of the exclusive window, the answerer's view of it, and the lock hint — and were never on
+      screen together, so they were never four things. They are now one `AnswerStatus` (verb +
+      clock + an optional short clause), selected by one if/else chain. **Rendering them as four
+      independent `&&` blocks is what made the screen read as four instructions**, even though
+      only one was ever visible.
+    - **Everything that was said more than once is now said once.** The stake appeared three
+      times in three different phrasings (a header line, the answerer's fine print, the buzzer's
+      fine print) — now one `StakeLine`. The locked count and the spent list are one
+      `AnswerMargin`. The two long fine-print sentences are gone: anything needing a sentence is a
+      rule the player learned in round 1, and reprinting it every question is most of what "too
+      much going on" was made of.
+    - **The round rule keeps its words and loses its box** (`RuleChip`), sitting with the question
+      per item 40 — Rebus/ELI5/Boxed In all change how an answer must be *given*, so at the moment
+      of answering the rule is part of reading the question. The description stays: what cost the
+      screen was the box, not the words.
+    - **The standings are one plate, not one box per player,** and `RoundLine` moved into it.
+      That relocates item 49's placement decision and deliberately keeps its point — the fact is
+      written once, never twice. It now has one fixed home rather than "whichever box leads the
+      page", which is also where item 40 puts round data (upper left). **Flag if you disagree:**
+      this is the one change this session made to a settled owner-facing decision.
+    - **`app/dev/answer` — a dev-only preview harness, and it is a real asset, not scaffolding.**
+      Every Flow B moment rendered from fixtures: instantly, for nothing, and on demand. Judging
+      this screen used to mean playing a real three-player game with real Claude calls until the
+      state you wanted came up — and "the room's view during the exclusive window" could not be
+      produced reliably at all. `?only=N` renders one state. Its fixtures mirror `playerView()`'s
+      ANSWER branch by hand, so they are a rendering aid and **not** a contract test: if that
+      branch changes shape the page renders something wrong rather than failing.
+    - **It reports any element overflowing the viewport,** because a horizontal overflow has now
+      broken a phone layout twice (the brand bar at 390px in item 49, and this screen) and both
+      times the build was perfectly happy while the screenshot showed only that *something* was
+      cut, never what. It names the innermost offending element and the pixel count.
+    - **That reporter paid for itself on its first run, twice.** A 390px "break" I was about to
+      chase turned out to be **headless Chromium laying the page out at 500px and screenshotting
+      the left 390** — no bug at all, and I would have "fixed" a working layout. The real one it
+      found: **`flex-1` does not let the answer input shrink**, because a flex item defaults to
+      `min-width: auto`, so Submit sat 22px off the right edge at 390px — and *only* on the
+      answerer's screen, since "Submit" is one word and cannot wrap its way out of the squeeze the
+      way "Lock It In" does. Fixed with `min-w-0`.
+      **Worth remembering for any future screenshot pass:** `--window-size` does not set
+      Chromium's layout viewport in headless mode (it clamped to 500px here). Drive it through
+      Playwright's `viewport` option, or the widths you are judging are not the widths you asked
+      for.
+    - **Also fixed while in there:** a spent attempt that was simply wrong rendered as a bare name
+      in a list where every other outcome was labelled `(passed)` / `(froze)`. Now `(missed)`.
+    - **Verified:** `scripts/mechanics-test.js` (105), `scripts/postgame-test.js`,
+      `server_py/test_mechanics.py` (63) and `server_py/test_turn_timers.py` (12) all pass;
+      `npm run build` clean; all six states rendered and looked at in Chromium at 1280 and 390.
+      No server code was touched this session.
+
+51. **[BUILT, August 20 2026] MYF's coherence rules are wired to the shared engine — the pillar
+    now genuinely has two consumers.** Item 8, unblocked by the `server_py` port and requested by
+    the owner. Until this, `coherence/engine.py` had exactly one real consumer (CYM's
+    `coherence_validator.py`, Session 28) and MYF's Python side redeclared its own
+    `BLOCKING`/`WARNING`/`INFO` and returned a hand-rolled `{"passed", "issues"}` dict.
+    - **`server_py/coherence.py` is now `coherence_rules.py`, and it HAD to be.** This is the
+      whole reason the job was not a ten-line change. A top-level module named `coherence` and a
+      package named `coherence` cannot both live on `sys.path`: whichever comes first wins, and
+      `server_py/` is always first, so `from coherence.engine import RuleSet` resolved to MYF's
+      own file and died with `"'coherence' is not a package"`. No import ordering fixes that —
+      only the rename does. It is also the better name: the file assembles constraints and
+      validates questions, and *the engine is the shared thing it plugs into*. It now sits
+      parallel to CYM's `coherence_validator.py` instead of shadowing the framework both depend
+      on. Four import sites updated; nothing else referenced it.
+    - **`QuestionRuleSet(RuleSet)`** backs `validate_question()`, which keeps its signature and
+      its single call site but now returns a real `coherence.engine.CoherenceReport`. Same shape
+      as CYM's `MysteryRuleSet` — the two titles validate completely different objects and share
+      the vocabulary for saying so.
+    - **The repo-root path entry is APPENDED, not inserted**, so `server_py`'s own modules keep
+      winning any future name collision. Inserting would re-create the class of problem the
+      rename just fixed, one module along.
+    - **Two things fell out of using the real report rather than a dict.** Issues now carry
+      `repair_hint`s, which the shared `Issue` always had room for and MYF was discarding. And the
+      call site logs on **warnings** as well as failures — the old `if not validation["passed"]`
+      silently swallowed every WARNING, which is exactly where "the round rule was ignored by
+      generation" shows up. That was a real blind spot, not a formatting change.
+    - **`server_py/test_coherence_engine.py`** (new, zero API cost, 23 assertions) in two halves,
+      because the claim "we share an engine" has been made in this repo before it was true — this
+      file's own Project Overview carries a correction saying so.
+      *The plumbing:* `QuestionRuleSet` subclasses the shared `RuleSet`, returns the shared
+      `CoherenceReport`, and — the checks that would catch two divergent copies of the framework —
+      CYM's `MysteryRuleSet` subclasses that same class and `coherence_validator.Issue is Issue`.
+      *The behaviour:* every rule re-asserted case by case, since a rewire that quietly changed
+      what passes would be invisible in the plumbing checks and would surface only as bad
+      questions at a real table.
+    - **`lib/coherence.js` is untouched and stays that way.** JS cannot subclass a Python
+      `RuleSet`, the prototype is still the behavioural reference, and it is scheduled for
+      retirement rather than a bridge — which is the sequencing item 31 asked for.
+    - **Verified:** `test_coherence_engine.py` (23), `test_mechanics.py` (63) and
+      `test_turn_timers.py` (12) all pass; `main.py` imports clean.
 
 ## Design Thesis: Casual-First
 This game targets casual, social players — not competitive optimizers. Every

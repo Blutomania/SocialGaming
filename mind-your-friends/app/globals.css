@@ -26,20 +26,34 @@ body {
   background-attachment: fixed;
 }
 
-/* One box colour for every box on screen (owner, August 18 2026: "change the
-   background of all background boxes to be the same").
- 
-   It is a class rather than a repeated `rounded-lg bg-game-card`, because the
-   instruction was to make them the same and a repeated utility string is
-   exactly how they stopped being the same — a tinted panel here, a bordered
-   one there, each defensible on its own screen.
- 
-   This is also where the plate device lands when it lands (CLAUDE.md item 40):
-   plates are the ground colour with the texture switched off, which is one
-   change here rather than one per component. */
+/* THE PLATE (CLAUDE.md item 40's core rule, landed August 20 2026).
+
+   A plate is a solid rectangle of the ground colour with the texture switched
+   off — a hole cut THROUGH the field, not a panel laid on top of it. So: no
+   radius, no border, no shadow. A card floats above the field; a plate is part
+   of it. Derived from the Mapme reference, where full-bleed bands interrupt a
+   faded map texture.
+
+   It is one class rather than a repeated utility string because that is how
+   the boxes diverged the first time — a tinted panel here, a bordered one
+   there, each defensible on its own screen.
+
+   Two things this depends on, and neither is decoration:
+
+   1. `background-color` is the SAME token as the ground (--ground). The plate
+      is not a colour that happens to match; it is the ground, which is why it
+      can never drift a shade away from it.
+   2. The mark strength around it (10%). The plate is only visible because the
+      texture next to it isn't — too faint or too sparse and it reads as an odd
+      empty stripe rather than a deliberate one. Don't tune one without
+      re-checking the other.
+
+   Controls are NOT plates. Inputs, buttons and chips stay on `game.card`,
+   which reads as recessed against the plate — item 40's split between what
+   must be read (plates) and what must be grabbed (objects). */
 @layer components {
   .panel {
-    @apply rounded-lg bg-game-card;
+    background-color: var(--ground);
   }
 }
 

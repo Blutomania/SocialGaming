@@ -16,6 +16,24 @@ path. It also resolves the coherence-engine unification question (see root `docs
 and can't subclass the shared Python `coherence.engine.RuleSet` without a bridge. Once MYF's
 backend is Python, it can.
 
+**Done, August 20 2026 — and the name collision is the part to know about.**
+`server_py/coherence_rules.py` (renamed from `coherence.py`) defines `QuestionRuleSet`, a real
+`coherence.engine.RuleSet` subclass, so the shared framework has two consumers: this and CYM's
+`coherence_validator.py`.
+
+The rename was not tidying, it was the blocker. A top-level module named `coherence` and a
+*package* named `coherence` cannot both live on `sys.path` — whichever is found first wins, and
+`server_py/` is always first, so `from coherence.engine import RuleSet` resolved to MYF's own file
+and raised `"'coherence' is not a package"`. Nothing about import order fixes that. **If you ever
+add a module here whose name matches something at the monorepo root, this is what happens**, which
+is also why the repo-root `sys.path` entry is *appended* rather than inserted: `server_py`'s own
+modules must keep winning collisions.
+
+`validate_question()` keeps its signature and returns a `coherence.engine.CoherenceReport` instead
+of a `{"passed", "issues"}` dict. `server_py/test_coherence_engine.py` (zero API cost) proves both
+the plumbing and that no rule changed in the rewire. `lib/coherence.js` is deliberately untouched —
+the JS prototype is still the behavioural reference and is for retirement, not for a bridge.
+
 ## What CYM already proved, that this port reuses directly
 
 Studied CYM's actual `main`-branch implementation (not the aspirational parts of its own docs)

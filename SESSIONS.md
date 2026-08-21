@@ -3000,6 +3000,297 @@ it. Porting the Aug 12 flow and then immediately rewriting it would build the sa
 
 ---
 
+## Session 33 — August 20, 2026 (MYF: the answer screen and the plate device; CYM: registry staleness closed)
+
+**Branch:** `claude/myf-cym-games-review-6ne9rs`, started from `main` @ `27ebc89`.
+
+### First: the branch the harness handed over was stale
+
+The session opened on a branch created at `f4a5efe` — that is `main`, *not* Session 32's tip, so
+it did not contain the timer fix or either aesthetics pass. This is precisely the failure mode
+both `CLAUDE.md` files document and warn about, and it was caught by checking the branch against
+`main` before doing anything, per that warning. The branch had zero unique commits, so it
+fast-forwarded onto Session 32's work with nothing lost.
+
+**PR #20 is merged** (`27ebc89`), on the owner's call — `mergeable_state: clean`, base equal to
+`main`'s tip, nothing stacked behind it. The session branch was then restarted from the new `main`.
+
+### The answer screen (MYF `CLAUDE.md` item 50)
+
+Owner's second note from the August 18 playtest — "too much going on… I read, I answer" — was the
+top unstarted item. Item 48 predicted the plate device would be most of what it needed, and that
+held up.
+
+**The plate landed** (item 40's core rule, decided August 17, unbuilt until now). `.panel` is now
+the ground colour with the texture switched off, no radius, no border, no shadow. Two things are
+written down at the class because both are easy to break later: the `background-color` is the
+*same token* as the ground rather than a colour that matches it, and the plate is only visible
+because the 10% marks around it are not.
+
+**Plates stack, and the gap between them turned out to be load-bearing.** At 10% mark strength a
+16px gap is likely to contain no mark at all, so two adjacent plates merge into one tall block and
+the device silently stops reading. `space-y-4` → `space-y-6` fixed it. This is the practical
+corollary of item 40's own rule, and it is invisible until you put two plates next to each other
+and look.
+
+**A quiet thing the plate fixed for free:** `lib/difficultyColors.js` proved every step of its
+ramp against the slate ground, but the question had been sitting on `game.card` since the ramp was
+generated. Nothing was ever broken — a darker box only raised the ratio — but the guarantee was
+theoretical. Now the plate *is* the ground, so the measured number and the rendered pixel finally
+describe the same thing.
+
+**The decluttering, in one sentence: everything said more than once is now said once.** Four
+blocks each paired a countdown with a sentence (reading, the room's view of the exclusive window,
+the answerer's view of it, the lock hint); they were never on screen together, so they were never
+four things — they are one `AnswerStatus` selected by one if/else. Rendering them as four
+independent `&&` blocks is what made the screen read as having four instructions even though one
+was ever visible. The stake was on screen three times in three phrasings; it is now one line. The
+locked count and the spent list are one margin line. The round rule keeps its words and loses its
+box, sitting with the question where item 40 puts it. The standings are one plate rather than one
+box per player.
+
+**One settled decision was deliberately revisited, and it is flagged as such:** item 49 made
+`RoundLine` "the first line inside whichever box leads the page". It now has one fixed home — the
+standings band — which keeps that decision's actual point (the fact is written once, never twice)
+while taking a line out of the reading column and putting round data upper-left where item 40 says
+chrome goes. A one-line revert if the owner disagrees.
+
+### The preview harness, and what looking at things actually bought
+
+`app/dev/answer` renders every Flow B moment from fixtures — instantly, for nothing, `?only=N` for
+one at a time. Judging this screen previously meant playing a real three-player game with real
+Claude calls until the state you wanted came up, and "the room's view during the exclusive window"
+could not be produced on demand at all.
+
+It reports any element overflowing the viewport, because a horizontal overflow has now broken a
+phone twice and both times the build was happy while the screenshot showed only that *something*
+was cut, never what.
+
+**It paid for itself on its first run, in both directions:**
+
+- A 390px "break" that was about to be chased was **not a bug**. Headless Chromium was laying the
+  page out at 500px and screenshotting the left 390 of it. Without the reporter printing
+  `viewport 500`, a working layout would have been "fixed". **`--window-size` does not set the
+  layout viewport in headless Chromium** — drive it through Playwright's `viewport` option or the
+  width being judged is not the width that was asked for.
+- The real bug it found: **`flex-1` does not let the answer input shrink**, because a flex item
+  defaults to `min-width: auto`. Submit sat 22px off the right edge at 390px — and *only* on the
+  answerer's screen, since "Submit" is one word and cannot wrap its way out of the squeeze the way
+  "Lock It In" does. `min-w-0`. All six states are now clean at 390 and at 1280.
+
+### Verification
+
+`scripts/mechanics-test.js` (105), `scripts/postgame-test.js`, `server_py/test_mechanics.py` (63)
+and `server_py/test_turn_timers.py` (12) all pass; `npm run build` clean; every state rendered and
+looked at in Chromium at both widths. No server code was touched.
+
+### Part 2 — CYM: the part registry now notices when the corpus has moved on
+
+Found by measurement during the review pass, then fixed in the same session once the MYF work was
+committed. **It was live in the repo until this session:** `part_registry.json` held 4,807 parts /
+556 sources against a fresh build's **4,952 / 569**, so 13 sources — extracted at real API cost,
+written to disk correctly — were simply never sampled by generation.
+
+**Worth being precise about what the bug was, because it is easy to misread as a data-migration
+problem.** Nothing was in the wrong place and nothing needed moving. `part_registry.json` is a
+*derived index*: generation samples it, never the extraction files themselves. `load_registry()`
+rebuilt it only when the file was **missing**, never when it was out of date.
+
+**And the diagnosis this session first reached was wrong, so it is worth writing down correctly.**
+The initial read — carried in this file and in two commit messages before being corrected — was
+"the extraction runs happened and nobody regenerated the registry afterwards". Checking the
+history rather than the file counts says otherwise: `20c3ee3` (owner, August 10, "Corpus:
+anthology extractions + regenerated part_registry") **did** regenerate it, and no extraction files
+were added after it at all.
+
+What actually happened is worse. The 20 extraction files absent from the index that commit
+produced were added **in that same commit**, and they cluster — ten stories from *Best American
+2016 (Elizabeth George)*, three from *2007 (Hiaasen)*, which are the 13 that yield parts, plus 7
+that yield none. That is the signature of the regeneration running while those two books were
+still extracting, with everything committed together afterwards. Git cannot prove the ordering
+(one commit, no intermediate timestamps) and nothing else explains the clustering.
+
+**So the failure mode was a race, not neglect** — a long extraction run against a manual
+regeneration step — which is the stronger argument for the check: doing the conscientious thing
+still silently lost 13 sources, and a reminder in a doc would not have helped. The March 11 →
+Session 23 instance (~75 sources) was the plain "never rebuilt" version of the same gap.
+
+**The check is a corpus fingerprint**, in a sidecar `part_registry.meta.json`: the hashed set of
+extraction filenames, plus a schema version. Filenames are the right unit because
+`load_extractions()` derives every `source_id` from the filename stem, so a change to that set is
+exactly a change to the sources covered.
+
+**It is deliberately not mtime-based**, which is what item 14 originally proposed (copying
+`craft_grounding.py`'s index cache). A fresh `git clone` stamps every file with the checkout time,
+so mtimes here carry no information about what was built when — comparing them would either miss
+real staleness or rebuild on every clone. The cost of that choice is written down rather than
+hidden: an extraction file edited *in place*, keeping its name, is not detected; `force=True` is
+the escape hatch.
+
+`REGISTRY_SCHEMA_VERSION` covers the second staleness mode, the one no amount of looking at the
+corpus can catch: Session 23 changed `KEY_TO_IDX`, so identical files produced different parts and
+the cache had no way to know.
+
+**`scripts/test_registry_staleness.py`** (new, zero API cost) asserts both halves, because the
+cheap way to pass "it detects staleness" is to rebuild unconditionally. That an unchanged corpus
+genuinely reuses the cache is proved by corrupting the cached file and confirming the corruption
+**survives** — a rebuild would have repaired it.
+
+The same review pass answers root `CLAUDE.md` item 7's "next session should check" list: the
+anthology extraction runs did happen — 281 `pdf_*` extractions, up from 75; 570 extraction files
+total — run locally by the owner and landed in `20c3ee3`.
+
+**One thing found on the way and left open:** 7 of those anthology extractions are all-null —
+every P1 field `null` at `confidence: "low"`, with **no `_meta.extraction_warnings`**, so by item
+13's logic they read as a genuine "nothing found" rather than a caught parse failure. For seven
+mystery short stories that is implausible. They also occupy filenames, and dedup is by filename,
+so a re-run skips them unless they are deleted first. Listed by name in root `CLAUDE.md` item 7.
+Not diagnosed — it needs someone to look at one against its source PDF.
+
+### Part 3 — MYF: two live-type title treatments, and the coherence engine wired
+
+**The metallic logotype is retired** (item 50 in MYF `CLAUDE.md` is the answer screen; this is
+item 52's territory). The owner supplied two font treatments — F1 (a heavy condensed sans) and D1
+(Bebas Neue) — to be shown 50/50. The old asset was 2.1MB of path data whose 29 grey levels ran
+`#0b0b06` → `#f4f3f1`, i.e. drawn for a light ground: on slate, roughly two-thirds of it fell
+under 3.5:1 and simply was not there, which is what read as "dim". Live type has none of that,
+weighs nothing, and is real text — selectable, searchable, screen-readable.
+
+Both faces load via `next/font/google`, which **self-hosts** the woff2 at build time (verified in
+`.next/static/media` — neither falls back), so there is no runtime request to Google and the game
+renders with no internet. Both colours were measured against the ground rather than trusted:
+6.14:1 and 6.02:1, which clears AA and — the useful part — puts the pair within 0.12 of itself, so
+neither half reads as heavier than the other.
+
+**The part that was wrong first, and is why `scripts/wordmark-test.js` exists.** "50/50 randomly"
+hides two properties, and the obvious implementation gets the second one wrong. A second
+polynomial hash then `% 2` measures as a *perfect* 50.00/50.00 split and is still **perfectly
+correlated** with the logo's palette rotation: every odd multiplier collapses to the same parity
+bit mod 2, and because 6 is even, `hash % 6` carries that identical parity. Palette 0 always drew
+one treatment, palette 1 always the other — twelve visual combinations quietly became six, and
+nothing about the overall split revealed it. Salting the seed does not help; it only swaps which
+half is which. Fixed by mixing the bits (murmur3 finaliser) before the modulus. The test walks all
+331,776 possible room codes and checks the **joint** distribution, not the marginal one: worst
+deviation within a palette is now 0.36 points.
+
+Selection is deterministic in the room code, exactly as `Logo.jsx` already defines it for the
+palette and for its stated reason — a mark that differs per screen reads as a rendering bug. So
+50/50 means across *games*.
+
+**MYF's coherence rules are now wired to the shared engine** (item 51, MYF item 8 — the owner's
+cross-title ask from the top of the session). The pillar had one real consumer, CYM's
+`coherence_validator.py`; it has two now, and `server_py/test_coherence_engine.py` asserts both
+titles use the *identical* `RuleSet` / `CoherenceReport` / `Issue` classes rather than two copies
+sharing field names — the check that would actually catch the framework forking.
+
+**The obstacle was a name collision, and it is worth remembering because it will recur.**
+`server_py/coherence.py` and the root `coherence/` package cannot both sit on `sys.path`: whichever
+is found first wins, `server_py/` is always first, so `from coherence.engine import RuleSet`
+resolved to MYF's own file and raised `"'coherence' is not a package"`. No import ordering fixes
+it. The file is now `coherence_rules.py` — the more accurate name regardless, since it assembles
+constraints and validates questions while the engine is the shared thing it plugs into — and the
+repo-root `sys.path` entry is **appended**, not inserted, so `server_py`'s own modules keep winning
+future collisions.
+
+One real behavioural gain came free with using the engine's report instead of a dict: the call site
+now logs on **warnings** as well as failures. The old `if not validation["passed"]` swallowed every
+WARNING, which is precisely where "generation ignored the round rule" shows up. That was a blind
+spot, not a formatting difference.
+
+### Part 4 — CYM: BACKGROUND designed (no code written)
+
+Owner-initiated diversion at the end of the session: bring MYF's look and feel to CYM. **Design
+only — nothing was built.** Full spec, decisions and open questions in root `CLAUDE.md` item 17;
+the short version:
+
+CYM gets MYF's *system* (ground colour + a faded strewn mark tile), **not** its motif — the
+question marks stay MYF's, and CYM's marks are the mystery's own title, so the two titles read as
+siblings rather than one game reskinned. This knowingly reverses MYF item 39's "MYF only, do not
+generalise" line, at the owner's direction.
+
+**The design changed shape mid-conversation, and the owner's version is better.** The first
+proposal worked around the fact that `title` does not exist until generation ends (112s–1992s in
+the real batch data): stream the generation call and parse `title` out early, since it is field #1
+in the schema. That is sound and costs nothing extra, but it modifies the main generation path.
+The owner's counter — **prompt the player for a title alongside the setting and use theirs** —
+removes the streaming dependency entirely, touches no generation code, and makes the original
+two-state spec literally true. It is also what players already do: `submit_prompt`'s own docstring
+examples are "Smurf murder mystery" and "Mystery on Mars". Streaming is kept only as the fallback
+for a blank title.
+
+Decided: the **server** computes a seeded layout and **both clients render it** — CYM has two
+(the Godot host screen and `server/static/mobile.html`), and one layout means the TV and every
+phone show the identical field instead of two renderers drifting.
+
+**The unresolved item is moderation, and it is the owner's call.** A player-supplied string would
+be rendered large, repeated, on every screen, for a whole game, on a TV, in a Steam title — the
+highest-visibility user-generated content surface in the product, and MYF already built
+`moderateHeckle()` for a much smaller one. It cannot ride along on generation because the
+background appears before any Claude call.
+
+### Part 5 — CYM: the BACKGROUND generator built, and the brand artwork measured
+
+**Built:** `background_field.py` — where the mystery's own title is strewn across the page. Pure,
+deterministic, zero API calls, and independent of both open owner decisions, which is why it could
+go ahead while those wait. Python and runtime rather than a build script, because CYM's motif is a
+title that does not exist until a player types it. The server computes the layout and both clients
+draw it; it returns JSON placements, not an image.
+
+Three things came out of *rendering* it rather than reasoning about it, and each is now a test in
+`scripts/test_background_field.py` (31 assertions, zero cost):
+
+- **Sizing must ignore title length.** Scaling each mark so the whole title spans a set fraction
+  of the tile — the obvious approach — shrank a 39-character title to 15px and, because thin
+  strips carry less ink, made the budget ask for *more* of them. Sixty tiny strips is a mat, not a
+  texture. Size is now absolute and long titles crop at the edge.
+- **Placement must be a jittered grid.** At 8–40 marks, uniform randomness reliably left a bare
+  quarter of the tile, which reads as a rendering failure rather than as sparseness.
+- **Mark strength does not need to go below MYF's 10%.** The prediction that it would — because
+  words are read involuntarily where an abstract glyph is not — was wrong: the marks are mostly
+  rotated and cropped, so they do not read as words. 5% is too faint, 7% is the default, 10% also
+  works. Still wants a real screen.
+
+**A bug no rendering would have caught:** the published 8% brass appeared 0% of the time, always.
+Shares were rounded independently (which overshoots the total) and the bag was then truncated from
+the end — where the smallest share happens to be declared. Fixed with largest-remainder
+apportionment, then again with a *weighted* remainder draw, because deterministic largest-remainder
+handed the leftover slots to the same colours in every field forever: a systematic 7-point bias.
+**`mind-your-friends/scripts/build-question-field.mjs` has the same round-then-truncate shape** and
+is fine today only because its numbers happen to sum to exactly 44.
+
+**Brand artwork.** The owner supplied two marks, then re-cut them as true vectors. Both rounds are
+in `brand/`; full status in root `CLAUDE.md` item 17. Headline: the re-cut achieved its goal (real
+paths, no base64), and the contrast problem is unchanged because it converted format rather than
+values — 53% and 73% of ink at or below 2.5:1 on the slate ground. Being vector makes the fix
+cheap: a fill rewrite instead of a pixel filter, which matters because the pixel filter tried here
+produced rainbow speckle on the near-black regions.
+
+`scripts/check_brand_contrast.py` (new, zero cost) measures any mark against the ground. It crops
+to the SVG viewBox — one asset carried 22,445 opaque artifact pixels outside its viewBox that
+dragged a measurement from 49% to 62% — and reports a distribution rather than a mean, because
+these marks are bimodal and an average would describe no pixel in them.
+
+### Next session
+
+**Pick up here: root `CLAUDE.md` item 17.** Two owner decisions are outstanding (moderation; and
+whether the player's title feeds into generation or only decorates). Everything else is settled
+enough to build.
+
+1. **Re-run the playtest.** Two reasons now: item 47's timer fix has never been played, and the
+   answer screen has been rebuilt. PT-4 → PT-8 are still open and the August 18 verdicts are not
+   evidence.
+2. **Open owner decisions, unchanged and none blocking:** the three `#7c3aed` entries in
+   `LOGO_PALETTES`; Spotlight's 1-second exclusive window (PT-6); whether the lobby punchline
+   stays the mark. New this session: whether `RoundLine` should stay in the standings band.
+3. **Owner action item, still open:** the metallic title treatment renovation. Drop-in at
+   `public/brand/myf_title_trtmnt_trans.svg`, keep 587×69, no code change. It is visibly dim in
+   every screenshot taken this session.
+4. Still queued and untouched: `questionLog`/`postGame` in `server_py` (item 46), item 44's two
+   tabled tuning follow-ups, and wiring MYF's coherence to the shared Python engine (item 8) —
+   the last of those being the cross-title work the owner opened this session asking about.
+
+---
+
 ## Session 32 — August 18, 2026 (MYF: the first Flow B playtest, and the bug it found)
 
 **Branch:** `claude/myf-flow-b-playtest-xv2lqh`, started from `main` @ `f4a5efe` (PR #19's merge,

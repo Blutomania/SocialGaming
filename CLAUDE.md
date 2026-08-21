@@ -285,10 +285,36 @@ Full list in `SESSIONS.md`. Top priorities:
    Also unrun this session: the 4-file `_novels/` batch (*39 Steps*, *Behold Here's Poison*,
    *Mystery of the Chinese Ring*, *Whose Body?*) — never got even a `--dry-run` yet.
 
-   **Next session should check:** did the 10-file `_ready/` extraction run, did the 4-file novels
-   batch get dry-run and run, was `mystery_database/part_registry.json` deleted and regenerated
-   afterward (mandatory — the staleness bug in item 14 below is still unfixed), and compare new
-   source/part counts against the last-known baseline (369 sources / 2,833 parts, Session 23).
+   **[CHECKED, Session 33 — August 20 2026]** That "next session should check" list is now
+   answered, by measurement rather than by asking:
+   - **The extraction runs happened.** `mystery_database/extractions/` holds **570 files**, of
+     which **281 are `pdf_*`** — up from 75. So the `_ready/` anthology batch (and more) was run.
+   - **The registry WAS regenerated — and still lost 13 sources.** Checked-in
+     `part_registry.json` was **4,807 parts / 556 sources** against a fresh build's **4,952 /
+     569**, so 13 sources and 145 parts were extracted, on disk, and never sampled.
+     **Do not read this as "nobody remembered to regenerate" — an earlier draft of this note said
+     that and it was wrong.** `20c3ee3` (owner, August 10) is titled "anthology extractions +
+     regenerated part_registry" and did exactly that. The 20 extraction files missing from the
+     index it produced were added *in that same commit*, and they cluster: ten stories from
+     *Best American 2016 (Elizabeth George)* and three from *2007 (Hiaasen)* — the 13 that yield
+     parts — plus 7 that yield none (see below). That is the signature of a regeneration run while
+     those two books were still extracting, with everything committed together afterwards. Git
+     cannot show the ordering (one commit, no intermediate timestamps), but nothing else explains
+     the clustering.
+     **Why this matters for the fix:** the failure was not neglect, it was a race between a long
+     extraction run and a manual regeneration step. Doing the conscientious thing still silently
+     lost 13 sources, which is precisely what an automatic check fixes and a reminder does not.
+   - **[FIXED, Session 33]** Both halves done, no API calls: the registry is regenerated
+     (4,952 / 569 committed), and `load_registry()` now has a real staleness check — see item 14.
+   - **[OPEN, found in the same pass] 7 anthology extractions are all-null and contribute nothing.**
+     `pdf_the_best_american_mystery_stor__story19_a_quiet_place_to_hide`,
+     `__story21_remembering_the_rain`, `__story21_trip_to_reno_...`, `__story22_doggy_style`,
+     `__story22_the_heroism_of_lieutenant_wills_...`, `__story22_the_women_s_room`,
+     `__story22_these_two_guys_thuglit_november`. Every P1 field is `null` with `confidence: "low"`
+     and **no `_meta.extraction_warnings`**, so by item 13's logic they read as a genuine "nothing
+     found" rather than a caught parse failure — which is implausible for seven mystery short
+     stories. They occupy filenames, so the dedup-by-filename rule means a re-run will skip them
+     unless they are deleted first. Worth a look before the next batch; not diagnosed here.
 8. **[FUTURE]** Phase 4 — Steam integration (GodotSteam plugin)
 9. **[ONGOING]** Repo-wide branch cleanup (Session 18) — 9 fully-merged branches identified as
    safe to delete, plus a further 21 stale unmerged branches the owner is triaging on their own
@@ -385,6 +411,28 @@ Full list in `SESSIONS.md`. Top priorities:
     someone manually deletes `part_registry.json`. Worth a real fix (e.g. mtime comparison against
     `extractions/`, matching the pattern `craft_grounding.py`'s index cache already uses) as a
     follow-up, not done this session. Full detail in `SESSIONS.md` Session 23.
+    **[RECURRED AND NOW FIXED, Session 33 — August 20 2026]** It went stale again exactly as
+    predicted — 4,807 parts / 556 sources checked in versus 4,952 / 569 on a fresh build, i.e. 13
+    sources extracted at real API cost and then never sampled. Regenerated, and the root cause is
+    now closed:
+    - **The check is a corpus fingerprint**, written to a sidecar `part_registry.meta.json`: the
+      hashed set of extraction filenames plus a schema version. Filenames are the right unit
+      because `load_extractions()` derives every `source_id` from the filename stem, so a change
+      to that set is exactly a change to the sources covered.
+    - **Not mtime-based, on purpose** — unlike `craft_grounding.py`'s index cache, which this item
+      originally proposed copying. A fresh `git clone` stamps every file with the checkout time,
+      so mtimes here carry no information about what was built when; comparing them would either
+      miss real staleness or rebuild on every clone. **The cost of that choice, stated plainly:**
+      an extraction file edited *in place* under the same name is not detected. `force=True` (or
+      deleting the JSON) is the escape hatch.
+    - **`REGISTRY_SCHEMA_VERSION` covers the other staleness mode**, which no amount of looking at
+      the corpus can catch: Session 23 changed `KEY_TO_IDX`, so identical files produced different
+      parts and the cache had no way to know. Bump it whenever `_atomize_extraction` / `KEY_TO_IDX`
+      / `PART_TYPES` changes what a given extraction yields.
+    - **`scripts/test_registry_staleness.py`** (new, zero API cost) asserts both halves — a
+      moved-on corpus rebuilds, and an unchanged one does *not*, since the cheap way to pass the
+      first is to rebuild unconditionally. The second is proved by corrupting the cached file and
+      confirming the corruption survives.
 13. **[DONE, Session 23]** Fixed a silent extraction-failure bug found while reviewing anthology
     output quality: `extract_pdf()`/`extract_pdf_anthology()` used to catch a malformed Claude
     response and silently save the same null-placeholder shape used for a genuine "nothing found"
@@ -432,6 +480,127 @@ Full list in `SESSIONS.md`. Top priorities:
     own Python port lands** (see MYF's `CLAUDE.md` item 31/32) — its `lib/coherence.js` is
     JavaScript and can't subclass a Python `RuleSet` without a bridge, which is exactly the
     premature-integration mistake this sequencing avoids. Branch: `claude/coherence-engine-unification`.
+    **[COMPLETED, Session 33 — August 20 2026] MYF's Python side is now wired, so the pillar has
+    two real consumers.** `mind-your-friends/server_py/coherence_rules.py` (renamed from
+    `coherence.py`, which it had to be — a top-level module named `coherence` and the `coherence`
+    package cannot both sit on `sys.path`, and `server_py/` always wins, so the import resolved to
+    MYF's own file) defines `QuestionRuleSet`, a real `coherence.engine.RuleSet` subclass.
+    `mind-your-friends/server_py/test_coherence_engine.py` asserts that both titles use the
+    **identical** `RuleSet` / `CoherenceReport` / `Issue` classes rather than two copies that
+    merely share field names — the check that would actually catch the framework forking. Full
+    detail in MYF's `CLAUDE.md` item 51.
+
+17. **[DESIGNED, NOT BUILT — Session 33, August 20 2026] CYM BACKGROUND — the mystery's own title
+    as the page texture.** Owner-initiated: bring MYF's look and feel across to CYM. Design is
+    settled to the point of being buildable; **nothing has been written**. Two questions are still
+    open (below) and both are the owner's.
+
+    **Shared vocabulary (owner-defined — use these names).** MYF's `CLAUDE.md` glossary already
+    defines two of the three; BACKGROUND is new and belongs in both files:
+    | Term | MYF today | CYM equivalent |
+    |---|---|---|
+    | **BACKGROUND** | slate ground + strewn faded question marks | slate ground + the strewn mystery TITLE |
+    | **LOGO** | the three-emoji mark, top centre | none yet — not part of this |
+    | **TITLE TREATMENT** | the logotype, top left | none yet — not part of this |
+
+    **What CYM gets, and what it does not.** CYM gets the *system* — a ground colour plus a faded,
+    strewn, rotated, randomly-sized mark tile — **not the motif**. The question marks stay MYF's
+    (owner, explicitly). CYM's marks are the mystery's own title, so the two titles read as
+    siblings rather than as one game reskinned. This **reverses MYF item 39's** "scoped by owner to
+    MYF only, do not generalise into a cross-title design layer" — knowingly, at the owner's
+    direction. MYF item 39 needs that line rewritten when this is built.
+
+    **The state machine.** Ground colour alone until a mystery is named; the field then builds in,
+    and re-skins on same-room replay (`prompt_vote` → `next-mystery/start`), which is a free payoff
+    of the same mechanism.
+
+    **How the title arrives — the owner's answer, and it is the better one.** The first design
+    routed around the fact that `title` does not exist until generation ends (112s–1992s, per the
+    real batch summaries): stream the generation call, parse `title` out early since it is field #1
+    in the schema, add a `short_title` beside it. That works and costs no extra API calls, but it
+    changes the main generation path. **The owner's proposal supersedes it: prompt the player for a
+    title alongside the setting, and use theirs.** No streaming, no schema change, nothing touching
+    `llm()`, and the original spec ("plain until the prompt is entered, field after") becomes
+    literally true. It is also closer to what players already do — `submit_prompt`'s own docstring
+    examples are "Smurf murder mystery" and "Mystery on Mars", i.e. already title-shaped.
+    Keep the streaming approach in the back pocket **only** as the fallback for a blank title.
+    - "Encapsulated" = **as few words as possible** (owner). With a player-supplied title this is
+      enforceable at the input (`maxlength` + placeholder) rather than hoped for from generation —
+      which matters, because the 16 real titles on disk run 8 to 39 characters and a field of
+      "Whiteout" behaves nothing like a field of "Daggers in the Forum: The Ides of March".
+    - Free win: leftover suggestions already drive the post-game `prompt_vote`; if each carries a
+      title, that screen becomes a list of *named* mysteries instead of raw setting text.
+    - The change is small: one field on `SubmitPromptRequest` and on the stored
+      `{name, prompt_text, ts}` dict in `submit_prompt` (`server/main.py`).
+
+    **Architecture (decided): the server computes the layout, both clients render it.** CYM has
+    **two** clients — the Godot host screen and `server/static/mobile.html`, the phone client every
+    player actually looks at. The server emits a seeded layout (`{text, x, y, rotation, size,
+    colour}`); Godot draws it in `_draw()`, the phone as inline SVG. One implementation, two
+    surfaces, and the TV and every phone show the identical field. Shipping an image instead would
+    mean rasterising for Godot and a data-URI for the phone — two renderers and two chances to
+    drift.
+
+    **Risks, in the order they will bite:**
+    - **Moderation is the real one, and it is new.** A player-supplied string rendered large,
+      repeated, on every screen, for a whole game, on a TV, in a Steam title. It is the
+      highest-visibility user-generated content surface in the product. MYF already built
+      `moderateHeckle()` for a far *smaller* surface. It cannot ride along on generation, because
+      the background appears before any Claude call — so it needs handling at submit time, which is
+      its own API call or a local filter. **Owner decision, not yet made.**
+    - **Legibility.** MYF sits at 10% mark strength for an abstract glyph. Words are read
+      involuntarily, and CYM's screens carry far more text (clues, transcripts, evidence). Expect
+      to need *below* 10%, plus rotation and edge-cropping so most instances are partial. Test on a
+      real screen; do not settle it by argument.
+    - **Fonts:** OFL-licensed only (owner). One existing title is "Schatten am Checkpoint", so
+      localisation means non-English titles and the set needs the glyph coverage. Note MYF draws
+      its marks as **geometry, not font glyphs**, precisely because a background `<text>` renders
+      in whatever font the machine has — that concern returns for the phone client, which needs the
+      faces actually loaded or the two screens will not match.
+
+    **The two open questions, both the owner's:**
+    1. **Moderation** — what happens to a player title before it becomes wallpaper?
+    2. **Does the player's title feed INTO generation, or only decorate?** Recommendation: both —
+       pass it as context so Claude writes a mystery that fits its name, and use it for display,
+       otherwise the wall says one thing and the case file another. Wrinkle if so: the saved-mystery
+       slug derives from `mystery_dict["title"]` (`server/main.py`), so decide whether the player's
+       title *replaces* Claude's or sits beside it as a display title. Recommendation: replace,
+       with Claude's as the fallback when the field is left blank.
+
+    **Brand artwork — where it stands (Session 33).** `brand/` holds four files and a README.
+    `negative_logo.svg` / `organic_logo.svg` were the first pass: raster PNGs in an SVG wrapper,
+    not vector, and `organic_logo.svg` carries an export artifact of 22,445 opaque pixels outside
+    its viewBox. `NEWnegative_CYM.svg` / `NEWorganic_cym.svg` are the owner's re-cut and are
+    **genuine vectors** — 66 and 126 `<path>` elements, zero base64. That was the stated goal and
+    it is met.
+    - **The contrast problem is unchanged, and that is expected** — the re-cut converted format,
+      not values. Measured on the slate ground by `scripts/check_brand_contrast.py`: the negative
+      mark went 49% → 53% of ink at or below 2.5:1, the organic monogram 49% → 73%. The monogram's
+      *outright invisible* band did drop from 22.7% to 0.1%, but it moved into "barely" rather
+      than up the scale.
+    - **Being vector now makes the fix cheap and safe**, which is the real payoff. A value
+      re-pitch is a fill-colour rewrite across the paths, not a pixel filter. Worth knowing why
+      that matters: the pixel filter tried in this session produced rainbow speckle on the
+      negative mark, because its near-black regions have near-zero saturation with tiny hue noise
+      and raising lightness amplified that noise into visible colour. On vector paths there is no
+      noise to amplify.
+    - **Neither mark is wired to any client.** No CYM screen references either file. They are
+      artwork plus a measurement, not implemented chrome.
+    - **The structural question is still open and is the owner's:** these are specified as
+      *different marks per device* — negative mark upper-left on desktop/TV, organic monogram top-
+      centre on phones. Unlike MYF, CYM's Godot host screen and its phone clients are in the same
+      room at the same time, so the room would display two identities simultaneously. That may be
+      wanted (a TV poster and a phone icon); it should be decided rather than arrived at.
+    - Also unresolved: the negative mark reintroduces a question-mark motif to CYM, which item 17
+      otherwise scopes to MYF. A noir question mark is a different object from a strewn field, so
+      this may well be fine — but deliberately, not by drift.
+
+    **Unrelated, noticed while checking and worth one look before building on generation:** an old
+    batch summary in `mystery_database/generated/` shows **13 of 14 generations failing** on JSON
+    parse errors (`Unterminated string`, `Expecting property name`). It is from March and 16
+    mysteries have generated cleanly since, so it is probably long fixed — but a background keyed
+    to the title inherits whatever the current failure rate is. Worth one real generation run to
+    confirm before building on top of it.
 
 > **DO NOT re-run the frozen bulk corpus pipeline** (`deprecated/run_corpus_pipeline.py`). Expand
 > the corpus only via `scripts/extract_from_pdfs.py`, adding one quality source at a time.

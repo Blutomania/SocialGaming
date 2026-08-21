@@ -25,6 +25,15 @@ from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
 
+# Bump this whenever a change to _atomize_extraction / KEY_TO_IDX / PART_TYPES
+# would produce different parts from the SAME extraction files. That is the
+# second way this registry has gone stale historically — Session 23 changed
+# KEY_TO_IDX and the cached registry had no way to know — and unlike new source
+# files it cannot be detected by looking at the corpus, because nothing on disk
+# changed. Bumping this forces one rebuild; it costs no API calls.
+REGISTRY_SCHEMA_VERSION = 2
+
+
 # ============================================================================
 # PART TYPE DEFINITIONS (8 axes, 1-indexed)
 # ============================================================================
@@ -581,14 +590,61 @@ def _parse_setting(setting_str: str) -> Tuple[str, str]:
     return period, environment
 
 
-def load_registry(db_dir: str = "./mystery_database") -> PartRegistry:
+def _corpus_fingerprint(db_dir: Path) -> dict:
+    """What the registry SHOULD have been built from, as a comparable value.
+
+    The set of extraction filenames, hashed. Filenames are the right unit
+    because load_extractions() derives every source_id from the filename stem,
+    so a change to this set is exactly a change to the sources the registry
+    covers — added, removed or renamed.
+
+    Deliberately NOT mtime-based, unlike craft_grounding.py's index cache. A
+    fresh `git clone` stamps every file with the checkout time, so mtimes here
+    carry no information about what was built when, and comparing them would
+    either miss real staleness or rebuild on every clone. The trade-off is
+    stated rather than hidden: an extraction file EDITED IN PLACE, keeping its
+    name, is not detected. Pass force=True or delete part_registry.json after
+    doing that.
     """
-    Load the part registry, bootstrapping from test corpus if needed.
+    extractions = sorted(p.name for p in (db_dir / "extractions").glob("*.json"))
+    joined = "\n".join(extractions).encode()
+    return {
+        "schema_version": REGISTRY_SCHEMA_VERSION,
+        "extraction_count": len(extractions),
+        "extraction_hash": hashlib.sha1(joined).hexdigest(),
+    }
+
+
+def load_registry(db_dir: str = "./mystery_database", force: bool = False) -> PartRegistry:
+    """
+    Load the part registry, rebuilding it when the corpus has moved on.
     Call this from any CLI command that needs parts.
+
+    This used to rebuild only when part_registry.json was MISSING, never when
+    it was stale — so every extraction run since the last manual delete was
+    silently invisible to generation. That happened twice for real (March 11 →
+    Session 23: 75 sources lost; Session 23 → Session 33: 13 sources and 145
+    parts lost), which is why the check exists rather than a note asking people
+    to remember. Rebuilding is free — no API calls, it only re-reads JSON.
     """
     registry = PartRegistry(db_dir)
-    if not registry.load():
-        registry.populate_from_test_corpus()
-        registry.load_extractions()
-        registry.save()
+    db_path = Path(db_dir)
+    meta_path = db_path / "part_registry.meta.json"
+    fingerprint = _corpus_fingerprint(db_path)
+
+    fresh = False
+    if not force and meta_path.exists():
+        try:
+            fresh = json.loads(meta_path.read_text()) == fingerprint
+        except Exception:
+            fresh = False  # unreadable sidecar means rebuild, never means fresh
+
+    if fresh and registry.load():
+        return registry
+
+    registry.parts = []
+    registry.populate_from_test_corpus()
+    registry.load_extractions()
+    registry.save()
+    meta_path.write_text(json.dumps(fingerprint, indent=2))
     return registry

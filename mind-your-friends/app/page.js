@@ -55,7 +55,19 @@ export default function HomePage() {
             <br />
             Use Your Strategy
           </p>
-          <Wordmark width={300} className="mt-6" />
+          {/* The punchline of the list above — the name of the game doing
+              double duty as the last line of it (item 49). It is set as the
+              MARK rather than as type imitating one, which is now literally
+              true: the treatment IS type, so the punchline and the chrome are
+              the same object at two sizes rather than a picture and a
+              lookalike.
+
+              No room code exists on the join screen, so this is always F1.
+              That is stable by choice — picking per visit would need a
+              client-side pick after mount, and the mark visibly changing a
+              beat after the page paints is worse than one treatment owning
+              this screen. One line to change if the owner wants otherwise. */}
+          <Wordmark size="hero" className="mt-6" />
         </div>
 
       <input
