@@ -26,25 +26,66 @@ grows dramatically (a much larger corpus block, or conversation history).
 
 ---
 
-## Lever 1 — move work from play time to build time  *(biggest; done Session 34)*
+## Lever 1 — one call per mystery, then never again  *(the architecture, not an optimisation)*
 
-The playtest's simplifications ("pick a witness, the game gives them actionable info"; "you searched
-the area and found this") are **fixed text per witness and per area**, not conversations. Fixed text
-can be written during the generation call already being paid for.
+**State this correctly, because an earlier draft of this document got it wrong.** One generation call
+per mystery and no AI at play time is not a saving discovered by analysis — it is, and always was,
+the intended design (owner, Session 34: *"We never, ever planned for live calls. We want the prompt,
+we want to generate off the prompt and never use AI again."*). There is no per-action baseline to
+have saved money against.
 
-| Design | Calls/game | Cost/game |
+**What the analysis actually found is a divergence: the shipped server does make live play-time
+calls.** Six sites in `server/main.py`:
+
+| Line | Function | Fires |
+|---|---|---|
+| 779 | `_investigate_area_with_ai` | every area a player searches |
+| 798 | `_follow_lead_with_ai` | every lead a player follows |
+| 1135 | `_generate_witness_scene` | every witness round |
+| 2306 / 2398 | the two `/interrogate` endpoints | every question asked |
+| 707 | `_generate_resolution_narrative` | once at end of game |
+
+These arrived with the Session 21 lockstep redesign and the Session 26 resolution reveal. Nobody
+decided to build a per-action architecture; it accumulated one endpoint at a time. **The
+single-player playtest path hits line 2398 on every interrogation question today.**
+
+So the number below is not a saving. It is the size of the gap between the design and the code:
+
+| | Calls/game | Cost/game |
 |---|---:|---:|
-| Pre-written at generation *(now)* | 1 | **$0.14** |
-| Live call per area search, 4 players × 5 areas | 21 | $0.75 |
-| Live calls for searches *and* interrogation | 45 | **$1.48** |
+| Intended: one generation, no play-time calls | 1 | **$0.14** |
+| What the code does now, 4 players × 5 areas + 6 questions each | 45 | **$1.48** |
 
-**10.8× cheaper** — and the saving compounds with players. A live-call design gets more expensive the
-more people are in the room, which is the wrong direction for a party game; the pre-written design
-costs the same for two players or eight. It is also faster, and cannot fail on the network in front
-of a room.
+Closing that gap is what the `discovery` / `analysis` / `statement` fields are for: they make the
+pre-written answer exist, so the client can read it instead of calling out. The fields landed in
+Session 34; **the call sites above have not been removed yet.**
 
-Rule: **anything a player will see that doesn't depend on what they chose can be written before they
-choose.** Dynamic interrogation is a real feature for a later version — but buy it deliberately.
+Rule going forward: **anything a player will see that doesn't depend on what they chose is written at
+generation time.** Dynamic interrogation would reverse this and is not planned — if it is ever
+wanted, price it as "per player per question, scaling with room size".
+
+### The corollary: spend *more* on generation, not less
+
+Because there are no play-time calls, a mystery's entire AI cost is **fixed, one-time, and paid
+before anyone plays**. It does not scale with players, session length, or replays — and saved
+mysteries are replayable from the browse list, so the cost amortises further every time one is
+reused.
+
+That makes generation the *right* place to spend. A more expansive generation (owner's stated
+direction) is the cheapest kind of improvement this architecture can buy.
+
+Two practical limits to watch as the payload grows:
+
+| | Now | Limit |
+|---|---:|---|
+| Output tokens per mystery | 8,667 | `max_tokens` is 16,000 — **1.85× headroom** |
+| Cost per mystery | $0.14 | scales linearly: ~$0.26 at 2×, ~$0.39 at 3× |
+
+`claude-sonnet-4-6` can return up to 128K output tokens, but **anything above ~16,000 must use
+streaming** (`.stream()` + `.get_final_message()`) or the request risks an HTTP timeout. So the next
+real expansion of the schema is also the moment the generation call needs to become a streaming call.
+Worth doing before the payload forces it, not after — a truncated response bills in full (Lever 3).
+
 
 ## Lever 2 — don't buy what a computer can derive
 

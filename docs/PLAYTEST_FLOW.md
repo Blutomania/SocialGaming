@@ -82,9 +82,22 @@ them actionable info"* and *"You searched this AREA and found THIS"* are **fixed
 and per area**. Fixed text can be written once, during generation, in the call that is already
 being made.
 
-**So the target is: one generation call, then a whole game at zero further API cost.** That is
-strictly cheaper than anything achievable by trimming the existing per-action calls, and it is
-also faster to play, since no screen waits on the network.
+**One generation call, then a whole game at zero further API cost, is the intended architecture**
+(owner, Session 34: *"We never, ever planned for live calls. We want the prompt, we want to generate
+off the prompt and never use AI again."*).
+
+**The code does not currently do that.** Six live play-time call sites exist in `server/main.py` —
+`_investigate_area_with_ai` (779), `_follow_lead_with_ai` (798), `_generate_witness_scene` (1135),
+both `/interrogate` endpoints (2306, 2398) and `_generate_resolution_narrative` (707). They arrived
+with the Session 21 lockstep redesign and the Session 26 reveal; nobody chose a per-action
+architecture, it accumulated an endpoint at a time. **Single-player interrogation hits 2398 on every
+question, so this is on the playtest path.** Build-order step 5 is what closes it.
+
+Because there are then no play-time calls, a mystery's whole AI cost is fixed, one-time, and paid
+before anyone plays — it does not scale with players or replays. **That makes generation the right
+place to spend, and "more expansive" the cheapest improvement available.** Watch two limits as the
+payload grows: output is 8,667 tokens against a 16,000 cap (1.85× headroom), and anything above
+~16,000 must switch the generation call to streaming or risk an HTTP timeout.
 
 Schema additions needed in `_generate_mystery_dict`'s prompt:
 
@@ -146,7 +159,8 @@ outright (or the mystery is solvable in one click).
 3. **Coherence rules** for the new fields, plus the deliberately-broken-mystery test set.
 4. **Crime-scene screen** in Godot — draws `crime_scene_map.build_map()`, hosts the area clicks,
    the witness markers and the "I've solved it" button.
-5. **Simplify interrogation and search** to read the pre-written text instead of calling out.
+5. **Simplify interrogation and search** to read the pre-written text instead of calling out — this
+   is what removes the six live call sites, not a cosmetic simplification.
 6. **Grey out leads.**
 7. **Mystery picker** — titles only.
 
