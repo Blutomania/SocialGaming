@@ -144,10 +144,15 @@ func _add_evidence_row(ev: MysteryData.EvidenceData) -> void:
 	evidence_container.add_child(lbl)
 
 func _build_viability_buttons() -> void:
+	# Free only the buttons this function added. The previous version freed
+	# every child and then re-added viability_label -- but that label is a
+	# child of ViabilityRow in the scene, so add_child() on it raises
+	# "already has a parent", and the queue_free() then deleted it at the end
+	# of the frame. The row lost its label and printed an engine error.
 	for child in viability_hbox.get_children():
-		child.queue_free()
+		if child != viability_label:
+			child.queue_free()
 	viability_label.text = "Rate this mystery: "
-	viability_hbox.add_child(viability_label)
 	for i in range(1, 11):
 		var btn := Button.new()
 		btn.text = str(i)

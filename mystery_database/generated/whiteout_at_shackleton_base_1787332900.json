@@ -1,0 +1,323 @@
+{
+  "title": "Whiteout at Shackleton Base",
+  "setting": {
+    "location": "Shackleton Antarctic Research Station, Ross Ice Shelf",
+    "time_period": "Mid-winter, June \u2014 polar night",
+    "environment": "A modular prefabricated research station buried under snow drifts, temperature outside reaching -55\u00b0C with 90 km/h winds",
+    "description": "Shackleton Base is a cluster of pressurised modules connected by insulated corridors, surrounded by total darkness and a Category 3 blizzard that has grounded all aircraft and frozen the emergency snowcat's engine block. The nearest human settlement is McMurdo Station, 340 kilometres away across fractured ice. No one is leaving until the storm breaks \u2014 the station's emergency coordinator has sealed the outer airlocks by protocol, and the satellite uplink is down, meaning no outside authority can respond for at least 48 hours."
+  },
+  "crime": {
+    "type": "Murder",
+    "what_happened": "Dr. Ingrid Solberg, the station's chief glaciologist, was found dead in the Cold Storage Module at 06:14 local time. Her face bore deep lacerations consistent with a bladed instrument, and she had been struck repeatedly on the back of the skull with a heavy object. The attack was staged to resemble an accident with falling shelving, but the blood-spatter pattern and the angle of the wounds contradict that explanation.",
+    "when": "Between 23:30 and 01:00 the previous night, during the station's mandatory rest period",
+    "initial_discovery": "Lab technician Priya Osei went to the Cold Storage Module at 06:00 to retrieve ice cores for morning analysis and found Dr. Solberg's body beneath a collapsed metal shelving unit. She immediately triggered the station alarm."
+  },
+  "characters": [
+    {
+      "name": "Dr. Ingrid Solberg",
+      "role": "victim",
+      "occupation": "Ice Studies Lead, Shackleton Base",
+      "motive": "N/A",
+      "alibi": "N/A",
+      "secret": "Dr. Solberg had discovered that someone had been systematically falsifying the station's climate data over the past eight months, inflating ice-melt readings to support a pre-determined conclusion. She had compiled a full audit file on a password-protected USB drive and had sent a preliminary accusation email to the Norwegian Polar Institute the evening before her death, naming a specific colleague.",
+      "statement": ""
+    },
+    {
+      "name": "Dr. Marcus Hale",
+      "role": "suspect",
+      "occupation": "Senior Climate Researcher and Station Science Director",
+      "motive": "Dr. Hale had spent six years building a lucrative consulting arrangement with a European energy consortium that paid him for specific climate projections supporting their Arctic drilling licence applications. Dr. Solberg's audit would have exposed him, ended his career, triggered criminal fraud charges, and cost him an estimated \u20ac2.3 million in outstanding consulting fees.",
+      "alibi": "Claims he was in the Communications Module from 23:00 to 01:30 filing a routine data packet to the Norwegian Polar Institute \u2014 but the system logs show the packet was queued at 22:47, twelve minutes before he says he sat down, and his keycard was not swiped at the Communications Module at all that night.",
+      "secret": "Hale has a second encrypted laptop hidden beneath a loose floor panel in his bunk module; it contains a folder of correspondence with the energy consortium, invoices for falsified reports, and a draft response to Solberg's accusation that he never sent. He has been systematically deleting his station email history for the past three weeks."
+    },
+    {
+      "name": "Dr. Yuki Tanaka",
+      "role": "suspect",
+      "occupation": "Atmospheric Physicist",
+      "motive": "Tanaka had been passed over for the Science Director position in favour of Hale two years ago, and blamed Solberg for writing a lukewarm reference. She had been secretly compiling a formal misconduct complaint against Solberg for alleged data misattribution \u2014 a complaint that, if Solberg were investigated for fraud first, would look retaliatory and destroy Tanaka's own standing.",
+      "alibi": "Says she was running an overnight atmospheric sensor calibration from 22:00 to 02:00, working alone in the Atmospheric Lab. The calibration log does show an active session during those hours, but the session can be started remotely from any station terminal.",
+      "secret": "Tanaka had been meeting privately with the station's external auditor during his last visit three months ago, feeding him selective criticisms of Solberg's methodology. She never told anyone, including the auditor, that her complaints were partly motivated by the promotion dispute. Her private journal, kept on paper, documents both the grudge and her awareness that Hale was manipulating data \u2014 meaning she knew about Hale's fraud and said nothing."
+    },
+    {
+      "name": "Bjorn Larssen",
+      "role": "suspect",
+      "occupation": "Station Engineer and Logistics Coordinator",
+      "motive": "Larssen had been skimming small amounts from the station's supply requisition budget \u2014 roughly $18,000 over two years \u2014 by submitting duplicate purchase orders through a shell account. Solberg, while auditing the data irregularities, had noticed anomalies in the supply ledger and flagged them in a note she sent to the base administrator. Larssen intercepted the note through his administrator-level systems access.",
+      "alibi": "Claims he was repairing a heating element in the Generator Room from 23:15 to 01:00, a task that genuinely needed doing. The repair log shows the work was completed, but the repair itself takes 40 minutes at most, leaving a gap of over an hour unaccounted for.",
+      "secret": "Larssen has administrator-level access to all station systems, including keycard logs, which he used to delete his own movement records for the night of the murder. He does not know that the Cold Storage Module has a secondary motion sensor tied to the fire-suppression system that logs independently and cannot be edited from his terminal."
+    },
+    {
+      "name": "Dr. Felix Caron",
+      "role": "suspect",
+      "occupation": "Marine Biologist, seconded from the French Polar Institute",
+      "motive": "Caron had co-authored two papers with Hale that relied on the falsified climate data. If the fraud became public, his own academic reputation would be destroyed even though his involvement was unwitting. He had confronted Hale two days before the murder and threatened to go to Solberg himself; Hale had told him to stay quiet and 'let me handle it'.",
+      "alibi": "Caron was genuinely in the Station Mess with Priya Osei from 22:45 to roughly 00:20, the two of them playing cards and finishing a bottle of wine. Osei can and does confirm this. He is not the killer but behaves evasively because he is terrified of the data-fraud exposure.",
+      "secret": "Caron received a handwritten note slipped under his bunk door the day before the murder, reading: 'Stay in your lab tonight. Do not ask questions.' He does not know who wrote it. He kept the note and hid it inside a novel on his bookshelf because it frightened him."
+    },
+    {
+      "name": "Priya Osei",
+      "role": "witness",
+      "occupation": "Lab Technician \u2014 known around the station as 'Wide-Awake Priya' for her habit of monitoring every instrument shift on night rotation",
+      "motive": "",
+      "alibi": "Was in the Station Mess with Dr. Caron from 22:45 to approximately 00:20, then went directly to her bunk.",
+      "secret": "",
+      "statement": "I was with Felix \u2014 Dr. Caron \u2014 in the Mess until nearly half past midnight. Around 23:40 I got up to get more water from the kitchen and I passed the corridor junction near the Cold Storage hallway. Dr. Hale was walking away from me toward the Cold Storage end \u2014 I recognised his red station jacket and his height, there's nobody else that tall. I thought he was going to check on the core freezers, which he sometimes does late. I didn't think anything of it until this morning."
+    },
+    {
+      "name": "Kwame Asante",
+      "role": "witness",
+      "occupation": "Station Medic \u2014 informally called 'Cold-Case Kwame' by the crew, a nickname he tolerates with grim patience",
+      "motive": "",
+      "alibi": "Was asleep in the Medical Bay, where he keeps a cot for on-call nights, from 22:00 onward.",
+      "secret": "",
+      "statement": "I performed the preliminary examination of Dr. Solberg's body. The lacerations on her face were made by something with a narrow, ridged edge \u2014 not the shelving that supposedly fell on her. The shelving edges are smooth aluminium. Whatever cut her face was roughly 8 millimetres wide with a serrated or knurled surface. Also, the primary head injury was delivered from above and slightly behind, which is inconsistent with a fall. I told Dr. Hale this within an hour of the discovery and he told me to 'keep it preliminary' until outside authorities arrived. That instruction struck me as unusual given he is the Science Director, not my superior."
+    },
+    {
+      "name": "Station Computer \u2014 Automated Log (read by Yuki Tanaka)",
+      "role": "witness",
+      "occupation": "Atmospheric Lab terminal printout \u2014 SENTINEL (Station Environmental Network for Time-stamped Instrument and Event Log; the name chosen, with typical polar-team irony, because it never sleeps and never lies)",
+      "motive": "",
+      "alibi": "",
+      "secret": "",
+      "statement": "I pulled the Atmospheric Lab session log this morning after the alarm \u2014 it was already on my screen because the overnight calibration had just finished. The session ran from 22:03 to 02:11, which is what I expected. But I also noticed something strange: at 23:52 there was a 14-minute gap where the terminal went to screensaver and then resumed. A calibration session does not pause itself. Someone interrupted it \u2014 or it was started remotely and the person left the room. I printed the log. It is on the table in the Atmospheric Lab."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "Dr. Solberg's USB Audit Drive",
+      "description": "A small black USB drive found taped inside a hollowed-out field notebook in Solberg's bunk module, behind a row of reference manuals. The drive contains an encrypted folder labelled 'NPI_SUBMISSION_FINAL' holding eight months of raw ice-core readings alongside manipulated versions of the same data, a comparison spreadsheet identifying who had write-access to each falsified file, and a draft email to the Norwegian Polar Institute explicitly naming Dr. Marcus Hale as the source of the alterations.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E2",
+      "name": "Serrated Bolt-Driver (found in Generator Room)",
+      "description": "A heavy, 32-centimetre adjustable torque driver with a knurled grip approximately 8 millimetres wide, found wedged behind a pipe casing in the Generator Room where Larssen claims to have been working. The striking face shows reddish-brown residue that was initially assumed to be rust, and the knurled grip has a faint smear of the same substance. This tool is consistent with Dr. Asante's description of the weapon that caused Solberg's facial lacerations.",
+      "type": "physical",
+      "relevance": "critical"
+    },
+    {
+      "id": "E3",
+      "name": "Cold Storage Motion-Sensor Log",
+      "description": "A printout from the fire-suppression system's independent motion-sensor archive, retrieved from the engineering panel in the Cold Storage Module. It shows a single motion event at 23:58 lasting approximately 22 minutes, followed by a second event at 00:31 lasting 4 minutes \u2014 the second event consistent with the shelving being arranged after the attack. The log cannot be edited from Larssen's administrator terminal because it writes to a separate protected partition.",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E4",
+      "name": "Dr. Hale's Hidden Laptop",
+      "description": "A personal laptop recovered from beneath a loose aluminium floor panel in Dr. Hale's bunk module, identifiable by a consortium-branded sticker on the underside. It contains a folder of encrypted correspondence with the Boreal Energy Consortium dating back four years, including wire transfer confirmations totalling \u20ac2.3 million and a series of emails from Hale acknowledging that he was adjusting raw data to match agreed projections. A draft unsent email, timestamped 21:14 the night of the murder, begins 'Ingrid, I need you to understand what is at stake for both of us.'",
+      "type": "documentary",
+      "relevance": "critical"
+    },
+    {
+      "id": "E5",
+      "name": "Anonymous Warning Note (in Caron's novel)",
+      "description": "A small piece of station notepaper found inside a copy of Patrick White's 'Voss' on Dr. Caron's bookshelf, written in block capitals with a standard station ballpoint: 'STAY IN YOUR LAB TONIGHT. DO NOT ASK QUESTIONS.' Forensic comparison of the handwriting and pen pressure against samples from all station residents is possible. The note was intended to ensure Caron had an alibi and could not stumble onto the crime \u2014 and to keep him frightened and silent.",
+      "type": "physical",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E6",
+      "name": "Keycard Access Log \u2014 Amended Version",
+      "description": "The station's official keycard log as presented by Bjorn Larssen shows no unusual movements for any personnel on the night in question. However, comparison with the unedited backup copy \u2014 automatically mirrored to the fire-suppression system's secondary server every 15 minutes \u2014 reveals that three entries were deleted: Dr. Hale's keycard accessing the Cold Storage corridor at 23:53, again at 00:29, and his card accessing the Generator Room at 00:34. These deletions were made from Larssen's administrator account at 06:47, approximately 30 minutes after the body was discovered.",
+      "type": "documentary",
+      "relevance": "supporting"
+    },
+    {
+      "id": "E7",
+      "name": "Small Dark Figure in Storm-Gear (witness rumour)",
+      "description": "A hand-scrawled note posted on the station bulletin board by an unknown person the morning of the murder reads: 'Saw a small dark figure in full outside storm gear near the airlock at midnight \u2014 could have come from outside.' The station airlock logs show no exterior door was opened all night, outdoor temperature was lethal without full survival gear, and no one at the station is documented as having left. The note appears designed to suggest an outside intruder and has no basis in fact \u2014 it was placed by Hale to create confusion.",
+      "type": "physical",
+      "relevance": "red_herring"
+    },
+    {
+      "id": "E8",
+      "name": "Supply Ledger Anomalies \u2014 Larssen's Skimming File",
+      "description": "A spreadsheet found on the station's shared administrative drive, in a folder Solberg had labelled 'QUERY \u2014 B.L. \u2014 SEE ADMIN', showing 23 duplicate purchase orders submitted over 26 months, each slightly below the threshold requiring secondary approval, totalling approximately $18,400. The orders trace to a vendor account registered to a holding company Larssen controls. This establishes that Solberg was investigating Larssen as well as Hale, giving Larssen a motive \u2014 but Larssen did not commit the murder.",
+      "type": "documentary",
+      "relevance": "red_herring"
+    }
+  ],
+  "investigation_areas": [
+    {
+      "id": "A1",
+      "name": "Cold Storage Module",
+      "description": "A refrigerated room lined with metal shelving units holding labelled ice-core samples in numbered trays. The air smells of machine oil and frozen mineral water. Fluorescent strip lighting hums over the overturned shelving unit and the chalk outline Dr. Asante drew around where the body lay.",
+      "investigation_prompt": "The fire-suppression motion-sensor panel is on the east wall behind a hinged cover. The log printout is accessible without tools. There is a faint blood trail leading not from beneath the shelving but from the shelving toward the door \u2014 indicating the body was moved after death. A single boot print in a thin frost deposit near the door is size 44 European, consistent with Hale.",
+      "discovery": "Behind the hinged service panel on the east wall you find a printout from the fire-suppression motion sensor. It shows two separate motion events in this room: one at 23:58 lasting 22 minutes, and another at 00:31 lasting 4 minutes.",
+      "analysis": "Cross-referencing the motion log timestamps with the recovered keycard backup confirms that Dr. Marcus Hale's keycard accessed the Cold Storage corridor at 23:53 \u2014 five minutes before the first motion event \u2014 and again at 00:29, two minutes before the second event."
+    },
+    {
+      "id": "A2",
+      "name": "Dr. Hale's Bunk Module",
+      "description": "A compact but personalised sleeping cabin stacked with scientific journals, a framed photo of a Norwegian fjord, and a tidy desk with a station-issue laptop open to a blank screen. The floor panels are the same brushed aluminium as the rest of the station, but one near the foot of the bunk has slightly more wear around its edges.",
+      "investigation_prompt": "The loose floor panel is findable with a physical search. Beneath it is Hale's personal encrypted laptop and a printed copy of a wire transfer confirmation for \u20ac400,000 from Boreal Energy AS. The station-issue laptop on the desk has had its browsing and email history cleared in the last 24 hours.",
+      "discovery": "Pressing on the worn floor panel near the foot of the bunk causes it to lift. Beneath it is a personal laptop in a neoprene sleeve and a folded printed document showing a bank wire transfer.",
+      "analysis": "The hidden laptop's folder structure and the wire transfer document confirm payments totalling \u20ac2.3 million from the Boreal Energy Consortium to an account held by Marcus Hale, alongside emails in which Hale explicitly agrees to adjust ice-melt data to match projections the consortium required for a drilling licence."
+    },
+    {
+      "id": "A3",
+      "name": "Generator Room",
+      "description": "A loud, warm space dominated by two diesel generator units and a tangle of insulated pipes. The smell of diesel and hot metal is overpowering. Larssen's repair work is visible \u2014 a heating element panel on the far wall is newly resealed with fresh bolts.",
+      "investigation_prompt": "The torque driver is wedged behind a secondary pipe casing near the heating element panel. The residue on it is blood. The room is Larssen's domain and his fingerprints will be on everything here \u2014 including the driver \u2014 but Hale borrowed the driver from the tool station two days ago, signing it out in the shared log, and Hale's prints are on the handle underneath Larssen's.",
+      "discovery": "Wedged behind a pipe casing near the heating element panel you find a heavy adjustable torque driver with a knurled grip. The striking face and grip are stained with what appears to be dried reddish-brown residue.",
+      "analysis": "Forensic swabbing confirms the residue on the torque driver is human blood matching Dr. Solberg's type. Fingerprint analysis finds two sets of prints: Bjorn Larssen's on the outer surface and Marcus Hale's underneath, consistent with Hale handling the tool first and Larssen using it subsequently for legitimate repair work."
+    },
+    {
+      "id": "A4",
+      "name": "Communications Module",
+      "description": "A narrow room crowded with satellite terminals, radio equipment, and blinking server racks. A single swivel chair faces the main console. The station bulletin board here is where the hand-scrawled 'dark figure' note was posted.",
+      "investigation_prompt": "The system log for the Communications Module shows no keycard access between 22:00 and 02:00 on the night of the murder \u2014 directly contradicting Hale's alibi. The data packet Hale claims to have filed was queued automatically by the system at 22:47, not manually submitted. The hand-scrawled note on the bulletin board was written with a ballpoint pen; the station has one shared pen at this console, and the ink type matches.",
+      "discovery": "The Communications Module access log on the main console terminal shows no keycard entries for this room between 22:00 and 02:00. A note on the bulletin board warns of a 'dark figure near the airlock at midnight.'",
+      "analysis": "The system log confirms the data packet attributed to Hale's late-night session was queued automatically at 22:47 by a scheduled script \u2014 no human interaction was required. Pen-ink analysis of the bulletin-board note matches the station pen kept at this console, and handwriting comparison places the note's block-capital style within the range of Dr. Marcus Hale's documented writing samples."
+    },
+    {
+      "id": "A5",
+      "name": "Dr. Solberg's Bunk Module",
+      "description": "A meticulously organised cabin with colour-coded field notebooks lined up by year on a narrow shelf, a small framed photo of Solberg at a glacier survey site, and a desk with a closed station-issue laptop. The room feels recently searched \u2014 two notebooks have been replaced spine-outward.",
+      "investigation_prompt": "The USB drive is hidden in a hollowed-out 2019 field notebook. The station-issue laptop has an unsent draft email open, addressed to the Norwegian Polar Institute, naming Hale. Hale entered this room at some point before the murder \u2014 his fingerprints are on the desk lamp and the laptop lid \u2014 suggesting he searched it and missed the drive. The two mis-shelved notebooks were disturbed during his search.",
+      "discovery": "Behind the row of field notebooks on the shelf you find a 2019 notebook that has been hollowed out. Inside it is a small black USB drive labelled 'NPI_SUBMISSION_FINAL' in marker pen. Two of the notebooks on the shelf are shelved spine-inward, as if someone replaced them hastily.",
+      "analysis": "The USB drive contains a completed audit comparing raw ice-core data with falsified versions submitted to journals, a spreadsheet identifying Dr. Marcus Hale as the sole user with write-access to the altered files, and a draft email to the Norwegian Polar Institute dated the evening of the murder naming Hale and requesting an emergency investigation."
+    }
+  ],
+  "leads": [
+    {
+      "id": "L1",
+      "title": "The Deleted Keycard Records",
+      "brief": "Station engineer Larssen controls the keycard log system \u2014 and someone made deletions to it the morning the body was found.",
+      "investigation_prompt": "Following this lead and accessing the fire-suppression system's mirrored backup reveals the three deleted keycard entries for Hale. It also shows that the deletions were made from Larssen's administrator account at 06:47 \u2014 but questioning Larssen reveals he has no memory of doing this, because he did not: Hale, aware of Larssen's admin credentials from a shared maintenance session weeks earlier, used Larssen's login to make the deletions, intending to frame Larssen if needed. The log of who accessed Larssen's account session shows Hale's workstation IP."
+    },
+    {
+      "id": "L2",
+      "title": "The Boreal Energy Consortium",
+      "brief": "A scrawled name \u2014 'Boreal Energy AS' \u2014 appears in the margin of Dr. Solberg's most recent field notebook.",
+      "investigation_prompt": "Researching Boreal Energy AS via the station's satellite internet (once partially restored) reveals it is a Norwegian-registered energy exploration company currently holding provisional Arctic drilling licences contingent on specific climate-modelling thresholds. Public records show the company has paid three academic consultants over five years; one payment trail leads to a numbered account that, cross-referenced with the hidden laptop's documents, resolves to Marcus Hale. This lead directly corroborates the financial motive."
+    },
+    {
+      "id": "L3",
+      "title": "Dr. Tanaka's Missing Hour",
+      "brief": "The Atmospheric Lab calibration log shows a 14-minute pause in an otherwise continuous overnight session \u2014 someone left the room or interrupted the session.",
+      "investigation_prompt": "This lead is a red herring. Following it up reveals that Tanaka did briefly leave the Atmospheric Lab at 23:52 to use the bathroom in the adjacent corridor \u2014 confirmed by a motion-sensor ping in the bathroom module at 23:54. She returned at 00:06. She is not the killer. Her evasiveness when questioned stems from her knowledge of Hale's fraud and her fear that her own complaint against Solberg will surface. Her paper journal, if found, documents both the grudge and her silence about Hale's manipulation."
+    },
+    {
+      "id": "L4",
+      "title": "The Anonymous Warning Note",
+      "brief": "Dr. Caron admits he received a frightening anonymous note the day before the murder telling him to stay in his lab that night.",
+      "investigation_prompt": "The note was written in block capitals on station notepaper. Handwriting analysis and comparison with writing samples from all four suspects places the block-capital formation within Hale's documented range \u2014 particularly the characteristic flat crossbar on the letter A and the closed loop of his numeral 0, which appears in his lab notebooks. Hale wrote the note to ensure Caron stayed isolated and would not accidentally witness the murder or create an alibi problem."
+    }
+  ],
+  "solution": {
+    "culprit": "Dr. Marcus Hale",
+    "method": "Hale lured Solberg to the Cold Storage Module under the pretext of discussing the data concerns privately, then struck her from behind with the borrowed torque driver, which he had taken from the tool station two days earlier. He used the knurled grip edge to inflict the facial lacerations in a frenzied continuation of the attack. He staged the scene by toppling a shelving unit over the body. He then returned at 00:31 to adjust the staging, before accessing the Generator Room to replace the torque driver in a location he expected to implicate Larssen. He used Larssen's admin credentials \u2014 obtained weeks earlier \u2014 to delete the keycard log entries and posted the false 'dark figure' note to suggest an outside intruder.",
+    "motive": "Dr. Solberg had completed an audit proving Hale had falsified eight months of ice-core data for payment from the Boreal Energy Consortium \u2014 a scheme worth \u20ac2.3 million. She had named him specifically in a draft email to the Norwegian Polar Institute sent the night she died. Exposure meant the end of his career, criminal fraud charges, and the loss of all consortium income. He could not allow her to transmit the full audit file.",
+    "key_evidence": [
+      "E1",
+      "E2",
+      "E3",
+      "E4",
+      "E6"
+    ],
+    "how_to_deduce": "Step 1 \u2014 Establish the murder was not an accident: Dr. Asante's witness statement confirms the wounds are inconsistent with a shelving fall, and the Cold Storage motion log (E3, Area A1) shows two separate entries \u2014 an attacker who returned to adjust the scene. Step 2 \u2014 Identify who was physically present: Priya Osei's witness statement places Hale in the Cold Storage corridor at approximately 23:40. The recovered keycard backup (E6) confirms his card accessed the corridor at 23:53, directly before the first motion event. His stated alibi \u2014 that he was in the Communications Module \u2014 is destroyed by the Communications Module access log (Area A4), which shows no entry for him that night. Step 3 \u2014 Establish the motive: The USB audit drive (E1, Area A5) proves Hale falsified climate data for money. His hidden laptop (E4, Area A2) provides the financial paper trail to the Boreal Energy Consortium. Solberg's draft email naming him gives him an urgent, specific reason to act on that exact night. Step 4 \u2014 Link him to the weapon: The torque driver (E2, Area A3) carries his fingerprints beneath Larssen's, consistent with Hale handling it first. Dr. Asante's description of an 8-millimetre knurled edge matches the driver's grip. Step 5 \u2014 Eliminate other suspects: Caron has a confirmed alibi from Osei. Tanaka's missing hour is explained by the bathroom motion sensor. Larssen's skimming gives him a lesser motive, but his fingerprints on the weapon are explained by normal tool use and the keycard deletions trace to Hale's workstation IP, not Larssen's genuine action. The anonymous warning note (L4) written in Hale's hand further demonstrates premeditation. Taken together, physical presence (keycard log), motive (audit drive and laptop), weapon (torque driver with fingerprints), and eliminated alibis all converge exclusively on Hale."
+  },
+  "gameplay_notes": {
+    "difficulty": "HARD",
+    "estimated_playtime": "60\u201375 minutes",
+    "key_twists": [
+      "The keycard log appears exonerating because Larssen deleted the incriminating entries \u2014 but a backup system Larssen cannot access preserves the original, turning the cover-up itself into evidence pointing at Hale.",
+      "The weapon was planted in Larssen's domain to frame him, but fingerprint layering reveals Hale handled it first \u2014 the frame-up becomes proof of guilt.",
+      "The 'small dark figure near the airlock' note, designed to suggest an outside killer, is exposed as Hale's own handwriting, demonstrating premeditation and turning a red herring into a confession of consciousness of guilt.",
+      "Tanaka's evasiveness and missing hour make her look guilty throughout most of the investigation, but following the lead to its conclusion clears her completely \u2014 rewarding players who commit to evidence over suspicion."
+    ]
+  },
+  "_provenance": {
+    "recipe": "corpus_5cbea8d3(1) + corpus_d2b807d5(2) + corpus_2d9d2a5f(3) + B(4) + corpus_6b2550c2(5) + corpus_9fc47f07(6) + corpus_5bf289a1(7) + corpus_47af09b7(8)",
+    "slots": [
+      {
+        "source_id": "corpus_5cbea8d3",
+        "part_index": 1,
+        "part_type": "crime_type"
+      },
+      {
+        "source_id": "corpus_d2b807d5",
+        "part_index": 2,
+        "part_type": "setting_element"
+      },
+      {
+        "source_id": "corpus_2d9d2a5f",
+        "part_index": 3,
+        "part_type": "motive"
+      },
+      {
+        "source_id": "B",
+        "part_index": 4,
+        "part_type": "suspect_archetype"
+      },
+      {
+        "source_id": "corpus_6b2550c2",
+        "part_index": 5,
+        "part_type": "red_herring"
+      },
+      {
+        "source_id": "corpus_9fc47f07",
+        "part_index": 6,
+        "part_type": "reveal_mechanic"
+      },
+      {
+        "source_id": "corpus_5bf289a1",
+        "part_index": 7,
+        "part_type": "social_dynamic"
+      },
+      {
+        "source_id": "corpus_47af09b7",
+        "part_index": 8,
+        "part_type": "alibi"
+      }
+    ],
+    "target_setting": "A murder aboard a research station on the Antarctic ice shelf, mid-winter",
+    "generated_title": "",
+    "craft_guidance": [
+      {
+        "concept": "The Closed World",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "COARSE PARTS (C1\u2013C6) \u2014 Structural Skeleton",
+        "confidence": "canonical",
+        "source": "James: \"closed circle of suspects\"; Rankin: Edinburgh as character; French: location as first decision"
+      },
+      {
+        "concept": "The Crime",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "COARSE PARTS (C1\u2013C6) \u2014 Structural Skeleton",
+        "confidence": "canonical",
+        "source": "Christie (start with method), P.D. James (central mysterious crime), Knox (rule 4: method must be plausible)"
+      },
+      {
+        "concept": "The Culprit + Motive",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "COARSE PARTS (C1\u2013C6) \u2014 Structural Skeleton",
+        "confidence": "canonical",
+        "source": "Christie: start with murderer and motive, then build outward; worked backward from the solution"
+      },
+      {
+        "concept": "Suspect Architecture",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "MEDIUM-FINE PARTS (M1\u2013M8) \u2014 Tactical Construction Elements",
+        "confidence": "canonical",
+        "source": "James: \"each with motive, means and opportunity\"; Knox: criminal must appear early"
+      },
+      {
+        "concept": "The Alibi",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "MEDIUM-FINE PARTS (M1\u2013M8) \u2014 Tactical Construction Elements",
+        "confidence": "canonical",
+        "source": "Christie notebooks: alibi construction is explicit planning step"
+      }
+    ]
+  },
+  "_coherence": {
+    "passed": true,
+    "blocking": 0,
+    "warnings": 0
+  }
+}

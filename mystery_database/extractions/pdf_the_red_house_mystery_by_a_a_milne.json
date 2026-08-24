@@ -1,41 +1,124 @@
 {
   "crime": {
-    "value": "Murder at the Red House; victim found dead; central question concerns the method of escape and the killer's identity",
-    "confidence": "medium",
-    "quote": "CHAPTER III. Two Men and a Body"
+    "value": "Shooting death in the office of the Red House: Robert Ablett found dead, with host Mark Ablett vanished. Central question: who fired the shot, and is the dead man really Robert?",
+    "confidence": "high",
+    "quote": "at three o\u2019clock yesterday Antony and Cayley had found the body"
   },
   "victim": {
-    "value": null,
-    "confidence": "low",
-    "quote": null
+    "value": "Robert Ablett, Mark's long-absent 'wild' brother returning from Australia after fifteen years \u2014 a disreputable relative whose arrival threatened Mark's respectable position",
+    "confidence": "high",
+    "quote": "\u2018my brother is coming to see me this afternoon; I\u2019m expecting him about three,\u2019 ... \u2018My brother from Australia,\u2019"
   },
   "closed_world": {
-    "value": "The Red House and its grounds; a contained estate where suspects are limited to those present",
-    "confidence": "medium",
-    "quote": "Title: The Red House Mystery"
+    "value": "The Red House country house party \u2014 Mark Ablett's bachelor home with its office, adjoining room, secret passage, servants and weekend guests",
+    "confidence": "high",
+    "quote": "In the drowsy heat of the summer afternoon the Red House was taking its siesta."
   },
   "culprit_and_motive": {
-    "value": null,
-    "confidence": "low",
-    "quote": null
+    "value": "Matthew Cayley, Mark's cousin and secretary, implicated by his concealment \u2014 quietly shutting the door, hiding evidence, and concealing what really happened; motive tied to protecting/covering the Ablett secret",
+    "confidence": "medium",
+    "quote": "let\u2019s try and find out what it was that Mr. Cayley was doing in here... Let Cayley hang, if the Law demanded it."
   },
   "resolution": {
-    "value": "Detective Antony Gillingham solves the crime through observation of physical details; specifically by analyzing shadow movement and door mechanics to determine the killer's actions",
-    "confidence": "medium",
-    "quote": "The shadow on the wall! I was looking at the shadow on the wall... That explains why I was surprised afterwards"
+    "value": "Antony reconstructs the scene by re-enacting it at the same hour, deducing from the slowly-moving shadow on the wall that Cayley closed the door secretly \u2014 physical reasoning exposing the concealment",
+    "confidence": "high",
+    "quote": "\u201cThe shadow on the wall! I was looking at the shadow on the wall. Oh, ass, and ten times ass!\u201d"
   },
   "investigator": {
-    "value": "Antony Gillingham, an amateur detective/gentleman investigator who arrives at the scene and methodically solves the mystery",
+    "value": "Antony Gillingham, gifted amateur outsider with acute observation, aided by Watson-figure Bill Beverley",
     "confidence": "high",
-    "quote": "CHAPTER II. Mr. Gillingham Gets Out at the Wrong Station"
+    "quote": "CHAPTER V. Mr. Gillingham Chooses a New Profession"
+  },
+  "suspect_architecture": {
+    "value": "Small country-house cast centred on the Red House: Mark Ablett (missing host), his cousin/secretary Matthew Cayley (opportunity, secretive behaviour, prime suspect), the newly arrived 'brother from Australia' Robert Ablett (the victim, a disgraced wild one with debts), guest Bill Beverley (Watson figure, not suspect), plus servants Audrey Stevens and Mrs. Stevens as witnesses only; amateur Antony Gillingham investigates.",
+    "confidence": "medium",
+    "quote": "\u201clet\u2019s try and find out what it was that Mr. Cayley was doing in here, and why he had to be so very careful\u201d"
+  },
+  "red_herring": {
+    "value": "The framing of the situation as the wild Australian brother's return and a quarrel-shooting, with the disappearance of Mark suggesting he fled as the killer; secondary misdirections include the clean collar in the linen basket and the secret passage as an assumed hiding place.",
+    "confidence": "medium",
+    "quote": "\u201cIt must have been uncomfortable this time,\u201d he said... \u201cIt couldn\u2019t very well be cleaner.\u201d"
+  },
+  "clue_fairness": {
+    "value": "Clues are presented to the reader in scene as Antony notices them: the shadow on the passage wall, the open window, the spotless collar, the drawer of handkerchiefs \u2014 each described before Antony interprets it, with his reasoning shown aloud to Bill.",
+    "confidence": "high",
+    "quote": "\u201cThe shadow on the wall! I was looking at the shadow on the wall. Oh, ass, and ten times ass!\u201d"
+  },
+  "social_world": {
+    "value": "Edwardian English country-house hierarchy: a wealthy bachelor host with dependent cousin-secretary, house guests at golf, and servants who gossip below stairs; respectability governs speech, and a relative who 'went to Australia' with debts is a family shame not to be inquired into.",
+    "confidence": "high",
+    "quote": "\u201cwhen a gentleman goes to Australia, he has his reasons... a respectably brought-up girl doesn\u2019t ask what reasons.\u201d"
+  },
+  "alibi": {
+    "value": "Cayley's account of his movements at the moment of death \u2014 that he simply went to fetch water, a sponge and handkerchief from the adjoining room \u2014 is undermined by the timing and quietness of the door; Mark's whereabouts are unaccounted for entirely.",
+    "confidence": "medium",
+    "quote": "\u201cCayley said he would get some water... He came back with a wet sponge and a handkerchief.\u201d"
+  },
+  "reveal_mechanic": {
+    "value": "Physical re-enactment under identical conditions: Antony returns to the office at exactly three o'clock the next day and has Bill replay Cayley's movements, proving from the slow travel of sunlight and shadow that Cayley closed the door silently as an afterthought.",
+    "confidence": "high",
+    "quote": "\u201cThe sunlight stayed there; and then the shadow came very slowly back, and there was no noise of the door being shut.\u201d"
+  },
+  "media_and_audience": {
+    "value": "Public narration handled through servants' gossip and the formal machinery of the inquest, which packages the death for public consumption; the household's version of the wild brother from Australia shapes opinion before evidence does.",
+    "confidence": "medium",
+    "quote": "CHAPTER XIX. The Inquest"
+  },
+  "investigator_wound": {
+    "value": "Gillingham, a dilettante amateur who takes up detection as merely a 'new profession', is compromised by friendship and loyalty \u2014 his affection for Bill and social intimacy with Cayley set his conscience against the Law's demands.",
+    "confidence": "low",
+    "quote": "Let Cayley hang, if the Law demanded it."
+  },
+  "victims_enemies": {
+    "value": "Robert Ablett, the disgraced 'wild one' brother from Australia, is the ostensible victim \u2014 resented by Mark Ablett, whose respectable bachelor life at the Red House he threatened to embarrass, and known only distantly to cousin Cayley. His grievance-web is thin by design: debts, exile, and fifteen years of family shame.",
+    "confidence": "medium",
+    "quote": "\"Got into trouble, I suppose,\" said Audrey carelessly. \"They were saying at breakfast he'd been a wild one. Debts.\""
+  },
+  "suspect_wounds": {
+    "value": "Cayley's wound is his covert devotion and dependence on Mark \u2014 he behaves guiltily (secret errands, quiet door-closing, concealment in the passage) out of loyalty rather than murder, making him look like a killer. Mark's wound is vanity and finicking self-presentation; his obsessive clothes-collecting and horror of exposure make him act like a man with something to hide.",
+    "confidence": "medium",
+    "quote": "\"let's try and find out what it was that Mr. Cayley was doing in here, and why he had to be so very careful\""
+  },
+  "unreliable_frame": {
+    "value": "Cayley is the only witness to the discovery of the body and his account cannot be trusted \u2014 he shaped what Antony saw and heard. Antony's own memory is also explicitly fallible: he must physically reconstruct the scene at the same hour because his subconscious impression of a shadow had been misfiled as an ordinary closing door.",
+    "confidence": "high",
+    "quote": "\"He was going to do something which he didn't want me to hear.\""
+  },
+  "setting_as_constraint": {
+    "value": "The Red House itself constrains everything: an English country house with a bell-summoned parlour-maid, guests conveniently away at golf, an office reachable only through a passage of spring-hinged doors, plus a secret passage. Sunlight through the windows of the adjoining room means door movements are legible only as shadows on the passage wall.",
+    "confidence": "high",
+    "quote": "\"Look at the sunlight on it... That's what I saw\u2014the shadow moving across as the door shut behind him.\""
+  },
+  "evidence_type": {
+    "value": "Environmental/observational evidence \u2014 the behaviour of light and shadow on a wall as a timing device, plus physical trace evidence (a spotlessly clean collar discarded in the linen basket, implying a change of clothing rather than soiling).",
+    "confidence": "high",
+    "quote": "\"It must have been uncomfortable this time,\" he said... \"It couldn't very well be cleaner.\""
+  },
+  "false_suspect": {
+    "value": "Cayley, who bears maximum suspicion through his furtive conduct, sole custody of the body, and secret use of the passage \u2014 the narrative and his own concealments point at him, though his guilt is one of accessory loyalty rather than murder.",
+    "confidence": "medium",
+    "quote": "Let Cayley hang, if the Law demanded it."
+  },
+  "technical_detail": {
+    "value": "Domain knowledge of spring-hinged draught-excluding doors: they scarcely move at first, then swing shut very slowly, so a shadow creeping back across a sunlit wall is indistinguishable from a door closing naturally \u2014 allowing Cayley to shut the door quietly as an afterthought without the click being heard. Supplemented by knowledge of a clothes-collector's wardrobe and impersonation by change of dress.",
+    "confidence": "high",
+    "quote": "\"Just at first they hardly move at all, and then very, very slowly they swing to\u2014well, that was the way the shadow moved\""
+  },
+  "moral_ambiguity": {
+    "value": "Antony is an amateur playing at detection for amusement, and he weighs friendship against law rather than pursuing abstract justice \u2014 Bill's silent 'Let Cayley hang, if the Law demanded it' registers the cost. Cayley's concealment springs from loyalty to a cousin and benefactor, and the killing itself belongs to panic and a shameful family secret rather than calculated evil.",
+    "confidence": "medium",
+    "quote": "Let Cayley hang, if the Law demanded it."
   },
   "_meta": {
     "source": "mystery_database/new_sources/The Red House Mystery, by A. A. Milne.pdf",
     "filename": "The Red House Mystery, by A. A. Milne.pdf",
-    "text_len": 6037,
+    "text_len": 24037,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
-    "title": "The Red House Mystery, by A. A. Milne"
+    "title": "The Red House Mystery, by A. A. Milne",
+    "model": "claude-opus-5"
   }
 }

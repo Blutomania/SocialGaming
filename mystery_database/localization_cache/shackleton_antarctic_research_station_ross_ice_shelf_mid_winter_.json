@@ -1,0 +1,37 @@
+{
+  "name_examples": {
+    "male": [
+      "Marcus",
+      "Bjorn",
+      "Felix",
+      "Kwame",
+      "Yuki",
+      "Hale"
+    ],
+    "female": [
+      "Ingrid",
+      "Yuki",
+      "Priya"
+    ]
+  },
+  "occupation_map": {
+    "Chief Glaciologist": "Ice Studies Lead",
+    "Senior Climate Researcher": "Climate Science Director",
+    "Station Science Director": "Station Science Director",
+    "Atmospheric Physicist": "Atmospheric Physicist",
+    "Station Engineer and Logistics Coordinator": "Station Engineer",
+    "Marine Biologist": "Marine Biologist",
+    "Laboratory Technician": "Lab Technician",
+    "Station Medical Officer": "Station Medic",
+    "Automated Log / Station Computer": "SENTINEL Terminal Log"
+  },
+  "forbidden_titles": [],
+  "allowed_titles": [
+    "Dr.",
+    "Chief",
+    "Senior",
+    "Station"
+  ],
+  "pun_style": "Dry, understated polar-science wordplay embedded in character names or call-signs \u2014 e.g., a log system named SENTINEL, a medic nicknamed 'Cold-Case Kwame', a technician whose surname evokes watchfulness. Keep puns subtle and functional, befitting an isolated, professional research environment.",
+  "notes": "Contemporary real-world setting (present-day Antarctic research station). Names remain realistic and multicultural, reflecting the international composition of polar science teams. Titles such as Dr. are appropriate and retained. Occupational labels use plain, modern research-station terminology. Puns are restricted to witnesses and minor roles, delivered via nickname, call-sign, or log system name rather than outright comic surnames. The station computer log receives a pun-name as it is a non-human witness entity."
+}

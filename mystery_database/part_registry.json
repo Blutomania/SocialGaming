@@ -47838,7 +47838,7 @@
     "source_id": "corpus_734b3b4c",
     "part_index": 1,
     "part_type": "crime_type",
-    "content": "Murder at the Red House; victim found dead; central question concerns the method of escape and the killer's identity",
+    "content": "Shooting death in the office of the Red House: Robert Ablett found dead, with host Mark Ablett vanished. Central question: who fired the shot, and is the dead man really Robert?",
     "source_title": "The Red House Mystery, by A. A. Milne",
     "setting_tags": [
       "universal"
@@ -47848,7 +47848,127 @@
     "source_id": "corpus_734b3b4c",
     "part_index": 2,
     "part_type": "setting_element",
-    "content": "The Red House and its grounds; a contained estate where suspects are limited to those present",
+    "content": "The Red House country house party \u2014 Mark Ablett's bachelor home with its office, adjoining room, secret passage, servants and weekend guests",
+    "source_title": "The Red House Mystery, by A. A. Milne",
+    "setting_tags": [
+      "mansion"
+    ]
+  },
+  {
+    "source_id": "corpus_734b3b4c",
+    "part_index": 3,
+    "part_type": "motive",
+    "content": "Matthew Cayley, Mark's cousin and secretary, implicated by his concealment \u2014 quietly shutting the door, hiding evidence, and concealing what really happened; motive tied to protecting/covering the Ablett secret",
+    "source_title": "The Red House Mystery, by A. A. Milne",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_734b3b4c",
+    "part_index": 3,
+    "part_type": "motive",
+    "content": "Robert Ablett, Mark's long-absent 'wild' brother returning from Australia after fifteen years \u2014 a disreputable relative whose arrival threatened Mark's respectable position",
+    "source_title": "The Red House Mystery, by A. A. Milne",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_734b3b4c",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "Antony reconstructs the scene by re-enacting it at the same hour, deducing from the slowly-moving shadow on the wall that Cayley closed the door secretly \u2014 physical reasoning exposing the concealment",
+    "source_title": "The Red House Mystery, by A. A. Milne",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_734b3b4c",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "Antony Gillingham, gifted amateur outsider with acute observation, aided by Watson-figure Bill Beverley",
+    "source_title": "The Red House Mystery, by A. A. Milne",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_734b3b4c",
+    "part_index": 4,
+    "part_type": "suspect_archetype",
+    "content": "Small country-house cast centred on the Red House: Mark Ablett (missing host), his cousin/secretary Matthew Cayley (opportunity, secretive behaviour, prime suspect), the newly arrived 'brother from Australia' Robert Ablett (the victim, a disgraced wild one with debts), guest Bill Beverley (Watson figure, not suspect), plus servants Audrey Stevens and Mrs. Stevens as witnesses only; amateur Antony Gillingham investigates.",
+    "source_title": "The Red House Mystery, by A. A. Milne",
+    "setting_tags": [
+      "maritime"
+    ]
+  },
+  {
+    "source_id": "corpus_734b3b4c",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "The framing of the situation as the wild Australian brother's return and a quarrel-shooting, with the disappearance of Mark suggesting he fled as the killer; secondary misdirections include the clean collar in the linen basket and the secret passage as an assumed hiding place.",
+    "source_title": "The Red House Mystery, by A. A. Milne",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_734b3b4c",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "Clues are presented to the reader in scene as Antony notices them: the shadow on the passage wall, the open window, the spotless collar, the drawer of handkerchiefs \u2014 each described before Antony interprets it, with his reasoning shown aloud to Bill.",
+    "source_title": "The Red House Mystery, by A. A. Milne",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_734b3b4c",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "Physical re-enactment under identical conditions: Antony returns to the office at exactly three o'clock the next day and has Bill replay Cayley's movements, proving from the slow travel of sunlight and shadow that Cayley closed the door silently as an afterthought.",
+    "source_title": "The Red House Mystery, by A. A. Milne",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_734b3b4c",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "Edwardian English country-house hierarchy: a wealthy bachelor host with dependent cousin-secretary, house guests at golf, and servants who gossip below stairs; respectability governs speech, and a relative who 'went to Australia' with debts is a family shame not to be inquired into.",
+    "source_title": "The Red House Mystery, by A. A. Milne",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_734b3b4c",
+    "part_index": 8,
+    "part_type": "alibi",
+    "content": "Cayley's account of his movements at the moment of death \u2014 that he simply went to fetch water, a sponge and handkerchief from the adjoining room \u2014 is undermined by the timing and quietness of the door; Mark's whereabouts are unaccounted for entirely.",
+    "source_title": "The Red House Mystery, by A. A. Milne",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_734b3b4c",
+    "part_index": 3,
+    "part_type": "motive",
+    "content": "Robert Ablett, the disgraced 'wild one' brother from Australia, is the ostensible victim \u2014 resented by Mark Ablett, whose respectable bachelor life at the Red House he threatened to embarrass, and known only distantly to cousin Cayley. His grievance-web is thin by design: debts, exile, and fifteen years of family shame.",
+    "source_title": "The Red House Mystery, by A. A. Milne",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_734b3b4c",
+    "part_index": 2,
+    "part_type": "setting_element",
+    "content": "The Red House itself constrains everything: an English country house with a bell-summoned parlour-maid, guests conveniently away at golf, an office reachable only through a passage of spring-hinged doors, plus a secret passage. Sunlight through the windows of the adjoining room means door movements are legible only as shadows on the passage wall.",
     "source_title": "The Red House Mystery, by A. A. Milne",
     "setting_tags": [
       "near_future",
@@ -47857,9 +47977,39 @@
   },
   {
     "source_id": "corpus_734b3b4c",
+    "part_index": 4,
+    "part_type": "suspect_archetype",
+    "content": "Cayley's wound is his covert devotion and dependence on Mark \u2014 he behaves guiltily (secret errands, quiet door-closing, concealment in the passage) out of loyalty rather than murder, making him look like a killer. Mark's wound is vanity and finicking self-presentation; his obsessive clothes-collecting and horror of exposure make him act like a man with something to hide.",
+    "source_title": "The Red House Mystery, by A. A. Milne",
+    "setting_tags": [
+      "royal_court"
+    ]
+  },
+  {
+    "source_id": "corpus_734b3b4c",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "Cayley, who bears maximum suspicion through his furtive conduct, sole custody of the body, and secret use of the passage \u2014 the narrative and his own concealments point at him, though his guilt is one of accessory loyalty rather than murder.",
+    "source_title": "The Red House Mystery, by A. A. Milne",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_734b3b4c",
     "part_index": 6,
     "part_type": "reveal_mechanic",
-    "content": "Detective Antony Gillingham solves the crime through observation of physical details; specifically by analyzing shadow movement and door mechanics to determine the killer's actions",
+    "content": "Cayley is the only witness to the discovery of the body and his account cannot be trusted \u2014 he shaped what Antony saw and heard. Antony's own memory is also explicitly fallible: he must physically reconstruct the scene at the same hour because his subconscious impression of a shadow had been misfiled as an ordinary closing door.",
+    "source_title": "The Red House Mystery, by A. A. Milne",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_734b3b4c",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "Domain knowledge of spring-hinged draught-excluding doors: they scarcely move at first, then swing shut very slowly, so a shadow creeping back across a sunlit wall is indistinguishable from a door closing naturally \u2014 allowing Cayley to shut the door quietly as an afterthought without the click being heard. Supplemented by knowledge of a clothes-collector's wardrobe and impersonation by change of dress.",
     "source_title": "The Red House Mystery, by A. A. Milne",
     "setting_tags": [
       "near_future"
@@ -47869,10 +48019,11 @@
     "source_id": "corpus_734b3b4c",
     "part_index": 7,
     "part_type": "social_dynamic",
-    "content": "Antony Gillingham, an amateur detective/gentleman investigator who arrives at the scene and methodically solves the mystery",
+    "content": "Antony is an amateur playing at detection for amusement, and he weighs friendship against law rather than pursuing abstract justice \u2014 Bill's silent 'Let Cayley hang, if the Law demanded it' registers the cost. Cayley's concealment springs from loyalty to a cousin and benefactor, and the killing itself belongs to panic and a shameful family secret rather than calculated evil.",
     "source_title": "The Red House Mystery, by A. A. Milne",
     "setting_tags": [
-      "universal"
+      "near_future",
+      "maritime"
     ]
   },
   {

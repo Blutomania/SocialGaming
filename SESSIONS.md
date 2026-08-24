@@ -3000,6 +3000,379 @@ it. Porting the Aug 12 flow and then immediately rewriting it would build the sa
 
 ---
 
+## Session 34 — August 21, 2026 (CYM: PC-playtest priority set; a wiring check found the result screen broken)
+
+**Branch:** `claude/session-33-summary-6m0y5u`, at `034131f` — checked against `origin/main`
+rather than assumed, per this file's standing branch-hygiene warning. It *is* `main`'s tip, zero
+unmerged commits, clean tree. No stale-branch problem this time.
+
+Short session, owner-directed, two of item 17's blockers cleared.
+
+### Moderation: none yet, and the disclaimer is the point
+
+Owner's call on item 17's first open question: **no moderation** — no wordlist, no
+`moderateHeckle()`-style Claude pass. The room is people who chose to play together and can see
+who typed it.
+
+What ships with that decision is the owner's own addition and it is the interesting half: a line
+of text under the prompt entry box reading **"Not moderated for play testing"**. Owner's framing —
+*"this will not only give us some cover, but act as a reminder going forward."* That second job is
+the real one. The failure mode for "no moderation yet" is not that it is wrong today; it is that
+it is invisible, so it stops being a decision and becomes the status quo by default. A disclaimer
+sitting under the box every time anyone types a prompt cannot be forgotten the way a line in a
+markdown file can.
+
+It is explicitly **not** the Steam answer. A user-typed string rendered TV-sized for a whole game
+still needs a real one before release; item 17's risk entry says so in the same place.
+
+`godot/scenes/ui/MysteryGeneration.tscn` → `VBox/ModerationNoticeLabel`, sitting directly under
+`PromptInput`, muted grey at 12px so it reads as a footnote rather than as an instruction.
+
+**Where it does *not* appear, and why that is not an oversight:** `server/static/mobile.html` has
+**no prompt entry box at all**. Session 26 built the room-first flow — players suggest prompts
+while waiting, `POST /games/{id}/prompts` — entirely server-side; the phone client's lobby section
+still only lists players. When that box gets built, the same line goes under it.
+
+### The reusable-mystery dropdown: in the build, and inert since it was written
+
+Owner asked whether it was still in the build. Yes — and it had never worked.
+
+`MainMenu` → "Browse Saved Mysteries" → `GET /mysteries` → a popup `ItemList` labelled by each
+mystery's `title`. The endpoint is real and returns title, difficulty, coherence result and
+viability rating. `main_menu.gd` has a complete `_on_browse_item_selected` handler that loads the
+chosen slug and hands it to `CaseDisplay`.
+
+**None of the popup's signals were connected.** `_ready()` wired the four menu buttons and
+stopped; `MainMenu.tscn` has zero `[connection]` sections. So `_on_browse_item_selected` was dead
+code, clicking a row did nothing, and the popup could not be dismissed either — a Godot `Window`
+does not hide itself on `close_requested`, the handler has to. The list rendered correctly, which
+is presumably why it read as finished.
+
+Fixed: `item_selected`, the Close button, and `close_requested` are now wired.
+
+**Two things it still is not**, both flagged rather than built, because both are design calls:
+- **Single-player only.** A selected mystery goes straight to `CaseDisplay.tscn`. The server has
+  supported multiplayer reuse since Session 26 — `CreateGameRequest.mystery_slug` is documented
+  "skip prompt-collection, attach an already-generated mystery immediately" — but no UI reaches
+  it, so a group cannot replay a saved case together. Given the owner said *reusable*, this is
+  very likely what was actually meant, and it is the obvious next step.
+- **Absent from the phone client.** `mobile.html` has no mystery list.
+
+### Item 17's second question is half-answered
+
+Owner: *"Title is just for generation, but should also be used in a drop down menu of reusable
+mysteries."* So the title **feeds generation** rather than only decorating, and it is the handle
+the saved list is browsed by — which the dropdown above already does today.
+
+What "just for generation" does *not* settle is whether the BACKGROUND still strews the title, or
+something else. Recorded as open in item 17 rather than guessed at, because the whole design rests
+on it.
+
+### The priority order, memorialized
+
+Owner set the sequence mid-session: **PC playtest → funding → phone + robust gen-AI calls**, with
+*"obviously it can change."* Written into root `CLAUDE.md` as its own **Delivery Priority**
+section near the top, above Architecture, because it decides what counts as a blocker rather than
+describing a feature.
+
+It immediately settled a question this same session had raised. The saved-mystery browse loading
+into single-player `CaseDisplay` instead of `create_game(mystery_slug=…)` had been flagged as "a
+real next step"; the owner pointed at the priority order, and they are right — the PC playtest
+needs one person at one machine replaying a saved case, which is what the single-player route
+already does. Group replay is stage 3. Recorded as deliberate in item 17 so it does not get
+re-flagged as an oversight next session.
+
+Same logic retires several other standing "gaps" until stage 3: `mobile.html`'s missing prompt box
+and mystery list, Steam-grade moderation, and every remaining API-cost item (the P1P2
+re-extraction, the 11 held-back anthologies, the 7 all-null extractions) — all real, none of them
+things a playtester would notice.
+
+### Then the actual stage-1 work: a wiring check, and it found a broken final screen
+
+If the PC client is the only surface that has to work, the browse popup's dead signals stop being
+a curiosity and start being a pattern worth checking for. **Every scene in this project has zero
+`[connection]` blocks** — all wiring is done in `_ready()` by code — which is a consistent
+convention and also why a forgotten `.connect()` is invisible: nothing in the scene file records
+that a button was ever meant to do anything.
+
+**`scripts/check_godot_wiring.py`** (new, zero API cost, no Godot binary needed) checks four
+things across every scene/script pair: every `$NodePath` resolves, every `@onready var x: T`
+matches the node's real type, every interactive control is referenced at all (a lint, reported as
+NOTE), and every `GameState.` / `ApiClient.` / `NetworkManager.` member exists and is called with
+an arity the definition accepts.
+
+**It found a hard failure on its first run, on the last screen of the game.** `result_screen.gd`
+dereferenced `$MainVBox/VerdictLabel` and four siblings, but `ResultScreen.tscn` nests all of them
+under `ScrollContainer/MainVBox/…`. All five `@onready` lookups missed. That is the screen a
+playtester reaches at the end of **every** playthrough — the verdict, the solution, the viability
+rating that is Design Principle 1's entire creator feedback loop, and both buttons. Fixed by
+correcting the paths.
+
+Worth noting *why* it survived this long: it is invisible everywhere except at runtime. The scene
+is well-formed, the script is well-formed, and nothing connects the two until Godot loads the
+scene — so reading either file alone shows nothing wrong.
+
+**Two false positives were fixed in the checker rather than tolerated**, since a checker that
+cries wolf gets ignored:
+- GDScript `enum` declarations are referenced as `GameState.Phase.WITNESS`. The first hand-run
+  flagged seven of these as missing members. The enum name is a member; it is now parsed as one.
+- `main_menu.gd`'s doc comment says *"calls ApiClient.list_mysteries()"*, which the arity check
+  read as a real zero-argument call against a one-argument definition. Comments are now stripped
+  (quote-aware) before any analysis.
+
+**The checker was negative-tested three ways**, because the cheap way to make a checker green is
+to make it check nothing: a bad node path, a wrong declared type, and a wrong argument count were
+each introduced and each caught, then reverted.
+
+### Walking the rest of the screens by hand — four more, and one of them is a pillar failing
+
+The wiring check covers node paths and autoload calls. It cannot see whether one screen writes
+what the next screen reads, so the single-player PC path was walked by hand: MainMenu →
+MysteryGeneration → CaseDisplay → Interrogation → Accusation → ResultScreen.
+
+**First, the good news, because it was the thing most likely to be broken.** In single-player
+every budget is 0 — they are handed out by the server on game create/join, and single-player never
+creates a game. `_check_phase_complete()` advances to the multiplayer `ShareSelection` screen the
+moment a budget hits 0, which from a standing start would have bounced the player out of the game
+immediately. It does not happen: `_on_legacy_reply` (the single-player reply path) deliberately
+never calls it. That is correct and was presumably deliberate, but nothing said so, so it is worth
+recording as verified rather than re-checked every session.
+
+**The visible half of that was still wrong:** the same zero rendered as *"0 questions remaining"*
+on a screen that in fact allows unlimited questions. A playtester reads that as "I am out". Now
+reads "Ask as many questions as you like." in single-player.
+
+**`_slug` is assigned after the file is written, so no saved mystery has ever had one.**
+`_run_generation_pipeline` calls `_save_mystery(mystery_dict)` and *then* sets
+`mystery_dict["_slug"]`, so the slug exists only on the in-memory dict returned to the client.
+Confirmed against disk: **0 of 18 saved mysteries contain `_slug`.** Both rating widgets read
+`GameState.current_mystery.get("_slug", "")` and skip the request when it is empty, so rating a
+mystery loaded from the browse list did nothing — and `result_screen.gd` dims the buttons anyway,
+so it looked like it had saved. That is Design Principle 1's creator feedback loop, silently
+dead on exactly the path Session 34 had just made clickable. Fixed in `get_mystery()`, which now
+derives `_slug` from the filename the same way `/mysteries` already does — one place, and it fixes
+the 18 files already on disk rather than only new ones.
+
+**CaseDisplay's rating row destroyed its own label.** `_build_viability_buttons()` freed every
+child of `ViabilityRow` and then re-added `viability_label` — but that label *is* a child of
+`ViabilityRow` in the scene, so `add_child()` raises "already has a parent", and the `queue_free()`
+then deleted it at the end of the frame. Now frees only the buttons it added.
+
+**And the real find: a mystery can be unwinnable, the engine knows, and nothing acts on it.**
+`accusation.gd` scored an accusation with `_selected_suspect == culprit`. One saved mystery —
+*The Stolen Star of Smurf Village*, from the Smurf prompt that is `submit_prompt`'s own docstring
+example — has a two-culprit solution, so `solution.culprit` is prose:
+`"Smurfwick the Craftsmurf (primary architect) and Smurfadel, Master of Adornment (accomplice who
+physically carried the Star)"`. Under exact equality **every** accusation on that mystery is
+wrong, including both correct ones. The game cannot be won.
+
+The part worth sitting with: **`coherence_validator.py` catches this precisely.** It raises
+`P1.C4.culprit_not_in_characters`, severity `BLOCKING`, message *"Chain is broken; players can
+never identify them."* The mystery recorded `{"passed": false, "blocking": 1}` — and was saved,
+served, and displayed anyway, with a red badge on CaseDisplay among a dozen other fields. The
+coherence engine is not the thing that failed here; the pipeline's willingness to ignore its
+verdict is. That is worth knowing before the pillar is described to anyone in stage 2.
+
+Two fixes, deliberately at different altitudes:
+- `accusation.gd` now matches exact-first, then substring, with a guard so a short name cannot
+  match inside a longer one ("Smurf" must not score as "Smurfwick the Craftsmurf"). Checked
+  against all 16 real mysteries: it rescues the Smurf case to both real culprits and changes
+  nothing else. It makes the game winnable without pretending the data is clean.
+- The accusation screen now says so on screen when no listed suspect can be the answer, instead
+  of letting a generation defect reach the player as their own mistake.
+- **Not fixed, and it is a design call:** whether the pipeline should refuse to save or serve a
+  mystery whose coherence report is BLOCKING, or regenerate it. That costs API calls and is a real
+  decision. Logged as item 18.
+
+**`scripts/check_mystery_playable.py`** (new, zero cost) asks the narrow pre-playtest question:
+does `solution.culprit` resolve to a listed suspect under accusation.gd's own rule, are there any
+suspects at all, and did coherence record a blocking failure that was served anyway. All 18 saved
+mysteries pass as winnable; the Smurf one is flagged with both notes.
+
+### Verification
+
+`python3 scripts/check_godot_wiring.py` → clean across 8 scenes and 3 autoloads, plus the three
+negative tests above. `scripts/check_mystery_playable.py` → 18 checked, 0 unwinnable.
+`scripts/test_registry_staleness.py` → passes. `server/main.py` parses. The culprit-matching rule
+was validated against all 16 real mysteries, including an adversarial short-name case built to
+break the guard.
+
+There is no Godot binary in this environment, so **nothing was actually run in the engine.** The
+ResultScreen fix is verified against the scene file, not against a running game. **This wants one
+F5** to confirm the browse popup clicks through, the results screen renders, and the moderation
+notice sits where it should.
+
+### Part 2 — the playtest gameflow, specified and started
+
+Owner specified the seven-screen PC flow; it is written down as **`docs/PLAYTEST_FLOW.md`** and
+supersedes the older Phase 2/3 screen descriptions on the playtest path.
+
+**`crime_scene_map.py`** (new, 193 assertions) derives the top-down layout from the mystery.
+Claude is never asked for coordinates: they are the one part of the payload a computer produces
+for free, every extra schema field is another parse-failure surface, and an LLM asked for
+rectangles produces overlapping rectangles. The prompt owns *meaning*; the module owns
+presentation, seeded from the title so the host screen and a future phone client draw the
+identical map. A mystery with no `investigation_areas` gets **no map**, reported as such rather
+than invented rooms — the playtest exists to find out whether generation produces usable areas.
+
+**The blocker, measured:** 0 of 18 saved mysteries had `investigation_areas` or `leads`, though
+the prompt has asked for 5 and 4 since Phase 3a. Every saved file predates that change. So the
+prompt had **never been verified to produce them**.
+
+### Part 3 — the generation schema, and one real generation
+
+Prompt now asks for exactly 4 suspects, 3–4 witnesses, a true actionable `statement` per witness,
+and `discovery` + `analysis` per area — the two halves of *"You searched the AREA and found THIS.
+Testing and research reveal ANALYSIS."* These are fixed text, not conversations, so they are
+written during the generation call already being paid for.
+
+**Verified with one real generation**, *Whiteout at Shackleton Base*: 4 suspects, 3 witnesses,
+5 areas, 4 leads, 8 evidence, culprit exactly a suspect name, coherence passed 0 blocking /
+0 warnings. Two API calls (generation + localization).
+
+Two bugs found getting there:
+- **`max_tokens` was 8192; the measured response is 8,667.** Generation was being cut off
+  mid-JSON. That is what "13 of 14 generations failed on `Unterminated string`" in the old batch
+  summary actually was. Now 16000.
+- **`get_client()` passed the session ingress token as `api_key=`**, so it went out on x-api-key
+  and returned 401. It is a *bearer* token — which is what `CLAUDE.md` always called it. The
+  documented fallback auth path could never have worked.
+
+### Part 4 — the economics, measured and twice corrected
+
+**`docs/AI_COST_PLAYBOOK.md`** plus a shareable artifact. Headline: 2,457 input tokens against
+8,667 output, so **output is 95% of a generation call** — which kills prompt caching as a lever
+(~5%) before anyone spends effort on it.
+
+**Two corrections to my own analysis, both from the owner and both material:**
+1. One-call-per-mystery was framed as a saving found by analysis. It is not — it is the intended
+   design ("*We never, ever planned for live calls*"), so there is no baseline to have saved
+   against. What the analysis actually found is a **divergence**: the shipped server makes live
+   play-time calls at six sites (`_investigate_area_with_ai`, `_follow_lead_with_ai`,
+   `_generate_witness_scene`, both `/interrogate` endpoints, `_generate_resolution_narrative`).
+   Nobody chose a per-action architecture; it accumulated an endpoint at a time. **Single-player
+   interrogation hits one of them on every question.** $1.48 vs $0.14 is the size of that gap.
+2. The corollary points *away* from cost-cutting: with no play-time calls a mystery's AI cost is
+   fixed, one-time, and amortises across replays — so **generation is the right place to spend**,
+   and "more expansive" is the cheapest improvement available. Watch the 16,000-token ceiling;
+   past it, generation must become a streaming call.
+
+### Part 5 — which model for P1→P2, answered by measurement
+
+**`scripts/compare_extraction_models.py`** scores models against the only consumer that matters:
+`part_registry._atomize_extraction`. Prose quality is not the metric; **parts** are.
+
+Seven Hitchcock stories: Haiku 5/7 full extractions (lost the alibi axis twice), Sonnet 6/7 (one
+JSON parse failure, billed in full), Opus 7/7. Haiku's losses are not inaccuracy —
+`_atomize_extraction` silently skips `confidence: "low"`, and on an inverted story with no literal
+alibi Haiku returned empty at low confidence while Sonnet and Opus named the functional
+equivalent. Where all three succeed the gap is *mechanism*: Haiku records that an alibi existed,
+Opus records how the gap in it was manufactured.
+
+**Two more corrections to my own advice:** "put extraction on Haiku for a 3× cut" was wrong twice
+— `extract_from_pdfs.py` has always defaulted to Haiku, and the corpus line is far too small for
+a 3× cut to matter. 206 of 281 `pdf_*` extractions are already P1P2; the job is exactly **75
+sources**, $1.15–$8.90 depending on model. The whole decision is worth about $7.75, so it is a
+quality call, not a cost one.
+
+### Part 6 — making the run possible, and four bugs that would have broken it
+
+**It could not have run at all.** Dedup is by output filename, so `--protocol P1P2` on an
+already-extracted source printed SKIP and did nothing. All 75 would have been no-ops. `--upgrade`
+re-extracts only when the existing file lacks a requested protocol — idempotent and resumable.
+Replaced extractions move to `extractions/_superseded/`, never deleted.
+
+**`scripts/upgrade_p1_to_p1p2.py`** plans and runs the job, defaulting to printing the plan and
+spending nothing. It exists because the sources are not one directory, and because 8 of the 12
+novel PDFs are no longer on disk — better reported up front than discovered mid-run.
+`--find-missing` names them; `--source-dir` searches outside the repo; `--check-sources` opens
+every PDF and compares what it yields now against what the original extraction recorded, catching
+a scan with no OCR layer before it wastes a call.
+
+**Source matching had to become forgiving**, because a re-acquired book rarely returns under the
+recorded name — verified: exact matched, `The_Winter_Queen_-_Boris_Akunin.pdf` and
+`Turkish Gambit.pdf` both failed. Loose tiers accept only a *unique* hit. A single-shared-word
+tier was written, tested and **removed**: with only "Turkish" in common it matched
+*Turkish Delight Mystery* to *Turkish Gambit*. A unique match is not a correct one.
+
+**Novels were being starved.** `MAX_TEXT_CHARS = 6000` — ~1.7% of a 350,000-char book in three
+disconnected chunks. Fine for P1; thin for P2/P3, whose fields describe structure only visible
+across a whole book. `--max-text-chars` makes it settable (default unchanged); the planner passes
+24,000.
+
+### Part 7 — CLOUD assessed, and the decision to run P1P2P3
+
+Owner proposed **CLOUD**: after the inciting-incident video, the interface becomes a manipulable
+top-down scene. Two reference images — a photo-real 1920s street, and a schematic floor plan with
+E1–E6 evidence callouts. Answered from data:
+
+- **The corpus contains no spatial structure.** Space appears incidentally at 2–14% across 564
+  extractions, never as layout, adjacency or sightline.
+- **CLOUD's geometry was never going to come from the corpus.** Generation already *knows* the
+  spatial facts, as prose: evidence E2 is literally named "Serrated Bolt-Driver (found in
+  Generator Room)", and `solution.method` is the culprit's route in sentences. What is missing is
+  **fields, not knowledge** — `area_id` on evidence, adjacency between areas, a path.
+- **The two images are different kinds of thing.** The schematic is *data rendered* and is nearly
+  buildable now. The photo-real image is *presentation*, only an image model makes it, and it is
+  stage-3 money. Conflating them is the trap.
+- **What transfers is the spatial *device*, not the geometry** — and the taxonomy already has the
+  field: **P3.F4 "Setting as Constraint"**. P3 had never been run: 0 of 564.
+
+So the answer was **not** to pause for CLOUD, but to switch this run to **P1P2P3**: P3 costs ~$2
+more in the same pass and ~$8 more as a later one. Measured on *The Red House Mystery*, F4
+returned *"an office reachable only through a passage of spring-hinged doors, plus a secret
+passage… door movements are legible only as shadows on the passage wall"* — adjacency, a hidden
+route and a sightline mechanic, as a relation rather than a floor plan, so it ports to a Mars dome.
+
+**`KEY_TO_IDX` extended for 7 of P3's 8 keys** (`evidence_type` deliberately unmapped — axis 8 was
+*named* evidence_type until Session 23 renamed it to `alibi`; mapping F5 there would recreate that
+mislabeling). `REGISTRY_SCHEMA_VERSION` → 3. Without this, P3 would have produced 8 fields and
+**zero parts** — the Session 23 / Session 33 failure a third time.
+
+**Four bugs, all found by running it rather than reading it:**
+- `--protocol` rejected `P1P2`: `choices=` allowed one protocol while the consuming line splits
+  combined values. Every combined depth was unreachable, and the planner's own command would have
+  failed on every source.
+- `content[0].text` assumed the first block is text. **Opus 5 runs adaptive thinking by default**
+  and puts a `ThinkingBlock` first — and because it is *adaptive*, this fails **intermittently**.
+  Fixed in three files.
+- `max_tokens = 1000` for an extraction call. On Opus the whole budget went to thinking: one
+  thinking block, `stop_reason=max_tokens`, no text. It was also already tight without thinking
+  (a P1P2 extraction is ~1,800 tokens of JSON), so **some share of the existing corpus's empty and
+  low-confidence fields is probably truncation, not the model having nothing to say.** Now 4000,
+  with effort `low` on models that accept `output_config`.
+- `extract_from_pdfs.py` had no session-token fallback.
+
+**End-to-end verified** on *The Red House Mystery* at P1P2P3 on Opus: 22 fields, model recorded in
+`_meta`, old extraction archived, **4 parts → 19**. Registry regenerated to 4,967 parts.
+
+`docs/EXTRACTION_TROUBLESHOOTING.md` covers every error above for whoever runs the remaining 66.
+
+### Verification
+
+`check_godot_wiring.py` clean (8 scenes, 3 autoloads) · `test_crime_scene_map.py` 193 passed ·
+`test_registry_staleness.py` all passed · `check_mystery_playable.py` 0 unwinnable · one real
+generation · one real end-to-end extraction · the model bake-off across seven stories.
+**No Godot binary here, so nothing was run in the engine — the client work wants one F5.**
+Total API spend this session: roughly **$3**.
+
+### Next session
+
+1. **Run the extraction** (~66 sources, ~$9.85, about an hour) — `docs/EXTRACTION_TROUBLESHOOTING.md`
+   has the commands and every failure mode. Then re-measure axis coverage against the
+   before-numbers recorded there.
+2. **CLOUD** is its own session. Its first concrete step is small and cheap: `area_id` on evidence,
+   adjacency on areas, and the culprit's path as a sequence — a schema change to a call already
+   being paid for.
+3. **The six live play-time call sites** are the standing divergence from the intended
+   architecture, and single-player interrogation hits one of them on every question.
+4. **The Godot crime-scene screen** — step 4 of the playtest build order, and the last thing
+   between here and a playable PC loop.
+5. Open decisions unchanged: item 18 (a BLOCKING coherence report still ships), item 17's
+   BACKGROUND question, the brand marks' per-device split.
+
+---
+
 ## Session 33 — August 20, 2026 (MYF: the answer screen and the plate device; CYM: registry staleness closed)
 
 **Branch:** `claude/myf-cym-games-review-6ne9rs`, started from `main` @ `27ebc89`.

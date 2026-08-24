@@ -105,10 +105,19 @@ CAST_LIST_EXPANSION_CHARS = 3000   # extra budget granted to the beginning slice
 # PDF text extraction
 # ---------------------------------------------------------------------------
 
-def extract_text_from_pdf(pdf_path: Path) -> tuple[str, str]:
+def extract_text_from_pdf(pdf_path: Path, max_chars: int | None = None) -> tuple[str, str]:
     """Return (sampled_text, full_text) from a PDF.
-    sampled_text: beginning+middle+end capped at MAX_TEXT_CHARS.
-    full_text: complete extracted text (used for resolution-only pass)."""
+    sampled_text: beginning+middle+end capped at max_chars (default MAX_TEXT_CHARS).
+    full_text: complete extracted text (used for resolution-only pass).
+
+    The default budget is 6,000 characters, inherited from the frozen bulk
+    pipeline. On a 350,000-character novel that is ~1.7% of the book, arriving
+    as three disconnected 2,000-character chunks -- which is fine for P1 (the
+    crime and the closed world are established early) and thin for P2, whose
+    fields are about structure that only shows across the whole book: how the
+    alibi breaks, which clue was a herring, how the suspects were arranged.
+    Raise it for a P1P2 pass; input tokens are the cheap half of a call.""" 
+    max_chars = MAX_TEXT_CHARS if max_chars is None else max_chars
     reader = pypdf.PdfReader(str(pdf_path))
     pages = []
     for page in reader.pages:
@@ -119,11 +128,11 @@ def extract_text_from_pdf(pdf_path: Path) -> tuple[str, str]:
 
     full_text = "\n".join(pages).strip()
 
-    if len(full_text) <= MAX_TEXT_CHARS:
+    if len(full_text) <= max_chars:
         return full_text, full_text
 
     # Sample beginning + middle + end so Claude sees the full arc
-    chunk = MAX_TEXT_CHARS // 3
+    chunk = max_chars // 3
     mid_start = (len(full_text) - chunk) // 2
 
     # If a cast-of-characters marker sits in the front matter, anchor the
@@ -303,6 +312,51 @@ class ExtractionAPIError(Exception):
     a network/auth hiccup as "already extracted, nothing to see here."""
 
 
+# Extraction is a mechanical task -- read a text, fill named fields -- so it does
+# not need deep reasoning, but it does need room to answer.
+#
+# max_tokens was 1000. A P1P2 extraction is ~1,800 tokens of JSON across two
+# calls, so that was already at the edge on a model that does not think, and
+# some share of the empty and low-confidence fields in the existing corpus is
+# probably truncation rather than the model having nothing to say. On Opus 5,
+# which runs adaptive thinking by default, 1000 is not merely tight: the whole
+# budget goes to thinking and the response comes back with a single thinking
+# block and stop_reason=max_tokens, having produced no text at all.
+EXTRACTION_MAX_TOKENS = 4000
+
+
+def _effort_kwargs(model: str) -> dict:
+    """Low effort for models that support it.
+
+    Adaptive thinking stays ON -- disabling it on Opus 5 has its own failure
+    modes -- but effort "low" keeps a mechanical extraction from spending a
+    large thinking budget on it. Haiku rejects output_config outright, so it is
+    only sent to models that accept it.
+    """
+    if "haiku" in model:
+        return {}
+    return {"output_config": {"effort": "low"}}
+
+
+def _first_text(message) -> str:
+    """The first text block of a response, not blindly content[0].
+
+    Claude Opus 5 runs adaptive thinking by default, so a response often begins
+    with a ThinkingBlock and content[0].text raises AttributeError. Because the
+    thinking is *adaptive*, the model decides per request whether to think --
+    which makes indexing content[0] an intermittent failure rather than an
+    obvious one: an extraction run can succeed thirty times and then die.
+    Scanning for the text block is correct on every model, thinking or not.
+    """
+    for block in message.content:
+        if getattr(block, "type", None) == "text":
+            return block.text
+    raise ValueError(
+        f"no text block in response (blocks: "
+        f"{[getattr(b, 'type', '?') for b in message.content]}; "
+        f"stop_reason={getattr(message, 'stop_reason', '?')})")
+
+
 def _call_claude_for_protocol(
     client: "anthropic.Anthropic",
     model: str,
@@ -348,8 +402,9 @@ def _call_claude_for_protocol(
         try:
             message = client.messages.create(
                 model=model,
-                max_tokens=1000,
+                max_tokens=EXTRACTION_MAX_TOKENS,
                 messages=[{"role": "user", "content": prompt}],
+                **_effort_kwargs(model),
             )
         except Exception as e:
             last_error = f"API error: {e}"
@@ -359,7 +414,7 @@ def _call_claude_for_protocol(
                 print(f"  WARNING  {label} ({pid}): {last_error} — {more}")
             continue
 
-        raw = message.content[0].text.strip()
+        raw = _first_text(message).strip()
         if raw.startswith("```"):
             raw = raw.split("```", 2)[1]
             if raw.startswith("json"):
@@ -386,6 +441,57 @@ def _call_claude_for_protocol(
     return placeholder, last_error
 
 
+def _upgrade_decision(out_path: Path, protocol_ids: list[str], upgrade: bool) -> tuple[bool, str]:
+    """Should this source be (re-)extracted? Returns (run_it, reason).
+
+    Dedup here is by output filename -- that is what makes a re-run cheap, and
+    it is also why a P1-only source could never be deepened to P1P2: the file
+    exists, so it was skipped, so `--protocol P1P2` on an already-extracted
+    source silently did nothing at all.
+
+    `--upgrade` fixes exactly that and nothing more. It re-extracts a source
+    only when the existing file does NOT already cover every requested
+    protocol. That makes the flag idempotent and, more importantly, resumable:
+    a run that dies at story 40 of 63 leaves the first 40 upgraded, and the
+    same command picks up at 41 rather than paying for them again.
+    """
+    if not out_path.exists():
+        return True, "new"
+    if not upgrade:
+        return False, "already extracted"
+    try:
+        existing = json.loads(out_path.read_text())
+    except Exception:
+        return True, "existing file is unreadable — re-extracting"
+    have = set(existing.get("_meta", {}).get("protocols") or [])
+    want = set(protocol_ids)
+    if want <= have:
+        return False, f"already has {'+'.join(sorted(have))}"
+    return True, f"upgrading {'+'.join(sorted(have)) or 'unknown'} -> {'+'.join(sorted(want))}"
+
+
+def _archive_superseded(out_path: Path) -> Path | None:
+    """Move an extraction aside before overwriting it.
+
+    An upgrade replaces a known-good extraction with a fresh API result. If the
+    new one comes back worse -- or an interrupted run leaves a mess -- the old
+    one has to still exist. `_superseded/` is a subdirectory, and
+    `PartRegistry.load_extractions` globs "*.json" non-recursively, so nothing
+    in here is ever sampled by generation.
+    """
+    if not out_path.exists():
+        return None
+    dest_dir = out_path.parent / "_superseded"
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    dest = dest_dir / out_path.name
+    n = 1
+    while dest.exists():
+        dest = dest_dir / f"{out_path.stem}.{n}.json"
+        n += 1
+    out_path.replace(dest)
+    return dest
+
+
 def extract_pdf_anthology(
     pdf_path: Path,
     client: "anthropic.Anthropic",
@@ -393,6 +499,7 @@ def extract_pdf_anthology(
     db_dir: Path,
     model: str = DEFAULT_MODEL,
     verbose: bool = True,
+    upgrade: bool = False,
 ) -> tuple[int, int]:
     """Extract each detected short story in an anthology PDF as its own
     corpus source. Returns (success_count, failed_count)."""
@@ -418,11 +525,14 @@ def extract_pdf_anthology(
         title_slug = _slug(story["title"])[:40]
         out_path = db_dir / "extractions" / f"pdf_{book_slug[:30]}__story{story['index']:02d}_{title_slug}.json"
 
-        if out_path.exists():
+        run_it, why = _upgrade_decision(out_path, protocol_ids, upgrade)
+        if not run_it:
             if verbose:
-                print(f"  SKIP  story {story['index']:02d}: {story['title']}  (already extracted)")
+                print(f"  SKIP  story {story['index']:02d}: {story['title']}  ({why})")
             success += 1
             continue
+        if why.startswith("upgrading") and verbose:
+            print(f"  UPGRADE story {story['index']:02d}: {story['title']}  ({why})")
 
         text = story["text"]
         if len(text) < MIN_TEXT_CHARS:
@@ -464,10 +574,12 @@ def extract_pdf_anthology(
             "anthology_title": pdf_path.stem,
             "story_index": story["index"],
             "story_count": len(stories),
+            "model": model,
         }
         if warnings:
             merged["_meta"]["extraction_warnings"] = warnings
 
+        _archive_superseded(out_path)
         out_path.parent.mkdir(parents=True, exist_ok=True)
         with open(out_path, "w") as f:
             json.dump(merged, f, indent=2)
@@ -513,14 +625,15 @@ def fill_resolution(
     try:
         message = client.messages.create(
             model      = model,
-            max_tokens = 500,
+            max_tokens = EXTRACTION_MAX_TOKENS,
             messages   = [{"role": "user", "content": prompt}],
+            **_effort_kwargs(model),
         )
     except Exception as e:
         print(f"        ERROR in resolution fill pass: {e}")
         return
 
-    raw = message.content[0].text.strip()
+    raw = _first_text(message).strip()
     if raw.startswith("```"):
         raw = raw.split("```", 2)[1]
         if raw.startswith("json"):
@@ -565,6 +678,8 @@ def extract_pdf(
     db_dir: Path,
     model: str = DEFAULT_MODEL,
     verbose: bool = True,
+    upgrade: bool = False,
+    max_chars: int | None = None,
 ) -> tuple[Path | None, str]:
     """Extract a single PDF and save results.
     Returns (output_path, full_text). full_text is needed for --fill-resolution."""
@@ -572,9 +687,10 @@ def extract_pdf(
     slug      = _slug(pdf_path.stem)
     out_path  = db_dir / "extractions" / f"pdf_{slug}.json"
 
-    if out_path.exists():
+    run_it, why = _upgrade_decision(out_path, protocol_ids, upgrade)
+    if not run_it:
         if verbose:
-            print(f"  SKIP  {pdf_path.name}  (already extracted → {out_path.name})")
+            print(f"  SKIP  {pdf_path.name}  ({why} → {out_path.name})")
         # Still need full_text for a potential fill-resolution pass
         try:
             _, full_text = extract_text_from_pdf(pdf_path)
@@ -586,7 +702,7 @@ def extract_pdf(
         print(f"  READ  {pdf_path.name}")
 
     try:
-        text, full_text = extract_text_from_pdf(pdf_path)
+        text, full_text = extract_text_from_pdf(pdf_path, max_chars)
     except Exception as e:
         print(f"  ERROR reading PDF: {e}")
         return None, ""
@@ -621,10 +737,12 @@ def extract_pdf(
         "text_len":  len(text),
         "protocols": protocol_ids,
         "title":     pdf_path.stem,
+        "model":     model,
     }
     if warnings:
         merged["_meta"]["extraction_warnings"] = warnings
 
+    _archive_superseded(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     with open(out_path, "w") as f:
         json.dump(merged, f, indent=2)
@@ -656,6 +774,23 @@ def _collect_pdfs(sources: list[str]) -> list[Path]:
     return list(dict.fromkeys(pdfs))  # deduplicate, preserve order
 
 
+def _protocol_arg(value: str) -> str:
+    """Accept "P2" or a concatenation like "P1P2P3".
+
+    argparse's choices= only ever allowed a single protocol, while the line that
+    consumes it (`args.protocol.replace("P", " P").split()`) was written to split
+    a combined value. So --protocol P1P2 parsed correctly and was rejected one
+    step earlier -- the combined depths the extractor supports could not actually
+    be asked for.
+    """
+    ids = [p for p in value.upper().replace("P", " P").split() if p]
+    if not ids or any(p not in PROTOCOLS for p in ids):
+        raise argparse.ArgumentTypeError(
+            f"{value!r} is not one or more of {', '.join(PROTOCOLS)} "
+            f"(e.g. P2, P1P2, P1P2P3)")
+    return "".join(ids)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Extract mystery parts from local PDF files.",
@@ -667,9 +802,12 @@ def main() -> None:
         help="PDF file(s) or directory containing PDFs",
     )
     parser.add_argument(
-        "--protocol", default=DEFAULT_PROTOCOL,
-        choices=list(PROTOCOLS.keys()),
-        help=f"Extraction depth (default: {DEFAULT_PROTOCOL})",
+        "--protocol", default=DEFAULT_PROTOCOL, type=_protocol_arg, metavar="SPEC",
+        help=f"Extraction depth (default: {DEFAULT_PROTOCOL}). One protocol (P2) or "
+             f"several concatenated (P1P2, P1P2P3) — the code below has always split a "
+             f"combined value, but argparse's choices= rejected it before it got there, "
+             f"so combined depths were unreachable from the command line. "
+             f"Valid: {', '.join(PROTOCOLS)}.",
     )
     parser.add_argument(
         "--db-dir", default=DEFAULT_DB_DIR, metavar="DIR",
@@ -691,6 +829,25 @@ def main() -> None:
              "story's first page) and extract every story as its own corpus source, "
              "using each story's full text rather than begin/middle/end sampling. "
              "Use --dry-run first to review the detected split before spending API calls.",
+    )
+    parser.add_argument(
+        "--max-text-chars", type=int, default=None, metavar="N",
+        help=f"How much of a novel to sample (beginning+middle+end). Default "
+             f"{MAX_TEXT_CHARS:,}, inherited from the frozen bulk pipeline — on a "
+             f"350,000-char novel that is ~1.7%% of the book in three disconnected "
+             f"chunks. Fine for P1; thin for P2, whose fields describe structure that "
+             f"only shows across the whole book. Raise it for a P1P2 pass: input tokens "
+             f"are the cheap half of a call. Ignored in --anthology mode, which feeds "
+             f"each story whole up to {ANTHOLOGY_FULLTEXT_THRESHOLD:,} chars.",
+    )
+    parser.add_argument(
+        "--upgrade", action="store_true",
+        help="Re-extract sources whose existing extraction does not already cover every "
+             "protocol in --protocol. Without this, an already-extracted source is skipped "
+             "on filename alone, so '--protocol P1P2' on a P1-only source does nothing. "
+             "Resumable and idempotent: already-upgraded sources are skipped, so a run that "
+             "dies partway can be repeated without paying twice. The replaced extraction is "
+             "moved to extractions/_superseded/ rather than deleted.",
     )
     parser.add_argument(
         "--dry-run", action="store_true",
@@ -727,23 +884,36 @@ def main() -> None:
                           f"(pages {s['start_page']+1}-{s['end_page']+1}, {len(s['text']):,} chars)")
         return
 
+    # Two credential sources, and they are NOT interchangeable -- CLAUDE.md has
+    # documented both for the project all along, but only server/main.py ever
+    # implemented the second, and it implemented it wrongly until Session 34.
+    # ANTHROPIC_API_KEY is an API key and rides on x-api-key (api_key=). The
+    # session ingress token is a bearer token and rides on Authorization
+    # (auth_token=); passing it as api_key returns 401 "API key is invalid".
     api_key = os.environ.get("ANTHROPIC_API_KEY")
-    if not api_key:
-        sys.exit("ERROR: ANTHROPIC_API_KEY not set in environment.")
-
-    client = anthropic.Anthropic(api_key=api_key)
+    if api_key:
+        client = anthropic.Anthropic(api_key=api_key)
+    else:
+        token_path = Path("/home/claude/.claude/remote/.session_ingress_token")
+        if not token_path.exists():
+            sys.exit("ERROR: no credentials. Set ANTHROPIC_API_KEY in your environment "
+                     "(or a .env file) before running an extraction.")
+        client = anthropic.Anthropic(auth_token=token_path.read_text().strip())
 
     success, failed = 0, 0
     for i, pdf_path in enumerate(pdfs):
         print(f"\n[{i+1}/{len(pdfs)}]")
 
         if args.anthology:
-            s, f_ = extract_pdf_anthology(pdf_path, client, protocol_ids, db_dir, model=args.model)
+            s, f_ = extract_pdf_anthology(pdf_path, client, protocol_ids, db_dir, model=args.model,
+                                                  upgrade=args.upgrade)
             success += s
             failed += f_
             continue
 
-        out_path, full_text = extract_pdf(pdf_path, client, protocol_ids, db_dir, model=args.model)
+        out_path, full_text = extract_pdf(pdf_path, client, protocol_ids, db_dir, model=args.model,
+                                             upgrade=args.upgrade,
+                                             max_chars=args.max_text_chars)
         if out_path is None:
             failed += 1
         else:

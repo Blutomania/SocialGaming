@@ -64,13 +64,22 @@ import craft_grounding                                       # noqa: E402
 # ---------------------------------------------------------------------------
 # API client — auth priority: env var → session ingress token
 # ---------------------------------------------------------------------------
-def _get_api_key() -> str:
+def _get_credentials() -> dict:
+    """Kwargs for Anthropic(), by auth source.
+
+    The two sources are NOT interchangeable, which is what this function exists
+    to express. ANTHROPIC_API_KEY is an API key and goes on the x-api-key
+    header (`api_key=`). The session ingress token is a bearer token and goes on
+    Authorization (`auth_token=`) -- passing it as api_key returns
+    401 "API key is invalid", which is exactly what it used to do. CLAUDE.md has
+    always described this one as a Bearer token; the code did not.
+    """
     key = os.environ.get("ANTHROPIC_API_KEY")
     if key:
-        return key
+        return {"api_key": key}
     token_path = Path("/home/claude/.claude/remote/.session_ingress_token")
     if token_path.exists():
-        return token_path.read_text().strip()
+        return {"auth_token": token_path.read_text().strip()}
     raise RuntimeError(
         "ANTHROPIC_API_KEY not set and no session ingress token found. "
         "Set the environment variable before starting the server."
@@ -81,7 +90,7 @@ _client: Optional[Anthropic] = None
 def get_client() -> Anthropic:
     global _client
     if _client is None:
-        _client = Anthropic(api_key=_get_api_key())
+        _client = Anthropic(**_get_credentials())
     return _client
 
 # ---------------------------------------------------------------------------
@@ -99,14 +108,32 @@ def get_registry():
 # ---------------------------------------------------------------------------
 # LLM helper
 # ---------------------------------------------------------------------------
+# 8192 was too low for the mystery schema and is the most likely cause of the
+# "Unterminated string" / "Expecting property name" parse failures in the old
+# batch summary in mystery_database/generated/ (13 of 14 generations). A capped
+# response is truncated mid-JSON, which is exactly what those errors look like.
+# The playtest fields (per-area discovery/analysis, witness statements) made the
+# response longer again. 16000 is the documented ceiling for a non-streaming
+# request -- above that the SDK wants streaming to avoid HTTP timeouts.
+_MAX_TOKENS = 16000
+
+
 def llm(prompt: str, system: str = "You are a creative mystery game engine.") -> str:
     response = get_client().messages.create(
         model="claude-sonnet-4-6",
-        max_tokens=8192,
+        max_tokens=_MAX_TOKENS,
         system=system,
         messages=[{"role": "user", "content": prompt}],
     )
-    return response.content[0].text
+    # Not content[0]: a model running adaptive thinking puts a ThinkingBlock
+    # first. Sonnet 4.6 does not think unless asked, so this is safe today and
+    # would break the day the model line changes -- which is exactly the kind of
+    # switch nobody expects to be a code change.
+    for block in response.content:
+        if getattr(block, "type", None) == "text":
+            return block.text
+    raise RuntimeError(
+        f"no text block in response (stop_reason={response.stop_reason})")
 
 def _parse_json(raw: str) -> dict:
     """Strip markdown fences and parse JSON."""
@@ -161,11 +188,19 @@ QUALITY REQUIREMENTS — every generated mystery MUST satisfy these:
 SETTING:
   - description must explicitly explain why suspects cannot simply leave (isolation mechanic).
 
-CHARACTERS (include 1 victim, 3–4 suspects, optionally 1–2 witnesses):
+CHARACTERS (include 1 victim, EXACTLY 4 suspects, and 3–4 witnesses):
   - alibi: SPECIFIC — state where the person was, with whom or doing what. Never "—" or vague.
   - secret: CONCRETE FACT (≥ 2 sentences) anchoring interrogation questions.
   - motive (suspects): specific stake — financial, relational, reputational, or political. Never "—".
   - occupation: always present; must logically place the character in the closed world.
+  - statement (WITNESSES ONLY): what this witness tells an investigator who questions them.
+    2–4 sentences. It must be ACTIONABLE — it names a person, a place, a time or an object the
+    player can do something with. Never atmosphere alone, never "I didn't see anything".
+    Witness statements in this build are TRUE. A witness may be mistaken about what something
+    MEANT, but must not invent, deny or conceal what they saw. Deception is deliberately switched
+    off: a player cannot otherwise tell "this mystery is incoherent" from "this witness lied".
+    Across the witnesses as a group, at least one statement must point toward the culprit, and at
+    least one must point at something that turns out to be innocent.
 
 EVIDENCE (include at least 6 items total):
   - At least 2 items with type "physical".
@@ -186,6 +221,17 @@ INVESTIGATION AREAS (exactly 5):
   - Each area must be atmospherically distinct and plausible for the setting.
   - investigation_prompt: 1–2 sentences of private context Claude will use when a player investigates
     this area (what could be found there — may include red herrings). NOT shown to players.
+  - discovery: what a player who searches this area FINDS. 1–2 sentences, concrete and physical —
+    an object, a mark, a document, an absence. This is shown to the player verbatim as
+    "You searched the <AREA> and found <DISCOVERY>." Every area must yield something; an area
+    that yields nothing wastes the only move a player gets there.
+  - analysis: what testing, forensics or research on that discovery then reveals. 1–2 sentences,
+    shown verbatim as "Testing and research reveal <ANALYSIS>." Make it the kind of thing a lab or
+    a records search returns: fingerprints on a weapon match a named person; a bank receipt traces
+    to a named account; a hard drive shows what was deleted and when; a ledger entry contradicts a
+    stated alibi. It must reference a NAMED character, time or place — not "someone was here".
+  - At least 2 areas must yield a discovery+analysis pair that genuinely narrows the suspect list,
+    and at least 1 must be a red herring that looks incriminating and is innocently explained.
 
 LEADS (exactly 4):
   - Pre-existing tips, rumours, or documents that can be followed up on.
@@ -215,7 +261,8 @@ Generate a complete mystery JSON with this exact structure:
       "occupation": "string",
       "motive": "string",
       "alibi": "string",
-      "secret": "string"
+      "secret": "string",
+      "statement": "witnesses only — what they tell an investigator; true, actionable"
     }}
   ],
   "evidence": [
@@ -232,7 +279,9 @@ Generate a complete mystery JSON with this exact structure:
       "id": "A1",
       "name": "string",
       "description": "1–2 sentence atmospheric description of the location visible to players",
-      "investigation_prompt": "private context for AI — what is here, what could be found"
+      "investigation_prompt": "private context for AI — what is here, what could be found",
+      "discovery": "what a player who searches here finds — concrete, physical",
+      "analysis": "what testing or research on that discovery reveals — names a character, time or place"
     }}
   ],
   "leads": [
@@ -1629,9 +1678,19 @@ def mystery_brief(game_id: str):
     safe = {k: v for k, v in mystery.items()
             if k not in ("_provenance", "_coherence")}
     # Remove investigation_prompt from areas and leads (server-side only)
+    # discovery/analysis are the pre-written search results. Single-player reads
+    # them straight out of the mystery dict, which is fine -- that client already
+    # holds the solution. Multiplayer resolves areas server-side through
+    # /games/{id}/investigate, so shipping them here would hand every clue to
+    # every player the moment the game started.
     safe["investigation_areas"] = [
-        {k: v for k, v in a.items() if k != "investigation_prompt"}
+        {k: v for k, v in a.items()
+         if k not in ("investigation_prompt", "discovery", "analysis")}
         for a in safe.get("investigation_areas", [])
+    ]
+    safe["characters"] = [
+        {k: v for k, v in c.items() if k != "statement"}
+        for c in safe.get("characters", [])
     ]
     safe["leads"] = [
         {k: v for k, v in l.items() if k != "investigation_prompt"}
@@ -2430,4 +2489,11 @@ def get_mystery(slug: str):
         raise HTTPException(status_code=404, detail="mystery not found")
     mystery_file = sorted(matches)[-1]
     with open(mystery_file) as f:
-        return json.load(f)
+        data = json.load(f)
+    # _slug is assigned *after* _save_mystery() in the generation pipeline, so
+    # it is never written to disk -- every file on disk lacks it. The client
+    # reads mystery["_slug"] to save a viability rating, so a mystery loaded
+    # from here used to rate into the void: the request was skipped entirely
+    # on an empty slug. Derive it from the filename, exactly as /mysteries does.
+    data.setdefault("_slug", slug)
+    return data

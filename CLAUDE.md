@@ -16,6 +16,46 @@ Current phase: **Phase 3d — Lobby flow, room codes, QR display on host screen*
 
 ---
 
+## Delivery Priority (owner, Session 34 — August 21, 2026)
+
+**The order is: PC playtest → funding → phone + robust gen-AI calls.** Owner's words, and their
+caveat: *"obviously it can change."* Treat this as the current sequence, not a contract — but do
+check work against it before starting, because it changes what counts as a blocker.
+
+| # | Stage | What it means in this repo |
+|---|---|---|
+| 1 | **PC playtest** | The Godot desktop client is the **only** surface that has to work. Get a human through a whole game on one machine. |
+| 2 | **Funding** | The playtest is evidence for the pitch. The studio-engine pillars (coherence engine, corpus) need to be real, which they now are. |
+| 3 | **Phone + robust gen AI** | `server/static/mobile.html`, the room-first prompt flow, moderation that survives Steam, and the BACKGROUND work in item 17. |
+
+**What this reprioritises, concretely — read before calling something a gap:**
+
+- **Phone-client gaps are not blockers.** `mobile.html` has no prompt entry box, no mystery list,
+  and no lobby suggestion UI. All true, all fine until stage 3.
+- **Saved-mystery reuse staying single-player is correct, not an oversight** (owner confirmed when
+  it was raised as a next step). The browse list loads a mystery into `CaseDisplay`; it does not
+  route through `create_game(mystery_slug=…)`. Group replay is a stage-3 feature even though the
+  server has supported it since Session 26.
+- **Moderation stays as decided** — none, with the visible "Not moderated for play testing"
+  disclaimer. That is a stage-1 answer by construction; the Steam answer is stage 3.
+- **Nothing already built gets removed.** The multiplayer server work (lockstep rounds, the 8
+  endpoints, prompt voting, same-room replay) stays exactly as it is. It is not being extended,
+  only not being extended *yet*.
+- **New API cost needs a reason that serves stage 1.** The P1P2 re-extraction (item 12), the 11
+  held-back anthologies and the 7 all-null extractions (item 7) are all real work that buys
+  nothing a playtester will notice.
+
+**The playtest gameflow is specified in `docs/PLAYTEST_FLOW.md`** (owner, Session 34) — the
+seven screens, the decisions behind them, the one-call cost shape, and the build order. Read it
+before touching any playtest-path screen; it supersedes the older Phase 2/3 screen descriptions
+in this file wherever they disagree, for playtest purposes only.
+
+**The stage-1 test is blunt:** can somebody who is not the owner sit at a PC, start the game, play
+a whole mystery, and reach the result screen without a Godot error? Anything that fails that is
+urgent; anything that does not, is not.
+
+---
+
 ## Architecture
 
 ```
@@ -182,7 +222,7 @@ P1 causal chain must be unbroken: crime → victim → closed world → culprit/
 - Run `coherence_validator.check_mystery()` after — attach result as `_coherence` in the JSON
 
 ### 3. Does it drive down cost?
-API calls are the primary cost driver.
+API calls are the primary cost driver. **Measured economics, levers and the traps are in `docs/AI_COST_PLAYBOOK.md`** (Session 34) — read it before adding a generation-schema field, a play-time API call, or a corpus re-extraction. Headline: output tokens are 95% of a generation call, so prompt caching saves ~5% and is the wrong lever; the right one is writing fixed text at generation time instead of calling per action (10.8× on a four-player game).
 
 | Rule | Detail |
 |---|---|
@@ -387,7 +427,18 @@ Full list in `SESSIONS.md`. Top priorities:
       read). Fixed by extending `part_registry.py`'s `KEY_TO_IDX`; see item 14 below for the full
       fix (also resolved the pre-existing `evidence_type`/`alibi` axis mislabeling in the same
       pass). `media_and_audience` remains deliberately unmapped — no honest fit among the 8 axes.
-    - **[STILL OPEN]** `part_registry.py`'s `_atomize_extraction()` still has no P3/P4-tier keys
+    - **[FIXED, Session 34]** `_atomize_extraction()` now maps 7 of P3's 8 keys
+      (`setting_as_constraint`→2, `victims_enemies`→3, `suspect_wounds`→4, `false_suspect`→5,
+      `unreliable_frame`/`technical_detail`→6, `moral_ambiguity`→7). `evidence_type` stays
+      unmapped for the same reason as `media_and_audience` — axis 8 was *named* evidence_type
+      until Session 23 renamed it to `alibi` precisely because it held alibi content, and
+      mapping F5 there would recreate that mislabeling. `REGISTRY_SCHEMA_VERSION` bumped to 3.
+      The re-extraction now runs **P1P2P3**, not P1P2: P3 costs ~$2 more in the same pass and
+      ~$8 more as a later one, and P3.F4 "setting as constraint" is the spatial-device field
+      (measured on *The Red House Mystery*: *"an office reachable only through a passage of
+      spring-hinged doors, plus a secret passage… door movements are legible only as shadows
+      on the passage wall"*). Real end-to-end result on that source: **4 parts → 19**.
+    - **[SUPERSEDED]** The old note here said `_atomize_extraction()` has no P3/P4-tier keys
       to read, so a P1-only source (all 12 novels + all 63 anthology stories) went from populating
       3 of the registry's 8 sampling axes to 5 of 8 after the Session 23 fix (gained `motive` via
       `victim`, `reveal_mechanic` via `resolution`, `social_dynamic` via `investigator`) — but
@@ -547,7 +598,17 @@ Full list in `SESSIONS.md`. Top priorities:
       highest-visibility user-generated content surface in the product. MYF already built
       `moderateHeckle()` for a far *smaller* surface. It cannot ride along on generation, because
       the background appears before any Claude call — so it needs handling at submit time, which is
-      its own API call or a local filter. **Owner decision, not yet made.**
+      its own API call or a local filter.
+      **[DECIDED, Session 34 — August 21 2026] None yet.** No filter and no moderation call: the
+      room is people who chose to play together and can see who typed it. What ships instead is a
+      **visible disclaimer under the prompt entry box — "Not moderated for play testing"** (live in
+      `godot/scenes/ui/MysteryGeneration.tscn` as `VBox/ModerationNoticeLabel`). It does two jobs:
+      it is cover during play testing, and it is a standing reminder that this is unresolved, so
+      the decision cannot quietly become the status quo by being invisible. **It is not a Steam
+      answer** — a TV-sized, whole-game, user-typed string still needs a real one before release.
+      When the phone client finally grows a prompt-suggestion box (Session 26's room-first flow is
+      server-only today — `server/static/mobile.html` has no prompt entry at all), the same line
+      goes under it.
     - **Legibility.** MYF sits at 10% mark strength for an abstract glyph. Words are read
       involuntarily, and CYM's screens carry far more text (clues, transcripts, evidence). Expect
       to need *below* 10%, plus rotation and edge-cropping so most instances are partial. Test on a
@@ -558,14 +619,35 @@ Full list in `SESSIONS.md`. Top priorities:
       in whatever font the machine has — that concern returns for the phone client, which needs the
       faces actually loaded or the two screens will not match.
 
-    **The two open questions, both the owner's:**
-    1. **Moderation** — what happens to a player title before it becomes wallpaper?
-    2. **Does the player's title feed INTO generation, or only decorate?** Recommendation: both —
-       pass it as context so Claude writes a mystery that fits its name, and use it for display,
-       otherwise the wall says one thing and the case file another. Wrinkle if so: the saved-mystery
-       slug derives from `mystery_dict["title"]` (`server/main.py`), so decide whether the player's
-       title *replaces* Claude's or sits beside it as a display title. Recommendation: replace,
-       with Claude's as the fallback when the field is left blank.
+    **The two open questions — question 1 is answered, question 2 is half-answered:**
+    1. **Moderation** — **answered, Session 34: none yet, disclaimer instead.** See the risk entry
+       above for what shipped and what it does not cover.
+    2. **Does the player's title feed INTO generation, or only decorate?** Owner, Session 34:
+       *"Title is just for generation, but should also be used in a drop down menu of reusable
+       mysteries."* So the title **feeds generation** — it is not decoration-only — and it is the
+       handle the saved-mystery list is browsed by. **Still to pin down before building:** whether
+       "just for generation" also means the BACKGROUND field should be strewn with something other
+       than the title, or with the title as well. Do not assume; ask.
+       The slug wrinkle stands either way: the saved-mystery slug derives from
+       `mystery_dict["title"]` (`server/main.py`), so decide whether the player's title *replaces*
+       Claude's or sits beside it. Recommendation: replace, with Claude's as the blank-field
+       fallback — the dropdown then lists what the player named, which is the point of question 2.
+
+    **Reusable-mystery dropdown — it exists, and Session 34 fixed it.** Owner asked whether it was
+    still in the build. It is, on the Godot host screen only: MainMenu's "Browse Saved Mysteries"
+    → `GET /mysteries` → a popup `ItemList` labelled by each mystery's `title`. **It had been
+    inert since it was written** — `main_menu.gd` connected its four buttons and none of the
+    popup's own signals, so `_on_browse_item_selected` was dead code, clicking a row did nothing,
+    and the window could not even be dismissed (a Godot `Window` does not hide itself on
+    `close_requested`). Now wired. Two things it still is not:
+    - **Single-player only — and that is deliberate, not a gap.** Selecting a saved mystery goes
+      straight to `CaseDisplay.tscn`. The server has supported multiplayer reuse all along
+      (`CreateGameRequest.mystery_slug`, "skip prompt-collection, attach an already-generated
+      mystery immediately"), but no UI reaches it. This was raised as a next step and the owner
+      pointed at the Delivery Priority section above: group replay is a stage-3 feature. The PC
+      playtest needs one person at one machine replaying a saved case, which is exactly what the
+      single-player route already does.
+    - **Absent from the phone client.** `mobile.html` has no mystery list.
 
     **Brand artwork — where it stands (Session 33).** `brand/` holds four files and a README.
     `negative_logo.svg` / `organic_logo.svg` were the first pass: raster PNGs in an SVG wrapper,
@@ -601,6 +683,65 @@ Full list in `SESSIONS.md`. Top priorities:
     mysteries have generated cleanly since, so it is probably long fixed — but a background keyed
     to the title inherits whatever the current failure rate is. Worth one real generation run to
     confirm before building on top of it.
+
+18. **[OPEN — found Session 34, August 21 2026] A BLOCKING coherence report does not stop a
+    mystery being saved, served, or played.** Not a coherence-engine failure — the opposite. The
+    engine catches this exactly: `P1.C4.culprit_not_in_characters`, severity `BLOCKING`, message
+    *"Chain is broken; players can never identify them."* `_run_coherence()` records the verdict
+    into `_coherence` and the pipeline then saves and serves the mystery regardless.
+    Live example on disk: `the_stolen_star_of_smurf_village_1775239921.json` recorded
+    `{"passed": false, "blocking": 1}` and is fully playable — its two-culprit `solution.culprit`
+    is prose, so under `accusation.gd`'s original exact-match every accusation was wrong,
+    including both correct ones. **The game could not be won, and the player was told they were
+    wrong.**
+    Session 34 fixed the *symptom* at two altitudes (substring matching in `accusation.gd` with a
+    short-name guard; an on-screen warning when no suspect can be the answer) and added
+    `scripts/check_mystery_playable.py` to catch it before a playtest. **The cause is untouched
+    and is a design call:** should generation refuse to save a BLOCKING mystery, retry it, or keep
+    serving it with a louder warning? Retrying costs API calls, which is why it was not decided
+    unilaterally. Worth settling before stage 2 — the coherence engine is a funding pillar, and
+    "it detects the defect and ships it anyway" is a question someone will ask.
+
+### Pre-playtest checkers (Session 34) — run these before handing anyone a build
+
+Both are zero-API-cost, need no Godot binary, and each has already caught a real bug:
+
+| Script | Catches |
+|---|---|
+| `scripts/check_godot_wiring.py` | Broken `$NodePath`s, `@onready` type mismatches, interactive controls the script never references, autoload calls that do not exist or take the wrong arity. Found `result_screen.gd` reaching for `$MainVBox/…` when the scene nests under `ScrollContainer/MainVBox/…` — the whole end-of-game screen. |
+| `scripts/check_mystery_playable.py` | A saved mystery whose `solution.culprit` names no listed suspect, an empty suspect list, or a blocking coherence failure that was served anyway. |
+| `scripts/upgrade_p1_to_p1p2.py` | Plans and runs the P1→P1P2P3 corpus upgrade. Prints the plan and spends nothing by default; `--go` executes. `--check-sources` / `--find-missing` / `--source-dir` handle PDFs that moved, were renamed, or are gone. Errors and recovery: `docs/EXTRACTION_TROUBLESHOOTING.md`. |
+| `scripts/compare_extraction_models.py` | Scores extraction models against `_atomize_extraction` — parts yielded and axes filled, not prose quality. |
+| `scripts/test_crime_scene_map.py` | The derived crime-scene layout: overlapping rooms, rooms off-canvas, a row that leaves a hole, a witness placed outside the room they are said to be in, or a layout that is not identical run to run. |
+
+Godot reports both classes of failure only at runtime, and the second one not even then — it
+looks like the player guessed wrong.
+
+19. **[READY TO RUN — Session 34] The corpus P1→P1P2P3 upgrade.** 75 sources are P1-only (206 of
+    281 `pdf_*` are already P1P2). `python3 scripts/upgrade_p1_to_p1p2.py` prints the plan and
+    spends nothing; `--go` runs it on `claude-opus-5`, ~$0.147/source. Verified end to end on
+    *The Red House Mystery*: **4 parts → 19**. Every failure mode and its fix is in
+    `docs/EXTRACTION_TROUBLESHOOTING.md`; the run is idempotent and resumable, and replaced
+    extractions are archived to `extractions/_superseded/`, never deleted.
+    **Why P1P2P3 rather than P1P2:** P3 costs ~$2 more in the same pass and ~$8 more as a later
+    one, and P3.F4 "setting as constraint" is the spatial-device field the CLOUD idea needs.
+
+20. **[OPEN — owner concept, Session 34] CLOUD — a manipulable top-down crime scene.** After the
+    inciting-incident video the interface becomes a top-down scene players traverse. Assessed
+    against the data, not speculation:
+    - **The corpus holds no spatial structure** — space appears incidentally at 2–14% across 564
+      extractions, never as layout, adjacency or sightline. It does not need to: CLOUD's geometry
+      comes from generation, which already *knows* the spatial facts as prose (evidence E2 is
+      named "…(found in Generator Room)"; `solution.method` is the culprit's route in sentences).
+      **Missing are fields, not knowledge:** `area_id` on evidence, adjacency between areas, and
+      the culprit's path as a sequence — a schema change to a call already being paid for.
+    - **The schematic and the photo-real reference are different kinds of thing.** The schematic
+      is *data rendered* and is nearly buildable now (`crime_scene_map.py` already draws rooms and
+      witnesses). The photo-real image is *presentation*, needs an image model, and is stage-3
+      money. Do not conflate them.
+    - **What transfers between a country house and a Mars dome is the spatial *device*, not the
+      geometry** — and P3.F4 "Setting as Constraint" captures exactly that, as a relation rather
+      than a floor plan. That is why the corpus run is now P1P2P3.
 
 > **DO NOT re-run the frozen bulk corpus pipeline** (`deprecated/run_corpus_pipeline.py`). Expand
 > the corpus only via `scripts/extract_from_pdfs.py`, adding one quality source at a time.
