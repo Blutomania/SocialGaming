@@ -92,27 +92,68 @@ def search_key(filename: str) -> str:
     return max(words, key=len) if words else Path(filename).stem[:12]
 
 
-def find_source(recorded: str) -> Path | None:
-    """Locate a source PDF, tolerating a repo that has been moved or re-cloned.
+def _norm(text: str) -> str:
+    """Lowercase alphanumerics only — so spaces, underscores, hyphens and the
+    download-site prefixes all collapse to the same key."""
+    stem = Path(text).stem
+    for n in _NOISE:
+        stem = stem.replace(n, "")
+    return "".join(ch for ch in stem.lower() if ch.isalnum())
 
-    The path in _meta was correct on the machine that ran the extraction. Try it
-    as recorded, then relative to the repo root, then by filename anywhere under
-    new_sources/ -- the file is often still present, just somewhere else.
+
+def find_source(recorded: str) -> Path | None:
+    """Locate a source PDF, tolerating renames and a moved or re-cloned repo.
+
+    The path in _meta was correct on the machine that ran the extraction, and a
+    file re-acquired later rarely comes back under exactly the same name --
+    "The Winter Queen - Boris Akunin.pdf" becomes "The_Winter_Queen.pdf" or just
+    "Turkish Gambit.pdf". An exact-filename match misses all of those, so the
+    tiers below get progressively looser.
+
+    The loose tiers only accept a UNIQUE hit. Extracting the wrong book against
+    an existing extraction's slug would silently corrupt that corpus entry, and
+    an ambiguous match is exactly when that happens -- so ambiguity reports
+    nothing found rather than guessing.
     """
     if not recorded:
         return None
+
+    # 1. exactly where it says it is
     for candidate in (Path(recorded), ROOT / recorded):
         if candidate.is_file():
             return candidate
+
+    if not NEW_SOURCES.exists():
+        return None
+    pdfs = [p for p in NEW_SOURCES.rglob("*.pdf") if p.is_file()]
+
+    # 2. same filename, anywhere under new_sources/ (including its top level)
     name = Path(recorded).name
-    for hit in NEW_SOURCES.rglob(name):
-        if hit.is_file():
+    for hit in pdfs:
+        if hit.name == name:
             return hit
-    # Anthology paths sometimes record a truncated name; fall back to a prefix match.
-    stem = Path(recorded).stem[:40]
-    for hit in NEW_SOURCES.rglob("*.pdf"):
-        if hit.stem.startswith(stem):
-            return hit
+
+    # 3. same title once punctuation and site prefixes are normalised away
+    target = _norm(recorded)
+    if target:
+        exact = [p for p in pdfs if _norm(p.name) == target]
+        if len(exact) == 1:
+            return exact[0]
+
+        # 4. one name contains the other ("Turkish Gambit" vs "Turkish Gambit - Boris Akunin")
+        contained = [p for p in pdfs
+                     if _norm(p.name) and (_norm(p.name) in target or target in _norm(p.name))]
+        if len(contained) == 1:
+            return contained[0]
+
+    # A single-shared-word tier was tried here and removed. It is unique often
+    # enough to look like it works and wrong often enough to be dangerous: with
+    # only "Turkish" in common it matched "Turkish Delight Mystery.pdf" to
+    # "Turkish Gambit - Boris Akunin.pdf". A unique match is not a correct one,
+    # and extracting the wrong book into an existing extraction's slug would
+    # silently replace that corpus entry with a different novel. Tier 4 already
+    # covers the realistic renames; anything looser is the user's call, made by
+    # renaming the file to the recorded name.
     return None
 
 
@@ -223,6 +264,12 @@ def main():
         for v in sorted(runnable.values(), key=lambda x: -x["count"]):
             kind = "anthology" if v["anthology"] else "novel"
             print(f"  {v['count']:>3} extraction(s)  [{kind:9}]  {v['path'].name[:64]}")
+            # A file matched under a different name is worth seeing before paying
+            # to extract it — it is the one case where the planner could be
+            # pointing at the wrong book.
+            if v["path"].name != Path(v["recorded"]).name:
+                print(f"       ^ matched by title; extraction recorded "
+                      f"\"{Path(v['recorded']).name[:56]}\"")
     if blocked:
         print("\nBLOCKED — source PDF not on this machine:")
         for v in sorted(blocked.values(), key=lambda x: -x["count"]):
