@@ -12,6 +12,7 @@ alone cannot tell them apart.
 """
 import re
 import sys
+import tempfile
 import types
 from pathlib import Path
 
@@ -203,7 +204,6 @@ else:
 # what the shell gets back.
 # ---------------------------------------------------------------------------
 import subprocess  # noqa: E402
-import tempfile as _tf  # noqa: E402
 import textwrap  # noqa: E402
 
 SCRIPT = Path(__file__).resolve().parent / "extract_from_pdfs.py"
@@ -238,7 +238,7 @@ class Anthropic:
 
 def run_real_script(message, status):
     """Run extract_from_pdfs.py for real against a stubbed SDK. Returns (rc, output)."""
-    with _tf.TemporaryDirectory() as tmp:
+    with tempfile.TemporaryDirectory() as tmp:
         tmp = Path(tmp)
         stubs = tmp / "stubs"
         stubs.mkdir()
@@ -263,6 +263,66 @@ def run_real_script(message, status):
 
 
 import os  # noqa: E402
+
+print("\n--- the anthology path stops too, and keeps what it already earned ---")
+
+# This is the path that actually ran in Session 35: upgrade_p1_to_p1p2.py sorts by
+# extraction count descending, so a 63-story anthology goes first. Seven stories
+# upgraded, then the credit balance died. extract_pdf_anthology has its own
+# per-story `except ExtractionAPIError: continue`, so without the fix it would
+# have failed the remaining 56 stories one at a time before the wrapper moved on
+# to the novels.
+class DiesAfter:
+    """Succeeds for n calls, then fails fatally forever."""
+    def __init__(self, n):
+        self.n = n
+        self.calls = 0
+        self.messages = self
+
+    def create(self, **kwargs):
+        self.calls += 1
+        if self.calls > self.n:
+            raise FakeAPIError(CREDIT, 400)
+        block = types.SimpleNamespace(type="text", text='{"crime_type": {"value": "murder", '
+                                                        '"confidence": "high", "quote": "q"}}')
+        return types.SimpleNamespace(content=[block], stop_reason="end_turn")
+
+
+_real_split = ex._split_anthology_stories
+ex._split_anthology_stories = lambda path: [
+    {"index": i, "title": f"Story {i}", "author": "A. Writer",
+     "text": "The body was found in the library. " * 200,
+     "start_page": i, "end_page": i + 1}
+    for i in range(1, 6)
+]
+try:
+    with tempfile.TemporaryDirectory() as tmp:
+        db = Path(tmp)
+        (db / "extractions").mkdir(parents=True)
+        client = DiesAfter(2)  # two stories land, the third hits the dead balance
+        try:
+            ex.extract_pdf_anthology(Path("An Anthology.pdf"), client, ["P1"], db,
+                                     model="claude-opus-5", verbose=False)
+        except ex.FatalAPIError:
+            saved = sorted(f.name for f in (db / "extractions").glob("*.json"))
+            if len(saved) == 2:
+                print(f"  PASS  stopped at story 3, kept the 2 already extracted")
+            else:
+                print(f"  FAIL  expected 2 saved stories, got {len(saved)}: {saved}")
+                failures += 1
+            if client.calls == 3:
+                print("  PASS  and made no further calls — 2 successes + 1 fatal")
+            else:
+                print(f"  FAIL  kept calling after the fatal error ({client.calls} calls)")
+                failures += 1
+        except Exception as e:
+            print(f"  FAIL  raised {type(e).__name__}: {e}")
+            failures += 1
+        else:
+            print("  FAIL  ground through all 5 stories instead of stopping")
+            failures += 1
+finally:
+    ex._split_anthology_stories = _real_split
 
 print("\n--- end to end: what exit code does the shell actually get? ---")
 

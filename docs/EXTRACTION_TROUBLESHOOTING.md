@@ -58,8 +58,11 @@ text block. `_first_text()` in `extract_from_pdfs.py` is the correct pattern; `s
 has its own copy. `git pull` if you see this in a file that should already be fixed.
 
 ### `Your credit balance is too low to access the Anthropic API`
-The account is out of credits. **Nothing was spent and nothing was written** — these come back
-as HTTP 400, rejected before inference, and the failure path deliberately saves no placeholder.
+The account is out of credits. **The failed calls themselves cost nothing and wrote nothing** —
+they come back as HTTP 400, rejected before inference, and the failure path deliberately saves no
+placeholder. But anything that succeeded *before* the balance ran out is real, paid-for work
+sitting uncommitted in your working tree — see "If the run died partway through a source" below
+and commit it before re-running.
 
 Since Session 35 the run stops on the first one instead of walking the rest of the batch:
 
@@ -145,17 +148,22 @@ is discarded whole — that source's P1+P2 spend is real and no file is written.
 way this run can cost money and leave nothing behind, and it needs the failure to land *between*
 protocols rather than on the first call.
 
-It did not happen in the Session 35 credit-exhaustion case (every source died on P1, so the
-spend was zero), but check for it after any mid-batch stop:
+Check for it after any mid-batch stop:
 
 ```bash
 git status --short mystery_database/extractions/
 ls -t mystery_database/extractions/_superseded/ | head
 ```
 
-An archive in `_superseded/` with no corresponding current file in `extractions/` is a source
-that was replaced and then not rewritten. The original is intact — copy it back, or just re-run,
-since `--upgrade` will redo it.
+Read the two lists together — the pattern tells you which case you are in:
+
+| What you see | What it means |
+|---|---|
+| `M extractions/x.json` **and** `?? _superseded/x.json` | **A completed upgrade.** The original was archived and the richer version written. Commit it. |
+| `?? _superseded/x.json` with **no** `M` for the same name | Replaced and then not rewritten. The original is intact — copy it back, or just re-run, since `--upgrade` will redo it. |
+
+A mid-batch stop usually leaves *some* completed upgrades, and they are real work that cost real
+money. Commit them before re-running.
 
 ## Undoing it
 

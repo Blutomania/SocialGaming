@@ -726,11 +726,13 @@ looks like the player guessed wrong.
     extractions are archived to `extractions/_superseded/`, never deleted.
     **Why P1P2P3 rather than P1P2:** P3 costs ~$2 more in the same pass and ~$8 more as a later
     one, and P3.F4 "setting as constraint" is the spatial-device field the CLOUD idea needs.
-    **[Session 35] The run was attempted and hit an exhausted Anthropic credit balance.** Nothing
-    was spent (400s are rejected before inference) and nothing was written (the failure path saves
-    no placeholder — confirmed afterwards by `test_registry_staleness.py` showing the corpus
-    fingerprint unchanged). The plan still stands at 66 of 74 sources, ~$9.70; top up and re-run
-    the same command. What Session 35 *did* fix is that the run did not stop on its own: it
+    **[Session 35] The run was attempted and hit an exhausted Anthropic credit balance partway
+    through.** The failed calls cost nothing (400s are rejected before inference) and wrote nothing
+    (the failure path saves no placeholder), but **7 stories of the Hitchcock 1980 anthology
+    upgraded successfully first** — the queue is sorted by extraction count, so the 63-story
+    anthology ran ahead of the novels. Those 7 are real paid-for work; check for them with the
+    two-list pattern in `docs/EXTRACTION_TROUBLESHOOTING.md` and commit before re-running. Top up
+    and re-run the same command for the rest. What Session 35 *did* fix is that the run did not stop on its own: it
     retried an unretryable billing error, and `upgrade_p1_to_p1p2.py` — which runs the extractor
     once per source **as a subprocess** — kept going through every remaining PDF because it read
     only `if rc != 0`. Related, found in the same pass: `extract_from_pdfs.py` exited 0 however

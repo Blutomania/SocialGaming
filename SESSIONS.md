@@ -3018,8 +3018,8 @@ ERROR    <source>: ... — skipping, not saving a placeholder (re-run will retry
 
 ### What was actually happening
 
-Nothing was damaged and nothing was spent. Three things, each checked against the code rather
-than inferred from the log:
+Nothing was damaged. Three things about the *failing* calls, each checked against the code
+rather than inferred from the log:
 
 - **No spend.** These are HTTP 400 `invalid_request_error` — rejected before inference.
 - **No writes.** The failure lands on Session 23's `ExtractionAPIError` path, which deliberately
@@ -3029,6 +3029,19 @@ than inferred from the log:
 
 So the honest answer was "stop it, but relax." What was worth fixing is that it *needed* stopping
 by hand.
+
+**Correction, made later in the session when the owner ran the check.** "Nothing was spent" was
+right about the failing calls and wrong about the run. `upgrade_p1_to_p1p2.py` sorts its queue by
+extraction count descending, so the 63-story Hitchcock 1980 anthology went first — and **7 stories
+upgraded successfully before the balance ran out**, each with a current file in `extractions/` and
+its original archived in `_superseded/`. That is real, paid-for work, and it was sitting
+uncommitted. The zero-spend claim came from reading only the tail of the log, which was all
+novels, all failing on P1. The troubleshooting doc now gives the two-list pattern for telling a
+completed upgrade from a half-finished one rather than asserting which happened.
+
+It also sharpens what the fix is worth: the failure landed on story 8 of 63, and
+`extract_pdf_anthology` has its own per-story `except ExtractionAPIError: continue`. Unfixed, that
+run would have failed 56 more stories one at a time and *then* walked every novel in the queue.
 
 ### The bug: nothing anywhere could tell "this source failed" from "the account is dead"
 
@@ -3074,6 +3087,8 @@ The constant is duplicated in the wrapper rather than imported (importing would 
 
 - **The distinction under test**, with the two 400s side by side: the real credit-balance message
   must stop the batch, `prompt is too long: 210000 tokens > 200000 maximum` must not.
+- **The anthology path**, which is the one that actually ran: a stub that succeeds twice and then
+  dies fatally must stop at story 3 **and keep the two stories already extracted**.
 - **End-to-end on the real script**, run as a subprocess against a stubbed SDK on `PYTHONPATH`,
   asserting the exit code the shell actually gets — 2 for credit exhaustion, 1 for a dropped
   connection. Every other check could pass while the process still exited 0 and the wrapper still
