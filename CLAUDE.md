@@ -710,10 +710,38 @@ Both are zero-API-cost, need no Godot binary, and each has already caught a real
 |---|---|
 | `scripts/check_godot_wiring.py` | Broken `$NodePath`s, `@onready` type mismatches, interactive controls the script never references, autoload calls that do not exist or take the wrong arity. Found `result_screen.gd` reaching for `$MainVBox/…` when the scene nests under `ScrollContainer/MainVBox/…` — the whole end-of-game screen. |
 | `scripts/check_mystery_playable.py` | A saved mystery whose `solution.culprit` names no listed suspect, an empty suspect list, or a blocking coherence failure that was served anyway. |
+| `scripts/upgrade_p1_to_p1p2.py` | Plans and runs the P1→P1P2P3 corpus upgrade. Prints the plan and spends nothing by default; `--go` executes. `--check-sources` / `--find-missing` / `--source-dir` handle PDFs that moved, were renamed, or are gone. Errors and recovery: `docs/EXTRACTION_TROUBLESHOOTING.md`. |
+| `scripts/compare_extraction_models.py` | Scores extraction models against `_atomize_extraction` — parts yielded and axes filled, not prose quality. |
 | `scripts/test_crime_scene_map.py` | The derived crime-scene layout: overlapping rooms, rooms off-canvas, a row that leaves a hole, a witness placed outside the room they are said to be in, or a layout that is not identical run to run. |
 
 Godot reports both classes of failure only at runtime, and the second one not even then — it
 looks like the player guessed wrong.
+
+19. **[READY TO RUN — Session 34] The corpus P1→P1P2P3 upgrade.** 75 sources are P1-only (206 of
+    281 `pdf_*` are already P1P2). `python3 scripts/upgrade_p1_to_p1p2.py` prints the plan and
+    spends nothing; `--go` runs it on `claude-opus-5`, ~$0.147/source. Verified end to end on
+    *The Red House Mystery*: **4 parts → 19**. Every failure mode and its fix is in
+    `docs/EXTRACTION_TROUBLESHOOTING.md`; the run is idempotent and resumable, and replaced
+    extractions are archived to `extractions/_superseded/`, never deleted.
+    **Why P1P2P3 rather than P1P2:** P3 costs ~$2 more in the same pass and ~$8 more as a later
+    one, and P3.F4 "setting as constraint" is the spatial-device field the CLOUD idea needs.
+
+20. **[OPEN — owner concept, Session 34] CLOUD — a manipulable top-down crime scene.** After the
+    inciting-incident video the interface becomes a top-down scene players traverse. Assessed
+    against the data, not speculation:
+    - **The corpus holds no spatial structure** — space appears incidentally at 2–14% across 564
+      extractions, never as layout, adjacency or sightline. It does not need to: CLOUD's geometry
+      comes from generation, which already *knows* the spatial facts as prose (evidence E2 is
+      named "…(found in Generator Room)"; `solution.method` is the culprit's route in sentences).
+      **Missing are fields, not knowledge:** `area_id` on evidence, adjacency between areas, and
+      the culprit's path as a sequence — a schema change to a call already being paid for.
+    - **The schematic and the photo-real reference are different kinds of thing.** The schematic
+      is *data rendered* and is nearly buildable now (`crime_scene_map.py` already draws rooms and
+      witnesses). The photo-real image is *presentation*, needs an image model, and is stage-3
+      money. Do not conflate them.
+    - **What transfers between a country house and a Mars dome is the spatial *device*, not the
+      geometry** — and P3.F4 "Setting as Constraint" captures exactly that, as a relation rather
+      than a floor plan. That is why the corpus run is now P1P2P3.
 
 > **DO NOT re-run the frozen bulk corpus pipeline** (`deprecated/run_corpus_pipeline.py`). Expand
 > the corpus only via `scripts/extract_from_pdfs.py`, adding one quality source at a time.

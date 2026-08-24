@@ -3202,18 +3202,174 @@ ResultScreen fix is verified against the scene file, not against a running game.
 F5** to confirm the browse popup clicks through, the results screen renders, and the moderation
 notice sits where it should.
 
+### Part 2 — the playtest gameflow, specified and started
+
+Owner specified the seven-screen PC flow; it is written down as **`docs/PLAYTEST_FLOW.md`** and
+supersedes the older Phase 2/3 screen descriptions on the playtest path.
+
+**`crime_scene_map.py`** (new, 193 assertions) derives the top-down layout from the mystery.
+Claude is never asked for coordinates: they are the one part of the payload a computer produces
+for free, every extra schema field is another parse-failure surface, and an LLM asked for
+rectangles produces overlapping rectangles. The prompt owns *meaning*; the module owns
+presentation, seeded from the title so the host screen and a future phone client draw the
+identical map. A mystery with no `investigation_areas` gets **no map**, reported as such rather
+than invented rooms — the playtest exists to find out whether generation produces usable areas.
+
+**The blocker, measured:** 0 of 18 saved mysteries had `investigation_areas` or `leads`, though
+the prompt has asked for 5 and 4 since Phase 3a. Every saved file predates that change. So the
+prompt had **never been verified to produce them**.
+
+### Part 3 — the generation schema, and one real generation
+
+Prompt now asks for exactly 4 suspects, 3–4 witnesses, a true actionable `statement` per witness,
+and `discovery` + `analysis` per area — the two halves of *"You searched the AREA and found THIS.
+Testing and research reveal ANALYSIS."* These are fixed text, not conversations, so they are
+written during the generation call already being paid for.
+
+**Verified with one real generation**, *Whiteout at Shackleton Base*: 4 suspects, 3 witnesses,
+5 areas, 4 leads, 8 evidence, culprit exactly a suspect name, coherence passed 0 blocking /
+0 warnings. Two API calls (generation + localization).
+
+Two bugs found getting there:
+- **`max_tokens` was 8192; the measured response is 8,667.** Generation was being cut off
+  mid-JSON. That is what "13 of 14 generations failed on `Unterminated string`" in the old batch
+  summary actually was. Now 16000.
+- **`get_client()` passed the session ingress token as `api_key=`**, so it went out on x-api-key
+  and returned 401. It is a *bearer* token — which is what `CLAUDE.md` always called it. The
+  documented fallback auth path could never have worked.
+
+### Part 4 — the economics, measured and twice corrected
+
+**`docs/AI_COST_PLAYBOOK.md`** plus a shareable artifact. Headline: 2,457 input tokens against
+8,667 output, so **output is 95% of a generation call** — which kills prompt caching as a lever
+(~5%) before anyone spends effort on it.
+
+**Two corrections to my own analysis, both from the owner and both material:**
+1. One-call-per-mystery was framed as a saving found by analysis. It is not — it is the intended
+   design ("*We never, ever planned for live calls*"), so there is no baseline to have saved
+   against. What the analysis actually found is a **divergence**: the shipped server makes live
+   play-time calls at six sites (`_investigate_area_with_ai`, `_follow_lead_with_ai`,
+   `_generate_witness_scene`, both `/interrogate` endpoints, `_generate_resolution_narrative`).
+   Nobody chose a per-action architecture; it accumulated an endpoint at a time. **Single-player
+   interrogation hits one of them on every question.** $1.48 vs $0.14 is the size of that gap.
+2. The corollary points *away* from cost-cutting: with no play-time calls a mystery's AI cost is
+   fixed, one-time, and amortises across replays — so **generation is the right place to spend**,
+   and "more expansive" is the cheapest improvement available. Watch the 16,000-token ceiling;
+   past it, generation must become a streaming call.
+
+### Part 5 — which model for P1→P2, answered by measurement
+
+**`scripts/compare_extraction_models.py`** scores models against the only consumer that matters:
+`part_registry._atomize_extraction`. Prose quality is not the metric; **parts** are.
+
+Seven Hitchcock stories: Haiku 5/7 full extractions (lost the alibi axis twice), Sonnet 6/7 (one
+JSON parse failure, billed in full), Opus 7/7. Haiku's losses are not inaccuracy —
+`_atomize_extraction` silently skips `confidence: "low"`, and on an inverted story with no literal
+alibi Haiku returned empty at low confidence while Sonnet and Opus named the functional
+equivalent. Where all three succeed the gap is *mechanism*: Haiku records that an alibi existed,
+Opus records how the gap in it was manufactured.
+
+**Two more corrections to my own advice:** "put extraction on Haiku for a 3× cut" was wrong twice
+— `extract_from_pdfs.py` has always defaulted to Haiku, and the corpus line is far too small for
+a 3× cut to matter. 206 of 281 `pdf_*` extractions are already P1P2; the job is exactly **75
+sources**, $1.15–$8.90 depending on model. The whole decision is worth about $7.75, so it is a
+quality call, not a cost one.
+
+### Part 6 — making the run possible, and four bugs that would have broken it
+
+**It could not have run at all.** Dedup is by output filename, so `--protocol P1P2` on an
+already-extracted source printed SKIP and did nothing. All 75 would have been no-ops. `--upgrade`
+re-extracts only when the existing file lacks a requested protocol — idempotent and resumable.
+Replaced extractions move to `extractions/_superseded/`, never deleted.
+
+**`scripts/upgrade_p1_to_p1p2.py`** plans and runs the job, defaulting to printing the plan and
+spending nothing. It exists because the sources are not one directory, and because 8 of the 12
+novel PDFs are no longer on disk — better reported up front than discovered mid-run.
+`--find-missing` names them; `--source-dir` searches outside the repo; `--check-sources` opens
+every PDF and compares what it yields now against what the original extraction recorded, catching
+a scan with no OCR layer before it wastes a call.
+
+**Source matching had to become forgiving**, because a re-acquired book rarely returns under the
+recorded name — verified: exact matched, `The_Winter_Queen_-_Boris_Akunin.pdf` and
+`Turkish Gambit.pdf` both failed. Loose tiers accept only a *unique* hit. A single-shared-word
+tier was written, tested and **removed**: with only "Turkish" in common it matched
+*Turkish Delight Mystery* to *Turkish Gambit*. A unique match is not a correct one.
+
+**Novels were being starved.** `MAX_TEXT_CHARS = 6000` — ~1.7% of a 350,000-char book in three
+disconnected chunks. Fine for P1; thin for P2/P3, whose fields describe structure only visible
+across a whole book. `--max-text-chars` makes it settable (default unchanged); the planner passes
+24,000.
+
+### Part 7 — CLOUD assessed, and the decision to run P1P2P3
+
+Owner proposed **CLOUD**: after the inciting-incident video, the interface becomes a manipulable
+top-down scene. Two reference images — a photo-real 1920s street, and a schematic floor plan with
+E1–E6 evidence callouts. Answered from data:
+
+- **The corpus contains no spatial structure.** Space appears incidentally at 2–14% across 564
+  extractions, never as layout, adjacency or sightline.
+- **CLOUD's geometry was never going to come from the corpus.** Generation already *knows* the
+  spatial facts, as prose: evidence E2 is literally named "Serrated Bolt-Driver (found in
+  Generator Room)", and `solution.method` is the culprit's route in sentences. What is missing is
+  **fields, not knowledge** — `area_id` on evidence, adjacency between areas, a path.
+- **The two images are different kinds of thing.** The schematic is *data rendered* and is nearly
+  buildable now. The photo-real image is *presentation*, only an image model makes it, and it is
+  stage-3 money. Conflating them is the trap.
+- **What transfers is the spatial *device*, not the geometry** — and the taxonomy already has the
+  field: **P3.F4 "Setting as Constraint"**. P3 had never been run: 0 of 564.
+
+So the answer was **not** to pause for CLOUD, but to switch this run to **P1P2P3**: P3 costs ~$2
+more in the same pass and ~$8 more as a later one. Measured on *The Red House Mystery*, F4
+returned *"an office reachable only through a passage of spring-hinged doors, plus a secret
+passage… door movements are legible only as shadows on the passage wall"* — adjacency, a hidden
+route and a sightline mechanic, as a relation rather than a floor plan, so it ports to a Mars dome.
+
+**`KEY_TO_IDX` extended for 7 of P3's 8 keys** (`evidence_type` deliberately unmapped — axis 8 was
+*named* evidence_type until Session 23 renamed it to `alibi`; mapping F5 there would recreate that
+mislabeling). `REGISTRY_SCHEMA_VERSION` → 3. Without this, P3 would have produced 8 fields and
+**zero parts** — the Session 23 / Session 33 failure a third time.
+
+**Four bugs, all found by running it rather than reading it:**
+- `--protocol` rejected `P1P2`: `choices=` allowed one protocol while the consuming line splits
+  combined values. Every combined depth was unreachable, and the planner's own command would have
+  failed on every source.
+- `content[0].text` assumed the first block is text. **Opus 5 runs adaptive thinking by default**
+  and puts a `ThinkingBlock` first — and because it is *adaptive*, this fails **intermittently**.
+  Fixed in three files.
+- `max_tokens = 1000` for an extraction call. On Opus the whole budget went to thinking: one
+  thinking block, `stop_reason=max_tokens`, no text. It was also already tight without thinking
+  (a P1P2 extraction is ~1,800 tokens of JSON), so **some share of the existing corpus's empty and
+  low-confidence fields is probably truncation, not the model having nothing to say.** Now 4000,
+  with effort `low` on models that accept `output_config`.
+- `extract_from_pdfs.py` had no session-token fallback.
+
+**End-to-end verified** on *The Red House Mystery* at P1P2P3 on Opus: 22 fields, model recorded in
+`_meta`, old extraction archived, **4 parts → 19**. Registry regenerated to 4,967 parts.
+
+`docs/EXTRACTION_TROUBLESHOOTING.md` covers every error above for whoever runs the remaining 66.
+
+### Verification
+
+`check_godot_wiring.py` clean (8 scenes, 3 autoloads) · `test_crime_scene_map.py` 193 passed ·
+`test_registry_staleness.py` all passed · `check_mystery_playable.py` 0 unwinnable · one real
+generation · one real end-to-end extraction · the model bake-off across seven stories.
+**No Godot binary here, so nothing was run in the engine — the client work wants one F5.**
+Total API spend this session: roughly **$3**.
+
 ### Next session
 
-1. **Run the PC playtest.** That is stage 1 and everything below is subordinate to it. The result
-   screen has never worked, so nobody has seen the end of a game — expect this to surface more.
-2. **Re-run both checkers first** (`check_godot_wiring.py`, `check_mystery_playable.py`), and
-   again after any scene edit. They cost nothing and between them they already caught a broken
-   final screen, a dead feedback loop and an unwinnable mystery.
-3. **Decide item 18** — should a BLOCKING coherence report stop a mystery being saved or served?
-4. **Item 17 is stage 3 now** but its remaining half-question is still worth answering while it is
-   fresh: does the BACKGROUND field strew the title, or something else?
-5. Untouched and unchanged: MYF's playtest re-run, `server_py`'s `questionLog`/`postGame`, CYM's 7
-   all-null anthology extractions, and the 11 held-back anthology PDFs.
+1. **Run the extraction** (~66 sources, ~$9.85, about an hour) — `docs/EXTRACTION_TROUBLESHOOTING.md`
+   has the commands and every failure mode. Then re-measure axis coverage against the
+   before-numbers recorded there.
+2. **CLOUD** is its own session. Its first concrete step is small and cheap: `area_id` on evidence,
+   adjacency on areas, and the culprit's path as a sequence — a schema change to a call already
+   being paid for.
+3. **The six live play-time call sites** are the standing divergence from the intended
+   architecture, and single-player interrogation hits one of them on every question.
+4. **The Godot crime-scene screen** — step 4 of the playtest build order, and the last thing
+   between here and a playable PC loop.
+5. Open decisions unchanged: item 18 (a BLOCKING coherence report still ships), item 17's
+   BACKGROUND question, the brand marks' per-device split.
 
 ---
 
