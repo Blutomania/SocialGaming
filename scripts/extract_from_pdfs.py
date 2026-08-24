@@ -386,6 +386,57 @@ def _call_claude_for_protocol(
     return placeholder, last_error
 
 
+def _upgrade_decision(out_path: Path, protocol_ids: list[str], upgrade: bool) -> tuple[bool, str]:
+    """Should this source be (re-)extracted? Returns (run_it, reason).
+
+    Dedup here is by output filename -- that is what makes a re-run cheap, and
+    it is also why a P1-only source could never be deepened to P1P2: the file
+    exists, so it was skipped, so `--protocol P1P2` on an already-extracted
+    source silently did nothing at all.
+
+    `--upgrade` fixes exactly that and nothing more. It re-extracts a source
+    only when the existing file does NOT already cover every requested
+    protocol. That makes the flag idempotent and, more importantly, resumable:
+    a run that dies at story 40 of 63 leaves the first 40 upgraded, and the
+    same command picks up at 41 rather than paying for them again.
+    """
+    if not out_path.exists():
+        return True, "new"
+    if not upgrade:
+        return False, "already extracted"
+    try:
+        existing = json.loads(out_path.read_text())
+    except Exception:
+        return True, "existing file is unreadable — re-extracting"
+    have = set(existing.get("_meta", {}).get("protocols") or [])
+    want = set(protocol_ids)
+    if want <= have:
+        return False, f"already has {'+'.join(sorted(have))}"
+    return True, f"upgrading {'+'.join(sorted(have)) or 'unknown'} -> {'+'.join(sorted(want))}"
+
+
+def _archive_superseded(out_path: Path) -> Path | None:
+    """Move an extraction aside before overwriting it.
+
+    An upgrade replaces a known-good extraction with a fresh API result. If the
+    new one comes back worse -- or an interrupted run leaves a mess -- the old
+    one has to still exist. `_superseded/` is a subdirectory, and
+    `PartRegistry.load_extractions` globs "*.json" non-recursively, so nothing
+    in here is ever sampled by generation.
+    """
+    if not out_path.exists():
+        return None
+    dest_dir = out_path.parent / "_superseded"
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    dest = dest_dir / out_path.name
+    n = 1
+    while dest.exists():
+        dest = dest_dir / f"{out_path.stem}.{n}.json"
+        n += 1
+    out_path.replace(dest)
+    return dest
+
+
 def extract_pdf_anthology(
     pdf_path: Path,
     client: "anthropic.Anthropic",
@@ -393,6 +444,7 @@ def extract_pdf_anthology(
     db_dir: Path,
     model: str = DEFAULT_MODEL,
     verbose: bool = True,
+    upgrade: bool = False,
 ) -> tuple[int, int]:
     """Extract each detected short story in an anthology PDF as its own
     corpus source. Returns (success_count, failed_count)."""
@@ -418,11 +470,14 @@ def extract_pdf_anthology(
         title_slug = _slug(story["title"])[:40]
         out_path = db_dir / "extractions" / f"pdf_{book_slug[:30]}__story{story['index']:02d}_{title_slug}.json"
 
-        if out_path.exists():
+        run_it, why = _upgrade_decision(out_path, protocol_ids, upgrade)
+        if not run_it:
             if verbose:
-                print(f"  SKIP  story {story['index']:02d}: {story['title']}  (already extracted)")
+                print(f"  SKIP  story {story['index']:02d}: {story['title']}  ({why})")
             success += 1
             continue
+        if why.startswith("upgrading") and verbose:
+            print(f"  UPGRADE story {story['index']:02d}: {story['title']}  ({why})")
 
         text = story["text"]
         if len(text) < MIN_TEXT_CHARS:
@@ -464,10 +519,12 @@ def extract_pdf_anthology(
             "anthology_title": pdf_path.stem,
             "story_index": story["index"],
             "story_count": len(stories),
+            "model": model,
         }
         if warnings:
             merged["_meta"]["extraction_warnings"] = warnings
 
+        _archive_superseded(out_path)
         out_path.parent.mkdir(parents=True, exist_ok=True)
         with open(out_path, "w") as f:
             json.dump(merged, f, indent=2)
@@ -565,6 +622,7 @@ def extract_pdf(
     db_dir: Path,
     model: str = DEFAULT_MODEL,
     verbose: bool = True,
+    upgrade: bool = False,
 ) -> tuple[Path | None, str]:
     """Extract a single PDF and save results.
     Returns (output_path, full_text). full_text is needed for --fill-resolution."""
@@ -572,9 +630,10 @@ def extract_pdf(
     slug      = _slug(pdf_path.stem)
     out_path  = db_dir / "extractions" / f"pdf_{slug}.json"
 
-    if out_path.exists():
+    run_it, why = _upgrade_decision(out_path, protocol_ids, upgrade)
+    if not run_it:
         if verbose:
-            print(f"  SKIP  {pdf_path.name}  (already extracted → {out_path.name})")
+            print(f"  SKIP  {pdf_path.name}  ({why} → {out_path.name})")
         # Still need full_text for a potential fill-resolution pass
         try:
             _, full_text = extract_text_from_pdf(pdf_path)
@@ -621,10 +680,12 @@ def extract_pdf(
         "text_len":  len(text),
         "protocols": protocol_ids,
         "title":     pdf_path.stem,
+        "model":     model,
     }
     if warnings:
         merged["_meta"]["extraction_warnings"] = warnings
 
+    _archive_superseded(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     with open(out_path, "w") as f:
         json.dump(merged, f, indent=2)
@@ -693,6 +754,15 @@ def main() -> None:
              "Use --dry-run first to review the detected split before spending API calls.",
     )
     parser.add_argument(
+        "--upgrade", action="store_true",
+        help="Re-extract sources whose existing extraction does not already cover every "
+             "protocol in --protocol. Without this, an already-extracted source is skipped "
+             "on filename alone, so '--protocol P1P2' on a P1-only source does nothing. "
+             "Resumable and idempotent: already-upgraded sources are skipped, so a run that "
+             "dies partway can be repeated without paying twice. The replaced extraction is "
+             "moved to extractions/_superseded/ rather than deleted.",
+    )
+    parser.add_argument(
         "--dry-run", action="store_true",
         help="List PDFs (and, with --anthology, detected per-story splits) that would "
              "be processed without making API calls",
@@ -738,12 +808,14 @@ def main() -> None:
         print(f"\n[{i+1}/{len(pdfs)}]")
 
         if args.anthology:
-            s, f_ = extract_pdf_anthology(pdf_path, client, protocol_ids, db_dir, model=args.model)
+            s, f_ = extract_pdf_anthology(pdf_path, client, protocol_ids, db_dir, model=args.model,
+                                                  upgrade=args.upgrade)
             success += s
             failed += f_
             continue
 
-        out_path, full_text = extract_pdf(pdf_path, client, protocol_ids, db_dir, model=args.model)
+        out_path, full_text = extract_pdf(pdf_path, client, protocol_ids, db_dir, model=args.model,
+                                             upgrade=args.upgrade)
         if out_path is None:
             failed += 1
         else:

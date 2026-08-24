@@ -1,0 +1,268 @@
+#!/usr/bin/env python3
+"""
+Plan and run the P1 -> P1P2 upgrade for every source that is still P1-only.
+
+WHY A PLANNER AND NOT JUST A COMMAND
+------------------------------------
+Three things make this job awkward enough to be worth a script:
+
+1. The sources are not one directory. The P1-only extractions trace back to a
+   handful of PDFs -- one of which is an anthology holding 63 of them -- and
+   the anthology needs `--anthology` while the novels must not have it.
+2. Some source PDFs are no longer on disk. An extraction records where it came
+   from, but the file may have been moved or removed after extraction, and a
+   source you cannot read cannot be upgraded. That should be reported up front,
+   not discovered 40 minutes into a paid run.
+3. It costs real money, so the default here is to print the plan and stop.
+   Nothing is spent until you pass --go.
+
+The upgrade itself is `extract_from_pdfs.py --upgrade`, which re-extracts only
+sources whose existing file lacks the requested protocols. That makes the whole
+job resumable: if it dies partway, run the same command again and it picks up
+where it stopped instead of paying twice.
+
+USAGE
+    python3 scripts/upgrade_p1_to_p1p2.py               # plan only, costs nothing
+    python3 scripts/upgrade_p1_to_p1p2.py --go          # actually run it
+    python3 scripts/upgrade_p1_to_p1p2.py --go --model claude-sonnet-4-6
+
+The replaced extractions are moved to mystery_database/extractions/_superseded/,
+not deleted -- generation never reads that subdirectory.
+
+AFTER IT FINISHES
+    python3 scripts/test_registry_staleness.py     # the registry rebuild is automatic,
+                                                   # this proves it noticed
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import subprocess
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+EXTRACTIONS = ROOT / "mystery_database" / "extractions"
+NEW_SOURCES = ROOT / "mystery_database" / "new_sources"
+
+P2_FIELDS = ["suspect_architecture", "red_herring", "clue_fairness",
+             "alibi", "reveal_mechanic", "social_world"]
+
+# $ per million tokens, input/output. Per-source figures come from the measured
+# bake-off in docs/AI_COST_PLAYBOOK.md; a median source samples ~22.5K chars.
+COST_PER_SOURCE = {
+    "claude-opus-5": 0.118,
+    "claude-sonnet-4-6": 0.052,
+    "claude-haiku-4-5": 0.015,
+    "claude-haiku-4-5-20251001": 0.015,
+}
+
+
+# Filenames carry the download site that produced them. Strip that for display
+# so the list reads as book titles someone can go and find.
+_NOISE = ("_OceanofPDF.com_", "OceanofPDF.com_", "pdfcoffee.com_", "-pdf-free", "_pdf_free")
+
+
+_STOPWORDS = {"the", "a", "an", "of", "in", "on", "by", "and", "at", "for",
+              "pdf", "free", "com", "mystery", "brit", "london", "book"}
+
+
+def pretty_title(filename: str) -> str:
+    stem = Path(filename).stem
+    for n in _NOISE:
+        stem = stem.replace(n, "")
+    stem = stem.replace("__", " - ").replace("_", " ").replace("-", " ")
+    stem = " ".join(stem.split()).strip(" -")
+    # Download sites lowercase everything; restore title case only when they did.
+    if stem == stem.lower():
+        stem = " ".join(w if w in _STOPWORDS else w.capitalize() for w in stem.split())
+    return stem
+
+
+def search_key(filename: str) -> str:
+    """The most distinctive word in a title, for a filename search.
+
+    Taking the first word is what a naive version does, and on this list it
+    produces `-iname "*The*"` three times over -- a pattern that matches every
+    PDF on the disk. Longest non-stopword is short, specific, and survives the
+    renaming that download sites do.
+    """
+    words = [w.strip("'\u2019.,") for w in pretty_title(filename).split()]
+    words = [w for w in words if w.lower() not in _STOPWORDS and len(w) > 3]
+    return max(words, key=len) if words else Path(filename).stem[:12]
+
+
+def find_source(recorded: str) -> Path | None:
+    """Locate a source PDF, tolerating a repo that has been moved or re-cloned.
+
+    The path in _meta was correct on the machine that ran the extraction. Try it
+    as recorded, then relative to the repo root, then by filename anywhere under
+    new_sources/ -- the file is often still present, just somewhere else.
+    """
+    if not recorded:
+        return None
+    for candidate in (Path(recorded), ROOT / recorded):
+        if candidate.is_file():
+            return candidate
+    name = Path(recorded).name
+    for hit in NEW_SOURCES.rglob(name):
+        if hit.is_file():
+            return hit
+    # Anthology paths sometimes record a truncated name; fall back to a prefix match.
+    stem = Path(recorded).stem[:40]
+    for hit in NEW_SOURCES.rglob("*.pdf"):
+        if hit.stem.startswith(stem):
+            return hit
+    return None
+
+
+def scan() -> tuple[dict, list]:
+    """Group P1-only extractions by source. Returns (plan, orphans)."""
+    plan: dict[str, dict] = {}
+    orphans = []
+    for f in sorted(EXTRACTIONS.glob("*.json")):
+        try:
+            d = json.loads(f.read_text())
+        except Exception:
+            continue
+        if not isinstance(d, dict) or "_meta" not in d:
+            continue
+        if any(d.get(k) for k in P2_FIELDS):
+            continue                      # already has P2 content
+        meta = d["_meta"]
+        recorded = meta.get("source") or meta.get("filename") or ""
+        found = find_source(recorded)
+        key = recorded or f.name
+        entry = plan.setdefault(key, {
+            "recorded": recorded,
+            "path": found,
+            "count": 0,
+            "anthology": bool(meta.get("story_index")),
+        })
+        entry["count"] += 1
+        if not found:
+            orphans.append(f.name)
+    return plan, orphans
+
+
+def report_missing(blocked: dict) -> int:
+    """Name the absent sources and show how to look for them locally."""
+    if not blocked:
+        print("\nNothing missing — every source PDF was found.")
+        return 0
+
+    names = [Path(v["recorded"]).name for v in blocked.values()]
+    print("\n" + "=" * 78)
+    print("MISSING SOURCE FILES")
+    print("=" * 78)
+    for n in sorted(names):
+        print(f"\n  {pretty_title(n)}")
+        print(f"    original filename: {n}")
+
+    print("\n" + "-" * 78)
+    print("TO SEARCH THIS COMPUTER")
+    print("-" * 78)
+    print("\nmacOS (Spotlight index — fastest, whole disk):")
+    for n in sorted(names):
+        print(f'  mdfind -name "{search_key(n)}"')
+    keys = sorted({search_key(n) for n in names})
+    print("\nmacOS or Linux (no index; searches your home folder — slower but thorough):")
+    print('  find ~ -iname "*.pdf" \\( ' +
+          " -o ".join(f'-iname "*{k}*"' for k in keys) + " \\) 2>/dev/null")
+    print("\nOr search for the exact original filenames:")
+    print("  for f in \\")
+    for n in sorted(names):
+        print(f'    "{n}" \\')
+    print("  ; do find ~ -iname \"$f\" 2>/dev/null; done")
+
+    print("\n" + "-" * 78)
+    print("IF YOU FIND THEM")
+    print("-" * 78)
+    print("  Copy them anywhere under mystery_database/new_sources/ — this script")
+    print("  searches that tree recursively and matches on filename, so the original")
+    print("  names above are the safest thing to keep. Then re-run:")
+    print("      python3 scripts/upgrade_p1_to_p1p2.py")
+    print("  and they will move from BLOCKED to UPGRADEABLE.")
+
+    out = NEW_SOURCES / "_MISSING_SOURCES.md"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(
+        "# Source PDFs needed for the P1->P2 upgrade\n\n"
+        "These extractions are still P1-only and cannot be upgraded until the source\n"
+        "PDF is available again. Drop the file anywhere under this directory and re-run\n"
+        "`python3 scripts/upgrade_p1_to_p1p2.py`.\n\n"
+        + "".join(f"- **{pretty_title(n)}**  \n  `{n}`\n" for n in sorted(names))
+    )
+    print(f"\nmanifest written -> {out.relative_to(ROOT)}")
+    return 0
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--model", default="claude-opus-5",
+                    help="model for the upgrade (default: claude-opus-5)")
+    ap.add_argument("--go", action="store_true",
+                    help="actually run it. Without this, the plan is printed and nothing is spent.")
+    ap.add_argument("--find-missing", action="store_true",
+                    help="print search commands for source PDFs that are not on this machine, "
+                         "and write a manifest to mystery_database/new_sources/_MISSING_SOURCES.md")
+    args = ap.parse_args()
+
+    plan, orphans = scan()
+    runnable = {k: v for k, v in plan.items() if v["path"]}
+    blocked = {k: v for k, v in plan.items() if not v["path"]}
+
+    total = sum(v["count"] for v in plan.values())
+    can = sum(v["count"] for v in runnable.values())
+    per = COST_PER_SOURCE.get(args.model, 0.12)
+
+    print(f"P1-only extractions: {total}   from {len(plan)} source file(s)\n")
+
+    if runnable:
+        print("UPGRADEABLE — source PDF found:")
+        for v in sorted(runnable.values(), key=lambda x: -x["count"]):
+            kind = "anthology" if v["anthology"] else "novel"
+            print(f"  {v['count']:>3} extraction(s)  [{kind:9}]  {v['path'].name[:64]}")
+    if blocked:
+        print("\nBLOCKED — source PDF not on this machine:")
+        for v in sorted(blocked.values(), key=lambda x: -x["count"]):
+            print(f"  {v['count']:>3} extraction(s)  {Path(v['recorded']).name[:64]}")
+        print("  These stay P1-only until the file is put back under "
+              "mystery_database/new_sources/ (any subdirectory).")
+
+    if args.find_missing:
+        return report_missing(blocked)
+
+    print(f"\nmodel: {args.model}")
+    print(f"will upgrade {can} of {total} extractions   estimated ${can * per:.2f} "
+          f"(~${per:.3f}/source)")
+    if not args.go:
+        print("\nPlan only — nothing spent. Re-run with --go to execute.")
+        return 0
+    if not runnable:
+        print("\nNothing to do: no source PDFs found.")
+        return 1
+
+    print("\nRunning. Safe to interrupt — --upgrade resumes without re-paying.\n")
+    failures = 0
+    for v in sorted(runnable.values(), key=lambda x: -x["count"]):
+        cmd = [sys.executable, str(ROOT / "scripts" / "extract_from_pdfs.py"),
+               str(v["path"]), "--protocol", "P1P2", "--model", args.model, "--upgrade"]
+        if v["anthology"]:
+            cmd.append("--anthology")
+        print("=" * 78)
+        print(" ".join(cmd[1:]))
+        print("=" * 78, flush=True)
+        rc = subprocess.call(cmd, cwd=str(ROOT))
+        if rc != 0:
+            failures += 1
+            print(f"  !! exited {rc} — continuing with the next source")
+
+    print("\nDone." + (f" {failures} source(s) exited non-zero." if failures else ""))
+    print("Next: python3 scripts/test_registry_staleness.py   "
+          "(the registry rebuilds itself; this proves it noticed)")
+    return 1 if failures else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
