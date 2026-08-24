@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Murder by poisoning (grapejuice) and hair harvesting; central question: how did Aunt Abbie obtain the victim's hair if she fell into the gorge?",
+    "value": "Murder disguised as accident: the visiting girl is poisoned (grapejuice) and her body cast into the gorge, so her red hair can complete the hair wreath. Central question: how did Aunt Abbie perform the death rites (mirror, scissors) if the girl 'walked to death' into the gorge?",
     "confidence": "high",
-    "quote": "She placed the half-full cup on the marble-topped table at her side... the copper-red strand glinting against the half-finished rose."
+    "quote": "how had Aunt Abbie gone through the rites, those never-changing rites of the mirror, the slash of blades and the lock of hair?"
   },
   "victim": {
-    "value": "Marty's daughter, a young red-haired woman visiting from the city; killable because she is an orphan ('You're all alone?'), has no local ties, and her distinctive red hair is needed for Aunt Abbie's hair wreath.",
+    "value": "Marty's daughter, a twenty-four-year-old red-haired city girl, orphaned and 'just passing through' \u2014 unmissed, blood kin, and possessing the only red hair in the family, needed for the wreath's last flower, the rose",
     "confidence": "high",
-    "quote": "You're all alone?... Except for us... Such pretty red hair... I just got the rose left."
+    "quote": "\u201cI ain\u2019t got that rose in yet.\u201d Reflectively, she gazed at the girl in the chair. \u201cI just got the rose left.\u201d"
   },
   "closed_world": {
-    "value": "Aunt Abbie's isolated cabin in the hills, reached only by a rough walk through boulder-strewn terrain; the girl is physically isolated and dependent on Melinda and Aunt Abbie.",
+    "value": "Aunt Abbie's isolated hill-country cabin on a ridge above a gorge, hours' walk over boulder-strewn hills; only three people present \u2014 Melinda, Aunt Abbie, and the girl",
     "confidence": "high",
-    "quote": "The cabin squatted beneath bowed trees... goin' on fifty year... quite a piece. Rough ground."
+    "quote": "The cabin finally appeared in the distance, like a lookout on the rim... \u201cAunt Abbie\u2019s lived there now goin\u2019 on fifty year.\u201d"
   },
   "culprit_and_motive": {
-    "value": "Aunt Abbie, the elderly record keeper with 'second sight'; motive is to complete her hair wreath memorial\u2014the victim's red hair is the final 'rose' needed to finish the family death record.",
+    "value": "Aunt Abbie, the family record keeper, killed the girl to obtain the red hair needed to finish her memorial hair wreath \u2014 obsessive collector's compulsion masked as 'second sight'",
     "confidence": "high",
-    "quote": "I just got the rose left... Such pretty, pretty red hair... Aunt Abbie never snipped a live lock. Never."
+    "quote": "\u201cSuch awful pretty red hair.\u201d ... slid her needle into the linen, the copper-red strand glinting against the half-finished rose"
   },
   "resolution": {
-    "value": "Melinda gradually realizes the logical impossibility of Aunt Abbie's account: the girl could not have fallen into the gorge AND provided her hair through Aunt Abbie's ritual. Melinda accepts the truth through deduction and her knowledge of Aunt Abbie's methods.",
+    "value": "No restoration of order: Melinda deduces the contradiction \u2014 Abbie could not have taken the mirror-and-scissors rites at the gorge bottom \u2014 but suppresses it in awe and accepts the story; the murderer goes unpunished",
     "confidence": "high",
-    "quote": "How had Aunt Abbie gone through the rites... how had Aunt Abbie gone through the rites... spry enough to spring up the sheer face of the gorge\u2014with scissors, hair and a mirror in her hand."
+    "quote": "Melinda heaved a final sigh of acceptance. She guessed she was, though."
   },
   "investigator": {
-    "value": "Melinda, the victim's cousin and accomplice/witness; through her perspective we see the gradual realization of Aunt Abbie's crime, though she ultimately accepts it with 'pride-filled mind.'",
+    "value": "Melinda, the credulous rustic cousin and hostess \u2014 an unwitting accomplice whose limited perspective frames the story; the reader sees past her deference to the truth",
     "confidence": "high",
-    "quote": "Melinda's sorrowful, pride-filled mind knew perplexity... Melinda heaved a final sigh of acceptance."
+    "quote": "Melinda\u2019s sorrowful, pride-filled mind knew perplexity."
+  },
+  "suspect_architecture": {
+    "value": "Effectively a single suspect: Aunt Abbie, the aged 'record keeper' with second sight, motive being the covetous need for red hair to complete her hair wreath, means (poisoned grapejuice, claw hammer, scissors, mirror) and total opportunity once left alone with the girl. Melinda is the only other figure, an unwitting accomplice/witness who delivers the victim and departs.",
+    "confidence": "high",
+    "quote": "\"I just got the rose left.\""
+  },
+  "red_herring": {
+    "value": "The girl's sickness is repeatedly attributed to sun, heat and city frailty ('too much sun', 'she ain't healthy'), misdirecting from poisoning; also Abbie's 'second sight' prophecy of death is offered as explanation for the death rather than her causing it.",
+    "confidence": "high",
+    "quote": "\"She's a pretty sick girl. Too much, sun, maybe. Her skin looks kinda green, don't it?\""
+  },
+  "clue_fairness": {
+    "value": "All clues are shown to the reader as Melinda sees them: the claw hammer at the sill (twice), the grapejuice cup and the greenish skin, the empty rose outline needing red hair, the pocket mirror on the floor, and Abbie's rule of never cutting a live lock \u2014 the reader can solve it exactly when Melinda balks.",
+    "confidence": "high",
+    "quote": "the girl stumbled over a claw hammer at the sill. She kicked it aside and into the weeds."
+  },
+  "social_world": {
+    "value": "An insular Ozark-style kin network where blood relation compels obligation and the elder 'record keeper' holds unquestioned authority through folklore, prophecy and memorial craft; the city-bred outsider is both outsider and, being kin, property of the family record.",
+    "confidence": "high",
+    "quote": "\"But she's blood kin, so you should see her.\""
+  },
+  "alibi": {
+    "value": "Abbie's alibi is narrative rather than physical: she claims the girl 'went walkin' to death' and fell into the gorge, placing the death outside the cabin and beyond her hand \u2014 an account undermined by her possession of the hair.",
+    "confidence": "high",
+    "quote": "\"Marty's girl went out to meet hers and tumbled right over into the gorge.\""
+  },
+  "reveal_mechanic": {
+    "value": "The physical impossibility of the ritual: Abbie never cuts a lock from the living, requiring the mirror-at-the-lips test and scissors at the deathbed \u2014 yet the girl supposedly died at the bottom of the gorge. The red strand already stitched into the rose, plus the mirror found on the floor, demonstrates the murder.",
+    "confidence": "high",
+    "quote": "how had Aunt Abbie gone through the rites, those never-changing rites of the mirror, the slash of blades and the lock of hair?"
+  },
+  "media_and_audience": {
+    "value": "Folk reputation as packaging: Abbie's 'second sight' (curing Old Opal, predicting Junie May's death) means the community reads her killings as prophecy fulfilled; Melinda chooses awe and pride over suspicion, and the death will be narrated as an accident foreseen.",
+    "confidence": "high",
+    "quote": "\"You seen that. Aunt Abbie? Like you seen it in Junie May?\""
+  },
+  "investigator_wound": {
+    "value": "Melinda, the de facto investigator, is crippled by reverence for kin and for Abbie's supposed gift; her pride in the family's mystic record keeper makes her suppress the contradiction she herself has spotted, and her guilt at having brought the girl is buried under veneration.",
+    "confidence": "high",
+    "quote": "Melinda heaved a final sigh of acceptance. She guessed she was, though."
+  },
+  "victims_enemies": {
+    "value": "The victim \u2014 'Marty's girl,' a nameless red-haired city visitor \u2014 has no enemies in any ordinary sense. Her only 'grievance-holder' is Aunt Abbie, and the grievance is aesthetic and obsessive rather than personal: the girl possesses the one color of hair missing from the hair wreath. The relationship texture is a suffocating claim of blood kinship ('she's blood kin, so you should see her') that the girl resents and that Abbie converts into a right of ownership over her body.",
+    "confidence": "high",
+    "quote": "\"Such pretty red hair.\" Talons hovered over the girl's shining head, suspended there. \"Such awful pretty red hair.\""
+  },
+  "suspect_wounds": {
+    "value": "Melinda's wound is her need to believe. Her pride in kinship and her veneration of Aunt Abbie's 'second sight' make her the unwitting deliverer of the victim and the suppressor of her own suspicion; her mind 'groped for understanding' and then chose acceptance. Aunt Abbie's wound is her compulsion to complete the record \u2014 the unfinished rose is a gap she cannot tolerate.",
+    "confidence": "high",
+    "quote": "Melinda heaved a final sigh of acceptance. She guessed she was, though."
+  },
+  "unreliable_frame": {
+    "value": "The story is filtered through Melinda's credulous, admiring perception, and the only account of the death is Aunt Abbie's \u2014 a self-serving fiction of prophecy ('I seen death on that girl,' 'she went walkin' to death'). Abbie also feigns forgetfulness ('How's who?'). Melinda notices the contradiction and deliberately edits it away, making her a narrator who lies to herself rather than to us.",
+    "confidence": "high",
+    "quote": "\"Well now, Melinda, did I tell you I seen death on that girl?\""
+  },
+  "setting_as_constraint": {
+    "value": "The remote hill country does the killer's work: miles of boulder-strewn, sun-beaten ground exhaust the city-bred girl and make her collapse plausible; the isolated ridge cabin has no witnesses; the gorge below the rim provides an unquestionable accident site and a body no one will retrieve; and the distance itself justifies Melinda leaving the girl alone overnight and delaying the truck until dawn.",
+    "confidence": "high",
+    "quote": "\"She couldn't never walk through them hills again the way she\u2014\" \"You do that.\" Aunt Abbie's decision was immediate and definite."
+  },
+  "evidence_type": {
+    "value": "Physical/environmental trace evidence, reasoned from ritual procedure: the pocket mirror found on the floor/porch (Abbie's death-verification tool, which must be held to living lips), the claw hammer at the sill, and the freshly stitched copper-red rose. The clinching inference is procedural \u2014 the hair could only have been cut before the body went into the gorge.",
+    "confidence": "high",
+    "quote": "how had Aunt Abbie gone through the rites, those never-changing rites of the mirror, the slash of blades and the lock of hair?"
+  },
+  "false_suspect": {
+    "value": "No conventional false suspect exists; the narrative instead offers false *causes* \u2014 sunstroke and city frailty ('Too much sun, maybe. Her skin looks kinda green') and the girl's own alleged suicidal walk to meet death. Melinda, who dragged the exhausted girl across the hills and abandoned her, is the closest thing to an innocent bearing complicity.",
+    "confidence": "medium",
+    "quote": "\"She's a pretty sick girl. Too much, sun, maybe. Her skin looks kinda green, don't it?\""
+  },
+  "technical_detail": {
+    "value": "Victorian hair-work mourning craft: memorial wreaths woven from the hair of dead relatives, each flower a person, colors matched to hair shade (black-eyed Susan centers from black hair, buttercups from a child's yellow). The craft's rule \u2014 hair is never snipped from the living, and death is confirmed by holding a mirror to the lips until it no longer fogs \u2014 is exactly what exposes Abbie, since the rose was already stitched and the mirror was in the cabin.",
+    "confidence": "high",
+    "quote": "She was fully aware that Aunt Abbie never snipped a live lock. Never."
+  },
+  "moral_ambiguity": {
+    "value": "Aunt Abbie is not a hater but a curator. She kills to complete an act of devotion \u2014 'It's a kind of memorial. Shows my respect, sort of' \u2014 and confines her collecting strictly to blood kin, a code of decorum she observes with dignity. Her 'second sight' may be sincerely believed: she may experience her killings as prophecy fulfilled rather than murder, and the poisoned grapejuice as a gentle sleep. The horror lies in love of the record outweighing love of the living.",
+    "confidence": "high",
+    "quote": "\"That's how I keep 'em. It's a kind of memorial. Shows my respect, sort of.\""
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 16929,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "A Flower in Her Hair",
     "author": "PAULINE C. SMITH",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 3,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Murder by blunt force trauma (stovewood to the head). Central question: Will the confession be acted upon, or will the killing be concealed as an accident?",
+    "value": "Killing of Kent Castwell \u2014 struck with a piece of stovewood by his lodger after Castwell destroyed his paintings. The question is not whodunit (confessed) but whether the County will prosecute given the cost.",
     "confidence": "high",
-    "quote": "Picked up a piece of stovewood and hit him with it. Hit him hard...There was no blood or anything on the wood...But he's dead, all right."
+    "quote": "\"Picked up a piece of stovewood and hit him with it. Hit him hard.\""
   },
   "victim": {
-    "value": "Kent Castwell, a parasitic drifter who exploited the rural community financially and emotionally\u2014stealing, freeloading, assaulting his lodger Bob Laurel, and costing the county thousands in law enforcement and infrastructure expenses.",
+    "value": "Kent Castwell, a loud, abusive freeloading outsider who beat his common-law wife, stole from his lodger, and deliberately cost thrifty Ashby County hundreds of dollars \u2014 universally unwanted",
     "confidence": "high",
-    "quote": "Kent Castwell has no consideration for others...He hadn't been living there a week before he got into a fight at the Ashby Bar."
+    "quote": "\"Kent Castwell,\" he said, his voice becoming crisp and definite, \"is not worth it. He is just not worth it.\""
   },
   "closed_world": {
-    "value": "The isolated Peabody place (old farmhouse three miles from town) and the small rural town of Ashby, Massachusetts\u2014a tightly-knit community where everyone knows everyone and the county officials control local justice.",
+    "value": "Ashby, an impoverished, thrift-obsessed rural New England town, and the isolated old Peabody place a mile from any other house; the town's tiny circle of officials",
     "confidence": "high",
-    "quote": "The old Peabody place stood all alone, isolated, with no other house for at least a mile...Ashby was not a thriving place."
+    "quote": "the Peabody place stood all alone, isolated, with no other house for at least a mile"
   },
   "culprit_and_motive": {
-    "value": "Bob Laurel, an artist lodging at the Peabody place, kills Castwell in rage after Castwell destroys his paintings with paint. Motive: provocation and destruction of property, but the crime becomes justified in the eyes of local officials because Castwell was a burden to the county.",
+    "value": "Bob Laurel, the lodger-artist, killed Castwell in rage after Castwell smeared paint over and ruined all his paintings \u2014 the last straw after months of theft and harassment",
     "confidence": "high",
-    "quote": "Castwell had taken the biggest brush he could find and smeared paint over all the pictures Laurel had been working on. Ruined them completely."
+    "quote": "Castwell had taken the biggest brush he could find and smeared paint over all the pictures Laurel had been working on."
   },
   "resolution": {
-    "value": "The confession is destroyed by Clem Goodhue (the taxi driver) and tacitly ignored by the sheriff, district attorney, and tax assessor, who turn their backs on the evidence. The killing is allowed to pass as an accident, with no formal investigation or prosecution.",
+    "value": "No trial: the sheriff, D.A. and tax assessor calculate a prosecution would cost thousands, declare Clem's account mere hearsay, turn their backs while Clem burns the confession and lights his cigar with it; Laurel is left free to take the evening train",
     "confidence": "high",
-    "quote": "While they were looking at the sunset Clem Goodhue, after a single glance at their backs, took the sheet of paper from the kitchen table and thrust it into the kitchen stove...I haven't read any confession...Can't act on hearsay."
+    "quote": "\"I haven't read any confession... What you've told us, Clem, is just hearsay. Can't act on hearsay.\""
   },
   "investigator": {
-    "value": "Clem Goodhue, the taxi driver and community observer, who becomes the de facto agent of justice by delivering the confession and orchestrating its destruction with the tacit cooperation of county officials (sheriff, district attorney, tax assessor).",
+    "value": "Clem Goodhue, the local taxi driver \u2014 an insider go-between who receives the confession and brokers its suppression, alongside the county officials (Sheriff Erastus Nickerson, D.A. Coolidge, Assessor Levi Nickerson)",
     "confidence": "high",
-    "quote": "Well, here 'tis,' he said, gesturing to the paper on the table. 'Laurel's confession...I'm ready to give myself up,' he says."
+    "quote": "\"Tell the sheriff and the D.A. that I'm ready to give myself up,\" he says."
+  },
+  "suspect_architecture": {
+    "value": "Inverted structure: the killer (Bob Laurel, the lodger-artist) confesses immediately; the 'suspects' are effectively the whole town, all of whom had motive to be rid of Kent Castwell \u2014 Clem the taxi driver (cheated of fare), Levi Nickerson the Tax Assessor, Sheriff Erastus Nickerson, D.A. Gamaliel Coolidge, Judge Bradford, and abused common-law wife Louise. Differentiation is by degree of financial grievance rather than by means/opportunity.",
+    "confidence": "high",
+    "quote": "\u201cDo you realize how much Kent Castwell cost this County, one way or the other?\u201d Nickerson asked."
+  },
+  "red_herring": {
+    "value": "The proposed cover story that the death was accidental \u2014 a fall and a blow to the head \u2014 supported by the absence of blood on the stovewood; also the town's earlier bets and speculation that Laurel would simply pack up and leave.",
+    "confidence": "medium",
+    "quote": "Anybody finding Castwell\u2019s body would assume he\u2019d fallen and hit his head."
+  },
+  "clue_fairness": {
+    "value": "Fairness is preserved by relentless prior demonstration of Ashby's parsimony (steamed-open envelopes, unraveled socks, dim headlight, closed jail, ten-cent cigar bets), so the reader can predict the officials' cost-based suppression of the crime before it happens.",
+    "confidence": "high",
+    "quote": "\u201cSaved the County eleven dollars this way last year,\u201d he observed."
+  },
+  "social_world": {
+    "value": "A depressed New England town governed by kinship and thrift: Levi P. Nickerson is Tax Assessor and realtor, his cousin Erastus is Sheriff, Gamaliel Coolidge the D.A., Judge Bradford on the bench \u2014 an interlocking network where the tax rate outranks the law and an outsider who costs money forfeits protection.",
+    "confidence": "high",
+    "quote": "\u201cWhat it would do to the County tax-rate. . .\u201d he groaned. \u201cKent Castwell,\u201d he said, \u201cis not worth it.\u201d"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "A written confession delivered by proxy \u2014 Clem relays Laurel's account and lays the signed paper on the kitchen table; it is then legally nullified by the sheriff declaring it hearsay while the officials turn to admire the sunset and Clem burns the page in the stove, lighting his cigar with the last corner.",
+    "confidence": "high",
+    "quote": "\u201cI haven\u2019t read any confession. You, Gam? You, Levi? No. What you\u2019ve told us, Clem, is just hearsay.\u201d"
+  },
+  "media_and_audience": {
+    "value": "Public narrative is small-town gossip and consensus: Castwell's income is speculated on as inheritance or remittance, bets are laid in cigars on the artist's endurance, and the community collectively agrees to let the story of an accidental fall stand rather than pay for a trial.",
+    "confidence": "medium",
+    "quote": "Others argued in favor of its being a remittance paid by Castwell\u2019s family to keep him away."
+  },
+  "investigator_wound": {
+    "value": "The officials' vulnerability is their ingrained Yankee thrift \u2014 Sheriff Nickerson, the Assessor and the D.A. cannot bear the cost of justice, so their guiding virtue ('Waste not, want not') becomes the pressure that makes them suppress a murder.",
+    "confidence": "medium",
+    "quote": "\u201cWaste not, want not,\u201d was her motto\u2014as well as that of every other old-time local resident."
+  },
+  "victims_enemies": {
+    "value": "Kent Castwell antagonized essentially the entire town of Ashby: Clem the taxi driver he shorted on fare, Levi Nickerson the tax assessor whose county budget he inflated, Judge Bradford whom he forced to open the jail, the abused Louise and her daughter Kathie, and finally Bob Laurel, the lodger he cheated of advance rent, robbed of food and wood, and whose paintings he destroyed.",
+    "confidence": "high",
+    "quote": "There was more than one who could have dispensed with the pleasure of his company"
+  },
+  "suspect_wounds": {
+    "value": "Bob Laurel's wound is the artist's vulnerability to ridicule and material loss \u2014 a city outsider who threw his money around, was mocked for his painting, and finally cracked when his work was ruined; his impulse to confess in writing is itself the self-incriminating gesture.",
+    "confidence": "high",
+    "quote": "\"He makes fun of my painting. He\u2014\""
+  },
+  "unreliable_frame": {
+    "value": "Everything is filtered through Clem Goodhue's secondhand retelling \u2014 the officials never read the confession, only hear Clem's account, which they deliberately reclassify as unactionable hearsay; Clem himself is a man who overcharges old ladies and steered Laurel to Castwell for county-thrift reasons.",
+    "confidence": "high",
+    "quote": "\"What you've told us, Clem, is just hearsay. Can't act on hearsay.\""
+  },
+  "setting_as_constraint": {
+    "value": "Impoverished rural Ashby, where thrift is a moral system: the isolated Peabody place a mile from any neighbor, no indoor plumbing, a closed jail too expensive to heat, plowing and school-bus costs, and a tax rate that governs every decision \u2014 including whether a killing gets prosecuted.",
+    "confidence": "high",
+    "quote": "\"do you know what it will cost us to try this fellow\u2014for murder in any degree or manslaughter?\""
+  },
+  "evidence_type": {
+    "value": "Documentary \u2014 Laurel's written confession is the sole evidence, and its destruction in the kitchen stove (used to light Clem's cigar) erases the case; the physical evidence is deliberately null, the stovewood unmarked.",
+    "confidence": "high",
+    "quote": "\"There was no blood or anything on the wood,\" he added. \"Just another piece of stove wood.\""
+  },
+  "false_suspect": {
+    "value": "None in the conventional sense \u2014 the confessed killer is the actual killer; the story inverts the trope by having the guilty man protected rather than an innocent accused.",
+    "confidence": "medium",
+    "quote": null
+  },
+  "technical_detail": {
+    "value": "Legal and administrative technicalities: hearsay is inadmissible, sentences can be ordered to run concurrently, jail costs must be borne by the county, and a body found with an unmarked head wound reads as an accidental fall.",
+    "confidence": "high",
+    "quote": "\"Anybody finding Castwell's body would assume he'd fallen and hit his head.\""
+  },
+  "moral_ambiguity": {
+    "value": "The conspirators suppress a homicide not from malice or greed but from a rigid Yankee thrift elevated to ethics \u2014 a trial would cost thousands and Castwell simply wasn't worth it; Laurel killed only after sustained abuse and the destruction of his life's work.",
+    "confidence": "high",
+    "quote": "\"Kent Castwell,\" he said, his voice becoming crisp and definite, \"is not worth it. He is just not worth it.\""
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 19765,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "The Cost of Kent Castwell",
     "author": "AVRAM DAVIDSON",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 4,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

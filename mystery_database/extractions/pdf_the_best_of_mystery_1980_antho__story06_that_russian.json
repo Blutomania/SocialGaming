@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Man overboard: Boris Volakov, Russian commissar, is thrown from a ship into fog-obscured waters. Central question: Was it murder, accident, or will the victim survive?",
+    "value": "Apparent murder: Janos, a Hungarian hammer thrower, hurls the Russian commissar Boris overboard into the fog. Central question: will the killing be discovered \u2014 and did Boris actually die?",
     "confidence": "high",
-    "quote": "I spring forward shouting a nationalist war cry. Boris is considerably surprised by my entrance out of the fog, but he becomes even more so when I immediately grasp him by one arm and one leg and swing him in a circle. . .once. . .twice. . .and then I let go."
+    "quote": "Boris and his scream fly through a thin patch in the fog and over the ship\u2019s rail."
   },
   "victim": {
-    "value": "Boris Volakov, Russian commissar overseeing the athletic team. He is 'killable' because he sexually coerces athletes, has sent women to exile in the Arctic, and represents Soviet oppression that the protagonist opposes.",
+    "value": "Boris Volakov, Russian team commissar \u2014 feared and hated, a greedy opportunist and black marketeer who coerced female athletes with threats of exile, making him a natural target",
     "confidence": "high",
-    "quote": "Boris is a most unpopular man. He is commissar for the Russian team, plus in overall charge of the voyage. It is a rumor that his unfavorable reports have caused the disappearance of one high jumper, one long distance runner, and one hop, skip, and jump."
+    "quote": "He is greedy and opportunistic... in Russia he was a speculator in the black market"
   },
   "closed_world": {
-    "value": "An ocean liner traveling from Europe to New York with Soviet and Hungarian athletic teams aboard, isolated by thick fog near shipping lanes. The ship becomes a bounded social and physical space where escape or external help is impossible.",
+    "value": "A Russian ship carrying athletic teams across the ocean to New York, fog-bound and slowed, with a fixed shipboard population",
     "confidence": "high",
-    "quote": "The night of the Friendship Party there comes a thick fog upon the ocean and it is necessary for the ship to slow almost to a halt and blow its horns often."
+    "quote": "On the upper deck of this Russian boat which travels to the sports meet in the United States"
   },
   "culprit_and_motive": {
-    "value": "Janos (the narrator), a Hungarian hammer-thrower, commits the act to save Nadia from Boris's sexual coercion. Motive: protection of an innocent woman and resistance to Soviet authoritarianism masquerading as concern for duty.",
+    "value": "Janos, the Hungarian hammer thrower, acting in rage to protect Nadia from Boris's sexual assault (having earlier plotted to lure Boris into defecting via a fake rich-defector story)",
     "confidence": "high",
-    "quote": "When I see what could be impending, fury springs into my blood and I forget all about Mohammedans and their mountains. I spring forward shouting a nationalist war cry."
+    "quote": "I immediately grasp him by one arm and one leg and swing him in a circle. . .once. . .twice. . .and then I let go."
   },
   "resolution": {
-    "value": "The apparent victim survives: Boris lands on a passing Russian freighter's lifeboat, recovers consciousness, and defects to the West. Janos learns at his wedding that the crime was not what it appeared\u2014fortune, not malice, determined the outcome. Ironic justice replaces murder.",
+    "value": "Bela the pole vaulter reveals Boris survived, landing on a passing freighter's lifeboat, declared himself a refugee \u2014 but the ship was Russian; Janos is safe and marries Nadia, with Mariska revealed as his sister",
     "confidence": "high",
-    "quote": "You tossed him overboard just as a small freighter glided past in the fog, and Boris landed unnoticed on the canvas top of a lifeboat. The length of the fall, however, rendered him unconscious for perhaps a half hour."
+    "quote": "the ship upon which you tossed him turned out to be a Russian freighter."
   },
   "investigator": {
-    "value": "Janos, the protagonist narrator\u2014a Hungarian athlete who is simultaneously suspect, culprit, witness, and the lens through which the reader experiences the mystery. He controls the narrative and investigates his own crime retrospectively.",
+    "value": "Janos, the first-person Hungarian hammer thrower \u2014 perpetrator and narrator, investigating his own predicament",
     "confidence": "high",
-    "quote": "I study the situation and see that eventually she is about to be trapped\u2014for this Boris is tricky and foresighted. 'I think I will go downstairs,' I say to Mariska."
+    "quote": "For myself, I throw my weight around\u2014which is the hammer."
+  },
+  "suspect_architecture": {
+    "value": "Not a whodunit: the culprit (narrator Janos, Hungarian hammer thrower) is known from the start. Peripheral figures \u2014 Mariska (jealous rival, later revealed as his sister), Nadia (the pursued Russian sprinter), and Bela the pole vaulter \u2014 function less as suspects than as witnesses/accomplices, with Boris Volakov as the universally disliked victim whose many enemies (dismissed women athletes, cowed team members) would provide a wide field of motive.",
+    "confidence": "medium",
+    "quote": "Boris is a most unpopular man. He is commissar for the Russian team, plus in overall charge of the voyage."
+  },
+  "red_herring": {
+    "value": "The fabricated cousin Stephen and his agent 'John Smith of State Street, Chicago' \u2014 a bait story invented to lure Boris into defecting; also the false rumour that Boris drank too much and fell asleep aboard, and the planted misdirection that Mariska is a jealous romantic rival rather than the narrator's sister.",
+    "confidence": "high",
+    "quote": "When I rise to leave Boris is still thinking about my cousin Stephen, who does not exist."
+  },
+  "clue_fairness": {
+    "value": "Fair-play clues are seeded in scene: the heavy fog and near-collisions with other ships in crowded traffic lanes are shown before Boris's survival on a passing freighter is revealed; Boris's opportunism and greed are stated before he defects for money; Mariska's odd non-reaction and the narrator's 'we have planned upon this for a long time' precede the sister reveal.",
+    "confidence": "high",
+    "quote": "Even so, we almost run into other ships, for we are now near New York and the traffic lanes are heavy."
+  },
+  "social_world": {
+    "value": "Cold War Eastern-bloc athletic hierarchy aboard a Soviet ship: the commissar holds sexual and career power over athletes, dissenters are exiled to teaching calisthenics beyond the Arctic Circle; satellite-nation resentments (Hungarians, Czechs vs Slovakians, Ruthenians) and the prestige of team membership bind everyone.",
+    "confidence": "high",
+    "quote": "\u201cHe is the commissar of the athletes,\u201d she says bitterly, \u201cbut in his life he has yet to run even the one hundred meter dash.\u201d"
+  },
+  "alibi": {
+    "value": "The pair consider and reject alibi strategies \u2014 a sole confession, or claiming to have witnessed an accidental fall \u2014 settling instead on simple denial plus a rumour of Boris sleeping off drink; Nadia's being seen leaving the ballroom with him undermines any alibi.",
+    "confidence": "high",
+    "quote": "\u201cBut you were seen leaving the ballroom with him,\u201d I say. \u201cThere will be questions asked.\u201d"
+  },
+  "reveal_mechanic": {
+    "value": "Testimony at the wedding: Bela reports that Boris himself, alive, named his assailant \u2014 the fling landed him on a lifeboat canvas of a passing freighter, which proved to be Russian, so his accusation and his radiogram to 'John Smith' are neutralised. The narrator's own final line reveals Mariska is his sister.",
+    "confidence": "high",
+    "quote": "\u201cUnfortunately for Boris, the ship upon which you tossed him turned out to be a Russian freighter.\u201d"
+  },
+  "media_and_audience": {
+    "value": "Narrative control is the weapon: the defector memoir industry ('I Was a Commissar for the F.B.I.') as capitalist packaging of Cold War stories, the ship's loudspeaker paging the missing Boris, the drunk-asleep rumour the culprits seed, and the fear that public exposure would make America refuse to shield a murderer.",
+    "confidence": "high",
+    "quote": "There is a rumor\u2014which Nadia and I have started\u2014that Boris has drunk too much and fallen asleep in some corner of the ship."
+  },
+  "investigator_wound": {
+    "value": "Janos, the amateur schemer-narrator, is vulnerable through his chivalric temper: his cold plan to lure Boris away collapses when fury overrides calculation, and afterwards his new life and marriage rest on a killing that exposure would destroy.",
+    "confidence": "medium",
+    "quote": "fury springs into my blood and I forget all about Mohammedans and their mountains."
+  },
+  "victims_enemies": {
+    "value": "Boris Volakov, the Russian team commissar, is universally disliked: he coerces female athletes sexually and exiles those who refuse (three women now teaching calisthenics near the Arctic Circle), his reports cause athletes to 'disappear,' and he has a history in Budapest that offends the Hungarians. His enemies include Nadia (his current target), Janos (her would-be protector), and effectively the whole ship.",
+    "confidence": "high",
+    "quote": "It is a rumor that his unfavorable reports have caused the disappearance of one high jumper, one long distance runner, and one hop, skip, and jump."
+  },
+  "suspect_wounds": {
+    "value": "Janos is a hammer thrower \u2014 his very athletic gift (throwing weight around) makes him the obvious candidate for hurling a man overboard; and as a planned defector he cannot afford scrutiny. Nadia is vulnerable because she was publicly seen leaving the ballroom with Boris. Mariska's jealousy of Nadia gives her the look of motive too.",
+    "confidence": "high",
+    "quote": "\u201cBut you were seen leaving the ballroom with him,\u201d I say. \u201cThere will be questions asked.\u201d"
+  },
+  "unreliable_frame": {
+    "value": "Janos narrates in first person and is a self-serving liar: he invents an entire fictitious cousin Stephen and his best-selling book to bait Boris, conceals his 'clever plan' from Nadia and the reader, and withholds until the final line that Mariska is his sister, not his lover \u2014 a deliberate misdirection of the reader's romantic assumptions.",
+    "confidence": "high",
+    "quote": "When I rise to leave Boris is still thinking about my cousin Stephen, who does not exist."
+  },
+  "setting_as_constraint": {
+    "value": "A closed Soviet ship bound for New York: no escape, commissar surveillance, forced attendance at the Friendship Party. The dense fog near New York \u2014 ship slowed to a halt, horns blowing, heavy traffic lanes \u2014 both muffles Boris's scream (concealing the crime) and, unseen, places a passing freighter beneath him that saves his life and undoes the deed.",
+    "confidence": "high",
+    "quote": "there comes a thick fog upon the ocean and it is necessary for the ship to slow almost to a halt and blow its horns often"
+  },
+  "evidence_type": {
+    "value": "Testimonial \u2014 the survivor's own account. Boris, alive, names Janos as the man who threw him overboard, relayed secondhand by Bela the pole vaulter at the wedding. No physical or forensic proof exists.",
+    "confidence": "high",
+    "quote": "\u201cNo. But I have just heard that Boris himself maintains that this happened.\u201d"
+  },
+  "false_suspect": {
+    "value": "No true false suspect; suspicion, if any, would fall on Nadia, the last person seen leaving with Boris, though the act was entirely Janos's. She proposes covering it up and thereby shares exposure without guilt.",
+    "confidence": "medium",
+    "quote": "\u201cWe will say it was an accident which we both witnessed. Boris slipped and fell overboard.\u201d"
+  },
+  "technical_detail": {
+    "value": "Hammer-throwing technique: Janos grips Boris by one arm and one leg and spins him twice before releasing \u2014 a 'world's record' fling. The very specialization established in the first paragraph ('I throw my weight around\u2014which is the hammer') both enables and identifies the culprit.",
+    "confidence": "high",
+    "quote": "I immediately grasp him by one arm and one leg and swing him in a circle. . .once. . .twice. . .and then I let go."
+  },
+  "moral_ambiguity": {
+    "value": "Janos acts not from calculation but from fury at witnessing an assault \u2014 his scheme had been the bloodless one of luring Boris to defect through greed. The 'victim' is a corrupt opportunist and sexual predator, and his ultimate punishment is delivered by his own greed and the Russian freighter, not by the killer.",
+    "confidence": "high",
+    "quote": "When I see what could be impending, fury springs into my blood and I forget all about Mohammedans and their mountains."
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 15527,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "That Russian!",
     "author": "JACK RITCHIE",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 6,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

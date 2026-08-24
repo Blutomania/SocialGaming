@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Man overboard: Boris Volakov, Russian commissar, is thrown from a ship into fog-obscured waters. Central question: Was it murder, accident, or will the victim survive?",
+    "confidence": "high",
+    "quote": "I spring forward shouting a nationalist war cry. Boris is considerably surprised by my entrance out of the fog, but he becomes even more so when I immediately grasp him by one arm and one leg and swing him in a circle. . .once. . .twice. . .and then I let go."
+  },
+  "victim": {
+    "value": "Boris Volakov, Russian commissar overseeing the athletic team. He is 'killable' because he sexually coerces athletes, has sent women to exile in the Arctic, and represents Soviet oppression that the protagonist opposes.",
+    "confidence": "high",
+    "quote": "Boris is a most unpopular man. He is commissar for the Russian team, plus in overall charge of the voyage. It is a rumor that his unfavorable reports have caused the disappearance of one high jumper, one long distance runner, and one hop, skip, and jump."
+  },
+  "closed_world": {
+    "value": "An ocean liner traveling from Europe to New York with Soviet and Hungarian athletic teams aboard, isolated by thick fog near shipping lanes. The ship becomes a bounded social and physical space where escape or external help is impossible.",
+    "confidence": "high",
+    "quote": "The night of the Friendship Party there comes a thick fog upon the ocean and it is necessary for the ship to slow almost to a halt and blow its horns often."
+  },
+  "culprit_and_motive": {
+    "value": "Janos (the narrator), a Hungarian hammer-thrower, commits the act to save Nadia from Boris's sexual coercion. Motive: protection of an innocent woman and resistance to Soviet authoritarianism masquerading as concern for duty.",
+    "confidence": "high",
+    "quote": "When I see what could be impending, fury springs into my blood and I forget all about Mohammedans and their mountains. I spring forward shouting a nationalist war cry."
+  },
+  "resolution": {
+    "value": "The apparent victim survives: Boris lands on a passing Russian freighter's lifeboat, recovers consciousness, and defects to the West. Janos learns at his wedding that the crime was not what it appeared\u2014fortune, not malice, determined the outcome. Ironic justice replaces murder.",
+    "confidence": "high",
+    "quote": "You tossed him overboard just as a small freighter glided past in the fog, and Boris landed unnoticed on the canvas top of a lifeboat. The length of the fall, however, rendered him unconscious for perhaps a half hour."
+  },
+  "investigator": {
+    "value": "Janos, the protagonist narrator\u2014a Hungarian athlete who is simultaneously suspect, culprit, witness, and the lens through which the reader experiences the mystery. He controls the narrative and investigates his own crime retrospectively.",
+    "confidence": "high",
+    "quote": "I study the situation and see that eventually she is about to be trapped\u2014for this Boris is tricky and foresighted. 'I think I will go downstairs,' I say to Mariska."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 15527,
+    "protocols": [
+      "P1"
+    ],
+    "title": "That Russian!",
+    "author": "JACK RITCHIE",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 6,
+    "story_count": 63
+  }
+}

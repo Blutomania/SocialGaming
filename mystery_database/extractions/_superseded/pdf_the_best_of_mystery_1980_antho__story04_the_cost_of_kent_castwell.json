@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Murder by blunt force trauma (stovewood to the head). Central question: Will the confession be acted upon, or will the killing be concealed as an accident?",
+    "confidence": "high",
+    "quote": "Picked up a piece of stovewood and hit him with it. Hit him hard...There was no blood or anything on the wood...But he's dead, all right."
+  },
+  "victim": {
+    "value": "Kent Castwell, a parasitic drifter who exploited the rural community financially and emotionally\u2014stealing, freeloading, assaulting his lodger Bob Laurel, and costing the county thousands in law enforcement and infrastructure expenses.",
+    "confidence": "high",
+    "quote": "Kent Castwell has no consideration for others...He hadn't been living there a week before he got into a fight at the Ashby Bar."
+  },
+  "closed_world": {
+    "value": "The isolated Peabody place (old farmhouse three miles from town) and the small rural town of Ashby, Massachusetts\u2014a tightly-knit community where everyone knows everyone and the county officials control local justice.",
+    "confidence": "high",
+    "quote": "The old Peabody place stood all alone, isolated, with no other house for at least a mile...Ashby was not a thriving place."
+  },
+  "culprit_and_motive": {
+    "value": "Bob Laurel, an artist lodging at the Peabody place, kills Castwell in rage after Castwell destroys his paintings with paint. Motive: provocation and destruction of property, but the crime becomes justified in the eyes of local officials because Castwell was a burden to the county.",
+    "confidence": "high",
+    "quote": "Castwell had taken the biggest brush he could find and smeared paint over all the pictures Laurel had been working on. Ruined them completely."
+  },
+  "resolution": {
+    "value": "The confession is destroyed by Clem Goodhue (the taxi driver) and tacitly ignored by the sheriff, district attorney, and tax assessor, who turn their backs on the evidence. The killing is allowed to pass as an accident, with no formal investigation or prosecution.",
+    "confidence": "high",
+    "quote": "While they were looking at the sunset Clem Goodhue, after a single glance at their backs, took the sheet of paper from the kitchen table and thrust it into the kitchen stove...I haven't read any confession...Can't act on hearsay."
+  },
+  "investigator": {
+    "value": "Clem Goodhue, the taxi driver and community observer, who becomes the de facto agent of justice by delivering the confession and orchestrating its destruction with the tacit cooperation of county officials (sheriff, district attorney, tax assessor).",
+    "confidence": "high",
+    "quote": "Well, here 'tis,' he said, gesturing to the paper on the table. 'Laurel's confession...I'm ready to give myself up,' he says."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 19765,
+    "protocols": [
+      "P1"
+    ],
+    "title": "The Cost of Kent Castwell",
+    "author": "AVRAM DAVIDSON",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 4,
+    "story_count": 63
+  }
+}

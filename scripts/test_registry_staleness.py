@@ -76,6 +76,33 @@ def main():
     finally:
         PROBE.unlink(missing_ok=True)
 
+    print("\n--- a source REWRITTEN IN PLACE makes it stale ---")
+    # The case the filename-only fingerprint could not see, and it is not
+    # hypothetical: the P1->P1P2P3 upgrade replaces an extraction under its own
+    # name, turning ~6 parts into ~20. Session 35's first 7 upgraded stories
+    # landed with load_registry() reporting itself fresh and 98 parts unsampled.
+    victim = sorted((DB / "extractions").glob("*.json"))[0]
+    original = victim.read_bytes()
+    before = len(pr.load_registry(str(DB), force=True).parts)
+    try:
+        enriched = json.loads(original)
+        enriched["_meta"] = {**enriched.get("_meta", {}), "title": "Rewritten In Place"}
+        # Add the exact field a real P1P2 -> P1P2P3 upgrade adds, so the rewrite
+        # changes the part count the way the real thing does rather than only
+        # changing bytes on disk. (P3.F4, mapped to axis 2 in Session 34.)
+        enriched["setting_as_constraint"] = {
+            "value": "a room reachable only through a spring-hinged passage",
+            "confidence": "high",
+        }
+        victim.write_text(json.dumps(enriched))
+        REGISTRY.write_text(stub)
+        reg = pr.load_registry(str(DB))
+        check(len(reg.parts) > 10, f"rebuilt on its own ({len(reg.parts)} parts)")
+        check(len(reg.parts) > before,
+              f"and picked up the added part ({before} -> {len(reg.parts)})")
+    finally:
+        victim.write_bytes(original)
+
     print("\n--- a schema-version bump makes it stale ---")
     # The other way this has gone stale: the extraction files are untouched but
     # the code that turns them into parts changed (Session 23's KEY_TO_IDX fix).

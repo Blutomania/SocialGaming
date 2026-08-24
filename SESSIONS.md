@@ -3107,10 +3107,48 @@ is discarded whole — real spend, no file. It is the one way this run can cost 
 nothing behind. It did *not* happen here (every source died on P1), but the doc now says how to
 check for it after any mid-batch stop.
 
+### The upgrade landed, and the registry could not see it
+
+The owner's working tree held **7 anthology stories already upgraded** — each with a modified
+extraction and its original archived, the completed-upgrade signature. Verified real, not
+truncated: `P1+P2+P3` on all seven, ~6 parts → ~20 each.
+
+Checking whether the registry had noticed turned up a live bug:
+
+```
+checked-in registry : 4967 parts
+load_registry()     : 4967 parts   ← reports itself fresh
+force=True rebuild  : 5065 parts   ← the truth
+```
+
+**98 parts, paid for and unsampled**, with the staleness check saying everything was fine.
+
+Session 33's fingerprint hashed the *set of extraction filenames*. It documented its own blind
+spot in the docstring — *"an extraction file EDITED IN PLACE, keeping its name, is not detected.
+Pass force=True"* — and that blind spot is exactly the shape of the P1→P1P2P3 upgrade, which
+rewrites a source under its own name. So the check could not see the single largest corpus
+operation the project has planned, and would have missed all 66 remaining sources too.
+
+**Fixed by hashing contents as well as names.** Clone-stable (unlike mtime, rejected for good
+reason in Session 33) and ~11 ms across 571 files / 2.7 MB — there was never a reason to
+approximate it. `load_registry()` self-corrected to 5,065 on the next call; the regenerated
+registry is committed.
+
+The general lesson is the one Session 33 already drew and this proves again: **a written warning
+is not a control.** The docstring told a future reader to pass `force=True` after editing in
+place, and the very next in-place edit lost 98 parts anyway.
+
+`test_registry_staleness.py` gains the case, using the real P3 field (`setting_as_constraint`)
+rather than an arbitrary one, so it mimics an actual upgrade. Verified by reverting the
+fingerprint to filename-only and confirming the new assertions fail.
+
 ### Files changed
 
 | File | Change |
 |---|---|
+| `part_registry.py` | fingerprint hashes extraction **contents**, not just the filename set |
+| `scripts/test_registry_staleness.py` | new case: a source rewritten in place must trigger a rebuild |
+| `mystery_database/part_registry.json` | regenerated — 4,967 → 5,065 parts |
 | `scripts/extract_from_pdfs.py` | `FatalAPIError`, `_fatal_reason()`, exit codes; no retry and no batch continuation on an account-level error; non-zero exit when a source fails |
 | `scripts/upgrade_p1_to_p1p2.py` | stops the per-source subprocess loop on `EXIT_FATAL` |
 | `scripts/test_extraction_fatal_errors.py` | **new** — 19 assertions |

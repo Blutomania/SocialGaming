@@ -115,6 +115,11 @@ python3 scripts/test_registry_staleness.py     # the registry rebuild noticed th
 python3 scripts/upgrade_p1_to_p1p2.py          # should report 0 upgradeable
 ```
 
+**Commit `mystery_database/part_registry.json` along with the extractions.** Since Session 35 the
+registry rebuilds itself when a source is rewritten in place (the fingerprint hashes contents, not
+just filenames), so a fresh checkout is correct either way — but committing it keeps the cheap path
+cheap for everyone else.
+
 Then measure what it actually bought — the point of the whole exercise is axis coverage:
 
 ```bash
