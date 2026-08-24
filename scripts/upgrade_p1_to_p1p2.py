@@ -45,6 +45,12 @@ ROOT = Path(__file__).resolve().parent.parent
 EXTRACTIONS = ROOT / "mystery_database" / "extractions"
 NEW_SOURCES = ROOT / "mystery_database" / "new_sources"
 
+# Extra directories to search for source PDFs, added by --source-dir. Sources
+# often live outside the repo entirely (a "raw_texts" folder, a Downloads
+# directory), and PDFs are not committed, so new_sources/ is a convention
+# rather than a guarantee.
+EXTRA_ROOTS: list = []
+
 P2_FIELDS = ["suspect_architecture", "red_herring", "clue_fairness",
              "alibi", "reveal_mechanic", "social_world"]
 
@@ -123,9 +129,12 @@ def find_source(recorded: str) -> Path | None:
         if candidate.is_file():
             return candidate
 
-    if not NEW_SOURCES.exists():
+    pdfs = []
+    for root in [NEW_SOURCES, *EXTRA_ROOTS]:
+        if root.exists():
+            pdfs += [p for p in root.rglob("*.pdf") if p.is_file()]
+    if not pdfs:
         return None
-    pdfs = [p for p in NEW_SOURCES.rglob("*.pdf") if p.is_file()]
 
     # 2. same filename, anywhere under new_sources/ (including its top level)
     name = Path(recorded).name
@@ -186,6 +195,81 @@ def scan() -> tuple[dict, list]:
     return plan, orphans
 
 
+def check_sources(runnable: dict) -> int:
+    """Verify each found PDF still yields the text it yielded the first time.
+
+    "Is this copy usable?" is measurable, not a guess. Every one of these files
+    was extracted successfully once, and the extraction recorded how many
+    characters it sampled. Re-sampling the copy on disk and comparing to that
+    number catches the failure that actually happens with a re-acquired book:
+    a scan with no OCR layer, which opens fine, shows pages, and yields almost
+    no text. The extractor would read it, find too little text, and skip -- but
+    only after the run had already started.
+    """
+    # pypdf logs a warning per malformed cross-reference entry. Old scanned
+    # books emit hundreds, which buries the actual result.
+    import logging
+    logging.getLogger("pypdf").setLevel(logging.ERROR)
+
+    sys.path.insert(0, str(ROOT / "scripts"))
+    try:
+        import extract_from_pdfs as efp
+    except ImportError as exc:
+        print(f"\ncannot check: {exc}  (pip install pypdf)")
+        return 1
+
+    # Recorded sample length, per source filename.
+    recorded_len = {}
+    for f in EXTRACTIONS.glob("*.json"):
+        try:
+            m = json.loads(f.read_text()).get("_meta", {})
+        except Exception:
+            continue
+        if m.get("filename") and m.get("text_len"):
+            recorded_len.setdefault(m["filename"], m["text_len"])
+
+    print("\n" + "=" * 78)
+    print("SOURCE HEALTH — no API calls")
+    print("=" * 78)
+    bad = 0
+    for v in sorted(runnable.values(), key=lambda x: -x["count"]):
+        path = v["path"]
+        # An anthology's extractions record PER-STORY lengths, so comparing them
+        # to whole-book novel-mode sampling is meaningless -- it flagged a
+        # perfectly good 1.6M-character anthology as unusable on the first run.
+        want = None if v["anthology"] else recorded_len.get(Path(v["recorded"]).name)
+        try:
+            sampled, full = efp.extract_text_from_pdf(path)
+        except Exception as exc:
+            print(f"\n  UNREADABLE  {path.name[:60]}\n              {type(exc).__name__}: {str(exc)[:70]}")
+            bad += 1
+            continue
+
+        got = len(sampled)
+        note = ""
+        if got < efp.MIN_TEXT_CHARS:
+            note = f"  <- TOO LITTLE TEXT (min {efp.MIN_TEXT_CHARS:,}); likely a scan with no OCR layer"
+            bad += 1
+        elif want and got < want * 0.5:
+            note = f"  <- only {got/want:.0%} of the {want:,} chars the first extraction sampled"
+            bad += 1
+        ref = f", first extraction sampled {want:,}" if want else ""
+        print(f"\n  {path.name[:66]}")
+        if v["anthology"]:
+            print(f"    {len(full):,} chars in the PDF; anthology mode feeds each story "
+                  f"whole (up to {efp.ANTHOLOGY_FULLTEXT_THRESHOLD:,} chars){note}")
+        else:
+            print(f"    {len(full):,} chars in the PDF, {got:,} sampled for extraction{ref}{note}")
+
+    print("\n" + "-" * 78)
+    if bad:
+        print(f"{bad} source(s) look unusable. Replace them before running --go;")
+        print("the extractor would read each one and skip it, after the run had started.")
+    else:
+        print("All sources readable and consistent with the original extractions.")
+    return 1 if bad else 0
+
+
 def report_missing(blocked: dict) -> int:
     """Name the absent sources and show how to look for them locally."""
     if not blocked:
@@ -244,10 +328,27 @@ def main():
                     help="model for the upgrade (default: claude-opus-5)")
     ap.add_argument("--go", action="store_true",
                     help="actually run it. Without this, the plan is printed and nothing is spent.")
+    ap.add_argument("--source-dir", action="append", default=[], metavar="DIR",
+                    help="another directory to search for source PDFs, recursively. "
+                         "Repeatable. Use it when the PDFs live outside the repo — e.g. "
+                         "--source-dir ~/raw_texts")
+    ap.add_argument("--novel-chars", type=int, default=24000, metavar="N",
+                    help="how much of each novel to sample (default 24,000; the "
+                         "extractor's own default is 6,000, which is thin for P2)")
+    ap.add_argument("--check-sources", action="store_true",
+                    help="open every found PDF and verify it still yields usable text, "
+                         "comparing against the length the original extraction recorded. "
+                         "Costs nothing and catches a scanned or truncated replacement "
+                         "before it wastes an API call.")
     ap.add_argument("--find-missing", action="store_true",
                     help="print search commands for source PDFs that are not on this machine, "
                          "and write a manifest to mystery_database/new_sources/_MISSING_SOURCES.md")
     args = ap.parse_args()
+    EXTRA_ROOTS.extend(Path(d).expanduser().resolve() for d in args.source_dir)
+    for d in EXTRA_ROOTS:
+        print(f"also searching: {d}" + ("" if d.exists() else "   <- DOES NOT EXIST"))
+    if EXTRA_ROOTS:
+        print()
 
     plan, orphans = scan()
     runnable = {k: v for k, v in plan.items() if v["path"]}
@@ -277,6 +378,9 @@ def main():
         print("  These stay P1-only until the file is put back under "
               "mystery_database/new_sources/ (any subdirectory).")
 
+    if args.check_sources:
+        return check_sources(runnable)
+
     if args.find_missing:
         return report_missing(blocked)
 
@@ -297,6 +401,11 @@ def main():
                str(v["path"]), "--protocol", "P1P2", "--model", args.model, "--upgrade"]
         if v["anthology"]:
             cmd.append("--anthology")
+        else:
+            # A novel's default 6,000-char sample is ~1.7% of the book. P2 asks
+            # about structure that only shows across the whole thing, so give it
+            # more to read; input tokens are the cheap half of the call.
+            cmd += ["--max-text-chars", str(args.novel_chars)]
         print("=" * 78)
         print(" ".join(cmd[1:]))
         print("=" * 78, flush=True)

@@ -105,10 +105,19 @@ CAST_LIST_EXPANSION_CHARS = 3000   # extra budget granted to the beginning slice
 # PDF text extraction
 # ---------------------------------------------------------------------------
 
-def extract_text_from_pdf(pdf_path: Path) -> tuple[str, str]:
+def extract_text_from_pdf(pdf_path: Path, max_chars: int | None = None) -> tuple[str, str]:
     """Return (sampled_text, full_text) from a PDF.
-    sampled_text: beginning+middle+end capped at MAX_TEXT_CHARS.
-    full_text: complete extracted text (used for resolution-only pass)."""
+    sampled_text: beginning+middle+end capped at max_chars (default MAX_TEXT_CHARS).
+    full_text: complete extracted text (used for resolution-only pass).
+
+    The default budget is 6,000 characters, inherited from the frozen bulk
+    pipeline. On a 350,000-character novel that is ~1.7% of the book, arriving
+    as three disconnected 2,000-character chunks -- which is fine for P1 (the
+    crime and the closed world are established early) and thin for P2, whose
+    fields are about structure that only shows across the whole book: how the
+    alibi breaks, which clue was a herring, how the suspects were arranged.
+    Raise it for a P1P2 pass; input tokens are the cheap half of a call.""" 
+    max_chars = MAX_TEXT_CHARS if max_chars is None else max_chars
     reader = pypdf.PdfReader(str(pdf_path))
     pages = []
     for page in reader.pages:
@@ -119,11 +128,11 @@ def extract_text_from_pdf(pdf_path: Path) -> tuple[str, str]:
 
     full_text = "\n".join(pages).strip()
 
-    if len(full_text) <= MAX_TEXT_CHARS:
+    if len(full_text) <= max_chars:
         return full_text, full_text
 
     # Sample beginning + middle + end so Claude sees the full arc
-    chunk = MAX_TEXT_CHARS // 3
+    chunk = max_chars // 3
     mid_start = (len(full_text) - chunk) // 2
 
     # If a cast-of-characters marker sits in the front matter, anchor the
@@ -623,6 +632,7 @@ def extract_pdf(
     model: str = DEFAULT_MODEL,
     verbose: bool = True,
     upgrade: bool = False,
+    max_chars: int | None = None,
 ) -> tuple[Path | None, str]:
     """Extract a single PDF and save results.
     Returns (output_path, full_text). full_text is needed for --fill-resolution."""
@@ -645,7 +655,7 @@ def extract_pdf(
         print(f"  READ  {pdf_path.name}")
 
     try:
-        text, full_text = extract_text_from_pdf(pdf_path)
+        text, full_text = extract_text_from_pdf(pdf_path, max_chars)
     except Exception as e:
         print(f"  ERROR reading PDF: {e}")
         return None, ""
@@ -754,6 +764,16 @@ def main() -> None:
              "Use --dry-run first to review the detected split before spending API calls.",
     )
     parser.add_argument(
+        "--max-text-chars", type=int, default=None, metavar="N",
+        help=f"How much of a novel to sample (beginning+middle+end). Default "
+             f"{MAX_TEXT_CHARS:,}, inherited from the frozen bulk pipeline — on a "
+             f"350,000-char novel that is ~1.7%% of the book in three disconnected "
+             f"chunks. Fine for P1; thin for P2, whose fields describe structure that "
+             f"only shows across the whole book. Raise it for a P1P2 pass: input tokens "
+             f"are the cheap half of a call. Ignored in --anthology mode, which feeds "
+             f"each story whole up to {ANTHOLOGY_FULLTEXT_THRESHOLD:,} chars.",
+    )
+    parser.add_argument(
         "--upgrade", action="store_true",
         help="Re-extract sources whose existing extraction does not already cover every "
              "protocol in --protocol. Without this, an already-extracted source is skipped "
@@ -815,7 +835,8 @@ def main() -> None:
             continue
 
         out_path, full_text = extract_pdf(pdf_path, client, protocol_ids, db_dir, model=args.model,
-                                             upgrade=args.upgrade)
+                                             upgrade=args.upgrade,
+                                             max_chars=args.max_text_chars)
         if out_path is None:
             failed += 1
         else:
