@@ -125,7 +125,15 @@ def llm(prompt: str, system: str = "You are a creative mystery game engine.") ->
         system=system,
         messages=[{"role": "user", "content": prompt}],
     )
-    return response.content[0].text
+    # Not content[0]: a model running adaptive thinking puts a ThinkingBlock
+    # first. Sonnet 4.6 does not think unless asked, so this is safe today and
+    # would break the day the model line changes -- which is exactly the kind of
+    # switch nobody expects to be a code change.
+    for block in response.content:
+        if getattr(block, "type", None) == "text":
+            return block.text
+    raise RuntimeError(
+        f"no text block in response (stop_reason={response.stop_reason})")
 
 def _parse_json(raw: str) -> dict:
     """Strip markdown fences and parse JSON."""

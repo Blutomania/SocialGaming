@@ -312,6 +312,51 @@ class ExtractionAPIError(Exception):
     a network/auth hiccup as "already extracted, nothing to see here."""
 
 
+# Extraction is a mechanical task -- read a text, fill named fields -- so it does
+# not need deep reasoning, but it does need room to answer.
+#
+# max_tokens was 1000. A P1P2 extraction is ~1,800 tokens of JSON across two
+# calls, so that was already at the edge on a model that does not think, and
+# some share of the empty and low-confidence fields in the existing corpus is
+# probably truncation rather than the model having nothing to say. On Opus 5,
+# which runs adaptive thinking by default, 1000 is not merely tight: the whole
+# budget goes to thinking and the response comes back with a single thinking
+# block and stop_reason=max_tokens, having produced no text at all.
+EXTRACTION_MAX_TOKENS = 4000
+
+
+def _effort_kwargs(model: str) -> dict:
+    """Low effort for models that support it.
+
+    Adaptive thinking stays ON -- disabling it on Opus 5 has its own failure
+    modes -- but effort "low" keeps a mechanical extraction from spending a
+    large thinking budget on it. Haiku rejects output_config outright, so it is
+    only sent to models that accept it.
+    """
+    if "haiku" in model:
+        return {}
+    return {"output_config": {"effort": "low"}}
+
+
+def _first_text(message) -> str:
+    """The first text block of a response, not blindly content[0].
+
+    Claude Opus 5 runs adaptive thinking by default, so a response often begins
+    with a ThinkingBlock and content[0].text raises AttributeError. Because the
+    thinking is *adaptive*, the model decides per request whether to think --
+    which makes indexing content[0] an intermittent failure rather than an
+    obvious one: an extraction run can succeed thirty times and then die.
+    Scanning for the text block is correct on every model, thinking or not.
+    """
+    for block in message.content:
+        if getattr(block, "type", None) == "text":
+            return block.text
+    raise ValueError(
+        f"no text block in response (blocks: "
+        f"{[getattr(b, 'type', '?') for b in message.content]}; "
+        f"stop_reason={getattr(message, 'stop_reason', '?')})")
+
+
 def _call_claude_for_protocol(
     client: "anthropic.Anthropic",
     model: str,
@@ -357,8 +402,9 @@ def _call_claude_for_protocol(
         try:
             message = client.messages.create(
                 model=model,
-                max_tokens=1000,
+                max_tokens=EXTRACTION_MAX_TOKENS,
                 messages=[{"role": "user", "content": prompt}],
+                **_effort_kwargs(model),
             )
         except Exception as e:
             last_error = f"API error: {e}"
@@ -368,7 +414,7 @@ def _call_claude_for_protocol(
                 print(f"  WARNING  {label} ({pid}): {last_error} — {more}")
             continue
 
-        raw = message.content[0].text.strip()
+        raw = _first_text(message).strip()
         if raw.startswith("```"):
             raw = raw.split("```", 2)[1]
             if raw.startswith("json"):
@@ -579,14 +625,15 @@ def fill_resolution(
     try:
         message = client.messages.create(
             model      = model,
-            max_tokens = 500,
+            max_tokens = EXTRACTION_MAX_TOKENS,
             messages   = [{"role": "user", "content": prompt}],
+            **_effort_kwargs(model),
         )
     except Exception as e:
         print(f"        ERROR in resolution fill pass: {e}")
         return
 
-    raw = message.content[0].text.strip()
+    raw = _first_text(message).strip()
     if raw.startswith("```"):
         raw = raw.split("```", 2)[1]
         if raw.startswith("json"):
@@ -727,6 +774,23 @@ def _collect_pdfs(sources: list[str]) -> list[Path]:
     return list(dict.fromkeys(pdfs))  # deduplicate, preserve order
 
 
+def _protocol_arg(value: str) -> str:
+    """Accept "P2" or a concatenation like "P1P2P3".
+
+    argparse's choices= only ever allowed a single protocol, while the line that
+    consumes it (`args.protocol.replace("P", " P").split()`) was written to split
+    a combined value. So --protocol P1P2 parsed correctly and was rejected one
+    step earlier -- the combined depths the extractor supports could not actually
+    be asked for.
+    """
+    ids = [p for p in value.upper().replace("P", " P").split() if p]
+    if not ids or any(p not in PROTOCOLS for p in ids):
+        raise argparse.ArgumentTypeError(
+            f"{value!r} is not one or more of {', '.join(PROTOCOLS)} "
+            f"(e.g. P2, P1P2, P1P2P3)")
+    return "".join(ids)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Extract mystery parts from local PDF files.",
@@ -738,9 +802,12 @@ def main() -> None:
         help="PDF file(s) or directory containing PDFs",
     )
     parser.add_argument(
-        "--protocol", default=DEFAULT_PROTOCOL,
-        choices=list(PROTOCOLS.keys()),
-        help=f"Extraction depth (default: {DEFAULT_PROTOCOL})",
+        "--protocol", default=DEFAULT_PROTOCOL, type=_protocol_arg, metavar="SPEC",
+        help=f"Extraction depth (default: {DEFAULT_PROTOCOL}). One protocol (P2) or "
+             f"several concatenated (P1P2, P1P2P3) — the code below has always split a "
+             f"combined value, but argparse's choices= rejected it before it got there, "
+             f"so combined depths were unreachable from the command line. "
+             f"Valid: {', '.join(PROTOCOLS)}.",
     )
     parser.add_argument(
         "--db-dir", default=DEFAULT_DB_DIR, metavar="DIR",
@@ -817,11 +884,21 @@ def main() -> None:
                           f"(pages {s['start_page']+1}-{s['end_page']+1}, {len(s['text']):,} chars)")
         return
 
+    # Two credential sources, and they are NOT interchangeable -- CLAUDE.md has
+    # documented both for the project all along, but only server/main.py ever
+    # implemented the second, and it implemented it wrongly until Session 34.
+    # ANTHROPIC_API_KEY is an API key and rides on x-api-key (api_key=). The
+    # session ingress token is a bearer token and rides on Authorization
+    # (auth_token=); passing it as api_key returns 401 "API key is invalid".
     api_key = os.environ.get("ANTHROPIC_API_KEY")
-    if not api_key:
-        sys.exit("ERROR: ANTHROPIC_API_KEY not set in environment.")
-
-    client = anthropic.Anthropic(api_key=api_key)
+    if api_key:
+        client = anthropic.Anthropic(api_key=api_key)
+    else:
+        token_path = Path("/home/claude/.claude/remote/.session_ingress_token")
+        if not token_path.exists():
+            sys.exit("ERROR: no credentials. Set ANTHROPIC_API_KEY in your environment "
+                     "(or a .env file) before running an extraction.")
+        client = anthropic.Anthropic(auth_token=token_path.read_text().strip())
 
     success, failed = 0, 0
     for i, pdf_path in enumerate(pdfs):

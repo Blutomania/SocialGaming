@@ -427,7 +427,18 @@ Full list in `SESSIONS.md`. Top priorities:
       read). Fixed by extending `part_registry.py`'s `KEY_TO_IDX`; see item 14 below for the full
       fix (also resolved the pre-existing `evidence_type`/`alibi` axis mislabeling in the same
       pass). `media_and_audience` remains deliberately unmapped — no honest fit among the 8 axes.
-    - **[STILL OPEN]** `part_registry.py`'s `_atomize_extraction()` still has no P3/P4-tier keys
+    - **[FIXED, Session 34]** `_atomize_extraction()` now maps 7 of P3's 8 keys
+      (`setting_as_constraint`→2, `victims_enemies`→3, `suspect_wounds`→4, `false_suspect`→5,
+      `unreliable_frame`/`technical_detail`→6, `moral_ambiguity`→7). `evidence_type` stays
+      unmapped for the same reason as `media_and_audience` — axis 8 was *named* evidence_type
+      until Session 23 renamed it to `alibi` precisely because it held alibi content, and
+      mapping F5 there would recreate that mislabeling. `REGISTRY_SCHEMA_VERSION` bumped to 3.
+      The re-extraction now runs **P1P2P3**, not P1P2: P3 costs ~$2 more in the same pass and
+      ~$8 more as a later one, and P3.F4 "setting as constraint" is the spatial-device field
+      (measured on *The Red House Mystery*: *"an office reachable only through a passage of
+      spring-hinged doors, plus a secret passage… door movements are legible only as shadows
+      on the passage wall"*). Real end-to-end result on that source: **4 parts → 19**.
+    - **[SUPERSEDED]** The old note here said `_atomize_extraction()` has no P3/P4-tier keys
       to read, so a P1-only source (all 12 novels + all 63 anthology stories) went from populating
       3 of the registry's 8 sampling axes to 5 of 8 after the Session 23 fix (gained `motive` via
       `victim`, `reveal_mechanic` via `resolution`, `social_dynamic` via `investigator`) — but

@@ -56,12 +56,21 @@ P2_FIELDS = ["suspect_architecture", "red_herring", "clue_fairness",
 
 # $ per million tokens, input/output. Per-source figures come from the measured
 # bake-off in docs/AI_COST_PLAYBOOK.md; a median source samples ~22.5K chars.
+# Measured per source on a real Hitchcock story at P1P2P3, not estimated.
+# P3 adds 8 fields for ~$0.03 on Opus; running it as its own later pass would
+# cost a further ~$8 and an hour, because it re-reads the same books.
 COST_PER_SOURCE = {
-    "claude-opus-5": 0.118,
-    "claude-sonnet-4-6": 0.052,
-    "claude-haiku-4-5": 0.015,
-    "claude-haiku-4-5-20251001": 0.015,
+    "claude-opus-5": 0.147,
+    "claude-sonnet-4-6": 0.065,
+    "claude-haiku-4-5": 0.019,
+    "claude-haiku-4-5-20251001": 0.019,
 }
+
+# P1+P2+P3. P3 (Craft) is where "setting as constraint" lives -- how the
+# environment limits what is possible and how the culprit exploited it -- which
+# is the transferable part of a crime scene: a relation, not a floor plan, so it
+# survives the jump from a country house to a Mars dome.
+PROTOCOL = "P1P2P3"
 
 
 # Filenames carry the download site that produced them. Strip that for display
@@ -177,12 +186,20 @@ def scan() -> tuple[dict, list]:
             continue
         if not isinstance(d, dict) or "_meta" not in d:
             continue
+        # Scope is deliberately "has no P2 content" -- the 75 P1-only sources --
+        # even though the protocol run on them is P1P2P3. Selecting on "lacks P3"
+        # instead pulls in all 564 extractions, including the 206 already at P1P2
+        # and every ebook_* source: ~$83, and mostly blocked on PDFs that are no
+        # longer on disk. Deepening those is a separate, larger decision.
         if any(d.get(k) for k in P2_FIELDS):
-            continue                      # already has P2 content
+            continue
         meta = d["_meta"]
         recorded = meta.get("source") or meta.get("filename") or ""
+        if not recorded:
+            orphans.append(f.name)        # no recorded source: nothing to re-read
+            continue
         found = find_source(recorded)
-        key = recorded or f.name
+        key = recorded
         entry = plan.setdefault(key, {
             "recorded": recorded,
             "path": found,
@@ -358,7 +375,9 @@ def main():
     can = sum(v["count"] for v in runnable.values())
     per = COST_PER_SOURCE.get(args.model, 0.12)
 
-    print(f"P1-only extractions: {total}   from {len(plan)} source file(s)\n")
+    print(f"P1-only extractions: {total}   from {len(plan)} source file(s)")
+    print(f"target protocol: {PROTOCOL}")
+    print()
 
     if runnable:
         print("UPGRADEABLE — source PDF found:")
@@ -375,7 +394,7 @@ def main():
         print("\nBLOCKED — source PDF not on this machine:")
         for v in sorted(blocked.values(), key=lambda x: -x["count"]):
             print(f"  {v['count']:>3} extraction(s)  {Path(v['recorded']).name[:64]}")
-        print("  These stay P1-only until the file is put back under "
+        print("  These stay as they are until the file is put back under "
               "mystery_database/new_sources/ (any subdirectory).")
 
     if args.check_sources:
@@ -398,7 +417,7 @@ def main():
     failures = 0
     for v in sorted(runnable.values(), key=lambda x: -x["count"]):
         cmd = [sys.executable, str(ROOT / "scripts" / "extract_from_pdfs.py"),
-               str(v["path"]), "--protocol", "P1P2", "--model", args.model, "--upgrade"]
+               str(v["path"]), "--protocol", PROTOCOL, "--model", args.model, "--upgrade"]
         if v["anthology"]:
             cmd.append("--anthology")
         else:

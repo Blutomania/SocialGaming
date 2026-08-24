@@ -31,7 +31,7 @@ from typing import Dict, List, Optional, Tuple
 # KEY_TO_IDX and the cached registry had no way to know — and unlike new source
 # files it cannot be detected by looking at the corpus, because nothing on disk
 # changed. Bumping this forces one rebuild; it costs no API calls.
-REGISTRY_SCHEMA_VERSION = 2
+REGISTRY_SCHEMA_VERSION = 3   # 3: P3 keys added to KEY_TO_IDX (Session 34)
 
 
 # ============================================================================
@@ -438,6 +438,28 @@ class PartRegistry:
             "alibi":                8,
             "investigator_wound":   7,  # investigator-character content, same axis
                                         # as "investigator"
+            # P3 (Craft) -- added Session 34, when a P1P2P3 pass was first run.
+            # Before this, a P3 extraction produced 8 extra fields and exactly
+            # ZERO extra parts: the fields landed on disk at full API cost and
+            # generation never saw one of them. That is the same failure as the
+            # P2 fields in Session 23 and the stale registry in Session 33, so
+            # it is mapped here in the same commit that starts extracting it.
+            "victims_enemies":      3,  # who had reason to want the victim dead —
+                                        # motive material, matching "victim" above
+            "setting_as_constraint": 2, # how the environment limits what is possible
+                                        # and how the culprit exploited that
+            "suspect_wounds":       4,  # what kind of person the suspect is
+            "false_suspect":        5,  # misdirection, same axis as red_herring
+            "unreliable_frame":     6,  # how the truth is withheld and then shown
+            "technical_detail":     6,  # the domain knowledge that both enables the
+                                        # method and exposes it — a reveal mechanic
+            "moral_ambiguity":      7,  # the social/ethical texture of the group
+            # "evidence_type" (P3.F5) is deliberately unmapped, for the same
+            # reason as "media_and_audience": there is no honest axis for it.
+            # Axis 8 was NAMED evidence_type until Session 34's predecessor
+            # renamed it to "alibi" precisely because it held alibi content —
+            # mapping F5 there now would re-create the mislabeling that rename
+            # existed to fix.
         }
         for key, idx in KEY_TO_IDX.items():
             raw = extraction.get(key)

@@ -154,7 +154,7 @@ def main():
             results[model] = {"error": str(exc)[:200]}
             continue
         elapsed = time.time() - t
-        raw = r.content[0].text
+        raw = next((b.text for b in r.content if getattr(b, 'type', None) == 'text'), '')
         try:
             data = ep.parse_extraction_response(raw) if hasattr(ep, "parse_extraction_response") \
                    else json.loads(raw.split("```json")[1].split("```")[0] if "```json" in raw else raw)
