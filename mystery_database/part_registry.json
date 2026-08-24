@@ -44090,7 +44090,7 @@
     "source_id": "corpus_bac2e179",
     "part_index": 1,
     "part_type": "crime_type",
-    "content": "Double homicide by gunshot in a lakeside cottage. Central question: Was the shooting justified self-defense, crime of passion, or premeditated murder masked by circumstance?",
+    "content": "Double homicide by shooting: a jealous deputy empties his revolver into a couple in a darkened cottage bedroom, mistakenly believing the woman is his fianc\u00e9e. Earlier, the same man fatally shot an unarmed vagrant. Central question is not whodunit but whether the shooter can control his impulse to kill.",
     "source_title": "Winter Run",
     "setting_tags": [
       "universal"
@@ -44100,7 +44100,7 @@
     "source_id": "corpus_bac2e179",
     "part_index": 2,
     "part_type": "setting_element",
-    "content": "Wagon Lake, a Midwestern suburban town with a frozen lake, shuttered cottages, and a small-town law enforcement structure. Kendell works as deputy patrolling the lake nightly; the confined geography and social intimacy create inevitable collision.",
+    "content": "Wagon Lake, a small midwestern former summer resort in winter \u2014 shuttered lakefront cottages, a few bars like the Blue Zebra, patrolled by a single night deputy",
     "source_title": "Winter Run",
     "setting_tags": [
       "universal"
@@ -44110,7 +44110,7 @@
     "source_id": "corpus_bac2e179",
     "part_index": 3,
     "part_type": "motive",
-    "content": "Johnny Kendell, the protagonist and deputy, commits the murders. Motive: belief that Sandy and Woodman are in the cottage together, fueled by jealousy, wounded pride, and unresolved trauma from killing an innocent man days before.",
+    "content": "Johnny Kendell himself \u2014 sexual jealousy and a compulsive, unresolved violence; he believed Woodman was sleeping with his fianc\u00e9e Sandy and killed on that assumption",
     "source_title": "Winter Run",
     "setting_tags": [
       "universal"
@@ -44120,7 +44120,57 @@
     "source_id": "corpus_bac2e179",
     "part_index": 3,
     "part_type": "motive",
-    "content": "Milt Woodman (seducer and manipulator) and Mrs. Dade (sheriff's wife). Woodman was 'killable' due to his affair with Kendell's fianc\u00e9e Sandy and his pattern of using cottages for illicit encounters. Mrs. Dade becomes collateral victim.",
+    "content": "Milt Woodman, the fired ex-deputy womanizer who used the cottages for trysts and taunted Kendell, plus Mrs. Dade, the sheriff's wife, secretly his lover; earlier victim was an unnamed derelict who stole gin.",
+    "source_title": "Winter Run",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_bac2e179",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "No restoration of order: the reveal is ironic \u2014 the woman was the sheriff's wife, not Sandy; Kendell drops the gun and flees, knowing pursuit is certain",
+    "source_title": "Winter Run",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_bac2e179",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "Johnny Kendell, ex-cop turned lake-patrol deputy \u2014 the perpetrator himself as viewpoint character, investigating the affair that he will punish",
+    "source_title": "Winter Run",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_bac2e179",
+    "part_index": 4,
+    "part_type": "suspect_archetype",
+    "content": "Not a whodunit cast; a small triangle of possible betrayers around Kendell: Milt Woodman (fired deputy, womanizer, opportunity at the cottages), Sandy Brown (fianc\u00e9e, growing distant, seen laughing with Woodman), and Sheriff Dade (employer, whose wife turns out to be the real woman). Differentiation is by relationship to Kendell rather than by means/motive for a murder.",
+    "source_title": "Winter Run",
+    "setting_tags": [
+      "maritime"
+    ]
+  },
+  {
+    "source_id": "corpus_bac2e179",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "The planted implication that Sandy is Woodman's lover: her chats with him at the supermarket, her cooling on marriage, her absence at midnight, her cigarette brand in the ashtray, and the mimeographed list she carried used as lipstick blotter \u2014 all pointing to a conclusion that is false.",
+    "source_title": "Winter Run",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_bac2e179",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "Clues are shown to the reader as Kendell sees them: Dade's evasions about why Woodman was fired, Dade's handsome younger blonde wife, Dade referring to Sandy as Kendell's 'wife', the list given to Kendell (which Dade also had access to), the scarf-concealed girl in Woodman's car \u2014 all available before the final identification.",
     "source_title": "Winter Run",
     "setting_tags": [
       "near_future"
@@ -44130,7 +44180,7 @@
     "source_id": "corpus_bac2e179",
     "part_index": 6,
     "part_type": "reveal_mechanic",
-    "content": "There is no formal resolution through investigation or justice. The narrative ends with Kendell's realization of his error\u2014he killed an innocent woman (Mrs. Dade, not Sandy)\u2014and his acceptance of inevitable capture and likely execution.",
+    "content": "Physical identification by match-light after the shooting: Kendell strikes a match over the bodies and sees the woman under the sheet is not Sandy but the sheriff's wife \u2014 demonstration by direct sight rather than deduction.",
     "source_title": "Winter Run",
     "setting_tags": [
       "universal"
@@ -44140,7 +44190,98 @@
     "source_id": "corpus_bac2e179",
     "part_index": 7,
     "part_type": "social_dynamic",
-    "content": "Johnny Kendell himself\u2014the protagonist detective-turned-deputy who investigates the evidence of Sandy's infidelity but becomes the perpetrator. The reader experiences the mystery through his perspective as both investigator and culprit.",
+    "content": "Wagon Lake, a former summer retreat for the rich turned commuter suburb; a politician-sheriff elected by new money, seasonal winter hiring, absentee cottage owners demanding protection of their property, and a bar culture of underage drinkers and idle men. Patronage: Dade hires and fires at will, and Kendell's livelihood and gun both come from him.",
+    "source_title": "Winter Run",
+    "setting_tags": [
+      "maritime"
+    ]
+  },
+  {
+    "source_id": "corpus_bac2e179",
+    "part_index": 8,
+    "part_type": "alibi",
+    "content": "Sandy's account of her whereabouts \u2014 'I went to a late movie' \u2014 explaining her empty motel room at midnight; Kendell disbelieves it, but it is in fact genuine and its apparent falseness drives the killings.",
+    "source_title": "Winter Run",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_bac2e179",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "Kendell is a policeman who emptied his revolver into an unarmed drunk in an alley and fled the hearing; his guilt, rage and inability to stop firing are reactivated by carrying a gun again, and jealousy over Sandy exploits exactly that wound into a repeat killing.",
+    "source_title": "Winter Run",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_bac2e179",
+    "part_index": 3,
+    "part_type": "motive",
+    "content": "Milt Woodman had a web of grievance around him: Sheriff Dade fired him for using the cottages he was paid to guard for trysts (and, unknowingly, was being cuckolded by him), and Johnny Kendell, his replacement, came to believe Woodman was sleeping with his fianc\u00e9e Sandy. Woodman also needled Kendell openly at the Blue Zebra.",
+    "source_title": "Winter Run",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_bac2e179",
+    "part_index": 2,
+    "part_type": "setting_element",
+    "content": "Wagon Lake in winter: shuttered lakefront cottages, frozen lake, dirt driveways and few witnesses. The deputy's own hourly-but-deliberately-irregular patrol route means only he knows where he'll be \u2014 and Woodman, having held the job, knew exactly which hidden driveway and empty cottage could not be observed.",
+    "source_title": "Winter Run",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_bac2e179",
+    "part_index": 4,
+    "part_type": "suspect_archetype",
+    "content": "Kendell's wound is the alley shooting: a rage-driven overkill of a harmless drunk that he fled rather than face a hearing. Taking a gun-carrying job reactivates exactly the flaw he claims to regret. Sandy's wound is her withdrawal and silence about the man in the supermarket, which reads as guilt though she is innocent of the affair.",
+    "source_title": "Winter Run",
+    "setting_tags": [
+      "near_future",
+      "royal_court"
+    ]
+  },
+  {
+    "source_id": "corpus_bac2e179",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "Sandy Brown \u2014 cast by Kendell (and by circumstance: laughing with Woodman at the checkout, empty motel room, evasive answers, her brand of cigarettes) as the woman in the cottage, though the woman was in fact Mrs. Dade.",
+    "source_title": "Winter Run",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_bac2e179",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "The narrative is locked to Kendell's suspicion-warped perception; his inferences (the cigarette brand, the lipstick-blotted list, the scarfed girl in Woodman's car) are presented as proof but are circumstantial and wrong about the woman's identity. Sandy also gives evasive accounts of her nights ('a late movie', 'just a customer').",
+    "source_title": "Winter Run",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_bac2e179",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "Police procedure and the deputy's own patrol craft: knowledge of the cottage-driveway layout, unlatched lakeside windows, the varied patrol schedule, and the issued .38 service revolver \u2014 the job's expertise is precisely what enables the killing.",
+    "source_title": "Winter Run",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_bac2e179",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "Kendell is a man genuinely horrified by his own violence, trying to build an ordinary life with the woman he loves; his killing springs from jealousy and an untreated trauma-reflex rather than malice, and the reader has watched him beg himself not to draw the gun. Sheriff Dade's silence about why Woodman was fired \u2014 protecting his own humiliation \u2014 helps set the trap.",
     "source_title": "Winter Run",
     "setting_tags": [
       "universal"
@@ -44150,7 +44291,108 @@
     "source_id": "corpus_2f88e7cc",
     "part_index": 1,
     "part_type": "crime_type",
-    "content": "Theft/con: Beggs is robbed of a suitcase containing $20,000 in hidden cash by a girl working at Lucky's Bar. Question: Was the girl real, or did Beggs hallucinate the entire encounter due to alcohol after 20 years of sobriety?",
+    "content": "Theft by 'rolling' a drunk: a B-girl drugs/liquors up ex-convict Beggs in a bar and steals the suitcase holding the $ he had hidden 20 years earlier (proceeds of the original robbery he served time for). Central question: who took the suitcase and where did it go?",
+    "source_title": "You Can\u2019t Blame Me",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_2f88e7cc",
+    "part_index": 2,
+    "part_type": "setting_element",
+    "content": "The old neighborhood: Lucky's (formerly Mike's) bar and the tenement three flights up \u2014 only the bartender and the girl were present with the suitcase",
+    "source_title": "You Can\u2019t Blame Me",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_2f88e7cc",
+    "part_index": 3,
+    "part_type": "motive",
+    "content": "Angela, the pale girl in the cheap white pearls who works the bar \u2014 revealed to be Beggs' own daughter; motive: mercenary theft from an easy drunk mark",
+    "source_title": "You Can\u2019t Blame Me",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_2f88e7cc",
+    "part_index": 3,
+    "part_type": "motive",
+    "content": "Harry Beggs, 50-year-old newly released convict, white-haired, naive after 20 years inside, carrying untraceable stolen cash he cannot report \u2014 the perfect mark",
+    "source_title": "You Can\u2019t Blame Me",
+    "setting_tags": [
+      "near_future",
+      "maritime"
+    ]
+  },
+  {
+    "source_id": "corpus_2f88e7cc",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "Ironic recognition rather than justice: Beggs meets his never-seen daughter and identifies her by the dead-white pearls as the thief; no recovery, no arrest",
+    "source_title": "You Can\u2019t Blame Me",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_2f88e7cc",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "The victim himself \u2014 Beggs, ex-convict protagonist whose limited, half-drunk viewpoint frames the whole story",
+    "source_title": "You Can\u2019t Blame Me",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_2f88e7cc",
+    "part_index": 4,
+    "part_type": "suspect_archetype",
+    "content": "Narrow cast around a single theft: the B-girl who drugged and rolled Beggs (opportunity, motive: money), the ferret-faced bartender who denies everything (opportunity, plausible accomplice), and by implication the estranged wife Edith. The girl is revealed to be Beggs' own daughter Angela.",
+    "source_title": "You Can\u2019t Blame Me",
+    "setting_tags": [
+      "maritime"
+    ]
+  },
+  {
+    "source_id": "corpus_2f88e7cc",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "The bartender's hostility, contempt and blank denials steer suspicion onto him as thief or accomplice, deflecting from the girl and from her identity",
+    "source_title": "You Can\u2019t Blame Me",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_2f88e7cc",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "Fairly planted physical clue: the cheap dead-white pearls and pale blonde prettiness of the bar girl are described in detail before the identical necklace appears on Angela in the closing line; also Beggs' own age-arithmetic about Edith and the drugged drink poured from a displayed bottle",
+    "source_title": "You Can\u2019t Blame Me",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_2f88e7cc",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "Visual recognition rather than deduction: the same distinctive strand of cheap dead-white pearls worn by the bar girl is seen on Beggs' never-met daughter, silently confirming she robbed her own father",
+    "source_title": "You Can\u2019t Blame Me",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_2f88e7cc",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "Post-prison underclass America: warden/ex-con power gap, decaying tenement neighborhood, a rough workingman's bar gentrified into a clip-joint cocktail lounge where a bartender tolerates a house B-girl; an abandoned wife who never visited and a daughter forced into the trade",
     "source_title": "You Can\u2019t Blame Me",
     "setting_tags": [
       "near_future",
@@ -44159,130 +44401,436 @@
   },
   {
     "source_id": "corpus_2f88e7cc",
+    "part_index": 8,
+    "part_type": "alibi",
+    "content": "The bartender's flat denial that any girl works there functions as a collective alibi for both; Angela's alibi is being asleep in her bedroom when her mother wakes her",
+    "source_title": "You Can\u2019t Blame Me",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_2f88e7cc",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "Beggs, his own investigator, is wounded by twenty lost years, old age and shame; his craving for kindness and human contact from a young woman is exactly what the crime exploits, and the truth destroys his reunion with his family",
+    "source_title": "You Can\u2019t Blame Me",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_2f88e7cc",
     "part_index": 3,
     "part_type": "motive",
-    "content": "The girl at Lucky's Bar (revealed as Beggs' own daughter Angela, whom he never knew). Motive is ambiguous: whether deliberate revenge, opportunistic theft, or whether the entire encounter was Beggs' drunken hallucination.",
+    "content": "Beggs, the victim of the roll, has no enemies in the ordinary sense \u2014 the person who robs him is his own daughter Angela, who has never met him, and the wife Edith who never visited him in twenty years. The grievance web is familial abandonment: a wife who stopped coming, a child raised without a father, a neighborhood that has forgotten him. The bartender's contempt and denial ('no girl works here') completes the circle of indifference.",
     "source_title": "You Can\u2019t Blame Me",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_2f88e7cc",
+    "part_index": 2,
+    "part_type": "setting_element",
+    "content": "Twenty years of prison is the constraint: it makes Beggs an old man who cannot hold liquor, cannot recognize the changed neighborhood, and cannot know his own daughter's face. Mike's honest, brightly lit bar has become Lucky's \u2014 dark, chromed, 'too dark for an old pair of eyes' \u2014 an environment engineered for rolling drunks, which the girl exploits. And the stolen money's illegality means the police can never be called.",
+    "source_title": "You Can\u2019t Blame Me",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_2f88e7cc",
+    "part_index": 4,
+    "part_type": "suspect_archetype",
+    "content": "Angela's vulnerability is her trade \u2014 a bar girl working a room whose owner denies she exists; she must deny and vanish or lose everything. The bartender's wound is his establishment's respectability ('You got the wrong idea about the kind of place I run'), which forces him to lie about the girl and so look complicit in the theft. Beggs' own wound is that he is a convicted thief protecting stolen money, so he can never report the robbery.",
+    "source_title": "You Can\u2019t Blame Me",
+    "setting_tags": [
+      "maritime",
+      "royal_court"
+    ]
+  },
+  {
+    "source_id": "corpus_2f88e7cc",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "The ferret-faced bartender, who takes the full weight of Beggs' accusation \u2014 he served the doctored drinks, denied the girl's existence, and threw Beggs into the street \u2014 yet the theft was the girl's work, and his lie was to protect his own license, not the loot.",
+    "source_title": "You Can\u2019t Blame Me",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_2f88e7cc",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "The story is told close to Beggs, whose account cannot be trusted: he denies the theft to the Warden ('What money?') while going straight to the buried suitcase; he is drunk on his first whiskey in twenty years and drugged, so the crucial hour is a blackout narrated as a prison dream. The bartender's flat denial is a second false account, and Edith's warmth conceals what her daughter does at night.",
+    "source_title": "You Can\u2019t Blame Me",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_2f88e7cc",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "The B-girl con: a house girl befriends a lone drunk, gets him to buy rounds, takes hers 'with ginger ale' so she stays sober, moves him from the bar to a table out of the bartender's line of sight, and lets the liquor (on a stomach that hasn't had whiskey in two decades) do the rest. The numb foot and lost hours suggest the drink was more than whiskey.",
+    "source_title": "You Can\u2019t Blame Me",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_2f88e7cc",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "Angela is a girl raised fatherless in a decaying tenement by a worn-out mother, working a cocktail lounge to survive; she rolled an anonymous old drunk carrying a suitcase, not knowing he was her father returning with the family's money. The victim is himself a thief reclaiming stolen cash, and his own line \u2014 'I'm one guy you can't blame for anything' \u2014 turns back on him: he blames no one, and the daughter cannot be blamed either. The punishment is exactly proportional and entirely undeserved by",
+    "source_title": "You Can\u2019t Blame Me",
+    "setting_tags": [
+      "near_future",
+      "maritime",
+      "royal_court"
+    ]
+  },
+  {
+    "source_id": "corpus_39de6573",
+    "part_index": 1,
+    "part_type": "crime_type",
+    "content": "Murder disguised as accident: the visiting girl is poisoned (grapejuice) and her body cast into the gorge, so her red hair can complete the hair wreath. Central question: how did Aunt Abbie perform the death rites (mirror, scissors) if the girl 'walked to death' into the gorge?",
+    "source_title": "A Flower in Her Hair",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_39de6573",
+    "part_index": 2,
+    "part_type": "setting_element",
+    "content": "Aunt Abbie's isolated hill-country cabin on a ridge above a gorge, hours' walk over boulder-strewn hills; only three people present \u2014 Melinda, Aunt Abbie, and the girl",
+    "source_title": "A Flower in Her Hair",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_39de6573",
+    "part_index": 3,
+    "part_type": "motive",
+    "content": "Aunt Abbie, the family record keeper, killed the girl to obtain the red hair needed to finish her memorial hair wreath \u2014 obsessive collector's compulsion masked as 'second sight'",
+    "source_title": "A Flower in Her Hair",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_39de6573",
+    "part_index": 3,
+    "part_type": "motive",
+    "content": "Marty's daughter, a twenty-four-year-old red-haired city girl, orphaned and 'just passing through' \u2014 unmissed, blood kin, and possessing the only red hair in the family, needed for the wreath's last flower, the rose",
+    "source_title": "A Flower in Her Hair",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_39de6573",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "No restoration of order: Melinda deduces the contradiction \u2014 Abbie could not have taken the mirror-and-scissors rites at the gorge bottom \u2014 but suppresses it in awe and accepts the story; the murderer goes unpunished",
+    "source_title": "A Flower in Her Hair",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_39de6573",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "Melinda, the credulous rustic cousin and hostess \u2014 an unwitting accomplice whose limited perspective frames the story; the reader sees past her deference to the truth",
+    "source_title": "A Flower in Her Hair",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_39de6573",
+    "part_index": 4,
+    "part_type": "suspect_archetype",
+    "content": "Effectively a single suspect: Aunt Abbie, the aged 'record keeper' with second sight, motive being the covetous need for red hair to complete her hair wreath, means (poisoned grapejuice, claw hammer, scissors, mirror) and total opportunity once left alone with the girl. Melinda is the only other figure, an unwitting accomplice/witness who delivers the victim and departs.",
+    "source_title": "A Flower in Her Hair",
+    "setting_tags": [
+      "near_future",
+      "maritime"
+    ]
+  },
+  {
+    "source_id": "corpus_39de6573",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "The girl's sickness is repeatedly attributed to sun, heat and city frailty ('too much sun', 'she ain't healthy'), misdirecting from poisoning; also Abbie's 'second sight' prophecy of death is offered as explanation for the death rather than her causing it.",
+    "source_title": "A Flower in Her Hair",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_39de6573",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "All clues are shown to the reader as Melinda sees them: the claw hammer at the sill (twice), the grapejuice cup and the greenish skin, the empty rose outline needing red hair, the pocket mirror on the floor, and Abbie's rule of never cutting a live lock \u2014 the reader can solve it exactly when Melinda balks.",
+    "source_title": "A Flower in Her Hair",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_39de6573",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "The physical impossibility of the ritual: Abbie never cuts a lock from the living, requiring the mirror-at-the-lips test and scissors at the deathbed \u2014 yet the girl supposedly died at the bottom of the gorge. The red strand already stitched into the rose, plus the mirror found on the floor, demonstrates the murder.",
+    "source_title": "A Flower in Her Hair",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_39de6573",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "An insular Ozark-style kin network where blood relation compels obligation and the elder 'record keeper' holds unquestioned authority through folklore, prophecy and memorial craft; the city-bred outsider is both outsider and, being kin, property of the family record.",
+    "source_title": "A Flower in Her Hair",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_39de6573",
+    "part_index": 8,
+    "part_type": "alibi",
+    "content": "Abbie's alibi is narrative rather than physical: she claims the girl 'went walkin' to death' and fell into the gorge, placing the death outside the cabin and beyond her hand \u2014 an account undermined by her possession of the hair.",
+    "source_title": "A Flower in Her Hair",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_39de6573",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "Melinda, the de facto investigator, is crippled by reverence for kin and for Abbie's supposed gift; her pride in the family's mystic record keeper makes her suppress the contradiction she herself has spotted, and her guilt at having brought the girl is buried under veneration.",
+    "source_title": "A Flower in Her Hair",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_39de6573",
+    "part_index": 3,
+    "part_type": "motive",
+    "content": "The victim \u2014 'Marty's girl,' a nameless red-haired city visitor \u2014 has no enemies in any ordinary sense. Her only 'grievance-holder' is Aunt Abbie, and the grievance is aesthetic and obsessive rather than personal: the girl possesses the one color of hair missing from the hair wreath. The relationship texture is a suffocating claim of blood kinship ('she's blood kin, so you should see her') that the girl resents and that Abbie converts into a right of ownership over her body.",
+    "source_title": "A Flower in Her Hair",
+    "setting_tags": [
+      "near_future",
+      "maritime"
+    ]
+  },
+  {
+    "source_id": "corpus_39de6573",
+    "part_index": 2,
+    "part_type": "setting_element",
+    "content": "The remote hill country does the killer's work: miles of boulder-strewn, sun-beaten ground exhaust the city-bred girl and make her collapse plausible; the isolated ridge cabin has no witnesses; the gorge below the rim provides an unquestionable accident site and a body no one will retrieve; and the distance itself justifies Melinda leaving the girl alone overnight and delaying the truck until dawn.",
+    "source_title": "A Flower in Her Hair",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_39de6573",
+    "part_index": 4,
+    "part_type": "suspect_archetype",
+    "content": "Melinda's wound is her need to believe. Her pride in kinship and her veneration of Aunt Abbie's 'second sight' make her the unwitting deliverer of the victim and the suppressor of her own suspicion; her mind 'groped for understanding' and then chose acceptance. Aunt Abbie's wound is her compulsion to complete the record \u2014 the unfinished rose is a gap she cannot tolerate.",
+    "source_title": "A Flower in Her Hair",
     "setting_tags": [
       "maritime"
     ]
   },
   {
-    "source_id": "corpus_2f88e7cc",
+    "source_id": "corpus_39de6573",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "No conventional false suspect exists; the narrative instead offers false *causes* \u2014 sunstroke and city frailty ('Too much sun, maybe. Her skin looks kinda green') and the girl's own alleged suicidal walk to meet death. Melinda, who dragged the exhausted girl across the hills and abandoned her, is the closest thing to an innocent bearing complicity.",
+    "source_title": "A Flower in Her Hair",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_39de6573",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "The story is filtered through Melinda's credulous, admiring perception, and the only account of the death is Aunt Abbie's \u2014 a self-serving fiction of prophecy ('I seen death on that girl,' 'she went walkin' to death'). Abbie also feigns forgetfulness ('How's who?'). Melinda notices the contradiction and deliberately edits it away, making her a narrator who lies to herself rather than to us.",
+    "source_title": "A Flower in Her Hair",
+    "setting_tags": [
+      "royal_court"
+    ]
+  },
+  {
+    "source_id": "corpus_39de6573",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "Victorian hair-work mourning craft: memorial wreaths woven from the hair of dead relatives, each flower a person, colors matched to hair shade (black-eyed Susan centers from black hair, buttercups from a child's yellow). The craft's rule \u2014 hair is never snipped from the living, and death is confirmed by holding a mirror to the lips until it no longer fogs \u2014 is exactly what exposes Abbie, since the rose was already stitched and the mirror was in the cabin.",
+    "source_title": "A Flower in Her Hair",
+    "setting_tags": [
+      "victorian",
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_39de6573",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "Aunt Abbie is not a hater but a curator. She kills to complete an act of devotion \u2014 'It's a kind of memorial. Shows my respect, sort of' \u2014 and confines her collecting strictly to blood kin, a code of decorum she observes with dignity. Her 'second sight' may be sincerely believed: she may experience her killings as prophecy fulfilled rather than murder, and the poisoned grapejuice as a gentle sleep. The horror lies in love of the record outweighing love of the living.",
+    "source_title": "A Flower in Her Hair",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_b7cd6a20",
+    "part_index": 1,
+    "part_type": "crime_type",
+    "content": "Killing of Kent Castwell \u2014 struck with a piece of stovewood by his lodger after Castwell destroyed his paintings. The question is not whodunit (confessed) but whether the County will prosecute given the cost.",
+    "source_title": "The Cost of Kent Castwell",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_b7cd6a20",
+    "part_index": 2,
+    "part_type": "setting_element",
+    "content": "Ashby, an impoverished, thrift-obsessed rural New England town, and the isolated old Peabody place a mile from any other house; the town's tiny circle of officials",
+    "source_title": "The Cost of Kent Castwell",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_b7cd6a20",
     "part_index": 3,
     "part_type": "motive",
-    "content": "Harry Beggs: recently released convict (served 20 years), vulnerable due to age (50), isolation, no family support, inexperience with modern society, and sudden re-introduction to alcohol after two decades.",
-    "source_title": "You Can\u2019t Blame Me",
+    "content": "Bob Laurel, the lodger-artist, killed Castwell in rage after Castwell smeared paint over and ruined all his paintings \u2014 the last straw after months of theft and harassment",
+    "source_title": "The Cost of Kent Castwell",
     "setting_tags": [
-      "contemporary",
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_b7cd6a20",
+    "part_index": 3,
+    "part_type": "motive",
+    "content": "Kent Castwell, a loud, abusive freeloading outsider who beat his common-law wife, stole from his lodger, and deliberately cost thrifty Ashby County hundreds of dollars \u2014 universally unwanted",
+    "source_title": "The Cost of Kent Castwell",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_b7cd6a20",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "No trial: the sheriff, D.A. and tax assessor calculate a prosecution would cost thousands, declare Clem's account mere hearsay, turn their backs while Clem burns the confession and lights his cigar with it; Laurel is left free to take the evening train",
+    "source_title": "The Cost of Kent Castwell",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_b7cd6a20",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "Clem Goodhue, the local taxi driver \u2014 an insider go-between who receives the confession and brokers its suppression, alongside the county officials (Sheriff Erastus Nickerson, D.A. Coolidge, Assessor Levi Nickerson)",
+    "source_title": "The Cost of Kent Castwell",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_b7cd6a20",
+    "part_index": 4,
+    "part_type": "suspect_archetype",
+    "content": "Inverted structure: the killer (Bob Laurel, the lodger-artist) confesses immediately; the 'suspects' are effectively the whole town, all of whom had motive to be rid of Kent Castwell \u2014 Clem the taxi driver (cheated of fare), Levi Nickerson the Tax Assessor, Sheriff Erastus Nickerson, D.A. Gamaliel Coolidge, Judge Bradford, and abused common-law wife Louise. Differentiation is by degree of financial grievance rather than by means/opportunity.",
+    "source_title": "The Cost of Kent Castwell",
+    "setting_tags": [
       "maritime"
     ]
   },
   {
-    "source_id": "corpus_2f88e7cc",
+    "source_id": "corpus_b7cd6a20",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "The proposed cover story that the death was accidental \u2014 a fall and a blow to the head \u2014 supported by the absence of blood on the stovewood; also the town's earlier bets and speculation that Laurel would simply pack up and leave.",
+    "source_title": "The Cost of Kent Castwell",
+    "setting_tags": [
+      "maritime"
+    ]
+  },
+  {
+    "source_id": "corpus_b7cd6a20",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "Fairness is preserved by relentless prior demonstration of Ashby's parsimony (steamed-open envelopes, unraveled socks, dim headlight, closed jail, ten-cent cigar bets), so the reader can predict the officials' cost-based suppression of the crime before it happens.",
+    "source_title": "The Cost of Kent Castwell",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_b7cd6a20",
     "part_index": 6,
     "part_type": "reveal_mechanic",
-    "content": "No resolution provided. The story ends in ambiguity: Beggs confronts the bartender; is thrown out; goes to his estranged wife Edith; and is introduced to their daughter Angela\u2014who is wearing the same pearls as the bar girl. The reader cannot determine if Beggs was robbed or deceived.",
-    "source_title": "You Can\u2019t Blame Me",
-    "setting_tags": [
-      "universal"
-    ]
-  },
-  {
-    "source_id": "corpus_2f88e7cc",
-    "part_index": 7,
-    "part_type": "social_dynamic",
-    "content": "Harry Beggs himself: the protagonist and victim who must piece together whether he was conned, robbed, or hallucinating. The reader experiences events through his disoriented, vulnerable perspective.",
-    "source_title": "You Can\u2019t Blame Me",
-    "setting_tags": [
-      "universal"
-    ]
-  },
-  {
-    "source_id": "corpus_39de6573",
-    "part_index": 1,
-    "part_type": "crime_type",
-    "content": "Murder by poisoning (grapejuice) and hair harvesting; central question: how did Aunt Abbie obtain the victim's hair if she fell into the gorge?",
-    "source_title": "A Flower in Her Hair",
-    "setting_tags": [
-      "near_future"
-    ]
-  },
-  {
-    "source_id": "corpus_39de6573",
-    "part_index": 2,
-    "part_type": "setting_element",
-    "content": "Aunt Abbie's isolated cabin in the hills, reached only by a rough walk through boulder-strewn terrain; the girl is physically isolated and dependent on Melinda and Aunt Abbie.",
-    "source_title": "A Flower in Her Hair",
-    "setting_tags": [
-      "near_future"
-    ]
-  },
-  {
-    "source_id": "corpus_39de6573",
-    "part_index": 3,
-    "part_type": "motive",
-    "content": "Aunt Abbie, the elderly record keeper with 'second sight'; motive is to complete her hair wreath memorial\u2014the victim's red hair is the final 'rose' needed to finish the family death record.",
-    "source_title": "A Flower in Her Hair",
-    "setting_tags": [
-      "near_future"
-    ]
-  },
-  {
-    "source_id": "corpus_39de6573",
-    "part_index": 3,
-    "part_type": "motive",
-    "content": "Marty's daughter, a young red-haired woman visiting from the city; killable because she is an orphan ('You're all alone?'), has no local ties, and her distinctive red hair is needed for Aunt Abbie's hair wreath.",
-    "source_title": "A Flower in Her Hair",
-    "setting_tags": [
-      "near_future"
-    ]
-  },
-  {
-    "source_id": "corpus_39de6573",
-    "part_index": 6,
-    "part_type": "reveal_mechanic",
-    "content": "Melinda gradually realizes the logical impossibility of Aunt Abbie's account: the girl could not have fallen into the gorge AND provided her hair through Aunt Abbie's ritual. Melinda accepts the truth through deduction and her knowledge of Aunt Abbie's methods.",
-    "source_title": "A Flower in Her Hair",
-    "setting_tags": [
-      "near_future"
-    ]
-  },
-  {
-    "source_id": "corpus_39de6573",
-    "part_index": 7,
-    "part_type": "social_dynamic",
-    "content": "Melinda, the victim's cousin and accomplice/witness; through her perspective we see the gradual realization of Aunt Abbie's crime, though she ultimately accepts it with 'pride-filled mind.'",
-    "source_title": "A Flower in Her Hair",
+    "content": "A written confession delivered by proxy \u2014 Clem relays Laurel's account and lays the signed paper on the kitchen table; it is then legally nullified by the sheriff declaring it hearsay while the officials turn to admire the sunset and Clem burns the page in the stove, lighting his cigar with the last corner.",
+    "source_title": "The Cost of Kent Castwell",
     "setting_tags": [
       "universal"
     ]
   },
   {
     "source_id": "corpus_b7cd6a20",
-    "part_index": 1,
-    "part_type": "crime_type",
-    "content": "Murder by blunt force trauma (stovewood to the head). Central question: Will the confession be acted upon, or will the killing be concealed as an accident?",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "A depressed New England town governed by kinship and thrift: Levi P. Nickerson is Tax Assessor and realtor, his cousin Erastus is Sheriff, Gamaliel Coolidge the D.A., Judge Bradford on the bench \u2014 an interlocking network where the tax rate outranks the law and an outsider who costs money forfeits protection.",
     "source_title": "The Cost of Kent Castwell",
     "setting_tags": [
-      "universal"
+      "maritime",
+      "royal_court"
+    ]
+  },
+  {
+    "source_id": "corpus_b7cd6a20",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "The officials' vulnerability is their ingrained Yankee thrift \u2014 Sheriff Nickerson, the Assessor and the D.A. cannot bear the cost of justice, so their guiding virtue ('Waste not, want not') becomes the pressure that makes them suppress a murder.",
+    "source_title": "The Cost of Kent Castwell",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_b7cd6a20",
+    "part_index": 3,
+    "part_type": "motive",
+    "content": "Kent Castwell antagonized essentially the entire town of Ashby: Clem the taxi driver he shorted on fare, Levi Nickerson the tax assessor whose county budget he inflated, Judge Bradford whom he forced to open the jail, the abused Louise and her daughter Kathie, and finally Bob Laurel, the lodger he cheated of advance rent, robbed of food and wood, and whose paintings he destroyed.",
+    "source_title": "The Cost of Kent Castwell",
+    "setting_tags": [
+      "near_future"
     ]
   },
   {
     "source_id": "corpus_b7cd6a20",
     "part_index": 2,
     "part_type": "setting_element",
-    "content": "The isolated Peabody place (old farmhouse three miles from town) and the small rural town of Ashby, Massachusetts\u2014a tightly-knit community where everyone knows everyone and the county officials control local justice.",
-    "source_title": "The Cost of Kent Castwell",
-    "setting_tags": [
-      "universal"
-    ]
-  },
-  {
-    "source_id": "corpus_b7cd6a20",
-    "part_index": 3,
-    "part_type": "motive",
-    "content": "Bob Laurel, an artist lodging at the Peabody place, kills Castwell in rage after Castwell destroys his paintings with paint. Motive: provocation and destruction of property, but the crime becomes justified in the eyes of local officials because Castwell was a burden to the county.",
+    "content": "Impoverished rural Ashby, where thrift is a moral system: the isolated Peabody place a mile from any neighbor, no indoor plumbing, a closed jail too expensive to heat, plowing and school-bus costs, and a tax rate that governs every decision \u2014 including whether a killing gets prosecuted.",
     "source_title": "The Cost of Kent Castwell",
     "setting_tags": [
       "near_future"
@@ -44290,9 +44838,19 @@
   },
   {
     "source_id": "corpus_b7cd6a20",
-    "part_index": 3,
-    "part_type": "motive",
-    "content": "Kent Castwell, a parasitic drifter who exploited the rural community financially and emotionally\u2014stealing, freeloading, assaulting his lodger Bob Laurel, and costing the county thousands in law enforcement and infrastructure expenses.",
+    "part_index": 4,
+    "part_type": "suspect_archetype",
+    "content": "Bob Laurel's wound is the artist's vulnerability to ridicule and material loss \u2014 a city outsider who threw his money around, was mocked for his painting, and finally cracked when his work was ruined; his impulse to confess in writing is itself the self-incriminating gesture.",
+    "source_title": "The Cost of Kent Castwell",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_b7cd6a20",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "None in the conventional sense \u2014 the confessed killer is the actual killer; the story inverts the trope by having the guilty man protected rather than an innocent accused.",
     "source_title": "The Cost of Kent Castwell",
     "setting_tags": [
       "universal"
@@ -44302,7 +44860,7 @@
     "source_id": "corpus_b7cd6a20",
     "part_index": 6,
     "part_type": "reveal_mechanic",
-    "content": "The confession is destroyed by Clem Goodhue (the taxi driver) and tacitly ignored by the sheriff, district attorney, and tax assessor, who turn their backs on the evidence. The killing is allowed to pass as an accident, with no formal investigation or prosecution.",
+    "content": "Everything is filtered through Clem Goodhue's secondhand retelling \u2014 the officials never read the confession, only hear Clem's account, which they deliberately reclassify as unactionable hearsay; Clem himself is a man who overcharges old ladies and steered Laurel to Castwell for county-thrift reasons.",
     "source_title": "The Cost of Kent Castwell",
     "setting_tags": [
       "universal"
@@ -44310,19 +44868,29 @@
   },
   {
     "source_id": "corpus_b7cd6a20",
-    "part_index": 7,
-    "part_type": "social_dynamic",
-    "content": "Clem Goodhue, the taxi driver and community observer, who becomes the de facto agent of justice by delivering the confession and orchestrating its destruction with the tacit cooperation of county officials (sheriff, district attorney, tax assessor).",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "Legal and administrative technicalities: hearsay is inadmissible, sentences can be ordered to run concurrently, jail costs must be borne by the county, and a body found with an unmarked head wound reads as an accidental fall.",
     "source_title": "The Cost of Kent Castwell",
     "setting_tags": [
-      "universal"
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_b7cd6a20",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "The conspirators suppress a homicide not from malice or greed but from a rigid Yankee thrift elevated to ethics \u2014 a trial would cost thousands and Castwell simply wasn't worth it; Laurel killed only after sustained abuse and the destruction of his life's work.",
+    "source_title": "The Cost of Kent Castwell",
+    "setting_tags": [
+      "near_future"
     ]
   },
   {
     "source_id": "corpus_064bf6c6",
     "part_index": 1,
     "part_type": "crime_type",
-    "content": "Murder by knife. Howard Jordan, posing as Roy Baker, lures his wife Carolyn to a Village apartment and kills her. Central question: how does the killer establish an alibi while committing the crime under a false identity?",
+    "content": "Premeditated stabbing murder of a wife, lured to a secret apartment by a voice impersonation; the question posed to police is who 'Roy Baker' is and where he fled \u2014 never that the husband did it",
     "source_title": "Pseudo Identity",
     "setting_tags": [
       "universal"
@@ -44332,17 +44900,7 @@
     "source_id": "corpus_064bf6c6",
     "part_index": 2,
     "part_type": "setting_element",
-    "content": "New York City during a specific night, split between Howard's office (with sign-in register), a midtown hotel (alibi location), and Roy Baker's Christopher Street apartment (crime scene). The urban setting allows identity fragmentation but constrains escape routes.",
-    "source_title": "Pseudo Identity",
-    "setting_tags": [
-      "near_future"
-    ]
-  },
-  {
-    "source_id": "corpus_064bf6c6",
-    "part_index": 3,
-    "part_type": "motive",
-    "content": "Howard Jordan / Roy Baker is the culprit. Motive: hatred born from discovering his wife's infidelity, but deeper motive is existential\u2014he murdered the life he hated (Howard Jordan) by destroying its anchor (Carolyn), believing he could live permanently as Roy Baker.",
+    "content": "The double life spanning midtown Manhattan office/alibi hotel, the Christopher Street Village apartment, and the New Hope, Bucks County split-level \u2014 a two-identity world only Jordan can cross",
     "source_title": "Pseudo Identity",
     "setting_tags": [
       "universal"
@@ -44352,7 +44910,58 @@
     "source_id": "corpus_064bf6c6",
     "part_index": 3,
     "part_type": "motive",
-    "content": "Carolyn Jordan, the wife. She is 'killable' because she represents everything Howard despises about his constrained life\u2014her coldness, her infidelity, her demand that he remain Howard Jordan instead of Roy Baker, and her financial control over him.",
+    "content": "Howard Jordan, adman living as 'Roy Baker,' killed his wife out of hatred for her adultery and for the life she forced on him, using his fabricated identity as the scapegoat",
+    "source_title": "Pseudo Identity",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_064bf6c6",
+    "part_index": 3,
+    "part_type": "motive",
+    "content": "Carolyn Jordan, the suburban wife who was cold to her husband, lived off his salary, and was secretly keeping Village lovers \u2014 making her both hated and easily explained as a victim of one of those lovers",
+    "source_title": "Pseudo Identity",
+    "setting_tags": [
+      "near_future",
+      "royal_court"
+    ]
+  },
+  {
+    "source_id": "corpus_064bf6c6",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "No legal resolution \u2014 the alibi holds and police hunt a nonexistent man; the ironic punishment is self-inflicted: by killing Carolyn he destroyed Roy Baker and is trapped as Howard Jordan, whom he cannot bear to be",
+    "source_title": "Pseudo Identity",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_064bf6c6",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "The murderer himself as viewpoint character; the nominal investigators are unnamed New York and local police who are wholly deceived",
+    "source_title": "Pseudo Identity",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_064bf6c6",
+    "part_index": 4,
+    "part_type": "suspect_archetype",
+    "content": "Minimal/inverted: the reader knows the killer from the start. The only 'suspect' pool is the fictitious Roy Baker (the killer's own alter ego, hunted as a real man), with the folk singer Stud Clement and Carolyn's other Village lovers as ambient alternatives, and the husband Howard Jordan cleared as a matter of form.",
+    "source_title": "Pseudo Identity",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_064bf6c6",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "The manufactured identity itself: Roy Baker, an 'irresponsible Village artist,' is framed as Carolyn's lover-killer, reinforced by an unclaimed airline reservation, abandoned clothes and an untouched bank account suggesting panicked flight.",
     "source_title": "Pseudo Identity",
     "setting_tags": [
       "near_future"
@@ -44360,9 +44969,109 @@
   },
   {
     "source_id": "corpus_064bf6c6",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "Fully open \u2014 the inverted form gives the reader every mechanic in advance: the double wallets, the lease signed in disguised handwriting, the monogrammed suitcase, the hotel-register manipulation and the imitated Tennessee accent are all shown as they are done.",
+    "source_title": "Pseudo Identity",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_064bf6c6",
     "part_index": 6,
     "part_type": "reveal_mechanic",
-    "content": "No resolution. The police never catch Howard Jordan. Fingerprint evidence identifies Carolyn's body and implicates 'Roy Baker' as the killer, but the false identity serves as a perfect scapegoat. Jordan's alibi holds (office until 11:15, then hotel). The mystery remains unsolved.",
+    "content": "No detective reveal; the demonstration is psychological and self-inflicted \u2014 Jordan cannot return to the Village because he would be recognized and arrested as Roy Baker, proving he murdered his own preferred self along with his wife.",
+    "source_title": "Pseudo Identity",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_064bf6c6",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "Two mutually exclusive class worlds of 1960s New York: Madison Avenue advertising respectability plus Bucks County split-level suburbia, versus the bohemian Village of folksingers, artists and coffee-house chess \u2014 with money as the hinge (his salary supports Carolyn, who in turn pays her lover's rent).",
+    "source_title": "Pseudo Identity",
+    "setting_tags": [
+      "maritime"
+    ]
+  },
+  {
+    "source_id": "corpus_064bf6c6",
+    "part_index": 8,
+    "part_type": "alibi",
+    "content": "A rigged office/hotel alibi: he signs the building register out and in around a sandwich break, leaves unsigned at 6:45 to commit the murder, returns unsigned, departs at 11:15 and sleeps at his habitual hotel where he had reserved a room in advance; police verify it and it holds.",
+    "source_title": "Pseudo Identity",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_064bf6c6",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "Transferred to the murderer as protagonist: Jordan's wound is that he loathes being Howard Jordan and can only live through an invented self \u2014 the crime exploits and then destroys that escape, leaving him trapped in the identity he hates.",
+    "source_title": "Pseudo Identity",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_064bf6c6",
+    "part_index": 3,
+    "part_type": "motive",
+    "content": "Carolyn's only real enemy is her husband Howard Jordan, whose grievance is textured: years of coldness, financial exploitation, his abandoned writing ambitions, and finally her serial infidelity with Village men (Phillie Wells, then Stud Clement, whose rent she paid). Her lovers are transactional, not hostile; the hatred is entirely marital.",
+    "source_title": "Pseudo Identity",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_064bf6c6",
+    "part_index": 2,
+    "part_type": "setting_element",
+    "content": "1960s Manhattan's compartmentalized geography and anonymity: Madison Avenue versus Greenwich Village, separated by a cab ride, lets one man hold two unconnected social worlds. The office sign-in register and the midtown hotel supply a bounded, documentable alibi, while Village indifference means screams go unanswered.",
+    "source_title": "Pseudo Identity",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_064bf6c6",
+    "part_index": 4,
+    "part_type": "suspect_archetype",
+    "content": "The 'suspect' Roy Baker is wounded by design \u2014 a bohemian drifter identity with no verifiable past, a fabricated dead wife, a rented room paid in cash, and an abandoned plane reservation that reads as flight. The real wound is Jordan's own: he cannot inhabit Howard Jordan, and killing Carolyn destroyed the only self he liked.",
+    "source_title": "Pseudo Identity",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_064bf6c6",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "Roy Baker \u2014 a wholly fictitious Village artist invented by the killer himself, framed by the lease, bank account, wardrobe and abandoned flight booking; police hunt a man who does not exist.",
+    "source_title": "Pseudo Identity",
+    "setting_tags": [
+      "royal_court"
+    ]
+  },
+  {
+    "source_id": "corpus_064bf6c6",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "Told in close third person aligned wholly with Jordan, who lies to his wife, his landlord, his neighbors, the police and finally rationalizes to himself; his self-analysis ('not blind to its psychological implications') is itself a performance he only sees through at the end.",
+    "source_title": "Pseudo Identity",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_064bf6c6",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "The mechanics of manufacturing a documented second identity: false name on a lease signed in altered handwriting, cash payment to avoid bank traces, monogrammed suitcase, bank account, book club and mailing-list mail \u2014 plus vocal mimicry of Stud Clement's Tennessee accent to lure Carolyn, and the sign-in/sign-out register manipulation.",
     "source_title": "Pseudo Identity",
     "setting_tags": [
       "near_future"
@@ -44372,17 +45081,151 @@
     "source_id": "corpus_064bf6c6",
     "part_index": 7,
     "part_type": "social_dynamic",
-    "content": "The reader. No detective investigates; police conduct routine checks. The narrative voice is omniscient, revealing Jordan's internal psychology and crimes. We are made complicit witnesses to a perfect crime rather than investigators solving it.",
+    "content": "Jordan is a man suffocated by a life he never chose, whose invented self is the only place he is creative, happy and kind; his wife is unfaithful and exploitative. Yet the murder is punished perfectly by its own logic \u2014 he destroys the self he loved, and the story ends in existential imprisonment rather than justice.",
     "source_title": "Pseudo Identity",
     "setting_tags": [
-      "universal"
+      "near_future"
     ]
   },
   {
     "source_id": "corpus_3c7a8083",
     "part_index": 1,
     "part_type": "crime_type",
-    "content": "Man overboard: Boris Volakov, Russian commissar, is thrown from a ship into fog-obscured waters. Central question: Was it murder, accident, or will the victim survive?",
+    "content": "Apparent murder: Janos, a Hungarian hammer thrower, hurls the Russian commissar Boris overboard into the fog. Central question: will the killing be discovered \u2014 and did Boris actually die?",
+    "source_title": "That Russian!",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_3c7a8083",
+    "part_index": 2,
+    "part_type": "setting_element",
+    "content": "A Russian ship carrying athletic teams across the ocean to New York, fog-bound and slowed, with a fixed shipboard population",
+    "source_title": "That Russian!",
+    "setting_tags": [
+      "maritime"
+    ]
+  },
+  {
+    "source_id": "corpus_3c7a8083",
+    "part_index": 3,
+    "part_type": "motive",
+    "content": "Janos, the Hungarian hammer thrower, acting in rage to protect Nadia from Boris's sexual assault (having earlier plotted to lure Boris into defecting via a fake rich-defector story)",
+    "source_title": "That Russian!",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_3c7a8083",
+    "part_index": 3,
+    "part_type": "motive",
+    "content": "Boris Volakov, Russian team commissar \u2014 feared and hated, a greedy opportunist and black marketeer who coerced female athletes with threats of exile, making him a natural target",
+    "source_title": "That Russian!",
+    "setting_tags": [
+      "maritime",
+      "royal_court"
+    ]
+  },
+  {
+    "source_id": "corpus_3c7a8083",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "Bela the pole vaulter reveals Boris survived, landing on a passing freighter's lifeboat, declared himself a refugee \u2014 but the ship was Russian; Janos is safe and marries Nadia, with Mariska revealed as his sister",
+    "source_title": "That Russian!",
+    "setting_tags": [
+      "maritime"
+    ]
+  },
+  {
+    "source_id": "corpus_3c7a8083",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "Janos, the first-person Hungarian hammer thrower \u2014 perpetrator and narrator, investigating his own predicament",
+    "source_title": "That Russian!",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_3c7a8083",
+    "part_index": 4,
+    "part_type": "suspect_archetype",
+    "content": "Not a whodunit: the culprit (narrator Janos, Hungarian hammer thrower) is known from the start. Peripheral figures \u2014 Mariska (jealous rival, later revealed as his sister), Nadia (the pursued Russian sprinter), and Bela the pole vaulter \u2014 function less as suspects than as witnesses/accomplices, with Boris Volakov as the universally disliked victim whose many enemies (dismissed women athletes, cowed team members) would provide a wide field of motive.",
+    "source_title": "That Russian!",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_3c7a8083",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "The fabricated cousin Stephen and his agent 'John Smith of State Street, Chicago' \u2014 a bait story invented to lure Boris into defecting; also the false rumour that Boris drank too much and fell asleep aboard, and the planted misdirection that Mariska is a jealous romantic rival rather than the narrator's sister.",
+    "source_title": "That Russian!",
+    "setting_tags": [
+      "ancient",
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_3c7a8083",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "Fair-play clues are seeded in scene: the heavy fog and near-collisions with other ships in crowded traffic lanes are shown before Boris's survival on a passing freighter is revealed; Boris's opportunism and greed are stated before he defects for money; Mariska's odd non-reaction and the narrator's 'we have planned upon this for a long time' precede the sister reveal.",
+    "source_title": "That Russian!",
+    "setting_tags": [
+      "near_future",
+      "maritime"
+    ]
+  },
+  {
+    "source_id": "corpus_3c7a8083",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "Testimony at the wedding: Bela reports that Boris himself, alive, named his assailant \u2014 the fling landed him on a lifeboat canvas of a passing freighter, which proved to be Russian, so his accusation and his radiogram to 'John Smith' are neutralised. The narrator's own final line reveals Mariska is his sister.",
+    "source_title": "That Russian!",
+    "setting_tags": [
+      "near_future",
+      "maritime"
+    ]
+  },
+  {
+    "source_id": "corpus_3c7a8083",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "Cold War Eastern-bloc athletic hierarchy aboard a Soviet ship: the commissar holds sexual and career power over athletes, dissenters are exiled to teaching calisthenics beyond the Arctic Circle; satellite-nation resentments (Hungarians, Czechs vs Slovakians, Ruthenians) and the prestige of team membership bind everyone.",
+    "source_title": "That Russian!",
+    "setting_tags": [
+      "maritime"
+    ]
+  },
+  {
+    "source_id": "corpus_3c7a8083",
+    "part_index": 8,
+    "part_type": "alibi",
+    "content": "The pair consider and reject alibi strategies \u2014 a sole confession, or claiming to have witnessed an accidental fall \u2014 settling instead on simple denial plus a rumour of Boris sleeping off drink; Nadia's being seen leaving the ballroom with him undermines any alibi.",
+    "source_title": "That Russian!",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_3c7a8083",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "Janos, the amateur schemer-narrator, is vulnerable through his chivalric temper: his cold plan to lure Boris away collapses when fury overrides calculation, and afterwards his new life and marriage rest on a killing that exposure would destroy.",
+    "source_title": "That Russian!",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_3c7a8083",
+    "part_index": 3,
+    "part_type": "motive",
+    "content": "Boris Volakov, the Russian team commissar, is universally disliked: he coerces female athletes sexually and exiles those who refuse (three women now teaching calisthenics near the Arctic Circle), his reports cause athletes to 'disappear,' and he has a history in Budapest that offends the Hungarians. His enemies include Nadia (his current target), Janos (her would-be protector), and effectively the whole ship.",
     "source_title": "That Russian!",
     "setting_tags": [
       "maritime"
@@ -44392,80 +45235,213 @@
     "source_id": "corpus_3c7a8083",
     "part_index": 2,
     "part_type": "setting_element",
-    "content": "An ocean liner traveling from Europe to New York with Soviet and Hungarian athletic teams aboard, isolated by thick fog near shipping lanes. The ship becomes a bounded social and physical space where escape or external help is impossible.",
+    "content": "A closed Soviet ship bound for New York: no escape, commissar surveillance, forced attendance at the Friendship Party. The dense fog near New York \u2014 ship slowed to a halt, horns blowing, heavy traffic lanes \u2014 both muffles Boris's scream (concealing the crime) and, unseen, places a passing freighter beneath him that saves his life and undoes the deed.",
     "source_title": "That Russian!",
     "setting_tags": [
+      "maritime"
+    ]
+  },
+  {
+    "source_id": "corpus_3c7a8083",
+    "part_index": 4,
+    "part_type": "suspect_archetype",
+    "content": "Janos is a hammer thrower \u2014 his very athletic gift (throwing weight around) makes him the obvious candidate for hurling a man overboard; and as a planned defector he cannot afford scrutiny. Nadia is vulnerable because she was publicly seen leaving the ballroom with Boris. Mariska's jealousy of Nadia gives her the look of motive too.",
+    "source_title": "That Russian!",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_3c7a8083",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "No true false suspect; suspicion, if any, would fall on Nadia, the last person seen leaving with Boris, though the act was entirely Janos's. She proposes covering it up and thereby shares exposure without guilt.",
+    "source_title": "That Russian!",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_3c7a8083",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "Janos narrates in first person and is a self-serving liar: he invents an entire fictitious cousin Stephen and his best-selling book to bait Boris, conceals his 'clever plan' from Nadia and the reader, and withholds until the final line that Mariska is his sister, not his lover \u2014 a deliberate misdirection of the reader's romantic assumptions.",
+    "source_title": "That Russian!",
+    "setting_tags": [
+      "ancient",
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_3c7a8083",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "Hammer-throwing technique: Janos grips Boris by one arm and one leg and spins him twice before releasing \u2014 a 'world's record' fling. The very specialization established in the first paragraph ('I throw my weight around\u2014which is the hammer') both enables and identifies the culprit.",
+    "source_title": "That Russian!",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_3c7a8083",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "Janos acts not from calculation but from fury at witnessing an assault \u2014 his scheme had been the bloodless one of luring Boris to defect through greed. The 'victim' is a corrupt opportunist and sexual predator, and his ultimate punishment is delivered by his own greed and the Russian freighter, not by the killer.",
+    "source_title": "That Russian!",
+    "setting_tags": [
+      "maritime"
+    ]
+  },
+  {
+    "source_id": "corpus_3f216fc4",
+    "part_index": 1,
+    "part_type": "crime_type",
+    "content": "Rape-murder of a teenage girl in City Park, bludgeoned with a rock; the boyfriend reports she was kidnapped by three men \u2014 central question: is his abduction story true?",
+    "source_title": "Galton and the Yelling Boys",
+    "setting_tags": [
+      "maritime"
+    ]
+  },
+  {
+    "source_id": "corpus_3f216fc4",
+    "part_index": 2,
+    "part_type": "setting_element",
+    "content": "City Park at night by the pond and adjoining woods, isolated with only the couple present; broadened only by the reported car of yelling boys",
+    "source_title": "Galton and the Yelling Boys",
+    "setting_tags": [
+      "maritime"
+    ]
+  },
+  {
+    "source_id": "corpus_3f216fc4",
+    "part_index": 3,
+    "part_type": "motive",
+    "content": "Lawrence Wainwright, the boyfriend \u2014 he struck her with a rock to subdue her when she resisted sex, killed her accidentally, then invented the kidnappers",
+    "source_title": "Galton and the Yelling Boys",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_3f216fc4",
+    "part_index": 3,
+    "part_type": "motive",
+    "content": "Helen MacKenzie, teenage girl from Wells Street, of lower social class than her wealthy boyfriend; killed when she resisted his sexual advances",
+    "source_title": "Galton and the Yelling Boys",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_3f216fc4",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "Galton reasons from behavioral logic \u2014 three attackers would need no rock and would not have killed her while leaving him alive \u2014 confronts the boy, who breaks down sobbing; physical evidence on the body promised",
+    "source_title": "Galton and the Yelling Boys",
+    "setting_tags": [
+      "universal"
+    ]
+  },
+  {
+    "source_id": "corpus_3f216fc4",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "Captain Mike Galton, veteran police captain of detectives relying on experience with human nature, with young sidekick Detective Bill Dennis",
+    "source_title": "Galton and the Yelling Boys",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_3f216fc4",
+    "part_index": 4,
+    "part_type": "suspect_archetype",
+    "content": "Effectively one real suspect \u2014 Lawrence Wainwright, the boyfriend who reports the crime \u2014 set against three phantom 'abductors' (two dark, one blond) he invents. The yelling boys in the cream convertible, corroborated by an independent complaint call, serve as the only alternative candidates; they have apparent opportunity but no proven existence at the scene.",
+    "source_title": "Galton and the Yelling Boys",
+    "setting_tags": [
+      "near_future",
+      "maritime"
+    ]
+  },
+  {
+    "source_id": "corpus_3f216fc4",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "The cream-colored convertible with three rowdy boys, independently reported to police at 9:42 by Mrs. Stanley Turner \u2014 a real nuisance call the killer opportunistically grafts his false story onto, giving it apparent corroboration.",
+    "source_title": "Galton and the Yelling Boys",
+    "setting_tags": [
+      "maritime"
+    ]
+  },
+  {
+    "source_id": "corpus_3f216fc4",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "Fair: all data the reader needs is on the page before Galton's deduction \u2014 the boy's own account of three assailants, the rock used to subdue the girl, his survival with only superficial injuries, the girl's stripped body, and his reluctance to give names/addresses before rushing police to the park.",
+    "source_title": "Galton and the Yelling Boys",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_3f216fc4",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "Psychological/logical demonstration from criminal behavior patterns: Galton reasons that three attackers who wanted rape would have no need of a rock (two could hold her) and no motive to kill her, while a lone assailant would \u2014 so the story's internal logic, not physical evidence, convicts. Sealed by the threat of forensic examination of the body, which breaks the boy into sobs.",
+    "source_title": "Galton and the Yelling Boys",
+    "setting_tags": [
+      "near_future",
+      "maritime"
+    ]
+  },
+  {
+    "source_id": "corpus_3f216fc4",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "Small-city class divide: Wainwright is a nineteen-year-old from 'one of the best sections of town' with a shiny new hardtop; Helen MacKenzie lives on Wells Street, a lower social station \u2014 the detectives immediately read the cross-class date as sexual exploitation. Set against the police-station hierarchy of veteran captain, young sidekick, and desk sergeant.",
+    "source_title": "Galton and the Yelling Boys",
+    "setting_tags": [
+      "near_future",
+      "space"
+    ]
+  },
+  {
+    "source_id": "corpus_3f216fc4",
+    "part_index": 8,
+    "part_type": "alibi",
+    "content": "No conventional alibi; the suspect instead places himself at the scene as a victim, claiming he was knocked unconscious during the abduction (~10:45) and thus absent in mind if not body \u2014 an 'unconsciousness alibi' that also explains his injuries and dishevelment.",
+    "source_title": "Galton and the Yelling Boys",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_3f216fc4",
+    "part_index": 7,
+    "part_type": "social_dynamic",
+    "content": "Galton's professional creed \u2014 that an experienced cop knows human nature better than any psychiatrist \u2014 is the vulnerability the case tests; he 'smelled' the lie immediately yet hoped against his own judgment that the boy was telling the truth, and is wearied and saddened when experience proves right.",
+    "source_title": "Galton and the Yelling Boys",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_3f216fc4",
+    "part_index": 3,
+    "part_type": "motive",
+    "content": "Helen MacKenzie has no enemies in any conventional sense; her only antagonist is her own boyfriend, Lawrence Wainwright, a wealthy boy dating a girl from Wells Street \u2014 'a different social station' \u2014 whose relationship is defined by class asymmetry and sexual pressure rather than grievance.",
+    "source_title": "Galton and the Yelling Boys",
+    "setting_tags": [
+      "near_future",
       "space",
       "maritime"
     ]
   },
   {
-    "source_id": "corpus_3c7a8083",
-    "part_index": 3,
-    "part_type": "motive",
-    "content": "Janos (the narrator), a Hungarian hammer-thrower, commits the act to save Nadia from Boris's sexual coercion. Motive: protection of an innocent woman and resistance to Soviet authoritarianism masquerading as concern for duty.",
-    "source_title": "That Russian!",
-    "setting_tags": [
-      "universal"
-    ]
-  },
-  {
-    "source_id": "corpus_3c7a8083",
-    "part_index": 3,
-    "part_type": "motive",
-    "content": "Boris Volakov, Russian commissar overseeing the athletic team. He is 'killable' because he sexually coerces athletes, has sent women to exile in the Arctic, and represents Soviet oppression that the protagonist opposes.",
-    "source_title": "That Russian!",
-    "setting_tags": [
-      "universal"
-    ]
-  },
-  {
-    "source_id": "corpus_3c7a8083",
-    "part_index": 6,
-    "part_type": "reveal_mechanic",
-    "content": "The apparent victim survives: Boris lands on a passing Russian freighter's lifeboat, recovers consciousness, and defects to the West. Janos learns at his wedding that the crime was not what it appeared\u2014fortune, not malice, determined the outcome. Ironic justice replaces murder.",
-    "source_title": "That Russian!",
-    "setting_tags": [
-      "universal"
-    ]
-  },
-  {
-    "source_id": "corpus_3c7a8083",
-    "part_index": 7,
-    "part_type": "social_dynamic",
-    "content": "Janos, the protagonist narrator\u2014a Hungarian athlete who is simultaneously suspect, culprit, witness, and the lens through which the reader experiences the mystery. He controls the narrative and investigates his own crime retrospectively.",
-    "source_title": "That Russian!",
-    "setting_tags": [
-      "universal"
-    ]
-  },
-  {
-    "source_id": "corpus_3f216fc4",
-    "part_index": 1,
-    "part_type": "crime_type",
-    "content": "Murder of young woman Helen MacKenzie in City Park. Reported as kidnapping by her boyfriend Lawrence Wainwright, but detective Galton deduces it was a passion killing: Wainwright killed her with a rock during a sexual encounter when she resisted his advances, then fabricated a story about three abductors to cover his crime.",
-    "source_title": "Galton and the Yelling Boys",
-    "setting_tags": [
-      "near_future",
-      "maritime"
-    ]
-  },
-  {
     "source_id": "corpus_3f216fc4",
     "part_index": 2,
     "part_type": "setting_element",
-    "content": "City Park at night during a full moon in May, specifically the wooded area near the pond where Wainwright parked with the victim. The park becomes the investigative boundary as police search the woods.",
-    "source_title": "Galton and the Yelling Boys",
-    "setting_tags": [
-      "near_future",
-      "maritime"
-    ]
-  },
-  {
-    "source_id": "corpus_3f216fc4",
-    "part_index": 3,
-    "part_type": "motive",
-    "content": "Lawrence Wainwright, the boyfriend, killed Helen MacKenzie. Motive: sexual aggression met with resistance; when she fought him off, he struck her with a rock to 'subdue her,' but hit too hard and killed her. Motive also includes covering up the act by inventing the three-man abduction story.",
+    "content": "City Park at night under a full moon \u2014 a known lovers' lane where 'neckers' are raided \u2014 supplies both the isolation for the crime and the ready-made alibi. The genuine complaint about a cream-colored convertible full of yelling boys, logged at 9:42 by the desk sergeant, gave Wainwright a real, police-corroborated set of phantom attackers to blame.",
     "source_title": "Galton and the Yelling Boys",
     "setting_tags": [
       "near_future"
@@ -44473,12 +45449,34 @@
   },
   {
     "source_id": "corpus_3f216fc4",
-    "part_index": 3,
-    "part_type": "motive",
-    "content": "Helen MacKenzie, a young woman from a lower social class than Wainwright. She was 'killable' because she resisted Wainwright's sexual advances\u2014she said 'Stop it! Don't!'\u2014making her a threat to his plans and his reputation.",
+    "part_index": 4,
+    "part_type": "suspect_archetype",
+    "content": "Wainwright's vulnerability is his need to appear respectable: the good address, the shiny new hardtop, the insistence that he isn't a snob and that they'd 'talked about marriage.' The crime activates his terror of being seen as a boy who took a lower-class girl into the park for one reason, and his lies escalate to protect that self-image.",
+    "source_title": "Galton and the Yelling Boys",
+    "setting_tags": [
+      "near_future"
+    ]
+  },
+  {
+    "source_id": "corpus_3f216fc4",
+    "part_index": 5,
+    "part_type": "red_herring",
+    "content": "The three boys in the cream-colored convertible \u2014 real hell-raisers whose 9:42 p.m. noise complaint makes them plausible abductors, invoked by Wainwright to divert the search into the woods and away from himself.",
     "source_title": "Galton and the Yelling Boys",
     "setting_tags": [
       "near_future",
+      "maritime"
+    ]
+  },
+  {
+    "source_id": "corpus_3f216fc4",
+    "part_index": 6,
+    "part_type": "reveal_mechanic",
+    "content": "The entire narrative is filtered through Wainwright's report to the police \u2014 the only account of the attack, delivered by the killer himself. His story shifts under questioning (from 'kissing' to 'necking' to 'we also talk'), and Galton reads him as a liar from the moment he bursts in.",
+    "source_title": "Galton and the Yelling Boys",
+    "setting_tags": [
+      "near_future",
+      "maritime",
       "royal_court"
     ]
   },
@@ -44486,7 +45484,7 @@
     "source_id": "corpus_3f216fc4",
     "part_index": 6,
     "part_type": "reveal_mechanic",
-    "content": "Captain Galton uses logical deduction based on human nature and criminal psychology. He recognizes the false alibi through internal inconsistency: three attackers would not need to kill the girl if their goal was rape\u2014they could simply restrain her. The rock-killing only makes sense if a single person (the boyfriend) was involved. Galton's reasoned accusation breaks down Wainwright's story; forensic examination of the body will provide physical evidence.",
+    "content": "Galton's expertise is applied criminal psychology of group sexual assault: three men would have no need of a rock, since two could hold a victim for the third; and a gang bent on rape would beat the boyfriend but leave the girl alive. The rock and the surviving male witness together are physically incompatible with the claimed scenario.",
     "source_title": "Galton and the Yelling Boys",
     "setting_tags": [
       "near_future"
@@ -44496,7 +45494,7 @@
     "source_id": "corpus_3f216fc4",
     "part_index": 7,
     "part_type": "social_dynamic",
-    "content": "Captain Mike Galton, an experienced police detective with institutional authority. He is the lens through which the reader experiences the mystery. Galton's expertise in human nature\u2014his philosophical opening about cops knowing more about human behavior than psychiatrists\u2014becomes the instrument of solving the crime.",
+    "content": "Wainwright is not a predator by design but a nineteen-year-old whose sexual insistence turned lethal by accident \u2014 he hit her 'to quiet her down' and found he'd hit too hard. His grief and shock appear genuine; his lie is panic, not calculation, and the story ends with him sobbing rather than condemned.",
     "source_title": "Galton and the Yelling Boys",
     "setting_tags": [
       "near_future"

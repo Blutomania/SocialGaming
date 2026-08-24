@@ -473,9 +473,15 @@ Full list in `SESSIONS.md`. Top priorities:
     - **Not mtime-based, on purpose** — unlike `craft_grounding.py`'s index cache, which this item
       originally proposed copying. A fresh `git clone` stamps every file with the checkout time,
       so mtimes here carry no information about what was built when; comparing them would either
-      miss real staleness or rebuild on every clone. **The cost of that choice, stated plainly:**
-      an extraction file edited *in place* under the same name is not detected. `force=True` (or
-      deleting the JSON) is the escape hatch.
+      miss real staleness or rebuild on every clone.
+    - **[Session 35] The fingerprint now hashes file CONTENTS too, not just the name set.** The
+      original filename-only version documented its own blind spot — "an extraction file edited in
+      place under the same name is not detected, pass `force=True`" — and that turned out to be
+      the exact shape of the P1→P1P2P3 upgrade, which rewrites an extraction under its own name
+      and takes it from ~6 parts to ~20. The first 7 upgraded stories landed with
+      `load_registry()` reporting itself fresh and **98 parts unsampled**. The written warning did
+      not save it, which is the argument for checking over reminding. Hashing all 571 files costs
+      ~11 ms and is clone-stable, so there was never a reason to approximate it.
     - **`REGISTRY_SCHEMA_VERSION` covers the other staleness mode**, which no amount of looking at
       the corpus can catch: Session 23 changed `KEY_TO_IDX`, so identical files produced different
       parts and the cache had no way to know. Bump it whenever `_atomize_extraction` / `KEY_TO_IDX`

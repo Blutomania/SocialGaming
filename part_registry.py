@@ -615,25 +615,35 @@ def _parse_setting(setting_str: str) -> Tuple[str, str]:
 def _corpus_fingerprint(db_dir: Path) -> dict:
     """What the registry SHOULD have been built from, as a comparable value.
 
-    The set of extraction filenames, hashed. Filenames are the right unit
-    because load_extractions() derives every source_id from the filename stem,
-    so a change to this set is exactly a change to the sources the registry
-    covers — added, removed or renamed.
+    Every extraction filename AND the hash of its contents. Both halves matter:
+    the name set catches sources added, removed or renamed, and the content
+    hashes catch a source rewritten under the same name.
+
+    That second half was missing until Session 35, and the gap was not
+    hypothetical — it is precisely the shape of the P1→P1P2P3 upgrade, which
+    replaces an extraction in place, same filename, ~6 parts becoming ~20. The
+    first 7 upgraded stories landed with the registry reporting itself fresh and
+    98 parts unsampled. A note saying "pass force=True after editing in place"
+    had been written for exactly this case and did not save it, which is the
+    argument for checking rather than reminding.
 
     Deliberately NOT mtime-based, unlike craft_grounding.py's index cache. A
-    fresh `git clone` stamps every file with the checkout time, so mtimes here
-    carry no information about what was built when, and comparing them would
-    either miss real staleness or rebuild on every clone. The trade-off is
-    stated rather than hidden: an extraction file EDITED IN PLACE, keeping its
-    name, is not detected. Pass force=True or delete part_registry.json after
-    doing that.
+    fresh `git clone` stamps every file with the checkout time, so mtimes carry
+    no information about what was built when — comparing them would either miss
+    real staleness or rebuild on every clone. Hashing contents is clone-stable
+    and costs ~11 ms across the 571-file, 2.7 MB corpus, so there is no reason
+    to approximate it.
     """
-    extractions = sorted(p.name for p in (db_dir / "extractions").glob("*.json"))
-    joined = "\n".join(extractions).encode()
+    paths = sorted((db_dir / "extractions").glob("*.json"), key=lambda p: p.name)
+    digest = hashlib.sha256()
+    for path in paths:
+        digest.update(path.name.encode())
+        digest.update(b"\0")
+        digest.update(hashlib.sha256(path.read_bytes()).digest())
     return {
         "schema_version": REGISTRY_SCHEMA_VERSION,
-        "extraction_count": len(extractions),
-        "extraction_hash": hashlib.sha1(joined).hexdigest(),
+        "extraction_count": len(paths),
+        "corpus_hash": digest.hexdigest(),
     }
 
 
