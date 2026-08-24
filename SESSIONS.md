@@ -3000,6 +3000,119 @@ it. Porting the Aug 12 flow and then immediately rewriting it would build the sa
 
 ---
 
+## Session 35 — August 24, 2026 (CYM: a corpus run against a dead credit balance, and why it did not stop)
+
+**Starting point:** `claude/session-34-bugs-fixes-uu2hk2`, at `f2bf505` (= `origin/main`, PR #22
+merged). Nothing carried over; a clean branch.
+
+The session opened with the owner running the item-19 corpus upgrade and asking, mid-run,
+whether to stop it. The run was printing this once per source, for source after source:
+
+```
+WARNING  <source> (P1): API error: Error code: 400 - ... 'Your credit balance is too low
+         to access the Anthropic API.' — retrying
+WARNING  <source> (P1): ... — giving up
+ERROR    <source>: ... — skipping, not saving a placeholder (re-run will retry)
+=== Done ===  Processed : 0   Failed : 1
+```
+
+### What was actually happening
+
+Nothing was damaged and nothing was spent. Three things, each checked against the code rather
+than inferred from the log:
+
+- **No spend.** These are HTTP 400 `invalid_request_error` — rejected before inference.
+- **No writes.** The failure lands on Session 23's `ExtractionAPIError` path, which deliberately
+  saves no null placeholder, so dedup-by-filename lets a later run retry the source.
+- **Confirmed after the fact**: `test_registry_staleness.py` shows an unchanged corpus reusing
+  its cache, which is direct evidence the failed run left no fingerprint behind.
+
+So the honest answer was "stop it, but relax." What was worth fixing is that it *needed* stopping
+by hand.
+
+### The bug: nothing anywhere could tell "this source failed" from "the account is dead"
+
+Three defects, in ascending order of how much they cost:
+
+1. **The retry was unconditional.** `_call_claude_for_protocol` retried every API exception once.
+   A credit-balance rejection cannot succeed on a retry, so every source paid two round-trips to
+   learn the same thing.
+2. **The batch loop in `main()` had no way to stop**, only to skip to the next PDF.
+3. **And the loop in `main()` was not even the one running.** `upgrade_p1_to_p1p2.py` invokes
+   `extract_from_pdfs.py` **once per source as a subprocess** — which is why the log shows
+   `Found 1 PDF(s)` and a fresh `=== Done ===` per book. The parent decides from the child's exit
+   code alone, and its handler read `if rc != 0: continuing with the next source`. So the parent
+   re-opened and re-parsed every remaining PDF, 24,000 characters each, to reprint an identical
+   billing error.
+
+**A fourth, found while fixing the third:** `extract_from_pdfs.py` exited **0 no matter how many
+sources failed**. So the wrapper's `if rc != 0` never fired, its `failures` tally could never
+increment, and `Done. N source(s) exited non-zero` was unreachable code. The wrapper returned
+success after a run in which every single source failed.
+
+### The fix
+
+`_fatal_reason(exc)` classifies an error as account-level or not, and `FatalAPIError` carries it.
+
+The classification **cannot key off the HTTP status alone**, and that is the design point. A 400
+covers both an exhausted credit balance (fatal — every later call fails identically) and a single
+source whose text overruns a limit (not fatal — skip it, continue). Anthropic returns both as
+`400 invalid_request_error`. So the credit case is matched on message, 401/403/404 on status, and
+every other 400 stays retryable.
+
+`FatalAPIError` is deliberately **not** a subclass of `ExtractionAPIError` — the per-source
+handlers catch that and `continue`, which is right for a network blip and exactly wrong here, so
+it needs to propagate past them untouched.
+
+Exit codes are now `EXIT_SOURCE_FAILED = 1` / `EXIT_FATAL = 2`, and the wrapper stops on 2.
+The constant is duplicated in the wrapper rather than imported (importing would make merely
+*planning* an upgrade require anthropic/pypdf/dotenv); a test asserts the two never drift.
+
+### Verification — `scripts/test_extraction_fatal_errors.py` (new, zero API cost)
+
+19 assertions, no network, no SDK (stubbed). Beyond the classifier table, three that carry weight:
+
+- **The distinction under test**, with the two 400s side by side: the real credit-balance message
+  must stop the batch, `prompt is too long: 210000 tokens > 200000 maximum` must not.
+- **End-to-end on the real script**, run as a subprocess against a stubbed SDK on `PYTHONPATH`,
+  asserting the exit code the shell actually gets — 2 for credit exhaustion, 1 for a dropped
+  connection. Every other check could pass while the process still exited 0 and the wrapper still
+  marched through the corpus.
+- **The drift check was itself verified by breaking it** — the wrapper's constant was changed to 3
+  and the test confirmed failing before being restored.
+
+`test_registry_staleness.py`, `test_crime_scene_map.py` (193), `check_godot_wiring.py`,
+`check_mystery_playable.py` (19 mysteries, 0 unwinnable) all still pass.
+
+### Also worth knowing
+
+`docs/EXTRACTION_TROUBLESHOOTING.md` gains the credit-balance entry and one new section: **the
+protocols loop inside a single `try`**, so a source that completes P1 and P2 and then fails on P3
+is discarded whole — real spend, no file. It is the one way this run can cost money and leave
+nothing behind. It did *not* happen here (every source died on P1), but the doc now says how to
+check for it after any mid-batch stop.
+
+### Files changed
+
+| File | Change |
+|---|---|
+| `scripts/extract_from_pdfs.py` | `FatalAPIError`, `_fatal_reason()`, exit codes; no retry and no batch continuation on an account-level error; non-zero exit when a source fails |
+| `scripts/upgrade_p1_to_p1p2.py` | stops the per-source subprocess loop on `EXIT_FATAL` |
+| `scripts/test_extraction_fatal_errors.py` | **new** — 19 assertions |
+| `docs/EXTRACTION_TROUBLESHOOTING.md` | credit-balance entry; partial-spend check |
+
+### Next steps
+
+1. **The corpus upgrade is blocked on credits, not on code.** Top up, then re-run
+   `python3 scripts/upgrade_p1_to_p1p2.py --go` — the plan is unchanged at 66 of 74 sources,
+   ~$9.70. `--upgrade` resumes and re-pays for nothing.
+2. **Nothing in Session 34 or 35 has run in the Godot engine.** The result-screen fix, the
+   accusation matching and the saved-mystery dropdown are verified by static checker only. One
+   F5 is the highest-value action available and it needs a machine with Godot on it.
+3. Item 18 (should generation refuse to save a BLOCKING mystery?) is still an open design call.
+
+---
+
 ## Session 34 — August 21, 2026 (CYM: PC-playtest priority set; a wiring check found the result screen broken)
 
 **Branch:** `claude/session-33-summary-6m0y5u`, at `034131f` — checked against `origin/main`
