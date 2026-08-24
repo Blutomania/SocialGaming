@@ -72,6 +72,13 @@ COST_PER_SOURCE = {
 # survives the jump from a country house to a Mars dome.
 PROTOCOL = "P1P2P3"
 
+# Mirrors extract_from_pdfs.EXIT_FATAL — "the account or the credentials are the
+# problem", as distinct from exit 1, "this one source failed". Duplicated rather
+# than imported because importing that module pulls in anthropic/pypdf/dotenv,
+# which would make merely *planning* an upgrade require the extraction deps.
+# scripts/test_extraction_fatal_errors.py asserts the two stay equal.
+EXIT_FATAL = 2
+
 
 # Filenames carry the download site that produced them. Strip that for display
 # so the list reads as book titles someone can go and find.
@@ -415,7 +422,9 @@ def main():
 
     print("\nRunning. Safe to interrupt — --upgrade resumes without re-paying.\n")
     failures = 0
-    for v in sorted(runnable.values(), key=lambda x: -x["count"]):
+    aborted = False
+    queue = sorted(runnable.values(), key=lambda x: -x["count"])
+    for done, v in enumerate(queue):
         cmd = [sys.executable, str(ROOT / "scripts" / "extract_from_pdfs.py"),
                str(v["path"]), "--protocol", PROTOCOL, "--model", args.model, "--upgrade"]
         if v["anthology"]:
@@ -429,9 +438,26 @@ def main():
         print(" ".join(cmd[1:]))
         print("=" * 78, flush=True)
         rc = subprocess.call(cmd, cwd=str(ROOT))
+        if rc == EXIT_FATAL:
+            # Not this source's fault — the account or the credentials are the
+            # problem, so every remaining source fails identically. Carrying on
+            # would re-open and re-parse each remaining PDF just to reprint the
+            # same error, which is what this run did before the check existed.
+            aborted = True
+            skipped = len(queue) - done - 1
+            print("\n  !! STOPPING — that failure is not specific to this source.")
+            if skipped:
+                print(f"  {skipped} source(s) left untouched.")
+            break
         if rc != 0:
             failures += 1
             print(f"  !! exited {rc} — continuing with the next source")
+
+    if aborted:
+        print("\nStopped early. Nothing was written for the source that failed, so "
+              "re-run this\nexact command once the cause is fixed — --upgrade resumes "
+              "and re-pays for nothing.")
+        return EXIT_FATAL
 
     print("\nDone." + (f" {failures} source(s) exited non-zero." if failures else ""))
     print("Next: python3 scripts/test_registry_staleness.py   "

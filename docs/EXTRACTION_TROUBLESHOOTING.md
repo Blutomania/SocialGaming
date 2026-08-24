@@ -57,6 +57,30 @@ Same root cause, older code. Something is indexing `content[0]` instead of scann
 text block. `_first_text()` in `extract_from_pdfs.py` is the correct pattern; `server/main.py`
 has its own copy. `git pull` if you see this in a file that should already be fixed.
 
+### `Your credit balance is too low to access the Anthropic API`
+The account is out of credits. **The failed calls themselves cost nothing and wrote nothing** —
+they come back as HTTP 400, rejected before inference, and the failure path deliberately saves no
+placeholder. But anything that succeeded *before* the balance ran out is real, paid-for work
+sitting uncommitted in your working tree — see "If the run died partway through a source" below
+and commit it before re-running.
+
+Since Session 35 the run stops on the first one instead of walking the rest of the batch:
+
+```
+  !! STOPPING — that failure is not specific to this source.
+  19 source(s) left untouched.
+```
+
+Top up credits, then re-run the identical command. `--upgrade` resumes; nothing is re-paid.
+
+The same immediate stop applies to anything describing the *account* rather than the request —
+a rejected API key (401), a permission failure (403), a misspelled `--model` (404). Everything
+else, including a 400 from one oversized source, still just skips that source and continues.
+
+> **If you saw this before Session 35:** the run kept going, re-opening and re-parsing every
+> remaining PDF to reprint the same error, and reported `Failed: 1` per source as though many
+> separate things had gone wrong. Nothing was damaged by that — it only wasted wall-clock.
+
 ### `WARNING … API error: … — retrying` then `ERROR … skipping, not saving a placeholder`
 A network or API failure. Deliberate design (Session 23): nothing is saved, so the
 dedup-by-filename rule lets the next run retry that source. Just re-run.
@@ -116,6 +140,30 @@ Those are the numbers to beat. On the one novel done here, *The Red House Myster
 **4 parts to 19**.
 
 ---
+
+## If the run died partway through a source
+
+The protocols loop inside one `try`, so a source that completes P1 and P2 and then fails on P3
+is discarded whole — that source's P1+P2 spend is real and no file is written. It is the one
+way this run can cost money and leave nothing behind, and it needs the failure to land *between*
+protocols rather than on the first call.
+
+Check for it after any mid-batch stop:
+
+```bash
+git status --short mystery_database/extractions/
+ls -t mystery_database/extractions/_superseded/ | head
+```
+
+Read the two lists together — the pattern tells you which case you are in:
+
+| What you see | What it means |
+|---|---|
+| `M extractions/x.json` **and** `?? _superseded/x.json` | **A completed upgrade.** The original was archived and the richer version written. Commit it. |
+| `?? _superseded/x.json` with **no** `M` for the same name | Replaced and then not rewritten. The original is intact — copy it back, or just re-run, since `--upgrade` will redo it. |
+
+A mid-batch stop usually leaves *some* completed upgrades, and they are real work that cost real
+money. Commit them before re-running.
 
 ## Undoing it
 

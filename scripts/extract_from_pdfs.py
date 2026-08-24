@@ -78,6 +78,15 @@ MAX_TEXT_CHARS       = 6000   # matches run_corpus_pipeline.py — novel-length 
 RESOLUTION_END_CHARS = 3000   # chars sampled from end for --fill-resolution pass
 MIN_TEXT_CHARS       = 200    # below this, a "story" is probably a mis-detected fragment
 
+# Exit codes. A caller needs to tell "this one source failed" (keep going) from
+# "the account is the problem" (stop), and scripts/upgrade_p1_to_p1p2.py is
+# exactly such a caller: it runs this script once PER SOURCE as a subprocess, so
+# the batch loop in main() only ever sees a single PDF and cannot stop anything
+# on the wrapper's behalf. Without a distinct code the wrapper's "continuing
+# with the next source" walks the entire remaining corpus against a dead API key.
+EXIT_SOURCE_FAILED = 1
+EXIT_FATAL         = 2
+
 # Anthology mode (--anthology): unlike a novel, a short story has no slack to sample
 # away — MAX_TEXT_CHARS' begin/middle/end sampling would cut most of a dense ~5-15
 # page story into three disconnected chunks. Below this threshold, feed the whole
@@ -312,6 +321,61 @@ class ExtractionAPIError(Exception):
     a network/auth hiccup as "already extracted, nothing to see here."""
 
 
+class FatalAPIError(Exception):
+    """The account or the credentials are the problem, not this source.
+
+    Deliberately NOT a subclass of ExtractionAPIError. The per-source handlers
+    catch ExtractionAPIError and `continue` to the next PDF, which is right for
+    a network blip on one file and exactly wrong here — so this one is allowed
+    to propagate past them, up to main(), which stops the batch.
+
+    Session 35 watched the alternative: a batch hit an exhausted credit balance,
+    retried each call once (a retry that could not possibly succeed), then walked
+    every remaining PDF — re-opening each one, re-parsing 24,000 characters,
+    printing the identical billing error — before reporting "Failed: 1" per file
+    as though twenty unrelated things had gone wrong.
+    """
+
+
+# What makes an error fatal is that it describes the *account*, not the request.
+# That distinction is why this cannot key off the HTTP status alone: a 400 is
+# "your request was rejected", which covers both an exhausted credit balance
+# (fatal — every subsequent call fails identically) and a single source whose
+# text overruns a limit (not fatal — skip that source, keep going). Anthropic
+# returns both as 400 invalid_request_error, so the credit case is identified by
+# message and everything else 400 is left retryable.
+_FATAL_STATUS = {
+    401: "the credentials were rejected",
+    403: "the credentials lack permission for this request",
+    404: "no such model or endpoint — check --model",
+}
+
+# Matched case-insensitively against the error text, for conditions that do not
+# have a status code of their own.
+_FATAL_MARKERS = (
+    ("credit balance",        "the Anthropic account is out of credits"),
+    ("exceeded your monthly", "the account has hit its monthly spend cap"),
+)
+
+
+def _fatal_reason(exc: Exception) -> str | None:
+    """Why this error will fail identically on every remaining source, or None.
+
+    Duck-typed on `status_code` rather than isinstance-checked against the SDK's
+    exception classes, so it needs no import and stays testable with a stub.
+    """
+    text = str(exc).lower()
+    for marker, reason in _FATAL_MARKERS:
+        if marker in text:
+            return reason
+
+    status = getattr(exc, "status_code", None)
+    if status in _FATAL_STATUS:
+        return _FATAL_STATUS[status]
+
+    return None
+
+
 # Extraction is a mechanical task -- read a text, fill named fields -- so it does
 # not need deep reasoning, but it does need room to answer.
 #
@@ -407,6 +471,9 @@ def _call_claude_for_protocol(
                 **_effort_kwargs(model),
             )
         except Exception as e:
+            reason = _fatal_reason(e)
+            if reason is not None:
+                raise FatalAPIError(f"{reason}\n  {e}") from e
             last_error = f"API error: {e}"
             last_error_was_api_failure = True
             if verbose:
@@ -630,6 +697,9 @@ def fill_resolution(
             **_effort_kwargs(model),
         )
     except Exception as e:
+        reason = _fatal_reason(e)
+        if reason is not None:
+            raise FatalAPIError(f"{reason}\n  {e}") from e
         print(f"        ERROR in resolution fill pass: {e}")
         return
 
@@ -901,32 +971,58 @@ def main() -> None:
         client = anthropic.Anthropic(auth_token=token_path.read_text().strip())
 
     success, failed = 0, 0
-    for i, pdf_path in enumerate(pdfs):
-        print(f"\n[{i+1}/{len(pdfs)}]")
+    stopped_early: str | None = None
+    remaining = 0
+    i = -1  # bound for the handlers below if Ctrl-C lands before the first iteration
+    try:
+        for i, pdf_path in enumerate(pdfs):
+            print(f"\n[{i+1}/{len(pdfs)}]")
 
-        if args.anthology:
-            s, f_ = extract_pdf_anthology(pdf_path, client, protocol_ids, db_dir, model=args.model,
-                                                  upgrade=args.upgrade)
-            success += s
-            failed += f_
-            continue
+            if args.anthology:
+                s_, f_ = extract_pdf_anthology(pdf_path, client, protocol_ids, db_dir, model=args.model,
+                                               upgrade=args.upgrade)
+                success += s_
+                failed += f_
+                continue
 
-        out_path, full_text = extract_pdf(pdf_path, client, protocol_ids, db_dir, model=args.model,
-                                             upgrade=args.upgrade,
-                                             max_chars=args.max_text_chars)
-        if out_path is None:
-            failed += 1
-        else:
-            success += 1
-            if args.fill_resolution and full_text:
-                fill_resolution(out_path, full_text, client, model=args.model)
-        if i < len(pdfs) - 1:
-            time.sleep(DELAY_SECS)
+            out_path, full_text = extract_pdf(pdf_path, client, protocol_ids, db_dir, model=args.model,
+                                                 upgrade=args.upgrade,
+                                                 max_chars=args.max_text_chars)
+            if out_path is None:
+                failed += 1
+            else:
+                success += 1
+                if args.fill_resolution and full_text:
+                    fill_resolution(out_path, full_text, client, model=args.model)
+            if i < len(pdfs) - 1:
+                time.sleep(DELAY_SECS)
+    except FatalAPIError as e:
+        stopped_early = str(e)
+        remaining = len(pdfs) - i - 1
+        failed += 1  # the source it died on was attempted, and did not produce a file
+    except KeyboardInterrupt:
+        stopped_early = "interrupted at the keyboard"
+        remaining = len(pdfs) - i - 1
 
     print(f"\n=== Done ===")
     print(f"  Processed : {success}")
     print(f"  Failed    : {failed}")
     print(f"  Output    : {db_dir}/extractions/")
+
+    if stopped_early is not None:
+        print(f"\n  STOPPED — {stopped_early}")
+        if remaining:
+            print(f"  {remaining} source(s) not attempted.")
+        print("  Nothing was written for the source that failed, so re-running this "
+              "exact command\n  after the cause is fixed resumes where it left off "
+              "and re-pays for nothing.")
+        sys.exit(EXIT_FATAL)
+
+    # Report a failed source in the exit code. This script exited 0 no matter how
+    # many sources failed, which made upgrade_p1_to_p1p2.py's `if rc != 0` — and
+    # so its whole "N source(s) exited non-zero" tally — permanently unreachable.
+    if failed:
+        sys.exit(EXIT_SOURCE_FAILED)
 
 
 if __name__ == "__main__":
