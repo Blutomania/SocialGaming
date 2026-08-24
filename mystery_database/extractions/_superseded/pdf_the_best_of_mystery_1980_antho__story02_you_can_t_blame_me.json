@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Theft/con: Beggs is robbed of a suitcase containing $20,000 in hidden cash by a girl working at Lucky's Bar. Question: Was the girl real, or did Beggs hallucinate the entire encounter due to alcohol after 20 years of sobriety?",
+    "confidence": "high",
+    "quote": "Beggs looked at the other side of the booth. It was empty. He reached down for the suitcase handle and clutched air. \"My suitcase,\" he said calmly."
+  },
+  "victim": {
+    "value": "Harry Beggs: recently released convict (served 20 years), vulnerable due to age (50), isolation, no family support, inexperience with modern society, and sudden re-introduction to alcohol after two decades.",
+    "confidence": "high",
+    "quote": "Twenty years! / \"Fifty's not old,\" the Warden said. \"Plenty of men get new careers at fifty, Beggs.\""
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "The girl at Lucky's Bar (revealed as Beggs' own daughter Angela, whom he never knew). Motive is ambiguous: whether deliberate revenge, opportunistic theft, or whether the entire encounter was Beggs' drunken hallucination.",
+    "confidence": "medium",
+    "quote": "Angela tugged nervously at the strand of cheap dead-white pearls still around her throat."
+  },
+  "resolution": {
+    "value": "No resolution provided. The story ends in ambiguity: Beggs confronts the bartender; is thrown out; goes to his estranged wife Edith; and is introduced to their daughter Angela\u2014who is wearing the same pearls as the bar girl. The reader cannot determine if Beggs was robbed or deceived.",
+    "confidence": "high",
+    "quote": "the old man and the girl, and Angela tugged nervously at the strand of cheap dead-white pearls still around her throat."
+  },
+  "investigator": {
+    "value": "Harry Beggs himself: the protagonist and victim who must piece together whether he was conned, robbed, or hallucinating. The reader experiences events through his disoriented, vulnerable perspective.",
+    "confidence": "high",
+    "quote": "He looked shyly at the girl, and she patted his shoulder. \"Nice man,\" she said, cute, patronizing. \"Such nice white hair.\""
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 15355,
+    "protocols": [
+      "P1"
+    ],
+    "title": "You Can\u2019t Blame Me",
+    "author": "HENRY SLESAR",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 2,
+    "story_count": 63
+  }
+}

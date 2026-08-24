@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Murder by knife. Howard Jordan, posing as Roy Baker, lures his wife Carolyn to a Village apartment and kills her. Central question: how does the killer establish an alibi while committing the crime under a false identity?",
+    "value": "Premeditated stabbing murder of a wife, lured to a secret apartment by a voice impersonation; the question posed to police is who 'Roy Baker' is and where he fled \u2014 never that the husband did it",
     "confidence": "high",
-    "quote": "\"I'm going to kill you, Carolyn,\" he said, and showed her the knife. She died slowly, and noisily."
+    "quote": "\u201cI\u2019m going to kill you, Carolyn,\u201d he said, and showed her the knife. She died slowly, and noisily."
   },
   "victim": {
-    "value": "Carolyn Jordan, the wife. She is 'killable' because she represents everything Howard despises about his constrained life\u2014her coldness, her infidelity, her demand that he remain Howard Jordan instead of Roy Baker, and her financial control over him.",
+    "value": "Carolyn Jordan, the suburban wife who was cold to her husband, lived off his salary, and was secretly keeping Village lovers \u2014 making her both hated and easily explained as a victim of one of those lovers",
     "confidence": "high",
-    "quote": "She had made a Howard Jordan of him, and for that he would hate her forever."
+    "quote": "It looks as though she was\u2014uh\u2014stepping out on you, Mr. Jordan."
   },
   "closed_world": {
-    "value": "New York City during a specific night, split between Howard's office (with sign-in register), a midtown hotel (alibi location), and Roy Baker's Christopher Street apartment (crime scene). The urban setting allows identity fragmentation but constrains escape routes.",
-    "confidence": "high",
-    "quote": "At a quarter to seven he left the building again, this time failing to sign himself out. He took a cab to his apartment and was inside it by ten minutes after seven."
+    "value": "The double life spanning midtown Manhattan office/alibi hotel, the Christopher Street Village apartment, and the New Hope, Bucks County split-level \u2014 a two-identity world only Jordan can cross",
+    "confidence": "medium",
+    "quote": "From that day on he let his two lives overlap."
   },
   "culprit_and_motive": {
-    "value": "Howard Jordan / Roy Baker is the culprit. Motive: hatred born from discovering his wife's infidelity, but deeper motive is existential\u2014he murdered the life he hated (Howard Jordan) by destroying its anchor (Carolyn), believing he could live permanently as Roy Baker.",
+    "value": "Howard Jordan, adman living as 'Roy Baker,' killed his wife out of hatred for her adultery and for the life she forced on him, using his fabricated identity as the scapegoat",
     "confidence": "high",
-    "quote": "hated her more every day, not only for cheating but for making him an ad man instead of a writer, for making him live in that house instead of a Village apartment"
+    "quote": "He knew, then, that he hated her, that he had always hated her and, finally, that he was going to do something about it."
   },
   "resolution": {
-    "value": "No resolution. The police never catch Howard Jordan. Fingerprint evidence identifies Carolyn's body and implicates 'Roy Baker' as the killer, but the false identity serves as a perfect scapegoat. Jordan's alibi holds (office until 11:15, then hotel). The mystery remains unsolved.",
+    "value": "No legal resolution \u2014 the alibi holds and police hunt a nonexistent man; the ironic punishment is self-inflicted: by killing Carolyn he destroyed Roy Baker and is trapped as Howard Jordan, whom he cannot bear to be",
     "confidence": "high",
-    "quote": "That, incredibly, was all there was to it."
+    "quote": "He had to be Howard Jordan... He simply did not like being Howard Jordan."
   },
   "investigator": {
-    "value": "The reader. No detective investigates; police conduct routine checks. The narrative voice is omniscient, revealing Jordan's internal psychology and crimes. We are made complicit witnesses to a perfect crime rather than investigators solving it.",
+    "value": "The murderer himself as viewpoint character; the nominal investigators are unnamed New York and local police who are wholly deceived",
     "confidence": "high",
-    "quote": "For form's sake, the New York police checked Jordan's whereabouts at the time of the murder, and they found that he'd been at his office until eleven-fifteen"
+    "quote": "For form\u2019s sake, the New York police checked Jordan\u2019s whereabouts at the time of the murder"
+  },
+  "suspect_architecture": {
+    "value": "Minimal/inverted: the reader knows the killer from the start. The only 'suspect' pool is the fictitious Roy Baker (the killer's own alter ego, hunted as a real man), with the folk singer Stud Clement and Carolyn's other Village lovers as ambient alternatives, and the husband Howard Jordan cleared as a matter of form.",
+    "confidence": "high",
+    "quote": "\"Does the name Roy Baker mean anything to you?\""
+  },
+  "red_herring": {
+    "value": "The manufactured identity itself: Roy Baker, an 'irresponsible Village artist,' is framed as Carolyn's lover-killer, reinforced by an unclaimed airline reservation, abandoned clothes and an untouched bank account suggesting panicked flight.",
+    "confidence": "high",
+    "quote": "\"Baker had made a reservation on a plane shortly after killing Carolyn but hadn't picked up his ticket\""
+  },
+  "clue_fairness": {
+    "value": "Fully open \u2014 the inverted form gives the reader every mechanic in advance: the double wallets, the lease signed in disguised handwriting, the monogrammed suitcase, the hotel-register manipulation and the imitated Tennessee accent are all shown as they are done.",
+    "confidence": "high",
+    "quote": "\"he signed it \u201cRoy Baker\u201d in a handwriting quite unlike his own.\""
+  },
+  "social_world": {
+    "value": "Two mutually exclusive class worlds of 1960s New York: Madison Avenue advertising respectability plus Bucks County split-level suburbia, versus the bohemian Village of folksingers, artists and coffee-house chess \u2014 with money as the hinge (his salary supports Carolyn, who in turn pays her lover's rent).",
+    "confidence": "high",
+    "quote": "\"Jordan, after all, was a square, a Madison Avenue copy chief, an animal of little interest to the folksingers\""
+  },
+  "alibi": {
+    "value": "A rigged office/hotel alibi: he signs the building register out and in around a sandwich break, leaves unsigned at 6:45 to commit the murder, returns unsigned, departs at 11:15 and sleeps at his habitual hotel where he had reserved a room in advance; police verify it and it holds.",
+    "confidence": "high",
+    "quote": "\"they found that he'd been at his office until eleven-fifteen, except for a half hour when he'd had a sandwich\""
+  },
+  "reveal_mechanic": {
+    "value": "No detective reveal; the demonstration is psychological and self-inflicted \u2014 Jordan cannot return to the Village because he would be recognized and arrested as Roy Baker, proving he murdered his own preferred self along with his wife.",
+    "confidence": "high",
+    "quote": "\"he had killed her\u2014and killed Roy Baker in the bargain, erased him very neatly\""
+  },
+  "media_and_audience": {
+    "value": "The police narrative packages the crime as a straying suburban wife killed by a shiftless Village bohemian, with the neighbours' gossip supplying the adultery angle and the bereaved-husband role performed for the audience of investigators.",
+    "confidence": "medium",
+    "quote": "\"A guy like this, he's going to turn up in a certain kind of place. The Village, North Beach in Frisco\""
+  },
+  "investigator_wound": {
+    "value": "Transferred to the murderer as protagonist: Jordan's wound is that he loathes being Howard Jordan and can only live through an invented self \u2014 the crime exploits and then destroys that escape, leaving him trapped in the identity he hates.",
+    "confidence": "high",
+    "quote": "\"He simply did not like being Howard Jordan.\""
+  },
+  "victims_enemies": {
+    "value": "Carolyn's only real enemy is her husband Howard Jordan, whose grievance is textured: years of coldness, financial exploitation, his abandoned writing ambitions, and finally her serial infidelity with Village men (Phillie Wells, then Stud Clement, whose rent she paid). Her lovers are transactional, not hostile; the hatred is entirely marital.",
+    "confidence": "high",
+    "quote": "He knew, then, that he hated her, that he had always hated her and, finally, that he was going to do something about it."
+  },
+  "suspect_wounds": {
+    "value": "The 'suspect' Roy Baker is wounded by design \u2014 a bohemian drifter identity with no verifiable past, a fabricated dead wife, a rented room paid in cash, and an abandoned plane reservation that reads as flight. The real wound is Jordan's own: he cannot inhabit Howard Jordan, and killing Carolyn destroyed the only self he liked.",
+    "confidence": "high",
+    "quote": "Baker had made a reservation on a plane shortly after killing Carolyn but hadn't picked up his ticket"
+  },
+  "unreliable_frame": {
+    "value": "Told in close third person aligned wholly with Jordan, who lies to his wife, his landlord, his neighbors, the police and finally rationalizes to himself; his self-analysis ('not blind to its psychological implications') is itself a performance he only sees through at the end.",
+    "confidence": "high",
+    "quote": "\"A mere facade. A con perpetrated upon the soulless bosses.\""
+  },
+  "setting_as_constraint": {
+    "value": "1960s Manhattan's compartmentalized geography and anonymity: Madison Avenue versus Greenwich Village, separated by a cab ride, lets one man hold two unconnected social worlds. The office sign-in register and the midtown hotel supply a bounded, documentable alibi, while Village indifference means screams go unanswered.",
+    "confidence": "high",
+    "quote": "they were in New York now, and New Yorkers never concern themselves with the shrieks of dying women"
+  },
+  "evidence_type": {
+    "value": "Documentary/testimonial alibi construction \u2014 the office signature register, hotel reservation and rumpled bed, plus neighbor testimony about Carolyn's affairs; the corpse is identified by forensic fingerprint records from a prior civil service job.",
+    "confidence": "high",
+    "quote": "he'd been at his office until eleven-fifteen, except for a half hour when he'd had a sandwich around the corner"
+  },
+  "false_suspect": {
+    "value": "Roy Baker \u2014 a wholly fictitious Village artist invented by the killer himself, framed by the lease, bank account, wardrobe and abandoned flight booking; police hunt a man who does not exist.",
+    "confidence": "high",
+    "quote": "\"Does the name Roy Baker mean anything to you?\""
+  },
+  "technical_detail": {
+    "value": "The mechanics of manufacturing a documented second identity: false name on a lease signed in altered handwriting, cash payment to avoid bank traces, monogrammed suitcase, bank account, book club and mailing-list mail \u2014 plus vocal mimicry of Stud Clement's Tennessee accent to lure Carolyn, and the sign-in/sign-out register manipulation.",
+    "confidence": "high",
+    "quote": "he signed it \"Roy Baker\" in a handwriting quite unlike his own."
+  },
+  "moral_ambiguity": {
+    "value": "Jordan is a man suffocated by a life he never chose, whose invented self is the only place he is creative, happy and kind; his wife is unfaithful and exploitative. Yet the murder is punished perfectly by its own logic \u2014 he destroys the self he loved, and the story ends in existential imprisonment rather than justice.",
+    "confidence": "high",
+    "quote": "He simply did not like being Howard Jordan."
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 22758,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Pseudo Identity",
     "author": "LAWRENCE BLOCK",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 5,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

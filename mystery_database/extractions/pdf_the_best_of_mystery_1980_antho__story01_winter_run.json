@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Double homicide by gunshot in a lakeside cottage. Central question: Was the shooting justified self-defense, crime of passion, or premeditated murder masked by circumstance?",
+    "value": "Double homicide by shooting: a jealous deputy empties his revolver into a couple in a darkened cottage bedroom, mistakenly believing the woman is his fianc\u00e9e. Earlier, the same man fatally shot an unarmed vagrant. Central question is not whodunit but whether the shooter can control his impulse to kill.",
     "confidence": "high",
-    "quote": "He squeezed the trigger and kept squeezing it, because this time there was no Sergeant Racin to knock the pistol from his hand."
+    "quote": "He squeezed the trigger and kept squeezing it... until all six shots had been blasted into the figures on the bed."
   },
   "victim": {
-    "value": "Milt Woodman (seducer and manipulator) and Mrs. Dade (sheriff's wife). Woodman was 'killable' due to his affair with Kendell's fianc\u00e9e Sandy and his pattern of using cottages for illicit encounters. Mrs. Dade becomes collateral victim.",
+    "value": "Milt Woodman, the fired ex-deputy womanizer who used the cottages for trysts and taunted Kendell, plus Mrs. Dade, the sheriff's wife, secretly his lover; earlier victim was an unnamed derelict who stole gin.",
     "confidence": "high",
-    "quote": "He's quite a man with the girls, huh? Dade nodded sourly. He always was. He's just a no-good bum."
+    "quote": "Milt Woodman was sprawled on the floor... It wasn't Sandy. It was Mrs. Dade, the sheriff's wife."
   },
   "closed_world": {
-    "value": "Wagon Lake, a Midwestern suburban town with a frozen lake, shuttered cottages, and a small-town law enforcement structure. Kendell works as deputy patrolling the lake nightly; the confined geography and social intimacy create inevitable collision.",
+    "value": "Wagon Lake, a small midwestern former summer resort in winter \u2014 shuttered lakefront cottages, a few bars like the Blue Zebra, patrolled by a single night deputy",
     "confidence": "high",
-    "quote": "The town was called Wagon Lake...once so far removed from everywhere, had reckoned without the coming of the automobile and the postwar boom."
+    "quote": "The town was called Wagon Lake, a name which fitted its past better than its present."
   },
   "culprit_and_motive": {
-    "value": "Johnny Kendell, the protagonist and deputy, commits the murders. Motive: belief that Sandy and Woodman are in the cottage together, fueled by jealousy, wounded pride, and unresolved trauma from killing an innocent man days before.",
+    "value": "Johnny Kendell himself \u2014 sexual jealousy and a compulsive, unresolved violence; he believed Woodman was sleeping with his fianc\u00e9e Sandy and killed on that assumption",
     "confidence": "high",
-    "quote": "If it was Sandy, he thought that he would kill her...He parked further down the road, and for a long time just sat in the car, smoking."
+    "quote": "If it was Sandy, he thought that he would kill her."
   },
   "resolution": {
-    "value": "There is no formal resolution through investigation or justice. The narrative ends with Kendell's realization of his error\u2014he killed an innocent woman (Mrs. Dade, not Sandy)\u2014and his acceptance of inevitable capture and likely execution.",
-    "confidence": "medium",
-    "quote": "It wasn't Sandy. It was Mrs. Dade, the sheriff's wife...This time he knew they wouldn't be far behind him. This time he knew there'd be no next town, no new life."
+    "value": "No restoration of order: the reveal is ironic \u2014 the woman was the sheriff's wife, not Sandy; Kendell drops the gun and flees, knowing pursuit is certain",
+    "confidence": "high",
+    "quote": "This time he knew there'd be no next town, no new life. But he had to keep going. Running."
   },
   "investigator": {
-    "value": "Johnny Kendell himself\u2014the protagonist detective-turned-deputy who investigates the evidence of Sandy's infidelity but becomes the perpetrator. The reader experiences the mystery through his perspective as both investigator and culprit.",
+    "value": "Johnny Kendell, ex-cop turned lake-patrol deputy \u2014 the perpetrator himself as viewpoint character, investigating the affair that he will punish",
     "confidence": "high",
-    "quote": "In the bedroom upstairs he found what he sought...It was the mimeographed list Sheriff Dade had given him just two days before, the one Sandy had stuffed into her purse."
+    "quote": "Johnny Kendell was first out of the squad car, first into the alley with his gun already drawn."
+  },
+  "suspect_architecture": {
+    "value": "Not a whodunit cast; a small triangle of possible betrayers around Kendell: Milt Woodman (fired deputy, womanizer, opportunity at the cottages), Sandy Brown (fianc\u00e9e, growing distant, seen laughing with Woodman), and Sheriff Dade (employer, whose wife turns out to be the real woman). Differentiation is by relationship to Kendell rather than by means/motive for a murder.",
+    "confidence": "medium",
+    "quote": "It was Milt Woodman, and they were laughing together like old friends."
+  },
+  "red_herring": {
+    "value": "The planted implication that Sandy is Woodman's lover: her chats with him at the supermarket, her cooling on marriage, her absence at midnight, her cigarette brand in the ashtray, and the mimeographed list she carried used as lipstick blotter \u2014 all pointing to a conclusion that is false.",
+    "confidence": "high",
+    "quote": "It was the mimeographed list Sheriff Dade had given him just two days before, the one Sandy had stuffed into her purse."
+  },
+  "clue_fairness": {
+    "value": "Clues are shown to the reader as Kendell sees them: Dade's evasions about why Woodman was fired, Dade's handsome younger blonde wife, Dade referring to Sandy as Kendell's 'wife', the list given to Kendell (which Dade also had access to), the scarf-concealed girl in Woodman's car \u2014 all available before the final identification.",
+    "confidence": "medium",
+    "quote": "Mrs. Dade proved to be a handsome blonde woman in her mid-thirties"
+  },
+  "social_world": {
+    "value": "Wagon Lake, a former summer retreat for the rich turned commuter suburb; a politician-sheriff elected by new money, seasonal winter hiring, absentee cottage owners demanding protection of their property, and a bar culture of underage drinkers and idle men. Patronage: Dade hires and fires at will, and Kendell's livelihood and gun both come from him.",
+    "confidence": "high",
+    "quote": "Despite the cigar, it was obvious that the newly arrived wealth of Wagon Lake had elected him."
+  },
+  "alibi": {
+    "value": "Sandy's account of her whereabouts \u2014 'I went to a late movie' \u2014 explaining her empty motel room at midnight; Kendell disbelieves it, but it is in fact genuine and its apparent falseness drives the killings.",
+    "confidence": "high",
+    "quote": "\u201cI went to a late movie.\u201d"
+  },
+  "reveal_mechanic": {
+    "value": "Physical identification by match-light after the shooting: Kendell strikes a match over the bodies and sees the woman under the sheet is not Sandy but the sheriff's wife \u2014 demonstration by direct sight rather than deduction.",
+    "confidence": "high",
+    "quote": "It wasn\u2019t Sandy. It was Mrs. Dade, the sheriff\u2019s wife."
+  },
+  "media_and_audience": {
+    "value": "Institutional handling rather than press: the departmental investigation and grand jury Kendell flees, the tacit understanding that a dead 'bum' means no prosecution, and Dade's promise to check references back East. Kendell's own confession to Dade shapes how the earlier killing is perceived.",
+    "confidence": "medium",
+    "quote": "\u201cIf he hadn\u2019t been just a bum I\u2019d probably be up before the grand jury!\u201d"
+  },
+  "investigator_wound": {
+    "value": "Kendell is a policeman who emptied his revolver into an unarmed drunk in an alley and fled the hearing; his guilt, rage and inability to stop firing are reactivated by carrying a gun again, and jealousy over Sandy exploits exactly that wound into a repeat killing.",
+    "confidence": "high",
+    "quote": "\u201cI can kill a man,\u201d he answered."
+  },
+  "victims_enemies": {
+    "value": "Milt Woodman had a web of grievance around him: Sheriff Dade fired him for using the cottages he was paid to guard for trysts (and, unknowingly, was being cuckolded by him), and Johnny Kendell, his replacement, came to believe Woodman was sleeping with his fianc\u00e9e Sandy. Woodman also needled Kendell openly at the Blue Zebra.",
+    "confidence": "high",
+    "quote": "\"Didn\u2019t old Dade tell you he fired me?\" ... \"Ask him why he fired Milt Woodman.\""
+  },
+  "suspect_wounds": {
+    "value": "Kendell's wound is the alley shooting: a rage-driven overkill of a harmless drunk that he fled rather than face a hearing. Taking a gun-carrying job reactivates exactly the flaw he claims to regret. Sandy's wound is her withdrawal and silence about the man in the supermarket, which reads as guilt though she is innocent of the affair.",
+    "confidence": "high",
+    "quote": "\"As soon as I fired the first shot I knew it was just a bottle, and I guess maybe in my rage at myself... I kept pulling the trigger.\""
+  },
+  "unreliable_frame": {
+    "value": "The narrative is locked to Kendell's suspicion-warped perception; his inferences (the cigarette brand, the lipstick-blotted list, the scarfed girl in Woodman's car) are presented as proof but are circumstantial and wrong about the woman's identity. Sandy also gives evasive accounts of her nights ('a late movie', 'just a customer').",
+    "confidence": "high",
+    "quote": "He smoothed it out, fearing, but already knowing. It was the mimeographed list Sheriff Dade had given him... All right. Now he knew."
+  },
+  "setting_as_constraint": {
+    "value": "Wagon Lake in winter: shuttered lakefront cottages, frozen lake, dirt driveways and few witnesses. The deputy's own hourly-but-deliberately-irregular patrol route means only he knows where he'll be \u2014 and Woodman, having held the job, knew exactly which hidden driveway and empty cottage could not be observed.",
+    "confidence": "high",
+    "quote": "\"But don\u2019t fall into a pattern with your trips, so someone can predict when you\u2019ll be passing any given cottage.\""
+  },
+  "evidence_type": {
+    "value": "Documentary/physical trace evidence: the crumpled mimeographed directory used as a lipstick blotter, plus cigarette butts of Sandy's brand and unsmoothed bed sheets \u2014 evidence that is real but fatally misread, since Dade gave the same list to others.",
+    "confidence": "high",
+    "quote": "Then he saw on the floor a crumpled ball of paper, which she\u2019d used to blot her lipstick."
+  },
+  "false_suspect": {
+    "value": "Sandy Brown \u2014 cast by Kendell (and by circumstance: laughing with Woodman at the checkout, empty motel room, evasive answers, her brand of cigarettes) as the woman in the cottage, though the woman was in fact Mrs. Dade.",
+    "confidence": "high",
+    "quote": "It wasn\u2019t Sandy. It was Mrs. Dade, the sheriff\u2019s wife."
+  },
+  "technical_detail": {
+    "value": "Police procedure and the deputy's own patrol craft: knowledge of the cottage-driveway layout, unlatched lakeside windows, the varied patrol schedule, and the issued .38 service revolver \u2014 the job's expertise is precisely what enables the killing.",
+    "confidence": "medium",
+    "quote": "Presently he took the .38 revolver from his holster and checked to see that it was loaded."
+  },
+  "moral_ambiguity": {
+    "value": "Kendell is a man genuinely horrified by his own violence, trying to build an ordinary life with the woman he loves; his killing springs from jealousy and an untreated trauma-reflex rather than malice, and the reader has watched him beg himself not to draw the gun. Sheriff Dade's silence about why Woodman was fired \u2014 protecting his own humiliation \u2014 helps set the trap.",
+    "confidence": "high",
+    "quote": "\"I won\u2019t have it in my hand. I promise you I won\u2019t even draw it.\""
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Winter Run",
     "author": "EDWARD D. HOCH",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 1,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

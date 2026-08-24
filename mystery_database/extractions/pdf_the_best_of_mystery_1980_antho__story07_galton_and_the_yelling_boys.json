@@ -1,45 +1,129 @@
 {
   "crime": {
-    "value": "Murder of young woman Helen MacKenzie in City Park. Reported as kidnapping by her boyfriend Lawrence Wainwright, but detective Galton deduces it was a passion killing: Wainwright killed her with a rock during a sexual encounter when she resisted his advances, then fabricated a story about three abductors to cover his crime.",
+    "value": "Rape-murder of a teenage girl in City Park, bludgeoned with a rock; the boyfriend reports she was kidnapped by three men \u2014 central question: is his abduction story true?",
     "confidence": "high",
-    "quote": "The young girl lay dead and cold under a tree. Her pants were down, her skirt was up and her blouse and bra were off. Her once-pretty head was bloody and broken."
+    "quote": "\"Three men!\" the boy panted. \"They kidnapped my girl.\""
   },
   "victim": {
-    "value": "Helen MacKenzie, a young woman from a lower social class than Wainwright. She was 'killable' because she resisted Wainwright's sexual advances\u2014she said 'Stop it! Don't!'\u2014making her a threat to his plans and his reputation.",
+    "value": "Helen MacKenzie, teenage girl from Wells Street, of lower social class than her wealthy boyfriend; killed when she resisted his sexual advances",
     "confidence": "high",
-    "quote": "I heard her say, 'Stop it! Don't!' but that's all."
+    "quote": "The young girl lay dead and cold under a tree. Her pants were down, her skirt was up..."
   },
   "closed_world": {
-    "value": "City Park at night during a full moon in May, specifically the wooded area near the pond where Wainwright parked with the victim. The park becomes the investigative boundary as police search the woods.",
-    "confidence": "high",
-    "quote": "We were parked in the park doing a little\u2014you know\u2014smooching... They dragged her that way. At least, the last I saw... [pointing to] black woods a hundred yards distant."
+    "value": "City Park at night by the pond and adjoining woods, isolated with only the couple present; broadened only by the reported car of yelling boys",
+    "confidence": "medium",
+    "quote": "When they drove past the pond, Wainwright pointed to a stand of trees, black against the moonlit sky."
   },
   "culprit_and_motive": {
-    "value": "Lawrence Wainwright, the boyfriend, killed Helen MacKenzie. Motive: sexual aggression met with resistance; when she fought him off, he struck her with a rock to 'subdue her,' but hit too hard and killed her. Motive also includes covering up the act by inventing the three-man abduction story.",
+    "value": "Lawrence Wainwright, the boyfriend \u2014 he struck her with a rock to subdue her when she resisted sex, killed her accidentally, then invented the kidnappers",
     "confidence": "high",
-    "quote": "You took the girl down into the woods and started to pitch woo. Only she didn't want to go as far as you did and she tried to fight you off. But you were determined and you hit her with a rock to quiet her down."
+    "quote": "you were determined and you hit her with a rock to quiet her down, only... you'd hit her too hard and she was dead"
   },
   "resolution": {
-    "value": "Captain Galton uses logical deduction based on human nature and criminal psychology. He recognizes the false alibi through internal inconsistency: three attackers would not need to kill the girl if their goal was rape\u2014they could simply restrain her. The rock-killing only makes sense if a single person (the boyfriend) was involved. Galton's reasoned accusation breaks down Wainwright's story; forensic examination of the body will provide physical evidence.",
+    "value": "Galton reasons from behavioral logic \u2014 three attackers would need no rock and would not have killed her while leaving him alive \u2014 confronts the boy, who breaks down sobbing; physical evidence on the body promised",
     "confidence": "high",
-    "quote": "Three guys? What would they need a rock for? Two could hold her for the third so tight she couldn't move a muscle... That girl's body is going to be examined very, very carefully for physical evidence."
+    "quote": "\"But three men? What would they need a rock for? Two could hold her for the third so tight she couldn't move a muscle.\""
   },
   "investigator": {
-    "value": "Captain Mike Galton, an experienced police detective with institutional authority. He is the lens through which the reader experiences the mystery. Galton's expertise in human nature\u2014his philosophical opening about cops knowing more about human behavior than psychiatrists\u2014becomes the instrument of solving the crime.",
+    "value": "Captain Mike Galton, veteran police captain of detectives relying on experience with human nature, with young sidekick Detective Bill Dennis",
     "confidence": "high",
-    "quote": "'Human nature,' said Mike Galton, the captain of detectives, 'is the key to man's universe... a good, experienced cop knows more about human nature than a good, experienced psychiatrist.'"
+    "quote": "\"Human nature,\" said Mike Gallon, the captain of detectives, \"is the key to man's universe.\""
+  },
+  "suspect_architecture": {
+    "value": "Effectively one real suspect \u2014 Lawrence Wainwright, the boyfriend who reports the crime \u2014 set against three phantom 'abductors' (two dark, one blond) he invents. The yelling boys in the cream convertible, corroborated by an independent complaint call, serve as the only alternative candidates; they have apparent opportunity but no proven existence at the scene.",
+    "confidence": "high",
+    "quote": "\u201cThree men!\u201d the boy panted. \u201cThey kidnapped my girl.\u201d",
+    "quote_note": null
+  },
+  "red_herring": {
+    "value": "The cream-colored convertible with three rowdy boys, independently reported to police at 9:42 by Mrs. Stanley Turner \u2014 a real nuisance call the killer opportunistically grafts his false story onto, giving it apparent corroboration.",
+    "confidence": "high",
+    "quote": "Call from a Mrs. Stanley Turner on Westlake Avenue about a light-colored convertible with three boys in it"
+  },
+  "clue_fairness": {
+    "value": "Fair: all data the reader needs is on the page before Galton's deduction \u2014 the boy's own account of three assailants, the rock used to subdue the girl, his survival with only superficial injuries, the girl's stripped body, and his reluctance to give names/addresses before rushing police to the park.",
+    "confidence": "high",
+    "quote": "a red-stained rock, wrenched from the nearby earth, lay beside her."
+  },
+  "social_world": {
+    "value": "Small-city class divide: Wainwright is a nineteen-year-old from 'one of the best sections of town' with a shiny new hardtop; Helen MacKenzie lives on Wells Street, a lower social station \u2014 the detectives immediately read the cross-class date as sexual exploitation. Set against the police-station hierarchy of veteran captain, young sidekick, and desk sergeant.",
+    "confidence": "high",
+    "quote": "She comes from a different social station than you do... usually when men date girls below their social class, it\u2019s for only one reason."
+  },
+  "alibi": {
+    "value": "No conventional alibi; the suspect instead places himself at the scene as a victim, claiming he was knocked unconscious during the abduction (~10:45) and thus absent in mind if not body \u2014 an 'unconsciousness alibi' that also explains his injuries and dishevelment.",
+    "confidence": "medium",
+    "quote": "\u201cI tried to fight them, but they ganged up and knocked me out. And when I came to, they were gone and she was gone.\u201d"
+  },
+  "reveal_mechanic": {
+    "value": "Psychological/logical demonstration from criminal behavior patterns: Galton reasons that three attackers who wanted rape would have no need of a rock (two could hold her) and no motive to kill her, while a lone assailant would \u2014 so the story's internal logic, not physical evidence, convicts. Sealed by the threat of forensic examination of the body, which breaks the boy into sobs.",
+    "confidence": "high",
+    "quote": "\u201cBut three men? What would they need a rock for? Two could hold her for the third so tight she couldn\u2019t move a muscle.\u201d"
+  },
+  "media_and_audience": {
+    "value": "No press; the 'audience' is the police institution itself \u2014 the blotter, radio dispatch, and the ring of thirty encircling officers whose cold, disbelieving faces form the jury before which the boy's story collapses.",
+    "confidence": "medium",
+    "quote": "He looked around desperately, but all the faces were cold and disbelieving."
+  },
+  "investigator_wound": {
+    "value": "Galton's professional creed \u2014 that an experienced cop knows human nature better than any psychiatrist \u2014 is the vulnerability the case tests; he 'smelled' the lie immediately yet hoped against his own judgment that the boy was telling the truth, and is wearied and saddened when experience proves right.",
+    "confidence": "medium",
+    "quote": "\u201cI hoped like hell you were telling the truth, but when she wasn\u2019t in by midnight, I was afraid you weren\u2019t.\u201d"
+  },
+  "victims_enemies": {
+    "value": "Helen MacKenzie has no enemies in any conventional sense; her only antagonist is her own boyfriend, Lawrence Wainwright, a wealthy boy dating a girl from Wells Street \u2014 'a different social station' \u2014 whose relationship is defined by class asymmetry and sexual pressure rather than grievance.",
+    "confidence": "medium",
+    "quote": "She comes from a different social station than you do... usually when men date girls below their social class, it's for only one reason."
+  },
+  "suspect_wounds": {
+    "value": "Wainwright's vulnerability is his need to appear respectable: the good address, the shiny new hardtop, the insistence that he isn't a snob and that they'd 'talked about marriage.' The crime activates his terror of being seen as a boy who took a lower-class girl into the park for one reason, and his lies escalate to protect that self-image.",
+    "confidence": "high",
+    "quote": "Wainwright said heatedly, \"I'm not a snob. We happen to like each other. We've talked about marriage, if you really want to know.\""
+  },
+  "unreliable_frame": {
+    "value": "The entire narrative is filtered through Wainwright's report to the police \u2014 the only account of the attack, delivered by the killer himself. His story shifts under questioning (from 'kissing' to 'necking' to 'we also talk'), and Galton reads him as a liar from the moment he bursts in.",
+    "confidence": "high",
+    "quote": "\"I've heard so many phonies I could smell this one the moment you came in tonight.\""
+  },
+  "setting_as_constraint": {
+    "value": "City Park at night under a full moon \u2014 a known lovers' lane where 'neckers' are raided \u2014 supplies both the isolation for the crime and the ready-made alibi. The genuine complaint about a cream-colored convertible full of yelling boys, logged at 9:42 by the desk sergeant, gave Wainwright a real, police-corroborated set of phantom attackers to blame.",
+    "confidence": "high",
+    "quote": "\"If a bunch of boys want to raid neckers, Cap, this is the night to find them.\""
+  },
+  "evidence_type": {
+    "value": "Primarily testimonial/behavioral logic \u2014 Galton's deduction from the internal inconsistency of the story (a live boy and a dead girl are incompatible with three attackers). Backed by the threat of forensic evidence: the body's forthcoming examination, which triggers the confession.",
+    "confidence": "high",
+    "quote": "\"That girl's body is going to be examined very, very carefully for physical evidence.\""
+  },
+  "false_suspect": {
+    "value": "The three boys in the cream-colored convertible \u2014 real hell-raisers whose 9:42 p.m. noise complaint makes them plausible abductors, invoked by Wainwright to divert the search into the woods and away from himself.",
+    "confidence": "high",
+    "quote": "\"this cream-colored convertible went racing past us with three boys in it yelling and screaming. I think they were the same ones.\""
+  },
+  "technical_detail": {
+    "value": "Galton's expertise is applied criminal psychology of group sexual assault: three men would have no need of a rock, since two could hold a victim for the third; and a gang bent on rape would beat the boyfriend but leave the girl alive. The rock and the surviving male witness together are physically incompatible with the claimed scenario.",
+    "confidence": "high",
+    "quote": "\"One man, maybe. You, alone, might have to use a rock to have your way with her. But three men? What would they need a rock for?\""
+  },
+  "moral_ambiguity": {
+    "value": "Wainwright is not a predator by design but a nineteen-year-old whose sexual insistence turned lethal by accident \u2014 he hit her 'to quiet her down' and found he'd hit too hard. His grief and shock appear genuine; his lie is panic, not calculation, and the story ends with him sobbing rather than condemned.",
+    "confidence": "medium",
+    "quote": "you hit her with a rock to quiet her down, only, when it was all over, you found out you'd hit her too hard and she was dead."
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 15617,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Galton and the Yelling Boys",
     "author": "HILLARY WAUGH",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 7,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }
