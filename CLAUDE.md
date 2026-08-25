@@ -258,9 +258,30 @@ GodotSteam is the best Steamworks path; Godot Linux export = Steam Deck support 
 
 ---
 
-## Current To-Do (as of Session 23, August 3, 2026)
+## Current To-Do (as of Session 35, August 25, 2026)
 
-Full list in `SESSIONS.md`. Top priorities:
+Full list in `SESSIONS.md`. **The two things that matter for stage 1 are items 22 and 23 —
+everything above them is history or not-yet.**
+
+22. **[START HERE — BLOCKING] One Godot F5.** Nothing from Session 34 or 35 has run in the engine.
+    The result screen, the accusation matching, the saved-mystery dropdown, every wiring fix — all
+    verified by `scripts/check_godot_wiring.py` and nothing else. There is no Godot binary in the
+    remote environment, so this needs the owner's machine. It costs nothing and it is the only
+    thing between the current state and a playtest.
+
+23. **[NEXT] Build APF.** The playtest shape is agreed and written down:
+    `docs/PLAYTEST_FLOW.md` → "APF (All Provided For)". Findings are **dealt, not gathered**; the
+    only decision is which to share and which to keep, which is the mechanic this file's first
+    paragraph calls the core innovation. It deletes exploration, the block pool, the phase gates
+    and item 21's deadlock outright, and drops play-time API cost to roughly zero.
+    Order (from `docs/INVESTIGATION_DESIGN.md` §7, reduced by APF):
+    1. `exonerates` / `implicates` on evidence + the set-arithmetic solvability check
+    2. the constrained deal — pure computation, re-dealable at zero cost
+    3. the share decision, the suspect board, the reveal
+    4. `cinematic_brief: bool = True` for the paced text opening
+    Five design questions remain open and are the owner's — `docs/INVESTIGATION_DESIGN.md` §6.
+
+Older items, kept for history:
 
 1. **[DONE]** Phase 1 — FastAPI server + Godot project scaffold
 2. **[DONE]** Phase 2 — Single-player Godot prototype (all 5 screens functional)
@@ -269,7 +290,7 @@ Full list in `SESSIONS.md`. Top priorities:
    - **[DONE]** 3b: Game session store + 8 server endpoints
    - **[DONE]** 3c: WebSocket upgrade + mobile.html phone client + .tscn wiring
    - **[DONE]** 3d: Lobby flow, room codes, host-screen display (Session 14)
-4. **[START HERE]** Phase 3e — Avatar pool system + player history tracking. Design is locked and
+4. **[DEFERRED — stage 3]** Phase 3e — Avatar pool system + player history tracking. Design is locked and
    merged (PR #4, Session 17) — full spec in `docs/WIRING.md` under "Avatar system + player
    profiles (Phase 3e)" (two-layer model: shared era-keyed base looks + persistent per-player
    signature accessory from a fixed catalog). Nothing is built yet; see that section's

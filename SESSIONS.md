@@ -3000,7 +3000,7 @@ it. Porting the Aug 12 flow and then immediately rewriting it would build the sa
 
 ---
 
-## Session 35 — August 24, 2026 (CYM: a corpus run against a dead credit balance, and why it did not stop)
+## Session 35 — August 25, 2026 (CYM: the corpus upgrade ran; the investigation model was redesigned to APF; four checkers gained a fifth)
 
 **Starting point:** `claude/session-34-bugs-fixes-uu2hk2`, at `f2bf505` (= `origin/main`, PR #22
 merged). Nothing carried over; a clean branch.
@@ -3359,7 +3359,8 @@ failure this script exists to prevent.
 | `CLAUDE.md` | item 21 (deadlock, new); item 20 marked superseded in part; doc added to Key Files |
 | `part_registry.py` | fingerprint hashes extraction **contents**, not just the filename set |
 | `scripts/test_registry_staleness.py` | new case: a source rewritten in place must trigger a rebuild |
-| `mystery_database/part_registry.json` | regenerated — 4,967 → 5,065 parts |
+| `mystery_database/part_registry.json` | regenerated twice — 4,967 → 5,065 after the first 7 upgrades, then self-rebuilt to **5,990 / 573 sources** after the full run |
+| `mystery_database/extractions/` | **70 sources upgraded to P1P2P3** (63 anthology stories + 7 novels), originals archived to `_superseded/` |
 | `scripts/extract_from_pdfs.py` | `FatalAPIError`, `_fatal_reason()`, exit codes; no retry and no batch continuation on an account-level error; non-zero exit when a source fails |
 | `scripts/upgrade_p1_to_p1p2.py` | stops the per-source subprocess loop on `EXIT_FATAL` |
 | `scripts/test_extraction_fatal_errors.py` | **new** — 19 assertions |
@@ -3367,13 +3368,36 @@ failure this script exists to prevent.
 
 ### Next steps
 
-1. **The corpus upgrade is blocked on credits, not on code.** Top up, then re-run
-   `python3 scripts/upgrade_p1_to_p1p2.py --go` — the plan is unchanged at 66 of 74 sources,
-   ~$9.70. `--upgrade` resumes and re-pays for nothing.
-2. **Nothing in Session 34 or 35 has run in the Godot engine.** The result-screen fix, the
-   accusation matching and the saved-mystery dropdown are verified by static checker only. One
-   F5 is the highest-value action available and it needs a machine with Godot on it.
-3. Item 18 (should generation refuse to save a BLOCKING mystery?) is still an open design call.
+1. **[STAGE 1, BLOCKING] The Godot F5.** Nothing from Session 34 or 35 has run in the engine —
+   the result screen, the accusation matching, the saved-mystery dropdown and every wiring fix are
+   verified by static checker only. No Godot binary exists in the remote environment, so this
+   needs the owner's machine. It is the only thing standing between the current state and a
+   playtest, and it costs nothing.
+2. **[STAGE 1] Build APF.** `docs/PLAYTEST_FLOW.md` → "APF" is the agreed shape. The build order
+   in `docs/INVESTIGATION_DESIGN.md` §7 still applies, reduced by APF:
+   - `exonerates` / `implicates` on evidence, plus the set-arithmetic solvability check
+   - the constrained deal (pure computation, re-dealable at zero cost)
+   - the share decision, the suspect board, the reveal
+   - `cinematic_brief: bool = True` for the paced text opening
+   The deadlock fix drops off the list — APF deletes the mechanic that had it.
+3. **[OPEN, owner] Five design questions**, listed in `docs/INVESTIGATION_DESIGN.md` §6: what a
+   connection line means, affordance display, player-position visibility, the budget model, and
+   titles that name the culprit.
+4. **[OPEN] Item 18** — should generation refuse to save a BLOCKING mystery, retry it, or serve it
+   with a louder warning? Untouched, and worth settling before the funding stage: "the coherence
+   engine detects the defect and ships it anyway" is a question someone will ask.
+5. **[NOT URGENT] The novel re-run**, ~$15 to raise `--max-text-chars` and close the 33-point P3
+   confidence gap between novels and anthology stories. Buys corpus quality, not anything a
+   playtester sees.
+6. **[NOT URGENT] `salvation-of-a-saint`** extracted only 14,690 characters total — under the
+   sampling cap, so that PDF is likely a preview or has a broken text layer rather than being the
+   novel.
+
+### What this session did not do
+
+No Godot code ran. No client work was built. The APF design is recorded, not implemented. The
+corpus is upgraded and the tooling around it is now hard to misuse, but **the playtest is still
+one F5 and one client build away**, and that has been true since Session 34.
 
 ---
 
