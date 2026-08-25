@@ -86,6 +86,7 @@ MIN_TEXT_CHARS       = 200    # below this, a "story" is probably a mis-detected
 # with the next source" walks the entire remaining corpus against a dead API key.
 EXIT_SOURCE_FAILED = 1
 EXIT_FATAL         = 2
+EXIT_INTERRUPTED   = 130   # shell convention for SIGINT (128 + 2)
 
 # Anthology mode (--anthology): unlike a novel, a short story has no slack to sample
 # away — MAX_TEXT_CHARS' begin/middle/end sampling would cut most of a dense ~5-15
@@ -972,6 +973,7 @@ def main() -> None:
 
     success, failed = 0, 0
     stopped_early: str | None = None
+    interrupted = False
     remaining = 0
     i = -1  # bound for the handlers below if Ctrl-C lands before the first iteration
     try:
@@ -1003,6 +1005,7 @@ def main() -> None:
     except KeyboardInterrupt:
         stopped_early = "interrupted at the keyboard"
         remaining = len(pdfs) - i - 1
+        interrupted = True
 
     print(f"\n=== Done ===")
     print(f"  Processed : {success}")
@@ -1013,6 +1016,10 @@ def main() -> None:
         print(f"\n  STOPPED — {stopped_early}")
         if remaining:
             print(f"  {remaining} source(s) not attempted.")
+        if interrupted:
+            print("  Nothing was written for the source in flight. Re-run this exact "
+                  "command\n  to resume — --upgrade re-pays for nothing.")
+            sys.exit(EXIT_INTERRUPTED)
         print("  Nothing was written for the source that failed, so re-running this "
               "exact command\n  after the cause is fixed resumes where it left off "
               "and re-pays for nothing.")

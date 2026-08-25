@@ -228,6 +228,8 @@ class _APIError(Exception):
 
 class _Messages:
     def create(self, **kwargs):
+        if {message!r} == "KEYBOARD":
+            raise KeyboardInterrupt
         raise _APIError({message!r}, {status!r})
 
 class Anthropic:
@@ -337,6 +339,18 @@ if "STOPPED" in out and "out of credits" in out:
     print("  PASS  and says plainly why it stopped")
 else:
     print(f"  FAIL  unhelpful output:\n{out[-600:]}")
+    failures += 1
+
+rc, out = run_real_script("KEYBOARD", None)
+if rc == ex.EXIT_INTERRUPTED:
+    print(f"  PASS  Ctrl-C exits {rc} (EXIT_INTERRUPTED), no traceback")
+else:
+    print(f"  FAIL  Ctrl-C exits {rc}, expected {ex.EXIT_INTERRUPTED}")
+    failures += 1
+if "Traceback" not in out and "resume" in out:
+    print("  PASS  and says how to resume instead of dumping a stack")
+else:
+    print(f"  FAIL  ugly interrupt output:\n{out[-500:]}")
     failures += 1
 
 rc, out = run_real_script("Connection error.", None)
