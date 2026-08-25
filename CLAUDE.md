@@ -769,11 +769,18 @@ Both are zero-API-cost, need no Godot binary, and each has already caught a real
 | `scripts/check_mystery_playable.py` | A saved mystery whose `solution.culprit` names no listed suspect, an empty suspect list, or a blocking coherence failure that was served anyway. |
 | `scripts/upgrade_p1_to_p1p2.py` | Plans and runs the P1→P1P2P3 corpus upgrade. Prints the plan and spends nothing by default; `--go` executes. `--check-sources` / `--find-missing` / `--source-dir` handle PDFs that moved, were renamed, or are gone. Errors and recovery: `docs/EXTRACTION_TROUBLESHOOTING.md`. |
 | `scripts/compare_extraction_models.py` | Scores extraction models against `_atomize_extraction` — parts yielded and axes filled, not prose quality. |
+| `scripts/check_doc_claims.py` | Documentation that has drifted from the code. Verifies the **checkable** claims in `CLAUDE.md` and `docs/` — that a referenced file exists, that a *path:line* reference points inside the file, and that a backtick-quoted string is actually in a code file. Deliberately excludes `SESSIONS.md` (a historical record: its claims were true when written). Found 4 stale claims in `docs/WIRING.md` on its first real run, one of them the *same* video-panel sentence corrected in `CLAUDE.md` an hour earlier. |
 | `scripts/test_extraction_fatal_errors.py` | That an extraction batch **stops** on an account-level API failure (no credits, bad key, bad `--model`) instead of walking the rest of the corpus reprinting it, and still **continues** past a per-source one. Runs the real script as a subprocess against a stubbed SDK, so it checks the exit code the wrapper actually reads. |
 | `scripts/test_crime_scene_map.py` | The derived crime-scene layout: overlapping rooms, rooms off-canvas, a row that leaves a hole, a witness placed outside the room they are said to be in, or a layout that is not identical run to run. |
 
 Godot reports both classes of failure only at runtime, and the second one not even then — it
 looks like the player guessed wrong.
+
+**Backtick-quoting a string in `CLAUDE.md` or `docs/` is a CLAIM that the product contains it**,
+and `check_doc_claims.py` enforces it. To mention a string without asserting it exists — a retired
+label, an illustrative pattern — use italics, or add it to that script's `ALLOWED_LITERALS` with
+the reason. Five doc-vs-code gaps surfaced in Session 35 alone (the result screen, the
+saved-mystery dropdown, `_slug`, and two in `WIRING.md`); every one was documented as built.
 
 19. **[READY TO RUN — blocked on credits, not code, as of Session 35] The corpus P1→P1P2P3 upgrade.** 75 sources are P1-only (206 of
     281 `pdf_*` are already P1P2). `python3 scripts/upgrade_p1_to_p1p2.py` prints the plan and

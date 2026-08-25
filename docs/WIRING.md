@@ -180,10 +180,15 @@ automatically as more settings are explored — zero maintenance required.
 "near future", etc., the localization call is skipped entirely (modern English names
 are already appropriate). Detected by `localization._is_modern(setting)`.
 
-**UI / CLI feedback** — the spinner label tells you which tier fired:
-- `"Localization: modern setting — skipped"`
-- `"Localizing names (era rules cached)..."`
-- `"Localizing names and occupations (building era cache)..."`
+**UI / CLI feedback** — **[CORRECTED, Session 35] these three labels exist only in
+`deprecated/` (`cli.py`, `app.py`), the retired Streamlit creator tool. The Godot client and
+`mobile.html` show nothing equivalent; `localization.py` returns silently on every tier.** The
+tiers themselves are real and unchanged — modern settings are skipped, era rules are cached — but
+nothing currently tells a player or an operator which one fired:
+The three retired labels were: *Localization: modern setting — skipped*, *Localizing names (era
+rules cached)*, and *Localizing names and occupations (building era cache)*. They are named here
+in italics rather than as code strings on purpose — backtick-quoting a string in these docs is
+read as a claim that the product contains it, and `scripts/check_doc_claims.py` enforces that.
 
 **What it changes:**
 - Character names → era/culture appropriate (no "Dr. Pemberton" in Ancient Athens)
@@ -510,9 +515,14 @@ anyone's won, otherwise the same shape as `game_won` minus the broadcast-only fr
 ### End-of-game resolution reveal (`plot_reveal` + `winner_findings` + `resolution_narrative`)
 
 Video stays explicitly tabled — the owner wants the UI's look-and-feel settled before any
-generative video work starts, so the client should still render a static
-`"Video Scene Will Play Here"` panel where a future clip would go (no backend field for it,
-nothing generated to point to yet). **The narrative text itself is no longer zero-cost** —
+generative video work starts. **[CORRECTED, Session 35] This paragraph used to say the client
+"should still render a static `Video Scene Will Play Here` panel". No client does, and the wording
+had drifted from an intention into an apparent statement of fact.** What the slot should hold is
+specified in `docs/PLAYTEST_FLOW.md` → "The video slot" — deliberately *not* a grey placeholder,
+which announces unfinished software exactly when immersion matters. There is also a backend field
+after all, unused: `_generate_cinematic_brief()` (`server/main.py:335`) returns a hidden
+`cinematic_brief` shot list alongside the player-facing `opening_narration`, gated behind
+`cinematic_brief: bool = False`. **The narrative text itself is no longer zero-cost** —
 un-tabled on explicit request, once the owner confirmed they wanted the "recommended" real
 AI-authored option over a zero-cost restructuring alternative. Three fields:
 
