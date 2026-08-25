@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Planned murder of a fugitive named Spikes via ambush at a remote diner; two armed men position themselves to kill Spikes when he jumps from a passing freight train and arrives at the location.",
+    "value": "Planned contract murder / ambush: two armed men take over a desert diner, holding staff and a customer hostage, intending to shoot a fugitive named Spikes as he steps off a passing freight train. Central question is not whodunit but whether the intended killing can be prevented.",
     "confidence": "high",
-    "quote": "We're here to kill a man... We're going to kill a man named Spikes... at five-thirty that freight is coming through here."
+    "quote": "\u201cWe\u2019re going to kill a man named Spikes,\u201d Earl told him."
   },
   "victim": {
-    "value": "Spikes, a fugitive hiding in a boxcar who 'did something he shouldn't have done' and is being hunted by two contract killers intending to intercept him at the diner.",
+    "value": "Spikes, a fugitive hiding in a boxcar expecting a getaway car and a friend to drive him to Mexico; targeted because he 'did something he shouldn't have done' \u2014 apparently betrayed his associates. Secondary victims: the hostages who could identify the gunmen.",
     "confidence": "high",
-    "quote": "There's a man named Spikes hiding in one of the boxcars, and when it passes by here he's going to jump off."
+    "quote": "\u201cLet\u2019s just say he did something he shouldn\u2019t have done,\u201d Frank said."
   },
   "closed_world": {
-    "value": "Charley's Oasis diner in the Arizona desert, isolated along a highway near railroad tracks, with limited personnel (old man, young waitress, and drifter Jack) and no outside help available before the scheduled murder.",
+    "value": "Charley's Oasis \u2014 an isolated wooden diner/gas station in the lower Arizona desert, alone between the highway and the railroad tracks, forty miles from Yuma; five people sealed inside at gunpoint for twenty minutes before the 5:30 freight.",
     "confidence": "high",
-    "quote": "The building, standing back from the highway, was almost equidistant between it and the tracks... a single-story, unpainted affair... Charley's Oasis."
+    "quote": "a faded sign, the black-lettered words dulled by the hot desert winds, which read: Charley\u2019s Oasis."
   },
   "culprit_and_motive": {
-    "value": "Frank and Earl, two armed contract killers hired to eliminate Spikes; their motive is professional\u2014they have been paid to execute him as revenge or silencing for an unspecified prior offense.",
+    "value": "Frank (black hair, moustache) and Earl (blond), professional hunters-of-men/hired killers, known from the outset; motive is retribution on behalf of whoever Spikes wronged, luring him with a promised escape car that will never come.",
     "confidence": "high",
-    "quote": "Let's just say he did something he shouldn't have done... We're here to kill a man."
+    "quote": "\u201cWe\u2019re hunters,\u201d the other man said, smiling. ... \u201cThere\u2019s some good hunting right here.\u201d"
   },
   "resolution": {
-    "value": "The old man throws hot coffee at Frank, Jack retrieves a hidden gun and shoots Earl in the shoulder, incapacitating both killers before Spikes arrives. The sheriff is called and arrives to arrest them; order is restored through improvised defensive violence by diner staff and an armed intervention.",
+    "value": "Order restored by improvised action, not deduction: the old man signals Jack toward a gun hidden in rags under the register, hurls scalding coffee at Frank while Jack shouts a warning and shoots Earl in the shoulder; Mandy phones the sheriff, who arrives with deputies and an ambulance. Spikes flees; Jack finds moral resolution and goes home.",
     "confidence": "high",
-    "quote": "The old man, his hand sweeping upward... threw the pot of hot coffee at Frank... Jack had moved fast... snatched the gun out of the rags... and pulled the trigger."
+    "quote": "\u201cMandy,\u201d he said to the girl, \u201ccall the sheriff.\u201d"
   },
   "investigator": {
-    "value": "Jack Hennessy, a fugitive drifter himself, accidentally becomes the primary actor in thwarting the murder plot; he serves as the reader's lens and undergoes personal moral transformation through the crisis.",
+    "value": "Jack Hennessy, a 31-year-old penniless drifter riding freight trains, fleeing his wife Karen and himself \u2014 an outsider bystander whose viewpoint frames the events and who becomes the reluctant agent of rescue.",
     "confidence": "high",
-    "quote": "Jack, staring at them, felt a cold knot in his stomach... He made up his mind, suddenly... That's me running, he thought with a sudden realization."
+    "quote": "He saw a man named Jack Hennessy, a man who was thirty-one years old, and who looked forty."
+  },
+  "suspect_architecture": {
+    "value": "No whodunit cast; the antagonists are known from the outset \u2014 two armed killers, Frank (dark-haired, moustached, the leader) and Earl (blond, talkative), against three hostages: drifter Jack Hennessy, the old man (Poppa), and his teenage daughter Mandy.",
+    "confidence": "medium",
+    "quote": "Frank, the one with the black hair and moustache, said, \u201cYou, old man, come out here.\u201d"
+  },
+  "red_herring": {
+    "value": "The two gunmen present themselves as ordinary travellers and then as 'hunters,' letting the girl and Jack misread their menace as joking or drunkenness before the guns appear.",
+    "confidence": "medium",
+    "quote": "\u201cWe\u2019re hunters,\u201d the other man said, smiling."
+  },
+  "clue_fairness": {
+    "value": "Fair-play staging of the escape: the hot coffee pot on the two-burner and the gun wrapped in rags on the shelf beneath the register are both described to the reader before they are used.",
+    "confidence": "high",
+    "quote": "It was wrapped in the rags on the shelf, so that only the tip of the barrel showed."
+  },
+  "social_world": {
+    "value": "Marginal desert roadside economy \u2014 a family-run diner (Poppa and daughter) forty miles from Yuma, transient freight-riders shooed off by siding men threatening the sheriff, and organised killers moving contraband men to Mexico.",
+    "confidence": "medium",
+    "quote": "the man at the siding told him that the sheriff would be called if he stayed around there"
+  },
+  "alibi": {
+    "value": "No alibi structure; instead Jack tells reflexive lies about himself (broken-down car, waiting friend, Boston origin) that function as a false personal cover story.",
+    "confidence": "medium",
+    "quote": "\u201cMy car broke down,\u201d he said, and then wondered why he had lied."
+  },
+  "reveal_mechanic": {
+    "value": "Demonstration by action and mirroring: the ambush is defeated by the coordinated coffee-pot/gun gambit, and Jack's self-knowledge is revealed when he watches the intended victim flee and recognises himself in the running man.",
+    "confidence": "high",
+    "quote": "That\u2019s me running, he thought with a sudden realization"
+  },
+  "media_and_audience": {
+    "value": "Minimal; official framing arrives only with the sheriff's routine questions, and the story ends with the sheriff smiling in incomprehension at Jack's meaning.",
+    "confidence": "low",
+    "quote": "The sheriff just smiled, because he did not understand."
+  },
+  "investigator_wound": {
+    "value": "Jack Hennessy's flight from Karen and from himself \u2014 four months of drifting, lying, and self-punishing poverty; the hostage crisis forces him to choose to act and ends his running.",
+    "confidence": "high",
+    "quote": "Oh, why do I have to keep thinking about her? How long will it go on? Aren\u2019t you ever able to forget?"
+  },
+  "victims_enemies": {
+    "value": "Spikes, the man on the freight, is targeted by two hired killers, Frank and Earl, who arrive ahead of him at the diner; they say only that he 'did something he shouldn't have done,' implying a betrayal of criminal associates \u2014 including the 'friend' who was supposed to drive him to Mexico but set him up instead.",
+    "confidence": "high",
+    "quote": "\u201cLet\u2019s just say he did something he shouldn\u2019t have done,\u201d Frank said."
+  },
+  "suspect_wounds": {
+    "value": "Jack Hennessy's wound is not guilt of a crime but self-inflicted flight: a thirty-one-year-old who looks forty, penniless, riding freights, compulsively lying to strangers, running from his wife Karen and from himself. The hostage crisis activates exactly this vulnerability \u2014 forcing him to choose action over flight.",
+    "confidence": "high",
+    "quote": "\u201cMy car broke down,\u201d he said, and then wondered why he had lied."
+  },
+  "unreliable_frame": {
+    "value": "Jack is the unreliable center: a compulsive, unmotivated liar about his car, his destination, his origin ('Boston'), whose reasons for leaving Karen are withheld from the reader; the killers also lie, promising the hostages they won't be harmed.",
+    "confidence": "high",
+    "quote": "Still another lie. They seemed to flow from his lips without conscious thought."
+  },
+  "setting_as_constraint": {
+    "value": "Charley's Oasis, an isolated desert diner between the highway and the railroad tracks, forty miles from Yuma with no other people and no traffic \u2014 the killers exploit this isolation and the fixed schedule of the 5:30 freight, whose slowing near the siding makes it the only place Spikes can jump off and the only building he can walk to.",
+    "confidence": "high",
+    "quote": "\u201cAt five-thirty that freight is coming through here. There\u2019s a man named Spikes hiding in one of the boxcars\u201d"
+  },
+  "evidence_type": {
+    "value": "No investigative evidence \u2014 the case resolves through physical action and eyewitness testimony given to the sheriff afterward; the decisive 'evidence' is environmental/physical: the hidden revolver wrapped in rags on the shelf beneath the cash register and the glass coffee pot on the two-burner.",
+    "confidence": "medium",
+    "quote": "It was wrapped in the rags on the shelf, so that only the tip of the barrel showed."
+  },
+  "false_suspect": {
+    "value": "Jack himself is framed by circumstance as a suspicious figure \u2014 thrown off a freight, beard-stubbled, filthy, penniless, lying about who he is \u2014 the drifter the man at the siding threatened with the sheriff and county jail; the fleeing Spikes at the end is the other man who 'looks guilty' by running.",
+    "confidence": "medium",
+    "quote": "the man at the siding told him that the sheriff would be called if he stayed around there"
+  },
+  "technical_detail": {
+    "value": "Jack's Army firearms training \u2014 ten years unused \u2014 supplies the reflex that makes the counterattack work: his finger automatically slides the safety off as he snatches the concealed gun, and the coordinated timing of the scalding coffee pot throw jerks Earl's shot into the wall.",
+    "confidence": "high",
+    "quote": "his finger automatically sliding off the safety the way he had been taught in the Army"
+  },
+  "moral_ambiguity": {
+    "value": "Jack, the sympathetic 'culprit' of his own ruined life, isn't wicked but wounded \u2014 he fled believing he was sparing Karen pain, and realizes the only person he was hurting was himself; conversely he must shoot a man to save strangers, and takes no pleasure in it.",
+    "confidence": "high",
+    "quote": "I thought I was hurting Karen, but in reality the only person I had been hurting was myself."
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "The Running Man",
     "author": "BILL PRONZINI",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 10,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

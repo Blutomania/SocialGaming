@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Murder by paper knife stabbing. David Ostrander found dead with Penn's paper knife embedded in his throat. Central question: Who killed David\u2014Penn (who struck him moments before), Ginnie (who had motive and opportunity), or was it a frame?",
+    "confidence": "high",
+    "quote": "Something shiny was sticking out of David's throat, and Penn recognized it\u2014the haft of his own paper knife that he'd neglected to pack."
+  },
+  "victim": {
+    "value": "David Ostrander, 43-year-old science fiction writer. Killable because he manipulates those around him (Ginnie, Penn, previous employees) in cruel emotional games to bind them to him and prevent their escape.",
+    "confidence": "high",
+    "quote": "Your dream gave me a splendid idea for this one...Ginnie likes these little dramas. They serve to draw us together and they keep her from getting bored."
+  },
+  "closed_world": {
+    "value": "The Ostrander household in Stonebridge, New York\u2014a domestic space where Penn has come to collect his belongings. David and Ginnie are present; Hanna the maid is also in the house.",
+    "confidence": "high",
+    "quote": "Lights were on in the living room, and also in Ginnie's room upstairs...Penn followed her across the broad foyer."
+  },
+  "culprit_and_motive": {
+    "value": "Ginnie Ostrander, David's wife. She kills David to free herself from his psychological manipulation and control, wiping the knife handle to frame Penn, whom David has now turned against her.",
+    "confidence": "high",
+    "quote": "But it was you that wiped the handle. You were wiping it with your skirt when I came in the door."
+  },
+  "resolution": {
+    "value": "Hanna's testimony exposes Ginnie as the true killer. She witnessed Ginnie wiping the knife handle after Penn struck David but before David's death, proving Ginnie's guilt and Penn's innocence.",
+    "confidence": "high",
+    "quote": "Hanna looked at her with horror. 'I'll call them, ma'am. But it was you that wiped the handle. You were wiping it with your skirt when I came in the door.'"
+  },
+  "investigator": {
+    "value": "Penn Knowlton, the suspect and protagonist. The reader experiences the mystery through Penn's perspective as he is falsely accused, imprisoned, released, and ultimately confronted with evidence of Ginnie's guilt.",
+    "confidence": "high",
+    "quote": "Penn stared at Ginnie. He and she were not finished with each other yet."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Variations on a Game",
+    "author": "PATRICIA HIGHSMITH",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 22,
+    "story_count": 63
+  }
+}

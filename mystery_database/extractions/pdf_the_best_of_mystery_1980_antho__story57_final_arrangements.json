@@ -1,45 +1,129 @@
 {
   "crime": {
-    "value": "Poisoning via rat poison in milk; central question: will the poisoning be discovered before or after death, and will it appear as suicide or murder?",
+    "value": "Suicide by rat poison staged as a final act of revenge: Rutherford poisons his own milk and drinks it, having pre-arranged a funeral, leaving his invalid wife helpless and abandoned. Question: not whodunit but what the 'present' and 'final arrangements' really were.",
     "confidence": "high",
     "quote": "He opened the package and, with a teaspoon, dropped two helpings of the rat poison into the milk."
   },
   "victim": {
-    "value": "Elsie Parnell, bedridden wife in wheelchair for 10 years, emotionally abusive and bitter, dependent on husband's care, killable due to isolation and emotional cruelty she inflicts",
+    "value": "Rutherford Parnell himself is the poisoned party; the true intended victim is Elsie, his bitter, wheelchair-bound wife, left without her caretaker \u2014 'killable' because her cruelty drove away all companions and her husband.",
     "confidence": "high",
-    "quote": "She sat silently, bitterly...her silence was broken only when she was shrieking at him, complaining about this or that."
+    "quote": "\"I hate her too. I wish she'd die, so I could be free. But she won't die.\""
   },
   "closed_world": {
-    "value": null,
-    "confidence": "low",
-    "quote": null
+    "value": "The Parnell house \u2014 a darkened bedroom and living room, Elsie confined to a wheelchair, companion dismissed for the day, no car, only the two of them.",
+    "confidence": "high",
+    "quote": "She sat in a wheel chair in her bedroom. She sat silently, bitterly."
   },
   "culprit_and_motive": {
-    "value": "Rutherford Parnell (husband) murders Elsie to escape 10 years of emotional abuse and imprisonment in the marriage; motive is liberation and psychological relief from unbearable suffering",
+    "value": "Rutherford Parnell; motive is escape from ten years of Elsie's abuse and blame over the accident, plus revenge \u2014 leaving her alone and helpless after cashing in his insurance.",
     "confidence": "high",
-    "quote": "I hate her too. I wish she'd die, so I could be free...After all, this present cost me over three thousand dollars!"
+    "quote": "\"I cashed in my insurance, Elsie, dear. All the value of it... And I cancelled the term insurance.\""
   },
   "resolution": {
+    "value": "The scheme is revealed by execution rather than detection: Rutherford drinks the poison, having already booked Krushman's undertakers for eight o'clock, and Elsie belatedly grasps her fate.",
+    "confidence": "high",
+    "quote": "She didn't know what he meant\u2014for a few minutes."
+  },
+  "investigator": {
+    "value": "No detective; the reader follows Rutherford, the perpetrator-victim, through close third-person narration.",
+    "confidence": "medium",
+    "quote": "each morning Rutherford Parnell, to lessen the pain, slipped into his own peculiar euphoria"
+  },
+  "suspect_architecture": {
+    "value": "Not a whodunit; inverted narrative with a single actor, Rutherford Parnell, whose intent the reader follows throughout. Minimal cast: Rutherford (means, motive, opportunity), his invalid wife Elsie (victim-figure/tormentor), and the departing companion Mrs. Casey (witness only, no motive).",
+    "confidence": "medium",
+    "quote": "Mrs. Casey was the eighth in a line of women he had hired to be a companion for Elsie."
+  },
+  "red_herring": {
+    "value": "The reader is led to assume the funeral arrangements, the poison purchase, and the poisoned milk are all preparation for murdering Elsie \u2014 the misdirection collapses when Rutherford drinks the glass himself.",
+    "confidence": "high",
+    "quote": "He opened the package and, with a teaspoon, dropped two helpings of the rat poison into the milk."
+  },
+  "clue_fairness": {
+    "value": "Clues are planted openly and in order: refusing to give the deceased's name, cashing in and cancelling his own insurance (pointless if she were to die), paying off Mrs. Casey, and the remark that the departed one 'won't have many friends' \u2014 all readable before the reveal.",
+    "confidence": "high",
+    "quote": "\u201cI cashed in my insurance, Elsie, dear. All the value of it... And I cancelled the term insurance.\u201d"
+  },
+  "social_world": {
+    "value": "Domestic power inversion in a modest mid-century household: the wheelchair-bound wife rules through guilt over the accident, while the wage-earning husband is subordinate; hired companions form a servant class that keeps fleeing, and the funeral director's professional decorum enforces polite silence.",
+    "confidence": "high",
+    "quote": "Elsie never let him forget that he had been at the wheel that drizzling November night"
+  },
+  "alibi": {
+    "value": "Rutherford builds a partial cover by feigning illness and calling his office to report absence, breaking his ten-year routine by leaving the bus three blocks early \u2014 a concealment of movements rather than a true alibi.",
+    "confidence": "medium",
+    "quote": "\u201cYou want me to tell Mr. Speaks you won\u2019t be in today?\u201d"
+  },
+  "reveal_mechanic": {
+    "value": "Demonstrated by action, not statement: he lifts the poisoned milk and drains it himself, retroactively explaining the unnamed 'departed one', the cancelled insurance and the 8 p.m. undertaker appointment.",
+    "confidence": "high",
+    "quote": "lifted the glass and drained it in one gulp. \u201cYou\u2019ll soon realize, Elsie dear, that things here weren\u2019t so rough for you\u201d"
+  },
+  "media_and_audience": {
+    "value": "No press or public dimension; the only external framing is the funeral home's euphemistic professional language ('the departed one') and the office's assumption of ordinary sickness.",
+    "confidence": "medium",
+    "quote": "\u201cDeparted one,\u201d Krushman put in helpfully."
+  },
+  "investigator_wound": {
+    "value": "No investigator; the wound belongs to the protagonist \u2014 ten years of guilt for the crash that crippled his wife, and daily humiliation that drives his morning escapist reveries into a suicide plan.",
+    "confidence": "medium",
+    "quote": "each morning Rutherford Parnell, to lessen the pain, slipped into his own peculiar euphoria."
+  },
+  "victims_enemies": {
+    "value": "Elsie Parnell is universally intolerable: her husband Rutherford hates her and wishes her dead; eight successive hired companions have quit, the latest, Mrs. Casey, lying about wanting more money rather than admit she cannot stand her; even her own parents were glad to be rid of her.",
+    "confidence": "high",
+    "quote": "\"I hate her too. I wish she'd die, so I could be free. But she won't die.\"",
+    "quote_note": null
+  },
+  "suspect_wounds": {
+    "value": "Rutherford's wound is guilt: he was at the wheel the night of the accident that crippled Elsie, and ten years of her reminders have made his self-blame the pressure point that drives him to his 'plan'.",
+    "confidence": "high",
+    "quote": "he had been at the wheel that drizzling November night, and that it had been his error in judgment"
+  },
+  "unreliable_frame": {
+    "value": "The narration follows Rutherford's viewpoint and deliberately withholds the true object of his plan \u2014 the funeral arrangements, the poison, and the 'present' are framed to read as a wife-murder until the final reversal reveals he poisoned himself.",
+    "confidence": "high",
+    "quote": "He smiled\u2014a gentle, sad smile\u2014lifted the glass and drained it in one gulp."
+  },
+  "setting_as_constraint": {
+    "value": "The darkened bedroom and the wheelchair define the whole world: Elsie cannot leave her room or reach help, and Rutherford has engineered the isolation \u2014 Mrs. Casey paid off and sent home early, the companion quitting, the car long sold \u2014 so no one will be in the house that evening but the undertaker at eight.",
+    "confidence": "high",
+    "quote": "She sat in a wheel chair in her bedroom... \"Take the rest of the day off, Mrs. Casey.\""
+  },
+  "evidence_type": {
+    "value": "Documentary/testimonial groundwork rather than detection: the funeral home's prepaid arrangement with an address but no name of 'the departed one', the cashed-in insurance policy, and the feigned sick call to the office.",
+    "confidence": "medium",
+    "quote": "\"That won't be necessary,\" Rutherford said. \"I've written the address on this slip of paper.\""
+  },
+  "false_suspect": {
     "value": null,
     "confidence": "low",
     "quote": null
   },
-  "investigator": {
-    "value": "The reader experiences the mystery through Rutherford's first-person perspective as perpetrator; no external investigator introduced in excerpt",
-    "confidence": "medium",
-    "quote": "The idea had come to him suddenly, and he had been fascinated by it."
+  "technical_detail": {
+    "value": "Rat poison bought at a drugstore, two teaspoons dissolved in a large glass of milk \u2014 the nightly milk habit being the domestic detail that makes the dose unremarkable; the arrangements (undertaker at eight, cancelled term insurance) complete the method.",
+    "confidence": "high",
+    "quote": "He opened the package and, with a teaspoon, dropped two helpings of the rat poison into the milk."
+  },
+  "moral_ambiguity": {
+    "value": "Rutherford is neither murderer nor simple suicide but a man crushed by a decade of guilt and cruelty who chooses the one escape available \u2014 and whose act is simultaneously self-release and a calculated cruelty, abandoning a helpless invalid to the fate she inflicted on him.",
+    "confidence": "high",
+    "quote": "\"Freedom. An escape for both of us. A chance to get away from each other!\""
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 9143,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Final Arrangements",
     "author": "LAWRENCE PAGE",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 57,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

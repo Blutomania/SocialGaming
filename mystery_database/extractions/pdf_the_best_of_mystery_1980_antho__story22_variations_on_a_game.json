@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Murder by paper knife stabbing. David Ostrander found dead with Penn's paper knife embedded in his throat. Central question: Who killed David\u2014Penn (who struck him moments before), Ginnie (who had motive and opportunity), or was it a frame?",
+    "value": "Two linked offences: a staged disappearance (David vanishes on a night walk, prompting a police search) and then a murder \u2014 David stabbed in the throat with Penn's paper knife in his own house. Central question: who wielded the knife in the few moments after Penn's punch, and whose fingerprints were wiped away?",
     "confidence": "high",
-    "quote": "Something shiny was sticking out of David's throat, and Penn recognized it\u2014the haft of his own paper knife that he'd neglected to pack."
+    "quote": "Something shiny was sticking out of David's throat, and Penn recognized it\u2014the haft of his own paper knife"
   },
   "victim": {
-    "value": "David Ostrander, 43-year-old science fiction writer. Killable because he manipulates those around him (Ginnie, Penn, previous employees) in cruel emotional games to bind them to him and prevent their escape.",
+    "value": "David Ostrander, 43, prolific science-fiction writer with money and a controlling temper, who refused his young wife a divorce and staged cruel 'little dramas' humiliating her admirers \u2014 making him hateful to both wife and secretary",
     "confidence": "high",
-    "quote": "Your dream gave me a splendid idea for this one...Ginnie likes these little dramas. They serve to draw us together and they keep her from getting bored."
+    "quote": "\"I knew she'd turn against you and turn to me. It's happened before, you see.\""
   },
   "closed_world": {
-    "value": "The Ostrander household in Stonebridge, New York\u2014a domestic space where Penn has come to collect his belongings. David and Ginnie are present; Hanna the maid is also in the house.",
+    "value": "The isolated Ostrander estate/house at Stonebridge (and earlier the remote lakeside lodge near Croydon); at the moment of death only Penn, Ginnie and Hanna the maid are in the house",
     "confidence": "high",
-    "quote": "Lights were on in the living room, and also in Ginnie's room upstairs...Penn followed her across the broad foyer."
+    "quote": "\"Mister and Missus are in the living room. I'll tell them you're here.\""
   },
   "culprit_and_motive": {
-    "value": "Ginnie Ostrander, David's wife. She kills David to free herself from his psychological manipulation and control, wiping the knife handle to frame Penn, whom David has now turned against her.",
-    "confidence": "high",
-    "quote": "But it was you that wiped the handle. You were wiping it with your skirt when I came in the door."
+    "value": "Strongly implied: Ginnie Ostrander, who stabbed her unconscious husband and framed Penn \u2014 freeing herself of a husband who would not divorce her and of the lover she had betrayed; Penn is framed but innocent",
+    "confidence": "medium",
+    "quote": "\"But it was you that wiped the handle. You were wiping it with your skirt when I came in the door.\""
   },
   "resolution": {
-    "value": "Hanna's testimony exposes Ginnie as the true killer. She witnessed Ginnie wiping the knife handle after Penn struck David but before David's death, proving Ginnie's guilt and Penn's innocence.",
-    "confidence": "high",
-    "quote": "Hanna looked at her with horror. 'I'll call them, ma'am. But it was you that wiped the handle. You were wiping it with your skirt when I came in the door.'"
+    "value": "Open/ironic: Hanna the maid's eyewitness testimony that Ginnie wiped the knife handle overturns the frame-up, leaving Penn and Ginnie confronting each other rather than a formal legal closure",
+    "confidence": "medium",
+    "quote": "Penn stared at Ginnie. He and she were not finished with each other yet."
   },
   "investigator": {
-    "value": "Penn Knowlton, the suspect and protagonist. The reader experiences the mystery through Penn's perspective as he is falsely accused, imprisoned, released, and ultimately confronted with evidence of Ginnie's guilt.",
+    "value": "Penn Knowlton, the secretary \u2014 a suspect-narrator whose reasoning about the disappearance and about Ginnie's loyalties is the reader's lens; official police (Croydon officers, Mac) are skeptical foils",
     "confidence": "high",
-    "quote": "Penn stared at Ginnie. He and she were not finished with each other yet."
+    "quote": "\"Knowlton, we're booking you on suspicion. Sorry.\""
+  },
+  "suspect_architecture": {
+    "value": "Small closed cast: Penn Knowlton, the secretary in love with the wife (motive: remove the husband, opportunity: alone with him at the lodge and last to be with the body); Ginnie Ostrander, the wife (motive: freedom, or staged drama; opportunity: in the house, seen wiping the knife); David Ostrander himself as manipulator/faux victim; Hanna the maid as witness only.",
+    "confidence": "high",
+    "quote": "\"But it was you that wiped the handle. You were wiping it with your skirt when I came in the door.\""
+  },
+  "red_herring": {
+    "value": "David's staged disappearance on the moonlit road \u2014 engineered from Penn's dream \u2014 which frames Penn for a murder that hasn't happened and misdirects police (and reader) into a lake-body/gun theory.",
+    "confidence": "high",
+    "quote": "\"I think he deliberately disappeared last night. I don\u2019t think he was kidnapped or attacked by a bear\""
+  },
+  "clue_fairness": {
+    "value": "Fair-play clues planted in the text: Penn's recounted dream of the vanishing companion and David's keen interest in it; Ginnie's wish that David would 'just disappear'; the chauffeur and previous secretary who left; and Penn's own unpacked paper knife left in his room.",
+    "confidence": "high",
+    "quote": "\"I wish it would happen to you\u2014with David. I wish David would just disappear suddenly, this weekend\""
+  },
+  "social_world": {
+    "value": "A wealthy prolific writer's private estate: employer/employee dependency, David's money and patronage over Ginnie and his hired staff (secretaries, chauffeur, maid), and small-town Croydon police deferring to the known lodge-owner's household.",
+    "confidence": "high",
+    "quote": "\"David had money, a comfortable income plus the profits of his writing, but what did Ginnie do with it?\""
+  },
+  "alibi": {
+    "value": "Penn has none for David's disappearance \u2014 he was alone with him on the road; his account of the thirty-yard experiment is unverifiable and police book him on suspicion. Ginnie's implied whereabouts (the Stonebridge house, then driving to Croydon) are questioned by Penn himself.",
+    "confidence": "high",
+    "quote": "\"Knowlton, we\u2019re booking you on suspicion. Sorry.\""
+  },
+  "reveal_mechanic": {
+    "value": "Eyewitness contradiction at the moment of accusation: Hanna states she saw Ginnie wiping the knife handle with her skirt, overturning Ginnie's framing of Penn \u2014 plus David's own confession of staging the disappearance.",
+    "confidence": "high",
+    "quote": "\"Hanna, call the police at once. Tell them we\u2019ve got a murderer here!\""
+  },
+  "media_and_audience": {
+    "value": "Perception is shaped by David's reputation as a science-fiction writer: police disbelieve the 'dream enactment' theory as fiction, and Ginnie's phone account to police packages Penn publicly as a jealous lover with motive.",
+    "confidence": "medium",
+    "quote": "\"an idea that brought incredulous smiles\""
+  },
+  "investigator_wound": {
+    "value": "Penn, the de facto investigator-victim, is exploited through his romantic idealism and guilt over loving his employer's wife \u2014 his decency (quitting, confessing the 'situation') becomes the very evidence used against him.",
+    "confidence": "high",
+    "quote": "\"I was quitting my job to get away from the situation!\""
+  },
+  "victims_enemies": {
+    "value": "David Ostrander is loathed by his wife Ginnie, who wants a divorce he refuses to grant and fantasizes aloud about his disappearance, and by his secretary Penn, whom David has just humiliated by revealing the disappearance was a staged cruelty designed to prove Penn a 'sucker.' Earlier victims of the same game \u2014 a chauffeur and a previous secretary \u2014 form a pattern of discarded men.",
+    "confidence": "high",
+    "quote": "\"I wish David would just disappear suddenly, this weekend, and be out of my life forever, so I could be with you.\""
+  },
+  "suspect_wounds": {
+    "value": "Penn's wound is his adulterous love for Ginnie and his inability to explain it innocently: he admits 'a situation' existed, told the wife before the employer, and then strikes David in front of witnesses. His decency (leaving quietly, refusing to repeat Ginnie's declaration of love) makes him look evasive to police.",
+    "confidence": "high",
+    "quote": "\"So you admit there was a situation.\""
+  },
+  "unreliable_frame": {
+    "value": "The story is told through Penn's limited perception, but every other account is corrupted: Ginnie tells police Penn wanted her husband out of the way, then claims David is dead before Penn sees the knife; David lies about a walk while staging an elaborate psychological experiment. Penn himself ends unable to believe anything Ginnie ever said.",
+    "confidence": "high",
+    "quote": "Penn didn't dare believe anything, now, that Ginnie had ever said to him."
+  },
+  "setting_as_constraint": {
+    "value": "The isolated lodge \u2014 no telephone, two miles from the highway, unhewn logs by a marshy lake \u2014 makes David's vanishing unverifiable and Penn's account uncorroborated; conversely the Stonebridge house, with its soundproofed study, hallway, and a servant moving through it, is what finally puts a witness at the door.",
+    "confidence": "high",
+    "quote": "There was no telephone at the lodge."
+  },
+  "evidence_type": {
+    "value": "Testimonial \u2014 the maid Hanna's eyewitness statement that she saw Ginnie wiping the handle of the paper knife with her skirt, which overturns the physical evidence (Penn's own knife, fingerprints absent).",
+    "confidence": "high",
+    "quote": "\"But it was you that wiped the handle. You were wiping it with your skirt when I came in the door.\""
+  },
+  "false_suspect": {
+    "value": "Penn Knowlton \u2014 the secretary in love with the wife, booked on suspicion at Croydon, and then framed at the house by the use of his own unpacked paper knife on a man he had just knocked unconscious.",
+    "confidence": "high",
+    "quote": "\"Knowlton, we're booking you on suspicion. Sorry.\""
+  },
+  "technical_detail": {
+    "value": "The opportunistic method: David's own staged-disappearance game supplies a documented motive and a jailing, and Penn's blow leaves David unconscious and unattended long enough for a single thrust with a paper knife Penn had 'neglected to pack' \u2014 the wiping of the haft being the act that exposes the killer.",
+    "confidence": "medium",
+    "quote": "Something shiny was sticking out of David's throat, and Penn recognized it\u2014the haft of his own paper knife"
+  },
+  "moral_ambiguity": {
+    "value": "Ginnie is a failed actress trapped with a husband who works twelve hours a day and stages cruel 'little dramas' with her as bait; her killing frees her from both a manipulative husband and a lover who saw through her, and the victim himself is a sadist who engineered the whole situation.",
+    "confidence": "medium",
+    "quote": "\"Ginnie likes these little dramas. They serve to draw us together and they keep her from getting bored.\""
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Variations on a Game",
     "author": "PATRICIA HIGHSMITH",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 22,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

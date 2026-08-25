@@ -1,0 +1,124 @@
+{
+  "crime": {
+    "value": "Serial murders of university mystery club members isolated on an island \u2014 poisoning (e.g., poisoned coffee cup) and other killings labelled 'The First Victim', 'The Second Victim'; central question: how was the poison administered to a specific cup, and which of the survivors is the killer?",
+    "confidence": "high",
+    "quote": "\u2018Carr is dead. So it\u2019s a fact someone administered poison to him. Surely you don\u2019t think his death was a suicide?\u2019"
+  },
+  "victim": {
+    "value": "Members of the K\u2014University Mystery Club nicknamed after Golden Age authors \u2014 Orczy killed first, then Carr poisoned; they appear targeted collectively as a group linked by club membership rather than individually",
+    "confidence": "medium",
+    "quote": "\u2018The murderer\u2019s end goal is to kill all of us, but it doesn\u2019t really matter who \u201cThe Second Victim\u201d is.\u2019"
+  },
+  "closed_world": {
+    "value": "A remote island with the Decagon House, where the students are cut off from the mainland for a week; the killer must be one of the small group present",
+    "confidence": "high",
+    "quote": "\u2018The person who killed Orczy this morning is one of us here and it might have been Agatha.\u2019"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Excerpt shows only deductive reasoning among survivors (order of cups, opportunity, poison access); final resolution implied by epilogue in which a bottled message/confession is handed to a man on the breakwater as 'judgment'",
+    "confidence": "low",
+    "quote": "So this is to be my judgment? ... \u2018Could you give this to that man over there?\u2019"
+  },
+  "investigator": {
+    "value": "Dual lens: 'Ellery', a student amateur detective among the trapped suspects on the island, paralleled by investigators on the mainland chapters",
+    "confidence": "medium",
+    "quote": "\u2018Let\u2019s start by going over the facts,\u2019 he said."
+  },
+  "suspect_architecture": {
+    "value": "Closed circle of six (later fewer) university mystery club students on an island, each using a Golden Age pen-name \u2014 Ellery, Poe, Agatha, Van, Leroux, Carr, Orczy. Differentiation is by academic faculty, which controls access to poison: Poe (medicine), Van (science), Agatha (pharmacy), Ellery and Leroux (humanities). Opportunity is parsed by the order in which coffee cups were taken.",
+    "confidence": "high",
+    "quote": "'Poe of the medical faculty, Van of the science faculty or Agatha of the pharmacy faculty. Leroux and I are from humanities.'"
+  },
+  "red_herring": {
+    "value": "Agatha is set up as the obvious poisoner because she alone made and carried the coffee \u2014 a false trail immediately undermined by the counter-arguments that poison could have been smeared on a cup beforehand, hidden in a slow-dissolving capsule, or dropped in by Ellery, who took the first cup.",
+    "confidence": "high",
+    "quote": "'That means that I'm the only candidate for the murderer.'"
+  },
+  "clue_fairness": {
+    "value": "Explicit fair-play doctrine: the book is the founding text of shin honkaku, 'adhering to its fair-play rule,' descended from the Kyoto club's whodunit games and Queen's Challenge to the Reader. In-text, all physical data (six cups, sugar, milk, seven spoons, cup order, absence of pupil dilation or almond smell) is laid before the reader as the characters reason.",
+    "confidence": "high",
+    "quote": "pushing the bounds of the puzzle-plot novel while adhering to its fair-play rule"
+  },
+  "social_world": {
+    "value": "A university mystery club subculture (K\u2014University, modelled on Kyoto University's club and its 'box'), with its internal pecking order of amateur detectives, faculty divisions, and the wider Japanese literary politics of honkaku versus the 'social school' that the students argue about.",
+    "confidence": "high",
+    "quote": "a group of students from the thinly-disguised K\u2014University Mystery Club, bearing the names of famous writers of the Golden Age"
+  },
+  "alibi": {
+    "value": "Alibi work is collective and observational rather than individual: Leroux claims he watched Agatha's hands continuously through the open kitchen door in candlelight, an alibi Ellery attacks as non-conclusive given the distance; conversely no one watched the table as cups were taken.",
+    "confidence": "medium",
+    "quote": "'I saw Agatha while she was making coffee. The kitchen door was open and my chair was right opposite to that'"
+  },
+  "reveal_mechanic": {
+    "value": "Reasoning from physical/medical evidence \u2014 symptom-based toxicology narrowing the poison (no pupil dilation rules out atropine/nicotine, no almond smell rules out cyanide, leaving strychnine or arsenic) \u2014 plus the island/mainland dual-narrative convergence and a final message in a bottle handed to a boy on the breakwater.",
+    "confidence": "medium",
+    "quote": "'But atropine and nicotine would cause dilation of the pupils, and I didn't see that.'"
+  },
+  "media_and_audience": {
+    "value": "The murders are framed against publishing and genre reception: the novel self-consciously invokes And Then There Were None ('Dead Island') and the Japanese critical war between honkaku and the social school, with the students' own criticism of the social school standing in for public taste.",
+    "confidence": "medium",
+    "quote": "The criticism aimed at the social school made by one of the characters in the first chapter of The Decagon House Murders"
+  },
+  "investigator_wound": {
+    "value": "Ellery, the self-appointed amateur detective, is wounded by his own aestheticised detachment \u2014 treating the killings as a puzzle, joking with a suspect, eating first without concern \u2014 a coldness the others find abnormal and which the killer exploits.",
+    "confidence": "medium",
+    "quote": "'I think that you of all, Ellery, acted the strangest, being the first of us who tried the food, eating as if nothing had happened.'"
+  },
+  "victims_enemies": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_wounds": {
+    "value": "Each club member's academic faculty becomes an incriminating vulnerability: Poe (medical), Van (science) and Agatha (pharmacy) all have lab access to poisons, while Ellery is exposed by having once mentioned relatives running a pharmacy in O\u2014City.",
+    "confidence": "medium",
+    "quote": "'Poe of the medical faculty, Van of the science faculty or Agatha of the pharmacy faculty.'"
+  },
+  "unreliable_frame": {
+    "value": "Every survivor's account is suspect because the killer is admittedly one of the group; Leroux's alibi testimony for Agatha is undercut by his own admitted bias and the darkness of the hall, and Ellery's magician's sleight of hand makes his own narration untrustworthy.",
+    "confidence": "medium",
+    "quote": "'I saw Agatha while she was making coffee... I had a clear view of Agatha's hands.'"
+  },
+  "setting_as_constraint": {
+    "value": "A closed-circle island (the Decagon House) cut off from the mainland, with the narrative split between island and mainland chapters; inside, the only light is a single table lamp, so no one can observe who handled which coffee cup.",
+    "confidence": "high",
+    "quote": "'The only light in this hall is the lamp on the table. Also, I doubt anyone was watching the others as we all got up...'"
+  },
+  "evidence_type": {
+    "value": "Testimonial reconstruction of physical sequence \u2014 the exact order in which six coffee cups were taken from the tray, combined with forensic inference from symptoms (convulsions, no pupil dilation, no almond smell) narrowing the poison to strychnine or arsenic.",
+    "confidence": "medium",
+    "quote": "'Myself, Leroux and Carr, Poe, Agatha and Van.'"
+  },
+  "false_suspect": {
+    "value": "Agatha, who made and carried the coffee alone and is therefore the sole apparent candidate for poisoning Carr's cup \u2014 a position she herself points out is too obvious to be the real killer's method.",
+    "confidence": "medium",
+    "quote": "'That means that I'm the only candidate for the murderer.'"
+  },
+  "technical_detail": {
+    "value": "Toxicological knowledge: neurotoxin symptom differentiation (atropine/nicotine dilate pupils, cyanide smells of almonds) plus delivery methods \u2014 poison smeared on a cup beforehand or a slow-dissolving capsule taken before the coffee.",
+    "confidence": "high",
+    "quote": "'It could have been smeared on one of the cups beforehand. Then any one of us could have done it.'"
+  },
+  "moral_ambiguity": {
+    "value": "The killings are framed as a 'judgment' rather than mere malice \u2014 the closing scene shows the culprit surrendering the truth in a bottle to the man watching him, accepting judgment rather than escaping it.",
+    "confidence": "low",
+    "quote": "So this is to be my judgment?"
+  },
+  "_meta": {
+    "source": "/Users/egreene/SocialGaming/mystery_database/new_sources/the-decagon-house-murders-pdf-free.pdf",
+    "filename": "the-decagon-house-murders-pdf-free.pdf",
+    "text_len": 24037,
+    "protocols": [
+      "P1",
+      "P2",
+      "P3"
+    ],
+    "title": "the-decagon-house-murders-pdf-free",
+    "model": "claude-opus-5"
+  }
+}

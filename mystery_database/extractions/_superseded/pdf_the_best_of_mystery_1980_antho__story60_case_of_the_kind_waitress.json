@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Murder by strangulation. Thelma Tompkins kills elderly Mrs. Mannerheim by strangling her at the throat. Central question: Why did the murderer resort to direct violence when poison was already being administered?",
+    "confidence": "high",
+    "quote": "threw herself at the old woman...primeval instinct guiding her to the throat, the windpipe, the source of air and life"
+  },
+  "victim": {
+    "value": "Mrs. Mannerheim, a wealthy ninety-year-old widow. Killable because she is dying anyway (parasitic infection), lives in isolation in a hotel, has made Thelma her sole heir (creating motive), and is physically defenseless.",
+    "confidence": "high",
+    "quote": "She had a parasitic infection, dangerous in a woman her age...a sick old lady like that...her withered body went limp"
+  },
+  "closed_world": {
+    "value": "The Hotel Gordon: restaurant dining room, kitchen, and third-floor guest rooms. Thelma works there nightly; Mrs. Mannerheim lives there permanently. Small staff (Marian, Jeff) provides limited witnesses.",
+    "confidence": "high",
+    "quote": "Back and forth, between the kitchen and dining room of the Hotel Gordon Restaurant...in her eight years of residence at the Gordon Hotel"
+  },
+  "culprit_and_motive": {
+    "value": "Thelma Tompkins, the waitress, assisted by her brother Arthur. Motive: financial gain through inheritance promised by Mrs. Mannerheim's will, and Arthur's pressure to expedite the old woman's death to fund his business ventures.",
+    "confidence": "high",
+    "quote": "I'm talking about money...In my will...your brother\u2014/ What if she changes her mind? What if she changes her will?"
+  },
+  "resolution": {
+    "value": "Caught by chambermaid who witnesses the murder. Police autopsy reveals Mrs. Mannerheim was already receiving treatment (small arsenic doses) that was keeping her alive\u2014meaning the poisoning was medically counterproductive, and the strangling was unnecessary.",
+    "confidence": "high",
+    "quote": "the chambermaid screamed...They performed an autopsy...Small doses of arsenic...the only thing that was keeping her alive"
+  },
+  "investigator": {
+    "value": "Police detective and coroner (implicit). Primary narrative lens is Thelma herself\u2014reader experiences her internal conflict, guilt, and deteriorating morality as she moves from kindness to murder.",
+    "confidence": "medium",
+    "quote": "the tall gray hulk of a man at the police station...throughout the ordeal of arrest and imprisonment and endless questioning"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 22538,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Case of the Kind Waitress",
+    "author": "HENRY SLESAR",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 60,
+    "story_count": 63
+  }
+}

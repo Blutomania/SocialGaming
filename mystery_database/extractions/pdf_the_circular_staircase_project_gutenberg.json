@@ -1,41 +1,124 @@
 {
   "crime": {
-    "value": "Multiple mysterious crimes including a death (person fell down clothes chute), property intrusion (hole dug in trunk-room wall overnight), and disappearance of character Halsey. Central questions: Who created the hole? Who fell down the chute? What supernatural or criminal agency is at work?",
+    "value": "A series of nocturnal intrusions and a shooting death at the rented country house Sunnyside, tied to the collapse/embezzlement of the Traders' Bank; central question: who is entering the locked house at night and why, and who killed the man found at the foot of the circular staircase?",
     "confidence": "medium",
-    "quote": "Who was it fell down the clothes chute? Who was it scared Miss Louise almost into her grave?"
+    "quote": "found herself involved in one of those mysterious crimes that keep our newspapers and detective agencies happy and prosperous"
   },
   "victim": {
-    "value": "Multiple potential victims: unknown person who fell down clothes chute; Louise (frightened); Halsey (missing). Primary victim unclear from excerpt.",
+    "value": "A man connected to the Armstrong family and the failed Traders' Bank, shot at the foot of the circular staircase \u2014 killable because he knew of the bank's fraud/concealed identity (chapter 'At the Foot of the Stairs')",
     "confidence": "low",
-    "quote": "Who was it fell down the clothes chute? Who was it scared Miss Louise almost into her grave?"
+    "quote": "XXXIII. AT THE FOOT OF THE STAIRS"
   },
   "closed_world": {
-    "value": "A rented country house for the summer occupied by the narrator (middle-aged spinster), family members Halsey and Gertrude, servant Liddy, and household staff. The house becomes a sealed investigative space where crimes occur internally.",
+    "value": "Sunnyside, a large isolated rented Elizabethan country house on a hill with gardener's lodge and small staff, near the Greenwood Club and village of Casanova \u2014 limiting suspects to household, servants, and neighbors",
     "confidence": "high",
-    "quote": "took a furnished house for the summer out of town, and found herself involved in one of those mysterious crimes"
+    "quote": "it was not my idea of comfort, being much too large and sufficiently isolated to make the servant question serious"
   },
   "culprit_and_motive": {
-    "value": null,
+    "value": "Concealed within the Armstrong/Traders' Bank circle \u2014 a conspirator hiding stolen bank securities in the house's secret chimney space, killing to protect the fraud and a hidden identity",
     "confidence": "low",
-    "quote": null
+    "quote": "X. THE TRADERS\u2019 BANK"
   },
   "resolution": {
-    "value": null,
-    "confidence": "low",
-    "quote": null
+    "value": "Detective Jamieson, aided by the narrator's persistent amateur sleuthing, traces the hidden chamber between the fireplaces and physical clues (cuff-button, scrap of paper, hole in the wall) to expose the culprit",
+    "confidence": "medium",
+    "quote": "Mr. Jamieson, the detective, said himself he could never have done without me, although he gave me little enough credit"
   },
   "investigator": {
-    "value": "Rachel Innes, the middle-aged spinster narrator who rents the house and undertakes investigation of the crimes. Acts as amateur detective examining evidence (the hole, the trunk-room, physical details).",
+    "value": "Dual lens: Rachel Innes, middle-aged spinster narrator and tenant with an 'instinct of the chase', paired with professional detective Mr. Jamieson",
     "confidence": "high",
-    "quote": "I'm doing my best to find out. What in the world are you driving at?"
+    "quote": "Were I a man I should be a trapper of criminals, trailing them as relentlessly as no doubt my sheepskin ancestor did his wild boar."
+  },
+  "suspect_architecture": {
+    "value": "A spread of household and family suspects around Sunnyside: John Bailey (bank cashier, engaged to Gertrude), Gertrude herself (concealments), Halsey (absent/disappearing), Thomas the old servant who 'knows more than he is willing to admit', Anne Watson the housekeeper who oddly moved to the lodge, Doctor Walker, Louise Armstrong, and Nina Carrington \u2014 differentiated by financial motive (the Traders' Bank), romantic entanglement, and servant knowledge.",
+    "confidence": "medium",
+    "quote": "I would say as little to Thomas as possible. The old man knows more than he is willing to admit."
+  },
+  "red_herring": {
+    "value": "The house is presented as 'haunted' \u2014 the freshly dug hole in the trunk-room plaster with no lath or mortar debris, ghost stories from Liddy, and the circular-staircase scares \u2014 misdirecting from a human intruder with multiple means of entry.",
+    "confidence": "high",
+    "quote": "you won\u2019t believe me when I tell you this house is haunted. Who was it fell down the clothes chute?"
+  },
+  "clue_fairness": {
+    "value": "Physical clues are shown to the reader in scene as the narrator observes them, before interpretation: the link cuff-button, the plaster on the cook's trunk, the absence of mortar fragments, the scrap of paper \u2014 all described in the narration first.",
+    "confidence": "high",
+    "quote": "The top was covered with \ufb01ne white plaster, as was the \ufb02oor. But there were no large pieces of mortar lying around"
+  },
+  "social_world": {
+    "value": "Genteel American summer-colony society: a wealthy spinster aunt with inherited responsibility, servants (Liddy, Thomas, Alex, Anne Watson) whose knowledge is discounted by class, the Greenwood/Country Club set, and the Traders' Bank financial establishment binding the families together.",
+    "confidence": "medium",
+    "quote": "across the valley, perhaps a couple of miles away, was the Greenwood Club House."
+  },
+  "alibi": {
+    "value": "Jamieson's own watch functions as an alibi test: he sat all night on the lower step so nothing could pass in either direction and the door stayed fastened \u2014 yet the wall was breached, proving the intruder had another route.",
+    "confidence": "medium",
+    "quote": "Nothing could pass him in either direction, and the door in the morning remained as securely fastened as it had been the night before."
+  },
+  "reveal_mechanic": {
+    "value": "Physical demonstration of a concealed architectural space: the hole between chimney flue and outer wall, examined by candlelight, leading toward the hidden chamber 'Between Two Fireplaces' and Anne Watson's deathbed confession at the foot of the stairs.",
+    "confidence": "medium",
+    "quote": "He got a piece of candle, and by enlarging the aperture a little was able to examine what lay beyond."
+  },
+  "media_and_audience": {
+    "value": "Newspaper coverage garbled and incomplete, mentioning the narrator only once as 'the tenant'; the detective takes public credit in print, prompting her corrective first-person account. Servants' gossip and ghost rumour form a rival narrative.",
+    "confidence": "high",
+    "quote": "The newspaper accounts have been so garbled and incomplete\u2014one of them mentioned me but once"
+  },
+  "investigator_wound": {
+    "value": "Rachel Innes, a middle-aged spinster and foster-mother, is exploited through her wards: her authority over Gertrude and Halsey erodes as they conceal things, and her 'handicap of my sex' and age deny her credit and standing as an investigator.",
+    "confidence": "high",
+    "quote": "But being an unmarried woman, with the handicap of my sex, my \ufb01rst acquaintance with crime will probably be my last."
+  },
+  "victims_enemies": {
+    "value": "Arnold Armstrong, the dissolute son of the Traders' Bank president, is hated widely: he had defrauded and quarreled with family, servants and club acquaintances; the Armstrong bank's collapse ruined depositors including the Innes family's own circle, creating a web of grievance around the Armstrong name.",
+    "confidence": "medium",
+    "quote": "X. THE TRADERS\u2019 BANK"
+  },
+  "suspect_wounds": {
+    "value": "Nearly everyone in the house hides a private vulnerability the crime exposes: Gertrude conceals her secret engagement to John Bailey and lies to protect him; Halsey's temper and his love for Louise make him bolt; Louise broods and withholds what she knows; the servants Thomas and Anne Watson know more than they admit.",
+    "confidence": "high",
+    "quote": "She was no longer frank with me... I had forbidden all communication with John Bailey"
+  },
+  "unreliable_frame": {
+    "value": "Rachel Innes narrates in retrospect as a self-admittedly biased, gossipy spinster who corrects 'garbled' newspaper accounts and claims credit; she reports only what she sees, and the people around her (Gertrude, Louise, Thomas, Liddy) systematically withhold or distort information from her.",
+    "confidence": "high",
+    "quote": "The newspaper accounts have been so garbled and incomplete... that I feel it my due to tell what I know."
+  },
+  "setting_as_constraint": {
+    "value": "Sunnyside is a large, isolated Elizabethan country house whose peculiar architecture \u2014 the circular staircase, east wing door, clothes chute, and a hidden void between chimney flue and outer wall \u2014 dictates the movement of intruders; watchers can guard the stairs yet the culprit still enters, proving more than one way in.",
+    "confidence": "high",
+    "quote": "the nightly visitor had evidently more than one way of gaining access to the house"
+  },
+  "evidence_type": {
+    "value": "Physical/documentary trace evidence: a link cuff-button, a scrap of paper, plaster dug from a wall, a ladder out of place, and finally the concealed chamber between two fireplaces holding the bank's missing securities.",
+    "confidence": "high",
+    "quote": "II. A LINK CUFF-BUTTON ... XXIX. A SCRAP OF PAPER ... XXXI. BETWEEN TWO FIREPLACES"
+  },
+  "false_suspect": {
+    "value": "John Bailey, the bank cashier and Gertrude's secret fianc\u00e9, who is publicly blamed for the Traders' Bank defalcation and suspected of Arnold Armstrong's murder; Halsey also falls under suspicion after his disappearance.",
+    "confidence": "medium",
+    "quote": "III. MR. JOHN BAILEY APPEARS"
+  },
+  "technical_detail": {
+    "value": "The house's construction: an architect left a hollow space between the chimney flue and the outer wall, reachable only by breaching plaster and lathing \u2014 a concealed room whose existence the culprit knew of and searched for nightly.",
+    "confidence": "high",
+    "quote": "The opening had been made between the flue and the outer wall of the house."
+  },
+  "moral_ambiguity": {
+    "value": "Culpability is spread and softened: the guilty act stems from financial desperation and the wish to shield family reputation rather than pure malice, and characters who lie do so to protect people they love; the amateur detective herself admits an unladylike 'instinct of the chase.'",
+    "confidence": "medium",
+    "quote": "I have in me the instinct of the chase... Were I a man I should be a trapper of criminals"
   },
   "_meta": {
     "source": "mystery_database/new_sources/The Circular Staircase | Project Gutenberg.pdf",
     "filename": "The Circular Staircase | Project Gutenberg.pdf",
-    "text_len": 6037,
+    "text_len": 24037,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
-    "title": "The Circular Staircase | Project Gutenberg"
+    "title": "The Circular Staircase | Project Gutenberg",
+    "model": "claude-opus-5"
   }
 }

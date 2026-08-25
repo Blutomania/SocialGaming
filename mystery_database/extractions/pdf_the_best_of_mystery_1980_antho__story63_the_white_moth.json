@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": null,
-    "confidence": "low",
-    "quote": null
-  },
-  "victim": {
-    "value": "Forrest Blake, elderly wealthy husband whose death is revealed to be suicide triggered by discovery of his wife's serial infidelities and betrayal by her young lover",
-    "confidence": "high",
-    "quote": "Forrest had reached in his pocket and drawn out a heavy, baroque key which he fingered thoughtfully before Janet's stunned gaze."
-  },
-  "closed_world": {
-    "value": null,
-    "confidence": "low",
-    "quote": null
-  },
-  "culprit_and_motive": {
-    "value": "Janet Blake (indirectly responsible through moral culpability); Forrest Blake (direct agent of own death by suicide after discovering infidelity); the young lover acts as immediate catalyst by selling the apartment key to Forrest",
+    "value": "Ambiguous supernatural death(s): Forrest Blake dies suddenly the night he confronts his wife with proof of her adultery, and Janet later drowns in her own pool lured by his apparition. Central question: is Janet being haunted/killed by Forrest's returning spirit, or destroyed by her own guilt?",
     "confidence": "medium",
-    "quote": "It was the next morning she found him quite dead in his big bed, her first reaction was to laugh aloud in sheer relief."
-  },
-  "resolution": {
-    "value": "Janet's own death by drowning at the pool, lured by Forrest's ghost, restores cosmic balance; the white moth motif (symbolizing lost souls) provides supernatural justice",
-    "confidence": "high",
     "quote": "That is where they found her, face down at the bottom of the quiet pool."
   },
-  "investigator": {
-    "value": "Janet Blake herself; the reader experiences the mystery entirely through her perspective as she encounters Forrest's apparitions and gradually descends into guilt-driven madness",
+  "victim": {
+    "value": "Janet Blake, the unfaithful, mercenary younger widow whose adultery and greed were exposed by her husband the night before he died; also Forrest Blake, the elderly, meek husband destroyed by discovering her betrayal",
     "confidence": "high",
-    "quote": "Huddled in Forrest's big chair by the fireplace, her expertly maintained pale gold hair luminous against the dark leather, Janet reviewed the nightmare of the past weeks."
+    "quote": "It was the next morning she found him dead."
+  },
+  "closed_world": {
+    "value": "The Blake house high in the Burlingame hills \u2014 study, bedroom, terrace and pool \u2014 plus Janet's tight social circle (Mavis, Olivia, Annie the maid)",
+    "confidence": "medium",
+    "quote": "It was Annie\u2019s day off and she was alone in the big house."
+  },
+  "culprit_and_motive": {
+    "value": "Implied culprit is Forrest's returning ghost (the white moth/lost soul), avenging his humiliation and betrayal by drawing Janet into the pool; alternatively Janet's own guilt and drinking",
+    "confidence": "medium",
+    "quote": "she saw Forrest catch it and hold it out to her... following him as he beckoned her on to the middle of the pool"
+  },
+  "resolution": {
+    "value": "No investigative resolution; closure is supernatural \u2014 Janet drowns clutching a white moth that revives and flies away, suggesting a soul released",
+    "confidence": "medium",
+    "quote": "she gently pried open a fist clenched around a bedraggled white moth, then screamed hysterically as it... lurched crazily away"
+  },
+  "investigator": {
+    "value": "No detective; the lens is Janet herself \u2014 guilty widow and eventual victim, whose recollections reveal the secret",
+    "confidence": "high",
+    "quote": "Huddled in Forrest\u2019s big chair by the fireplace... Janet reviewed the nightmare of the past weeks."
+  },
+  "suspect_architecture": {
+    "value": "No formal suspect cast; the story is a psychological haunting. Potential culpable figures implied around Janet's guilt: Janet herself (adulterous wife with motive to want Forrest dead and inheriting his fortune), the greedy young lover who sold her out, and Forrest himself (possible suicide/resignation to death). Peripheral figures \u2014 Annie the superstitious maid, Mavis Carter the sympathetic friend, Olivia Randall, Jack Loren \u2014 serve as witnesses rather than suspects.",
+    "confidence": "medium",
+    "quote": "Rotten luck it had to be Forrest who found her out. But Forrest was dead, wasn\u2019t he?"
+  },
+  "red_herring": {
+    "value": "The apparitions of Forrest are framed as literal supernatural returns (reinforced by Annie's folklore of white moths as lost souls), misdirecting from the reading that they are alcohol-fuelled guilt hallucinations luring Janet to her death.",
+    "confidence": "medium",
+    "quote": "\u201cIt\u2019s a poor, lost soul trying to find a resting place. It was Mr. Blake himself...who told me never to kill a white moth"
+  },
+  "clue_fairness": {
+    "value": "Clues are planted openly for the reader: the baroque apartment key Forrest bought from the lover, Forrest's undisclosed appointment and intent to see his lawyer, his heart-broken resignation on the drive home, Janet's escalating brandy consumption, and the recurring white moth motif \u2014 all shown in scene before the drowning.",
+    "confidence": "high",
+    "quote": "Forrest had reached in his pocket and drawn out a heavy, baroque key which he fingered thoughtfully before Janet\u2019s stunned gaze."
+  },
+  "social_world": {
+    "value": "Affluent Burlingame hill-country society: a younger trophy wife dependent on an elderly rich husband, charity board memberships as respectable cover, a circle of 'deadliest friends' who feed on each other's scandal, and servants (Annie) bound by loyalty and folk belief. Power rests on money, alimony risk, and social standing.",
+    "confidence": "high",
+    "quote": "just the innermost circle of her deadliest friends, since outwardly she was observing the amenities of mourning"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "The final image demonstrates rather than states: Janet is found drowned with a white moth clenched in her fist, and the moth \u2014 pried loose by Annie \u2014 revives and flies away, confirming the moth-as-soul motif and that the apparition led her into the pool.",
+    "confidence": "high",
+    "quote": "she gently pried open a fist clenched around a bedraggled white moth, then screamed hysterically as it imperceptibly moved its bruised wing"
+  },
+  "media_and_audience": {
+    "value": "The crime/death is packaged by gossip rather than press: Janet's circle 'rehash the events' and dissect her disintegration with pleasure, while superstition (white moths as wandering souls) supplies the folk narrative explaining Forrest's return.",
+    "confidence": "high",
+    "quote": "taking advantage of her absence to rehash the events as they knew them before and after Forrest\u2019s sudden death"
+  },
+  "investigator_wound": {
+    "value": "Janet is the de facto investigator of her own haunting; the case exploits her guilt over the discovered affair, her humiliation at being caught, her terror of aging and of losing money, and her drinking \u2014 vulnerabilities that turn the apparitions from horror into comfort and finally into lethal lure.",
+    "confidence": "medium",
+    "quote": "her anguish was not regret for her philandering, only that she had been caught. It was humiliating; so damned humiliating"
+  },
+  "victims_enemies": {
+    "value": "Forrest Blake's enemy is his own wife Janet, who resented his age and meekness and had carried on years of affairs; secondarily the greedy young lover who sold her out to Forrest for money, betraying both.",
+    "confidence": "high",
+    "quote": "This, then, was his dirty revenge, to sell her out to her husband."
+  },
+  "suspect_wounds": {
+    "value": "Janet's wound is vanity and terror of aging poverty \u2014 the fear of divorce without alimony, and her relief at Forrest's death, make her look and feel like a murderer even though no crime is proven.",
+    "confidence": "high",
+    "quote": "her first reaction was to laugh aloud in sheer relief. \u201cI\u2019ve always been lucky,\u201d she told herself"
+  },
+  "unreliable_frame": {
+    "value": "The entire story is filtered through Janet's guilt-saturated, brandy- and sedative-blurred perception; her sightings of Forrest may be hallucination, conscience, or haunting, and she withholds her 'dark secret' even from herself.",
+    "confidence": "high",
+    "quote": "even their wildest speculations were not bold enough to guess her dark secret"
+  },
+  "setting_as_constraint": {
+    "value": "The big isolated hill house at Burlingame, emptied of the social swarm after Forrest's death, with only the servant Annie present and often off duty, leaves Janet alone with the apparitions; the narrow three-lane highway traps her so she cannot stop when the moths swarm.",
+    "confidence": "high",
+    "quote": "It was Annie\u2019s day off and she was alone in the big house."
+  },
+  "evidence_type": {
+    "value": "Physical/documentary token \u2014 the heavy baroque key to the town apartment that Forrest bought from her lover, exposing the affairs; echoed by the white moth found clenched in the drowned Janet's fist.",
+    "confidence": "high",
+    "quote": "Forrest had reached in his pocket and drawn out a heavy, baroque key"
+  },
+  "false_suspect": {
+    "value": "No formal investigation occurs; the nearest suspicion falls on Janet herself for Forrest's sudden death, and briefly on the opportunistic young stranger Jack Loren, though neither is shown to have killed anyone.",
+    "confidence": "medium",
+    "quote": "\u201cJack says he can use that hundred dollars. I\u2019ll personally vouch for him\u201d"
+  },
+  "technical_detail": {
+    "value": "The folk belief Forrest taught Annie \u2014 that a white moth is a wandering lost soul never to be killed \u2014 supplies the mechanism of the haunting and of Janet's fatal lunge into the pool.",
+    "confidence": "high",
+    "quote": "never to kill a white moth because it was a wandering soul searching for peace"
+  },
+  "moral_ambiguity": {
+    "value": "Forrest, the wronged husband, lures rather than harms; and Janet is given a genuine grievance \u2014 decades married to an old man, wanting 'something out of life' \u2014 so her betrayal is comprehensible rather than simply wicked.",
+    "confidence": "high",
+    "quote": "\u201cdon\u2019t I deserve something out of life before I\u2019m too old to care?\u201d"
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 16883,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "The White Moth",
     "author": "MARGARET CHENOWETH",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 63,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

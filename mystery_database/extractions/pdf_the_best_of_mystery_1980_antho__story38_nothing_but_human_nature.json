@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Beating death with lead pipe in residential home during daytime; central question: was it a burglary-homicide or did the husband murder his wife and fake a robbery?",
+    "value": "Bludgeoning murder of a housewife with a lead pipe in her kitchen, staged as a burglary; central question: was it a burglar or the husband, and can his alibi be broken?",
     "confidence": "high",
-    "quote": "The woman was beaten to death with the pipe. The photographer said he'd got his pictures and does the captain want him to dust for fingerprints?"
+    "quote": "It's possible there was a burglar. It's possible Eldridge killed her and faked the burglary."
   },
   "victim": {
-    "value": "May Eldridge, 33, schoolteacher with ten years of unspent teaching salary accumulated during marriage; killable because her accumulated wealth and her husband's affair with neighbor created motive for murder disguised as robbery.",
+    "value": "May Eldridge, 33-year-old schoolteacher wife whose ten years of unspent teaching salary made her worth more dead than divorced to her husband",
     "confidence": "high",
-    "quote": "when the wife has ten years' worth of teaching salary lying around unspent, you know the answer to that situation isn't going to be divorce, it's going to be murder."
+    "quote": "when the wife has ten years' worth of teaching salary lying around unspent... it's going to be murder."
   },
   "closed_world": {
-    "value": "A suburban residential neighborhood of tiny brick bungalows packed closely together with limited witness opportunities; the victim's home during a Saturday morning when neighbors are less observant.",
+    "value": "A cramped block of tiny brick bungalows on midget lots, with the crime confined to the narrow time window between 9:00 and 10:50 a.m.",
     "confidence": "high",
-    "quote": "The house was a tiny brick bungalow in an area of tiny brick bungalows, packed together on midget lots with one-car garages in back and just room for a driveway between."
+    "quote": "The house was a tiny brick bungalow in an area of tiny brick bungalows, packed together on midget lots"
   },
   "culprit_and_motive": {
-    "value": "Joseph Eldridge, the husband, killed his wife to free himself for an affair with neighbor Mimi Jenks; promised her marriage and Caribbean luxury in exchange for a false alibi.",
+    "value": "Joseph Eldridge, the husband, killed his wife for her savings and to be with his mistress-neighbor Mimi Jenks, who supplied a false alibi in exchange for promised marriage and Caribbean luxury",
     "confidence": "high",
-    "quote": "how Eldridge promised her marriage and a life of Caribbean luxury in return for a murder alibi."
+    "quote": "how Eldridge promised her marriage and a life of Caribbean luxury in return for a murder alibi"
   },
   "resolution": {
-    "value": "Captain Galton uses psychology and a decoy witness (his daughter Jenny posing as a younger woman with an alibi for Eldridge) to provoke Mimi Jenks into betraying Eldridge out of jealousy, forcing her to reveal his guilt and the stolen jewelry hidden in her possession.",
+    "value": "Galton stages a sting: a pretty policewoman poses as another woman alibiing Eldridge, and jealousy makes Mrs. Jenks recant, confess the false alibi and reveal the bloody shirt and jewelry box",
     "confidence": "high",
-    "quote": "the moment she thought a younger and prettier girl was also lying to save Eldridge's neck, she'd blow his alibi to kingdom come."
+    "quote": "the bloody one is in the bottom of my laundry bag, wrapped around her jewelry box."
   },
   "investigator": {
-    "value": "Captain Mike Galton, an experienced detective with institutional authority; he reads human nature and psychology rather than forensic evidence, using deduction based on social dynamics to solve the case.",
+    "value": "Captain of Detectives Mike Galton, veteran official 'old man' with institutional authority, aided by Detective Dennis and his policewoman daughter Jenny",
     "confidence": "high",
-    "quote": "Captain of Detectives Mike Galton, or 'the old man' as he was known to his underlings, looked down at the woman's body."
+    "quote": "Captain of Detectives Mike Galton, or \"the old man\" as he was known to his underlings"
+  },
+  "suspect_architecture": {
+    "value": "Very small cast: the husband Joseph Eldridge (motive: wife's ten years of unspent teaching salary; opportunity: alone in house before shopping trip), a hypothetical anonymous burglar, and the neighbor Mimi Jenks, a divorced 'grass widow' who appears only as a witness/alibi but proves to be the accomplice-lover.",
+    "confidence": "high",
+    "quote": "\u201cIt\u2019s possible there was a burglar. It\u2019s possible Eldridge killed her and faked the burglary.\u201d"
+  },
+  "red_herring": {
+    "value": "The staged burglary \u2014 ransacked bureaus, missing jewelry box and cash from the purse, and the untraceable length of lead pipe brought from outside \u2014 designed to suggest an intruder killed her.",
+    "confidence": "high",
+    "quote": "\u201cThe bedroom\u2019s been ransacked. Captain. The bureau drawers, the closets.\u201d"
+  },
+  "clue_fairness": {
+    "value": "Fair: the reader sees everything Galton sees \u2014 Mrs. Jenks's shorts, halter and bleached hair, her alimony status, the wife working all week while the husband is a free-lance agent at home, and the unspent teaching salary \u2014 all stated before the solution.",
+    "confidence": "high",
+    "quote": "\u201cIt wasn\u2019t the piece of pipe or the missing jewelry or the stories they told that gave it away. It was her shorts, her halter, and her bleached hair.\u201d"
+  },
+  "social_world": {
+    "value": "Lower-middle-class suburb of identical brick bungalows; gender-role tension in a marriage where the wife's teacher's salary outstrips the insurance salesman husband; police hierarchy with the 'old man' captain, his junior detective, and his own daughter as policewoman.",
+    "confidence": "medium",
+    "quote": "The house was a tiny brick bungalow in an area of tiny brick bungalows, packed together on midget lots"
+  },
+  "alibi": {
+    "value": "Eldridge claims he left to do the Saturday marketing between 8:50 and 9:10 and returned at 10:50, with the checkout clock at 10:40; corroborated only by neighbor Mrs. Jenks who swears his car left at nine. The alibi is false \u2014 she is his lover and he actually left at 9:35 after killing his wife and changing his bloody shirt.",
+    "confidence": "high",
+    "quote": "\u201cBecause that\u2019s how long it took that two-timing cheat to bash in his wife\u2019s head.\u201d"
+  },
+  "reveal_mechanic": {
+    "value": "A psychological sting: Galton dresses his pretty daughter Jenny as 'Miss Murphy,' a supposed second alibi witness and rival lover; jealousy makes Mrs. Jenks break, recant the alibi, and reveal the bloody shirt wrapped around the jewelry box in her laundry bag.",
+    "confidence": "high",
+    "quote": "\u201cI figured the moment she thought a younger and prettier girl was also lying to save Eldridge\u2019s neck, she\u2019d blow his alibi\u201d"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victims_enemies": {
+    "value": "May Eldridge had no outside enemies \u2014 the grievance web is entirely domestic: her husband Joseph, who wanted her ten years' worth of unspent teaching salary and freedom to run off with the neighbor, and Mimi Jenks, the mistress next door who saw the wife as the obstacle to marriage and Caribbean luxury.",
+    "confidence": "high",
+    "quote": "\"And when the wife has ten years' worth of teaching salary lying around unspent... it's going to be murder.\""
+  },
+  "suspect_wounds": {
+    "value": "Joseph Eldridge is the only person with opportunity and no one to corroborate his shopping trip; his adultery and financial dependence on his wife's salary make his grief suspect. Mimi Jenks's vulnerability is jealousy \u2014 the fear of being 'left holding the bag' while another woman takes him.",
+    "confidence": "high",
+    "quote": "\"He knew of nobody who could support his alibi.\""
+  },
+  "unreliable_frame": {
+    "value": "Both Joseph Eldridge and Mimi Jenks give false accounts. Eldridge's timeline (left at nine, returned at ten-fifty) is a fabrication; Mrs. Jenks's eager, over-detailed corroboration ('I looked at the clock... did my exercises by the window for fifteen minutes') is a purchased lie. He actually left at nine-thirty-five after killing his wife and changing a bloodied shirt.",
+    "confidence": "high",
+    "quote": "\"Because that's how long it took that two-timing cheat to bash in his wife's head.\""
+  },
+  "setting_as_constraint": {
+    "value": "A cramped tract of identical brick bungalows on midget lots \u2014 houses so close that a neighbor's open bedroom window is the only witness to a car starting. The proximity that makes the affair possible also makes the mistress the sole alibi witness, and the absence of any other witnesses forces the detective toward a psychological rather than physical solution.",
+    "confidence": "high",
+    "quote": "\"tiny brick bungalow in an area of tiny brick bungalows, packed together on midget lots\""
+  },
+  "evidence_type": {
+    "value": "Testimonial \u2014 a confession extracted by staged provocation, which in turn points to physical corroboration: the bloodstained shirt wrapped around the stolen jewelry box in Mrs. Jenks's laundry bag. Forensics (fingerprints on pipe and bureau) yielded nothing.",
+    "confidence": "high",
+    "quote": "\"the bloody one is in the bottom of my laundry bag, wrapped around her jewelry box\""
+  },
+  "false_suspect": {
+    "value": "The imaginary burglar \u2014 the ransacked bureaus, emptied purse, missing rings and jewelry box were staged by Eldridge to suggest a stranger came in the open back door. Briefly, the phantom 'Miss Murphy' also functions as a fabricated rival.",
+    "confidence": "high",
+    "quote": "\"It's possible Eldridge killed her and faked the burglary.\""
+  },
+  "technical_detail": {
+    "value": "The domain knowledge is applied psychology rather than forensics: Galton's read of human nature \u2014 that a sexy young grass widow next door to a handsome insurance man whose wife works all day means an affair, and that a jealous accomplice will destroy an alibi the instant she believes a younger rival is also lying to save him.",
+    "confidence": "high",
+    "quote": "\"the moment she thought a younger and prettier girl was also lying to save Eldridge's neck, she'd blow his alibi\""
+  },
+  "moral_ambiguity": {
+    "value": "Thin but present: Eldridge is a man kept by his wife's salary, emasculated by doing the Saturday marketing while she taught, drawn to the neighbor and to a promised life of Caribbean luxury; Mrs. Jenks is a discarded wife living on alimony checks who traded perjury for a promise of marriage. Galton himself uses his own daughter as sexual bait to entrap a witness.",
+    "confidence": "medium",
+    "quote": "\"Mr. Jenks sends me an alimony check once a month. That's all I know about him or care.\""
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 16934,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Nothing but Human Nature",
     "author": "HILLARY WAUGH",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 38,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

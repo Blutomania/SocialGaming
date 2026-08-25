@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Murder by gunshot disguised as hunting accident. Ken Bender shot dead during a leopard hunt. Central question: was it accidental misidentification or premeditated murder using a tame leopard's reputation as cover?",
+    "value": "Murder disguised as a hunting accident: Cozenka shoots her husband at night claiming she mistook him for the escaped 'vicious' leopard Demon. Central question: was the cat actually dangerous, i.e. was the shooting truly a mistake?",
     "confidence": "high",
-    "quote": "I came finally upon Cozenka crouching over the still body of Ken Bender...the bloody wound in Bender's chest."
+    "quote": "\"Cozenka shot Ken. She thought he was Demon. She thought he had green eyes.\""
   },
   "victim": {
-    "value": "Kenneth Bender: wealthy Texas oil millionaire married to glamorous Eurasian Cozenka. Killable because he was emotionally dependent, naive, and ignored his wife's affair with guide Peter Wyndham. His wealth made him exploitable; his lack of sophistication made him blind.",
+    "value": "Ken Bender, clumsy, boring Texas oil millionaire who married Cozenka; killable because his vast fortune passed to a wife who loved another man and only wanted his money",
     "confidence": "high",
-    "quote": "he was a crashing bore\u2014a big, clumsy, childlike man with only one qualification for your exquisite attentions. He was rich as Croesus."
+    "quote": "\"He was rich as Croesus... you were quite willing to take everything he had except the one thing he wanted you most to accept. Himself.\""
   },
   "closed_world": {
-    "value": "Ken Bender's isolated Southwest lodge and private African animal sanctuary, miles from town. The hunting grounds where the murder occurs are contained within Bender's own property, limiting suspects to household members and guests present that night.",
+    "value": "Bender's isolated twenty-room lodge and private African animal preserve, twenty miles from a whistle stop in the remote Southwest, with only the three principals, the narrator and a small staff present",
     "confidence": "high",
-    "quote": "a week later, I was picked up at a lonely whistle stop and driven twenty miles to Ken Bender's place...a million-dollar never-never land carefully recreated out there in the middle of nowhere."
+    "quote": "\"picked up at a lonely whistle stop and driven twenty miles to Ken Bender's place\""
   },
   "culprit_and_motive": {
-    "value": "Cozenka and Peter Wyndham are the murderers. Motive: Cozenka wanted Bender's money and freedom to be with Wyndham (or to live without a bore), but Bender's love made him an obstacle. They planned to kill him and blame the tame leopard 'Demon,' whose viciousness they publicly cultivated.",
+    "value": "Cozenka fired the shot with Peter Wyndham as co-conspirator (he secretly tamed Demon, then shot the cat to destroy the evidence); motive was Bender's money and her love for Wyndham",
     "confidence": "high",
-    "quote": "So you figured out a foolproof way to kill him and have it called an accident...you were quite willing to take everything he had except the one thing he wanted you most to accept. Himself."
+    "quote": "\"Your darling said you two were planning to kill him.\""
   },
   "resolution": {
-    "value": "Marty Payne (the narrator) discovers hidden 16mm film in Cozenka's closet showing the leopard being tamed by Wyndham\u2014proof the 'vicious' cat was harmless. Film is shown at coroner's inquest. Despite this evidence, the grand jury refuses to indict due to lack of legal certainty. Poetic justice follows: both Wyndham and Cozenka die within six months.",
+    "value": "Only partial: Payne reasons that the missing footage of Demon must exist, finds a hidden 16mm reel showing the leopard tamed and purring; the inquest jury calls for further investigation, but the grand jury refuses to indict. Both culprits die within six months (buffalo, car crash) \u2014 order restored by chance, not justice",
     "confidence": "high",
-    "quote": "I said, and took from my pocket the reel of sixteen-millimeter film I'd found on a shelf in one of Cozenka's closets...It was all there: highlights in the taming of a black leopard named Demon"
+    "quote": "\"The grand jury, upon advice of the County Attorney, refused to indict.\""
   },
   "investigator": {
-    "value": "Marty Payne: a magazine writer and journalist present as an invited guest ostensibly to cover Cozenka's animal sanctuary. He becomes an accidental detective, witnessing the crime scene immediately after the murder and gradually deducing the conspiracy through observation and logical reasoning.",
+    "value": "Marty Payne, a magazine writer and houseguest \u2014 an outsider witness who becomes amateur accuser; official counterpart Sheriff Henderson and coroner Doctor Wendell",
     "confidence": "high",
-    "quote": "I'm a writer. I make my dubious living reporting on extraordinary people and places and things...I was even witness to the tragedy in a professional capacity."
+    "quote": "\"I was even witness to the tragedy in a professional capacity.\""
+  },
+  "suspect_architecture": {
+    "value": "Small closed cast of three principals plus narrator: Cozenka (Eurasian wife, motive: inherited millions and freedom from a bore she never loved, opportunity: fired the shot), Peter Wyndham (her lover/white hunter, motive: her money, opportunity: staged the 'vicious' cat and shot Demon to destroy evidence), Ken Bender (the wealthy husband, victim), and Marty Payne (journalist-witness). Guilt is joint; no genuine alternative suspect exists \u2014 the 'suspect' offered to the world is the leopard itself.",
+    "confidence": "high",
+    "quote": "\"Your darling said you two were planning to kill him.\""
+  },
+  "red_herring": {
+    "value": "The black leopard Demon, deliberately presented as savage and treacherous so the shooting would read as a hunting accident; reinforced by Wyndham's staged warning at the cage and by shooting the cat afterward to remove the only living disproof.",
+    "confidence": "high",
+    "quote": "\"those cats are the soul of treachery\u2014that one in particular. A little closer and you could have lost an arm.\""
+  },
+  "clue_fairness": {
+    "value": "Fair-play: the reader sees every clue as Payne does \u2014 the couple standing 'very close,' Wyndham's over-emphatic warning, Bender's confided fear, and above all the leopard's tame visit to the den before the shot; the hidden taming film is deduced from the reader-visible absence of Demon from the Africa footage.",
+    "confidence": "high",
+    "quote": "\"it seemed strange to me that the leopard did not appear anywhere in the hour-long film covering her last trip to Africa\""
+  },
+  "social_world": {
+    "value": "Texas oil money and celebrity glamour: an ungainly self-made millionaire buys an African replica preserve for his exotic wife, who keeps a hired 'guide and companion' on the payroll; local law and grand jury defer to wealth, beauty and the battery of defense attorneys money can buy, while the outsider writer has no standing.",
+    "confidence": "high",
+    "quote": "\"the merging of oriental loveliness with Texas oil millions\""
+  },
+  "alibi": {
+    "value": "No conventional alibi; instead a shared cover story \u2014 'we were hunting separately, I mistook him for the leopard's green eyes' \u2014 an accident claim rather than a whereabouts denial, corroborated by Wyndham's account of tracking and killing the cat.",
+    "confidence": "high",
+    "quote": "\"We were hunting separately. I was not using my light\u2014watching for the glow of Demon's eyes.\""
+  },
+  "reveal_mechanic": {
+    "value": "Physical demonstration at the coroner's inquest: the concealed sixteen-millimeter reel of Demon's taming, screened with sound track showing Cozenka frolicking with the gentle cat and the animal purring \u2014 proving the beast was tame and the 'accident' impossible.",
+    "confidence": "high",
+    "quote": "\"I think you will agree, Sheriff, that the cat is purring, not snarling.\""
+  },
+  "media_and_audience": {
+    "value": "The crime unfolds inside a manufactured press romance \u2014 Cozenka and Bender are national magazine property, and public sympathy for the glamorous widow neutralizes the accusation; the sheriff distrusts Payne precisely as a story-hungry 'newshawk,' and the jury pool would never convict her.",
+    "confidence": "high",
+    "quote": "\"Would you care to go before a jury made up principally of men and try to get Cozenka Bender convicted\""
+  },
+  "investigator_wound": {
+    "value": "Payne is a journalist who profits from other people's sensations; the case exploits his guilt at having passively watched, dismissed Bender's plea for help, and possibly courted the story \u2014 plus his own susceptibility to Cozenka's beauty and his fear for his career.",
+    "confidence": "high",
+    "quote": "\"perhaps I was subconsciously conditioned to stand back and let it all happen.\""
+  },
+  "victims_enemies": {
+    "value": "Ken Bender is undone by the two people closest to him: his wife Cozenka, who took his oil millions but found him a 'crashing bore' and loved his guide instead, and Peter Wyndham, the handsome 'white hunter' whom Bender complaisantly accepted as his wife's constant companion. The grievance is not hatred but suffocated contempt \u2014 he loved her hopelessly, and she resented owing everything to a clumsy, childlike man.",
+    "confidence": "high",
+    "quote": "\u201cBut all his love and money couldn\u2019t change the fact that he was a crashing bore\u2014a big, clumsy, childlike man\u201d"
+  },
+  "suspect_wounds": {
+    "value": "Cozenka's vulnerability is her genuine affection for the leopard Demon \u2014 the one sincere feeling in her performance \u2014 which forced her to hide the film of the tame cat rather than destroy it, and to protest its screening in a way that betrayed her. Wyndham's is his cultivated self-control: his over-eager warning about the cat's 'treachery' and his desperate haste to shoot Demon read as guilt. Marty Payne himself is wounded by his trade \u2014 a magazine writer sensation-hunting, which the sheriff uses to discount him.",
+    "confidence": "high",
+    "quote": "\u201cThat film is most personal. I beg you not to run it off. You have no right to shame me!\u201d"
+  },
+  "unreliable_frame": {
+    "value": "Marty Payne narrates, and opens by admitting he may have subconsciously let the tragedy happen for the sake of a story; he closes conceding he might have been wrong from the beginning. Cozenka and Wyndham give a coordinated false account of the shooting; Cozenka's grief is explicitly judged by Payne as acting.",
+    "confidence": "high",
+    "quote": "\u201cSo perhaps I was subconsciously conditioned to stand back and let it all happen. I hope not, but I can\u2019t be sure.\u201d"
+  },
+  "setting_as_constraint": {
+    "value": "Bender's isolated Texas ranch, twenty miles from a whistle stop, remade into a private African replica stocked with dangerous game. The remoteness means no independent witnesses, the nearest law is a half-hour away in Kenton, and the presence of a 'savage' black leopard supplies a ready-made explanation for a night shooting during a hunt with lights off.",
+    "confidence": "high",
+    "quote": "\u201cdriven twenty miles to Ken Bender\u2019s place\u201d ... \u201cThe County Sheriff. He comes from Kenton\u2014a small village. A half hour\u2019s drive.\u201d"
+  },
+  "evidence_type": {
+    "value": "Documentary/film evidence: a reel of sixteen-millimeter film with sound track, found in Cozenka's closet, showing Wyndham taming Demon and Cozenka playing with the gentle, purring cat \u2014 deduced from the suspicious absence of the leopard from her hour-long Africa footage. Supported only by Payne's testimonial account of the tame cat visiting him.",
+    "confidence": "high",
+    "quote": "\u201ctook from my pocket the reel of sixteen-millimeter film I\u2019d found on a shelf in one of Cozenka\u2019s closets\u201d"
+  },
+  "false_suspect": {
+    "value": "Demon, the black leopard \u2014 deliberately framed by the culprits as a treacherous killer whose supposed green-eyed charge explains the 'accidental' shot; Wyndham then kills it to destroy the only witness to its tameness.",
+    "confidence": "high",
+    "quote": "\u201cthose cats are the soul of treachery\u2014that one in particular. A little closer and you could have lost an arm.\u201d"
+  },
+  "technical_detail": {
+    "value": "Big-cat handling: a jungle cat can in fact be tamed, and Wyndham had secretly done so in Africa, filming the process. The murder method depends on the public belief that leopards are irredeemably vicious \u2014 the cat's reputation makes a night 'hunt' with lights off plausible and the mis-aimed shot excusable. Exposure comes from the same knowledge: the cat that visited Payne behaved like a kitten, and the soundtrack records purring, not snarling.",
+    "confidence": "high",
+    "quote": "\u201cI think you will agree, Sheriff, that the cat is purring, not snarling.\u201d"
+  },
+  "moral_ambiguity": {
+    "value": "Cozenka is not a simple monster: she genuinely loved the leopard and mourned sacrificing it, and she loved Wyndham as hopelessly as Bender loved her \u2014 trapped in the same unreciprocated devotion she inflicted. Payne, meanwhile, admits he would not want to 'pull the switch' on either of them on the evidence he had, and the sheriff's refusal to prosecute is presented as sound legal logic rather than corruption.",
+    "confidence": "high",
+    "quote": "\u201cI think she truly loved Wyndham; ironically, in the same hopeless way Bender had loved her.\u201d"
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Panther, Panther in the Night",
     "author": "PAUL W. FAIRMAN",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 40,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Attempted murder/self-defense killing of escaped convicts. Method: shotgun. Central question: Was Karen's use of lethal force justified, and did she act under duress or through deception?",
+    "confidence": "high",
+    "quote": "As Garth looked up and clawed for his pistol, she squeezed one trigger and then the other."
+  },
+  "victim": {
+    "value": "Karen Smallwood, a schoolteacher and daughter of a former state police officer. Vulnerable target because she is isolated, alone in a remote farmhouse during a storm, and related to law enforcement.",
+    "confidence": "high",
+    "quote": "Maybe just because you're a lawman's daughter. We got an abiding dislike for lawmen and anyone connected with 'em."
+  },
+  "closed_world": {
+    "value": "Remote farmhouse isolated by multiple tornadoes touching down across the region. No neighbors within three miles; parents away at a flea market; power out; escape routes compromised by severe weather.",
+    "confidence": "high",
+    "quote": "Nobody lives within three miles of here...At least a dozen funnel clouds had been sighted by 9:08 P.M."
+  },
+  "culprit_and_motive": {
+    "value": "Ben Garth and Jerry, escaped convicts on a killing spree. Motive: eliminate witness to prevent police identification of their location; secondary motive is hatred of law enforcement and its relatives.",
+    "confidence": "high",
+    "quote": "It wouldn't make sense anyhow, leavin' you here alive...The first thing you'd do after we left would be to put 'em straight."
+  },
+  "resolution": {
+    "value": "Karen uses deception: she falsely identifies the passing freight train as an approaching tornado, causing the criminals to panic toward the storm cellar. While they scramble, she retrieves the hidden shotgun and kills Garth; Jerry survives but is captured.",
+    "confidence": "high",
+    "quote": "So when the night freight came highballing by a little before ten, like it always does, I made out like it was a twister."
+  },
+  "investigator": {
+    "value": "Karen Smallwood herself serves as the investigator/protagonist. She observes her captors' weaknesses, identifies the hidden shotgun, and strategically manipulates events to restore order through her own decisive action.",
+    "confidence": "high",
+    "quote": "She had to stall him as long as possible...She lifted the shotgun from its rack, stepped down, cocked the piece, aimed it while shoving the stock tight against her shoulder."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 14215,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Night of the Twisters",
+    "author": "JAMES MICHAEL ULLMAN",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 21,
+    "story_count": 63
+  }
+}

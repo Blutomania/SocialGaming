@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Serial murder by burglary: killer targets women living alone, uses door-to-door towel peddling as pretext to scout victims, enters via window screen cutting, steals small amounts of cash, and shoots victim at close range. Central question: who is the 'cat-killer' and how does he select his victims?",
+    "value": "Serial burglary-murders: a 'cat-killer' cuts window screens of women living alone, shoots them at close range for small cash; then a copycat murder of Elaine Briscoe staged to match the pattern. Central question: who fits the pattern, and can the imitation be distinguished from the original?",
     "confidence": "high",
-    "quote": "Violet Hammerman, 38, lived alone in a single apartment on North Curson...died in her bed Sunday night...the victim of one bullet through her heart fired at close range."
+    "quote": "\u201cIt\u2019s a simple story. No struggle, no attempted attack\u2014the bedclothes aren\u2019t even disturbed.\u201d"
   },
   "victim": {
-    "value": "Elaine Briscoe (also Dorothy McGannon and Violet Hammerman): women living alone, financially modest, vulnerable to door-to-door sales pitches. 'Killable' because they are isolated, unmarried, and unobserved\u2014perfect targets for a predatory killer.",
+    "value": "Violet Hammerman, 38, a solitary secretary living alone (and Dorothy McGannon) \u2014 targeted because they lived alone and kept cash at home; ultimately Elaine Briscoe, the wife Keith hates and cannot divorce",
     "confidence": "high",
-    "quote": "The cat-killer concentrated on women living alone...All of the other apartments in each building were occupied by two or more tenants."
+    "quote": "Violet Hammerman, 38, lived alone in a single apartment on North Curson."
   },
   "closed_world": {
-    "value": "Apartment complex units in an urban residential area rezoned into small units; multiple isolated women tenants. The killer operates within a defined neighborhood where he scouts victims, returns to commit murders, and leaves forensic evidence in soil.",
-    "confidence": "high",
-    "quote": "a single apartment on North Curson...first-floor apartment in one of the old residential houses that had been rezoned and remodeled into small units"
+    "value": "A city district of small remodeled apartment buildings with the largest concentration of single women, canvassed by one door-to-door peddler",
+    "confidence": "medium",
+    "quote": "\u201cIn this particular area we have the largest concentration of unmarried people of any section of the city.\u201d"
   },
   "culprit_and_motive": {
-    "value": "Keith Briscoe, police reporter, murders his wife Elaine to frame the actual 'cat-killer' Kawalik. Motive: to obtain freedom from his marriage to Elaine while eliminating suspicion by matching the serial killer's signature. Secondary motive: obsession with reuniting with his ex-wife Faye.",
+    "value": "Kawalik, a tall thin drug-addicted peddler, robbing lone women for drug money; the copycat killer is reporter Keith Briscoe, who murders his wife Elaine to be free for Faye",
     "confidence": "high",
-    "quote": "Keith entered Kawalik's apartment by way of the back door...He switched on the flashlight...a pink one. Shocking pink. It seemed appropriate for Elaine...Half an hour later, Keith climbed through Elaine's bedroom window."
+    "quote": "she saw the gun in his hand. That was when Keith fired."
   },
   "resolution": {
-    "value": "Sergeant Gonzales apprehends Kawalik at his apartment after a landlord reports suspicious activity. Police discover Kawalik's car with blood evidence from a gunshot wound inflicted by Officer Clancy during the arrest. Keith's guilt is exposed when he hands his murder weapon to Gonzales, confessing through action rather than words.",
+    "value": "Kawalik is captured, shot in the leg and doped, giving him an unassailable alibi for Elaine's death; Keith, blood-stained and trapped, hands his gun to Gonzales, who will trace the pattern",
     "confidence": "high",
-    "quote": "When he couldn't stand the weight of it any longer, he handed it to Gonzales. Gonzales would figure it out. A thread, a fabric, a pattern."
+    "quote": "\u201cIt\u2019s a good way to kill the pain when somebody\u2019s blown a chunk out of your leg.\u201d"
   },
   "investigator": {
-    "value": "Keith Briscoe: police reporter and crime journalist who is simultaneously investigator and culprit. He works alongside Sergeant Gonzales to solve the 'cat-killer' murders while secretly committing a murder himself to frame the actual killer.",
+    "value": "Keith Briscoe, veteran police reporter who investigates alongside Sergeant Gonzales and becomes the murderer himself",
     "confidence": "high",
-    "quote": "Keith Briscoe had never been a hating man...one of the best [police reporters]...The next day, Keith went to Gonzales with his idea."
+    "quote": "these were the things that made for success as a police reporter"
+  },
+  "suspect_architecture": {
+    "value": "Inverted structure: the real culprit for the serial 'cat-killer' crimes is Kawalik, a tall, thin drug-addicted door-to-door towel peddler; the copycat killer is the viewpoint character, reporter Keith Briscoe, who murders his wife Elaine to imitate the pattern. Sergeant Gonzales investigates. Early misdirection floats a juvenile or grocery delivery boy as suspect.",
+    "confidence": "high",
+    "quote": "\u201cA delivery boy\u2014but, wait, Hammerman\u2019s groceries were paid for at the market. Still, it might have been a delivery boy.\u201d"
+  },
+  "red_herring": {
+    "value": "Briscoe stages Elaine's murder with the cat-killer's signature\u2014cut window screen, rubber-soled sneaker prints, stolen purse money, dropped evening bag, and a pink guest towel planted in the linen closet\u2014plus Kawalik's own .45 so ballistics will match the earlier killings. Earlier, the 'juvenile'/delivery-boy theory misdirects police.",
+    "confidence": "high",
+    "quote": "he did need Kawalik\u2019s signature\u2014the pink towel to deposit in the linen closet in the bathroom"
+  },
+  "clue_fairness": {
+    "value": "Fair: the reader sees every physical detail before it matters\u2014sneaker prints in the petunia bed, cut screen, guest towels linking victims, Briscoe's bleeding hand at the first scene, and crucially the blood-stained cloth strips in Kawalik's bathroom the night of the copycat killing, which prove Kawalik was already shot and out of action.",
+    "confidence": "high",
+    "quote": "One of the strips was stained with blood... Another blood-spotted strip dangled over the edge of the lavatory."
+  },
+  "social_world": {
+    "value": "Working-class Los Angeles apartment district of single women living alone, landlords chasing rent, pensioners buying quarter towels; alongside the symbiotic press-police relationship between reporter Briscoe and Sergeant Gonzales, whose mutual favors give Briscoe inside access and an exclusive.",
+    "confidence": "high",
+    "quote": "\u201cKeep your hat on this operation for a few days, Briscoe, and you may have an exclusive.\u201d"
+  },
+  "alibi": {
+    "value": "Briscoe's cover is that he is working nights and lives apart from Elaine; he lures her home with a promise of divorce cash and relies on noisy neighbors and her ear plugs and eye mask to mask the crime\u2014no formal alibi is ever tested.",
+    "confidence": "medium",
+    "quote": "\u201cI\u2019m working nights now, Faye. Real industrious.\u201d"
+  },
+  "reveal_mechanic": {
+    "value": "Physical impossibility of the frame: Kawalik was shot in the leg by Officer Clancy and lay doped and bleeding while Elaine was killed, his blood-soaked coupe already in police hands\u2014so the copied signature indicts only the copier. Briscoe self-reveals by surrendering the gun he still carries.",
+    "confidence": "high",
+    "quote": "\u201cIt\u2019s a good way to kill the pain when somebody\u2019s blown a chunk out of your leg.\u201d"
+  },
+  "media_and_audience": {
+    "value": "Briscoe the police reporter names and packages the killer as the 'cat-killer' in his stories, feeding headlines and public fear; the coverage both serves his ambition and, he argues, feeds the killer's ego.",
+    "confidence": "high",
+    "quote": "The \u201ccat-killer,\u201d as Keith had dubbed him in his latest story... He\u2019s making headlines, Gonzales. Everybody has an ego."
+  },
+  "investigator_wound": {
+    "value": "Briscoe, the reporter-investigator, is corroded by hatred of his wife Elaine and longing for his first wife Faye; his professional insight into the killer's pattern becomes the tool of his own crime\u2014the weakness Elaine named.",
+    "confidence": "high",
+    "quote": "Elaine had been right: he had a weakness, and a man with a weakness shouldn\u2019t play with guns."
+  },
+  "victims_enemies": {
+    "value": "Elaine Briscoe's sole enemy is her own husband, Keith, a police reporter who has come to hate her and wants freedom to return to his first wife Faye; Elaine blocks divorce by demanding money and humiliates him with her nightlife and 'amusements' outside the marriage. The earlier victims (Violet Hammerman, Dorothy McGannon) are anonymous women with no enemies at all \u2014 chosen only for living alone.",
+    "confidence": "high",
+    "quote": "No matter how hard he forced the thought to the back of his mind, he knew that he hated his wife."
+  },
+  "suspect_wounds": {
+    "value": "Kawalik, the 'cat-killer,' is a heroin addict whose blackouts are his vulnerability: Keith counts on the fact that, doped up, Kawalik 'wouldn't be able to remember but what he really had killed her.' Keith's own wound is his hatred and his ego-driven need for the exclusive story, which draws him deeper into the case.",
+    "confidence": "high",
+    "quote": "Kawalik, when they caught him, wouldn\u2019t be able to remember but what he really had killed her."
+  },
+  "unreliable_frame": {
+    "value": "The narrative rides Keith Briscoe's viewpoint \u2014 a trusted police reporter and Gonzales's friend \u2014 while he conceals that he is engineering a murder. His conversations with Faye and Gonzales are calculated performances ('He'd worked out his story carefully'), and his self-image as a disciplined non-hating man is contradicted from the first paragraph.",
+    "confidence": "high",
+    "quote": "He\u2019d worked out his story carefully. He was working late that night, he told her, but he had to see her."
+  },
+  "setting_as_constraint": {
+    "value": "Los Angeles apartment districts with the city's largest concentration of single women: first-floor units with high footings, cut-able window screens, narrow planting strips that take footprints, and neighbors whose all-night TV and parties mask gunshots. Keith exploits exactly these features \u2014 the noisy tenants, Elaine's ear plugs and eye mask, the service ladder and driveway for dropping the purse.",
+    "confidence": "high",
+    "quote": "the other tenants of their building had always been thoughtful about such things as late, late television movies at full volume"
+  },
+  "evidence_type": {
+    "value": "Physical/forensic trace evidence forming a repeatable 'pattern': cut window screens, rubber-soled sneaker prints in soft petunia bed, dropped purse, ballistics matching bullets, and the peddler's coded guest towels. The case is broken by environmental/physical accident \u2014 blood in Kawalik's coupe from a police bullet proving he was crippled and elsewhere when Elaine died.",
+    "confidence": "high",
+    "quote": "ballistics would match the bullet in Elaine\u2019s body to the two other bullets they were holding from two other identical crimes"
+  },
+  "false_suspect": {
+    "value": "Kawalik, the addict door-to-door towel peddler and genuine 'cat-killer' \u2014 guilty of the other murders but innocent of Elaine's, deliberately framed by Keith with his gun, gloves, canvas shoes and a shocking-pink guest towel planted in the linen closet.",
+    "confidence": "high",
+    "quote": "he did need Kawalik\u2019s signature\u2014the pink towel to deposit in the linen closet in the bathroom"
+  },
+  "technical_detail": {
+    "value": "The reporter's insider forensic knowledge of the killer's signature: screen cut across the bottom and up the sashes with a pocket knife, worn rubber soles leaving shallow heel-less prints, weight estimated from soil moisture, the purse discarded near the drive, and the maker's code number on the towel tags \u2014 all learned at crime scenes from Gonzales and reproduced exactly.",
+    "confidence": "high",
+    "quote": "Those prints are from rubber-soled shoes... merchandise of this sort is manufactured. There\u2019s a code number on the tag"
+  },
+  "moral_ambiguity": {
+    "value": "Keith is a decent, hardworking man trapped in a marriage he calls a mistake, denied divorce except at a price he cannot pay, still in love with the wife he lost; he kills to buy freedom and frames a man who is already a multiple murderer \u2014 and he collapses under guilt, handing Gonzales the gun himself rather than escaping.",
+    "confidence": "high",
+    "quote": "\u201cThat it would cost me. Well, I may have a way of raising the fare.\u201d"
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Pattern of Guilt",
     "author": "HELEN NIELSEN",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 53,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

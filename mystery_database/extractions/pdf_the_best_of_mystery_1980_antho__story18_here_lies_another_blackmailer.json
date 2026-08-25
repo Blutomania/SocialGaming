@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Murder of a blackmailer by gunshot at an isolated carriage house; central question: where is the body and who will control the knowledge of it?",
+    "value": "Murder by gunshot of a blackmailer at a private estate's old carriage house; the central question is not whodunit but what happened to the concealed body \u2014 where did it go after being moved?",
     "confidence": "high",
     "quote": "I had also been able to hear the muffled report which had abruptly terminated their conversation."
   },
   "victim": {
-    "value": "A small, slender blackmailer with sharp features exploiting Uncle Walter's affair with a blonde showgirl; killable because he escalated extortion demands.",
+    "value": "A small, sharp-featured blackmailer extorting Uncle Walter over his affairs with show girls; killable because he demanded more money and foolishly agreed to a late-night meeting on the killer's own property",
     "confidence": "high",
-    "quote": "a blackmailer\u2014and not at all a clever or cautious one...the man really had been quite stupid to have accepted such terms"
+    "quote": "a criminal, naturally. In his case, a blackmailer\u2014and not at all a clever or cautious one"
   },
   "closed_world": {
-    "value": "A small rural estate with a carriage house, eucalyptus grove, and creek boundary; inhabited only by Uncle Walter, Harold, Aunt Pearl, and maid Elsie.",
+    "value": "A small private estate with only four residents \u2014 Harold, Uncle Walter, Aunt Pearl, and Elsie the maid \u2014 plus its grounds, carriage house, hedges and adjoining creek/grove",
     "confidence": "high",
-    "quote": "this small estate except for myself. Uncle Walter, and Aunt Pearl...Across the dry creek which formed the rear boundary line"
+    "quote": "She was also the only person who lived on this small estate except for myself. Uncle Walter, and Aunt Pearl."
   },
   "culprit_and_motive": {
-    "value": "Uncle Walter shot the blackmailer to end escalating extortion; he is impulsive, tightfisted, and hiding an affair from his wife.",
+    "value": "Uncle Walter, a pompous, tightfisted lawyer, shot the extortionist to stop escalating blackmail demands over his secret affairs with blonde show girls",
     "confidence": "high",
-    "quote": "Uncle Walter was equally as stupid...He also apparently had a predilection for beautiful blonde show girls...blackmailed. He had committed murder"
+    "quote": "He had committed murder because the extortionist wanted considerably more money than he had been getting for his continued silence"
   },
   "resolution": {
-    "value": null,
-    "confidence": "low",
-    "quote": null
+    "value": "No legal justice: eleven-year-old Harold, who witnessed the killing and secretly re-hid the corpse in a hollow log off the property, leverages that knowledge to triple his allowance \u2014 replacing one blackmailer with another",
+    "confidence": "high",
+    "quote": "All I've done is trade one blackmailer for another, and my own nephew at that!"
   },
   "investigator": {
-    "value": "Harold, the eleven-year-old nephew who witnesses the murder from the oleander bushes and becomes the de facto investigator and manipulator of the crime's aftermath.",
+    "value": "Harold, the eleven-year-old nephew \u2014 first-person narrator, habitual liar, eyewitness and accessory who investigates for his own profit rather than justice",
     "confidence": "high",
-    "quote": "I had gone for a short walk, and had noticed him sneaking out...had been able to hear every word...I found the body quite easily"
+    "quote": "\"I am not in the habit of lying,\" I lied stiffly."
+  },
+  "suspect_architecture": {
+    "value": "Closed household of four: Uncle Walter (the murderer, motive: blackmail over showgirls), Aunt Pearl (ignorant of affair), Elsie the nosy maid (witness only), and narrator Harold (the eleven-year-old observer who becomes the new blackmailer). No mystery of whodunit \u2014 the cast exists to isolate Harold as the only possible lurker.",
+    "confidence": "high",
+    "quote": "Somebody was lurking in the bushes, and it couldn\u2019t possibly have been anyone but you. Elsie and Aunt Pearl were both here in the house."
+  },
+  "red_herring": {
+    "value": "The narrator's adult, calculating voice misdirects the reader into assuming Harold is a grown nephew; the withheld fact of his age is the story's planted false impression, sprung at the end.",
+    "confidence": "high",
+    "quote": "\u201cWhat are you going to do with that much money? You\u2019re only eleven years old!\u201d"
+  },
+  "clue_fairness": {
+    "value": "Fairly clued: Harold's physical weakness moving a small body, the two-hour struggle, robe and slippers, being summoned from his room, the 'monthly allowance' set by his uncle, and 'unlike most everyone else of my age' all precede the age reveal.",
+    "confidence": "medium",
+    "quote": "I am not particularly strong, and even though the dead man was small and relatively light, it was a physical struggle"
+  },
+  "social_world": {
+    "value": "Genteel private estate governed by patriarchal family patronage: a pompous lawyer uncle controls money and reputation; the maid surveils; the dependent nephew's only power is the allowance he can extract by threatening exposure to Aunt Pearl or the police.",
+    "confidence": "high",
+    "quote": "He looked like a pompous old lawyer, which is precisely what he was."
+  },
+  "alibi": {
+    "value": "Harold falsely claims he was in bed at eleven-forty, then amends to an aimless walk denying he went near the carriage house; the maid Elsie's sighting of him fully dressed at 10:55 breaks the first version, and his own narration confirms both are lies.",
+    "confidence": "high",
+    "quote": "\u201cAt eleven-forty? I was in bed, of course.\u201d \u201cYou were not,\u201d my uncle said sharply. \u201cElsie saw you going downstairs at five minutes of eleven"
+  },
+  "reveal_mechanic": {
+    "value": "Demonstration by the uncle's futile search: Harold proves his leverage not by confessing but by relocating the corpse into a hollow decaying log off the property, so the uncle's failure to find it establishes the hold; the age twist is delivered by the uncle's outburst.",
+    "confidence": "high",
+    "quote": "No one venturing into this grove, including my unimaginative uncle, would think of investigating a seemingly solid log."
+  },
+  "media_and_audience": {
+    "value": "Crime is entirely private and unpublicised; the only 'audience' invoked is the threatened one \u2014 Aunt Pearl and the police \u2014 used as leverage rather than as actual investigators.",
+    "confidence": "medium",
+    "quote": "I suppose I could find out easily enough what is going on. I could talk to Aunt Pearl, or even to the police. . ."
+  },
+  "investigator_wound": {
+    "value": "The de facto investigator is the murderer-uncle, whose vulnerability is his tightfisted greed, impulsiveness and secret predilection for showgirls \u2014 exactly what both blackmailers exploit; the narrator's own 'wound' is his amoral precocity and habitual lying.",
+    "confidence": "medium",
+    "quote": "He also apparently had a predilection for beautiful blonde show girls, about which my Aunt Pearl knew nothing"
+  },
+  "victims_enemies": {
+    "value": "The dead man is a blackmailer whose only real enemy is his victim, Uncle Walter \u2014 a tightfisted lawyer being bled over an affair with show girls, pushed past endurance when the extortionist raised his price.",
+    "confidence": "high",
+    "quote": "He had committed murder because the extortionist wanted considerably more money than he had been getting for his continued silence"
+  },
+  "suspect_wounds": {
+    "value": "Harold looks guilty of something because he is a compulsive, transparent liar who was indeed sneaking about the grounds at night; his habitual dishonesty and 'downright suspect' behavior make his denials worthless even when they conceal a different crime than his uncle imagines.",
+    "confidence": "high",
+    "quote": "\"To my mind your behavior has always left much to be desired, and has been downright suspect at times.\""
+  },
+  "unreliable_frame": {
+    "value": "Harold narrates and flags his own lies with the repeated tag 'I lied' \u2014 a self-declared liar who withholds his age until the final line, letting the reader misjudge him as an adult; Uncle Walter's account is equally evasive about the carriage house.",
+    "confidence": "high",
+    "quote": "\"I am not in the habit of lying,\" I lied stiffly."
+  },
+  "setting_as_constraint": {
+    "value": "A small, closed estate with only four residents plus a nosy maid means any lurker must be Harold by elimination; the grounds' features \u2014 oleander bushes, privet hedge, eucalyptus grove, dry creek boundary and hollow log just off the property \u2014 dictate both the hasty concealment and the better one.",
+    "confidence": "high",
+    "quote": "\"Somebody was lurking in the bushes, and it couldn't possibly have been anyone but you. Elsie and Aunt Pearl were both here in the house.\""
+  },
+  "evidence_type": {
+    "value": "Testimonial/eyewitness \u2014 the maid Elsie's sighting of Harold going downstairs, plus Harold's own overheard conversation and the muffled gunshot; the body itself is the physical evidence that changes hands.",
+    "confidence": "high",
+    "quote": "\"Elsie saw you going downstairs at five minutes of eleven, fully dressed; she told me about it when I questioned her this morning.\""
+  },
+  "false_suspect": {
+    "value": "None in the classic sense; Harold is the suspect and is guilty \u2014 of body-moving and blackmail, though not of the murder. Aunt Pearl and Elsie are cleared immediately.",
+    "confidence": "medium",
+    "quote": "\"Elsie and Aunt Pearl were both here in the house.\""
+  },
+  "technical_detail": {
+    "value": "Body disposal craft: a decaying eucalyptus-grove log that appears solid but is hollow, off the murderer's property, plus knowledge that eucalyptus bark and leaves peel constantly and make convenient temporary cover.",
+    "confidence": "high",
+    "quote": "At first glance it seemed to be solid, but upon careful inspection I discovered that it was for the most part hollow."
+  },
+  "moral_ambiguity": {
+    "value": "Uncle Walter is a pompous but cornered man driven to impulsive murder by an extortionist's escalating demands; Harold, an eleven-year-old, is not evil so much as precociously amoral \u2014 treating blackmail as a career choice rather than a crime.",
+    "confidence": "high",
+    "quote": "\"All I've done is trade one blackmailer for another, and my own nephew at that!\""
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 11945,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Here Lies Another Blackmailer",
     "author": "BILL PRONZINI",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 18,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

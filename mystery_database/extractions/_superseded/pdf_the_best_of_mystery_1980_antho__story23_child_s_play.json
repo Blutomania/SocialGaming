@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Drowning death of Bobby Thompson at summer camp; central question: was it accident or homicide, and who had motive/opportunity?",
+    "confidence": "high",
+    "quote": "Bobby Thompson had an accident, that's all. Mr. Whiteman will tell you all about it in the morning."
+  },
+  "victim": {
+    "value": "Bobby Thompson, camper in Bunk 9 who bullied Arnold by cutting his tennis racket strings and stealing his radio tube; was 'killable' due to being a bully with few defenders",
+    "confidence": "high",
+    "quote": "I heard that somebody cut all the strings off your tennis racket... somebody stole a tube from your radio set."
+  },
+  "closed_world": {
+    "value": "Camp Summit, an isolated summer camp accessible only by five-hour drive, with defined bunks, activities schedule, and staff supervision creating limited suspect pool",
+    "confidence": "high",
+    "quote": "Camp Summit drowsed in the two o'clock heat... Father can send Walter up with the car, it is only a five hour drive"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Mr. Whiteman, camp director, who discovers Arnold's revelation about Bobby Thompson and begins investigation; reader also sees through Arnold's perspective",
+    "confidence": "medium",
+    "quote": "Mr. Whiteman paled. 'Did you...say Bobby Thompson was the boy who was giving you trouble?'... He pulled on his coat and began to run."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 20375,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Child\u2019s Play",
+    "author": "WILLIAM LINK and RICHARD LEVINSON",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 23,
+    "story_count": 63
+  }
+}

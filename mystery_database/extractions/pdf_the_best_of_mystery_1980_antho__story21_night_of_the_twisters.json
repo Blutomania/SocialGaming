@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Attempted murder/self-defense killing of escaped convicts. Method: shotgun. Central question: Was Karen's use of lethal force justified, and did she act under duress or through deception?",
+    "value": "Armed home invasion and hostage-taking by two escaped convicts, part of an ongoing killing spree (murdered motorist, beaten waitress); central question is how the captive can survive/turn the tables",
     "confidence": "high",
-    "quote": "As Garth looked up and clawed for his pistol, she squeezed one trigger and then the other."
+    "quote": "Someone kicked the front door open, springing the lock, and two men stumbled in. Both carried pistols."
   },
   "victim": {
-    "value": "Karen Smallwood, a schoolteacher and daughter of a former state police officer. Vulnerable target because she is isolated, alone in a remote farmhouse during a storm, and related to law enforcement.",
+    "value": "Karen Smallwood, a schoolteacher alone at her parents' remote farmhouse; targeted as an isolated witness and, aggravating matters, the daughter of a former state trooper",
     "confidence": "high",
     "quote": "Maybe just because you're a lawman's daughter. We got an abiding dislike for lawmen and anyone connected with 'em."
   },
   "closed_world": {
-    "value": "Remote farmhouse isolated by multiple tornadoes touching down across the region. No neighbors within three miles; parents away at a flea market; power out; escape routes compromised by severe weather.",
+    "value": "An isolated farmhouse during a night of tornadoes and storms, no neighbors within three miles, power out, roads washed out",
     "confidence": "high",
-    "quote": "Nobody lives within three miles of here...At least a dozen funnel clouds had been sighted by 9:08 P.M."
+    "quote": "\u201cNot right away. Nobody lives within three miles of here.\u201d"
   },
   "culprit_and_motive": {
-    "value": "Ben Garth and Jerry, escaped convicts on a killing spree. Motive: eliminate witness to prevent police identification of their location; secondary motive is hatred of law enforcement and its relatives.",
+    "value": "Ben Garth, an unstable psychopathic murderer, and Jerry, a young rapist \u2014 escaped convicts seeking money, food and shelter, intending to kill Karen to guarantee a head start",
     "confidence": "high",
-    "quote": "It wouldn't make sense anyhow, leavin' you here alive...The first thing you'd do after we left would be to put 'em straight."
+    "quote": "\u201cIt wouldn\u2019t make sense anyhow,\u201d Garth went on, \u201cleavin\u2019 you here alive.\u201d"
   },
   "resolution": {
-    "value": "Karen uses deception: she falsely identifies the passing freight train as an approaching tornado, causing the criminals to panic toward the storm cellar. While they scramble, she retrieves the hidden shotgun and kills Garth; Jerry survives but is captured.",
+    "value": "Karen tricks the pair by claiming the nightly freight train's roar is an approaching tornado; while they scramble for the storm cellar she takes the hidden antique shotgun, kills Garth and wounds Jerry; police arrive at dawn",
+    "confidence": "high",
+    "quote": "\u201cSo when the night freight came highballing by a little before ten, like it always does, I made out like it was a twister.\u201d"
+  },
+  "investigator": {
+    "value": "Karen herself \u2014 the victim/hostage as the viewpoint character who reasons her way out; a state police detective appears only afterward",
+    "confidence": "high",
+    "quote": "Standing beside Karen, a state police detective said, \u201cI know how you feel.\u201d"
+  },
+  "suspect_architecture": {
+    "value": "Not a whodunit; the 'cast' is two known criminals \u2014 Ben Garth, an older escaped murderer and unstable psychopath, and Jerry, a young rapist follower \u2014 with the victim/protagonist Karen Smallwood, a teacher and ex-trooper's daughter, as the sole opposing party.",
+    "confidence": "medium",
+    "quote": "Garth had been serving a sentence for murder, Jerry for rape"
+  },
+  "red_herring": {
+    "value": "Karen's deliberate misdirection: she conceals the loaded antique shotgun by steering Garth's attention to the locked gun case upstairs, and her tornado lore primes the men to misread a freight train as a twister.",
+    "confidence": "high",
+    "quote": "She said that to get Garth's mind off guns."
+  },
+  "clue_fairness": {
+    "value": "Fully fair: the reader is shown the loaded working shotgun over the mantel, the storm cellar, the tornado-sounds-like-a-freight-train lore, and the St. Louis-San Francisco rail line in the opening \u2014 all before the trick is used.",
+    "confidence": "high",
+    "quote": "Despite its age it was loaded and in perfect working condition."
+  },
+  "social_world": {
+    "value": "Rural farmhouse world of a pensioned state trooper and antique-selling parents on a small pension; convicts' 'abiding dislike for lawmen' and teachers frames class/authority resentment.",
+    "confidence": "medium",
+    "quote": "We got an abiding dislike for lawmen and anyone connected with 'em."
+  },
+  "alibi": {
+    "value": "No alibi element; instead the criminals believe the police place them hundreds of miles north, a false locational assumption they rely on.",
+    "confidence": "low",
+    "quote": "The police think we're a couple hundred miles north of here."
+  },
+  "reveal_mechanic": {
+    "value": "Karen explains to the detective at dawn that the 'tornado' roar was the nightly freight train on the nearby main line, which she exploited to send the men diving for the cellar.",
     "confidence": "high",
     "quote": "So when the night freight came highballing by a little before ten, like it always does, I made out like it was a twister."
   },
-  "investigator": {
-    "value": "Karen Smallwood herself serves as the investigator/protagonist. She observes her captors' weaknesses, identifies the hidden shotgun, and strategically manipulates events to restore order through her own decisive action.",
+  "media_and_audience": {
+    "value": "Radio newscasts narrate the manhunt and the tornado deaths; the killings are publicly packaged as a 'senseless killing spree,' and the radio is how Karen identifies her captors.",
     "confidence": "high",
-    "quote": "She had to stall him as long as possible...She lifted the shotgun from its rack, stepped down, cocked the piece, aimed it while shoving the stock tight against her shoulder."
+    "quote": "The newscaster had termed it a \"senseless killing spree.\""
+  },
+  "investigator_wound": {
+    "value": "Karen's exploited vulnerability is her terror and her identity as a lawman's daughter; afterward she carries the trauma of having killed, consoled by the detective.",
+    "confidence": "medium",
+    "quote": "\"I know. Thinking about that is the only way I'll be able to live with this.\""
+  },
+  "victims_enemies": {
+    "value": "Inverted: Karen is targeted not by personal enemies but by escaped convicts with a generic grudge against lawmen \u2014 her father, a retired state trooper, is the link, and he himself had enemies who held grudges against him from his police days.",
+    "confidence": "medium",
+    "quote": "\"Maybe just because you're a lawman's daughter. We got an abiding dislike for lawmen and anyone connected with 'em.\""
+  },
+  "suspect_wounds": {
+    "value": "No suspect structure \u2014 the killers are known from the outset. The nearest analogue is Karen's vulnerability: an unarmed woman alone, whose plainness and figure draw Jerry's stare and whose fear must be suppressed to avoid triggering Garth.",
+    "confidence": "low",
+    "quote": "Her intuition told her that any display of panic might trigger violence against her person."
+  },
+  "unreliable_frame": {
+    "value": "Karen is the deliberate liar. Her calm, helpful answers \u2014 the inventory of guns, the geography, the tornado lore \u2014 are strategic omissions and misdirection, concealing the loaded antique shotgun and setting up the freight-train deception revealed only at dawn.",
+    "confidence": "high",
+    "quote": "\"So when the night freight came highballing by a little before ten, like it always does, I made out like it was a twister.\""
+  },
+  "setting_as_constraint": {
+    "value": "An isolated farmhouse during a tornado outbreak: no power, no neighbors within three miles, roads washed out, kerosene lamps and a transistor radio the only links. The storm that traps Karen also supplies her weapon \u2014 the credible threat of a twister \u2014 and the antique-crammed parlor hides a working shotgun in plain sight.",
+    "confidence": "high",
+    "quote": "\"Not right away. Nobody lives within three miles of here.\""
+  },
+  "evidence_type": {
+    "value": "Environmental/auditory \u2014 the sound of the nightly freight on the St. Louis-San Francisco main line beyond the hill, indistinguishable from a tornado's roar to men who had never seen one.",
+    "confidence": "high",
+    "quote": "a growing clatter and roar suggestive of an approaching freight train. . ."
+  },
+  "false_suspect": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "technical_detail": {
+    "value": "Tornado folklore as weaponized domain knowledge: that a funnel sounds like a freight train, that glass and windows are lethal, that a storm cellar is the only refuge \u2014 all true, all used to stampede the captors into the cellar while Karen retrieved the loaded, high-mounted double-barreled shotgun.",
+    "confidence": "high",
+    "quote": "\"Even if it's night and you can't see the twister, you can hear it.\" ... \"Yes. Like a freight train.\""
+  },
+  "moral_ambiguity": {
+    "value": "Karen kills by premeditated deception rather than reflex \u2014 she engineers the moment and fires both barrels into men's backs as they flee for shelter. The story frames it as justified self-defense, but she must consciously reason herself into living with it, her face expressionless at dawn.",
+    "confidence": "high",
+    "quote": "\"I know. Thinking about that is the only way I'll be able to live with this.\""
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 14215,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Night of the Twisters",
     "author": "JAMES MICHAEL ULLMAN",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 21,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

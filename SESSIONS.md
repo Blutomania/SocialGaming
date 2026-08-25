@@ -3142,6 +3142,47 @@ place, and the very next in-place edit lost 98 parts anyway.
 rather than an arbitrary one, so it mimics an actual upgrade. Verified by reverting the
 fingerprint to filename-only and confirming the new assertions fail.
 
+### The upgrade ran: 67 of 67, and what it actually bought
+
+The owner topped up API credits (the first $50 had gone to Claude Code's wallet — a different
+website, a different balance, and the error message names the right one) and ran it. **63
+anthology stories + 11 novels, zero failures.** The fail-fast machinery never had to fire.
+
+Measured against the archived originals: **5.5 → 19.4 parts per source, 3.5x, across 70 sources.**
+
+**The finding worth keeping is about source type, and part counts actively hide it.** Both
+anthologies and novels land at ~19.5 parts of a possible ~20 mapped keys — saturated. By that
+metric novels look *better* (4.2x vs 3.5x), which is purely an artifact of a lower starting
+point. Confidence tells the real story:
+
+| | high | medium | low | null |
+|---|---|---|---|---|
+| anthology story | **81%** | 16% | 0% | 3% |
+| novel | **48%** | 44% | 4% | 4% |
+
+A short story under 25,000 chars is fed whole; a novel is capped at 24,000 chars — ~7% of the
+book in three disconnected chunks. P3 describes whole-book structure, which is exactly what
+sampling destroys. So `CLAUDE.md` item 7's anthology-first guideline now has a measured quality
+justification alongside its original cost-per-clearance one, and it is the stronger of the two.
+Owner confirmed legal is comfortable proceeding on that basis.
+
+Fix for novels when there's appetite: raise `--max-text-chars`. The 24,000 cap is arbitrary
+against a 1M context — ~$15 buys all 12 novels the quality the stories have. Not urgent; it buys
+corpus quality, not anything a playtester sees.
+
+**A prediction that was made before the data and held:** novels would show weaker P3 than
+stories. It was recorded as testable, tested, and it was the *metric* that had to be corrected,
+not the claim.
+
+### A Ctrl-C should not traceback
+
+Interrupting the run tracebacked out of `subprocess.call` in the wrapper — which prints "Safe to
+interrupt" at the top of every run. The child's handler was added earlier this session and the
+parent's was skipped on scope grounds; that was wrong, since the parent is where the user's
+Ctrl-C lands. Both ends now exit 130 and say how to resume, and the child no longer reuses the
+fatal-error copy ("re-run after the cause is fixed" reads oddly when the cause was a deliberate
+keypress). Nothing was ever at risk — the in-flight source writes no placeholder.
+
 ### Files changed
 
 | File | Change |

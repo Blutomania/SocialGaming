@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Two razor throat murders: Gabrielle Marchant killed in her apartment; later, Leona Tasker killed in identical fashion. Central question: who committed these murders and why?",
+    "confidence": "high",
+    "quote": "She was all cut up... The murderer was right-handed... reached across her right shoulder and simply drew the razor across her throat."
+  },
+  "victim": {
+    "value": "Gabrielle Marchant: beautiful divorcee with multiple lovers including Noel Tasker. Killable because her romantic entanglements (jealousy, rejection) and Leona's discovery of infidelity provided motive.",
+    "confidence": "high",
+    "quote": "Gabrielle Marchant! His Gaby!... she had plenty of men. All Gaby had ever seemed to want was a good time."
+  },
+  "closed_world": {
+    "value": "Camelot Court apartment complex where both victims lived in adjacent buildings; a bounded residential community where movements and arrivals are observable to neighbors.",
+    "confidence": "high",
+    "quote": "He drove through the entrance of Camelot Court and took the left drive... There were four vehicles parked before her door today, three police cruisers and a white ambulance."
+  },
+  "culprit_and_motive": {
+    "value": "Noel Tasker murdered Leona (his wife) for $50,000 insurance and freedom; Leona murdered Gabrielle from jealous rage upon discovering her husband's affair. Noel frames the crimes as work of a 'maniac.'",
+    "confidence": "high",
+    "quote": "Impersonate the maniac, or let it look like a rational crime, a husband murdering his wife for a rational motive, fifty thousand dollars."
+  },
+  "resolution": {
+    "value": "Lieutenant Kabrick discovers Leona's fingerprint on the coffee table and ashtray at Leona's murder scene matches the fingerprint on the razor from Marchant's murder. Kabrick deduces: Leona killed Marchant; Noel killed Leona.",
+    "confidence": "high",
+    "quote": "A print of your wife's, on the table and on the tray, matched the print on the razor in the Marchant apartment... if your wife killed Marchant, who killed your wife?"
+  },
+  "investigator": {
+    "value": "Lieutenant Kabrick: official homicide detective who methodically reconstructs the crime through forensic evidence (fingerprints, blood patterns, M.O. analysis) and interrogation.",
+    "confidence": "high",
+    "quote": "Lieutenant Kabrick slouched in the depths of the chair and smiled... In Homicide you have to theorize. There's this matter of the blood."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Frightened Lady",
+    "author": "C. B. GILFORD",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 30,
+    "story_count": 63
+  }
+}

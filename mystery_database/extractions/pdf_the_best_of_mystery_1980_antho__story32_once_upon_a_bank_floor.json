@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Bank robbery of Merchants National Bank: armed theft of cash and checks from night depository. Central question: How did the bank clerk signal for police without alerting the robbers?",
+    "value": "Armed robbery of a bank's night depository: three men kidnap a bank clerk at gunpoint, force him to open the depository, and knock him out. The narrative question is how the robbers were caught when the clerk was alone and helpless.",
     "confidence": "high",
-    "quote": "The tall man said, 'The night depository. Junior,' and I realized then that they did know what my routine was."
+    "quote": "\u201cI was mixed up in a bank robbery once myself, at the Merchants National Bank in. . .\u201d"
   },
   "victim": {
-    "value": "Colbaugh, a young bank clerk who was kidnapped at gunpoint, forced to open the night depository, and struck unconscious. He was vulnerable because he had sole access to the depository each morning.",
+    "value": "Colbaugh, the young assistant-assistant cashier/clerk \u2014 targeted because his known routine made him the man who opened the bank alone each morning and held the night-depository key",
     "confidence": "high",
-    "quote": "I was always the first one there; other employees would begin to drift in about fifteen minutes before opening time, but I had the bank to myself for a good half hour each morning."
+    "quote": "\u201cI know who opens this thing every morning. You. So fly with it.\u201d"
   },
   "closed_world": {
-    "value": "Merchants National Bank in a small California town, early Friday morning (8:15-8:30 AM) before other employees arrive. The rear alley is deserted; the front entrance visible to street but obscured by lowered Venetian blind.",
+    "value": "The empty small-town Merchants National Bank in the half hour before opening, plus the framing closed world of an airplane cabin and airport washroom",
     "confidence": "high",
-    "quote": "The bank backed on a narrow lane, or alley, and the rear door was used only by employees. At that early hour, the lane was deserted."
+    "quote": "\u201cI had the bank to myself for a good half hour each morning.\u201d"
   },
   "culprit_and_motive": {
-    "value": "Three out-of-state robbers (the tall blond gunman, Shiner, and the driver) motivated by theft of cash deposits. Secondary culprit: Dickson (the narrator), revealed as one of the original robbers, now seeking a $2,000 loan by blackmail.",
+    "value": "Three out-of-state professional robbers \u2014 a tall thin gunman (Dickson, the narrator), 'Shiner', and a driver \u2014 who cased the clerk's routine to steal Thursday-night merchant cash",
     "confidence": "high",
-    "quote": "The police took them easily as they emerged from the rear door of the bank. The driver of the Ford was already in custody."
+    "quote": "\u201cYou told Shiner to put me out that day, Dickson. He clubbed me with a gun.\u201d"
   },
   "resolution": {
-    "value": "Johnny Sampson, a teller and Colbaugh's friend, observes the Venetian blind still lowered at 8:20 AM (abnormal\u2014Colbaugh always raises it first). Per their pre-arranged plan, Sampson calls the bank; Colbaugh answers with wrong closing time (3:30 instead of 3:00), triggering police to surround the bank. Robbers arrested upon exit.",
+    "value": "A prearranged signal system: the unraised Venetian blind alerted teller Johnny Sampson, whose phone test ('what time do you close?') got the wrong answer, so he called police who surrounded the bank and arrested the gang",
     "confidence": "high",
-    "quote": "When he telephoned the bank and asked the closing time, I told him 3:30. But he knew it closed at 3:00. So that was his signal. To call the police."
+    "quote": "\u201cWhen he telephoned the bank and asked the closing time, I told him 3:30. But he knew it closed at 3:00.\u201d"
   },
   "investigator": {
-    "value": "The narrator (Dickson), a fellow plane passenger who listens to Colbaugh's story and then reveals himself as the original robber. He investigates by recognizing Colbaugh and following him, then uses the washroom encounter to confront him with a counter-blackmail scheme (threatening to expose the robbery's true instigators).",
+    "value": "Dual lens: the narrator 'Dickson', a listener on a plane who is secretly the ex-con gunman; Colbaugh recounts and solves the puzzle as the victim-participant",
     "confidence": "high",
-    "quote": "I pushed my forefinger into his back, under cover of my topcoat, and said, 'Turn left, Mr. Colbaugh, and go into the men's room, will you?'"
+    "quote": "\u201cI don\u2019t file the sights off my guns anymore, you see?\u201d"
+  },
+  "suspect_architecture": {
+    "value": "Not a whodunit with a suspect field; the cast is three robbers (tall thin gunman/leader, chunky 'Shiner', and the Ford driver) plus the clerk victim Colbaugh and his teller ally Sampson. The hidden 'suspect' is the narrator 'Dickson', who turns out to be the tall gunman.",
+    "confidence": "medium",
+    "quote": "The gun-bearer was tall and blond and skinny, painfully thin. The other fellow was chunky and had fuzzy black hair"
+  },
+  "red_herring": {
+    "value": "The narrator is presented as an innocuous mystery-magazine-reading sporting goods store owner from Fresno, a casual stranger drawing out a story; his gun expertise is framed as retail knowledge rather than criminal experience.",
+    "confidence": "high",
+    "quote": "\"Sounds like a Woodsman with the sights filed off,\" I said. \"Kind of a target pistol. I sell them in my store.\""
+  },
+  "clue_fairness": {
+    "value": "Fair-play clues are planted in dialogue: the narrator identifies the filed-off sights unprompted, claims a Fresno store he only clerks at, and presses eagerly for the story \u2014 all available before the washroom reveal.",
+    "confidence": "high",
+    "quote": "\"I don't file the sights off my guns anymore, you see?\""
+  },
+  "social_world": {
+    "value": "Small-town bank hierarchy \u2014 clerk/'almost the janitor', assistant cashier, vice president Johnson, teller Sampson \u2014 where thwarting the robbery converts into patronage and promotion to board chairman and bank president; the ex-con is excluded from credit by loan officers.",
+    "confidence": "high",
+    "quote": "\"I'm chairman of the board,\" he said, smiling. \"Still taking the chances, you see.\""
+  },
+  "alibi": {
+    "value": "No formal alibi; instead a concealed identity \u2014 the narrator's assumed name 'Dickson' and false claim of owning a Fresno store serve as his cover story.",
+    "confidence": "medium",
+    "quote": "\"You've taken on a good bit of weight since then, Dickson. And changed your name.\""
+  },
+  "reveal_mechanic": {
+    "value": "Double reveal by re-enactment: the robbery's solution is the prearranged Venetian-blind/wrong-closing-time telephone signal; the narrator's identity is demonstrated by his staging a mock hold-up with a forefinger under a topcoat, echoing the original crime.",
+    "confidence": "high",
+    "quote": "I pushed my forefinger into his back, under cover of my topcoat, and said, \"Turn left, Mr. Colbaugh\""
+  },
+  "media_and_audience": {
+    "value": "The crime survives as an anecdote retold to a stranger on a plane, framed by mystery-magazine conventions; bank management's favorable notice of the two young employees is the crime's public packaging.",
+    "confidence": "medium",
+    "quote": "\"Wasn't your successful prevention of that bank robbery the first thing that made your bank management really notice you\""
+  },
+  "investigator_wound": {
+    "value": "The narrator-'investigator' is himself the ex-convict who ordered Colbaugh clubbed; his wound is shame and the ex-con's inability to get credit, forcing him to exploit the very man he assaulted.",
+    "confidence": "high",
+    "quote": "\"Did you ever know anybody who would lend money to an ex-con? I've tried.\""
+  },
+  "victims_enemies": {
+    "value": "Colbaugh, the young bank clerk, had no personal enemies \u2014 he was targeted impersonally by three out-of-state robbers who cased his routine. The 'grievance' runs the other way: twenty years later Colbaugh faces the man who ordered him clubbed, Dickson, who now needs him.",
+    "confidence": "medium",
+    "quote": "They were from out of state, it developed, and unknown in our town."
+  },
+  "suspect_wounds": {
+    "value": "Dickson is an ex-convict who can get no loan; his criminal past makes every approach he makes look like a shakedown \u2014 and he stages it as one, pressing a finger into Colbaugh's back like a gun.",
+    "confidence": "high",
+    "quote": "\"Did you ever know anybody who would lend money to an ex-con? I've tried.\""
+  },
+  "unreliable_frame": {
+    "value": "The narrator 'Dickson' conceals everything material: his real name, that he was the tall gunman in the robbery being described, and his motive for being on the plane. He feigns idle curiosity and even 'guesses' at the filed-off sights he himself filed.",
+    "confidence": "high",
+    "quote": "\"You've taken on a good bit of weight since then, Dickson. And changed your name.\""
+  },
+  "setting_as_constraint": {
+    "value": "The bank's fixed routines and geography make the whole scheme work: an empty half-hour before opening, a rear alley door for employees, a time-locked vault, and a front door whose Venetian blind is visible from the sidewalk. The robbers exploited the routine; the blind defeated them. The plane and then the empty washroom bound the second confrontation.",
+    "confidence": "high",
+    "quote": "\"I had the bank to myself for a good half hour each morning.\""
+  },
+  "evidence_type": {
+    "value": "Environmental/visual signal plus coded testimonial verification \u2014 the unraised Venetian blind seen from the street, confirmed by a wrong closing time given over the telephone.",
+    "confidence": "high",
+    "quote": "\"When he telephoned the bank and asked the closing time, I told him 3:30. But he knew it closed at 3:00.\""
+  },
+  "false_suspect": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "technical_detail": {
+    "value": "The pre-arranged duress code: a lowered blind as a distress flag, a phone query about closing time as the challenge, and a deliberately wrong answer (or any other voice, or no answer) as the trigger to call police \u2014 a 'live burglar alarm system' with fail-safes for sickness.",
+    "confidence": "high",
+    "quote": "\"If I answered and gave him the wrong closing time, call the police. If anybody but me answered, call the police.\""
+  },
+  "moral_ambiguity": {
+    "value": "The robber-narrator is trying to go straight and buy into a legitimate business, denied credit solely for his record; Colbaugh, rather than turning him in, concedes the robbery made his own career and lends the money \u2014 mutual debt replaces punishment.",
+    "confidence": "high",
+    "quote": "\"in a sort of cock-eyed way, I suppose I owe you something for it. And so does Sampson.\""
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 21232,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Once Upon a Bank Floor",
     "author": "JAMES HOLDING",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 32,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Murder of wife Miriam Chesterton by stabbing with scissors, staged as accidental death during a practical joke reenactment; central question: was it genuine accident or premeditated murder disguised as self-defense?",
+    "value": "Premeditated murder of a wife, stabbed with scissors in the bathroom and staged as self-defense against her 'practical joke' knife attack inspired by a movie; the question is whether the inane cover story is true",
+    "confidence": "high",
+    "quote": "\"An ambulance! The police! I\u2014I've killed my wife!\""
+  },
+  "victim": {
+    "value": "Miriam Chesterton, Harry's nagging wife of seven years, an obstacle to his schemes and to marrying wealthy Cathy",
+    "confidence": "high",
+    "quote": "Miriam lay sprawled on her tummy on the bathroom floor, her head under the sink."
+  },
+  "closed_world": {
+    "value": "The Chestertons' second-floor flat at 148 Coleridge Drive in a two-family house (Andersons downstairs); only husband and wife present\u2014later the seedy railroad-depot bar",
+    "confidence": "high",
+    "quote": "kept by firm silent policemen from rushing up to the second-floor flat, where the terrible accident had taken place"
+  },
+  "culprit_and_motive": {
+    "value": "Harry Chesterton, the husband, killed Miriam to escape her nagging and marry Cathy, heiress to a National Atronics fortune",
     "confidence": "high",
     "quote": "Harry Chesterton had finally found the one absolutely foolproof way to murder his wife."
   },
-  "victim": {
-    "value": "Miriam Chesterton, nagging wife of seven years whose constant criticism of Harry's get-rich-quick schemes and financial irresponsibility made her an obstacle to his ambitions and his pursuit of wealthy Cathy.",
-    "confidence": "high",
-    "quote": "How could a man concentrate on his ambitions and plans and prospects with a nagging wife hounding him all the time?"
-  },
-  "closed_world": {
-    "value": "Two-family apartment building at 148 Coleridge Drive; bathroom as primary crime scene with neighbors in proximity; police and witnesses immediately present post-discovery.",
-    "confidence": "high",
-    "quote": "The house was absolutely full of people. There were people with cameras and pieces of chalk and black bags crammed into the bathroom."
-  },
-  "culprit_and_motive": {
-    "value": "Harry Chesterton, the husband, premeditated the murder over three years to marry wealthy Cathy and escape middle-class insecurity; motivated by greed, ambition, and escape from marital criticism.",
-    "confidence": "high",
-    "quote": "After three years of careful planning, of working on and rejecting scheme after scheme after scheme, Harry Chesterton had finally found the one absolutely foolproof way to murder his wife."
-  },
   "resolution": {
-    "value": "Detective Hotchkiss grows suspicious after Harry kills a second man (with a beer bottle, mistaking a cigarette lighter for a gun) in nearly identical circumstance; pattern of violence and Harry's eventual mention of Cathy under interrogation exposes his motive.",
-    "confidence": "medium",
+    "value": "Coincidence undoes him: a second 'joke' killing\u2014he brains a bar bully whose gun is a cigarette lighter\u2014makes the pattern implausible; Hotchkiss presses for motive and after fourteen hours Harry mentions Cathy",
+    "confidence": "high",
     "quote": "They talked for fourteen hours before Harry mentioned Cathy."
   },
   "investigator": {
-    "value": "Detective Hotchkiss, weary but watchful police detective with institutional authority; his patient skepticism and pattern-recognition uncover the premeditation behind Harry's ostensibly foolproof alibi.",
+    "value": "Detective Hotchkiss, unprepossessing but watchful police detective; narrative is filtered through the murderer Harry's viewpoint",
     "confidence": "high",
     "quote": "Detective Hotchkiss, behind a perfunctory sympathy, was watchful and expressionless."
+  },
+  "suspect_architecture": {
+    "value": "Inverted structure: only one suspect, Harry Chesterton, known to the reader as the murderer from the first line. No competing suspect pool; the tension is whether Detective Hotchkiss can break his single, self-incriminating story. Peripheral figures (Cathy the rich fianc\u00e9e, the Andersons downstairs, Smiling Stanley, the railroad worker) function as witnesses and pressure points, not alternative culprits.",
+    "confidence": "high",
+    "quote": "Harry Chesterton, murderer, surveyed the scene of carnage."
+  },
+  "red_herring": {
+    "value": "The staged 'practical joke' scene itself: the bread knife placed in Miriam's hand, the pre-clipped toenails, the shouted warning for neighbors, and the movie about a shower stabbing seen the night before \u2014 all planted to make murder read as instinctive self-defense against a prank.",
+    "confidence": "high",
+    "quote": "The red-stained scissors lay on the floor near Miriam's right elbow. The bread knife was clutched in Miriam's right hand."
+  },
+  "clue_fairness": {
+    "value": "Scrupulously fair via inversion \u2014 the reader watches every element of the fabrication being assembled (toenails cut in advance, shout staged for neighbors, push-ups to fake breathlessness, hidden motive of Cathy's fortune) before Hotchkiss ever probes them, so each of the detective's questions lands on a clue the reader already holds.",
+    "confidence": "high",
+    "quote": "He had cut those earlier in the day, since the scissors would not be available for use at this stage of the proceedings."
+  },
+  "social_world": {
+    "value": "Lower-middle-class striving: a two-family flat, unpaid furniture, bus commutes, and commission work at a crooked used-car lot, against the lure of marrying into National Atronics money \u2014 class ascent as the engine of the crime, with a stratified bar scene (dregs vs. Harry's imagined upward trajectory) restating the hierarchy.",
+    "confidence": "high",
+    "quote": "the daughter of a man who owned thirty-seven percent of National Atronics and was chairman of that company's board"
+  },
+  "alibi": {
+    "value": "Harry offers no absence alibi \u2014 he confesses the killing outright and relies on an alibi of intent: the shower, the closed door, the shouted warning and the post-mortem theatrics manufacture a timeline in which Miriam was alive until she 'burst in' with the knife.",
+    "confidence": "high",
+    "quote": "\"Don't run water for a few minutes, Miriam!\" he shouted, loud enough to be heard by any neighbor"
+  },
+  "reveal_mechanic": {
+    "value": "Coincidental repetition rather than forensic proof: the aggrieved car buyer pulls a cigarette-lighter gun and Harry kills him with a beer bottle, giving Hotchkiss a second identical 'it was just a joke' defense; statistical absurdity, plus Harry's own breakdown after fourteen hours, surfaces the motive \u2014 Cathy.",
+    "confidence": "high",
+    "quote": "Detective Hotchkiss sighed. \"Twice in a row,\" he said. \"Who was he, Chesterton?\""
+  },
+  "media_and_audience": {
+    "value": "The press packages the killing exactly as Harry designed it \u2014 a buried second-section item, 'WOMAN SLAIN IN PRACTICAL JOKE,' quoting the 'grieving husband' \u2014 and Harry's vanity in buying a scrapbook to preserve his press notices is itself part of his unravelling.",
+    "confidence": "high",
+    "quote": "WOMAN SLAIN IN PRACTICAL JOKE"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victims_enemies": {
+    "value": "Miriam Chesterton's sole enemy is her husband Harry, whose seven-year marriage curdled into resentment over her constant nagging about money, debts, and his failed get-rich-quick schemes; she is otherwise described as sour, stolid, and friendless of grievance.",
+    "confidence": "high",
+    "quote": "\u201cWhen are you going to settle down, Harry? When are you going to give up these get-rich-quick schemes of yours\u201d"
+  },
+  "suspect_wounds": {
+    "value": "Harry's wound is vanity and grievance: a lifelong resentment of bullies and 'oafs' who bested him despite his supposed intellect, plus a compulsion to admire his own cleverness (clipping press notices, buying a scrapbook) that drives him to repeat the same lethal reflex a second time.",
+    "confidence": "high",
+    "quote": "It was the loud vicious type who had made his childhood difficult, and had later worsened his lot"
+  },
+  "unreliable_frame": {
+    "value": "The story is told close to Harry, a murderer who narrates his own cover story as fact; his account to Hotchkiss ('it was just a joke,' the movie, the instinctive stabbing) is wholly fabricated, and the reader sees the staging beforehand.",
+    "confidence": "high",
+    "quote": "\u201cIt was just a joke,\u201d Harry was saying."
+  },
+  "setting_as_constraint": {
+    "value": "A cramped second-floor two-family flat with neighbors (the Andersons) downstairs and open windows nearby: Harry exploits the thin walls by shouting his shower announcement for earwitnesses, and is later constrained to silence lest whistling betray him.",
+    "confidence": "high",
+    "quote": "\u201cDon\u2019t run water for a few minutes, Miriam!\u201d he shouted, loud enough to be heard by any neighbor in a backyard"
+  },
+  "evidence_type": {
+    "value": "Testimonial/behavioral \u2014 no forensic proof; the case cracks on the statistical implausibility of Harry's second identical 'joke' killing plus his eventual confession of Cathy as motive after fourteen hours of interrogation.",
+    "confidence": "high",
+    "quote": "They talked for fourteen hours before Harry mentioned Cathy."
+  },
+  "false_suspect": {
+    "value": "The dead Miriam herself is cast as the guilty party \u2014 framed posthumously as the perpetrator of a fatal practical joke; secondarily the railroad worker is painted as an aggressor rather than a prankster.",
+    "confidence": "medium",
+    "quote": "the good-looking Mrs. Chesterton played an unfortunate practical joke... a joke which ended in her tragic death"
+  },
+  "technical_detail": {
+    "value": "The staging depends on domestic minutiae: toenails clipped in advance because the scissors must lie bloodied by the body, the bread knife placed in Miriam's hand, push-ups to fake breathlessness on the emergency call, and the absence of any other scissors in the house to explain oversized shears.",
+    "confidence": "high",
+    "quote": "He had cut those earlier in the day, since the scissors would not be available for use at this stage of the proceedings."
+  },
+  "moral_ambiguity": {
+    "value": "Thin and ironic: Harry is a petty schemer worn down by a genuinely nagging wife and a humiliating life of bus rides and used-car chiseling, and his self-pity over childhood bullies gives his second killing a flicker of panicked self-defense \u2014 but greed for Cathy's inheritance undercuts sympathy entirely.",
+    "confidence": "medium",
+    "quote": "How could a man concentrate on his ambitions and plans and prospects with a nagging wife hounding him all the time?"
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Just a Little Impractial Joke",
     "author": "RICHARD STARK",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 24,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

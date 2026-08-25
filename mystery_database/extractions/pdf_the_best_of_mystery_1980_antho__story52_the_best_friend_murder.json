@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Poisoning of Al Gruber by Larry Perkins, who administered poison in beer. Central question: whether Gruber's death was murder by Perkins or suicide by Gruber, with Perkins taking false responsibility.",
+    "value": "Apparent poisoning murder: a young writer confesses to putting poison in his best friend's beer. Central question is not who but why \u2014 and ultimately whether it was murder at all, or a suicide falsely claimed as murder.",
     "confidence": "high",
-    "quote": "I put the poison in his beer. He asked me to open a can of beer for him. When I poured it into a glass, I put the poison in, too."
+    "quote": "\u201cI put the poison in his beer,\u201d said Perkins simply."
   },
   "victim": {
-    "value": "Al Gruber, a young ex-soldier and aspiring writer struggling with self-doubt, moral intensity about his craft, and existential nihilism. Made vulnerable by his despair over artistic worthlessness and philosophical paralysis.",
+    "value": "Al Gruber, a young ex-Army undiscovered writer living on savings and the GI Bill, despairing over his own worthlessness and obsessed with nihilism \u2014 'killable' because he was already suicidal.",
     "confidence": "high",
-    "quote": "If I can say nothing hopeful, I shouldn't say anything at all. Nihilism is death. How could any writer believe such a thing?"
+    "quote": "\u201cHis name is Al Gruber. He got out of the Army about eight months ago. He\u2019s living on his savings and the GI Bill.\u201d"
   },
   "closed_world": {
-    "value": "A basement apartment in a Brooklyn brownstone building on Garfield Place. A confined residential space shared by two struggling young writers with frequent interaction and observation by building superintendent.",
-    "confidence": "high",
-    "quote": "The apartment was one large room, plus a closet-size kitchenette and an even smaller bathroom...Garfield Place is a double row of chipped brownstones."
+    "value": "A basement apartment on Garfield Place, Brooklyn, and the tiny social circle around it \u2014 Gruber, Perkins, their super, Professor Stonegell, and a mutual girlfriend.",
+    "confidence": "medium",
+    "quote": "That particular block on Garfield Place is a double row of chipped brownstones"
   },
   "culprit_and_motive": {
-    "value": "Larry Perkins killed Gruber (or enabled his suicide) motivated by desire for fame and notoriety. Unable to achieve literary recognition, Perkins sought infamy as a murderer\u2014a final act of 'glibness' to escape obscurity.",
+    "value": "Larry Perkins, who did not kill anyone: Gruber committed suicide and Perkins burned the note, falsely confessing so he could become a famous murderer since he had failed to become a famous writer \u2014 a second, chosen suicide.",
     "confidence": "high",
-    "quote": "He decided to be a famous murderer...You wanted to go out in a blaze of glory...Gruber really killed himself, and I suppose you burned the note he left."
+    "quote": "\u201cYou know I didn\u2019t kill him, don\u2019t you? You know he committed suicide, don\u2019t you?\u201d"
   },
   "resolution": {
-    "value": "Detective Levine deduces the truth through Gruber's notebooks and Perkins' behavioral reactions. Rather than expose the suicide, Levine allows Perkins' false confession to stand, letting the young man achieve the notoriety he sought through execution.",
+    "value": "Levine reads Gruber's notebooks and interviews the super, professor and girlfriend, then stages a fake reporter (Ricco) who tells Perkins the story is worthless filler \u2014 the collapse of Perkins's fame motive makes him break and admit the suicide. Levine lets the confession and trial stand.",
     "confidence": "high",
-    "quote": "That little fool is gonna go to trial, Jack, and he's gonna be convicted and go to the chair. He chose it himself. It was his choice...they chose to die, let 'em die!"
+    "quote": "\u201cthis is Dan Ricco, a reporter from the Daily News.\u201d"
   },
   "investigator": {
-    "value": "Detective Abraham Levine, a 53-year-old Brooklyn detective nearing the 'heart-attack age range.' His investigation is filtered through his preoccupation with mortality and his bitter recognition that Gruber and Perkins threw away youth he no longer possesses.",
+    "value": "Detective Abraham Levine, 53, of Brooklyn's Forty-Third Precinct \u2014 an official police detective obsessed with his own mortality, who reads people by stereotype-then-deviation and cares about 'why' rather than 'who'.",
     "confidence": "high",
-    "quote": "Every time he was reminded of death, he thought worriedly about the aging heart pumping away inside his chest...listen to your heart skip a beat every once in a while, and wonder when it's going to skip two beats."
+    "quote": "Detective Abraham Levine of Brooklyn\u2019s Forty-Third Precinct chewed on his pencil and glowered at the report"
+  },
+  "suspect_architecture": {
+    "value": "Effectively no suspect spread: Perkins self-accuses immediately; the real question is why, not who. Peripheral figures (the super, Professor Stonegell, a female friend) serve as character witnesses on Perkins and Gruber rather than as alternative culprits.",
+    "confidence": "high",
+    "quote": "A man giving his name as Larry Perkins had walked up to Tanner in the park and announced that he had just poisoned his best friend."
+  },
+  "red_herring": {
+    "value": "The confessed murder itself is the misdirection \u2014 Perkins' confession and 'pompous ass' motive conceal that Gruber committed suicide and Perkins burned the note to stage a famous murder.",
+    "confidence": "high",
+    "quote": "\"I put the poison in his beer,\" said Perkins simply."
+  },
+  "clue_fairness": {
+    "value": "Fair-play clues shown to reader as Levine finds them: the super hearing only two shouts and no struggle, Gruber's notebooks on nihilism and death, the joke 'bottle of poison', and Perkins' hidden flicker of emotion.",
+    "confidence": "high",
+    "quote": "\"The only expression of nihilism is death, not the written word.\""
+  },
+  "social_world": {
+    "value": "Working-class Brooklyn brownstone bohemia: broke would-be writers on the GI Bill, night courses at Columbia, a landlord-super, and a precinct police hierarchy that prefers a closed case to a true one.",
+    "confidence": "medium",
+    "quote": "\"Why sweat it? We got the body; we got the confession; we got the killer in a cell.\""
+  },
+  "alibi": {
+    "value": "No alibi at issue \u2014 the suspect claims presence and guilt rather than absence; the super's timeline of the shouted 'Al! Al!' at noon fixes the moment of death.",
+    "confidence": "medium",
+    "quote": "\"I heard a voice from the back apartment shouting, 'Al! Al!'\""
+  },
+  "reveal_mechanic": {
+    "value": "Psychological trap: Levine stages a fake Daily News reporter (Detective Ricco) who dismisses the murder as unnewsworthy filler, destroying Perkins' fantasy of fame and provoking him to blurt out the suicide truth.",
+    "confidence": "high",
+    "quote": "\"You know I didn't kill him, don't you? You know he committed suicide, don't you?\""
+  },
+  "media_and_audience": {
+    "value": "Press attention is the motive and the lever: Perkins wants headlines, but the murder is 'a dime a dozen' filler in New York without sex interest or mass killing.",
+    "confidence": "high",
+    "quote": "\"a murder in New York is filler stuff. And who needs filler stuff in the spring\""
+  },
+  "investigator_wound": {
+    "value": "Levine, fifty-three, is obsessed with his failing heart and mortality; two young men freely discarding the life he is losing enrages him into letting Perkins go to the chair.",
+    "confidence": "high",
+    "quote": "\"They chose to throw away what I don't have anymore. Don't you think I wish I had that choice?\""
+  },
+  "victims_enemies": {
+    "value": "Al Gruber had no real enemies \u2014 only his best friend Larry Perkins, with whom he argued constantly and loudly about writers and ideas; the arguments were affectionate rivalry between two failed, depressed writers, overheard by neighbors as shouting matches.",
+    "confidence": "medium",
+    "quote": "\"Mr. Gruber and Mr. Perkins. They used to argue all the time, shout at each other, carry on like monkeys.\""
+  },
+  "suspect_wounds": {
+    "value": "Perkins' wound is his craving for fame without talent \u2014 Gruber's notebook diagnoses him as wanting to 'be a writer' rather than to write, living on glibness. That vanity makes him confess to a murder he didn't commit, seeking notoriety as a famous murderer.",
+    "confidence": "high",
+    "quote": "\"Larry doesn't want to write, he wants to be a writer, and that isn't the same thing.\""
+  },
+  "unreliable_frame": {
+    "value": "Perkins' confession is the unreliable account: he claims he poisoned Gruber's beer, but he burned the suicide note and fabricated the murder. His calm politeness masks a hidden emotion Levine cannot read \u2014 terror, rage, or pleading.",
+    "confidence": "high",
+    "quote": "\"You know I didn't kill him, don't you? You know he committed suicide, don't you?\""
+  },
+  "setting_as_constraint": {
+    "value": "The chopped-up brownstone basement apartment on Garfield Place, with thin walls and a superintendent watching TV nearby, means every sound is a witness \u2014 only two shouts of 'Al! Al!' were heard, no struggle, which fits suicide rather than a poisoning quarrel.",
+    "confidence": "medium",
+    "quote": "\"I heard a voice from the back apartment shouting, 'Al! Al!' ... by the time I got there the shouting was all done.\""
+  },
+  "evidence_type": {
+    "value": "Documentary/testimonial: Gruber's private notebooks (character study of Perkins, obsession with nihilism and death) plus the super's account of the shouts \u2014 capped by a psychological trap using a fake reporter to break Perkins' motive.",
+    "confidence": "high",
+    "quote": "\"Nihilism is death... The only expression of nihilism is death, not the written word.\""
+  },
+  "false_suspect": {
+    "value": "Larry Perkins himself \u2014 the self-accused 'culprit' who is innocent of murder, having planted himself as the killer by confessing and destroying the suicide note.",
+    "confidence": "high",
+    "quote": "\"I put the poison in his beer,\" said Perkins simply."
+  },
+  "technical_detail": {
+    "value": "The poison itself \u2014 a bottle Gruber kept as a running gag, taken in beer, leaving a peaceful, relaxed corpse without spasms; that placid death and the absence of struggle are what make suicide indistinguishable from murder except by motive.",
+    "confidence": "medium",
+    "quote": "\"his eyes were closed, his facial muscles relaxed. It had been a peaceful death\""
+  },
+  "moral_ambiguity": {
+    "value": "Levine knowingly lets an innocent man go to the chair for a suicide, justifying it by his own terror of aging and death: the young men threw away the years he is losing, so he grants Perkins the end he chose.",
+    "confidence": "high",
+    "quote": "\"They chose to throw away what I don't have anymore... All right! They chose to die, let 'em die!\""
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "The Best-Friend Murder",
     "author": "DONALD E. WESTLAKE",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 52,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

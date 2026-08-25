@@ -1,23 +1,23 @@
 {
   "crime": {
-    "value": "Two murders by revolver during a game night; central question: how will the trapped victim escape or survive the killers' hunt?",
+    "value": "Double murder staged as a board game: a wealthy couple drugs guests' drinks, then shoots them according to dice rolls on a 'hunt the room' game board. The question is not whodunit but whether the reader/victim realizes the invitation itself is the trap.",
     "confidence": "high",
-    "quote": "Cal Tinky held the revolver and the smile steady as the fear grew, cold and pulsating, deep in the pit of Bill's stomach."
+    "quote": "He drew from beneath his sport jacket a large revolver and shot Della."
   },
   "victim": {
-    "value": "Della Darst, Bill's wife of two years; killable because she is a stranger to the Tinkys with no protective social ties, selected for a lethal 'game'",
+    "value": "Bill and Della Darst, a young ordinary married couple of modest means \u2014 'killable' precisely because they are strangers, unconnected to the Tinkys, casually met in a bar and unlikely to be traced to the isolated house.",
     "confidence": "high",
-    "quote": "They had been married only two years, and he still sometimes experienced that feeling of possessive wonderment at what he considered his incomprehensible and undeserving luck."
+    "quote": "we met them in that lounge on Fourteenth Street when we went there to escape the rain last week"
   },
   "closed_world": {
-    "value": "The Tinkys' isolated hilltop mansion in the woods, 2+ miles from nearest neighbor, with barred windows and locked doors throughout\u2014a literal game board designed as a trap",
+    "value": "The Tinkys' isolated fifteen-room hilltop house, two miles from the nearest neighbor, an hour's drive through fog, with barred windows and locked outside doors \u2014 victims have no car and no exit.",
     "confidence": "high",
     "quote": "All the rooms that had windows were inescapable, and all the outside doors were locked."
   },
   "culprit_and_motive": {
-    "value": "Cal and Emma Tinky; motive is sadistic entertainment\u2014they hunt human prey as a 'game,' treating real murder as recreation and using the house as a game board",
+    "value": "Cal and Emma Tinky, wealthy game manufacturers, who murder invited guests for amusement \u2014 hunting humans as the ultimate 'game for adults', with a prototype board game they may even market.",
     "confidence": "high",
-    "quote": "Cal Tinky looked at his wife over the game board. 'I think he's had enough time,' he said. 'It never takes them more than a few minutes to run to cover.'"
+    "quote": "\u201cGames are our life. Life is a game.\u201d"
   },
   "resolution": {
     "value": null,
@@ -25,21 +25,104 @@
     "quote": null
   },
   "investigator": {
-    "value": "Bill Darst, the surviving victim-protagonist; the reader experiences the mystery through his perspective as he discovers the horror and attempts escape",
+    "value": "Bill Darst, the victim-viewpoint character; the reader experiences the evening through his uneasy but trusting perceptions until the reveal.",
     "confidence": "high",
-    "quote": "Bill whispered her name once, staring at her, wanting to help her, knowing she was dead, finally and forever."
+    "quote": "Bill watched Emma Tinky start from her silent thoughts, and smile."
+  },
+  "suspect_architecture": {
+    "value": "Not a whodunit \u2014 only two 'suspects,' the Tinkys, are also the killers, revealed as such in the act. Cal (jovial, dominant, host) and Emma (silent, withdrawn, physically powerful) are differentiated by manner rather than by guilt; the Darsts are victims, not investigators.",
+    "confidence": "medium",
+    "quote": "Cal Tinky was smiling. They were both smiling."
+  },
+  "red_herring": {
+    "value": "The entire 'hospitable eccentric rich couple' framing \u2014 dinner invitation, harmless board games, talk of games as philosophy \u2014 misdirects victims and reader from the literal manhunt game.",
+    "confidence": "high",
+    "quote": "\u201cGames are our life. Life is a game.\u201d"
+  },
+  "clue_fairness": {
+    "value": "Clues planted fairly and in plain view: the isolated barred house, the metal puzzle clicking, Emma's hidden strength, the second unmanufactured game 'not the sort of game with mass appeal,' Bill's slipping coordination from drugged Scotch.",
+    "confidence": "high",
+    "quote": "\u201cNot yet,\u201d Cal Tinky said with his expansive grin, \u201cbut we\u2019re thinking about it. It\u2019s not the sort of game with mass appeal.\u201d"
+  },
+  "social_world": {
+    "value": "Wealth-and-privacy hierarchy: self-made moderately-wealthy manufacturer isolated in the hills, no neighbours, no servants (they 'stole on us'), preying on ordinary young city couple with no ties to them.",
+    "confidence": "high",
+    "quote": "\u201cNearest is over two miles. Folks up here value their privacy.\u201d"
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Demonstration by enactment: Cal's red block lands atop Della's blue block and he shoots her, then Emma rolls a seven to 'the kitchen' and hunts Bill there \u2014 the board literally dictates the murders.",
+    "confidence": "high",
+    "quote": "\u201cIn a manner of speaking,\u201d Cal Tinky said. He drew from beneath his sport jacket a large revolver and shot Della."
+  },
+  "media_and_audience": {
+    "value": "No press or public narration; the crime is packaged only for the killers themselves as private entertainment, concealed by geographic isolation and the victims' casual, untraceable acquaintance.",
+    "confidence": "medium",
+    "quote": "\u201cUp here we\u2019re not pestered by people like that.\u201d"
+  },
+  "investigator_wound": {
+    "value": "Bill Darst, the de facto POV 'investigator,' is exploited through his possessive adoration of Della and his complacent trust in social invitation and a free meal; his love becomes the instrument of his terror.",
+    "confidence": "medium",
+    "quote": "that feeling of possessive wonderment at what he considered his incomprehensible and undeserving luck"
+  },
+  "victims_enemies": {
+    "value": "None \u2014 the Darsts are strangers with no grievance web at all. The victims were chosen at random from a chance bar meeting; the horror is precisely the absence of enmity or prior relationship.",
+    "confidence": "high",
+    "quote": "\"Remember, we met them in that lounge on Fourteenth Street when we went there to escape the rain last week.\""
+  },
+  "suspect_wounds": {
+    "value": "No suspect structure exists; instead the victims' own vulnerabilities are what the predators activate \u2014 Della's hatred of cooking makes a free dinner irresistible, and Bill's insecure 'undeserving luck' with her makes him eager to please.",
+    "confidence": "medium",
+    "quote": "\"aware that she hated to cook and seldom turned down an opportunity to escape the chore\""
+  },
+  "unreliable_frame": {
+    "value": "The Tinkys' entire genial hospitality is a performance; Cal's talk of games as philosophy is literal confession heard as small talk. The narration is limited to Bill, who consistently misreads menace as eccentricity, so the reader trusts his reassurance until it collapses.",
+    "confidence": "high",
+    "quote": "\"Just a little eccentric, darling. Maybe we'd be, too, if we had their money.\""
+  },
+  "setting_as_constraint": {
+    "value": "The remote hill house is a purpose-built trap: nearest neighbor two miles off, an hour's drive through fog, guests transported in the killers' own car, basement garage sealing behind them, and every window barred with steel grills and every outside door locked \u2014 the whole fifteen-room house is the game board.",
+    "confidence": "high",
+    "quote": "\"as he flung aside the curtains he saw that it was covered with a steel grill\""
+  },
+  "evidence_type": {
+    "value": "No investigative evidence \u2014 the story is inverted/howdunit with no detection. The nearest thing to a clue is environmental/behavioral: the drugged Scotch revealed by Bill's failing coordination, and Emma's compulsive clicking metal puzzle.",
+    "confidence": "medium",
+    "quote": "\"Cal had put something in the drinks, something that had destroyed his perception, sapped his strength\""
+  },
+  "false_suspect": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "technical_detail": {
+    "value": "The manhunt is governed by real board-game mechanics: a circular board of rooms matching the actual house, dice rolls determining which room is 'hit' and whose shot it is, doubles earning a free roll \u2014 plus a sedative dosed into the Scotch and predictive knowledge that prey hide within minutes.",
+    "confidence": "high",
+    "quote": "\"careful to hold the board absolutely level so that the dice and the colored blocks wouldn't be disturbed\""
+  },
+  "moral_ambiguity": {
+    "value": "Thin but present: the Tinkys are given a coherent worldview rather than mere sadism \u2014 life is a game of winners and losers, wealth is simply prizes, and their isolation is framed as self-defense against people who 'want to take it away.' They also play fairly by their own rules, deferring to the dice even when it annoys them.",
+    "confidence": "medium",
+    "quote": "\"Games are our life. Life is a game.\""
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 20110,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Games for Adults",
     "author": "JOHN LUTZ",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 20,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

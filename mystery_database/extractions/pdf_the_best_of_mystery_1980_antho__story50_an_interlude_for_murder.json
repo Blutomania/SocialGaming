@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Murder by high-frequency sound transmission through a modified hearing-aid battery disguised as a hearing aid. The central question: how was Serge Maillot killed when all electrical apparatus were tested and safe?",
+    "value": "Murder disguised as heart failure: film mogul Serge Maillot killed at a press party by high-frequency sound transmitted from the tape recorder to transistors hidden in his hearing-aid battery, which burned his ear. Central question: how was a man killed in plain sight before a crowd and cameras with no apparent weapon?",
     "confidence": "high",
-    "quote": "Sound. High-frequency sound... they can kill. That was why there was a dead spot on the tape."
+    "quote": "\"I'm afraid,\" Jeannot explained gently, \"that there is a strong possibility of murder.\""
   },
   "victim": {
-    "value": "Serge Maillot, 69-year-old theatrical impresario and film mogul, killed because he dismissed an employee (Demaine's father) in 1942, leading to the father's arrest and death in a Nazi concentration camp.",
+    "value": "Serge Maillot, 69, 'His Majesty' of French film and theatre \u2014 an autocratic producer-director with a young new wife (Martine) who likely married him for money, and a history of dismissing employees, including Demaine's father in 1942",
     "confidence": "high",
-    "quote": "He kicked out my father from his company\u2014and the Boche sent him to a camp\u2014and there he died!"
+    "quote": "\"He kicked out my father from his company\u2014and the Boche sent him to a camp\u2014and there he died!\""
   },
   "closed_world": {
-    "value": "Orly Airport's VIP lounge during a champagne reception and press event for Serge Maillot, with limited exits and controlled access by police and airport staff.",
+    "value": "The L-shaped V.I.P. lounge room at Orly Airport during a champagne press party, sealed off by police; suspects narrowed to the technicians who handled the TV/radio equipment",
     "confidence": "high",
-    "quote": "Through the plate-glass windows of the upstairs lounge I stared at the tarmac... the L-shaped room ending in a staircase"
+    "quote": "\"There's no reason to keep them,\" I said. \"Except for the technicians who handled the TV and radio equipment.\""
   },
   "culprit_and_motive": {
-    "value": "Demaine, a young sound engineer, and possibly Martine (Maillot's wife), who replaced the hearing-aid battery with transistors acting as a receiver. Demaine's motive: revenge for his father's dismissal and subsequent death in a Nazi camp.",
+    "value": "Demaine, a young fair-haired sound engineer, avenging his father whom Maillot dismissed in 1942 and who died in a camp; he accuses Martine, the widow, of helping by swapping the battery to be rid of her rich old husband",
     "confidence": "high",
-    "quote": "She helped me!... It was she who changed the battery. I wanted to kill him, but she helped me."
+    "quote": "\"I did it! The dog\u2014he deserved to die a hundred times over.\""
   },
   "resolution": {
-    "value": "Inspector Jeannot reconstructs the crime by recognizing the hearing-aid battery was sabotaged with transistors; he demonstrates the method by having Demaine put on the device during tape playback, forcing Demaine's confession. Demaine flees across the tarmac and is killed by aircraft propellers.",
+    "value": "Inspector Jeannot re-stages the death: the gap of silence on the tape plus the melted battery reveal the method; he baits the killer by placing the hearing aid in a colleague's ear, prompting Demaine to break, confess at gunpoint, shoot at Martine, flee and die in an aircraft propeller; Martine is taken in",
     "confidence": "high",
-    "quote": "He replaced the battery with three transistors... tuned to each other... he turned tail\u2014his footsteps clattering down the staircase."
+    "quote": "\"Why didn't we hear the thud of Maillot's body hitting the floor? Why the sudden gap?\""
   },
   "investigator": {
-    "value": "Adam Venture, a private investigator and casual observer who gate-crashed the VIP party, witnesses Maillot's death, notices the hot ear, and convinces Inspector Jeannot to perform an autopsy and investigate the hearing aid.",
+    "value": "Adam Venture, a private investigator/oil-business troubleshooter narrating in first person, an outsider gate-crashing the party who works alongside official Inspector Jeannot",
     "confidence": "high",
-    "quote": "I happened to be watching Maillot when he died... when I accidentally touched Serge Maillot's left ear it was hot."
+    "quote": "\"Why, if it isn't Adam Venture himself!\""
+  },
+  "suspect_architecture": {
+    "value": "A closed pool drawn from the TV/radio technical crew plus the widow: two sound engineers (one fair, nervous \u2014 the killer Demaine; one dark-haired), the TV director Riret, the cameraman, and Martine, Maillot's young wife and Venture's former lover, who had motive (money, freedom) and access to the hearing-aid battery. Guests and journalists are dismissed as irrelevant, narrowing suspicion to those who handled the equipment.",
+    "confidence": "high",
+    "quote": "\"There's no reason to keep them,\" I said. \"Except for the technicians who handled the TV and radio equipment.\""
+  },
+  "red_herring": {
+    "value": "The death is staged/read as natural \u2014 the sixty-nine-year-old star's collapse diagnosed on the spot as heart failure by his own physician of thirty years; also the suggestion of electrocution from the tested microphone rig, and Burt's assumption that Venture is a hired bodyguard.",
+    "confidence": "high",
+    "quote": "\"Yes. It is beyond doubt heart failure. After all, the ma\u00eetre was sixty-nine, and though he was remarkably fit. . .\""
+  },
+  "clue_fairness": {
+    "value": "All key clues are given to the reader in scene as the narrator perceives them: the concealed hearing-aid wire in the monocle ribbon, the abnormally hot left ear, the melted/fused battery interior, and the inexplicable silent gap on the tape recording \u2014 each described before the solution is offered.",
+    "confidence": "high",
+    "quote": "\"Just as absurd as the fact that when I accidentally touched Serge Maillot's left ear it was hot.\""
+  },
+  "social_world": {
+    "value": "Parisian celebrity and patronage hierarchy: Serge Maillot, 'His Majesty,' a monarch of theatre and film whose monogram brands everything, surrounded by gossip columnists, critics, UNESCO officials, ministry under-secretaries and dependent employees. Power flows from Maillot's ability to hire and dismiss \u2014 his 1942 dismissal of old Demaine, and his marriage to a nightclub dancer, both create the crime.",
+    "confidence": "high",
+    "quote": "\"A king who ruled far more than a country. In Paris there was only one man nicknamed His Majesty.\""
+  },
+  "alibi": {
+    "value": "No conventional alibi work; the murder is remote-triggered so everyone in the room appears equally innocent \u2014 the killer stood among the crew in plain view, his 'alibi' being that he never touched the victim. Martine's implication rests on access to the battery, not on whereabouts.",
+    "confidence": "medium",
+    "quote": "\"The film wouldn't show the murderer,\" the Inspector said. \"Only the victim.\""
+  },
+  "reveal_mechanic": {
+    "value": "A staged re-enactment: Jeannot fits the fatal hearing aid to an innocent dark-haired engineer and replays the tape, provoking the real killer to snatch it away and confess \u2014 demonstrating the high-frequency sound weapon (transistor receiver in the battery, sender in the tape recorder) that explains the dead spot on the tape and the heat-melted components.",
+    "confidence": "high",
+    "quote": "\"Sound,\" I said. \"High-frequency sound. . . they can kill. That was why there was a dead spot on the tape.\""
+  },
+  "media_and_audience": {
+    "value": "The crime happens inside a media event \u2014 a press champagne party with tape recorder, microphones, film camera, gossip columnist Ginette Latour and journalists like Burt Bachelor, who are physically penned back from the scene; the recording apparatus intended to publicise Maillot becomes both murder weapon and evidence, and the story's framing passes through journalists' explanations.",
+    "confidence": "high",
+    "quote": "Burt and a few other journalists had already made a couple of attempts to invade the L-shaped room"
+  },
+  "investigator_wound": {
+    "value": "Venture's romantic wound: Martine, the woman he wanted to marry seven months earlier, reappears as Maillot's wife and then his widow and a possible accomplice; his investigation forces him to expose the woman he loved, leaving him empty and unwilling to hear her explanation.",
+    "confidence": "high",
+    "quote": "\"Her name was Martine and, only seven months ago, I had wanted to marry her.\""
+  },
+  "victims_enemies": {
+    "value": "Serge Maillot, the tyrannical 'His Majesty' of Paris theatre and film, had made enemies through his power: the young sound engineer Demaine, whose father Maillot dismissed from his company in 1942 (after which the Germans sent him to a camp where he died); and his much younger wife Martine, a former Boul' Blanche dancer who likely married the 69-year-old for money and wanted him gone. Burt's joke that Maillot needed a bodyguard implies a wider circle of grievance.",
+    "confidence": "high",
+    "quote": "\u201cHe kicked out my father from his company\u2014and the Boche sent him to a camp\u2014and there he died!\u201d"
+  },
+  "suspect_wounds": {
+    "value": "Martine's vulnerability is her past and her marriage: an ex-nightclub dancer who abandoned Venture to marry a rich old man seven months later, she cannot appear innocent of wanting him dead. Her hysterics and sedated silence read as guilt. Venture himself is compromised by his personal history with the widow, which taints his judgment of her.",
+    "confidence": "medium",
+    "quote": "\u201cI had the feeling that she\u2019d married the old boy for his money and wanted him out of the way as soon as possible.\u201d"
+  },
+  "unreliable_frame": {
+    "value": "Adam Venture narrates as a wry gate-crasher, but he is emotionally entangled: he was in love with Martine and admits jealousy, then judges her guilty on feeling rather than evidence. Demaine's dying accusation against Martine is itself untrustworthy \u2014 the raving of a man with a gun \u2014 yet Venture accepts it. Martine's own denial is voiceless and drugged.",
+    "confidence": "medium",
+    "quote": "\u201cWhether Demaine\u2019s accusation would prove true or not, it did not seem to matter. Most likely it was true.\u201d"
+  },
+  "setting_as_constraint": {
+    "value": "Orly Airport, where a delayed Montreal flight strands the detective and a televised press reception is staged in a converted L-shaped lounge. The room's TV/radio apparatus \u2014 tape recorder, microphones, spotlights \u2014 gives the killer both his instrument and his legitimate presence as a technician; the airport also bounds the suspect pool and finally kills the fleeing culprit on the tarmac in the propellers of the very plane that stranded Venture.",
+    "confidence": "high",
+    "quote": "\u201cThere\u2019s no reason to keep them,\u201d I said. \u201cExcept for the technicians who handled the TV and radio equipment.\u201d"
+  },
+  "evidence_type": {
+    "value": "Physical/forensic plus a recorded environmental trace: the melted, fused hearing-aid battery and charred hearing aid, the abnormal heat of the corpse's left ear felt by Venture, and above all the inexplicable silent gap on the tape recording where the body's fall should have been heard. Confirmed by re-enactment, which forces the killer's self-betrayal.",
+    "confidence": "high",
+    "quote": "\u201cWhy didn\u2019t we hear the thud of Maillot\u2019s body hitting the floor? Why the sudden gap?\u201d"
+  },
+  "false_suspect": {
+    "value": "Martine Maillot, the young widow \u2014 the obvious mercenary wife, accused by name by the dying Demaine of swapping the battery, and shot at by him. Her guilt is asserted but never proven; the narrative loads suspicion on her while the actual killer is the inconspicuous fair-haired sound engineer.",
+    "confidence": "medium",
+    "quote": "\u201cIt was she who changed the battery. I wanted to kill him, but she helped me. She wanted him dead, too!\u201d"
+  },
+  "technical_detail": {
+    "value": "Murder by high-frequency sound. Demaine replaced the hearing-aid battery with three transistors acting as a receiver, and built a matched transmitter into the tape recorder; switching off the tape and on the sender fired ultrasonic energy above audible range into Maillot's ear. The sound converted to heat, melting the battery and aid, leaving a heated ear, a fused casing, and the tell-tale dead spot on the tape.",
+    "confidence": "high",
+    "quote": "\u201cSound,\u201d I said. \u201cHigh-frequency sound... if they\u2019re strong enough, they can kill.\u201d"
+  },
+  "moral_ambiguity": {
+    "value": "Demaine is a son avenging a father: Maillot sacked the elder Demaine in 1942, and the Germans then deported him to a camp where he died. Yet Maillot could not have foreseen that consequence, and the father was a drunkard who probably deserved dismissal \u2014 the son sustained his obsession only by refusing to see it. Venture's verdict on him is pity, not condemnation.",
+    "confidence": "high",
+    "quote": "\u201cPoor devil,\u201d I said. I felt empty and exhausted."
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "An Interlude for Murder",
     "author": "PAUL TABORI",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 50,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

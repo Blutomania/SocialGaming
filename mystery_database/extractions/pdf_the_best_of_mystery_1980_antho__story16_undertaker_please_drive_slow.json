@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Heroin trafficking and burglary: Jack Tamerlane hid a $50,000-65,000 heroin shipment in Nancy Oland's old bedroom while imprisoned. Upon release, Tamerlane and Carrie Milligan forged a letter from the supposedly-dead Nancy to lure her father away from home, then burglarized the house to retrieve the hidden drugs. Central question: Can the detective expose the con and recover the narcotics before Tamerlane escapes?",
+    "value": "Burglary of the Oland house, enabled by a forged letter from a dead daughter luring her father away; question: who faked the letter and what were they searching for?",
     "confidence": "high",
-    "quote": "Taped under her bureau drawer in a plastic bag...it was worth fifty thousand when I gave it to Nancy to hold. Probably sixty, sixty-five now."
+    "quote": "Someone wanted him out of his house and had used the one sure lure."
   },
   "victim": {
-    "value": "George Oland, the grieving father: made vulnerable by his psychological inability to accept his daughter Nancy's suicide 2.5 years prior, his isolation, and his desperate desire to believe she is alive. This emotional wound makes him an easy mark for exploitation.",
+    "value": "George Oland, a reclusive retired father who never leaves his home and refuses to accept his daughter Nancy's suicide \u2014 his denial makes him exploitable; Nancy herself, an addicted drifter who hid Tamerlane's heroin and drowned herself",
     "confidence": "high",
-    "quote": "He rested his palms on the coffee table in front of him, then picked up the letters again. 'It's been two and a half years\u2014two years, seven months\u2014but I always knew she hadn't drowned. I knew she'd come back.'"
+    "quote": "\u201cIt\u2019s been two and a half years\u2014two years, seven months\u2014but I always knew she hadn\u2019t drowned.\u201d"
   },
   "closed_world": {
-    "value": "Greater Los Angeles metropolitan area (Glendale, Hollywood, Palm Springs, Disneyland road corridor) with key locations: Oland's isolated home, The Great Depression bar, Birks' Works Farms tourist attraction, and the ghost town within it. The detective can move freely but suspects have limited escape routes.",
+    "value": "Los Angeles environs \u2014 Glendale's Oland house and Nancy's preserved bedroom, Hollywood apartments, the Great Depression bar, and Birks' Works Farms; the suspect pool is Nancy's small circle of old friends and associates",
     "confidence": "medium",
-    "quote": "Gland's big brown shingle house was on a wide street, tree lined. Most of it looked like Southern California in the Thirties, pleasant with a porched. Midwest feeling."
+    "quote": "he found his house had been broken into and that someone had gone through Nancy\u2019s old room"
   },
   "culprit_and_motive": {
-    "value": "Jack Tamerlane (age 28, ex-convict with narcotics record) and accomplice Carrie Milligan. Motive: Retrieve $50,000+ in heroin that Tamerlane gave to Nancy Oland for safekeeping before his arrest. Tamerlane forges letters impersonating dead Nancy to manipulate Oland into leaving home, enabling the burglary.",
+    "value": "Jack Tamerlane, ex-con narcotics dealer, with Carrie Milligan's help; he forged the letter to draw Oland out so he could recover the $50,000 heroin shipment he'd given Nancy to hide in her room",
     "confidence": "high",
-    "quote": "So? It got him away from where I'd told Nancy to stow it. I always got good penmanship marks in school. Miss Cooper always said that was the only thing I did good."
+    "quote": "\u201cit was worth fifty thousand when I gave it to Nancy to hold... It got him away from where I\u2019d told Nancy to stow it.\u201d"
   },
   "resolution": {
-    "value": "Detective Lowe identifies Tamerlane through police records and locates him at Birks' Works Farms. Lowe confronts Tamerlane at the cottage, pursues him through the grounds into a replica ghost town, and shoots him in the leg when Tamerlane attempts to flee. Tamerlane is apprehended; the heroin scheme is exposed and explained to Oland.",
+    "value": "Lowe disproves Carrie's garage alibi via the lube sticker, traces her red sports car to Tamerlane's cottage, overhears their confession, shoots and captures Tamerlane in a fake ghost town; Tamerlane admits writing the letter \u2014 but Oland refuses the truth",
     "confidence": "high",
-    "quote": "I shot him in the leg...I had told him most of what I'd found out, about how Tamerlane had highjacked a shipment of heroin coming in from Mexico, given it to Nancy to hide in a safe place for a while."
+    "quote": "\u201cTamerlane admits writing the letter to get you out of here for a day so he could dig around.\u201d"
   },
   "investigator": {
-    "value": "Mr. Lowe, a private detective hired by George Oland. Skeptical, world-weary, experienced in skip-tracing and divorce work. He operates outside official law enforcement, conducting interviews and physical surveillance, ultimately apprehending the culprit through direct confrontation rather than institutional means.",
+    "value": "Lowe, a thirty-six-year-old cynical private detective doing routine skip-tracing work, hired by the client; first-person hardboiled narrator using false identities",
     "confidence": "high",
-    "quote": "Usually I worked on skip tracing, divorce stuff, bugging and debugging, but every once in a while...a client would show up with an odd one\u2014like Gland's daughter who had come back to life."
+    "quote": "Usually I worked on skip tracing, divorce stuff, bugging and debugging"
+  },
+  "suspect_architecture": {
+    "value": "Small cast around a presumed-dead girl: Carrie Milligan (ex-friend, cocktail waitress, red sports car, lies about garage alibi), Beth Eisner (former roommate, forthcoming informant, effectively a witness only), Jack Tamerlane (ex-convict dealer, the actual planner), plus the grieving father Oland as unwitting victim. Differentiated by proximity to Nancy's drug life and by who had motive to search her old room.",
+    "confidence": "high",
+    "quote": "\"Jack Tamerlane,\" she said. \"He was the one Nancy saw most. I think he also saw Carrie a lot. They were a kind of trio.\""
+  },
+  "red_herring": {
+    "value": "The letter in Nancy's apparently genuine handwriting suggesting she survived the yacht suicide \u2014 the whole 'she's alive' premise misdirects from a hidden heroin cache; also the burglary that took 'nothing'.",
+    "confidence": "high",
+    "quote": "\"You can see it's the same writing,\" he told me again."
+  },
+  "clue_fairness": {
+    "value": "Clues are shown to the reader as Lowe finds them: the counterman's description of a tall dark girl with a little red sports car, the red sports car parked at the Great Depression, the lube sticker contradicting Carrie's story, Tamerlane's release date matching the letter's timing.",
+    "confidence": "high",
+    "quote": "The only garage sticker I could find anywhere on her car indicated it hadn't been lubricated since November of the year before"
+  },
+  "social_world": {
+    "value": "Late-1960s Los Angeles: a decaying Thirties Glendale neighborhood infiltrated by pizzerias and coin laundries, swinging Hollywood apartment complexes, cocktail bars, narcotics networks and prison parole, and a tourist ghost-town economy \u2014 a father's respectable middle-class denial set against his daughter's drifting drug demimonde.",
+    "confidence": "high",
+    "quote": "Most of it looked like Southern California in the Thirties... The present, though, was infiltrating."
+  },
+  "alibi": {
+    "value": "Carrie Milligan claims her red car was in the garage Monday and Tuesday for lubrication and oil change, placing her away from the Oland house; disproven by the garage sticker showing no service since November.",
+    "confidence": "high",
+    "quote": "\"Couldn't have. My car was in the garage Monday and Tuesday.\""
+  },
+  "reveal_mechanic": {
+    "value": "Overheard confession: Lowe eavesdrops under Tamerlane's cottage window and hears him admit forging the letter (boasting of his penmanship) and recovering the fifty-thousand-dollar package taped under Nancy's bureau drawer.",
+    "confidence": "high",
+    "quote": "\"It got him away from where I'd told Nancy to stow it. I always got good penmanship marks in school.\""
+  },
+  "media_and_audience": {
+    "value": "The suicide survives publicly as newspaper clippings and neighborhood gossip \u2014 the counterman retails the story of the recluse who 'never goes out at all, due to a personal tragedy' \u2014 and the father curates his own private narrative against the official verdict.",
+    "confidence": "medium",
+    "quote": "\"I had to tell her the story in the neighborhood is he never goes out at all, due to a personal tragedy.\""
+  },
+  "investigator_wound": {
+    "value": "Lowe's weariness and sense of obsolescence at thirty-six, and his inability to comfort or refuse a grieving man's denial: he knows from the start the girl is dead, resents humoring the client, and ends unable to say anything that will free Oland.",
+    "confidence": "medium",
+    "quote": "I looked at the bell-bottomed girls and felt obsolete. You do sometimes at thirty-six."
+  },
+  "victims_enemies": {
+    "value": "The 'victim' here is really George Oland, an agoraphobic grieving father, preyed upon by his dead daughter's associates: Jack Tamerlane, the ex-con dealer who used Nancy to stash hijacked heroin, and Carrie Milligan, Nancy's high-school friend who knew Oland's delusion intimately enough to weaponize it. Nancy herself was drawn into their trio and likely addicted before her suicide.",
+    "confidence": "high",
+    "quote": "he and Carrie, who knew Oland believed Nancy was still alive, came up with a way to get him out of the house"
+  },
+  "suspect_wounds": {
+    "value": "Carrie Milligan looks guilty because she is defensive and evasive about her red sports car and lies about a lube job; Beth Eisner's wound is guilt \u2014 she abandoned Nancy when she suspected addiction and half-believes Nancy is alive, making her withholding look like concealment.",
+    "confidence": "high",
+    "quote": "\u201cI did offer to help, in my dumb pigeon-toed way. I maybe should have stuck. I don\u2019t know.\u201d"
+  },
+  "unreliable_frame": {
+    "value": "Nearly every account is compromised: Oland's version of Nancy (quiet, no men, still alive) is a grief-fantasy contradicted by Beth; Carrie's garage alibi is a provable lie; Beth admits she deliberately conceals the truth from Oland; and the narrator Lowe himself lies about his identity twice (Ralph E. Minton, Ferguson of the Urban Parole Authority).",
+    "confidence": "high",
+    "quote": "\u201cMy car was in the garage Monday and Tuesday.\u201d ... it hadn\u2019t been lubricated since November of the year before"
+  },
+  "setting_as_constraint": {
+    "value": "Oland's absolute agoraphobia is the constraint: he never leaves the brown shingle house, so the heroin taped under a bureau drawer in Nancy's preserved room is unreachable. The only lever that could move him out was a letter from his 'living' daughter. The open, gossipy Glendale street \u2014 with a pizzeria window facing the house \u2014 also made surveillance visible.",
+    "confidence": "high",
+    "quote": "\u201cIt got him away from where I\u2019d told Nancy to stow it.\u201d"
+  },
+  "evidence_type": {
+    "value": "Physical/documentary combination: the garage lubrication sticker on Carrie's red car disproving her alibi, the eyewitness testimony of Don the counterman about a tall dark-haired girl in a red sports car staking out the house, and the forged handwriting of the letter itself.",
+    "confidence": "high",
+    "quote": "The only garage sticker I could find anywhere on her car indicated it hadn\u2019t been lubricated since November of the year before"
+  },
+  "false_suspect": {
+    "value": "Nancy Oland herself \u2014 the narrative's apparent burglar and letter-writer, the 'returned' daughter Oland insists broke in. She is in fact long dead; her identity was borrowed by Tamerlane's forgery.",
+    "confidence": "high",
+    "quote": "\u201cWhy should your daughter want to burgle the house?\u201d I probed."
+  },
+  "technical_detail": {
+    "value": "Handwriting forgery \u2014 Tamerlane's practiced penmanship let him reproduce Nancy's hand well enough to fool her father, who refused to let a handwriting specialist examine the letters. Paired with narcotics-trade tradecraft: stashing heroin taped in a plastic bag under a bureau drawer in a place no one would search.",
+    "confidence": "high",
+    "quote": "\u201cI always got good penmanship marks in school. Miss Cooper always said that was the only thing I did good.\u201d"
+  },
+  "moral_ambiguity": {
+    "value": "The scheme harmed no one physically \u2014 it merely fed a delusion Oland was already nursing, as Carrie argues: his self-pitying seclusion is a lesser suffering than most. And Lowe's own 'flexible conception of right and wrong' \u2014 false identities, a bullet in Tamerlane's leg, and finally the cruelty of truth-telling that leaves the old man clutching at him on the porch.",
+    "confidence": "medium",
+    "quote": "\u201cAll he has to do is sit around that big house and hide from the daylight and pretend Nancy didn\u2019t jump. There are worse lives to live.\u201d"
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 24019,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Undertaker, Please Drive Slow",
     "author": "RON GOULART",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 16,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

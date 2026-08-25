@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Diamond theft from Midtown Diamond Exchange via smash-and-grab robbery. Central question: how did the thief remove $58,000 in diamonds from the window when he was under continuous observation and found with no diamonds on his person?",
+    "value": "Smash-and-grab diamond theft ($58,000) followed by assault on a policeman, and later the shooting murder of the fence Freddy Doyle. Central question: how did the diamonds vanish when the thief was in sight every second and never had them on him?",
     "confidence": "high",
-    "quote": "Hoffman got $58,000 worth of diamonds out of that window, and he was in sight of at least one person every instant until they arrested him... The diamonds weren't on him. Captain. No trace of them."
+    "quote": "\"The diamonds weren't on him. Captain. No trace of them.\""
   },
   "victim": {
-    "value": "Peter Arnold, owner of Midtown Diamond Exchange, was killable due to financial desperation and involvement in the robbery scheme as an insider collaborator.",
+    "value": "Officer Phil Begler, beaten with the cane because he unexpectedly appeared too soon at the scene; and Freddy Doyle, the fence, killed because he had become a liability once the trap exposed the plot",
     "confidence": "high",
-    "quote": "You're in bad financial trouble, and aiding in the theft of your company's diamonds was an easy way out for you."
+    "quote": "\"Phil came upon a guy stealing a handful of diamonds... The guy whacked him on the head with a cane\""
   },
   "closed_world": {
-    "value": "Urban Union Street neighborhood in a city, spanning from the Diamond Exchange to a half-block radius where the suspect was arrested, with multiple witnesses continuously observing the robbery and pursuit.",
+    "value": "One city block of Union Street from the Diamond Exchange window to the alleyway, searched exhaustively \u2014 only people in physical contact with Hoffman could hold the gems",
     "confidence": "high",
-    "quote": "he was in sight of at least one person every instant until they arrested him... I ran him down halfway up the block... The police were there all night, looking."
+    "quote": "\"They searched the street, they searched him, they even searched the patrol car he was in after his arrest.\""
   },
   "culprit_and_motive": {
-    "value": "Peter Arnold, the diamond store owner, orchestrated the theft with Rudy Hoffman to commit insurance fraud and solve his financial crisis by removing diamonds before the robbery, while Hoffman served as the visible thief to misdirect investigators.",
+    "value": "Peter Arnold, the Diamond Exchange jeweler, in league with Hoffman: he emptied the window himself and staged the robbery for insurance/financial relief, then murdered Doyle to protect himself",
     "confidence": "high",
-    "quote": "You closed the shop at nine o'clock the other night, and quickly removed the diamonds from that window. Rudy Hoffman came by as scheduled, broke the window and ran. You pocketed the diamonds and called the police."
+    "quote": "\"You're in bad financial trouble, and aiding in the theft of your company's diamonds was an easy way out for you.\""
   },
   "resolution": {
-    "value": "Captain Leopold deduces the scheme by recognizing Arnold's lie about seeing the theft through a velvet drape blocking the store's interior view. Leopold recovers the diamonds hidden in a coffee can. Arnold is shot by Fletcher when attempting to draw a gun, and is arrested for both robbery and the murder of Freddy Doyle.",
+    "value": "Leopold reasons that Hoffman struck Begler precisely because he did NOT have the diamonds; Arnold's claim of seeing the theft is disproved by the velvet drape blocking his view; Arnold draws his gun, Fletcher wounds him, and the murder weapon is recovered",
     "confidence": "high",
-    "quote": "even though there's a velvet drape at the rear of the window that keeps you from seeing anything from inside the store. You didn't see him take the diamonds because he never took them."
+    "quote": "\"there's a velvet drape at the rear of the window that keeps you from seeing anything from inside the store\""
   },
   "investigator": {
-    "value": "Captain Leopold of the Homicide and Violent Crimes squad, an official detective with institutional authority who works methodically through false leads before arriving at the correct solution.",
+    "value": "Captain Leopold of the combined Homicide and Violent Crimes squad, official police detective with Lieutenant Fletcher as sidekick",
     "confidence": "high",
-    "quote": "Captain Leopold of Violent Crimes... I jumped on some poor kid and try to make a murderer out of him... I've lost it, Fletcher."
+    "quote": "\"I'm Captain Leopold of Violent Crimes\""
+  },
+  "suspect_architecture": {
+    "value": "Small cast: Rudy Hoffman (caught thief, silent), Neil Quart (young 'hero' who tackled him \u2014 only person with physical contact, thus prime accomplice suspect), Freddy Doyle (fence, later victim), Glenda (fence's girlfriend/informant), and Peter Arnold (Diamond Exchange owner, financially desperate, the real accomplice)",
+    "confidence": "high",
+    "quote": "there's only one person he had physical contact with\u2014only one person he could have slipped the jewels to."
+  },
+  "red_herring": {
+    "value": "The 'impossible crime' framing \u2014 that the diamonds vanished from Hoffman's person \u2014 plus Neil Quart's heroic tackle making him look like the accomplice; in fact the diamonds never left the shop",
+    "confidence": "high",
+    "quote": "\"The diamonds weren't on him. Captain. No trace of them.\""
+  },
+  "clue_fairness": {
+    "value": "Fair-play clues given in scene: the opening narration shows Hoffman merely reaching into the window without time to scoop loose stones; the shopkeeper's shouted claim of robbery; the cane not being Hoffman's style; the shooter recognizing Leopold",
+    "confidence": "high",
+    "quote": "\"Yes, but they only saw him reach inside. He would hardly have had time to scoop up all those loose diamonds\""
+  },
+  "social_world": {
+    "value": "Urban police-department world: Leopold's Homicide/Violent Crimes squad, loyalty to injured Officer Begler, distrust between street youth and cops, and a respectable jeweler in secret financial ruin exploiting his standing",
+    "confidence": "medium",
+    "quote": "\"You're in bad financial trouble, and aiding in the theft of your company's diamonds was an easy way out for you.\""
+  },
+  "alibi": {
+    "value": "Neil Quart's alibi for the murder hour \u2014 working nights in Bambaum's shipping department \u2014 clears him; Arnold's implicit alibi as victim-owner locking up is destroyed by the velvet drape blocking his view",
+    "confidence": "high",
+    "quote": "\"You said you saw it while you were locking the door, even though there's a velvet drape at the rear of the window\""
+  },
+  "reveal_mechanic": {
+    "value": "Leopold's coffee-can trap: hiding the diamonds in the bottom of the can and telling Freddy they were stolen back, which flushes the accomplice into murder; plus the retained murder gun and the drape sightline proving Arnold lied",
+    "confidence": "high",
+    "quote": "\"So I used a can opener to open the bottom of this coffee can part way.\""
+  },
+  "media_and_audience": {
+    "value": "Public narrative of Quart as civic hero for tackling the robber, later inverted when he is dragged in as a suspect",
+    "confidence": "medium",
+    "quote": "\"You drag me down here at midnight like a common criminal? Just this morning I was a hero!\""
+  },
+  "investigator_wound": {
+    "value": "Leopold's pride and personal anger over the beating of fellow officer Begler drives an overreaching trick that gets Freddy Doyle killed, leaving him doubting his own judgment",
+    "confidence": "high",
+    "quote": "\"I bungled, that's what happened, Fletcher. I was trying to pull off a neat trick, and I got a guy killed.\""
+  },
+  "victims_enemies": {
+    "value": "Freddy Doyle, the murdered fence, was enmeshed with the very conspirators he served: Peter Arnold, the jeweler who needed him to move the diamonds and who shot him when he feared exposure; Hoffman's ring generally; and his own girlfriend Glenda, who betrayed him to the police and whom he threatened to kill.",
+    "confidence": "high",
+    "quote": "\"You damned little double-crossing tramp!\" he shouted at the girl. \"Glenda, I'll kill you for this!\""
+  },
+  "suspect_wounds": {
+    "value": "Neil Quart's vulnerability is his class and appearance \u2014 a shaggy-haired young man in paint-stained clothes with contempt for police (\"I don't have any love for cops\"), so his heroism reads as suspicious and his physical grapple with Hoffman makes him the only possible hand-off point.",
+    "confidence": "high",
+    "quote": "\"Now, I don't have any love for cops, but I decided to take out after this guy.\""
+  },
+  "unreliable_frame": {
+    "value": "Peter Arnold's account is the false frame: as the shop's own man he claims to have watched Hoffman scoop the diamonds from the window while locking up \u2014 an impossibility given the velvet drape, and the lie that conceals that he had pocketed the gems himself.",
+    "confidence": "high",
+    "quote": "\"only you, Arnold, actually said you saw him do that. You said you saw it while you were locking the door\""
+  },
+  "setting_as_constraint": {
+    "value": "The busy Union Street corner, constant witness coverage, and immediate police cordon mean Hoffman is in sight every second and the street, alley, boxes and patrol car are all searched \u2014 creating a sealed 'impossible crime' zone. Arnold exploited being the insider inside the shop, behind a velvet drape, out of everyone's view.",
+    "confidence": "high",
+    "quote": "\"he was in sight of at least one person every instant until they arrested him.\""
+  },
+  "evidence_type": {
+    "value": "Combination of documentary/financial evidence (Arnold's ruinous finances) and physical evidence (the murder pistol still in his coat pocket), plus the testimonial impossibility of his claim to have seen the theft through the draped window.",
+    "confidence": "high",
+    "quote": "\"You should have dumped this in the river... We could never have made the murder charge stick without it.\""
+  },
+  "false_suspect": {
+    "value": "Neil Quart, the young man who chased and tackled the robber \u2014 hailed as a hero in the morning, hauled in at midnight as the presumed accomplice because he was the only person with physical contact with Hoffman.",
+    "confidence": "high",
+    "quote": "\"You drag me down here at midnight like a common criminal? Just this morning I was a hero!\""
+  },
+  "technical_detail": {
+    "value": "The insider staging of a smash-and-grab: the jeweler empties the display window before closing so the 'thief' takes nothing and can be arrested clean \u2014 no loot, no evidence; plus the velvet drape at the window's rear that makes the shopkeeper's claimed sightline impossible. Leopold's own trick \u2014 opening a coffee can's bottom with a can opener to hide the pouch and resealing it with a plastic lid \u2014 is the mirroring technical touch.",
+    "confidence": "high",
+    "quote": "\"So I used a can opener to open the bottom of this coffee can part way.\""
+  },
+  "moral_ambiguity": {
+    "value": "Arnold is a desperate businessman in financial ruin rather than a career criminal; the theft was 'an easy way out,' and the murder came from panic at seeing Leopold, not calculation. Leopold's own culpability is stressed \u2014 his clever trick got Freddy Doyle killed and he wrongly hounded an innocent young man.",
+    "confidence": "high",
+    "quote": "\"I bungled, that's what happened, Fletcher. I was trying to pull off a neat trick, and I got a guy killed.\""
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "A Melee of Diamonds",
     "author": "EDWARD D. HOCH",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 44,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

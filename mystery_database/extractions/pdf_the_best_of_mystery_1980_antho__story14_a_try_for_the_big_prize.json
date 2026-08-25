@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Kidnapping and extortion: Ronald O'Steen kidnaps wealthy Johnny Roth, extracts $200,000 ransom, and evades capture. Central question: Can detective Blake identify and locate the criminal from a single blurred telephoto snapshot?",
+    "value": "Kidnapping-for-ransom of a shady rich man, $200,000 taken, kidnapper unidentified except for one telephoto payoff photo; central question: who is he and where is the money? Compounded by Blake's own attempted theft and killing of the kidnapper.",
     "confidence": "high",
-    "quote": "The kidnap victim had been a man with plenty of money...The kidnaper had gotten his money and made a clean getaway."
+    "quote": "The only thing the police had on him was the telephoto shot taken at the moment of payoff."
   },
   "victim": {
-    "value": "Johnny Roth, a wealthy man operating on the legal fringe who cannot cooperate with police without exposing his own dubious activities, making him an ideal kidnapping target.",
+    "value": "Johnny Roth, wealthy fringe-of-the-law figure caught in a congressional investigation, so he couldn't cooperate with police \u2014 making him safely kidnappable; later O'Steen himself, strangled by Blake.",
     "confidence": "high",
-    "quote": "a man who wouldn't want the police or the FBI prying too closely into his own affairs. Not a wanted man, only a dubious man who operated close to the fringe of the law."
+    "quote": "When Johnny Roth got into that congressional investigation bind so he couldn't kick too much, I went after him."
   },
   "closed_world": {
-    "value": "A professional football stadium during a championship game being televised; Blake must reach the stadium before the game ends to intercept O'Steen in the crowd.",
-    "confidence": "high",
-    "quote": "Blake saw him...The camera swung down over the crowd and the announcer said, 'And here's part of the vast turn-out for this great game.'"
+    "value": "The city \u2014 stadium crowd, then O'Steen's fifth-floor apartment (number seven) in a quiet residential block, staked out by police; the final confrontation is sealed in that room.",
+    "confidence": "medium",
+    "quote": "The man stopped the car before a medium-sized apartment house."
   },
   "culprit_and_motive": {
-    "value": "Ronald O'Steen, failed professional football player seeking the 'big score' after rejection from the pros. Motive: to achieve the financial success that football denied him through one perfectly executed criminal operation.",
+    "value": "Ronald O'Steen, ex-college halfback too light for the pros, planned the kidnapping five years as his one 'big one'; Blake kills him for the same greed \u2014 'because you're me.'",
     "confidence": "high",
-    "quote": "I was too light for the pros...I tried out, the year I finished, but they dropped me. So you went for the big one. Yes. I went for the big one."
+    "quote": "\u201cSo you went for the big one.\u201d \u201cYes. I went for the big one.\u201d"
   },
   "resolution": {
-    "value": "Blake apprehends O'Steen at the apartment, retrieves the ransom money from a bank safety deposit box, then kills O'Steen in a struggle. FBI and police, who have been conducting surveillance, arrive and interpret Blake's actions as heroic police work, granting him glory and closure before retirement.",
+    "value": "FBI traced the photo by checking old athlete newspaper pictures and staked out the apartment; Blake's recognition leads them to the money. O'Steen dies; Blake is ironically hailed a hero, his guilt unpunished except for suspicion.",
     "confidence": "high",
-    "quote": "There was a burst of sound at the door and he whirled around. The door was splintering off its hinges...Why, it's your greatest case, Blake."
+    "quote": "They decided he looked like an athlete, so they started checking newspaper pictures for boxers and football players"
   },
   "investigator": {
-    "value": "Blake, a veteran detective with an extraordinary talent for facial recognition and memory for criminal records. He operates alone, motivated by lifelong ambition for the 'big case,' and ultimately compromises his integrity by attempting to steal the ransom money himself.",
+    "value": "Blake, an aging veteran detective with a photographic memory for faces, near mandatory retirement \u2014 investigator who becomes the criminal.",
     "confidence": "high",
-    "quote": "He had a trick memory for names, numbers and faces...Blake had always been a loner and he would play this one alone."
+    "quote": "\u201cI've got a talent,\u201d he said. \u201cI never forget a face.\u201d"
+  },
+  "suspect_architecture": {
+    "value": "Effectively no suspect pool \u2014 an inverted crime story with two figures: Ronald O'Steen, the known kidnapper identified from the outset, and Blake, the detective who becomes the second criminal. Differentiation is by mirroring rather than by competing means/motive/opportunity: both are failed footballers, loners, waiting for 'the big one.'",
+    "confidence": "medium",
+    "quote": "He was a loner, as Blake was a loner. Loner pitted against loner."
+  },
+  "red_herring": {
+    "value": "Blake's own conduct functions as a herring in reverse: his shakedown of O'Steen is read by the captain as a brilliant undercover ruse to make the suspect reveal the money's location, misdirecting the institution away from his real corruption. The FBI agent's suspicion is the counterweight left unresolved.",
+    "confidence": "medium",
+    "quote": "\"You made him think you were just after the money. You let him think it was a heist instead of an arrest.\""
+  },
+  "clue_fairness": {
+    "value": "Fully fair \u2014 the reader is given every fact as Blake gets it: the trick memory for faces, the single telephoto payoff snapshot, the exit ramp FF, the airline satchel matching the photograph, and O'Steen's college football past. The stake-out reveal is retro-justified by the FBI's disclosed method (checking athletes' newspaper photos).",
+    "confidence": "high",
+    "quote": "\"They decided he looked like an athlete, so they started checking newspaper pictures for boxers and football players\""
+  },
+  "social_world": {
+    "value": "Institutional police hierarchy and its ceilings: a promotion ladder Blake has topped out on for lack of education, mandatory retirement in three months, precinct captain's patronage and 'implicit faith,' inter-agency friction between local police and a young dapper FBI agent, plus a kidnap victim (Johnny Roth) too compromised by a congressional investigation to call the law.",
+    "confidence": "high",
+    "quote": "\"For years now he had been a full detective, having gone as far as a man with his education and attainments could hope to go.\""
+  },
+  "alibi": {
+    "value": "No formal alibi contest. Blake's cover is his absence from duty \u2014 the captain assumes he 'had a live one' when he fails to call in \u2014 and his final alibi for the killing is the self-defence claim ('I can always claim I was making an arrest'), which the captain hands him unprompted.",
+    "confidence": "medium",
+    "quote": "\"Blake did not call in the next morning, though he was on duty for the day.\""
+  },
+  "reveal_mechanic": {
+    "value": "Reversal by surveillance: the stake-out already in place means Blake's crime was observed all along, but the captain's faith re-narrates the evidence as heroism. The demonstration is the satchel \u2014 the same airline bag from the payoff photograph \u2014 opened in front of the money, and the trailed trip to the bank vault.",
+    "confidence": "high",
+    "quote": "\"We tailed you to the bank this morning,\" the FBI agent said."
+  },
+  "media_and_audience": {
+    "value": "The crime is packaged for public consumption: television broadcast of the championship game triggers the recognition, a nationwide six-week manhunt runs on one blurred telephoto image, and the ending promises reporters, photographers and hero headlines \u2014 clippings Blake will reread in a retirement poisoned by what they omit.",
+    "confidence": "high",
+    "quote": "\"There'll be newspaper guys at the precinct, photographers, the whole works. Why, it's your greatest case, Blake.\""
+  },
+  "investigator_wound": {
+    "value": "Blake's lifelong hunger for 'the big one' \u2014 the football glory denied him by poverty, then the career ceiling and imminent mandatory retirement \u2014 leaves him envious of the criminal he mirrors; the case exploits exactly that, turning his one gift (face memory) into the instrument of his corruption and murder.",
+    "confidence": "high",
+    "quote": "All of his life he had been looking for the big one. First, he had thought to find it in football."
+  },
+  "victims_enemies": {
+    "value": "The kidnap victim, Johnny Roth, was a shady rich man operating on the fringe of the law, caught in a congressional investigation \u2014 vulnerable precisely because he couldn't go to the police. O'Steen watched him five years and chose him for that vulnerability.",
+    "confidence": "medium",
+    "quote": "When Johnny Roth got into that congressional investigation bind so he couldn't kick too much, I went after him."
+  },
+  "suspect_wounds": {
+    "value": "Blake's wound is the unfulfilled ambition \u2014 the football career he never had, the promotion ceiling he hit, mandatory retirement three months away. The recovered ransom activates a lifelong hunger for 'the big one' that thirty clean years had merely submerged.",
+    "confidence": "high",
+    "quote": "All of his life he had been looking for the big one. First, he had thought to find it in football."
+  },
+  "unreliable_frame": {
+    "value": "The narrative is filtered through Blake's self-justifying consciousness; more sharply, the captain's reading of events is catastrophically wrong \u2014 he narrates Blake's attempted theft and murder as brilliant undercover police work, and Blake lets the false account stand.",
+    "confidence": "high",
+    "quote": "\"You played it smart,\" he said. \"You made him think you were just after the money.\""
+  },
+  "setting_as_constraint": {
+    "value": "The televised championship game imposes a literal clock: Blake can only reach the stadium if the game goes into sudden-death overtime. Later the quiet apartment house, self-service elevator and empty carpeted hall permit a private arrest with no witnesses \u2014 but the thin walls let the stakeout hear the fight.",
+    "confidence": "high",
+    "quote": "There would have to be a tie and a sudden death play-off to give him a chance at all."
+  },
+  "evidence_type": {
+    "value": "Testimonial/visual recognition \u2014 a single blurred telephoto photograph of the payoff matched against a face glimpsed in a televised crowd shot, plus the FBI's documentary trawl of old newspaper sports photographs.",
+    "confidence": "high",
+    "quote": "They got a snap of you on the payoff. I was watching television yesterday and I saw you in the crowd."
+  },
+  "false_suspect": {
+    "value": "Inverted: the guilty man, Blake, is universally taken as the hero. The dead O'Steen is credited with attacking him. Only the FBI agent's cold, unprovable suspicion survives.",
+    "confidence": "medium",
+    "quote": "He looked at the FBI agent, recognized the residual suspicion. But there was no danger there."
+  },
+  "technical_detail": {
+    "value": "Police craft: Blake's trained eidetic memory for faces, honed by years in the mug room \u2014 and the corollary that a first-time freelance criminal has never been mugged or fingerprinted, so only a photograph can identify him. The FBI's counterpart method: profiling the man as an athlete and searching old sports photos.",
+    "confidence": "high",
+    "quote": "He was the hardest of all to catch, a freelance criminal who had never fallen, never served time, never been mugged"
+  },
+  "moral_ambiguity": {
+    "value": "Blake is a thirty-year honest cop who never took a bribe, denied college and the pros by poverty, capped by education and facing forced retirement; he sees in O'Steen his own mirror \u2014 'because you're me' \u2014 and his crime is the eruption of a lifetime of deferred, sublimated ambition rather than greed or cruelty.",
+    "confidence": "high",
+    "quote": "Because you're me, and I'm you. But now I know I've got to kill you. For that same reason."
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "A Try for the Big Prize",
     "author": "BORDEN DEAL",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 14,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Death by snake (banded krait) at forward observation post; method: deliberate placement of venomous snake in victim's proximity; central question: how did the snake get into the sealed lookout tower and who placed it there?",
+    "value": "Murder disguised as accidental snakebite: Robson releases an irritated banded krait, conditioned to strike at Barclay's black peasant shirt, into the lookout post. Question: how did a snake kill a man in a sealed observation post \u2014 and who put it there?",
     "confidence": "high",
-    "quote": "The compound was steeped in gloom...The death of Barclay was the prime topic in every little cluster of Vietnamese."
+    "quote": "he bent to his knees and carefully picked up the bundle of death... upended the bag in the direction of Barclay's station"
   },
   "victim": {
-    "value": "Staff Sergeant Barclay, senior NCO and detachment commander; killable because he enforced an order forbidding unauthorized raiding patrols, which cost Robson his rank and marriage prospects after court-martial",
+    "value": "Master Sergeant Barclay, the senior NCO who reported Robson's unauthorized raid, causing his court-martial, loss of stripes, career and marriage \u2014 killable because he was the object of Robson's obsessive hatred",
     "confidence": "high",
-    "quote": "Barclay, as the senior NCO, put out an order that members of the detachment would not go out on operational patrols or raids...When Barclay called you on it, you got all worked up about it and read him off."
+    "quote": "He had been the top soldier in the detachment. Until Barclay came along."
   },
   "closed_world": {
-    "value": "Forward observation post compound in Vietnamese highlands: underground bunker with ladder access to two sealed lookout stations on top; only two men (Barclay and Robson) occupy the stations during night shift with grass cover blocking ladder",
+    "value": "An isolated Special Forces mountain camp in the South Vietnamese highlands \u2014 fenced, moated compound with a single gate, plus the forward observation post manned only by Barclay, Robson and a Vietnamese squad under a no-movement, no-talk order",
     "confidence": "high",
-    "quote": "The forward observation post was really two lookout stations built on top of an earthen room...With his foot, he flipped over the grass cover closing off the ladder access to the stations."
+    "quote": "a clump of thatched huts... surrounded by a bamboo fence... A sharply banked moat encircled the area. One gate was provided"
   },
   "culprit_and_motive": {
-    "value": "Private Munroe Robson, weapons expert and demolitions man; motive: revenge for loss of rank, marriage prospects, and military career caused by Barclay's enforcement of no-raiding order; also bitter about perceived cowardice",
+    "value": "Private Munroe Robson, the detachment weapons man, killing Barclay in revenge for the court-martial that cost him his rank, his intended marriage and his Army career",
     "confidence": "high",
-    "quote": "I also understand how yellow Barclay is, he thought...All I was doing was out getting the enemy, and I lost my stripes and my marriage and my time in the Army."
+    "quote": "All I was doing was out getting the enemy, and I lost my stripes and my marriage and my time in the Army."
   },
   "resolution": {
-    "value": "No formal resolution in excerpt; investigation begins with Major Flynn's arrival and witness interrogation; Robson denies all knowledge and is ordered to accompany Barclay's body to Tan Son Nhut for formal inquiry; case remains technically open to investigator",
-    "confidence": "medium",
-    "quote": "The Major has decided to hold the formal inquiry at the Tan Son Nhut airbase tomorrow...Robson stoically denied any knowledge of the death, and carefully and accurately provided all the details..."
+    "value": "No legal proof; ironic native justice \u2014 the Montagnards, believing what killed a man must accompany him, hunt down the krait's mate and present it in a gift box to Robson as escort, which he opens aboard the helicopter; the chopper turns back. Higgins senses but cannot name the missing piece.",
+    "confidence": "high",
+    "quote": "\"We searched all night for the brother of Barclay's killer. That is what was in the box.\""
   },
   "investigator": {
-    "value": "Lieutenant Higgins, new detachment commander and military authority; investigates through witness interviews and scene inspection; experiences growing doubt about Robson's guilt despite lack of proof",
+    "value": "Lieutenant Higgins/Higgs, the new detachment commander, aided by Major Flynn's formal inquiry \u2014 an official with authority who intuits something wrong but cannot identify it; the reader's lens is largely the culprit Robson himself",
     "confidence": "high",
-    "quote": "I have missed something, but I'm damned if I can put my finger on it. There's something out of focus, but I can't lock on to it."
+    "quote": "\"I have missed something, but I'm damned if I can put my finger on it. There's something out of focus\""
+  },
+  "suspect_architecture": {
+    "value": "Effectively a single-suspect inverted structure: Robson, the demoted weapons sergeant, is known to the reader as the killer from the outset. The only alternative 'suspects' are impersonal \u2014 the Viet Cong outside the wire and the snake itself as a natural accident. Other detachment members (Allen, Gentry, Tuang, the Vietnamese squad) have opportunity but no motive; Robson alone has motive (lost stripes, marriage, career at Barclay's hands), means (snake-handling and demolitions/weapons expertise) and opportunity (paired with Barclay alone in the lookout posts).",
+    "confidence": "high",
+    "quote": "\"After six years with the Special Forces, he reflected, all I have to show for it is a dark patch on my sleeve.\""
+  },
+  "red_herring": {
+    "value": "The killing is staged to read as a natural jungle death or a Viet Cong incident \u2014 a banded krait in a sweltering outpost is unremarkable, and the constant VC threat outside the fence supplies a ready alternative explanation. Robson also disposes of the bag into the darkness so no trace of contrivance remains.",
+    "confidence": "medium",
+    "quote": "\"I have enough trouble with Viet Cong outside the fence, without trouble between you and Barclay inside it.\""
+  },
+  "clue_fairness": {
+    "value": "The reader is shown every operative fact before the ending: the black peasant shirt requirement, the borrowed lidded pot, the snare and rabbit, the conditioning of the krait to strike at the shirt's smell, and \u2014 crucially \u2014 Tuang's animist belief that the thing which killed a man must be buried with him. That last clue, plus the all-night jungle search by the villagers, is planted in plain view before the chief's gift box.",
+    "confidence": "high",
+    "quote": "\"Robson knew that if the krait ever got near that shirt again, smelled the characteristic smell of that shirt, the snake would lash out\""
+  },
+  "social_world": {
+    "value": "Military hierarchy and its patronage: Special Forces rank, NCO authority and the court-martial system govern everything \u2014 Barclay as senior NCO enforcing the captain's no-patrol order, Higgins the new officer sizing up a problem soldier, Robson stripped to buck private. Overlaid is the American/Montagnard relationship: interpreters, gifts of piasters and soap, and a tribal animist order with its own law of the dead that the Americans do not grasp.",
+    "confidence": "high",
+    "quote": "\"Barclay, as the senior NCO, put out an order that members of the detachment would not go out on operational patrols\""
+  },
+  "alibi": {
+    "value": "Robson's alibi is positional and rests on the physical layout: he claims he stayed in his own lookout booth, never on the ladder, never spoke to Barclay after they ascended, heard no outcry. He reinforces it by lingering outside for a smoke, flipping the grass cover over the ladder access, and wearing the black peasant shirt so his run to the cached snake bag went unseen.",
+    "confidence": "high",
+    "quote": "\"No, he hadn't heard an outcry. No, he had not been aware of anyone on the ladder. No, he had not talked to Barclay at all\""
+  },
+  "reveal_mechanic": {
+    "value": "Ironic demonstration rather than deduction: the Montagnards, following the custom that whatever killed a man must accompany him to the grave, hunt all night for 'the brother' of the killing snake and present it in a sealed wooden box to Robson as escort of the body. He opens it airborne \u2014 the returning helicopter and Tuang's explanation deliver the verdict. Higgins' nagging sense of something 'out of focus' is resolved by the custom, not by evidence.",
+    "confidence": "high",
+    "quote": "\"We searched all night for the brother of Barclay's killer. That is what was in the box.\""
+  },
+  "media_and_audience": {
+    "value": "No press; the audience is the compound. The death is narrated through Montagnard mourning ritual \u2014 drums, fires, keening women, tiptoe silence, talk of a 'snake spirit loose' \u2014 and institutionally packaged by the Army as a formal inquiry at Tan Son Nhut with a body shipped home. The villagers' interpretation ultimately overrides the official one.",
+    "confidence": "medium",
+    "quote": "\"Everything, everything. Barclay dead\u2014snake spirit loose\u2014all wrong, all wrong.\""
+  },
+  "investigator_wound": {
+    "value": "Lieutenant Higgins is a newly arrived commander who inherited the detachment after his predecessor was killed in an ambush; he knows the case only from paperwork and needs Robson as his best weapons man, so his dependence and outsider status blind him. He senses the gap but cannot name it, and unwittingly hands the killer the escort role.",
+    "confidence": "high",
+    "quote": "\"I have missed something, but I'm damned if I can put my finger on it. There's something out of focus, but I can't lock on to it.\""
+  },
+  "victims_enemies": {
+    "value": "Master Sergeant Barclay's only real enemy is Robson, whom he reported for an unauthorized raiding patrol, causing Robson's court-martial, loss of sergeant's stripes, fine, and collapse of his marriage plans. Otherwise Barclay is loved \u2014 the Montagnards and Vietnamese regarded him as a friend and mourn him openly.",
+    "confidence": "high",
+    "quote": "\"When Barclay called you on it, you got all worked up about it and read him off.\""
+  },
+  "suspect_wounds": {
+    "value": "Robson's wound is wounded pride and class shame \u2014 he cannot face marrying as a buck private after a hand-to-mouth childhood; his identity as 'top soldier' was destroyed by Barclay, and that humiliation both drives the murder and makes him the obvious suspect.",
+    "confidence": "high",
+    "quote": "\"No, Lieutenant, she wouldn't\u2014but I do,\" cut in Robson, with chilling effect."
+  },
+  "unreliable_frame": {
+    "value": "The story is told close to Robson, who is a liar by omission: at the inquiry he 'carefully and accurately' recounts everything up to the towers and then denies all knowledge; the reader alone knows the truth, while Higgins senses something 'out of focus.'",
+    "confidence": "high",
+    "quote": "Robson stoically denied any knowledge of the death, and carefully and accurately provided all the details up to the time..."
+  },
+  "setting_as_constraint": {
+    "value": "The isolated highland Special Forces camp and the forward observation post \u2014 sunk earthen room, ladder, narrow trench, two chest-high booths, enforced darkness and total silence \u2014 mean no one may move, speak or show a light, so a snake released in the passageway can kill unseen and unheard; the surrounding jungle supplies the weapon.",
+    "confidence": "high",
+    "quote": "\"When we are inside, I want no lights, no talking, no noise,\" said Barclay."
+  },
+  "evidence_type": {
+    "value": "Environmental/biological \u2014 the snake itself: the Montagnards' night search recovers the krait's mate ('the brother of Barclay's killer'), proving a deliberately introduced snake and, delivered as a gift, becoming the instrument of Robson's exposure and death.",
+    "confidence": "high",
+    "quote": "\"We searched all night for the brother of Barclay's killer. That is what was in the box.\""
+  },
+  "false_suspect": {
+    "value": "No human false suspect; suspicion is deflected onto the environment itself \u2014 an accidental snakebite and, for the villagers, a loose 'snake spirit' rather than a murderer.",
+    "confidence": "medium",
+    "quote": "\"Everything, everything. Barclay dead\u2014snake spirit loose\u2014all wrong, all wrong.\""
+  },
+  "technical_detail": {
+    "value": "Herpetological conditioning: a banded krait confined in a covered pot with Barclay's black peasant shirt learns to associate that shirt's smell with its torment and strikes blindly at it; combined with the krait's nocturnal habits and the mandated black night-shift shirts, plus snare-trapping to obtain the snake.",
+    "confidence": "high",
+    "quote": "the snake would lash out in all its fury at the object which the snake associated with its torment."
+  },
+  "moral_ambiguity": {
+    "value": "Robson is a genuinely superb, courageous soldier who broke the no-patrol order out of hatred for the Viet Cong after surviving a village massacre in which his captain was killed; he kills not for gain but because a bureaucratic order and Barclay's enforcement of it stripped him of rank, marriage and self-worth.",
+    "confidence": "high",
+    "quote": "\"All I was doing was out getting the enemy, and I lost my stripes and my marriage and my time in the Army.\""
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "The Vietnam Circle",
     "author": "F. J. KELLY",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 11,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Two murders: Rachel Avery drowned in bathtub after electrical shock from dropped radio; Dean Avery beaten to death with tire iron, made to look like suicide. Central question: who killed Rachel and why, and how are the deaths connected?",
+    "value": "Murder staged as accidental death: Rachel Avery knocked unconscious, drowned in her bathtub with a radio dropped in to fake electrocution. Central question: was it accident or murder, and who was her lover/killer? A second murder follows \u2014 Dean Avery beaten to death in a faked suicide.",
     "confidence": "high",
-    "quote": "He knocked him cold all right, but Avery came to on the way to the oven. There was a row, and Thurman Goodin beat him over the head with some tool he'd brought along."
+    "quote": "\"Death by drowning induced as a result of electrical shock, accidental in origin.\""
   },
   "victim": {
-    "value": "Rachel Avery: free-spirited woman trapped in loveless marriage to Dean Avery, who wanted to control her. She sought escape and threatened to expose her affair with Thurman Goodin, making her a liability to her lover.",
+    "value": "Rachel Avery, a free-spirited young wife trapped in a loveless marriage, who took lovers and threatened to expose her affair with Thurman Goodin \u2014 making her dangerous to him. Secondary victim: her husband Dean Avery, killed because he learned the truth.",
     "confidence": "high",
-    "quote": "Rachel was poetry and music. He put her in his house and wanted to own her, but it was never in her to be true, to him or to another. She flew freely and sang magnificently, and he killed her."
+    "quote": "\"She threatened him, that she would tell her husband, that she would tell his wife.\""
   },
   "closed_world": {
-    "value": "A small American town where Joseph Cameron Bane, the famous author, has lived and set all his novels. The town is tightly bound by social relationships and gossip; everyone knows everyone else's history and secrets.",
+    "value": "A small American town \u2014 the very town Bane wrote about in all his novels \u2014 where everyone knows everyone; suspects narrowed to a short list of men who might have been Rachel's lover.",
     "confidence": "high",
-    "quote": "I rode the train there and watched the scenery change until I was in the country he had written about...all of them set in the same small American town."
+    "quote": "\"I know the town and the people. I knew Rachel Avery and Dean Avery.\""
   },
   "culprit_and_motive": {
-    "value": "Thurman Goodin, the gas station owner. Motive: Rachel threatened to expose their affair to both her husband and Goodin's wife. After killing Rachel, he must kill Dean Avery when Avery discovers the truth, to prevent exposure and criminal liability.",
+    "value": "Thurman Goodin, the service-station owner and Rachel's lover, killed her to stop her from exposing the affair and forcing him to run away with her; he then murdered Dean Avery to silence the one man who knew.",
     "confidence": "high",
-    "quote": "She threatened him, that she would tell her husband, that she would tell his wife. So he went to her one afternoon and knocked her unconscious...and then he held her head under water until she drowned."
+    "quote": "\"Thurman Goodin killed him. Broke into his house in the middle of the night.\""
   },
   "resolution": {
-    "value": "Thurman Goodin is caught red-handed attempting to murder Dean Avery. Neighbors hear the commotion and apprehend him. Under police interrogation, Goodin confesses to both murders. He is jailed in Harmony Falls and will likely hang.",
+    "value": "Ironic and accidental: Bane's tape-splicing scheme to frame/provoke Dean Avery backfires \u2014 the fabricated accusation drives Goodin to murder Avery, he is caught fleeing by neighbours and confesses everything to police. Order restored by chance, not deduction; Bane is destroyed by the knowledge he misjudged his 'characters.'",
     "confidence": "high",
-    "quote": "of course he told them everything...They've put Goodin in jail in Harmony Falls, and with two bloody murders like that, he's sure to hang."
+    "quote": "\"Two of them caught him and managed to hold him until the police came, and of course he told them everything.\""
   },
   "investigator": {
-    "value": "Tim Riordan, the Irish narrator hired as companion to dying author Joseph Cameron Bane. A passive observer and listener who becomes Bane's proxy investigator, gathering intelligence in town based on Bane's deductions and literary knowledge of the community.",
+    "value": "Dual lens: Timothy Riordan, young Irish outsider hired as companion, who does the legwork and narrates; and Joseph Cameron Bane, the dying sentimental novelist who deduces from his intimate authorial knowledge of the town's people.",
     "confidence": "high",
-    "quote": "I was his companion. I listened when he spoke, talked when he wanted conversation, and was silent when silence was indicated...Perhaps you'll go to town without me. You notice things well enough."
+    "quote": "\"Make a nuisance of yourself if you have to, but see what you can learn.\""
+  },
+  "suspect_architecture": {
+    "value": "A small-town cast assembled as candidates for Rachel Avery's lover/killer: husband Dean Avery (Bane's fixed suspect, motive: jealous ownership), Hal Kasper (past affair, ruled out as not recent), Roy Teale (eliminated \u2014 devoted to his own wife), Robert Hardesty (name on list, unexamined), and Thurman Goodin (garage owner, married to her cousin, the actual murderer). Differentiated by their reactions to her death rather than by physical evidence.",
+    "confidence": "high",
+    "quote": "He and Robert Hardesty were the only names left on our list. If neither had been the woman's lover, then we were back where we'd started."
+  },
+  "red_herring": {
+    "value": "The staged accidental electrocution in the bathtub \u2014 radio dropped in, then unplugged and replugged after drowning \u2014 plus Bane's confident, novelist's misdirection that the husband Dean Avery did it.",
+    "confidence": "high",
+    "quote": "\"Death by drowning induced as a result of electrical shock, accidental in origin.\""
+  },
+  "clue_fairness": {
+    "value": "Clues given to the reader in scene as Tim observes them: Goodin's involuntary nerve twitch, his formal 'Mrs. Avery' though his wife was her cousin, his absence from the funeral, his relief-and-guilt, and the prominence of the radio in the household \u2014 all shown before the solution.",
+    "confidence": "high",
+    "quote": "A nerve twitched involuntarily, a thing he could not have controlled, but he might have covered up the other telltale signs."
+  },
+  "social_world": {
+    "value": "An intimate American small town whose hierarchy runs on generational knowledge and reputation \u2014 Bane, the once-famous novelist, 'knew everybody's father'; gossip circulates through drugstore, barbershop and funeral; scandal, marriage and memory are the currency, and protecting a woman's name outweighs legal justice.",
+    "confidence": "high",
+    "quote": "\"I know the town and the people. I knew Rachel Avery and Dean Avery. I knew her mother very well, and I knew his parents.\""
+  },
+  "alibi": {
+    "value": "Dean Avery's out-of-town alibi: he drove to Harmony Falls two days before and stayed overnight, being reached there with the news \u2014 unverified because no one checked, since the death looked accidental.",
+    "confidence": "high",
+    "quote": "\"He drove to Harmony Falls the day before yesterday and stayed overnight.\" \"And he was with people all the while?\" \"No one said.\""
+  },
+  "reveal_mechanic": {
+    "value": "Bane's planned tape-recorder scheme \u2014 splicing recorded phone speech to fabricate Goodin's voice accusing Avery \u2014 instead triggers the real reveal: Goodin panics, murders Avery in a botched fake suicide, is caught by neighbours and confesses everything to police.",
+    "confidence": "high",
+    "quote": "\"And call Avery for him, and accuse him of the murder. That's all. They'll take it from there. I expect Avery will crack.\""
+  },
+  "media_and_audience": {
+    "value": "Public narrative is set first by the coroner's inquest ('accidental'), then by barbershop and drugstore gossip, and finally by a radio newscast from Harmony Falls that Tim suppresses; Bane also frets over what court trials and newspapers would do to Rachel's memory.",
+    "confidence": "high",
+    "quote": "\"And splash her name all over the earth,\" he said, \"and raise up obscene court trials and filth in the newspapers\""
+  },
+  "investigator_wound": {
+    "value": "Joseph Cameron Bane: a dying novelist condemned by critics for sentimentality, who stopped writing on admitting they were right; the case exploits his need to make life resolve tidily and his belief that he created and owned the townspeople \u2014 a delusion the double murder destroys. Tim's parallel wound is his devotion to Bane's books.",
+    "confidence": "high",
+    "quote": "\"I thought I created them, I thought I knew them, I thought they all belonged to me.\""
+  },
+  "victims_enemies": {
+    "value": "Rachel Avery's web: her possessive husband Dean Avery, whom Bane insists 'wanted to own her'; her former lovers, including Hal Kasper (a wild fling before her marriage) and Thurman Goodin, the married service-station owner whose affair with her had cooled and whom she threatened to expose to both spouses if he wouldn't run away with her.",
+    "confidence": "high",
+    "quote": "She threatened him, that she would tell her husband, that she would tell his wife."
+  },
+  "suspect_wounds": {
+    "value": "Dean Avery looks guilty because his loveless, possessive marriage gave him a motive and his overnight trip to Harmony Falls is unverified. Thurman Goodin's wound is guilty relief \u2014 he betrays himself with a twitching nerve, calling her 'Mrs. Avery' instead of Rachel, and skipping the funeral of his wife's cousin. Bane's own wound is the dying novelist's need for his town to behave like his fiction.",
+    "confidence": "high",
+    "quote": "He seemed relieved, and guilty about feeling relieved. Now he's safe."
+  },
+  "unreliable_frame": {
+    "value": "Tim Riordan narrates in retrospect, an outsider who admits he is 'making it all up' as he extrapolates lives from Bane's novels; he also withholds the radio news from Bane. Bane is more unreliable still \u2014 his certainty of Avery's guilt is not evidence but authorial instinct, the sentimental habit of a writer who confesses everything in his books 'always came out right.'",
+    "confidence": "high",
+    "quote": "\"I thought I created them, I thought I knew them, I thought they all belonged to me.\""
+  },
+  "setting_as_constraint": {
+    "value": "A small American town \u2014 the very town Bane spent a career inventing \u2014 where everyone knows everyone's parents and gossip is gathered at the drugstore, barbershop and gas pump. Bane is doubly constrained: dying of cancer, confined to his house, he can only act through Tim and the telephone. Snow, cold, and a radio tuned to distant Harmony Falls bound what can be known and when.",
+    "confidence": "high",
+    "quote": "\"I know the town and the people. I knew Rachel Avery and Dean Avery. I knew her mother very well, and I knew his parents.\""
+  },
+  "evidence_type": {
+    "value": "Testimonial and behavioral \u2014 micro-reactions read like text: Goodin's involuntary nerve twitch, his evasive 'Mrs. Avery', Kasper's dying leer. The intended manufactured evidence is a spliced tape-recorder forgery of Goodin's voice; the case actually breaks by confession after neighbors physically seize Goodin fleeing Avery's house.",
+    "confidence": "high",
+    "quote": "A nerve twitched involuntarily, a thing he could not have controlled, but he might have covered up the other telltale signs."
+  },
+  "false_suspect": {
+    "value": "Dean Avery, the husband \u2014 condemned by Bane's novelistic certainty as the man with 'the soul of an adding machine' who killed the wife he could not own. He is innocent, and Bane's scheme to accuse him instead provokes his murder.",
+    "confidence": "high",
+    "quote": "\"Because Rachel's husband killed her, Tim.\""
+  },
+  "technical_detail": {
+    "value": "The bathtub electrocution staged as accident: knock her unconscious, undress her, drop the plugged-in radio into the water for a shock, unplug it, check for death, drown her by hand, then re-plug the radio to fake accidental origin. Countered by Bane's own technique \u2014 taping, editing and splicing recorded speech to fabricate a phone call in another man's voice.",
+    "confidence": "high",
+    "quote": "He dropped the radio into the tub to give her a shock, then unplugged it and checked to see if she were dead."
+  },
+  "moral_ambiguity": {
+    "value": "Goodin killed out of panic, not malice \u2014 a married man trapped by an affair he never meant to pursue, threatened with exposure. The deeper ambiguity is Bane's: a dying sentimental novelist who refuses police and courts to spare Rachel's memory and Goodin's marriage, arranges private justice, and thereby causes an innocent man's murder \u2014 'I am a bad writer and a bad man.'",
+    "confidence": "high",
+    "quote": "\"And splash her name all over the earth... Ruin Thurman Goodin's marriage, and ruin Rachel Avery's memory.\""
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "With a Smile for the Ending",
     "author": "LAWRENCE BLOCK",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 35,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

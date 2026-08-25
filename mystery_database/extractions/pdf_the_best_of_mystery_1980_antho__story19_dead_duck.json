@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Stabbing homicide: Karen Burson killed with a kitchen knife in her apartment. Central question: Who killed her, and how did the actual murderer escape/evade detection while framing Clyde Burson?",
+    "value": "Stabbing murder of Karen Burson with a kitchen knife in her Brooklyn apartment; central question: how could the killer have let Burson in and then vanished from a building with no hiding places or exits?",
     "confidence": "high",
-    "quote": "Homicide. She was stabbed, with a kitchen knife."
+    "quote": "\"Homicide,\" Malliner said, staring intently. \"She was stabbed, with a kitchen knife.\""
   },
   "victim": {
-    "value": "Karen Burson, estranged wife. Killable because she refused Clyde's divorce demands, screaming 'Never, never, never! You'll have to kill me first!' and drove other men (like Rayburn) into jealous rages with her hysterical behavior.",
+    "value": "Karen Burson, estranged wife who vindictively refused her husband a divorce and provoked hysterical scenes with men \u2014 likely including a lover in the building",
     "confidence": "high",
-    "quote": "Never, never, never! You'll have to kill me first!"
+    "quote": "\"She told everybody,\" he said, \"that she'd never give you a divorce. So there's your motive.\""
   },
   "closed_world": {
-    "value": "Ten-apartment residential building in Brooklyn. Ten apartments total: five tenants away for weekend, one elderly woman (85), two couples with company, one couple watching television, Rayburn, and the building janitress. Limited exits: fire escape with wet paint, skylight ladder jammed.",
+    "value": "Karen's ten-apartment Brooklyn walk-up: five tenants away, the rest alibied; fire escape wet-painted, skylight ladder jammed and dust-covered",
     "confidence": "high",
-    "quote": "Ten apartments. Five of them empty, tenants were in the country for the weekend and can prove it."
+    "quote": "\"Ten apartments,\" Malliner said. \"Five of them empty, tenants were in the country for the weekend and can prove it.\""
   },
   "culprit_and_motive": {
-    "value": "Richard Rayburn, tenant in the building. Motive: Karen drove him into a jealous/obsessive frenzy with her hysterical behavior (as she had Burson), likely rejecting him or tormenting him emotionally until he stabbed her in rage.",
+    "value": "Richard Rayburn, fourth-floor tenant and presumed lover, killed Karen (driven to it by her hysterical goading) and framed Burson by swapping name plates",
     "confidence": "high",
-    "quote": "Rayburn killed her before I came, and later on that night he put the name-plates back the way they belonged"
+    "quote": "\"Rayburn killed her before I came, and later on that night he put the name-plates back the way they belonged\""
   },
   "resolution": {
-    "value": "Burson realizes Rayburn switched the apartment nameplate cards downstairs (Karen's and the old lady's positions swapped) to misdirect Burson's initial testimony about which bell he rang. Fingerprints on the backs of the nameplates will prove Rayburn's guilt. When Burson shouts this revelation, Rayburn panics and bolts, confirming his guilt.",
+    "value": "During the forced reenactment Burson realizes the doorbell name plates had been switched; he announces Rayburn's fingerprints will be on the backs of the cards, Rayburn bolts and is seized, and the inspector rebukes Malliner",
     "confidence": "high",
-    "quote": "Rayburn's fingerprints are on the back of the two name cards. On the backs\u2014 [Rayburn's door shot open and a burly, red-headed man charged out]"
+    "quote": "\"Rayburn's fingerprints are on the back of the two name cards. On the backs\u2014\""
   },
   "investigator": {
-    "value": "Lieutenant Malliner (police detective) is the official investigator with institutional authority. However, Clyde Burson (the wrongly accused suspect) is the lens through whom we experience the mystery\u2014his mind, fears, and deductions drive the narrative.",
+    "value": "Clyde Burson, the accused suspect himself, solving the crime under interrogation; police Lt. Malliner and Det. Perinsky serve as antagonistic official investigators",
     "confidence": "high",
-    "quote": "This was between Malliner and Burson, and it was personal."
+    "quote": "\"Find out who really killed her,\" he said in a tight voice. \"You have the wrong man.\""
+  },
+  "suspect_architecture": {
+    "value": "Closed-building cast: Burson, the estranged husband with motive (wife refused divorce), opportunity (was in the apartment) and physical evidence against him; the building's ten apartments systematically eliminated \u2014 five empty, an 85-year-old woman too frail, two couples with company, a girl with her boyfriend \u2014 leaving Rayburn, the red-headed tenant, who is the actual killer but appears exonerated as an eyewitness against Burson.",
+    "confidence": "high",
+    "quote": "\"Ten apartments,\" Malliner said. \"Five of them empty... finally there's this guy Rayburn, who saw you.\""
+  },
+  "red_herring": {
+    "value": "The overwhelming physical trace evidence against Burson \u2014 fingerprints on the bureau, blood on his shoes, jacket threads on the desk, the ransacked desk \u2014 all genuine but innocently produced, plus the false movie alibi that discredits him; also Burson's speculation about a hidden killer escaping via skylight or fire escape.",
+    "confidence": "high",
+    "quote": "Fingerprints, with blown-up photographs... Traces of blood on the shoes he'd worn yesterday. Threads from his jacket"
+  },
+  "clue_fairness": {
+    "value": "Fair: the reader is given the vestibule name-plate detail early \u2014 Burson's visiting card with 'Mrs.' in red ink, and his memory of ringing 'the second bell from the end' \u2014 before the reconstruction shows that bell now belongs to the old lady, and the old lady's denial is shown to the reader in scene.",
+    "confidence": "high",
+    "quote": "\"she was still using one of my visiting cards and she'd written Mrs. in front of my name, in red ink.\""
+  },
+  "social_world": {
+    "value": "Brooklyn precinct-house power politics: a lieutenant racing to close a case before Homicide or 'the big brass' learn of it, using good-cop/bad-cop pressure on a lone civilian; Inspector O'Shea's arrival represents the higher authority that ultimately checks Malliner's careerism.",
+    "confidence": "high",
+    "quote": "\"We'll have it all wrapped up before homicide or the big brass know what we're doing.\""
+  },
+  "alibi": {
+    "value": "Burson's false alibi \u2014 a Radio City movie from three to six \u2014 collapses immediately against two eyewitnesses; Rayburn's genuine-seeming alibi is that he was on the stoop with the janitress when Burson rang, which conceals that he had already killed Karen and switched the name plates.",
+    "confidence": "high",
+    "quote": "\"I went to a movie at Radio City. I had to wait on line quite awhile.\""
+  },
+  "reveal_mechanic": {
+    "value": "Physical reenactment in the vestibule: Burson presses the second bell from the end and it is the old lady's, proving the name plates were switched on the day of the murder; the demonstrable proof is Rayburn's fingerprints on the backs of the two name cards, and Rayburn's flight confirms it.",
+    "confidence": "high",
+    "quote": "\"Rayburn's fingerprints are on the back of the two name cards. On the backs\u2014\""
+  },
+  "media_and_audience": {
+    "value": "Perception is managed inside the police institution rather than by press: Malliner packages Burson as the obvious guilty man ('there's your motive... I wish every case was as easy as this one'), and neighbours' impressions \u2014 that Burson looked drunk and green in the face \u2014 shape the public account of the crime.",
+    "confidence": "medium",
+    "quote": "\"She told everybody,\" he said, \"that she'd never give you a divorce. So there's your motive.\""
+  },
+  "investigator_wound": {
+    "value": "Burson, the accused who must investigate his own case, is undone by his own belief in truth and justice and his exhaustion; Malliner's wound is a personal grudge and hatred of killers that blinds him to alternatives, plus ambition to close the case first.",
+    "confidence": "high",
+    "quote": "Malliner, who went at Burson with the single-minded malice of a deep grudge. No reason for it."
+  },
+  "victims_enemies": {
+    "value": "Karen Burson antagonized the men in her life: her estranged husband Clyde, whom she refused a divorce and taunted with 'you want to kill me' scenes, and a presumed lover \u2014 tenant Richard Rayburn \u2014 whom she likely goaded into the same frenzy.",
+    "confidence": "high",
+    "quote": "\u201cKill me\u2014that\u2019s what you want\u2014go ahead and do it!\u201d"
+  },
+  "suspect_wounds": {
+    "value": "Burson's wound is his belief in truth and justice combined with his fatal instinct to lie: he loves Elise and wants a divorce, so he panicked at the body, ransacked the desk, wiped prints, and lied about the movie \u2014 every self-protective act deepened his guilt.",
+    "confidence": "high",
+    "quote": "He wasn\u2019t even a good liar; he believed in truth and justice and the good will of men."
+  },
+  "unreliable_frame": {
+    "value": "The story is told through Burson's guarded interior monologue: he lies openly to police while the reader sees the truth, so his 'innocent' account is compromised; Malliner's confident reconstruction is equally untrustworthy, and Rayburn's eyewitness testimony is self-serving fabrication.",
+    "confidence": "high",
+    "quote": "You weren\u2019t there, he told himself. Remember that, and stick to it. They can\u2019t prove otherwise."
+  },
+  "setting_as_constraint": {
+    "value": "A Brooklyn walk-up apartment house: entry requires ringing a name-plate bell so a tenant can buzz you in; ten apartments all accounted for, wet paint on the fire escape and undisturbed dust on the skylight ladder seal every exit \u2014 Rayburn exploited the bell/name-plate system as his alibi machine.",
+    "confidence": "high",
+    "quote": "\u201cThe fire escape had wet paint, and nobody went down it. And the ladder to the skylight was jammed.\u201d"
+  },
+  "evidence_type": {
+    "value": "Physical/forensic \u2014 latent fingerprints on the reverse of the switched vestibule name cards, the trace left by Rayburn handling and restoring the plates.",
+    "confidence": "high",
+    "quote": "\u201cRayburn\u2019s fingerprints are on the back of the two name cards. On the backs\u2014\u201d"
+  },
+  "false_suspect": {
+    "value": "Clyde Burson, the estranged husband \u2014 fingerprints, blood-traced shoes, jacket threads on the desk, a girlfriend, a refused divorce, and two eyewitnesses; framed both by circumstance and by Rayburn's arrangement.",
+    "confidence": "high",
+    "quote": "Malliner had his fall guy; he had Clyde Burson."
+  },
+  "technical_detail": {
+    "value": "The vestibule buzzer/name-plate mechanism: by swapping Karen's card with old Mrs. Henshaw's (3A), Rayburn made the already-dead Karen appear to answer her bell \u2014 Burson actually rang the old lady's bell, second from the end, and she buzzed him in.",
+    "confidence": "high",
+    "quote": "\u201che switched the name plates downstairs, Karen\u2019s and the little old lady\u2019s\u201d"
+  },
+  "moral_ambiguity": {
+    "value": "Rayburn is implicitly a man Karen drove to murder with her hysterical goading, as she once nearly drove her husband; and Malliner's railroading is not corruption but ambition and a hatred of killers \u2014 he genuinely believes the evidence.",
+    "confidence": "medium",
+    "quote": "he was certain she\u2019d had a lover, and must have whipped him into a frenzy and screamed at him the same way"
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 23380,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Dead Duck",
     "author": "LAWRENCE TREAT",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 19,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

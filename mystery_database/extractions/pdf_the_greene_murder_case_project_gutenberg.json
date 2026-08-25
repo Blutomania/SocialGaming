@@ -1,41 +1,124 @@
 {
   "crime": {
-    "value": "Double murder within the Greene family; gunshot death of at least one family member; central question involves the mechanism and psychology of the crime, with suggestion of extraordinary technical ingenuity beyond ordinary investigation.",
-    "confidence": "medium",
-    "quote": "A Double Tragedy...one of the outstanding murder mysteries of modern times\u2014a case practically unique in the annals of latter-day crime."
+    "value": "A serial campaign of shootings within one family \u2014 beginning with a 'double tragedy' (Julia killed, Ada wounded) and continuing with the shooting of Rex Greene; central question: who inside the house is systematically exterminating the Greenes, and how, given no intruder tracks and the snow evidence?",
+    "confidence": "high",
+    "quote": "Some one shot your son"
   },
   "victim": {
-    "value": "At minimum, one Greene family member (likely Chester or Rex Greene based on narrative focus); victim killable due to position within wealthy household with complex family dynamics and secrets.",
+    "value": "Members of the Greene family, killed one by one in their own mansion \u2014 Julia the eldest daughter, then Rex the younger son, with Ada wounded; the family is bound by a shared inheritance and mutual resentment under a tyrannical invalid mother, making each 'killable' as an obstacle to the plotter.",
     "confidence": "medium",
-    "quote": "your son is dead...the tragedy is causing you"
+    "quote": "the heinous plot against the Greene family would have been conclusively successful"
   },
   "closed_world": {
-    "value": "The Greene mansion in New York County; bounded household with staff (butler, cook, maids, nurse, physician), family members, and limited external access during the critical timeframe.",
+    "value": "The Greene mansion in New York, its inmates confined by the terms of family residence and by early November blizzards whose snow records footprints; suspects limited to family members, physician, and servants.",
     "confidence": "high",
-    "quote": "the Greene mansion...Characters of the Book [listing household and family members]"
+    "quote": "the early snows because it played a sinister part in the Greene affair: it was, indeed, one of the vital factors of the murderer's scheme"
   },
   "culprit_and_motive": {
-    "value": null,
+    "value": "Not disclosed in the excerpt; the killer is stated to be someone inside the household ('The Murderer in the House'), acting from 'warped psychological motives' and a plot to destroy the Greene family \u2014 presumably for the estate.",
     "confidence": "low",
-    "quote": null
+    "quote": "Of the \ufb01endish ingenuity which lay behind this terrible crime, of the warped psychological motives that inspired it"
   },
   "resolution": {
-    "value": "Resolution achieved through analytical deduction by Philo Vance using novel methods of criminal deduction beyond ordinary police investigative procedures; involves understanding the 'warped psychological motives' and 'hidden sources of technic' underlying the crime.",
+    "value": "Vance solves it through psychological deduction and analysis of the crime's 'hidden technic' rather than police routine, after weeks of analysis; police physical evidence (footprints, Bertillon, fingerprints) supplements but does not solve it.",
     "confidence": "medium",
-    "quote": "The man who elucidated the mystery...had it not been for him and his novel methods of criminal deduction, the heinous plot...would have been conclusively successful."
+    "quote": "had it not been for him and his novel methods of criminal deduction, the heinous plot ... would have been conclusively successful"
   },
   "investigator": {
-    "value": "Philo Vance, a young social aristocrat with no official police connection; intimate friend of District Attorney John F.-X. Markham; operates as amateur detective applying superior analytical methods.",
+    "value": "Philo Vance, amateur aesthete-psychologist unofficially aiding DA Markham and Sergeant Heath; narrated by Van Dine, his attorney and passive spectator.",
     "confidence": "high",
-    "quote": "Philo Vance...a young social aristocrat, an intimate friend of John F.-X. Markham, the District Attorney...no way of\ufb01cially connected with the police"
+    "quote": "a young social aristocrat, an intimate friend of John F.-X. Markham, the District Attorney"
+  },
+  "suspect_architecture": {
+    "value": "Closed-house cast of the Greene family and retainers: matriarch Mrs. Tobias Greene (bedridden paralytic), daughters Julia, Sibella, Ada, sons Chester and Rex, plus family physician Dr. Von Blon, butler Sproot, cook Gertrude Mannheim, maids Hemming and Barton, and nurse Miss Craven \u2014 all bound by a shared inheritance motive and confined opportunity as the family is picked off one by one.",
+    "confidence": "high",
+    "quote": "MRS. TOBIAS GREENE The mistress of the Greene mansion. JULIA GREENE The eldest daughter."
+  },
+  "red_herring": {
+    "value": "The staged appearance of an outside intruder \u2014 footprints on the balcony steps and carpet-tracks in the snow \u2014 directing police toward a burglar rather than a member of the household; the early snowfall is explicitly named as a deliberate factor in the murderer's scheme.",
+    "confidence": "medium",
+    "quote": "it was, indeed, one of the vital factors of the murderer's scheme."
+  },
+  "clue_fairness": {
+    "value": "The narrator claims to present a complete, unedited record \u2014 verbatim copies of documents and conversations kept in a diary \u2014 so the reader sees the same evidence as Vance; concrete clues (footprints, open doors, timing of the unheard shot) are shown in scene as investigators encounter them.",
+    "confidence": "medium",
+    "quote": "The record, therefore, which I am about to set down is the \ufb01rst complete and unedited history of the Greene holocaust."
+  },
+  "social_world": {
+    "value": "A decaying patrician New York dynasty confined by a will to the Greene mansion, ruled by a tyrannical invalid matriarch who demands service and resents neglect, with servants, nurse and family doctor dependent on the household; intersecting with official hierarchy \u2014 District Attorney, Chief Inspector, Homicide Bureau \u2014 and Vance's amateur aristocratic privilege.",
+    "confidence": "high",
+    "quote": "\"More trouble,\" she complained. \"Am I never to have any peace in my own house?\""
+  },
+  "alibi": {
+    "value": "Dr. Von Blon states he sat with Mrs. Greene half an hour then was in Sibella's room until Sproot called him, with Sibella confirming she was with him the entire time \u2014 a mutually supporting alibi; nurse Miss Craven claims she was alone in her third-floor room with the door open and heard no shot, as does Mrs. Greene.",
+    "confidence": "high",
+    "quote": "\"And was Miss Sibella with you in the room all the time?\" \"Yes\u2014the entire time.\""
+  },
+  "reveal_mechanic": {
+    "value": "Vance's psychological/aesthetic method \u2014 reading motive and character rather than physical evidence \u2014 combined with technical forensics (Bertillon expert Jerym's carpet-tracks and footprint measurements, fingerprint expert Dubois) and the hidden literary/technical 'sources' of the crime's technic.",
+    "confidence": "medium",
+    "quote": "of the strange hidden sources of its technic, the world is completely ignorant."
+  },
+  "media_and_audience": {
+    "value": "A press sensation across two continents feeding a public appetite for the spectacular, while police and the DA's office tacitly suppress the true story; reporters are expected imminently at each new death and Heath fears what the papers will do to them, and Vance's name never appeared in any published account.",
+    "confidence": "high",
+    "quote": "For over a month the press of two continents was \ufb01lled with accounts of this appalling tragedy"
+  },
+  "investigator_wound": {
+    "value": "Vance's detachment \u2014 a supercilious, cynical spectator walled off from his fellows \u2014 is worn down by weeks of 'sedulous and disheartening analysis' as the killings continue; Markham's rigid legal conscience is repeatedly provoked to helpless resentment by Mrs. Greene's cruelty.",
+    "confidence": "medium",
+    "quote": "This man who, after weeks of sedulous and disheartening analysis, eventually ferreted out the source of the horror"
+  },
+  "victims_enemies": {
+    "value": "The Greene family is its own web of grievance: siblings confined together under a tyrannical, bedridden matriarch who despises her children and they her. Mrs. Greene openly declares Rex's murder 'his own fault' and 'just punishment for the way he treated me'; the household is saturated with mutual resentment rather than external enemies.",
+    "confidence": "medium",
+    "quote": "\"Yes,\" she decided, \"he received just punishment for the way he treated me.\""
+  },
+  "suspect_wounds": {
+    "value": "Each survivor is compromised: Sibella's flippant gaiety and her private closeting with Dr. Von Blon; Von Blon's intimate, unsupervised access to the family and his eagerness to install a police nurse; the nurse Miss Craven's convenient absence upstairs; Mrs. Greene's paralysis, which both exculpates and shields her. Every alibi rests on another family member's word.",
+    "confidence": "medium",
+    "quote": "\"And was Miss Sibella with you in the room all the time?\" \"Yes\u2014the entire time.\""
+  },
+  "unreliable_frame": {
+    "value": "Narration is by Van Dine, a self-described 'passive spectator' reconstructing from notes, who admits the full truth was suppressed by police and DA. Within the story, every account \u2014 Von Blon's mutual alibi with Sibella, the nurse's claim she heard no shot, Mrs. Greene's flat denials from an open doorway \u2014 is self-serving or implausible.",
+    "confidence": "high",
+    "quote": "\"And yet Mr. Rex's door, as well as yours, was open,\" said Markham. \"I can hardly understand your not having heard the shot.\""
+  },
+  "setting_as_constraint": {
+    "value": "The sealed Greene mansion, whose terms of inheritance keep the family imprisoned together, plus the freak early snowfall of that November \u2014 the record snows preserved (and permitted the faking of) footprints, and were 'one of the vital factors of the murderer's scheme.' Movement is bounded by open doors, the upper hall, and the balcony steps.",
+    "confidence": "high",
+    "quote": "it played a sinister part in the Greene affair: it was, indeed, one of the vital factors of the murderer's scheme"
+  },
+  "evidence_type": {
+    "value": "Mixed physical/forensic trace evidence \u2014 footprints in snow and on balcony steps, carpet-tracks measured by Bertillon expert Captain Jerym, fingerprints (Captain Dubois), medical examiner findings \u2014 ultimately subordinated to Vance's psychological/documentary deduction about the crime's 'strange hidden sources of its technic.'",
+    "confidence": "high",
+    "quote": "tell him I wish he'd hustle out here to look at some carpet-tracks. Then make measurements of those footprints on the balcony steps."
+  },
+  "false_suspect": {
+    "value": "Suspicion is deliberately deflected onto an unseen outside intruder (the burglar theory supported by the balcony footprints) and onto household members such as Dr. Von Blon and the servants, notably the butler Sproot, while the surviving Greene daughters are cast as victims.",
+    "confidence": "medium",
+    "quote": "\"No one but that incompetent doctor and the impossible Sproot. Were we supposed to have had visitors this morning?\""
+  },
+  "technical_detail": {
+    "value": "The murderer works from bookish, specialized criminological knowledge \u2014 a 'technic' drawn from hidden sources \u2014 exploiting snow-track fabrication, house geometry (open doors, sound carry, the two front west rooms), and medical/pharmaceutical access; Vance's counter-technique is applied psychology and behaviorism rather than police dogmatics.",
+    "confidence": "medium",
+    "quote": "Of the fiendish ingenuity which lay behind this terrible crime... and of the strange hidden sources of its technic"
+  },
+  "moral_ambiguity": {
+    "value": "The excerpt frames the killer's motives as 'warped psychological' ones rather than simple evil, and the household's cruelty \u2014 the matriarch's tyranny and the children's mutual neglect \u2014 supplies a context in which murderous resentment becomes comprehensible; the authorities' refusal to publish the truth hints at something too pitiable and terrible to speak of.",
+    "confidence": "medium",
+    "quote": "of the warped psychological motives that inspired it... the world is completely ignorant"
   },
   "_meta": {
     "source": "mystery_database/new_sources/The Greene Murder Case | Project Gutenberg.pdf",
     "filename": "The Greene Murder Case | Project Gutenberg.pdf",
-    "text_len": 9037,
+    "text_len": 27037,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
-    "title": "The Greene Murder Case | Project Gutenberg"
+    "title": "The Greene Murder Case | Project Gutenberg",
+    "model": "claude-opus-5"
   }
 }

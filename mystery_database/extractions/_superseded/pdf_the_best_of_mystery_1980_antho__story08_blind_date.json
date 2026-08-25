@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Murder by gunshot (bullet hole in forehead). Central question: How did the victim end up in the protagonist's car trunk, and who placed her there to frame him?",
+    "confidence": "high",
+    "quote": "There was a bullet hole in her forehead."
+  },
+  "victim": {
+    "value": "Cora Miller, attractive brunette in her early thirties, married to county auditor Thurman Miller. She was 'killable' because her husband wanted to divorce her to marry another woman, but she refused to grant him one.",
+    "confidence": "high",
+    "quote": "He's got him some young blonde on the string. He wants to marry her. Cora won't give him a divorce."
+  },
+  "closed_world": {
+    "value": "Small-town social network spanning Kingsbury and nearby Encinal (~30 miles apart). The crime is executed within a few hours using local knowledge of the protagonist's movements and plans.",
+    "confidence": "high",
+    "quote": "I had lived in Kingsbury for six months. It was long enough to have seen at least once every person in a town that size."
+  },
+  "culprit_and_motive": {
+    "value": "Thurman Miller (the victim's husband) murdered Cora to free himself to marry a younger woman. Pop Lassiter aided the scheme by forging love letters, creating false photographs, and arranging to plant the body in the protagonist's car to frame him as the killer.",
+    "confidence": "high",
+    "quote": "Thurman paid me good money to set the thing up...Then he shot Cora tonight, and brought her over here...He put her in the trunk of your car."
+  },
+  "resolution": {
+    "value": "Deputy sheriff Buddy discovers the photograph was taken in Pop's back room (clock visible in corner). Pop confesses to forgery and framing; reveals Thurman as the actual murderer. Buddy arrests Thurman, who gives a complete statement. The protagonist is exonerated.",
+    "confidence": "high",
+    "quote": "The negative was blown up...whoever did the enlargement left the rim of that clock...I recognized it as the one on Pop's wall."
+  },
+  "investigator": {
+    "value": "Frank Judson (the protagonist), an innocent man falsely implicated in the murder. As the suspected culprit, he investigates his own frame-up with the aid of his friend Buddy, a deputy sheriff.",
+    "confidence": "high",
+    "quote": "She had undoubtedly ridden with me all the way from Kingsbury...My first reaction following the initial shock was one of instinctive self-preservation."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Blind Date",
+    "author": "CHARLES BOECKMAN",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 8,
+    "story_count": 63
+  }
+}

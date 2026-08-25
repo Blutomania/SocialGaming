@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Extortion and protection racket scheme targeting Montevideo taxi drivers, implemented through staged violence (cab bombing, brake tampering, assault) to coerce payment; central question: how will the taxi association respond to threats from 'The Big Ones'?",
+    "confidence": "high",
+    "quote": "Each member of your association will pay The Big Ones, through me, a small percentage of his earnings. In return. The Big Ones will see to it that nothing of a violent nature happens to your taxi drivers"
+  },
+  "victim": {
+    "value": "Montevideo Taxicab Drivers Association membership (hundreds of drivers); vulnerable because they are economically dependent on daily earnings and geographically dispersed, making collective defense difficult",
+    "confidence": "high",
+    "quote": "How will he now provide for his family? Diego has twelve children, Fernando. And only one good arm."
+  },
+  "closed_world": {
+    "value": "Montevideo taxi driver community\u2014a bounded professional association with shared infrastructure, meeting spaces, and economic interdependence; drivers cannot escape the jurisdiction or avoid the threat",
+    "confidence": "high",
+    "quote": "The Montevideo Taxicab Drivers Association... A powerful brotherhood with hundreds of members"
+  },
+  "culprit_and_motive": {
+    "value": "Fernando Quintana (taxi secretary) and Mano\u00ebl (out-of-work actor), who engineered the entire 'Big Ones' deception to extort monthly protection payments; motive is financial gain\u2014'a regular monthly income, a delicious succession of small fortunes'",
+    "confidence": "high",
+    "quote": "we have, instead, a regular monthly income, a delicious succession of small fortunes, one a month, to be enjoyed for years to come"
+  },
+  "resolution": {
+    "value": "No resolution present in excerpt. The scheme succeeds; the membership votes to pay, and Mano\u00ebl demands a renegotiated split (75/25 instead of 75/25). The text ends with Fernando planting explosives in Mano\u00ebl's car, suggesting violent elimination of the co-conspirator.",
+    "confidence": "high",
+    "quote": "I went out and hunted up his battered Volvo in the Carasco parking lot and wired enough plastic explosive under its dashboard to blow a dozen Volvos and their occupants into tiny bits"
+  },
+  "investigator": {
+    "value": "Fernando Quintana, taxi association secretary and insider-narrator; he experiences the mystery from the perpetrator's perspective, not as an investigator but as an accomplice-narrator revealing the scheme in retrospect",
+    "confidence": "high",
+    "quote": "I called Carlos Olavide, the head of our Drivers Association, from the Sisters of Mercy Hospital in Montevideo."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "The Montevideo Squeeze",
+    "author": "JAMES HOLDING",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 62,
+    "story_count": 63
+  }
+}

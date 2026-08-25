@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Murder by supernatural means (lightning strike). Central question: Did the Bald Knobbers' vengeful spirit orchestrate Ed's death, or was it coincidence?",
+    "confidence": "high",
+    "quote": "Under it, Ed was crushed like a bug under a man's heel. The big oak tree which lay on top of him had been split by a lightning bolt."
+  },
+  "victim": {
+    "value": "Ed, a Hollywood film producer. Killable because he is an outsider who disrespects local culture, dismisses warnings, plans to exploit and 'spoil' sacred land (Bald Knob) for profit.",
+    "confidence": "high",
+    "quote": "I'm just looking for local color... We want to make a movie here in the hills... We need virgin territory."
+  },
+  "closed_world": {
+    "value": "Rural Ozark hills in Missouri. The isolated farmstead and Bald Knob hill, accessible only by narrow farm roads; Ed is trapped by geography and his own arrogance in a territory governed by local folklore and justice.",
+    "confidence": "high",
+    "quote": "He wheeled the car off the highway onto a likely-looking farm-to-market road... The two stood up... went to bed. The morning sun shone on a world washed clean."
+  },
+  "culprit_and_motive": {
+    "value": "The spirit of the Andersons' son, a Bald Knobber hanged for murder. Motive: to protect the sacred Bald Knob from violation by an outsider, as he did before with another movie man.",
+    "confidence": "high",
+    "quote": "It was our son again... He lured that man under the oak tree... Some say the Bald Knobbers do perfect us yet. From strangers and the like."
+  },
+  "resolution": {
+    "value": "Ed's body is discovered under the lightning-struck oak tree. No investigation or prosecution occurs; the Andersons bury him in the hill. Justice is supernatural and local, not institutional. The cycle repeats.",
+    "confidence": "high",
+    "quote": "Get him out from there, Luke. We'll plant him in the hill, where we planted the other man."
+  },
+  "investigator": {
+    "value": "None (no traditional investigator). The reader serves as the investigator through Ed's perspective, discovering the Bald Knob legend alongside him; Luke and the woman know the truth but do not investigate.",
+    "confidence": "medium",
+    "quote": null
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 15294,
+    "protocols": [
+      "P1"
+    ],
+    "title": "One for the Crow",
+    "author": "MARY BARRETT",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 45,
+    "story_count": 63
+  }
+}

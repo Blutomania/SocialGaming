@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": null,
+    "value": "No conventional crime; the central puzzle is a supernatural encounter \u2014 an apparently long-dead Yuma Territorial Prison convict digs a hole in a new freeway and finds water. Question: was the old man real, and how did the pavement come to be chipped open and filled with water?",
     "confidence": "low",
-    "quote": null
+    "quote": "The barricades were a neat fence, framing a large chipped hole in the freeway."
   },
   "victim": {
+    "value": "Arguably the old prospector-convict himself: a man imprisoned in the 'caves'/'bake ovens' of Yuma Territorial Prison, who died unrested longing for his water hole",
+    "confidence": "medium",
+    "quote": "\u201cNobody\u2019s goin\u2019 to shut me up in that filth again. Them caves. Bake ovens.\u201d"
+  },
+  "closed_world": {
+    "value": "An isolated stretch of new freeway across empty Arizona desert between Gila Bend and Yuma, with only Harry, Myra, and the old man present",
+    "confidence": "high",
+    "quote": "\u201cThere\u2019s only the next town of Gila Bend, and then it\u2019s all empty desert.\u201d"
+  },
+  "culprit_and_motive": {
+    "value": "The ghost of the old prisoner/prospector, driven by his unfinished compulsion to find his water hole so he can rest",
+    "confidence": "medium",
+    "quote": "\u201cI gotta find my water hole. My own good pure water from my own water hole.\u201d"
+  },
+  "resolution": {
+    "value": "No investigative solution; confirmation instead \u2014 the water-filled hole, the damp rusty pick, and the permanent gouge in the fender prove the encounter was real",
+    "confidence": "medium",
+    "quote": "cannot seem to straighten out the sharp narrow gouge in the center of the left rear fender"
+  },
+  "investigator": {
+    "value": "Myra, the wife and first-person narrator, an ordinary witness recounting the event; her husband Harry supplies the deductive guess about the prison",
+    "confidence": "high",
+    "quote": "\u201cIt points the way to the Territorial Prison. I think we\u2019d just better stop off there and tell the authorities\u201d"
+  },
+  "suspect_architecture": {
+    "value": "Not a whodunit cast; effectively one enigmatic figure \u2014 the ragged old prospector encountered on the freeway \u2014 with Myra and Harry as the only other participants. Differentiation is between Myra (believes, compassionate) and Harry (skeptical, protective).",
+    "confidence": "medium",
+    "quote": "\"He's just a tired old man, Harry,\" I whispered. \"He must have walked miles.\""
+  },
+  "red_herring": {
+    "value": "The rational explanation planted repeatedly: that the old man is a living escaped convict from Yuma Territorial Prison, sun-maddened \u2014 leading the couple (and reader) to a police-report resolution rather than the supernatural one.",
+    "confidence": "high",
+    "quote": "\"You think he was an escaped prisoner?\" I asked."
+  },
+  "clue_fairness": {
+    "value": "Clues are shown to the reader as the narrator sees them: Harry's failure to see the man, the man's dread of Yuma and talk of caves/bake ovens, blood-red manacle-burned wrists, the pick striking the fender \u2014 all precede the revelation.",
+    "confidence": "high",
+    "quote": "\"Ain't from Yuma,\" the voice was defiant. \"Ain't never been to Yuma. Never. Whole life.\""
+  },
+  "social_world": {
+    "value": "Mid-century American middle-class domesticity \u2014 travelling salesman husband, wife of three teen daughters, deference to male authority \u2014 set against frontier/territorial history and the institutional cruelty of the Yuma prison system.",
+    "confidence": "medium",
+    "quote": "Like one of the girls, having to take an order without explanation, I obeyed my husband."
+  },
+  "alibi": {
+    "value": "The old man's denial of any connection to Yuma functions as a false alibi, immediately undercut by his own description of the prison's caves and ovens.",
+    "confidence": "medium",
+    "quote": "\"Nobody's goin' to shut me up in that filth again. Them caves. Bake ovens.\""
+  },
+  "reveal_mechanic": {
+    "value": "Physical residue proving the encounter was real yet impossible: the freshly chipped hole in new pavement brimming with water, the ancient rusty pick damp at the edge, and the unfixable gouge in the station wagon's fender.",
+    "confidence": "high",
+    "quote": "cannot seem to straighten out the sharp narrow gouge in the center of the left rear fender"
+  },
+  "media_and_audience": {
+    "value": "Experience filtered through television Western imagery and the prison-turned-museum's packaging of history as tourist spectacle; the narrator frames her account defensively for a disbelieving audience.",
+    "confidence": "high",
+    "quote": "It was every television Western, every sheriff who fought to get the prisoner to the Territorial Prison"
+  },
+  "investigator_wound": {
+    "value": "Myra's loneliness and guilt over a marriage thinned by Harry's constant travel; the case destroys her trust in rational explanation and leaves her sleepless and dream-haunted when he is away.",
+    "confidence": "high",
+    "quote": "I'm not much good with Harry away any more... I get nervous and have strange dreams."
+  },
+  "victims_enemies": {
     "value": null,
     "confidence": "low",
     "quote": null
   },
-  "closed_world": {
-    "value": "Desert freeway between Tucson and Yuma, Arizona - isolated stretch of modern highway bordered by vast empty desert with no towns for hours",
-    "confidence": "high",
-    "quote": "There's only the next town of Gila Bend, and then it's all empty desert."
-  },
-  "culprit_and_motive": {
-    "value": "Supernatural or ghost of former Yuma Territorial Prison inmate - driven by obsessive need to locate his water hole after decades of imprisonment",
+  "suspect_wounds": {
+    "value": "Myra's only 'suspect' status is internal \u2014 she alone sees the old man, making her look hysterical or 'berserk' to her husband; Harry's guilt at not seeing the man drives his behavior.",
     "confidence": "medium",
-    "quote": "I gotta find my water hole. My own good pure water from my own water hole. Nobody's goin' to shut me up in that filth again."
+    "quote": "\"Isn't it enough,\" he said fiercely, \"that you go suddenly berserk and get us into this fix without\u2014\""
   },
-  "resolution": {
-    "value": "No conventional resolution. The couple discovers a water hole mysteriously appeared in the freeway pavement where the old man vanished; they find his rusty pick; the encounter defies rational explanation and leaves permanent damage to their car",
-    "confidence": "medium",
-    "quote": "filling it, brimming it, cupping it, shimmering in the red and white lights, was a clear shining pool of water!"
-  },
-  "investigator": {
-    "value": "Myra Edwards - wife on a second honeymoon; witnesses the encounter and becomes obsessed with understanding what happened, alongside her husband Harry",
+  "unreliable_frame": {
+    "value": "Myra narrates in first person and opens by explicitly disclaiming her own credibility, inviting the reader to disbelieve her account of the encounter.",
     "confidence": "high",
-    "quote": "I'm not asking you to believe it, you understand. In a way, I don't even want you to. You have no idea how lucky you are if you can't believe it."
+    "quote": "I\u2019m not asking you to believe it, you understand. In a way, I don\u2019t even want you to."
+  },
+  "setting_as_constraint": {
+    "value": "The empty Arizona desert freeway between Gila Bend and Yuma \u2014 soft sand shoulders, no towns for hours, sealed air-conditioned car \u2014 isolates the couple so no witness or help exists.",
+    "confidence": "high",
+    "quote": "There\u2019s only the next town of Gila Bend, and then it\u2019s all empty desert."
+  },
+  "evidence_type": {
+    "value": "Physical/environmental residue: the rusty ancient pick damp with water, the freshly chipped water-filled hole in new pavement, and the ineradicable gouge in the car's fender.",
+    "confidence": "high",
+    "quote": "the best mechanics in town, or in the city, cannot seem to straighten out the sharp narrow gouge"
+  },
+  "false_suspect": {
+    "value": "The old prospector is taken for an escaped convict from Yuma Territorial Prison; Harry intends to report him, only to learn the prison has been a ruin and museum for a century.",
+    "confidence": "high",
+    "quote": "\u201cYou think he was an escaped prisoner?\u201d I asked."
+  },
+  "technical_detail": {
+    "value": "Local Arizona history \u2014 Yuma Territorial Prison (1825), its rock-cut 'cave' cells and manacle rings, now a museum \u2014 decodes the old man's ravings about caves, ovens and filth.",
+    "confidence": "high",
+    "quote": "Yuma Territorial Prison\u2014and Museum! 1825."
+  },
+  "moral_ambiguity": {
+    "value": "The threatening old man is not malevolent but a tormented soul, imprisoned and baked in stone cells, whose violence stems from terror of being returned and an unappeasable thirst.",
+    "confidence": "high",
+    "quote": "\u201cNobody\u2019s goin\u2019 to shut me up in that filth again. Them caves. Bake ovens.\u201d"
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 23832,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Television Country",
     "author": "CHARLOTTE EDWARDS",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 36,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

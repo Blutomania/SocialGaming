@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Bludgeoning murder of elderly woman with paperweight in her bedroom; central question: who actually committed the crime\u2014Rolfe (who planned it) or Borden (who executed it)?",
+    "value": "Bludgeoning murder of an invalid woman in her bed with a paperweight; the ironic question is who actually struck the blow when two people planned/intended the same killing on the same night",
     "confidence": "high",
-    "quote": "Mother's smashed-in head lay sideways on the pillow. She had put up quite a struggle for her poor life; one fat dimpled hand reached vainly toward the telephone"
+    "quote": "The paperweight was on the bed, where it had been dropped once it had served its purpose. Mother's smashed-in head lay sideways"
   },
   "victim": {
-    "value": "Rolfe's mother: a retired magazine editor living on a pension, now dependent on her son's trust fund for nursing care and medical expenses. She is 'killable' because her continued life drains Rolfe's inheritance.",
+    "value": "Rolfe's mother, a wheelchair-bound stroke victim whose need to draw on her son's trust fund for nursing costs made her 'killable' to him, and whose rejection letter enraged the unstable Borden",
     "confidence": "high",
-    "quote": "She's got the pension from her office\u2014Peanuts. Hardly pays the rent. That's why she's worried. She knows she's going to have to dip into your trust fund"
+    "quote": "Yet it was also the trust fund that made it absolutely necessary for him to kill Mother."
   },
   "closed_world": {
-    "value": "An apartment building: Rolfe's apartment upstairs, Mother's apartment below, Mr. Webb's apartment across the hall. Access via fire escape and connected building spaces. Late night, sparse witnesses.",
+    "value": "A single apartment house: Mother's apartment, Rolfe's flat upstairs reachable by fire escape, and attorney Mr. Webb across the hall \u2014 plus the bar next door",
     "confidence": "high",
-    "quote": "It had been snowing lightly, Rolfe found when he stepped noiselessly through his window. The fire escape steps looked ghostly under the thin white coat. The windows of the two floors between him and Mother's apartment were dark."
+    "quote": "he lived in an apartment just across the hall from hers"
   },
   "culprit_and_motive": {
-    "value": "Borden, the reformed narcotics addict: desperate, emotionally dependent, and manipulated by Rolfe into believing Mother rejected him. Borden kills in a rage of abandonment, finding Rolfe's apartment key and entering. Rolfe (secondary culprit) planned the murder but was preceded by Borden.",
+    "value": "Borden, the ex-addict collaborator, killed her in a rage after a faked rejection; the moral culprit is Rolfe, who manipulated Borden as an instrument to protect his trust fund",
     "confidence": "high",
-    "quote": "It had been snowing lightly, Rolfe found when he stepped noiselessly through his window...It could not have been Rolfe. At last his mind grasped the truth...The someone else was Borden."
+    "quote": "Someone else had beaten him to it, had carried out his plan for him. ... The someone else was Borden."
   },
   "resolution": {
-    "value": "Mr. Webb discovers Rolfe straddling the window sill wearing the blood-stained jacket, catches him red-handed. Police find Borden dead (suicide or accident from his window). Rolfe is convicted, though his guilt is ambiguous\u2014he planned the murder but did not execute it. He confesses: 'I am guilty. I did not do it, but I am guilty.'",
+    "value": "Mr. Webb catches Rolfe straddling the window in the bloodstained jacket with the weapon in his pocket; Borden dies in a fall, so no one believes Rolfe, who is convicted and executed \u2014 guilty in truth though not in act",
     "confidence": "high",
-    "quote": "He was lost. Ignominiously straddling the window sill...he looked into the granite eyes of Mr. Webb and knew that disaster was upon him...They found Borden. What was left of him."
+    "quote": "\"Tell it to the police,\" said Mr. Webb, and reached for the telephone."
   },
   "investigator": {
-    "value": "Mr. Webb: the mother's attorney and Rolfe's neighbor. He is instrumental in exposing the truth through chance discovery, though he is not a professional investigator. The reader also experiences the mystery through Rolfe's perspective.",
+    "value": "None conventional \u2014 narration is through the murderer-planner Rolfe himself; Mr. Webb serves as the accidental discovering witness",
     "confidence": "medium",
-    "quote": "He was lost. Ignominiously straddling the window sill, with one arm still trying to fumble its way out of the jacket, he looked into the granite eyes of Mr. Webb and knew that disaster was upon him."
+    "quote": "he looked into the granite eyes of Mr. Webb and knew that disaster was upon him."
+  },
+  "suspect_architecture": {
+    "value": "Inverted structure with a tiny cast: Rolfe Jackson (son, motive: trust fund drain, plans the murder), Borden (ex-addict, unstable, actual killer, manipulated as designed scapegoat), Stella the nurse (devoted, witness/doubter only), Mr. Webb (attorney, hostile, becomes discoverer). Differentiation is by motive vs. instability vs. proximity.",
+    "confidence": "high",
+    "quote": "It would never have occurred to Rolfe Jackson to kill his mother if it had not been absolutely necessary."
+  },
+  "red_herring": {
+    "value": "Rolfe's own bloodstained jacket, borrowed by Borden and left on the chintz chair, plus the extra key \u2014 intended to point at Borden but instead frames Rolfe; also the manufactured 'relapse' narrative about Borden returning to drugs.",
+    "confidence": "high",
+    "quote": "There across the chintz chair was Rolfe\u2019s jacket, the one Borden had borrowed last night."
+  },
+  "clue_fairness": {
+    "value": "Reader sees everything Rolfe sees in real time: the missing paperweight, the unfamiliar sweetish smell, the musical cigarette box, the jacket, the key on the desk, blood stiffening on the sleeve \u2014 all disclosed before the meaning lands.",
+    "confidence": "high",
+    "quote": "There was blood on the sleeve; it was already beginning to stiffen."
+  },
+  "social_world": {
+    "value": "Genteel apartment-house world of inherited money and dependency: grandfather's trust fund, mother's magazine pension, the attorney Webb as gatekeeper of funds, the paid nurse, and Rolfe's parasitic bohemian pose sustained entirely by family money.",
+    "confidence": "high",
+    "quote": "Because it was Mother\u2019s father who had set up the trust fund, and the trust fund saved Rolfe J. from having to make a living."
+  },
+  "alibi": {
+    "value": "Rolfe's planned alibi/cover story \u2014 that he left Borden alone in the apartment for ten minutes while he went upstairs for his pipe \u2014 collapses because he is caught straddling the fire-escape window with the weapon in his pocket.",
+    "confidence": "medium",
+    "quote": "It couldn\u2019t have been ten minutes. Just while I went upstairs for my pipe. I shouldn\u2019t have left him there."
+  },
+  "reveal_mechanic": {
+    "value": "Physical tableau discovery: Webb walks in on Rolfe half in the bloodied jacket, weapon pocketed, fire-escape window open \u2014 the plan executes itself against its author; capped by Rolfe's paradoxical confession.",
+    "confidence": "high",
+    "quote": "\u201cI am guilty. I did not do it, but I am guilty.\u201d"
+  },
+  "media_and_audience": {
+    "value": "Public/police contempt for addicts shapes perception \u2014 Rolfe counts on nobody believing 'a hophead', then is destroyed when Borden's death is dismissed the same way and nobody believes Rolfe's true story.",
+    "confidence": "high",
+    "quote": "who knew what made hopheads do any of the screwball things they did?"
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victims_enemies": {
+    "value": "Mrs. Jackson's only real enemy is her own son Rolfe, whose trust fund her illness will drain; secondarily Borden, the ex-addict whose desperate need for her affection turns to rage when he believes she has cast him off. Mr. Webb, her attorney and neighbor, is her ally but Rolfe's antagonist \u2014 a mutual low estimation of long standing.",
+    "confidence": "high",
+    "quote": "She knows she's going to have to dip into your trust fund to pay the nurse and the doctors' bills."
+  },
+  "suspect_wounds": {
+    "value": "Rolfe's wound is the fabricated persona 'Rolfe J.' \u2014 the hard-boiled Hemingway-among-painters mask over a short, pudgy, luxury-loving man; the crime activates it and it collapses under Webb's gaze. Borden's wound is his addiction and abandonment pattern: any slight makes him look, and feel, guilty.",
+    "confidence": "high",
+    "quote": "He felt Rolfe J.\u2014the masterful man of destiny\u2014disintegrate... into the reality of what Mr. Webb saw\u2014a pudgy, guilty wretch"
+  },
+  "unreliable_frame": {
+    "value": "Third-person narration locked inside Rolfe's self-flattering delusion \u2014 he narrates himself as a man of destiny while the reader sees a vain fraud; his account to the police is, ironically, the truth no one believes, and his final 'I did not do it, but I am guilty' is the only honest statement.",
+    "confidence": "high",
+    "quote": "\u201cI am guilty. I did not do it, but I am guilty.\u201d"
+  },
+  "setting_as_constraint": {
+    "value": "The apartment house: mother, son and attorney all live in the same building, with Webb across the hall. The fire escape gives silent night access between Rolfe's flat and his mother's window, and the nurse Stella's 7:30 departure fixes the unattended hours \u2014 but the same proximity lets Webb walk in and catch him straddling the sill.",
+    "confidence": "high",
+    "quote": "the swift, silent descent. Mother's window opening smoothly under his hands, his leg thrusting inside"
+  },
+  "evidence_type": {
+    "value": "Physical/circumstantial, capped by eyewitness testimony: the bloodstained jacket, the murder weapon (paperweight) in his pocket, the open fire-escape window with his own key lying upstairs \u2014 and Mr. Webb's eyewitness discovery of him red-handed.",
+    "confidence": "high",
+    "quote": "There was blood on the sleeve; it was already beginning to stiffen."
+  },
+  "false_suspect": {
+    "value": "Inverted: Borden, the ex-narcotics addict, is the intended false suspect who turns out to be the actual killer \u2014 while Rolfe, the true architect of the murder who did not strike the blow, becomes the man convicted.",
+    "confidence": "high",
+    "quote": "As for what Borden would try to tell the police\u2014Well, who was going to take the word of a hophead?"
+  },
+  "technical_detail": {
+    "value": "Applied psychology of the relapse-prone addict: Rolfe studies Borden's 'rejected child' pattern and violence of attachment, tests it with a broken dinner date, then engineers a faked rejection from Mother to detonate him \u2014 the murder method is a manipulated human being rather than a weapon.",
+    "confidence": "high",
+    "quote": "\u201cIt's a classic type,\u201d he would say. \u201cThe rejected child.\u201d"
+  },
+  "moral_ambiguity": {
+    "value": "Thin but present: Rolfe genuinely is fond of his mother and kills to preserve an artistic identity he believes in; the story's real ambiguity is legal-moral \u2014 he is executed for a blow he did not strike yet is wholly guilty of the death, making the verdict both unjust and exactly right.",
+    "confidence": "medium",
+    "quote": "Besides, he was really quite fond of the old girl."
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Murderer #2",
     "author": "JEAN POTTS",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 25,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

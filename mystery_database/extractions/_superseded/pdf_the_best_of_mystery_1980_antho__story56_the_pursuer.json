@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Attempted murder by knife attack; blackmail and stalking preceding it. Central question: How will the attacker be stopped, and what is the connection between the Lafayette shooting and the present threat?",
+    "confidence": "high",
+    "quote": "He said, 'You have my best knife\u2014' She spoke quickly. 'You can have it back. I'll bring it in tomorrow.' When the little rosebud smiled, it curled and opened a trifle... 'No,' he said. 'You won't bring anything anywhere tomorrow.'"
+  },
+  "victim": {
+    "value": "Talia Cory, a young woman (27) who killed her brother Bart in Lafayette, Iowa and fled to a new life. She is 'killable' because she never noticed her stalker, embodying a lifetime of social indifference that drove him to obsession and violence.",
+    "confidence": "high",
+    "quote": "You never saw me. Never knew me. Not on the street. Not on the telephone... You didn't know me at all. But you had known me all your life."
+  },
+  "closed_world": {
+    "value": "A glass-walled office on the thirty-fourth floor of a Manhattan office building during lunch hour (12:00-2:00 PM), when most staff are absent and escape is limited to one door or a thirty-four-story drop.",
+    "confidence": "high",
+    "quote": "She found herself beside her own desk, her back to the window. There were thirty-four stories of air behind her... It's lunch hour. All those high-paid snobs get out of here before twelve and they don't get back until after two."
+  },
+  "culprit_and_motive": {
+    "value": "Bunny Williams (Billy, the office boy), who knew Talia since childhood in Lafayette. Motive: obsessive revenge for lifelong social invisibility and rejection, compounded by mistakenly shooting Bart (whom he believed was Talia's lover) and losing his target.",
+    "confidence": "high",
+    "quote": "You never saw me at all, did you? Not in the sixth grade, or the seventh, or the eighth... I was so sure I had him\u2014and then it turned out to be that bully of a brother of yours. And the man I was waiting for got away. So I'll take you from him."
+  },
+  "resolution": {
+    "value": "Police detectives (Corelli and Richards) intercept the attack at the office. Richards vaults over the desk to apprehend Bunny, who in panic repeatedly jumps through successive glass walls of the office suite, ultimately falling to his death from the thirty-fourth floor.",
+    "confidence": "high",
+    "quote": "He rose in the air, only an instant after Jim had, and, like Jim, he went feet first. Through the glass wall... he rose again, and again he went through the wall... He just kept going, insanely, like an automaton on a pogo stick."
+  },
+  "investigator": {
+    "value": "Lieutenant Corelli of the police detective division, a perceptive middle-aged officer who understands the 'chain' of causality linking past crimes to present ones. He works alongside his superior and Detective Richards.",
+    "confidence": "high",
+    "quote": "Almost every evil springs from a preceding evil... Life, all life, is a chain. Your sister-in-law, for instance, did not spring hysterically into being... the only way to break the chain is to\u2014break it."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "The Pursuer",
+    "author": "HOLLY ROTH",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 56,
+    "story_count": 63
+  }
+}

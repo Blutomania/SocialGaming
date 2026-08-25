@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Serial vigilante executions of violent criminals who escaped capital punishment due to state law abolition. Central question: Can the narrator prove Sam Zodiak's guilt, and does justice justify murder?",
+    "confidence": "high",
+    "quote": "There've been five of them now, five of them since last year. The others were downstate, and didn't make such splashy headlines."
+  },
+  "victim": {
+    "value": "Five murder victims (criminals themselves): George Condon (killed Ann, a nurse); an unnamed sex murderer named Asker; three others downstate. All had evaded capital punishment through legal abolition or mental health provisions.",
+    "confidence": "high",
+    "quote": "All criminals, all murderers who'd escaped the death penalty because of our laws."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Sam Zodiak, the narrator's former army friend. Motive: vigilante justice. After his fianc\u00e9e Ann was killed by George Condon (a released mental patient), Zodiak adopted a personal code of executing murderers who escaped state-mandated punishment, framing it as moral warfare.",
+    "confidence": "high",
+    "quote": "I'm a warrior in the battle for justice...You'd never prove it to the police anyway, so I'm safe in telling you."
+  },
+  "resolution": {
+    "value": "The narrator, horrified and convinced of Zodiak's guilt and ongoing threat, murders him by pushing him off a bridge. No official investigation occurs; Zodiak's death is treated as accidental. Justice is achieved through vigilantism mirroring the crime itself.",
+    "confidence": "high",
+    "quote": "It was then that I pushed him with all my strength, saw him grasping frantically at the railing before he toppled over..."
+  },
+  "investigator": {
+    "value": "The unnamed narrator, the protagonist and Zodiak's oldest friend. He serves as both investigator and ultimate executor\u2014moved by suspicion and moral horror to confront, then eliminate, the vigilante.",
+    "confidence": "high",
+    "quote": "I arranged to fly out there the following weekend...For a moment speechless from the horror of what he was telling me."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 14036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Warrior\u2019s Farewell",
+    "author": "EDWARD D. HOCH",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 33,
+    "story_count": 63
+  }
+}

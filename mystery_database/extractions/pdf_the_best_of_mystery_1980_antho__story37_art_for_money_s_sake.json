@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Art forgery and theft: Protagonist creates a forged Delgardi painting on a salvaged Renaissance canvas, swaps it for the museum's genuine painting, and plans to profit by claiming discovery of the 'original' underneath the forged Albretti.",
+    "value": "Art forgery and theft: a museum restorer copies a Delgardi madonna, swaps his forgery for the original on display, then claims to have 'discovered' the original beneath his own Albretti canvas. Central question: which painting will the experts declare genuine?",
     "confidence": "high",
-    "quote": "I would duplicate the museum's painting, then I would remove the original from the museum and leave the copy in its place."
+    "quote": "First I would duplicate the museum's painting, then I would remove the original from the museum and leave the copy in its place."
   },
   "victim": {
-    "value": "The museum and its stakeholders (board, curator, public trust) are defrauded; the genuine Delgardi is stolen; expertise and institutional credibility are undermined by the deception.",
+    "value": "The museum (its trustees and its half-million-dollar Delgardi acquisition), targeted because the board's sudden mandatory retirement rule left Widner destitute; also the critics who scorned him",
     "confidence": "medium",
-    "quote": "The only question to be resolved was which painting was authentic."
+    "quote": "the precipitous action of the museum board left me no alternative but to feather my nest"
   },
   "closed_world": {
-    "value": "The museum itself\u2014a bounded institutional space where Widner has authorized after-hours access as a longtime employee, limiting suspects and enabling his theft.",
-    "confidence": "high",
-    "quote": "I had a key to the museum because I often worked weekends. That same night I let myself into the museum and turned off the alarms."
+    "value": "The museum's restoring and retouching section and old-masters gallery, plus Widner's skylit studio apartment \u2014 a small insider world where only a keyholding staff restorer could access and swap the painting",
+    "confidence": "medium",
+    "quote": "I had a key to the museum because I often worked weekends."
   },
   "culprit_and_motive": {
-    "value": "Carl Widner, museum restorer facing mandatory retirement at 65 with minimal assets ($900) and inadequate pension, commits the forgery to fund his retirement to the French Riviera. Motivated by financial desperation and resentment toward critics and the museum board.",
+    "value": "Carl Widner, the 64-year-old head of restoration, narrating his own crime; motive is money for retirement on the Riviera plus revenge on the critics who dismissed his art",
     "confidence": "high",
-    "quote": "the precipitous action of the museum board left me no alternative but to feather my nest against my fast approaching involuntary retirement."
+    "quote": "Almost as much as the museum board, the critics were responsible for forcing me into my chosen course of action."
   },
   "resolution": {
-    "value": "The experts' analysis, using X-rays, alcohol tests, and spectroscopic analysis, paradoxically validates the forgery as genuine by misinterpreting the cobalt blue Widner deliberately planted as evidence of old retouching. The genuine painting is authenticated; Widner's forgery is credited to Albretti. No crime is detected.",
+    "value": "Ironic reversal rather than detection: X-rays, alcohol tests and spectroscopic analysis lead the experts to unanimously certify Widner's forgery as genuine, reasoning his deliberate cobalt-blue 'flaw' proves 150-year-old retouching; he keeps no money but gains the secret triumph of his work hanging as a masterpiece",
     "confidence": "high",
-    "quote": "The cobalt blue that was used undoubtedly occurred when the painting required retouching, perhaps 150 years ago."
+    "quote": "It was the unanimous opinion of the experts that the painting on display in the museum was the genuine one."
   },
   "investigator": {
-    "value": "Carl Widner himself serves as the narrator and primary investigator of his own crime's success and ironic outcome. The reader experiences the mystery through his consciousness as he discovers his perfect forgery has been certified as genuine by experts.",
+    "value": "First-person culprit-narrator: Carl Widner, eccentric elderly restorer; the nominal investigators are the curator and the panel of art experts",
     "confidence": "high",
-    "quote": "My name is Carl Widner... What began as an intellectual exercise prepared me for reality."
+    "quote": "My name is Carl Widner. I have none of the characteristics people usually associate with men of daring."
+  },
+  "suspect_architecture": {
+    "value": "Effectively no suspect cast \u2014 inverted narrative told by the perpetrator, Carl Widner, museum restorer. The only other figures (assistant Henry Sansom, the curator, the board, the panel of experts) function as authorities/dupes rather than suspects; no one is ever suspected at all.",
+    "confidence": "medium",
+    "quote": "No one doubted for an instant that the Delgardi madonna in the museum display case was the same one that had always been there."
+  },
+  "red_herring": {
+    "value": "The two deliberate spots of cobalt blue Widner paints into his forgery as a 'giveaway' anachronism \u2014 planted misdirection that ironically backfires, being read by the experts as proof of 19th-century retouching and thus of the painting's age.",
+    "confidence": "high",
+    "quote": "I used a little cobalt blue on a couple of spots to give my copied Delgardi a date too late for the original."
+  },
+  "clue_fairness": {
+    "value": "Fully fair-play in the inverted mode: the reader is given the entire forgery technique in advance \u2014 support/ground/paint/varnish layers, pigment dating (Prussian blue 1704, cobalt 1802, synthetic ultramarine 1824), badger-hair brushes, oven-baked craquelure and scraped grime \u2014 so the experts' reasoning can be tested by the reader.",
+    "confidence": "high",
+    "quote": "the Prussian blue wasn\u2019t discovered until 1704; that cobalt blue first appeared in 1802"
+  },
+  "social_world": {
+    "value": "Institutional art-world hierarchy: museum trustees who impose mandatory retirement at 65, a curator and chairman above the restoring-and-retouching section head, and critics whose verdicts define artistic worth. Authenticity is decided by credentialed experts with half a million dollars of institutional money at stake.",
+    "confidence": "high",
+    "quote": "After all, the museum had half a million tied up in the painting on their wall."
+  },
+  "alibi": {
+    "value": "No alibi in the conventional sense; Widner's cover story is legitimate access \u2014 he holds a museum key for weekend work and turns off the alarms, then frames his possession of the second painting as an innocent restoration 'discovery'.",
+    "confidence": "medium",
+    "quote": "I had a key to the museum because I often worked weekends."
+  },
+  "reveal_mechanic": {
+    "value": "Technical authentication reversed: X rays, alcohol tests and spectroscopic analyses, plus the anachronistic cobalt-blue pigment, are used by the experts to certify the forgery as genuine and the original as a student copy \u2014 the demonstration lands on the forger himself via the curator's phone call.",
+    "confidence": "high",
+    "quote": "\u201cWe\u2019re certain. There\u2019s no doubt at all. We even found traces of cobalt blue on the museum\u2019s Delgardi.\u201d"
+  },
+  "media_and_audience": {
+    "value": "Public and critical reception is the story's real currency: crowds admiring the museum Delgardi daily, art magazines publishing praise, and expert unanimity packaging the forgery as a masterpiece \u2014 vindication for an artist the critics have always dismissed.",
+    "confidence": "high",
+    "quote": "Art magazines would publish articles praising the painting. And it would all be for my work."
+  },
+  "investigator_wound": {
+    "value": "Widner (perpetrator-narrator, the story's de facto investigator of expertise) is wounded by critical rejection and forced retirement \u2014 a sixty-four-year-old artist whose work has never been called original, driven by poverty and the craving to be validated; the case exploits exactly that vanity, and the 'defeat' becomes his consolation.",
+    "confidence": "high",
+    "quote": "The critics are all agreed, unfortunately, that I have never created anything that was rare, original, or a work of art."
+  },
+  "victims_enemies": {
+    "value": "The 'victim' is institutional \u2014 the museum. Widner's grievance web runs against the trustees who abruptly invoked mandatory retirement at sixty-five after a century of laissez-faire, and against the art critics who have publicly savaged work he never asked them to judge.",
+    "confidence": "medium",
+    "quote": "Almost as much as the museum board, the critics were responsible for forcing me into my chosen course of action."
+  },
+  "suspect_wounds": {
+    "value": "Widner himself is the only plausible suspect and his vulnerabilities are exactly what the crime activates: near-bankruptcy ($900 and a car), impending forced retirement, eccentric reputation, museum keys, and a fifteen-year career in retouching that gives him the skill. Yet nobody suspects him \u2014 because his wound (vanity as a failed painter) makes him volunteer his own 'discovery.'",
+    "confidence": "medium",
+    "quote": "my total worldly assets approximated $900 plus my car"
+  },
+  "unreliable_frame": {
+    "value": "The entire story is told by the forger himself, a self-flattering first-person narrator who insists he is a 'young sixty-four,' dismisses critics as dastardly, and re-frames total failure as triumph in the final lines. His self-assessment of his talent, and his final claim that fame beats money, cannot be trusted.",
+    "confidence": "high",
+    "quote": "The critics are all agreed, unfortunately, that I have never created anything that was rare, original, or a work of art."
+  },
+  "setting_as_constraint": {
+    "value": "The museum's closed hours, alarm systems and keyed access define the only possible substitution window \u2014 and Widner, as a section head who 'often worked weekends,' held the key and the alarm codes, so the very security that should have limited him was his instrument.",
+    "confidence": "high",
+    "quote": "I had a key to the museum because I often worked weekends. That same night I let myself into the museum and turned off the alarms"
+  },
+  "evidence_type": {
+    "value": "Forensic/material analysis of pigment \u2014 X-rays, alcohol tests and spectroscopic analysis of the layers, hinging on the anachronistic cobalt blue (undiscovered before 1802) deliberately planted as a tell.",
+    "confidence": "high",
+    "quote": "They used X rays, alcohol tests, spectroscopic analyses, and a few tests unknown to me."
+  },
+  "false_suspect": {
+    "value": "Albretti, the long-dead minor Renaissance student of Delgardi, is retroactively cast as the 'copyist' \u2014 the experts attribute Widner's forgery to him, so a centuries-dead painter absorbs the blame that should have exposed the crime.",
+    "confidence": "high",
+    "quote": "\"A copy. It wasn't uncommon for students to duplicate the works of their teacher... Yours is most likely the work of Albretti.\""
+  },
+  "technical_detail": {
+    "value": "The forger's craft as codified by van Meegeren: a painting's four layers (support, ground, paint, varnish); the impossibility of faking old canvas so an authentic period painting must be stripped and reused; period-correct pigment chronology (ultramarine, Prussian blue 1704, cobalt 1802, synthetic ultramarine 1824); badger-hair rather than hog-bristle brushes; varnish, oven-baking to craquelure, and dusting with authentic scraped grime.",
+    "confidence": "high",
+    "quote": "A forger must know, for instance, that Renaissance painters used ultramarine for the blue in their canvases; the Prussian blue wasn't discovered until 1704"
+  },
+  "moral_ambiguity": {
+    "value": "Widner is a genuinely skilled craftsman pushed out by an arbitrary retirement rule into penury, humiliated by critics whose opinions he never solicited; his theft is as much a bid for artistic vindication as for money \u2014 and he ends by renouncing the money, content that his own work hangs admired as a master's. The experts' complicity (half a million invested in the wall) makes the institution look no cleaner than he is.",
+    "confidence": "high",
+    "quote": "Or could it be that I was the victim of the experts' commercialism rather than their stupidity?"
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 14820,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Art for Money\u2019s Sake",
     "author": "DAN J. MARLOWE",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 37,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

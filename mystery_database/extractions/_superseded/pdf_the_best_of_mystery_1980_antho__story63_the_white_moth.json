@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": "Forrest Blake, elderly wealthy husband whose death is revealed to be suicide triggered by discovery of his wife's serial infidelities and betrayal by her young lover",
+    "confidence": "high",
+    "quote": "Forrest had reached in his pocket and drawn out a heavy, baroque key which he fingered thoughtfully before Janet's stunned gaze."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Janet Blake (indirectly responsible through moral culpability); Forrest Blake (direct agent of own death by suicide after discovering infidelity); the young lover acts as immediate catalyst by selling the apartment key to Forrest",
+    "confidence": "medium",
+    "quote": "It was the next morning she found him quite dead in his big bed, her first reaction was to laugh aloud in sheer relief."
+  },
+  "resolution": {
+    "value": "Janet's own death by drowning at the pool, lured by Forrest's ghost, restores cosmic balance; the white moth motif (symbolizing lost souls) provides supernatural justice",
+    "confidence": "high",
+    "quote": "That is where they found her, face down at the bottom of the quiet pool."
+  },
+  "investigator": {
+    "value": "Janet Blake herself; the reader experiences the mystery entirely through her perspective as she encounters Forrest's apparitions and gradually descends into guilt-driven madness",
+    "confidence": "high",
+    "quote": "Huddled in Forrest's big chair by the fireplace, her expertly maintained pale gold hair luminous against the dark leather, Janet reviewed the nightmare of the past weeks."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 16883,
+    "protocols": [
+      "P1"
+    ],
+    "title": "The White Moth",
+    "author": "MARGARET CHENOWETH",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 63,
+    "story_count": 63
+  }
+}

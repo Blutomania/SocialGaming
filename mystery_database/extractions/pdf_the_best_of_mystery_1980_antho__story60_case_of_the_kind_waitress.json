@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Murder by strangulation. Thelma Tompkins kills elderly Mrs. Mannerheim by strangling her at the throat. Central question: Why did the murderer resort to direct violence when poison was already being administered?",
+    "value": "Slow poisoning of an elderly woman with arsenic sprinkled in her nightly meals, culminating in her strangulation; the question is why the poison never worked \u2014 ironically it was the treatment keeping her alive",
     "confidence": "high",
-    "quote": "threw herself at the old woman...primeval instinct guiding her to the throat, the windpipe, the source of air and life"
+    "quote": "Just a little bit of powder in every dish, Thelma, just a little bit, night after night, until. . ."
   },
   "victim": {
-    "value": "Mrs. Mannerheim, a wealthy ninety-year-old widow. Killable because she is dying anyway (parasitic infection), lives in isolation in a hotel, has made Thelma her sole heir (creating motive), and is physically defenseless.",
+    "value": "Mrs. Mannerheim, a wealthy, frail widow past ninety who told her waitress she had left her a considerable legacy \u2014 and then threatened to change the will",
     "confidence": "high",
-    "quote": "She had a parasitic infection, dangerous in a woman her age...a sick old lady like that...her withered body went limp"
+    "quote": "I'm what they call a rich old widow, more money than sense... I've taken care of you.\u201d"
   },
   "closed_world": {
-    "value": "The Hotel Gordon: restaurant dining room, kitchen, and third-floor guest rooms. Thelma works there nightly; Mrs. Mannerheim lives there permanently. Small staff (Marian, Jeff) provides limited witnesses.",
+    "value": "The Hotel Gordon restaurant and the old lady's third-floor hotel room \u2014 a small circle of waitress, hostess, cook, chambermaid",
     "confidence": "high",
-    "quote": "Back and forth, between the kitchen and dining room of the Hotel Gordon Restaurant...in her eight years of residence at the Gordon Hotel"
+    "quote": "Back and forth, between the kitchen and dining room of the Hotel Gordon Restaurant"
   },
   "culprit_and_motive": {
-    "value": "Thelma Tompkins, the waitress, assisted by her brother Arthur. Motive: financial gain through inheritance promised by Mrs. Mannerheim's will, and Arthur's pressure to expedite the old woman's death to fund his business ventures.",
+    "value": "Thelma Tompkins, the waitress, egged on by her greedy brother Arthur who supplied poison from his drug store; motive is the inheritance, and finally panic when the will is threatened",
     "confidence": "high",
-    "quote": "I'm talking about money...In my will...your brother\u2014/ What if she changes her mind? What if she changes her will?"
+    "quote": "\u201cI'm calling my lawyer this minute and changing the will\u2014\u201d"
   },
   "resolution": {
-    "value": "Caught by chambermaid who witnesses the murder. Police autopsy reveals Mrs. Mannerheim was already receiving treatment (small arsenic doses) that was keeping her alive\u2014meaning the poisoning was medically counterproductive, and the strangling was unnecessary.",
+    "value": "Thelma is caught in the act by the chambermaid, arrested, and confesses the poisoning when a detective reveals the autopsy showed arsenic was the old woman's life-saving treatment",
     "confidence": "high",
-    "quote": "the chambermaid screamed...They performed an autopsy...Small doses of arsenic...the only thing that was keeping her alive"
+    "quote": "They performed an autopsy... Probably the only thing that was keeping her alive was the treatment... Small doses of arsenic."
   },
   "investigator": {
-    "value": "Police detective and coroner (implicit). Primary narrative lens is Thelma herself\u2014reader experiences her internal conflict, guilt, and deteriorating morality as she moves from kindness to murder.",
+    "value": "No true detective; the story is told through the culprit-waitress's perspective, with a nameless police interrogator delivering the final ironic revelation",
     "confidence": "medium",
-    "quote": "the tall gray hulk of a man at the police station...throughout the ordeal of arrest and imprisonment and endless questioning"
+    "quote": "the tall gray hulk of a man at the police station, who said: \u201cBut why did you have to kill her?\u201d"
+  },
+  "suspect_architecture": {
+    "value": "Minimal cast, inverted structure: Thelma the waitress (means: serves the food; motive: legacy; opportunity: nightly access) and her brother Arthur (druggist supplying poison, instigator). Peripheral figures \u2014 Marian the hostess, Jeff the cook, the California niece who inherits by blood \u2014 provide contrast rather than genuine suspicion.",
+    "confidence": "high",
+    "quote": "\"I have plenty of stuff in the back of the store, Thelma, all we'll need.\""
+  },
+  "red_herring": {
+    "value": "Mrs. Mannerheim's visible decline and her claim of never seeing a doctor misdirect both Thelma and reader into believing she is dying naturally \u2014 when the 'poison' is in fact indistinguishable from her therapeutic arsenic.",
+    "confidence": "medium",
+    "quote": "\"I haven't seen a doctor in thirty years, not since that old fool Leverett told me I was going to die.\""
+  },
+  "clue_fairness": {
+    "value": "Fair: reader is shown that the old woman inexplicably improves under increasing doses, and that she survives despite looking moribund \u2014 all before the autopsy reveals arsenic therapy.",
+    "confidence": "high",
+    "quote": "\"For another two weeks, fourteen dinners, lightly seasoned with poison, Mrs. Mannerheim seemed to improve in health\""
+  },
+  "social_world": {
+    "value": "Service-class hierarchy of a residential hotel: waitress dependent on tips and a hostile hostess, a long-term elderly resident whose wealth confers power, and sibling obligation binding Thelma to a feckless brother who owns a failing drug store.",
+    "confidence": "high",
+    "quote": "\"She probably dozed off again\u2014\" ... \"You've got tables to wait on, don't forget that.\""
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Post-mortem autopsy demonstrates a parasitic infection treated with small doses of arsenic \u2014 proving the 'poison' Thelma administered was actually the medicine keeping the victim alive, revealed by the detective in dialogue.",
+    "confidence": "high",
+    "quote": "\"She had a parasitic infection... Probably the only thing that was keeping her alive was the treatment... Small doses of arsenic.\""
+  },
+  "media_and_audience": {
+    "value": "Public perception framed as a mercy killing rationalization; onlookers already expect the old woman's death, and the crime is exposed only by a chambermaid's scream and the ensuing arrest and questioning.",
+    "confidence": "medium",
+    "quote": "\"Everybody who knows the old woman thinks she's ready to kick the bucket; they'll never be suspicious.\""
+  },
+  "investigator_wound": {
+    "value": "No formal investigator wound; the psychological pressure sits on Thelma, whose loneliness, plainness and devotion to her brother are exploited. The interrogating policeman only unknowingly presses that guilt.",
+    "confidence": "low",
+    "quote": "\"But why did you have to kill her? Why couldn't you wait? A sick old woman like that. . .\""
+  },
+  "victims_enemies": {
+    "value": "Mrs. Mannerheim's 'enemies' are the people closest to her: Thelma, the waitress she befriended and named in her will, whose kindness curdles into resentment; Arthur, Thelma's parasitic younger brother who covets the legacy; and, peripherally, the indifferent California niece and hostess Marian, who resents the old lady as a nuisance disrupting her dining room.",
+    "confidence": "high",
+    "quote": "\u201cI have a niece in California, and she\u2019ll have to get something... but she doesn\u2019t care two cents worth for me.\u201d"
+  },
+  "suspect_wounds": {
+    "value": "Thelma's wound is a drab, unloved forty-four-year-old spinsterhood and a smothering, guilt-driven love for her feckless brother; the promise of the legacy activates a lifetime of deprivation into murderous impatience. Arthur's wound is arrested boyhood and failure at the drug store, which makes him predatory toward his sister's hopes.",
+    "confidence": "high",
+    "quote": "\u201cI\u2019ve had to work for what I wanted, Mrs. Mannerheim... You think I like greasy kitchens and dirty dishes\u201d"
+  },
+  "unreliable_frame": {
+    "value": "Thelma's self-account is the unreliable frame: she narrates her attentiveness as kindness while suppressing the wish for the old woman's death, denying hatred even as she poisons the food nightly. Mrs. Mannerheim is also unreliable, presenting herself as a dying woman untreated by doctors while concealing an arsenic regimen.",
+    "confidence": "high",
+    "quote": "\u201cHate? What are you talking about? Why, I\u2019m very fond of the old lady\u2014\u201d"
+  },
+  "setting_as_constraint": {
+    "value": "The Hotel Gordon restaurant fixes everything: the old woman's unvarying eight-year menu at the same corner table, served nightly by the same waitress, gives Thelma sole, unremarkable access to her food. The hotel's residential floors let her carry trays upstairs alone. But the same routine constrains her \u2014 she must poison in imperceptible pinches, and when she goes up without her apron pocket's powder, improvisation becomes strangulation.",
+    "confidence": "high",
+    "quote": "\u201cin her eight years of residence at the Gordon Hotel, her menu had never varied\u201d"
+  },
+  "evidence_type": {
+    "value": "Forensic \u2014 the post-mortem autopsy toxicology and pathology report, revealing a parasitic infection and therapeutic arsenic dosing; supplemented by eyewitness testimony (the chambermaid catching Thelma at the throat) and Thelma's own confessional slip to the detective.",
+    "confidence": "high",
+    "quote": "\u201cThey performed an autopsy, and they know. She had a parasitic infection... Small doses of arsenic.\u201d"
+  },
+  "false_suspect": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "technical_detail": {
+    "value": "Pharmacological: arsenic in sub-lethal doses is a historical treatment for parasitic infection, so Arthur's drug-store powder, administered nightly in tiny amounts, actually sustained Mrs. Mannerheim rather than killing her. The druggist's access to 'stuff in the back of the store' plus the old woman's deadened taste buds make the method plausible \u2014 and the ironic reversal is what exposes the whole plot.",
+    "confidence": "high",
+    "quote": "\u201cJust a little bit of powder in every dish, Thelma... her taste buds shot the way they are.\u201d"
+  },
+  "moral_ambiguity": {
+    "value": "Thelma is a genuinely kind woman \u2014 eleven years unbroken service, real tears for a lonely old lady \u2014 corrupted incrementally: first hope, then an unspoken wish, then Arthur's 'mercy killing' rationalization, and finally a rage born of a lifetime of having nothing. The killing is unpremeditated, provoked by the threatened will, and she goes to prison protecting her brother's name. Her victim, meanwhile, courted death and half-invited it.",
+    "confidence": "high",
+    "quote": "\u201cShe seemed so ready for death, so well prepared for its coming that her withered body went limp\u201d"
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 22538,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Case of the Kind Waitress",
     "author": "HENRY SLESAR",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 60,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Attempted murder by knife attack; blackmail and stalking preceding it. Central question: How will the attacker be stopped, and what is the connection between the Lafayette shooting and the present threat?",
+    "value": "Blackmail, assault and attempted murder of Talia Cory by an anonymous stalker; entwined with the earlier shooting death of her brother Bart \u2014 central question: whose bullet actually killed Bart, and who is the whispering pursuer?",
     "confidence": "high",
-    "quote": "He said, 'You have my best knife\u2014' She spoke quickly. 'You can have it back. I'll bring it in tomorrow.' When the little rosebud smiled, it curled and opened a trifle... 'No,' he said. 'You won't bring anything anywhere tomorrow.'"
+    "quote": "\"I'm being blackmailed. That's why I don't want to tell it to everyone.\""
   },
   "victim": {
-    "value": "Talia Cory, a young woman (27) who killed her brother Bart in Lafayette, Iowa and fled to a new life. She is 'killable' because she never noticed her stalker, embodying a lifetime of social indifference that drove him to obsession and violence.",
+    "value": "Bartholomew Cory, Talia's bullying brother, shot climbing in a window at 3 a.m. and mistaken for a prowler; also Talia herself, targeted because she was beautiful, admired and 'snobbish' \u2014 she never noticed her stalker",
     "confidence": "high",
-    "quote": "You never saw me. Never knew me. Not on the street. Not on the telephone... You didn't know me at all. But you had known me all your life."
+    "quote": "\"I shot and killed my brother, Bartholomew Cory.\""
   },
   "closed_world": {
-    "value": "A glass-walled office on the thirty-fourth floor of a Manhattan office building during lunch hour (12:00-2:00 PM), when most staff are absent and escape is limited to one door or a thirty-four-story drop.",
-    "confidence": "high",
-    "quote": "She found herself beside her own desk, her back to the window. There were thirty-four stories of air behind her... It's lunch hour. All those high-paid snobs get out of here before twelve and they don't get back until after two."
+    "value": "The small Iowa town of Lafayette (where everyone knew Talia all her life) and its counterpart, the sealed glass-walled thirty-fourth-floor office and her locked apartment in the city",
+    "confidence": "medium",
+    "quote": "\"You don't understand small towns.\""
   },
   "culprit_and_motive": {
-    "value": "Bunny Williams (Billy, the office boy), who knew Talia since childhood in Lafayette. Motive: obsessive revenge for lifelong social invisibility and rejection, compounded by mistakenly shooting Bart (whom he believed was Talia's lover) and losing his target.",
+    "value": "Bunny Williams, the invisible delivery boy from Talia's hometown now working as 'Billy' the office boy; obsessive resentment at never being seen by her \u2014 he made the obscene calls and fired the shot that killed Bart, believing it was her 'lover'",
     "confidence": "high",
-    "quote": "You never saw me at all, did you? Not in the sixth grade, or the seventh, or the eighth... I was so sure I had him\u2014and then it turned out to be that bully of a brother of yours. And the man I was waiting for got away. So I'll take you from him."
+    "quote": "\"when I saw him crawling in that window, I was so sure I had him\u2014and then it turned out to be that bully of a brother of yours\""
   },
   "resolution": {
-    "value": "Police detectives (Corelli and Richards) intercept the attack at the office. Richards vaults over the desk to apprehend Bunny, who in panic repeatedly jumps through successive glass walls of the office suite, ultimately falling to his death from the thirty-fourth floor.",
+    "value": "Ballistics reopen the Bart shooting ('Didn't shoot Bart?'), Talia recognizes Bunny by his voice mannerism 'Miss-Cory-please'; Corelli and Richards corner him in the office and he dies vaulting through the glass walls",
     "confidence": "high",
-    "quote": "He rose in the air, only an instant after Jim had, and, like Jim, he went feet first. Through the glass wall... he rose again, and again he went through the wall... He just kept going, insanely, like an automaton on a pogo stick."
+    "quote": "\"it was just\u2014just the way you said, 'Miss-Cory-please.' In school you used to say, 'Miss-James-please'\""
   },
   "investigator": {
-    "value": "Lieutenant Corelli of the police detective division, a perceptive middle-aged officer who understands the 'chain' of causality linking past crimes to present ones. He works alongside his superior and Detective Richards.",
+    "value": "Dual lens: Talia Cory, the victim-confessed-killer who narrates the ordeal, and Lieutenant Corelli, the perceptive official detective with his 'chain of life' theory",
     "confidence": "high",
-    "quote": "Almost every evil springs from a preceding evil... Life, all life, is a chain. Your sister-in-law, for instance, did not spring hysterically into being... the only way to break the chain is to\u2014break it."
+    "quote": "\"Almost every evil springs from a preceding evil... Life, all life, is a chain.\""
+  },
+  "suspect_architecture": {
+    "value": "A deliberately thin, near-invisible suspect field: the unknown obscene phone caller from Lafayette, the blackmailer/knife-wielder in New York, and the anonymous background figures of Talia's office (Carl Neilson, Mr. Long, Janet Furman, and Billy the office boy). The culprit is hidden by social invisibility \u2014 Billy the office boy is also Bunny Williams, a schoolmate Talia never noticed. Differentiation is by degree of visibility rather than motive/opportunity.",
+    "confidence": "medium",
+    "quote": "not as Bunny Williams nor as Billy, the office boy"
+  },
+  "red_herring": {
+    "value": "The 'solved' shooting of Bart Cory \u2014 Talia's confessed killing of her brother, treated as a closed Iowa case \u2014 misdirects from the fact that Bunny fired the fatal shot, mistaking Bart for Talia's imagined 'lover'.",
+    "confidence": "medium",
+    "quote": "\u201cThen,\u201d she said, \u201cyou really shot Bart by mistake. They\u2019ll understand that it was a mistake.\u201d"
+  },
+  "clue_fairness": {
+    "value": "Clues are planted in scene text before interpretation: the recording machine and tape Talia hands to Corelli, Corelli's remark that the recording is 'screwy' and his question about the whisperer, and Billy the office boy's repeated sideways glances during his rounds \u2014 all shown to the reader in advance of the reveal.",
+    "confidence": "high",
+    "quote": "there is something particularly screwy about that recording. That voice on the phone in Lafayette\u2014was it a very high voice"
+  },
+  "social_world": {
+    "value": "Two hierarchies: the small-town gossip economy of Lafayette, Iowa, where scandal and appearance govern behaviour and Bart's domestic tyranny traps the family; and the thirty-four-story corporate office where 'high-paid snobs' occupy glass boxes and the stockroom office boy punches a time clock, invisible to those above him.",
+    "confidence": "high",
+    "quote": "\u201cIt\u2019s lunch hour,\u201d Bunny Williams said. \u201cAll those high-paid snobs get out of here before twelve\u201d"
+  },
+  "alibi": {
+    "value": "Not a classic alibi structure; the nearest equivalent is Bunny's routine cover \u2014 his precisely timed lunch hour and time-clock punching that make his movements unremarkable and accounted for.",
+    "confidence": "low",
+    "quote": "I go at exactly twelve-thirty and I get back at one-thirty, in time to punch the time clock."
+  },
+  "reveal_mechanic": {
+    "value": "Psychological/auditory recognition: Talia identifies the killer not by sight but by a verbal mannerism \u2014 the flattened schoolroom cadence 'Miss-Cory-please' matching 'Miss-James-please' \u2014 corroborated by the dyed hair and the recorded voice.",
+    "confidence": "high",
+    "quote": "\u201cit was just\u2014just the way you said, \u2018Miss-Cory-please.\u2019 In school you used to say, \u2018Miss-James-please\u2019\u201d"
+  },
+  "media_and_audience": {
+    "value": "Perception is managed through rumour and small-town scandal rather than press: Talia refuses to report the obscene calls because a phone tap would leak 'delicious bits of scandal'; in the office she packages her injuries as a dentist visit while colleagues speculate.",
+    "confidence": "high",
+    "quote": "some of them would have repeated those\u2014delicious bits of scandal"
+  },
+  "investigator_wound": {
+    "value": "Corelli's vulnerability is his moral conviction that 'all life is a chain' of evil begetting evil \u2014 a philosophy he half-apologizes for as unbecoming a cop, which drives him to reopen a closed case rather than let buried links lie.",
+    "confidence": "medium",
+    "quote": "\u201cthe only way to break the chain is to\u2014break it. Not try to bury a few links.\u201d"
+  },
+  "victims_enemies": {
+    "value": "Bart Cory, the brother Talia shot, was a bully hated within his own household: he blocked their 82-year-old father's move to the Templeton Home to grab the house, and trapped Talia in Lafayette. He was also mistaken for Talia's supposed 'lover' by his actual killer.",
+    "confidence": "high",
+    "quote": "He was a mean man, a bully. And he was largely responsible for my being\u2014caught."
+  },
+  "suspect_wounds": {
+    "value": "Talia herself is the primary apparent culprit: she admits shooting her brother, disliked him, and can offer no clean account of why she fired after recognizing him \u2014 her shame about the obscene phone calls kept her silent and made her look guilty.",
+    "confidence": "high",
+    "quote": "When I realized it was Bart, I was just about to fire the gun. If I had been normal, perhaps I could have stopped."
+  },
+  "unreliable_frame": {
+    "value": "Talia's own account frames the narrative \u2014 withholding her name from police, lying about her bruises ('went to the dentist'), and admitting she may have distorted the shooting; her memory is also incomplete (she has no recollection of Bunny Williams at all).",
+    "confidence": "high",
+    "quote": "\u201cWent to the dentist this morning.\u201d"
+  },
+  "setting_as_constraint": {
+    "value": "The thirty-fourth-floor office of glass boxes: transparent walls that should expose the attack but hold no one during the lunch hour, and it is a reflection in the window that finally betrays the police's approach; the glass walls become the escape route and death trap.",
+    "confidence": "high",
+    "quote": "\u201cIt's lunch hour... All those high-paid snobs get out of here before twelve and they don't get back until after two.\u201d"
+  },
+  "evidence_type": {
+    "value": "Testimonial/audio \u2014 Talia's tape recording of the blackmailer's voice, taken by police to be re-recorded and analyzed; plus ballistics on the bullets that clear her of Bart's shooting.",
+    "confidence": "high",
+    "quote": "\u201cin simple police terms, there is something particularly screwy about that recording.\u201d"
+  },
+  "false_suspect": {
+    "value": "Talia Cory herself \u2014 the confessed shooter of her brother, who is in fact innocent of that killing; the bullets came from Bunny Williams.",
+    "confidence": "medium",
+    "quote": "\u201c\u2018Didn't shoot Bart?\u2019 you said. So I know that they finally decided to stop looking at you\u201d"
+  },
+  "technical_detail": {
+    "value": "The invisibility of service labor plus voice/manner as identification: Bunny Williams dyed his hair and worked as 'Billy' the office boy, unnoticed; he is exposed only by his verbal tic, the schoolboy cadence 'Miss-Cory-please'. Also the stockroom time clock fixing his movements.",
+    "confidence": "high",
+    "quote": "\u201cit was just\u2014just the way you said, \u2018Miss-Cory-please.\u2019 In school you used to say, \u2018Miss-James-please\u2019\u201d"
+  },
+  "moral_ambiguity": {
+    "value": "Bunny Williams is a lifelong invisible nonentity, ignored and unconsciously snubbed by Talia since childhood \u2014 humiliated when he asked her on a picnic, treated as an anonymous delivery boy. His murderousness grows from a craving to be seen and to exist; Corelli's 'chain of life' philosophy frames evil as inherited from preceding evil rather than innate.",
+    "confidence": "high",
+    "quote": "\u201cthere isn't anyone alive to prove to me all the time that I'm nothing, and I start to be something\u201d"
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "The Pursuer",
     "author": "HOLLY ROTH",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 56,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

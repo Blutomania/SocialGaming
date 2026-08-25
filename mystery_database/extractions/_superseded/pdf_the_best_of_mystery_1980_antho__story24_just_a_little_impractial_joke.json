@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Murder of wife Miriam Chesterton by stabbing with scissors, staged as accidental death during a practical joke reenactment; central question: was it genuine accident or premeditated murder disguised as self-defense?",
+    "confidence": "high",
+    "quote": "Harry Chesterton had finally found the one absolutely foolproof way to murder his wife."
+  },
+  "victim": {
+    "value": "Miriam Chesterton, nagging wife of seven years whose constant criticism of Harry's get-rich-quick schemes and financial irresponsibility made her an obstacle to his ambitions and his pursuit of wealthy Cathy.",
+    "confidence": "high",
+    "quote": "How could a man concentrate on his ambitions and plans and prospects with a nagging wife hounding him all the time?"
+  },
+  "closed_world": {
+    "value": "Two-family apartment building at 148 Coleridge Drive; bathroom as primary crime scene with neighbors in proximity; police and witnesses immediately present post-discovery.",
+    "confidence": "high",
+    "quote": "The house was absolutely full of people. There were people with cameras and pieces of chalk and black bags crammed into the bathroom."
+  },
+  "culprit_and_motive": {
+    "value": "Harry Chesterton, the husband, premeditated the murder over three years to marry wealthy Cathy and escape middle-class insecurity; motivated by greed, ambition, and escape from marital criticism.",
+    "confidence": "high",
+    "quote": "After three years of careful planning, of working on and rejecting scheme after scheme after scheme, Harry Chesterton had finally found the one absolutely foolproof way to murder his wife."
+  },
+  "resolution": {
+    "value": "Detective Hotchkiss grows suspicious after Harry kills a second man (with a beer bottle, mistaking a cigarette lighter for a gun) in nearly identical circumstance; pattern of violence and Harry's eventual mention of Cathy under interrogation exposes his motive.",
+    "confidence": "medium",
+    "quote": "They talked for fourteen hours before Harry mentioned Cathy."
+  },
+  "investigator": {
+    "value": "Detective Hotchkiss, weary but watchful police detective with institutional authority; his patient skepticism and pattern-recognition uncover the premeditation behind Harry's ostensibly foolproof alibi.",
+    "confidence": "high",
+    "quote": "Detective Hotchkiss, behind a perfunctory sympathy, was watchful and expressionless."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Just a Little Impractial Joke",
+    "author": "RICHARD STARK",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 24,
+    "story_count": 63
+  }
+}

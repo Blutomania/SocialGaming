@@ -1,45 +1,129 @@
 {
   "crime": {
-    "value": "Murder by supernatural means (lightning strike). Central question: Did the Bald Knobbers' vengeful spirit orchestrate Ed's death, or was it coincidence?",
-    "confidence": "high",
-    "quote": "Under it, Ed was crushed like a bug under a man's heel. The big oak tree which lay on top of him had been split by a lightning bolt."
+    "value": "Death of an outsider on Bald Knob \u2014 apparently accidental (crushed by a lightning-split oak) but framed as a supernatural/ritual killing and secret burial; earlier a film director vanished the same way. Question: was this accident, ghost, or murder by the Andersons?",
+    "confidence": "medium",
+    "quote": "The big oak tree which lay on top of him had been split by a lightning bolt. Under it, Ed was crushed like a bug"
   },
   "victim": {
-    "value": "Ed, a Hollywood film producer. Killable because he is an outsider who disrespects local culture, dismisses warnings, plans to exploit and 'spoil' sacred land (Bald Knob) for profit.",
+    "value": "Ed, an arrogant Hollywood location scout who intended to bring a film crew and 'spoil' the hills \u2014 an outsider with contempt for locals, hence 'killable' by hill custom",
     "confidence": "high",
-    "quote": "I'm just looking for local color... We want to make a movie here in the hills... We need virgin territory."
+    "quote": "\"In this Godforsaken place,\" he said to himself, \"the hillbillies will be glad for the chance at a little cash.\""
   },
   "closed_world": {
-    "value": "Rural Ozark hills in Missouri. The isolated farmstead and Bald Knob hill, accessible only by narrow farm roads; Ed is trapped by geography and his own arrogance in a territory governed by local folklore and justice.",
+    "value": "An isolated Ozark hill farm and the taboo Bald Knob above it, near Ozark, Missouri (pop. 800), where outsiders are unwelcome and locals keep their own law",
     "confidence": "high",
-    "quote": "He wheeled the car off the highway onto a likely-looking farm-to-market road... The two stood up... went to bed. The morning sun shone on a world washed clean."
+    "quote": "primitive passions and strong hatreds are bred in the hills, and old ideas and old grudges die hard"
   },
   "culprit_and_motive": {
-    "value": "The spirit of the Andersons' son, a Bald Knobber hanged for murder. Motive: to protect the sacred Bald Knob from violation by an outsider, as he did before with another movie man.",
+    "value": "Per the Andersons, the ghost of their hanged Bald Knobber son lured Ed under the oak; effectively Luke and the woman, who deliberately sent him up the hill to protect the hills from outsiders (as with the earlier movie director)",
     "confidence": "high",
-    "quote": "It was our son again... He lured that man under the oak tree... Some say the Bald Knobbers do perfect us yet. From strangers and the like."
+    "quote": "\"It was our son again,\" the woman said with pride. \"He lured that man under the oak tree.\""
   },
   "resolution": {
-    "value": "Ed's body is discovered under the lightning-struck oak tree. No investigation or prosecution occurs; the Andersons bury him in the hill. Justice is supernatural and local, not institutional. The cycle repeats.",
+    "value": "No investigation or justice: the couple bury the body in the hill, evidence washed away by the storm, the folk-ritual chant closing the story",
     "confidence": "high",
-    "quote": "Get him out from there, Luke. We'll plant him in the hill, where we planted the other man."
+    "quote": "\"Get him out from there, Luke. We'll plant him in the hill, where we planted the other man.\""
   },
   "investigator": {
-    "value": "None (no traditional investigator). The reader serves as the investigator through Ed's perspective, discovering the Bald Knob legend alongside him; Luke and the woman know the truth but do not investigate.",
+    "value": "No detective; an omniscient narrator with Ed the doomed outsider as viewpoint \u2014 reader learns the truth from the killers themselves",
     "confidence": "medium",
+    "quote": "Any of these local experts could have warned Ed about the risks he was taking, but he might not have listened"
+  },
+  "suspect_architecture": {
+    "value": "Effectively two living suspects plus a supernatural third: Luke Anderson and his wife ('Ma'), the elderly hill couple with motive (protecting the hills from outsiders and grief over their hanged son) and opportunity; the credited 'killer' is their dead son's ghost/Bald Knobber spirit. A prior victim (the earlier movie director) establishes pattern.",
+    "confidence": "medium",
+    "quote": "\"It was our son again,\" the woman said with pride. \"He lured that man under the oak tree.\""
+  },
+  "red_herring": {
+    "value": "The lightning-split oak presents the death as pure natural accident \u2014 reinforced by the storm, the 'rain crow' omen, and the washed-away footprints \u2014 misdirecting from the couple's complicity and the pattern of disappeared outsiders.",
+    "confidence": "medium",
+    "quote": "The big oak tree which lay on top of him had been split by a lightning bolt."
+  },
+  "clue_fairness": {
+    "value": "Fairly seeded: the earlier movie's vanished director, the couple's veiled warnings, the son hanged as a Bald Knobber, the 'spirits never left' legend, and Luke's rain prediction are all given to the reader before the ending.",
+    "confidence": "high",
+    "quote": "the director actually dropping out of sight, never to be seen again"
+  },
+  "social_world": {
+    "value": "Ozark hill country insularity versus Hollywood money: vigilante Bald Knobber self-policing replacing absent law, communal loyalty that refused to hang its own, and deep hostility to outsiders who 'spoil' the land.",
+    "confidence": "high",
+    "quote": "The hills don't tolerate no alien ways."
+  },
+  "alibi": {
+    "value": "The couple's implicit alibi is that they stayed at the farmhouse and went to bed during the storm while Ed climbed alone \u2014 attributing the death to weather and to their son's spirit.",
+    "confidence": "medium",
+    "quote": "Luke and the woman looked at one another wordlessly, and went to bed."
+  },
+  "reveal_mechanic": {
+    "value": "Confession by casual dialogue at the corpse: the woman's proud statement plus 'where we planted the other man' retroactively converts an accident into serial disposal, sealed by the corn-planting chant.",
+    "confidence": "high",
+    "quote": "\"We'll plant him in the hill, where we planted the other man.\""
+  },
+  "media_and_audience": {
+    "value": "Local folklore (the Bald Knobber legend, cursed hill, spirits) functions as the community's narrative cover; the earlier disaster was packaged by the press as sensational mystery that ironically saved the film at the box office.",
+    "confidence": "high",
+    "quote": "That had caused quite a stir in the press. It was, in fact, the only thing which saved the movie from being a box-office disaster."
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
     "quote": null
+  },
+  "victims_enemies": {
+    "value": "Ed, a Hollywood location scout, is an outsider whose contempt for the hill people and plan to 'spoil' the land makes enemies of the entire community \u2014 chiefly Luke and his wife, who lost their son to outsider-brought law and grief, and who already disposed of a previous movie man the same way.",
+    "confidence": "high",
+    "quote": "\"Just like he done before, with that other movie man.\""
+  },
+  "suspect_wounds": {
+    "value": "Luke and Ma carry the wound of a hanged son and a desecrated Bald Knob; their courtesy masks the grievance the visitor's arrival reactivates.",
+    "confidence": "medium",
+    "quote": "\"The Bald Knobbers came to trial, and the jury said they had to be hanged. One of those was our son.\""
+  },
+  "unreliable_frame": {
+    "value": "The wife's folklore narration is the frame: she tells the Bald Knobber legend as history and warning while concealing that she and Luke are steering Ed to his death; her 'it was our son again' attributes to a ghost what her own manipulation accomplished.",
+    "confidence": "high",
+    "quote": "\"Go, if you want.\" There was warning in her tone\u2014and promise."
+  },
+  "setting_as_constraint": {
+    "value": "Remote Ozark hill country: no witnesses, no law nearby, a bald knob shunned by locals, and a spring thunderstorm that erases footprints \u2014 the couple exploit local knowledge and terrain to make murder indistinguishable from accident.",
+    "confidence": "high",
+    "quote": "Ed's footprints were washed away. There was no sign that anyone had been there before them.",
+    "confidence_note": null
+  },
+  "evidence_type": {
+    "value": "Environmental/physical: the lightning-split oak crushing the body reads as natural accident; the only real evidence is the couple's own admission and the burial site of the earlier victim.",
+    "confidence": "high",
+    "quote": "The big oak tree which lay on top of him had been split by a lightning bolt."
+  },
+  "false_suspect": {
+    "value": "The vanished son / the Bald Knobber ghost is offered as the 'culprit', deflecting from the living couple who engineered the death.",
+    "confidence": "medium",
+    "quote": "\"It was our son again,\" the woman said with pride. \"He lured that man under the oak tree.\""
+  },
+  "technical_detail": {
+    "value": "Hill-country weather lore: the rain crow foretells a storm, and any hill man knows not to shelter under a tree in a thunderstorm \u2014 the ignorance of this makes the method work.",
+    "confidence": "high",
+    "quote": "\"Any hill man knows better than to go under a tree in a thunderstorm.\""
+  },
+  "moral_ambiguity": {
+    "value": "The couple kill to protect land, livelihood and a way of life from developers who 'spoil' the hills, and out of unhealed grief for a son hanged by outsiders' law \u2014 defense of home rather than malice.",
+    "confidence": "high",
+    "quote": "\"Spoilt for living. Spoilt for farming. Spoilt for looking at. You think to do that here...?\""
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 15294,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "One for the Crow",
     "author": "MARY BARRETT",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 45,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

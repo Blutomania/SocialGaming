@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Stabbing murder of Sarah Fletcher with a switchblade knife across the abdomen. Central question: Did the husband Gerald Fletcher commit the crime, or was it the burglar who entered through the kitchen window?",
+    "value": "Stabbing/disembowelment of a housewife in her apartment, staged to look like a burglary gone wrong; central question: was the burglar the killer, or did the husband finish off a wounded woman in his four minutes alone with her?",
     "confidence": "high",
-    "quote": "his wife lay disemboweled on the bedroom floor in a pool of her own blood."
+    "quote": "his wife lay disemboweled on the bedroom floor in a pool of her own blood"
   },
   "victim": {
-    "value": "Sarah Fletcher, a married woman leading a double life as 'Sadie Collins,' engaging in serial infidelity to punish her husband Gerald Fletcher for refusing to sign separation papers. She was killable because her promiscuity and emotional manipulation made her a target for both her husband's rage and her own self-destructive behavior.",
+    "value": "Sarah Fletcher, wife of criminal lawyer Gerald Fletcher, who refused to sign separation papers and led a secret promiscuous double life as 'Sadie Collins,' flaunting her affairs to punish her husband",
     "confidence": "high",
-    "quote": "Sarah might have asked me to kill her...she begged me to end it for her...when she died."
+    "quote": "\"She introduced herself as Sadie Collins, and that's who I knew her as.\""
   },
   "closed_world": {
-    "value": "A second-floor rear apartment at 721 Silvermine Oval in an urban setting. The apartment has limited access points: front door and bedroom window opening onto a fire escape and narrow alleyway with a 30-foot drop to pavement below.",
-    "confidence": "high",
-    "quote": "the second-floor rear apartment of 721 Silvermine Oval...There was a distance of perhaps twelve feet between this building and the one across from it."
+    "value": "The Fletchers' second-floor apartment at 721 Silvermine Oval during the four-minute window of Fletcher's arrival, and the small social circle of Sarah's singles-bar lovers listed in her black address book",
+    "confidence": "medium",
+    "quote": "\"Fletcher had four minutes, when all he needed was maybe four seconds.\""
   },
   "culprit_and_motive": {
-    "value": "Gerald Fletcher, Sarah's husband, murdered her in a mercy killing/act of rage. Motive: Sarah's refusal to sign separation papers, her deliberate infidelity documented in 'little black book' marked with 'TG' (Told Gerry), and her psychological torture of him. Fletcher found her already stabbed by Corwin and 'finished her off' by pulling the knife across her belly.",
+    "value": "Gerald Fletcher, the husband \u2014 after junkie burglar Ralph Corwin stabbed her non-fatally, Fletcher found her alive and drew the knife across her belly, killing 'Sadie,' the slut he felt he had forced her to become, freeing himself to marry Arlene Orton",
     "confidence": "high",
-    "quote": "she begged me to kill her...Only the woman she'd become, the slut I'd forced her to become...when she died."
+    "quote": "\"She was Sadie, you see, when I killed her\u2014when she died.\""
   },
   "resolution": {
-    "value": "Detective Steve Carella obtains a court-ordered bug in Fletcher's automobile. During a conversation with Arlene Orton en route to The Chandeliers, Fletcher confesses to the murder, describing how he found Sarah already stabbed and finished her off. Carella arrests Fletcher without resistance based on the recorded confession.",
+    "value": "Court-ordered surveillance and a bug planted in Fletcher's car capture his confession to Arlene Orton; Carella arrests him \u2014 but Corwin hangs himself in his cell, never knowing he wasn't the killer",
     "confidence": "high",
     "quote": "Quietly, he charged Fletcher with the murder of his wife, and made the arrest without resistance."
   },
   "investigator": {
-    "value": "Detective Steve Carella of the 87th Precinct. A methodical police detective who suspects Fletcher early, conducts surveillance, discovers Fletcher's knowledge of the hidden microphone, and ultimately records his confession, though the resolution is complicated by the suicide of the initially suspected burglar Ralph Corwin.",
+    "value": "Detective Steve Carella of the 87th Precinct \u2014 official police detective with institutional authority, working with Meyer, Kling and Lt. Byrnes, driven partly by personal dislike of Fletcher",
     "confidence": "high",
-    "quote": "Detective Steve Carella wasn't sure he had heard the man correctly."
+    "quote": "\"Or maybe I just don't like the guy,\" Carella said."
+  },
+  "suspect_architecture": {
+    "value": "Small differentiated cast: Gerald Fletcher (husband, open hatred, opportunity in the four minutes before calling police, and a mistress waiting to marry him); Ralph Corwin, the junkie burglar whose prints are on the knife and who confesses; and Sarah's string of lovers met under the alias 'Sadie Collins' \u2014 Andrew Hart, Michael Thornton, and others in her address book \u2014 each with access to her but no clear motive.",
+    "confidence": "high",
+    "quote": "\u201cFletcher had four minutes, when all he needed was maybe four seconds.\u201d"
+  },
+  "red_herring": {
+    "value": "The staged-looking burglary: open kitchen window, muddy footprints on the sink and floor, ransacked silver drawer, smashed bedroom window and dropped silverware \u2014 all genuine (Corwin did break in and stab her), which makes the real killer's finishing blow invisible. Sarah's promiscuity and her lovers' address book also divert suspicion outward.",
+    "confidence": "high",
+    "quote": "\u201cthere were signs of forcible entry in the kitchen and hasty departure in the bedroom\u201d"
+  },
+  "clue_fairness": {
+    "value": "Clues are given to the reader as the detectives get them: the four-minute gap, Fletcher never removing his gloves, the lab prints matching Corwin and not Fletcher (with the explicit narrator note that gloves would explain it), Fletcher's bar-crawl tour showing Carella Sarah's lovers, and the bugged conversations \u2014 all on the page before Carella states the solution.",
+    "confidence": "high",
+    "quote": "\u201cWhich didn\u2019t mean a damn thing if he had been wearing his gloves when he\u2019d finished her off.\u201d"
+  },
+  "social_world": {
+    "value": "Urban class stratification of the 87th Precinct city: a wealthy, articulate criminal lawyer who knows his rights and can intimidate police brass, versus a despairing addict burglar who is expendable to the D.A.; police hierarchy where Carella must beg Byrnes for surveillance permission and fear of lawsuits and thrown-out cases constrains the investigation.",
+    "confidence": "high",
+    "quote": "\u201cIt happens I\u2019m a criminal lawyer and am well aware of my rights.\u201d"
+  },
+  "alibi": {
+    "value": "Fletcher claims he was on the Coast for three days advising an associate, returned home fifteen minutes earlier, found his wife dead and touched nothing \u2014 an alibi that covers the break-in but not the crucial four minutes between entering the apartment and phoning the police.",
+    "confidence": "high",
+    "quote": "\u201cI got home about fifteen minutes ago... I came into the bedroom and found her dead on the floor.\u201d"
+  },
+  "reveal_mechanic": {
+    "value": "A court-ordered bug planted in Fletcher's car: after discovering the bookcase bug in Arlene Orton's apartment and taunting Carella through it, Fletcher speaks unguardedly while driving and confesses to finishing off the mortally wounded Sarah, whom he had made into 'Sadie'.",
+    "confidence": "high",
+    "quote": "\u201cShe was Sadie, you see, when I killed her\u2014when she died.\u201d"
+  },
+  "media_and_audience": {
+    "value": "Institutional narrative management rather than press: the case is publicly closed with Corwin's arrest and confession, the D.A. has a tidy case, and the police receptionist's loud 'there are some cops here' shows the social stigma of police attention; Fletcher counts on the official story holding.",
+    "confidence": "medium",
+    "quote": "\u201cThey\u2019ve caught the murderer, they\u2014\u201d"
+  },
+  "investigator_wound": {
+    "value": "Carella's need to be seen and respected by Fletcher \u2014 he catches himself performing for the man \u2014 combined with a conscience that cannot let an easy official solution stand; the cost is Corwin's suicide, which leaves Carella with weary despair rather than triumph on Christmas Day.",
+    "confidence": "high",
+    "quote": "He was, he realized, trying to impress Fletcher."
+  },
+  "victims_enemies": {
+    "value": "Sarah Fletcher's enemies are intimate rather than numerous: her husband Gerald, who openly loathed her and whom she tormented by flaunting her promiscuity (marking 'TG' in her black book each time she told him of a new lover); the string of singles-bar lovers who knew her only as 'Sadie Collins' (Andrew Hart, Michael Thornton) and were discarded; and Ralph Corwin, the junkie burglar who stabbed her during the break-in.",
+    "confidence": "high",
+    "quote": "\u201cI hated her guts,\u201d he said."
+  },
+  "suspect_wounds": {
+    "value": "Gerald Fletcher's wound is humiliated pride: a criminal lawyer whose wife refused to sign separation papers and punished him with serial adultery he couldn't expose without ruining his 'precious career.' His brutal frankness about being glad she's dead is itself the vulnerability the crime activates. Hart and Thornton's wound is sexual shame \u2014 both lie about knowing 'Sadie' to protect respectable lives.",
+    "confidence": "high",
+    "quote": "\u201cIt would have ruined me, Arl.\u201d / \u201cYour precious career.\u201d"
+  },
+  "unreliable_frame": {
+    "value": "Fletcher's account is untrustworthy by design \u2014 he tells a technically true story omitting the four minutes in which he finished his wife off, and later stages statements for a bug he knows is planted, speaking obliquely 'to' Carella. Sarah herself lived a false identity as Sadie Collins, so every lover's testimony describes a woman who did not exist under that name.",
+    "confidence": "high",
+    "quote": "\u201cI didn\u2019t know Sarah Fletcher, if that\u2019s who you think she was. But I knew this broad, all right.\u201d"
+  },
+  "setting_as_constraint": {
+    "value": "The second-floor apartment at 721 Silvermine Oval: kitchen window on a fire escape, bedroom window painted shut over a thirty-foot drop, and a four-minute gap between Fletcher's entry and his call to police. The burglar's forced entry and panicked exit created a sealed window of opportunity that Fletcher exploited \u2014 arriving into a crime already in progress and completing it.",
+    "confidence": "high",
+    "quote": "\u201cFletcher had four minutes, when all he needed was maybe four seconds.\u201d"
+  },
+  "evidence_type": {
+    "value": "Testimonial \u2014 specifically an electronically intercepted confession. Court-ordered bugs in Arlene Orton's apartment and Fletcher's car capture his admission. Forensic evidence (fingerprints on sash, drawer, silverware, knife) is deliberately useless: it all matches Corwin, and Fletcher wore gloves. Sarah's address book with its 'TG' notations is the documentary thread that opens the case.",
+    "confidence": "high",
+    "quote": "\u201cShe was Sadie, you see, when I killed her\u2014when she died.\u201d"
+  },
+  "false_suspect": {
+    "value": "Ralph Corwin, the junkie burglar who broke in and stabbed Sarah non-fatally. All the physical evidence points to him; he is charged and, believing himself a murderer, hangs himself in his cell \u2014 never knowing he had not taken the life of another.",
+    "confidence": "high",
+    "quote": "\u201cRalph Corwin hanged himself in his cell, just after midnight.\u201d"
+  },
+  "technical_detail": {
+    "value": "Medical/forensic: the difference between a non-fatal stab wound and the fatal disembowelment \u2014 the knife already in her, then drawn across the abdomen left to right by a second hand. Plus the criminalistics of gloves defeating latent prints, and the surveillance technology (transmitter range roughly a quarter mile on the open road) that requires a listener-pursuer to stay dangerously close.",
+    "confidence": "high",
+    "quote": "\u201cdon\u2019t you think I could see she wasn\u2019t fatally stabbed?\u201d"
+  },
+  "moral_ambiguity": {
+    "value": "Fletcher claims a mercy killing \u2014 that Sarah begged him to end it \u2014 and insists he killed not Sarah but 'Sadie,' the slut he had forced her to become, making himself both executioner and author of her degradation. He also engineers his own exposure, courting Carella, effectively confessing. Carella feels neither elation nor triumph; the innocent man dies and the guilty one wanted catching.",
+    "confidence": "high",
+    "quote": "\u201cNo. Not Sarah. Only the woman she\u2019d become, the slut I\u2019d forced her to become.\u201d"
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Sadie When She Died",
     "author": "ED MCBAIN",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 12,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

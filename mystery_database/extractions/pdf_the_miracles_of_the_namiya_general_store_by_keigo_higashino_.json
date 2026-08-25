@@ -1,0 +1,124 @@
+{
+  "crime": {
+    "value": "Burglary and assault: three young men steal a car, break into a wealthy woman's home, bind and blindfold her, and take her handbag; the central puzzle, however, is the impossible correspondence \u2014 letters posted through a derelict shop's mail slot are answered across decades",
+    "confidence": "medium",
+    "quote": "\"We should have stolen a newer car if we were gonna steal at all.\""
+  },
+  "victim": {
+    "value": "Harumi Muto, a wealthy self-made businesswoman in her fifties (formerly the letter-writer 'Dubious Doggy'), targeted because Shota had scoped out her wealth \u2014 and, uncannily, because she owed her fortune to the very burglars' advice",
+    "confidence": "medium",
+    "quote": "He found her driver's license, which said Harumi Muto. ... Shota had said she was over fifty"
+  },
+  "closed_world": {
+    "value": "The abandoned Namiya General Store on a hill above town, sealed for a single night \u2014 inside it time runs differently, and the milk crate/mail slot is the only channel to the outside",
+    "confidence": "high",
+    "quote": "\"There's a door out back. The lock's busted.\" ... \"It's a milk crate. For deliveries.\""
+  },
+  "culprit_and_motive": {
+    "value": "Atsuya, Shota and Kohei \u2014 three unemployed, mapless young men committing theft out of poverty and drift; the 'benevolent culprit' behind the answered letters is the late Mr. Namiya himself, motivated by a desire to keep counseling the lost",
+    "confidence": "medium",
+    "quote": "\"We're the ones she's thanking. Us, of all people. This crew of scumbags.\""
+  },
+  "resolution": {
+    "value": "Dawn ends the night and the time-link; the thank-you letter from Doubtless Doggy reveals the invisible thread, and the trio choose restitution \u2014 returning the goods, freeing Harumi, and waiting for police \u2014 while Namiya's final letter answers Atsuya's blank page with the 'blank map'",
+    "confidence": "high",
+    "quote": "\"Back to her house. To put back what we stole.\" ... \"We won't run. We'll wait for the police.\""
+  },
+  "investigator": {
+    "value": "Atsuya, the wary de facto leader of the three burglars \u2014 a perpetrator who becomes the reader's lens, puzzling out the store's impossible correspondence",
+    "confidence": "high",
+    "quote": "\"Something must be linking Marumitsuen to the Namiya General Store. An invisible thread, or something.\""
+  },
+  "suspect_architecture": {
+    "value": "No suspect array; the three perpetrators (Atsuya, Shota, Kohei) are known from page one \u2014 burglars/car thieves differentiated by build and temperament rather than by means/motive/opportunity.",
+    "confidence": "low",
+    "quote": "\"A handy shack? What the hell are you talking about?\" Atsuya towered over Shota"
+  },
+  "red_herring": {
+    "value": "None deliberately planted; the closest is the misapprehension that the derelict store is merely an empty hideout rather than a temporal conduit.",
+    "confidence": "low",
+    "quote": "\"It's just that the last time I came, it felt different. Like, I could have sworn it was a little newer\""
+  },
+  "clue_fairness": {
+    "value": "The reader receives the same anomalies as the characters simultaneously \u2014 the seemingly newer house, the milk crate that receives replies, the full moon, the frozen night \u2014 all shown before explanation.",
+    "confidence": "medium",
+    "quote": "\"It's a milk crate. For deliveries.\""
+  },
+  "social_world": {
+    "value": "Postwar-to-present Japanese class mobility: Kosuke's nouveau-riche father's collapsing company, Kimiko's status consumption, Expo '70 national pride, and the underclass drift of three unemployable young men.",
+    "confidence": "high",
+    "quote": "\"Cheap things make for a cheap person\" was her motto."
+  },
+  "alibi": {
+    "value": "No formal alibi; instead the trio manage traceability \u2014 abandoning the stolen Crown, avoiding fingerprints, refusing a taxi lest the driver remember them.",
+    "confidence": "medium",
+    "quote": "\"As long as we didn't leave any prints, there's no way they can trace us to the car.\""
+  },
+  "reveal_mechanic": {
+    "value": "Demonstration by material artifact across time: Harumi Muto's thank-you letter found in her stolen handbag, addressed to the Namiya General Store, proving their advice took effect thirty-two years earlier; then Namiya's reply to the blank page.",
+    "confidence": "high",
+    "quote": "To the Namiya General Store, it said."
+  },
+  "media_and_audience": {
+    "value": "The store's revival is packaged publicly via an Internet announcement of the 'One-Night Special' tied to the thirty-third memorial service, which is what draws the final letter.",
+    "confidence": "medium",
+    "quote": "When I heard about your \"One-Night Special\" on the Internet, I asked myself if this was really happening."
+  },
+  "investigator_wound": {
+    "value": "Atsuya's directionlessness and self-contempt \u2014 the 'blank map' of a young man with no future \u2014 which the letter-answering forces him to confront, ending in surrender to police.",
+    "confidence": "high",
+    "quote": "\"Your map has yet to be drawn.\""
+  },
+  "victims_enemies": {
+    "value": "No murder victim; the nearest 'victim' is Harumi Muto, the wealthy Marumitsuen owner burglarized and bound by three drifters who targeted her for cash \u2014 a grievance born of their own poverty and resentment rather than any personal history with her.",
+    "confidence": "low",
+    "quote": "He found her driver's license, which said Harumi Muto."
+  },
+  "suspect_wounds": {
+    "value": "Atsuya, Shota, and Kohei each carry orphanage-bred abandonment and dead-end joblessness that makes them act guilty even when moved by conscience; Kosuke's wound is his family's collapse from wealth into shame, which curdles his trust in his father.",
+    "confidence": "medium",
+    "quote": "\"We're the ones she's thanking. Us, of all people. This crew of scumbags.\""
+  },
+  "unreliable_frame": {
+    "value": "Advice arrives anonymously through a mail slot and milk crate: the three burglars impersonate the dead Mr. Namiya, so every 'answer' letter is written by unqualified strangers pretending authority, while the letter-writers themselves conceal their circumstances behind pen names like 'Dubious Doggy.'",
+    "confidence": "medium",
+    "quote": "\"I wrote you a letter in the summer of '80 as \u2018Dubious Doggy.'\""
+  },
+  "setting_as_constraint": {
+    "value": "The abandoned Namiya General Store works only for one night \u2014 the shutter, back door with a busted lock, mail slot, and milk crate form a closed circuit where time inside runs slower than outside, so the men are sealed in until dawn ends the effect.",
+    "confidence": "high",
+    "quote": "The door was ajar. Morning light was filtering in. The night was over."
+  },
+  "evidence_type": {
+    "value": "Documentary \u2014 letters in envelopes; the thank-you letter found inside the stolen handbag is what proves the store's correspondence really crossed thirty-two years.",
+    "confidence": "high",
+    "quote": "He showed Atsuya the face of the envelope... To the Namiya General Store, it said."
+  },
+  "false_suspect": {
+    "value": "Not present as a classic framed innocent; the closest analogue is cousin Tetsuo, blamed by relatives as the corrupting influence ('he'll go bad, just like his cousin') when the real cause of Kosuke's family ruin is his father's failing business.",
+    "confidence": "low",
+    "quote": "\"He'll go bad, just like his cousin.\""
+  },
+  "technical_detail": {
+    "value": "The temporal mechanics of the store: letters posted through the mail slot travel to 1980, replies left in the milk crate return to the present, and one night inside equals decades outside \u2014 which is why the trio's 'prophetic' advice about the bubble and the Internet worked.",
+    "confidence": "high",
+    "quote": "\"How did you predict the Japanese asset price bubble and its demise? How did you foresee the coming of the Internet?\""
+  },
+  "moral_ambiguity": {
+    "value": "The burglars are thieves who nonetheless answer strangers' letters with genuine care, and the woman they robbed owes her entire life to their advice; recognizing this, they choose restitution and surrender rather than escape.",
+    "confidence": "high",
+    "quote": "\"Back to her house. To put back what we stole.\"... \"We won't run. We'll wait for the police.\""
+  },
+  "_meta": {
+    "source": "/Users/egreene/SocialGaming/mystery_database/new_sources/the-miracles-of-the-namiya-general-store-by-keigo-higashino-pdf-free.pdf",
+    "filename": "the-miracles-of-the-namiya-general-store-by-keigo-higashino-pdf-free.pdf",
+    "text_len": 24037,
+    "protocols": [
+      "P1",
+      "P2",
+      "P3"
+    ],
+    "title": "the-miracles-of-the-namiya-general-store-by-keigo-higashino-pdf-free",
+    "model": "claude-opus-5"
+  }
+}

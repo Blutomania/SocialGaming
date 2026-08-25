@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Drowning death of Bobby Thompson at summer camp; central question: was it accident or homicide, and who had motive/opportunity?",
+    "value": "Drowning of a boy camper, found under the old docks up the lake during rest period; presented as an 'accident' \u2014 central question: was it murder, and by whom?",
     "confidence": "high",
-    "quote": "Bobby Thompson had an accident, that's all. Mr. Whiteman will tell you all about it in the morning."
+    "quote": "I heard they found him after rest period underneath the old docks up the lake."
   },
   "victim": {
-    "value": "Bobby Thompson, camper in Bunk 9 who bullied Arnold by cutting his tennis racket strings and stealing his radio tube; was 'killable' due to being a bully with few defenders",
+    "value": "Bobby Thompson, a camper in Bunk 9, who had been bullying Arnold \u2014 cutting his tennis racket strings, stealing a radio tube",
     "confidence": "high",
-    "quote": "I heard that somebody cut all the strings off your tennis racket... somebody stole a tube from your radio set."
+    "quote": "\"Okay. It was Bobby Thompson.\""
   },
   "closed_world": {
-    "value": "Camp Summit, an isolated summer camp accessible only by five-hour drive, with defined bunks, activities schedule, and staff supervision creating limited suspect pool",
+    "value": "Camp Summit, an isolated boys' summer camp of cabins, tent row, rifle range and lake, sealed off by police after the death",
     "confidence": "high",
-    "quote": "Camp Summit drowsed in the two o'clock heat... Father can send Walter up with the car, it is only a five hour drive"
+    "quote": "Camp Summit drowsed in the two o'clock heat."
   },
   "culprit_and_motive": {
-    "value": null,
-    "confidence": "low",
-    "quote": null
+    "value": "Arnold, the precocious, alienated boy \u2014 implied to have drowned his tormentor Bobby Thompson, partly out of retaliation and partly to force his parents to take him home from camp",
+    "confidence": "medium",
+    "quote": "his socks and sneakers were dripping wet. His round solemn face, in the open sun, was curiously white."
   },
   "resolution": {
-    "value": null,
-    "confidence": "low",
-    "quote": null
+    "value": "Implicit: Whiteman realizes the significance when Arnold names Bobby as his tormentor and runs to fetch the police; Arnold calmly resumes writing home",
+    "confidence": "medium",
+    "quote": "Mr. Whiteman paled... \"I just have to see somebody for a minute.\" ... Arnold heard him begin to run"
   },
   "investigator": {
-    "value": "Mr. Whiteman, camp director, who discovers Arnold's revelation about Bobby Thompson and begins investigation; reader also sees through Arnold's perspective",
+    "value": "No formal detective; the camp owner Mr. Whiteman functions as inadvertent questioner, while the narrative lens follows the culprit-child Arnold",
     "confidence": "medium",
-    "quote": "Mr. Whiteman paled. 'Did you...say Bobby Thompson was the boy who was giving you trouble?'... He pulled on his coat and began to run."
+    "quote": "\"Now who's behind this, Arnold? Are they boys in your bunk?\""
+  },
+  "suspect_architecture": {
+    "value": "Effectively a single concealed suspect \u2014 Arnold, the isolated, precocious camper \u2014 surrounded by adult figures (Uncle Paul, Uncle Jack, Mr. Whiteman) whom the boys idly nominate as culprits. Uncle Paul, head of victim Bobby Thompson's Bunk 9 and disliked, is floated as an alternative.",
+    "confidence": "medium",
+    "quote": "\"Bobby was in Bunk 9, wasn't he?\" somebody whispered to Arnold. \"Uncle Paul's the head of that bunk, maybe he did it.\""
+  },
+  "red_herring": {
+    "value": "The drowning framed as a simple accident by camp staff, plus the boys' suspicion of Uncle Paul, diverts attention from Arnold; Arnold's homesick letter-writing campaign reads as pathos rather than motive/alibi-building.",
+    "confidence": "medium",
+    "quote": "\"It was an accident,\" said Uncle Jack. \"A simple accident. The police always come when there's an accident.\""
+  },
+  "clue_fairness": {
+    "value": "All physical clues are shown to the reader in scene before any adult interprets them: Arnold's soaking wet socks and sneakers returning from the lakefront during rest period, his abnormal pallor, his refusal to say where he'd been, his blank denial of hearing anything at the beach, and his final knowledge that Bobby Thompson was his tormentor \u2014 which he reveals only after Bobby is dead.",
+    "confidence": "high",
+    "quote": "He wore khaki shorts and a T-shirt, and his socks and sneakers were dripping wet. His round solemn face... was curiously white."
+  },
+  "social_world": {
+    "value": "A boys' summer camp hierarchy: owner Mr. Whiteman (paid by parents, accountable to them), head counselors and 'uncles' who can dock free periods, and campers ranked by bunk and 'advanced' status; Arnold's wealthy family (Walter, the car, refundable fees) sits outside and above the camp's authority.",
+    "confidence": "high",
+    "quote": "\"He'll dock you your free period. You don't want that to happen, do you?\""
+  },
+  "alibi": {
+    "value": "Arnold has no alibi and offers none \u2014 he is absent from his bunk during rest period, the very window in which Bobby Thompson drowned, and answers questions about his whereabouts only with silence and the radio earphones.",
+    "confidence": "high",
+    "quote": "\"You'd catch it for sure if he found out you just came in. You're supposed to stay in the bunk during rest period.\""
+  },
+  "reveal_mechanic": {
+    "value": "Psychological reveal by juxtaposition: Whiteman's own coaxing extracts the name of Arnold's tormentor \u2014 the dead boy \u2014 and the accumulated details (wet shoes at rest period, the body found under the old docks after rest period) snap into place; Whiteman's paling and running down the path demonstrates the solution without stating it.",
+    "confidence": "high",
+    "quote": "Mr. Whiteman paled. \"Did you. . .say Bobby Thompson was the boy who was giving you trouble?\""
+  },
+  "media_and_audience": {
+    "value": "The camp manages the narrative: the flag ceremony is cancelled, staff suppress 'foolish rumors,' and the boys' own excited gossip ('I'll bet he's dead') runs counter to the official 'accident' line pending Whiteman's morning announcement.",
+    "confidence": "high",
+    "quote": "\"Now where did you hear a thing like that?\" Uncle Jack tried a tentative smile. \"The way foolish rumors spread around here.\""
+  },
+  "investigator_wound": {
+    "value": "Mr. Whiteman's vulnerability is his proprietary optimism and duty to reassuring parents \u2014 he insists the counselors like all campers and that Arnold is merely homesick, having already failed to act on the bullying (cut racket strings, stolen radio tube) and on the mother's letters he did not share with the boy.",
+    "confidence": "medium",
+    "quote": "\"Now come on, Arnold. You don't actually believe that any of the counselors has anything against you. Do you?\""
+  },
+  "victims_enemies": {
+    "value": "Bobby Thompson, the drowned boy, was the one camper systematically tormenting Arnold \u2014 cutting the strings off his tennis racket, stealing a tube from his radio set. The grievance is a small, precise, unrelenting persecution of an isolated, hyper-intelligent child by a bully, in a closed world where the victim's cruelty was invisible to adults.",
+    "confidence": "high",
+    "quote": "\u201cOkay. It was Bobby Thompson.\u201d"
+  },
+  "suspect_wounds": {
+    "value": "Uncle Paul, the riflery counselor, is head of Bunk 9 \u2014 Bobby's bunk \u2014 and is disliked by the boys, who immediately speculate he did it; his harsh, punitive manner makes him look guilty. Uncle Jack's wound is negligence: he admits letting Arnold skip rest period before, and Arnold returned to the cabin soaking wet during the window when Bobby drowned.",
+    "confidence": "medium",
+    "quote": "\u201cUncle Paul\u2019s the head of that bunk, maybe he did it. Nobody likes Uncle Paul anyway. I wish they\u2019d put him in jail.\u201d"
+  },
+  "unreliable_frame": {
+    "value": "The narration follows Arnold closely but withholds his interior life entirely \u2014 we see actions (wet socks and sneakers at two o'clock, a change of shoes, silence, a stone pocketed) without motive or admission. Arnold's own denials to the adults ('Did you hear anything?' 'No.') are the account that cannot be trusted; the reader is placed in the position of the counselors, one beat behind the child.",
+    "confidence": "high",
+    "quote": "his socks and sneakers were dripping wet. His round solemn face, in the open sun, was curiously white."
+  },
+  "setting_as_constraint": {
+    "value": "A boys' summer camp: rest period requires every child to be in his bunk, so the lakefront is deserted and unwatched for a fixed hour \u2014 a perfect, precisely bounded window. Camp discipline (docked free periods, counselor checks) is the only surveillance, and Arnold, who ignores it, is the one person unaccounted for. The lake and the old docks up the lake are remote enough that a drowning reads as accident.",
+    "confidence": "high",
+    "quote": "\u201cYou\u2019re supposed to stay in the bunk during rest period.\u201d"
+  },
+  "evidence_type": {
+    "value": "Testimonial, delivered inadvertently: Arnold's flat naming of Bobby Thompson as his tormentor supplies the missing motive and reframes the drowning. Corroborated by physical/circumstantial detail \u2014 soaked socks and sneakers returning from the lakefront during rest period.",
+    "confidence": "high",
+    "quote": "Mr. Whiteman paled. \u201cDid you. . .say Bobby Thompson was the boy who was giving you trouble?\u201d"
+  },
+  "false_suspect": {
+    "value": "Uncle Paul, the riflery counselor \u2014 the boys' rumor mill fixes on him as the adult in charge of Bobby's bunk and the camp's most disliked figure, drawing suspicion away from a nine-year-old nobody would think to suspect.",
+    "confidence": "medium",
+    "quote": "\u201cMaybe he was killed or something,\u201d another camper volunteered timidly."
+  },
+  "technical_detail": {
+    "value": "The domain knowledge is child psychology and institutional procedure rather than mechanism: Arnold reads Klarmann's 'The Psychology of Children' in the office, knows the exact drive time home, calculates that a refund letter would 'waste too much time and complicate things,' and understands that a drowning under the old docks during rest period will be classed as an accident. His command of adult systems is what exposes him.",
+    "confidence": "high",
+    "quote": "\u201cThe Psychology of Children, by Klarmann,\u201d said the boy."
+  },
+  "moral_ambiguity": {
+    "value": "Arnold is a small, friendless, prodigiously bright child abandoned at a camp he has begged repeatedly to leave; his mother refuses to answer his letters and conspires with the owner to keep him there, and the one boy persecuting him destroys his few possessions. The killing reads less as evil than as the only lever a powerless child had left \u2014 and the final letter, resumed at the murdered man's own desk, is a plea, not a boast.",
+    "confidence": "high",
+    "quote": "\u201cShe won\u2019t answer my letters because she wants to keep me here. But she\u2019s been writing to you.\u201d"
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 20375,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Child\u2019s Play",
     "author": "WILLIAM LINK and RICHARD LEVINSON",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 23,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

@@ -1,41 +1,124 @@
 {
   "crime": {
-    "value": "Public suicide of a wealthy student, later connected to murder; central question: are these deaths connected and part of a larger conspiracy?",
+    "value": "A public 'suicide' by Russian-roulette gunshot in Alexander Gardens, soon linked to murder and a Europe-wide conspiracy (the Azazel organization), culminating in a parcel bomb. Central question: why would a wealthy, talented student shoot himself, and who orchestrates these deaths?",
     "confidence": "high",
-    "quote": "The bizarre and tragic suicide is soon connected to a clear case of murder, witnessed firsthand by Fandorin himself."
-  },
-  "victim": {
-    "value": "A talented student from a wealthy family who shoots himself in public; later a murder victim whose death connects to the suicide; also Fandorin himself becomes a target of assassination attempts.",
-    "confidence": "medium",
     "quote": "What would cause a talented student from a wealthy family to shoot himself in front of a promenading public?"
   },
+  "victim": {
+    "value": "Young well-off student who shoots himself in public; later Lizanka, Fandorin's bride, killed by a bomb because Fandorin threatened the conspiracy",
+    "confidence": "high",
+    "quote": "a talented student from a wealthy family to shoot himself... The bizarre and tragic suicide is soon connected to a clear case of murder"
+  },
   "closed_world": {
-    "value": "Moscow in 1876, expanding across Europe; initially bounded by Alexander Gardens public promenade and hotel system; conspiracy spans diplomatic and international networks.",
+    "value": "Moscow, May 1876, and the milieu of the Criminal Investigation Division, salons and estates, extending across Europe (London villa, St. Petersburg) \u2014 a bounded social network of Azazel-linked conspirators",
     "confidence": "medium",
-    "quote": "Moscow, May 1876... leads him across Europe, landing him at the center of a vast conspiracy"
+    "quote": "an investigation that leads him across Europe, landing him at the center of a vast conspiracy"
   },
   "culprit_and_motive": {
-    "value": "An international conspiracy (Amalia Bezhetskaya and associates) with operatives in the Russian embassy; motive involves silencing Fandorin and controlling information.",
+    "value": "A vast secret conspiracy (Azazel), fronted by Amalia Bezhetskaya and its agents (Morbid, Franz, the white-eyed coachman), placing its people in embassies and eliminating threats; the baroness/organization takes revenge on Fandorin",
     "confidence": "medium",
-    "quote": "They had their own people in the Russian embassy!... 'Don't you dare! It's my fault, and I shall correct my own mistake.'"
+    "quote": "\"Nothing simpler, ma'am. You only have to say the word\u2026 Franz and I will go over there and finish him off.\""
   },
   "resolution": {
+    "value": "Fandorin exposes the conspiracy through intuition, surveillance and stolen documents (the attach\u00e9 case letters and the Croog address), earning an imperial decoration \u2014 but at the cost of his bride's death by bomb",
+    "confidence": "medium",
+    "quote": "his own \"self-sacrifice, valor, and praiseworthy zeal\" (as described in the imperial decree concerning his decoration)"
+  },
+  "investigator": {
+    "value": "Erast Fandorin, young, intuitive junior police clerk turned detective within the Moscow CID, who becomes personally implicated",
+    "confidence": "high",
+    "quote": "young sleuth Erast Fandorin is not satisfied with the conclusion that this death is an open-and-shut case"
+  },
+  "suspect_architecture": {
+    "value": "A network rather than a closed circle: Amalia Bezhetskaya (femme fatale running an intelligence operation from London), her butler Mr. Morbid/John (muscle), the agent Franz, the correspondent Nicholas M. Croog in St. Petersburg, and Fandorin's own superior Ivan Brilling \u2014 all connected to the Azazel conspiracy behind the staged suicide.",
+    "confidence": "medium",
+    "quote": "\"Franz was keeping watch there today. He informed me that the boy arrived at seven o'clock.\""
+  },
+  "red_herring": {
+    "value": "The opening death is packaged as a decadent young man's public suicide over a girl's refusal \u2014 'decadence and boredom' \u2014 masking a murder tied to a wider conspiracy; also the Russian-lady persona of Bezhetskaya masking an English-speaking spy.",
+    "confidence": "high",
+    "quote": "Decadence and boredom, it is presumed."
+  },
+  "clue_fairness": {
+    "value": "Clues are staged in scene for the reader: the revolver's spun cylinder (Russian roulette) shown at the suicide, the letters copied onto a single sheet, the hidden safe behind the engraving, the addressed envelope to Croog, and the courier's countdown plus the white-eyed coachman before the bomb.",
+    "confidence": "high",
+    "quote": "he raised the hand holding the revolver high above his head, spun the cylinder, and set the muzzle to his temple"
+  },
+  "social_world": {
+    "value": "Imperial Russia 1876: police precincts and the Criminal Investigation Division under Grushin, the Third Section and General Mizinov, embassies penetrated by foreign agents, and the gentry/baronial marriage world of Malaya Nikitskaya \u2014 patronage, decorations and rank determine who is believed.",
+    "confidence": "high",
+    "quote": "XAVIER FEOFILAKTOVICH GRUSHIN, detective superintendent of the Criminal Investigation Division of the Moscow Police"
+  },
+  "alibi": {
     "value": null,
     "confidence": "low",
     "quote": null
   },
-  "investigator": {
-    "value": "Erast Fandorin, a young, talented detective dissatisfied with official conclusions; pursues investigation through keen intuition despite institutional resistance.",
+  "reveal_mechanic": {
+    "value": "Physical observation and documents: Fandorin climbs to the window and watches Bezhetskaya open the Cupid-navel safe, copy intelligence from letters into a blue attach\u00e9 case, and he steals the envelope addressed to Nicholas M. Croog \u2014 proof of the network in his own hands.",
     "confidence": "high",
-    "quote": "young sleuth Erast Fandorin is not satisfied with the conclusion... Relying on his keen intuition, the eager detective plunges into an investigation"
+    "quote": "She was holding a light blue velvet attach\u00e9 case."
+  },
+  "media_and_audience": {
+    "value": "The crime is performed before a promenading public and read as a scandalous outrage against decency; witnesses, screaming matrons and official summary reports frame the death as an open-and-shut case, while the state later packages Fandorin's role in an imperial decree praising 'self-sacrifice, valor, and praiseworthy zeal.'",
+    "confidence": "high",
+    "quote": "eyewitnesses to the perpetration of an outrage that flagrantly transgressed the bounds of common decency"
+  },
+  "investigator_wound": {
+    "value": "Fandorin's youth, romantic susceptibility and eager vanity: he is infatuated with Bezhetskaya, trusted where he should not, and the case punishes him \u2014 a guilty conscience over the broken oath and the Azazel affair, culminating in his bride's death by the bomb and his hair whitening.",
+    "confidence": "high",
+    "quote": "despite his obvious youth the bon vivant's temples were a stark white, as if they were thickly coated with hoarfrost"
+  },
+  "victims_enemies": {
+    "value": "The first 'victim,' the young student Kokorin who shoots himself in Alexander Gardens, has no visible enemies \u2014 the death is presumed decadence and boredom; the true web of grievance belongs to the conspiracy behind Amalia Bezhetskaya, whose circle of wealthy young men are manipulated into fatal Russian-roulette wagers. Later Fandorin himself becomes the targeted 'victim,' with Bezhetskaya, her butler Mr. Morbid, and the agent Franz all wanting him finished off, and the white-eyed coachman delivering the wedding-day bomb that kills Lizanka.",
+    "confidence": "medium",
+    "quote": "\"Nothing simpler, ma'am. You only have to say the word\u2026 Franz and I will go over there and finish him off.\""
+  },
+  "suspect_wounds": {
+    "value": "Amalia Bezhetskaya's vulnerability is vanity and boredom \u2014 she admits that 'for once in my life I trusted a man,' an error she insists on correcting herself, and her theatrical self-display draws suspicion. Fandorin's own wound is naive infatuation: he is dazzled by Bezhetskaya's beauty and inclined to forgive her anything, which compromises his judgment; later his guilt over the Azazel affair and the oath he swore to the baroness and broke marks his conscience as unclean.",
+    "confidence": "medium",
+    "quote": "\"It's my fault, and I shall correct my own mistake. For once in my life I trusted a man\u2026\""
+  },
+  "unreliable_frame": {
+    "value": "Nearly every account is compromised. The opening 'suicide' is framed as an open-and-shut case by the precinct's preliminary work, a conclusion Fandorin refuses. Bezhetskaya operates under a false name ('or whatever her real name might be'), speaks flawless English in private while playing a Russian society hostess, and the conspiracy has its own people inside the Russian embassy, so official channels themselves are corrupted. The final courier presents forged Third Section credentials and a signed receipt.",
+    "confidence": "high",
+    "quote": "Amalia Bezhetskaya, or whatever her real name might be, frowned\u2026 \"I am surprised that we did not get word of his arrival from the embassy.\""
+  },
+  "setting_as_constraint": {
+    "value": "1876 Moscow and its Europe-wide extensions constrain everything: a crowded public promenade in Alexander Gardens means a suicide is witnessed by dozens yet understood by none; the era's technology means information travels by letters, poste restante addresses and special messengers, so intelligence must be physically copied and carried. The London villa's constraint is architectural \u2014 walled garden, locked gates, a second-floor room reachable only by drainpipe and ivy \u2014 which is exactly what Fandorin exploits to observe the safe.",
+    "confidence": "high",
+    "quote": "Fortunately there was a drainpipe running close beside it, and the wall was overgrown with some kind of climbing vegetation"
+  },
+  "evidence_type": {
+    "value": "Documentary above all \u2014 the correspondence network. The decisive material is the blue velvet attach\u00e9 case containing a bundle of letters and a large yellow envelope with a sheet of fine writing onto which Bezhetskaya copies data from newly arrived letters, addressed to Mr. Nicholas M. Croog, poste restante, H\u00f4tel des Postes, St. Petersburg. Supported by eyewitness testimony (Fandorin witnesses the murder firsthand) and by physical trace evidence at the closing scene.",
+    "confidence": "high",
+    "quote": "Written on the envelope was an address: MR. NICHOLAS M. CROOG, POSTS RESTANTE, L'HOTEL DES POSTES, S.-PETERSBOURG,"
+  },
+  "false_suspect": {
+    "value": "Amalia Bezhetskaya reads to Fandorin as the arch-villain and 'a spy, most indubitably a spy' \u2014 she absorbs the maximum suspicion as the femme fatale at the centre. Her butler Mr. Morbid (John) similarly presents as the obvious hired killer. Both are in fact instruments of a far larger organisation (the Azazel conspiracy), so the suspicion they attract diverts attention from the true structure behind them.",
+    "confidence": "medium",
+    "quote": "Amalia Bezhetskaya spoke in impeccable English (a spy, most indubitably a spy!)."
+  },
+  "technical_detail": {
+    "value": "Two domains. First, the revolver: the suicide spins the cylinder before firing \u2014 the mechanics of a partially loaded cylinder make 'American roulette' a rigged wager rather than chance, the technical basis of the deaths. Second, the concealed safe: a lamp in the form of a Cupid whose bronze navel is pressed releases a sliding engraving, revealing a copper door with a combination handle turned 'this way and that' \u2014 knowledge of the mechanism is what lets Fandorin locate the documents. Finally, a four-pound parcel bomb triggered by opening, delivered under Third Section seals with a countdown shouted from the cab.",
+    "confidence": "high",
+    "quote": "She went up to a frivolous wall lamp in the form of a Cupid and pressed the god of love's bronze navel."
+  },
+  "moral_ambiguity": {
+    "value": "The conspiracy (Azazel) is not motivated by greed but by a utopian conviction \u2014 orphans raised and placed to improve the world, which makes its founders idealists whose murders are rationalised as service to humanity. Bezhetskaya is herself trapped and bored ('How deadly boring, God help me. Stuck in this miserable place\u2026'). Fandorin ends morally compromised too: he broke an oath sworn to the baroness against his own will, feels his conscience unclear and his role 'somewhat ambiguous,' and is decorated for a triumph that costs him his bride.",
+    "confidence": "high",
+    "quote": "He felt that his conscience was not entirely clear in relation to the Azazel business and that he had played a somewhat ambiguous role."
   },
   "_meta": {
     "source": "mystery_database/new_sources/The Winter Queen - Boris Akunin.pdf",
     "filename": "The Winter Queen - Boris Akunin.pdf",
-    "text_len": 6037,
+    "text_len": 24037,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
-    "title": "The Winter Queen - Boris Akunin"
+    "title": "The Winter Queen - Boris Akunin",
+    "model": "claude-opus-5"
   }
 }

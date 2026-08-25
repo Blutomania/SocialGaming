@@ -1,0 +1,124 @@
+{
+  "crime": {
+    "value": "Premeditated poisoning: a wife plans to kill her husband with a hidden white powder; the central question the setup poses is how the poison will be administered (and later, how it could be, given her absence)",
+    "confidence": "medium",
+    "quote": "thinking about the white powder hidden in a sealed plastic bag in the bottommost drawer"
+  },
+  "victim": {
+    "value": "Yoshitaka Mashiba, wealthy businessman who declares he will discard his wife because she cannot bear children, and who is having an affair with her apprentice Hiromi",
+    "confidence": "high",
+    "quote": "If we can't have children, there's no point to us being married."
+  },
+  "closed_world": {
+    "value": "The Mashiba household and its small social circle \u2014 Ayane, Yoshitaka, apprentice Hiromi Wakayama, and the Ikais at a dinner party",
+    "confidence": "medium",
+    "quote": "Ten minutes later the hosts and their guests were sitting at the dining room table."
+  },
+  "culprit_and_motive": {
+    "value": "Ayane Mashiba, the wife, motivated by betrayal and love turned lethal after being told she will be discarded for being childless",
+    "confidence": "high",
+    "quote": "That's why you have to die, too."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Not present in excerpt; narration alternates between Ayane (culprit) and Hiromi, an insider observer who suspects tension",
+    "confidence": "low",
+    "quote": "Hiromi Wakayama began to suspect something when she saw the Mashibas coming down the stairs."
+  },
+  "suspect_architecture": {
+    "value": "Two principal suspects around victim Yoshitaka Mashiba: his wife Ayane (motive: he intends to discard her over childlessness; she possesses hidden white powder) and her apprentice Hiromi Wakayama (secret intimacy with Yoshitaka implied). Secondary figures: lawyer/business partner Tatsuhiko Ikai and wife Yukiko, present at the dinner but framed as witnesses.",
+    "confidence": "medium",
+    "quote": "Ayane glanced at her dresser, thinking about the white pow-der hidden in a sealed plastic bag"
+  },
+  "red_herring": {
+    "value": "The staged domestic normalcy \u2014 the cheerful baby-shower dinner party with forced smiles \u2014 masks the marital rupture; the hidden white powder is planted early to point at an obvious poisoner.",
+    "confidence": "medium",
+    "quote": "Their smiles  were clearly forced\u2014 Ayane's in par tic u lar."
+  },
+  "clue_fairness": {
+    "value": "Reader is given the key physical details in scene before any investigation: the white powder in the dresser drawer, the unwatered pansies, Ayane's declared intent to kill, the bottled mineral water in the fridge door, and Hiromi declining wine.",
+    "confidence": "high",
+    "quote": "\"There's a bottle of mineral water in the fridge, just bring the  whole thing,\" Ayane told her."
+  },
+  "social_world": {
+    "value": "Affluent Tokyo professional circle: a wealthy businessman's household where marriage is contractual (children as 'life plan'), his college friend serves as company lawyer and manager, and a young female apprentice is economically dependent on the wife's craft school \u2014 dependency and patronage all flowing from Yoshitaka.",
+    "confidence": "high",
+    "quote": "If we  can't have children, there's no point to us being married."
+  },
+  "alibi": {
+    "value": "Not yet established; the dinner party assembles all parties with mutual observation, laying groundwork for whereabouts accounts.",
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Not present in excerpt, though the poisoning apparatus is seeded \u2014 concealed powder plus the shared drinks (champagne, wine, bottled mineral water) served at the table.",
+    "confidence": "low",
+    "quote": "Guess I'll be using that soon,  she thought"
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victims_enemies": {
+    "value": "Yoshitaka Mashiba has alienated the two women closest to him: his wife Ayane, whom he plans to discard for being unable to bear children, and his lover/apprentice Hiromi Wakayama, with whom he is having a concealed affair. His business partner and college friend Tatsuhiko Ikai is entangled in his company's management, adding a professional layer of dependency and grievance.",
+    "confidence": "high",
+    "quote": "\"If we can't have children, there's no point to us being married.\""
+  },
+  "suspect_wounds": {
+    "value": "Hiromi is secretly involved with Yoshitaka and is quietly refusing alcohol \u2014 hinting at a pregnancy she must conceal; her secret makes her behavior evasive and guilty-seeming. Ayane's wound is infertility and the humiliation of being told her marriage is contingent on childbearing.",
+    "confidence": "medium",
+    "quote": "\"Oh, I'm fine, thanks,\" she said, placing her hand over the rim."
+  },
+  "unreliable_frame": {
+    "value": "Ayane's interiority is presented but selectively \u2014 she smiles and says agreeable things while thinking the opposite, and the narration grants access to her murderous intent while withholding the method. Hiromi's polite account of the evening omits her affair with the host.",
+    "confidence": "high",
+    "quote": "That was a complete lie, as far as Ayane was concerned. But she smiled and said that was good."
+  },
+  "setting_as_constraint": {
+    "value": "The affluent Mashiba house is a closed domestic stage: the kitchen, the enormous double-door refrigerator lined with mineral water bottles, the antique cupboard of designated glasses, and the ritualized dinner-party choreography all determine who could touch what and when \u2014 and Ayane's plan appears to exploit the household's fixed domestic routines and her physical absence.",
+    "confidence": "medium",
+    "quote": "\"There's a bottle of mineral water in the fridge, just bring the whole thing,\" Ayane told her."
+  },
+  "evidence_type": {
+    "value": "Physical/forensic trace analysis of an ingested poison \u2014 a white powder \u2014 combined with environmental analysis of the household's water supply and drinking vessels.",
+    "confidence": "medium",
+    "quote": "thinking about the white powder hidden in a sealed plastic bag in the bottommost drawer on the right"
+  },
+  "false_suspect": {
+    "value": "Hiromi Wakayama \u2014 the young apprentice, present in the house, secretly the husband's lover and apparently pregnant, positioned to absorb suspicion as the woman who stood to gain by replacing Ayane.",
+    "confidence": "medium",
+    "quote": "\"Did you say something to her?\" Hiromi whispered."
+  },
+  "technical_detail": {
+    "value": "A concealed white powder (poison) administered through the household's drinking water/domestic fixtures \u2014 requiring long-term prior placement rather than presence at the moment of death, so that the perpetrator's absence becomes the mechanism.",
+    "confidence": "medium",
+    "quote": "Guess I'll be using that soon, she thought, the last glimmer of hope fading beneath the shadow inside her."
+  },
+  "moral_ambiguity": {
+    "value": "Ayane kills not from hatred but from thwarted love \u2014 she genuinely adores her husband and wanted children desperately; his reduction of marriage to a reproductive 'life plan' converts devotion into annihilation. Her final thought pairs love and murder inseparably.",
+    "confidence": "high",
+    "quote": "I love you more than anything else in this world. That's why your words were like a knife stabbing me in the heart."
+  },
+  "_meta": {
+    "source": "/Users/egreene/SocialGaming/mystery_database/new_sources/salvation-of-a-saint-pdf-free.pdf",
+    "filename": "salvation-of-a-saint-pdf-free.pdf",
+    "text_len": 14690,
+    "protocols": [
+      "P1",
+      "P2",
+      "P3"
+    ],
+    "title": "salvation-of-a-saint-pdf-free",
+    "model": "claude-opus-5"
+  }
+}

@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Murder of Eddie Larsen by rifle shot during attempted theft; later, murder of Dink O'Day by strangulation. Central question: who killed Eddie Larsen, and why was Jimmy Grover wrongly accused?",
+    "value": "Murder(s) in a small Civil War-era town: Eddie Larsen vanishes after drunkenly going to steal cider, with only blood on rocks and no corpse; central question is what happened to the body and who really killed him. A second body, Dink O'Day, is later found stuffed in a barrel.",
     "confidence": "high",
-    "quote": "Mattick had caught Eddie Larsen in his shed trying to steal some cider and had lit out after him with a rifle. He shot him down and killed him."
+    "quote": "I'm arrested for the murder, for which they have not even found a corpse"
   },
   "victim": {
-    "value": "Eddie Larsen: a drunk man attempting to steal cider from Mattick's shed. Dink O'Day: a man who attempted blackmail after learning of the first murder.",
+    "value": "Eddie Larsen, a drunk young man killed trespassing to steal cider from Jack Mattick's shed; and Dink O'Day, Mattick's accomplice who tried to blackmail him",
     "confidence": "high",
-    "quote": "Mattick had caught Eddie Larsen in his shed trying to steal some cider...Dink started getting frisky about it and tried to squeeze a little money out of Mattick"
+    "quote": "Mattick had caught Eddie Larsen in his shed trying to steal some cider and had lit out after him with a rifle."
   },
   "closed_world": {
-    "value": "The small rural town of Capstone and its surrounding farms and woods during wartime (second year of Civil War); social closure: everyone knows everyone.",
-    "confidence": "medium",
-    "quote": "I hadn't ever seen such activity in Capstone. It seemed that everybody was there, all the storekeepers in their aprons and the men from the tavern"
+    "value": "The small town of Capstone and its outskirts \u2014 jail, Dooley House, Gibson's tavern, the marsh, Mattick's farm and Shantytown \u2014 a tight community where everyone knows everyone",
+    "confidence": "high",
+    "quote": "Pete was the only one in Capstone who owned a hat like that"
   },
   "culprit_and_motive": {
-    "value": "Jack Mattick: murdered Eddie Larsen to prevent theft from his shed, then murdered Dink O'Day to silence blackmail. Motive: property protection and extortion prevention.",
+    "value": "Jack Mattick: shot Eddie Larsen for stealing cider, sold the body to a grave-robbing doctor for cadaver money, then strangled Dink O'Day when Dink blackmailed him",
     "confidence": "high",
-    "quote": "Mattick had caught Eddie Larsen in his shed trying to steal some cider and had lit out after him with a rifle. He shot him down and killed him...Mattick's fierce temper and he had choked Dink to death"
+    "quote": "he had choked Dink to death and then... he decided he might as well sell Dink's remains to the doctor too"
   },
   "resolution": {
-    "value": "Pete and Gascius discover Dink O'Day's body in a barrel at Mattick's farm; they report to the sheriff, who apprehends Mattick. Mattick confesses to both murders. Jimmy Grover is exonerated and receives the reward money.",
+    "value": "The boys' night search of Mattick's shed uncovers Dink's body in a barrel and the buried empty coffin; Sheriff Rice arrests Mattick, who confesses. Jimmy Grover is exonerated and the reward is paid for his safe return.",
     "confidence": "high",
-    "quote": "The sheriff collared him good and led him off...Mattick tell it in the jail to the sheriff and all the others: Mattick had caught Eddie Larsen in his shed trying to steal some cider and had lit out after him with a rifle."
+    "quote": "\"He buried an empty box, Mattick did,\" I said."
   },
   "investigator": {
-    "value": "Pete Mariah and Gascius (the narrator), two teenage boys: amateur investigators driven by curiosity and conscience. They stumble upon evidence through exploration rather than official authority.",
+    "value": "Two boys \u2014 narrator Gascius (an outsider child witness) and his fearless, scheming friend Pete Mariah \u2014 amateur juvenile investigators driven by curiosity",
     "confidence": "high",
-    "quote": "Pete said, 'I'll tell you one thing. They're going to hang him as soon as they let eyes on him.' We went off into the night-webbed trees...and found the dead body in the barrel."
+    "quote": "\"You just meet me, Gascius,\" he said. \"Ten o'clock, at the crossroads.\""
+  },
+  "suspect_architecture": {
+    "value": "Small-town cast: Jimmy Grover, the drunkard convicted on circumstantial evidence (means/opportunity: last seen arguing with Eddie Larsen); Jack Mattick, the shady farmer whose shed Eddie went to rob (real killer, motive: protecting property and then silencing a blackmailer); Dink O'Day, Mattick's accomplice who becomes a second victim; a body-snatching doctor in Little Village as accessory. Differentiation is by reputation \u2014 the town's disreputables are presumed guilty.",
+    "confidence": "high",
+    "quote": "\"But everybody says you're a murderer,\" Pete said stubbornly"
+  },
+  "red_herring": {
+    "value": "The public quarrel between Jimmy and Eddie witnessed by the Misses Tabers and Doctor Howell, plus the blood marks on the rocks near the road and Jimmy's drunkenness (suggesting a blackout killing) \u2014 all pointing to Jimmy. Also the empty coffin buried at Dink O'Day's funeral, which initially seems to hide Eddie's body.",
+    "confidence": "high",
+    "quote": "\"But lots of blood marks on the rocks near the road,\" Pete said."
+  },
+  "clue_fairness": {
+    "value": "Fair: the reader is told in Jimmy's own account that Eddie went to steal cider from Mattick's shed; the empty buried box, the missing corpse, the doctor known to buy cadavers, and Mattick's dubious Shantytown wealth are all presented before the boys find Dink in the barrel and before the confession.",
+    "confidence": "high",
+    "quote": "\"He buried an empty box, Mattick did,\" I said."
+  },
+  "social_world": {
+    "value": "Civil-War-era village of Capstone: respectable townsfolk (storekeepers, farmers, Dooley House men) versus Shantytown disreputables; the sheriff holds badge-authority; Eddie Larsen's father commands opinion through a $200 reward; reputation determines guilt, and a grave-robbing doctor's money sustains a hidden economy.",
+    "confidence": "high",
+    "quote": "he was something of a dubious character who associated in Shantytown a lot"
+  },
+  "alibi": {
+    "value": "Jimmy's only account is his own uncorroborated story \u2014 he says he parted from Eddie, who reeled off toward Mattick's; no witness supports him, and two days pass unaccounted for. Mattick's implicit cover is that he was uninvolved, undone by the lit window and his call for 'the doctor'.",
+    "confidence": "medium",
+    "quote": "\"The last I saw of him he was reeling down the road to Mattick's place.\""
+  },
+  "reveal_mechanic": {
+    "value": "Physical discovery plus a verbal slip: the boys find Dink O'Day's body stuffed in a canvas-covered barrel in Mattick's shed (proving the buried coffin was empty), and Mattick, mistaking the sheriff for his visitor, calls out 'Is that you, doctor?' \u2014 exposing the cadaver-selling trade; full confession follows in the jail.",
+    "confidence": "high",
+    "quote": "he said out, \"Is that you, doctor?\""
+  },
+  "media_and_audience": {
+    "value": "Town gossip functions as the press: 'everybody says you're a murderer', the hanging is treated as settled fact and folklore ('bad luck to be looked at by somebody who is going to be hanged'), and a mob forms with a dead-or-alive bounty; at the end the same public voice reverses into an apology.",
+    "confidence": "high",
+    "quote": "\"It has just occurred to me, gentlemen, we all owe Jimmy Grover an apology.\""
+  },
+  "investigator_wound": {
+    "value": "The boy narrator Gascius is torn between conscience and cowardice \u2014 fearful of consequences, unable to lie like Pete, weighed down by guilt at the thought of watching a man hang because of him; Pete's wound is greed for the reward warring with his sense of Jimmy's innocence.",
+    "confidence": "medium",
+    "quote": "A little bit of trumped-up disbelief can go a long way in mitigating a nervous conscience"
+  },
+  "victims_enemies": {
+    "value": "Eddie Larsen, a drunk thief, made enemies by trespassing: he was caught stealing cider from Jack Mattick, a dubious Shantytown-connected farmer with a fierce temper; the second victim, Dink O'Day, was Mattick's own accomplice who turned blackmailer.",
+    "confidence": "high",
+    "quote": "Mattick had caught Eddie Larsen in his shed trying to steal some cider and had lit out after him with a rifle."
+  },
+  "suspect_wounds": {
+    "value": "Jimmy Grover's drunkenness is his vulnerability: he was the last man seen with Eddie, had publicly cuffed and quarreled with him, and was drunk enough that the town can claim he killed without remembering.",
+    "confidence": "high",
+    "quote": "\u201cThey say you was awful drunk and did it without knowing and that now you don\u2019t remember,\u201d Pete said."
+  },
+  "unreliable_frame": {
+    "value": "The narrator is a boy, Gascius, recounting events colored by superstition and childish fear; his companion Pete is a practiced liar ('he could turn mighty artful'), and Jimmy's protestation of innocence is exactly what a guilty man would say, as Pete notes.",
+    "confidence": "high",
+    "quote": "\u201cHe says he is, of course, but I don\u2019t suppose he\u2019d have much trouble influencing himself of that.\u201d"
+  },
+  "setting_as_constraint": {
+    "value": "Tiny Civil War-era town of Capstone: everyone knows everyone, every horse is commandeered for the manhunt so a fugitive cannot flee, and the isolated Mattick farm near the marsh plus nearby Little Village and lawless Shantytown make body-disposal and body-selling possible unobserved.",
+    "confidence": "high",
+    "quote": "Most everybody who had a horse was mounted and so there wasn\u2019t an idle horse about at all."
+  },
+  "evidence_type": {
+    "value": "Physical discovery: Dink O'Day's corpse stuffed in a canvas-covered barrel in Mattick's shed, corroborated by the buried empty coffin box and Mattick's slip asking for the doctor.",
+    "confidence": "high",
+    "quote": "\u201cThat ain\u2019t Eddie Larsen\u2014that\u2019s Dink O\u2019Day.\u201d"
+  },
+  "false_suspect": {
+    "value": "Jimmy Grover, condemned to hang for Eddie Larsen's murder on circumstantial testimony despite no corpse being found.",
+    "confidence": "high",
+    "quote": "\u201cI\u2019m arrested for the murder, for which they have not even found a corpse. . .\u201d"
+  },
+  "technical_detail": {
+    "value": "The trade in cadavers: a doctor in Little Village known to rob graves would buy bodies for research, so Mattick could dispose of corpses for profit and bury an empty coffin at the funeral \u2014 the empty box being what exposes him.",
+    "confidence": "high",
+    "quote": "sold the doctor the body (the doctor was known to rob graves to get cadavers to do research on)"
+  },
+  "moral_ambiguity": {
+    "value": "Pete, the boy hero, nearly sells the man he rescued for the two-hundred-dollar reward, rationalizing it as likely justice; the town's murderous certainty and even Larsen's reward for a hanging show ordinary people willing to kill on conclusion rather than evidence.",
+    "confidence": "medium",
+    "quote": "\u201cBut it ain\u2019t right to hang a man for what people happen to conclude,\u201d Jimmy said hotly."
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "A Real, Live Murderer",
     "author": "DONALD HONIG",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 54,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

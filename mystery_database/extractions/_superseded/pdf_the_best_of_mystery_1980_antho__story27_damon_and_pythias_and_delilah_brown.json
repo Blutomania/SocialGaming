@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Murder by exsanguination disguised as accidental death. Method: Delilah slashes her husband Pythias's wrist with a razor blade during a staged car crash, then manipulates his blood type on his driver's license to ensure a fatal transfusion. Central question: How did a wrist wound occur from windshield glass, and why did the transfusion kill him?",
+    "confidence": "high",
+    "quote": "Something in the nature of a razor blade was used to cut an artery in your husband's left wrist, Mrs. Brown. The location and nature of the wound rules out the probability of its coming from windshield glass."
+  },
+  "victim": {
+    "value": "Pythias Brown, construction worker and cracker. Killable because he is married to Delilah, who desires his wealth-earning best friend Damon Lang. Pythias stands between Delilah and Damon's fortune, assets, and lifestyle she covets.",
+    "confidence": "high",
+    "quote": "If I were married to Damon instead of to Pythias, I would have that kidney-bean-shaped swimming pool, that Jaguar and that 65-foot dream yacht"
+  },
+  "closed_world": {
+    "value": "A lonesome stretch of road in subtropical Florida near Dr. Hillegas Dow's private clinic, bordered by scrub palmettos and a hyacinth-choked canal. The crime unfolds during a tropical downpour on a Monday night with minimal traffic and witnesses.",
+    "confidence": "high",
+    "quote": "It was a lonesome span of road, made melancholy on one side by scrub palmettos and on the other by a hyacinth-choked canal...a rain-lashed highway fore and aft was empty of traffic."
+  },
+  "culprit_and_motive": {
+    "value": "Delilah Brown, Pythias's wife. Motive: to murder her husband to marry his wealthier best friend Damon Lang before Damon's engagement to Ethel Chalice becomes finalized in December, thereby securing access to Damon's inherited wealth, yacht, Jaguar, and luxury lifestyle.",
+    "confidence": "high",
+    "quote": "The basic solution to her immediate dream-compulsion was, naturally, for Pythias to be evaporated into outer space and for her ensuing state of pathetic widowhood to be rectified posthaste by a marriage with good, dependable, protective, and filthy rich Damon Lang."
+  },
+  "resolution": {
+    "value": "B.C.I. investigator Bill identifies the crime through forensic analysis: he discovers the razor blade guard in Delilah's purse, finds the blade in the shrubbery, and detects erasure marks on Pythias's driver's license where Delilah forged his blood type from O to A. A handwriting expert confirms the forgery. The false blood type caused the fatal transfusion.",
+    "confidence": "high",
+    "quote": "Just that our handwriting expert will testify it matches the B you added on your husband's license\u2014after you had changed the original O into an A by drawing a line down on either side of it and straightening its curved bottom into a crossbar."
+  },
+  "investigator": {
+    "value": "Bill, a Bureau of Criminal Identification (B.C.I.) agent. An official investigator with forensic expertise who arrives at the clinic following the staged accident and methodically reconstructs the crime through physical evidence (razor guard, blood type alterations, handwriting analysis).",
+    "confidence": "high",
+    "quote": "Bill carried his six foot two inches of whipcord intelligence and superlative B.C.I, training over to the trio...Bill lifted Delilah's bag from her lap and dumped out its contents onto the receptionist desk."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 23525,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Damon and Pythias and Delilah Brown",
+    "author": "RUFUS KING",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 27,
+    "story_count": 63
+  }
+}

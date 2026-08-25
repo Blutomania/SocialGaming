@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Series of three bomb threat phone calls to Stevenson High School made during school hours; central question: who made the calls, given that only students absent during class times could have done so?",
+    "value": "Anonymous bomb-scare hoax phone calls to Stevenson High School forcing evacuations; question: which absent student made the calls?",
     "confidence": "high",
-    "quote": "A bomb is going to explode in your school in fifteen minutes... another bomb scare call was made this afternoon"
+    "quote": "\u201cThis is no joke. A bomb is going to explode in your school in fifteen minutes.\u201d"
   },
   "victim": {
-    "value": "Lester Baines, an innocent seventeen-year-old student falsely identified as the culprit through logical deduction, whose family is destroyed by suspicion and false accusation.",
-    "confidence": "high",
-    "quote": "Lester Baines had a new sunburn and he carried a rolled-up towel under his arm. His normally cheerful face sobered when he stepped into the house and saw us."
+    "value": "No death; victims are the school/1800 students disrupted, and Lester Baines, the innocent truant framed by circumstance because he was absent on all call days",
+    "confidence": "medium",
+    "quote": "\u201cAnd Lester Baines was absent.\u201d ... \u201cJust Lester Baines. He\u2019s our boy.\u201d"
   },
   "closed_world": {
-    "value": "Stevenson High School and its student body; the investigation is bounded by attendance records that narrow suspects to boys absent during specific class periods when calls were made.",
+    "value": "Stevenson High School's student body, narrowed by attendance records: only boys absent during class hours on all call dates",
     "confidence": "high",
-    "quote": "all of the calls came during times when classes were in session. And that means that only a student who was absent could have made them."
+    "quote": "\u201call of the calls came during times when classes were in session. And that means that only a student who was absent could have made them.\u201d"
   },
   "culprit_and_motive": {
-    "value": "Dave, the narrator's own son, made the first two calls as a joke to 'pep things up'; the narrator (Detective Jim) made the third call to frame Lester and protect his son from suspicion.",
+    "value": "Dave, the narrator-detective's own son, made the first two calls as a prank to disrupt school; the third call was made by Jim himself to clear Dave by giving him an alibi",
     "confidence": "high",
-    "quote": "I did it as a joke. I just wanted to pep things up... I made that particular call myself... a father doesn't always think too clearly when it involves his son."
+    "quote": "\u201cLester didn\u2019t make those bomb calls. I did.\u201d ... \u201cI did it as a joke. I just wanted to pep things up.\u201d"
   },
   "resolution": {
-    "value": "Dave confesses to the narrator, recognizing that Lester is innocent and will not let another suffer for his mistakes. The narrator admits he made the third call. They phone Lester's father to clear his name before sitting down to supper.",
+    "value": "Elimination by attendance records leaves two suspects; Jim confronts Dave with the logic, Dave confesses rather than let Lester suffer, and Jim admits his own cover-up call and phones Lester's father",
     "confidence": "high",
-    "quote": "I think you'd better take me down to headquarters. Lester didn't make those bomb calls. I did... We'll have supper first... And then we'll phone Lester's father."
+    "quote": "\u201cI guess I ought to tell them I made all of the calls, Dad\u201d ... \u201cThanks, son. I\u2019ll tell them what I did.\u201d"
   },
   "investigator": {
-    "value": "Detective Jim, the narrator\u2014a police detective and the culprit's father whose investigation is compromised by his paternal bias and his obstruction of justice to protect his son.",
+    "value": "Jim, a police detective narrating in first person, who is also the concealed perpetrator of the third call and father of the culprit",
     "confidence": "high",
-    "quote": "At 1:20 in the afternoon I phoned Stevenson High School and got through to Principal Morrison... I spoke through the handkerchief over the mouthpiece."
+    "quote": "Yes, Lester Baines could have made those first two phone calls. And I had made the third."
+  },
+  "suspect_architecture": {
+    "value": "Narrowed by attendance records from 96 absent students to three boys absent on both call days: Lester Baines (no alibi, playing hookey, failing grades), a boy hospitalized out of state (eliminated), and Dave \u2014 the narrator's own son, the actual culprit, shielded by his father's position.",
+    "confidence": "high",
+    "quote": "\"And that left us with just two suspects. Lester Baines\u2014and you.\""
+  },
+  "red_herring": {
+    "value": "The narrator himself makes a third bomb-scare call at 1:20 while Dave is in class, manufacturing an alibi for his son and directing all suspicion onto Lester Baines; Lester's evasive lies about a cold and swimming reinforce the false trail.",
+    "confidence": "high",
+    "quote": "\"Yes, Lester Baines could have made those first two phone calls. And I had made the third.\""
+  },
+  "clue_fairness": {
+    "value": "Fair-play cues are planted early: the story opens with the narrator himself placing the call through a handkerchief from a gas station across from the police station, before any detection begins; Dave's presence at the school and eagerness about the cancelled history exam are also shown to the reader.",
+    "confidence": "high",
+    "quote": "\"I spoke through the handkerchief over the mouthpiece. 'This is no joke. A bomb is going to explode in your school in fifteen minutes.'\""
+  },
+  "social_world": {
+    "value": "Suburban school-and-police hierarchy: principal, teachers, detectives, and working-class families; a father's police authority lets him quietly exempt his own son from questioning while another family is pressured into lying for theirs.",
+    "confidence": "medium",
+    "quote": "\"Not myself. But the department got around to seeing all of them.\""
+  },
+  "alibi": {
+    "value": "Baines' parents falsely swear Lester was home all day; Lester's real alibi is truant swimming and unwitnessed. Dave's alibi \u2014 being in class during the third call \u2014 is genuine but fabricated for him by his father's own hoax call.",
+    "confidence": "high",
+    "quote": "\"Right here,\" Baines said again. \"My wife and I will swear to it.\""
+  },
+  "reveal_mechanic": {
+    "value": "Psychological confrontation in the garage: the father lays out the elimination logic and waits; Dave, unnerved, confesses to the first two calls, then the father discloses that he made the third himself.",
+    "confidence": "high",
+    "quote": "\"Lester didn't make those bomb calls. I did.\""
+  },
+  "media_and_audience": {
+    "value": "Bomb scares are reported in the newspaper and treated by students as a welcome break from exams rather than a crime; police assume public opinion that a disgruntled student is responsible.",
+    "confidence": "medium",
+    "quote": "\"I read in the paper that there was another bomb scare at Stevenson this morning.\""
+  },
+  "investigator_wound": {
+    "value": "Detective Jim's paternal blind spot and loyalty: he cannot believe his own son capable of it, skips questioning him, then commits a crime to protect him \u2014 pitting his duty against his fatherhood.",
+    "confidence": "high",
+    "quote": "\"Other men's boys might have done such a thing, but not my boy.\""
+  },
+  "victims_enemies": {
+    "value": "No murder victim; the 'victim' is Stevenson High School itself, targeted by a bored student. The only grievance texture is generic adolescent resentment \u2014 bad marks, hated teachers, or a desire to 'pep things up' before a history exam.",
+    "confidence": "medium",
+    "quote": "\"A boy decides he hates one of the teachers or the whole school because he's getting bad marks.\""
+  },
+  "suspect_wounds": {
+    "value": "Lester Baines is a chronic truant with failing grades who skipped school to avoid two tests and lied to his parents about a cold \u2014 so every honest answer he gives sounds like a cover story, and his parents' instinct to lie for him deepens the appearance of guilt.",
+    "confidence": "high",
+    "quote": "\"I didn't have a cold today. I just stayed away from school. Mom and Dad don't know that.\""
+  },
+  "unreliable_frame": {
+    "value": "The first-person narrator, Detective Jim, is the story's liar: he opens by placing the third bomb call himself and then narrates the investigation of it without disclosing this until the end. His account is suppression rather than falsehood.",
+    "confidence": "high",
+    "quote": "\"Yes, Lester Baines could have made those first two phone calls. And I had made the third.\""
+  },
+  "setting_as_constraint": {
+    "value": "The school's attendance records function as a closed timetable: calls came only while classes were in session, so the caller must be a student marked absent at that hour. Jim exploits this by phoning at 1:20 from a gas station across from the station, knowing Dave was present that afternoon and would be eliminated.",
+    "confidence": "high",
+    "quote": "\"all of the calls came during times when classes were in session. And that means that only a student who was absent could have made them.\""
+  },
+  "evidence_type": {
+    "value": "Documentary \u2014 school attendance records cross-referenced across three call dates, narrowing 96 absentees to three, then to one; supplemented by testimonial confession.",
+    "confidence": "high",
+    "quote": "\"only three boys had been absent on both this morning and on the day of the first phone call.\""
+  },
+  "false_suspect": {
+    "value": "Lester Baines, innocent of the calls but absent on all three dates because he was truant swimming; deliberately left as the sole suspect by Jim's fabricated third call.",
+    "confidence": "high",
+    "quote": "\"Just Lester Baines. He's our boy.\""
+  },
+  "technical_detail": {
+    "value": "Police procedure of cross-indexing absentee lists against call times, plus the fact that the calls were all local \u2014 which eliminates the boy hospitalized five hundred miles away with scarlet fever; the handkerchief over the mouthpiece keeps the voice 'muffled and indistinct.'",
+    "confidence": "high",
+    "quote": "\"He's in a hospital five hundred miles away from here\u2014and the phone calls were all local.\""
+  },
+  "moral_ambiguity": {
+    "value": "The detective-culprit commits a crime out of paternal love, not malice \u2014 timing the call so no one could be hurt, and hoping Lester would prove guilty anyway; his son's confession redeems both, and Jim chooses to turn himself in.",
+    "confidence": "high",
+    "quote": "\"a father doesn't always think too clearly when it involves his son. And I was hoping that it might turn out to be Lester after all.\""
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 15940,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "The Third Call",
     "author": "JACK RITCHIE",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 26,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

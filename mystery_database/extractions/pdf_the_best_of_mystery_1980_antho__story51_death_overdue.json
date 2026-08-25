@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Strangulation murder of Dorothy Paxton, mayor's daughter, found at Willow Pool on October 18, 1944. Central question: who killed her, given that the principal suspect (Ralph Addison) was never convicted despite being last seen with her?",
+    "value": "The 1944 strangling of Dorothy Paxton, found near Willow Pool; a fifteen-year-old unsolved cold case \u2014 who really killed her, since the chief suspect was never convicted?",
     "confidence": "high",
-    "quote": "a girl by the name of Dorothy Paxton was\u2014...she was drowned\u2014no, strangled\u2014found by some lake or other"
+    "quote": "she was drowned\u2014no, strangled\u2014found by some lake or other"
   },
   "victim": {
-    "value": "Dorothy Paxton, mayor's daughter, described as 'the prettiest thing in town.' Killable because she was pursued by multiple men including Ralph Addison (while her fianc\u00e9 was in military service), creating jealousy and romantic conflict.",
+    "value": "Dorothy 'Dotty' Paxton, the mayor's pretty daughter, courted by many men while her fianc\u00e9 served overseas \u2014 desirability and rival suitors made her a target",
     "confidence": "high",
-    "quote": "she was the prettiest thing in town. I'm heading over to the diner...a lot of fellows were after Dotty."
+    "quote": "a lot of fellows were after Dotty. She was the prettiest thing in town."
   },
   "closed_world": {
-    "value": "Small town of Stockton, Massachusetts, where the crime occurred 15 years prior to the story's present time. The social world is bounded by interconnected townspeople with shared memories and reputations.",
+    "value": "The small New England town of Stockton, sixty miles from Boston \u2014 a fixed set of long-time residents old enough to remember 1944, centered on the library, Willow Pool and Main Street",
     "confidence": "medium",
-    "quote": "a girl by the name of Dorothy Paxton was\u2014...That was the day of the Paxton murder...we were really on the map that year."
+    "quote": "a list of acquaintances, tradespeople and officials of Stockton old enough to have reliable memories of the event"
   },
   "culprit_and_motive": {
-    "value": "Bernard Waterfield, civil defense director and pharmacist, killed Dorothy Paxton. Motive: implied romantic rejection or jealousy (Waterfield had courted Mrs. De Ware in youth; Mrs. De Ware 'knew the sort of man he was').",
+    "value": "Bernard 'Bernie' Waterfield, the officious wartime civil defense chief and druggist; motive implied in his character as a predatory man Mrs. De Ware once knew as a suitor",
     "confidence": "high",
-    "quote": "Bernard Waterfield. He had shot himself, leaving a written confession to the murder of Dorothy Paxton...Bernie courted me when we were both young."
+    "quote": "the suicide of Bernard Waterfield. He had shot himself, leaving a written confession to the murder of Dorothy Paxton."
   },
   "resolution": {
-    "value": "Waterfield confesses and commits suicide when confronted by Gifford about reopening the case. The confession exonerates Ralph Addison (Mrs. De Ware's brother), whose reputation is restored posthumously.",
+    "value": "Mrs. De Ware's forged 'overdue' library book baits Gifford into openly reopening the case; pressured by the announced interview and 'new evidence,' Waterfield confesses in a suicide note, exonerating Ralph Addison",
     "confidence": "high",
-    "quote": "For the next morning's Stockton Eagle carried screaming headlines of the suicide of Bernard Waterfield. He had shot himself, leaving a written confession to the murder of Dorothy Paxton."
+    "quote": "There wasn't any book returned with the murder date on it. . . I had the idea to rig the date."
   },
   "investigator": {
-    "value": "Allan Gifford, journalist and detective fiction writer vacationing in Stockton. He investigates as an outsider motivated by intellectual curiosity triggered by a mysterious library book return, unknowingly manipulated by Mrs. De Ware.",
+    "value": "Allan Gifford, vacationing journalist and detective-fiction writer \u2014 an outsider amateur \u2014 manipulated by librarian Mrs. De Ware, the true hidden schemer",
     "confidence": "high",
-    "quote": "A journalist and occasional writer of detective fiction, he'd taken a cottage in Stockton every July for the past seven years."
+    "quote": "A journalist and occasional writer of detective fiction, he'd taken a cottage in Stockton every July"
+  },
+  "suspect_architecture": {
+    "value": "Small cold-case cast: Ralph Addison, the girl-crazy bachelor last seen with Dorothy Paxton (opportunity, near-conviction, but innocent); Bernie Waterfield, the officious civil defense warden and rejected former suitor (true killer); Dorothy's soldier fianc\u00e9 brought back from overseas for questioning; plus 'a lot of fellows were after Dotty'",
+    "confidence": "high",
+    "quote": "\"Ralph was the last person seen with her the morning of the murder; they found her body late that afternoon.\""
+  },
+  "red_herring": {
+    "value": "The overdue library book itself \u2014 a forged artifact. Mrs. De Ware faked the October 18, 1944 date stamp on a civil defense book from an estate crate, then dangled it as 'new evidence' to bait Gifford into investigating",
+    "confidence": "high",
+    "quote": "\"There wasn't any book returned with the murder date on it. . .\""
+  },
+  "clue_fairness": {
+    "value": "Fair-play hints are seeded early: her refusal to let Gifford take or examine the book, the book being uncatalogued and kept in a bottom drawer, the conveniently 'faded' red ink, and her over-eager 'delicious part' narration all precede the revelation",
+    "confidence": "high",
+    "quote": "\"He stared at the faded red ink in which the date was stamped\""
+  },
+  "social_world": {
+    "value": "A small New England town where the mayor's family, the fire chief, the druggist and the librarian are the power network; an unconvicted suspect lives permanently under 'the cloud,' and local pride in the famous case governs who will talk to an outsider",
+    "confidence": "high",
+    "quote": "\"Even though they couldn't convict him, the cloud never lifted.\""
+  },
+  "alibi": {
+    "value": "No formal alibi is examined; Gifford's fictional scenario places the civil defense chief at the post office by the library near Willow Pool on the murder day, implicitly placing Waterfield at the scene",
+    "confidence": "medium",
+    "quote": "\"on the day of the murder, this fellow goes to the post office to put up some air raid signs\""
+  },
+  "reveal_mechanic": {
+    "value": "Psychological pressure rather than proof: the bluff of 'interesting new evidence' plus a list of interviews panics Waterfield into shooting himself and leaving a written confession; Mrs. De Ware then confesses the forgery over dessert",
+    "confidence": "high",
+    "quote": "\"He had shot himself, leaving a written confession to the murder of Dorothy Paxton.\""
+  },
+  "media_and_audience": {
+    "value": "The case is a town legend and press event \u2014 'we were really on the map that year' \u2014 revived by screaming Stockton Eagle headlines about the suicide, which restore Addison's name and earn Gifford his editor's praise",
+    "confidence": "high",
+    "quote": "\"the next morning's Stockton Eagle carried screaming headlines of the suicide of Bernard Waterfield\""
+  },
+  "investigator_wound": {
+    "value": "Gifford's writer's slump and creative self-doubt \u2014 declaring himself 'through with the clue type' and lonely with his family away \u2014 is precisely the vulnerability Mrs. De Ware exploits to set him hunting",
+    "confidence": "high",
+    "quote": "\"More likely Gifford's Swan Song. I'm through with the clue type.\""
+  },
+  "victims_enemies": {
+    "value": "Dorothy 'Dotty' Paxton, the mayor's pretty daughter, was pursued by many men while her fianc\u00e9 was overseas \u2014 including the girl-crazy bachelor Ralph Addison, last seen with her, and Bernie Waterfield, the officious civil-defense chief who ultimately confessed.",
+    "confidence": "high",
+    "quote": "He was chasing Dotty Paxton while her boy friend was in the service. Ralph was the last person seen with her"
+  },
+  "suspect_wounds": {
+    "value": "Addison's wound was his reputation as a silly, girl-crazy bachelor who had been chasing the victim \u2014 enough to leave a lifelong cloud even without conviction. Waterfield's wound was his self-important pride in his civil-defense role, which made Gifford's questions feel like exposure.",
+    "confidence": "high",
+    "quote": "Even though they couldn\u2019t convict him, the cloud never lifted."
+  },
+  "unreliable_frame": {
+    "value": "Mrs. De Ware is the unreliable narrator: kindly librarian who conceals that Ralph Addison was her brother, that she suspected Waterfield from the start, and that the overdue book and its date were fabricated to manipulate Gifford.",
+    "confidence": "high",
+    "quote": "There wasn\u2019t any book returned with the murder date on it. . ."
+  },
+  "setting_as_constraint": {
+    "value": "The small town of Stockton \u2014 where everyone remembers, gossip travels, and the library, post office and Willow Pool sit at the end of one side street \u2014 makes proximity to the murder scene meaningful and makes a stranger's questions instantly public pressure.",
+    "confidence": "high",
+    "quote": "The library, which occupied a low frame building together with the post office, was at the very end of a side street"
+  },
+  "evidence_type": {
+    "value": "Documentary \u2014 a library date stamp on a checked-out book, supposedly proving a borrower stood by the pond on the murder day; in fact forged. The real break is testimonial: Waterfield's written confession.",
+    "confidence": "high",
+    "quote": "there was a book dated October 18, 1944"
+  },
+  "false_suspect": {
+    "value": "Ralph Addison, the near-convicted principal suspect, innocent but shadowed until death.",
+    "confidence": "high",
+    "quote": "A man named Ralph Addison. He died just last year."
+  },
+  "technical_detail": {
+    "value": "Library circulation practice: the earlier librarian Miss Gill stamped the date a book was taken out, not its due date \u2014 so the stamp places a borrower at the scene on the murder day; also the aging/faking of red date-stamp ink.",
+    "confidence": "high",
+    "quote": "She stamped the day that the book was taken out. So the person could have seen the murderer after all."
+  },
+  "moral_ambiguity": {
+    "value": "Mrs. De Ware fabricates evidence and manipulates a friend into a false investigation \u2014 a deception, yet driven by fifteen years of loving grief for a brother who died under an unlifted cloud.",
+    "confidence": "high",
+    "quote": "For fifteen years I\u2019ve felt sure that Ralph was innocent."
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 15014,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Death Overdue",
     "author": "ELEANOR DALY BOYLAN",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 51,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Murder by bludgeoning. George Hobday killed with head battered in under a hedge. Central question: Did Harry Evitt's alibi\u2014a timed telephone call to the exchange and clock manipulation\u2014successfully conceal his guilt?",
+    "value": "Premeditated murder: George Hobday battered on the head while walking across the fields from the station; central question is how Evitt could have done it when a clock and a verified telephone call to the exchange place him at home \u2014 i.e. how was the alibi faked?",
     "confidence": "high",
     "quote": "At the time when his body was discovered, under a hedge and with his head battered in, he had been dead for at least an hour."
   },
   "victim": {
-    "value": "George Hobday, business partner of Harry Evitt in the firm Hobday and Hobday (auctioneers and estate agents). Killable because he discovered financial irregularities\u2014Evitt embezzling or misappropriating company money.",
+    "value": "George Hobday, senior partner in the auctioneering firm Hobday and Hobday, killed because he had discovered his partner Harry Evitt's embezzlement and had gone to London to consult an accountant",
     "confidence": "high",
     "quote": "You've had it ready for a long time, in case George ever found out about the money."
   },
   "closed_world": {
-    "value": "A rural English village with limited transport (train arrivals on schedule, footpaths across fields, short windows of movement). The Evitts' house and surrounding properties form the investigative perimeter.",
+    "value": "A small English village community \u2014 the Evitts' house, the Hobdays' house down the short lane, the fields between station and house \u2014 a tiny circle of neighbours/partners and a fixed Wednesday bridge routine",
     "confidence": "medium",
-    "quote": "The short cut across the fields...he needed only five minutes to reach the Evitts' house."
+    "quote": "the tranquil English countryside... Evitt saw her down the short lane to her home."
   },
   "culprit_and_motive": {
-    "value": "Harry Evitt murdered George Hobday to prevent discovery of embezzlement or financial crime. Motive: self-preservation and concealment of theft from the business partnership.",
+    "value": "Harry Evitt, aided by his wife Rina, murdered his partner to prevent exposure of the money he had been stealing from the firm; Rina altered the clock and made a fake phone call to build his alibi",
     "confidence": "high",
-    "quote": "You've had it ready, yet you never told me...I've had it ready in case George ever found out about the money."
+    "quote": "\"You've got to be sure the others leave on time... change the clock and make that telephone call without her knowing.\""
   },
   "resolution": {
-    "value": "Inspector Tewson deduces that Rina Evitt deliberately disrupted Minnie Hobday's watch using a magnetic pencil from the telephone pad during bridge. The watch's erratic behavior (gaining time unpredictably) exposed the alibi as constructed.",
+    "value": "Inspector Tewson deduces the alibi trick: Rina repeatedly tapped Minnie's watch with a magnetic pencil from the telephone message pad, wrecking the watch so it could not contradict the reset clock and faked exchange call; confronted, Rina breaks and attacks Harry",
     "confidence": "high",
-    "quote": "If you keep on tapping a watch with a quite powerful magnet, you can make it go very wrong indeed...you can't tell if it'll go fast or slow or stop altogether."
+    "quote": "\"The pencils that go with them have magnets in them... you can make it go very wrong indeed.\""
   },
   "investigator": {
-    "value": "Detective Inspector Ronald Tewson, official police investigator. A methodical, anger-driven detective suspicious of the Evitts' convenient clock and phone alibi from the start.",
+    "value": "Detective Inspector Ronald Tewson, official police detective prone to anger at cold-blooded crime, with Sergeant James Geary as sounding board",
     "confidence": "high",
-    "quote": "Detective Inspector Ronald Tewson was very interested in Minnie's watch...the unwarranted conclusion to which he jumped was that George Hobday had been murdered by his partner, Harry Evitt."
+    "quote": "Detective Inspector Ronald Tewson was very interested in Minnie's watch."
+  },
+  "suspect_architecture": {
+    "value": "Small cast: Harry Evitt (partner embezzling from the firm, motive: George discovered the money) and wife Rina as accomplice; Michael Hobday, the nineteen-year-old son, floated as an alternative suspect via a supposed quarrel with his father; Minnie Hobday as witness whose watch is the crux. Reader knows the guilty pair from the opening \u2014 an inverted structure where interest lies in whether the timing trick holds.",
+    "confidence": "high",
+    "quote": "\"Working with Evitt, perhaps. There's this story that he was on bad terms with his father.\""
+  },
+  "red_herring": {
+    "value": "Rina repeatedly drags Michael into conversation, seeding the idea that the son quarrelled with George; also the 'prowler' suggestion and the notion that Minnie's watch simply went wrong by coincidence.",
+    "confidence": "high",
+    "quote": "Frowning vaguely, Minnie wondered why Rina kept dragging Michael in."
+  },
+  "clue_fairness": {
+    "value": "Fair: the green-and-gold pencil and Rina's habit of tapping Minnie's wrist are shown in the bridge scene long before Tewson interprets them, as is the clock-change plan itself.",
+    "confidence": "high",
+    "quote": "The pencil was of emerald green, tipped with gilt, and matched the emerald green woolen dress"
+  },
+  "social_world": {
+    "value": "English provincial middle-class respectability: a partnership in Hobday and Hobday, auctioneers and estate agents, weekly bridge afternoons, tasteful antique-furnished house bought from magazines; Rina's restless social aspiration and Harry's embezzlement drive the crime.",
+    "confidence": "high",
+    "quote": "George's partner in the firm of Hobday and Hobday, auctioneers and estate agents"
+  },
+  "alibi": {
+    "value": "Harry's alibi: the grandfather clock set back ten minutes plus a faked call to the telephone exchange, so that he appears to be in the room with Minnie when George's six-twenty train arrived and for an hour after.",
+    "confidence": "high",
+    "quote": "you can come back in here and change the clock and make that telephone call without her knowing"
+  },
+  "reveal_mechanic": {
+    "value": "Tewson notices the missing pencil belonging to the metal message pad and explains that such pencils contain magnets \u2014 repeated tapping on Minnie's watch magnetised and ruined it, destroying the one piece of evidence against the clock; Rina breaks down, confirming it.",
+    "confidence": "high",
+    "quote": "The pencils that go with them have magnets in them."
+  },
+  "media_and_audience": {
+    "value": "Little public/press dimension; perception is managed privately \u2014 the Evitts perform grief and neighbourly concern, and Rina plays to an audience of police and Minnie.",
+    "confidence": "medium",
+    "quote": "With an audience to play to, he thought, you could always rely on her."
+  },
+  "investigator_wound": {
+    "value": "Tewson's anger at cold-blooded crime: it exhausts him and makes him jump to unwarranted conclusions, the very tendency the Evitts' calculated plot could exploit.",
+    "confidence": "high",
+    "quote": "he always wore himself out, suffered more than was useful to anyone, and jumped to unwarranted conclusions"
+  },
+  "victims_enemies": {
+    "value": "George Hobday's enemy is his own business partner Harry Evitt, who had been embezzling from the firm of Hobday and Hobday and feared discovery; also rumored friction between George and his son Michael, a rumor the Evitts themselves circulated.",
+    "confidence": "high",
+    "quote": "\"You've had it ready for a long time, in case George ever found out about the money.\""
+  },
+  "suspect_wounds": {
+    "value": "Michael Hobday, nineteen, had a 'difficult time' and a reported row with his father, making him look guilty; Minnie's own dazed, grief-broken memory makes her testimony seem self-contradicting and suspicious; Evitt's own nervous feet and compulsive explaining betray him.",
+    "confidence": "medium",
+    "quote": "\"There's this story that he was on bad terms with his father.\" \"The Evitts' story. No one else supports it.\""
+  },
+  "unreliable_frame": {
+    "value": "The Evitts are the liars \u2014 both narrate a rehearsed script about the clock and the telephone call. Minnie Hobday is unreliable too, though innocently: grief, sedation and a sabotaged watch make her recant a true statement.",
+    "confidence": "high",
+    "quote": "\"Mrs. Hobday has withdrawn the statement she made to us yesterday evening that your clock was wrong.\""
+  },
+  "setting_as_constraint": {
+    "value": "A quiet English country house whose weekly ritual bridge party breaks up at exactly six o'clock for the bus \u2014 a rigid social timetable Evitt exploits, along with the short cut across the fields from the station and the isolation of the drive where guests are seen off.",
+    "confidence": "high",
+    "quote": "\"You've got to be sure the others leave on time... so that you can come back in here and change the clock\""
+  },
+  "evidence_type": {
+    "value": "Physical/technical trace evidence: the missing magnetized green-and-gold pencil belonging to the telephone message pad, corroborated by testimony of Minnie's tapped wrist and the watch's continuing gain.",
+    "confidence": "high",
+    "quote": "\"Mrs. Evitt, what did you do with the pencil that belongs to this pad?\""
+  },
+  "false_suspect": {
+    "value": "Michael Hobday, the nineteen-year-old son, whom Rina repeatedly steers conversation toward, hinting at quarrels with his father.",
+    "confidence": "high",
+    "quote": "Frowning vaguely, Minnie wondered why Rina kept dragging Michael in."
+  },
+  "technical_detail": {
+    "value": "Magnetic disruption of a mechanical watch: memo-pad pencils contain magnets to cling to the metal cover, and repeated tapping against a watch magnetizes the works so it runs wildly fast \u2014 destroying it as evidence against a faked clock and phone call.",
+    "confidence": "high",
+    "quote": "\"if you keep on tapping a watch with a quite powerful magnet, you can make it go very wrong indeed\""
+  },
+  "moral_ambiguity": {
+    "value": "Evitt is a calculating rather than violent man, driven to murder by the collapse of his embezzlement rather than hatred; he is genuinely terrified and protective of Rina, who is dragged in unwilling and finally breaks under the strain.",
+    "confidence": "high",
+    "quote": "He was a calculating rather than a violent man. But calculations can go very easily wrong, and then what is there left but violence?"
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Perfectly Timed Plot",
     "author": "E. X. FERRARS",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 41,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }
