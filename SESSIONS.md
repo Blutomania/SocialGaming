@@ -3183,10 +3183,75 @@ Ctrl-C lands. Both ends now exit 130 and say how to resume, and the child no lon
 fatal-error copy ("re-run after the cause is fixed" reads oddly when the cause was a deliberate
 keypress). Nothing was ever at risk — the in-flight source writes no placeholder.
 
+### The investigation model — a UX question that found three live defects
+
+The session's second half was design, not code: the owner asked how CLOUD's top-down crime scene
+would actually work. **Full record in `docs/INVESTIGATION_DESIGN.md`** — this is the summary.
+
+Asking "would a Black Forest mystery work?" turned out to be the right question. Three answers,
+in ascending order of how much they matter:
+
+**The floor plan is the wrong picture, and only the renderer thinks otherwise.** Generation is
+already setting-agnostic (`investigation_areas`, "plausible for the setting" — the word "room"
+appears nowhere) and the coherence engine has no spatial rule at all. But
+`crime_scene_map._row_rects` packs rectangles into a building; a Black Forest renders as a
+forty-metre ravine in a 308×289 box, fourteen pixels from a hut. The owner's Dick Francis case
+settles it — racetrack, stables, country estate, lawyer's office are miles apart, and *proximity
+is not the constraint, access is*. A connection map replaces it.
+
+**Witness placement is fabricated.** `area = placed[i % len(placed)]` — witnesses are dealt into
+areas round-robin by list position. Nothing in the mystery says where anyone is, so a witness who
+says "I was in the kitchen all evening" can be drawn in the ravine. Evidence and leads have no
+location field at all. Of four content types, exactly one is genuinely located.
+
+**The investigation phase can deadlock** — logged as item 21, stage-1 blocking. Sharing is the
+only phase exit, you cannot share nothing, and all 5 areas can be blocked before the last player
+acts. Every difficulty at every player count wants more investigations than there are areas. Root
+cause is the phase gate, not the block pool.
+
+### Two owner ideas that changed the shape
+
+**The narrative hands out the options, and the pool grows.** Round 1's options are stated in prose
+by the opening narration; round 2 is what nobody took plus what round 1 unlocked. This kills blind
+exploration — which the owner objected to as neither fun nor social, and which turns out to be
+*structurally* the deadlock — and it makes the deadlock impossible rather than patched. It also
+works as a **plain list before it needs any map**, which is the stage-1 build.
+
+**Not every action needs to be vital.** Red herrings and innocent bystanders are the point, so the
+fix is never "add just enough content." That reframed the deadlock correctly: the exit condition
+should be *"you are done acting,"* not *"you found something."* Today the code cannot tell "found
+nothing useful" from "found nothing at all," and only one of those should stop a game.
+
+### Solvability as arithmetic — the piece worth keeping
+
+Owner's question: *"how do we ensure the clues are actual clues that come together for the
+solution?"*
+
+`relevance: "critical"` is a **label, not a relationship** — nothing says E3 rules out Tanaka, and
+the claim that five items prove Hale did it lives only in prose. Meanwhile
+`P1.C5.dangling_key_evidence`, the rule meant to guarantee solvability, carries the message
+*"Resolution refers to evidence players can never find"* while checking only that the ID exists in
+the array. **The same failure family as Session 34's culprit bug: a rule whose message states the
+real requirement and whose check is a weaker proxy.**
+
+The fix is to make elimination a field (`exonerates` / `implicates`), after which solvability is a
+set operation: remove everyone exonerated by the key evidence; **exactly one suspect must remain,
+and it must be the culprit.** Three BLOCKING conditions fall out that nothing detects today — two
+survivors, zero survivors, wrong survivor — each producing a game that cannot be won.
+
+Free interim check available with no schema change: `how_to_deduce` already cites evidence IDs and
+areas inline (*"the Cold Storage motion log (E3, Area A1)"*), so parsing those and confirming they
+cover `key_evidence` catches non-load-bearing key evidence today.
+
+The honest boundary: **structure is provable for free, fairness is empirical (the viability rating
+and accusation data), and meaning is the expensive middle you mostly do not need to buy.**
+
 ### Files changed
 
 | File | Change |
 |---|---|
+| `docs/INVESTIGATION_DESIGN.md` | **new** — the whole model, with open questions and build order |
+| `CLAUDE.md` | item 21 (deadlock, new); item 20 marked superseded in part; doc added to Key Files |
 | `part_registry.py` | fingerprint hashes extraction **contents**, not just the filename set |
 | `scripts/test_registry_staleness.py` | new case: a source rewritten in place must trigger a rebuild |
 | `mystery_database/part_registry.json` | regenerated — 4,967 → 5,065 parts |
