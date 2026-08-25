@@ -287,10 +287,39 @@ Full list in `SESSIONS.md`. Top priorities:
    stories = 75), there are **283 additional `ebook_*` entries** from an earlier bulk-pipeline run
    (bookrix.com sources, P1+P2 depth) already sitting in `mystery_database/extractions/` —
    confirmed present, not previously tracked in this file (Session 21).
-   **Sourcing-ratio guideline (Session 21):** favor short-story anthology PDFs heavily over
-   individual novels for new clearance decisions — roughly 3–5 anthologies cleared per 1 novel —
-   since an anthology yields 15–63x the source_ids per single legal-clearance decision at
-   currently-identical extraction depth (both the 12 curated novels and the 63 stories are P1-only;
+   **Sourcing-ratio guideline (Session 21; second justification measured Session 35):** favor
+   short-story anthology PDFs heavily over individual novels for new clearance decisions —
+   roughly 3–5 anthologies cleared per 1 novel.
+
+   **[Session 35] The original argument was cost-per-legal-clearance. There is now a measured
+   QUALITY argument, and it is the stronger one.** After the P1P2P3 upgrade ran on 70 sources,
+   P3 field confidence splits sharply by source type:
+
+   | | high | medium | low | null | P3 fields |
+   |---|---|---|---|---|---|
+   | anthology story | **81%** | 16% | 0% | 3% | 441 |
+   | novel | **48%** | 44% | 4% | 4% | 77 |
+
+   Nearly half of every novel's P3 content is hedged. The cause is sampling, not the model: a
+   short story under 25,000 chars is fed **whole**, while a novel is capped at
+   `--max-text-chars` (24,000 in this run — about 7% of a 350,000-char book, as three
+   disconnected chunks). P3 fields describe whole-book structure, so they are exactly what
+   sampling destroys.
+
+   **Do not measure this with part counts — they saturate and hide it.** Both types land at
+   ~19.5 parts of a possible ~20 mapped keys, so by that metric novels look *better* than
+   stories (4.2x vs 3.5x gain, an artifact of a lower starting point). Confidence is the honest
+   signal. Anything that scores extraction quality should use it.
+
+   **The fix for novels, when there is appetite:** raise `--max-text-chars`. Opus 5's context is
+   1M tokens, so the 24,000-char cap is arbitrary rather than technical — a whole novel is
+   ~87K tokens. Input is the cheap half of a call: ~$0.45/novel at 120K chars, ~$1.30/novel fed
+   whole, against ~$0.09 today. Roughly **$15 buys all 12 novels the quality the stories already
+   have**, as a re-run of the same idempotent command with no new code. Explicitly NOT urgent —
+   it buys corpus quality, not anything a playtester sees (see Delivery Priority).
+
+   The old wording, kept because it is still true of the cost side: an anthology yields 15–63x
+   the source_ids per single legal-clearance decision at currently-identical extraction depth (both the 12 curated novels and the 63 stories are P1-only;
    novels only earn a depth advantage once `--protocol P1P2`, or P3/P4, actually gets used on them).
    `mystery_database/new_sources/` still holds: three full novels (Stevenson ×2, Tana French)
    queued for later one-at-a-time ingestion; one `.html` file (`extract_from_pdfs.py` only reads
