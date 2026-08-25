@@ -79,6 +79,9 @@ PROTOCOL = "P1P2P3"
 # scripts/test_extraction_fatal_errors.py asserts the two stay equal.
 EXIT_FATAL = 2
 
+# 130 is the shell convention for SIGINT (128 + 2).
+EXIT_INTERRUPTED = 130
+
 
 # Filenames carry the download site that produced them. Strip that for display
 # so the list reads as book titles someone can go and find.
@@ -437,7 +440,19 @@ def main():
         print("=" * 78)
         print(" ".join(cmd[1:]))
         print("=" * 78, flush=True)
-        rc = subprocess.call(cmd, cwd=str(ROOT))
+        try:
+            rc = subprocess.call(cmd, cwd=str(ROOT))
+        except KeyboardInterrupt:
+            # Ctrl-C reaches the whole process group, so the child has already
+            # cleaned up and printed its own summary. Without this the parent
+            # tracebacks out of subprocess.call -- directly contradicting the
+            # "Safe to interrupt" line it printed at the top of the run.
+            done_now = len(queue) - done - 1
+            print("\n\nInterrupted. Nothing was written for the source in flight.")
+            if done_now:
+                print(f"{done_now} source(s) not started.")
+            print("Re-run this exact command to resume — --upgrade re-pays for nothing.")
+            return EXIT_INTERRUPTED
         if rc == EXIT_FATAL:
             # Not this source's fault — the account or the credentials are the
             # problem, so every remaining source fails identically. Carrying on
