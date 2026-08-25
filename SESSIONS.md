@@ -3246,10 +3246,70 @@ cover `key_evidence` catches non-load-bearing key evidence today.
 The honest boundary: **structure is provable for free, fairness is empirical (the viability rating
 and accusation data), and meaning is the expensive middle you mostly do not need to buy.**
 
+### APF — the owner simplified the game, and it deleted the deadlock
+
+Late in the session the owner cut exploration entirely. **"All Provided For": findings are dealt,
+not gathered; the only decision is which to share and which to keep.** Reasoning, in their order:
+moving and searching is not the fun part; free-text interrogation invites griefing (*"watch me
+tell this witness to eat a donut"* — and `InterrogateRequest.question` is a `str` today, so that
+is live); and it concentrates the game on what `CLAUDE.md`'s own first paragraph calls the core
+innovation.
+
+**The deadlock (item 21) is not fixed by this — it stops existing.** Nothing to block, everyone
+holds findings by construction, no phase to be trapped in. The block pool, phase gates, traversal
+and investigation budget all go with it, and play-time API cost drops to roughly zero — which is
+the lever `docs/AI_COST_PLAYBOOK.md` already identified as the right one, pushed all the way.
+
+The dealing constraints are the new correctness surface, and they are **free**: generate findings
+with elimination data (one call), then deal under constraints as pure computation — a failed deal
+is re-dealt at zero cost. Union must eliminate all but one suspect; no single hand may do so; it
+must become solvable at the minimum share threshold.
+
+**Path 2 (one pick-list interrogation) is a flag, not a fork.** If the list is over pre-generated
+questions the answers already exist, so it is only *"one of your findings arrives chosen instead
+of dealt"* — same generation, deal, share and reveal. Ship APF with a toggle and one group tests
+both in an evening. Consequence: solvability must hold across all pick combinations, which for
+4 players × 3 options is 81 exhaustive set checks at zero cost. Explicitly *not* the shortcut of
+making all options eliminate the same thing — that is cosmetic choice and players feel it.
+
+### Two corrections the owner prompted
+
+**Top-down was over-rejected.** §1 of the design doc had generalised the defect from
+"packs rectangles" to "top-down". Wrong: `_row_rects` fills rows because it reasons about *"the
+shape of the building"* — it draws interior architecture, and that is what breaks on a forest.
+**Scale absorbs the Dick Francis case** (floor plan → site plan → terrain → regional, one renderer,
+different zoom), and it also removes the objection this document itself raised against a node
+graph, that it *"looks like a diagram, not a place."* In APF the map is presentation, not
+mechanic, so it cannot deadlock or lie about movement. The code change is small — of seven
+functions only `_grid_shape` and `_row_rects` are offenders, and most of the 193 assertions test
+invariants a scattered layout must satisfy anyway.
+
+**The video placeholder does not exist.** `CLAUDE.md` item 15 claimed the client renders a static
+`"Video Scene Will Play Here"`. That string is in no `.gd`, `.tscn`, `.html` or `.py` file. Fourth
+doc-says-built / code-says-no gap this session, after the result screen, the saved-mystery
+dropdown and `_slug`.
+
+**But something better does exist, unused.** `_generate_cinematic_brief()` (`server/main.py:335`)
+returns a player-facing `opening_narration` — its own spec reads *"3–5 sentences of atmospheric
+prose, written to be displayed or read aloud to players"* — alongside a hidden `cinematic_brief`
+shot list for the eventual video. Gated behind `cinematic_brief: bool = False`, never run. That is
+exactly the text-heavy opening the owner asked for, one boolean away, for one call at generation
+time.
+
+Measured beats for the paced reveal: narration (3–5 sentences), `initial_discovery` (224 chars),
+`when` (86), `what_happened` (421), `setting.description` (531) — ~1,300 characters over five
+beats of deliberately varied length. Pacing is free (client-side timing) and on a shared screen it
+is a group moment rather than homework.
+
+Recorded against the video slot: **do not ship a grey "Video Scene Will Play Here" box** — it
+announces unfinished software exactly when immersion matters. The slot should hold the crime
+depicted as well as it currently can, with the narration timed over it.
+
 ### Files changed
 
 | File | Change |
 |---|---|
+| `docs/PLAYTEST_FLOW.md` | **APF** loop, the deal constraints, Path 2 as a flag, the opening sequence, the video slot, and what the UI must carry |
 | `docs/INVESTIGATION_DESIGN.md` | **new** — the whole model, with open questions and build order |
 | `CLAUDE.md` | item 21 (deadlock, new); item 20 marked superseded in part; doc added to Key Files |
 | `part_registry.py` | fingerprint hashes extraction **contents**, not just the filename set |

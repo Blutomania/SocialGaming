@@ -545,7 +545,15 @@ Full list in `SESSIONS.md`. Top priorities:
     instead (`game["win_history"]` tracks this). `POST /games/{id}/next-mystery/start` resets the
     same room in place — same `game_id`, same players, nobody rejoins — which is the actual point:
     subtly encouraging the same group to keep playing together. Video generation stays explicitly
-    tabled — client renders a static `"Video Scene Will Play Here"` placeholder. Full detail,
+    tabled. **[CORRECTED, Session 35] This item used to claim the client "renders a static
+    `Video Scene Will Play Here` placeholder." It does not — that string appears in no `.gd`,
+    `.tscn`, `.html` or `.py` file, and nothing occupies that slot today.** What DOES exist,
+    unused, is `_generate_cinematic_brief()` (`server/main.py:335`), which returns both a
+    player-facing `opening_narration` ("3–5 sentences of atmospheric prose… displayed or read
+    aloud to players") and a hidden `cinematic_brief` shot list for a future video generator. It
+    is gated behind `cinematic_brief: bool = False` and has never run — the one real generated
+    mystery on disk carries neither key. The playtest opening should turn that flag on; see
+    `docs/PLAYTEST_FLOW.md` → "The opening sequence". Full detail,
     including a real `_craft_guidance` leak this work found and fixed in `winner_findings` (private
     per-player audit citations were about to broadcast to the whole room), in `SESSIONS.md`
     Session 26 and `docs/WIRING.md`'s three new sections.
