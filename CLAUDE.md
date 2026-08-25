@@ -102,6 +102,7 @@ urgent; anything that does not, is not.
 | `localization.py` | Era-appropriate name/occupation localization with 3-tier disk cache |
 | `extraction_protocols.py` | P1–P4 taxonomy definitions — still active, used by `scripts/extract_from_pdfs.py` |
 | `scripts/extract_from_pdfs.py` | Sanctioned way to add a **single new source** (e.g. a PDF) to the live corpus — extracts P1 parts, writes to `mystery_database/extractions/`. Distinct from the frozen bulk pipeline below. Invoke with `python3`, not `python` (this environment has no `python` alias). Add `--anthology` for a short-story collection PDF (one novel-narrative sampling per file otherwise) — detects per-story boundaries and extracts each story as its own corpus source with its own full text; always `--dry-run` an anthology first to review the detected split before spending API calls. |
+| `docs/INVESTIGATION_DESIGN.md` | **The investigation model** (Session 35) — connection map over floor plan, locations as containers, the narrative-driven growing option pool, and solvability as set arithmetic. Read before touching the map, the round system, or the coherence engine's solvability rules. |
 | `docs/WIRING.md` | **Canonical generation architecture** — read before touching generation |
 | `SESSIONS.md` | Session-by-session history and full to-do list |
 | `RESEARCH_FINDINGS.md` | Writer-grounded mystery taxonomy (C1–C6, M1–M8, F1–F12) — prose novelists |
@@ -719,6 +720,19 @@ Full list in `SESSIONS.md`. Top priorities:
     to the title inherits whatever the current failure rate is. Worth one real generation run to
     confirm before building on top of it.
 
+21. **[OPEN — found Session 35, August 25 2026] The investigation phase can DEADLOCK, and it is
+    not an edge case.** Sharing is the only exit from a phase (`player["phase"]` advances in
+    exactly one place, inside `share_findings`); you cannot share nothing
+    (`if not all_findings: raise HTTPException(400, …)`); and every area can be blocked before you
+    act. A player reaching the investigation phase with all 5 areas already shared gets 409 on
+    every room, 400 on share, and **cannot advance, ever.** Every difficulty at every player count
+    wants more investigations than there are areas — MEDIUM 4-player wants 8 against 5; HARD
+    8-player wants 16. Root cause is the **phase gate** (lines 2076/2130/2363), not the block
+    pool: a player locked into `investigation` cannot do the witness or lead work sitting right
+    there. **This is a stage-1 playtest-killer** — it ends with someone staring at a screen that
+    rejects every button. Fixes, in `docs/INVESTIGATION_DESIGN.md` §5; the cheapest correct one is
+    to make the exit condition *"you are done acting"* rather than *"you found something."*
+
 18. **[OPEN — found Session 34, August 21 2026] A BLOCKING coherence report does not stop a
     mystery being saved, served, or played.** Not a coherence-engine failure — the opposite. The
     engine catches this exactly: `P1.C4.culprit_not_in_characters`, severity `BLOCKING`, message
@@ -774,7 +788,18 @@ looks like the player guessed wrong.
     many sources failed, so that wrapper's failure tally had never been reachable. Both fixed,
     with `scripts/test_extraction_fatal_errors.py` covering it end to end.
 
-20. **[OPEN — owner concept, Session 34] CLOUD — a manipulable top-down crime scene.** After the
+20. **[SUPERSEDED IN PART, Session 35 — see `docs/INVESTIGATION_DESIGN.md`] CLOUD — a
+    manipulable top-down crime scene.** The design conversation that followed replaced the
+    *top-down* part: a floor plan hard-codes a building (`crime_scene_map._row_rects` packs
+    rectangles; a Black Forest renders as a ravine in a 308×289 box), and the owner's Dick
+    Francis case — racetrack, stables, country estate, lawyer's office — settles it. **A
+    connection map replaces it.** That conversation also turned up three live defects underneath
+    the UI question: fabricated witness placement, a phase-gate deadlock (item 21), and a
+    solvability rule that checks a weaker thing than its own error message claims. Read
+    `docs/INVESTIGATION_DESIGN.md` before touching any of it — the assessment below is still
+    accurate about the corpus and about schematic-vs-photoreal, and is kept for that.
+
+    **Original Session 34 assessment:** After the
     inciting-incident video the interface becomes a top-down scene players traverse. Assessed
     against the data, not speculation:
     - **The corpus holds no spatial structure** — space appears incidentally at 2–14% across 564
