@@ -3305,10 +3305,55 @@ Recorded against the video slot: **do not ship a grey "Video Scene Will Play Her
 announces unfinished software exactly when immersion matters. The slot should hold the crime
 depicted as well as it currently can, with the narration timed over it.
 
+### Closing the doc-vs-code gap
+
+Four times this session a document said a thing was built and the code disagreed: the result
+screen's node paths, the saved-mystery dropdown's signals, `_slug`, and a video panel that exists
+in no client file. Three were found by reading code for unrelated reasons. That is not a process.
+
+**The gate question was whether these docs are checkable at all. Measured, they are:** 213
+file-path claims across `CLAUDE.md` and `docs/`, of which 6 did not resolve — and 5 of those were
+legitimate (a historical rename, a generated-on-demand file, a designed-not-built artifact, a
+fill-in-the-blank placeholder). A 97% resolve rate says the docs cite code precisely enough to
+verify mechanically.
+
+`scripts/check_doc_claims.py` checks three kinds of claim: a referenced file exists, a
+*path:line* reference is inside the file, and a backtick-quoted string is actually in a code file.
+It deliberately skips `SESSIONS.md` — a historical record whose claims were true when written and
+must not be re-verified against today — and skips prose and numbers, which are not
+machine-settleable and would make it cry wolf.
+
+**It found four stale claims in `docs/WIRING.md` on its first working run**, one of them the
+*same* video-panel sentence corrected in `CLAUDE.md` an hour earlier. Nobody re-reads every doc
+after fixing one; a grep does. The other three document Streamlit spinner labels that now exist
+only in `deprecated/`.
+
+**Three false passes before it worked, each a different self-reference**, and they are worth
+recording because "does this string exist" has more corners than it looks:
+
+1. searching the whole repo — the doc's own sentence was the evidence;
+2. searching all markdown — `CLAUDE.md` and `SESSIONS.md` *writing up the correction* became
+   evidence the thing existed;
+3. searching code including the checker — whose comment quoted the example string.
+
+It also caught its own author: the CLAUDE.md paragraph introducing it used a backtick-quoted fake
+path as an illustration, and was flagged.
+
+**The convention this establishes:** backtick-quoting a string in `CLAUDE.md` or `docs/` is a
+*claim* that the product contains it. To mention one without asserting it — a retired label, an
+illustrative pattern — use italics or the script's `ALLOWED_LITERALS`, which costs a sentence
+saying why.
+
+Also switched from shelling out to `grep` to a pure-Python walk: `--include`/`--exclude` did not
+filter as expected here, and a search that silently matches more than it should is precisely the
+failure this script exists to prevent.
+
 ### Files changed
 
 | File | Change |
 |---|---|
+| `scripts/check_doc_claims.py` | **new** — the doc-claim checker |
+| `docs/WIRING.md` | four stale claims corrected |
 | `docs/PLAYTEST_FLOW.md` | **APF** loop, the deal constraints, Path 2 as a flag, the opening sequence, the video slot, and what the UI must carry |
 | `docs/INVESTIGATION_DESIGN.md` | **new** — the whole model, with open questions and build order |
 | `CLAUDE.md` | item 21 (deadlock, new); item 20 marked superseded in part; doc added to Key Files |
