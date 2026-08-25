@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Murder by bludgeoning. George Hobday killed with head battered in under a hedge. Central question: Did Harry Evitt's alibi\u2014a timed telephone call to the exchange and clock manipulation\u2014successfully conceal his guilt?",
+    "confidence": "high",
+    "quote": "At the time when his body was discovered, under a hedge and with his head battered in, he had been dead for at least an hour."
+  },
+  "victim": {
+    "value": "George Hobday, business partner of Harry Evitt in the firm Hobday and Hobday (auctioneers and estate agents). Killable because he discovered financial irregularities\u2014Evitt embezzling or misappropriating company money.",
+    "confidence": "high",
+    "quote": "You've had it ready for a long time, in case George ever found out about the money."
+  },
+  "closed_world": {
+    "value": "A rural English village with limited transport (train arrivals on schedule, footpaths across fields, short windows of movement). The Evitts' house and surrounding properties form the investigative perimeter.",
+    "confidence": "medium",
+    "quote": "The short cut across the fields...he needed only five minutes to reach the Evitts' house."
+  },
+  "culprit_and_motive": {
+    "value": "Harry Evitt murdered George Hobday to prevent discovery of embezzlement or financial crime. Motive: self-preservation and concealment of theft from the business partnership.",
+    "confidence": "high",
+    "quote": "You've had it ready, yet you never told me...I've had it ready in case George ever found out about the money."
+  },
+  "resolution": {
+    "value": "Inspector Tewson deduces that Rina Evitt deliberately disrupted Minnie Hobday's watch using a magnetic pencil from the telephone pad during bridge. The watch's erratic behavior (gaining time unpredictably) exposed the alibi as constructed.",
+    "confidence": "high",
+    "quote": "If you keep on tapping a watch with a quite powerful magnet, you can make it go very wrong indeed...you can't tell if it'll go fast or slow or stop altogether."
+  },
+  "investigator": {
+    "value": "Detective Inspector Ronald Tewson, official police investigator. A methodical, anger-driven detective suspicious of the Evitts' convenient clock and phone alibi from the start.",
+    "confidence": "high",
+    "quote": "Detective Inspector Ronald Tewson was very interested in Minnie's watch...the unwarranted conclusion to which he jumped was that George Hobday had been murdered by his partner, Harry Evitt."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Perfectly Timed Plot",
+    "author": "E. X. FERRARS",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 41,
+    "story_count": 63
+  }
+}

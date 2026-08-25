@@ -1,0 +1,41 @@
+{
+  "crime": {
+    "value": "Child abduction and extortion. Four-year-old Mikhail is snatched by international criminal Dr. Lind, who demands the Count Orlov diamond from the royal sceptre as ransom. Central question: Can the detective locate and rescue the boy before Lind executes him as he did his previous victim?",
+    "confidence": "high",
+    "quote": "A ransom letter arrives from Dr Lind...The letter demands the handover of the Count Orlov, an enormous diamond on the royal sceptre"
+  },
+  "victim": {
+    "value": "Mikhail, four-year-old son of Grand Duke Georgii Alexandrovich. Killable because he is a high-value royal hostage whose abduction creates maximum leverage for extortion and whose death would devastate the Grand Duke.",
+    "confidence": "high",
+    "quote": "four-year old Mikhail has been snatched in the confusion. A ransom letter arrives from Dr Lind, an international criminal"
+  },
+  "closed_world": {
+    "value": "Moscow during the imperial coronation (20 May), with a one-week deadline imposed by Fandorin's ransom negotiation strategy. The royal court, city, and surrounding regions form a bounded investigative space with temporal pressure.",
+    "confidence": "high",
+    "quote": "Grand Duke Georgii Alexandrovich arrives in Moscow for the coronation...Fandorin suggests that the value of the stone is paid in 'installments', buying the party a week"
+  },
+  "culprit_and_motive": {
+    "value": "Dr. Lind, international criminal and Fandorin's nemesis (Moriarty figure). Motive: extortion of the Count Orlov diamond; revenge/rivalry with Fandorin; demonstrated pattern of murdering abductees.",
+    "confidence": "high",
+    "quote": "Dr Lind, an international criminal and the Moriarty to Fandorin's Sherlock Holmes...or will the Grand Duke's son meet with the same gruesome fate as Lind's last abductee"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Erast Petrovich Fandorin, elegant gentleman detective accompanied by his oriental sidekick Masa. The narrative opens with his apparent death but continues his investigation. Point-of-view narrator is a subordinate observer (butler/attendant) who witnesses events.",
+    "confidence": "high",
+    "quote": "The passing heroes introduce themselves as Fandorin and Masa...Our inimitable hero returns in a tantalisingly closely-matched battle of wills"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The Coronation - Boris Akunin.pdf",
+    "filename": "The Coronation - Boris Akunin.pdf",
+    "text_len": 6037,
+    "protocols": [
+      "P1"
+    ],
+    "title": "The Coronation - Boris Akunin"
+  }
+}

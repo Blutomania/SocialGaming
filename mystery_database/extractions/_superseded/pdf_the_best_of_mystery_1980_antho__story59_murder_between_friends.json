@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Fatal fall down basement stairs; method: pushed by assailant. Central question: who pushed Mr. Shafer and was it deliberate or accidental?",
+    "confidence": "high",
+    "quote": "His foot missed the first step. He stumbled and sprawled."
+  },
+  "victim": {
+    "value": "Mr. Shafer, abusive landlord. Killable because he is cruel, tyrannical, and universally despised by tenants; has evicted vulnerable people arbitrarily.",
+    "confidence": "high",
+    "quote": "Mr. Shafer was mean, he was surly, he made them miserable, exactly as he made everyone else miserable."
+  },
+  "closed_world": {
+    "value": "A rooming house with a small resident population. The basement stairs are steep and dark; Mr. Shafer descends at 11 AM daily by predictable routine.",
+    "confidence": "high",
+    "quote": "In a rooming house full of people we'll have to draw up some kind of time scheme so no one will be around to see us."
+  },
+  "culprit_and_motive": {
+    "value": "Lawrence Allen, desperate painter evicted by Shafer. Motive: rage at losing his only refuge where he could paint after a lifetime of obligation. Unintentional\u2014he chased Shafer in emotional distress; Shafer fled in terror.",
+    "confidence": "high",
+    "quote": "What he saw on Allen's face terrified him. He ran toward the back porch...when he had reached it he slammed the back door in Allen's face. He charged toward the steep basement stairs."
+  },
+  "resolution": {
+    "value": "Death ruled accidental. No formal investigation or arrest. Order restored when Shafer's daughter inherits the house, proves benevolent, rehires evicted tenants, and encourages Allen's painting. Mystery remains: two friends each suspect the OTHER of pushing him.",
+    "confidence": "high",
+    "quote": "Of course Mary Sue Franklin had done it...Imagine, saying she was going to town to look at new hats, when all the time she had been hiding in the back hall waiting to shove Mr. Shafer to Kingdom Come."
+  },
+  "investigator": {
+    "value": "The reader/narrator. No official detective. The two elderly friends Mrs. Harrison and Mrs. Franklin serve as unreliable perspectives, each suspecting the other while remaining innocent themselves.",
+    "confidence": "medium",
+    "quote": "when they looked straight into each other's eyes, each was dead sure she saw a murderer."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 15138,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Murder Between Friends",
+    "author": "NEDRA TYRE",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 59,
+    "story_count": 63
+  }
+}

@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": null,
-    "confidence": "low",
-    "quote": null
+    "value": "Coercion/extortion campaign: a whisky magnate hires a 'pressure' agency to beat and terrorize an inventor's family to force surrender of a secret process. Central question: will pressure break Lamont, and who ultimately pays?",
+    "confidence": "high",
+    "quote": "They started on the children. First, they took the older boy to a country lane outside Glasgow, roughed him up"
   },
   "victim": {
-    "value": null,
-    "confidence": "low",
-    "quote": null
+    "value": "Andrew Lamont, Scottish chemical engineer who invented artificial Scotch malt whisky and refused to sell it out of loyalty to Scotland \u2014 his family targeted as leverage; ultimately Sullivan himself is the victim of the final beating",
+    "confidence": "high",
+    "quote": "\u201cI am not prepared to kill off a traditional industry that\u2019s been exclusive to this country for five hundred years.\u201d"
   },
   "closed_world": {
-    "value": null,
-    "confidence": "low",
-    "quote": null
+    "value": "The tight international Scotch whisky trade \u2014 a handful of importers, distillers and one inventor between New York offices and Glasgow; only three men initially know the secret",
+    "confidence": "medium",
+    "quote": "\u201cWho knows about it?\u201d \u201cYou. And me. And him.\u201d"
   },
   "culprit_and_motive": {
-    "value": null,
-    "confidence": "low",
-    "quote": null
+    "value": "Alex Sullivan, New York whisky importer, commissioning Gascoine Peterson Inc. (agent Daly) to seize the process; motive: corner the artificial Scotch market and ruin all competitors",
+    "confidence": "high",
+    "quote": "\u201cyou just want your hands on that process so you can corner the artificial Scotch market and put everybody out of business\u201d"
   },
   "resolution": {
-    "value": null,
-    "confidence": "low",
-    "quote": null
+    "value": "Helen Lamont's counter-stroke: the process is mailed free to 1153 liquor companies worldwide, making it unpatentable and worthless to Sullivan, who is then beaten by Daly's men to force payment of the $40,000 bill",
+    "confidence": "high",
+    "quote": "\u201cfacsimile copies of the drawings and the specifications... have been mailed to every liquor-producing company in the world\u201d"
   },
   "investigator": {
-    "value": "Alex Sullivan, a whisky importer and narrator recounting events as they unfold",
+    "value": "First-person narrator Alex Sullivan, the perpetrator himself \u2014 a self-justifying whisky importer recounting his own scheme",
     "confidence": "high",
-    "quote": "I'm fifty-two years of age...I came up the hard, hard way near the New York waterfront."
+    "quote": "\u201cD\u2019you imagine I got to the top in the liquor business letting somebody else manipulate these things?\u201d"
+  },
+  "suspect_architecture": {
+    "value": "Not a whodunit cast; instead a set of interested parties around the invention: Sullivan (narrator/importer, motive: monopoly), Ogilvie (broker of the secret), rival whisky men Bailey, Green and Pudner, Daly the pressure agent, Lamont the scrupulous inventor, and Helen Lamont who wants wealth \u2014 differentiated by greed vs. scruple, and Helen is the concealed actor who resolves it.",
+    "confidence": "medium",
+    "quote": "\"Get Bailey and Green and Pudner lined up.\""
+  },
+  "red_herring": {
+    "value": "Helen Lamont is set up as the likely traitor/lever \u2014 she openly says she wants her family rich and that her husband's scruples block it, steering reader to expect she will sell him out; in fact she engineered the worldwide free release.",
+    "confidence": "high",
+    "quote": "\"I want him to sell out so that he and I and the children can have all we've wanted for years. I want us to be rich.\""
+  },
+  "clue_fairness": {
+    "value": "Fair: the reader sees in advance Lamont's refusal to profit, his patriotic motive, his wife's frankness about keeping no secrets, and Sullivan's own remark that you cannot patent what everybody has \u2014 all before the mailing is revealed.",
+    "confidence": "medium",
+    "quote": "\"I told Andrew you'd asked to meet me here today. I don't keep secret appointments, Mr. Sullivan.\""
+  },
+  "social_world": {
+    "value": "The transatlantic whisky trade: American importers and blenders dependent on a tiny Scottish supply, Scottish distillery hierarchy (McIntyre, Ogilvie, Lamont), and a shadow economy of prohibition-era mobsters turned corporate 'pressure services' (Buccelli, Gascoine Peterson) to whom Sullivan owes his rise.",
+    "confidence": "high",
+    "quote": "\"You get to where people live.\""
+  },
+  "alibi": {
+    "value": "No formal alibi; nearest equivalent is Helen's open account of her movements and appointment, which conceals rather than covers \u2014 she used the days after the Glasgow meeting to organise the mailing.",
+    "confidence": "low",
+    "quote": "\"She organized it the day you left them in Glasgow.\""
+  },
+  "reveal_mechanic": {
+    "value": "The physical demonstration and then the multigraphed letter: a duplicated circular with drawings and specifications mailed simultaneously to 1153 liquor companies, proving the secret is irrecoverably public \u2014 value destroyed by publication, not argument.",
+    "confidence": "high",
+    "quote": "\"facsimile copies of the drawings and the specifications of the process have been mailed to every liquor-producing company\""
+  },
+  "media_and_audience": {
+    "value": "Publicity is the weapon: Ogilvie insists on secrecy ('I don't want to put any of this in writing'), the plan uses code words (whisky = china-clay, Scotland = Panama), and Lamont finally defeats all parties by mass publication at his own expense.",
+    "confidence": "high",
+    "quote": "\"Important giveaway words were coded. Whisky was called china-clay and Scotland was called Panama.\""
+  },
+  "investigator_wound": {
+    "value": "Sullivan's waterfront/prohibition past and vanity: he craves a 'Situation' to fix, believes force always works, and is humiliated by scruple and modernity \u2014 ending as the victim of the very pressure firm he hired.",
+    "confidence": "high",
+    "quote": "\"This was a Situation, and I hadn't had one of these in years.\""
+  },
+  "victims_enemies": {
+    "value": "Andrew Lamont, the chemical engineer, becomes the target: Sullivan the New York importer wants his process; Ogilvie his own colleague pushes him like a 'theatrical agent'; rival whisky men Bailey, Green and Pudner see him as the end of their trade; and his own wife Helen wants him to sell out for family wealth. Every relationship around him is a lever.",
+    "confidence": "high",
+    "quote": "\"I wouldn't do a deal with you on this process if you were the last whisky man in the world, Sullivan.\""
+  },
+  "suspect_wounds": {
+    "value": "Sullivan's wound is his prohibition-era waterfront past, which he half-conceals and which makes him revert to 'a Situation... handled; managed; fixed'; Helen Lamont's wound is long-standing wanting of money for her children; Lamont's is his sentimental patriotism.",
+    "confidence": "high",
+    "quote": "\"you'll pardon me if I leave out some of the years during prohibition; let's just say that's how I got into the liquor business\""
+  },
+  "unreliable_frame": {
+    "value": "The whole story is Sullivan's first-person self-justifying account \u2014 he openly refuses details of his past, dares the reader not to press him, sanitizes hired violence as 'pressure business', and is blindsided by both Lamonts, proving his reading of everyone was wrong.",
+    "confidence": "high",
+    "quote": "\"Don't press me for details; that's about the size and breadth of my life.\""
+  },
+  "setting_as_constraint": {
+    "value": "Scotch malt can only be made in Highland Scotland \u2014 peaty river water, Aberdeen/Angus/Banff barley, peat fires, uncleaned 150-year-old stills \u2014 a geographic monopoly across four thousand miles; that constraint is the entire industry, and the process destroys it, while distance/telephones force secrecy ('I don't want to put any of this in writing').",
+    "confidence": "high",
+    "quote": "\"It must be water from a peaty. Highland river like the Spey or the Lochie or the Livet.\""
+  },
+  "evidence_type": {
+    "value": "Documentary: the multigraphed letter with drawings and chemical specifications mailed simultaneously to 1153 liquor companies worldwide \u2014 a document that destroys the scheme rather than proving a crime.",
+    "confidence": "high",
+    "quote": "\"facsimile copies of the drawings and the specifications of the process have been mailed to every liquor-producing company in the world\""
+  },
+  "false_suspect": {
+    "value": "Andrew Lamont appears to be the greedy holdout stalling to 'hike the price into billions'; and Helen Lamont appears the ally who will sell her husband out \u2014 both readings are wrong; the plan was hers.",
+    "confidence": "medium",
+    "quote": "\"It was his wife's idea. She's a clever woman. She organized it the day you left them in Glasgow.\""
+  },
+  "technical_detail": {
+    "value": "Lamont's eight-year process synthesizes Islay/Glenlivet-grade malt from any ethyl-alcohol-yielding vegetable matter \u2014 corn, maize, Oklahoma potatoes \u2014 and matures it by electronics; its complexity is what makes it unstealable and its publication what makes it unpatentable.",
+    "confidence": "high",
+    "quote": "\"producing three gallons of the loveliest, peat-tanged, malt-flavored nectar... from a sack of Oklahoma potatoes. He matured it by electronics.\""
+  },
+  "moral_ambiguity": {
+    "value": "Lamont suppresses his own breakthrough not from greed but to protect a small nation's only inheritance, denying his family wealth; Sullivan, the aggressor, is a self-made immigrant's son genuinely convinced that progress must not be held hostage \u2014 and Helen betrays both men's aims to free her family from coercion.",
+    "confidence": "high",
+    "quote": "\"Maybe we should keep the little we've got.\""
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Pressure",
     "author": "RODERICK WILKINSON",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 9,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

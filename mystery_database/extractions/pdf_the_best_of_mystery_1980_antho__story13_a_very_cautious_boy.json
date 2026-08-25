@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Murder by strangulation. Roy Baxter, a blackmailer, is killed in his Connecticut home by Lee Costa, a hired assassin, using bare hands. Central question: How can a murder committed during a fishing trip be concealed when the victim's body disappears into the Sound?",
+    "value": "Contract murder: hired killer Costa strangles blackmailer Roy Baxter in his bed after poisoning the guard dog; then Costa himself is shot dead by Mama Rosetti. Central question: how to eliminate a blackmailer and then the only remaining witness without leaving evidence.",
     "confidence": "high",
-    "quote": "Two minutes later, he was standing over the sleeping form of Roy Baxter. Costa braced his feet. His hands fastened to the throat of the sleeping man."
+    "quote": "His hands fastened to the throat of the sleeping man."
   },
   "victim": {
-    "value": "Roy Baxter, a lawyer and blackmailer who discovered that Joe Rosetti killed a man years ago. Baxter is 'killable' because he is extorting Rosetti for $25,000 and threatening to expose the old murder to police.",
+    "value": "Roy Baxter, a lawyer/blackmailer extorting $25,000 from Rosetti for an old killing \u2014 killable because he would never stop; and Costa, the hitman, killable because he was the last witness and held leverage over the Rosettis.",
     "confidence": "high",
-    "quote": "He said he would give me two weeks to raise twenty-five-thousand dollars. Then he goes to the police."
+    "quote": "\u201cHis name is Baxter. Roy Baxter.\u201d ... \u201cHe wants money. I know him. He won\u2019t stop.\u201d"
   },
   "closed_world": {
-    "value": "A small fishing boat anchored in sheltered waters off a Connecticut peninsula, with the Baxter house isolated on shore. The boat and surrounding Sound form a bounded space where only three people\u2014Rosetti, Mama Rosetti, and Costa\u2014are present.",
+    "value": "A tiny circle of knowledge \u2014 only Rosetti, Mama Rosetti and the 'mutual friend' know of Costa \u2014 physically narrowed to the small fishing cruiser anchored off the Connecticut peninsula and Baxter's walled shore house.",
     "confidence": "high",
-    "quote": "Early in the afternoon, they anchored the boat in the sheltered area around the point of the peninsula on which the Baxter house rested."
+    "quote": "\u201cNo. Just me, Mama and our friend.\u201d"
   },
   "culprit_and_motive": {
-    "value": "Mama Rosetti shoots and kills Costa. Her motive is to eliminate the only witness to her husband's crime and protect her family from future exposure by removing the one person (the hired killer) who could implicate them.",
+    "value": "Costa kills Baxter for a $5,000 fee on Rosetti's commission; Mama Rosetti kills Costa to erase the last person who could implicate them, since Costa had deliberately made them accessories.",
     "confidence": "high",
-    "quote": "She pulled an ugly little automatic out from under her knitting. 'A very nice night.' She shot him, twice, over the heart."
+    "quote": "\u201cWhat must be done, must be done. There is no other way. Always must a person fight.\u201d"
   },
   "resolution": {
-    "value": "No formal resolution. Mama Rosetti executes Costa as he returns from the assassination, disposing of both him and the murder weapon into the Sound. She restores order through a second murder that eliminates all witnesses except herself and her husband.",
+    "value": "No official justice: Mama Rosetti shoots Costa twice over the heart, drops him overboard to the tide and throws the pistol into the Sound \u2014 the 'cautious boy' out-cautioned.",
     "confidence": "high",
-    "quote": "She threw the pistol over the side. 'Cover up good, Papa. Don't catch cold.'"
+    "quote": "She shot him, twice, over the heart."
   },
   "investigator": {
-    "value": "Lee Costa, the hired assassin and protagonist, serves as the lens through which the reader experiences the mystery. He is simultaneously detective of his own assignment, witness to the Rosettis' final plan, and ultimately victim.",
+    "value": "Lee Costa, professional killer as viewpoint character \u2014 a meticulous planner who casts himself as investigator of his target, and becomes the final victim.",
     "confidence": "high",
-    "quote": "I'm a very cautious boy, Mr. Rosetti. I'll check it out. Let you know."
+    "quote": "\u201cI\u2019m a very cautious boy, Mr. Rosetti. I\u2019ll check it out. Let you know.\u201d"
+  },
+  "suspect_architecture": {
+    "value": "Not a whodunit cast; an inverted hitman tale with three principals \u2014 Costa the professional killer (means/skill), Papa Rosetti the fearful client (motive: buried homicide, blackmail), and Mama Rosetti, the quiet knitting wife who is the story's concealed operator and ultimate killer. Ziggy the bodyguard and Baxter the blackmailer serve as foils.",
+    "confidence": "medium",
+    "quote": "\"No. Just me, Mama and our friend.\""
+  },
+  "red_herring": {
+    "value": "Mama Rosetti's harmless-old-woman coding \u2014 endless knitting, maternal fussing about coats and colds, serving dinner \u2014 misdirects both Costa and reader from her being armed and lethal; the repeated 'Cover up good, don't catch cold' reads as warmth rather than menace.",
+    "confidence": "high",
+    "quote": "\"Wrap up good,\" she said. \"Don't catch cold.\""
+  },
+  "clue_fairness": {
+    "value": "Fairly planted: Mama states her own creed of caution and necessity aloud before the ending ('What must be done, must be done'; 'I too am careful. You must be very sure'), and her knitting sits in her lap in every scene \u2014 the same lap from which the automatic is drawn.",
+    "confidence": "high",
+    "quote": "\"Careful. Yes. I too am careful. You must be very sure.\""
+  },
+  "social_world": {
+    "value": "New York Italian-American underworld of favors and debts: a former speakeasy turned character restaurant, a 'mutual friend' who repays an old obligation by lending a professional killer at 'the wholesale rate,' patriarchal restaurant family with muscle (Ziggy) subordinate to the boss \u2014 but real authority resting with Mama.",
+    "confidence": "high",
+    "quote": "\"I did him a favor once. A big one. Now he pays me back. With you.\""
+  },
+  "alibi": {
+    "value": "Costa engineers a mutual-complicity alibi structure: he travels only by the Rosettis' boat, appears in public as a scouting 'salesman' and as prospective buyer 'Zweller' from Ohio, and makes the Rosettis accessories so no party can testify against another.",
+    "confidence": "high",
+    "quote": "\"That will make you both accessories before and after the fact. Makes for a nice silent relationship in the future.\""
+  },
+  "reveal_mechanic": {
+    "value": "Demonstrated by action, not explanation: Costa's own boast that no one else knows he is there supplies Mama the exact condition for erasing the last witness, and she draws the automatic from beneath the knitting and shoots him twice over the heart, disposing of gun and body to the tide.",
+    "confidence": "high",
+    "quote": "\"Yes,\" she said, pulling an ugly little automatic out from under her knitting. \"A very nice night.\""
+  },
+  "media_and_audience": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator_wound": {
+    "value": "Costa's professionalized caution is itself the vulnerability: his self-image as 'a very cautious boy' who has covered every angle blinds him to the only person he never assessed as a threat \u2014 the little old woman he condescends to and eats dinner with.",
+    "confidence": "medium",
+    "quote": "\"I'm always careful,\" he said. \"I'm a very cautious boy.\""
+  },
+  "victims_enemies": {
+    "value": "Roy Baxter, a lawyer of dubious means, blackmails Joe Rosetti over a killing Rosetti committed long ago, demanding $25,000 in two weeks \u2014 a relationship of pure extortion with no personal history, which is what makes Rosetti (and Mama) willing to have him killed. Costa, the second victim, is 'enemy' to the Rosettis only as the last living witness to their guilt.",
+    "confidence": "high",
+    "quote": "\"It was a long time ago. I killed a man. Baxter found out about it. He wants money.\""
+  },
+  "suspect_wounds": {
+    "value": "Rosetti's visible terror and prior secret killing make him the obvious suspect; Costa exploits this by insisting the Rosettis be present at the scene, deliberately making them accessories before and after the fact so they can never inform. Their own guilt is the vulnerability the crime activates.",
+    "confidence": "medium",
+    "quote": "\"That will make you both accessories before and after the fact. Makes for a nice silent relationship in the future.\""
+  },
+  "unreliable_frame": {
+    "value": "Mama Rosetti's placid, maternal surface \u2014 endless knitting, fussing about coats and colds \u2014 is a sustained deception; her repeated 'be careful' and 'cover up good' read as warmth until the automatic emerges from under the knitting. The reader trusts the domestic frame she projects.",
+    "confidence": "high",
+    "quote": "\"Yes,\" she said, pulling an ugly little automatic out from under her knitting. \"A very nice night.\""
+  },
+  "setting_as_constraint": {
+    "value": "Baxter's midtown office is unusable (manned elevators, foot traffic, late-hour businesses), forcing the killing to the walled Connecticut waterfront house \u2014 reachable only by water. The Sound's outgoing tide, the servants who sleep in town, and the guard dog define the exact window and method; the same tide disposes of the dog and later Costa's body.",
+    "confidence": "high",
+    "quote": "\"It was awkwardly arranged for a killing, with its manned elevators, people coming and going and too many late-hour businesses.\""
+  },
+  "evidence_type": {
+    "value": "Deliberate absence of evidence: gloves, no gun (bare hands), poisoned meat scraps retrieved and thrown into the sea, dog's body towed out on the tide, no vehicle driven to the scene. Costa's counter-forensic craft is the story's evidentiary centerpiece \u2014 and Mama's disposal of Costa and the pistol into the water mirrors it.",
+    "confidence": "high",
+    "quote": "\"A tiny portion of the meat was still on the wooden floor of the dock. Carefully, he picked it up and threw it into the sea\""
+  },
+  "false_suspect": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "technical_detail": {
+    "value": "Skin-diving craft: wet-suit top, hood, flippers, mask and snorkel giving buoyancy to conserve strength on a long swim; drugged/poisoned meat in a sealed plastic bag tucked in the suit collar to silence the boxer; rubber gloves on the belt; strangulation with calloused hands rather than a gun; tidal calculation for body disposal.",
+    "confidence": "high",
+    "quote": "\"He checked the collar of his wet suit to be sure that the small plastic bag he had tucked there was still in place\""
+  },
+  "moral_ambiguity": {
+    "value": "Mama Rosetti kills not from malice but from a peasant fatalism about survival \u2014 she applies the same protective instinct to murder that she applies to fussing over coats and cold, eliminating the one man who could ever testify against Papa. Costa himself is a 'professional' who does only what he's paid for, and Rosetti is a quiet restaurateur cornered by a blackmailer he cannot pay off.",
+    "confidence": "high",
+    "quote": "\"What must be done, must be done. There is no other way. Always must a person fight. All his life. I know this.\""
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 18986,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "A Very Cautious Boy",
     "author": "GILBERT RALSTON",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 13,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

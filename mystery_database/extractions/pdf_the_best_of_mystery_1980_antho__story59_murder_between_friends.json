@@ -1,45 +1,134 @@
 {
   "crime": {
-    "value": "Fatal fall down basement stairs; method: pushed by assailant. Central question: who pushed Mr. Shafer and was it deliberate or accidental?",
+    "value": "Death of a tyrannical landlord by a fall down steep basement stairs at exactly eleven o'clock \u2014 ruled accidental, but the central question is whether he was pushed, and by whom, since two elderly friends had planned exactly that method at exactly that time.",
     "confidence": "high",
-    "quote": "His foot missed the first step. He stumbled and sprawled."
+    "quote": "\"Yes, just shove Mr. Shafer down the stairs. The basement steps are steep and dark and he goes down there like clockwork every day at eleven.\"",
+    "note": null
   },
   "victim": {
-    "value": "Mr. Shafer, abusive landlord. Killable because he is cruel, tyrannical, and universally despised by tenants; has evicted vulnerable people arbitrarily.",
+    "value": "Mr. Shafer, the cruel landlord who seized the rooming house that rightfully belonged to his daughter, evicted vulnerable tenants (Mrs. Grove for her cat, Mr. Floyd for his asthma) and threatened Allen's painting \u2014 hated by every person in the house.",
     "confidence": "high",
-    "quote": "Mr. Shafer was mean, he was surly, he made them miserable, exactly as he made everyone else miserable."
+    "quote": "Mr. Shafer was mean, he was surly, he made them miserable, exactly as he made everyone else miserable.",
+    "note": null
   },
   "closed_world": {
-    "value": "A rooming house with a small resident population. The basement stairs are steep and dark; Mr. Shafer descends at 11 AM daily by predictable routine.",
+    "value": "A deteriorating old rooming house in a declining neighborhood, its tenants elderly and few; on the morning of the death only Shafer and the deaf painter Allen were supposedly inside, with the two women having just left.",
     "confidence": "high",
-    "quote": "In a rooming house full of people we'll have to draw up some kind of time scheme so no one will be around to see us."
+    "quote": "The only other person in the house then was Lawrence Allen, who lived in the room next to Mrs. Franklin.",
+    "note": null
   },
   "culprit_and_motive": {
-    "value": "Lawrence Allen, desperate painter evicted by Shafer. Motive: rage at losing his only refuge where he could paint after a lifetime of obligation. Unintentional\u2014he chased Shafer in emotional distress; Shafer fled in terror.",
-    "confidence": "high",
-    "quote": "What he saw on Allen's face terrified him. He ran toward the back porch...when he had reached it he slammed the back door in Allen's face. He charged toward the steep basement stairs."
+    "value": "Deliberately unresolved: the narrative shows Shafer falling on his own after being terrified by Allen's face (Allen's motive: preserving the room where he could finally paint), yet each old woman privately concludes the other pushed him, motive being release from his cruelty. No proven culprit.",
+    "confidence": "medium",
+    "quote": "fear over what he had seen on Allen's face made him falter. His foot missed the first step. He stumbled and sprawled.",
+    "note": null
   },
   "resolution": {
-    "value": "Death ruled accidental. No formal investigation or arrest. Order restored when Shafer's daughter inherits the house, proves benevolent, rehires evicted tenants, and encourages Allen's painting. Mystery remains: two friends each suspect the OTHER of pushing him.",
+    "value": "Order is restored socially rather than juridically: the death is ruled accidental, Shafer's kind daughter reclaims the house, evicted tenants return and Allen flourishes as a painter \u2014 while the two friends each suspect the other and eye one another as murderers.",
     "confidence": "high",
-    "quote": "Of course Mary Sue Franklin had done it...Imagine, saying she was going to town to look at new hats, when all the time she had been hiding in the back hall waiting to shove Mr. Shafer to Kingdom Come."
+    "quote": "when they looked straight into each other's eyes, each was dead sure she saw a murderer.",
+    "note": null
   },
   "investigator": {
-    "value": "The reader/narrator. No official detective. The two elderly friends Mrs. Harrison and Mrs. Franklin serve as unreliable perspectives, each suspecting the other while remaining innocent themselves.",
+    "value": "No formal investigator; the reader is the detective, guided by an omniscient narrator, while the two elderly suspects \u2014 Mrs. Harrison and Mrs. Franklin \u2014 each act as amateur accuser of the other. The police are dismissed as 'benighted'.",
     "confidence": "medium",
-    "quote": "when they looked straight into each other's eyes, each was dead sure she saw a murderer."
+    "quote": "Accidental death, her foot, let the poor benighted police think that if they chose. But of course Mary Sue Franklin had done it.",
+    "note": null
+  },
+  "suspect_architecture": {
+    "value": "Three effective suspects, though the death is accidental: Mrs. Harrison and Mrs. Franklin, elderly friends who jointly planned the murder (motive: Shafer's cruelty, opportunity: both absent alone that morning), and Lawrence Allen, the deaf painter threatened with eviction (motive: loss of his life's purpose, opportunity: alone in the house). Each of the two women privately suspects the other; Allen suspects no one.",
+    "confidence": "high",
+    "quote": "The only other person in the house then was Lawrence Allen, who lived in the room next to Mrs. Franklin."
+  },
+  "red_herring": {
+    "value": "The women's elaborate, fully detailed murder plan \u2014 the eleven o'clock timing, the basement stairs, the push \u2014 which coincides exactly with Shafer's accidental fall, misdirecting both women (and the reader) into believing the plan was executed.",
+    "confidence": "high",
+    "quote": "It was exactly eleven o'clock\u2014the time that Mrs. Franklin and Mrs. Harrison had decided would be the safest"
+  },
+  "clue_fairness": {
+    "value": "Fair: the reader witnesses the actual death in full \u2014 Shafer's fear at Allen's face, his faltering foot, his missed step \u2014 before either woman draws her false conclusion, so the reader alone holds the truth.",
+    "confidence": "high",
+    "quote": "fear over what he had seen on Allen's face made him falter. His foot missed the first step. He stumbled and sprawled."
+  },
+  "social_world": {
+    "value": "A deteriorated rooming-house neighbourhood where a bullying landlord holds absolute power over fixed-income elderly tenants who cannot afford to move; Shafer usurped the house from his own daughter, and evicts tenants at whim (a cat, an asthmatic, a painter).",
+    "confidence": "high",
+    "quote": "The place had belonged to his wife and when she had died it had been willed to their daughter, but Mr. Shafer made the daughter so miserable"
+  },
+  "alibi": {
+    "value": "Each woman gave a stated destination that morning \u2014 Mrs. Harrison to town to look at hats, Mrs. Franklin to the park to see daffodils \u2014 and each later disbelieves the other's account, treating it as a false alibi covering a sneaked return.",
+    "confidence": "high",
+    "quote": "Imagine, saying she was going to town to look at new hats, when all the time she had been hiding in the back hall"
+  },
+  "reveal_mechanic": {
+    "value": "Dramatic irony rather than detection: the omniscient narration shows the reader the true accidental cause, while the two friends' mutual, symmetrical suspicion \u2014 each convinced the other did it \u2014 demonstrates the solution by contradiction.",
+    "confidence": "high",
+    "quote": "when they looked straight into each other's eyes, each was dead sure she saw a murderer"
+  },
+  "media_and_audience": {
+    "value": "Officially ruled accidental death by the police, a verdict the women contemptuously dismiss; the house's public narrative afterward is one of relief and restoration, with no one mourning Shafer.",
+    "confidence": "medium",
+    "quote": "Accidental death, her foot, let the poor benighted police think that if they chose."
+  },
+  "investigator_wound": {
+    "value": "The two women act as their own investigators, and the case exploits their vanity and timidity: each knows herself too cowardly to have done it, and cannot credit the other with harmlessness \u2014 the pride of authorship over the plan corrodes a lifelong friendship.",
+    "confidence": "medium",
+    "quote": "They longed for nerve enough to murder Mr. Shafer, but really they couldn't say boo to a goose."
+  },
+  "victims_enemies": {
+    "value": "Mr. Shafer, the tyrannical usurping landlord, is hated by everyone in the rooming house: the two elderly tenants he bullies daily (Mrs. Harrison and Mrs. Franklin), Mrs. Grove whom he evicted over her cat, Mr. Floyd evicted for his asthmatic wheezing, the new tenant Lawrence Allen whose painting he ordered out, and his own daughter, the rightful owner whom he drove from the house she inherited.",
+    "confidence": "high",
+    "quote": "Mr. Shafer put poor Mrs. Grove out day before yesterday because she wouldn\u2019t get rid of her cat"
+  },
+  "suspect_wounds": {
+    "value": "Each of the two old friends has a vulnerability the death activates: they had spent weeks openly rehearsing the exact method and hour, so each knows the other had the plan, the opportunity, and a thin alibi. Allen's wound is his desperate late-life need for the room to paint in \u2014 the loss of which drove him to a rage that terrified Shafer.",
+    "confidence": "high",
+    "quote": "They longed for nerve enough to murder Mr. Shafer, but really they couldn\u2019t say boo to a goose."
+  },
+  "unreliable_frame": {
+    "value": "Every account is compromised. The narration withholds; each woman privately narrates the other as the killer based on her own alibi's falsity being invisible to her; Allen 'didn't hear the fall' and is deaf, so his testimony is void; the police reading of 'accidental death' is dismissed by both women. No perspective in the story can confirm what actually happened on the stairs.",
+    "confidence": "high",
+    "quote": "Accidental death, her foot, let the poor benighted police think that if they chose. But of course Mary Sue Franklin had done it."
+  },
+  "setting_as_constraint": {
+    "value": "A cheap rooming house in a deteriorated neighborhood: thin walls, dark unlit halls, a steep unlighted basement stairway, tenants too poor to move elsewhere, and a rigid daily traffic pattern the women mapped by snooping. The eleven o'clock descent to the basement 'like clockwork,' the empty house on the first warm spring day, and the deaf tenant next door together define the only possible murder window.",
+    "confidence": "high",
+    "quote": "The basement steps are steep and dark and he goes down there like clockwork every day at eleven."
+  },
+  "evidence_type": {
+    "value": "Testimonial/circumstantial only \u2014 and privately held. No forensic or physical evidence exists; the case is 'cracked' solely by each woman's knowledge of the other's lie about where she went that morning (the hat-shopping trip, the walk among the daffodils), set against the pre-agreed plan.",
+    "confidence": "high",
+    "quote": "Mary Sue\u2019s lie didn\u2019t fool Mrs. Harrison at all\u2014she hadn\u2019t gone to the park that day."
+  },
+  "false_suspect": {
+    "value": "Each old woman is the other's false suspect \u2014 mutually and symmetrically accused in private, both innocent. Lawrence Allen, the enraged painter who chased Shafer down the hall to the very stairway seconds before the fall, is the narrative's strongest but unrecognized suspect, likewise innocent of any push.",
+    "confidence": "high",
+    "quote": "when they looked straight into each other\u2019s eyes, each was dead sure she saw a murderer"
+  },
+  "technical_detail": {
+    "value": "The 'push' method itself: a frail person can kill without weapon, purchase record, or trace by using the victim's own routine and a steep dark stair \u2014 even at arm's length with a broom or mop. Its corollary is that a genuine accidental stumble is indistinguishable from it, which is exactly what occurs when Shafer's foot misses the first step.",
+    "confidence": "high",
+    "quote": "Reach for the small of his back, or use a broom or a mop and give him a shove."
+  },
+  "moral_ambiguity": {
+    "value": "There is no culprit \u2014 Shafer's fear of Allen's face made him miss the step \u2014 yet everyone benefits and no one grieves. The plotting women are gentle churchgoers whose murder talk is a poverty-bound fantasy of relief; Allen's near-violence springs from a lifetime of self-denial for family and one last chance to paint. Shafer's death restores the house to its rightful heir and to happiness, making the un-committed crime feel morally justified.",
+    "confidence": "high",
+    "quote": "It was their game, as if they were two bettors talking about winning a fortune when they didn\u2019t have a dollar between them."
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 15138,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Murder Between Friends",
     "author": "NEDRA TYRE",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 59,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

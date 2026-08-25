@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Poisoning via rat poison in milk; central question: will the poisoning be discovered before or after death, and will it appear as suicide or murder?",
+    "confidence": "high",
+    "quote": "He opened the package and, with a teaspoon, dropped two helpings of the rat poison into the milk."
+  },
+  "victim": {
+    "value": "Elsie Parnell, bedridden wife in wheelchair for 10 years, emotionally abusive and bitter, dependent on husband's care, killable due to isolation and emotional cruelty she inflicts",
+    "confidence": "high",
+    "quote": "She sat silently, bitterly...her silence was broken only when she was shrieking at him, complaining about this or that."
+  },
+  "closed_world": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "culprit_and_motive": {
+    "value": "Rutherford Parnell (husband) murders Elsie to escape 10 years of emotional abuse and imprisonment in the marriage; motive is liberation and psychological relief from unbearable suffering",
+    "confidence": "high",
+    "quote": "I hate her too. I wish she'd die, so I could be free...After all, this present cost me over three thousand dollars!"
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "The reader experiences the mystery through Rutherford's first-person perspective as perpetrator; no external investigator introduced in excerpt",
+    "confidence": "medium",
+    "quote": "The idea had come to him suddenly, and he had been fascinated by it."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 9143,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Final Arrangements",
+    "author": "LAWRENCE PAGE",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 57,
+    "story_count": 63
+  }
+}

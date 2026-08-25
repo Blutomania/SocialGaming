@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Death by accident disguised as natural causes. Michael Doyle's wife Sarah dies when a ghost hoax meant to frighten her into a fatal heart attack instead causes Doyle's horse to bolt, throwing him fatally against a boulder. Central question: Was this murder, accident, or poetic justice?",
+    "value": "Planned murder by deliberate shock: a staged ghost apparition intended to frighten a heart patient to death \u2014 leaving 'no evidence'. The plot instead kills the plotter. Central question posed is whether such a killing could ever be detected.",
     "confidence": "high",
-    "quote": "the frightened animal bolted, throwing Doyle from the buggy to strike a roadside boulder and split open his skull like an eggshell."
+    "quote": "\"A scare; a sudden terrible fright,\" he explained. \"Sarah believes in spirits; she's deathly afraid of...a ghost.\""
   },
   "victim": {
-    "value": "Michael Doyle. An unfaithful husband infatuated with Molly Brennan who conspires to murder his wife Sarah through psychological shock, but dies in the attempted crime instead.",
+    "value": "Intended victim: Sarah Doyle, the dutiful wife with a weak heart, 'killable' because her cardiac condition made a fatal shock plausible and her husband loved another woman. Actual victim: Michael Doyle himself, thrown from the buggy.",
     "confidence": "high",
-    "quote": "he had jumped from behind the tombstone and so spooked Michael Doyle's mare that the frightened animal bolted, throwing Doyle from the buggy"
+    "quote": "\"Just be certain she avoids any emotional upsets, any shock or strain.\""
   },
   "closed_world": {
-    "value": "County Fermanagh, specifically the small rural town of Aughnacloy and surrounding countryside including Jellicoe's farm, Thompson's Mill, the Cat and Fiddle pub, and the cemetery outside town. A tight-knit community where everyone knows everyone.",
-    "confidence": "high",
-    "quote": "In all of County Fermanagh you would likely find no citizen less superstitious than Michael Doyle."
+    "value": "The small Irish town of Aughnacloy/County Fermanagh \u2014 cottage, Jellicoe's farm, the Cat and Fiddle, Thompson's Mill, and the roadside cemetery; a community where 'not a soul' would suspect otherwise.",
+    "confidence": "medium",
+    "quote": "\"There's not a soul in town who will be believing otherwise.\""
   },
   "culprit_and_motive": {
-    "value": "Michael Doyle (acting with Molly Brennan). Motive: desire to free himself from his wife Sarah to marry the beautiful barmaid Molly. He plans to frighten Sarah to death exploiting her fear of ghosts, believing her weak heart will fail.",
+    "value": "Michael Doyle, conspiring with barmaid Molly Brennan, plotting to kill his wife so he could marry Molly; Molly urges him on and agrees to play the ghost.",
     "confidence": "high",
-    "quote": "he could do it; he had to do it...A scare; a sudden terrible fright...Sarah believes in spirits; she's deathly afraid of sometime meeting up with a ghost."
+    "quote": "\"I wish she had died,\" Molly whispered."
   },
   "resolution": {
-    "value": "None presented in excerpt. The crime is revealed through narrative exposition: Doyle's plan backfired fatally when his horse bolted at Molly's ghost performance, killing Doyle instead of Sarah. Molly's guilt and shock are shown, but no official investigation or legal resolution occurs.",
-    "confidence": "low",
-    "quote": "The experience so unnerved her she was forced to take to her bed for a week."
+    "value": "Ironic reversal rather than detection: Sarah stays at her sister's, Doyle drives home alone past the cemetery, Molly's shriek spooks the mare, and Doyle is thrown and killed \u2014 on Friday the thirteenth. No investigator uncovers the plot.",
+    "confidence": "high",
+    "quote": "the frightened animal bolted, throwing Doyle from the buggy to strike a roadside boulder and split open his skull"
   },
   "investigator": {
-    "value": "None. This is a tragedy of circumstance told from omniscient narrative perspective, not a detective mystery. The reader witnesses Doyle's thoughts and the ironic outcome, but no investigator uncovers the truth.",
+    "value": "No investigator; the story is told through the culprit's own perspective \u2014 Michael Doyle, the guilt-ridden would-be murderer.",
+    "confidence": "medium",
+    "quote": "Doyle's mind was churning with converse speculation."
+  },
+  "suspect_architecture": {
+    "value": "Not a whodunit; a two-conspirator inverted tale. Michael Doyle (husband, motive: infatuation with Molly; opportunity: the buggy ride) and Molly Brennan (barmaid, accomplice and instigator). Peripheral figures \u2014 Dr. Carmody, the neighbour lass, Sarah's sister Emily \u2014 serve as witnesses/obstacles rather than suspects.",
+    "confidence": "medium",
+    "quote": "\"You're saying, if we did the shocking?\" Doyle's reply was barely audible. \"Yes.\""
+  },
+  "red_herring": {
+    "value": "The opening insistence on Doyle's lack of superstition, and the framing of Sarah's coronary as the fragile life at risk, misdirect from the fact that Doyle is the one who dies \u2014 capped by the Friday the thirteenth flourish.",
+    "confidence": "medium",
+    "quote": "In all of County Fermanagh you would likely find no citizen less superstitious than Michael Doyle."
+  },
+  "clue_fairness": {
+    "value": "Fair-play setup: the reader is given the mare, the dusk timing, the instruction to wait until they are almost upon her, and the change of plan leaving Doyle alone in the buggy \u2014 all before the reversal.",
+    "confidence": "high",
+    "quote": "\"Wait until we're almost upon you, so Sarah will be sure to see. Then swoop out with a fierce piercing shriek.\""
+  },
+  "social_world": {
+    "value": "Small rural Irish town (Aughnacloy/Fermanagh): farm labour under Mr. Jellicoe, a trusted local doctor, pub gossip at the Cat and Fiddle, family obligation to in-laws, and a community whose credulity Doyle counts on for cover.",
+    "confidence": "medium",
+    "quote": "\"There's not a soul in town who will be believing otherwise.\""
+  },
+  "alibi": {
+    "value": "Planned cover story rather than an alibi proper: Doyle intended to claim Sarah simply collapsed again, with no evidence left behind; he also avoided insisting on her return so as to arouse no speculation from her sister.",
+    "confidence": "medium",
+    "quote": "\"Afterward, there'll be no evidence. I'll simply claim Sarah suddenly collapsed again.\""
+  },
+  "reveal_mechanic": {
+    "value": "Ironic retrospective reveal via Molly's remembered experience: the ghost trick worked, but on the horse \u2014 the bolting mare threw Doyle against a boulder, killing the plotter instead of the victim.",
+    "confidence": "high",
+    "quote": "she had jumped from behind the tombstone and so spooked Michael Doyle's mare that the frightened animal bolted"
+  },
+  "media_and_audience": {
+    "value": "The town reads the death as ordinary accident and turns out for wake and funeral; superstition supplies the public gloss \u2014 Friday the thirteenth \u2014 while the true design stays private to Molly.",
+    "confidence": "medium",
+    "quote": "With a few exceptions, all of Aughnacloy attended the wake and funeral."
+  },
+  "investigator_wound": {
+    "value": null,
     "confidence": "low",
     "quote": null
+  },
+  "victims_enemies": {
+    "value": "The intended victim, Sarah Doyle, is threatened only by her own husband Michael and his mistress Molly Brennan \u2014 a web of intimacy rather than hatred: a dutiful wife whose survival is inconvenient to a man infatuated elsewhere, and a barmaid who openly wishes her dead. Ironically the actual victim, Doyle, is killed by his own accomplice-lover.",
+    "confidence": "high",
+    "quote": "\u201cI wish she had died,\u201d Molly whispered."
+  },
+  "suspect_wounds": {
+    "value": "Doyle's vulnerability is guilt-ridden superstition and sexual obsession: he despises his own death-wish yet cannot deny it, and Molly's ability to read his soul strips away his defenses, pushing him from fantasy into plotting murder.",
+    "confidence": "high",
+    "quote": "Guilt over the macabre pondering which had gripped him made Doyle\u2019s query break"
+  },
+  "unreliable_frame": {
+    "value": "The story is told close to Doyle's self-deceiving viewpoint \u2014 he frames his concern for Sarah as husbandly while admitting it is feigned, and plans to give police a false account of a spontaneous collapse ('I'll simply claim Sarah suddenly collapsed again').",
+    "confidence": "high",
+    "quote": "His thoughts vacillated from innate, husbandly concern for Sarah to frank realization such concern was now largely feigned."
+  },
+  "setting_as_constraint": {
+    "value": "Rural County Fermanagh/Aughnacloy: a small town where everyone knows everyone (so no one would doubt Doyle's word), horse-and-buggy travel, a cemetery on the road out of town, and a folk culture steeped in banshees and ghost-fear \u2014 the very superstition the plot exploits, and the dusk timing needed for the apparition to work.",
+    "confidence": "high",
+    "quote": "if we should drive past the cemetery outside town just about dusk. . ."
+  },
+  "evidence_type": {
+    "value": "Deliberately absent physical evidence \u2014 a fright leaves no trace ('there'll be no evidence'); what actually 'cracks' the case is testimonial/environmental irony: Molly's own witnessed experience of the mare bolting and Doyle's fatal head wound.",
+    "confidence": "medium",
+    "quote": "Afterward, there\u2019ll be no evidence. I\u2019ll simply claim Sarah suddenly collapsed again."
+  },
+  "false_suspect": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "technical_detail": {
+    "value": "Medical fact that a recovering cardiac patient must avoid sudden shock or strain \u2014 Dr. Carmody's own prescription supplies the murder method; the countervailing detail is equine skittishness: a shrieking sheeted figure spooks a horse, and the plan destroys its author.",
+    "confidence": "high",
+    "quote": "Just be certain she avoids any emotional upsets, any shock or strain."
+  },
+  "moral_ambiguity": {
+    "value": "Doyle is no cold killer but a decent, unsuperstitious farmhand undone by a first overwhelming passion; he deplores his own death wish, suffers sleepless nights of conscience, and calls the deed 'not easy for me' \u2014 while Molly, who prods him, never has to strike a blow herself.",
+    "confidence": "high",
+    "quote": "\u201cDon\u2019t be laughing, Molly. At best, it\u2019ll not be easy for me.\u201d"
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 10576,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Ghost of a Chance",
     "author": "CARROLL MAYERS",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 61,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

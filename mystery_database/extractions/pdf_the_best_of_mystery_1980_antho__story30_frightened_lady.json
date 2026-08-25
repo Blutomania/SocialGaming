@@ -1,45 +1,129 @@
 {
   "crime": {
-    "value": "Two razor throat murders: Gabrielle Marchant killed in her apartment; later, Leona Tasker killed in identical fashion. Central question: who committed these murders and why?",
+    "value": "Two razor throat-slashings: Gabrielle Marchant killed and mutilated post-mortem in her apartment; later Leona Tasker killed by her husband copying the same M.O. Central question: who is the 'maniac,' and whose fingerprint is on the razor?",
     "confidence": "high",
-    "quote": "She was all cut up... The murderer was right-handed... reached across her right shoulder and simply drew the razor across her throat."
+    "quote": "A most important fingerprint had been found in the Marchant apartment... imprinted on the murder weapon, and in blood?"
   },
   "victim": {
-    "value": "Gabrielle Marchant: beautiful divorcee with multiple lovers including Noel Tasker. Killable because her romantic entanglements (jealousy, rejection) and Leona's discovery of infidelity provided motive.",
+    "value": "Gabrielle Marchant, beautiful divorcee with many lovers\u2014killable as the object of jealousy/revenge; and Leona Tasker, the stout, unglamorous wife whose death would net Noel fifty thousand dollars",
     "confidence": "high",
-    "quote": "Gabrielle Marchant! His Gaby!... she had plenty of men. All Gaby had ever seemed to want was a good time."
+    "quote": "Because she was beautiful, she had plenty of men. All Gaby had ever seemed to want was a good time."
   },
   "closed_world": {
-    "value": "Camelot Court apartment complex where both victims lived in adjacent buildings; a bounded residential community where movements and arrivals are observable to neighbors.",
+    "value": "Camelot Court apartment complex, two facing streets of units whose residents observe each other across the lawn; police canvass every neighbor",
     "confidence": "high",
-    "quote": "He drove through the entrance of Camelot Court and took the left drive... There were four vehicles parked before her door today, three police cruisers and a white ambulance."
+    "quote": "That's why we're asking everybody here in the complex."
   },
   "culprit_and_motive": {
-    "value": "Noel Tasker murdered Leona (his wife) for $50,000 insurance and freedom; Leona murdered Gabrielle from jealous rage upon discovering her husband's affair. Noel frames the crimes as work of a 'maniac.'",
+    "value": "Leona Tasker murdered Gabrielle\u2014implicitly jealousy over her husband's affair; Noel Tasker then murdered Leona for insurance money and freedom, imitating the 'maniac' M.O.",
     "confidence": "high",
-    "quote": "Impersonate the maniac, or let it look like a rational crime, a husband murdering his wife for a rational motive, fifty thousand dollars."
+    "quote": "Like maybe how your wife was the one who killed Marchant. And why she killed her. And then... who killed your wife?"
   },
   "resolution": {
-    "value": "Lieutenant Kabrick discovers Leona's fingerprint on the coffee table and ashtray at Leona's murder scene matches the fingerprint on the razor from Marchant's murder. Kabrick deduces: Leona killed Marchant; Noel killed Leona.",
+    "value": "Lieutenant Kabrick matches Leona's bloody prints on the coffee table and ashtray to the bloody print on the razor in the Marchant apartment, exposing Leona as Gaby's killer and Noel as Leona's",
     "confidence": "high",
-    "quote": "A print of your wife's, on the table and on the tray, matched the print on the razor in the Marchant apartment... if your wife killed Marchant, who killed your wife?"
+    "quote": "A print of your wife's, on the table and on the tray, matched the print on the razor in the Marchant apartment."
   },
   "investigator": {
-    "value": "Lieutenant Kabrick: official homicide detective who methodically reconstructs the crime through forensic evidence (fingerprints, blood patterns, M.O. analysis) and interrogation.",
+    "value": "Dual lens: Noel Tasker, the frightened lover-turned-murderer through whose viewpoint the story is told, and Lieutenant Kabrick, the official theorizing homicide detective",
     "confidence": "high",
-    "quote": "Lieutenant Kabrick slouched in the depths of the chair and smiled... In Homicide you have to theorize. There's this matter of the blood."
+    "quote": "\"I could be wrong, of course,\" he went on. \"I'm always theorizing, but in Homicide you have to.\""
+  },
+  "suspect_architecture": {
+    "value": "Small implicit cast around Gabrielle Marchant's murder: the unknown 'maniac'; the wealthy stranger with the foreign sports car (never reported); Noel Tasker, secret lover with guilty knowledge and fingerprints in the apartment; and Leona Tasker, the dowdy, seemingly frightened wife who is finally revealed as Gaby's killer. Noel himself becomes the second murderer.",
+    "confidence": "high",
+    "quote": "\u201cLike, maybe, a jealous lover. Or a rejected lover. Miss Marchant was attractive. We don\u2019t know how many men there were in her life.\u201d"
+  },
+  "red_herring": {
+    "value": "The 'maniac' theory \u2014 the post-mortem mutilation of Gaby's body suggesting a sex-crazed killer at large, plus the man with the expensive foreign sports car Noel keeps almost reporting. Both divert from the wife.",
+    "confidence": "high",
+    "quote": "\u201cIt must have been pretty terrible. They say it was a maniac. She was all cut up.\u201d"
+  },
+  "clue_fairness": {
+    "value": "Reader gets everything: the bloody print on the razor said to be the murderer's; Leona's unexplained pallor and trembling, her absence until midnight, her knowledge of the murder, her insistence on the maniac theory; and Kabrick's statement that mutilation was post-mortem to disguise a rational crime \u2014 all before the print-match reveal.",
+    "confidence": "high",
+    "quote": "\u201cSince the print did not belong to the deceased, it had to belong to the murderer... imprinted on the murder weapon, and in blood?\u201d"
+  },
+  "social_world": {
+    "value": "Suburban apartment-complex respectability at Camelot Court: a middling salesman whose sales slip and whose secretary wife out-earns him, a glamorous divorcee neighbour, gossiping lawn crowds, businesswomen's clubs and duplicate bridge, and a $50,000 insurance motive.",
+    "confidence": "high",
+    "quote": "She was a secretary, and a very good one, with an income that topped Noel\u2019s whenever his sales slipped, as they often did."
+  },
+  "alibi": {
+    "value": "Noel constructs an alibi at an industry banquet, slipping out during a 45-minute darkened film screening, driving home in twelve minutes, killing Leona, showering, returning to the same parking spot, then quizzing colleagues about the film so he can describe it.",
+    "confidence": "high",
+    "quote": "He had forty-five minutes, therefore, of invisibility."
+  },
+  "reveal_mechanic": {
+    "value": "Fingerprint matching: Leona's bloody prints on the coffee table and ashtray (left as she died grabbing for a weapon) match the bloody print on the razor from the Marchant murder \u2014 proving the wife killed Gaby and, by extension, exposing Noel's copycat M.O.",
+    "confidence": "high",
+    "quote": "\u201cA print of your wife\u2019s, on the table and on the tray, matched the print on the razor in the Marchant apartment.\u201d"
+  },
+  "media_and_audience": {
+    "value": "The press and neighbourhood gossip shape the crime: a leaked newspaper story about the bloody fingerprint reassures Noel, and Maxine Borley's eyewitness account of the body circulates as the template Noel copies for his imitation murder.",
+    "confidence": "high",
+    "quote": "Maxine Borley, who had discovered Gaby\u2019s body, had authored the story, so it had been an eyewitness account."
+  },
+  "investigator_wound": {
+    "value": "Not a detective wound but the protagonist's: Noel's masochistic jealousy and terror of exposure as an adulterer \u2014 fear of being implicated in Gaby's life more than her death \u2014 drives every disastrous choice. Kabrick himself is only marked by a habit of compulsive theorizing.",
+    "confidence": "medium",
+    "quote": "Not that Noel Tasker was in any way implicated in her death; but now that she was dead, he didn\u2019t want to be implicated in her life."
+  },
+  "victims_enemies": {
+    "value": "Gabrielle Marchant, a beautiful divorcee with many lovers, generated jealousy among the men in her life \u2014 and, unknown to Noel, among wives: his own wife Leona, stout and matronly, resented and ultimately killed her. Noel himself is the secret lover whose affair created the grievance.",
+    "value_note": "",
+    "confidence": "high",
+    "quote": "Like, maybe, a jealous lover. Or a rejected lover. Miss Marchant was attractive. We don't know how many men there were in her life."
+  },
+  "suspect_wounds": {
+    "value": "Noel's vulnerability is his secret adultery: his fingerprints are throughout Gaby's apartment and he cannot explain his knowledge of her without exposing the affair, so he lies to police and behaves guiltily though innocent of her murder.",
+    "confidence": "high",
+    "quote": "Not that Noel Tasker was in any way implicated in her death; but now that she was dead, he didn't want to be implicated in her life."
+  },
+  "unreliable_frame": {
+    "value": "The story is told through Noel's self-serving perspective \u2014 he suppresses the affair, withholds the man in the foreign sports car from the police, and is so blinded by his own concealment that he never suspects Leona; his final bafflement shows how little he understood.",
+    "confidence": "high",
+    "quote": "\"Can you give us any information along that line, Mr. Tasker?\" \"No, I'm afraid I can't.\""
+  },
+  "setting_as_constraint": {
+    "value": "Camelot Court, an apartment complex of two facing streets 200 feet apart, enables voyeurism and secret liaisons while autumn indoor habits and closed draperies mask comings and goings; the hotel banquet's forty-five-minute darkened film gives Noel a bounded window of invisibility for a twelve-minute drive home.",
+    "confidence": "high",
+    "quote": "He had forty-five minutes, therefore, of invisibility."
+  },
+  "evidence_type": {
+    "value": "Forensic/physical \u2014 fingerprint comparison: the bloody print on the razor in the Marchant apartment matches Leona's bloody prints on her own coffee table and ashtray, proving she was Gaby's killer and exposing Noel's copycat.",
+    "confidence": "high",
+    "quote": "A print of your wife's, on the table and on the tray, matched the print on the razor in the Marchant apartment."
+  },
+  "false_suspect": {
+    "value": "The unknown 'maniac' \u2014 plus the unidentified man in the expensive foreign sports car whom Noel repeatedly considers naming to police \u2014 serve as the phantom culprits deflecting suspicion.",
+    "confidence": "medium",
+    "quote": "The guy in the expensive foreign car! Would it be smart to mention that incident?"
+  },
+  "technical_detail": {
+    "value": "The razor-murder M.O. explained by Lieutenant Kabrick: attack from behind, left hand cupping the chin to stretch the throat, right hand drawing the razor across \u2014 a method that minimizes blood on the killer; post-mortem mutilation staged afterward. Noel copies it exactly, and only wipes the razor to avoid a print.",
+    "confidence": "high",
+    "quote": "The murderer doesn't get too much blood on himself... It minimizes the problem of disposal of bloody garments."
+  },
+  "moral_ambiguity": {
+    "value": "Noel is a mediocre, jealous, self-pitying adulterer rather than a monster \u2014 repulsed by his wife, grieving his lost 'ecstasy,' and killing for fifty thousand dollars; the murder sickens him and leaves him in genuine shock. Leona, meanwhile, killed from the humiliation of a betrayed, unloved wife.",
+    "confidence": "medium",
+    "quote": "His emotional condition was no act for the police. He really was in a state almost of shock."
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Frightened Lady",
     "author": "C. B. GILFORD",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 30,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

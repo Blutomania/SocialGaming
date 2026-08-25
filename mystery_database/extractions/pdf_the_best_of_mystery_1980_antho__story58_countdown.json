@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Deliberate substitution of astronaut's food supply with empty containers before Mars launch; method: chemist Dr. Anders removed nutritional concentrates and replaced them with inert pellets; central question: will the sabotage be discovered before launch, or will the astronaut die in space?",
+    "value": "Murder/sabotage of a space mission: the chemist Anders murdered his wife and packed her processed flesh into the spacecraft's food containers in place of the food concentrates; question posed is what the loaded containers actually contain and where Olga is.",
     "confidence": "high",
-    "quote": "was this supposed to have been in the ship?... You mean he's off in space to starve to death?"
+    "quote": "\"You mean\u2014you deliberately loaded empty food containers in that cabin?\""
   },
   "victim": {
-    "value": "Captain Miguel Randazzo, the astronaut\u2014'The Perfect Human'\u2014targeted because he seduced Dr. Anders' wife Olga during the pre-launch period, making him killable through intimate betrayal and the perfect cover of a space mission.",
+    "value": "Olga Anders, wife of Dr. Max Anders \u2014 apparently the woman who had the affair with Randazzo (mistaken or otherwise), making her her husband's target; secondarily Randazzo, condemned to cannibalism.",
     "confidence": "high",
-    "quote": "What woman could resist the appeal of such a man, a man soon to vanish on a hero's mission into the sky, perhaps never to return!"
+    "quote": "\"Where's Olga, Max? Where is she? Where's your wife?\""
   },
   "closed_world": {
-    "value": "International space launch facility with heavily guarded perimeter, restricted access zones, and continuous surveillance of all personnel; countdown creates temporal closure\u2014once launch begins, the crime cannot be stopped or reversed.",
+    "value": "The fenced, heavily guarded international Space Project compound during the final hour of countdown; all personnel vetted, dossiers kept, movement controlled.",
     "confidence": "high",
-    "quote": "everyone connected with the Project, from the Director down to the restaurant bus-boys, had been rigorously investigated and kept under observation"
+    "quote": "everyone connected with the Project, from the Director down to the restaurant bus-boys, had been rigorously investigated"
   },
   "culprit_and_motive": {
-    "value": "Dr. Max Anders, a chemist on the project team; motive: revenge for Randazzo's seduction of his wife Olga. He substitutes the food supply knowing Randazzo will slowly starve during the three-month round trip to Mars.",
+    "value": "Dr. Max Anders, nutritional chemist, out of jealous revenge for his wife's seduction by 'The Perfect Human' Randazzo \u2014 killing her and making the hero unknowingly eat her.",
     "confidence": "high",
-    "quote": "Dr. Anders merely repeated, in his calm and even tones, the phrase he had just used: 'He needn't starve.'"
+    "quote": "\"Just cleaning up,\" he explained. \"If you let a mess stand for a while, it's a dozen times harder\u2014\""
   },
   "resolution": {
-    "value": "Incomplete resolution. Security Officer Farquhar discovers the empty food containers cascading from the cupboard moments after launch, deduces Anders' sabotage from scattered pellets, and confronts him. However, the rocket is already in space and cannot be recalled; the crime succeeds. No restoration of order occurs.",
-    "confidence": "high",
-    "quote": "By the dozens, tiny pellets came cascading out... Farquhar turned around, conscious... of the loudspeaker voice that crackled now above the roar with a piercing excitement"
+    "value": "Only partial: the concealed food pellets spill from the cupboard when Whitby's head slips, revealing the containers were loaded with something else; Anders silently confirms. No arrest or restoration \u2014 the rocket is already away.",
+    "confidence": "medium",
+    "quote": "By the dozens, tiny pellets came cascading out."
   },
   "investigator": {
-    "value": "Security Officer Farquhar, an institutional detective with access to surveillance files and dossiers; he observes suspicious behavioral cues (Whitby's tortured expression, Mrs. Whitby's rigid grief) and pursues the investigation through interrogation, deduction, and phone verification until the moment of irreversible launch.",
+    "value": "Security Officer Farquhar, official institutional investigator chasing a hunch about a marital affair as sabotage motive.",
     "confidence": "high",
-    "quote": "Security Officer Farquhar leaned against the east wall of the Commissary, his thoughts uneasily revolving around the thousand possibilities for trouble."
+    "quote": "Security Officer Farquhar leaned against the east wall of the Commissary, his thoughts uneasily revolving"
+  },
+  "suspect_architecture": {
+    "value": "Two candidate saboteurs among Project insiders: Professor Whitby, the physicist whose wife was seduced by the astronaut and who controls the Temp-Reg system (obvious motive, obvious means), and Dr. Max Anders, the nutritional chemist who loads the food containers \u2014 the 'best friend' whose wife Olga is the real adulteress. Peripheral figures (the Director, Randazzo, Farquhar's driver) are non-suspects; Mrs. Whitby's distress serves as pointer rather than suspicion.",
+    "confidence": "high",
+    "quote": "\"the names of the couple listed under the heading, \u201cbest friends at Project,\u201d Max and Olga Anders\""
+  },
+  "red_herring": {
+    "value": "Whitby is elaborately set up as the saboteur: his tortured face, his wife's rigid grief at the fence, his control of the one imperfect component (Temp-Reg), and Anders' own prompting that Mrs. Whitby was unfaithful \u2014 all directing Farquhar (and reader) away from Anders, whose real grievance concerns his own wife Olga.",
+    "confidence": "high",
+    "quote": "\"do you have any reason to believe that Mrs. Whitby has been guilty of any improper relationship with Captain Randazzo?\""
+  },
+  "clue_fairness": {
+    "value": "All clues are shown in scene before the solution: Anders is late loading the long metal cases and pats one with satisfaction; he emerges from a refrigerated room 'cleaning up' and carefully shuts the cold-room door; food is the last expendable loaded; the couple's names include Olga Anders; the pellets spill visibly before Farquhar interprets them.",
+    "confidence": "high",
+    "quote": "\"He frowned in a preoccupied way at the cases, then gave the nearest one a pat of satisfaction.\""
+  },
+  "social_world": {
+    "value": "An international, hierarchical space project: Director at the apex, Nobel laureates, physicians and psychiatrists, scientists from a score of nations, security officers below them, down to bus-boys \u2014 all dossiered and surveilled; dignitaries, royalty and press stratified into designated enclosures, with staff wives relegated to a chair area.",
+    "confidence": "high",
+    "quote": "\"everyone connected with the Project, from the Director down to the restaurant bus-boys, had been rigorously investigated\""
+  },
+  "alibi": {
+    "value": "No formal alibis are contested; instead Anders' whereabouts are quietly anomalous \u2014 he cannot be found outside and is discovered alone in the cold room of the nutritional lab, and Mrs. Anders is missing from the staff area entirely, an absence that functions as the inverted alibi clue.",
+    "confidence": "medium",
+    "quote": "\"he had searched through the Staff area for Mrs. Anders without success, and her husband, too, was nowhere to be found outside\""
+  },
+  "reveal_mechanic": {
+    "value": "Physical demonstration: Whitby's head slips from the cupboard door, spilling the thousands of food-concentrate pellets that should have been aboard \u2014 proving the weighed, 'fully loaded' containers held something else; Whitby's question 'Where's Olga, Max?' completes the deduction without Anders confessing.",
+    "confidence": "high",
+    "quote": "\"By the dozens, tiny pellets came cascading out. They rained down on Whitby\u2019s head and shoulders\""
+  },
+  "media_and_audience": {
+    "value": "The launch is a global media spectacle \u2014 thousands of spectators, souvenir hawkers, TV and newsreel cameras, press from every continent \u2014 and the press has mythologised Randazzo as 'The Perfect Human,' a legend whose glamour both enables his seductions and makes the crime unthinkable to officialdom.",
+    "confidence": "high",
+    "quote": "\"No wonder the press referred to the fellow as \u201cThe Perfect Human.\u201d\""
+  },
+  "investigator_wound": {
+    "value": "Farquhar's vulnerability is bureaucratic self-justification and fear of being blamed: his faith in dossiers and surveillance blinds him, and his dread of ordering a costly abort on a 'sheer hunch' paralyses him at the decisive moment.",
+    "confidence": "high",
+    "quote": "\"No, he could not ask the Director to wreck everything on a sheer hunch.\""
+  },
+  "victims_enemies": {
+    "value": "Captain Randazzo, 'The Perfect Human,' has seduced the wives of colleagues at the Project \u2014 Whitby, the physicist whose wife confessed the affair the night before, and Dr. Max Anders, the nutritional chemist whose wife Olga has vanished; both cuckolded husbands had access to the rocket's payload.",
+    "confidence": "high",
+    "quote": "\"Yes, it's true\u2014she told me herself last night\u2014but I don't see that it's any of your\u2014\""
+  },
+  "suspect_wounds": {
+    "value": "Whitby's wound is humiliated jealousy: his tortured face, dishevelled hair, sleepless dark-circled eyes and his wife's rigid grief make him look like a saboteur, and he admits he thought of it \u2014 his one point of control, the imperfect Temp-Reg system, would have let him parboil or freeze Randazzo.",
+    "confidence": "high",
+    "quote": "\"I thought of it, Farquhar,\" he whispered, \"Lord knows I thought of it. But I couldn't do it\u2014no, not even for that.\""
+  },
+  "unreliable_frame": {
+    "value": "Dr. Anders narrates the affair to Farquhar with detached, ironic authority and steers the investigation toward Whitby and away from himself, while concealing that he had just been 'cleaning up' a mess in the refrigerated room and had loaded the food cases eighteen seconds late.",
+    "confidence": "high",
+    "quote": "\"Just cleaning up,\" he explained. \"If you let a mess stand for a while, it's a dozen times harder\u2014\""
+  },
+  "setting_as_constraint": {
+    "value": "The countdown itself is the constraint: once automatic controls engage at Zero Plus Five, stopping the launch would wreck millions in equipment, so suspicion must become certainty within minutes; total security surveillance and the sealed, weight-checked payload mean sabotage could only be done by someone authorized to load the cabin.",
+    "confidence": "high",
+    "quote": "It could be stopped, but at a fantastic cost... No, he could not ask the Director to wreck everything on a sheer hunch."
+  },
+  "evidence_type": {
+    "value": "Physical/material evidence: the thousand yeast-like food concentrate pellets cascading from the laboratory cupboard \u2014 the rations that should have been aboard \u2014 proving the sealed, correctly weighted cases were filled with something else.",
+    "confidence": "high",
+    "quote": "By the dozens, tiny pellets came cascading out... It was pliable in his fingers, reminding him of a yeast tablet."
+  },
+  "false_suspect": {
+    "value": "Professor Whitby \u2014 the cuckolded physicist with control of the flawed Temp-Reg system, whose anguished face and wife's rigid distress draw all of Farquhar's suspicion, and whom Anders subtly implicates while being innocent of sabotage.",
+    "confidence": "high",
+    "quote": "he would not soon forget its tortured look."
+  },
+  "technical_detail": {
+    "value": "The three-month food supply is compressed processed concentrate in sealed metal cases whose weight, not contents, is verified at the pad \u2014 so a nutritional chemist with cold-room access could substitute a body of equivalent mass and pass every check.",
+    "confidence": "high",
+    "quote": "\"No! They weren't empty! They were weighed at the pad! They were fully loaded!\""
+  },
+  "moral_ambiguity": {
+    "value": "Anders acts not from ordinary spite but from an ironic, almost philosophical revenge: he sends the seducer and the unfaithful wife off together, letting the 'Perfect Human' have exactly what he wanted \u2014 Randazzo 'needn't starve' \u2014 a punishment shaped as a grotesque gift.",
+    "confidence": "medium",
+    "quote": "But Dr. Anders merely repeated, in his calm and even tones, the phrase he had just used: \"He needn't starve.\""
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 24374,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Countdown",
     "author": "DAVID ELY",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 58,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

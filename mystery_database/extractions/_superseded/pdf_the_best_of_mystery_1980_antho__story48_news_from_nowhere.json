@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Double murder by conspiracy: strangulation or blunt force of a wealthy young woman and her lover Conway, staged as separate accidents (car crash and canyon fall) to steal $50,000. Central question: Has Conway actually survived, and are the paintings surfacing now a trap or coincidence?",
+    "confidence": "high",
+    "quote": "We wanted them to find her and believe the $50,000 was with her; burned up along with the money she was carrying. You and Conway fixed that up."
+  },
+  "victim": {
+    "value": "The unnamed wealthy girl: naive patron of the arts with $50,000 intended for charity, seduced into funding an 'art colony' by Conway and Paulin, then murdered because she possessed capital and posed no threat once exploited.",
+    "confidence": "high",
+    "quote": "She was never very good-looking...I can live here in San Francisco for two or three years on that $50,000 we got out of her."
+  },
+  "closed_world": {
+    "value": "San Francisco junk shops and art scene, specifically the News From Nowhere Emporium on McAllister Street and the Henderson house at Stinson Beach\u2014locations where Conway's paintings surface unexpectedly, trapping Paulin in an inescapable geography.",
+    "confidence": "medium",
+    "quote": "The shop door opened this time. Paulin stepped inside the News From Nowhere junk store...Behind a glass counter sat an old man in a brown coat-sweater."
+  },
+  "culprit_and_motive": {
+    "value": "Andrew Paulin: commercial artist who conspired with Conway to seduce the girl, stole her $50,000, then murdered Conway to keep the full amount. Motive: greed and self-preservation; he feared Conway's sadistic nature and talkative charm endangered the scheme.",
+    "confidence": "high",
+    "quote": "Well, in a way that made it easier to do it to him...I got rid of him in time to save nearly all the $50,000 for myself."
+  },
+  "resolution": {
+    "value": "Unresolved / Irresolution: The paintings\u2014now appearing in San Francisco\u2014force Paulin to confront the possibility that Conway survived, and the final image of wet paint on Paulin's hand suggests Conway has been present all along, documenting Paulin's guilt. Order collapses into paranoia.",
+    "confidence": "high",
+    "quote": "It was wet paint. / Suppose he did get out alive somehow. He'd know I was coming back here to San Francisco...he's going to torture you, like he did the girl."
+  },
+  "investigator": {
+    "value": "Andrew Paulin himself: the guilty party serves as the primary consciousness, his internal monologue revealing both the crime and his mounting terror. Reader experiences mystery through the eyes of the culprit being hunted.",
+    "confidence": "high",
+    "quote": "Andrew Paulin had forgotten to keep breathing. He coughed now and gasped in air through his open mouth...He'd been eating a chocolate almond bar and he threw it down toward the gutter."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 17997,
+    "protocols": [
+      "P1"
+    ],
+    "title": "News From Nowhere",
+    "author": "RON GOULART",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 48,
+    "story_count": 63
+  }
+}

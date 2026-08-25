@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Bank robbery during business hours; central question: will the robber escape with hostage and money, or will authorities intercept him?",
+    "value": "Armed bank robbery followed by kidnapping: a lone gunman robs a small branch bank at closing and takes a teller hostage as cover for his escape. Central question is not whodunit but whether he will escape and what he wants.",
     "confidence": "high",
-    "quote": "two people arrived...A tall slender man in a windbreaker followed her closely...he said softly, 'but be careful, very, very careful.' He pushed the black bag across the counter top."
+    "quote": "Her fingers fumbled opening the drawer and then were pushing money into the case."
   },
   "victim": {
-    "value": "Marge Elliot, bank teller\u2014a dutiful suburban housewife trapped between domestic obligations and her own suppressed desires, making her psychologically vulnerable to the robber's manipulation.",
+    "value": "Marge Elliot, the bank teller \u2014 an ordinary suburban wife and mother, 'killable'/takeable simply because she was the last teller on duty at closing time and made a convenient hostage-disguise as a 'wife'",
     "confidence": "high",
-    "quote": "Marge was hungry...too tired to start the annual argument about the parents' show...After fourteen years no woman got excited."
+    "quote": "\"Now just as carefully walk around the end of the counter and come out. Bring your purse.\""
   },
   "closed_world": {
+    "value": "The locked branch bank at closing, then the confined interior of the getaway car during a long highway flight across state \u2014 a two-person sealed space with roadblocks, toll gates, gas stations and a motel as the only outside contacts",
+    "confidence": "high",
+    "quote": "Mr. Redmon locked the door behind her, and glanced impatiently toward the last customer."
+  },
+  "culprit_and_motive": {
+    "value": "The tall man in the windbreaker, a Korean War veteran trapped in a marriage and life he never chose; he robs the bank not for money but to escape the 'merry-go-round' of providing, leaving the cash to his wife",
+    "confidence": "high",
+    "quote": "\"I had to get out of it. She'll use the money until she finds a new guy to conjure it up and hand it over\""
+  },
+  "resolution": {
+    "value": "Marge's deliberately abandoned wristwatch in the rest-park outhouse leads police to the car; troopers chase the robber and he goes over a cliff, shot/dead \u2014 order 'restored' as Marge returns to Warren, but she weeps for her abductor",
+    "confidence": "high",
+    "quote": "\"They got your watch; the men remembered the car. They're chasing him right now.\""
+  },
+  "investigator": {
+    "value": "Marge, the hostage-victim herself, is the sole point of view \u2014 an amateur 'investigator' who both plots escape (leaving clues) and gradually uncovers the robber's motive and her own dissatisfaction",
+    "confidence": "high",
+    "quote": "She remembered her watch and yanked it off, leaving it on the seat."
+  },
+  "suspect_architecture": {
     "value": null,
     "confidence": "low",
     "quote": null
   },
-  "culprit_and_motive": {
-    "value": "The robber, a Korean War veteran escaping a suffocating marriage and bourgeois entrapment. Motive: violent rebellion against domestic servitude and societal conformity; he seeks freedom through crime and explicitly states he will not be captured alive.",
-    "confidence": "high",
-    "quote": "I had to get out of it...I don't know. Maybe I did love her, maybe I still do...Either I make it with the money, or they kill me. But they won't catch me!"
+  "red_herring": {
+    "value": "The robber's ordinary appearance and casual notebook-thumbing at the wall desk mislead Marge (and reader) into treating him as a routine customer; later the staged 'married couple quarrelling about split levels' misdirects the state trooper.",
+    "confidence": "medium",
+    "quote": "\u201cIf you have to have a split level, dammit, have it! But don\u2019t expect me to like it!\u201d"
   },
-  "resolution": {
-    "value": "The robber is killed in a police shootout after being tracked via Marge's abandoned watch. Marge is rescued but psychologically transformed\u2014no longer the compliant housewife. She rejects Warren's comfort and the promise of returning to 'normal.'",
+  "clue_fairness": {
+    "value": "The reader sees every escape detail as Marge does: the gun in the pocket, the wig and pink blouse disguise, the second blue car on the parking deck, the abandoned watch in the rest-park outhouse \u2014 the watch later proves to be the trace that leads police to him.",
     "confidence": "high",
-    "quote": "There was a distant, lost sound of a siren...rapid, faint reports of guns firing...over the cliff...She jerked away from him and buried her face in the pillow, where her abductor's head had rested."
+    "quote": "\u201cThey got your watch; the men remembered the car. They\u2019re chasing him right now.\u201d"
   },
-  "investigator": {
-    "value": "Marge Elliot herself\u2014the victim-witness whose internal perspective dominates the narrative. She experiences the crime as both captive and reluctant confidante, gradually recognizing uncomfortable truths about her own life.",
+  "social_world": {
+    "value": "Post-war American suburbia: PTA festivals, church committees, subdivisions like 'Pleasant View', split-level houses, breadwinner husbands who merely 'provide' and wives who are perpetually busy \u2014 a hierarchy of domestic obligation the robber indicts.",
     "confidence": "high",
-    "quote": "It was as if she were coming out from a deep dream, only now being consciously in control of her actions...Why hadn't she screamed in the lot?"
+    "quote": "\u201cdon\u2019t you realize that\u2019s all most men are doing now? Providing.\u201d"
+  },
+  "alibi": {
+    "value": "No investigative alibi; instead a fabricated cover identity \u2014 the robber passes himself and his hostage off as a bickering married couple on a fishing trip, verified by license and luggage at the toll gate.",
+    "confidence": "medium",
+    "quote": "\u201cOK, Mac. License, please.\u201d He studied the license and compared the statistics with the man"
+  },
+  "reveal_mechanic": {
+    "value": "Physical trace plus witness memory: the watch Marge deliberately leaves on the outhouse seat, combined with the dog-walking couple recalling the car, demonstrates the trail; the offstage gunfire and 'over the cliff' confirms his predicted end.",
+    "confidence": "high",
+    "quote": "Outside someone was shouting, \u201c. . .over the cliff. . .\u201d"
+  },
+  "media_and_audience": {
+    "value": "The robber packages Marge's ordeal in advance as public spectacle \u2014 television heroine, newspapers, a national magazine buying her story, envy of the neighbours \u2014 while Warren insists on a return to 'normal'.",
+    "confidence": "high",
+    "quote": "\u201cYou\u2019ll be a heroine on television, in the newspapers. Maybe a national magazine will buy your story.\u201d"
+  },
+  "investigator_wound": {
+    "value": "Marge, the point-of-view 'investigator' of her captor, is exploited through her own suppressed marital emptiness and lost faith \u2014 her longing to be cared for makes her complicit and finally grieving for him.",
+    "confidence": "high",
+    "quote": "She wished passionately she could return to the time when she knew someone would be there to take care of things"
+  },
+  "victims_enemies": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_wounds": {
+    "value": "The robber's wound is his own life: drafted out of college into Korea, tortured in a prison camp, returned to an automatic marriage and a life of merely 'providing.' Marge's parallel wound is a hollow marriage to Warren and a life of committee busywork.",
+    "confidence": "medium",
+    "quote": "\u201cA kid gets taken out of college and told to kill or be killed,\u201d he said"
+  },
+  "unreliable_frame": {
+    "value": "Told in close third person through Marge, whose perceptions shift from terror to attraction; her own account of her marriage is self-censoring, and the robber answers direct questions ('Do you love her?') evasively.",
+    "confidence": "medium",
+    "quote": "\u201cMaybe I did love her, maybe I still do. I don\u2019t know. It doesn\u2019t matter. I had to get out of it.\u201d"
+  },
+  "setting_as_constraint": {
+    "value": "The closed branch bank at lock-up (no other customers or staff), then the sealed interior of a moving car on a turnpike \u2014 toll gates, filling stations and rest parks are the only contact points, each surveilled by the captor so escape is impossible.",
+    "confidence": "high",
+    "quote": "\u201cThere\u2019s a rest park ahead,\u201d he said. \u201cWe\u2019ll get out and walk up and down a few minutes.\u201d"
+  },
+  "evidence_type": {
+    "value": "Physical trace evidence deliberately planted by the victim: Marge's inscribed wristwatch left on the outhouse seat, combined with testimonial identification of the car by the couple with the dog.",
+    "confidence": "high",
+    "quote": "\u201cThey got your watch; the men remembered the car. They\u2019re chasing him right now.\u201d"
+  },
+  "false_suspect": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "technical_detail": {
+    "value": "Prison-camp joint-manipulation technique learned from a Korean guard \u2014 wrist pressure that dislocates the shoulder \u2014 used silently to control Marge in public; plus disguise craft (blonde wig, changed clothes, switched car) and sedation via sleeping pills dissolved in sweetened coffee.",
+    "confidence": "high",
+    "quote": "\u201cI was in a prison camp in Korea and one of the guards taught me a kind of cute trick.\u201d"
+  },
+  "moral_ambiguity": {
+    "value": "The robber is gentle, apologetic and protective toward his hostage, robbing not from greed but to escape a suffocating conformist life; he leaves the money to his wife and asks only to state his own terms. Marge, his victim, ends by weeping for him and recoiling from her husband.",
+    "confidence": "high",
+    "quote": "She jerked away from him and buried her face in the pillow, where her abductor\u2019s head had rested."
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "A Case of Desperation",
     "author": "KATE WILHELM",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 49,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

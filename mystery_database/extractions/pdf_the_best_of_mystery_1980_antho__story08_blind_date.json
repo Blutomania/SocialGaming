@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Murder by gunshot (bullet hole in forehead). Central question: How did the victim end up in the protagonist's car trunk, and who placed her there to frame him?",
+    "value": "Murder by gunshot, with the body planted in an innocent man's car trunk plus forged love letters and a faked photograph to frame him; central question: who put her there and why does the evidence point to Frank?",
     "confidence": "high",
     "quote": "There was a bullet hole in her forehead."
   },
   "victim": {
-    "value": "Cora Miller, attractive brunette in her early thirties, married to county auditor Thurman Miller. She was 'killable' because her husband wanted to divorce her to marry another woman, but she refused to grant him one.",
+    "value": "Cora Miller, attractive brunette in her early thirties, wife of Encinal county auditor Thurman Miller; killable because she refused to divorce her husband, who wanted to marry a young blonde",
     "confidence": "high",
     "quote": "He's got him some young blonde on the string. He wants to marry her. Cora won't give him a divorce."
   },
   "closed_world": {
-    "value": "Small-town social network spanning Kingsbury and nearby Encinal (~30 miles apart). The crime is executed within a few hours using local knowledge of the protagonist's movements and plans.",
+    "value": "The small-town orbit of Kingsbury and nearby Encinal, narrowed to the brief window when Frank's car sat unattended behind Pop Lassiter's beer joint during his farewell chess game",
     "confidence": "high",
-    "quote": "I had lived in Kingsbury for six months. It was long enough to have seen at least once every person in a town that size."
+    "quote": "The only time anyone could have tampered with my trunk was while I had my car parked back of Pop's place."
   },
   "culprit_and_motive": {
-    "value": "Thurman Miller (the victim's husband) murdered Cora to free himself to marry a younger woman. Pop Lassiter aided the scheme by forging love letters, creating false photographs, and arranging to plant the body in the protagonist's car to frame him as the killer.",
+    "value": "Thurman Miller shot his wife so he could marry his blonde mistress after Cora refused a divorce; Pop Lassiter, an ex-con forger, was paid to design the frame-up (forged letters, photo, duplicate trunk key)",
     "confidence": "high",
-    "quote": "Thurman paid me good money to set the thing up...Then he shot Cora tonight, and brought her over here...He put her in the trunk of your car."
+    "quote": "He shot Cora tonight, and brought her over here... Then he put her in the trunk of your car, usin' that key I'd had made"
   },
   "resolution": {
-    "value": "Deputy sheriff Buddy discovers the photograph was taken in Pop's back room (clock visible in corner). Pop confesses to forgery and framing; reveals Thurman as the actual murderer. Buddy arrests Thurman, who gives a complete statement. The protagonist is exonerated.",
+    "value": "Deputy Buddy notices the rim of Pop's barroom clock left in the enlarged snapshot, traces the camera angle to a side room in Pop's bar, confronts Pop (who has a forgery conviction); Pop confesses to the frame-up and names Thurman, who is arrested and gives a full statement",
     "confidence": "high",
-    "quote": "The negative was blown up...whoever did the enlargement left the rim of that clock...I recognized it as the one on Pop's wall."
+    "quote": "whoever did the enlargement left the rim of that clock, up there, on one corner of the print."
   },
   "investigator": {
-    "value": "Frank Judson (the protagonist), an innocent man falsely implicated in the murder. As the suspected culprit, he investigates his own frame-up with the aid of his friend Buddy, a deputy sheriff.",
+    "value": "Dual lens: Frank Judson, the framed newspaperman narrating as prime suspect investigating his own frame-up, aided by Buddy, his friend and deputy sheriff who actually solves it",
     "confidence": "high",
-    "quote": "She had undoubtedly ridden with me all the way from Kingsbury...My first reaction following the initial shock was one of instinctive self-preservation."
+    "quote": "Buddy was a good friend... But he was also a deputy sheriff."
+  },
+  "suspect_architecture": {
+    "value": "Narrow cast: Frank Judson (framed narrator, apparent suspect with letters/photo as manufactured motive), Pop Lassiter (ex-con bar owner with forgery record, opportunity via trunk key), Thurman Miller (husband, motive: blonde mistress and refused divorce, actual killer), Buddy the deputy sheriff (friend/investigator, briefly suspected of nothing). Differentiation is by criminal record, access to the car, and marital motive.",
+    "confidence": "high",
+    "quote": "Pop Lassiter himself was the most logical suspect. He was a mean old devil, and an ex-con, and capable of anything."
+  },
+  "red_herring": {
+    "value": "The forged love letters in Frank's handwriting, the snapshot of him inscribed 'I love you, Cora Darling', and the body planted in his trunk \u2014 an entire fabricated affair designed to point at Frank; secondarily Pop Lassiter's criminal past misdirects toward him as the murderer rather than the accomplice.",
+    "confidence": "high",
+    "quote": "The writer, who had the same name and handwriting as myself had committed himself on paper to being hopelessly in love with Cora Miller."
+  },
+  "clue_fairness": {
+    "value": "Fair: the reader sees the photograph described (close-up, indoors, grainy, possibly enlarged from a negative) and Pop's list of prior convictions before Buddy interprets them; the clock rim in the print is the crop detail that is shown to the reader as Buddy examines it.",
+    "confidence": "medium",
+    "quote": "\"Looks like it was taken indoors by available light.\" He bent closer, squinting his eyes. \"Pretty grainy. Could be blown up from part of a negative.\""
+  },
+  "social_world": {
+    "value": "Small-town Texas/Gulf-coast world of Kingsbury and Encinal: a respectable county auditor, a newspaperman drifter, a deputy sheriff friend, and a disreputable ex-con bar owner. Everyone knows everyone; gossip in Pop's beer joint is the information network, and the transient outsider is the easiest man to frame.",
+    "confidence": "high",
+    "quote": "\"Cora Miller comes from this town. She's one of Ed Shelby's girls. I've known the Shelbys all my life.\""
+  },
+  "alibi": {
+    "value": "Frank has no alibi \u2014 the body rode with him unstopped from Kingsbury. Pop's implicit alibi is being at his closed bar; Thurman's cover is domestic normalcy plus 'recognizing' Frank on sight, which Buddy notes proves nothing.",
+    "confidence": "medium",
+    "quote": "I had not stopped once, even for gasoline, since I left there two hours ago."
+  },
+  "reveal_mechanic": {
+    "value": "Photographic reconstruction: Buddy spots the rim of Pop's wall clock left in the cropped enlargement, back-calculates the camera angle to the dark side room in Pop's bar, demonstrates it on site, and confronts Pop with his forgery conviction \u2014 producing a confession naming Thurman Miller.",
+    "confidence": "high",
+    "quote": "\"whoever did the enlargement left the rim of that clock, up there, on one corner of the print. I recognized it as the one on Pop's wall.\""
+  },
+  "media_and_audience": {
+    "value": "Lightly present: Frank is a newspaperman, and the framers count on how the evidence would 'read' publicly \u2014 letters 'the kind that would cause a judge to clear the courtroom' \u2014 i.e. a scandal narrative packaged for a jury.",
+    "confidence": "medium",
+    "quote": "the kind that would cause a judge to clear the courtroom before it was read aloud to the jury"
+  },
+  "investigator_wound": {
+    "value": "Frank's rootlessness: a drifter with no ties, quitting jobs and towns, which is exactly what made him a usable patsy; the case forces him to confront that a rolling stone gathers no friends, ending with him staying, reclaiming his job and Emily.",
+    "confidence": "high",
+    "quote": "not only does a rolling stone gather no moss, it also does not gather friends. You have to stay in one place to do that."
+  },
+  "victims_enemies": {
+    "value": "Cora Miller's husband Thurman, the Encinal county auditor, wanted to marry a young blonde mistress and Cora refused him a divorce; he shopped for a killer among local ex-cons, approaching Pop Lassiter with a cash offer months in advance.",
+    "confidence": "high",
+    "quote": "He's got him some young blonde on the string. He wants to marry her. Cora won't give him a divorce."
+  },
+  "suspect_wounds": {
+    "value": "Frank Judson is a rootless drifter who loudly broadcast his discontent and departure plans in a bar \u2014 his transience, quit job, and New Orleans reservation make him look exactly like a fleeing lover. Pop Lassiter's ex-con record (manslaughter, marijuana, forgery) makes him look guilty of more than he did.",
+    "confidence": "high",
+    "quote": "I've seen 'em like him all my life. Drifters. Transients."
+  },
+  "unreliable_frame": {
+    "value": "First-person narration by the frame-up victim, whose own handwriting, signature and photograph testify against him \u2014 the documentary record contradicts his memory, so the reader must weigh his protest against forged 'evidence' of a two-month affair he denies.",
+    "confidence": "high",
+    "quote": "The writer, who had the same name and handwriting as myself had committed himself on paper to being hopelessly in love with Cora Miller."
+  },
+  "setting_as_constraint": {
+    "value": "Small-town Texas geography (Kingsbury/Encinal, thirty miles apart) plus a night thunderstorm and a detour blowout: the culprit relied on Frank's unbroken drive to New Orleans, and only one window existed \u2014 the car parked in the dark behind Pop's beer joint during the customary farewell chess game.",
+    "confidence": "high",
+    "quote": "He was parked back of my place in the dark, waiting for you to drive up and play that last chess game with Buddy."
+  },
+  "evidence_type": {
+    "value": "Photographic/physical: the cropped enlargement of Frank's snapshot retained the rim of a distinctive wall clock, letting Buddy triangulate the camera position to a dark side room in Pop's bar.",
+    "confidence": "high",
+    "quote": "whoever did the enlargement left the rim of that clock, up there, on one corner of the print."
+  },
+  "false_suspect": {
+    "value": "Frank Judson himself \u2014 the framed narrator, arrested by his deputy friend; secondarily Pop Lassiter, whom Frank violently accuses of the murder though he only forged the letters and photos.",
+    "confidence": "high",
+    "quote": "Frank, I have to tell you this. You're under arrest now, and anything you say can be held against you."
+  },
+  "technical_detail": {
+    "value": "Available-light photography with fast film and special processing (no flash, hence grainy negative enlarged and cropped), plus handwriting forgery and a duplicate car-trunk key made in advance.",
+    "confidence": "high",
+    "quote": "No flash was used. There's enough light here for fast film, and the right kind of processing."
+  },
+  "moral_ambiguity": {
+    "value": "Pop Lassiter draws a line he thinks is moral \u2014 refusing to kill for money while selling the scheme that made the killing possible \u2014 and Thurman kills not from malice but from a trapped marriage he could not legally exit.",
+    "confidence": "medium",
+    "quote": "I'm not going to get myself in that kind of big trouble. But I told him I could figure a way he could do it"
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Blind Date",
     "author": "CHARLES BOECKMAN",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 8,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

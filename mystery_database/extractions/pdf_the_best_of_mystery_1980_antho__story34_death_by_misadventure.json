@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Fatal car crash on coastal road between two rivals (Joe Dongan and Ralph Napier); classified as 'death by misadventure.' Central question: was it intentional ramming/murder, mutual suicide, or accident?",
+    "value": "Double death in a car crash during a high-speed road duel on the Shore Road \u2014 ambiguous as double murder, double suicide, or accident; central question: whose intent caused it, if anyone's",
     "confidence": "high",
-    "quote": "The slap of metal as the two cars hit is like a peal o' thunder... they're spinnin' hard toward the guardrail. They crash through, both of 'em plungin' onto the rocks below."
+    "quote": "if you want to be technical about it, you could call it double murder or mebbe double suicide"
   },
   "victim": {
-    "value": "Joe Dongan (and collaterally Ralph Napier). Joe is killable because he is caught between two women (Emma and Bessie), Ralph seeks revenge, and the emotional triangle creates lethal tension.",
+    "value": "Joe Dongan, diner/arena owner courting wealthy widow Bessie Bellinger, and Ralph Napier, her broke son-in-law expecting her inheritance \u2014 each the other's rival and target",
     "confidence": "high",
-    "quote": "Ralph Napier's as smart as he is mean, and he's needlin' Joe Dongan into an attack where there'll be a killin'."
+    "quote": "\u2018I\u2019ll kill the bum,\u2019 he boasts. \u2018Some day I\u2019ll murder him.\u2019"
   },
   "closed_world": {
-    "value": "Small Maine town (Bancroft, Pisquaticook County) with tight social bonds; Sheriff has limited jurisdiction. The Shore Road becomes the fatal locus\u2014isolated coastal route with cliff and guardrail.",
+    "value": "Bancroft and Pisquaticook County, small-town Maine \u2014 the Ringside Diner, Emma's Shore Road cottage, and the narrow cliffside road, where gossip circulates instantly and everyone knows everyone",
     "confidence": "high",
-    "quote": "I reckon the next time I get a chance I'll have a word with her. After all, the cottage is in my territory. I drop around there on a Sat'dy afternoon."
+    "quote": "In a town the size of Bancroft, gossip makes the rounds fast."
   },
   "culprit_and_motive": {
-    "value": "Ralph Napier (joint culprit with Joe, or as aggressor). Motive: rage over Joe marrying Bessie instead of the wealthy widow's inheritance benefiting Ralph's dwindling finances; class resentment; jealousy.",
-    "confidence": "high",
-    "quote": "He yells, 'You'll never marry Bessie except over my dead body.' Ralph goes for his gun... Ralph takes off after him like a cat with salt on his tail."
+    "value": "Both men mutually culpable: Ralph pursued Joe out of hatred and fear of losing Bessie's money; Joe's sedan rammed Ralph's car. Underlying motive is the romantic rivalry over Bessie/Emma and Ralph's inheritance",
+    "confidence": "medium",
+    "quote": "it was Joe\u2019s car that rammed Ralph\u2019s and drove it through the guardrail"
   },
   "resolution": {
-    "value": "Coroner's verdict: 'death by misadventure'\u2014both men dead, no prosecution possible. Sheriff witnesses the crash but cannot intervene. Social resolution: Emma inherits Joe's estate; Bessie loses Joe and must grieve; the feud ends in ironic reconciliation.",
+    "value": "The sheriff witnesses the crash directly; coroner's inquest rules 'death by misadventure', and the town's order restores itself as Emma inherits Joe's estate and Bessie diets away the rivalry",
     "confidence": "high",
-    "quote": "The coroner's verdict called it 'death by misadventure' and when you come to think on it that ain't such a bad name for what happened."
+    "quote": "The coroner\u2019s verdict called it \u201cdeath by misadventure\u201d"
   },
   "investigator": {
-    "value": "County Sheriff (narrator, first-person POV). Authority is limited to his county; operates in advisory capacity in Bancroft. He witnesses the crash but arrives too late to prevent it; gathers facts post-mortem.",
+    "value": "The folksy County Sheriff, narrating in first person \u2014 an official lawman without jurisdiction in Bancroft, more observer/community chronicler than detective",
     "confidence": "high",
-    "quote": "As County Sheriff I ain't got no authority in Bancroft and it ain't rightly my affair. All the same, I drop by the office of Steve Roper, Bancroft's Chief of Police."
+    "quote": "As County Sheriff I ain\u2019t got no authority in Bancroft and it ain\u2019t rightly my affair."
+  },
+  "suspect_architecture": {
+    "value": "Not a whodunit cast so much as a triangle-plus-antagonist: Ralph Napier (motive: inheritance from mother-in-law Bessie, plus class contempt; means: pistol club crack shot; openly threatens), Joe Dongan (ex-boxer, physical means, motive to be rid of Ralph), Red Emma (jealous rival, judo-trained, present at the final confrontation), Bessie Bellinger (romantic rival). Deaths resolve as mutual vehicular destruction, leaving Emma the beneficiary.",
+    "confidence": "medium",
+    "quote": "\"I'll kill the bum,\" he boasts. \"Some day I'll murder him.\""
+  },
+  "red_herring": {
+    "value": "Ralph's loudly advertised gun and murder threats point to a shooting; the actual deaths come from a car collision. Also the Emma\u2013Ralph 'courtship' staged to make Joe jealous misdirects suspicion onto an affair.",
+    "confidence": "medium",
+    "quote": "Ralph goes for his gun the same as he done when I was there. He's got it lined up on Joe's chest"
+  },
+  "clue_fairness": {
+    "value": "High: the sheriff narrates the crash as an eyewitness, and the reader sees every escalation (the diner fight, the gun, the porch confrontation) exactly as he does; nothing is withheld, and the ambiguity of intent is shared equally.",
+    "confidence": "high",
+    "quote": "Funny thing too. I seen it happen and there warn't a tootlin' thing I could do to stop it."
+  },
+  "social_world": {
+    "value": "Small-town Maine hierarchy: old-money Napiers (paper mill, founding family) with declining fortunes versus self-made ex-boxer Joe Dongan, patron of scholarships and trophies; Emma dependent on Joe's wages; sheriff has no jurisdiction inside Bancroft, deferring to Chief Roper.",
+    "confidence": "high",
+    "quote": "the Napiers has always been gentlefolk, while Joe Dongan's a roughneck and not far from a gangster"
+  },
+  "alibi": {
+    "value": "No alibis are constructed; both principals die at the scene and the sheriff himself witnesses the event, making whereabouts undisputed.",
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Reconstruction after the fact: the sheriff's eyewitness account of the two cars colliding, plus Emma's testimony about the gun going off and Ralph chasing Joe, jointly establish that intent cannot be assigned \u2014 yielding the coroner's 'death by misadventure'.",
+    "confidence": "high",
+    "quote": "The coroner's verdict called it \"death by misadventure\""
+  },
+  "media_and_audience": {
+    "value": "Town gossip is the narrative engine: bets are laid by the bookie on which woman wins Joe, Ralph's murder threats become a standing joke at Icy's Grill, and public opinion sides with Emma; the official verdict is chosen to avoid 'airin' dirty linen'.",
+    "confidence": "high",
+    "quote": "The town bookie's takin' bets on which one of 'em will hook Joe."
+  },
+  "investigator_wound": {
+    "value": "The sheriff's guilt at foreseeing the tragedy yet lacking authority in Bancroft to prevent it \u2014 he warned Chief Roper, was dismissed, and then watched the deaths happen helplessly.",
+    "confidence": "medium",
+    "quote": "As County Sheriff I ain't got no authority in Bancroft and it ain't rightly my affair."
+  },
+  "victims_enemies": {
+    "value": "Joe Dongan's enemy is Ralph Napier, his intended bride's son-in-law, who resents Joe both on snobbish class grounds (Napiers are 'gentlefolk', Joe a 'roughneck') and financially, since Ralph expected to inherit Bessie's money. Ralph publicly humiliated by Joe in a diner brawl. Secondarily, Red Emma, the jilted longtime mistress cut out after decades of waiting.",
+    "confidence": "high",
+    "quote": "the Napiers has always been gentlefolk, while Joe Dongan's a roughneck and not far from a gangster"
+  },
+  "suspect_wounds": {
+    "value": "Ralph's wound is drink and wounded pride \u2014 he boasts of murder in bars and owns a pistol as a crack shot, making him look guilty. Emma's wound is jealousy and the humiliation of being publicly passed over; she lets Ralph court her to make Joe jealous, which puts her at the center of the quarrel.",
+    "confidence": "high",
+    "quote": "\"I'll kill the bum,\" he boasts. \"Some day I'll murder him.\""
+  },
+  "unreliable_frame": {
+    "value": "The folksy County Sheriff narrator, who admits he only guesses at intentions and has no authority in Bancroft; and Red Emma, the sole surviving witness of the final quarrel, who inherits Joe's estate and whose account of that night cannot be checked.",
+    "confidence": "medium",
+    "quote": "Mebbe both of 'em had killin' on their minds, or mebbe neither one. No one can tell for sure, savin' they're both dead."
+  },
+  "setting_as_constraint": {
+    "value": "Small-town Maine gossip makes privacy impossible \u2014 every quarrel is public and 'the whole town's sort of to blame.' The narrow Shore Road above Benson's Bay, with pines on one side and a single guardrail over the cliff, plus rain-frozen asphalt, makes a car duel lethal and unwitnessed except by chance.",
+    "confidence": "high",
+    "quote": "nothin' but a white guardrail to break the fall off the cliff-side into the ocean"
+  },
+  "evidence_type": {
+    "value": "Eyewitness/testimonial and environmental: the sheriff's own direct observation of the two cars racing and colliding on the icy curve, supplemented by Emma's account of the gunshot in her floor.",
+    "confidence": "high",
+    "quote": "I seen it happen and there warn't a tootlin' thing I could do to stop it."
+  },
+  "false_suspect": {
+    "value": "Ralph Napier \u2014 the loudly threatening, gun-carrying drunk everyone expects to murder Joe; in the event he is as much victim as killer, dying in the same crash.",
+    "confidence": "medium",
+    "quote": "it was Joe's car that rammed Ralph's and drove it through the guardrail"
+  },
+  "technical_detail": {
+    "value": "Vehicular mechanics and road conditions: freezing rain glazing the asphalt on a narrow cliff road, two cars sideswiping at speed so that neither driver's intent can be separated \u2014 permitting the legal finding of 'death by misadventure' rather than murder.",
+    "confidence": "medium",
+    "quote": "freezin' the puddles along the edge of the road and makin' the asphalt slippery as the underside of an eel"
+  },
+  "moral_ambiguity": {
+    "value": "No clean culprit: Ralph is defending his family's name and inheritance; Joe is a decent man who supported his institutionalized wife for years before straying; Emma's jealousy is earned by twenty years of loyal waiting. The sheriff chooses the merciful verdict rather than airing dirty linen, and Emma quietly profits by inheriting the estate.",
+    "confidence": "high",
+    "quote": "all you'd be accomplishin' by that is airin' a lot o' dirty linen in public"
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Death by Misadventure",
     "author": "WENZELL BROWN",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 34,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

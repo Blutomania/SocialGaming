@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Murder by exsanguination disguised as accidental death. Method: Delilah slashes her husband Pythias's wrist with a razor blade during a staged car crash, then manipulates his blood type on his driver's license to ensure a fatal transfusion. Central question: How did a wrist wound occur from windshield glass, and why did the transfusion kill him?",
+    "value": "Premeditated murder disguised as a car accident: wife stages a crash, slashes husband's wrist with a razor blade, having forged his driver's license blood type so the emergency transfusion of incompatible blood kills him. Question: was the fatal wound accidental, and what actually killed him?",
     "confidence": "high",
-    "quote": "Something in the nature of a razor blade was used to cut an artery in your husband's left wrist, Mrs. Brown. The location and nature of the wound rules out the probability of its coming from windshield glass."
+    "quote": "\"It was the transfusion that killed him,\" Bill said. \"It was the transfusion that was meant to kill him, Mrs. Brown.\""
   },
   "victim": {
-    "value": "Pythias Brown, construction worker and cracker. Killable because he is married to Delilah, who desires his wealth-earning best friend Damon Lang. Pythias stands between Delilah and Damon's fortune, assets, and lifestyle she covets.",
+    "value": "Pythias Brown, a cracker construction worker of modest means, married to Delilah; killable because his existence blocked her from marrying his rich best friend Damon Lang",
     "confidence": "high",
-    "quote": "If I were married to Damon instead of to Pythias, I would have that kidney-bean-shaped swimming pool, that Jaguar and that 65-foot dream yacht"
+    "quote": "The basic solution to her immediate dream-compulsion was, naturally, for Pythias to be evaporated into outer space"
   },
   "closed_world": {
-    "value": "A lonesome stretch of road in subtropical Florida near Dr. Hillegas Dow's private clinic, bordered by scrub palmettos and a hyacinth-choked canal. The crime unfolds during a tropical downpour on a Monday night with minimal traffic and witnesses.",
+    "value": "Halcyon, Florida \u2014 a rain-lashed lonely stretch of road and Dr. Hillegas Dow's isolated small clinic on a storm-flooded Monday night, with only a handful of participants",
     "confidence": "high",
-    "quote": "It was a lonesome span of road, made melancholy on one side by scrub palmettos and on the other by a hyacinth-choked canal...a rain-lashed highway fore and aft was empty of traffic."
+    "quote": "It was a lonesome span of road, made melancholy on one side by scrub palmettos and on the other by a hyacinth-choked canal."
   },
   "culprit_and_motive": {
-    "value": "Delilah Brown, Pythias's wife. Motive: to murder her husband to marry his wealthier best friend Damon Lang before Damon's engagement to Ethel Chalice becomes finalized in December, thereby securing access to Damon's inherited wealth, yacht, Jaguar, and luxury lifestyle.",
+    "value": "Delilah Brown, the wife, who wanted widowhood so she could marry wealthy Damon Lang before his December wedding to Ethel Chalice",
     "confidence": "high",
-    "quote": "The basic solution to her immediate dream-compulsion was, naturally, for Pythias to be evaporated into outer space and for her ensuing state of pathetic widowhood to be rectified posthaste by a marriage with good, dependable, protective, and filthy rich Damon Lang."
+    "quote": "If (she would turgidly think) I were married to Damon instead of to Pythias, I would have that kidney-bean-shaped swimming pool"
   },
   "resolution": {
-    "value": "B.C.I. investigator Bill identifies the crime through forensic analysis: he discovers the razor blade guard in Delilah's purse, finds the blade in the shrubbery, and detects erasure marks on Pythias's driver's license where Delilah forged his blood type from O to A. A handwriting expert confirms the forgery. The false blood type caused the fatal transfusion.",
+    "value": "B.C.I. man Bill exposes her: razor-blade cardboard guard in her purse, wound location inconsistent with windshield glass, Dr. Dow's blood test showing type O, and microscope/handwriting evidence of the altered license",
     "confidence": "high",
-    "quote": "Just that our handwriting expert will testify it matches the B you added on your husband's license\u2014after you had changed the original O into an A by drawing a line down on either side of it and straightening its curved bottom into a crossbar."
+    "quote": "after you had changed the original O into an A by drawing a line down on either side of it... Showed up plain under Dr. Dow's microscope"
   },
   "investigator": {
-    "value": "Bill, a Bureau of Criminal Identification (B.C.I.) agent. An official investigator with forensic expertise who arrives at the clinic following the staged accident and methodically reconstructs the crime through physical evidence (razor guard, blood type alterations, handwriting analysis).",
+    "value": "Bill, a Bureau of Criminal Identification officer with institutional authority, assisted by sheriff's deputy Chuck; narration is omniscient, largely from the culprit's viewpoint",
     "confidence": "high",
-    "quote": "Bill carried his six foot two inches of whipcord intelligence and superlative B.C.I, training over to the trio...Bill lifted Delilah's bag from her lap and dumped out its contents onto the receptionist desk."
+    "quote": "Bill carried his six foot two inches of whipcord intelligence and superlative B.C.I, training over to the trio."
+  },
+  "suspect_architecture": {
+    "value": "Inverted mystery: culprit known from the start. The nominal 'suspect' field is filled by intended fall guys/parties \u2014 Delilah (the murderer-wife, motive: marry rich Damon), Damon Lang (unwitting blood donor made instrument), and Dr. Hillegas Dow (the 'goat', a venal naturopath chosen to bungle treatment). Investigators are Chuck (sheriff's deputy) and Bill (B.C.I. man).",
+    "confidence": "high",
+    "quote": "All she needed was a goat. Delilah pin-pointed this goat in the bulging, perspiration-moistened person of a Dr. Hillegas Dow."
+  },
+  "red_herring": {
+    "value": "The staged car crash and windshield glass, meant to explain the wrist artery wound as accidental; plus Delilah's screaming demand for help and a transfusion to prove wifely concern.",
+    "confidence": "high",
+    "quote": "\"It was the windshield glass that made my dear, dead husband bleed.\""
+  },
+  "clue_fairness": {
+    "value": "Fair: reader watches Delilah search Pythias' slacks pockets, prepare the razor blade, and 'lift' information from Damon before the reveal; the Florida licence blood-type box and Damon's Type A card are shown in scene.",
+    "confidence": "high",
+    "quote": "Delilah explored the pockets of his slacks and then arranged the first ingredient of her recipe"
+  },
+  "social_world": {
+    "value": "Florida boom-town Halcyon: 'crackers' versus snowbird Westchester money; Lang family turpentine/citrus/real-estate wealth against Pythias' Sears installment rating; unlicensed clinic doctor dependent on cash patients; sheriff's deputy on cosy first-name terms with the nurse.",
+    "confidence": "high",
+    "quote": "The Langs had prospered abundantly through several generations of turpentine stands, citrus groves, and eventually valuable real estate"
+  },
+  "alibi": {
+    "value": "No alibi sought \u2014 Delilah is openly present as driver; her defence is instead the innocent-skid story and her loud efforts to save him.",
+    "confidence": "medium",
+    "quote": "\"It was all because I didn't control the skid.\""
+  },
+  "reveal_mechanic": {
+    "value": "Forensic demonstration: Dr. Dow's blood test proves Pythias was type O, death by cardiac/cerebral embolism from clumping AB blood; and the altered driver's licence \u2014 O redrawn into A, with B added in Delilah's hand \u2014 shows plain under the microscope, plus the razor-blade cardboard guard in her bag.",
+    "confidence": "high",
+    "quote": "\"after you had changed the original O into an A by drawing a line down on either side of it\""
+  },
+  "media_and_audience": {
+    "value": "Delilah packages herself for an audience \u2014 screaming performance at the crash, 'Academy performance' of widowed grief, radio weather bulletins used as staging cues; Bill's closing line frames it as a sensational novelty crime.",
+    "confidence": "medium",
+    "quote": "\"Weirdest murder weapon I ever came across in my life.\""
+  },
+  "investigator_wound": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victims_enemies": {
+    "value": "Pythias Brown's only true enemy is his own wife Delilah, who resents his modest income (Sears installments, Texaco card) and covets his rich best friend Damon Lang; everyone else \u2014 Damon especially \u2014 is devoted to him.",
+    "confidence": "high",
+    "quote": "If (she would turgidly think) I were married to Damon instead of to Pythias, I would have that kidney-bean-shaped swimming pool"
+  },
+  "suspect_wounds": {
+    "value": "Dr. Hillegas Dow is the intended 'goat': a naturopath/chiropodist barred from hospitals, greedy and ethically flaccid, who refuses to call an ambulance so he can bill the patient \u2014 making a fatal transfusion look like his malpractice. Damon's wound is his selfless devotion, which makes him literally the hand that kills his friend.",
+    "confidence": "high",
+    "quote": "All she needed was a goat. Delilah pin-pointed this goat in the bulging, perspiration-moistened person of a Dr. Hillegas Dow."
+  },
+  "unreliable_frame": {
+    "value": "Delilah's account \u2014 the skid, the hysteria, the wifely grief \u2014 is a sustained performance narrated ironically by an omniscient voice that lets us see her calculation beneath every sob; her 'Sarah Bernhart interpretation' is the lie the officials must penetrate.",
+    "confidence": "high",
+    "quote": "Beneath her Academy performance of just-widowed grief, she was one utterly satisfied and contented cat."
+  },
+  "setting_as_constraint": {
+    "value": "Florida's storm season and a lonesome stretch of blacktop between palmetto scrub and a hyacinth canal: Delilah waits days for the weather reports to promise heavy rain so a skid is credible, and stages the crash at a Gru-gru palm beside the one isolated clinic she has pre-scouted, guaranteeing no ambulance and no hospital blood typing.",
+    "confidence": "high",
+    "quote": "She had scouted the route several times before tonight, and knew exactly the location of a tall Gru-gru palm tree"
+  },
+  "evidence_type": {
+    "value": "Documentary/forensic hybrid: the altered blood-type box on Pythias's Florida driver's license (O redrawn into A, plus an added B), proven by microscope and handwriting comparison, corroborated by the razor-blade cardboard guard in her handbag and Dr. Dow's post-mortem blood typing.",
+    "confidence": "high",
+    "quote": "after you had changed the original O into an A by drawing a line down on either side of it and straightening its curved bottom"
+  },
+  "false_suspect": {
+    "value": "Dr. Hillegas Dow, the mercenary unlicensed-for-hospitals practitioner who administers the fatal transfusion and blocks the ambulance \u2014 designed to absorb blame as a quack who botched a case.",
+    "confidence": "high",
+    "quote": "\"Shall I phone for an ambulance?\" Mabel Oestringer suggested... \"Certainly not!\""
+  },
+  "technical_detail": {
+    "value": "Incompatible-blood-transfusion mortality: type AB donor blood into a type O recipient causes corpuscles to clump, producing cardiac and cerebral embolism \u2014 cyanosis, rapid pulse, labored breathing, death; exploited via the state-issued self-printed blood type on a driver's license and an artery slashed with a single-edged razor blade to force an emergency transfusion.",
+    "confidence": "high",
+    "quote": "Mr. Brown died from cardiac and cerebral embolism due to your blood corpuscles collecting into clumps."
+  },
+  "moral_ambiguity": {
+    "value": "Minimal \u2014 Delilah is coolly acquisitive rather than sympathetic; the nearest ambiguity is Dr. Dow, whose venality is framed as ordinary human weakness ('neither a complete dud nor a quack'), and Damon, guiltless yet the literal instrument of his friend's death.",
+    "confidence": "medium",
+    "quote": "in all truth the doctor was neither a complete dud nor a quack."
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 23525,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Damon and Pythias and Delilah Brown",
     "author": "RUFUS KING",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 27,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

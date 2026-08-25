@@ -1,41 +1,124 @@
 {
   "crime": {
-    "value": "Murder of a member of the Leavenworth household; method and central investigative question unknown from excerpt",
-    "confidence": "medium",
-    "quote": "A GREAT CASE"
+    "value": "Murder: wealthy Mr. Leavenworth shot through the head at his library table in his own locked house at night; nothing stolen, pistol missing \u2014 question is who inside the household could have done it and why",
+    "confidence": "high",
+    "quote": "\u201cYes, murdered; shot through the head by some unknown person while sitting at his library table.\u201d"
   },
   "victim": {
-    "value": null,
-    "confidence": "low",
-    "quote": null
+    "value": "Horatio Leavenworth, retired merchant of great wealth, whose will and control over his two nieces' marriages and inheritance (notably Mary's secret marriage) made him a target",
+    "confidence": "high",
+    "quote": "a retired merchant of great wealth and fine social position"
   },
   "closed_world": {
-    "value": "The Leavenworth house and household; a bounded domestic space with known inhabitants",
-    "confidence": "medium",
-    "quote": "I wish to inquire if everything is as before in the house; the servants the same"
+    "value": "The Leavenworth mansion on Fifth Avenue and its small household \u2014 the two nieces, the private secretary Harwell, and the servants including the vanished maid Hannah",
+    "confidence": "high",
+    "quote": "\u201cI am Mr. Leavenworth\u2019s private secretary,\u201d he explained, \u201cand live in the family.\u201d"
   },
   "culprit_and_motive": {
-    "value": null,
-    "confidence": "low",
-    "quote": null
+    "value": "The private secretary Trueman Harwell, who killed his employer out of obsessive love for Mary Leavenworth, knowing the uncle would disinherit her; suspicion is meanwhile displaced onto Eleanore and the mysterious Clavering",
+    "confidence": "medium",
+    "quote": "XX.\u201cTRUEMAN! TRUEMAN! TRUEMAN!\u201d ... XXXVIII.A FULL CONFESSION"
   },
   "resolution": {
-    "value": "Mr. Gryce (investigator) systematically gathers evidence and testimony to identify the culprit through deduction",
+    "value": "Detective Gryce, with Raymond's help, traces the missing witness Hannah and the burned paper, then traps the culprit into a full confession, clearing the innocent nieces",
     "confidence": "medium",
-    "quote": "MR. GRYCE RESUMES CONTROL; FINE WORK; GATHERED THREADS"
+    "quote": "BOOK IV. THE PROBLEM SOLVED ... XXXIV. MR. GRYCE RESUMES CONTROL ... XXXVIII. A FULL CONFESSION"
   },
   "investigator": {
-    "value": "A lawyer narrator (first-person) working with or observing detective Mr. Gryce's investigation",
+    "value": "Dual lens: Everett Raymond, young lawyer-narrator emotionally involved with the suspect Eleanore, paired with professional police detective Mr. Gryce",
     "confidence": "high",
-    "quote": "A Lawyer's Story"
+    "quote": "\u201cI had been a junior partner in the firm of Veeley, Carr & Raymond, attorneys and counsellors at law\u201d"
+  },
+  "suspect_architecture": {
+    "value": "Household-centered cast: the two Leavenworth nieces, Mary (inherits under the millionaire's will) and Eleanore (suspected, found with the pistol, and secretly married), the unimpressive private secretary Trueman Harwell who found the body, the vanished maid Hannah, and the outsider Henry Clavering who appears under a second name. Suspects are differentiated by inheritance motive, household access, and concealed relationships.",
+    "confidence": "medium",
+    "quote": "\"What was my astonishment to come upon Miss Eleanore Leavenworth standing at the side of her uncle's bed, with his pistol in her hand\""
+  },
+  "red_herring": {
+    "value": "Suspicion is steered onto Eleanore (pistol in hand, concealing something in her dress, self-exile from the house) and onto the double-named Clavering/Robbins, while the colorless secretary is dismissed as uninteresting.",
+    "confidence": "medium",
+    "quote": "\"She . . . was fumbling with the waist of her dress in a way to convince me she had something concealed there\""
+  },
+  "clue_fairness": {
+    "value": "Clues are given to the reader through the narrator-lawyer Raymond's first-person observation at the moment he sees them \u2014 the missing pistol, the absence of robbery, the burned paper, the alias, the flat affect of the secretary \u2014 before their meaning is interpreted.",
+    "confidence": "medium",
+    "quote": "\"No. The pistol with which the deed was committed is not to be found.\""
+  },
+  "social_world": {
+    "value": "Wealthy Fifth Avenue New York: a retired merchant of great fortune, dependent nieces whose futures hinge on his will, a salaried secretary and servants below them, and the family lawyer as trusted intermediary \u2014 patronage and respectability govern who may be suspected.",
+    "confidence": "high",
+    "quote": "\"a retired merchant of great wealth and fine social position\""
+  },
+  "alibi": {
+    "value": "The secretary's account that he left Leavenworth at the library table at night and found him there in the morning functions as his self-issued alibi; Eleanore's and Hannah's whereabouts during the night are the contested points, with Hannah's disappearance the key gap.",
+    "confidence": "medium",
+    "quote": "\"I left him last night sitting as usual at his library table, and found him this morning, seated in the same place\""
+  },
+  "reveal_mechanic": {
+    "value": "Solution is demonstrated by recovering the missing witness Hannah and physical/documentary evidence (burned paper, the will, testimony), culminating in the murderer breaking down at a staged confrontation and giving a full confession.",
+    "confidence": "medium",
+    "quote": "\"At the sight of his face, the man in our arms quivered, shrieked, and gave one bound\""
+  },
+  "media_and_audience": {
+    "value": "The crime is framed publicly through the coroner's inquest and the label of 'a great case,' with the nieces' reputations exposed to the world's stare; Eleanore lives in social disgrace and Raymond speaks of restoring her position before the world.",
+    "confidence": "medium",
+    "quote": "\"saving a noble woman from unmerited disgrace\""
+  },
+  "investigator_wound": {
+    "value": "Raymond, the amateur narrator, is compromised by his love for Eleanore: he must pursue evidence that may condemn the woman he wishes to vindicate, and believes he is hunting her own husband.",
+    "confidence": "high",
+    "quote": "\"the woman whose husband I believed myself to be even then pursuing to his doom!\""
+  },
+  "victims_enemies": {
+    "value": "Horatio Leavenworth appears to have no enemies \u2014 a benevolent retired merchant with no robbery motive; the grievance web is domestic, centered on his nieces Mary and Eleanore, his will disinheriting one of them, and the secret marriage to Henry Clavering he would have opposed.",
+    "confidence": "medium",
+    "quote": "Mr. Leavenworth was too benevolent a man to have enemies, and if robbery was intended\u2014\u2014"
+  },
+  "suspect_wounds": {
+    "value": "Eleanore is found at the murdered man's bedside with his pistol and conceals something in her dress; she refuses to explain because she is shielding her cousin, and her silence and self-exile read as guilt. Mary's wound is the will and her secret marriage; the secretary Harwell's is his concealed passion for Mary.",
+    "confidence": "high",
+    "quote": "\u201cShe . . . was fumbling with the waist of her dress in a way to convince me she had something concealed there\u201d"
+  },
+  "unreliable_frame": {
+    "value": "Narrated by Everett Raymond, a junior lawyer emotionally in love with Eleanore, whose judgment is openly compromised; layered over accounts by the flat, self-possessed secretary Harwell, the evasive cousins, and Mrs. Belden's partial narrative.",
+    "confidence": "high",
+    "quote": "\u201cthe woman whose faintest look had moved me from the first, the woman whose husband I believed myself to be even then pursuing\u201d"
+  },
+  "setting_as_constraint": {
+    "value": "A closed Fifth Avenue mansion: the library where Leavenworth was shot at his own table, with only household members inside overnight, nothing stolen and doors secure \u2014 so the murderer must be of the house; the missing servant Hannah's flight to Mrs. Belden's country cottage bounds the second half.",
+    "confidence": "high",
+    "quote": "\u201cshot through the head by some unknown person while sitting at his library table\u201d"
+  },
+  "evidence_type": {
+    "value": "Mixed: physical (the missing pistol, the recently cleaned/loaded chamber, the key), documentary (burned paper, the millionaire's will, Hannah's written confession), and testimonial (Timothy Cook, Mrs. Belden's narrative) \u2014 culminating in a full confession.",
+    "confidence": "medium",
+    "quote": "XXX.BURNED PAPER 278"
+  },
+  "false_suspect": {
+    "value": "Eleanore Leavenworth \u2014 bears maximum suspicion (pistol in hand, concealed object, refusal to speak) and is socially disgraced; secondarily Henry Clavering, the man with two names who has fled the country.",
+    "confidence": "high",
+    "quote": "\u201csaving a noble woman from unmerited disgrace.\u201d"
+  },
+  "technical_detail": {
+    "value": "Firearms knowledge \u2014 the pistol was cleaned and reloaded after firing yet the barrel evidence and expert testimony on the wound's range establish the shot came from within the house; also the manipulation of the library key and lock.",
+    "confidence": "medium",
+    "quote": "V.EXPERT TESTIMONY 43"
+  },
+  "moral_ambiguity": {
+    "value": "The killer acts out of a devouring, hopeless love and dread of losing position/affection rather than greed or cruelty, and the surrounding characters lie, conceal and accept disgrace out of loyalty \u2014 Eleanore silently bearing suspicion to protect her cousin.",
+    "confidence": "medium",
+    "quote": "\u201cI did not wish you to do so then; nor do I wish you to do so now.\u201d"
   },
   "_meta": {
     "source": "mystery_database/new_sources/The Leavenworth case: a lawyer's story, by Anna Katharine Green\u2014A Project Gutenberg eBook.pdf",
     "filename": "The Leavenworth case: a lawyer's story, by Anna Katharine Green\u2014A Project Gutenberg eBook.pdf",
-    "text_len": 6037,
+    "text_len": 24037,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
-    "title": "The Leavenworth case: a lawyer's story, by Anna Katharine Green\u2014A Project Gutenberg eBook"
+    "title": "The Leavenworth case: a lawyer's story, by Anna Katharine Green\u2014A Project Gutenberg eBook",
+    "model": "claude-opus-5"
   }
 }

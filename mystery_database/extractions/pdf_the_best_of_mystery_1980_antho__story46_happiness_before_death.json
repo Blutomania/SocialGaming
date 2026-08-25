@@ -1,45 +1,136 @@
 {
   "crime": {
-    "value": null,
-    "confidence": "low",
-    "quote": null
+    "value": "Murder disguised as suicide: husband gives his wealthy wife a fatal overdose of sleeping pills, staged as the depressive relapse her psychiatrist predicted. Central question is not whodunit but whether the killer will profit.",
+    "confidence": "high",
+    "quote": "\"Then I gave her those pills, and she went to sleep, and she was smiling.\""
   },
   "victim": {
-    "value": "Sylvia Oaks, wealthy heiress poisoned by her husband Werther with sleeping pills after he made her happy on a poverty trip, changing her will to give away her fortune to charity",
+    "value": "Sylvia Oaks, a depressed heiress to a $70 million fortune (American Bit & Drill), 'killable' because her documented suicide attempt and psychiatric depression made a staged overdose credible, and her fortune passed to her husband.",
     "confidence": "high",
-    "quote": "The cause of her death was listed as an overdose of sleeping pills."
+    "quote": "\"That overdose was no accident. As Freud once said, there are no accidents.\""
   },
   "closed_world": {
-    "value": null,
-    "confidence": "low",
-    "quote": null
+    "value": "The intimate domestic/social circle of the Oaks marriage \u2014 the bedroom, Dr. Miller's office, Velvet's apartment, and Vossberg the financial manager; a tiny cast of four in a moneyed New York world.",
+    "confidence": "medium",
+    "quote": "\"Remember, Vossberg will be here in the morning.\""
   },
   "culprit_and_motive": {
-    "value": "Werther Oaks, Sylvia's husband, murders her for her inheritance money, but discovers after her death that she changed her will and gave all her money to charity, nullifying his motive retroactively",
+    "value": "Werther Oaks, the ex-hand-model fortune-hunter husband, killing for Sylvia's inheritance so he can be with his mistress Velvet; he had plotted a car-brake 'accident' for six months before the psychiatrist handed him a safer method.",
     "confidence": "high",
-    "quote": "I gave her those pills, and she went to sleep, and she was smiling... She gave it all away. All her money."
+    "quote": "\"So what I have to do,\" Werther said, \"is give her an overdose of sleeping pills.\""
   },
   "resolution": {
-    "value": "No investigation occurs; Werther's confession to Velvet remains private. The murder appears as an accidental overdose due to depression, certified by Dr. Miller's prior psychiatric assessment of suicidal ideation",
-    "confidence": "medium",
-    "quote": "The cause of her death was listed as an overdose of sleeping pills. She was survived by her husband, Werther."
+    "value": "Ironic reversal rather than detection: no one exposes Werther, but the happiness he cultivated in Sylvia led her to rewrite her will leaving everything to charity, so he murders for nothing.",
+    "confidence": "high",
+    "quote": "\"She gave it all away. All her money. She gave it all to charity.\""
   },
   "investigator": {
-    "value": "Velvet, Werther's mistress, serves as the reader's lens\u2014she pieces together the crime through Werther's confessional letter and his final visit, but takes no action",
+    "value": "No detective; the reader follows the culprit himself, Werther Oaks, with Velvet as secondary viewpoint receiving the news; Dr. Miller functions as unwitting diagnostic 'expert'.",
     "confidence": "medium",
-    "quote": "Velvet burned the letter... That night, Werther called and explained."
+    "quote": "\"I'm sorry,\" Werther said. \"I'm having trouble concentrating.\""
+  },
+  "suspect_architecture": {
+    "value": "Inverted structure: no suspect pool. Werther Oaks, the fortune-hunting husband, is the known killer from the outset; Velvet (accomplice/mistress), Dr. Miller (unwitting enabler), and Vossberg (financial manager, watchdog) surround him without being suspects.",
+    "confidence": "high",
+    "quote": "\"So what I have to do,\" Werther said, \"is give her an overdose of sleeping pills. Dr. Miller will swear she was ready for it\""
+  },
+  "red_herring": {
+    "value": "The staged suicide itself: the psychiatrist's diagnosis of suicidal depression and the earlier 'accidental' overdose are used to make the murder read as self-inflicted \u2014 the misdirection is aimed at the world, not the reader.",
+    "confidence": "high",
+    "quote": "\"That overdose was no accident. As Freud once said, there are no accidents.\""
+  },
+  "clue_fairness": {
+    "value": "Fair-play twist clues are planted: Sylvia's stated hatred of her money, her abandonment of luxury on the trip, and her wish to be poor all precede the reveal that she changed her will to charity.",
+    "confidence": "high",
+    "quote": "\"most of the things that Sylvia thought were necessary to the so-called 'good life' no longer hold the slightest interest for her\""
+  },
+  "social_world": {
+    "value": "Inherited American wealth: an heiress to a seventy-million-dollar industrial fortune (American Bit & Drill), a kept husband on an allowance dispensed by financial manager Vossberg, and the modelling agency economy where women are priced by the hour and downgraded as they age.",
+    "confidence": "high",
+    "quote": "\"the money, the will, the inheritance? I'm hanging by a thread right now, and don't think Vossberg isn't standing by with a big pair of scissors.\""
+  },
+  "alibi": {
+    "value": "No formal alibi; Werther instead builds a psychiatric alibi of motive-absence \u2014 the doctor's testimony that Sylvia was suicidal is meant to substitute for concealment of whereabouts.",
+    "confidence": "medium",
+    "quote": "\"on account of her psychiatrist knows she's suicidal, and he'll blame it all on her, not on you.\""
+  },
+  "reveal_mechanic": {
+    "value": "Documentary reveal at the lawyer's office: the altered will demonstrates that Sylvia's induced happiness caused her to give away the entire fortune, voiding the murder's purpose.",
+    "confidence": "high",
+    "quote": "\"She changed her will, Velvet.\" ... \"She gave it all away. All her money. She gave it all to charity.\""
+  },
+  "media_and_audience": {
+    "value": "The press packages the death as an heiress's depressive overdose, with obituaries devoted mainly to her father \u2014 public narrative validates the killer's cover story.",
+    "confidence": "high",
+    "quote": "The cause of her death was listed as an overdose of sleeping pills. ... The article in the News said she had been \"depressed.\""
+  },
+  "investigator_wound": {
+    "value": "No investigator; the vulnerability belongs to the murderer \u2014 Werther's sentimental conscience and genuine pity for Sylvia, the very decency that compels him to make her happy first, destroys his motive.",
+    "confidence": "medium",
+    "quote": "\"I don't want to make that poor woman unhappy. I like her. Velvet, I really feel sorry for that poor miserable person.\""
+  },
+  "victims_enemies": {
+    "value": "Sylvia's antagonists are intimate rather than numerous: her husband Werther, a former hand model married for her fortune and plotting her death with his mistress Velvet; her friends who called Werther a fortune hunter; and Vossberg, the financial manager who controls the purse strings and distrusts Werther.",
+    "confidence": "high",
+    "quote": "despite the anguish of her friends, who bluntly called Werther a fortune hunter and worse, they were married",
+    "quote_confidence": "high"
+  },
+  "suspect_wounds": {
+    "value": "Werther's vulnerability is his vanity and dependence \u2014 a kept husband on an allowance, aging (wrinkles on his famous hands), with a mistress whose rates are falling; the marriage's mercenary origin makes him the obvious suspect if suicide is doubted.",
+    "confidence": "medium",
+    "quote": "He looked down at his exquisite hands. He noticed that there were wrinkles on the back, like the tracks of a bird.",
+    "quote_confidence": "high"
+  },
+  "unreliable_frame": {
+    "value": "Werther is the unreliable center: he lies constantly to Sylvia (misreporting Dr. Miller's diagnosis), lies to Vossberg about the Tiffany bracelet, and sincerely believes his own sentimental self-justification that he 'feels sorry' for the woman he intends to murder. Dr. Miller's confident Freudian reading of Sylvia is also a secondhand, self-assured account that Werther weaponizes.",
+    "confidence": "high",
+    "quote": "\"He just said that you were a very wonderful person who hasn't been given a real chance to be herself.\"",
+    "quote_confidence": "high"
+  },
+  "setting_as_constraint": {
+    "value": "The gilded constraint of inherited wealth: Werther cannot simply leave, since his allowance is dispensed by Vossberg and everything depends on the will. The psychiatrist's documented suicide diagnosis supplies the social cover, and the moneyless vagabond trip removes them from all supervision \u2014 but that same freedom lets Sylvia rewrite her will.",
+    "confidence": "high",
+    "quote": "\"And the money, the will, the inheritance? I'm hanging by a thread right now, and don't think Vossberg isn't standing by with a big pair of scissors.\"",
+    "quote_confidence": "high"
+  },
+  "evidence_type": {
+    "value": "Documentary \u2014 the altered will at the lawyer's office, which reveals the true (ironic) outcome; secondarily the psychiatric record of prior overdose and the incriminating letter Velvet is ordered to burn.",
+    "confidence": "high",
+    "quote": "\"I just came from the lawyer's office... She changed her will, Velvet.\" ... \"She gave it all to charity.\"",
+    "quote_confidence": "medium"
+  },
+  "false_suspect": {
+    "value": "Sylvia herself is the manufactured 'culprit' \u2014 her documented depression and prior 'accidental' overdose make her own suicide the accepted explanation, deflecting suspicion from Werther entirely.",
+    "confidence": "high",
+    "quote": "\"Dr. Miller will swear she was ready for it, and nobody's the wiser.\"",
+    "quote_confidence": "high"
+  },
+  "technical_detail": {
+    "value": "Psychiatric domain knowledge as murder method: a documented clinical diagnosis of unconscious suicidal wish, plus an established prior overdose, makes a fatal dose of sleeping pills medically unremarkable \u2014 the psychiatrist becomes the unwitting alibi.",
+    "confidence": "high",
+    "quote": "\"That overdose was no accident. As Freud once said, there are no accidents.\"",
+    "quote_confidence": "high"
+  },
+  "moral_ambiguity": {
+    "value": "Werther is a murderer who genuinely pities his victim; he postpones the killing for two months at real risk in order to give Sylvia the first happiness of her life, and his tenderness is not entirely counterfeit \u2014 the horror is that sincere kindness and premeditated murder coexist in him, and his gift of happiness is what destroys his motive.",
+    "confidence": "high",
+    "quote": "\"I made Sylvia happy before she died. Then I gave her those pills, and she went to sleep, and she was smiling.\"",
+    "quote_confidence": "high"
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 23060,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Happiness Before Death",
     "author": "HENRY SLESAR",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 46,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Art forgery and theft: Protagonist creates a forged Delgardi painting on a salvaged Renaissance canvas, swaps it for the museum's genuine painting, and plans to profit by claiming discovery of the 'original' underneath the forged Albretti.",
+    "confidence": "high",
+    "quote": "I would duplicate the museum's painting, then I would remove the original from the museum and leave the copy in its place."
+  },
+  "victim": {
+    "value": "The museum and its stakeholders (board, curator, public trust) are defrauded; the genuine Delgardi is stolen; expertise and institutional credibility are undermined by the deception.",
+    "confidence": "medium",
+    "quote": "The only question to be resolved was which painting was authentic."
+  },
+  "closed_world": {
+    "value": "The museum itself\u2014a bounded institutional space where Widner has authorized after-hours access as a longtime employee, limiting suspects and enabling his theft.",
+    "confidence": "high",
+    "quote": "I had a key to the museum because I often worked weekends. That same night I let myself into the museum and turned off the alarms."
+  },
+  "culprit_and_motive": {
+    "value": "Carl Widner, museum restorer facing mandatory retirement at 65 with minimal assets ($900) and inadequate pension, commits the forgery to fund his retirement to the French Riviera. Motivated by financial desperation and resentment toward critics and the museum board.",
+    "confidence": "high",
+    "quote": "the precipitous action of the museum board left me no alternative but to feather my nest against my fast approaching involuntary retirement."
+  },
+  "resolution": {
+    "value": "The experts' analysis, using X-rays, alcohol tests, and spectroscopic analysis, paradoxically validates the forgery as genuine by misinterpreting the cobalt blue Widner deliberately planted as evidence of old retouching. The genuine painting is authenticated; Widner's forgery is credited to Albretti. No crime is detected.",
+    "confidence": "high",
+    "quote": "The cobalt blue that was used undoubtedly occurred when the painting required retouching, perhaps 150 years ago."
+  },
+  "investigator": {
+    "value": "Carl Widner himself serves as the narrator and primary investigator of his own crime's success and ironic outcome. The reader experiences the mystery through his consciousness as he discovers his perfect forgery has been certified as genuine by experts.",
+    "confidence": "high",
+    "quote": "My name is Carl Widner... What began as an intellectual exercise prepared me for reality."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 14820,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Art for Money\u2019s Sake",
+    "author": "DAN J. MARLOWE",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 37,
+    "story_count": 63
+  }
+}

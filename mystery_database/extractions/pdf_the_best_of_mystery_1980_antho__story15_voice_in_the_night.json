@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Serial predation/abduction of women via deceptive phone calls impersonating old acquaintances, luring victims to a secluded house in Crestview Gardens. Central question: who is the killer operating from the mansion, and how many victims are there?",
+    "value": "Serial abduction and murder of lonely women lured by phone: the killer cold-calls names from the phone book, poses as an old flame ('Dave Mosby'), sends a cab to a neutral meeting place, then drives the victim to an isolated mansion's soundproof basement 'playroom.' Central question: who is the caller, since both the named men are innocent and traceless?",
     "confidence": "high",
-    "quote": "Vicky Henderson...went out to meet him and never came back."
+    "quote": "the girl made a date with some guy on the phone. She went out to meet him and never came back."
   },
   "victim": {
-    "value": "Vicky Henderson: recently divorced, lonely, living alone, eager to reconnect with old flames, socially naive and easily manipulated by flattery and romantic deception.",
+    "value": "Vicky (Victoria) Henderson, a divorced office worker in her late twenties living alone \u2014 soft, gullible, lonely and flattered by attention, making her the ideal 'pliable and not very bright' target; earlier and later victims (Mildred Perry) fit the same pattern.",
     "confidence": "high",
-    "quote": "For one so petite, an astonishingly good figure. He was pleased. She was better than most. She would do very well."
+    "quote": "For this you had to snare one that was soft and pliable and not very bright."
   },
   "closed_world": {
-    "value": "Isolated mansion on three high-walled acres atop a hill in Crestview Gardens, surrounded by dense woodland, accessible only through electronic gate\u2014a remote estate insulated from outside observation.",
+    "value": "The walled, gated estate atop a hill in Crestview Gardens \u2014 three high-walled acres, private woods, and a soundproof windowless basement room; plus the anonymous universe of phone-book names that hides the caller.",
     "confidence": "high",
-    "quote": "Perched atop a hill in the isolation of three high-walled acres...At the crest of the slope, loomed the long silhouette of the house."
+    "quote": "Perched atop a hill in the isolation of three high-walled acres, the house was an elegant straggle of stone and wood"
   },
   "culprit_and_motive": {
-    "value": "The caretaker/chauffeur with the disfigured face (half-damaged from shrapnel). Motive: compulsion to hunt and lure vulnerable women; sadistic gratification from the hunt and the kill; operates seasonally in summer before family returns from Europe.",
+    "value": "The estate's part-time caretaker/full-time chauffeur, a facially disfigured man who has the run of the mansion while the owners summer in Europe; motive is compulsive sadistic thrill-killing driven by the hunt, deception, and resentment at rejection \u2014 and a self-loathing wish to be caught.",
     "confidence": "high",
-    "quote": "The first thrill came with the hunt...welling up like bitter champagne, there was in him a curious, bubbling triumph"
+    "quote": "Part-time caretaker and full-time chauffeur; well, it was a job, and in the summer... there were certain fringe benefits."
   },
   "resolution": {
-    "value": "Partial\u2014Detectives Linwood and Mallick begin investigation after Rena Whalen reports Vicky missing and discovers the Ed Landrum lead is false. Detectives rule out the real Landrum and Mosby (alibied in Chicago). Resolution incomplete; killer remains at large but under suspicion.",
-    "confidence": "medium",
-    "quote": "Somewhere in Crestview Gardens...The kinda people who live up in Crestview Gardens don't play deadly phone games with lonely women."
+    "value": "No resolution: the case is a 'stone-wall deadend' for police; the killer cleans up, buries the compact, and resumes his chauffeur's routine. The only closure is his internal cry to be caught \u2014 the reader, not the detectives, learns the answer.",
+    "confidence": "high",
+    "quote": "I hope they catch me, cried the voice. Oh, God, I hope they catch me!"
   },
   "investigator": {
-    "value": "Two detectives, Linwood and Mallick, working from external evidence: missing person report, false identity traces, and the caretaker's cottage as likely base of operations. Limited by killer's careful elimination of evidence.",
+    "value": "Dual lens: the killer himself as ironic point-of-view character, with official police Detectives Linwood and Mallick (aided by neighbor-witness Rena Whalen) as the outmatched institutional investigators.",
     "confidence": "high",
-    "quote": "Shortly before nine the two detectives were down at headquarters discussing the case. 'This is a beaut,' said Mallick."
+    "quote": "Detectives Lin wood and Mallick were seated in the apartment of Miss Rena Whalen"
+  },
+  "suspect_architecture": {
+    "value": "Effectively no suspect pool for the reader \u2014 inverted structure reveals the killer at once. The police cast comprises innocent named parties: the real Ed Landrum (southside, alibied by bridge guests), the real Dave Mosby (in Chicago), and an unimagined 'rich Crestview resident'; the actual culprit is the invisible caretaker/chauffeur of an absent owner family.",
+    "confidence": "high",
+    "quote": "Mosby can't be lying, he and the wife have been in Chicago a year and a half."
+  },
+  "red_herring": {
+    "value": "The borrowed identities and the Crestview Gardens address \u2014 the killer's use of real names from the phone book points investigators at wealthy residents and at innocent men, while the mansion setting makes the police dismiss the Crestview lead as 'part of the gag'.",
+    "confidence": "high",
+    "quote": "The kinda people who live up in Crestview Gardens don't play deadly phone games with lonely women."
+  },
+  "clue_fairness": {
+    "value": "Reader receives clues ahead of/with police: the seasonal pattern (only summers), the half-ruined face, the mansion's emptiness and 'every room' TV sets, the buried compact \u2014 and the detectives explicitly voice the seasonal clue without solving it.",
+    "confidence": "high",
+    "quote": "But evidently he hangs it up until summer. Does that tell us anything?"
+  },
+  "social_world": {
+    "value": "Class hierarchy of servant and master: a hired part-time caretaker/full-time chauffeur occupies his employers' Crestview Gardens estate while the 'family' summers in Europe; police class assumptions about who could commit such crimes protect him, and he preys on isolated working divorcees.",
+    "confidence": "high",
+    "quote": "Part-time caretaker and full-time chauffeur; well, it was a job"
+  },
+  "alibi": {
+    "value": "Genuine alibis of the innocent: Landrum's bridge guests and Mosby's year and a half in Chicago; the killer needs no alibi because he is never a suspect, borrowing others' identities instead.",
+    "confidence": "high",
+    "quote": "Landrum and the missus had guests to the house last night for bridge, they tell us."
+  },
+  "reveal_mechanic": {
+    "value": "Reader-side demonstration rather than detection: the closing sequence shows him mopping the playroom, finding and burying Vicky's gold compact in the woods, then shaving only the left half of his ruined face and donning a chauffeur's uniform \u2014 proving identity, method, and disposal site.",
+    "confidence": "high",
+    "quote": "beneath the daybed he found Vicky Henderson's gold compact"
+  },
+  "media_and_audience": {
+    "value": "The crimes are framed by police as a recurring pattern of vanished lonely women \u2014 unpublicised, 'stone-wall deadend' cases known only through chance witnesses like Rena Whalen; the culprit is dismissed by cop folklore as a 'weirdo' phoning from a booth.",
+    "confidence": "medium",
+    "quote": "it's very much like a case we had last summer; and who knows how many others"
+  },
+  "investigator_wound": {
+    "value": "Mallick and Linwood are haunted by last summer's identical unsolved disappearance and their own class prejudice, which blinds them to the Crestview lead; the more resonant wound is the killer's own self-loathing plea to be caught.",
+    "confidence": "medium",
+    "quote": "I hope they catch me, cried the voice. Oh, God, I hope they catch me!"
+  },
+  "victims_enemies": {
+    "value": "None \u2014 the victims are strangers chosen at random from the phone book. Vicky Henderson had no enemies; her only connection to her killer is that her name fell under his finger in a directory. The absence of any grievance web is precisely what makes the case a 'stone-wall deadend' for the detectives.",
+    "confidence": "high",
+    "quote": "He placed the heavy phone book before him and opened it at random."
+  },
+  "suspect_wounds": {
+    "value": "The real Ed Landrum is made to look guilty by having his actual name and number used as the lure; Dave Mosby, Vicky's genuine old flame, is implicated by the impersonation. Both are innocent men whose ordinary identities the killer weaponizes, forcing them to prove negatives.",
+    "confidence": "medium",
+    "quote": "\u201cWhat Vicky?\u201d he says, real dumb, you know. He never even heard of Vicky Henderson."
+  },
+  "unreliable_frame": {
+    "value": "The narration follows the killer's own self-flattering interior voice \u2014 he is a virtuoso liar ('Tell them anything. The idiots are dying to believe') who lies about his name, his job, his wife, his children, and even the Viet Nam shell fragment that supposedly ruined his face. His contempt for his victims' stupidity conceals from the reader, until the last page, that he is himself the servant, not the master, of the house \u2014 and a final disowned voice reveals his self-account is a lie even to himself.",
+    "confidence": "high",
+    "quote": "Tell them anything. The idiots are dying to believe."
+  },
+  "setting_as_constraint": {
+    "value": "The house is the whole method: three high-walled isolated acres on a hill behind an electronically controlled redwood gate, a soundproof windowless basement 'playroom,' sealed windows and heavy drapes, and private woodland for burials. The killer exploits it only in summer, during the owners' annual departure to the Riviera with all their servants \u2014 a narrow annual window that also defines the crime's seasonality, which the detectives notice but cannot interpret.",
+    "confidence": "high",
+    "quote": "\u201cJoyce won\u2019t allow the kids to romp and scream all over the house,\u201d he explained, \u201cso I had this soundproof playroom constructed\u201d"
+  },
+  "evidence_type": {
+    "value": "Testimonial \u2014 the neighbor Rena Whalen's account, corroborated by a documentary trace: the name 'Ed Landrum' written across the top of a magazine by Vicky's phone. Physical evidence (the gold compact) exists but is found and buried by the killer before police can reach it.",
+    "confidence": "high",
+    "quote": "I didn\u2019t remember the name but Vicky had written it across the top of a magazine by the phone."
+  },
+  "false_suspect": {
+    "value": "Ed Landrum, the ordinary southside man whose name was picked blindly from the directory and who is the first person police intend to interview; he is cleared by a bridge party alibi. Dave Mosby serves the same function and is cleared by residence in Chicago.",
+    "confidence": "high",
+    "quote": "\u201cWell, we\u2019ll go over and have a little talk with Mr. Ed Landrum.\u201d"
+  },
+  "technical_detail": {
+    "value": "The 'wrong number' confidence technique: opening a phone book at random, harvesting a plausible wealthy alias, then working alphabetically through a common surname with a guessing game ('I'm either Bill, Joe, or Dave') until a divorced woman living alone supplies the name of a real old flame \u2014 the victim herself furnishes the identity he impersonates. Operational discipline: never collect in person, never reuse a meeting place, always send a cab by phone.",
+    "confidence": "high",
+    "quote": "He never went in person to pick them up, never used the same meeting place twice, and always sent the cab by phone."
+  },
+  "moral_ambiguity": {
+    "value": "The killer is a disfigured man \u2014 one side of his face 'somehow just missed the boat' \u2014 living as a hired caretaker/chauffeur in a rich family's borrowed house, shaving only half his face and offering himself 'a twisted half-smile of disapproval.' His rage detonates at pity and false comfort, and the story closes on a disowned inner voice begging for capture, suggesting a self at war with the compulsion it cannot stop.",
+    "confidence": "high",
+    "quote": "I hope they catch me, cried the voice. Oh, God, I hope they catch me!"
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 24626,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Voice in the Night",
     "author": "ROBERT COLBY",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 15,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

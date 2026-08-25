@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Murder by strangulation disguised as disappearance. Central question: How did Kenneth dispose of Linda's body and establish an alibi while making her disappearance appear identical to a prior unsolved case?",
+    "value": "Two linked crimes: the 1963 disappearance of Linda Borchard (a non-crime \u2014 amnesiac wandering, wrongly prosecuted as murder), and the 1971 actual murder \u2014 Kenneth strangles Linda and buries her in the woods by the park, staging a second 'disappearance'. Central question: was there ever a body?",
     "confidence": "high",
     "quote": "Kenneth Borchard was sure that she was definitely dead by 6:37, and dropped her body to the kitchen floor."
   },
   "victim": {
-    "value": "Linda Borchard (n\u00e9e Krebs), a psychologically fragile young woman with a history of running away when distressed. She was 'killable' because her withdrawn, hypersensitive nature made her vulnerable, and her compulsive flight tendency provided Kenneth perfect cover.",
+    "value": "Linda Krebs Borchard \u2014 spoiled, frigid, 'hightailing' daughter of a councilman; her withdrawal and contempt ('beast', 'scum') plus her amnesiac vanishing sent her husband to prison for eight years, making her the target of his revenge",
     "confidence": "high",
-    "quote": "her lips closed tight...her eyes went blank and her face took on a hightail-escape look...She was what he aspired to...yet felt he could never attain."
+    "quote": "she called him a beast and coldly withdrew herself to the far side of the bed as if he were scum"
   },
   "closed_world": {
-    "value": "Small Midwestern town with surrounding prairies and farmland. The social world is further bounded by the tight-knit community of the feed store owner's family, church meetings, and Chamber of Commerce\u2014where Kenneth's movements and alibis are easily constructed and believed.",
+    "value": "A small Midwestern prairie town \u2014 its picnic park, woods, hobo jungle and river \u2014 where everyone knows everyone and gossip assigns guilt; later widened only by the California asylum",
     "confidence": "high",
     "quote": "Who gets lost in a town like this with nothing but prairies and farmland on each side?"
   },
   "culprit_and_motive": {
-    "value": "Kenneth Borchard murdered Linda out of revenge for his eight years wrongful imprisonment. He seduced her into marriage, then killed her to repay the loss of freedom she caused him\u2014framing her disappearance as a repeat of the unsolved 1963 case to exploit police incompetence.",
+    "value": "Kenneth Borchard, the husband, in the second case: premeditated strangulation as payback for the eight years he served for her first, uncommitted 'murder' \u2014 and safe because the town cannot accuse him twice",
     "confidence": "high",
-    "quote": "Kenneth Borchard knew at last that Linda had been worth every minute of his eight years in prison, now that he had paid her back for them."
+    "quote": "Kenneth Borchard knew at last that Linda had been worth every minute of his eight years in prison, now that he had paid her back"
   },
   "resolution": {
-    "value": "No resolution. The crime remains undetected. Linda vanishes again; Kenneth establishes a perfect alibi using his presence at a Chamber of Commerce meeting. Police issue an APB but concentrate search on asylums, never suspecting the actual murder. Justice is structurally denied.",
+    "value": "Ironic inversion rather than justice: Linda's recovered identity via the letters frees Kenneth and exposes the false conviction; the real murder goes undetected, police assuming another amnesiac wandering and searching asylums",
     "confidence": "high",
-    "quote": "The police chief...solemnly listed the clothing...and concentrate on the asylums between here and California...as Kenneth Borchard was sure he would."
+    "quote": "\"about all we can do is put out an APB on her,\" he said... \"and concentrate on the asylums between here and California\""
   },
   "investigator": {
-    "value": "The police chief and Leland Krebs (father) serve as nominal investigators, but both are rendered ineffectual by complicity, shame, and institutional limitation. The reader alone perceives the crime through omniscient narration\u2014making the reader an investigator without authority.",
-    "confidence": "medium",
-    "quote": "The police chief...admitted he didn't know what to do next...eager to rectify rash conceptions and past misjudgment."
+    "value": "The small-town chief of police, career-anxious and inept, supplemented by the omniscient narration and the day-room attendant whose curiosity about the letters cracks the identity puzzle",
+    "confidence": "high",
+    "quote": "the day-room attendant knew it had been the letters\u2014the letters that had retained her interest"
+  },
+  "suspect_architecture": {
+    "value": "Narrow cast centered on one suspect: husband Kenneth Borchard (motive: humiliating marriage; opportunity: unaccounted hours 5-8 at the picnic; damned by heredity as a killer's son). Peripheral figures \u2014 father Leland Krebs (feed-store councilman, protects reputation), passive mother Minnie Krebs, and the town's anonymous gossips \u2014 supply pressure rather than genuine alternatives; the victim herself, a fugue-state runaway, is the hidden 'culprit' of the first disappearance.",
+    "confidence": "high",
+    "quote": "How about her husband? Maybe he killed her and buried the body."
+  },
+  "red_herring": {
+    "value": "The first disappearance itself is the great false trail: Linda's dissociative flight is read as murder, and Kenneth's tainted bloodline (father shot mother) plus his beer-keg absence are the planted circumstantial trail. Later, Kenneth deliberately recreates the amnesia scenario \u2014 coat, no handbag, no identification \u2014 so police search asylums instead of the woods.",
+    "confidence": "high",
+    "quote": "his father had killed his mother in a drunken rage and turned the shotgun on himself. You can\u2019t get around that kind of blood."
+  },
+  "clue_fairness": {
+    "value": "Reader-fair clues are seeded early: Linda's twice-repeated 'hightail' flights known only to her father, the name game 'Linnette/Linn/Lin' at the picnic, and the amnesiac woman's letters about 'a picnic in the park and snow in the winter' \u2014 all shown before the identification. In the second crime the reader is given the timed sequence directly, so the burial is known while police work the false asylum lead.",
+    "confidence": "high",
+    "quote": "all of them pretty much the same, about a picnic in the park and snow in the winter"
+  },
+  "social_world": {
+    "value": "Small Midwestern town where Leland Krebs, city councilman and feed-store owner, holds patronage: the police chief investigates with 'one eye on Krebs\u2019 civic importance and the other on his own career.' Kenneth is 'scum' by birth, elevated only by marrying into the Krebs family and being given a job; class contempt and inherited reputation determine guilt more than evidence.",
+    "confidence": "high",
+    "quote": "he did so carefully, with one eye on Krebs\u2019 civic importance and the other on his own career."
+  },
+  "alibi": {
+    "value": "First case: Kenneth's alibi is porous \u2014 he claims he worked until five and never saw Linda; witnesses can't fix when they saw him between five and eight, giving a fatal gap. Second case: he builds a meticulous manufactured alibi \u2014 kills at 6:37, buries by 7:30, cleans up, phones Krebs, picks him up at 7:59, attends the Chamber of Commerce meeting, and returns with his father-in-law as witness to the 'discovery.'",
+    "confidence": "high",
+    "quote": "He picked up Krebs at 7:59 and arrived at the meeting by 8:10"
+  },
+  "reveal_mechanic": {
+    "value": "Psychological/documentary: the amnesiac patient finally signs and addresses a letter \u2014 'Kenneth Borchard in a small Midwestern town, with the name, Linda Borchard, written in the upper left-hand corner' \u2014 restoring identity and demonstrating no murder occurred. The second reveal is given to the reader through the minute-by-minute account of the real killing and burial, and to Krebs through Kenneth's pointed 'It is happening again.'",
+    "confidence": "high",
+    "quote": "\u201cLin\u201d handed her the envelope addressed to Kenneth Borchard in a small Midwestern town"
+  },
+  "media_and_audience": {
+    "value": "Town gossip acts as jury, converting heredity into proof of guilt; after exoneration the same public recasts Kenneth as 'a hero and a prince... a romantic martyr,' while the police chief frets about state authorities discovering his recommendation to lock the boy up. Public narrative, not evidence, drives both his conviction and his immunity.",
+    "confidence": "high",
+    "quote": "The townspeople now had not only a hero and a prince, but a romantic martyr."
+  },
+  "investigator_wound": {
+    "value": "The police chief's vulnerability is professional shame and self-protection: humiliated by his failure to find a body, then exposed as the man who urged the innocent be locked up forever, he is 'eager to rectify rash conceptions and past misjudgment' \u2014 a wound Kenneth exploits by staging a disappearance the chief will inevitably read as another amnesiac flight.",
+    "confidence": "high",
+    "quote": "The police chief, there in minutes, eager to rectify rash conceptions and past misjudgment"
+  },
+  "victims_enemies": {
+    "value": "Linda Krebs Borchard is resented by the whole town as a stuck-up 'better than anybody' girl; her husband Kenneth is humiliated in the marriage bed and called 'beast' and 'scum'; her father Leland Krebs indulges her but later prefers Kenneth rot in prison rather than have her found; her mother Minnie is a nullity crushed into catatonia.",
+    "confidence": "high",
+    "quote": "\"Only Linda, wouldn't you know, who thinks she's so much, acting like she's better than anybody else.\""
+  },
+  "suspect_wounds": {
+    "value": "Kenneth's wound is his inherited reputation \u2014 his father shot his mother and himself \u2014 plus his sexual shame and the guilty secret that he never looked for his wife at the picnic because he didn't want to; his guilt-shaped behavior makes his truthful denial sound like a lie.",
+    "confidence": "high",
+    "quote": "\"his father had killed his mother in a drunken rage and turned the shotgun on himself. You can't get around that kind of blood.\""
+  },
+  "unreliable_frame": {
+    "value": "Nearly every account is compromised: the picnickers 'saw' both Linda and Kenneth but can name no hour; Kenneth lies by omission about not looking for her; Leland Krebs conceals Linda's earlier runaways; Linda's own amnesiac memory ('she remembered it now but would not tomorrow') destroys the only firsthand testimony.",
+    "confidence": "high",
+    "quote": "\"Most people had, or thought they had... but no one could remember at which time or other... that they had seen him, if at all.\""
+  },
+  "setting_as_constraint": {
+    "value": "A small prairie town where there is nowhere to vanish to, and a wooded riverside park adjoining the Borchard property \u2014 the same terrain that made an unfound body plausible the first time. The second time Kenneth exploits the town's memory: the dark hillside woods, an evening C. of C. meeting for an alibi, and forecast rain to erase the grave.",
+    "confidence": "high",
+    "quote": "\"Who gets lost in a town like this with nothing but prairies and farmland on each side?\""
+  },
+  "evidence_type": {
+    "value": "Documentary/testimonial: the daily letters written by the amnesiac patient, finally addressed to Kenneth Borchard and signed Linda Borchard \u2014 a document that overturns a murder conviction where no forensic evidence ever existed.",
+    "confidence": "high",
+    "quote": "\"handed her the envelope addressed to Kenneth Borchard in a small Midwestern town, with the name, Linda Borchard\""
+  },
+  "false_suspect": {
+    "value": "Kenneth Borchard himself in 1963 \u2014 convicted and imprisoned eight years for a murder that never happened, condemned by gossip about his father's blood and the police chief's careerist reasoning.",
+    "confidence": "high",
+    "quote": "\"how could it be, with the Borchard kid in prison for killing her, and her buried somewhere nobody'd found yet?\""
+  },
+  "technical_detail": {
+    "value": "The murder is a precisely timed domestic operation: strangulation at 6:37, burned dinner destroyed in the garbage disposal, gardener's boots and gloves and wheelbarrow to avoid traces, a narrow deep grave with sod lifted and replaced and displaced soil scattered, relying on imminent rain to lift the trampled grass \u2014 the whole thing bracketed by a phone call and a Chamber of Commerce meeting alibi.",
+    "confidence": "high",
+    "quote": "\"When the grave was filled within three inches, he fit the clods of sod over it, tramping these down\""
+  },
+  "moral_ambiguity": {
+    "value": "Kenneth kills not from greed or rage but as ledger-balancing: eight stolen years for a crime he did not commit, taken from him by a frigid, self-absorbed wife whose disappearance he never caused and by a father-in-law and police chief who preferred him guilty. The 'crime' is framed as payment, and the true culpability is spread across a town that convicted him on blood.",
+    "confidence": "high",
+    "quote": "\"Linda had been worth every minute of his eight years in prison, now that he had paid her back for them\""
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Linda Is Gone",
     "author": "PAULINE C. SMITH",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 29,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

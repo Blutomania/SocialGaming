@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Stabbing homicide: Karen Burson killed with a kitchen knife in her apartment. Central question: Who killed her, and how did the actual murderer escape/evade detection while framing Clyde Burson?",
+    "confidence": "high",
+    "quote": "Homicide. She was stabbed, with a kitchen knife."
+  },
+  "victim": {
+    "value": "Karen Burson, estranged wife. Killable because she refused Clyde's divorce demands, screaming 'Never, never, never! You'll have to kill me first!' and drove other men (like Rayburn) into jealous rages with her hysterical behavior.",
+    "confidence": "high",
+    "quote": "Never, never, never! You'll have to kill me first!"
+  },
+  "closed_world": {
+    "value": "Ten-apartment residential building in Brooklyn. Ten apartments total: five tenants away for weekend, one elderly woman (85), two couples with company, one couple watching television, Rayburn, and the building janitress. Limited exits: fire escape with wet paint, skylight ladder jammed.",
+    "confidence": "high",
+    "quote": "Ten apartments. Five of them empty, tenants were in the country for the weekend and can prove it."
+  },
+  "culprit_and_motive": {
+    "value": "Richard Rayburn, tenant in the building. Motive: Karen drove him into a jealous/obsessive frenzy with her hysterical behavior (as she had Burson), likely rejecting him or tormenting him emotionally until he stabbed her in rage.",
+    "confidence": "high",
+    "quote": "Rayburn killed her before I came, and later on that night he put the name-plates back the way they belonged"
+  },
+  "resolution": {
+    "value": "Burson realizes Rayburn switched the apartment nameplate cards downstairs (Karen's and the old lady's positions swapped) to misdirect Burson's initial testimony about which bell he rang. Fingerprints on the backs of the nameplates will prove Rayburn's guilt. When Burson shouts this revelation, Rayburn panics and bolts, confirming his guilt.",
+    "confidence": "high",
+    "quote": "Rayburn's fingerprints are on the back of the two name cards. On the backs\u2014 [Rayburn's door shot open and a burly, red-headed man charged out]"
+  },
+  "investigator": {
+    "value": "Lieutenant Malliner (police detective) is the official investigator with institutional authority. However, Clyde Burson (the wrongly accused suspect) is the lens through whom we experience the mystery\u2014his mind, fears, and deductions drive the narrative.",
+    "confidence": "high",
+    "quote": "This was between Malliner and Burson, and it was personal."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 23380,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Dead Duck",
+    "author": "LAWRENCE TREAT",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 19,
+    "story_count": 63
+  }
+}

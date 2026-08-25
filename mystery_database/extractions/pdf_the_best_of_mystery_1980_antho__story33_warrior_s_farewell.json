@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Serial vigilante executions of violent criminals who escaped capital punishment due to state law abolition. Central question: Can the narrator prove Sam Zodiak's guilt, and does justice justify murder?",
+    "value": "Murder by pushing a man off a bay bridge into the water \u2014 but the story's real crime is a serial vigilante killing spree (five executions of criminals who escaped the death penalty). Central question is moral rather than procedural: is the narrator's killing of Zodiak any different from Zodiak's own 'justice'?",
     "confidence": "high",
-    "quote": "There've been five of them now, five of them since last year. The others were downstate, and didn't make such splashy headlines."
+    "quote": "It was then that I pushed him with all my strength, saw him grasping frantically at the railing before he toppled over"
   },
   "victim": {
-    "value": "Five murder victims (criminals themselves): George Condon (killed Ann, a nurse); an unnamed sex murderer named Asker; three others downstate. All had evaded capital punishment through legal abolition or mental health provisions.",
+    "value": "Sam Zodiak, unmarried used car dealer and petty gambler, ex-army sergeant; 'killable' because he had become a self-appointed executioner who admitted five murders and named three more targets",
     "confidence": "high",
-    "quote": "All criminals, all murderers who'd escaped the death penalty because of our laws."
+    "quote": "the authorities identified the man as Sam Zodiak, an unmarried used car dealer and petty gambler"
   },
   "closed_world": {
+    "value": "Weak: the private two-man world of a fifteen-year army friendship, spanning Korea and a small West Coast ocean city; the confession occurs on a deserted bay bridge at night with no witnesses",
+    "confidence": "medium",
+    "quote": "We were strolling across the bay bridge, with the lights of the harbor obscured by the nightly mists."
+  },
+  "culprit_and_motive": {
+    "value": "The unnamed narrator kills Zodiak to stop his vigilante executions; Zodiak himself is culprit of the prior killings, motivated by his creed of 'justice' in a state without capital punishment",
+    "confidence": "high",
+    "quote": "\"All criminals, all murderers who'd escaped the death penalty because of our laws.\""
+  },
+  "resolution": {
+    "value": "No legal or forensic resolution \u2014 the narrator ends the killings by murder and escapes undetected; the closing irony is Zodiak's challenging look implying the narrator has become what he condemned",
+    "confidence": "high",
+    "quote": "As if he were saying to me. See what I mean!"
+  },
+  "investigator": {
+    "value": "First-person narrator, Zodiak's former corporal and best friend, an amateur who investigates out of dread and becomes the killer himself",
+    "confidence": "high",
+    "quote": "I read the newspaper accounts of the killing with a gnawing sense of urgency. It couldn't be Sam Zodiak again"
+  },
+  "suspect_architecture": {
+    "value": "Minimal suspect field: this is an inverted/confessional story with effectively one culprit, Sam Zodiak, whose serial vigilante killings the narrator suspects and confirms; the narrator himself becomes the unsuspected killer of Zodiak. Alternative candidates (unknown robber in Condon's death, anonymous sniper in Asker's death) exist only as newspaper framings.",
+    "confidence": "high",
+    "quote": "\u201cThere\u2019ve been five of them now, five of them since last year. The others were downstate\u201d"
+  },
+  "red_herring": {
+    "value": "Press framings that misdirect: Condon's murder reported as 'an apparent robbery' and Asker's shooting as an anonymous getaway killer; also Zodiak's genial 'same old Sam' manner disarming suspicion.",
+    "confidence": "medium",
+    "quote": "had been shot and killed during an apparent robbery"
+  },
+  "clue_fairness": {
+    "value": "The reader gets every clue the narrator does, in sequence: the Korean execution, the 'no death penalty in this state' refrain, the clipping with 'justice, not revenge,' and Zodiak's own admissions \u2014 all shown before conclusions are drawn.",
+    "confidence": "high",
+    "quote": "Sam\u2019s only comment on the clipping was a single sentence in his letter: This is what I call justice, not revenge."
+  },
+  "social_world": {
+    "value": "Postwar American civilian order set against military hierarchy: Zodiak's authority as ranking noncom in Korea transposed into a private moral hierarchy; legislature and governor abolishing capital punishment without a popular vote; low social regard for used-car dealers and gamblers.",
+    "confidence": "high",
+    "quote": "\u201cThe legislature and the governor just got together and abolished it. You think that\u2019s right?\u201d"
+  },
+  "alibi": {
+    "value": "No formal alibi structure; Zodiak relies on unprovability rather than alibi \u2014 'You'd never prove it to the police anyway.' The narrator's cover is simply being an out-of-town visitor found in town when the body surfaces.",
+    "confidence": "medium",
+    "quote": "\u201cYou\u2019d never prove it to the police anyway, so I\u2019m safe in telling you.\u201d"
+  },
+  "reveal_mechanic": {
+    "value": "Psychological reveal by re-enactment: the narrator, having condemned Zodiak's extrajudicial executions, commits one himself, and Zodiak's final challenging look ('See what I mean!') demonstrates the story's solution rather than stating it.",
+    "confidence": "high",
+    "quote": "As if he were saying to me. See what I mean!"
+  },
+  "media_and_audience": {
+    "value": "Newspapers mediate the entire narrative: the body identified as 'an unmarried used car dealer and petty gambler,' clippings, ten-state alarms, 'splashy headlines' \u2014 public packaging shapes both Zodiak's grievance and the narrator's knowledge.",
+    "confidence": "high",
+    "quote": "the authorities identified the man as Sam Zodiak, an unmarried used car dealer and petty gambler"
+  },
+  "investigator_wound": {
+    "value": "The narrator's complicity and guilt over the Korean prisoner's execution \u2014 he clubbed the man down and stood by while Zodiak shot him \u2014 makes him unable to answer Zodiak's logic and finally traps him into enacting the same summary justice.",
+    "confidence": "high",
+    "quote": "\u201cI know what you\u2019re thinking. You\u2019re remembering that time in Korea.\u201d"
+  },
+  "victims_enemies": {
+    "value": "Sam Zodiak's only real intimate is the narrator, his old army corporal and best man \u2014 and it is precisely that friendship, eroded by fifteen years of witnessing Sam's self-appointed executions (the Korean prisoner, George Condon, the suspect Asker), that becomes the grievance. Beyond him, Sam had made abstract enemies of the whole legal order and, implicitly, the families of the five men he had killed, plus three more marked on his list.",
+    "confidence": "high",
+    "quote": "There've been five of them now, five of them since last year."
+  },
+  "suspect_wounds": {
+    "value": "The narrator's own wound is complicity: he clubbed the Korean 'farmer' down and then stood by while Zodiak executed him, saying nothing ever after. His silence in Korea makes every later killing partly his, and it is that guilt \u2014 not law or fear \u2014 that drives him to the bridge.",
+    "confidence": "medium",
+    "quote": "We left him there with the other bodies, and nobody ever mentioned it again."
+  },
+  "unreliable_frame": {
+    "value": "The entire story is the killer-narrator's first-person account, opening with him reading of the body's discovery as if a bystander and withholding until the final page that he pushed Zodiak off the bridge. His self-justifying framing \u2014 horror, relief, 'I think you're mad' \u2014 is undercut by the closing image of Zodiak's challenging face, which suggests the narrator has become exactly what he condemned.",
+    "confidence": "high",
+    "quote": "It was then that I pushed him with all my strength, saw him grasping frantically at the railing"
+  },
+  "setting_as_constraint": {
+    "value": "Two enabling environments: a state that has abolished capital punishment, which Zodiak treats as license for private execution; and the deserted, mist-shrouded bay bridge at night, with no witnesses and murky water below, which lets the narrator kill and walk away exactly as Zodiak's own sniper 'made a clean getaway' in the crowd outside police headquarters.",
+    "confidence": "high",
+    "quote": "We were strolling across the bay bridge, with the lights of the harbor obscured by the nightly mists."
+  },
+  "evidence_type": {
+    "value": "Testimonial \u2014 a private, unprovable confession. Zodiak's boast to a trusted friend ('You'd never prove it to the police anyway') is the only evidence of his five murders, and it is what condemns him, not to law but to the narrator's judgment.",
+    "confidence": "high",
+    "quote": "\"You're a buddy, so I'll tell you something. You'd never prove it to the police anyway, so I'm safe in telling you.\""
+  },
+  "false_suspect": {
     "value": null,
     "confidence": "low",
     "quote": null
   },
-  "culprit_and_motive": {
-    "value": "Sam Zodiak, the narrator's former army friend. Motive: vigilante justice. After his fianc\u00e9e Ann was killed by George Condon (a released mental patient), Zodiak adopted a personal code of executing murderers who escaped state-mandated punishment, framing it as moral warfare.",
-    "confidence": "high",
-    "quote": "I'm a warrior in the battle for justice...You'd never prove it to the police anyway, so I'm safe in telling you."
+  "technical_detail": {
+    "value": "Military marksmanship and the legal technicality Zodiak leans on: an enemy caught out of uniform is a spy who 'can be executed' without trial. His army-trained rifle skill enables the single head shot across the street at police headquarters, and the same wartime logic is transplanted onto civilian murderers who escaped the abolished death penalty.",
+    "confidence": "medium",
+    "quote": "\"He's out of uniform. He's nothing but a spy and a murderer, and as such he can be executed.\""
   },
-  "resolution": {
-    "value": "The narrator, horrified and convinced of Zodiak's guilt and ongoing threat, murders him by pushing him off a bridge. No official investigation occurs; Zodiak's death is treated as accidental. Justice is achieved through vigilantism mirroring the crime itself.",
+  "moral_ambiguity": {
+    "value": "Zodiak is no sadist: he is a consistent, grief-scarred idealist who lost his fiancee Ann to a killer the courts released, and who genuinely believes he delivers justice, not revenge. The narrator kills him for the same reason Zodiak killed others \u2014 an offender the law cannot touch \u2014 and the dying man's challenging look makes the mirror explicit: 'See what I mean?'",
     "confidence": "high",
-    "quote": "It was then that I pushed him with all my strength, saw him grasping frantically at the railing before he toppled over..."
-  },
-  "investigator": {
-    "value": "The unnamed narrator, the protagonist and Zodiak's oldest friend. He serves as both investigator and ultimate executor\u2014moved by suspicion and moral horror to confront, then eliminate, the vigilante.",
-    "confidence": "high",
-    "quote": "I arranged to fly out there the following weekend...For a moment speechless from the horror of what he was telling me."
+    "quote": "Sam's only comment on the clipping was a single sentence in his letter: This is what I call justice, not revenge."
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 14036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Warrior\u2019s Farewell",
     "author": "EDWARD D. HOCH",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 33,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

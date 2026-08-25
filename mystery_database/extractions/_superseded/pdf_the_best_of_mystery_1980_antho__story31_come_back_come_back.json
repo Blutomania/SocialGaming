@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "Office building ledge at sixth floor; contained scene with crowd, uniformed officers, and building interior where negotiations occur",
+    "confidence": "medium",
+    "quote": "It was an office building, eight stories high...the ledge that girdled the building at the sixth floor level."
+  },
+  "culprit_and_motive": {
+    "value": "Jason Cartwright, suicide threat motivated by marital crisis\u2014wife refuses divorce so he can marry Janice Shapleigh; identity conflict between planned life and authentic self",
+    "confidence": "high",
+    "quote": "he found Janice Shapleigh...he'd let him be the strong one...your mother planned for him."
+  },
+  "resolution": {
+    "value": "Detective Levine psychologically manipulates Cartwright by urging him to jump, shocking him into emotional breakdown and surrender; Crawley physically retrieves him from ledge",
+    "confidence": "high",
+    "quote": "Jump!...roared Levine...And all at once he began to cry...Crawley came swarming out the other window...And the man came stumbling in from the ledge."
+  },
+  "investigator": {
+    "value": "Detective Abraham Levine of Brooklyn's Forty-Third Precinct; sensitive, introspective officer with health anxieties who uses psychological insight rather than force",
+    "confidence": "high",
+    "quote": "Detective Abraham Levine of Brooklyn's Forty-Third Precinct was a worried and a frightened man...Levine stood to one side, watching."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Come Back, Come Back. . .",
+    "author": "DONALD E. WESTLAKE",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 31,
+    "story_count": 63
+  }
+}

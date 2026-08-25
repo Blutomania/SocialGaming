@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Serial murder by ice pick; planned mass stabbing of hotel guests on top floor. Central question: Can the night clerk stop the killer before he reaches the victims?",
+    "value": "Armed home-invasion of a women's hotel: intruder tricks his way in, knocks out and binds the night clerk, robs the safe, steals the master key and floor plans, and sets out to stab seventeen sleeping women with an ice pick \u2014 a planned mass murder for fame. Central question is not whodunit but whether it will be stopped.",
     "confidence": "high",
-    "quote": "I can go quietly from room to room, using this master key I found in the safe...there won't be any unnecessary uproar or bother."
+    "quote": "the needle-pointed ice pick that Lambeth had taken from a sheath attached to his belt"
   },
   "victim": {
-    "value": "Seventeen female hotel guests, mostly in single rooms on the top floor of the Cragmore women's hotel. They are vulnerable because they are asleep and isolated.",
+    "value": "The seventeen women guests asleep on the Cragmore's top floor \u2014 'killable' only because they are anonymous, isolated, mostly in single rooms, and unprotected; also Homer Doyle, assaulted and bound",
     "confidence": "high",
-    "quote": "I see there are seventeen guests on that floor, most of them in single rooms. That'll make it easier, you know."
+    "quote": "there are seventeen guests on that floor, most of them in single rooms. That'll make it easier"
   },
   "closed_world": {
-    "value": "The Cragmore hotel for women\u2014a locked, respectable establishment with a single night clerk on duty, no house detective, manager asleep on top floor. Bounded by locked doors and social propriety.",
+    "value": "The Cragmore, a small locked-at-midnight hotel for women in the small hours; only the night clerk and the sleeping manager on the premises, no house detective, doors locked, street deserted",
     "confidence": "high",
-    "quote": "The Cragmore was run very much like the nearby YWCA; no male visitors were allowed inside the building after midnight, when the front door was locked."
+    "quote": "you are down here on the ground floor alone, and there's no house detective or anyone like that in the hotel"
   },
   "culprit_and_motive": {
-    "value": "Robert Edward Lambeth, age 23. Motive: narcissistic hunger for fame and notoriety. He seeks to become 'the most famous man in the country\u2014in the world' through mass murder.",
+    "value": "Robert Edward 'Bob Ed' Lambeth, a young man of nearly twenty-four, seeking notoriety \u2014 killing to become the most famous man in the world, complete with greasepaint theatrics and a planned surrender",
     "confidence": "high",
-    "quote": "in a few hours, Mr. Doyle\u2014in a few hours I'll be the most famous man in the country\u2014in the world."
+    "quote": "who's ever heard of Robert Edward Lambeth? Nobody. But in a few hours... I'll be the most famous man in the country"
   },
   "resolution": {
-    "value": null,
-    "confidence": "low",
-    "quote": null
+    "value": "Anti-resolution: Doyle frees himself and could stop the elevator with the emergency override, but lured by his own dream of glory as the man who caught the mass murderer, he re-ties the cord and lets it happen",
+    "confidence": "high",
+    "quote": "Then he slowly pulled the last loop of the cord back up around his waist."
   },
   "investigator": {
-    "value": "Homer Doyle, the night clerk. He becomes the only person capable of stopping Lambeth, yet faces a moral crisis: stopping the killer will bring him modest recognition, but allowing the murders will make him famous as the man who took Lambeth's surrender.",
+    "value": "Homer Doyle, the elderly night clerk \u2014 victim, sole witness, and would-be preventer; the story is told through his perception and moral collapse",
     "confidence": "high",
-    "quote": "Doyle sat there in a sudden blinding agony of indecision...After all, not only the young have dreams of glory."
+    "quote": "Doyle stood there in a sudden blinding agony of indecision."
+  },
+  "suspect_architecture": {
+    "value": "Effectively no suspect pool \u2014 an inverted, two-hander structure: the killer (Lambeth) is known from the outset, and the only other figure is night clerk Homer Doyle, whose complicity-by-inaction is the real moral question. Off-stage: sleeping manager Mrs. McVey and seventeen victims.",
+    "confidence": "medium",
+    "quote": "there's no house detective or anyone like that in the hotel; just you and the manager, Mrs. McVey"
+  },
+  "red_herring": {
+    "value": "The fabricated missing sister 'Betty' \u2014 a pretext used twice to gain entry and reconnoiter the lobby; also Lambeth's invented story that his father died of alcoholism driven by his mother, admitted as embellishment.",
+    "confidence": "high",
+    "quote": "\u201cNo, I'm not still trying to find my sister... I imagine Betty's sound asleep at this hour, in her own bed at home.\u201d"
+  },
+  "clue_fairness": {
+    "value": "All information is shown to the reader in real time alongside Doyle: the earlier ten o'clock visit, the loose cord on his left arm, the emergency override switch, the clock and floor indicator \u2014 so Doyle's final choice is fully foreseeable.",
+    "confidence": "high",
+    "quote": "there was a certain amount of give in the loops encircling his left arm... He immediately stopped his efforts"
+  },
+  "social_world": {
+    "value": "The respectability regime of a small women's residential hotel \u2014 Cragmore's YWCA-style propriety rules (no men after midnight, locked doors) is exactly the trust structure the intruder exploits; a lone aging male clerk at the bottom of the hierarchy, invisible and unrewarded.",
+    "confidence": "high",
+    "quote": "no male visitors were allowed inside the building after midnight... \u201cPropriety\u201d and \u201cCragmore\u201d were synonymous."
+  },
+  "alibi": {
+    "value": "No alibi construction; instead Lambeth plans a pre-arranged 'surrender' narrative that casts Doyle as the man who took him in, replacing concealment with publicity.",
+    "confidence": "medium",
+    "quote": "\u201cAfter all, you'll be the man who took my surrender. Wish me luck.\u201d"
+  },
+  "reveal_mechanic": {
+    "value": "Demonstrated through physical action rather than deduction: Doyle frees both arms, sees the indicator climbing toward 5, then deliberately sits back and pulls the cord loop up around his waist \u2014 restoring his own bonds to fake helplessness.",
+    "confidence": "high",
+    "quote": "Then he slowly pulled the last loop of the cord back up around his waist."
+  },
+  "media_and_audience": {
+    "value": "Fame itself is the motive: Lambeth greasepaints his body and face for newspaper impact and plans to call television stations; the projected press coverage is what corrupts Doyle, who calculates his own derivative celebrity.",
+    "confidence": "high",
+    "quote": "\u201cin a few hours I'll be the most famous man in the country\u2014in the world.\u201d"
+  },
+  "investigator_wound": {
+    "value": "Doyle's obscurity and wounded vanity \u2014 an aging, gullible night clerk humiliated by a boy, whose craving for significance ('not only the young have dreams of glory') the case exploits into fatal inaction.",
+    "confidence": "high",
+    "quote": "After all, not only the young have dreams of glory."
+  },
+  "victims_enemies": {
+    "value": "No personal enmity exists: the intended victims are seventeen anonymous women guests on the Cragmore's top floor, chosen only because they are isolated in single rooms. The 'grievance' is impersonal \u2014 Lambeth's grudge is against his own obscurity, not against anyone he kills.",
+    "confidence": "medium",
+    "quote": "I see there are seventeen guests on that floor, most of them in single rooms. That'll make it easier, you know."
+  },
+  "suspect_wounds": {
+    "value": "Homer Doyle's wound is wounded vanity and a life of unnoticed obscurity \u2014 an aging night clerk mocked for the supposed 'interest' of his job; the crime activates his own buried hunger for recognition, making the guardian complicit.",
+    "confidence": "high",
+    "quote": "Night clerk in a hotel for women, one man alone with all these girls. I'll bet you could write a best-selling book"
+  },
+  "unreliable_frame": {
+    "value": "Lambeth is a self-admitted fabricator \u2014 he invents a missing sister, then a dramatized story of his father's death, admitting the truth was a coronary because the lie 'sounds much more interesting.' The narrative is filtered through Doyle, whose final inaction he rationalizes rather than confesses.",
+    "confidence": "high",
+    "quote": "Just between us, my old man died of a coronary, but the other way sounds much more interesting."
+  },
+  "setting_as_constraint": {
+    "value": "The Cragmore is a locked, all-female residential hotel: doors bolted after midnight, no house detective, only one clerk and a manager asleep on the fifth floor. Lambeth exploits the very propriety that excludes men \u2014 talking his way past the door as a worried brother \u2014 and the single elevator plus master key make sequential, quiet murders feasible.",
+    "confidence": "high",
+    "quote": "you are down here on the ground floor alone, and there's no house detective or anyone like that in the hotel"
+  },
+  "evidence_type": {
+    "value": "Physical/documentary props rather than detection: the hotel floor plans with removable occupancy tags, the master key from the unlocked safe, the ice pick, and the greasepaint symbols staged for press photographs.",
+    "confidence": "medium",
+    "quote": "he picked up four sheets of stiff paper, floor plans of the hotel... Small removable tags indicated which rooms were occupied"
+  },
+  "false_suspect": {
+    "value": "Lambeth pre-casts Doyle as the innocent hero \u2014 'the man who took my surrender' \u2014 a role Doyle instead converts into deliberate complicity; no conventional framed suspect exists.",
+    "confidence": "medium",
+    "quote": "Don't worry about a thing, Mr. Doyle. After all, you'll be the man who took my surrender."
+  },
+  "technical_detail": {
+    "value": "Hotel mechanics: the emergency override switch on the alcove panel behind the desk that halts the elevator between floors \u2014 the one piece of domain knowledge that could stop the killer, and the one Doyle chooses not to use; plus the master key and single-occupancy room chart enabling silent room-to-room ice-pick killings.",
+    "confidence": "high",
+    "quote": "there was an emergency switch that would override the controls inside the elevator itself, stopping it between floors"
+  },
+  "moral_ambiguity": {
+    "value": "Both men are driven by the same recognizable human hunger for fame rather than malice \u2014 Lambeth kills to escape being 'nobody' at twenty-four, and Doyle, ordinary and overlooked, lets seventeen women die because catching a legend would make him nearly as famous. The story's closing line insists this dream is universal, not monstrous.",
+    "confidence": "high",
+    "quote": "After all, not only the young have dreams of glory."
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 11982,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Glory Hunter",
     "author": "RICHARD M. ELLIS",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 28,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

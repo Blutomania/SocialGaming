@@ -1,41 +1,124 @@
 {
   "crime": {
-    "value": "Child abduction and extortion. Four-year-old Mikhail is snatched by international criminal Dr. Lind, who demands the Count Orlov diamond from the royal sceptre as ransom. Central question: Can the detective locate and rescue the boy before Lind executes him as he did his previous victim?",
+    "value": "Kidnapping for ransom: four-year-old Grand Duke Mikhail Georgievich is snatched during a staged bandit attack on a stroll; Dr Lind demands the Count Orlov diamond from the coronation sceptre. Central question: who is Lind, where is the boy held, and can the ransom be stalled and the child recovered before the coronation? (The boy is ultimately murdered.)",
     "confidence": "high",
-    "quote": "A ransom letter arrives from Dr Lind...The letter demands the handover of the Count Orlov, an enormous diamond on the royal sceptre"
+    "quote": "A ransom letter arrives from Dr Lind... The letter demands the handover of the Count Orlov, an enormous diamond on the royal sceptre"
   },
   "victim": {
-    "value": "Mikhail, four-year-old son of Grand Duke Georgii Alexandrovich. Killable because he is a high-value royal hostage whose abduction creates maximum leverage for extortion and whose death would devastate the Grand Duke.",
+    "value": "Mikhail ('Mika') Georgievich, four-year-old son of Grand Duke Georgii Alexandrovich \u2014 targeted because he is a Romanov, giving the crown no choice but to pay priceless treasure to avoid dynastic scandal",
     "confidence": "high",
-    "quote": "four-year old Mikhail has been snatched in the confusion. A ransom letter arrives from Dr Lind, an international criminal"
+    "quote": "'Poor little Mika,' he said... 'A bright angel fiendishly done to death by heinous criminals.'"
   },
   "closed_world": {
-    "value": "Moscow during the imperial coronation (20 May), with a one-week deadline imposed by Fandorin's ransom negotiation strategy. The royal court, city, and surrounding regions form a bounded investigative space with temporal pressure.",
-    "confidence": "high",
-    "quote": "Grand Duke Georgii Alexandrovich arrives in Moscow for the coronation...Fandorin suggests that the value of the stone is paid in 'installments', buying the party a week"
+    "value": "Moscow during the 1896 coronation week \u2014 the Green House residence of the visiting grand ducal household, its servants, English guests and court police, all under a strict deadline and enforced secrecy",
+    "confidence": "medium",
+    "quote": "The coronation, Ziukin, is the day after tomorrow. And then we shall have to give Doctor Lind the Orlov and the game will be over."
   },
   "culprit_and_motive": {
-    "value": "Dr. Lind, international criminal and Fandorin's nemesis (Moriarty figure). Motive: extortion of the Count Orlov diamond; revenge/rivalry with Fandorin; demonstrated pattern of murdering abductees.",
-    "confidence": "high",
-    "quote": "Dr Lind, an international criminal and the Moriarty to Fandorin's Sherlock Holmes...or will the Grand Duke's son meet with the same gruesome fate as Lind's last abductee"
+    "value": "Doctor Lind, an international criminal mastermind (Fandorin's Moriarty), aided by an insider within the household; motive is the extortion of the crown jewels, above all the Orlov diamond",
+    "confidence": "medium",
+    "quote": "a ransom letter arrives from Dr Lind, an international criminal and the Moriarty to Fandorin's Sherlock Holmes"
   },
   "resolution": {
-    "value": null,
+    "value": "Fandorin's deductive scheme \u2014 paying the ransom in instalments and using Mlle Declique's memory of the boarded-up carriage route to locate Lind's lair \u2014 leads to a fatal confrontation; the jewels are recovered and returned to the tsarina, but the child dies and the affair is hushed up; Ziukin is rewarded and promoted",
+    "confidence": "medium",
+    "quote": "'In exchange for the contents of a certain casket, which, thanks to you, have been returned to the tsarina'"
+  },
+  "investigator": {
+    "value": "Dual lens: Erast Petrovich Fandorin, the gentleman detective given supreme authority over the case, narrated by Afanasii Ziukin, the household butler \u2014 an insider observer and unwilling participant",
+    "confidence": "high",
+    "quote": "the overall control of operations directed against Lind has been entrusted to me"
+  },
+  "suspect_architecture": {
+    "value": "A closed household of the Green House court: butler-narrator Ziukin, his rival deputy Somov (who takes over his duties), the governess Mademoiselle Declique (an insider with access to the children), Lieutenant Endlung, the English guests Mr Carr and butler Freyby (Freyby held under serious suspicion and interrogated), plus court police figures Karnovich and Lasovsky \u2014 all set against the unseen Doctor Lind, who must have an accomplice within the household.",
+    "confidence": "medium",
+    "quote": "He had been held under serious suspicion, subjected to hours of interrogation"
+  },
+  "red_herring": {
+    "value": "Misdirection of suspicion onto the English party \u2014 Freyby the phlegmatic butler and the murdered Mr Carr \u2014 and onto Somov's suspiciously smooth assumption of Ziukin's duties; also Fandorin himself is cast as untrustworthy rival by the jealous narrator.",
+    "confidence": "medium",
+    "quote": "he would take back to England a lead coffin containing the body of Mr Carr"
+  },
+  "clue_fairness": {
+    "value": "Clues are delivered through the butler-narrator's obsessively detailed diary-by-date structure (6 May\u201320 May), so the reader sees the same route details, ransom instalments and household observations Fandorin uses \u2014 e.g. the carriage route counted from Obolensky/Olsufievsky Lane is explained aloud before it is used.",
+    "confidence": "medium",
+    "quote": "the last corner that our scout definitely remembered was the junction of Obolensky Lane and Olsufievsky Lane"
+  },
+  "social_world": {
+    "value": "Imperial Russian court hierarchy at the 1896 coronation: precedence quarrels between grand dukes and the governor-general, protocol slights at the station, ladies-in-waiting and butlers ranked by livery, and the monarchy's reputation valued above a child's life; power shifts when Fandorin, a private individual, is given command over the court police.",
+    "confidence": "high",
+    "quote": "the honour and reputation of the Romanovs has been saved. This appalling event has not become public"
+  },
+  "alibi": {
+    "value": "No explicit alibi construction is given in the excerpt; the nearest equivalents are Somov's account of covering Ziukin's duties and Freyby's endurance of interrogation without contradiction.",
     "confidence": "low",
     "quote": null
   },
-  "investigator": {
-    "value": "Erast Petrovich Fandorin, elegant gentleman detective accompanied by his oriental sidekick Masa. The narrative opens with his apparent death but continues his investigation. Point-of-view narrator is a subordinate observer (butler/attendant) who witnesses events.",
+  "reveal_mechanic": {
+    "value": "Physical tracking of the ransom hand-over: the governess Emilie's exceptional memory used to count the boarded-up carriage's turns from a fixed corner, with Fandorin in rag-and-bone-man disguise ringing a bell as the signal to begin counting \u2014 a demonstrable, reproducible method rather than assertion.",
     "confidence": "high",
-    "quote": "The passing heroes introduce themselves as Fandorin and Masa...Our inimitable hero returns in a tantalisingly closely-matched battle of wills"
+    "quote": "I shall ring a bell, and that will be the signal for Emilie."
+  },
+  "media_and_audience": {
+    "value": "The crime is deliberately suppressed rather than publicised: the kidnap and murder of the grand duke's son is kept from the public to protect the dynasty, while court gossip, rumour about royalty and the Khodynka Field disaster form the unofficial narrative channel.",
+    "confidence": "high",
+    "quote": "This appalling event has not become public, and that is the most important thing."
+  },
+  "investigator_wound": {
+    "value": "Fandorin is haunted by a previous Doctor Lind abductee he failed to save, and the case again ends in the child's death; the narrator Ziukin's parallel wound is wounded professional pride, displacement by Somov, and jealousy over Mademoiselle Declique and 'Erast'.",
+    "confidence": "high",
+    "quote": "meet with the same gruesome fate as Lind's last abductee - whom Fandorin could do nothing to save?"
+  },
+  "victims_enemies": {
+    "value": "The victim is the Romanov house itself, embodied in four-year-old Mikhail Georgievich, taken not from personal grievance but as leverage against a dynasty; the family's internal enmities form the texture \u2014 Georgii Alexandrovich's coolness with his brother Simeon Alexandrovich, the governor-general of Moscow, and the Grand Duchess Ekaterina Ioannovna's poisoned relations with the young empress after the Christmas Ball insult. Doctor Lind, an international criminal and 'the Moriarty to Fandorin's Sherlock Holmes', is the external enemy with a personal history against Fandorin, whose previous abductee he killed.",
+    "confidence": "high",
+    "quote": "a certain coolness in relations between His Highness Georgii Alexandrovich and His Highness Simeon Alexandrovich"
+  },
+  "suspect_wounds": {
+    "value": "Almost everyone in the Green House carries a private shame that makes them behave like the guilty party. Butler Afanasii Ziukin is wounded by displaced pride \u2014 beaten, relieved of his duties by his subordinate Somov, and eaten by jealousy of Fandorin over Mademoiselle Declique, so he conceals and improvises. Xenia Georgievna hides an affaire de c\u0153ur that makes her secretive and evasive. Mr Freyby, the English butler, is left masterless and suspiciously phlegmatic. Somov's eager competence at taking over the household reads as opportunism.",
+    "confidence": "medium",
+    "quote": "So I had been relieved of my duties, beaten (deservedly, which was the most painful thing) and humiliated in front of Mademoiselle Declique"
+  },
+  "unreliable_frame": {
+    "value": "The entire narrative is the diary of Afanasii Stepanovich Ziukin, House Master \u2014 a servant whose code of discretion makes him a systematic suppressor of information. He refuses to record 'gossip', declines to be confidant to Xenia's romance, describes events he 'did not understand', and colours every judgement of Fandorin through wounded professional pride and sexual jealousy over Emilie Declique. He even doubts his own perceptions ('Or did I only mean to shout?'). Mademoiselle Declique herself, the alluring governess whose 'magnificent memory' is the plot's instrument, is a second account that cannot be taken at face value.",
+    "confidence": "high",
+    "quote": "\u2018Erast Petrovich!\u2019 I shouted... Or did I only mean to shout?"
+  },
+  "setting_as_constraint": {
+    "value": "Moscow during the 1896 coronation: a fixed, unmovable ceremonial calendar (6\u201320 May) creates an absolute deadline \u2014 the Orlov diamond must be on the sceptre for the rite, so the ransom must be paid in 'installments' to buy a week. Court protocol, dynastic secrecy and the imperative that scandal must never become public forbid an open police search; jurisdiction is stripped from the court police and high police master and handed to a private individual. Geography constrains the search: Lind's boarded-up carriage route is bounded to a fifteen-minute radius from Obolensky and Olsufievsky Lanes.",
+    "confidence": "high",
+    "quote": "\u2018The coronation, Ziukin, is the day after tomorrow. And then we shall have to give Doctor Lind the Orlov and the game will be over.\u2019"
+  },
+  "evidence_type": {
+    "value": "Testimonial-sensory evidence turned quasi-forensic: the blindfolded governess's counted turns and remembered route inside a boarded-up carriage, triangulated from a fixed known corner and a signalled start (Fandorin disguised as a rag-and-bone man ringing a bell). Supported by documentary evidence (Lind's ransom letters) and the material trail of the ransom jewels from Her Majesty's coffret.",
+    "confidence": "high",
+    "quote": "\u2018Emilie will start her count at the corner of Obolensky Lane and Olsufievsky Lane... Mademoiselle... will certainly not lose count.\u2019"
+  },
+  "false_suspect": {
+    "value": "Suspicion is directed outward at the household staff and guests rather than at the true confederate: Mr Freyby, the English butler, is 'held under serious suspicion, subjected to hours of interrogation' after the death of his master Mr Carr, yet proves innocent; Masa is arrested and locked up; Ziukin himself is beaten and disgraced. The excerpt implies the real betrayal lay closer to the family than these obvious targets.",
+    "confidence": "medium",
+    "quote": "He had been held under serious suspicion, subjected to hours of interrogation, and now... a lead coffin containing the body of Mr Carr."
+  },
+  "technical_detail": {
+    "value": "The counted-carriage triangulation: a boarded-up carriage denies sight, so the route must be reconstructed from an exhaustively trained memory of turns, counted from a corner verified with absolute certainty, cued by an audible signal that will not alarm the driver \u2014 hence disguise and a street-hawker's cry ('Any old rags \u2013 kopeck a time!'). Also the mechanics of ransom-by-instalment: valuing the Orlov and paying it out in successive imperial jewels (the tiara of yellow diamonds and opals) to buy investigative time.",
+    "confidence": "high",
+    "quote": "\u2018I shall see the carriage that they put her in... When I see the carriage approaching, I shall ring a bell, and that will be the signal for Emilie.\u2019"
+  },
+  "moral_ambiguity": {
+    "value": "The crime's horror is matched by the dynasty's own calculus: the Emperor consoles the bereaved father by declaring that Mika's death matters less than the fact that 'the honour and reputation of the Romanovs has been saved' and the scandal stayed private \u2014 the state commits its own moral crime of indifference. Ziukin, rewarded with rank, a diamond snuffbox and ten thousand roubles, feels only that he has lost everything, and his own jealous, prideful interferences arguably doomed the child. Lind's confederate acts from love and thwarted passion rather than pure greed, which is why the ending is elegy rather than triumph.",
+    "confidence": "high",
+    "quote": "\u2018We were not able to save him. But the honour and reputation of the Romanovs has been saved.\u2019"
   },
   "_meta": {
     "source": "mystery_database/new_sources/The Coronation - Boris Akunin.pdf",
     "filename": "The Coronation - Boris Akunin.pdf",
-    "text_len": 6037,
+    "text_len": 24037,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
-    "title": "The Coronation - Boris Akunin"
+    "title": "The Coronation - Boris Akunin",
+    "model": "claude-opus-5"
   }
 }

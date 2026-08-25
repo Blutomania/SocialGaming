@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Two murders: Rachel Avery drowned in bathtub after electrical shock from dropped radio; Dean Avery beaten to death with tire iron, made to look like suicide. Central question: who killed Rachel and why, and how are the deaths connected?",
+    "confidence": "high",
+    "quote": "He knocked him cold all right, but Avery came to on the way to the oven. There was a row, and Thurman Goodin beat him over the head with some tool he'd brought along."
+  },
+  "victim": {
+    "value": "Rachel Avery: free-spirited woman trapped in loveless marriage to Dean Avery, who wanted to control her. She sought escape and threatened to expose her affair with Thurman Goodin, making her a liability to her lover.",
+    "confidence": "high",
+    "quote": "Rachel was poetry and music. He put her in his house and wanted to own her, but it was never in her to be true, to him or to another. She flew freely and sang magnificently, and he killed her."
+  },
+  "closed_world": {
+    "value": "A small American town where Joseph Cameron Bane, the famous author, has lived and set all his novels. The town is tightly bound by social relationships and gossip; everyone knows everyone else's history and secrets.",
+    "confidence": "high",
+    "quote": "I rode the train there and watched the scenery change until I was in the country he had written about...all of them set in the same small American town."
+  },
+  "culprit_and_motive": {
+    "value": "Thurman Goodin, the gas station owner. Motive: Rachel threatened to expose their affair to both her husband and Goodin's wife. After killing Rachel, he must kill Dean Avery when Avery discovers the truth, to prevent exposure and criminal liability.",
+    "confidence": "high",
+    "quote": "She threatened him, that she would tell her husband, that she would tell his wife. So he went to her one afternoon and knocked her unconscious...and then he held her head under water until she drowned."
+  },
+  "resolution": {
+    "value": "Thurman Goodin is caught red-handed attempting to murder Dean Avery. Neighbors hear the commotion and apprehend him. Under police interrogation, Goodin confesses to both murders. He is jailed in Harmony Falls and will likely hang.",
+    "confidence": "high",
+    "quote": "of course he told them everything...They've put Goodin in jail in Harmony Falls, and with two bloody murders like that, he's sure to hang."
+  },
+  "investigator": {
+    "value": "Tim Riordan, the Irish narrator hired as companion to dying author Joseph Cameron Bane. A passive observer and listener who becomes Bane's proxy investigator, gathering intelligence in town based on Bane's deductions and literary knowledge of the community.",
+    "confidence": "high",
+    "quote": "I was his companion. I listened when he spoke, talked when he wanted conversation, and was silent when silence was indicated...Perhaps you'll go to town without me. You notice things well enough."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "With a Smile for the Ending",
+    "author": "LAWRENCE BLOCK",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 35,
+    "story_count": 63
+  }
+}

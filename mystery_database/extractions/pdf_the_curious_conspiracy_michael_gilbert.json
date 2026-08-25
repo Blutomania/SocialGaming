@@ -1,0 +1,124 @@
+{
+  "crime": {
+    "value": "Organized pickpocketing/larceny by a gang that stage-manages public disturbances (fairground scuffle, football riot, fake fire) to steal wallets and bags; central question: who is the elusive principal operator and how can the planned diversions be anticipated?",
+    "confidence": "medium",
+    "quote": "\"My wallet,\" said Hubert faintly. \"More than fifty quid, in notes\""
+  },
+  "victim": {
+    "value": "Crowd members targeted for carrying cash in public \u2014 notably Hubert, carrying over \u00a350 not all his own, and Councillor Hayes's soft-hearted wife carrying Ratepayers' Association funds",
+    "confidence": "medium",
+    "quote": "She was on her way to the bank to put away some of the funds of the Ratepayers' Association"
+  },
+  "closed_world": {
+    "value": "The Highside/Q Division district of London \u2014 fairground, High Street, football ground, ratepayers' meetings \u2014 worked by a single roving gang",
+    "confidence": "medium",
+    "quote": "In the files of Q Division, who were chiefly favoured with their attentions, a considerable dossier began to accumulate."
+  },
+  "culprit_and_motive": {
+    "value": "A team of at least three thieves led by 'Slippery Sam', a tall thin man with a clown's face and possible wig, who acts as the actual operator; motive is profit from staged confusion",
+    "confidence": "medium",
+    "quote": "He called him Slippery Sam, and, for want of any more official identification, the name passed into general use."
+  },
+  "resolution": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "investigator": {
+    "value": "Detective Petrella, a police officer of Q Division working under Superintendent Haxtell; one of few to have seen the principal operator close up",
+    "confidence": "high",
+    "quote": "\"I'm a police officer,\" said Petrella, with great clarity"
+  },
+  "suspect_architecture": {
+    "value": "In the 'Freedom of the Press' fragment, a gang of at least three differentiated operators: the little sparrow-like man who provokes the victim over an air-gun, the big man (Toppy-type) who grapples to draw eyes off the ball, and the tall thin man with the cow's-lick quiff who is the actual pickpocket; Councillor Hayes, the police-baiting Ratepayers' Chairman and Treasurer who replaced the lost funds 'out of my own pocket', hovers as an implied further suspect.",
+    "confidence": "medium",
+    "quote": "\"There seem to have been three men in it at least,\" said Petrella."
+  },
+  "red_herring": {
+    "value": "Staged public spectacles engineered purely as misdirection \u2014 the manufactured football-ground riot, the heckled meeting with the lights turned out, the man on a shop roof in woollen underclothes and balaclava \u2014 each drawing crowds and police attention while wallets are lifted; also the thin man's too-good hair, probably a wig, as a false identifying feature.",
+    "confidence": "high",
+    "quote": "who arranged for a man to appear on the roof of a shop in the High Street, dressed only in woollen underclothes and a balaclava helmet"
+  },
+  "clue_fairness": {
+    "value": "Clues are shown to the reader in scene at the same moment Petrella registers them: the crowd scuffle is narrated in full before the post-mortem analysis, and Petrella's doubt about the quiff being a wig is voiced aloud, as is the detail of Mrs Hayes setting her bag down and the Association funds being personally replaced.",
+    "confidence": "medium",
+    "quote": "\"I rather think he may have been wearing a wig. I remember thinking at the time that his hair looked a little too good to be true.\""
+  },
+  "social_world": {
+    "value": "London's Highside/Q Division policing world under pressure from above and outside: 'higher authority' issuing sarcastic minutes, a local Councillor who makes a career of keeping officials on their toes (and sits on the board of the local paper), and ratepayers' funds and public opinion as leverage. The first story mirrors this with the small-firm solicitors' hierarchy \u2014 partners, articled clerk, clerks, cashier, sergeant \u2014 and one-man-client dependence on Jim Collard.",
+    "confidence": "high",
+    "quote": "\"We're a one-man firm with a one-man client.\""
+  },
+  "alibi": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "reveal_mechanic": {
+    "value": "Pattern recognition across accumulated files rather than a single confession: the escalating, over-planned 'manufactured chances' form a discernible signature in the Q Division dossier, combined with Petrella's eyewitness memory of the operator's sardonic clown's face and twinkling eyes ('Slippery Sam') \u2014 the excerpt cuts off before the demonstration completes.",
+    "confidence": "medium",
+    "quote": "as the coups became more ambitious, growing with their success, a pattern became discernible."
+  },
+  "media_and_audience": {
+    "value": "The press is an active force: the Highside Mercury, a weekly of broadly liberal views on whose board Councillor Hayes sits, runs a leader attacking the police, while the crimes themselves are performed for audiences \u2014 football partisans, Christmas shoppers, public meetings \u2014 the gang exploiting spectatorship itself.",
+    "confidence": "high",
+    "quote": "the press began to sit up and take notice."
+  },
+  "investigator_wound": {
+    "value": "Petrella's vulnerability is his sense of failure as the one policeman who saw the operator up close and yet let him slip \u2014 he is blamed to his face for not intervening sooner, and has 'long grown used to the fact that one of the functions of a policeman was to serve as a scapegoat'; a careless sarcastic remark about the ratepayers further exposes his self-doubt.",
+    "confidence": "high",
+    "quote": "\"It was a stupid thing for me to say,\" said Petrella later to Superintendent Haxtell. \"In fact I don't know why I did.\""
+  },
+  "victims_enemies": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "suspect_wounds": {
+    "value": "Councillor Hayes's well-known antagonism toward the police (rooted in parking summonses) and his sole custody of Ratepayers' Association funds as Chairman and Treasurer make his wife's convenient 'theft' look self-serving; Petrella blurts a suspicion he immediately regrets.",
+    "confidence": "medium",
+    "quote": "\"That's bad luck on the ratepayers,\" said Petrella."
+  },
+  "unreliable_frame": {
+    "value": "Accounts are secondhand and self-interested: Hayes relays his wife's version of the bag theft, and Hubert claims a fifty-pound loss of money that 'wasn't all mine' \u2014 both narrators shading facts to their own advantage.",
+    "confidence": "medium",
+    "quote": "\"The money in the wallet wasn't all mine.\""
+  },
+  "setting_as_constraint": {
+    "value": "Crowded public Highside settings \u2014 a fairground, a football ground, a ratepayers' meeting, a Christmas shopping street \u2014 permit theft only during manufactured moments of confusion, which the gang stage-manages rather than waits for.",
+    "confidence": "high",
+    "quote": "They manufactured their own chances, stage-managing each one with zealous application."
+  },
+  "evidence_type": {
+    "value": "Testimonial/observational \u2014 Petrella's close-quarters memory of the operator's sardonic clown's face and suspiciously perfect quiff (a wig), plus the accumulating pattern in Q Division's dossier.",
+    "confidence": "medium",
+    "quote": "\"I rather think he may have been wearing a wig... his hair looked a little too good to be true.\""
+  },
+  "false_suspect": {
+    "value": "Councillor Hayes, whom Petrella momentarily implies pocketed the Ratepayers' funds, though he is honest and replaced the money himself.",
+    "confidence": "medium",
+    "quote": "\"He's a thundering nuisance but I'm sure he's quite honest.\""
+  },
+  "technical_detail": {
+    "value": "The mechanics of team pickpocketing: a small man provokes a quarrel, a large man 'intervenes' to draw eyes off the ball, and a disguised third man in a wig does the actual lifting before all melt away.",
+    "confidence": "high",
+    "quote": "\"These boys usually work in a group... Then there was the big chap who threatened to intervene\""
+  },
+  "moral_ambiguity": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "source": "/Users/egreene/SocialGaming/mystery_database/new_sources/The_Curious_Conspiracy_-_Michael_Gilbert.pdf",
+    "filename": "The_Curious_Conspiracy_-_Michael_Gilbert.pdf",
+    "text_len": 24037,
+    "protocols": [
+      "P1",
+      "P2",
+      "P3"
+    ],
+    "title": "The_Curious_Conspiracy_-_Michael_Gilbert",
+    "model": "claude-opus-5"
+  }
+}

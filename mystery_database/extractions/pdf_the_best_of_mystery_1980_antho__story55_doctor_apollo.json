@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Murder by ice-pick stabbing (32+ times); central question: why did a well-behaved, normal boy commit such a brutal killing, and is he legally/psychologically culpable?",
+    "value": "Two killings: teenager Richard Gorman stabs his mother's lover Laramer ~32 times with an icepick, then later stabs his mother to death during a sanitarium visit. The question is not whodunit (he confesses immediately) but why \u2014 what psychological mechanism drove him to act.",
     "confidence": "high",
-    "quote": "he stabbed Laramer with an icepick. What was it\u2014thirty-two times?"
+    "quote": "\u201cI\u2019m Richard Gorman, sir,\u2019 he said. \u2018I just killed a man.\u2019\u201d"
   },
   "victim": {
-    "value": "Laramer, a drunk and abusive substitute father figure who beat both Richard Gorman and his mother, displaced Gorman's idealized dead father, and usurped his place in the household.",
+    "value": "Laramer, a drunken, brutal live-in lover of Gorman's widowed mother who beat the boy and displaced him; later Mrs. Gorman herself, a promiscuous, neglectful mother whose 'dishonor' made her the target of the Orestes-pattern killing",
     "confidence": "high",
-    "quote": "he was a lush, a drunken bum and he started beating hell out of me all the time...he didn't marry her, see, but he practically lived there, moved in, took over."
+    "quote": "\u201che was a lush, a drunken bum and he started beating hell out of me all the time, but she didn\u2019t care\u201d"
   },
   "closed_world": {
-    "value": "Green Valley Manor psychiatric sanitarium, a private treatment facility where Gorman is confined and where the investigator Kessler has clinical authority and access.",
-    "confidence": "high",
-    "quote": "Green Valley Manor resembled a lovely lakeside resort. Parklike grounds contained numerous small cottages...Here conditions were ideal for the advanced treatment of those who could be saved."
+    "value": "The institutional circuit of Juvenile Detention, jail, the Lunacy Commission, and finally the enclosed grounds of Green Valley Manor private sanitarium \u2014 a controlled therapeutic world Kessler himself designed",
+    "confidence": "medium",
+    "quote": "\u201cGreen Valley Manor resembled a lovely lakeside resort. Parklike grounds contained numerous small cottages\u201d"
   },
   "culprit_and_motive": {
-    "value": "Richard Gorman killed Laramer to purge an Oedipus (later Orestes) complex rooted in unconscious hatred of his father, displaced onto Laramer; Kessler\u2014through therapy and literary suggestion\u2014catalyzes Gorman's recognition of this motive, enabling further violence.",
+    "value": "Gorman is the literal killer, but the true culprit is Dr. Kessler, whose psychoanalytic tutoring and reading list (Hamlet, Oedipus, Orestes) supplied Gorman a mythic script; Kessler's own repressed hatred of women steered the boy to matricide \u2014 he is Apollo, who commanded Orestes to kill his mother",
     "confidence": "high",
-    "quote": "I hated him because he stood for my father. And I always unconsciously hated my father, because I was always jealous of his position with mother."
+    "quote": "\u201cI hated her too, he thought. I always hated women.\u201d"
   },
   "resolution": {
-    "value": "No traditional resolution. Gorman, psychologically 'cured' by Kessler's treatment, murders his mother during a sanitarium visit. Kessler discovers the body and realizes his own misogyny enabled the killing. The mystery ends with moral/psychological ambiguity and Kessler's recognition of complicity.",
+    "value": "No legal restoration; instead a psychological revelation \u2014 Kessler discovers the second corpse and recognizes his own complicity, whispering 'my name is Apollo.' Order is not restored, it collapses.",
     "confidence": "high",
-    "quote": "It's odd, he thought, but it's the first time I ever could look upon a dead woman...I hated her too, he thought. I always hated women."
+    "quote": "\u201che whispered, \u2018Look at me, Richard. Look at me\u2014don\u2019t you know\u2014my name is Apollo. . .\u2019\u201d"
   },
   "investigator": {
-    "value": "Dr. Kessler, a senior psychiatrist investigating not crime but psychology; he seeks to understand Gorman's motive, becomes his analyst and mentor, and inadvertently becomes complicit in enabling further murder through his theoretical framework.",
+    "value": "Dr. Kessler, senior psychiatrist and head of the Mental Hygiene Clinic \u2014 an outsider to police work who investigates motive rather than identity, and is ultimately revealed as the unwitting instigator",
     "confidence": "high",
-    "quote": "I'm interested in why he did it...Such cases as Gorman's could help illuminate one of the darkest cellars of psychiatry: the psychology of action."
+    "quote": "\u201cMine can only begin now, because I\u2019m interested in why he did it.\u201d"
+  },
+  "suspect_architecture": {
+    "value": "Not a whodunit: the killer (Richard Gorman) is known and confessed from the first page. The 'cast' consists of Gorman, his psychiatrist Kessler, Lt. Reed, and Mrs. Gorman as victim-to-be; differentiation is by interpretive stance (police 'simple revenge' vs. psychiatric 'complex') rather than by means/motive/opportunity.",
+    "confidence": "high",
+    "quote": "\u201cThe kid confessed,\u201d Lt. Reed said. \u201cWhat else is there to know?\u201d"
+  },
+  "red_herring": {
+    "value": "The Oedipus complex diagnosis itself is the planted false trail \u2014 Kessler's Hamlet/patricide framework misdirects both doctor and reader from the mother-directed Orestes pattern; Gorman's gentle record and lack of delinquency reinforce the misreading.",
+    "confidence": "high",
+    "quote": "\u201cThe classical Oedipus complex. Just remember the dynamics of the complex.\u201d"
+  },
+  "clue_fairness": {
+    "value": "Fairly clued: the reader sees Gorman identify with Hamlet rather than Oedipus, fixate on the Closet Scene, quote Orestes ('thy sin destroyeth thee'), and ask to see his mother \u2014 all before the second murder.",
+    "confidence": "high",
+    "quote": "Gorman identified himself with Hamlet, rather than with Oedipus, and seemed especially intrigued by the Closet Scene."
+  },
+  "social_world": {
+    "value": "Institutional power map of psychiatry vs. law enforcement: police/D.A. want a hanging, the Lunacy Commission decides sanity, and Kessler's patronage \u2014 he co-founded Green Valley Manor and can admit charity cases \u2014 lets him move a killer from asylum to private cottage.",
+    "confidence": "high",
+    "quote": "a private sanitarium known as Green Valley Manor on which Kessler served as a part-time resident staff member"
+  },
+  "alibi": {
+    "value": "No alibi element; Gorman never denies or conceals \u2014 he walks up to a patrolman with the bloody icepick and confesses immediately.",
+    "confidence": "medium",
+    "quote": "\u201cI\u2019m Richard Gorman, sir,\u201d he said. \u201cI just killed a man.\u201d"
+  },
+  "reveal_mechanic": {
+    "value": "Psychological demonstration: Gorman explains the corrected 'Orestes complex' aloud, Kessler runs to the cottage and finds Mrs. Gorman stabbed dead, and the final proof lands when Kessler recalls that it was Apollo who commanded Orestes to kill his mother \u2014 making the analyst the instigator.",
+    "confidence": "high",
+    "quote": "\u201cLook at me, Richard. Look at me\u2014don\u2019t you know\u2014my name is Apollo. . .\u201d"
+  },
+  "media_and_audience": {
+    "value": "The crime is packaged by newspapers, police contempt ('punk', 'floozie'), neighbours' and employer's testimony to Gorman's sweetness, and above all by the legal theatre of the Lunacy Commission, which Kessler wins with jargon he privately calls 'canned language'.",
+    "confidence": "high",
+    "quote": "It was very necessary if you were to impress the Lunacy Commission."
+  },
+  "investigator_wound": {
+    "value": "Kessler's own unexamined misogyny \u2014 a divorced man with 'hostility toward women' who kept Mrs. Gorman out of the analysis, thereby steering his patient toward matricide and discovering his own hatred in the moment of horror.",
+    "confidence": "high",
+    "quote": "And then Kessler knew. I hated her too, he thought. I always hated women."
+  },
+  "victims_enemies": {
+    "value": "Laramer, the mother's live-in lover, was hated by the boy he beat, evicted, and displaced; he also beat Mrs. Gorman, and lived off the boy's factory pay. Later Mrs. Gorman herself becomes a victim, hated by her son for neglect and promiscuity \u2014 and, it emerges, quietly loathed by Kessler too.",
+    "confidence": "high",
+    "quote": "he started kicking me out of my own house and beating hell out of me. . .and he hit her too"
+  },
+  "suspect_wounds": {
+    "value": "Gorman's wound is not that he looks guilty \u2014 he confesses \u2014 but that his 'normal, well-behaved kid' record makes his guilt unbelievable. Kessler's own wound is his unexamined hostility toward women, which he suppresses and which shapes his misdiagnosis.",
+    "confidence": "high",
+    "quote": "Self-analytical work, however, seemed to reveal deeper motives, certain suggestions of hostility toward women."
+  },
+  "unreliable_frame": {
+    "value": "The story is filtered through Kessler's clinical self-assurance; he believes he is objective while steering Gorman toward a preordained Oedipal reading and deliberately excluding the mother from analysis. Gorman in turn parrots back whatever framework he is given, so his 'insights' are Kessler's own words returned.",
+    "confidence": "high",
+    "quote": "he had been carefully keeping Mrs. Gorman out of this psychoanalytical process as much as possible"
+  },
+  "setting_as_constraint": {
+    "value": "Institutional custody defines every possibility: jail, Juvenile Detention, then the asylum. Green Valley Manor's private cottages and unsupervised 5-to-7 visiting hours \u2014 a resort-like sanitarium Kessler himself helped found \u2014 created the sealed, permissive space in which Gorman could be alone with his mother.",
+    "confidence": "high",
+    "quote": "\"Visiting hours are from five to seven. You can entertain her here in your private cottage.\""
+  },
+  "evidence_type": {
+    "value": "Testimonial and documentary \u2014 the recorded interviews, psychological tests, and Kessler's voluminous brief. Ultimately literary evidence: Gorman's shift from identifying with Hamlet's Closet Scene to quoting Orestes ('Thy sin destroyeth thee') is the clue that predicts the second murder.",
+    "confidence": "medium",
+    "quote": "The small note recorder in Kessler's pocket faithfully preserved Gorman's testimony."
+  },
+  "false_suspect": {
+    "value": "No conventional false suspect; guilt is admitted at once. The displaced 'culprit' is Laramer as father-substitute \u2014 the mother's true role as target being concealed until the end, and Kessler being the unrecognized instigator, the Apollo who commanded the matricide.",
+    "confidence": "medium",
+    "quote": "he remembered who it had been who told the young noble Orestes to kill his mother"
+  },
+  "technical_detail": {
+    "value": "Psychoanalytic and legal-psychiatric technique: the Oedipus complex, irresistible impulse, and the right/wrong test of legal insanity \u2014 plus the therapeutic use of prescribed literature (Hamlet, Sophocles, Orestes), which supplies the patient with both a diagnosis and a script for the next killing.",
+    "confidence": "high",
+    "quote": "he believed in giving a patient literature that seemed to have a special application to his problem"
+  },
+  "moral_ambiguity": {
+    "value": "Kessler acts throughout from genuine compassion and scientific curiosity, saving a boy from the gallows and giving him literacy and selfhood; yet his vanity, his blind spot about women, and his prescriptive reading list make him the author of the second murder. Gorman kills believing himself cured and obedient, radiant rather than malevolent.",
+    "confidence": "high",
+    "quote": "\"I'm really well now, really purged. It wasn't complete, sir, before.\""
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Doctor Apollo",
     "author": "BRYCE WALTON",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 55,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

@@ -1,42 +1,124 @@
 {
   "crime": {
-    "value": "Murder: A dead body found concealed in a hermetically sealed deed box at a London law firm (Horniman, Birley and Craine at Lincoln's Inn). Central question: how was the victim placed in the sealed container?",
+    "value": "Murder by strangulation-style killing, the body concealed in a hermetically sealed deed box at a solicitors' firm; a second murder (Miss Chittering) follows to silence a witness. Central question: who put the body in the sealed box, and when \u2014 dating the death and breaking alibis",
     "confidence": "high",
     "quote": "a dead body is found at the firm's premises at Lincoln's Inn, concealed within a hermetically sealed deed box"
   },
   "victim": {
-    "value": "Abel (surname not given in excerpt): a partner at the law firm, described as both 'a damned good lawyer and a bloody difficult partner' and suspected of swindling a corporation. Killable due to his fraudulent activities and difficult relationships.",
-    "confidence": "medium",
-    "quote": "a damned good lawyer and a bloody difficult partner...he was prepared to swindle a large corporation to the tune of ten thousand pounds"
+    "value": "Marcus Smallbone, a small grey elderly trustee of the Ichabod Stokes Trust \u2014 killable because as co-trustee he could uncover Abel Horniman's fraudulent mortgage/embezzlement; second victim Miss Chittering, a typist who knew of the green rucksack purchase",
+    "confidence": "high",
+    "quote": "After she'd killed Smallbone\u2026 The killing of Miss Chittering and the efforts to throw the blame on to Bob."
   },
   "closed_world": {
-    "value": "Horniman, Birley and Craine law firm at Lincoln's Inn, London. A professional office environment with limited access, multiple suspects among partners and staff present at a dinner party.",
+    "value": "The offices of Horniman, Birley and Craine, solicitors, in Lincoln's Inn \u2014 a small, routine-bound firm of partners, clerks and secretaries with access to the deed boxes; deserted on a Saturday morning",
     "confidence": "high",
-    "quote": "partners and staff of Horniman, Birley and Craine...the firm's premises at Lincoln's Inn"
+    "quote": "the firm's premises at Lincoln's Inn\u2026 Lincoln's Inn is a very deserted place on Saturday morning"
   },
   "culprit_and_motive": {
-    "value": "Miss Cornel (Abel's secretary/assistant for nearly twenty years): motive appears to be protective devotion and knowledge of Abel's criminality. She 'knew from that moment what would have to be done\u2014and a week later she did it.'",
-    "confidence": "medium",
-    "quote": "she knew from that moment what would have to be done\u2014and a week later she did it...She carried his purse for him. She'd been his right hand and his left hand for nearly twenty years."
+    "value": "Miss Cornel, Abel Horniman's long-serving devoted secretary, killed Smallbone (the deep motive never fully known, apparently to protect Abel's memory and conceal his irregular mortgage fraud), then killed Miss Chittering in self-defence to avoid exposure, framing Bob Horniman",
+    "confidence": "high",
+    "quote": "\"If Miss Cornel was mad,\" he was saying, \"then I'm mad, and you're mad.\""
   },
   "resolution": {
-    "value": "Miss Cornel murdered Miss Chittering. She killed her a week after Miss Chittering publicly revealed that she (Miss Cornel) owned the green rucksack, which connected Miss Cornel to the Lincoln's Inn murder. Miss Cornel had purchased the rucksack from Miss Chittering's fianc\u00e9 at Messrs. Merryweather and Matlock, and when this connection was about to be exposed, she eliminated the witness to prevent being linked to the crime.",
+    "value": "Bohun traces the chain from the disposal of the trust papers in a green rucksack left at London Bridge Left Luggage Office; the rucksack was sold by Miss Chittering's fianc\u00e9 who recognised Miss Cornel \u2014 she is arrested and pleads guilty, escaping hanging",
     "confidence": "high",
-    "quote": "Imagine Miss Cornel's feelings when, in the secretaries' room, in front of almost the whole staff\u2014including myself\u2014Miss Chittering suggested that Miss Cornel should lend Miss Bellbas 'her big green rucksack'... Kept her head. Turned the conversation. But I reckon she knew from that moment what would have to be done\u2014and a week later she did it."
+    "quote": "this particular rucksack should have been sold to her by the head of the Camping Department of Messrs. Merryweather and Matlock"
   },
   "investigator": {
-    "value": "Henry Bohun: 'the very newest thing in solicitors', a brilliant young man with 'a flair for amateur detection' who pieces together the puzzle through observation and deduction.",
+    "value": "Dual lens: Henry Bohun, newly qualified solicitor in the firm and gifted amateur detective (insider-suspect), working alongside Chief Inspector Hazlerigg's official police investigation",
     "confidence": "high",
-    "quote": "Henry Bohun, 'the very newest thing in solicitors', a brilliant and slightly mysterious young man with a flair for amateur detection"
+    "quote": "Henry Bohun's sleuthing is an even more significant component of the book than Hazlerigg's official investigation."
+  },
+  "suspect_architecture": {
+    "value": "Partners and staff of the London law firm Horniman, Birley and Craine: senior partners Birley and Craine, junior partner Bob Horniman (son of the late Abel Horniman, whose fraudulent mortgage supplies motive), solicitor John Cove, secretaries Miss Cornel (the eventual killer, secretary of twenty years devoted to Abel), Miss Chittering (later a victim), Miss Bellbas, Anne Mildmay, plus clerks Prince, Waugh, Hoffman and Sergeant Cockerill. Amateur detective Henry Bohun and Chief Inspector Hazlerigg investigate from inside the firm.",
+    "confidence": "high",
+    "quote": "Several of those present will shortly become suspects in a murder case when a dead body is found at the firm\u2019s premises"
+  },
+  "red_herring": {
+    "value": "Multiple cultivated false trails: suspicion deliberately thrown onto Bob Horniman by the murderer, the romantic entanglements (Anne Mildmay/John Cove/Bob Horniman), Eric Duxford's secretive private business, and the bizarre-but-coincidental fact that the body's box held papers of the trust of which the victim was trustee.",
+    "confidence": "high",
+    "quote": "as full of cunningly-suggested red herrings"
+  },
+  "clue_fairness": {
+    "value": "Clues are staged openly for the reader in the finest Golden Age tradition, including two floor plans; the crucial green rucksack clue is spoken aloud in the secretaries' room in front of the whole staff and Bohun before its significance is understood.",
+    "confidence": "high",
+    "quote": "two floor plans are supplied in the finest Golden Age tradition"
+  },
+  "social_world": {
+    "value": "The hierarchical world of a Lincoln's Inn solicitors' firm in austerity post-war Britain: partners lord it over clerks and secretaries, Birley bullies subordinates dependent on their jobs, Craine paternalistically harasses female staff, and the founder Abel Horniman's 'Horniman system' and reputation govern everything, including the concealment of his fraudulent mortgage.",
+    "confidence": "high",
+    "quote": "Since Mr. Prince stood in considerable awe of Mr. Birley, and in even greater fear of losing his job, he was a very convenient whipping-block."
+  },
+  "alibi": {
+    "value": "Alibis turn on office movements and timing \u2014 Bohun compiling a list of who came in on which day \u2014 with a post-war electricity cut playing a notable part in establishing alibis; the murder was timed for a Saturday morning when Miss Cornel knew she would be alone in the office.",
+    "confidence": "high",
+    "quote": "with an electricity cut playing a notable part in the establishing of alibis"
+  },
+  "reveal_mechanic": {
+    "value": "A single thread of physical causation: the green rucksack used to remove the trust papers, deposited at London Bridge Left Luggage Office, was sold to Miss Cornel by the head of the Camping Department who was Miss Chittering's fianc\u00e9; his recognition, and Miss Chittering's public mention of 'her big green rucksack', links her to the crime and explains the second murder. Corroborated by evidence of rolling screws and left wrists; she finally pleads guilty.",
+    "confidence": "high",
+    "quote": "The single thin, unbreakable thread of causation which joined the body of Marcus Smallbone to the Left Luggage Office"
+  },
+  "media_and_audience": {
+    "value": "The firm's public reputation is the governing audience: the partners suppress details of Abel Horniman's irregular mortgage, smooth down clients' susceptibilities, and Craine funds Miss Cornel's defence \u2014 the scandal managed institutionally rather than publicly narrated.",
+    "confidence": "medium",
+    "quote": "dealt firmly with their scruples about suppressing the details of Abel\u2019s most irregular mortgage"
+  },
+  "investigator_wound": {
+    "value": "Bohun is an insider investigating his own colleagues, which forces him to trade on friendship \u2014 he deliberately perpetrates 'thundering indiscretions' and dockets confidences he never invited for future use, privately calling himself and others liars.",
+    "confidence": "medium",
+    "quote": "He hadn\u2019t invited the confidence, and he felt no scruple in docketing it for future reference."
+  },
+  "victims_enemies": {
+    "value": "Marcus Smallbone was co-trustee of the Ichabod Stokes trust and thus the one man positioned to uncover Abel Horniman's fraudulent mortgage \u2014 making him a threat to Abel's reputation and to Miss Cornel, Abel's fiercely loyal secretary of twenty years. The firm's partners and staff (Birley, Craine, Bob Horniman, John Cove) all had friction with the trust and with each other.",
+    "confidence": "medium",
+    "quote": "dealt firmly with their scruples about suppressing the details of Abel's most irregular mortgage"
+  },
+  "suspect_wounds": {
+    "value": "Bob Horniman is vulnerable through his inherited partnership resting on an almost complete lack of technical knowledge and his concealed romantic possessiveness over Anne Mildmay; Anne Mildmay is visibly 'off colour' and hiding distress; John Cove conceals a rejected courtship, a drunken night in Bow Street cells, and shady dealings with a grey little 'Mr. Brown'; Eric Duxford has private business conducted on office time.",
+    "confidence": "medium",
+    "quote": "On Bob's face... Bohun saw a look which he had no difficulty in recognising. Half of it was made up of possession and the other half of apprehension."
+  },
+  "unreliable_frame": {
+    "value": "Almost every account within the firm is partial or self-serving: the secretaries cannot agree who entered on what day, Bob Horniman lies about not caring, John Cove performs flippancy over real feeling, and Miss Cornel's calm, helpful testimony is the deepest deception of all. Bohun himself withholds and manipulates information to provoke reactions.",
+    "confidence": "high",
+    "quote": "\"Liar,\" said Henry. But this was to himself, after Bob had left the room."
+  },
+  "setting_as_constraint": {
+    "value": "The Lincoln's Inn law office of Horniman, Birley and Craine, governed by Abel Horniman's rigid filing 'system': any misplaced bundle of papers would be noticed within twenty-four hours, forcing the murderer to remove the Stokes papers from the building entirely. Lincoln's Inn is deserted on a Saturday morning; the hermetically sealed, air-tight deed boxes permit concealment for weeks; post-war electricity cuts shape the alibis.",
+    "confidence": "high",
+    "quote": "In this office they would have been noticed in twenty-four hours\u2014the fat would have been in the fire with a vengeance."
+  },
+  "evidence_type": {
+    "value": "Testimonial/physical convergence: the retail identification of a purchased object \u2014 a large green rucksack sold by the head of the Camping Department at Merryweather and Matlock, who recognised Miss Cornel and described the rucksack to his fianc\u00e9e Miss Chittering \u2014 plus the Left Luggage Office deposit at London Bridge holding the excised trust papers. Supporting physical evidence: rolling screws and the murderer's left-handedness.",
+    "confidence": "high",
+    "quote": "this particular rucksack should have been sold to her by the head of the Camping Department of Messrs. Merryweather and Matlock"
+  },
+  "false_suspect": {
+    "value": "Bob Horniman, onto whom Miss Cornel deliberately tried to throw the blame after the second killing; also broadly the partners and clerks framed by circumstance, with Anne Mildmay and John Cove drawing suspicion through concealed personal entanglements.",
+    "confidence": "high",
+    "quote": "The killing of Miss Chittering and the efforts to throw the blame on to Bob."
+  },
+  "technical_detail": {
+    "value": "Solicitors' office practice: the air-tight, hermetically sealed deed box as a body-concealing container; the ability to steal or copy a box key and select the box least likely to be opened; knowledge that unclaimed Left Luggage parcels are opened after six months; and the excision by nail scissors of every reference to the firm from account books and schedules of investments to render papers unidentifiable. Also the fraudulent 'puisne' mortgage in trust accounting.",
+    "confidence": "high",
+    "quote": "One of the boxes, so handy, so capacious, so fortunately air-tight. She selects the one least likely to be opened"
+  },
+  "moral_ambiguity": {
+    "value": "Miss Cornel killed not from greed but out of a twenty-year devotion to Abel Horniman, protecting the memory of a man she alone saw the better side of \u2014 a swindler of corporations who nonetheless never touched the pennies entrusted to him for poor old ladies. Her subsequent killing of Miss Chittering was, as Bohun frames it, self-defence: a woman fighting for her life. Craine and Bohun refuse to call her mad or monstrous.",
+    "confidence": "high",
+    "quote": "\"If Miss Cornel was mad,\" he was saying, \"then I'm mad, and you're mad. We're all of us mad.\""
   },
   "_meta": {
     "source": "mystery_database/new_sources/Smallbone_Deceased__A_London_Mystery_Brit_-_Michael_Gilbert.pdf",
     "filename": "Smallbone_Deceased__A_London_Mystery_Brit_-_Michael_Gilbert.pdf",
-    "text_len": 6037,
+    "text_len": 24037,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Smallbone_Deceased__A_London_Mystery_Brit_-_Michael_Gilbert",
-    "resolution_filled": true
+    "model": "claude-opus-5"
   }
 }

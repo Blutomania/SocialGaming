@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Serial murder by poisoning (stomach upsets) of wealthy widowers by a woman posing as a potential bride, motivated by theft of their estates. Central question: How many victims did Euphemia Barber claim, and is her descendant repeating the pattern?",
+    "value": "A historical serial-murder pattern: Euphemia Barber married lonely widowers and poisoned them ('stomach upset'), selling their property and moving on; the present-day question is whether her descendant Gerald Fowlkes is repeating the scheme against the narrator.",
     "confidence": "high",
-    "quote": "The evidence was clear, and complete...murder it quite clearly was, brutal murder, for profit."
+    "quote": "Who could tell just how many times Euphemia Barber had murdered for profit, and had never been caught?"
   },
   "victim": {
-    "value": "Henrietta Buckley: a seventy-three-year-old widow, financially comfortable, lonely, with adult children distant, and engaged in genealogical research\u2014precisely the vulnerable profile Gerald Fowlkes targets.",
+    "value": "A succession of well-to-do lonely widowers (Jason Barber, John Anderson, Jonas Miller, Edward Hopkins, Stanley Thatcher), and prospectively Henrietta Buckley herself \u2014 a wealthy, lonely 73-year-old widow.",
     "confidence": "high",
-    "quote": "At seventy-three, how many days on this earth do I have left? And how rich life is these days!"
+    "quote": "She preyed on widowers, and left them all a widow."
   },
   "closed_world": {
-    "value": "The social and epistemic closed world of genealogical research and correspondence networks, where family connections are discovered through magazines and letters, limiting external verification of identities.",
+    "value": "The small, self-selecting community of amateur genealogists and their correspondence via the Genealogical Exchange, narrowing later to Henrietta's Beacon Hill house shared with Gerald.",
     "confidence": "medium",
-    "quote": "The Genealogical Exchange had been helpful to me in the past...family trees do interlock"
+    "quote": "An unscrupulous man, preying on well-to-do widows, could find no better introduction than a common interest in genealogy."
   },
   "culprit_and_motive": {
-    "value": "Gerald Fowlkes (alias or real name unknown), descendant or follower of Euphemia Barber's method, preys on wealthy widows through genealogical connection, courting them to gain access to their estates via inheritance or murder made to appear natural.",
+    "value": "Euphemia Barber, serial poisoner marrying for profit; and her descendant Gerald Fowlkes, a fraudulent suitor courting wealthy widows through genealogy magazines to murder them for money.",
+    "confidence": "high",
+    "quote": "found out quickly enough whether or not the intended victim was a widow... and then the courtship began"
+  },
+  "resolution": {
+    "value": "Henrietta deduces the pattern from six genealogical letters, disproves Gerald's Albany stockbroker story via a broker friend and an old telephone directory, then marries him anyway, defending herself by controlling food, travel and stairs while compiling a 'hanging tree' list of his wives willed to the library.",
+    "confidence": "high",
+    "quote": "No Gerald Fowlkes was listed in the white pages, or in the yellow pages under Stocks & Bonds."
+  },
+  "investigator": {
+    "value": "Mrs. Henrietta Rhodes Buckley, 73-year-old widow and amateur genealogist, first-person narrator and intended victim.",
+    "confidence": "high",
+    "quote": "After all, I found evidence of murder that way, didn't I?"
+  },
+  "suspect_architecture": {
+    "value": "Minimal cast: effectively two 'suspects' across two centuries \u2014 Euphemia Barber, the 18th\u201319th century serial widow who married lonely widowers and poisoned them for their property, and her presumed descendant Gerald Fowlkes, the courtly suitor who targets well-to-do widows via genealogical magazines. Secondary figures (son Tom, the correspondents) serve as witnesses/vouchers rather than suspects.",
+    "confidence": "high",
+    "quote": "Her husbands were always widowers, sure to be lonely, sure to be susceptible to a wily woman."
+  },
+  "red_herring": {
+    "value": "Gerald's meticulous, beautifully documented pedigree and his son-approved courtly respectability act as misdirection \u2014 the very perfection of his genealogical credentials is what disarms suspicion; also Tom's instant approval of him.",
+    "confidence": "medium",
+    "quote": "Pedigree charts, photostats of all sorts of records, a running history typed very neatly on bond paper"
+  },
+  "clue_fairness": {
+    "value": "Fair play maintained: the reader sees the same six Exchange letters the narrator reads, each with the identical pattern (widower husband, death by 'stomach upset' two years on, widow sells property and moves), plus Gerald's unverified Albany stockbroker claim, before the narrator draws her conclusion.",
+    "confidence": "high",
+    "quote": "Stanley Thatcher died, of a stomach upset, in 1821. The widow sold his property, and moved on."
+  },
+  "social_world": {
+    "value": "Genteel Boston widowhood: Beacon Hill/Newbury Street respectability, inherited income, breeding versus new money, dispersed grown children, and the amateur genealogical-society network of lonely, leisured, financially comfortable women \u2014 a patronage-by-correspondence world the predator exploits.",
     "confidence": "high",
     "quote": "An unscrupulous man, preying on well-to-do widows, could find no better introduction than a common interest in genealogy."
   },
-  "resolution": {
-    "value": "Henrietta discovers Gerald's deception by cross-referencing letters about Euphemia's multiple marriages and husbands' deaths, verifies his false stockbroker identity, and chooses to marry him anyway while remaining vigilant and documenting his potential future crimes for posthumous exposure.",
+  "alibi": {
+    "value": "Gerald's alibi is biographical rather than temporal: a claimed identity as a retired Albany, New York stockbroker and childless widower \u2014 demolished when a broker's directory and the 1946 Albany telephone book show no such man.",
     "confidence": "high",
-    "quote": "It is a list of Gerald's wives. It is in with my genealogical files, which I have willed to the Boston library."
+    "quote": "no such individual was listed!"
   },
-  "investigator": {
-    "value": "Mrs. Henrietta Buckley, the intended victim herself\u2014an amateur genealogist who reconstructs historical serial murders through archival research and then becomes a conscious counter-investigator monitoring her own would-be murderer.",
+  "reveal_mechanic": {
+    "value": "Documentary pattern-matching: independent genealogical correspondents' records, cross-referenced, expose a repeating marriage-poisoning-sale cycle; then archival verification (broker directory and old phone book) proves Gerald's autobiography false.",
     "confidence": "high",
-    "quote": "I am gradually compiling another sort of tree...One might facetiously call it a hanging tree."
+    "quote": "I read the six letters, and then I simply sat limp at the desk, staring into space, and watched the monstrous pattern"
+  },
+  "media_and_audience": {
+    "value": "No press involvement; the crime is invisible to institutions \u2014 deaths recorded innocuously as 'stomach upset' and genealogy dismissed as a silly hobby. The narrator doubts police would believe her, and her private 'hanging tree' file willed to the Boston library is the only future audience.",
+    "confidence": "medium",
+    "quote": "Could I even call the police? I was sufficiently convinced myself, but could I possibly convince anyone else?"
+  },
+  "investigator_wound": {
+    "value": "Henrietta's loneliness, wounded pride, and dread of drabness: a seventy-three-year-old nine-year widow whose children are distant, whose companionship-hunger is the exact vulnerability the killer targets \u2014 so she chooses to marry him rather than return to empty days.",
+    "confidence": "high",
+    "quote": "how could I return to the drabness of my days before Gerald had come to bring gaiety and companionship"
+  },
+  "victims_enemies": {
+    "value": "The victims are lonely widowers (and, in Gerald's case, well-to-do widows) whose only 'enemy' is the spouse they trusted \u2014 Euphemia Barber married a succession of widowers who each died of 'a stomach upset' two years later; Gerald Fowlkes courts susceptible widows like Henrietta for their money.",
+    "confidence": "high",
+    "quote": "Her husbands were always widowers, sure to be lonely, sure to be susceptible to a wily woman."
+  },
+  "suspect_wounds": {
+    "value": "Henrietta's own wound \u2014 nine years of widowhood, absent children, loneliness and wounded pride \u2014 is exactly what makes her vulnerable and what the crime activates; Gerald's charm exploits it.",
+    "confidence": "high",
+    "quote": "wasn't I a widow, lonely and susceptible? And wasn't I financially well off?"
+  },
+  "unreliable_frame": {
+    "value": "Two layers: Gerald's entirely fabricated autobiography (Albany stockbroker, childless widower), and Henrietta's own chatty, digressive first-person narration which withholds her decision until after she reveals she married him anyway.",
+    "confidence": "high",
+    "quote": "no Gerald Fowlkes was listed in the white pages, or in the yellow pages under Stocks & Bonds."
+  },
+  "setting_as_constraint": {
+    "value": "The domestic house itself becomes the battleground: Henrietta constrains the murder options by banning Gerald from the kitchen, refusing trips, and closing off the second story and its stairs; Gerald in turn is constrained to methods that look natural or accidental.",
+    "confidence": "high",
+    "quote": "we've closed off the second story of our home... I felt I was getting a little old for climbing stairs."
+  },
+  "evidence_type": {
+    "value": "Documentary/archival: genealogical correspondence, marriage, birth and death records, plus a 1946 Albany telephone directory and a stockbroker listing directory that disprove Gerald's identity.",
+    "confidence": "high",
+    "quote": "I read the six letters, and then I simply sat limp at the desk, staring into space, and watched the monstrous pattern"
+  },
+  "false_suspect": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "technical_detail": {
+    "value": "Genealogical research method \u2014 cross-matching family trees via the Genealogical Exchange \u2014 is both the predator's hunting technique and the tool that exposes him; scattered descendants each hold one death record whose pattern (widower + 'stomach upset' + property sold) only aggregates through the hobby.",
+    "confidence": "high",
+    "quote": "An unscrupulous man, preying on well-to-do widows, could find no better introduction than a common interest in genealogy."
+  },
+  "moral_ambiguity": {
+    "value": "Henrietta chooses to marry her would-be murderer rather than return to drab loneliness or admit her foolishness \u2014 she trades safety for excitement and companionship, and quietly prepares a posthumous trap, making the victim herself a calculating player.",
+    "confidence": "high",
+    "quote": "And how rich life is these days! ... Spiced with the thrill of danger, the excitement of cat and mouse"
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Never Shake a Family Tree",
     "author": "DONALD E. WESTLAKE",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 17,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

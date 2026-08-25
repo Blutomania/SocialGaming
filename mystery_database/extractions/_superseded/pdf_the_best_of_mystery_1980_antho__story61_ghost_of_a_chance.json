@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Death by accident disguised as natural causes. Michael Doyle's wife Sarah dies when a ghost hoax meant to frighten her into a fatal heart attack instead causes Doyle's horse to bolt, throwing him fatally against a boulder. Central question: Was this murder, accident, or poetic justice?",
+    "confidence": "high",
+    "quote": "the frightened animal bolted, throwing Doyle from the buggy to strike a roadside boulder and split open his skull like an eggshell."
+  },
+  "victim": {
+    "value": "Michael Doyle. An unfaithful husband infatuated with Molly Brennan who conspires to murder his wife Sarah through psychological shock, but dies in the attempted crime instead.",
+    "confidence": "high",
+    "quote": "he had jumped from behind the tombstone and so spooked Michael Doyle's mare that the frightened animal bolted, throwing Doyle from the buggy"
+  },
+  "closed_world": {
+    "value": "County Fermanagh, specifically the small rural town of Aughnacloy and surrounding countryside including Jellicoe's farm, Thompson's Mill, the Cat and Fiddle pub, and the cemetery outside town. A tight-knit community where everyone knows everyone.",
+    "confidence": "high",
+    "quote": "In all of County Fermanagh you would likely find no citizen less superstitious than Michael Doyle."
+  },
+  "culprit_and_motive": {
+    "value": "Michael Doyle (acting with Molly Brennan). Motive: desire to free himself from his wife Sarah to marry the beautiful barmaid Molly. He plans to frighten Sarah to death exploiting her fear of ghosts, believing her weak heart will fail.",
+    "confidence": "high",
+    "quote": "he could do it; he had to do it...A scare; a sudden terrible fright...Sarah believes in spirits; she's deathly afraid of sometime meeting up with a ghost."
+  },
+  "resolution": {
+    "value": "None presented in excerpt. The crime is revealed through narrative exposition: Doyle's plan backfired fatally when his horse bolted at Molly's ghost performance, killing Doyle instead of Sarah. Molly's guilt and shock are shown, but no official investigation or legal resolution occurs.",
+    "confidence": "low",
+    "quote": "The experience so unnerved her she was forced to take to her bed for a week."
+  },
+  "investigator": {
+    "value": "None. This is a tragedy of circumstance told from omniscient narrative perspective, not a detective mystery. The reader witnesses Doyle's thoughts and the ironic outcome, but no investigator uncovers the truth.",
+    "confidence": "low",
+    "quote": null
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 10576,
+    "protocols": [
+      "P1"
+    ],
+    "title": "Ghost of a Chance",
+    "author": "CARROLL MAYERS",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 61,
+    "story_count": 63
+  }
+}

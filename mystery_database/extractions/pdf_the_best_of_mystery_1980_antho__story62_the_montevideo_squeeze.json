@@ -1,45 +1,129 @@
 {
   "crime": {
-    "value": "Extortion and protection racket scheme targeting Montevideo taxi drivers, implemented through staged violence (cab bombing, brake tampering, assault) to coerce payment; central question: how will the taxi association respond to threats from 'The Big Ones'?",
+    "value": "A fake protection racket: an invented criminal syndicate ('The Big Ones') extorts a 5% dues increase from the Montevideo taxi drivers' union, backed by staged 'accidents' \u2014 a bombed cab, sabotaged brakes, sugar in a fuel tank, a self-inflicted knife wound. Central question posed to the drivers: who are The Big Ones and can they be resisted? (Reader question: who is really behind it?)",
     "confidence": "high",
-    "quote": "Each member of your association will pay The Big Ones, through me, a small percentage of his earnings. In return. The Big Ones will see to it that nothing of a violent nature happens to your taxi drivers"
+    "quote": "\"Protection, you fool. The Big Ones are offering to protect you from the many accidents that could easily happen to you.\""
   },
   "victim": {
-    "value": "Montevideo Taxicab Drivers Association membership (hundreds of drivers); vulnerable because they are economically dependent on daily earnings and geographically dispersed, making collective defense difficult",
+    "value": "The rank-and-file taxi drivers \u2014 Diego Camero (cab blown up), Pepa Lopez (brakes cut), Joaquin Celestinos (blackjacked, tank sugared) \u2014 chosen as expendable demonstrations because they were trusting fellow members; ultimately the whole membership, milked monthly. Later victim: Mano\u00ebl the actor, killed for demanding a bigger cut.",
     "confidence": "high",
-    "quote": "How will he now provide for his family? Diego has twelve children, Fernando. And only one good arm."
+    "quote": "\"Diego Camero's cab was blown up this morning... How will he now provide for his family?\""
   },
   "closed_world": {
-    "value": "Montevideo taxi driver community\u2014a bounded professional association with shared infrastructure, meeting spaces, and economic interdependence; drivers cannot escape the jurisdiction or avoid the threat",
+    "value": "The Montevideo Taxicab Drivers Association \u2014 its shabby headquarters above a sidewalk cafe off Plaza Independencia, its three officers, and the city's cab ranks, casino and waterfront; police excluded by the threat of informers.",
     "confidence": "high",
-    "quote": "The Montevideo Taxicab Drivers Association... A powerful brotherhood with hundreds of members"
+    "quote": "\"the shabby room above a sidewalk cafe that serves us as permanent union headquarters\""
   },
   "culprit_and_motive": {
-    "value": "Fernando Quintana (taxi secretary) and Mano\u00ebl (out-of-work actor), who engineered the entire 'Big Ones' deception to extort monthly protection payments; motive is financial gain\u2014'a regular monthly income, a delicious succession of small fortunes'",
+    "value": "Fernando Quintana, the association's own secretary and narrator, with Mano\u00ebl \u2014 a deported-risk bit-player actor working illegally as a croupier \u2014 hired to impersonate the Big Ones' emissary. Motive: a perpetual monthly income skimmed from his fellow drivers' dues, split 75/25 (later reversed under blackmail).",
     "confidence": "high",
-    "quote": "we have, instead, a regular monthly income, a delicious succession of small fortunes, one a month, to be enjoyed for years to come"
+    "quote": "\"Twenty-five percent for you and seventy-five for me. That was our agreement.\""
   },
   "resolution": {
-    "value": "No resolution present in excerpt. The scheme succeeds; the membership votes to pay, and Mano\u00ebl demands a renegotiated split (75/25 instead of 75/25). The text ends with Fernando planting explosives in Mano\u00ebl's car, suggesting violent elimination of the co-conspirator.",
+    "value": "No official justice: the fraud succeeds, the union votes the dues increase and passes it to fares. 'Order' is restored only by Fernando silencing his blackmailing accomplice \u2014 wiring plastic explosive to Mano\u00ebl's Volvo ignition.",
     "confidence": "high",
-    "quote": "I went out and hunted up his battered Volvo in the Carasco parking lot and wired enough plastic explosive under its dashboard to blow a dozen Volvos and their occupants into tiny bits"
+    "quote": "\"wired enough plastic explosive under its dashboard to blow a dozen Volvos and their occupants into tiny bits\""
   },
   "investigator": {
-    "value": "Fernando Quintana, taxi association secretary and insider-narrator; he experiences the mystery from the perpetrator's perspective, not as an investigator but as an accomplice-narrator revealing the scheme in retrospect",
+    "value": "Fernando Quintana, first-person narrator posing as a loyal victim-officer investigating The Big Ones \u2014 in fact the criminal himself; an inverted/unreliable-narrator lens with no true detective.",
     "confidence": "high",
-    "quote": "I called Carlos Olavide, the head of our Drivers Association, from the Sisters of Mercy Hospital in Montevideo."
+    "quote": "\"Follow him, Fernando! See where he goes.\""
+  },
+  "suspect_architecture": {
+    "value": "Not a whodunit cast; the 'suspects' are the association officers and the mysterious extortionist. Cast: Carlos Olavide (head, credulous authority), Luis Bayeu (segundo, muscle), Fernando Quintana (secretary, narrator and secret architect of the fraud), and 'Mano\u00ebl Goncalves' (in fact a down-at-heel actor turned croupier, Fernando's hired accomplice). Victims Diego Camero, Pepa Lopez, Joaquin Celestinos serve as corroborating casualties.",
+    "confidence": "medium",
+    "quote": "Carlos Olavide, head of your association. Luis Bayeu, segundo. Fernando Quintana, secretary."
+  },
+  "red_herring": {
+    "value": "The whole 'Big Ones' criminal syndicate is a fabricated red herring \u2014 a mythical international crime guild Carlos half-remembers, plus staged 'accidents' (Fernando's self-inflicted throat cut, the dwarf-and-tall-man holdup, the bombed cab, cut brakes, sugar in a fuel tank) designed to point at nonexistent gangsters.",
+    "confidence": "high",
+    "quote": "A dwarf and a tall man wearing a beige hat are supposed to have held me up and cut my throat, as a warning from The Big Ones."
+  },
+  "clue_fairness": {
+    "value": "Clues are planted in plain sight before the confession: the Portuguese accent shared by 'Goncalves' and the alleged dwarf, the fat man's silent ascent but heavy descent, the lean-faced driver of the battered Volvo, and Fernando's convenient hospital call opening the story.",
+    "confidence": "high",
+    "quote": "the driver turned his head my way, and I saw his face was not full and fleshy like Goncalves', but lean, far too lean."
+  },
+  "social_world": {
+    "value": "Uruguayan working-class union politics: the Montevideo Taxicab Drivers Association's hierarchy (head, segundo, secretary) and its trust in officers; police corruption alleged; costs passed on to the public via fare increases; immigrant precarity (forged work permit) creating leverage.",
+    "confidence": "high",
+    "quote": "We also voted to raise taxi fares five percent, you see."
+  },
+  "alibi": {
+    "value": "Fernando's alibi is his own victimhood \u2014 the hospital, five stitches, and the doctor deceived with a clothesline story make him seem a target rather than the perpetrator; 'Goncalves' hides behind disguise and a false identity.",
+    "confidence": "medium",
+    "quote": "I told him I almost tore my head off by walking into my wife's steel clothesline in the back yard. He believed me."
+  },
+  "reveal_mechanic": {
+    "value": "A confessional two-hander in the hotel garden: the croupier accomplice itemizes his disguise (gray contact lenses, wax cheek wads, Falstaff midriff padding) while Fernando counts out the 75/25 split, demonstrating the fraud rather than stating it.",
+    "confidence": "high",
+    "quote": "And the wax wads in my cheeks to make my face fat? And the midriff padding I used to wear when I played Falstaff?"
+  },
+  "media_and_audience": {
+    "value": "Perception is manufactured via the tape recording played to the membership, plus the displayed knife wound and testimonies of 'accidents' \u2014 the audience of drivers is scripted into believing in a mafia and voting the dues increase.",
+    "confidence": "high",
+    "quote": "He played the tape of our meeting with Goncalves, turning the volume up full so that all of us could hear"
+  },
+  "investigator_wound": {
+    "value": "The narrator-schemer's vulnerability is greed and exposure: mutual blackmail with the accomplice, who deports easily while Fernando would be killed by his own drivers \u2014 the pressure drives him to plant explosive in the Volvo.",
+    "confidence": "medium",
+    "quote": "But you, my friend, would be killed by your own cabdrivers before the police could intervene to save you!"
+  },
+  "victims_enemies": {
+    "value": "The real victims are the rank-and-file cabdrivers \u2014 Diego Camero (twelve children, one good arm), Pepa Lopez, Joaquin Celestinos \u2014 betrayed not by an outside gang but by their own association secretary, Fernando Quintana, a trusted colleague who sabotaged their livelihoods. Secondary victim: Mano\u00ebl, the accomplice-actor whose greed makes him Fernando's enemy at the end.",
+    "confidence": "high",
+    "quote": "\"They might as well have killed him as destroyed his taxicab. How will he now provide for his family?\"",
+    "quote_confidence": "high"
+  },
+  "suspect_wounds": {
+    "value": "Fernando disguises himself as a victim by cutting his own throat, using his visible wound to deflect all suspicion; Mano\u00ebl's vulnerability is that he is an illegal immigrant working under an assumed name on a forged permit, which makes him exposable and expendable.",
+    "confidence": "high",
+    "quote": "\"a down-at-heels actor turned croupier, who entered Uruguay illegally and is now working... on a forged work permit\""
+  },
+  "unreliable_frame": {
+    "value": "The entire story is narrated by Fernando Quintana, the culprit, in first person \u2014 his opening hospital phone call, his outrage at the letter, his 'shaken nerves' are all performance for the reader as much as for Carlos. Mano\u00ebl's account is equally false, being an actor's role.",
+    "confidence": "high",
+    "quote": "\"I actually cut my own throat, Mano\u00ebl. It bled all over my shirt.\""
+  },
+  "setting_as_constraint": {
+    "value": "Montevideo's insular taxi-driver union culture is the constraint and the weapon: the drivers cannot go to the police (told there are informers), the association's closed membership vote is the only mechanism for money, and dues collected in cash monthly give the culprit a permanent, untraceable income stream. Casino gardens at Carasco provide the anonymous handover point.",
+    "confidence": "high",
+    "quote": "\"If any of you goes to the police, I'll know it within thirty minutes. And you'll be dead men within twenty-four hours.\""
+  },
+  "evidence_type": {
+    "value": "Testimonial/documentary theatre used as false evidence rather than true detection: the extortion letter and, above all, the tape recording of the 'Goncalves' interview, played to the membership alongside physical exhibits (the stitched cut, the wrecked cabs) to manufacture belief.",
+    "confidence": "high",
+    "quote": "\"A tape recorder. You'll need a record of this conversation.\""
+  },
+  "false_suspect": {
+    "value": "'The Big Ones' / 'The Corporation' \u2014 a wholly fictitious criminal syndicate, embodied by the invented Mano\u00ebl Goncalves, on whom all blame for the sabotage is placed.",
+    "confidence": "high",
+    "quote": "\"The Big Ones, we are called, or The Corporation. You have heard of us, perhaps?\""
+  },
+  "technical_detail": {
+    "value": "Stagecraft and sabotage know-how: gray contact lenses, wax wads in the cheeks and Falstaff midriff padding to build the fat man; plus brake tampering, sugar in a gasoline tank, and plastic explosive wired to a Volvo ignition.",
+    "confidence": "high",
+    "quote": "\"the wax wads in my cheeks to make my face fat? And the midriff padding I used to wear when I played Falstaff?\""
+  },
+  "moral_ambiguity": {
+    "value": "Little moral defense \u2014 Fernando is a trusted union officer who preys on his own poor colleagues; the only mitigation offered is comic craftsmanship (his self-inflicted wound, the elegance of the scheme) and the fact that the cost was passed to consumers via a fare rise, so drivers lose nothing. His final murder of the blackmailing Mano\u00ebl is greed answering greed.",
+    "confidence": "medium",
+    "quote": "\"We passed the increase along to the consumer, as usual. We also voted to raise taxi fares five percent, you see.\""
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "The Montevideo Squeeze",
     "author": "JAMES HOLDING",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 62,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

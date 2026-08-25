@@ -1,0 +1,45 @@
+{
+  "crime": {
+    "value": "Poisoning of Al Gruber by Larry Perkins, who administered poison in beer. Central question: whether Gruber's death was murder by Perkins or suicide by Gruber, with Perkins taking false responsibility.",
+    "confidence": "high",
+    "quote": "I put the poison in his beer. He asked me to open a can of beer for him. When I poured it into a glass, I put the poison in, too."
+  },
+  "victim": {
+    "value": "Al Gruber, a young ex-soldier and aspiring writer struggling with self-doubt, moral intensity about his craft, and existential nihilism. Made vulnerable by his despair over artistic worthlessness and philosophical paralysis.",
+    "confidence": "high",
+    "quote": "If I can say nothing hopeful, I shouldn't say anything at all. Nihilism is death. How could any writer believe such a thing?"
+  },
+  "closed_world": {
+    "value": "A basement apartment in a Brooklyn brownstone building on Garfield Place. A confined residential space shared by two struggling young writers with frequent interaction and observation by building superintendent.",
+    "confidence": "high",
+    "quote": "The apartment was one large room, plus a closet-size kitchenette and an even smaller bathroom...Garfield Place is a double row of chipped brownstones."
+  },
+  "culprit_and_motive": {
+    "value": "Larry Perkins killed Gruber (or enabled his suicide) motivated by desire for fame and notoriety. Unable to achieve literary recognition, Perkins sought infamy as a murderer\u2014a final act of 'glibness' to escape obscurity.",
+    "confidence": "high",
+    "quote": "He decided to be a famous murderer...You wanted to go out in a blaze of glory...Gruber really killed himself, and I suppose you burned the note he left."
+  },
+  "resolution": {
+    "value": "Detective Levine deduces the truth through Gruber's notebooks and Perkins' behavioral reactions. Rather than expose the suicide, Levine allows Perkins' false confession to stand, letting the young man achieve the notoriety he sought through execution.",
+    "confidence": "high",
+    "quote": "That little fool is gonna go to trial, Jack, and he's gonna be convicted and go to the chair. He chose it himself. It was his choice...they chose to die, let 'em die!"
+  },
+  "investigator": {
+    "value": "Detective Abraham Levine, a 53-year-old Brooklyn detective nearing the 'heart-attack age range.' His investigation is filtered through his preoccupation with mortality and his bitter recognition that Gruber and Perkins threw away youth he no longer possesses.",
+    "confidence": "high",
+    "quote": "Every time he was reminded of death, he thought worriedly about the aging heart pumping away inside his chest...listen to your heart skip a beat every once in a while, and wonder when it's going to skip two beats."
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
+    "text_len": 25036,
+    "protocols": [
+      "P1"
+    ],
+    "title": "The Best-Friend Murder",
+    "author": "DONALD E. WESTLAKE",
+    "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
+    "story_index": 52,
+    "story_count": 63
+  }
+}

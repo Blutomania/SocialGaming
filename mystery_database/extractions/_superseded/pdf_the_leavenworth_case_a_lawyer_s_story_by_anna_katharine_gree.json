@@ -1,0 +1,41 @@
+{
+  "crime": {
+    "value": "Murder of a member of the Leavenworth household; method and central investigative question unknown from excerpt",
+    "confidence": "medium",
+    "quote": "A GREAT CASE"
+  },
+  "victim": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "closed_world": {
+    "value": "The Leavenworth house and household; a bounded domestic space with known inhabitants",
+    "confidence": "medium",
+    "quote": "I wish to inquire if everything is as before in the house; the servants the same"
+  },
+  "culprit_and_motive": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "resolution": {
+    "value": "Mr. Gryce (investigator) systematically gathers evidence and testimony to identify the culprit through deduction",
+    "confidence": "medium",
+    "quote": "MR. GRYCE RESUMES CONTROL; FINE WORK; GATHERED THREADS"
+  },
+  "investigator": {
+    "value": "A lawyer narrator (first-person) working with or observing detective Mr. Gryce's investigation",
+    "confidence": "high",
+    "quote": "A Lawyer's Story"
+  },
+  "_meta": {
+    "source": "mystery_database/new_sources/The Leavenworth case: a lawyer's story, by Anna Katharine Green\u2014A Project Gutenberg eBook.pdf",
+    "filename": "The Leavenworth case: a lawyer's story, by Anna Katharine Green\u2014A Project Gutenberg eBook.pdf",
+    "text_len": 6037,
+    "protocols": [
+      "P1"
+    ],
+    "title": "The Leavenworth case: a lawyer's story, by Anna Katharine Green\u2014A Project Gutenberg eBook"
+  }
+}

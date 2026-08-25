@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Double stabbing murder of Richard 3833 and Laura 6356 in a totalitarian state where murder is not legally recognized as a crime; central question: how will authorities respond to an offense that exists outside their legal framework?",
+    "value": "Double stabbing murder in a future society that has no concept or legal category of murder; the question is not whodunit but whether an unprecedented crime can be detected by a state with no detectives",
     "confidence": "high",
-    "quote": "He plunged the knife in quickly...withdrew the knife and wiped it on the sleeve of Laura's blouse."
+    "quote": "Paul slipped the knife from under his shirt, chose the exact point to aim at, and struck hard."
   },
   "victim": {
-    "value": "Richard 3833 and Laura 6356, Paul's assigned mates under state Mating Assignment protocol. They are 'killable' because Paul perceives them as obstacles to his romantic union with Carol 7427, whom he loves.",
+    "value": "Richard 3833 (Virus Chemistry worker) and Laura 6356 (calculation machine operator) \u2014 killable because they were assigned as mates to Carol 7427 and Paul, blocking Paul's desired pairing; both worked in isolation",
+    "confidence": "high",
+    "quote": "A double murder was necessary then. Richard and Laura."
+  },
+  "closed_world": {
+    "value": "Complex 55, a walled totalitarian dormitory-work complex of about a hundred thousand members under surveillance by microphones and television screens",
+    "confidence": "high",
+    "quote": "The whole machinery of Complex 55 with its hundred thousand members could not be halted"
+  },
+  "culprit_and_motive": {
+    "value": "Paul 2473, air filtration engineer, who murdered to void the Mating Assignments and obtain Carol 7427, believing the state had no apparatus to punish murder",
+    "confidence": "high",
+    "quote": "Certainly the motive was there. He was to be mated with an incompatible person, while his compatible person was to be mated with someone else."
+  },
+  "resolution": {
+    "value": "The state mass-processes the entire complex with truth-serum injections; Paul confesses under the drug, is tried publicly, and is tortured in a glass cage as a traitor guilty of destroying state property",
+    "confidence": "high",
+    "quote": "\"Did you stab two people to death yesterday?\" the man asked... \"Yes,\" he said."
+  },
+  "investigator": {
+    "value": "No detective; the lens is the murderer himself, Paul 2473, reasoning from an old book, The Logic of Murder \u2014 with the faceless state as the true investigating force",
+    "confidence": "high",
+    "quote": "The Logic of Murder, he read."
+  },
+  "suspect_architecture": {
+    "value": "Effectively no suspect field: an inverted tale in which the murderer, Paul 2473, is known from the outset; the entire population of Complex 55 (100,000) is treated as an undifferentiated suspect pool, screened en masse rather than individually.",
+    "confidence": "medium",
+    "quote": "If they had brought everybody out here, that meant they didn\u2019t know who was responsible, didn\u2019t it?"
+  },
+  "red_herring": {
+    "value": "The mass pre-dawn muster and floodlit ordeal reads to Paul (and reader) as a fearsome interrogation, then appears harmlessly to be mere inoculation shots \u2014 a plague scare \u2014 which lulls him before the truth serum works.",
+    "confidence": "high",
+    "quote": "There was no one and nothing there, but a nurse with a tableful of hypodermic needles beside her."
+  },
+  "clue_fairness": {
+    "value": "Fair-play clues are planted early: the state's total absence of murder statutes, the surveillance microphones/screens, and pervasive scientific/pharmacological control are all shown to the reader before the chemical interrogation resolves the case.",
+    "confidence": "medium",
+    "quote": "the state simply possessed no apparatus for dealing with murder. There was no organization, no experienced detectives"
+  },
+  "social_world": {
+    "value": "A totalitarian technocracy: Complex 55, with Platoons, Compatibility Tests, Mating Assignments, work quotas, Caressing Booths, and a hierarchy in which people are 'state property' and treason outranks all crimes.",
+    "confidence": "high",
+    "quote": "in wantonly and willfully destroying two pieces of valuable state property... committed sabotage, and is a traitor to the state."
+  },
+  "alibi": {
+    "value": "Paul's alibi is structural rather than verbal: as an air filtration engineer he can rove anywhere, so his presence or absence is never questioned; it is never tested because chemical confession bypasses it.",
+    "confidence": "high",
+    "quote": "he was free to rove throughout the entire area of Complex 55. No one would question his presence in one place"
+  },
+  "reveal_mechanic": {
+    "value": "A truth-serum injection administered to the entire population under cover of a medical screening; under it Paul answers a direct question truthfully and convicts himself.",
+    "confidence": "high",
+    "quote": "\u201cDid you stab two people to death yesterday?\u201d the man asked... \u201cYes,\u201d he said."
+  },
+  "media_and_audience": {
+    "value": "The state stages a public show trial and perpetual loudspeaker announcements for the edification of Complex 55, reframing murder as sabotage/treason and making citizens participants in his torture.",
+    "confidence": "high",
+    "quote": "It was rather for the edification of all the members of Complex 55."
+  },
+  "investigator_wound": {
+    "value": "Inverted: the vulnerability belongs to the murderer \u2014 Paul's loneliness and craving for someone to talk to drives the crime, and the case ends by turning Carol, the object of that longing, into his most eager torturer.",
+    "confidence": "medium",
+    "quote": "One of the most frequent visitors to the cage, and one of the most enthusiastic buttonpushers, was Carol 7427."
+  },
+  "victims_enemies": {
+    "value": "Richard 3833 and Laura 6356 have no enemies except Paul 2473, who resents them purely as the assigned mates that separate him from Carol 7427. The grievance is bureaucratic, not personal \u2014 Paul barely knows either victim, and Richard greets him amiably about the microscope slide moments before dying.",
     "confidence": "high",
     "quote": "He was to be mated with an incompatible person, while his compatible person was to be mated with someone else."
   },
-  "closed_world": {
-    "value": "Complex 55, a sealed totalitarian state facility housing 100,000 citizens with rigidly controlled movement, monitored corridors, mandatory work assignments, and pervasive surveillance via microphones and television screens.",
-    "confidence": "high",
-    "quote": "The whole machinery of Complex 55 with its hundred thousand members could not be halted and disrupted indefinitely."
+  "suspect_wounds": {
+    "value": "No suspects are developed; the state has no investigative apparatus and never narrows a field. Paul's own vulnerability is his loneliness \u2014 the craving for someone to talk to privately \u2014 which the crime is meant to remedy and which finally exposes his miscalculation.",
+    "confidence": "medium",
+    "quote": "an end to the deadly aloneness"
   },
-  "culprit_and_motive": {
-    "value": "Paul 2473, air filtration maintenance engineer. Motive: romantic\u2014to eliminate his incompatible assigned mate (Laura) and his rival (Richard) so he can be reassigned to Carol 7427, his true romantic preference.",
+  "unreliable_frame": {
+    "value": "The narration is close third-person locked to Paul's reasoning, which is confidently wrong at every turn: he trusts a decayed pre-collapse book's statistics, assumes the state's lack of a murder statute means impunity, assumes the floodlit assembly proves ignorance, and assumes Carol shares his feelings. The reader inherits his misjudgments until the injection and the glass cage overturn them.",
     "confidence": "high",
-    "quote": "A double murder was necessary then. Richard and Laura...to eliminate Carol to prevent Richard's getting her...Carol 7427 and Paul 2473 now had no mates."
+    "quote": "By the time he retired that night, Paul had convinced himself of the soundness of this theory."
   },
-  "resolution": {
-    "value": "State authorities administer truth serum via hypodermic injection during mass medical screening, forcing Paul to confess. He is tried publicly, then placed in a glass cage wired with pain-delivery electrodes as public torture and deterrent.",
+  "setting_as_constraint": {
+    "value": "Complex 55 is a totalitarian dormitory-state of microphones, wall television screens, platoons and assigned cubicles. Paul exploits the two gaps in it: workers isolated at their stations (Richard in his private corner, Laura alone with her machine) and his own job as air filtration engineer, which licenses him to move anywhere unquestioned. The same total control then makes evasion impossible \u2014 the entire population can be assembled and injected.",
     "confidence": "high",
-    "quote": "Did you stab two people to death yesterday? Somehow there didn't seem to be any choice, but to answer with the truth...strapped there in an upright position. More than a hundred wires were inserted..."
+    "quote": "As an air filtration maintenance engineer, he was free to rove throughout the entire area of Complex 55."
   },
-  "investigator": {
-    "value": "The state apparatus itself\u2014impersonal, technological, and extra-legal. No detective investigates; instead, mass surveillance, chemical interrogation, and public trial serve as the investigative and punitive mechanism.",
+  "evidence_type": {
+    "value": "Pharmacological testimonial \u2014 a compelled confession extracted by a truth-serum hypodermic administered en masse under the guise of an inoculation, following psychological softening in the floodlit courtyard. No physical or forensic detection is involved.",
     "confidence": "high",
-    "quote": "The authorities, confronted with a new problem outside the realm of their rules and experience...a man in a white coat and a very penetrating stare confronted him."
+    "quote": "\"Did you stab two people to death yesterday?\" the man asked... \"Yes,\" he said."
+  },
+  "false_suspect": {
+    "value": null,
+    "confidence": "low",
+    "quote": null
+  },
+  "technical_detail": {
+    "value": "Paul's method rests on his physiological training \u2014 knowing where to place a sharpened steel blade against the human body \u2014 chosen by elimination since he has no gun, no poisons, and is weaker than Richard. The countervailing technical detail is the state's chemistry: a serum that removes the will to lie, against which planning is useless.",
+    "confidence": "high",
+    "quote": "he knew enough physiology to know how a knife should be used against the human body"
+  },
+  "moral_ambiguity": {
+    "value": "Paul kills not from hatred but from a starved human need for intimacy and private speech in a society that has engineered both out of existence; his motive is love and loneliness, and his crime is punished not as a wrong against persons but as destruction of 'valuable state property' \u2014 making the regime's public torture arguably more monstrous than the murders.",
+    "confidence": "high",
+    "quote": "in wantonly and willfully destroying two pieces of valuable state property... committed sabotage, and is a traitor to the state."
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Murder, 1990",
     "author": "C. B. GILFORD",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 39,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

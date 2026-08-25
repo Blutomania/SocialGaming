@@ -1,45 +1,129 @@
 {
   "crime": {
-    "value": "Double murder by conspiracy: strangulation or blunt force of a wealthy young woman and her lover Conway, staged as separate accidents (car crash and canyon fall) to steal $50,000. Central question: Has Conway actually survived, and are the paintings surfacing now a trap or coincidence?",
+    "value": "Double murder for money in Mexico: a wealthy young woman was killed and burned in a staged car crash so her $50,000 would appear destroyed with her; then her killer's partner Conway was knocked out and rolled off a canyon in his car. Central question: is Conway actually dead?",
     "confidence": "high",
-    "quote": "We wanted them to find her and believe the $50,000 was with her; burned up along with the money she was carrying. You and Conway fixed that up."
+    "quote": "\u201cThey believe she had an accident and was burned up in her car. Burned up along with the money she was carrying.\u201d"
   },
   "victim": {
-    "value": "The unnamed wealthy girl: naive patron of the arts with $50,000 intended for charity, seduced into funding an 'art colony' by Conway and Paulin, then murdered because she possessed capital and posed no threat once exploited.",
+    "value": "An unattractive, idealistic heiress who wanted to be a patron of the arts and had $50,000 she told her parents was for good works among the Mexican poor \u2014 her trust in the two artists made her a target; secondarily Conway, the accomplice, killed to keep all the money",
     "confidence": "high",
-    "quote": "She was never very good-looking...I can live here in San Francisco for two or three years on that $50,000 we got out of her."
+    "quote": "$50,000 she told her parents she was going to use for good works among the Mexican poor",
+    "second_quote": null
   },
   "closed_world": {
-    "value": "San Francisco junk shops and art scene, specifically the News From Nowhere Emporium on McAllister Street and the Henderson house at Stinson Beach\u2014locations where Conway's paintings surface unexpectedly, trapping Paulin in an inescapable geography.",
+    "value": "San Francisco junk-shop/antique district (McAllister Street, the News From Nowhere Emporium) and the isolated, fog-ringed Henderson house at Stinson Beach \u2014 a small circuit of places Paulin habitually walks, where only someone who knew Mexico could plant the paintings",
     "confidence": "medium",
-    "quote": "The shop door opened this time. Paulin stepped inside the News From Nowhere junk store...Behind a glass counter sat an old man in a brown coat-sweater."
+    "quote": "The Henderson house sat alone, ringed by pine trees, at the end of a short road that climbed up from the beach."
   },
   "culprit_and_motive": {
-    "value": "Andrew Paulin: commercial artist who conspired with Conway to seduce the girl, stole her $50,000, then murdered Conway to keep the full amount. Motive: greed and self-preservation; he feared Conway's sadistic nature and talkative charm endangered the scheme.",
+    "value": "Andrew Paulin, the narrator: he and Conway conned and murdered the girl for her $50,000, then Paulin murdered Conway to keep the whole sum for himself",
     "confidence": "high",
-    "quote": "Well, in a way that made it easier to do it to him...I got rid of him in time to save nearly all the $50,000 for myself."
+    "quote": "\u201cYes, and I got rid of him in time to save nearly all the $50,000 for myself.\u201d"
   },
   "resolution": {
-    "value": "Unresolved / Irresolution: The paintings\u2014now appearing in San Francisco\u2014force Paulin to confront the possibility that Conway survived, and the final image of wet paint on Paulin's hand suggests Conway has been present all along, documenting Paulin's guilt. Order collapses into paranoia.",
+    "value": "No legal resolution; ironic retribution. The paintings are a trap laid by the surviving Conway, proved when Paulin touches the canvas and finds the paint still wet \u2014 he is lured alone into the empty house and a noise announces his killer",
     "confidence": "high",
-    "quote": "It was wet paint. / Suppose he did get out alive somehow. He'd know I was coming back here to San Francisco...he's going to torture you, like he did the girl."
+    "quote": "Something made a faint noise elsewhere in the house... It was wet paint."
   },
   "investigator": {
-    "value": "Andrew Paulin himself: the guilty party serves as the primary consciousness, his internal monologue revealing both the crime and his mounting terror. Reader experiences mystery through the eyes of the culprit being hunted.",
+    "value": "Andrew Paulin \u2014 the murderer himself as viewpoint 'investigator', reasoning aloud in constant self-directed monologue as he tries to trace who is planting Conway's paintings",
     "confidence": "high",
-    "quote": "Andrew Paulin had forgotten to keep breathing. He coughed now and gasped in air through his open mouth...He'd been eating a chocolate almond bar and he threw it down toward the gutter."
+    "quote": "\u201cYou know, suppose this is some kind of setup? Oh, how could it be? Conway\u2019s dead...\u201d"
+  },
+  "suspect_architecture": {
+    "value": "Inverted structure: no suspect pool. Paulin is the known killer-protagonist; the only other figures are the presumed-dead Conway (secret survivor and avenger), the murdered heiress, blind old Mac (unwitting or bribed instrument), and the phantom 'Hendersons' who never existed.",
+    "confidence": "high",
+    "quote": "\"Man and wife, as I remember, brought them in over the weekend,\" said Mac"
+  },
+  "red_herring": {
+    "value": "The staged provenance story \u2014 a touristing couple in their forties named Henderson who bought the paintings in Mexico and moved to Stinson Beach \u2014 is a fabricated trail luring Paulin to an empty house; also the pretense that a rival buyer offered fifty dollars.",
+    "confidence": "high",
+    "quote": "\"Name is Henderson and they just moved into a new place out near Stinson Beach.\""
+  },
+  "clue_fairness": {
+    "value": "Fairly seeded: the third painting is done from memory of a pose Paulin never sat for, Conway's body was never found and his car never burned, the paintings appear serially timed to Paulin's route, the Hendersons have no phone, and a fallen sign sits in the weedy lawn \u2014 all shown before the wet-paint reveal.",
+    "confidence": "high",
+    "quote": "\"Conway must have done that one from memory, because Paulin never posed for it.\""
+  },
+  "social_world": {
+    "value": "San Francisco's shabby junk-shop economy of McAllister Street and residential hotels versus Paulin's Russian Hill apartment and sports car funded by stolen money; a patronage relationship underlies the crime \u2014 a rich, plain heiress courted as patroness of the arts by two artists.",
+    "confidence": "high",
+    "quote": "\"He was trying to convince her she should be a patron of the arts even before I joined him.\""
+  },
+  "alibi": {
+    "value": "Not a suspect alibi but its inversion: Conway's supposed death at the bottom of a Mexican canyon functions as his alibi for existence, and the fake accident-crash covers Paulin \u2014 the girl believed burned with the $50,000.",
+    "confidence": "medium",
+    "quote": "\"They believe she had an accident and was burned up in her car. Burned up along with the money she was carrying.\""
+  },
+  "reveal_mechanic": {
+    "value": "Physical demonstration rather than statement: Paulin's fingers come away from the canvas with wet paint, proving the paintings are newly made and Conway alive \u2014 followed by a noise elsewhere in the house.",
+    "confidence": "high",
+    "quote": "Then he said, \"Oh, God.\" It was wet paint."
+  },
+  "media_and_audience": {
+    "value": "The press and the girl's family accepted the crash as accidental death, packaging the murder as tragedy; her stated purpose of charity for the Mexican poor sustains the public story.",
+    "confidence": "high",
+    "quote": "\"Everyone\u2014the papers, her family\u2014accepted the crash.\""
+  },
+  "investigator_wound": {
+    "value": "Paulin, the de facto investigator of his own trap, is undone by guilty vanity and paranoia \u2014 his habit of talking aloud, his compulsion to buy every incriminating canvas, and his refusal to verify Conway's death.",
+    "confidence": "medium",
+    "quote": "\"You should have climbed down there and made absolutely sure he was dead.\""
+  },
+  "victims_enemies": {
+    "value": "Conway \u2014 the painter \u2014 was betrayed and murdered by his own partner Paulin, who cheated him out of the $50,000 they had jointly stolen from the girl they murdered together. The grievance web is tight and reciprocal: Conway and Paulin conspired to swindle and kill the heiress, then Paulin eliminated Conway to keep the whole sum. The girl's family and the press are the only outsiders, and they accepted the crash as accident.",
+    "confidence": "high",
+    "quote": "\"Yes, and I got rid of him in time to save nearly all the $50,000 for myself.\""
+  },
+  "suspect_wounds": {
+    "value": "Paulin's vulnerability is his compulsive self-talk \u2014 he narrates his guilt aloud in public, moving his lips, and must consciously police the habit. His other wound is greed-driven anxiety: he cannot leave the paintings alone, and each purchase makes him more conspicuous, as the old dealer's teasing about 'some terrific painting' shows.",
+    "confidence": "high",
+    "quote": "\"He must have been talking out loud, moving his lips. He had that habit and he'd have to watch it, control it.\""
+  },
+  "unreliable_frame": {
+    "value": "The entire story is filtered through Paulin's interior monologue \u2014 a murderer reassuring himself. His account is unreliable not by lying to the reader but by self-soothing denial: he repeatedly insists Conway is dead while admitting he never verified the body, and he dismisses the paintings as coincidence until the wet paint contradicts him.",
+    "confidence": "high",
+    "quote": "\"You don't actually know he's dead. Of course he's dead. How could he have gotten out of there?\""
+  },
+  "setting_as_constraint": {
+    "value": "The junk-shop district of San Francisco is the trap's mechanism: Paulin's habit of browsing McAllister Street two or three times a week guarantees he will see the window. The final constraint is the isolated Henderson house at Stinson Beach \u2014 fog-bound, phoneless, ringed by pines at the end of a road, so no call can be made in advance and no neighbor can hear.",
+    "confidence": "high",
+    "quote": "\"The Henderson house sat alone, ringed by pine trees, at the end of a short road that climbed up from the beach.\""
+  },
+  "evidence_type": {
+    "value": "Physical/tactile evidence \u2014 wet oil paint on the fingertips. The paintings themselves are documentary evidence of the Mexico crime (they depict Paulin, the girl, and her car), but the wet paint is the physical proof that they are new, therefore that Conway is alive and waiting.",
+    "confidence": "high",
+    "quote": "\"He rubbed his forefinger slowly over his thumb, feeling what was there. Then he said, 'Oh, God.' It was wet paint.\""
+  },
+  "false_suspect": {
+    "value": "The 'Hendersons' \u2014 the supposed middle-aged tourist couple in their early forties who allegedly brought the paintings back from Mexico and are selling off a dozen more. They are a fiction (or unwitting cover) invented to explain the paintings' provenance and lure Paulin to the beach house.",
+    "confidence": "high",
+    "quote": "\"Man and wife, as I remember, brought them in over the weekend... Couple in their early forties, did some touristing down in Mexico.\""
+  },
+  "technical_detail": {
+    "value": "Conway's painterly gift \u2014 a photographic visual memory allowing him to paint accurate portraits from memory without a sitting, in his 'new neorealism' realist style. This is what makes the fresh paintings possible (Paulin never posed), and the drying time of oil paint is what finally exposes the trap.",
+    "confidence": "high",
+    "quote": "\"He could look at you once and remember everything about you.\""
+  },
+  "moral_ambiguity": {
+    "value": "Slight and inverted: Paulin's only flicker of conscience is disapproval of Conway's cruelty \u2014 objecting that Conway taunted the girl before killing her rather than dispatching her quickly \u2014 which he uses to justify murdering Conway. Conway, in turn, is now the avenger, but his revenge repeats the same sadistic toying he was condemned for.",
+    "confidence": "medium",
+    "quote": "\"I still don't like the way he treated her at the end, teasing her. Not just knocking her out quickly and dumping her in the car.\""
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 17997,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "News From Nowhere",
     "author": "RON GOULART",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 48,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

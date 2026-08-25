@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": null,
-    "confidence": "low",
-    "quote": null
+    "value": "No conventional crime; an attempted suicide \u2014 a man out on a sixth-floor ledge. Central question: why did he go out there, and how can he be talked back in?",
+    "confidence": "medium",
+    "quote": "\u201cMan on a ledge,\u201d he said. \u201cA phony. They\u2019re all phonies.\u201d"
   },
   "victim": {
+    "value": "Jason Cartwright, late-forties partner in an industrial research firm, trapped in a marriage his wife planned and controlled, in love with another woman and denied a divorce",
+    "confidence": "high",
+    "quote": "\u201cShe\u2019s the woman your father wants to marry. He wants to divorce your mother and marry her.\u201d"
+  },
+  "closed_world": {
+    "value": "An eight-story office building on Flatbush Avenue, Brooklyn \u2014 the sixth-floor offices and the ledge outside, with police, partner, son and mistress confined to the scene",
+    "confidence": "high",
+    "quote": "It was an office building, eight stories high... the ledge that girdled the building at the sixth floor level."
+  },
+  "culprit_and_motive": {
+    "value": "Cartwright himself, driven onto the ledge as coercion; the underlying 'culprit' is his wife's refusal of the divorce and lifelong domination of his life",
+    "confidence": "medium",
+    "quote": "\u201cThat\u2019s what sent him out there on that ledge. Your mother won\u2019t agree to the divorce.\u201d"
+  },
+  "resolution": {
+    "value": "Levine deduces the marital motive by reading the son, partner and mistress, then shocks Cartwright by screaming at him to jump; broken, Cartwright weeps and Crawley hauls him in",
+    "confidence": "high",
+    "quote": "\u201cJump!\u201d roared Levine. \u201cJump, you damn fool, end it, stop being alive, die!\u201d"
+  },
+  "investigator": {
+    "value": "Detective Abraham Levine of Brooklyn's 43rd Precinct \u2014 aging official detective obsessed with his failing heart, who observes silently while partner Crawley questions",
+    "confidence": "high",
+    "quote": "Crawley asked the questions, and Levine listened to the answers."
+  },
+  "suspect_architecture": {
+    "value": "Not a whodunit; the 'cast' are witnesses/causes surrounding Cartwright's threatened suicide: the partner Anderson (business motive ruled out), the wife (controlling, refuses divorce \u2014 the true pressure), the son Allan (loyal, in denial), the mistress Janice Shapleigh (last-resort lever), plus cops Gundy and McCann as bystanders.",
+    "confidence": "medium",
+    "quote": "\"I think it's the wife.\" Levine motioned to Gundy, who came over, and he said. \"Is the partner here? Anderson?\""
+  },
+  "red_herring": {
+    "value": "Money/business trouble as the assumed cause \u2014 Levine muses that almost everything is about money, and Crawley pursues business worries, before both are dismissed in favor of the marriage.",
+    "confidence": "high",
+    "quote": "\"Would he have any business worries at all?\" ... Anderson, as was to be expected, said, \"No, none.\""
+  },
+  "clue_fairness": {
+    "value": "Fair: the reader sees the same observational data Levine does \u2014 the crucified terrified posture, the son's education and youth implying a teenage marriage, the soured wife, the flourishing career \u2014 before Levine states his deduction about the marriage.",
+    "confidence": "high",
+    "quote": "From the look of the son in there, this man had married young, probably while still in his teens."
+  },
+  "social_world": {
+    "value": "Middle-class Brooklyn/Manhattan professional world: partnership hierarchy at an 'Industrial Research' firm, precinct partnership etiquette (Crawley questions, Levine observes), suburban Jersey/Island respectability, and a family power structure where the wife planned the husband's life.",
+    "confidence": "high",
+    "quote": "\"Your mother,\" Levine pushed coldly on, \"planned your father's life.\""
+  },
+  "alibi": {
     "value": null,
     "confidence": "low",
     "quote": null
   },
-  "closed_world": {
-    "value": "Office building ledge at sixth floor; contained scene with crowd, uniformed officers, and building interior where negotiations occur",
+  "reveal_mechanic": {
+    "value": "Psychological demonstration rather than statement: Levine calls the bluff by screaming 'Jump!', and Cartwright's collapse into tears proves he never wanted to die \u2014 confirming the earlier read of his posture.",
+    "confidence": "high",
+    "quote": "\"Jump!\" roared Levine. \"Jump, you damn fool, end it, stop being alive, die!\""
+  },
+  "media_and_audience": {
+    "value": "Public spectacle shapes the crisis: a gawking sidewalk crowd, rerouted traffic, and press photographers whose cameras nearly trigger the jump; shame and 'respectability' govern behavior.",
+    "confidence": "high",
+    "quote": "\"Somebody down on the sidewalk started taking pictures,\" she said. \"Jay shouted at them to stop.\""
+  },
+  "investigator_wound": {
+    "value": "Levine's terror of his own failing heart and his 3 o'clock cardiogram appointment; a man throwing away the life Levine desperately fears losing, ending in his shameful admission that he wanted Cartwright to jump.",
+    "confidence": "high",
+    "quote": "He whispered, \"I wanted him to jump.\""
+  },
+  "victims_enemies": {
+    "value": "No murder victim; the 'victim' is Cartwright himself, and his antagonists are the people who cornered him: a controlling wife who planned his life and refuses a divorce, and a son who idolizes his mother and denies the truth.",
     "confidence": "medium",
-    "quote": "It was an office building, eight stories high...the ledge that girdled the building at the sixth floor level."
+    "quote": "\"Your mother,\" Levine pushed coldly on, \"planned your father's life.\""
   },
-  "culprit_and_motive": {
-    "value": "Jason Cartwright, suicide threat motivated by marital crisis\u2014wife refuses divorce so he can marry Janice Shapleigh; identity conflict between planned life and authentic self",
+  "suspect_wounds": {
+    "value": "Each person around Cartwright carries a vulnerability the crisis exposes: partner Anderson's nervous ignorance, the son's furious denial, mistress Janice Shapleigh's exposed illicit position, and Levine's own terror of his failing heart.",
     "confidence": "high",
-    "quote": "he found Janice Shapleigh...he'd let him be the strong one...your mother planned for him."
+    "quote": "Detective Abraham Levine of Brooklyn's Forty-Third Precinct was a worried and a frightened man."
   },
-  "resolution": {
-    "value": "Detective Levine psychologically manipulates Cartwright by urging him to jump, shocking him into emotional breakdown and surrender; Crawley physically retrieves him from ledge",
+  "unreliable_frame": {
+    "value": "Levine's perspective is warped by his obsession with his own mortality \u2014 he admits at the end he wanted Cartwright to jump; Cartwright's stated demand ('I want to talk to my wife') conceals the real cause, and Anderson's smooth patter omits knowledge of the marriage.",
     "confidence": "high",
-    "quote": "Jump!...roared Levine...And all at once he began to cry...Crawley came swarming out the other window...And the man came stumbling in from the ledge."
+    "quote": "He whispered, \"I wanted him to jump.\""
   },
-  "investigator": {
-    "value": "Detective Abraham Levine of Brooklyn's Forty-Third Precinct; sensitive, introspective officer with health anxieties who uses psychological insight rather than force",
+  "setting_as_constraint": {
+    "value": "A sixth-floor ledge sixty-six feet above Flatbush Avenue: the man is just out of reach of windows on either side, so any touch means a fall, forcing police to work only by voice and psychology. Levine's 3 p.m. doctor's appointment is a second clock.",
     "confidence": "high",
-    "quote": "Detective Abraham Levine of Brooklyn's Forty-Third Precinct was a worried and a frightened man...Levine stood to one side, watching."
+    "quote": "just out of reach of the windows on either side of him, was the man on the ledge"
+  },
+  "evidence_type": {
+    "value": "Testimonial and behavioral \u2014 the posture of the body on the ledge, the son's demeanor, the wife's tone, Anderson's evasions; Levine reads people rather than physical clues.",
+    "confidence": "high",
+    "quote": "he didn't need any more than the posture of the body on the ledge. Taut, pasted to the wall, widespread."
+  },
+  "false_suspect": {
+    "value": "Money \u2014 the assumed cause of everything, and the loan-company floors below invite the reading; also business worries and partner Anderson are pursued as blind alleys before the marriage emerges.",
+    "confidence": "medium",
+    "quote": "So this time, one of the exceptions, the trouble wouldn't be money."
+  },
+  "technical_detail": {
+    "value": "Police jumper-negotiation lore: the genuine jumper goes immediately, the 'phony' wants to be seen; and the partners' technique of Crawley asking questions frontally while Levine observes the unguarded flank.",
+    "confidence": "high",
+    "quote": "Crawley asked the questions, and Levine listened to the answers."
+  },
+  "moral_ambiguity": {
+    "value": "Cartwright is not wicked but trapped in a life his wife designed; Levine saves him by a cruel bluff, shouting 'Jump!' \u2014 and privately recognizes he half meant it, resenting a man discarding the life Levine fears losing.",
+    "confidence": "high",
+    "quote": "\"Jump!\" roared Levine. \"Jump, you damn fool, end it, stop being alive, die!\""
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 25036,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "Come Back, Come Back. . .",
     "author": "DONALD E. WESTLAKE",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 31,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }

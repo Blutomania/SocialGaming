@@ -1,45 +1,128 @@
 {
   "crime": {
-    "value": "Double homicide by decapitation with a lettuce knife. Central question: why did Haysoos, a migrant farm worker, commit such a brutal crime against two people he had no apparent serious conflict with?",
+    "value": "Double murder by decapitation: Mrs. Jensen and foreman Carbante beheaded with a lettuce knife in the bedroom of the ranch house. Central question is not who but why \u2014 the motive the naive narrator cannot grasp.",
     "confidence": "high",
-    "quote": "He'd killed Mrs. Jensen and Mr. Carbante...He'd gone up to the big white house with that sharp, sharp lettuce knife of his and cut off both their heads."
+    "quote": "He'd gone up to the big white house with that sharp, sharp lettuce knife of his and cut off both their heads."
   },
   "victim": {
-    "value": "Mrs. Jensen (young, beautiful wife of the farm owner) and Mr. Carbante (foreman). Both were 'killable' due to their affair\u2014Mrs. Jensen's infidelity with the foreman, which Haysoos and other workers clearly knew about and resented.",
+    "value": "Mrs. Jensen, the beautiful young wife of the elderly owner, who flirted with all the pickers and was sleeping with foreman Carbante; and Carbante, her lover \u2014 killed together in bed",
     "confidence": "high",
-    "quote": "Carbante is who she likes, hey? Carbante and a thousand others...She had it coming...They both did."
+    "quote": "\"Carbante is who she likes, hey? Carbante and a thousand others.\""
   },
   "closed_world": {
-    "value": "Jensen Produce farm in Salinas Valley\u2014a bounded agricultural labor camp with bunkhouses, warehouse, fields, and main house. Workers are physically isolated; police note 'roads blocked' suggesting limited escape routes.",
+    "value": "Isolated Jensen Produce lettuce ranch outside San Sinandro in the Salinas Valley \u2014 bunkhouses, warehouse and big white house, with the owner away and roads later blocked by police",
     "confidence": "high",
-    "quote": "There was a big white house set back a ways...four long, flat buildings made of wood...a big corrugated-iron warehouse...All of them had JENSEN PRODUCE done up in these big gold and blue letters"
+    "quote": "JENSEN PRODUCE\u2014PICKERS WANTED, and had a black arrow pointing off down the dirt road."
   },
   "culprit_and_motive": {
-    "value": "Haysoos, a migrant Mexican worker. Motive: jealous rage and humiliation. He was sexually attracted to Mrs. Jensen but rejected by her; her open affair with Carbante, witnessed by all workers, enraged him. Alcohol disinhibited his violence.",
+    "value": "Haysoos, the ugly Mexican picker, drunk on wine \u2014 motive is sexual jealousy and humiliation: he lusted after Mrs. Jensen, who favored everyone but him, and Carbante had her",
     "confidence": "high",
-    "quote": "Such a beautiful woman, a man's blood boils at the sight of such a beautiful woman...Haysoos she does not like. Not big ugly Haysoos...Carbante is who she likes"
+    "quote": "\"Haysoos she does not like. Not big ugly Haysoos.\" ... \"A man's blood boils.\""
   },
   "resolution": {
-    "value": "Police arrive by sirens and ambulance; bodies discovered and removed. Manhunt initiated\u2014'roads blocked,' posses formed. Haysoos presumed to have fled 'through the fields.' No explicit capture or trial shown; resolution incomplete.",
+    "value": "Minimal formal resolution: police and ambulance arrive after screams are heard, Haysoos flees through the fields, roads are blockaded and pickers form a posse; the reader \u2014 not the narrator \u2014 assembles the motive from the planted clues",
     "confidence": "medium",
-    "quote": "There was three of them there, and a big ambulance...He must have gone through the fields...They've got the roads blocked."
+    "quote": "\"They've got the roads blocked.\" \"We'll get up a posse. . .\""
   },
   "investigator": {
-    "value": "The unnamed first-person narrator\u2014a migrant worker and new arrival at the farm who discovers the bodies and witnesses the police investigation. He is an outsider sympathetic to the victims, not an official detective.",
+    "value": "None in the formal sense \u2014 an unreliable, obtuse itinerant fruit-picker narrator who reports every clue while understanding none, forcing the reader into the detective role",
     "confidence": "high",
-    "quote": "I wedged in there, and the pickers that had been there for a while was talking pretty fast...I turned away, sick as anybody ever was."
+    "quote": "I just don't understand what could have made him do a terrible, terrible thing like that. Do you?"
+  },
+  "suspect_architecture": {
+    "value": "Small closed farm cast: Haysoos the sun-blackened Mexican picker who lusts after Mrs. Jensen and resents her preference for Carbante (means: lettuce knife; motive: sexual jealousy/humiliation; opportunity: drunk and alone on payday night); old Mr. Jensen, the cuckolded seventy-year-old owner conveniently 'away on business in Salinas'; Carbante the foreman (victim); and the naive drifter narrator who arrived days earlier and was awake wandering the bunkhouses that night.",
+    "confidence": "high",
+    "quote": "\"Carbante is who she likes, hey? Carbante and a thousand others.\""
+  },
+  "red_herring": {
+    "value": "The narrator's insistently innocent, admiring voice ('Two of the swellest people you ever wanted to meet') and his emphasis on watching Haysoos drink misdirect from both the absent husband's convenient departure and the narrator's own unaccounted-for movements in the dark.",
+    "confidence": "medium",
+    "quote": "\"I got tired of watching him and went back to my bunk and lay down again, and it wasn't so hot anymore.\""
+  },
+  "clue_fairness": {
+    "value": "All physical clues are given plainly to the reader in scene: the razor-sharp lettuce knives every picker carries, Haysoos's repeated 'a man's blood boils' refrain, his heavy drinking and muttering alone, Mrs. Jensen's affair with Carbante, and Mr. Jensen's departure \u2014 the mob's conclusion is reached with no evidence the reader hasn't seen.",
+    "confidence": "high",
+    "quote": "\"the way you do it is, you have this long knife, real sharp\""
+  },
+  "social_world": {
+    "value": "Rigid agricultural labor hierarchy in the Salinas Valley: absentee elderly Anglo owner, foreman Carbante wielding sexual and employment power, Mexican pickers and seasonal college boys at the bottom, paid in cash per crate; the beautiful young wife circulates as spectacle and Haysoos is the ugly outsider excluded from everything.",
+    "confidence": "high",
+    "quote": "\"You just mind your own business and pick your quota every day, and you'll get along fine here.\""
+  },
+  "alibi": {
+    "value": "Mr. Jensen removes himself with a public, witnessed alibi \u2014 announcing to all the pickers he is going to Salinas on business and driving off in the Lincoln; the narrator's only alibi is that he claims he was asleep in his bunk.",
+    "confidence": "medium",
+    "quote": "\"he was going off to Salinas for the next few days on business, and that Mr. Carbante was to be in charge\""
+  },
+  "reveal_mechanic": {
+    "value": "No formal demonstration \u2014 the crime is revealed by the sheeted double stretchers and the pickers' overheard fragments, and the solution is assigned by crowd consensus (decapitation matching a lettuce knife plus Haysoos's absence), with the narrator's uncomprehending closing question inviting the reader to supply the motive.",
+    "confidence": "high",
+    "quote": "\"He'd gone up to the big white house with that sharp, sharp lettuce knife of his and cut off both their heads.\""
+  },
+  "media_and_audience": {
+    "value": "Crime is packaged instantly by rumor and mob justice: pickers gossiping behind the police line moralize about the victims ('She had it coming'), a posse forms to hunt the Mexican suspect, and the narrator's romanticized Hollywood-magazine worldview frames the dead as saints.",
+    "confidence": "high",
+    "quote": "\"We'll get up a posse. . .\""
+  },
+  "investigator_wound": {
+    "value": "The narrator-as-investigator is crippled by naive, worshipful innocence about women and 'nice' people \u2014 he cannot process sexuality, jealousy or malice, so Haysoos's plain confessional hints ('a man's blood boils') pass through him uncomprehended, leaving him sick and baffled.",
+    "confidence": "high",
+    "quote": "\"I never been much good around the women anyway\u2014I can't never think of nothing to talk to them about\""
+  },
+  "victims_enemies": {
+    "value": "Mrs. Jensen \u2014 young wife of the elderly owner \u2014 flirted with and slept with many of the workers ('Carbante and a thousand others') while pointedly excluding and humiliating the ugly picker Haysoos; Carbante, the foreman, was her lover and also the boss who told workers to mind their own business. The pickers' reaction ('She had it coming. They both did.') shows a whole camp of resentment.",
+    "confidence": "high",
+    "quote": "\u201cCarbante is who she likes, hey? Carbante and a thousand others.\u201d"
+  },
+  "suspect_wounds": {
+    "value": "Haysoos's wound is sexual humiliation and self-loathing over his ugliness \u2014 repeatedly saying 'Haysoos she does not like. Not big ugly Haysoos' and 'a man's blood boils' \u2014 which the murder night's drinking activates into rage.",
+    "confidence": "high",
+    "quote": "\u201cHaysoos she does not like. Not big ugly Haysoos.\u201d"
+  },
+  "unreliable_frame": {
+    "value": "The entire story is told by a naive, semi-literate drifter narrator who cannot read sexual or social meaning: he takes Mrs. Jensen's flirtation as friendliness, misses the college boys' crude jokes, and closes with 'I don't understand it.' The reader sees the adultery, the exclusion and the motive he cannot.",
+    "confidence": "high",
+    "quote": "\u201cI just don\u2019t understand what could have made him do a terrible, terrible thing like that. Do you?\u201d"
+  },
+  "setting_as_constraint": {
+    "value": "An isolated Salinas Valley lettuce ranch: workers confined to bunkhouses, the owner away in Salinas for days leaving Carbante in charge and the house free for the lovers, sharp lettuce knives issued as tools, and open fields the killer escapes through while roads are blocked.",
+    "confidence": "high",
+    "quote": "\u201cHe must have gone through the fields.\u201d \u201cThey\u2019ve got the roads blocked.\u201d"
+  },
+  "evidence_type": {
+    "value": "Testimonial/circumstantial \u2014 screams heard by a witness, the pickers' talk identifying Haysoos, plus the physical signature of the lettuce knife's decapitation wounds; no formal detection occurs.",
+    "confidence": "medium",
+    "quote": "\u201cSomebody heard the screams.\u201d"
+  },
+  "false_suspect": {
+    "value": "None \u2014 the story has no misdirected suspect; guilt is announced flatly at the end. The narrator himself is the only figure the reader might briefly weigh, since he was awake, wandering and watching through windows.",
+    "confidence": "medium",
+    "quote": "I walked down by the other bunks... There was a window right there and I stopped by that and looked inside"
+  },
+  "technical_detail": {
+    "value": "The lettuce-picker's trade: a long, razor-sharp knife used to clip heads close to the ground \u2014 the tool and the practiced cutting motion make the double decapitation possible and identify the killer's trade.",
+    "confidence": "high",
+    "quote": "\u201cthe way you do it is, you have this long knife, real sharp, and you walk in along the rows\u201d"
+  },
+  "moral_ambiguity": {
+    "value": "Haysoos is not simply a 'crazy' killer: he is a man ground down by ugliness, poverty and exclusion, tormented by a woman who bestowed her favors on everyone but him and by the foreman who possessed her \u2014 the pickers themselves judge that the victims 'had it coming.'",
+    "confidence": "high",
+    "quote": "\u201cShe had it coming.\u201d \u201cThey both did.\u201d \u201cYeah, but not that way.\u201d"
   },
   "_meta": {
     "source": "mystery_database/new_sources/The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "filename": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock.pdf",
     "text_len": 14747,
     "protocols": [
-      "P1"
+      "P1",
+      "P2",
+      "P3"
     ],
     "title": "I Don\u2019t Understand It",
     "author": "BILL PRONZINI",
     "anthology_title": "The_Best_of_Mystery_1980_Anthology_-_Alfred_Hitchcock",
     "story_index": 47,
-    "story_count": 63
+    "story_count": 63,
+    "model": "claude-opus-5"
   }
 }
