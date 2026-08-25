@@ -60,10 +60,56 @@ Three candidates, in ascending cost:
 **Owner is stewing on this.** Provenance looks like the natural fit given §3, and it costs
 nothing extra.
 
+### Correction (owner, later the same session): top-down is NOT rejected — rectangle-packing is
+
+The first draft of this section generalised the defect from "packs rectangles" to "top-down."
+**That was too broad, and the owner was right to push back.**
+
+`_row_rects` fills each row edge to edge because its docstring reasons about *"the shape of the
+building"* — it is drawing **interior architecture**. That is what breaks on a forest. The
+overhead view is not the problem; the tiling is.
+
+**Scale is what absorbs the Dick Francis case:**
+
+| Story | Scale |
+|---|---|
+| Country house | floor plan |
+| Antarctic station | site plan |
+| Black Forest | terrain |
+| Racetrack, stables, estate, lawyer's office | regional |
+
+Same renderer, different zoom. *"Things placed in 2D space"* is true of all four; *"rooms tiled
+into a rectangle"* is true of one.
+
+It also removes the cost this document raised against the connection map — that a node graph
+*"looks like a diagram, not a place."* A map at the right scale reads as somewhere.
+
+**In APF the map is presentation, not mechanic** (`docs/PLAYTEST_FLOW.md`). With no traversal it
+cannot deadlock, cannot gate anything, cannot lie about movement. It orients, and it gives the
+game a place — which is exactly the "not just text" problem APF creates.
+
+**The change is small.** Seven functions in `crime_scene_map.py`; only `_grid_shape` and
+`_row_rects` are the offenders. `_seed_fraction` (determinism), `_point_in` (placing something
+inside a region), `_best_area_for_crime` and `build_map`'s shape all survive. Most of the 193
+assertions stay valid too — they test invariants a scattered layout must also satisfy (nothing
+off-canvas, no overlaps, witnesses inside their area, identical run to run). Effectively only the
+row-filling test goes.
+
+**Simplest version that works:** labelled markers at seeded positions on a plain ground. No
+terrain art, no walls, nothing to scale. Stable across reloads because the seed is the title.
+
+Two things that do not change at any scale:
+
+- **Do not claim precision you do not have.** A labelled marker is honest; a to-scale plan invites
+  "but the hut overlooks the ravine" objections the data cannot back.
+- **The witness fabrication is still a bug.** `area = placed[i % len(placed)]` is round-robin
+  whether you draw rooms or a region. It still wants a real `area_id` from generation.
+
 ### Explicitly rejected
 
-Teaching the floor plan about forests. Every new setting would need new rendering code, and the
-prompt box accepts anything.
+Teaching the floor plan about forests — i.e. per-setting rendering branches. Every new setting
+would need new code, and the prompt box accepts anything. Scale generalises; special cases do
+not.
 
 ---
 
@@ -266,6 +312,10 @@ work sitting right there.
 
 ### Fixes, in order of preference
 
+0. **[Session 35, owner] APF deletes the mechanic that has the bug.** With findings dealt rather
+   than gathered there is nothing to block, every player holds findings by construction, and there
+   is no phase to be trapped in. See `docs/PLAYTEST_FLOW.md` → "APF". This is the current plan for
+   the playtest, and it is the cheapest correct outcome: the bug stops existing.
 1. **§3's growing pool** — the deadlock stops being possible.
 2. **Change the exit condition** to *"you are done acting,"* not *"you found something."*
    Spending a budget on three red herrings is a legitimate way to play a mystery badly; it should

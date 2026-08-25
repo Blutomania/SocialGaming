@@ -10,6 +10,150 @@ nothing else.
 
 ---
 
+## APF — the simplified playtest (owner, Session 35)
+
+**"All Provided For". This supersedes "The flow" below wherever the two disagree.** The older
+table is kept because its decisions (four suspects, lies off, leads greyed out, the one-call
+shape) still hold.
+
+### The reasoning
+
+> *"Social games work because they are somewhat superficial, easy and enjoyable. Walking around
+> is not."* — owner
+
+Exploration was cut for three reasons, in the owner's order:
+
+1. **Moving and searching is not the fun part.** Time spent traversing is time not spent on the
+   social read.
+2. **Free-text interrogation invites griefing.** `InterrogateRequest.question` is a `str` today,
+   so *"tell this witness to eat a donut"* is live. Short-term amusement, long-term a tax on
+   everyone else's evening — and simultaneously a moderation surface, an API call each, and a
+   quality-variance surface (a weak question returns a weak answer and the game looks broken).
+3. **It concentrates the game on its own stated core.** `CLAUDE.md`'s first paragraph calls the
+   information-sharing mechanic the core innovation. APF removes everything that is not that
+   decision.
+
+### The loop
+
+1. Player types a **title + setting** prompt.
+2. Generation runs once. Coherence checks it.
+3. The **opening sequence** plays (below) — the crime, told.
+4. Each player is **dealt** their findings — ideally one witness statement, one crime-scene clue,
+   one lead result. They do not go and get them.
+5. Each player **chooses which to share and which to keep.** That is the whole decision, and it
+   is the 75% mechanic with nothing in front of it.
+6. Deduce. Accuse. Reveal.
+
+### What this deletes outright
+
+- **The deadlock** (`docs/INVESTIGATION_DESIGN.md` §5). Not fixed — the mechanic that had it is
+  gone. Nothing to block, everyone holds findings by construction, no phase to be trapped in.
+- The block pool, the phase gates, traversal, the investigation budget.
+- **Play-time API cost, to approximately zero.** `docs/AI_COST_PLAYBOOK.md` identifies writing
+  fixed text at generation time rather than calling per action as the correct lever, measured at
+  10.8× on a four-player game. APF is that lever pushed all the way.
+
+### The deal is a separate step from generation, and it is free
+
+Generate findings carrying elimination data (one call), **then deal them under constraints** —
+pure computation, deterministic, and a failed deal is simply re-dealt at zero cost.
+
+| Constraint | Why |
+|---|---|
+| the union of all dealt findings eliminates all but one suspect | otherwise nobody can win |
+| no single player's hand does that alone | otherwise it is a lottery |
+| it becomes solvable once the minimum share threshold is met | otherwise sharing is pointless |
+
+This is a stronger guarantee than anything the engine does today, and it costs nothing. See
+`docs/INVESTIGATION_DESIGN.md` §4 for the `exonerates` / `implicates` fields it needs.
+
+### Path 2 — one interrogation — is a FLAG, not a fork
+
+Owner: *"even if a pick list, it adds some user empowerment. That's important to confirm, but not
+essential."*
+
+If the pick-list is over pre-generated questions, the answers already exist in the mystery. So
+Path 2 is not a different loop — it is *"one of your findings arrives chosen instead of dealt."*
+Same generation, same deal, same share decision, same reveal. **Ship APF with the pick-list behind
+a toggle and both get tested by one group in one evening**, everything else held constant.
+
+One consequence: variable hands mean solvability must hold across *every* combination of picks.
+4 players × 3 options is 81 combinations — checked exhaustively as set operations, zero API cost.
+Do **not** take the shortcut of making all options eliminate the same thing; that is cosmetic
+choice and players feel it.
+
+---
+
+## The opening sequence — text, paced, on the shared screen
+
+No video for the playtest. The mystery is told.
+
+**`opening_narration` already exists and is one boolean away.**
+`_generate_cinematic_brief()` (`server/main.py:335`) returns two fields, and is gated behind
+`cinematic_brief: bool = False` — off by default, which is why the one real generated mystery on
+disk has neither key:
+
+| Field | Its own spec | Use |
+|---|---|---|
+| `opening_narration` | *"3–5 sentences of atmospheric prose, written to be displayed or read aloud to players. No spoilers, no camera direction."* | **The playtest opening.** Turn the flag on. |
+| `cinematic_brief` | *"technical shot/lighting/sound direction… prepared for future video generation"* | The eventual video's shot list. Stays hidden. |
+
+One extra call **at generation time**, which is the right place to spend it.
+
+**The beats, measured on the real generation:**
+
+```
+opening_narration        3–5 sentences   the scene
+crime.initial_discovery      224 chars   a person, a moment
+crime.when                    86 chars   the punch
+crime.what_happened          421 chars   what was done
+setting.description          531 chars   why nobody can leave
+```
+
+~1,300 characters over five beats with deliberately varied length — the 86-character `when` lands
+hard between two longer passages. That is a sequence, not a wall.
+
+**Pacing is free** — client-side timing, no API call. On the shared screen it is a group moment:
+everyone reading at one rate, reacting together. The same text dumped instantly onto private
+phones is homework.
+
+### The video slot
+
+Owner wants the expectation set. **Do not ship a grey box reading "Video Scene Will Play Here"** —
+it announces unfinished software at the exact moment you want people absorbed.
+
+Instead the slot holds the crime depicted as well as it currently can — the top-down map framed on
+the crime location, or a title card over the background field (`background_field.py`) — with the
+narration timed over it. Same real estate, same promise, no broken signal. A small caption
+underneath can make the promise explicit without breaking the scene.
+
+> **Correction, Session 35:** `CLAUDE.md` item 15 stated the client *"renders a static
+> `Video Scene Will Play Here` placeholder."* It does not. That string appears in no `.gd`,
+> `.tscn`, `.html` or `.py` file — nothing occupies that slot today. Fixed in `CLAUDE.md`.
+
+### What the UI has to carry now
+
+With exploration gone, the **hand** and the **share** are not part of the game — they are the
+game, and they must feel like objects rather than paragraphs.
+
+- **The data is already card-shaped**: a finding has a name, a description, a type, a relevance.
+  Dealt, held, played. MYF has `GameCard.jsx` (155 lines), `CardHand.jsx` (67), `CardPicker.jsx`
+  (104) — not portable to Godot, but straight into `mobile.html`, and the visual language carries
+  either way.
+- **The suspect board is where deduction becomes visible.** If evidence carries `exonerates`,
+  playing a card **greys a suspect out for everyone, permanently, with your name on it.** Text
+  cannot do that. It also makes withholding legible without a word of explanation: a face stays
+  lit that you could have darkened, and everyone can see you didn't.
+
+**One schema field does double duty** — `exonerates` is what proves the mystery solvable *and*
+what drives the central UI moment. Usually correctness and fun are separate budgets.
+
+**Build the hand, the board and the share to be satisfying with the placeholder still in the
+slot.** If the playtest only works once the video lands, it has taught you nothing about the game
+and cost stage-3 money to say so.
+
+---
+
 ## The flow
 
 | # | Screen | What happens | State |
