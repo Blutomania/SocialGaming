@@ -137,7 +137,9 @@ func _add_cast_row(role_tag: String, name: String, occupation: String, color: Co
 	cast_container.add_child(lbl)
 
 func _add_evidence_row(ev: MysteryData.EvidenceData) -> void:
-	var relevance_icon := {"critical": "★", "red_herring": "✗", "supporting": "·"}.get(ev.relevance, "·")
+	# Dictionary.get() returns Variant, so `:=` infers Variant here and Godot
+	# treats that inference as an error. The type has to be stated.
+	var relevance_icon: String = {"critical": "★", "red_herring": "✗", "supporting": "·"}.get(ev.relevance, "·")
 	var lbl := Label.new()
 	lbl.text = "%s [%s] %s (%s)" % [relevance_icon, ev.id, ev.name, ev.type]
 	lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART

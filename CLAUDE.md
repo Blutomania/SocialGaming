@@ -102,6 +102,7 @@ urgent; anything that does not, is not.
 | `localization.py` | Era-appropriate name/occupation localization with 3-tier disk cache |
 | `extraction_protocols.py` | P1–P4 taxonomy definitions — still active, used by `scripts/extract_from_pdfs.py` |
 | `scripts/extract_from_pdfs.py` | Sanctioned way to add a **single new source** (e.g. a PDF) to the live corpus — extracts P1 parts, writes to `mystery_database/extractions/`. Distinct from the frozen bulk pipeline below. Invoke with `python3`, not `python` (this environment has no `python` alias). Add `--anthology` for a short-story collection PDF (one novel-narrative sampling per file otherwise) — detects per-story boundaries and extracts each story as its own corpus source with its own full text; always `--dry-run` an anthology first to review the detected split before spending API calls. |
+| `docs/F5_CHECKLIST.md` | **The hand-walk procedure for the Godot client** — 17 steps, free ones first, with the exact expected values per screen. Read before running the client; it also records which steps have actually been walked. |
 | `docs/INVESTIGATION_DESIGN.md` | **The investigation model** (Session 35) — connection map over floor plan, locations as containers, the narrative-driven growing option pool, and solvability as set arithmetic. Read before touching the map, the round system, or the coherence engine's solvability rules. |
 | `docs/WIRING.md` | **Canonical generation architecture** — read before touching generation |
 | `SESSIONS.md` | Session-by-session history and full to-do list |
@@ -258,18 +259,49 @@ GodotSteam is the best Steamworks path; Godot Linux export = Steam Deck support 
 
 ---
 
-## Current To-Do (as of Session 35, August 25, 2026)
+## Current To-Do (as of Session 36, August 26, 2026)
 
-Full list in `SESSIONS.md`. **The two things that matter for stage 1 are items 22 and 23 —
-everything above them is history or not-yet.**
+Full list in `SESSIONS.md`. **The thing that matters for stage 1 is item 23 — everything above it
+is history, and item 22 is now done.**
 
-22. **[START HERE — BLOCKING] One Godot F5.** Nothing from Session 34 or 35 has run in the engine.
-    The result screen, the accusation matching, the saved-mystery dropdown, every wiring fix — all
-    verified by `scripts/check_godot_wiring.py` and nothing else. There is no Godot binary in the
-    remote environment, so this needs the owner's machine. It costs nothing and it is the only
-    thing between the current state and a playtest.
+22. **[DONE, Session 36 — August 26, 2026] The Godot F5 ran.** The client has been launched in the
+    engine, by the owner, on their machine. It reached the main menu with the backend connected,
+    and a saved mystery loaded from the browse list into `CaseDisplay` and rendered. Owner's
+    verdict: *"it ran, it's ugly, but it works."* Ugly is a stage-1 pass — the screens were built
+    to be wired, not styled.
 
-23. **[NEXT] Build APF.** The playtest shape is agreed and written down:
+    **It found two defects in the first twenty minutes, and the checker had passed both files.**
+    - `case_display.gd:140` — `var relevance_icon := {…}.get(…)` inferred `Variant` from
+      `Dictionary.get()`, which the engine treats as an error. Fatal at *parse* time, so
+      `CaseDisplay.tscn` never loaded at all. Fixed by stating `: String` (`e461ef5`).
+    - `Interrogation.tscn` used `##` section headers. **A `.tscn` comments with `;`; a `#` line is
+      garbage to the scene parser and the node declared immediately after one is dropped when the
+      scene loads.** Five panels and all their children were null at runtime — the survivors were
+      exactly the nodes with no `##` above them (`7cbacd1`).
+
+    **The lasting finding is the checker's false pass.** `check_godot_wiring.py` reads
+    `[node name=…]` with a regex, so it saw all 21 of that scene's nodes and confirmed every
+    `$NodePath` resolves, while five panels were missing at runtime. **Reading a scene is not the
+    same as loading it.** Both defects lived where the checker's model of the project diverges
+    from the engine's — one in the type system, one in the file format. The checker now fails on
+    `#` in a `.tscn`; there is no equivalent guard for the type system, and short of running Godot
+    there cannot be. Treat "the checkers pass" as *necessary, not sufficient*, and say so when
+    reporting status.
+
+    **The free route is now complete.** The accusation dropdown, the result screen, rating
+    persistence, both navigation exits, the Smurf substring regression (both correct answers come
+    back correct) and the repaired interrogation screen have all been walked and pass. A third
+    defect surfaced and was fixed on the way: `result_screen.gd` relied on implicit string
+    concatenation, which GDScript does not have, so the script failed to parse and the screen
+    rendered its static nodes only — no verdict, no solution, no rating buttons, and no runtime
+    error to explain it. The same pattern was found and fixed on the multiplayer share path
+    before it could be hit (`102e2be`).
+
+    **Still unverified: only the two paid steps** — one interrogation call and one generation.
+    Plus one gap inside a passing step: the Smurf negative case (accusing Smurfodex, which must
+    read *wrong*) was not run. The procedure and its live Status line are `docs/F5_CHECKLIST.md`.
+
+23. **[START HERE] Build APF.** The playtest shape is agreed and written down:
     `docs/PLAYTEST_FLOW.md` → "APF (All Provided For)". Findings are **dealt, not gathered**; the
     only decision is which to share and which to keep, which is the mechanic this file's first
     paragraph calls the core innovation. It deletes exploration, the block pool, the phase gates
@@ -786,7 +818,7 @@ Both are zero-API-cost, need no Godot binary, and each has already caught a real
 
 | Script | Catches |
 |---|---|
-| `scripts/check_godot_wiring.py` | Broken `$NodePath`s, `@onready` type mismatches, interactive controls the script never references, autoload calls that do not exist or take the wrong arity. Found `result_screen.gd` reaching for `$MainVBox/…` when the scene nests under `ScrollContainer/MainVBox/…` — the whole end-of-game screen. |
+| `scripts/check_godot_wiring.py` | Broken `$NodePath`s, `@onready` type mismatches, interactive controls the script never references, autoload calls that do not exist or take the wrong arity, and (Session 36) `#` comment lines in a `.tscn`, which drop the node declared after them. Found `result_screen.gd` reaching for `$MainVBox/…` when the scene nests under `ScrollContainer/MainVBox/…` — the whole end-of-game screen. **Necessary, not sufficient:** it reads scene files rather than loading them, and it passed `Interrogation.tscn` while five of its panels were missing at runtime (item 22). |
 | `scripts/check_mystery_playable.py` | A saved mystery whose `solution.culprit` names no listed suspect, an empty suspect list, or a blocking coherence failure that was served anyway. |
 | `scripts/upgrade_p1_to_p1p2.py` | Plans and runs the P1→P1P2P3 corpus upgrade. Prints the plan and spends nothing by default; `--go` executes. `--check-sources` / `--find-missing` / `--source-dir` handle PDFs that moved, were renamed, or are gone. Errors and recovery: `docs/EXTRACTION_TROUBLESHOOTING.md`. |
 | `scripts/compare_extraction_models.py` | Scores extraction models against `_atomize_extraction` — parts yielded and axes filled, not prose quality. |
