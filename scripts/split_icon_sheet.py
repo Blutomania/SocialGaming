@@ -309,8 +309,14 @@ def split_vector_sheet(path: Path, icon_set: str, dry_run: bool) -> int:
         if dry_run:
             continue
         out_dir.mkdir(parents=True, exist_ok=True)
+        # width/height as well as viewBox, deliberately. A viewBox-only SVG has
+        # no intrinsic size, and Godot's importer has to invent one -- which it
+        # may do at a scale that makes the icon a handful of pixels, with no
+        # error to say so. Stating the size removes the guess. Square, matching
+        # the raster path's EDGE, so both kinds of source import identically.
         (out_dir / name).write_text(
-            f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{view}">\n{body}\n</svg>\n'
+            f'<svg xmlns="http://www.w3.org/2000/svg" width="{EDGE}" height="{EDGE}" '
+            f'viewBox="{view}">\n{body}\n</svg>\n'
         )
 
     if dry_run:
