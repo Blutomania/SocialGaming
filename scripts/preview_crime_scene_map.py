@@ -20,13 +20,20 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import crime_scene_map as csm
 
-GROUND = "#2b2f36"      # CYM slate
-ROOM = "#363b44"
-LINE = "#8b93a1"
-INK = "#e8e6e3"
-MUTED = "#9aa2b1"
-WITNESS = "#6fb3d2"
-BODY = "#c9584f"
+# From palette.py, not from a copy. This block used to hold seven literals of
+# its own, and its ground was labelled "CYM slate" while being #2b2f36 -- a
+# different colour from the slate #2F4459 that brand/ and background_field.py
+# were both built against. A preview whose job is "judge the aesthetic by
+# looking at it" is worth very little when it is drawn in the wrong palette.
+import palette  # noqa: E402
+
+GROUND = palette.GROUND
+ROOM = palette.SURFACE
+LINE = palette.LINE
+INK = palette.INK
+MUTED = palette.INK_MUTED
+WITNESS = palette.STEEL_BRIGHT
+BODY = palette.NEGATIVE
 
 EXAMPLE = {
     "title": "The Last Note at the Velvet Cage",
