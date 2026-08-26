@@ -8,9 +8,18 @@ never connected not at all — it just does nothing when clicked. `scripts/check
 catches what it can by reading the scene and script files, but reading a scene is not the same as
 loading it, and Session 36 proved the gap twice. This checklist is the part no script can do.
 
-**Status (Session 36, August 26 2026).** Steps 1–9 have been walked by the owner and pass. The
-interrogation screen failed at step 16, was fixed, and has **not been re-run**. Steps 10–17 are
-unverified. See `SESSIONS.md` Session 36.
+**Status (Session 36, August 26 2026).** Steps **1–10 walked by the owner and passing.**
+Steps 11–17 unverified.
+
+Two steps failed on first attempt and were fixed mid-walk:
+
+- **Step 14, the interrogation screen** — `##` comment lines in `Interrogation.tscn` dropped five
+  panels. Fixed; **not yet re-run**.
+- **Step 10, the result screen** — `result_screen.gd` failed to parse because GDScript has no
+  implicit string concatenation, so the script never loaded and the screen rendered its static
+  nodes only. Fixed and **confirmed working**: red verdict, full solution, ten rating buttons.
+
+See `SESSIONS.md` Session 36.
 
 ---
 
