@@ -26,11 +26,13 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TitleLabel" type="Label" parent="VBox"]
+theme_type_variation = &"TitleLabel"
 layout_mode = 2
 text = "Set Your Mystery"
 horizontal_alignment = 1
 
 [node name="PromptHintLabel" type="Label" parent="VBox"]
+theme_type_variation = &"FaintLabel"
 layout_mode = 2
 text = "Describe the scenario:"
 
@@ -39,6 +41,7 @@ layout_mode = 2
 placeholder_text = "e.g. \"A murder on a Mars colony\" or \"An art theft in Renaissance Venice\""
 
 [node name="ModerationNoticeLabel" type="Label" parent="VBox"]
+theme_type_variation = &"CautionLabel"
 layout_mode = 2
 theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
 theme_override_font_sizes/font_size = 12
@@ -53,6 +56,7 @@ layout_mode = 2
 visible = false
 
 [node name="HostNameLabel" type="Label" parent="VBox/MultiplayerSection"]
+theme_type_variation = &"FaintLabel"
 layout_mode = 2
 text = "Your name (host):"
 
@@ -62,6 +66,7 @@ placeholder_text = "Enter your name"
 max_length = 24
 
 [node name="DifficultyLabel" type="Label" parent="VBox/MultiplayerSection"]
+theme_type_variation = &"FaintLabel"
 layout_mode = 2
 text = "Difficulty:"
 
@@ -73,14 +78,17 @@ layout_mode = 2
 visible = false
 
 [node name="GenerateButton" type="Button" parent="VBox"]
+theme_type_variation = &"PrimaryButton"
 layout_mode = 2
 text = "Generate Mystery"
 
 [node name="BackButton" type="Button" parent="VBox"]
+theme_type_variation = &"QuietButton"
 layout_mode = 2
 text = "Back"
 
 [node name="StatusLabel" type="Label" parent="VBox"]
+theme_type_variation = &"FaintLabel"
 layout_mode = 2
 text = ""
 horizontal_alignment = 1

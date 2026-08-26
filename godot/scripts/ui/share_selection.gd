@@ -86,9 +86,9 @@ func _update_counter() -> void:
 	counter_label.text = "%d selected (minimum %d)" % [selected, _min_required]
 	share_button.disabled = (selected < _min_required)
 	if selected < _min_required:
-		counter_label.modulate = Color.ORANGE_RED
+		counter_label.add_theme_color_override("font_color", Palette.NEGATIVE)
 	else:
-		counter_label.modulate = Color.WHITE
+		counter_label.remove_theme_color_override("font_color")
 
 func _on_toggle(_val: bool) -> void:
 	_update_counter()
@@ -138,9 +138,9 @@ func _rebuild_duplicate_highlights() -> void:
 	for i in range(_findings.size()):
 		var hbox: HBoxContainer = findings_container.get_child(i)
 		if _findings[i].get("id", "") in _duplicate_ids:
-			hbox.modulate = Color.ORANGE_RED
+			hbox.modulate = Palette.NEGATIVE
 		else:
-			hbox.modulate = Color.WHITE
+			hbox.modulate = Color.WHITE  ## identity -- clears the tint above
 
 func _advance_phase() -> void:
 	var order := [

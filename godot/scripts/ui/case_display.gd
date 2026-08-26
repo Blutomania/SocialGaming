@@ -77,19 +77,19 @@ func _populate() -> void:
 
 	var victim := _mystery.get_victim()
 	if victim.name:
-		_add_cast_row("VICTIM", victim.name, victim.occupation, Color.INDIAN_RED)
+		_add_cast_row("VICTIM", victim.name, victim.occupation, Palette.NEGATIVE)
 
 	for suspect in _mystery.get_suspects():
-		_add_cast_row("SUSPECT", suspect.name, suspect.occupation, Color.ORANGE)
+		_add_cast_row("SUSPECT", suspect.name, suspect.occupation, Palette.BRASS)
 
 	var witnesses := _mystery.characters.filter(func(c): return c.role == "witness")
 	for w in witnesses:
-		_add_cast_row("WITNESS", w.name, w.occupation, Color.SKY_BLUE)
+		_add_cast_row("WITNESS", w.name, w.occupation, Palette.STEEL_BRIGHT)
 
 	# --- Coherence badge ---
 	if _mystery.coherence_passed:
 		coherence_label.text = "Coherence: PASS (%d warnings)" % _mystery.coherence_warnings
-		coherence_label.modulate = Color.GREEN
+		coherence_label.add_theme_color_override("font_color", Palette.POSITIVE)
 	else:
 		coherence_label.text = (
 			"Coherence: FAIL — %d blocking, %d warnings" % [
@@ -97,7 +97,7 @@ func _populate() -> void:
 				_mystery.coherence_warnings,
 			]
 		)
-		coherence_label.modulate = Color.RED
+		coherence_label.add_theme_color_override("font_color", Palette.NEGATIVE)
 
 	# --- Evidence ---
 	for child in evidence_container.get_children():
@@ -133,7 +133,7 @@ func _populate() -> void:
 func _add_cast_row(role_tag: String, name: String, occupation: String, color: Color) -> void:
 	var lbl := Label.new()
 	lbl.text = "[%s] %s — %s" % [role_tag, name, occupation]
-	lbl.modulate = color
+	lbl.add_theme_color_override("font_color", color)
 	cast_container.add_child(lbl)
 
 func _add_evidence_row(ev: MysteryData.EvidenceData) -> void:
@@ -192,7 +192,7 @@ func _populate_areas() -> void:
 		return
 	var header := Label.new()
 	header.text = "Investigation Areas"
-	header.modulate = Color.CORNFLOWER_BLUE
+	header.add_theme_color_override("font_color", Palette.STEEL_BRIGHT)
 	areas_container.add_child(header)
 	for area in _mystery.investigation_areas:
 		var lbl := Label.new()
@@ -209,7 +209,7 @@ func _populate_leads() -> void:
 		return
 	var header := Label.new()
 	header.text = "Leads"
-	header.modulate = Color.GOLDENROD
+	header.add_theme_color_override("font_color", Palette.BRASS)
 	leads_container.add_child(header)
 	for lead in _mystery.leads:
 		var lbl := Label.new()
@@ -229,7 +229,7 @@ func _rebuild_shared_intel() -> void:
 		return
 	var header := Label.new()
 	header.text = "Shared Intel"
-	header.modulate = Color.LIGHT_GREEN
+	header.add_theme_color_override("font_color", Palette.POSITIVE)
 	shared_intel_container.add_child(header)
 	for clue in all_shared:
 		var lbl := Label.new()

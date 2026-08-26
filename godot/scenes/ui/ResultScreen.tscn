@@ -27,6 +27,7 @@ offset_left = 32.0
 offset_top = 32.0
 
 [node name="VerdictLabel" type="Label" parent="ScrollContainer/MainVBox"]
+theme_type_variation = &"TitleLabel"
 layout_mode = 2
 text = ""
 horizontal_alignment = 1
@@ -43,6 +44,7 @@ text = ""
 layout_mode = 2
 
 [node name="RatingTitle" type="Label" parent="ScrollContainer/MainVBox"]
+theme_type_variation = &"HeadingLabel"
 layout_mode = 2
 text = "Rate This Mystery (1 = unplayable · 10 = perfect)"
 horizontal_alignment = 1
@@ -59,11 +61,13 @@ layout_mode = 2
 alignment = 1
 
 [node name="PlayAgainButton" type="Button" parent="ScrollContainer/MainVBox/Buttons"]
+theme_type_variation = &"PrimaryButton"
 layout_mode = 2
 text = "Play Again"
 custom_minimum_size = Vector2(150, 0)
 
 [node name="ReviewButton" type="Button" parent="ScrollContainer/MainVBox/Buttons"]
+theme_type_variation = &"QuietButton"
 layout_mode = 2
 text = "Review Case"
 custom_minimum_size = Vector2(150, 0)

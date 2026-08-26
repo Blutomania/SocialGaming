@@ -43,10 +43,10 @@ func _populate() -> void:
 
 	if correct:
 		verdict_label.text = "Correct! %s is the culprit." % culprit
-		verdict_label.modulate = Color.GREEN
+		verdict_label.add_theme_color_override("font_color", Palette.POSITIVE)
 	else:
 		verdict_label.text = "Wrong. You accused %s — the real culprit was %s." % [suspect, culprit]
-		verdict_label.modulate = Color.RED
+		verdict_label.add_theme_color_override("font_color", Palette.NEGATIVE)
 
 	# Full solution breakdown
 	var key_ev: Array = solution.get("key_evidence", [])
@@ -89,10 +89,19 @@ func _on_rate(rating: int) -> void:
 			if err:
 				push_warning("Rating save failed: " + err)
 		)
-	# Dim all buttons to show rating was recorded
-	for btn in rating_row.get_children():
-		if btn is Button:
-			btn.modulate = Color(0.5, 0.5, 0.5) if str(btn.text).to_int() != rating else Color.GOLD
+	# Dim all buttons to show rating was recorded. The chosen one keeps full
+	# strength and takes a brass label; the rest recede. modulate is right here
+	# and wrong for a Label: these are whole controls -- box, border and text --
+	# that should step back together.
+	for child: Node in rating_row.get_children():
+		if child is Button:
+			var btn: Button = child
+			var chosen: bool = btn.text.to_int() == rating
+			btn.modulate = Color.WHITE if chosen else Color(0.55, 0.55, 0.55)
+			if chosen:
+				btn.add_theme_color_override("font_color", Palette.BRASS)
+			else:
+				btn.remove_theme_color_override("font_color")
 
 # ---------------------------------------------------------------------------
 # Navigation

@@ -50,10 +50,10 @@ func _ready() -> void:
 func _on_health_check(error: String, _data: Dictionary) -> void:
 	if error:
 		status_label.text = "Backend unreachable — start server at localhost:8000"
-		status_label.modulate = Color.RED
+		status_label.add_theme_color_override("font_color", Palette.NEGATIVE)
 	else:
 		status_label.text = "Backend connected."
-		status_label.modulate = Color.GREEN
+		status_label.add_theme_color_override("font_color", Palette.POSITIVE)
 
 func _on_new_game() -> void:
 	GameState.is_multiplayer = false

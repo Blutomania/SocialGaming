@@ -24,12 +24,14 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PhaseLabel" type="Label" parent="VBox"]
+theme_type_variation = &"TitleLabel"
 layout_mode = 2
 text = "Phase 1 — Witness Interrogation"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 20
 
 [node name="BudgetLabel" type="Label" parent="VBox"]
+theme_type_variation = &"FaintLabel"
 layout_mode = 2
 text = ""
 horizontal_alignment = 1
@@ -45,6 +47,7 @@ layout_mode = 2
 placeholder_text = "Ask a question…"
 
 [node name="AskButton" type="Button" parent="VBox/WitnessPanel"]
+theme_type_variation = &"PrimaryButton"
 layout_mode = 2
 text = "Ask"
 
@@ -74,6 +77,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="SharedLabel" type="Label" parent="VBox/SharedPanel"]
+theme_type_variation = &"HeadingLabel"
 layout_mode = 2
 text = "Shared Intel"
 modulate = Color(0.565, 0.933, 0.565, 1)
@@ -82,6 +86,7 @@ modulate = Color(0.565, 0.933, 0.565, 1)
 layout_mode = 2
 
 [node name="StatusLabel" type="Label" parent="VBox"]
+theme_type_variation = &"FaintLabel"
 layout_mode = 2
 text = ""
 autowrap_mode = 3
@@ -93,9 +98,11 @@ indeterminate = true
 visible = false
 
 [node name="AccuseButton" type="Button" parent="VBox"]
+theme_type_variation = &"DangerButton"
 layout_mode = 2
 text = "Make Accusation"
 
 [node name="BackButton" type="Button" parent="VBox"]
+theme_type_variation = &"QuietButton"
 layout_mode = 2
 text = "Back to Case"
