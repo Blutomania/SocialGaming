@@ -23,12 +23,11 @@ to 80 pixels — so an even division would clip some and off-centre the rest.
 Scanning for columns with no ink finds the real gutters, and the run-length
 floor rejects a stray antialiased pixel from being read as a fifth icon.
 
-HOW THE COLOUR IS REMOVED. The alpha channel is the artwork; the RGB is thrown
-away entirely. Every pixel becomes white at its original opacity, which makes
-the result a coverage mask — Godot then multiplies it by any palette colour via
-modulate, and CSS does the same with a filter. Converting the hues to greys
-instead would keep the gradient's own light and dark, and the icons would arrive
-with brightness variation nobody chose.
+WHAT IT DOES NOT DO. It does not recolour. Splitting and flattening are separate
+jobs, and this one stops at splitting so that what lands in icons/<set>/ is the
+artwork as drawn — build_icons.py stays the single place any colour is decided,
+exactly as it is for vector sources. Flattening here would bake an irreversible
+choice into the file everyone thereafter treats as the original.
 """
 
 from __future__ import annotations
@@ -137,14 +136,53 @@ def cut(sheet: Image.Image, left: int, right: int) -> Image.Image:
         Image.LANCZOS,
     )
 
-    # The alpha IS the artwork. White at the original opacity, so the result
-    # multiplies cleanly against any colour. See the header.
-    white = Image.new("RGBA", resized.size, (255, 255, 255, 0))
-    white.putalpha(resized.getchannel("A"))
-
+    # Colour is deliberately PRESERVED here. Splitting and flattening are two
+    # different jobs, and keeping them apart makes the raster path behave the
+    # same way as the vector one: what lands in icons/<set>/ is the artwork as
+    # drawn, and build_icons.py is the single place that decides what colour
+    # anything ends up. Flattening here instead would put an irreversible
+    # decision in the file everyone treats as the source.
     canvas = Image.new("RGBA", (EDGE, EDGE), (255, 255, 255, 0))
-    canvas.paste(white, ((EDGE - white.width) // 2, (EDGE - white.height) // 2))
+    canvas.paste(resized, ((EDGE - resized.width) // 2, (EDGE - resized.height) // 2))
     return canvas
+
+
+def detached_specks(icon: Image.Image, floor: float = 0.015) -> list[tuple[int, int, float]]:
+    """Bands of ink that float free of the drawing, as (top, bottom, share).
+
+    REPORTED, NEVER REMOVED, and the reason is in this very icon set: the
+    figure with radiating emphasis lines has four legitimately detached
+    components. Anything that deleted disconnected ink automatically would eat
+    them. So this only looks for a band separated VERTICALLY from everything
+    else and carrying almost none of the ink -- the shape a stray anchor point
+    or a leftover mark takes -- and then says so rather than acting.
+    """
+    alpha = icon.getchannel("A")
+    width, height = icon.size
+    pixels = alpha.load()
+    rows = [sum(1 for x in range(width) if pixels[x, y] > ALPHA_FLOOR)
+            for y in range(height)]
+    total = sum(rows) or 1
+
+    bands: list[tuple[int, int, float]] = []
+    start = None
+    gap = 0
+    for y, count in enumerate(rows):
+        if count:
+            if start is None:
+                start = y
+            gap = 0
+        elif start is not None:
+            gap += 1
+            if gap >= 3:
+                end = y - gap + 1
+                bands.append((start, end, sum(rows[start:end]) / total))
+                start = None
+                gap = 0
+    if start is not None:
+        bands.append((start, height, sum(rows[start:]) / total))
+
+    return [b for b in bands if len(bands) > 1 and b[2] < floor]
 
 
 def main() -> int:
@@ -178,7 +216,13 @@ def main() -> int:
         if dry_run:
             continue
         out_dir.mkdir(parents=True, exist_ok=True)
-        cut(sheet, left, right).save(out_dir / name)
+        icon = cut(sheet, left, right)
+        for top, bottom, share in detached_specks(icon):
+            print(f"      note: detached mark at rows {top}-{bottom} carrying "
+                  f"{share:.2%} of this icon's ink — probably a stray point in "
+                  f"the source artwork. Left alone; remove it in the original "
+                  f"if it is not wanted.")
+        icon.save(out_dir / name)
 
     if dry_run:
         print("\n--dry-run: nothing written. Check the count and the widths above "

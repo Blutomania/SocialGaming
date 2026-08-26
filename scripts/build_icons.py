@@ -24,6 +24,16 @@ cannot. CSS has the opposite affordance, so the phone copy defers to
 currentColor and the stylesheet decides. One source, two mechanisms, no third
 copy of the palette.
 
+RASTER SOURCES. A .png in a set folder is handled too, and is second choice
+rather than an error: a bitmap cannot be re-cut or re-weighted and cannot scale
+past its own resolution, which matters because CYM's host screen is a
+television. Flattening one is simpler than flattening vector, because the alpha
+channel already IS the artwork — the RGB is discarded and every pixel becomes
+white at its original opacity, giving a coverage mask. Godot multiplies that by
+a palette colour with modulate; CSS does the same with `mask-image` plus a
+`background-color`, which is why the phone copy of a raster icon is the same
+white file rather than a currentColor one.
+
 WHAT IT REFUSES. A raster embedded in an SVG wrapper. The rewrite works on paint
 attributes, so a base64 <image> passes through untouched and would arrive in the
 product as the only multi-coloured thing in it. brand/negative_logo.svg and
@@ -33,6 +43,7 @@ a failure rather than a warning.
 
 from __future__ import annotations
 
+import io
 import re
 import sys
 import xml.etree.ElementTree as ET
@@ -156,8 +167,33 @@ def sources() -> dict:
     found = {}
     for name in SETS:
         folder = SRC / name
-        found[name] = sorted(p for p in folder.glob("*.svg")) if folder.exists() else []
+        if not folder.exists():
+            found[name] = []
+            continue
+        found[name] = sorted(
+            p for p in folder.iterdir()
+            if p.suffix.lower() in (".svg", ".png")
+        )
     return found
+
+
+def flatten_raster(path: Path) -> bytes:
+    """A raster icon as a white coverage mask, PNG-encoded.
+
+    The alpha channel is the drawing; the RGB is thrown away. Converting the
+    hues to greys instead would carry the source gradient's own light and dark
+    into the result, so the icons would arrive with brightness variation nobody
+    chose — the amber magnifier reading heavier than the green one for no
+    reason a designer decided.
+    """
+    from PIL import Image  # imported here so the vector path needs no Pillow
+
+    source = Image.open(path).convert("RGBA")
+    mask = Image.new("RGBA", source.size, (255, 255, 255, 0))
+    mask.putalpha(source.getchannel("A"))
+    buffer = io.BytesIO()
+    mask.save(buffer, format="PNG", optimize=True)
+    return buffer.getvalue()
 
 
 def render_iconset_gd(found: dict) -> str:
@@ -192,6 +228,12 @@ def build(check_only: bool = False, report: bool = False) -> int:
         for name in SETS:
             print(f"  icons/{name}/  {len(found[name])} file(s)")
             for p in found[name]:
+                if p.suffix.lower() == ".png":
+                    from PIL import Image
+                    im = Image.open(p)
+                    print(f"      {p.name}: raster {im.width}x{im.height} {im.mode} "
+                          f"— flattened from its alpha channel")
+                    continue
                 try:
                     _, seen = recolour(p.read_text(), GODOT_PAINT)
                     print(f"      {p.name}: {seen['elements']} painted elements, "
@@ -203,9 +245,19 @@ def build(check_only: bool = False, report: bool = False) -> int:
         if report:
             return 0
 
-    targets: list[tuple[Path, str, str | None]] = []
+    targets: list[tuple[Path, object, object]] = []
     for name in SETS:
         for src in found[name]:
+            if src.suffix.lower() == ".png":
+                # One file serves both clients: Godot tints it with modulate,
+                # CSS with mask-image. Neither needs a per-client variant.
+                wanted_bytes = flatten_raster(src)
+                for out_dir in (GODOT_OUT, PHONE_OUT):
+                    dest = out_dir / name / src.name
+                    current = dest.read_bytes() if dest.exists() else None
+                    targets.append((dest, wanted_bytes, current))
+                continue
+
             text = src.read_text()
             _assert_vector(src, text)
             for out_dir, paint in ((GODOT_OUT, GODOT_PAINT), (PHONE_OUT, PHONE_PAINT)):
@@ -232,7 +284,10 @@ def build(check_only: bool = False, report: bool = False) -> int:
         if wanted == current:
             continue
         dest.parent.mkdir(parents=True, exist_ok=True)
-        dest.write_text(wanted)
+        if isinstance(wanted, bytes):
+            dest.write_bytes(wanted)
+        else:
+            dest.write_text(wanted)
         print(f"  wrote      {_rel(dest)}")
     if total == 0:
         print("\nNo icons yet — IconSet.gd generated empty, which is a valid state: "

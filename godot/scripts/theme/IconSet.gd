@@ -11,9 +11,15 @@ extends RefCounted
 
 
 const CLUE: Array[String] = [
-	# none yet -- drop SVGs into icons/clue/
+	"res://assets/icons/clue/clue_01.png",
+	"res://assets/icons/clue/clue_02.png",
+	"res://assets/icons/clue/clue_03.png",
+	"res://assets/icons/clue/clue_04.png",
 ]
 
 const WITNESS: Array[String] = [
-	# none yet -- drop SVGs into icons/witness/
+	"res://assets/icons/witness/witness_01.png",
+	"res://assets/icons/witness/witness_02.png",
+	"res://assets/icons/witness/witness_03.png",
+	"res://assets/icons/witness/witness_04.png",
 ]
