@@ -262,3 +262,91 @@ Two diagnostic habits that paid off in Session 36:
   which node references resolved and which are empty, which is what actually located the bug.
 - **A parse error appears only when its scene first loads.** Godot parses a script when the scene
   needs it, so a broken screen stays silent until you click through to it.
+
+---
+
+## Session 37 addendum — what to watch when rendering the new look
+
+Everything below was added in Session 37 (palette, theme, fonts, icons) and **none of it has
+been rendered**. There is no Godot binary in the Claude session environment, so the checkers
+establish that every name resolves and every file is in sync — and nothing more. Session 36's
+rule applies harder here than anywhere: **necessary, not sufficient.**
+
+The failures below are sorted by how they will present, because the hard part is not fixing
+them, it is *noticing* them.
+
+### A. Failures that are completely silent
+
+**A wrong theme item name is a no-op.** Godot does not warn when a theme sets an item a control
+does not have — the control simply keeps its engine default. So the symptom is not an error,
+it is *one control type looking unthemed while everything around it looks right*.
+
+Walk the screens once looking specifically for anything still wearing Godot's default grey.
+These are the items `Style.gd` sets that could not be verified from outside the engine:
+
+| Control | Items set | What "wrong" looks like |
+|---|---|---|
+| `Label` | `line_spacing` | Prose lines cramped together |
+| `HSeparator` / `VSeparator` | `separator`, `separation` | A bright default rule instead of a soft one |
+| `ItemList` | `hovered`, `selected`, `selected_focus`, `guide_color` | Browse popup rows highlight in blue |
+| `ProgressBar` | `background`, `fill` | Spinner/budget bar is grey, not brass |
+| `VScrollBar` / `HScrollBar` | `scroll`, `grabber`, `grabber_highlight`, `grabber_pressed` | Bright grey scrollbar — it will be the loudest thing on the case screen |
+| `Window` | `embedded_border`, `embedded_unfocused_border`, `title_color`, `title_font_size` | Browse popup has a grey title bar |
+| `AcceptDialog` | `panel`, `buttons_separation` | Accusation confirm dialog is grey |
+| `PopupMenu` | `panel`, `hover`, `font_*` | Accusation dropdown opens a light-grey list — the classic half-themed look |
+| `LineEdit` | `font_uneditable_color` | Only visible on a read-only field |
+| `TooltipPanel` / `TooltipLabel` | `panel`, `font_color` | Hover tooltips are default yellow-ish |
+
+**The 13 theme type variations** (`DisplayLabel`, `TitleLabel`, `MysteryTitleLabel`,
+`HeadingLabel`, `MutedLabel`, `FaintLabel`, `CautionLabel`, `ErrorLabel`, `PositiveLabel`,
+`PrimaryButton`, `QuietButton`, `DangerButton`, `WellPanel`) fail the same way — an unrecognised
+variation falls back to the base type. `check_godot_wiring.py` cross-checks the names in the
+`.tscn` files against `Style.gd`, so a *typo* is already caught; what it cannot catch is Godot
+disagreeing about the mechanism itself. Quick tell: if the main menu title is not 44px brass,
+variations are not applying at all.
+
+### B. Fonts
+
+- **Import before running.** `.ttf` files become `FontFile` resources on first editor open. Per
+  Session 36, a fresh clone must be opened with **Edit**, not Run — `.godot/` is a generated
+  import cache and is never committed.
+- **If the font did not load you will see it in Output**, not on screen: `Style.gd` pushes
+  `Style: res://assets/fonts/… is missing — falling back to Godot's default face.` The fallback
+  is deliberate; assigning a null `default_font` would strip every label in the product with no
+  error at all.
+- **The room code is the one real design risk.** Nunito Sans has an **unslashed zero**, and the
+  code is read off a television and typed into a phone by somebody standing up. Generate a room
+  code and look at it. If `0` against `O` is ambiguous in the room, the fix is a mono face for
+  that one label — not a different UI font.
+
+### C. Icons
+
+- The generated SVGs now carry **`width`/`height` as well as `viewBox`**. A viewBox-only SVG has
+  no intrinsic size and Godot's importer has to invent one, which it may do at a scale that
+  makes the icon a few pixels across, with no error. If icons import tiny anyway, the fix is the
+  **Scale** field in the Import dock, then Reimport.
+- **They are white on purpose.** The generated files are a coverage mask, so an unmodulated icon
+  on the slate ground will look stark white. Anything drawing one should set `modulate` to
+  `Icons.tint()`.
+
+### D. Things that will look broken and are correct
+
+Check these off before reporting a bug:
+
+| What you will see | Why it is right |
+|---|---|
+| **No icons anywhere** | `Icons.gd` and `IconSet.gd` exist and are tested, but **no screen calls them yet**. Wiring them into the clue and witness lists is not done. |
+| **No strewn title in the background** | The BACKGROUND field is layout-only (`background_field.py`) and wired to no client. The flat slate ground *is* item 17's specified pre-prompt state. |
+| **Default Godot window/taskbar icon** | `config/icon` points at `res://assets/ui/icon.png`, which does not exist. Choosing it needs item 17's open brand decision. |
+| **Panels look sunken, not raised** | Deliberate. The surface ramp goes *deeper* than the ground so the BACKGROUND field stays behind everything. See `palette.py`. |
+| **Semantic colours look pale** | Forced, not chosen. A saturated red cannot clear 4.5:1 on a mid-slate ground. |
+
+### E. First three minutes
+
+1. Open with **Edit**. Let the import finish (fonts and 8 SVGs are new).
+2. Check **Output** for `Style:` warnings — that is the font-load canary.
+3. F5. The main menu should be: slate ground, **44px brass** wordmark, muted subtitle, one brass
+   button and three outlined ones, faint status line at the bottom.
+
+If step 3 looks like plain grey Godot, the theme is not being applied at all and the thing to
+check is that `Style` is registered as the **last** autoload in `project.godot`.
