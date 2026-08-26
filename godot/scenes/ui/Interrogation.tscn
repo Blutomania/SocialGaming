@@ -34,9 +34,6 @@ layout_mode = 2
 text = ""
 horizontal_alignment = 1
 
-## -----------------------------------------------------------------------
-## Witness sub-panel
-## -----------------------------------------------------------------------
 [node name="WitnessPanel" type="VBoxContainer" parent="VBox"]
 layout_mode = 2
 
@@ -59,9 +56,6 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-## -----------------------------------------------------------------------
-## Investigation sub-panel
-## -----------------------------------------------------------------------
 [node name="InvestigationPanel" type="VBoxContainer" parent="VBox"]
 layout_mode = 2
 visible = false
@@ -69,9 +63,6 @@ visible = false
 [node name="AreasContainer" type="VBoxContainer" parent="VBox/InvestigationPanel"]
 layout_mode = 2
 
-## -----------------------------------------------------------------------
-## Lead sub-panel
-## -----------------------------------------------------------------------
 [node name="LeadPanel" type="VBoxContainer" parent="VBox"]
 layout_mode = 2
 visible = false
@@ -79,9 +70,6 @@ visible = false
 [node name="LeadsContainer" type="VBoxContainer" parent="VBox/LeadPanel"]
 layout_mode = 2
 
-## -----------------------------------------------------------------------
-## Shared intel panel (received from other players)
-## -----------------------------------------------------------------------
 [node name="SharedPanel" type="VBoxContainer" parent="VBox"]
 layout_mode = 2
 
@@ -93,9 +81,6 @@ modulate = Color(0.565, 0.933, 0.565, 1)
 [node name="SharedContainer" type="VBoxContainer" parent="VBox/SharedPanel"]
 layout_mode = 2
 
-## -----------------------------------------------------------------------
-## Common controls
-## -----------------------------------------------------------------------
 [node name="StatusLabel" type="Label" parent="VBox"]
 layout_mode = 2
 text = ""
