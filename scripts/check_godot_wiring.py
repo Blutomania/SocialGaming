@@ -95,6 +95,30 @@ def parse_scene(path: Path):
     return nodes, script_path
 
 
+def check_implicit_concat(script: Path, src: str):
+    """Flag adjacent string literals across lines -- GDScript has no implicit concat.
+
+    Python and C join `"a" "b"` into `"ab"`. GDScript does not: it is a syntax
+    error, `Expected closing ")" after grouping expression`, and it is fatal at
+    PARSE time. The whole script fails to load, so every line in it silently
+    does nothing while the scene's static nodes still render -- which looks like
+    a layout bug, not a syntax error. That is exactly how result_screen.gd
+    reached a playtest showing an empty verdict, an empty solution and no rating
+    buttons, with no runtime error logged anywhere.
+
+    Comments are stripped before this runs. Known limitation: a triple-quoted
+    block spanning lines could match; none exist in this project today.
+    """
+    fails = []
+    for m in re.finditer(r'"\s*\n\s*"', src):
+        line = src[:m.start()].count("\n") + 1
+        fails.append(
+            f"{script.name}:{line}: adjacent string literals across lines -- "
+            f"GDScript needs an explicit `+`, or the whole script fails to parse"
+        )
+    return fails
+
+
 def check_scene_comments(path: Path):
     """Flag `#` comment lines in a .tscn -- they are not comments to Godot.
 
@@ -131,6 +155,7 @@ def check(scene: Path):
 
     src = strip_comments(script.read_text())
     fails, notes = list(comment_fails), []
+    fails.extend(check_implicit_concat(script, src))
 
     # 1 + 2 -- every $Path the script dereferences must exist, with the right type.
     typed = {}   # node_path -> declared type, from @onready declarations

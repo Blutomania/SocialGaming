@@ -125,8 +125,8 @@ func _on_share_result(error: String, data: Dictionary) -> void:
 		_rebuild_duplicate_highlights()
 		status_label.text = (
 			"%d of your selections were already shared by another player. "
-			"Uncheck the highlighted items and replace them." % dups.size()
-		)
+			+ "Uncheck the highlighted items and replace them."
+		) % dups.size()
 		return
 
 	# Success — advance to next invest_phase and return to interrogation

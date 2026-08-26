@@ -50,12 +50,15 @@ func _populate() -> void:
 
 	# Full solution breakdown
 	var key_ev: Array = solution.get("key_evidence", [])
-	var sol_text := (
+	# GDScript has no implicit adjacent-string concatenation -- the `+` are
+	# required, and without them this file fails to PARSE, so the whole script
+	# never loads and every line in it silently does nothing.
+	var sol_text: String = (
 		"[b]Culprit:[/b] %s\n"
-		"[b]Method:[/b] %s\n"
-		"[b]Motive:[/b] %s\n"
-		"[b]Key evidence:[/b] %s\n\n"
-		"[b]How to deduce:[/b]\n%s"
+		+ "[b]Method:[/b] %s\n"
+		+ "[b]Motive:[/b] %s\n"
+		+ "[b]Key evidence:[/b] %s\n\n"
+		+ "[b]How to deduce:[/b]\n%s"
 	) % [
 		solution.get("culprit", "?"),
 		solution.get("method", "?"),
