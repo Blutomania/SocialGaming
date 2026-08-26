@@ -102,6 +102,7 @@ urgent; anything that does not, is not.
 | `localization.py` | Era-appropriate name/occupation localization with 3-tier disk cache |
 | `extraction_protocols.py` | P1–P4 taxonomy definitions — still active, used by `scripts/extract_from_pdfs.py` |
 | `scripts/extract_from_pdfs.py` | Sanctioned way to add a **single new source** (e.g. a PDF) to the live corpus — extracts P1 parts, writes to `mystery_database/extractions/`. Distinct from the frozen bulk pipeline below. Invoke with `python3`, not `python` (this environment has no `python` alias). Add `--anthology` for a short-story collection PDF (one novel-narrative sampling per file otherwise) — detects per-story boundaries and extracts each story as its own corpus source with its own full text; always `--dry-run` an anthology first to review the detected split before spending API calls. |
+| `docs/F5_CHECKLIST.md` | **The hand-walk procedure for the Godot client** — 17 steps, free ones first, with the exact expected values per screen. Read before running the client; it also records which steps have actually been walked. |
 | `docs/INVESTIGATION_DESIGN.md` | **The investigation model** (Session 35) — connection map over floor plan, locations as containers, the narrative-driven growing option pool, and solvability as set arithmetic. Read before touching the map, the round system, or the coherence engine's solvability rules. |
 | `docs/WIRING.md` | **Canonical generation architecture** — read before touching generation |
 | `SESSIONS.md` | Session-by-session history and full to-do list |
@@ -291,9 +292,8 @@ is history, and item 22 is now done.**
     (`9c6c65d`, the whole end-of-game screen), the Smurf substring-matching regression
     (`f96a8ab`), rating persistence, and the two paid steps (one interrogation call, one
     generation). The interrogation screen's fix is also un-rerun. A 17-step checklist covering all
-    of it exists as a published artifact and is **not** in the repo; committing it as
-    *docs/F5_CHECKLIST.md* is a loose end (italicised deliberately — that file does not exist yet,
-    and backticking it would be a claim that it does).
+    of it is `docs/F5_CHECKLIST.md` — read that before walking the client, and update its Status
+    line when you finish a step.
 
 23. **[START HERE] Build APF.** The playtest shape is agreed and written down:
     `docs/PLAYTEST_FLOW.md` → "APF (All Provided For)". Findings are **dealt, not gathered**; the
