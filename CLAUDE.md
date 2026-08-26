@@ -99,6 +99,7 @@ urgent; anything that does not, is not.
 | `godot/scenes/ui/` | All UI scenes (MainMenu → Generation → Case → Interrogation → Accusation) |
 | `part_registry.py` | 1,469-part corpus; sampling logic; `load_registry()` also loads every JSON in `mystery_database/extractions/` live at runtime |
 | `coherence_validator.py` | P1 causal-chain + witness + evidence checks (free — no API call) |
+| `icons/` | Source artwork for the clue and witness icon sets, one folder per set. `scripts/build_icons.py` flattens each to a single value and generates the Godot and phone copies; `godot/scripts/theme/Icons.gd` decides which icon a thing gets, and its header explains why that must carry no information. |
 | `palette.py` | **The one place a colour is decided.** Slate ground, surface ramp, ink, brass, semantics, type/space/radius scales, and a 28-pair WCAG contrast contract. Nothing renders from it directly — `scripts/build_palette.py` generates `godot/scripts/theme/Palette.gd` and `mobile.html`'s CSS block from it, and `--check` fails on drift. Read before changing any colour anywhere. |
 | `godot/scripts/autoloads/Style.gd` | Builds the global Theme from `Palette.gd` and puts it on `get_tree().root`, which every Control inherits — so all 8 screens restyle with no `.tscn` node tree edited. Hand-written; regenerating the palette never touches it. |
 | `localization.py` | Era-appropriate name/occupation localization with 3-tier disk cache |
@@ -872,6 +873,8 @@ Both are zero-API-cost, need no Godot binary, and each has already caught a real
 | `scripts/build_palette.py --check` | The palette having drifted between `palette.py`, `Palette.gd`, `mobile.html` and `project.godot`'s ground clear colour. Zero cost. Run after touching any colour. |
 | `scripts/test_palette.py` | Every ink/background pair against its WCAG floor, and that the ground still matches the one `brand/` and `background_field.py` were built against. |
 | `scripts/preview_background_field.py` | Not a checker — renders the BACKGROUND field to SVG with a real screen's text over it, so item 17's *"test on a real screen"* instruction can actually be taken. `--sheet` covers the shortest and longest real titles. |
+| `scripts/build_icons.py --check` | The generated icon copies having drifted from `icons/`. `--report` describes what is in the sources. Refuses a raster embedded in an SVG wrapper, which cannot be recoloured. |
+| `scripts/test_icons.py` | That the icon flatten survives all three export shapes (attributes, CSS class, inline style), and that the random icon assignment is actually random — uniform, de-correlated between games, and not an ordered walk. Caught the assignment cycling through the set in order. |
 | `scripts/test_crime_scene_map.py` | The derived crime-scene layout: overlapping rooms, rooms off-canvas, a row that leaves a hole, a witness placed outside the room they are said to be in, or a layout that is not identical run to run. |
 
 Godot reports both classes of failure only at runtime, and the second one not even then — it

@@ -3130,6 +3130,60 @@ that each screen is themed.
 - **Fonts are untouched.** The theme sets sizes and colours; the face is still Godot's
   default. OFL-only per the owner, and it needs a real face committed to the repo.
 
+### The icon sets (owner-supplied, second half of the session)
+
+Owner is supplying two sets — four magnifiers for clues, four speech bubbles for witnesses — with
+three instructions: separate them, recolour them to the aesthetic, and **use them at random so
+they impart no information.**
+
+`icons/clue/` and `icons/witness/` are the drop points; filenames carry no meaning, the folder
+assigns the set. It sits beside `brand/` rather than inside a client for the reason
+`brand/README.md` already gives.
+
+`scripts/build_icons.py` flattens every gradient, fill and stroke to one value — the sources are
+eight separate hues and the game rations a single accent. Godot copies flatten to **white** so
+`modulate` can tint them (Godot's SVG importer has no `currentColor` and recolours by multiplying
+a texture); phone copies use `currentColor`. `fill:none` is never painted, since painting it turns
+an outline icon into its own silhouette. Paint is rewritten on attributes, in CSS classes and in
+inline styles, because exports use all three — an attributes-only pass would leave an
+Illustrator file fully coloured **while reporting success**. An embedded raster is refused, not
+passed through: it is the exact shape `brand/`'s first two logos had.
+
+**The picking rule is where the work was, and the test caught it being wrong.** `Icons.gd` seeds on
+`(game id, key)` so the choice is stable while you look at it and reshuffled between games —
+`randi()` re-rolls on every redraw, and `hash(key)` alone is a fixed mapping in disguise. Both were
+handled, and the first version was *still* broken:
+
+`String.hash()` is djb2, so keys differing only in a trailing digit produce hashes differing by
+about that digit, and a modulus reads the barely-mixed low bits. `clue_0`…`clue_15` drew
+**1 2 3 0 1 2 3 0 1 2 2 3 0 1 2 3** — the icons would have cycled through the set *in order* down
+every list. The most legible pattern the set could have had, arrived at by accident, and precisely
+what the owner's instruction forbids.
+
+The salt hid the same flaw. A different game shifted every key by one constant offset, so 400 of
+400 keys changed icon and the assignment merely **rotated** — which reads as a pass until you
+notice they all moved together.
+
+Fixed with the murmur3 32-bit finalizer. `scripts/test_icons.py` asserts the rule as a
+*distribution* — uniformity, de-correlation across games, no ordered walk through consecutive ids —
+which is why the defect was visible at all. Worth noting the before/after: the broken version
+scored **0.0% deviation from a perfectly even share**, because a perfect cycle is perfectly
+uniform. Uniformity alone would have certified the bug.
+
+`IconSet.gd` generates empty until artwork lands, deliberately: `Icons.gd` names it, and a
+GDScript referencing a missing class fails to **parse** — the defect class that cost Session 36 a
+whole screen with no runtime error.
+
+### Typeface selection
+
+Answered as a specimen page rather than a list: five OFL pairings (display / body / numeral) set
+in the palette, at the host screen's own sizes, on real CYM text including *Schatten am Checkpoint*
+for diacritic coverage and a room code for numeral disambiguation. Recommendation recorded there:
+Archivo Narrow + Source Serif 4, with JetBrains Mono for the room code, on the grounds that the
+code is read off a television and typed into a phone by somebody standing up — the one role where
+a measurable property beats a preference. Nothing committed to the repo; the choice is the
+owner's.
+
 ### Next step
 
 Item 23 — build APF — is unchanged and still the stage-1 priority. Before that, an F5 to
