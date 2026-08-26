@@ -26,11 +26,13 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TitleLabel" type="Label" parent="VBox"]
+theme_type_variation = &"TitleLabel"
 layout_mode = 2
 text = "Waiting for Players"
 horizontal_alignment = 1
 
 [node name="MysteryTitleLabel" type="Label" parent="VBox"]
+theme_type_variation = &"MysteryTitleLabel"
 layout_mode = 2
 text = ""
 horizontal_alignment = 1
@@ -40,11 +42,13 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 12)
 
 [node name="CodeHeader" type="Label" parent="VBox"]
+theme_type_variation = &"FaintLabel"
 layout_mode = 2
 text = "Room Code"
 horizontal_alignment = 1
 
 [node name="RoomCodeLabel" type="Label" parent="VBox"]
+theme_type_variation = &"DisplayLabel"
 layout_mode = 2
 text = "------"
 horizontal_alignment = 1
@@ -54,11 +58,13 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 8)
 
 [node name="JoinHeader" type="Label" parent="VBox"]
+theme_type_variation = &"FaintLabel"
 layout_mode = 2
 text = "Players join at:"
 horizontal_alignment = 1
 
 [node name="JoinUrlLabel" type="Label" parent="VBox"]
+theme_type_variation = &"MutedLabel"
 layout_mode = 2
 text = "http://localhost:8000/play"
 horizontal_alignment = 1
@@ -69,6 +75,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 16)
 
 [node name="PlayersHeader" type="Label" parent="VBox"]
+theme_type_variation = &"HeadingLabel"
 layout_mode = 2
 text = "Players in lobby:"
 
@@ -80,14 +87,17 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 16)
 
 [node name="StartButton" type="Button" parent="VBox"]
+theme_type_variation = &"PrimaryButton"
 layout_mode = 2
 text = "Start Game"
 
 [node name="BackButton" type="Button" parent="VBox"]
+theme_type_variation = &"QuietButton"
 layout_mode = 2
 text = "Cancel"
 
 [node name="StatusLabel" type="Label" parent="VBox"]
+theme_type_variation = &"FaintLabel"
 layout_mode = 2
 text = ""
 horizontal_alignment = 1

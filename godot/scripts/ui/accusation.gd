@@ -51,7 +51,7 @@ func _warn_if_unsolvable() -> void:
 		if _is_culprit(str(s), culprit, suspects):
 			return
 	status_label.text = "⚠ This mystery's solution names no listed suspect — it cannot be solved as generated."
-	status_label.modulate = Color.ORANGE
+	status_label.add_theme_color_override("font_color", Palette.CAUTION)
 
 # ---------------------------------------------------------------------------
 # Handlers

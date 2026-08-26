@@ -3000,6 +3000,231 @@ it. Porting the Aug 12 flow and then immediately rewriting it would build the sa
 
 ---
 
+## Session 37 — August 26, 2026 (CYM: one palette, three surfaces; the client stops being default grey)
+
+**Starting point:** `claude/mystery-game-aesthetics-ud0zrf`, off `main` at `93464bc` (PR #32 merged).
+Owner asked for aesthetics work.
+
+### The finding: there were three palettes, and the documented one was the one nobody rendered
+
+Before touching anything, an inventory of what actually decides a colour in this product:
+
+| Where | Ground | Accent | Status |
+|---|---|---|---|
+| `brand/README.md`, `scripts/check_brand_contrast.py`, `background_field.py` | slate `#2F4459` | brass `#C9A227` | documented as **"the one rule these assets must satisfy"** — and wired to no client |
+| `server/static/mobile.html` | navy `#1a1a2e` | brass `#c8a96e` | the phone every player looks at |
+| Godot host screen | none | none | default engine grey — this is what *"it ran, it's ugly"* was describing |
+
+A fourth turned up mid-session: `scripts/preview_crime_scene_map.py` opened with
+`GROUND = "#2b2f36"  # CYM slate`, which is not the slate. A preview whose stated job is
+"judge the aesthetic by looking at it" was drawing in the wrong palette.
+
+The two brasses are the tell. `#c8a96e` against `#C9A227` is close enough to look like a
+rounding difference and far enough apart to see side by side — which, in CYM specifically,
+is guaranteed: the Godot host screen and the phone clients are **in the same room at the
+same time**. `brand/README.md`'s own opening paragraph predicts exactly this failure and
+gives the reason the source artwork does not live inside either client's folder. The same
+argument applies to the colours, so they now live in one place too.
+
+### What was built
+
+**`palette.py` — the single source of truth.** Slate ground (not a fresh choice: it is the
+value the brand docs, the contrast checker and `background_field.py`'s five mark colours
+were all already built against). A surface ramp that goes **deeper** than the ground rather
+than lighter, for two structural reasons: the BACKGROUND field is painted on the ground, so
+panels must sink for the texture to stay behind everything; and CYM's screens are far more
+text-dense than MYF's, and slate is a mid-tone.
+
+`CONTRAST_CONTRACT` holds 28 ink/background pairs with their WCAG floors, and
+`scripts/test_palette.py` walks it. Six pairs failed on the first pass and were re-pitched by
+walking lightness at fixed hue until the floor was met, rather than by eye.
+
+**The semantic colours are lighter than a semantic colour usually looks, and that is forced
+rather than chosen.** On a mid-slate ground a saturated red cannot reach 4.5:1 — Material's
+own dark-theme error `#CF6679` manages 3.49:1 on our panel tier. The choice is between a red
+that reads and a red that looks like a red.
+
+**`scripts/build_palette.py`** generates `godot/scripts/theme/Palette.gd` and the CSS
+custom-property block in `mobile.html`; `--check` fails on drift. It also **checks** (does
+not generate) the ground in `project.godot`, because the Godot editor rewrites that file
+itself — Session 36 recorded 4.7.2 re-saving it just for being opened — so splicing into it
+would fight the engine for ownership.
+
+**`godot/scripts/autoloads/Style.gd`** builds the Theme in GDScript and assigns it to
+`get_tree().root.theme`, which every Control inherits. **One assignment restyles all eight
+screens with no `.tscn` node tree edited to get it** — which matters beyond tidiness, since
+editing scene files is where the last session's defects lived. Written as a script rather
+than a `.tres` for two reasons: a `.tres` would be a fourth uncheckable copy of the palette,
+and it is authored in the same text format that cost Session 36 five panels.
+
+The **ground is set as the viewport clear colour** in `project.godot`, not painted by a node.
+It is up before the first Control exists, so there is no frame of engine grey at startup —
+and it is exactly the "ground colour alone until a mystery is named" state item 17 specifies.
+
+**Thirteen theme type variations** (`DisplayLabel`, `MysteryTitleLabel`, `PrimaryButton`,
+`DangerButton`, `QuietButton`, `CautionLabel`, …), applied across 51 nodes in all 8 scenes.
+The default Button is deliberately the **quiet** one: these screens carry five or six buttons
+at once, and if the default were brass every screen would shout.
+
+**The scripts were tinting with raw web colours** — `Color.RED`, `Color.GOLDENROD`,
+`Color.CORNFLOWER_BLUE`, `Color.SKY_BLUE`, `Color.ORANGE_RED`, `Color.GOLD`. Seventeen sites,
+now palette constants. They also used `modulate`, which **multiplies a whole subtree** and
+only ever looked right because the default font happened to be white; against a themed ink it
+darkens rather than recolours. Labels now use `add_theme_color_override("font_color", …)`;
+`modulate` is kept only where it genuinely tints a whole row.
+
+**`scripts/preview_background_field.py`** — item 17 says the field's mark strength is *"NOT
+SETTLED BY ARGUMENT — test on a real screen"*, and until now nothing drew it, so that
+instruction could not be taken. `background_field.py` has been on disk, tested, and wired to
+nothing. The preview renders the field at 1280×720 with a real screen's text over it at the
+real sizes, prose both on the ground (the hard case) and on a panel, so the question being
+asked is the right one: not "is the field nice" but "can you still read a case brief through
+it". `--sheet` renders the shortest and longest real titles on disk, because the density
+generator absorbs title length and the failure modes are at the ends.
+
+### The new guard
+
+`check_godot_wiring.py` now cross-checks every `theme_type_variation` in a `.tscn` against
+the variations `Style.gd` declares. This is the one part of the styling a scene has to name,
+and **Godot's own failure here is silent and mild** — an undeclared variation falls back to
+the base type, so a typo yields a label that is merely unstyled, with no error anywhere. Mild
+is what makes it worth checking: nothing will ever draw attention to it.
+
+Verified in both directions, as were the palette-sync check, the clear-colour check and the
+COLOURS-coverage test.
+
+### What is NOT verified, and cannot be from here
+
+**No Godot binary exists in this environment, so none of the theme has been rendered.**
+Session 36's lesson applies to this session's work more than to most: the checkers confirm
+that every variation name is declared and every path resolves, and they cannot confirm that
+a theme item name is one Godot recognises. A wrong item name in `Style.gd` is a silent no-op
+— the control keeps its engine default and nothing errors. That is the residual risk here,
+it is bounded (it looks unstyled, it does not crash), and it needs an F5 to close.
+
+`docs/F5_CHECKLIST.md`'s existing steps all still apply; what they now additionally check is
+that each screen is themed.
+
+### Files changed
+
+- `palette.py` — new, the source of truth
+- `scripts/build_palette.py`, `scripts/test_palette.py`, `scripts/preview_background_field.py` — new
+- `scripts/check_godot_wiring.py` — theme-variation cross-check
+- `scripts/preview_crime_scene_map.py` — reads `palette.py` instead of its own seven literals
+- `godot/scripts/theme/Palette.gd` — new, generated
+- `godot/scripts/autoloads/Style.gd` — new, the Theme
+- `godot/project.godot` — `Style` autoload; ground as `default_clear_color`
+- all 8 `godot/scenes/ui/*.tscn` — `theme_type_variation` on 51 nodes
+- 6 of 7 `godot/scripts/ui/*.gd` — palette constants, `modulate` → `font_color` override
+- `server/static/mobile.html` — generated palette block; 17 literals mapped; three button
+  rules re-pitched (a light `--negative` cannot be a fill under white text)
+
+### Still open, and deliberately not decided here
+
+- **Item 17 question 2 is still the owner's** — whether the BACKGROUND field is strewn with
+  the mystery's title or something else. Nothing this session wires the field to a client, so
+  nothing prejudges it. The preview exists so the question can be answered by looking.
+- **`config/icon="res://assets/ui/icon.png"` points at a file that does not exist**, and
+  `godot/assets/` does not exist either. Not fixed: choosing the window icon means answering
+  item 17's open brand question about which mark goes on which device, which is the owner's.
+- **Fonts are untouched.** The theme sets sizes and colours; the face is still Godot's
+  default. OFL-only per the owner, and it needs a real face committed to the repo.
+
+### The icon sets (owner-supplied, second half of the session)
+
+Owner is supplying two sets — four magnifiers for clues, four speech bubbles for witnesses — with
+three instructions: separate them, recolour them to the aesthetic, and **use them at random so
+they impart no information.**
+
+`icons/clue/` and `icons/witness/` are the drop points; filenames carry no meaning, the folder
+assigns the set. It sits beside `brand/` rather than inside a client for the reason
+`brand/README.md` already gives.
+
+`scripts/build_icons.py` flattens every gradient, fill and stroke to one value — the sources are
+eight separate hues and the game rations a single accent. Godot copies flatten to **white** so
+`modulate` can tint them (Godot's SVG importer has no `currentColor` and recolours by multiplying
+a texture); phone copies use `currentColor`. `fill:none` is never painted, since painting it turns
+an outline icon into its own silhouette. Paint is rewritten on attributes, in CSS classes and in
+inline styles, because exports use all three — an attributes-only pass would leave an
+Illustrator file fully coloured **while reporting success**. An embedded raster is refused, not
+passed through: it is the exact shape `brand/`'s first two logos had.
+
+**The picking rule is where the work was, and the test caught it being wrong.** `Icons.gd` seeds on
+`(game id, key)` so the choice is stable while you look at it and reshuffled between games —
+`randi()` re-rolls on every redraw, and `hash(key)` alone is a fixed mapping in disguise. Both were
+handled, and the first version was *still* broken:
+
+`String.hash()` is djb2, so keys differing only in a trailing digit produce hashes differing by
+about that digit, and a modulus reads the barely-mixed low bits. `clue_0`…`clue_15` drew
+**1 2 3 0 1 2 3 0 1 2 2 3 0 1 2 3** — the icons would have cycled through the set *in order* down
+every list. The most legible pattern the set could have had, arrived at by accident, and precisely
+what the owner's instruction forbids.
+
+The salt hid the same flaw. A different game shifted every key by one constant offset, so 400 of
+400 keys changed icon and the assignment merely **rotated** — which reads as a pass until you
+notice they all moved together.
+
+Fixed with the murmur3 32-bit finalizer. `scripts/test_icons.py` asserts the rule as a
+*distribution* — uniformity, de-correlation across games, no ordered walk through consecutive ids —
+which is why the defect was visible at all. Worth noting the before/after: the broken version
+scored **0.0% deviation from a perfectly even share**, because a perfect cycle is perfectly
+uniform. Uniformity alone would have certified the bug.
+
+`IconSet.gd` generates empty until artwork lands, deliberately: `Icons.gd` names it, and a
+GDScript referencing a missing class fails to **parse** — the defect class that cost Session 36 a
+whole screen with no runtime error.
+
+### How the artwork actually arrived, in three rounds
+
+Worth recording, because the pipeline's guards were what made each round cheap.
+
+1. **Two SVGs that were PNGs.** One `<image>` with a base64 payload, zero
+   `<path>` elements — the exact shape `brand/negative_logo.svg` had.
+   `build_icons.py` refused them, which is what it is for.
+2. **Two PNG sheets.** Genuine rasters, four icons to a row. Rather than work
+   around it, raster became a supported source: `build_icons.py` flattens a
+   `.png` from its alpha channel, which is *simpler* than flattening vector
+   because the alpha already is the drawing. One generated white file serves
+   both clients — Godot tints with `modulate`, CSS with `mask-image`.
+3. **Two real vector sheets.** 10 and 6 `<path>` elements, absolute `CMZ`
+   commands, no groups or transforms. These are what shipped.
+
+**The vector split had to happen at SUBPATH level, and the first attempt got it
+wrong.** The export grouped by shape rather than by drawing: one element carries
+180 subpaths spanning x=374..1202, i.e. pieces of three different icons.
+Grouping whole elements put all four icons in one file. Splitting the 607 and
+103 subpaths and assigning each to a column by its centre gives 4 and 4, at
+x-ranges matching the raster gutters exactly — which is the cross-check that the
+two independent methods agree.
+
+Each output keeps its source element's attributes verbatim and only its own
+subpaths, so paint, fill-rule and winding survive. Nothing is re-fitted or
+re-encoded.
+
+**One blemish, reported not removed.** `witness_03` carries a free-floating mark
+three rows tall holding 0.18% of its ink, above the speech bubble — a stray
+point in the source art. The splitter now detects that class of thing and says
+so. It does not delete it, because that same icon has four legitimately detached
+components (the radiating emphasis lines) and anything removing disconnected ink
+automatically would eat them.
+
+### Typeface selection
+
+Answered as a specimen page rather than a list: five OFL pairings (display / body / numeral) set
+in the palette, at the host screen's own sizes, on real CYM text including *Schatten am Checkpoint*
+for diacritic coverage and a room code for numeral disambiguation. Recommendation recorded there:
+Archivo Narrow + Source Serif 4, with JetBrains Mono for the room code, on the grounds that the
+code is read off a television and typed into a phone by somebody standing up — the one role where
+a measurable property beats a preference. Nothing committed to the repo; the choice is the
+owner's.
+
+### Next step
+
+Item 23 — build APF — is unchanged and still the stage-1 priority. Before that, an F5 to
+confirm the theme renders, since that is the one thing no checker here can establish.
+
+---
+
 ## Session 36 — August 26, 2026 (CYM: the first Godot F5 ran; two defects no checker could see)
 
 **Starting point:** `claude/godot-f5-explanation-5ocyy4`, off `main` at `2327e26` (PR #31 merged).

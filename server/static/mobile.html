@@ -5,22 +5,47 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Choose Your Mystery</title>
 <style>
+  /* --- BEGIN GENERATED PALETTE (scripts/build_palette.py) --- */
+  /* scripts/build_palette.py from palette.py — DO NOT EDIT BY HAND */
+  /* Colours only. The phone keeps its own em-based type sizing on
+     purpose — a phone and a television are not read from the same
+     distance. See palette.py's TYPE_SCALE note. */
+  :root {
+    --ground: #2F4459;
+    --surface: #243545;
+    --surface-deep: #1B2733;
+    --surface-raised: #3A5269;
+    --line: #7090AD;
+    --line-soft: #38506A;
+    --ink: #E8EDF2;
+    --ink-muted: #B8C4CF;
+    --ink-faint: #8FA3B5;
+    --brass: #C9A227;
+    --brass-bright: #E3BC42;
+    --brass-dim: #8A6F1B;
+    --steel: #4E6E90;
+    --steel-bright: #759BC8;
+    --positive: #64AA7B;
+    --negative: #D58689;
+    --caution: #CB8F44;
+  }
+  /* --- END GENERATED PALETTE --- */
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: #1a1a2e;
-    color: #e0e0e0;
+    background: var(--ground);
+    color: var(--ink);
     min-height: 100vh;
     padding: 12px;
     font-size: 16px;
   }
-  h1 { font-size: 1.3em; color: #c8a96e; margin-bottom: 4px; }
-  h2 { font-size: 1.1em; color: #9bb3d4; margin: 12px 0 6px; }
-  p  { line-height: 1.5; margin-bottom: 8px; color: #bbb; font-size: 0.9em; }
+  h1 { font-size: 1.3em; color: var(--brass); margin-bottom: 4px; }
+  h2 { font-size: 1.1em; color: var(--ink-muted); margin: 12px 0 6px; }
+  p  { line-height: 1.5; margin-bottom: 8px; color: var(--ink-muted); font-size: 0.9em; }
 
   .card {
-    background: #16213e;
-    border: 1px solid #2a3a5e;
+    background: var(--surface);
+    border: 1px solid var(--line-soft);
     border-radius: 10px;
     padding: 14px;
     margin-bottom: 12px;
@@ -29,10 +54,10 @@
   input[type=text], select, textarea {
     width: 100%;
     padding: 10px;
-    background: #0f3460;
-    border: 1px solid #2a5a9e;
+    background: var(--surface-deep);
+    border: 1px solid var(--line);
     border-radius: 8px;
-    color: #e0e0e0;
+    color: var(--ink);
     font-size: 1em;
     margin-top: 6px;
   }
@@ -52,9 +77,19 @@
   button:disabled { opacity: 0.4; cursor: default; }
   button:active:not(:disabled) { opacity: 0.7; }
 
-  .btn-primary   { background: #c8a96e; color: #1a1a2e; }
-  .btn-secondary { background: #2a5a9e; color: #e0e0e0; }
-  .btn-danger    { background: #8b2a2a; color: #e0e0e0; }
+  /* These mirror the Godot host screen's PrimaryButton / default Button /
+     DangerButton, so a player looking from phone to television sees the same
+     three weights. The label colours are the pairs measured in palette.py's
+     CONTRAST_CONTRACT -- notably the primary label is the DEEP tier, because
+     brass is a light fill and ink on it is unreadable. */
+  .btn-primary   { background: var(--brass); color: var(--surface-deep); }
+  .btn-primary:active:not(:disabled) { background: var(--brass-dim); }
+  .btn-secondary { background: var(--steel); color: var(--ink); }
+  /* Outlined, not filled: --negative is a light dusty rose (a saturated red
+     cannot clear 4.5:1 on this ground -- see palette.py), so it works as ink
+     and as a border, and not as a fill under white text. */
+  .btn-danger    { background: transparent; color: var(--negative);
+                   border: 1px solid var(--negative); }
   .btn-small     { padding: 8px; font-size: 0.9em; margin-top: 6px; }
 
   .badge {
@@ -64,27 +99,27 @@
     font-size: 0.8em;
     font-weight: 600;
   }
-  .badge-budget  { background: #0f3460; border: 1px solid #2a5a9e; }
-  .badge-phase   { background: #3a2a0e; color: #c8a96e; border: 1px solid #c8a96e; }
+  .badge-budget  { background: var(--surface-deep); border: 1px solid var(--line); }
+  .badge-phase   { background: var(--surface-deep); color: var(--brass); border: 1px solid var(--brass); }
 
   .feed-item {
-    border-left: 3px solid #2a5a9e;
+    border-left: 3px solid var(--line);
     padding: 8px 10px;
     margin-bottom: 8px;
-    background: #0f1a2e;
+    background: var(--surface-deep);
     border-radius: 0 6px 6px 0;
     font-size: 0.88em;
     line-height: 1.4;
   }
-  .feed-item.mine  { border-left-color: #c8a96e; }
-  .feed-item.shared { border-left-color: #4caf50; }
-  .feed-sender { font-size: 0.78em; color: #888; margin-bottom: 2px; }
+  .feed-item.mine  { border-left-color: var(--brass); }
+  .feed-item.shared { border-left-color: var(--positive); }
+  .feed-sender { font-size: 0.78em; color: var(--ink-faint); margin-bottom: 2px; }
 
   .area-btn, .lead-btn {
-    background: #0f3460;
-    border: 1px solid #2a5a9e;
+    background: var(--surface-deep);
+    border: 1px solid var(--line);
     border-radius: 8px;
-    color: #e0e0e0;
+    color: var(--ink);
     padding: 10px 14px;
     width: 100%;
     text-align: left;
@@ -101,14 +136,14 @@
   .cb-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
   .cb-row input[type=checkbox] { width: 20px; height: 20px; margin-top: 2px; flex-shrink: 0; }
   .cb-row label { font-size: 0.88em; line-height: 1.4; cursor: pointer; }
-  .cb-row.dup label { color: #e05050; }
+  .cb-row.dup label { color: var(--negative); }
 
-  .status { font-size: 0.85em; color: #c8a96e; min-height: 18px; margin-top: 6px; }
-  .error  { color: #e05050; }
+  .status { font-size: 0.85em; color: var(--brass); min-height: 18px; margin-top: 6px; }
+  .error  { color: var(--negative); }
 
   #toast {
     position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-    background: #333; color: #fff; padding: 10px 20px; border-radius: 20px;
+    background: var(--surface-deep); color: var(--ink); padding: 10px 20px; border-radius: 20px;
     font-size: 0.88em; display: none; max-width: 90vw; text-align: center;
     z-index: 999;
   }
@@ -118,9 +153,9 @@
 
   #ws-indicator {
     width: 8px; height: 8px; border-radius: 50%;
-    display: inline-block; background: #888; margin-right: 6px;
+    display: inline-block; background: var(--ink-faint); margin-right: 6px;
   }
-  #ws-indicator.connected { background: #4caf50; }
+  #ws-indicator.connected { background: var(--positive); }
 </style>
 </head>
 <body>
@@ -144,8 +179,8 @@
 <div id="sec-lobby" class="section">
   <div class="card" style="text-align:center;">
     <h1>Waiting for Host</h1>
-    <p id="lobby-title" style="color:#c8a96e; font-size:1.1em; margin:8px 0;"></p>
-    <p style="color:#888; font-size:0.88em;">The host will start the game when everyone is ready.</p>
+    <p id="lobby-title" style="color:var(--brass); font-size:1.1em; margin:8px 0;"></p>
+    <p style="color:var(--ink-faint); font-size:0.88em;">The host will start the game when everyone is ready.</p>
   </div>
   <div class="card">
     <h2>Players in Lobby</h2>
@@ -160,7 +195,7 @@
   <div class="card" style="display:flex; align-items:center; justify-content:space-between; padding:10px 14px;">
     <div>
       <span id="ws-indicator"></span>
-      <span id="lbl-name" style="font-weight:600; color:#c8a96e;"></span>
+      <span id="lbl-name" style="font-weight:600; color:var(--brass);"></span>
     </div>
     <div>
       <span class="badge badge-phase" id="lbl-phase">Witness</span>
@@ -170,7 +205,7 @@
 
   <!-- Mystery brief (collapsible) -->
   <details class="card">
-    <summary style="cursor:pointer; color:#9bb3d4; font-weight:600;">Mystery Brief</summary>
+    <summary style="cursor:pointer; color:var(--ink-muted); font-weight:600;">Mystery Brief</summary>
     <div id="mystery-brief" style="margin-top:10px;"></div>
   </details>
 
@@ -240,7 +275,7 @@
 
   <!-- Shared Intel (always visible once any clues arrive) -->
   <div class="card" id="shared-intel-card" style="display:none;">
-    <h2 style="color:#4caf50;">Shared Intel</h2>
+    <h2 style="color:var(--positive);">Shared Intel</h2>
     <div id="shared-intel"></div>
   </div>
 
@@ -516,7 +551,7 @@ async function askQuestion() {
     $("question-input").value = "";
     $("witness-status").textContent = "";
     addFeedItem($("witness-history"), "<strong>" + character + ":</strong> " + question +
-      "<br><span style='color:#9bb3d4'>" + data.response + "</span>", "mine");
+      "<br><span style='color:var(--ink-muted)'>" + data.response + "</span>", "mine");
     $("witness-history-card").style.display = "";
     updateHeader();
     if (data.budget_remaining <= 0) enterSharePhase("witness");

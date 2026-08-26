@@ -99,6 +99,9 @@ urgent; anything that does not, is not.
 | `godot/scenes/ui/` | All UI scenes (MainMenu → Generation → Case → Interrogation → Accusation) |
 | `part_registry.py` | 1,469-part corpus; sampling logic; `load_registry()` also loads every JSON in `mystery_database/extractions/` live at runtime |
 | `coherence_validator.py` | P1 causal-chain + witness + evidence checks (free — no API call) |
+| `icons/` | Source artwork for the clue and witness icon sets, one folder per set. `scripts/build_icons.py` flattens each to a single value and generates the Godot and phone copies; `godot/scripts/theme/Icons.gd` decides which icon a thing gets, and its header explains why that must carry no information. |
+| `palette.py` | **The one place a colour is decided.** Slate ground, surface ramp, ink, brass, semantics, type/space/radius scales, and a 28-pair WCAG contrast contract. Nothing renders from it directly — `scripts/build_palette.py` generates `godot/scripts/theme/Palette.gd` and `mobile.html`'s CSS block from it, and `--check` fails on drift. Read before changing any colour anywhere. |
+| `godot/scripts/autoloads/Style.gd` | Builds the global Theme from `Palette.gd` and puts it on `get_tree().root`, which every Control inherits — so all 8 screens restyle with no `.tscn` node tree edited. Hand-written; regenerating the palette never touches it. |
 | `localization.py` | Era-appropriate name/occupation localization with 3-tier disk cache |
 | `extraction_protocols.py` | P1–P4 taxonomy definitions — still active, used by `scripts/extract_from_pdfs.py` |
 | `scripts/extract_from_pdfs.py` | Sanctioned way to add a **single new source** (e.g. a PDF) to the live corpus — extracts P1 parts, writes to `mystery_database/extractions/`. Distinct from the frozen bulk pipeline below. Invoke with `python3`, not `python` (this environment has no `python` alias). Add `--anthology` for a short-story collection PDF (one novel-narrative sampling per file otherwise) — detects per-story boundaries and extracts each story as its own corpus source with its own full text; always `--dry-run` an anthology first to review the detected split before spending API calls. |
@@ -259,10 +262,10 @@ GodotSteam is the best Steamworks path; Godot Linux export = Steam Deck support 
 
 ---
 
-## Current To-Do (as of Session 36, August 26, 2026)
+## Current To-Do (as of Session 37, August 26, 2026)
 
 Full list in `SESSIONS.md`. **The thing that matters for stage 1 is item 23 — everything above it
-is history, and item 22 is now done.**
+is history, and items 22 and 24 are now done.**
 
 22. **[DONE, Session 36 — August 26, 2026] The Godot F5 ran.** The client has been launched in the
     engine, by the owner, on their machine. It reached the main menu with the backend connected,
@@ -312,6 +315,36 @@ is history, and item 22 is now done.**
     3. the share decision, the suspect board, the reveal
     4. `cinematic_brief: bool = True` for the paced text opening
     Five design questions remain open and are the owner's — `docs/INVESTIGATION_DESIGN.md` §6.
+
+24. **[DONE, Session 37 — August 26, 2026] One palette, three surfaces.** The client had no
+    styling at all; the phone had a palette it invented; the brand documented a third and was
+    rendered by nothing. Two of those brasses were `#c8a96e` and `#C9A227` — near enough to read
+    as a rounding difference, and in CYM guaranteed to be seen side by side, because the host
+    screen and the phones are in the same room at the same time.
+
+    `palette.py` is now the only place a colour is decided. `scripts/build_palette.py` generates
+    `godot/scripts/theme/Palette.gd` and `mobile.html`'s CSS block from it and `--check` fails on
+    drift; `scripts/test_palette.py` holds 28 ink/background pairs to their WCAG floors.
+    `godot/scripts/autoloads/Style.gd` builds the Theme and puts it on `get_tree().root`, so all
+    eight screens restyle **without one `.tscn` node tree being edited** — which is the point,
+    given where Session 36's defects lived.
+
+    **What this does not settle, and why the next report on it must say so.** There is no Godot
+    binary in the session environment, so **none of the theme has been rendered.** The checkers
+    establish that every `theme_type_variation` is declared and every path resolves; they cannot
+    establish that a theme item name is one the engine recognises, and a wrong one is a silent
+    no-op rather than an error. The failure mode is bounded — a control keeps its engine default,
+    nothing crashes — but it needs an F5 to close. Session 36's "necessary, not sufficient" rule
+    applies to this work more than to most.
+
+    Three things deliberately left alone, each because deciding them is the owner's:
+    - **Fonts.** Sizes and colours are set; the face is still Godot's default. OFL-only per the
+      owner, and it needs a real face committed.
+    - **`config/icon`** points at `res://assets/ui/icon.png`, which does not exist (nor does
+      `godot/assets/`). Choosing it means answering item 17's open question about which brand mark
+      goes on which device.
+    - **What the BACKGROUND field is strewn with** — item 17 question 2. Nothing here wires the
+      field to a client, so nothing prejudges it.
 
 Older items, kept for history:
 
@@ -638,10 +671,23 @@ Older items, kept for history:
     merely share field names — the check that would actually catch the framework forking. Full
     detail in MYF's `CLAUDE.md` item 51.
 
-17. **[DESIGNED, NOT BUILT — Session 33, August 20 2026] CYM BACKGROUND — the mystery's own title
-    as the page texture.** Owner-initiated: bring MYF's look and feel across to CYM. Design is
-    settled to the point of being buildable; **nothing has been written**. Two questions are still
-    open (below) and both are the owner's.
+17. **[PARTLY BUILT — designed Session 33, layout written since, wired to nothing] CYM BACKGROUND
+    — the mystery's own title as the page texture.** Owner-initiated: bring MYF's look and feel
+    across to CYM. Two questions are still open (below) and both are the owner's.
+
+    **The "nothing has been written" line this item used to carry is stale, and was already stale
+    when written down.** `background_field.py` exists at root, is tested by
+    `scripts/test_background_field.py`, and computes the whole seeded layout — 294 lines, with its
+    reasoning recorded in place. What does NOT exist is any wiring: no server endpoint returns it,
+    and neither client draws it. So the correct status is *layout built, unrendered*.
+    - **[Session 37] It can now be looked at.** `scripts/preview_background_field.py` renders the
+      field to SVG at the host viewport's own size with a real screen's text over it — prose on
+      the ground (the hard case) and on a panel — which is what this item's own instruction
+      (*"Test on a real screen; do not settle it by argument"*) asks for and what nothing
+      previously made possible.
+    - **[Session 37] The ground is now painted**, as `default_clear_color` in `project.godot`.
+      That is this item's specified pre-prompt state — ground colour alone until a mystery is
+      named — reached without deciding anything about the field itself.
 
     **Shared vocabulary (owner-defined — use these names).** MYF's `CLAUDE.md` glossary already
     defines two of the three; BACKGROUND is new and belongs in both files:
@@ -818,12 +864,18 @@ Both are zero-API-cost, need no Godot binary, and each has already caught a real
 
 | Script | Catches |
 |---|---|
-| `scripts/check_godot_wiring.py` | Broken `$NodePath`s, `@onready` type mismatches, interactive controls the script never references, autoload calls that do not exist or take the wrong arity, and (Session 36) `#` comment lines in a `.tscn`, which drop the node declared after them. Found `result_screen.gd` reaching for `$MainVBox/…` when the scene nests under `ScrollContainer/MainVBox/…` — the whole end-of-game screen. **Necessary, not sufficient:** it reads scene files rather than loading them, and it passed `Interrogation.tscn` while five of its panels were missing at runtime (item 22). |
+| `scripts/check_godot_wiring.py` | Broken `$NodePath`s, `@onready` type mismatches, interactive controls the script never references, autoload calls that do not exist or take the wrong arity, (Session 36) `#` comment lines in a `.tscn`, which drop the node declared after them, and (Session 37) a `theme_type_variation` no theme declares — Godot falls back to the base type silently, so a typo renders unstyled with no error anywhere. Found `result_screen.gd` reaching for `$MainVBox/…` when the scene nests under `ScrollContainer/MainVBox/…` — the whole end-of-game screen. **Necessary, not sufficient:** it reads scene files rather than loading them, and it passed `Interrogation.tscn` while five of its panels were missing at runtime (item 22). |
 | `scripts/check_mystery_playable.py` | A saved mystery whose `solution.culprit` names no listed suspect, an empty suspect list, or a blocking coherence failure that was served anyway. |
 | `scripts/upgrade_p1_to_p1p2.py` | Plans and runs the P1→P1P2P3 corpus upgrade. Prints the plan and spends nothing by default; `--go` executes. `--check-sources` / `--find-missing` / `--source-dir` handle PDFs that moved, were renamed, or are gone. Errors and recovery: `docs/EXTRACTION_TROUBLESHOOTING.md`. |
 | `scripts/compare_extraction_models.py` | Scores extraction models against `_atomize_extraction` — parts yielded and axes filled, not prose quality. |
 | `scripts/check_doc_claims.py` | Documentation that has drifted from the code. Verifies the **checkable** claims in `CLAUDE.md` and `docs/` — that a referenced file exists, that a *path:line* reference points inside the file, and that a backtick-quoted string is actually in a code file. Deliberately excludes `SESSIONS.md` (a historical record: its claims were true when written). Found 4 stale claims in `docs/WIRING.md` on its first real run, one of them the *same* video-panel sentence corrected in `CLAUDE.md` an hour earlier. |
 | `scripts/test_extraction_fatal_errors.py` | That an extraction batch **stops** on an account-level API failure (no credits, bad key, bad `--model`) instead of walking the rest of the corpus reprinting it, and still **continues** past a per-source one. Runs the real script as a subprocess against a stubbed SDK, so it checks the exit code the wrapper actually reads. |
+| `scripts/build_palette.py --check` | The palette having drifted between `palette.py`, `Palette.gd`, `mobile.html` and `project.godot`'s ground clear colour. Zero cost. Run after touching any colour. |
+| `scripts/test_palette.py` | Every ink/background pair against its WCAG floor, and that the ground still matches the one `brand/` and `background_field.py` were built against. |
+| `scripts/preview_background_field.py` | Not a checker — renders the BACKGROUND field to SVG with a real screen's text over it, so item 17's *"test on a real screen"* instruction can actually be taken. `--sheet` covers the shortest and longest real titles. |
+| `scripts/split_icon_sheet.py` | Cuts a sheet of icons into one file each — vector by subpath geometry, raster by column occupancy, dispatching on what the file contains rather than its extension (the first upload was a `.svg` holding only a PNG). Reports detached specks; never removes them. |
+| `scripts/build_icons.py --check` | The generated icon copies having drifted from `icons/`. `--report` describes what is in the sources. Refuses a raster embedded in an SVG wrapper, which cannot be recoloured. |
+| `scripts/test_icons.py` | That the icon flatten survives all three export shapes (attributes, CSS class, inline style), and that the random icon assignment is actually random — uniform, de-correlated between games, and not an ordered walk. Caught the assignment cycling through the set in order. |
 | `scripts/test_crime_scene_map.py` | The derived crime-scene layout: overlapping rooms, rooms off-canvas, a row that leaves a hole, a witness placed outside the room they are said to be in, or a layout that is not identical run to run. |
 
 Godot reports both classes of failure only at runtime, and the second one not even then — it

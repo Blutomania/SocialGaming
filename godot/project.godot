@@ -21,6 +21,10 @@ config/icon="res://assets/ui/icon.png"
 GameState="*res://scripts/autoloads/GameState.gd"
 ApiClient="*res://scripts/autoloads/ApiClient.gd"
 NetworkManager="*res://scripts/autoloads/NetworkManager.gd"
+; Style builds the global Theme and puts it on get_tree().root, which every
+; Control inherits. It is listed LAST because it reads Palette.gd, and it is
+; an autoload rather than a .tres so the palette lives in exactly one place.
+Style="*res://scripts/autoloads/Style.gd"
 
 [display]
 
@@ -31,3 +35,9 @@ window/stretch/mode="canvas_items"
 [rendering]
 
 renderer/rendering_method="forward_plus"
+; The GROUND, slate #2F4459 — see palette.py, which is where it is decided.
+; Set here rather than painted by a node so it is up before the first Control
+; exists: there is no frame of engine grey at startup, and no scene has to
+; own a background. This alone is the "ground colour until a mystery is
+; named" state that CLAUDE.md item 17 specifies.
+environment/defaults/default_clear_color=Color(0.184314, 0.266667, 0.34902, 1)

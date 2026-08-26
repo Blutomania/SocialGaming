@@ -142,6 +142,46 @@ def check_scene_comments(path: Path):
     return fails
 
 
+def declared_variations():
+    """Every theme type variation Style.gd declares, as a set of names.
+
+    Read out of the GDScript rather than out of a .tres, because the theme is
+    built in code -- see Style.gd's own header for why. A regex over
+    set_type_variation() calls is enough: they are all literal, one per line,
+    and if that ever stops being true this check fails loudly rather than
+    quietly passing everything.
+    """
+    style = GODOT / "scripts" / "autoloads" / "Style.gd"
+    if not style.exists():
+        return None
+    return set(re.findall(r'set_type_variation\("([^"]+)"', style.read_text()))
+
+
+def check_type_variations(path: Path, declared):
+    """Flag a theme_type_variation in a .tscn that no theme declares.
+
+    This is the guard for the one part of the styling a scene has to name.
+    Godot's own failure here is SILENT and mild -- an undeclared variation
+    falls back to the base type, so a typo yields a label that is merely
+    unstyled, with no error anywhere. Mild is exactly what makes it worth
+    checking: nothing will ever draw attention to it, and "why is that one
+    heading small" is a bad way to find a typo.
+    """
+    if declared is None:
+        return []
+    fails = []
+    for i, line in enumerate(path.read_text().splitlines(), 1):
+        m = re.match(r'theme_type_variation = &?"([^"]+)"', line.strip())
+        if m and m.group(1) not in declared:
+            fails.append(
+                f"{path.name}:{i}: theme_type_variation \"{m.group(1)}\" is not "
+                f"declared in Style.gd -- Godot silently falls back to the base "
+                f"type, so this renders unstyled with no error. "
+                f"Declared: {', '.join(sorted(declared))}"
+            )
+    return fails
+
+
 def check(scene: Path):
     comment_fails = check_scene_comments(scene)
 
@@ -288,10 +328,12 @@ def check_autoload_calls(autoloads):
 def main():
     all_fails, all_notes = [], []
     scenes = sorted((GODOT / "scenes").rglob("*.tscn"))
+    variations = declared_variations()
     for scene in scenes:
         f, n = check(scene)
         all_fails += f
         all_notes += n
+        all_fails += check_type_variations(scene, variations)
 
     autoloads = parse_autoloads()
     all_fails += check_autoload_calls(autoloads)
@@ -308,7 +350,8 @@ def main():
             print(f"  ✗ {f}")
         return 1
     print("No failures: every $NodePath resolves, every declared type matches, "
-          "and every autoload call exists with a valid arity.")
+          "every autoload call exists with a valid arity, and every "
+          "theme_type_variation is declared in Style.gd.")
     return 0
 
 

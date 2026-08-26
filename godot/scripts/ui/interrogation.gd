@@ -325,7 +325,7 @@ func _add_history_entry(character: String, question: String, response: String) -
 	var vbox := VBoxContainer.new()
 	var q_label := Label.new()
 	q_label.text = "[%s] %s" % [character, question]
-	q_label.modulate = Color.ORANGE
+	q_label.add_theme_color_override("font_color", Palette.BRASS)
 	var r_label := Label.new()
 	r_label.text = response
 	r_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART

@@ -26,11 +26,13 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TitleLabel" type="Label" parent="VBox"]
+theme_type_variation = &"DisplayLabel"
 layout_mode = 2
 text = "Choose Your Mystery"
 horizontal_alignment = 1
 
 [node name="SubtitleLabel" type="Label" parent="VBox"]
+theme_type_variation = &"MutedLabel"
 layout_mode = 2
 text = "AI-powered murder mystery party game"
 horizontal_alignment = 1
@@ -40,6 +42,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 20)
 
 [node name="NewGameButton" type="Button" parent="VBox"]
+theme_type_variation = &"PrimaryButton"
 layout_mode = 2
 text = "New Game (Solo)"
 
@@ -52,10 +55,12 @@ layout_mode = 2
 text = "Browse Saved Mysteries"
 
 [node name="QuitButton" type="Button" parent="VBox"]
+theme_type_variation = &"QuietButton"
 layout_mode = 2
 text = "Quit"
 
 [node name="StatusLabel" type="Label" parent="."]
+theme_type_variation = &"FaintLabel"
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.0
@@ -87,5 +92,6 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="CloseButton" type="Button" parent="BrowsePopup/VBox"]
+theme_type_variation = &"QuietButton"
 layout_mode = 2
 text = "Close"

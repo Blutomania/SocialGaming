@@ -26,12 +26,14 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TitleLabel" type="Label" parent="VBox"]
+theme_type_variation = &"TitleLabel"
 layout_mode = 2
 text = "Make Your Accusation"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 20
 
 [node name="PromptLabel" type="Label" parent="VBox"]
+theme_type_variation = &"MutedLabel"
 layout_mode = 2
 text = "Who is the culprit?"
 horizontal_alignment = 1
@@ -44,14 +46,17 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 16)
 
 [node name="SubmitButton" type="Button" parent="VBox"]
+theme_type_variation = &"DangerButton"
 layout_mode = 2
 text = "Submit Final Answer"
 
 [node name="BackButton" type="Button" parent="VBox"]
+theme_type_variation = &"QuietButton"
 layout_mode = 2
 text = "Back to Case"
 
 [node name="StatusLabel" type="Label" parent="VBox"]
+theme_type_variation = &"FaintLabel"
 layout_mode = 2
 text = ""
 horizontal_alignment = 1
