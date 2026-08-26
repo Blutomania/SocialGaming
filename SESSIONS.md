@@ -3000,6 +3000,143 @@ it. Porting the Aug 12 flow and then immediately rewriting it would build the sa
 
 ---
 
+## Session 36 — August 26, 2026 (CYM: the first Godot F5 ran; two defects no checker could see)
+
+**Starting point:** `claude/godot-f5-explanation-5ocyy4`, off `main` at `2327e26` (PR #31 merged).
+
+**Item 22 is done.** The Godot client has now been run in the engine, by the owner, on their own
+machine. It launched, the main menu came up with the backend connected, and a saved mystery loaded
+from the browse list into `CaseDisplay`. The owner's verdict: *"it ran, it's ugly, but it works.
+And that's quite good."*
+
+Everything Sessions 34 and 35 wrote for the client had been verified by `check_godot_wiring.py`
+and nothing else. That F5 found **two defects in the first twenty minutes**, and the checker had
+passed both files.
+
+### Defect 1 — a Variant inference parse error (`e461ef5`)
+
+`case_display.gd:140` failed to compile:
+
+```
+Parser Error: The variable type is being inferred from a Variant value, so it
+will be typed as Variant. (Warning treated as error.)
+```
+
+```gdscript
+var relevance_icon := {"critical": "★", "red_herring": "✗", "supporting": "·"}.get(ev.relevance, "·")
+```
+
+`Dictionary.get()` returns `Variant`, so `:=` infers `Variant`, and the engine treats that
+inference as an error. Fixed by stating the type: `var relevance_icon: String = …`.
+
+**Fatal at parse time, so `CaseDisplay.tscn` never loaded at all** — the case screen did not
+render badly, it did not exist. Swept the client afterwards: 66 inferred declarations, and this
+was the only one taking its type from a Variant.
+
+### Defect 2 — `##` in a `.tscn` silently dropped five panels (`7cbacd1`)
+
+Clicking **Interrogate Suspects** died on `Cannot call method 'add_item' on a null value` at
+`interrogation.gd:62`. The error line was the symptom. The diagnosis was in the running scene's
+remote inspector: **twelve `@onready` node references were `<empty>` at runtime**, while
+`PhaseLabel`, `BudgetLabel`, `Spinner`, `AccuseButton` and `BackButton` resolved fine.
+
+`Interrogation.tscn` used `##` section headers:
+
+```
+## -----------------------------------------------------------------------
+## Witness sub-panel
+## -----------------------------------------------------------------------
+[node name="WitnessPanel" type="VBoxContainer" parent="VBox"]
+```
+
+**TSCN comments with `;`. A `#` line is garbage to the scene parser, and the node declared
+immediately after one is dropped when the scene loads.** The node is in the file; it never reaches
+the tree.
+
+The pattern matched with no exceptions. `WitnessPanel`, `InvestigationPanel`, `LeadPanel`,
+`SharedPanel` and `StatusLabel` each sat directly under a `##` block — all five null, and their
+children went with them, since a child cannot attach to a parent that is not there. The five nodes
+that survived are exactly the ones with no `##` above them.
+
+Removed the 15 offending lines; all 21 nodes still declared. Swept the other seven scenes — none
+had any.
+
+### The finding that outlives both bugs: the checker produced a confident false pass
+
+`check_godot_wiring.py` **passed `Interrogation.tscn`** while five of its panels were missing at
+runtime. It reads `[node name=…]` lines with a regex, so it saw all 21 nodes and cheerfully
+confirmed that every `$NodePath` resolves.
+
+**Reading a scene is not the same as loading it.** That is the whole gap, and it is worth holding
+onto, because CLAUDE.md leans on this script to call things verified. Both defects this session
+lived precisely where the checker's model of the project diverged from the engine's: one in the
+type system, one in the file format.
+
+The checker now flags `#` lines in any `.tscn`. Verified in both directions — the clean tree
+passes, and reintroducing a single `##` line fails with exit 1. The narrow check was deliberate:
+a full TSCN validator would produce false positives on multi-line property values, whereas `#` is
+never valid and catches exactly this class.
+
+### What is verified, and what still is not
+
+Verified by a human at the engine, this session:
+
+| | |
+|---|---|
+| Project imports, three autoloads register | ✓ |
+| F5 launches, main menu renders, backend health check goes green | ✓ |
+| `GET /mysteries` browse popup lists 17 saved mysteries | ✓ |
+| Selecting a row loads `CaseDisplay` and it renders | ✓ |
+| Interrogation screen | fixed after the F5, **not yet re-run** |
+
+Still unverified, and still the remainder of the 17-step F5 checklist written this session
+(steps 10–17, published as an artifact, not yet committed to the repo): the accusation
+dropdown, the result screen (`9c6c65d`, the whole end-of-game screen), the Smurf substring-matching
+regression (`f96a8ab`), rating persistence, and both paid steps — one interrogation call and one
+generation.
+
+### Friction worth not repeating
+
+Roughly half the session went on environment, not code. Recorded so the next person skips it:
+
+- **The project manager's `Run` button fails on a fresh clone** — *"Can't run project: Assets need
+  to be imported first."* `.godot/` is a generated import cache and is never committed, so the
+  first open must be `Edit`. Now step 4 of the checklist.
+- **`git checkout -- <path>` is cwd-relative.** Run from `server/` it reported *"did not match any
+  file(s) known to git"* for a path that plainly exists. `:/`-anchored paths avoid it.
+- **A failed `git checkout <branch>` aborts**, leaving you on the old branch — so a `git log` run
+  afterwards shows the wrong history and looks like the fix never landed.
+- **The uvicorn server runs in the foreground** and dies with its terminal. It needs its own
+  window, left alone. It also needs **no `ANTHROPIC_API_KEY`** for the whole saved-mystery route,
+  since `get_client()` is lazy — confirmed by running the server with the variable unset and
+  serving `/health` and `/mysteries` from it.
+- **Godot 4.7.2 against a project declaring 4.6** opens fine but re-saves `project.godot` and
+  `MainMenu.tscn`, which then show as modified in `git status`. Expected, not damage.
+
+That checklist carries all of this as a 17-step procedure, free steps first, with the exact expected values for *Whiteout at Shackleton Base* (4 suspects, culprit
+Dr. Marcus Hale) and the Smurf regression (Smurfwick and Smurfadel both correct, Smurfodex wrong).
+
+### Files changed
+
+- `godot/scripts/ui/case_display.gd` — explicit `String` type on `relevance_icon`
+- `godot/scenes/ui/Interrogation.tscn` — 15 invalid `##` comment lines removed
+- `scripts/check_godot_wiring.py` — new `check_scene_comments()`; `#` in a `.tscn` is now a failure
+
+### Commits
+
+```
+7cbacd1 Godot: '##' lines in Interrogation.tscn silently dropped five panels
+e461ef5 Godot: fix Variant inference parse error in case_display.gd
+```
+
+### Next step
+
+Re-run the interrogation screen to confirm defect 2 is closed, then finish checklist steps 10–17
+(and consider committing that checklist as `docs/F5_CHECKLIST.md` — it lives only in an artifact
+today). After that, item 23 — build APF.
+
+---
+
 ## Session 35 — August 25, 2026 (CYM: the corpus upgrade ran; the investigation model was redesigned to APF; four checkers gained a fifth)
 
 **Starting point:** `claude/session-34-bugs-fixes-uu2hk2`, at `f2bf505` (= `origin/main`, PR #22
