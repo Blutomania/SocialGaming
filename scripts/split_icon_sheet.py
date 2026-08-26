@@ -185,6 +185,142 @@ def detached_specks(icon: Image.Image, floor: float = 0.015) -> list[tuple[int, 
     return [b for b in bands if len(bands) > 1 and b[2] < floor]
 
 
+# ---------------------------------------------------------------------------
+# The vector path
+# ---------------------------------------------------------------------------
+
+def _path_bounds(d: str) -> tuple[float, float, float, float] | None:
+    """A path's bounding box, from its coordinates.
+
+    Only correct for ABSOLUTE commands, which is why split_vector_sheet()
+    refuses a sheet containing lowercase ones rather than quietly returning
+    wrong boxes. Bezier control points are included, so the box can be slightly
+    larger than the drawn curve -- which is the safe direction for a viewBox,
+    and irrelevant for deciding which column a path belongs to.
+    """
+    numbers = [float(n) for n in re.findall(r"-?\d*\.?\d+(?:[eE][-+]?\d+)?", d)]
+    if len(numbers) < 2:
+        return None
+    xs, ys = numbers[0::2], numbers[1::2]
+    return min(xs), min(ys), max(xs), max(ys)
+
+
+def split_vector_sheet(path: Path, icon_set: str, dry_run: bool) -> int:
+    """Cut a sheet of vector icons into one file each, by column.
+
+    SPLIT AT SUBPATH LEVEL, NOT PATH LEVEL, and that is not a detail. These
+    sheets hold 10 and 6 <path> elements for 4 icons each, because the export
+    grouped by shape rather than by drawing: one element carries 180 subpaths
+    spanning x=374..1202, i.e. pieces of three different icons. Grouping whole
+    elements put all four icons in one file, which is what the first attempt
+    did.
+
+    Each output keeps its source element's ATTRIBUTES verbatim and only the
+    subpaths belonging to its column, so paint, fill-rule and winding survive
+    exactly. Nothing is re-fitted or re-encoded -- the geometry that ships is
+    the geometry that was drawn, which is the entire reason vector was worth
+    waiting for.
+    """
+    text = path.read_text()
+    elements = list(re.finditer(r'<path\b([^>]*?)\bd="([^"]*)"([^>]*?)/?>', text))
+    if not elements:
+        raise SystemExit(f"error: {_rel(path)} has no <path> elements.")
+
+    # (attrs, subpath_d, x0, x1) for every subpath in the sheet.
+    pieces = []
+    for index, match in enumerate(elements):
+        attrs = (match.group(1) + " " + match.group(3)).strip()
+        d = match.group(2)
+        if any(c.islower() for c in re.findall(r"[A-Za-z]", d)):
+            raise SystemExit(
+                f"error: {_rel(path)} uses relative path commands.\n"
+                f"       This splitter reads absolute coordinates only."
+            )
+        for sub in re.split(r"(?=M)", d):
+            sub = sub.strip()
+            if not sub:
+                continue
+            bounds = _path_bounds(sub)
+            if bounds:
+                pieces.append((index, attrs, sub, bounds[0], bounds[2]))
+
+    if not pieces:
+        raise SystemExit(f"error: {_rel(path)} has no usable subpaths.")
+
+    # Find the gutters by interval coverage rather than by dividing the width:
+    # the spacing in these sheets is uneven, exactly as it was in the rasters.
+    right = max(piece[4] for piece in pieces)
+    covered = [False] * (int(right) + 2)
+    for _, _, _, x0, x1 in pieces:
+        for x in range(max(0, int(x0)), min(len(covered), int(x1) + 1)):
+            covered[x] = True
+
+    bands: list[tuple[float, float]] = []
+    start_x = None
+    for x, ink in enumerate(covered):
+        if ink and start_x is None:
+            start_x = x
+        elif not ink and start_x is not None:
+            bands.append((start_x, x))
+            start_x = None
+    if start_x is not None:
+        bands.append((start_x, len(covered)))
+    bands = [b for b in bands if b[1] - b[0] >= MIN_RUN]
+
+    print(f"{path.name}: {len(elements)} path(s), {len(pieces)} subpath(s) "
+          f"-> {len(bands)} icon(s)")
+
+    out_dir = ROOT / "icons" / icon_set
+    for index, (band_left, band_right) in enumerate(bands, start=1):
+        # A subpath belongs to the band its CENTRE falls in, so a piece that
+        # grazes a boundary lands in one icon rather than both or neither.
+        mine = [p for p in pieces if band_left <= (p[3] + p[4]) / 2 < band_right]
+        if not mine:
+            continue
+
+        xs = [v for p in mine for v in (p[3], p[4])]
+        ys = []
+        for _, _, sub, _, _ in mine:
+            bounds = _path_bounds(sub)
+            if bounds:
+                ys += [bounds[1], bounds[3]]
+        x0, x1, y0, y1 = min(xs), max(xs), min(ys), max(ys)
+
+        side = max(x1 - x0, y1 - y0)
+        pad = side * PAD
+        cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
+        half = side / 2 + pad
+        view = f"{cx - half:.2f} {cy - half:.2f} {side + 2 * pad:.2f} {side + 2 * pad:.2f}"
+
+        # Regroup by source element so each keeps its own attributes.
+        by_element: dict[int, list] = {}
+        for element_index, attrs, sub, _, _ in mine:
+            by_element.setdefault(element_index, [attrs, []])[1].append(sub)
+
+        body = "\n".join(
+            f'<path {attrs} d="{" ".join(subs)}"/>' if attrs
+            else f'<path d="{" ".join(subs)}"/>'
+            for attrs, subs in by_element.values()
+        )
+
+        name = f"{icon_set}_{index:02d}.svg"
+        print(f"  {name}  {len(mine)} subpath(s) from {len(by_element)} element(s)  "
+              f"x={x0:.0f}..{x1:.0f}")
+        if dry_run:
+            continue
+        out_dir.mkdir(parents=True, exist_ok=True)
+        (out_dir / name).write_text(
+            f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{view}">\n{body}\n</svg>\n'
+        )
+
+    if dry_run:
+        print("\n--dry-run: nothing written.")
+    else:
+        print(f"\nWrote {len(bands)} file(s) to icons/{icon_set}/. "
+              f"Next: python3 scripts/build_icons.py")
+    return 0
+
+
 def main() -> int:
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     dry_run = "--dry-run" in sys.argv
@@ -200,6 +336,12 @@ def main() -> int:
     if not sheet_path.exists():
         print(f"error: {sheet_path} does not exist")
         return 1
+
+    # A vector sheet is split by geometry; a raster one by pixels. Dispatch on
+    # what the file actually contains rather than on its extension, because the
+    # first upload was a .svg that held nothing but a PNG.
+    if sheet_path.suffix.lower() == ".svg" and "base64," not in sheet_path.read_text():
+        return split_vector_sheet(sheet_path, icon_set, dry_run)
 
     sheet = load_sheet(sheet_path)
     runs = find_columns(sheet)

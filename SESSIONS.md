@@ -3174,6 +3174,40 @@ uniform. Uniformity alone would have certified the bug.
 GDScript referencing a missing class fails to **parse** — the defect class that cost Session 36 a
 whole screen with no runtime error.
 
+### How the artwork actually arrived, in three rounds
+
+Worth recording, because the pipeline's guards were what made each round cheap.
+
+1. **Two SVGs that were PNGs.** One `<image>` with a base64 payload, zero
+   `<path>` elements — the exact shape `brand/negative_logo.svg` had.
+   `build_icons.py` refused them, which is what it is for.
+2. **Two PNG sheets.** Genuine rasters, four icons to a row. Rather than work
+   around it, raster became a supported source: `build_icons.py` flattens a
+   `.png` from its alpha channel, which is *simpler* than flattening vector
+   because the alpha already is the drawing. One generated white file serves
+   both clients — Godot tints with `modulate`, CSS with `mask-image`.
+3. **Two real vector sheets.** 10 and 6 `<path>` elements, absolute `CMZ`
+   commands, no groups or transforms. These are what shipped.
+
+**The vector split had to happen at SUBPATH level, and the first attempt got it
+wrong.** The export grouped by shape rather than by drawing: one element carries
+180 subpaths spanning x=374..1202, i.e. pieces of three different icons.
+Grouping whole elements put all four icons in one file. Splitting the 607 and
+103 subpaths and assigning each to a column by its centre gives 4 and 4, at
+x-ranges matching the raster gutters exactly — which is the cross-check that the
+two independent methods agree.
+
+Each output keeps its source element's attributes verbatim and only its own
+subpaths, so paint, fill-rule and winding survive. Nothing is re-fitted or
+re-encoded.
+
+**One blemish, reported not removed.** `witness_03` carries a free-floating mark
+three rows tall holding 0.18% of its ink, above the speech bubble — a stray
+point in the source art. The splitter now detects that class of thing and says
+so. It does not delete it, because that same icon has four legitimately detached
+components (the radiating emphasis lines) and anything removing disconnected ink
+automatically would eat them.
+
 ### Typeface selection
 
 Answered as a specimen page rather than a list: five OFL pairings (display / body / numeral) set
