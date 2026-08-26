@@ -50,6 +50,7 @@ func build_theme() -> Theme:
 	var t: Theme = Theme.new()
 	t.default_font_size = Palette.TYPE_BODY
 
+	_style_fonts(t)
 	_style_labels(t)
 	_style_buttons(t)
 	_style_inputs(t)
@@ -100,6 +101,60 @@ func _focus_ring() -> StyleBoxFlat:
 	box.set_border_width_all(2)
 	box.set_corner_radius_all(Palette.RADIUS_BASE)
 	return box
+
+
+## Nunito Sans — OFL 1.1, three static instances (400/600/700).
+##
+## STATIC INSTANCES, NOT THE VARIABLE FONT, although upstream ships variable
+## (four axes: YTLC, opsz, wdth, wght). Godot supports variable fonts, but each
+## weight then needs its own resource carrying a `variation_opentype` dictionary,
+## so "one file" becomes three resources plus three axis maps to get right —
+## more moving parts than three files, for identical output.
+##
+## ONE FAMILY ACROSS THE WHOLE HIERARCHY, so there is no fallback chain to
+## maintain. A pairing needs the body face listed as the display face's
+## fallback, because a display face usually has thinner coverage and a missing
+## glyph renders as a box; with a single family covering all three weights, that
+## whole class of bug does not exist. It matters here: one title on disk is
+## "Schatten am Checkpoint", and these instances carry the Latin-1 accents.
+##
+## Loaded defensively. A .ttf that has not been imported yet resolves to null,
+## and assigning null as default_font would strip every label in the product of
+## its font with no error — the same silent-no-op shape as a wrong theme item
+## name. Better to keep the engine default and say so.
+func _style_fonts(t: Theme) -> void:
+	var regular: Font = _font("NunitoSans-Regular.ttf")
+	var semibold: Font = _font("NunitoSans-SemiBold.ttf")
+	var bold: Font = _font("NunitoSans-Bold.ttf")
+	if regular == null:
+		return
+
+	t.default_font = regular
+	for type_name: String in ["Label", "Button", "CheckBox", "LineEdit", "TextEdit",
+			"OptionButton", "PopupMenu", "ItemList", "ProgressBar", "TooltipLabel"]:
+		t.set_font("font", type_name, regular)
+	t.set_font("normal_font", "RichTextLabel", regular)
+	t.set_font("bold_font", "RichTextLabel", bold if bold else regular)
+
+	## Weight carries the hierarchy now that colour and size already do. Display
+	## and titles take Bold; section headings and the one primary action take
+	## SemiBold; everything else stays Regular, which is most of the screen.
+	if bold:
+		for variation: String in ["DisplayLabel", "TitleLabel", "MysteryTitleLabel"]:
+			t.set_font("font", variation, bold)
+		t.set_font("title_font", "Window", bold)
+	if semibold:
+		t.set_font("font", "HeadingLabel", semibold)
+		t.set_font("font", "PrimaryButton", semibold)
+		t.set_font("font", "DangerButton", semibold)
+
+
+func _font(file_name: String) -> Font:
+	var path: String = "res://assets/fonts/" + file_name
+	if not ResourceLoader.exists(path):
+		push_warning("Style: %s is missing — falling back to Godot's default face." % path)
+		return null
+	return load(path) as Font
 
 
 func _style_labels(t: Theme) -> void:

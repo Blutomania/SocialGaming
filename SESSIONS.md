@@ -3218,6 +3218,45 @@ code is read off a television and typed into a phone by somebody standing up —
 a measurable property beats a preference. Nothing committed to the repo; the choice is the
 owner's.
 
+### The typeface, chosen: Nunito Sans
+
+Owner picked it off Google Fonts and asked whether the licence was right. It is —
+`METADATA.pb` records `license: "OFL"`, and the bundled `OFL.txt` is SIL Open Font
+License 1.1. Checked at source rather than from memory.
+
+Upstream ships it **variable** (four axes: YTLC, opsz, wdth, wght). Three static
+instances are committed instead — 400/600/700, verified distinct (`fvar=no`,
+`usWeightClass` 400/600/700, 1052 glyphs each). Godot supports variable fonts, but
+each weight then needs its own resource carrying a `variation_opentype` dictionary,
+so "one file" becomes three resources plus three axis maps, which is more to get
+wrong than three files for identical output.
+
+**One family across the whole hierarchy, which removes a class of bug rather than
+just simplifying.** A display/body pairing needs the body face listed as the display
+face's fallback, because a display face usually has thinner coverage and a missing
+glyph renders as a box — first noticed, typically, on a localised title in front of a
+playtester. With one family there is no fallback chain. It matters concretely: these
+instances carry the Latin-1 accents, so *Schatten am Checkpoint* renders, verified.
+
+Weight now carries hierarchy alongside colour and size: Bold for display and titles,
+SemiBold for section headings and the two consequential buttons, Regular for the rest
+of the screen. `mobile.html` self-hosts the same release as WOFF2 (a fifth the size
+over the air) with the system stack still behind it, so a font that fails to load
+costs the look and not the game.
+
+**One thing to watch at the F5:** the room code. Nunito Sans's zero is unslashed, and
+the code is read off a television and typed into a phone by somebody standing up. If
+`0` against `O` causes trouble in play, the fix is a mono face for that one label
+rather than a different UI font.
+
+### The stray mark in witness_03, fixed
+
+Removed at source — a 15.3 × 1.6 sliver sitting at y=0.1, clear of a drawing that
+starts at y=18.9. Taken out of `icons/_sheets/fixed_witness_icons.svg` rather than out
+of the split file, so re-running the splitter cannot reintroduce it. The icon went
+from 30 subpaths across 4 elements to 29 across 3, and the splitter's detached-mark
+note no longer fires.
+
 ### Next step
 
 Item 23 — build APF — is unchanged and still the stage-1 priority. Before that, an F5 to
