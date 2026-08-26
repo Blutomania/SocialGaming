@@ -8,16 +8,21 @@ never connected not at all — it just does nothing when clicked. `scripts/check
 catches what it can by reading the scene and script files, but reading a scene is not the same as
 loading it, and Session 36 proved the gap twice. This checklist is the part no script can do.
 
-**Status (Session 36, August 26 2026).** Steps **1–10 walked by the owner and passing.**
-Steps 11–17 unverified.
+**Status (Session 36, August 26 2026). The free route is complete — steps 1–15 walked by the
+owner and passing.** Only the two paid steps, 16 and 17, remain unverified.
 
-Two steps failed on first attempt and were fixed mid-walk:
+One gap inside a passing step: step 13's negative case (accusing Smurfodex, which must come back
+*wrong*) was not run. Both positive cases were, and both pass.
 
-- **Step 14, the interrogation screen** — `##` comment lines in `Interrogation.tscn` dropped five
-  panels. Fixed; **not yet re-run**.
+Three defects were found and fixed during the walk, none of which any checker could see:
+
+- **Step 7, the case screen** — `case_display.gd` inferred `Variant` from `Dictionary.get()`.
+  Fatal at parse time, so `CaseDisplay.tscn` never loaded. Fixed, confirmed.
+- **Step 14, the interrogation screen** — `#` comment lines in `Interrogation.tscn` dropped five
+  panels and every child under them. Fixed, confirmed: all five panels now render.
 - **Step 10, the result screen** — `result_screen.gd` failed to parse because GDScript has no
-  implicit string concatenation, so the script never loaded and the screen rendered its static
-  nodes only. Fixed and **confirmed working**: red verdict, full solution, ten rating buttons.
+  implicit string concatenation, so the script never loaded and only the scene's static nodes
+  rendered. Fixed, confirmed: red verdict, full solution, ten rating buttons.
 
 See `SESSIONS.md` Session 36.
 

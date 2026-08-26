@@ -288,12 +288,18 @@ is history, and item 22 is now done.**
     there cannot be. Treat "the checkers pass" as *necessary, not sufficient*, and say so when
     reporting status.
 
-    **Not yet verified — the rest of the walkthrough.** The accusation dropdown, the result screen
-    (`9c6c65d`, the whole end-of-game screen), the Smurf substring-matching regression
-    (`f96a8ab`), rating persistence, and the two paid steps (one interrogation call, one
-    generation). The interrogation screen's fix is also un-rerun. A 17-step checklist covering all
-    of it is `docs/F5_CHECKLIST.md` — read that before walking the client, and update its Status
-    line when you finish a step.
+    **The free route is now complete.** The accusation dropdown, the result screen, rating
+    persistence, both navigation exits, the Smurf substring regression (both correct answers come
+    back correct) and the repaired interrogation screen have all been walked and pass. A third
+    defect surfaced and was fixed on the way: `result_screen.gd` relied on implicit string
+    concatenation, which GDScript does not have, so the script failed to parse and the screen
+    rendered its static nodes only — no verdict, no solution, no rating buttons, and no runtime
+    error to explain it. The same pattern was found and fixed on the multiplayer share path
+    before it could be hit (`102e2be`).
+
+    **Still unverified: only the two paid steps** — one interrogation call and one generation.
+    Plus one gap inside a passing step: the Smurf negative case (accusing Smurfodex, which must
+    read *wrong*) was not run. The procedure and its live Status line are `docs/F5_CHECKLIST.md`.
 
 23. **[START HERE] Build APF.** The playtest shape is agreed and written down:
     `docs/PLAYTEST_FLOW.md` → "APF (All Provided For)". Findings are **dealt, not gathered**; the
