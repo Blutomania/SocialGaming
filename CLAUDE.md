@@ -338,8 +338,12 @@ is history, and items 22 and 24 are now done.**
     applies to this work more than to most.
 
     Three things deliberately left alone, each because deciding them is the owner's:
-    - **Fonts.** Sizes and colours are set; the face is still Godot's default. OFL-only per the
-      owner, and it needs a real face committed.
+    - ~~**Fonts.**~~ **[DECIDED, same session] Nunito Sans**, SIL OFL 1.1, three static
+      instances (400/600/700) in `godot/assets/fonts/` with `OFL.txt` beside them, and the
+      same release self-hosted as WOFF2 for the phone. One family across the whole
+      hierarchy, so there is no fallback chain and no missing-glyph box; Latin-1 accents
+      verified against *Schatten am Checkpoint*. Open at the F5: the room code, since the
+      zero is unslashed.
     - **`config/icon`** points at `res://assets/ui/icon.png`, which does not exist (nor does
       `godot/assets/`). Choosing it means answering item 17's open question about which brand mark
       goes on which device.
