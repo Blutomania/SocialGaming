@@ -3232,6 +3232,43 @@ globbing `scripts/check_*.py` sweeps in `check_brand_contrast.py`, which measure
 needs Pillow, and exits non-zero without it. A red line the reader is told to ignore is worse than
 no line, so the loop names its checkers explicitly and says why.
 
+### Fourth part — the share rule had two implementations
+
+Owner asked whether players are actually told which finding is valuable. They are not, on the
+multiplayer path: a finding is `{id, where it came from, prose}` — no `relevance`, no score, **and
+no evidence ID**. That last one is a prerequisite nobody had listed: the solvability arithmetic is
+defined over `evidence[]` and what a player holds has no join key to it, so the constrained deal
+cannot be built until findings carry the evidence ID they came from.
+
+The single-player route does the opposite: `case_display.gd` prints **★ critical** and **✗ red
+herring** beside every evidence item, so the solo screen labels exactly what the multiplayer screen
+hides. Flagged as a decision, not changed.
+
+**Chasing it turned up a real bug.** The share minimum was implemented twice — `round()` on the
+server, `ceili()` in `share_selection.gd`. They disagree in **6 of 18** realistic combinations and
+**the client is always stricter**, so it refused to submit shares the server would have accepted.
+At a two-finding hand it demanded both, and at APF's three-finding hand on EASY it demanded all
+three — deleting the hoarding decision at exactly the hand size APF specifies.
+
+Owner approved the unambiguous half: **the server computes it once and sends it.**
+`_min_share_required()` is now the only definition, it is returned with every finding response
+(investigate-area, follow-lead, interrogate-witness), `GameState` records it per phase, and
+`share_selection.gd` displays it. When the server sends nothing the client falls back to **1, the
+server's own floor** — erring permissive costs a rejected submit, erring strict silently deletes a
+legal move. `scripts/test_share_rule.py` asserts the duplication is gone rather than that two
+copies happen to agree; negative-tested by restoring the old line.
+
+**The larger finding, left as the owner's decision:** at a three-finding hand the difficulty ladder
+does not exist. EASY 0.70, MEDIUM 0.60 and HARD 0.50 all resolve to "share 2, keep 1" — a
+percentage has no resolution over three items. Keep 0 deletes the mechanic and keep 2 means sharing
+one thing, so keep 1 is forced and **difficulty has to live somewhere other than the share rule.**
+The redundancy option from §4 is the natural home; suspect count and red-herring density are the
+alternatives.
+
+**Files (fourth part):** `server/main.py`, `godot/scripts/autoloads/GameState.gd`,
+`godot/scripts/ui/share_selection.gd`, `scripts/test_share_rule.py` (new),
+`docs/INVESTIGATION_DESIGN.md`, `docs/F5_CHECKLIST.md`, `CLAUDE.md`.
+
 **Files (third part):** `docs/WIRING.md`, `docs/INVESTIGATION_DESIGN.md`, `docs/F5_CHECKLIST.md`
 (rebuilt), `scripts/check_solvability.py` (new), `scripts/check_doc_claims.py`, `CLAUDE.md`.
 

@@ -1,7 +1,8 @@
 ## ShareSelection — shown when a player's phase budget hits 0.
 ##
 ## Lists all findings for the just-completed phase as checkboxes.
-## Player must select at least share_min% of them before submitting.
+## Player must select at least as many as the SERVER requires before submitting.
+## That number arrives with each finding response; this screen never derives it.
 ## The selected subset is broadcast to ALL other players.
 ##
 ## Duplicate check: if the server returns duplicate_flags, the offending
@@ -38,12 +39,17 @@ var _min_required: int = 0
 func _ready() -> void:
 	_phase = _phase_name_from_invest_phase(GameState.invest_phase)
 	_findings = GameState.current_phase_findings()
-	_min_required = max(1, ceili(_findings.size() * GameState.share_min))
+	## The server decides this and sends it with every finding; the client only
+	## displays it. Computing it here is what caused the two to disagree.
+	_min_required = GameState.current_share_required()
+	if _min_required <= 0:
+		push_warning("ShareSelection: server sent no share_required — using its floor of 1.")
+		_min_required = 1
 
 	title_label.text = "Share Your Findings"
 	subtitle_label.text = (
-		"You must share at least %d of %d %s findings (%d%% minimum).\n"
-		% [_min_required, _findings.size(), _phase, int(GameState.share_min * 100)]
+		"You must share at least %d of %d %s findings.\n"
+		% [_min_required, _findings.size(), _phase]
 		+ "Your selections will be shared with ALL other players."
 	)
 

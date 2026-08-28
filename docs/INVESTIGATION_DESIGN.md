@@ -321,10 +321,24 @@ still could not get there. So before the deal is built, one of these has to happ
 
 `docs/PLAYTEST_FLOW.md` requires that a deal *"becomes solvable once the minimum share threshold is
 met."* Measured against the code, that constraint is not well-formed. `share_min` is a **minimum
-fraction of a player's own findings** (`server/main.py`: `round(len(all_findings) * share_min)`),
-and **the player chooses which ones**. Meeting the threshold therefore does not determine what
-reaches the pool: a player holding three findings at MEDIUM shares two and withholds one, and they
-will withhold the most valuable one, which is the whole point of the mechanic.
+fraction of a player's own findings** (`_min_share_required()` in `server/main.py`), and **the
+player chooses which ones**. Meeting the threshold therefore does not determine what reaches the
+pool: a player holding three findings at MEDIUM shares two and withholds one, and which one they
+keep is the whole point of the mechanic.
+
+**How well can they choose? Value is never labelled on a finding, but it is legible.** A finding
+carries an id, where it came from, and generated prose — no `relevance`, no score, and (see below)
+no evidence ID either. So a player cannot look up which of their three matters. But the prose is
+generated *from* the evidence, so a decisive finding usually reads as decisive: *"I found whose
+blood was on the knife"* needs no label. **That is uncertainty, not ignorance** — which makes the
+adversarial worst case unlikely rather than impossible, and means a probabilistic guarantee (the
+deal is solvable under *most* share patterns, enumerated) is a legitimate fourth option beside the
+three below.
+
+> **Note the inconsistency.** `case_display.gd` renders a **★ for critical** and an **✗ for red
+> herring** beside every evidence item on the solo case screen. So the single-player route labels
+> exactly what the multiplayer route hides. That looks like a debug affordance that shipped, and it
+> should be a decision either way.
 
 So "solvable once the threshold is met" is only true if it holds for **every** legal choice of what
 to share — including the case where every player withholds their most load-bearing finding. And it
@@ -341,6 +355,43 @@ reach the pool is a finding nobody may keep.
 
 None of these needs an API call; all three are constraints on the deal, which is already specified
 as pure computation and re-dealable at zero cost.
+
+#### [Session 38] A prerequisite nobody has listed: findings carry no evidence ID
+
+The three finding constructors in `server/main.py` produce `{id, where it came from, prose}` and
+nothing else. **There is no reference to the `evidence[]` array**, so the solvability arithmetic —
+`exonerates` / `implicates` on evidence items — and what a player actually holds are two data
+models with no join key. **The constrained deal cannot be built until a finding carries the
+evidence ID it came from**, because otherwise the deal is distributing opaque prose and cannot
+reason about which exoneration landed in which hand. This is not on §7's build order and should be.
+
+#### [Session 38] And at APF's hand size the difficulty ladder does not exist
+
+APF deals **three** findings — one witness statement, one crime-scene clue, one lead result. Put
+that hand through the rule at each difficulty:
+
+| Hand | EASY 0.70 | MEDIUM 0.60 | HARD 0.50 |
+|---|---|---|---|
+| 3 findings | share 2, **keep 1** | share 2, **keep 1** | share 2, **keep 1** |
+
+**All three difficulties are identical.** The ladder is inert at a hand of three, because a
+percentage has no resolution over three items. Only three outcomes are reachable — keep 0 deletes
+the mechanic, keep 2 means sharing a single finding — so **keep 1 is effectively forced, and
+difficulty cannot live in the share rule at all.**
+
+- **State it as a count, not a percentage.** At these hand sizes `share_min` cannot express what it
+  is for, which is why two reasonable roundings of it disagreed and neither produced a ladder.
+- **Difficulty needs another home**, and the redundancy option above is the natural one: EASY deals
+  each exoneration into two hands so someone will share it; HARD deals each into exactly one so
+  withholding really bites. That has real resolution at a three-card hand. Suspect count and
+  red-herring density are the other candidates.
+
+**A duplicate of the rule was found and removed while measuring this.** The client computed the
+minimum with `ceili()` where the server used `round()`; they disagreed in 6 of 18 realistic
+combinations, always with the client stricter, so it refused shares the server would have accepted
+— and at a two-finding hand demanded both, deleting the choice entirely. The server now computes it
+once and sends it with every finding response; `scripts/test_share_rule.py` asserts the client has
+no rule of its own.
 
 ### What is deliberately left to the playtest
 

@@ -564,6 +564,23 @@ _DIFFICULTY_CONFIG = {
     "HARD":   {"share_min": 0.50, "witness_budget": 4, "investigation_budget": 2, "questions_per_round": 1},
 }
 
+
+def _min_share_required(finding_count: int, share_min: float) -> int:
+    """How many of a player's findings they must share. THE only definition.
+
+    It used to be written twice -- here and again in the Godot client, which
+    used ceil() where this uses round(). They disagreed in 6 of 18 realistic
+    combinations and the client was always the stricter one, so it refused to
+    submit shares the server would have accepted. At a hand of two findings it
+    demanded both, which removes the choice the whole mechanic is about.
+
+    Now the server computes it and sends it with every finding response; the
+    client only displays what it is given. If a client ever has to guess it
+    should guess 1 -- the floor below -- because erring permissive costs a
+    rejected submit, while erring strict silently deletes a legal move.
+    """
+    return max(1, round(finding_count * share_min))
+
 # Generic, role-aware conversation starters offered as pick-list options in a
 # witness lockstep round (hybrid input: pick one of these, or type a custom
 # question instead). Not mystery-specific — kept as a static bank rather than
@@ -2109,7 +2126,10 @@ def investigate_area(game_id: str, req: InvestigateAreaRequest):
     # not broadcast to the room — useful for tracing narration quality during
     # playtesting without any spoiler/leak risk to other players.
     return {"finding_id": finding_id, "area_name": area["name"], "findings": findings,
-            "budget_remaining": player["investigation_budget"], "craft_guidance": craft_guidance}
+            "budget_remaining": player["investigation_budget"],
+            "share_required": _min_share_required(
+                len(player["investigation_findings"]), game["share_min"]),
+            "craft_guidance": craft_guidance}
 
 
 @app.post("/games/{game_id}/follow-lead")
@@ -2162,7 +2182,10 @@ def follow_lead(game_id: str, req: FollowLeadRequest):
     # See the matching comment in investigate_area() re: why craft_guidance is
     # safe to include here (private per-player response, not a room broadcast).
     return {"finding_id": finding_id, "lead_title": lead["title"], "findings": findings,
-            "leads_remaining": 2 - len(player["leads_used"]), "craft_guidance": craft_guidance}
+            "leads_remaining": 2 - len(player["leads_used"]),
+            "share_required": _min_share_required(
+                len(player["lead_findings"]), game["share_min"]),
+            "craft_guidance": craft_guidance}
 
 
 @app.post("/games/{game_id}/share-phase")
@@ -2191,7 +2214,7 @@ def share_phase(game_id: str, req: SharePhaseRequest):
         raise HTTPException(status_code=400, detail="no findings to share for this phase")
 
     # Validate minimum share %
-    min_required = max(1, round(len(all_findings) * game["share_min"]))
+    min_required = _min_share_required(len(all_findings), game["share_min"])
     if len(req.selected_ids) < min_required:
         raise HTTPException(
             status_code=400,
@@ -2419,6 +2442,8 @@ def game_interrogate_witness(game_id: str, req: GameInterrogateRequest):
         "finding_id": finding_id,
         "response": response,
         "budget_remaining": player["witness_budget"],
+        "share_required": _min_share_required(
+            len(player["witness_findings"]), game["share_min"]),
     }
 
 
