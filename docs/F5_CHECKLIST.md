@@ -14,6 +14,13 @@ owner and passing.** Only the two paid steps, 16 and 17, remain unverified.
 One gap inside a passing step: step 13's negative case (accusing Smurfodex, which must come back
 *wrong*) was not run. Both positive cases were, and both pass.
 
+**Session 38 added a Step 0 (section E) and it now comes before everything else.** Two
+`EditorScript`s run inside the engine: `VerifyScenes.gd` loads all eight screens and reports any
+node a `.tscn` declares but that does not survive loading, and `ApplyTheme.gd` makes the design
+visible in the editor canvas *and* checks every theme item name against the engine's own register.
+Between them they answer the two caveats this file has carried since Session 36 — "reading a scene
+is not loading it" and "a wrong theme item name is a silent no-op".
+
 Three defects were found and fixed during the walk, none of which any checker could see:
 
 - **Step 7, the case screen** — `case_display.gd` inferred `Variant` from `Dictionary.get()`.
@@ -305,6 +312,11 @@ variation falls back to the base type. `check_godot_wiring.py` cross-checks the 
 disagreeing about the mechanism itself. Quick tell: if the main menu title is not 44px brass,
 variations are not applying at all.
 
+**Step 0 below now answers the item-name half of this outright.** `ApplyTheme.gd` looks every
+name `Style.gd` sets up in `ThemeDB.get_default_theme()`, which is the engine's own register of
+what exists, and prints the ones it does not have. Read its `MISSES` line before hunting a
+control that looks unthemed.
+
 ### B. Fonts
 
 - **Import before running.** `.ttf` files become `FontFile` resources on first editor open. Per
@@ -337,16 +349,61 @@ Check these off before reporting a bug:
 |---|---|
 | **No icons anywhere** | `Icons.gd` and `IconSet.gd` exist and are tested, but **no screen calls them yet**. Wiring them into the clue and witness lists is not done. |
 | **No strewn title in the background** | The BACKGROUND field is layout-only (`background_field.py`) and wired to no client. The flat slate ground *is* item 17's specified pre-prompt state. |
-| **Default Godot window/taskbar icon** | `config/icon` points at `res://assets/ui/icon.png`, which does not exist. Choosing it needs item 17's open brand decision. |
+| **Default Godot window/taskbar icon** | `config/icon` is deliberately unset (Session 38). It used to name a file that never existed, which put a failed-load error into Output on every open. Choosing a real one needs item 17's open brand decision. |
 | **Panels look sunken, not raised** | Deliberate. The surface ramp goes *deeper* than the ground so the BACKGROUND field stays behind everything. See `palette.py`. |
 | **Semantic colours look pale** | Forced, not chosen. A saturated red cannot clear 4.5:1 on a mid-slate ground. |
 
-### E. First three minutes
+### E. Step 0 — run the two editor tools first
+
+Both are `EditorScript`s: open the file in the script editor and press **File → Run**
+(`Ctrl+Shift+X`). Neither takes an argument, neither costs anything, and neither needs the backend.
+They exist because they are the only checks that run *inside* the engine, which is where the last
+two sessions' undetectable defects lived.
+
+**1. `godot/scripts/tools/VerifyScenes.gd` — do this before anything else.**
+
+It loads all eight screens through Godot's own loader and compares the nodes each `.tscn`
+*declares* against the nodes that actually exist once loaded. That is precisely the comparison
+`check_godot_wiring.py` cannot make — it reads scene files, and Session 36 proved that reading a
+scene is not loading one when `Interrogation.tscn` passed the checker with five panels missing at
+runtime. It also flags a scene whose root lost its script, which is how a GDScript parse error
+presents: no crash, no missing node, just a screen where nothing responds.
+
+Expect eight `ok` lines. Anything else names the file and the node, and is worth fixing before F5.
+
+**2. `godot/scripts/tools/ApplyTheme.gd` — this is what makes the design visible while you edit.**
+
+`Style.gd` puts the theme on `get_tree().root`, and there is no root at design time, so the editor
+canvas shows engine grey no matter how much styling exists. This script calls the same
+`Style.build_theme()` the game calls, saves the result to `res://assets/theme/cym_theme.tres`, and
+points `gui/theme/custom` at it. Reopen a scene afterwards and the editor shows the real design.
+
+Three things worth knowing:
+
+- **The `.tres` is a generated preview, never a source.** `palette.py` remains the one place a
+  colour is decided and `Style.gd` the one place the theme is built. Re-run this after changing
+  either. Runtime never reads the `.tres` — a Control resolves its theme from its ancestors before
+  the project default, so `Style.gd` still wins when the game runs. A stale preview can mislead the
+  editor; it cannot ship a wrong colour.
+- **Read the `MISSES` block.** It lists every theme item name the engine does not recognise. Each
+  one is a line of `Style.gd` silently doing nothing — the failure mode Session 37 recorded as
+  uncheckable without the engine. `none` is the good answer.
+- **Read the `fonts` line.** It reports whether Nunito Sans actually resolved, off the built theme
+  rather than off a warning you might scroll past. On a fresh checkout, let the import finish and
+  re-run if it says the fonts are missing.
+
+Commit `godot/assets/theme/cym_theme.tres` and `project.godot` afterwards.
+
+### F. First three minutes
 
 1. Open with **Edit**. Let the import finish (fonts and 8 SVGs are new).
-2. Check **Output** for `Style:` warnings — that is the font-load canary.
-3. F5. The main menu should be: slate ground, **44px brass** wordmark, muted subtitle, one brass
+2. Run **`VerifyScenes.gd`**, then **`ApplyTheme.gd`** (section E). Reopen a scene — the editor
+   canvas should now be slate, not grey.
+3. Check **Output** for `Style:` warnings — that is the font-load canary. Session 38 cleared the
+   three standalone-expression warnings and the missing-icon error that used to sit in this panel,
+   so it should be quiet enough that a real warning stands out.
+4. F5. The main menu should be: slate ground, **44px brass** wordmark, muted subtitle, one brass
    button and three outlined ones, faint status line at the bottom.
 
-If step 3 looks like plain grey Godot, the theme is not being applied at all and the thing to
+If step 4 looks like plain grey Godot, the theme is not being applied at all and the thing to
 check is that `Style` is registered as the **last** autoload in `project.godot`.

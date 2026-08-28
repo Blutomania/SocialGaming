@@ -3000,6 +3000,117 @@ it. Porting the Aug 12 flow and then immediately rewriting it would build the sa
 
 ---
 
+## Session 38 — August 28, 2026 (CYM: the design becomes visible in the editor; two engine-side checks)
+
+**Branch:** `claude/godot-game-rendering-i29xsh`, from `b76a994`. Owner's ask: *"get the game to
+start rendering (in design) in Godot"*, then a to-do list.
+
+**First, the constraint is now tested rather than assumed.** Previous sessions recorded "no Godot
+binary in the session environment" as a fact. It was worth one attempt: outbound HTTPS here is
+allowlist-only (pypi, npm, and GitHub scoped to this one repo). `godotengine.org` and the
+TuxFamily mirror do not resolve at all, and `github.com/godotengine/...` returns 403 from the
+proxy's repo scoping. **There is no route to an engine from this session**, headless included, so
+everything below is still static work — but that sentence is now a measurement.
+
+### Why the editor showed nothing, and what fixes it
+
+Session 37 built the whole theme and it was invisible while being worked on. The cause is one
+line: `Style.gd` assigns the theme to `get_tree().root`, and there is no root at *design* time.
+Open any of the eight scenes in the editor and you get engine grey. Godot's project-wide default
+theme (`gui/theme/custom`) *is* honoured by the editor canvas, but it has to be a Resource on
+disk, and `Style.gd`'s header gives two good reasons not to hand-write one — it would be a fourth
+copy of the palette, and a `.tres` is the same text format that cost Session 36 five panels.
+
+**Both objections are about hand-writing it, so it is not hand-written.**
+`godot/scripts/tools/ApplyTheme.gd` is an `EditorScript`: it calls `Style.build_theme()` — the
+same function the game uses — and lets `ResourceSaver` serialise the result to
+`res://assets/theme/cym_theme.tres`, then points `gui/theme/custom` at it. The `.tres` is a
+**generated preview of `Style.gd`, never a source.** One keystroke (File → Run) regenerates it
+after any change to `palette.py` or `Style.gd`.
+
+Runtime is unaffected in either direction, which is the property that makes this safe: a Control
+resolves its theme by walking ancestors *before* falling back to the project default, so
+`Style.gd`'s root assignment still wins when the game runs. A stale `.tres` can mislead the
+editor; it cannot ship a wrong colour.
+
+`gui/theme/custom` is deliberately **not** pre-set in `project.godot` — pointing it at a file that
+does not exist yet would error on a fresh clone. The script sets it only after writing the file.
+
+### The guard Session 37 said could not be written
+
+Session 37 recorded that a wrong theme item name is a silent no-op — no error, no warning, the
+control just keeps its engine default — and that "short of running Godot there cannot be" a check
+for it. There can, from inside Godot: `ThemeDB.get_default_theme()` declares every item the
+engine really has, so every name `Style.gd` sets can be looked up in it. `ApplyTheme.gd` walks
+the built theme's types (resolving each variation against its base type) and prints every colour,
+font, font size, constant and stylebox the engine does not know. **Each miss is a line of
+`Style.gd` doing nothing.** That turns Session 37's ten unverifiable control types into a list
+the owner reads once.
+
+### The other half: reading a scene is not loading it
+
+`godot/scripts/tools/VerifyScenes.gd` is the second `EditorScript`. It parses each `.tscn` for the
+nodes it *declares*, then instantiates the scene through the engine's own loader and asks the
+resulting tree which of them really exist — the exact comparison that would have caught Session
+36's `Interrogation.tscn`, where the checker saw all 21 declared nodes and five panels were null
+at runtime. It also reports a scene whose root lost its script, which is what a GDScript parse
+error looks like from the outside: no exception, no missing node, just a screen where nothing
+responds — how the result screen reached a playtest blank.
+
+`instantiate()` is safe to run here: `_ready()` and `@onready` both wait for a tree, and nothing
+is added to one, so the check fetches nothing and touches no state.
+
+The `.tscn` parsing in both scripts was validated against all eight real scenes before it shipped
+(every root found, every root script found, plausible child counts) rather than being written
+blind.
+
+### Three Python docstrings in GDScript
+
+Found by sweeping for the Session 36 defect classes:
+
+```gdscript
+func connect_ws(game_id: String, player_id: String) -> void:
+    """Open a persistent WebSocket to /ws/{game_id}. ..."""
+```
+
+**Not fatal, and the honest description matters.** GDScript *does* have triple-quoted multiline
+strings, so this parses. What it does not have is docstrings — a string alone on a line is a
+standalone expression, evaluated, discarded, and logged as `STANDALONE_EXPRESSION`. Two of the
+three were in `ApiClient.gd`, an autoload. So: three warnings in the Output panel that
+`docs/F5_CHECKLIST.md` tells you to read for the `Style:` font canary. A procedure that says
+"check Output for warnings" is worth less for every warning already sitting there that is fine.
+Converted to `##`, which is what the other ~145 doc lines in the client use.
+
+`config/icon` was the same shape of problem and is now unset: it named
+`res://assets/ui/icon.png`, which has never existed, so every open and every run put a failed-load
+**error** into that same panel. Godot falls back to its own icon silently. Restoring it is part of
+item 17's open brand decision.
+
+### `check_godot_wiring.py` — wider, and one stale claim corrected
+
+- New `check_python_docstrings()`.
+- **The parse-level checks now run over all 18 `.gd` files, not just the 8 a `.tscn` names.** The
+  four autoloads, `MysteryData.gd` and the theme scripts had never been checked — and an autoload
+  is the worst place to miss a parse error, since nothing at all runs if one fails.
+- `check_implicit_concat`'s docstring claimed "a triple-quoted block spanning lines could match;
+  none exist in this project today." That was **false at three call sites** when it was written.
+  Corrected in place, and both checks were negative-tested by injecting each defect and confirming
+  a non-zero exit before restoring the file.
+
+### Status — say this plainly
+
+**Still nothing rendered.** Every claim above is static or engine-side-but-unrun. The two
+`EditorScript`s are the first two steps of `docs/F5_CHECKLIST.md` now, and they are the things
+that convert Session 36's and Session 37's open caveats into answers — but only when the owner
+runs them. Seven Python checkers pass, which Session 36's rule still says is necessary and not
+sufficient.
+
+**Files:** `godot/scripts/tools/ApplyTheme.gd` (new), `godot/scripts/tools/VerifyScenes.gd` (new),
+`godot/project.godot`, `godot/scripts/autoloads/ApiClient.gd`, `godot/scripts/ui/interrogation.gd`,
+`scripts/check_godot_wiring.py`, `docs/F5_CHECKLIST.md`, `CLAUDE.md`.
+
+---
+
 ## Session 37 — August 26, 2026 (CYM: one palette, three surfaces; the client stops being default grey)
 
 **Starting point:** `claude/mystery-game-aesthetics-ud0zrf`, off `main` at `93464bc` (PR #32 merged).

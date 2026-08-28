@@ -106,8 +106,11 @@ def check_implicit_concat(script: Path, src: str):
     reached a playtest showing an empty verdict, an empty solution and no rating
     buttons, with no runtime error logged anywhere.
 
-    Comments are stripped before this runs. Known limitation: a triple-quoted
-    block spanning lines could match; none exist in this project today.
+    Comments are stripped before this runs. This pattern only catches literals
+    on SEPARATE lines; a single-line Python docstring is caught by
+    check_python_docstrings() below, which is a different failure and was the
+    reason the "none exist in this project today" note here was wrong for three
+    call sites until Session 38 went looking.
     """
     fails = []
     for m in re.finditer(r'"\s*\n\s*"', src):
@@ -116,6 +119,34 @@ def check_implicit_concat(script: Path, src: str):
             f"{script.name}:{line}: adjacent string literals across lines -- "
             f"GDScript needs an explicit `+`, or the whole script fails to parse"
         )
+    return fails
+
+
+def check_python_docstrings(script: Path, src: str):
+    """Flag Python-style \"\"\"docstrings\"\"\" -- valid GDScript, and dead weight.
+
+    GDScript does have triple-quoted multiline strings, so this PARSES. What it
+    does not have is docstrings: a string literal alone on a line is a
+    standalone expression, so the engine evaluates it, discards it, and logs
+    STANDALONE_EXPRESSION. Three of these sat in the client -- two of them in
+    ApiClient.gd, an autoload -- putting warnings into the Output panel that
+    docs/F5_CHECKLIST.md tells you to read for the `Style:` font canary. A
+    procedure that says "check Output for warnings" is worth less for every
+    warning that is already there and is fine.
+
+    `##` is the real doc comment, is what the other ~145 doc lines in this
+    client use, and is what Godot's own documentation tooling reads.
+    """
+    fails = []
+    for i, line in enumerate(src.splitlines(), 1):
+        stripped = line.strip()
+        if stripped.startswith("#"):
+            continue
+        if stripped.startswith('"""'):
+            fails.append(
+                f"{script.name}:{i}: Python-style docstring -- GDScript parses "
+                f"this as a standalone expression and warns; use `##` instead"
+            )
     return fails
 
 
@@ -195,7 +226,6 @@ def check(scene: Path):
 
     src = strip_comments(script.read_text())
     fails, notes = list(comment_fails), []
-    fails.extend(check_implicit_concat(script, src))
 
     # 1 + 2 -- every $Path the script dereferences must exist, with the right type.
     typed = {}   # node_path -> declared type, from @onready declarations
@@ -325,6 +355,22 @@ def check_autoload_calls(autoloads):
     return fails
 
 
+def check_scripts():
+    """Run the parse-level checks over EVERY .gd, not just scene scripts.
+
+    They used to run only on the script a .tscn names, which left the four
+    autoloads, MysteryData.gd and the theme scripts unchecked -- and an
+    autoload is the worst place to miss one, since nothing at all runs if it
+    fails to parse.
+    """
+    fails = []
+    for script in sorted(GODOT.rglob("*.gd")):
+        raw = script.read_text()
+        fails.extend(check_python_docstrings(script, raw))
+        fails.extend(check_implicit_concat(script, strip_comments(raw)))
+    return fails
+
+
 def main():
     all_fails, all_notes = [], []
     scenes = sorted((GODOT / "scenes").rglob("*.tscn"))
@@ -337,8 +383,11 @@ def main():
 
     autoloads = parse_autoloads()
     all_fails += check_autoload_calls(autoloads)
+    all_fails += check_scripts()
 
-    print(f"Checked {len(scenes)} scenes and {len(autoloads)} autoloads.\n")
+    scripts = sorted(GODOT.rglob("*.gd"))
+    print(f"Checked {len(scenes)} scenes, {len(autoloads)} autoloads "
+          f"and {len(scripts)} scripts.\n")
     if all_notes:
         print(f"NOTES ({len(all_notes)}) -- unreferenced interactive controls:")
         for n in all_notes:
@@ -350,8 +399,9 @@ def main():
             print(f"  ✗ {f}")
         return 1
     print("No failures: every $NodePath resolves, every declared type matches, "
-          "every autoload call exists with a valid arity, and every "
-          "theme_type_variation is declared in Style.gd.")
+          "every autoload call exists with a valid arity, every "
+          "theme_type_variation is declared in Style.gd, and no script "
+          "carries a parse-level defect.")
     return 0
 
 

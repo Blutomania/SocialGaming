@@ -262,10 +262,10 @@ GodotSteam is the best Steamworks path; Godot Linux export = Steam Deck support 
 
 ---
 
-## Current To-Do (as of Session 37, August 26, 2026)
+## Current To-Do (as of Session 38, August 28, 2026)
 
 Full list in `SESSIONS.md`. **The thing that matters for stage 1 is item 23 — everything above it
-is history, and items 22 and 24 are now done.**
+is history, and items 22, 24 and 25 are now done.**
 
 22. **[DONE, Session 36 — August 26, 2026] The Godot F5 ran.** The client has been launched in the
     engine, by the owner, on their machine. It reached the main menu with the backend connected,
@@ -333,7 +333,10 @@ is history, and items 22 and 24 are now done.**
     binary in the session environment, so **none of the theme has been rendered.** The checkers
     establish that every `theme_type_variation` is declared and every path resolves; they cannot
     establish that a theme item name is one the engine recognises, and a wrong one is a silent
-    no-op rather than an error. The failure mode is bounded — a control keeps its engine default,
+    no-op rather than an error. **[Session 38] That last gap is closed, but only from inside the
+    engine** — `godot/scripts/tools/ApplyTheme.gd` looks every name up in
+    `ThemeDB.get_default_theme()` and prints the misses. It is one keystroke in the editor and it
+    has not been run yet, so the caveat below still stands until it is. The failure mode is bounded — a control keeps its engine default,
     nothing crashes — but it needs an F5 to close. Session 36's "necessary, not sufficient" rule
     applies to this work more than to most.
 
@@ -349,6 +352,43 @@ is history, and items 22 and 24 are now done.**
       goes on which device.
     - **What the BACKGROUND field is strewn with** — item 17 question 2. Nothing here wires the
       field to a client, so nothing prejudges it.
+
+25. **[DONE, Session 38 — August 28, 2026] The design is visible in the editor, and two checks
+    moved inside the engine.** Session 37 built the theme and it was invisible while being worked
+    on: `Style.gd` assigns it to `get_tree().root`, and there is no root at *design* time, so the
+    editor canvas showed engine grey.
+
+    Two `EditorScript`s, both one keystroke (File → Run) and both free:
+    - **`godot/scripts/tools/ApplyTheme.gd`** calls the same `Style.build_theme()` the game calls,
+      lets `ResourceSaver` serialise it to `res://assets/theme/cym_theme.tres`, and points
+      `gui/theme/custom` at it. **The `.tres` is a generated preview, never a source** —
+      `palette.py` is still the one place a colour is decided. Runtime never reads it: a Control
+      resolves its theme from its ancestors before the project default, so `Style.gd` still wins
+      when the game runs, and a stale preview can mislead the editor but cannot ship a wrong
+      colour. It also prints every theme item name the engine does not have (see item 24).
+    - **`godot/scripts/tools/VerifyScenes.gd`** loads all eight screens through Godot's own loader
+      and compares the nodes each `.tscn` declares against the nodes that survive loading — the
+      comparison `check_godot_wiring.py` structurally cannot make, and the one that would have
+      caught Session 36's five missing `Interrogation.tscn` panels.
+
+    **The Output panel was cleaned so a real warning stands out**, which matters because
+    `docs/F5_CHECKLIST.md` tells the owner to read it for the font canary. Three Python-style
+    triple-quoted docstrings were sitting in GDScript — two of them in `ApiClient.gd`, an autoload. They
+    are *not* fatal (GDScript does have triple-quoted strings) but each is a standalone expression
+    that logs a warning; converted to `##`. `config/icon` named a file that has never existed and
+    logged a failed-load **error** on every open; now unset.
+
+    `check_godot_wiring.py` gained a docstring check, and its parse-level checks now run over all
+    18 `.gd` files rather than only the 8 a `.tscn` names — the four autoloads had never been
+    checked, which is the worst place to miss a parse error. Its own docstring claimed
+    "none exist in this project today" of triple-quoted blocks; that was false at three call sites.
+
+    **Also now measured rather than assumed:** there is no route to a Godot binary from a session
+    environment. Outbound is allowlist-only; `godotengine.org` does not resolve and the GitHub
+    releases host returns 403 from the proxy's repo scoping. Previous sessions stated this; it has
+    now been tried.
+
+    **Still nothing rendered.** Both scripts are engine-side and unrun.
 
 Older items, kept for history:
 
@@ -884,6 +924,15 @@ Both are zero-API-cost, need no Godot binary, and each has already caught a real
 
 Godot reports both classes of failure only at runtime, and the second one not even then — it
 looks like the player guessed wrong.
+
+**Two more run INSIDE the engine (Session 38)** — `EditorScript`s, File → Run in the script
+editor, free, no backend needed. They are the only checks that use Godot's own loader, which
+is where Session 36's and Session 37's undetectable defects lived:
+
+| Script | Catches |
+|---|---|
+| `godot/scripts/tools/VerifyScenes.gd` | A node a `.tscn` declares that does not survive loading, a node whose runtime class is not what the scene declares, and a scene root that lost its script (what a GDScript parse error looks like from outside). |
+| `godot/scripts/tools/ApplyTheme.gd` | A theme item name the engine does not have — a silent no-op with no error anywhere. Also generates the editor's theme preview so the design is visible while scenes are edited, and reports whether the fonts really resolved. |
 
 **Backtick-quoting a string in `CLAUDE.md` or `docs/` is a CLAIM that the product contains it**,
 and `check_doc_claims.py` enforces it. To mention a string without asserting it exists — a retired

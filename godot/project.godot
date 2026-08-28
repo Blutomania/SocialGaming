@@ -11,7 +11,13 @@ config/description="AI-powered social murder mystery party game.\nInvestigate, i
 config/version="0.1.0"
 run/main_scene="res://scenes/ui/MainMenu.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://assets/ui/icon.png"
+; config/icon is deliberately UNSET. It used to name
+; res://assets/ui/icon.png, which has never existed — so every editor open
+; and every run logged a failed-load error into the Output panel. That panel
+; is where the Style: font warning has to be readable, so a standing error
+; in it is not cosmetic. Godot falls back to its own icon with no error.
+; Restoring this line is part of CLAUDE.md item 17: which brand mark goes on
+; which device is an open owner decision, and the window icon is one of them.
 
 [autoload]
 
