@@ -288,6 +288,60 @@ So before any schema change: **parse the evidence IDs out of `how_to_deduce` and
 cover `key_evidence`.** If the solution's own reasoning never mentions E1, E1 is not load-bearing
 and should not be listed as key. Zero cost, catches sloppy generations today.
 
+#### [Session 38] It was built, run on all 17 mysteries, and the check above finds nothing
+
+`scripts/check_solvability.py`. **0 of 17 mysteries list a key item the reasoning ignores**, so the
+direction proposed above is already clean and is a regression guard rather than a discovery tool.
+
+**The gap is the other way round, and it is in 16 of 17.** The reasoning cites evidence that
+`key_evidence` does not contain — **55 items in total, up to 6 in a single mystery.** Only
+*Whiteout at Shackleton Base*, the newest, has none.
+
+That matters more than the direction originally proposed, because **APF's constrained deal is
+specified over "the evidence that proves the case"** (`docs/PLAYTEST_FLOW.md`). Read that set from
+`key_evidence` and the deal can hand a player every key item while omitting three the solution's own
+reasoning depends on. The deal would satisfy all three of its stated constraints and the player
+still could not get there. So before the deal is built, one of these has to happen:
+
+- redefine `key_evidence` as *exactly* the evidence the reasoning uses, and check it; or
+- run the deal over the cited set rather than the key set.
+
+**Two more measurements that bound what `exonerates` can do:**
+
+- **86% of non-culprit suspects are already named in the reasoning** (26 of 30). Elimination is
+  mostly being written as prose already, so `exonerates` formalises something generation does
+  rather than asking for something new — a much cheaper schema change than it looked.
+- **16 of 17 mysteries have fewer than four suspects** — 2 or 3, against the four
+  `docs/PLAYTEST_FLOW.md` specifies. This is not cosmetic. Eliminating down to one needs **S−1**
+  exonerations, so the suspect count is a hard ceiling on how many findings can be *provably*
+  load-bearing, and therefore on how many players can hold one. **At 3 suspects, exactly 2 findings
+  are load-bearing, so in a 4-player game at most half the room holds anything the proof needs.**
+
+### [Session 38] The third deal constraint is not achievable as written
+
+`docs/PLAYTEST_FLOW.md` requires that a deal *"becomes solvable once the minimum share threshold is
+met."* Measured against the code, that constraint is not well-formed. `share_min` is a **minimum
+fraction of a player's own findings** (`server/main.py`: `round(len(all_findings) * share_min)`),
+and **the player chooses which ones**. Meeting the threshold therefore does not determine what
+reaches the pool: a player holding three findings at MEDIUM shares two and withholds one, and they
+will withhold the most valuable one, which is the whole point of the mechanic.
+
+So "solvable once the threshold is met" is only true if it holds for **every** legal choice of what
+to share — including the case where every player withholds their most load-bearing finding. And it
+cannot be guaranteed in general without deleting the hoarding decision, because a finding that must
+reach the pool is a finding nobody may keep.
+
+**That makes it a design choice rather than a bug, and it is the owner's:**
+
+| Option | Consequence |
+|---|---|
+| **Accept it** — universal hoarding can end a game with no winner | Honest, and arguably the tension the game is *for*. Needs to be a designed outcome with a screen, not a silent dead end. |
+| **Deal for redundancy** — no exoneration exists in only one hand | Pure set arithmetic, free, enforceable by re-dealing. Weakens hoarding without deleting it: withholding costs the room less because someone else may share it. |
+| **Pigeonhole it** — deal one player more critical findings than they can withhold | Guarantees at least one exoneration reaches the pool, since a player must share `h − withhold_allowance` items and will shed the least critical first. Also free. |
+
+None of these needs an API call; all three are constraints on the deal, which is already specified
+as pure computation and re-dealable at zero cost.
+
 ### What is deliberately left to the playtest
 
 Whether a clue is **fair** — whether a human could reasonably make the leap — is craft judgment,
