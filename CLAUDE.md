@@ -319,6 +319,7 @@ Zero API cost, no Godot binary needed. Each has already caught a real bug.
 | Script | Catches |
 |---|---|
 | `scripts/check_godot_wiring.py` | Broken `$NodePath`s, `@onready` type mismatches, unreferenced interactive controls, autoload calls with the wrong arity, `#` lines in a `.tscn`, an undeclared `theme_type_variation`, Python-style docstrings, and implicit string concatenation. Runs over all scenes, autoloads and scripts. **Necessary, not sufficient** — it reads scene files rather than loading them |
+| `scripts/check_narrative.py` | A person the solution reasons about who is not in the cast; a declared link that does not resolve; a chain step nothing supports; elimination that does not leave exactly the culprit. `scripts/test_narrative_checks.py` proves those fire |
 | `scripts/check_solvability.py` | Not a gate — a report on the structural link between evidence and solution across every generated mystery: key evidence the reasoning ignores, evidence the reasoning uses that the key list omits, dangling IDs, suspect counts, and whether elimination is being written as prose |
 | `scripts/check_mystery_playable.py` | A `solution.culprit` naming no listed suspect, an empty suspect list, or a blocking coherence failure served anyway |
 | `scripts/check_decisions.py` | An item labelled open that another item says is finished (the item-21 shape), a duplicate or missing item number, and a cited item number that resolves to nothing. Cross-project references that name MYF are left alone |
@@ -360,8 +361,12 @@ is the mechanic this file's overview calls the point of the product.
 
 Build order (`docs/INVESTIGATION_DESIGN.md` §7, already reduced by APF):
 
-1. `exonerates` / `implicates` on evidence + the set-arithmetic solvability check
-2. The constrained deal — pure computation, re-dealable at zero cost
+1. ~~`exonerates` / `implicates` on evidence + the set-arithmetic solvability check~~ —
+   **the schema half landed in Session 38** with the backwards-writing reorder (item 26).
+   Untested against a real generation; that costs credits and is the next paid step.
+2. The constrained deal — pure computation, re-dealable at zero cost. **Blocked on one thing
+   nobody had listed: a finding carries no evidence ID**, so the deal has no join key to the
+   evidence the arithmetic is defined over. Fix that first.
 3. The share decision, the suspect board, the reveal
 4. The paced text opening
 

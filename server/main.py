@@ -183,6 +183,30 @@ SELECTED PARTS:
 
 {guidance_block}
 
+WRITE IT BACKWARDS. This is the order the JSON below is in, and it is not cosmetic.
+
+Decide the SOLUTION first — culprit, motive, method, and the numbered chain of reasoning that
+gets a player there. Only then write the cast, and only then the clues, each one planted to serve
+a step of that chain. This is how mysteries are written for novels and screen, and it matters more
+here than it does on paper: you are composing left to right, so whatever you write first is what
+everything after it is conditioned on. Write the solution last and you are improvising an
+explanation for clues you already committed to — and when the cast does not support the chain you
+need, the cheapest thing to do is invent a person who is not in it. That has happened: a generated
+mystery scored a clean coherence pass while its reasoning turned on four people who appear nowhere
+in its own character list.
+
+So the rule that follows from it, and it is absolute:
+
+  EVERY PERSON, PLACE OR OBJECT NAMED IN THE SOLUTION MUST EXIST IN THE MYSTERY.
+  Every person named in solution.method, solution.motive, solution.chain or how_to_deduce must
+  appear by that exact name in "characters". Every place must be an investigation_areas name or
+  the setting itself. If the chain needs somebody, put them in the cast — never name someone the
+  player cannot meet, question or accuse.
+
+DECLARE THE LINKS. Do not leave the connection between a clue and the solution implicit in prose:
+state it in fields, so it can be checked without re-reading the story. Each evidence item says
+which step of the chain it supports, who it clears, and who it points at.
+
 QUALITY REQUIREMENTS — every generated mystery MUST satisfy these:
 
 SETTING:
@@ -202,15 +226,29 @@ CHARACTERS (include 1 victim, EXACTLY 4 suspects, and 3–4 witnesses):
     Across the witnesses as a group, at least one statement must point toward the culprit, and at
     least one must point at something that turns out to be innocent.
 
-EVIDENCE (include at least 6 items total):
+EVIDENCE (include at least 6 items total — planted to serve the chain, written AFTER it):
   - At least 2 items with type "physical".
   - At least 1 item with relevance "red_herring" and type "physical" or "documentary".
   - At least 2 items with relevance "critical".
   - description: ≥ 2 sentences; state what the item is, where found, and what it suggests.
+  - supports: the chain step ids this item is evidence FOR, e.g. ["S2"]. A red herring supports
+    nothing and must use [] — it is the only kind of item that may.
+  - exonerates: names of suspects this item clears, e.g. ["Tanaka"]. Use the exact character name.
+  - implicates: names of suspects this item points AT. The culprit must be implicated by at least
+    one item — a culprit arrived at only by elimination, with nothing positively pointing at them,
+    reads as arbitrary.
+  - Across all items, the suspects exonerated must be every suspect EXCEPT the culprit, so that
+    eliminating them leaves exactly one person. Never exonerate the culprit.
+  - Every chain step must appear in at least one item's "supports".
 
-SOLUTION:
+SOLUTION (write this FIRST — everything below is derived from it):
   - key_evidence must list at least 2 evidence IDs.
-  - how_to_deduce: step-by-step logic chain (3+ steps).
+  - chain: the deduction as numbered steps, 3+, each with an id "S1", "S2", … and a one-sentence
+    claim. Each step must be a claim a player could actually reach from evidence, not a summary.
+    Every step must be supported by at least one evidence item (see EVIDENCE below).
+  - how_to_deduce: the same reasoning as readable prose, for the result screen. It must not
+    introduce any person, place or fact that is not already in the chain and the cast.
+  - The culprit named here must appear in "characters" with role "suspect".
 
 GAMEPLAY NOTES:
   - estimated_playtime: must reflect difficulty — EASY: 30–45 min, MEDIUM: 45–60 min, HARD: 60–75 min.
@@ -248,9 +286,19 @@ Generate a complete mystery JSON with this exact structure:
     "environment": "string",
     "description": "2–3 sentence atmospheric description including why suspects cannot leave"
   }},
+  "solution": {{
+    "culprit": "string — must appear in characters[] with role suspect",
+    "motive": "string",
+    "method": "string",
+    "chain": [
+      {{"id": "S1", "claim": "one sentence a player could reach from evidence"}}
+    ],
+    "key_evidence": ["E1", "E2"],
+    "how_to_deduce": "the same chain as prose; introduces nothing new"
+  }},
   "crime": {{
     "type": "string",
-    "what_happened": "string",
+    "what_happened": "PUBLIC — what the room knows. Must NOT name the culprit or reveal the method",
     "when": "string",
     "initial_discovery": "string"
   }},
@@ -271,7 +319,10 @@ Generate a complete mystery JSON with this exact structure:
       "name": "string",
       "description": "string",
       "type": "physical | testimonial | circumstantial | documentary",
-      "relevance": "critical | supporting | red_herring"
+      "relevance": "critical | supporting | red_herring",
+      "supports": ["S2"],
+      "exonerates": ["exact character name"],
+      "implicates": ["exact character name"]
     }}
   ],
   "investigation_areas": [
@@ -292,13 +343,6 @@ Generate a complete mystery JSON with this exact structure:
       "investigation_prompt": "private context for AI — what this lead reveals when followed"
     }}
   ],
-  "solution": {{
-    "culprit": "string",
-    "method": "string",
-    "motive": "string",
-    "key_evidence": ["E1", "E2"],
-    "how_to_deduce": "step-by-step reasoning"
-  }},
   "gameplay_notes": {{
     "difficulty": "EASY | MEDIUM | HARD",
     "estimated_playtime": "string",

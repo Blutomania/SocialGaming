@@ -90,7 +90,36 @@ mystery_dict  saved to  mystery_database/generated/<slug>_<timestamp>.json
 
 ## Mystery JSON schema
 
-Every generated mystery is a dict with these top-level keys:
+**Status: LIVE.**
+
+> **[Session 38] Generation now writes the mystery BACKWARDS, and the key order below is not
+> cosmetic.** The prompt used to emit `solution` **last**, after the cast and the clues — so the
+> model invented a cast, committed to evidence, and then had to improvise an explanation that fit
+> what it had already written. That is writing a mystery forwards, which is the thing every craft
+> source on the form warns against, and here it is not a stylistic point: a language model composes
+> left to right, so whatever it emits first is what everything after it is conditioned on. Solution
+> last means the solution is conditioned on the clues.
+>
+> It showed. `daggers_in_the_forum` scores `passed=True, blocking=0, warnings=0` and its deduction
+> turns on four people who appear nowhere in its own character list — because when the cast did not
+> support the chain the model needed, inventing somebody was cheaper than revising a cast it had
+> already emitted.
+>
+> `solution` is now emitted directly after `setting`, and everything downstream **declares what it
+> derives from** rather than leaving the link implicit in prose: `chain` gives the deduction
+> numbered steps, and each evidence item names the steps it `supports`, the suspects it
+> `exonerates`, and the suspects it `implicates`. That turns narrative coherence into graph
+> reachability — checkable with no API call, by `scripts/check_narrative.py`. It is the same trick
+> `exonerates` already used for the arithmetic: stop asking a checker to infer a relationship, and
+> make generation state one.
+>
+> **This does not guarantee the model obeys**, and it is worth being clear about what it does buy.
+> It changes the direction of drift. Drifting away from a fixed solution produces a clue that does
+> not fit, which shows up as an unresolved link. Drifting toward an improvised solution produces
+> invented people, which nothing structural can see. A visible failure mode replaces an invisible
+> one.
+
+Every generated mystery is a dict with these top-level keys, **in this order**:
 
 ```json
 {
@@ -103,9 +132,20 @@ Every generated mystery is a dict with these top-level keys:
     "description": "2–3 sentences — MUST explain why suspects cannot leave"
   },
 
+  "solution": {
+    "culprit": "string  — MUST appear in characters[] with role suspect",
+    "motive": "string",
+    "method": "string",
+    "chain": [
+      { "id": "S1", "claim": "one sentence a player could reach from evidence" }
+    ],
+    "key_evidence": ["E1", "E2"],
+    "how_to_deduce": "the same chain as prose; introduces nothing new"
+  },
+
   "crime": {
     "type": "string",
-    "what_happened": "string",
+    "what_happened": "string  — PUBLIC. Must not name the culprit or reveal the method",
     "when": "string",
     "initial_discovery": "string"
   },
@@ -127,17 +167,12 @@ Every generated mystery is a dict with these top-level keys:
       "name": "string",
       "description": "string  — what it is, where found, what it initially suggests",
       "type": "physical | testimonial | circumstantial | documentary",
-      "relevance": "critical | supporting | red_herring"
+      "relevance": "critical | supporting | red_herring",
+      "supports":   ["S2"],  // chain step ids. A red herring supports [] and only it may
+      "exonerates": ["exact character name"],  // never the culprit
+      "implicates": ["exact character name"]   // culprit needs at least one
     }
   ],
-
-  "solution": {
-    "culprit": "string",
-    "method": "string",
-    "motive": "string",
-    "key_evidence": ["E1", "E2"],
-    "how_to_deduce": "step-by-step logic chain (3+ steps)"
-  },
 
   "gameplay_notes": {
     "difficulty": "EASY | MEDIUM | HARD",

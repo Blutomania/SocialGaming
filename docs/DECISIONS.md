@@ -61,6 +61,7 @@ that the superseded text has become history and belongs here instead.
 | 23 | Build APF — the current work | `START HERE` |
 | 24 | One palette, three surfaces | `DONE` |
 | 25 | The design becomes visible in the editor; two engine-side checks | `DONE` |
+| 26 | Generation writes backwards; clues declare what they serve | `DONE` |
 
 ---
 
@@ -774,3 +775,53 @@ that the superseded text has become history and belongs here instead.
     now been tried.
 
     **Still nothing rendered.** Both scripts are engine-side and unrun.
+
+26. **[DONE, Session 38 — August 28, 2026] Generation writes the mystery BACKWARDS, and every
+    clue declares what it serves.** Owner's observation, from the craft of the form: a mystery is
+    written solution first — killer, motive, then the clues planted in reverse to lead a detective
+    to a truth already fixed. The prompt was doing the opposite. Its JSON template emitted
+    `solution` **last**, after the cast and the evidence, so the model invented a cast, committed
+    to clues, and then improvised an explanation for what it had already written.
+
+    **This is mechanical, not stylistic.** A language model composes left to right, so whatever it
+    emits first is what everything after is conditioned on. Solution last means the solution is
+    conditioned on the clues. The adage is, in effect, a statement about conditioning order — which
+    is why it carries over from novels and screenplays unchanged.
+
+    **The evidence it was hurting us:** `daggers_in_the_forum` scores `passed=True, blocking=0,
+    warnings=0` — a clean sweep of all 26 coherence rules — and its deduction turns on Apolonios,
+    Demetrios and Senator Manilius, none of whom appear in its own character list. Writing forwards,
+    when the cast does not support the chain the model needs, inventing a person is cheaper than
+    revising a cast already emitted. Measured across the corpus: **7 of 17 mysteries reason about
+    at least one person absent from `characters[]`.**
+
+    **What changed.** `solution` is emitted directly after `setting`; `crime.what_happened` is
+    marked public and may not spoil; and everything downstream **declares its links** instead of
+    leaving them implicit in prose — `solution.chain` numbers the deduction steps, and each
+    evidence item names the steps it `supports`, the suspects it `exonerates`, and the suspects it
+    `implicates`. Those last two are §4's solvability fields, bundled into the same schema change
+    deliberately: testing generation costs money and one paid round is cheaper than two.
+
+    **Why declaring links is the whole point.** It is the same move `exonerates` already made for
+    the arithmetic — stop asking a checker to infer a relationship, make generation state one. With
+    the links stated, narrative coherence becomes graph reachability and is checkable for **zero
+    API cost**: every `supports` resolves to a real step, every step is supported by something,
+    elimination leaves exactly the culprit, the culprit is never exonerated and is positively
+    implicated by at least one item.
+
+    **What it does NOT buy, stated plainly.** A model can emit `supports: ["S2"]` on a clue that
+    does not support S2, and no structural check can tell. What the reorder buys is a change in the
+    *direction* of drift: drifting from a fixed solution produces a clue that does not fit, which
+    shows as an unresolved or unsupported link; drifting toward an improvised solution produces
+    invented people, which nothing structural can see. **A visible failure mode replaces an
+    invisible one.** That is the win, and it is worth having.
+
+    `scripts/check_narrative.py` reports CAST (a person in the chain who is not in the cast), LINKS
+    (the graph checks above) and ORPHAN (a name appearing only inside the solution). It fails only
+    on mysteries generated under the current schema, so the legacy corpus does not hold the suite
+    red. `scripts/test_narrative_checks.py` proves the LINKS branch fires, on fixtures, because no
+    mystery on disk declares links yet and a branch with no input is a branch nobody has run.
+
+    **Untested against a real generation** — that costs credits. The first generation run after
+    this is the confirmation.
+

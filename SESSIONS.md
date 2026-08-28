@@ -3265,6 +3265,59 @@ one thing, so keep 1 is forced and **difficulty has to live somewhere other than
 The redundancy option from §4 is the natural home; suspect count and red-herring density are the
 alternatives.
 
+### Fifth part — generation writes the mystery backwards
+
+**Owner's insight, and it was better than the checker it was offered against.** A mystery is
+written solution first — killer, motive, then clues planted in reverse toward a truth already
+fixed. The prompt was doing the exact opposite: its JSON template emitted `solution` **last**,
+after the cast and the evidence, so the model invented a cast, committed to clues, and then
+improvised an explanation for what it had already written.
+
+**Mechanical, not stylistic.** A model composes left to right, so whatever it emits first is what
+everything after is conditioned on. Solution last means the solution is conditioned on the clues.
+The adage is a statement about conditioning order, which is why it carries from novels to a
+language model unchanged.
+
+**Measured harm.** `daggers_in_the_forum` scores `passed=True, blocking=0, warnings=0` — a clean
+sweep of all 26 coherence rules — and its deduction turns on Apolonios, Demetrios and Senator
+Manilius, none of whom are in its own character list. Writing forwards, when the cast does not
+support the chain, inventing a person is cheaper than revising a cast already emitted. Across the
+corpus **7 of 17 mysteries reason about a person absent from `characters[]`**, and every coherence
+rule passes them, because 24 of the 26 check presence or counts and the two that do referential
+integrity check structured fields, never prose.
+
+**Changed:** `solution` now follows `setting`; `crime.what_happened` is marked public and may not
+spoil; `solution.chain` numbers the deduction; each evidence item declares `supports`,
+`exonerates`, `implicates`. The last two are §4's solvability fields, **bundled deliberately** —
+testing generation costs money and one paid round beats two. Flagged as a widening of the approved
+scope rather than done quietly.
+
+**Why declaring links is the point:** the same move `exonerates` already made for the arithmetic —
+stop asking a checker to infer a relationship, make generation state one. Narrative coherence
+becomes graph reachability, checkable at zero API cost.
+
+**What it does not buy, stated in the code and the docs:** a model can emit `supports: ["S2"]` on a
+clue that does not support S2 and nothing structural can tell. The reorder changes the *direction*
+of drift — away from a fixed solution it produces a clue that does not fit, which shows as an
+unresolved link; toward an improvised solution it produces invented people, which is invisible. A
+visible failure mode replaces an invisible one.
+
+`scripts/check_narrative.py` reports CAST, LINKS and ORPHAN, and fails only on current-schema
+mysteries so the legacy corpus does not hold the suite red.
+`scripts/test_narrative_checks.py` proves the LINKS branch fires on eight fixtures — necessary
+because no mystery on disk declares links yet, and a branch with no input is a branch nobody ran.
+
+**Also corrected this session:** the earlier claim that 16 of 17 mysteries have too few suspects
+implied generation ignores the spec. The rule *EXACTLY 4 suspects* was added 2026-08-21 and
+sixteen of those mysteries are from March; the one generated under the current prompt has exactly
+four. Corpus age, not drift.
+
+**Untested against a real generation** — that costs credits, and it is the next paid step.
+
+**Files (fifth part):** `server/main.py`, `scripts/check_narrative.py` (new),
+`scripts/test_narrative_checks.py` (new), `scripts/check_solvability.py`, `docs/WIRING.md`,
+`docs/INVESTIGATION_DESIGN.md`, `docs/DECISIONS.md` (item 26), `docs/F5_CHECKLIST.md`, `CLAUDE.md`.
+
 **Files (fourth part):** `server/main.py`, `godot/scripts/autoloads/GameState.gd`,
 `godot/scripts/ui/share_selection.gd`, `scripts/test_share_rule.py` (new),
 `docs/INVESTIGATION_DESIGN.md`, `docs/F5_CHECKLIST.md`, `CLAUDE.md`.
