@@ -65,8 +65,8 @@ func poll_job(job_id: String, callback: Callable) -> void:
 
 ## --- Phase 3: WebSocket connection ---
 
+## Open a persistent WebSocket to /ws/{game_id}. Call once after joining a game.
 func connect_ws(game_id: String, player_id: String) -> void:
-	"""Open a persistent WebSocket to /ws/{game_id}. Call once after joining a game."""
 	if _ws != null:
 		_ws.close()
 	_ws_game_id = game_id
@@ -75,8 +75,8 @@ func connect_ws(game_id: String, player_id: String) -> void:
 	ws_url += "/ws/" + game_id + "?player_id=" + player_id
 	_ws.connect_to_url(ws_url)
 
+## Close the active WebSocket (call on scene cleanup or game exit).
 func disconnect_ws() -> void:
-	"""Close the active WebSocket (call on scene cleanup or game exit)."""
 	if _ws != null:
 		_ws.close()
 		_ws = null

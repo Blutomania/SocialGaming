@@ -2,6 +2,38 @@
 
 How the pieces connect. Written so you don't have to hold it all in your head.
 
+**This is a reference, not a plan.** It is long because the system is, and that is fine — but
+length is only tolerable if you can tell at a glance which parts describe running code. Sections
+below carry a status, because several do not:
+
+| Status | Means |
+|---|---|
+| **LIVE** | Running code. What is written here is what executes. |
+| **BUILT, NEVER RUN** | The code exists and is reachable, but nothing has exercised it. |
+| **NOT BUILT** | Design or illustration only. No code. |
+| **DEFERRED** | Real design, scheduled behind the current delivery stage. |
+
+| Section | Status |
+|---|---|
+| Data flow (end to end) | **LIVE** |
+| Mystery JSON schema | **LIVE** |
+| Localization pass | **LIVE** |
+| Cinematic brief schema | **BUILT, NEVER RUN** — gated off by default |
+| Where the cinematic brief is triggered | **LIVE** |
+| How to use with a video API | **NOT BUILT** — video generation is tabled |
+| Room-first lobby flow | **LIVE** on the server; the phone client has no prompt UI yet |
+| Multiplayer lockstep round system | **LIVE** on the server |
+| Coherence validator | **LIVE** |
+| Part registry | **LIVE** |
+| Extraction protocols (P1–P4) | **LIVE** |
+| Craft-grounding retrieval (RAG layer) | **LIVE** |
+| Avatar system + player profiles (Phase 3e) | **DEFERRED** — stage 3, nothing built |
+| API authentication | **LIVE** |
+
+> **Under APF the play-time half of this file is not what the playtest runs.** The lockstep round
+> system, the investigation endpoints and the block pool all still exist and still work; APF simply
+> does not use them. See `docs/PLAYTEST_FLOW.md`. Nothing here is being removed.
+
 ---
 
 ## Data flow (end to end)
@@ -11,7 +43,8 @@ User prompt  ("1920s Harlem jazz club")
      │
      ▼
 part_registry.py — sample_for_generation()
-     │  Pulls compatible atomized parts from the 1,469-part corpus
+     │  Pulls compatible atomized parts from the corpus
+     │  (5,990 parts across 573 sources, as committed)
      │  Returns: List[MysteryPart], Recipe
      │
      ▼
@@ -20,7 +53,7 @@ Claude API  (one call, structured JSON prompt)              ← call 1
      │  Returns: mystery dict  (see Mystery JSON Schema below)
      │
      ▼
-localize_mystery()                                          ← call 2 (always)
+localize_mystery()                            ← call 2, CONDITIONAL — see below
      │  Rewrites all character names, occupations, titles, and embedded
      │  text so they fit the setting's time period and culture.
      │  "Dr. Pemberton" in Ancient Athens → "Alexios the Physician"
@@ -46,16 +79,47 @@ mystery_dict  saved to  mystery_database/generated/<slug>_<timestamp>.json
 | Step | Calls | Condition |
 |---|---|---|
 | Mystery generation | 1 | always |
-| Localization | 1 | always (quality fix, not opt-in) |
+| Localization | 0 or 1 | **not always.** `_is_modern(setting)` returns early with no call at all; a cached era ruleset also costs nothing |
 | Cinematic brief | 1 | opt-in only |
 | Coherence check | 0 | free |
-| **Total** | **2–3** | |
+| **Total** | **1–3** | 1 for a modern setting with no brief; 3 for a historical setting with one |
+
+**The old version of this table said localization was "always (quality fix, not opt-in)".** That was wrong and it contradicted `CLAUDE.md`'s cost rules, which have listed the modern-era skip as an active optimisation the whole time. `localize_mystery()` returns the dict untouched for a contemporary or near-future setting before it builds a prompt.
 
 ---
 
 ## Mystery JSON schema
 
-Every generated mystery is a dict with these top-level keys:
+**Status: LIVE.**
+
+> **[Session 38] Generation now writes the mystery BACKWARDS, and the key order below is not
+> cosmetic.** The prompt used to emit `solution` **last**, after the cast and the clues — so the
+> model invented a cast, committed to evidence, and then had to improvise an explanation that fit
+> what it had already written. That is writing a mystery forwards, which is the thing every craft
+> source on the form warns against, and here it is not a stylistic point: a language model composes
+> left to right, so whatever it emits first is what everything after it is conditioned on. Solution
+> last means the solution is conditioned on the clues.
+>
+> It showed. `daggers_in_the_forum` scores `passed=True, blocking=0, warnings=0` and its deduction
+> turns on four people who appear nowhere in its own character list — because when the cast did not
+> support the chain the model needed, inventing somebody was cheaper than revising a cast it had
+> already emitted.
+>
+> `solution` is now emitted directly after `setting`, and everything downstream **declares what it
+> derives from** rather than leaving the link implicit in prose: `chain` gives the deduction
+> numbered steps, and each evidence item names the steps it `supports`, the suspects it
+> `exonerates`, and the suspects it `implicates`. That turns narrative coherence into graph
+> reachability — checkable with no API call, by `scripts/check_narrative.py`. It is the same trick
+> `exonerates` already used for the arithmetic: stop asking a checker to infer a relationship, and
+> make generation state one.
+>
+> **This does not guarantee the model obeys**, and it is worth being clear about what it does buy.
+> It changes the direction of drift. Drifting away from a fixed solution produces a clue that does
+> not fit, which shows up as an unresolved link. Drifting toward an improvised solution produces
+> invented people, which nothing structural can see. A visible failure mode replaces an invisible
+> one.
+
+Every generated mystery is a dict with these top-level keys, **in this order**:
 
 ```json
 {
@@ -68,9 +132,20 @@ Every generated mystery is a dict with these top-level keys:
     "description": "2–3 sentences — MUST explain why suspects cannot leave"
   },
 
+  "solution": {
+    "culprit": "string  — MUST appear in characters[] with role suspect",
+    "motive": "string",
+    "method": "string",
+    "chain": [
+      { "id": "S1", "claim": "one sentence a player could reach from evidence" }
+    ],
+    "key_evidence": ["E1", "E2"],
+    "how_to_deduce": "the same chain as prose; introduces nothing new"
+  },
+
   "crime": {
     "type": "string",
-    "what_happened": "string",
+    "what_happened": "string  — PUBLIC. Must not name the culprit or reveal the method",
     "when": "string",
     "initial_discovery": "string"
   },
@@ -92,17 +167,12 @@ Every generated mystery is a dict with these top-level keys:
       "name": "string",
       "description": "string  — what it is, where found, what it initially suggests",
       "type": "physical | testimonial | circumstantial | documentary",
-      "relevance": "critical | supporting | red_herring"
+      "relevance": "critical | supporting | red_herring",
+      "supports":   ["S2"],  // chain step ids. A red herring supports [] and only it may
+      "exonerates": ["exact character name"],  // never the culprit
+      "implicates": ["exact character name"]   // culprit needs at least one
     }
   ],
-
-  "solution": {
-    "culprit": "string",
-    "method": "string",
-    "motive": "string",
-    "key_evidence": ["E1", "E2"],
-    "how_to_deduce": "step-by-step logic chain (3+ steps)"
-  },
 
   "gameplay_notes": {
     "difficulty": "EASY | MEDIUM | HARD",
@@ -140,9 +210,17 @@ Every generated mystery is a dict with these top-level keys:
 
 ## Localization pass
 
-**Module:** `localization.py` — shared by `app.py` and `cli.py`
+**Status: LIVE. Module:** `localization.py`, called from `server/main.py` via `_run_localization()`.
 
-**Always runs** — it's a quality fix, not an opt-in. Anachronistic names are immersion-breaking.
+**It does not always run.** Anachronistic names are immersion-breaking, so it is not opt-in — but
+`_is_modern(setting)` returns the mystery untouched for a contemporary or near-future setting
+before any prompt is built, and an era whose ruleset is already cached costs nothing either. The
+"three-tier caching strategy" below is that logic; this line used to say *"Always runs"* and
+contradicted it 37 lines further down the same section.
+
+> The two callers named here used to be the Streamlit creator tool, which was retired when the
+> Godot client and FastAPI server replaced it. Its files are in `deprecated/` and nothing should
+> call them.
 
 ### Three-tier caching strategy
 
@@ -261,6 +339,10 @@ video pipeline), not cost.
 
 ### How to use with a video API (future wiring)
 
+**Status: NOT BUILT.** Illustration only — the calls below have never been made, no video
+provider is wired, and video generation is explicitly tabled. Kept because the brief's shape
+was designed against these APIs and would need revisiting if that changed.
+
 ```python
 brief = mystery_dict["cinematic_brief"]
 
@@ -283,29 +365,39 @@ The schema is intentionally stable — wire once, use with any video provider.
 
 ## Where the cinematic brief is triggered
 
-### In the UI (`app.py`)
+**Status: LIVE.** One boolean, threaded from the request to the pipeline.
+
+`GenerateRequest.cinematic_brief` defaults to `False` (`server/main.py`). It is passed to
+`_run_generation_pipeline()`, which calls `_generate_cinematic_brief()` only if it is true and
+attaches **two** fields to the mystery:
 
 ```
-user_prompt  text input
-cinematic_on = st.checkbox("Generate cinematic brief", value=False)
-                                                        ^^^^^^^^^^^
-                                                        OFF by default
-
-[Generate Mystery] button
-  → generate_mystery()          # 1 Claude call always
-  → check_mystery()             # free, always
-  → if cinematic_on:
-      generate_cinematic_brief() # 1 extra Claude call, opt-in only
+POST /generate  {"prompt": "...", "cinematic_brief": true}
+        │
+        ▼
+_run_generation_pipeline(job_id, prompt, cinematic_brief)
+        ├─ _generate_mystery_dict(prompt)     ← call 1, always
+        ├─ _run_localization(mystery_dict)    ← call 2, only if not modern
+        ├─ _run_coherence(mystery_dict)       ← free
+        ├─ if cinematic_brief:                ← call 3, opt-in
+        │      mystery_dict["opening_narration"] = …   # player-facing prose
+        │      mystery_dict["cinematic_brief"]   = …   # hidden shot list
+        └─ _save_mystery(mystery_dict)
 ```
 
-The brief is shown in a collapsible expander "Cinematic Brief (video prompt)" below the
-coherence badge in the left column.
+**`opening_narration` is the half that matters for the playtest.** It is 3–5 sentences of
+atmospheric prose meant to be shown or read aloud, and it does not need a video generator to be
+useful — `docs/PLAYTEST_FLOW.md` → "The opening sequence" turns this flag on for exactly that.
+The `cinematic_brief` shot list beside it is for a future video generator and is inert today.
 
-### In the CLI (`cli.py`)
+**No generated mystery on disk carries either key**, because nothing has ever passed the flag.
 
-```bash
-python cli.py generate --setting "..." --cinematic   # opt-in flag
-```
+> **Historical note.** This section used to document the trigger as a Streamlit checkbox in
+> *app.py* and a `--cinematic` flag in *cli.py*. Both of those files now live in `deprecated/` —
+> they were the pre-Godot single-player creator tool, retired when the Godot client and FastAPI
+> server replaced it. The section survived the migration unchanged and described a retired UI as
+> current wiring for several sessions. `scripts/check_doc_claims.py` now fails on a backticked
+> reference that resolves only into `deprecated/`, which is why it is written in italics here.
 
 ---
 
@@ -911,6 +1003,11 @@ above), never the source of truth.
 ---
 
 ## Avatar system + player profiles (Phase 3e)
+
+**Status: DEFERRED — stage 3. None of this exists.** The design is locked and merged
+(`docs/DECISIONS.md` item 4) and no code implements any of it. Read it as a specification to
+build from, never as a description of behaviour. The proposed 16-item accessory catalog below
+still needs an owner sign-off before anyone builds against it.
 
 **Status:** Design locked (Session 16). Not yet implemented — see "What still needs building" below.
 

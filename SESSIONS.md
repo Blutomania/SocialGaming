@@ -3000,6 +3000,340 @@ it. Porting the Aug 12 flow and then immediately rewriting it would build the sa
 
 ---
 
+## Session 38 — August 28, 2026 (CYM: the design becomes visible in the editor; two engine-side checks)
+
+**Branch:** `claude/godot-game-rendering-i29xsh`, from `b76a994`. Owner's ask: *"get the game to
+start rendering (in design) in Godot"*, then a to-do list.
+
+**First, the constraint is now tested rather than assumed.** Previous sessions recorded "no Godot
+binary in the session environment" as a fact. It was worth one attempt: outbound HTTPS here is
+allowlist-only (pypi, npm, and GitHub scoped to this one repo). `godotengine.org` and the
+TuxFamily mirror do not resolve at all, and `github.com/godotengine/...` returns 403 from the
+proxy's repo scoping. **There is no route to an engine from this session**, headless included, so
+everything below is still static work — but that sentence is now a measurement.
+
+### Why the editor showed nothing, and what fixes it
+
+Session 37 built the whole theme and it was invisible while being worked on. The cause is one
+line: `Style.gd` assigns the theme to `get_tree().root`, and there is no root at *design* time.
+Open any of the eight scenes in the editor and you get engine grey. Godot's project-wide default
+theme (`gui/theme/custom`) *is* honoured by the editor canvas, but it has to be a Resource on
+disk, and `Style.gd`'s header gives two good reasons not to hand-write one — it would be a fourth
+copy of the palette, and a `.tres` is the same text format that cost Session 36 five panels.
+
+**Both objections are about hand-writing it, so it is not hand-written.**
+`godot/scripts/tools/ApplyTheme.gd` is an `EditorScript`: it calls `Style.build_theme()` — the
+same function the game uses — and lets `ResourceSaver` serialise the result to
+`res://assets/theme/cym_theme.tres`, then points `gui/theme/custom` at it. The `.tres` is a
+**generated preview of `Style.gd`, never a source.** One keystroke (File → Run) regenerates it
+after any change to `palette.py` or `Style.gd`.
+
+Runtime is unaffected in either direction, which is the property that makes this safe: a Control
+resolves its theme by walking ancestors *before* falling back to the project default, so
+`Style.gd`'s root assignment still wins when the game runs. A stale `.tres` can mislead the
+editor; it cannot ship a wrong colour.
+
+`gui/theme/custom` is deliberately **not** pre-set in `project.godot` — pointing it at a file that
+does not exist yet would error on a fresh clone. The script sets it only after writing the file.
+
+### The guard Session 37 said could not be written
+
+Session 37 recorded that a wrong theme item name is a silent no-op — no error, no warning, the
+control just keeps its engine default — and that "short of running Godot there cannot be" a check
+for it. There can, from inside Godot: `ThemeDB.get_default_theme()` declares every item the
+engine really has, so every name `Style.gd` sets can be looked up in it. `ApplyTheme.gd` walks
+the built theme's types (resolving each variation against its base type) and prints every colour,
+font, font size, constant and stylebox the engine does not know. **Each miss is a line of
+`Style.gd` doing nothing.** That turns Session 37's ten unverifiable control types into a list
+the owner reads once.
+
+### The other half: reading a scene is not loading it
+
+`godot/scripts/tools/VerifyScenes.gd` is the second `EditorScript`. It parses each `.tscn` for the
+nodes it *declares*, then instantiates the scene through the engine's own loader and asks the
+resulting tree which of them really exist — the exact comparison that would have caught Session
+36's `Interrogation.tscn`, where the checker saw all 21 declared nodes and five panels were null
+at runtime. It also reports a scene whose root lost its script, which is what a GDScript parse
+error looks like from the outside: no exception, no missing node, just a screen where nothing
+responds — how the result screen reached a playtest blank.
+
+`instantiate()` is safe to run here: `_ready()` and `@onready` both wait for a tree, and nothing
+is added to one, so the check fetches nothing and touches no state.
+
+The `.tscn` parsing in both scripts was validated against all eight real scenes before it shipped
+(every root found, every root script found, plausible child counts) rather than being written
+blind.
+
+### Three Python docstrings in GDScript
+
+Found by sweeping for the Session 36 defect classes:
+
+```gdscript
+func connect_ws(game_id: String, player_id: String) -> void:
+    """Open a persistent WebSocket to /ws/{game_id}. ..."""
+```
+
+**Not fatal, and the honest description matters.** GDScript *does* have triple-quoted multiline
+strings, so this parses. What it does not have is docstrings — a string alone on a line is a
+standalone expression, evaluated, discarded, and logged as `STANDALONE_EXPRESSION`. Two of the
+three were in `ApiClient.gd`, an autoload. So: three warnings in the Output panel that
+`docs/F5_CHECKLIST.md` tells you to read for the `Style:` font canary. A procedure that says
+"check Output for warnings" is worth less for every warning already sitting there that is fine.
+Converted to `##`, which is what the other ~145 doc lines in the client use.
+
+`config/icon` was the same shape of problem and is now unset: it named
+`res://assets/ui/icon.png`, which has never existed, so every open and every run put a failed-load
+**error** into that same panel. Godot falls back to its own icon silently. Restoring it is part of
+item 17's open brand decision.
+
+### `check_godot_wiring.py` — wider, and one stale claim corrected
+
+- New `check_python_docstrings()`.
+- **The parse-level checks now run over all 18 `.gd` files, not just the 8 a `.tscn` names.** The
+  four autoloads, `MysteryData.gd` and the theme scripts had never been checked — and an autoload
+  is the worst place to miss a parse error, since nothing at all runs if one fails.
+- `check_implicit_concat`'s docstring claimed "a triple-quoted block spanning lines could match;
+  none exist in this project today." That was **false at three call sites** when it was written.
+  Corrected in place, and both checks were negative-tested by injecting each defect and confirming
+  a non-zero exit before restoring the file.
+
+### Status — say this plainly
+
+**Still nothing rendered.** Every claim above is static or engine-side-but-unrun. The two
+`EditorScript`s are the first two steps of `docs/F5_CHECKLIST.md` now, and they are the things
+that convert Session 36's and Session 37's open caveats into answers — but only when the owner
+runs them. Seven Python checkers pass, which Session 36's rule still says is necessary and not
+sufficient.
+
+### Second half — the documents, after the owner asked why a design question was unreadable
+
+The owner tried to work `docs/INVESTIGATION_DESIGN.md` §6 and could not tell what question 1 was
+asking. They were right, and the cause was not the question.
+
+**§6 posed a three-way choice and the same document answered it twice, differently.** Line 50 asks
+what a line on the connection map means; line 87 says *"in APF the map is presentation, not
+mechanic"*; line 177 says *"it answers what is a line — provenance."* Two of the three readings had
+lost their mechanic outright: narrative access is traversal, provenance comes only from §3's
+growing pool, and APF deletes both. **Four of the five open questions turned out to be pre-APF** —
+affordance display justified itself by "turning blind exploration into informed allocation",
+player-position visibility presumes players are *at* locations, the budget model presumes an
+investigation budget. Only "titles that spoil" survives.
+
+Root cause: `CLAUDE.md` item 23 had already reduced §7's build order for APF. Nobody did the same
+pass on §6. **The build order knew about APF; the open questions did not.**
+
+Owner's decision on the live question underneath question 1 — whether the playtest draws a crime
+scene at all: **(a), no picture**, a list of named findings, on the grounds that anything more
+costs more for minimal playtest benefit.
+
+### The rewrite the owner then asked for
+
+Owner: *"long documents that often contain contradictions are messy and an unnecessary annoyance."*
+Measured before acting, and the file they named was not the problem:
+
+| Doc | Lines | Staleness markers |
+|---|---:|---:|
+| **CLAUDE.md** | **1,009** | **38** |
+| docs/WIRING.md | 1,042 | 7 |
+| docs/PLAYTEST_FLOW.md | 312 | 2 |
+
+`PLAYTEST_FLOW.md` is one of the healthiest documents in the repo. `CLAUDE.md` had roughly four
+times the contradiction density of anything else **and is auto-loaded into every session**, and 603
+of its 1,009 lines were an archive under "Older items, kept for history". Owner chose a full
+rewrite over a mechanical split.
+
+**Executed as: rewrite the operating instructions, move the history verbatim.** `docs/DECISIONS.md`
+(new) holds all 25 items in numeric order with an index; nothing was summarised away. `CLAUDE.md`
+is now 405 lines of what is true today.
+
+**What the rewrite corrected — these were all live falsehoods in the file every session reads:**
+
+- **The stated core innovation did not exist.** The overview asserted a shared clue "reaches exactly
+  75% of other players (randomly)". No code has ever done that. `server/main.py` has a
+  player-chosen level against a per-difficulty minimum — `share_min` 0.70/0.60/0.50, no randomness.
+  Session 21 found this and recorded it in item 11; the opening paragraph was never fixed, so the
+  false version stayed in the first thing anyone read for seventeen sessions.
+- **The architecture diagram listed 5 endpoints. There are 31.**
+- **Three autoloads listed; there are four** — `Style` was added in Session 37.
+- **`NetworkManager.gd` (ENet) is registered as an autoload and called by nothing** — no `.gd` or
+  `.tscn` outside the file references it. The live transport is the FastAPI WebSocket the phone
+  client uses. The file previously named ENet as *the* multiplayer mechanism in one section and
+  WebSocket in another.
+- **"1,469-part corpus"** — the registry holds **5,990 parts across 573 sources**.
+- **"Current phase: Phase 3d"** — four stages out of date.
+- The checker table, which is operational, sat *between items 18 and 19* in the middle of the
+  history.
+
+**Nothing was dropped by accident, and that was checked rather than asserted.** A coverage script
+compared every backticked literal in the old file against the new pair: 46 were absent on the first
+pass, and the ones with real value were restored — the commit-tag table, the caching inventory, the
+session ingress token path, the icon-sheet splitter, and the `deprecated/` file list, which earns
+its place because `deprecated/requirements.txt` and `mystery_generator.py` look exactly like files
+someone would open by mistake.
+
+**`scripts/check_decisions.py` (new)** stops the specific rot from returning: an item labelled open
+while another item says it is finished (**item 21 was exactly this** — `[OPEN]` and "a stage-1
+playtest-killer" while item 23 said APF deleted it), a duplicate or missing item number, and a
+cited item number resolving to nothing. It found a real dangling reference on its first run
+(`docs/WIRING.md:638`), which turned out to be a legitimate cross-project citation of MYF's item 31
+— so it now leaves MYF-qualified references alone. Negative-tested on all three failure modes.
+
+**The rule now written at the top of `CLAUDE.md`:** a design document states what is true now,
+`SESSIONS.md` states what was decided when, `docs/DECISIONS.md` states why a numbered item exists.
+A "superseded" marker inside `CLAUDE.md` is the signal that the text has become history.
+
+### Third part — WIRING.md, solvability, and the F5 walkthrough
+
+Owner set three next steps in order. All three landed.
+
+**1. `docs/WIRING.md`.** Not rewritten — it is a reference and its length is earned. What it lacked
+was any signal about which parts describe running code, so every section now carries a status
+(LIVE / BUILT, NEVER RUN / NOT BUILT / DEFERRED) with an index at the head. Three claims were
+false: the cinematic-brief trigger was documented as a Streamlit checkbox in *app.py* and a
+`--cinematic` flag in *cli.py*, **both of which are in `deprecated/`** and were retired with the
+Godot migration; the Localization section said *"Always runs"* and then, 37 lines later, that the
+call is skipped for modern settings (the second is right); and the data flow still said a
+1,469-part corpus against a registry holding 5,990 parts over 573 sources.
+
+`check_doc_claims.py` gained the check that would have caught the first: it verified a referenced
+file exists *somewhere*, so `app.py` passed on the strength of `deprecated/app.py`. It now fails a
+reference resolving **only** into `deprecated/` unless the prose names it — which is why CLAUDE.md
+can still list every file in there by name.
+
+**2. Solvability as arithmetic (§4).** Built §4's proposed free interim check
+(`scripts/check_solvability.py`) and ran it on all 17 generated mysteries. **The proposed check
+finds nothing** — 0 of 17 list a key item the reasoning ignores. **The gap is the other way, in 16
+of 17:** the reasoning cites evidence `key_evidence` does not contain, 55 items in total, up to 6
+in one mystery. That matters because APF's constrained deal is specified over "the evidence that
+proves the case"; read from `key_evidence`, the deal can satisfy all three of its constraints and
+still leave the player short of what the solution reasons from.
+
+Two measurements bound the `exonerates` change: **86% of non-culprit suspects are already named in
+the reasoning**, so the field formalises existing prose rather than asking for something new; and
+**16 of 17 mysteries have 2–3 suspects against the four `PLAYTEST_FLOW` specifies** — not
+cosmetic, because eliminating to one needs S−1 exonerations, so the suspect count caps how many
+findings are provably load-bearing and therefore how many players can hold one.
+
+Also found: **PLAYTEST_FLOW's third deal constraint is not well-formed.** *"Becomes solvable once
+the minimum share threshold is met"* — but `share_min` is a minimum *fraction of a player's own
+findings* and the player picks which, so meeting it does not determine what reaches the pool, and
+they will withhold the most valuable item, which is the mechanic working. Three options written up
+for the owner; all are deal-time set arithmetic and none costs an API call.
+
+**3. `docs/F5_CHECKLIST.md` rebuilt as one linear procedure**, 21 steps, every terminal command
+included — clone, venv, pip, the free checker suite, uvicorn, the curl health check, port
+conflicts, the key export for the paid steps. The old document put setup in an appendix, including
+a section headed *"Step 0 — do this first"* that sat **after step 17**; the renumbering is recorded
+so Session 36's walked steps 1–15 map to 9–19. Stale facts fixed: three autoloads became four, and
+the missing-icon noise entry is gone because the icon path is now unset.
+
+**The documented commands were run verbatim rather than written from memory**, which caught one:
+globbing `scripts/check_*.py` sweeps in `check_brand_contrast.py`, which measures `brand/` artwork,
+needs Pillow, and exits non-zero without it. A red line the reader is told to ignore is worse than
+no line, so the loop names its checkers explicitly and says why.
+
+### Fourth part — the share rule had two implementations
+
+Owner asked whether players are actually told which finding is valuable. They are not, on the
+multiplayer path: a finding is `{id, where it came from, prose}` — no `relevance`, no score, **and
+no evidence ID**. That last one is a prerequisite nobody had listed: the solvability arithmetic is
+defined over `evidence[]` and what a player holds has no join key to it, so the constrained deal
+cannot be built until findings carry the evidence ID they came from.
+
+The single-player route does the opposite: `case_display.gd` prints **★ critical** and **✗ red
+herring** beside every evidence item, so the solo screen labels exactly what the multiplayer screen
+hides. Flagged as a decision, not changed.
+
+**Chasing it turned up a real bug.** The share minimum was implemented twice — `round()` on the
+server, `ceili()` in `share_selection.gd`. They disagree in **6 of 18** realistic combinations and
+**the client is always stricter**, so it refused to submit shares the server would have accepted.
+At a two-finding hand it demanded both, and at APF's three-finding hand on EASY it demanded all
+three — deleting the hoarding decision at exactly the hand size APF specifies.
+
+Owner approved the unambiguous half: **the server computes it once and sends it.**
+`_min_share_required()` is now the only definition, it is returned with every finding response
+(investigate-area, follow-lead, interrogate-witness), `GameState` records it per phase, and
+`share_selection.gd` displays it. When the server sends nothing the client falls back to **1, the
+server's own floor** — erring permissive costs a rejected submit, erring strict silently deletes a
+legal move. `scripts/test_share_rule.py` asserts the duplication is gone rather than that two
+copies happen to agree; negative-tested by restoring the old line.
+
+**The larger finding, left as the owner's decision:** at a three-finding hand the difficulty ladder
+does not exist. EASY 0.70, MEDIUM 0.60 and HARD 0.50 all resolve to "share 2, keep 1" — a
+percentage has no resolution over three items. Keep 0 deletes the mechanic and keep 2 means sharing
+one thing, so keep 1 is forced and **difficulty has to live somewhere other than the share rule.**
+The redundancy option from §4 is the natural home; suspect count and red-herring density are the
+alternatives.
+
+### Fifth part — generation writes the mystery backwards
+
+**Owner's insight, and it was better than the checker it was offered against.** A mystery is
+written solution first — killer, motive, then clues planted in reverse toward a truth already
+fixed. The prompt was doing the exact opposite: its JSON template emitted `solution` **last**,
+after the cast and the evidence, so the model invented a cast, committed to clues, and then
+improvised an explanation for what it had already written.
+
+**Mechanical, not stylistic.** A model composes left to right, so whatever it emits first is what
+everything after is conditioned on. Solution last means the solution is conditioned on the clues.
+The adage is a statement about conditioning order, which is why it carries from novels to a
+language model unchanged.
+
+**Measured harm.** `daggers_in_the_forum` scores `passed=True, blocking=0, warnings=0` — a clean
+sweep of all 26 coherence rules — and its deduction turns on Apolonios, Demetrios and Senator
+Manilius, none of whom are in its own character list. Writing forwards, when the cast does not
+support the chain, inventing a person is cheaper than revising a cast already emitted. Across the
+corpus **7 of 17 mysteries reason about a person absent from `characters[]`**, and every coherence
+rule passes them, because 24 of the 26 check presence or counts and the two that do referential
+integrity check structured fields, never prose.
+
+**Changed:** `solution` now follows `setting`; `crime.what_happened` is marked public and may not
+spoil; `solution.chain` numbers the deduction; each evidence item declares `supports`,
+`exonerates`, `implicates`. The last two are §4's solvability fields, **bundled deliberately** —
+testing generation costs money and one paid round beats two. Flagged as a widening of the approved
+scope rather than done quietly.
+
+**Why declaring links is the point:** the same move `exonerates` already made for the arithmetic —
+stop asking a checker to infer a relationship, make generation state one. Narrative coherence
+becomes graph reachability, checkable at zero API cost.
+
+**What it does not buy, stated in the code and the docs:** a model can emit `supports: ["S2"]` on a
+clue that does not support S2 and nothing structural can tell. The reorder changes the *direction*
+of drift — away from a fixed solution it produces a clue that does not fit, which shows as an
+unresolved link; toward an improvised solution it produces invented people, which is invisible. A
+visible failure mode replaces an invisible one.
+
+`scripts/check_narrative.py` reports CAST, LINKS and ORPHAN, and fails only on current-schema
+mysteries so the legacy corpus does not hold the suite red.
+`scripts/test_narrative_checks.py` proves the LINKS branch fires on eight fixtures — necessary
+because no mystery on disk declares links yet, and a branch with no input is a branch nobody ran.
+
+**Also corrected this session:** the earlier claim that 16 of 17 mysteries have too few suspects
+implied generation ignores the spec. The rule *EXACTLY 4 suspects* was added 2026-08-21 and
+sixteen of those mysteries are from March; the one generated under the current prompt has exactly
+four. Corpus age, not drift.
+
+**Untested against a real generation** — that costs credits, and it is the next paid step.
+
+**Files (fifth part):** `server/main.py`, `scripts/check_narrative.py` (new),
+`scripts/test_narrative_checks.py` (new), `scripts/check_solvability.py`, `docs/WIRING.md`,
+`docs/INVESTIGATION_DESIGN.md`, `docs/DECISIONS.md` (item 26), `docs/F5_CHECKLIST.md`, `CLAUDE.md`.
+
+**Files (fourth part):** `server/main.py`, `godot/scripts/autoloads/GameState.gd`,
+`godot/scripts/ui/share_selection.gd`, `scripts/test_share_rule.py` (new),
+`docs/INVESTIGATION_DESIGN.md`, `docs/F5_CHECKLIST.md`, `CLAUDE.md`.
+
+**Files (third part):** `docs/WIRING.md`, `docs/INVESTIGATION_DESIGN.md`, `docs/F5_CHECKLIST.md`
+(rebuilt), `scripts/check_solvability.py` (new), `scripts/check_doc_claims.py`, `CLAUDE.md`.
+
+**Files (second half):** `CLAUDE.md` (rewritten, 1,009 → 405), `docs/DECISIONS.md` (new),
+`docs/INVESTIGATION_DESIGN.md`, `scripts/check_decisions.py` (new).
+
+**Files:** `godot/scripts/tools/ApplyTheme.gd` (new), `godot/scripts/tools/VerifyScenes.gd` (new),
+`godot/project.godot`, `godot/scripts/autoloads/ApiClient.gd`, `godot/scripts/ui/interrogation.gd`,
+`scripts/check_godot_wiring.py`, `docs/F5_CHECKLIST.md`, `CLAUDE.md`.
+
+---
+
 ## Session 37 — August 26, 2026 (CYM: one palette, three surfaces; the client stops being default grey)
 
 **Starting point:** `claude/mystery-game-aesthetics-ud0zrf`, off `main` at `93464bc` (PR #32 merged).

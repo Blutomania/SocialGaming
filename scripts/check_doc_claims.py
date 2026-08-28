@@ -122,6 +122,21 @@ def _appears_in_code(literal: str) -> bool:
     return False
 
 
+def _mentions_deprecated(text: str, pos: int, window: int = 400) -> bool:
+    """Does the surrounding prose already say this is retired?
+
+    CLAUDE.md lists every file in deprecated/ by name, backticked, so that
+    nobody opens deprecated/requirements.txt thinking it is the server's. That
+    list is a legitimate reference to retired code; a section heading that
+    presents app.py as the live UI is not. The difference is whether the prose
+    says so, so that is what is checked.
+    """
+    # Looked for on BOTH sides: a list of retired filenames often names
+    # deprecated/ only after the last of them ("...what now lives in
+    # deprecated/"), which a backward-only window misses.
+    return "deprecated" in text[max(0, pos - window):pos + window].lower()
+
+
 def main() -> int:
     failures = []
     checked_paths = checked_literals = 0
@@ -137,7 +152,29 @@ def main() -> int:
             target = ROOT / ref
             if not target.exists():
                 # A bare filename may legitimately live deeper in the tree.
-                if glob.glob(str(ROOT / "**" / os.path.basename(ref)), recursive=True):
+                found = glob.glob(str(ROOT / "**" / os.path.basename(ref)),
+                                  recursive=True)
+                live = [f for f in found
+                        if not any(part in SKIP_DIRS
+                                   for part in Path(f).relative_to(ROOT).parts)]
+                if live:
+                    continue
+                if found and not live:
+                    # Resolves ONLY into deprecated/. This is the hole that let
+                    # docs/WIRING.md document the retired Streamlit app.py and
+                    # cli.py as the live cinematic-brief trigger for several
+                    # sessions: the files do exist, so "no such file" never
+                    # fired, and existing anywhere was treated as existing.
+                    # Naming deprecated/ nearby is the legitimate case --
+                    # CLAUDE.md lists those filenames precisely to say do not
+                    # touch them.
+                    if _mentions_deprecated(Path(doc).read_text(), m.start()):
+                        continue
+                    failures.append((
+                        rel_doc, ref,
+                        "resolves ONLY into deprecated/ -- it is retired code. "
+                        "Reference it as deprecated/<name>, say 'deprecated' "
+                        "nearby, or use italics if you are naming it as history"))
                     continue
                 failures.append((rel_doc, ref, "no such file"))
             elif line and len(target.read_text(errors="replace").splitlines()) < int(line):

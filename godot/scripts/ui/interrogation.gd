@@ -116,8 +116,8 @@ func _refresh_phase_ui() -> void:
 			phase_label.text = "Investigation complete"
 			budget_label.text = "Make your accusation when ready."
 
+## Transition to ShareSelection when the current phase budget is exhausted.
 func _check_phase_complete() -> void:
-	"""Transition to ShareSelection when the current phase budget is exhausted."""
 	var advance := false
 	match GameState.invest_phase:
 		GameState.InvestPhase.WITNESS:

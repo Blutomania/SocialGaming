@@ -53,7 +53,18 @@ var invest_phase: InvestPhase = InvestPhase.WITNESS
 var witness_budget: int = 0
 var investigation_budget: int = 0
 var leads_remaining: int = 2
-var share_min: float = 0.6                  ## Minimum fraction player must share
+var share_min: float = 0.6                  ## Informational only — see share_required below
+
+## How many findings the SERVER requires to be shared, per phase. The client
+## does NOT compute this. It used to, from share_min, with ceil() where the
+## server uses round() — the two disagreed in 6 of 18 realistic combinations and
+## the client was always stricter, so it refused shares the server would have
+## accepted. At a two-finding hand it demanded both, deleting the choice the
+## mechanic exists for. The server now sends the number with every finding
+## response and these just hold it.
+var witness_share_required: int = 0
+var investigation_share_required: int = 0
+var lead_share_required: int = 0
 
 ## Findings accumulated this phase (cleared after sharing)
 var witness_findings: Array = []            ## [{id, character, question, response}, ...]
@@ -99,16 +110,19 @@ func record_interrogation(character_name: String, question: String, response: St
 func record_witness_finding(finding: Dictionary) -> void:
 	witness_findings.append(finding)
 	witness_budget = finding.get("budget_remaining", witness_budget)
+	witness_share_required = finding.get("share_required", witness_share_required)
 
 ## Phase 3: record an investigation finding.
 func record_investigation_finding(finding: Dictionary) -> void:
 	investigation_findings.append(finding)
 	investigation_budget = finding.get("budget_remaining", investigation_budget)
+	investigation_share_required = finding.get("share_required", investigation_share_required)
 
 ## Phase 3: record a lead finding.
 func record_lead_finding(finding: Dictionary) -> void:
 	lead_findings.append(finding)
 	leads_remaining = finding.get("leads_remaining", leads_remaining)
+	lead_share_required = finding.get("share_required", lead_share_required)
 
 ## Phase 3: cache the server's block pool response.
 func update_block_pool(pool: Dictionary) -> void:
@@ -148,6 +162,19 @@ func current_phase_findings() -> Array:
 			return lead_findings
 	return []
 
+## The server's own answer for how many of them must be shared. 0 means the
+## server never told us, which the Share screen treats as "1", never as a
+## stricter guess of its own.
+func current_share_required() -> int:
+	match invest_phase:
+		InvestPhase.SHARE_WITNESS:
+			return witness_share_required
+		InvestPhase.SHARE_INVESTIGATION:
+			return investigation_share_required
+		InvestPhase.SHARE_LEAD:
+			return lead_share_required
+	return 0
+
 ## Resets all game state (call before starting a new mystery).
 func reset() -> void:
 	current_mystery = {}
@@ -164,6 +191,9 @@ func reset() -> void:
 	witness_findings = []
 	investigation_findings = []
 	lead_findings = []
+	witness_share_required = 0
+	investigation_share_required = 0
+	lead_share_required = 0
 	shared_clues = {"witness": [], "investigation": [], "lead": []}
 	block_pool = {"witness": [], "investigation": [], "lead": []}
 	is_multiplayer = false
