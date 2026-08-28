@@ -62,6 +62,7 @@ that the superseded text has become history and belongs here instead.
 | 24 | One palette, three surfaces | `DONE` |
 | 25 | The design becomes visible in the editor; two engine-side checks | `DONE` |
 | 26 | Generation writes backwards; clues declare what they serve | `DONE` |
+| 27 | Clues declare their cause; the critic is built and priced | `DONE` |
 
 ---
 
@@ -824,4 +825,59 @@ that the superseded text has become history and belongs here instead.
 
     **Untested against a real generation** — that costs credits. The first generation run after
     this is the confirmation.
+
+27. **[DONE, Session 39 — August 2026] The causal half: clues declare what caused them, and the
+    critic is built.** Owner's framing, from the craft again: *"working backward from the detective
+    climax, what clue(s) led to this, and then what actions created those clues… then a 2nd vector,
+    from the middle out — for every clue, what action created that clue."*
+
+    **Two of those three vectors were not critic work at all.** Item 26 gave a clue a `supports`
+    field saying what it is *for*; nothing said what it *came from*. Adding that one hop turns both
+    of the owner's structural vectors into free graph checks:
+
+    - `solution.acts` — every action that left a trace, guilty or innocent, with `id`, `by`, `act`
+      and `guilty`. Ids are `ACT1`, `ACT2`, deliberately **not** `A1`, because
+      `investigation_areas` already own that namespace and `how_to_deduce` cites *"(E3, Area A1)"*.
+      That collision was introduced and caught in the same session.
+    - `evidence[].produced_by` — the acts that left this trace.
+
+    Then, at zero API cost: every clue has a cause; every act leaves a trace; every act's performer
+    is in the cast; the culprit has at least one guilty act; and **a red herring is a clue produced
+    by an INNOCENT act** — which is the first structural definition the term has had here. Before
+    this it was a label somebody typed.
+
+    The owner's third vector, motive → outcome, is meaning and stays with the critic.
+
+    **The critic (`critic.py`).** One call, reads a finished mystery, reports faults, never
+    rewrites. On `claude-opus-5` while generation is Sonnet, so the reviewer is not the author. The
+    rubric enumerates rather than asks — *"list every person named in the deduction and say whether
+    each is in the cast"*, never *"is this good?"* — and every finding must quote the text it
+    judges.
+
+    **What it covers that the free checker structurally cannot: whether a label is TRUE.** A clue
+    can declare `supports: ["S2"]` and not support S2, and no amount of graph checking will see it.
+
+    **Cost, corrected by measurement.** The estimate was $0.04/mystery on the reasoning that a
+    critic reads a lot and writes a little. The first real run returned **9,573 output tokens
+    against an estimate of 1,200** — adaptive thinking is billed as output, and a rubric demanding
+    enumeration is exactly what a model thinks hard about. Real figure: **$0.28/mystery**, twice a
+    generation rather than a fifth of one. The dry run now prices with the measured number. The
+    argument for a critic survives; the number in it did not.
+
+    **`_meta.user_prompt` is now stored.** It never was — `_provenance` records which corpus parts
+    were sampled, which is not the same thing — so *"did we deliver what the player asked for?"* was
+    permanently unanswerable for all 17 existing mysteries. It is the first thing a real player
+    judges and was the last thing we could measure.
+
+    **Validation, not faith.** `scripts/run_critic.py` prints the plan and spends nothing without
+    `--go`. `scripts/critic_report.py` grades the critic against `scripts/check_narrative.py`: the
+    free checker independently knows which mysteries name a phantom person, so a critic that misses
+    one is too lenient to trust on motive and method, which nothing can verify. A critic that only
+    agrees with the free checker is not worth $0.28.
+
+    **First result, on `daggers_in_the_forum`:** BROKEN, 5 blocking. It caught the phantom cast
+    member the checker caught, and three things the checker never could — a clue labelled
+    `red_herring` that was produced by the murderer's own act, a motive that contradicts itself
+    (the killer forged the document that ruined the woman he is avenging), and a wound count that
+    disagrees between the crime and the method, seven against three.
 

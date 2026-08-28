@@ -34,10 +34,13 @@ def mystery(**over):
         ],
         "evidence": [
             {"id": "E1", "relevance": "critical", "supports": ["S1"],
+             "produced_by": ["ACT1"],
              "exonerates": ["Boris Kell"], "implicates": ["Ada Vance"]},
             {"id": "E2", "relevance": "supporting", "supports": ["S2"],
+             "produced_by": ["ACT1"],
              "exonerates": ["Cora Innes", "Dev Ortiz"], "implicates": []},
             {"id": "E3", "relevance": "red_herring", "supports": [],
+             "produced_by": ["ACT2"],
              "exonerates": [], "implicates": []},
         ],
         "solution": {
@@ -47,6 +50,12 @@ def mystery(**over):
             "how_to_deduce": "Because the log clears Boris Kell and the key clears the others.",
             "chain": [{"id": "S1", "claim": "The log clears Boris Kell."},
                       {"id": "S2", "claim": "The key clears Cora Innes and Dev Ortiz."}],
+            "acts": [
+                {"id": "ACT1", "by": "Ada Vance", "act": "She took the key.",
+                 "guilty": True},
+                {"id": "ACT2", "by": "Cora Innes", "act": "She dropped a glove.",
+                 "guilty": False},
+            ],
         },
     }
     for k, v in over.items():
@@ -94,6 +103,48 @@ CASES = [
                         "implicates": []}]),
      ["no evidence implicates anyone"]),
 
+    ("a clue nothing caused",
+     mystery(evidence=[{"id": "E1", "relevance": "critical", "supports": ["S1", "S2"],
+                        "produced_by": [], "exonerates": ["Boris Kell", "Cora Innes",
+                        "Dev Ortiz"], "implicates": ["Ada Vance"]}]),
+     ["E1 has no produced_by"]),
+
+    ("produced_by names an act that does not exist",
+     mystery(evidence=[{"id": "E1", "relevance": "critical", "supports": ["S1", "S2"],
+                        "produced_by": ["ACT9"], "exonerates": ["Boris Kell",
+                        "Cora Innes", "Dev Ortiz"], "implicates": ["Ada Vance"]}]),
+     ["E1 is produced_by ACT9"]),
+
+    ("an act that left no trace",
+     mystery(solution={**mystery()["solution"], "acts": [
+         {"id": "ACT1", "by": "Ada Vance", "act": "She took the key.", "guilty": True},
+         {"id": "ACT2", "by": "Cora Innes", "act": "She dropped a glove.", "guilty": False},
+         {"id": "ACT3", "by": "Ada Vance", "act": "She wiped the handle.", "guilty": True},
+     ]}),
+     ["act ACT3 left no evidence"]),
+
+    ("a red herring produced by a guilty act",
+     mystery(evidence=[{"id": "E1", "relevance": "critical", "supports": ["S1", "S2"],
+                        "produced_by": ["ACT1"], "exonerates": ["Boris Kell",
+                        "Cora Innes", "Dev Ortiz"], "implicates": ["Ada Vance"]},
+                       {"id": "E2", "relevance": "red_herring", "supports": [],
+                        "produced_by": ["ACT1"], "exonerates": [], "implicates": []}]),
+     ["red herring but ACT1 is a guilty act"]),
+
+    ("an act performed by somebody not in the cast",
+     mystery(solution={**mystery()["solution"], "acts": [
+         {"id": "ACT1", "by": "Ada Vance", "act": "She took the key.", "guilty": True},
+         {"id": "ACT2", "by": "Mysterious Stranger", "act": "He lurked.", "guilty": False},
+     ]}),
+     ["performed by 'Mysterious Stranger'"]),
+
+    ("no guilty act belongs to the culprit",
+     mystery(solution={**mystery()["solution"], "acts": [
+         {"id": "ACT1", "by": "Boris Kell", "act": "He moved the key.", "guilty": True},
+         {"id": "ACT2", "by": "Cora Innes", "act": "She dropped a glove.", "guilty": False},
+     ]}),
+     ["no guilty act is attributed to the culprit"]),
+
     ("the chain names somebody not in the cast",
      mystery(solution={**mystery()["solution"],
                        "how_to_deduce": "The ledger shows that Apolonios forged the seal."}),
@@ -108,7 +159,8 @@ def run(name, data, expected):
         path.write_text(json.dumps(data), encoding="utf-8")
         report = audit(path)
 
-    found = report["links"] + [f"CAST {c}" for c in report["cast"]] \
+    found = report["links"] + report["acts"] \
+        + [f"CAST {c}" for c in report["cast"]] \
         + [f"ORPHAN {o}" for o in report["orphans"]]
     blob = " | ".join(found)
 

@@ -160,6 +160,7 @@ game lifecycle (`/games/create`, `/join`, `/start`), play (`/interrogate-witness
 | `palette.py` | **The one place a colour is decided.** Ground, surface ramp, ink, brass, semantics, type/space/radius scales, and a 28-pair WCAG contrast contract. Read before changing any colour anywhere |
 | `part_registry.py` | The corpus index — **5,990 parts across 573 sources** as committed. `load_registry()` rebuilds when a corpus fingerprint changes; see item 14 |
 | `coherence_validator.py` | P1 causal-chain, witness and evidence checks. Free — no API call |
+| `critic.py` | **The only module here that spends money per mystery.** One Claude call that reads a finished mystery and reports faults; it never rewrites. Runs on `claude-opus-5` so the reviewer is not the author — generation is Sonnet. ~$0.28/mystery, measured |
 | `coherence/` | The shared engine (`Issue`, `CoherenceReport`, `RuleSet`). Used by both CYM and Mind Your Friends — item 16 |
 | `craft_grounding.py` | Retrieval layer over the craft-grounding docs; feeds guidance into all five generation call sites. Zero added API calls |
 | `localization.py` | Era-appropriate name/occupation localization, 3-tier disk cache |
@@ -255,9 +256,11 @@ Every one of these has cost a screen in this project. They are why the checkers 
 - Python 3.8+ server-side; GDScript 2.0 with type annotations client-side.
 - **State the type.** Session 36 lost a whole screen to a `Variant` inferred from
   `Dictionary.get()`; `:=` on a constructor call is the shape that goes wrong.
-- **Models, by job:** gameplay generation uses `claude-sonnet-4-6` (`server/main.py`); extraction
-  defaults to `claude-haiku-4-5-20251001` with a Sonnet fallback; the corpus upgrade defaults to
-  `claude-opus-5`.
+- **Models, by job:** gameplay generation uses `claude-sonnet-4-6`, named once as `MODEL` in
+  `server/main.py` and recorded on every mystery as `_meta.model`; extraction defaults to
+  `claude-haiku-4-5-20251001` with a Sonnet fallback; the corpus upgrade and **the critic**
+  default to `claude-opus-5` — the critic deliberately so, because a model reviewing its own
+  work approves it.
 - Mystery parts use `SOURCE(INDEX)` notation — `C(4)`, `F(2)`, `A(6)`.
 - Extraction protocols: P1 Skeleton (C1–C6), P2 Architecture (M1–M8), P3 Craft (F1–F8),
   P4 Texture (F9–F12).
@@ -343,6 +346,9 @@ that use Godot's own loader, which is where the undetectable defects live:
 |---|---|
 | `godot/scripts/tools/VerifyScenes.gd` | A node a `.tscn` declares that does not survive loading, a node whose runtime class is not what the scene declares, and a scene root that lost its script |
 | `godot/scripts/tools/ApplyTheme.gd` | A theme item name the engine does not have. Also generates the editor's theme preview, so the design is visible while scenes are edited, and reports whether the fonts resolved |
+
+**Paid tools — they call the API. Both default to spending nothing:**
+`scripts/run_critic.py` prints the plan and the measured price; `--go` runs it, writing a report beside each mystery. `scripts/critic_report.py` aggregates those and **grades the critic against `scripts/check_narrative.py`** — a critic that only agrees with the free checker is not worth paying for, and a critic that misses what the checker caught cannot be trusted on the things nothing else can check.
 
 **Not checkers, but run locally:** `scripts/preview_background_field.py` renders the BACKGROUND
 field to SVG over real screen text (`--sheet` covers the shortest and longest real titles);

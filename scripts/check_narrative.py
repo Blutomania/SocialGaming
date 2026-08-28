@@ -30,6 +30,23 @@ Three things are checked here, in ascending strictness:
             the evidence, the areas or the leads. The player cannot encounter it
             by any route.
 
+  ACTS      Session 39. A clue is not a fact that happens to be true, it is a
+            mark left by something somebody did. The solution now lists the acts
+            that left traces and each clue names the act that produced it, which
+            closes the loop in both directions -- and each direction catches a
+            different fault:
+
+              backward  chain step -> supporting clues -> the acts behind them.
+                        A step with nothing behind it is a leap.
+              forward   every clue -> its cause. A clue nobody caused is a fact
+                        that exists only because the plot needed it there, and
+                        it is the commonest way a mystery stops making sense
+                        while still looking complete.
+
+            It also gives a red herring a structural definition for the first
+            time: a clue produced by an INNOCENT act. Before this, "red_herring"
+            was a label somebody typed.
+
 ON FALSE POSITIVES, HONESTLY. Extracting people from prose is a heuristic. A
 mystery may legitimately name someone who is not a character -- Pompey in a
 Roman setting, a courier nobody questions. NOT_PEOPLE below is a curated
@@ -100,7 +117,8 @@ def audit(path):
     outside = json.dumps({k: v for k, v in data.items()
                           if k not in ("solution", "_provenance", "_coherence", "_meta")})
 
-    report = {"file": path.name, "legacy": None, "cast": [], "orphans": [], "links": []}
+    report = {"file": path.name, "legacy": None, "cast": [], "orphans": [],
+              "links": [], "acts": []}
 
     try:
         stamp = int(path.stem.rsplit("_", 1)[1])
@@ -155,6 +173,59 @@ def audit(path):
         if len(remaining) != 1:
             report["links"].append(
                 f"eliminating the exonerated leaves {len(remaining)} suspect(s), not 1: {remaining}")
+
+    # --- ACTS: the causal half. Only where the schema provides it. ---
+    acts = solution.get("acts") or []
+    report["has_acts"] = bool(acts)
+    if acts:
+        by_id = {a.get("id"): a for a in acts if isinstance(a, dict)}
+        caused = set()
+
+        for act in acts:
+            if not isinstance(act, dict):
+                continue
+            who = act.get("by") or ""
+            if who and not (words(who) & cast_words):
+                report["acts"].append(
+                    f"act {act.get('id')} is performed by '{who}', who is not in characters[]")
+
+        for e in evidence:
+            origins = e.get("produced_by") or []
+            if not origins:
+                report["acts"].append(
+                    f"{e.get('id')} has no produced_by -- nothing caused this clue")
+                continue
+            for aid in origins:
+                if aid not in by_id:
+                    report["acts"].append(
+                        f"{e.get('id')} is produced_by {aid}, which is not an act")
+                    continue
+                caused.add(aid)
+                if e.get("relevance") == "red_herring" and by_id[aid].get("guilty"):
+                    report["acts"].append(
+                        f"{e.get('id')} is a red herring but {aid} is a guilty act -- "
+                        f"a red herring must come from an innocent one")
+
+        for aid in sorted(set(by_id) - caused):
+            report["acts"].append(
+                f"act {aid} left no evidence -- nothing in the story records it happened")
+
+        if culprit and not any(
+                a.get("guilty") and (words(a.get("by") or "") & words(culprit))
+                for a in acts if isinstance(a, dict)):
+            report["acts"].append(
+                f"no guilty act is attributed to the culprit ({culprit})")
+
+        # The backward vector, end to end: step -> clue -> act.
+        if chain:
+            for step in chain:
+                if not isinstance(step, dict):
+                    continue
+                sid = step.get("id")
+                supporting = [e for e in evidence if sid in (e.get("supports") or [])]
+                if supporting and not any(e.get("produced_by") for e in supporting):
+                    report["acts"].append(
+                        f"chain step {sid} is supported only by clues that nothing caused")
     return report
 
 
@@ -174,7 +245,7 @@ def main():
     fail = 0
 
     for r in reports:
-        problems = r["cast"] or r["orphans"] or r["links"]
+        problems = r["cast"] or r["orphans"] or r["links"] or r["acts"]
         if not problems:
             continue
         tag = "legacy" if r["legacy"] else "CURRENT"
@@ -185,16 +256,19 @@ def main():
             print(f"     ORPHAN  '{name}' appears only inside the solution")
         for msg in r["links"]:
             print(f"     LINKS   {msg}")
+        for msg in r["acts"]:
+            print(f"     ACTS    {msg}")
         if not r["legacy"] or args.strict:
             fail += 1
 
     legacy = sum(1 for r in reports if r["legacy"])
     linked = sum(1 for r in reports if r.get("has_links"))
+    acted = sum(1 for r in reports if r.get("has_acts"))
     cast_hits = sum(1 for r in reports if r["cast"])
 
     print(f"\n{'-' * 78}")
     print(f"  {len(reports)} mysteries: {legacy} predate the current schema, "
-          f"{linked} declare chain links.")
+          f"{linked} declare chain links, {acted} declare acts.")
     print(f"  {cast_hits} reason about a person absent from characters[].")
     if not args.strict and legacy:
         print(f"  Legacy mysteries are reported, not failed. Use --strict to fail on them too.")

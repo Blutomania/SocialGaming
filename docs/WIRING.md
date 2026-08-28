@@ -113,6 +113,19 @@ mystery_dict  saved to  mystery_database/generated/<slug>_<timestamp>.json
 > `exonerates` already used for the arithmetic: stop asking a checker to infer a relationship, and
 > make generation state one.
 >
+> **[Session 39] And the clues now declare their CAUSE, not just their purpose.** `supports` says
+> what a clue is *for*; it never said what a clue *came from*. So the solution also lists `acts` —
+> every action that left a trace, guilty or innocent, with who performed it — and each clue names
+> the act that produced it. That closes the loop in both directions, and each direction catches a
+> different fault: reading **backward** (chain step → clues → acts) finds a step with nothing behind
+> it; reading **forward** (every clue → its act) finds *a clue nothing caused*, which is a fact that
+> exists only because the plot needed it and is the commonest way a mystery stops making sense while
+> still looking complete. It also gives a red herring a structural definition for the first time —
+> a clue produced by an **innocent** act — where before it was a label somebody typed.
+>
+> Act ids are `ACT1`, `ACT2`, deliberately **not** `A1`: `investigation_areas` already own that
+> namespace and `how_to_deduce` already cites *"(E3, Area A1)"*.
+>
 > **This does not guarantee the model obeys**, and it is worth being clear about what it does buy.
 > It changes the direction of drift. Drifting away from a fixed solution produces a clue that does
 > not fit, which shows up as an unresolved link. Drifting toward an improvised solution produces
@@ -138,6 +151,10 @@ Every generated mystery is a dict with these top-level keys, **in this order**:
     "method": "string",
     "chain": [
       { "id": "S1", "claim": "one sentence a player could reach from evidence" }
+    ],
+    "acts": [
+      { "id": "ACT1", "by": "exact character name", "act": "what they did",
+        "guilty": true }
     ],
     "key_evidence": ["E1", "E2"],
     "how_to_deduce": "the same chain as prose; introduces nothing new"
@@ -169,6 +186,7 @@ Every generated mystery is a dict with these top-level keys, **in this order**:
       "type": "physical | testimonial | circumstantial | documentary",
       "relevance": "critical | supporting | red_herring",
       "supports":   ["S2"],  // chain step ids. A red herring supports [] and only it may
+      "produced_by": ["ACT1"], // the act that left this trace. Every item needs one
       "exonerates": ["exact character name"],  // never the culprit
       "implicates": ["exact character name"]   // culprit needs at least one
     }
@@ -188,6 +206,9 @@ Every generated mystery is a dict with these top-level keys, **in this order**:
     "witness_gaps": []
   },
   "_meta": {
+    "user_prompt": "what the player actually typed — Session 39; not stored before that",
+    "generated_at": 0,
+    "model": "claude-sonnet-4-6",
     "num_players": 4,
     "setting_input": "original user prompt"
   },

@@ -117,10 +117,15 @@ def get_registry():
 # request -- above that the SDK wants streaming to avoid HTTP timeouts.
 _MAX_TOKENS = 16000
 
+# The gameplay-generation model, named once. Every mystery records which model
+# wrote it (_meta.model), so a change of line stays traceable in the corpus
+# rather than being inferred from a file's date.
+MODEL = "claude-sonnet-4-6"
+
 
 def llm(prompt: str, system: str = "You are a creative mystery game engine.") -> str:
     response = get_client().messages.create(
-        model="claude-sonnet-4-6",
+        model=MODEL,
         max_tokens=_MAX_TOKENS,
         system=system,
         messages=[{"role": "user", "content": prompt}],
@@ -207,6 +212,23 @@ DECLARE THE LINKS. Do not leave the connection between a clue and the solution i
 state it in fields, so it can be checked without re-reading the story. Each evidence item says
 which step of the chain it supports, who it clears, and who it points at.
 
+AND DECLARE THE CAUSE. A clue is not a fact that happens to be true — it is a MARK LEFT BY
+SOMETHING SOMEBODY DID. So the solution also lists the ACTS: every action in the story that left a
+trace, guilty or innocent, each with an id "ACT1", "ACT2", …, who performed it, and whether it
+was part of the crime. Every evidence item then names the act or acts that produced it.
+
+This closes the loop in both directions, and each direction catches a different fault:
+
+  - Reading BACKWARD  — chain step → the clues that support it → the acts that produced those
+    clues. A step with nothing behind it is a leap the player cannot make.
+  - Reading FORWARD   — every clue → the act that caused it. A clue with no cause is a fact that
+    exists only because the plot needed it there, and it is the commonest way a mystery stops
+    making sense while still looking complete.
+
+A RED HERRING IS NOW A STRUCTURAL THING, not a label you type. It is a clue produced by an
+INNOCENT act that resembles a guilty one. So a red herring's acts must all be `guilty: false`. If
+you cannot name an innocent act that produced it, it is not a red herring — it is a loose end.
+
 QUALITY REQUIREMENTS — every generated mystery MUST satisfy these:
 
 SETTING:
@@ -239,6 +261,9 @@ EVIDENCE (include at least 6 items total — planted to serve the chain, written
     reads as arbitrary.
   - Across all items, the suspects exonerated must be every suspect EXCEPT the culprit, so that
     eliminating them leaves exactly one person. Never exonerate the culprit.
+  - produced_by: the act ids that left this trace, e.g. ["ACT2"]. EVERY item needs at least one —
+    a clue nobody caused is the fault this field exists to catch.
+  - A red herring's acts must all be innocent (`guilty: false`).
   - Every chain step must appear in at least one item's "supports".
 
 SOLUTION (write this FIRST — everything below is derived from it):
@@ -248,6 +273,14 @@ SOLUTION (write this FIRST — everything below is derived from it):
     Every step must be supported by at least one evidence item (see EVIDENCE below).
   - how_to_deduce: the same reasoning as readable prose, for the result screen. It must not
     introduce any person, place or fact that is not already in the chain and the cast.
+  - acts: every action in the story that left a physical or documentary trace, with an id
+    "ACT1", "ACT2", … — NOT "A1", which is already an investigation_area id — plus the exact
+    name of the character who performed it, one sentence saying what they did,
+    and `guilty` — true if it was part of committing or concealing the crime, false if it was
+    innocent and merely looks bad. Include the INNOCENT acts too: they are what red herrings are
+    made of, and a mystery with no innocent acts has no misdirection.
+    Every act must leave at least one evidence item behind, or there was no reason to list it.
+    At least one act by the culprit must be `guilty: true`.
   - The culprit named here must appear in "characters" with role "suspect".
 
 GAMEPLAY NOTES:
@@ -293,6 +326,10 @@ Generate a complete mystery JSON with this exact structure:
     "chain": [
       {{"id": "S1", "claim": "one sentence a player could reach from evidence"}}
     ],
+    "acts": [
+      {{"id": "ACT1", "by": "exact character name", "act": "what they did, one sentence",
+        "guilty": true}}
+    ],
     "key_evidence": ["E1", "E2"],
     "how_to_deduce": "the same chain as prose; introduces nothing new"
   }},
@@ -321,6 +358,7 @@ Generate a complete mystery JSON with this exact structure:
       "type": "physical | testimonial | circumstantial | documentary",
       "relevance": "critical | supporting | red_herring",
       "supports": ["S2"],
+      "produced_by": ["ACT1"],
       "exonerates": ["exact character name"],
       "implicates": ["exact character name"]
     }}
@@ -356,6 +394,18 @@ Return only valid JSON. No commentary outside the JSON block."""
     mystery_dict = _parse_json(raw)
     mystery_dict["_provenance"] = recipe.to_dict()
     mystery_dict["_provenance"]["craft_guidance"] = craft_grounding.guidance_provenance(guidance_entries)
+
+    # KEEP THE PROMPT. _provenance records which corpus parts were sampled, which
+    # is not the same thing and was the only record we had -- not one of the 17
+    # mysteries generated before Session 39 stored what the player actually
+    # typed. That made one question permanently unanswerable: somebody asks for
+    # "1920s Harlem jazz club", and nothing afterwards can check whether they got
+    # one, because the request is gone. It is the first thing a real player
+    # judges and the last thing we could measure.
+    meta = mystery_dict.setdefault("_meta", {})
+    meta["user_prompt"] = user_prompt
+    meta["generated_at"] = int(time.time())
+    meta["model"] = MODEL
     return mystery_dict, recipe
 
 

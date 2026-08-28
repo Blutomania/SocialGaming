@@ -1,0 +1,140 @@
+{
+  "verdict": "BROKEN",
+  "summary": "The solution reasons about three people who are not in the cast — most damagingly the scribe Demetrios, on whom both Livia's alibi and the red-herring resolution depend — and two of its five deduction steps rest on evidence that does not exist (a coroner's wound report) or on a self-contradiction (the killer forging the very document that ruined the woman he is avenging). Timeline, wound count and the guard's alibi also contradict themselves, so a player following the stated chain cannot arrive cleanly at the answer.",
+  "findings": [
+    {
+      "code": "cast.not_in_characters",
+      "severity": "BLOCKING",
+      "claim": "Demetrios is reasoned about in the deduction (his ink must be examined to clear him) and he single-handedly supplies Livia's alibi, yet he is not in \"characters\" and cannot be questioned.",
+      "citation": "\"The torn wax tablet fragment (E4) initially points toward Livia's scribe Demetrios, but Demetrios uses a different ink formulation — confirmed by examining his current work\""
+    },
+    {
+      "code": "cast.not_in_characters",
+      "severity": "WARNING",
+      "claim": "Apolonios, whose testimony is Step 1 of the entire deduction, is not a playable character; his account exists only as a pre-packaged evidence card (E5) that cannot be cross-examined.",
+      "citation": "\"Step 1 — Establish the window of opportunity: Testimony from grain merchant Apolonios (E5) proves Brocchus departed the docks forty minutes before he reappeared at the household\""
+    },
+    {
+      "code": "cast.not_in_characters",
+      "severity": "WARNING",
+      "claim": "Lucius Manilius, the sole verifier of Oppius's alibi and the reason Oppius is eliminated, is not in the cast and cannot be pressed or caught lying.",
+      "citation": "\"Oppius is confirmed by Senator Manilius (E8)\""
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "BLOCKING",
+      "claim": "Step 3 rests entirely on a wound examination that appears nowhere in the evidence list, and invokes a 'coroner' who is neither a character nor a Roman office.",
+      "citation": "\"The coroner's examination of Calvus's wounds shows three of the seven stab marks are anatomically precise — targeting the left lung, right subclavian artery, and larynx\""
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "BLOCKING",
+      "claim": "Step 4 requires Brocchus to have written the corrections on the forged probate scroll — i.e. to have authored the fraud that dispossessed Livia — which flatly contradicts the motive the solution gives him.",
+      "citation": "\"Brocchus, as a trained literate steward and former military clerk, had both the writing materials and the skill to produce the luring message and the scroll corrections.\""
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "Step 2 treats a shared unit marking as individual identification; a cohort designation was borne by every blade in the cohort and cannot establish that this was Brocchus's own dagger.",
+      "citation": "\"This is not circumstantial — the same blade Brocchus carried in the legions is the murder weapon.\""
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "Step 1 declares Livia verified when the scenario itself rates her only witness as unreliable, so the elimination of other suspects is not actually earned.",
+      "citation": "\"No other suspect has an unverified window: Livia is corroborated by her scribe\" versus \"Demetrios corroborates this but is her own freedman and thus considered a partial witness\""
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "Step 5's link between the bribe and Brocchus depends on his supposed knowledge of guard rotations, a fact asserted only in the solution and found in no character entry or evidence item.",
+      "citation": "\"knowledge Brocchus had from accompanying Livia's petitions to the Senate multiple times over the preceding weeks\""
+    },
+    {
+      "code": "label.false",
+      "severity": "BLOCKING",
+      "claim": "E4 is labelled a red_herring, but the act that produced it is the murderer's own forged lure — genuine evidence of the crime, not an innocent artefact — and its clearing mechanism is impossible because a wax tablet imprint carries no ink to compare with Demetrios's ink.",
+      "citation": "\"bearing the partial imprint of the words '…third column, below the statue…' in neat, educated Latin script\" ... \"but Demetrios uses a different ink formulation\""
+    },
+    {
+      "code": "label.false",
+      "severity": "WARNING",
+      "claim": "E8 is labelled supporting and said to corroborate Oppius, but its closing inference is backwards — Calvus's death saves Oppius from denouncement, so shock at being spared is not evidence of anything.",
+      "citation": "\"which is consistent with a man who feared his co-conspirator had been silenced before the denouncement could be stopped\""
+    },
+    {
+      "code": "label.false",
+      "severity": "WARNING",
+      "claim": "E3 is labelled 'critical' but bears nothing tying it to Brocchus; its only link is to E1, whose authorship by Brocchus is itself contradictory, so it implicates no one in particular.",
+      "citation": "\"It does not belong to Calvus and bears no identifying inscription, but the ink stain on the outside matches the color and consistency of the ink used for the corrections on the forged probate scroll.\""
+    },
+    {
+      "code": "clue.uncaused",
+      "severity": "WARNING",
+      "claim": "E6 exists only because the plot needs it: a man who has concealed his military past from everyone would not keep his identifying discharge tablet in his employer's household records.",
+      "citation": "\"A bronze tablet retrieved from the household records of Livia Servilia\" versus \"He has told no one in his current social circle about this past, presenting himself only as a literate steward.\""
+    },
+    {
+      "code": "clue.uncaused",
+      "severity": "NOTE",
+      "claim": "E5's decisive callus observation has no plausible cause — a busy dock grain dealer recalling the palm-wear pattern of one grain customer is invention for the plot's benefit.",
+      "citation": "\"Apolonios also recalls the man's hands were calloused in an unusual pattern across the palm, consistent with long sword or knife grip rather than writing or domestic work.\""
+    },
+    {
+      "code": "method.impossible",
+      "severity": "BLOCKING",
+      "claim": "The wound count contradicts itself: the crime states seven stab wounds by a single assailant, the method states three thrusts, and no one accounts for the other four.",
+      "citation": "\"Senator Marcus Hortensius Calvus was stabbed seven times\" versus \"used his military blade skills to stab Calvus precisely and fatally in three rapid thrusts to the lungs and neck\""
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "The murder hour is stated three incompatible ways — mid-afternoon in the crime block, the midday hour in the bribed-patrol window, and before the sixth hour (noon) in the alibi evidence — so the forty-minute gap cannot be checked against it.",
+      "citation": "\"Shortly after the third hour past midday\" versus \"abandon his interior patrol of the Portico colonnade for thirty minutes during the midday hour\" versus \"departed well before the sixth hour\""
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "Naevius cannot both be corroborated at a fixed gate for the whole session and be absent from an interior patrol he was bribed to abandon; his alibi and his secret cancel each other.",
+      "citation": "\"Was stationed at the eastern gate of the Portico complex for the full session; his post is confirmed by two fellow soldiers\" versus \"to abandon his interior patrol of the Portico colonnade for thirty minutes\""
+    },
+    {
+      "code": "method.impossible",
+      "severity": "NOTE",
+      "claim": "The killer's care is self-defeating: he files the tang to erase identification, then leaves the weapon two feet from the corpse where the erasure is trivially reversed under lamplight.",
+      "citation": "\"the filing is recent, leaving bright metal scratches\" ... \"found wedged beneath the base of Pompey's statue, approximately two feet from the body\""
+    },
+    {
+      "code": "motive.insufficient",
+      "severity": "WARNING",
+      "claim": "Killing Calvus does not achieve the stated aim — the forged deed survives on the body, Oppius the co-conspirator survives, and the estate passes to Calvus's heirs — so the restoration logic driving a devoted steward to murder does not hold.",
+      "citation": "\"eliminating the only man who could enforce the fraudulent claim\""
+    },
+    {
+      "code": "motive.insufficient",
+      "severity": "NOTE",
+      "claim": "Naevius's bribe is priced absurdly low against the risk he himself names, which weakens the premeditation step built on it.",
+      "citation": "\"Naevius accepted a bribe of four silver denarii from an unnamed hooded figure the previous evening ... he told no one because it would mean flogging or execution\""
+    },
+    {
+      "code": "clue.uncaused",
+      "severity": "NOTE",
+      "claim": "The historical staging is wrong in ways players versed in the period will trip over: the Curia Hostilia had burned down in 52 BC, the Senate that day sat in the Curia of Pompey, and no Praetorian cordon policed the city in 44 BC.",
+      "citation": "\"The marble Senate chamber is thick with incense smoke and the murmur of two hundred senators\" ... \"Praetorian tribunes have sealed every gate on orders from the Consul\""
+    },
+    {
+      "code": "delivery.prompt_not_recorded",
+      "severity": "NOTE",
+      "claim": "Delivery cannot be judged because the requesting prompt was not stored with this scenario.",
+      "citation": "\"setting_input\": \"Ancient Rome, 44 BC, Senate chamber and surrounding forums\""
+    }
+  ],
+  "_usage": {
+    "input_tokens": 7421,
+    "output_tokens": 9573,
+    "model": "claude-opus-5",
+    "stop_reason": "end_turn",
+    "cost_usd": 0.2764
+  },
+  "_source": "daggers_in_the_forum__the_ides_of_march_1773338768.json"
+}
