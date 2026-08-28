@@ -3182,6 +3182,59 @@ cited item number resolving to nothing. It found a real dangling reference on it
 `SESSIONS.md` states what was decided when, `docs/DECISIONS.md` states why a numbered item exists.
 A "superseded" marker inside `CLAUDE.md` is the signal that the text has become history.
 
+### Third part — WIRING.md, solvability, and the F5 walkthrough
+
+Owner set three next steps in order. All three landed.
+
+**1. `docs/WIRING.md`.** Not rewritten — it is a reference and its length is earned. What it lacked
+was any signal about which parts describe running code, so every section now carries a status
+(LIVE / BUILT, NEVER RUN / NOT BUILT / DEFERRED) with an index at the head. Three claims were
+false: the cinematic-brief trigger was documented as a Streamlit checkbox in *app.py* and a
+`--cinematic` flag in *cli.py*, **both of which are in `deprecated/`** and were retired with the
+Godot migration; the Localization section said *"Always runs"* and then, 37 lines later, that the
+call is skipped for modern settings (the second is right); and the data flow still said a
+1,469-part corpus against a registry holding 5,990 parts over 573 sources.
+
+`check_doc_claims.py` gained the check that would have caught the first: it verified a referenced
+file exists *somewhere*, so `app.py` passed on the strength of `deprecated/app.py`. It now fails a
+reference resolving **only** into `deprecated/` unless the prose names it — which is why CLAUDE.md
+can still list every file in there by name.
+
+**2. Solvability as arithmetic (§4).** Built §4's proposed free interim check
+(`scripts/check_solvability.py`) and ran it on all 17 generated mysteries. **The proposed check
+finds nothing** — 0 of 17 list a key item the reasoning ignores. **The gap is the other way, in 16
+of 17:** the reasoning cites evidence `key_evidence` does not contain, 55 items in total, up to 6
+in one mystery. That matters because APF's constrained deal is specified over "the evidence that
+proves the case"; read from `key_evidence`, the deal can satisfy all three of its constraints and
+still leave the player short of what the solution reasons from.
+
+Two measurements bound the `exonerates` change: **86% of non-culprit suspects are already named in
+the reasoning**, so the field formalises existing prose rather than asking for something new; and
+**16 of 17 mysteries have 2–3 suspects against the four `PLAYTEST_FLOW` specifies** — not
+cosmetic, because eliminating to one needs S−1 exonerations, so the suspect count caps how many
+findings are provably load-bearing and therefore how many players can hold one.
+
+Also found: **PLAYTEST_FLOW's third deal constraint is not well-formed.** *"Becomes solvable once
+the minimum share threshold is met"* — but `share_min` is a minimum *fraction of a player's own
+findings* and the player picks which, so meeting it does not determine what reaches the pool, and
+they will withhold the most valuable item, which is the mechanic working. Three options written up
+for the owner; all are deal-time set arithmetic and none costs an API call.
+
+**3. `docs/F5_CHECKLIST.md` rebuilt as one linear procedure**, 21 steps, every terminal command
+included — clone, venv, pip, the free checker suite, uvicorn, the curl health check, port
+conflicts, the key export for the paid steps. The old document put setup in an appendix, including
+a section headed *"Step 0 — do this first"* that sat **after step 17**; the renumbering is recorded
+so Session 36's walked steps 1–15 map to 9–19. Stale facts fixed: three autoloads became four, and
+the missing-icon noise entry is gone because the icon path is now unset.
+
+**The documented commands were run verbatim rather than written from memory**, which caught one:
+globbing `scripts/check_*.py` sweeps in `check_brand_contrast.py`, which measures `brand/` artwork,
+needs Pillow, and exits non-zero without it. A red line the reader is told to ignore is worse than
+no line, so the loop names its checkers explicitly and says why.
+
+**Files (third part):** `docs/WIRING.md`, `docs/INVESTIGATION_DESIGN.md`, `docs/F5_CHECKLIST.md`
+(rebuilt), `scripts/check_solvability.py` (new), `scripts/check_doc_claims.py`, `CLAUDE.md`.
+
 **Files (second half):** `CLAUDE.md` (rewritten, 1,009 → 405), `docs/DECISIONS.md` (new),
 `docs/INVESTIGATION_DESIGN.md`, `scripts/check_decisions.py` (new).
 
