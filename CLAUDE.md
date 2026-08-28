@@ -879,7 +879,8 @@ Older items, kept for history:
     to the title inherits whatever the current failure rate is. Worth one real generation run to
     confirm before building on top of it.
 
-21. **[OPEN — found Session 35, August 25 2026] The investigation phase can DEADLOCK, and it is
+21. **[CLOSED BY APF — found Session 35; superseded by item 23. Kept because the diagnosis is
+    the reason APF exists.] The investigation phase can DEADLOCK, and it is
     not an edge case.** Sharing is the only exit from a phase (`player["phase"]` advances in
     exactly one place, inside `share_findings`); you cannot share nothing
     (`if not all_findings: raise HTTPException(400, …)`); and every area can be blocked before you
@@ -888,9 +889,14 @@ Older items, kept for history:
     wants more investigations than there are areas — MEDIUM 4-player wants 8 against 5; HARD
     8-player wants 16. Root cause is the **phase gate** (lines 2076/2130/2363), not the block
     pool: a player locked into `investigation` cannot do the witness or lead work sitting right
-    there. **This is a stage-1 playtest-killer** — it ends with someone staring at a screen that
-    rejects every button. Fixes, in `docs/INVESTIGATION_DESIGN.md` §5; the cheapest correct one is
-    to make the exit condition *"you are done acting"* rather than *"you found something."*
+    there. It **was** a stage-1 playtest-killer — it ends with someone staring at a screen that
+    rejects every button.
+
+    **Do not go and fix this.** APF deals findings instead of letting players gather them, so
+    there is no phase to be trapped in, nothing to block, and every player holds findings by
+    construction. The mechanic that carries the bug is gone (`docs/INVESTIGATION_DESIGN.md` §5,
+    fix 0). The diagnosis stays on the record because the phase gate returns with any future
+    gathering mechanic, and because it is the clearest single argument for APF.
 
 18. **[OPEN — found Session 34, August 21 2026] A BLOCKING coherence report does not stop a
     mystery being saved, served, or played.** Not a coherence-engine failure — the opposite. The
