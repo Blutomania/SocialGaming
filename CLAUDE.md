@@ -174,7 +174,8 @@ game lifecycle (`/games/create`, `/join`, `/start`), play (`/interrogate-witness
 | `docs/F5_CHECKLIST.md` | The hand-walk procedure for the Godot client, and which steps have actually been walked |
 | `docs/AI_COST_PLAYBOOK.md` | Measured economics. Read before adding a schema field, a play-time call, or a re-extraction |
 | `docs/EXTRACTION_TROUBLESHOOTING.md` | Every extraction failure mode and its fix |
-| `docs/DECISIONS.md` | Items 1–25 with full reasoning |
+| `docs/COHERENCE_PRIMER.md` | Plain-language explanation of the two kinds of coherence, backwards generation, and what is still unchecked. Written for re-reading, not for detail |
+| `docs/DECISIONS.md` | Items 1–26 with full reasoning |
 | `RESEARCH_FINDINGS.md`, `SCREEN_CRAFT_FINDINGS.md`, `PARTY_CRAFT_FINDINGS.md` | Craft grounding — prose, screen, and party-game taxonomies |
 | `SOURCING_METHODOLOGY.md` | Confidence tiers and the corroboration rule for the three above |
 
