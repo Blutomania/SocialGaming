@@ -314,7 +314,15 @@ is history, and items 22, 24 and 25 are now done.**
     2. the constrained deal — pure computation, re-dealable at zero cost
     3. the share decision, the suspect board, the reveal
     4. `cinematic_brief: bool = True` for the paced text opening
-    Five design questions remain open and are the owner's — `docs/INVESTIGATION_DESIGN.md` §6.
+    **[Session 38] One design question remains open, not five** — `docs/INVESTIGATION_DESIGN.md`
+    §6 has been reconciled with APF. Four of the five were closed by APF rather than answered
+    (they assumed traversal, blind exploration, player positions and an investigation budget,
+    all of which APF deletes); the survivor is **titles that spoil** — a player title like
+    *"Why did Hansel Grimm kill Gretel Grimm"* names the culprit, and generation must treat
+    that as premise or as misdirection by decision rather than by accident.
+    Owner also decided the question that was really underneath question 1: **no crime-scene
+    picture for the playtest** — a list of named findings, per §6's option (a). The map is
+    deferred, not cancelled, and the round-robin witness placement stays a real bug regardless.
 
 24. **[DONE, Session 37 — August 26, 2026] One palette, three surfaces.** The client had no
     styling at all; the phone had a palette it invented; the brand documented a third and was

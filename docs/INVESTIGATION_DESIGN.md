@@ -7,6 +7,13 @@ game underneath it.
 
 Read `docs/PLAYTEST_FLOW.md` first for the screens as they stand today.
 
+> **[Session 38 — August 28, 2026] Reconciled with APF.** This document was written alongside APF
+> and parts of it pre-date the deletions APF makes, so it contradicted itself in three places about
+> the map, the deadlock and the build order. §5, §6 and §7 now say which of their contents APF
+> closed and which survive. **Only one open question remains** (§6.5, titles that spoil); the other
+> four were closed by APF rather than answered. Nothing was deleted — a closed question keeps its
+> reasoning, because the reasoning is what makes it re-openable if APF ever is.
+
 ---
 
 ## 1. The crime scene is not a floor plan
@@ -59,6 +66,17 @@ Three candidates, in ascending cost:
 
 **Owner is stewing on this.** Provenance looks like the natural fit given §3, and it costs
 nothing extra.
+
+> **[RESOLVED, Session 38 — August 28, 2026.] Not decided; closed by APF.** Two of the three
+> readings lost the mechanic they described. *Narrative access* is traversal, and APF deletes
+> traversal. *Provenance* is generated entirely by §3's growing pool — a hotel key opening a hotel
+> room — and APF deals findings rather than letting players gather them, so nothing reveals
+> anything and there is no provenance to draw. Only *relationship* survives, and *relationship* is
+> defined here as "the map is a picture, not a mechanic" — the same conclusion the correction
+> below reaches independently.
+>
+> **The owner's actual decision (Session 38) went further: no map at all for the playtest.** See
+> §6.
 
 ### Correction (owner, later the same session): top-down is NOT rejected — rectangle-packing is
 
@@ -174,7 +192,9 @@ Name tags in the wolf's clothing.
   nothing to share, which means excluded from the social loop and unable to advance.
 - **The deadlock cannot occur.** The pool grows faster than it is consumed. No player arrives at
   an exhausted board. That is a structural fix, not a patch.
-- **It answers "what is a line"** — provenance.
+- ~~**It answers "what is a line"** — provenance.~~ **[Superseded, Session 38.]** True only
+  while the growing pool exists. APF deletes it, which takes provenance with it — see the
+  resolution note in §1 and §6.
 
 The generation prompt already agrees with the no-toil principle: *"Every area must yield
 something; an area that yields nothing wastes the only move a player gets there."* The interface
@@ -283,7 +303,11 @@ mostly do not need to buy.**
 
 ---
 
-## 5. The deadlock (live today, stage-1 blocking)
+## 5. The deadlock (superseded by APF — kept because the analysis is still the record)
+
+> **[Session 38] Not a live blocker.** Fix 0 below is the decision: APF deletes the mechanic that
+> carries the bug. The diagnosis is kept because it is the reason APF exists and because the phase
+> gate would return with any future gathering mechanic.
 
 Three facts in `server/main.py`:
 
@@ -328,34 +352,82 @@ innocent bystanders are the point — so the fix is never "add just enough conte
 
 ---
 
-## 6. Open questions — all owner's
+## 6. Open questions
 
-1. **What a line means** (§1) — relationship, provenance, or narrative access.
-2. **Affordance display** — show counts, or only presence? Counts turn blind exploration into
-   informed allocation, and make an empty location visibly dead.
-3. **Player position visibility.** Today only *shared* findings are public. Showing "the Track
-   has been searched" is safe; showing "Priya is at the Track" gives away information the sharing
-   mechanic never sold. Both defensible, not the same choice.
-4. **Budget model** — one pool of N spendable anywhere, or the three separate allowances.
-5. **Titles that spoil.** Player titles now feed generation, and *"Why did Hansel Grimm kill
-   Gretel Grimm"* names the culprit. That is a whydunit — a legitimate form, a different game.
-   Generation should treat such a title as premise or as misdirection **by decision, not by
-   accident.**
+**[Reconciled, Session 38 — August 28, 2026.] Four of the five questions below were written in
+Session 35 and were CLOSED BY APF, not answered.** They are kept, struck through, with what closed
+each — deleting them would lose the reason, and the reason is the useful part.
+
+**Why this drifted:** `CLAUDE.md` item 23 already reduced §7's build order for APF ("Order … reduced
+by APF"). Nobody did the same pass on this section. The build order knew about APF; the open
+questions did not, so a reader arriving here worked through four decisions that no longer have a
+mechanic attached. That is a documentation failure, not a design one.
+
+| # | Question | Closed by |
+|---|---|---|
+| 1 | ~~What a line means — relationship, provenance, or narrative access~~ | *Narrative access* is traversal; *provenance* comes only from §3's growing pool. APF deletes both. Only "the map is a picture, not a mechanic" survives — and the owner then removed the map from the playtest entirely (below). |
+| 2 | ~~Affordance display — counts, or only presence~~ | Its own justification was *"turns blind exploration into informed allocation."* APF deletes blind exploration. |
+| 3 | ~~Player position visibility~~ | Presumes players are *at* locations. Nobody has a position under APF; there is no movement to reveal. |
+| 4 | ~~Budget model — one pool of N, or three separate allowances~~ | The investigation budget is on APF's deletion list (`docs/PLAYTEST_FLOW.md` → "What this deletes outright"). |
+
+### The question that was actually underneath question 1 — DECIDED
+
+APF removes exploration, which creates the problem §1 names in passing: *"the 'not just text'
+problem APF creates."* So the live question was never what a line means; it was whether there is a
+picture at all.
+
+> **Does the APF playtest show a picture of the crime scene, and may it mean anything?**
+>
+> **(a) No picture** — a list of named findings. §3 already sanctions it: *"Round 1 shows five
+> named options; you pick. No map required."*
+> **(b) Orientation art only** — labelled markers at seeded positions on a plain ground. No lines,
+> no claims, no mechanic. Costs dev time, not API spend: `crime_scene_map.py` renders locally.
+> **(c) A map that carries information** — requires reinstating a mechanic APF deleted. Stage 3.
+
+**Decision (owner, Session 38): (a), for now.** Owner's reasoning: anything beyond it adds cost for
+minimal play-testing benefit. Nothing is thrown away — §3's *"ship the playtest as a list, add the
+map after"* still holds, and (b) remains the cheap upgrade if a real player finds the screen bare.
+
+**One thing this decision does NOT dispose of.** The witness-placement bug is orthogonal to whether
+a map is drawn: `area = placed[i % len(placed)]` is round-robin whether you render rooms, a region,
+or nothing at all. It fabricates a fact about where a witness was. Drawing no map hides it; it does
+not fix it, and it still wants a real `area_id` from generation before any map returns.
+
+### 5. Titles that spoil — THE ONE STILL OPEN
+
+Player titles now feed generation, and *"Why did Hansel Grimm kill Gretel Grimm"* names the culprit.
+That is a whydunit — a legitimate form, a different game. Generation should treat such a title as
+premise or as misdirection **by decision, not by accident.**
+
+Untouched by APF: it is a property of the title→generation path, which APF does not change. This is
+the only question in this section that is still a question.
 
 ---
 
 ## 7. Build order
 
+**[Reduced by APF, Session 35; written down here Session 38.]** This now matches `CLAUDE.md`
+item 23, which was the only place the reduced order existed. The Session 35 table it replaces is
+below it, with what happened to each row.
+
 | # | Step | Why here |
 |---|---|---|
-| 1 | Deadlock fix (§5, option 2 or 3) | Live stage-1 blocker, independent of everything else |
-| 2 | `how_to_deduce` ID-coverage check (§4) | Free, no schema change, catches bad generations now |
-| 3 | `area_id` on witnesses + evidence (§2) | One additive schema change, unblocks §4's reachability rule and kills the fabricated placement |
-| 4 | `exonerates` / `implicates` + the set check (§4) | The solvability proof |
-| 5 | Growing option pool, as a **list** (§3) | The playable shape; no map needed |
-| 6 | Connection map (§1) | Presentation, once there is history worth drawing |
+| 1 | `exonerates` / `implicates` on evidence + the set-arithmetic solvability check (§4) | The solvability proof, and the funding pillar's strongest form. Everything else assumes it. |
+| 2 | The constrained deal | Pure computation, deterministic, re-dealable at zero cost. Needs step 1's fields to check its own constraints. |
+| 3 | The share decision, the suspect board, the reveal | The 75% mechanic with nothing in front of it — the thing the playtest exists to test. |
+| 4 | `cinematic_brief: bool = True` for the paced text opening | Presentation. Last because a bare opening still plays. |
 
-Steps 1–4 are stage 1. Steps 5–6 are the shape stage 3 grows into.
+Steps 1–4 are the whole of stage 1. There is no stage-1 map.
+
+### What dropped out of the Session 35 order, and why
+
+| Was | Now |
+|---|---|
+| 1 — Deadlock fix | **Gone.** APF deletes the mechanic that has the bug (§5, fix 0). |
+| 2 — `how_to_deduce` ID-coverage check | **Still free and still worth running**, but off the critical path: it catches sloppy generations, it does not build the loop. Do it whenever. |
+| 3 — `area_id` on witnesses + evidence | **Deferred with the map.** Under APF the constrained deal guarantees reachability directly — a finding is in somebody's hand or it is not dealt — so §4's reachability rule no longer needs area data. It returns when a map does, and the round-robin witness placement is still wrong until then (§6). |
+| 5 — Growing option pool | **Gone.** APF deals findings instead of unlocking them. |
+| 6 — Connection map | **Deferred.** §6 decision (a): no picture for the playtest. |
 
 **Token cost of the schema additions is not a constraint.** A full generation measures ~7,200
 tokens against a 16,000 ceiling; the fields above add a few hundred.
