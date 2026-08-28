@@ -311,11 +311,17 @@ still could not get there. So before the deal is built, one of these has to happ
 - **86% of non-culprit suspects are already named in the reasoning** (26 of 30). Elimination is
   mostly being written as prose already, so `exonerates` formalises something generation does
   rather than asking for something new — a much cheaper schema change than it looked.
-- **16 of 17 mysteries have fewer than four suspects** — 2 or 3, against the four
-  `docs/PLAYTEST_FLOW.md` specifies. This is not cosmetic. Eliminating down to one needs **S−1**
+- **16 of 17 mysteries have 2 or 3 suspects**, against the four `docs/PLAYTEST_FLOW.md` specifies —
+  **but that is a corpus-age artefact, not a generation fault.** The prompt rule *EXACTLY 4
+  suspects* was added on 2026-08-21 (`145877d`); sixteen of the seventeen were generated in March
+  under the older prompt. **The single mystery generated under the current prompt has exactly
+  four.** Re-measure after the next few generations before concluding anything.
+
+  The arithmetic matters regardless of which way that lands. Eliminating down to one needs **S−1**
   exonerations, so the suspect count is a hard ceiling on how many findings can be *provably*
-  load-bearing, and therefore on how many players can hold one. **At 3 suspects, exactly 2 findings
-  are load-bearing, so in a 4-player game at most half the room holds anything the proof needs.**
+  load-bearing, and therefore on how many players can hold one. **At 3 suspects exactly 2 findings
+  are load-bearing, so in a 4-player game at most half the room holds anything the proof needs; at
+  4 suspects it is 3, which is why the spec says four.**
 
 ### [Session 38] The third deal constraint is not achievable as written
 

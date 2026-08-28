@@ -164,9 +164,15 @@ def main() -> int:
               f"something new.")
     print(f"  {len(thin)}/{n} have fewer than the four suspects "
           f"docs/PLAYTEST_FLOW.md specifies.")
-    print("     Eliminating to one needs S-1 exonerations, so S bounds how many "
-          "findings can\n     be provably load-bearing -- and how many players "
-          "can hold one.")
+    print("     READ THAT CAREFULLY BEFORE CONCLUDING ANYTHING. The prompt rule")
+    print("     'EXACTLY 4 suspects' was added 2026-08-21; almost every mystery on")
+    print("     disk was generated in March under the older prompt and predates it.")
+    print("     The one generation made under the current prompt has exactly 4. So")
+    print("     this is a corpus-age artefact, not evidence that generation ignores")
+    print("     the spec -- re-measure after the next few generations.")
+    print("     The arithmetic still matters either way: eliminating to one needs")
+    print("     S-1 exonerations, so S bounds how many findings can be provably")
+    print("     load-bearing, and therefore how many players can hold one.")
     return 0
 
 
