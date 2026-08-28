@@ -1,54 +1,71 @@
 # Choose Your Mystery — Claude Code Instructions
 
-## Project Overview
-AI-powered social murder mystery party game. Players join a lobby, investigate crimes,
-interrogate AI characters, share clues (75% mechanic), and compete to solve the case first.
+## How to read this file
 
-**Target:** Multiplayer standalone / Steam release.
-**Distribution:** Steam (GodotSteam SDK for Phase 4). One-time $100 Steam fee per title.
-**Architecture:** Godot 4.x client + Python FastAPI backend (AI calls). No HuggingFace.
+**This file says what is true now.** It is loaded into every session, so it holds only what a
+session needs before it starts working: what the product is, how it is built, what the current
+stage is, and what is open.
 
-Core innovation: the **75% information-sharing mechanic** — when a player shares a clue,
-it reaches exactly 75% of other players (randomly), forcing collaboration while preserving
-individual advantage.
+| Where | Holds |
+|---|---|
+| **`CLAUDE.md`** (here) | What is true now, and what is open. |
+| **`docs/DECISIONS.md`** | Every numbered work item, 1–25, with its full reasoning. *Why is it like that? Has this been tried?* |
+| **`SESSIONS.md`** | What was decided when, session by session. Append-only; never edited to match a later truth. |
 
-Current phase: **Phase 3d — Lobby flow, room codes, QR display on host screen**.
+**Item numbers are stable.** "Item 17" means the same thing in this file, in `docs/DECISIONS.md`,
+in six files under `docs/`, and in source comments. Never renumber one.
+
+**When a statement here needs a "superseded" marker, it has become history** — move it to
+`docs/DECISIONS.md` and state the current truth here instead. Session 38 rewrote this file because
+that rule had not been followed: it had reached 1,003 lines, 60% of it archive, and its own opening
+paragraph contradicted its item 11.
+
+**Backtick-quoting a string here or in `docs/` is a CLAIM that the product contains it**, enforced
+by `scripts/check_doc_claims.py`. To mention a string without asserting it exists — a retired
+label, an illustrative pattern — use italics, or add it to that script's `ALLOWED_LITERALS` with a
+reason.
 
 ---
 
-## Delivery Priority (owner, Session 34 — August 21, 2026)
+## Project Overview
 
-**The order is: PC playtest → funding → phone + robust gen-AI calls.** Owner's words, and their
-caveat: *"obviously it can change."* Treat this as the current sequence, not a contract — but do
-check work against it before starting, because it changes what counts as a blocker.
+AI-powered social murder mystery party game. Players join a room, receive findings about a
+generated crime, decide which findings to share and which to keep, and compete to accuse the
+culprit first.
 
-| # | Stage | What it means in this repo |
-|---|---|---|
-| 1 | **PC playtest** | The Godot desktop client is the **only** surface that has to work. Get a human through a whole game on one machine. |
-| 2 | **Funding** | The playtest is evidence for the pitch. The studio-engine pillars (coherence engine, corpus) need to be real, which they now are. |
-| 3 | **Phone + robust gen AI** | `server/static/mobile.html`, the room-first prompt flow, moderation that survives Steam, and the BACKGROUND work in item 17. |
+**Target:** multiplayer standalone, Steam release.
+**Stack:** Godot 4.x desktop client + Python FastAPI backend. All Claude calls are server-side.
+**HuggingFace:** retired. The `hf-deploy` orphan branch is stale.
 
-**What this reprioritises, concretely — read before calling something a gap:**
+### The core mechanic — and what it actually is
 
-- **Phone-client gaps are not blockers.** `mobile.html` has no prompt entry box, no mystery list,
-  and no lobby suggestion UI. All true, all fine until stage 3.
-- **Saved-mystery reuse staying single-player is correct, not an oversight** (owner confirmed when
-  it was raised as a next step). The browse list loads a mystery into `CaseDisplay`; it does not
-  route through `create_game(mystery_slug=…)`. Group replay is a stage-3 feature even though the
-  server has supported it since Session 26.
-- **Moderation stays as decided** — none, with the visible "Not moderated for play testing"
-  disclaimer. That is a stage-1 answer by construction; the Steam answer is stage 3.
-- **Nothing already built gets removed.** The multiplayer server work (lockstep rounds, the 8
-  endpoints, prompt voting, same-room replay) stays exactly as it is. It is not being extended,
-  only not being extended *yet*.
-- **New API cost needs a reason that serves stage 1.** The P1P2 re-extraction (item 12), the 11
-  held-back anthologies and the 7 all-null extractions (item 7) are all real work that buys
-  nothing a playtester will notice.
+The design intent is **selective information sharing**: what you give away helps the room and
+costs you your edge. Everything else in the product exists to set up that one decision.
 
-**The playtest gameflow is specified in `docs/PLAYTEST_FLOW.md`** (owner, Session 34) — the
-seven screens, the decisions behind them, the one-call cost shape, and the build order. Read it
-before touching any playtest-path screen; it supersedes the older Phase 2/3 screen descriptions
-in this file wherever they disagree, for playtest purposes only.
+**It is NOT a "75% mechanic", and no code has ever implemented one.** This file asserted for
+many sessions that a shared clue "reaches exactly 75% of other players (randomly)". Session 21
+found no such code and item 11 recorded it; the opening paragraph was never corrected, so the
+false version stayed in the first thing every session read. What `server/main.py` really has is a
+**player-chosen share level against a per-difficulty minimum**, with no randomness at all:
+
+| Difficulty | `share_min` |
+|---|---|
+| EASY | 0.70 |
+| MEDIUM | 0.60 |
+| HARD | 0.50 |
+
+If a random-broadcast mechanic is wanted, it is unbuilt design work, not a regression.
+
+---
+
+## Where the project is now
+
+**Stage 1 of the delivery priority: get one human through one whole mystery on one PC.**
+
+The current build is item 23 — **APF ("All Provided For")**, specified in `docs/PLAYTEST_FLOW.md`.
+Findings are **dealt, not gathered**: no traversal, no exploration, no investigation budget, no
+phase gates. That is a deliberate reduction to the sharing decision, and it deletes several
+problems rather than fixing them — see `docs/INVESTIGATION_DESIGN.md` §5–§7.
 
 **The stage-1 test is blunt:** can somebody who is not the owner sit at a PC, start the game, play
 a whole mystery, and reach the result screen without a Godot error? Anything that fails that is
@@ -56,31 +73,70 @@ urgent; anything that does not, is not.
 
 ---
 
+## Delivery Priority (owner, Session 34)
+
+**PC playtest → funding → phone + robust gen-AI.** Owner's caveat: *"obviously it can change."*
+Treat it as the current sequence, not a contract — but check work against it before starting,
+because it decides what counts as a blocker.
+
+| # | Stage | What it means here |
+|---|---|---|
+| 1 | **PC playtest** | The Godot desktop client is the **only** surface that has to work. |
+| 2 | **Funding** | The playtest is evidence for the pitch. The studio-engine pillars (coherence engine, corpus) need to be real, which they now are. |
+| 3 | **Phone + robust gen AI** | `server/static/mobile.html`, the room-first prompt flow, moderation that survives Steam, and item 17's BACKGROUND work. |
+
+**Read this before calling something a gap:**
+
+- **Phone-client gaps are not blockers.** `mobile.html` has no prompt entry box, no mystery list
+  and no lobby suggestion UI. All true, all fine until stage 3.
+- **Saved-mystery reuse being single-player is correct, not an oversight.** The browse list loads a
+  mystery straight into `CaseDisplay.tscn`. The server has supported group reuse since Session 26
+  (`mystery_slug` on game creation); no UI reaches it, deliberately.
+- **Moderation stays as decided** — none, with the visible *Not moderated for play testing*
+  disclaimer. A stage-1 answer by construction; the Steam answer is stage 3.
+- **Nothing already built gets removed.** The multiplayer server work stays exactly as it is. It is
+  not being extended *yet*.
+- **New API cost needs a reason that serves stage 1.**
+
+---
+
 ## Architecture
 
 ```
-┌─────────────────────────────────────────────────────┐
-│  Godot 4.x Client (godot/)                          │
-│  GDScript — game UI, input, multiplayer networking  │
-│  Talks to backend over HTTP (ApiClient.gd autoload) │
-└─────────────────┬───────────────────────────────────┘
-                  │ HTTP JSON
-┌─────────────────▼───────────────────────────────────┐
-│  Python FastAPI Server (server/)                    │
-│  POST /generate  — mystery generation               │
-│  POST /interrogate — NPC in-character replies       │
-│  POST /rate      — viability rating persistence     │
-│  GET  /mysteries — list saved mysteries             │
-│  GET  /mysteries/{slug} — load saved mystery        │
-│  Wraps: part_registry, coherence_validator,         │
-│         localization, mystery generation logic      │
-└─────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────┐
+│  Godot 4.x desktop client (godot/)  — the host / TV screen    │
+│  GDScript 2.0. Four autoloads: GameState, ApiClient,          │
+│  NetworkManager, Style.  Eight .tscn screens.                 │
+└───────────────┬──────────────────────────────────────────────┘
+                │ HTTP JSON  (ApiClient.gd)
+┌───────────────▼──────────────────────────────────────────────┐
+│  Python FastAPI server (server/)                              │
+│  31 routes. Generation, interrogation, game sessions,         │
+│  lockstep rounds, prompt voting, results, replay.             │
+│  Wraps part_registry, coherence_validator, localization,      │
+│  craft_grounding.                                             │
+└───────────────┬──────────────────────────────────────────────┘
+                │ WebSocket  /ws/{game_id}
+┌───────────────▼──────────────────────────────────────────────┐
+│  Phone client — server/static/mobile.html, served at /play    │
+└──────────────────────────────────────────────────────────────┘
 ```
 
-**Multiplayer:** Godot's built-in ENet (dedicated server model). Room codes like Jackbox.
-**AI backend:** All Claude API calls server-side — API key never in client.
-**HuggingFace:** Retired. The `hf-deploy` orphan branch is stale.
-**Steam:** Phase 4 — GodotSteam plugin. Defer until multiplayer prototype is stable.
+**Route groups in `server/main.py`** (31 total — do not assume this list is short; check the file):
+generation (`/generate`, `/generate/async`, `/jobs/{job_id}`), saved mysteries (`/mysteries`),
+game lifecycle (`/games/create`, `/join`, `/start`), play (`/interrogate-witness`,
+`/investigate-area`, `/follow-lead`, `/share-phase`, `/accuse`), lockstep rounds (`/round/open`,
+`/round/submit`, `/round/resolve`, `/round/status`), replay (`/prompts/submit`, `/prompts/tiebreak`,
+`/next-mystery/start`), plus `/health`, `/rate`, `/play` and the WebSocket.
+
+**Two transports exist, and only one is live.**
+
+| | Status |
+|---|---|
+| **FastAPI WebSocket** (`/ws/{game_id}`) | **Live.** `mobile.html` connects to it. This is the multiplayer path. |
+| **Godot ENet** (`NetworkManager.gd`) | **Registered as an autoload and called by nothing.** No `.gd` or `.tscn` outside the file itself references it. Desktop-only by nature — browsers block UDP, so a Godot web export would need `WebSocketMultiplayerPeer` instead. |
+
+**Steam:** Phase 4, GodotSteam plugin. Deferred until the prototype is stable.
 
 ---
 
@@ -88,922 +144,263 @@ urgent; anything that does not, is not.
 
 | File | Purpose |
 |---|---|
-| `server/main.py` | FastAPI backend — all AI endpoints |
+| `server/main.py` | FastAPI backend — every route and every Claude call site |
+| `server/static/mobile.html` | The phone client, served at `/play` |
 | `server/requirements.txt` | Server Python deps |
 | `server/Dockerfile` | Container for deployment |
-| `godot/project.godot` | Godot 4 project root |
-| `godot/scripts/autoloads/GameState.gd` | Singleton: current mystery, phase, history |
-| `godot/scripts/autoloads/ApiClient.gd` | HTTP wrapper for backend calls |
-| `godot/scripts/autoloads/NetworkManager.gd` | ENet multiplayer singleton |
-| `godot/scripts/data/MysteryData.gd` | Typed GDScript wrapper for mystery JSON |
-| `godot/scenes/ui/` | All UI scenes (MainMenu → Generation → Case → Interrogation → Accusation) |
-| `part_registry.py` | 1,469-part corpus; sampling logic; `load_registry()` also loads every JSON in `mystery_database/extractions/` live at runtime |
-| `coherence_validator.py` | P1 causal-chain + witness + evidence checks (free — no API call) |
-| `icons/` | Source artwork for the clue and witness icon sets, one folder per set. `scripts/build_icons.py` flattens each to a single value and generates the Godot and phone copies; `godot/scripts/theme/Icons.gd` decides which icon a thing gets, and its header explains why that must carry no information. |
-| `palette.py` | **The one place a colour is decided.** Slate ground, surface ramp, ink, brass, semantics, type/space/radius scales, and a 28-pair WCAG contrast contract. Nothing renders from it directly — `scripts/build_palette.py` generates `godot/scripts/theme/Palette.gd` and `mobile.html`'s CSS block from it, and `--check` fails on drift. Read before changing any colour anywhere. |
-| `godot/scripts/autoloads/Style.gd` | Builds the global Theme from `Palette.gd` and puts it on `get_tree().root`, which every Control inherits — so all 8 screens restyle with no `.tscn` node tree edited. Hand-written; regenerating the palette never touches it. |
-| `localization.py` | Era-appropriate name/occupation localization with 3-tier disk cache |
-| `extraction_protocols.py` | P1–P4 taxonomy definitions — still active, used by `scripts/extract_from_pdfs.py` |
-| `scripts/extract_from_pdfs.py` | Sanctioned way to add a **single new source** (e.g. a PDF) to the live corpus — extracts P1 parts, writes to `mystery_database/extractions/`. Distinct from the frozen bulk pipeline below. Invoke with `python3`, not `python` (this environment has no `python` alias). Add `--anthology` for a short-story collection PDF (one novel-narrative sampling per file otherwise) — detects per-story boundaries and extracts each story as its own corpus source with its own full text; always `--dry-run` an anthology first to review the detected split before spending API calls. |
-| `docs/F5_CHECKLIST.md` | **The hand-walk procedure for the Godot client** — 17 steps, free ones first, with the exact expected values per screen. Read before running the client; it also records which steps have actually been walked. |
-| `docs/INVESTIGATION_DESIGN.md` | **The investigation model** (Session 35) — connection map over floor plan, locations as containers, the narrative-driven growing option pool, and solvability as set arithmetic. Read before touching the map, the round system, or the coherence engine's solvability rules. |
-| `docs/WIRING.md` | **Canonical generation architecture** — read before touching generation |
-| `SESSIONS.md` | Session-by-session history and full to-do list |
-| `RESEARCH_FINDINGS.md` | Writer-grounded mystery taxonomy (C1–C6, M1–M8, F1–F12) — prose novelists |
-| `SCREEN_CRAFT_FINDINGS.md` | Companion to above: film/TV directors & screenwriters craft grounding |
-| `PARTY_CRAFT_FINDINGS.md` | Companion to above: live/social-deduction game mechanics grounding |
-| `SOURCING_METHODOLOGY.md` | Shared sourcing discipline (confidence tiers, corroboration rule) for the three craft-grounding docs above, and the process for adding a new media type |
-| `craft_grounding.py` | Retrieval layer over the craft-grounding docs — parses them into a confidence-tiered index and feeds relevant guidance into all five generation call-sites in `server/main.py`. See `docs/WIRING.md` → "Craft-grounding retrieval (RAG layer)" before touching this. |
+| `godot/project.godot` | Godot project root; autoload registry; ground clear colour |
+| `godot/scripts/autoloads/GameState.gd` | Current mystery, phase, history |
+| `godot/scripts/autoloads/ApiClient.gd` | HTTP + WebSocket wrapper for the backend |
+| `godot/scripts/autoloads/NetworkManager.gd` | ENet singleton — present, unwired (see Architecture) |
+| `godot/scripts/autoloads/Style.gd` | Builds the global Theme from `Palette.gd` and puts it on the scene-tree root, so all eight screens restyle with no `.tscn` edited. Hand-written; palette regeneration never touches it |
+| `godot/scripts/theme/Palette.gd` | **Generated** from `palette.py` — do not hand-edit |
+| `godot/scripts/data/MysteryData.gd` | Typed wrapper for mystery JSON |
+| `godot/scenes/ui/` | The eight screens: MainMenu, MysteryGeneration, Lobby, CaseDisplay, Interrogation, ShareSelection, Accusation, ResultScreen |
+| `godot/scripts/tools/` | `EditorScript`s — run inside the engine, File → Run. See the checker tables below |
+| `palette.py` | **The one place a colour is decided.** Ground, surface ramp, ink, brass, semantics, type/space/radius scales, and a 28-pair WCAG contrast contract. Read before changing any colour anywhere |
+| `part_registry.py` | The corpus index — **5,990 parts across 573 sources** as committed. `load_registry()` rebuilds when a corpus fingerprint changes; see item 14 |
+| `coherence_validator.py` | P1 causal-chain, witness and evidence checks. Free — no API call |
+| `coherence/` | The shared engine (`Issue`, `CoherenceReport`, `RuleSet`). Used by both CYM and Mind Your Friends — item 16 |
+| `craft_grounding.py` | Retrieval layer over the craft-grounding docs; feeds guidance into all five generation call sites. Zero added API calls |
+| `localization.py` | Era-appropriate name/occupation localization, 3-tier disk cache |
+| `background_field.py` | The BACKGROUND layout (item 17). Computed, tested, **wired to no client** |
+| `extraction_protocols.py` | P1–P4 taxonomy definitions. Live dependency of the extractor |
+| `scripts/extract_from_pdfs.py` | The sanctioned way to add **one** new source. `--anthology` for a collection; always `--dry-run` an anthology first |
+| `icons/` | Source artwork for the clue and witness icon sets, one folder per set. `godot/scripts/theme/Icons.gd` decides which icon a thing gets, and its header explains why that must carry no information |
+| **Documents** | |
+| `docs/PLAYTEST_FLOW.md` | **APF and the playtest screens.** Read before touching any playtest-path screen |
+| `docs/INVESTIGATION_DESIGN.md` | The investigation model, solvability as set arithmetic, and the one remaining open design question |
+| `docs/WIRING.md` | Canonical generation architecture — read before touching generation |
+| `docs/F5_CHECKLIST.md` | The hand-walk procedure for the Godot client, and which steps have actually been walked |
+| `docs/AI_COST_PLAYBOOK.md` | Measured economics. Read before adding a schema field, a play-time call, or a re-extraction |
+| `docs/EXTRACTION_TROUBLESHOOTING.md` | Every extraction failure mode and its fix |
+| `docs/DECISIONS.md` | Items 1–25 with full reasoning |
+| `RESEARCH_FINDINGS.md`, `SCREEN_CRAFT_FINDINGS.md`, `PARTY_CRAFT_FINDINGS.md` | Craft grounding — prose, screen, and party-game taxonomies |
+| `SOURCING_METHODOLOGY.md` | Confidence tiers and the corroboration rule for the three above |
 
-**Deprecated (do not touch — kept for historical reference only):**
-- `deprecated/` — all pre-Godot Streamlit/HuggingFace-era Python tooling (`app.py`, `cli.py`,
-  `corpus_loader.py`, `run_corpus_pipeline.py`, `test_mysteries.py`, `mystery_generator.py`,
-  `gameplay_validator.py`, `demo_acquisition.py`, `mystery_data_acquisition.py`,
-  `mystery_database_plan.md`, `extract_test_mysteries.py`, `browse_mysteries.py`,
-  `GETTING_STARTED.md`, `end_of_session.sh`, `requirements.txt`). This was the single-player
-  Streamlit creator tool hosted on HuggingFace Spaces — superseded by the Godot client +
-  FastAPI server above. Kept for provenance/history, not for use.
-  - **Exception:** `extraction_protocols.py` was briefly moved here and has been **restored to
-    root** — it's a live dependency of `scripts/extract_from_pdfs.py`, which is still how new
-    corpus sources get added (see Key Files above). Everything else in `deprecated/` really is inert.
+**`deprecated/` — do not touch.** The pre-Godot Streamlit/HuggingFace creator tool, kept for
+provenance only: `app.py`, `cli.py`, `corpus_loader.py`, `run_corpus_pipeline.py`,
+`mystery_generator.py`, `gameplay_validator.py`, `test_mysteries.py`, `extract_test_mysteries.py`,
+`browse_mysteries.py`, `demo_acquisition.py`, `mystery_data_acquisition.py`,
+`mystery_database_plan.md`, `GETTING_STARTED.md`, `end_of_session.sh`, `requirements.txt`.
 
----
+**The list matters because several of those names look live.** `deprecated/requirements.txt` is not
+`server/requirements.txt`, and `mystery_generator.py` is exactly what someone would open to change
+generation — which lives in `server/main.py`.
 
-## Active Branch
+**One exception:** `extraction_protocols.py` was briefly moved there and has been restored to root —
+it is a live dependency of `scripts/extract_from_pdfs.py`. Everything else there really is inert.
 
-**`main`** — reconciliation is complete (PR #1 merged July 9, 2026, commit `faf52e0`). Start new
-work from `main` directly; there is no other active branch right now.
-
-> **Branch hygiene note (resolved July 9, 2026):** several past sessions had been auto-assigned
-> fresh branches off older commits instead of continuing the active one, so multiple divergent
-> "current states" of this repo existed in parallel (a Godot line, a since-abandoned
-> pre-migration line, and a stranded PDF-ingestion line). All of that was reconciled into
-> `claude/mystery-pdf-extraction-0fisq0` and merged into `main` via PR #1. The five superseded
-> branches (`claude/review-godot-migration-GiLDz`, `claude/fix-godot-performance-QyXLQ`,
-> `claude/start-godot-migration-mNrWD`, `claude/setup-api-and-mysteries-LRLQK`,
-> `claude/mystery-versioning-system-TPblK`) were confirmed deleted the same day. If a future
-> session gets auto-assigned a stale branch again, check this file on `main` first — don't trust
-> whatever branch name the harness handed you until you've compared it against `main`'s
-> `SESSIONS.md`.
+> **DO NOT re-run the frozen bulk corpus pipeline** (`deprecated/run_corpus_pipeline.py`). Expand
+> the corpus only via `scripts/extract_from_pdfs.py`, one quality source at a time.
 
 ---
 
-## Session Start Protocol — MANDATORY
+## Session protocol — MANDATORY
 
-1. **Verify branch:**
-   ```bash
-   git fetch origin
-   git checkout main
-   git pull origin main
-   ```
-   Create a new feature branch off `main` for your session's work if it's more than a trivial
-   change — don't accumulate unrelated work directly on `main`.
-2. **Read the most recent block in `SESSIONS.md`** — exact next step, blockers, decisions.
-3. **State your starting point:** branch, latest commit hash, what you'll do.
-4. **Read `docs/WIRING.md`** if touching generation, localization, or coherence logic.
+**At the start:**
 
----
+1. `git fetch origin && git checkout main && git pull origin main`. Create a feature branch off
+   `main` for anything more than a trivial change.
+2. Read the most recent block in `SESSIONS.md` — exact next step, blockers, decisions.
+3. State your starting point: branch, latest commit hash, what you will do.
+4. Read `docs/WIRING.md` if touching generation, localization or coherence logic.
 
-## Session End Protocol — MANDATORY
+**At the end:**
 
-1. **Update `SESSIONS.md`** with new session block (files changed, decisions, next steps).
-2. **Update `CLAUDE.md → Current To-Do`** to reflect completed and next items.
-3. **Commit and push** on your session's feature branch.
-4. **Tell the user to sync locally.**
-5. The remote rejects `git push origin main` (HTTP 403). Use GitHub MCP tools to create a PR,
-   and merge it once it's clean rather than leaving it to accumulate — that's what caused the
-   July 9, 2026 branch-reconciliation mess documented above.
+1. Update `SESSIONS.md` with a new session block.
+2. Update this file's **Open work** section, and `docs/DECISIONS.md` if an item's status changed.
+3. Commit and push on the feature branch.
+4. Tell the owner to sync locally.
+5. The remote rejects `git push origin main` (HTTP 403). Open a PR with the GitHub tools and merge
+   it once clean — letting them accumulate is what caused the July 2026 branch-reconciliation mess
+   (item 5).
 
-### NEVER end a session without updating SESSIONS.md.
+**Never end a session without updating `SESSIONS.md`.**
+
+**Active branch: `main`.** If a session is auto-assigned a stale branch, compare it against `main`
+before trusting it — this has happened before and cost a reconciliation (items 5, 6, 9).
 
 ---
 
-## Godot Development Notes
+## Godot development notes
 
-- **Godot version:** 4.x (GDScript 2.0 — typed, class_name declarations)
-- **Scene autoloads** declared in `project.godot`: `GameState`, `ApiClient`, `NetworkManager`
-- **Backend URL:** Configured via `ApiClient.SERVER_URL` — default `http://localhost:8000`
-  Change to production URL once deployed.
-- **Testing single-player:** Run FastAPI server locally (`cd server && uvicorn main:app --port 8000`),
-  then press F5 in Godot editor.
-- **Testing multiplayer:** Run 2 Godot instances; both connect to same localhost server.
-- **No Godot binary in repo** — developer must install Godot 4 separately.
+- **Godot 4.x, GDScript 2.0** — typed, `class_name` declarations. `project.godot` declares 4.6.
+- **Four autoloads**, in order: `GameState`, `ApiClient`, `NetworkManager`, `Style`. `Style` is last
+  because it reads `Palette.gd`. If you add one, register it in `project.godot` **and** confirm it
+  appears in Project → Project Settings → Autoload.
+- **No Godot binary in the repo, and none reachable from a session environment** — outbound is
+  allowlist-only and the engine's hosts are not on it (tested, Session 38). Rendering can only be
+  verified on the owner's machine.
+- **Backend URL** is `ApiClient.SERVER_URL`, default `http://localhost:8000`.
+- **Testing single-player:** run the server (`cd server && uvicorn main:app --port 8000`), then F5.
+- **A fresh clone must be opened with Edit, not Run** — `.godot/` is a generated import cache and is
+  not committed. `.uid` files *are* committed; Godot 4.4+ expects them.
 
-### Phase session annotations (commit tags):
+### Three failure modes Godot will not tell you about
+
+Every one of these has cost a screen in this project. They are why the checkers below exist.
+
+| Failure | What it looks like |
+|---|---|
+| A GDScript parse error | The scene's static nodes render and nothing responds. No runtime error. |
+| A `#` comment line in a `.tscn` | The node declared after it is silently dropped at load. |
+| A theme item name the engine does not have | A silent no-op — the control keeps its engine default. |
+
+---
+
+## Coding conventions
+
+- Python 3.8+ server-side; GDScript 2.0 with type annotations client-side.
+- **State the type.** Session 36 lost a whole screen to a `Variant` inferred from
+  `Dictionary.get()`; `:=` on a constructor call is the shape that goes wrong.
+- **Models, by job:** gameplay generation uses `claude-sonnet-4-6` (`server/main.py`); extraction
+  defaults to `claude-haiku-4-5-20251001` with a Sonnet fallback; the corpus upgrade defaults to
+  `claude-opus-5`.
+- Mystery parts use `SOURCE(INDEX)` notation — `C(4)`, `F(2)`, `A(6)`.
+- Extraction protocols: P1 Skeleton (C1–C6), P2 Architecture (M1–M8), P3 Craft (F1–F8),
+  P4 Texture (F9–F12).
+- Every generated mystery carries a `_provenance` field.
+- API auth is server-side only: (1) the `ANTHROPIC_API_KEY` env var, (2) a Bearer token from
+  `/home/claude/.claude/remote/.session_ingress_token`.
+- Invoke Python as `python3` — this environment has no `python` alias.
+
+### Phase annotations (commit tags)
+
 | Tag | Meaning |
 |---|---|
 | `phase1-backend-done` | FastAPI server + Godot scaffold complete |
 | `phase2-single-player-prototype` | Full single-player loop works in Godot |
-| `phase3-multiplayer` | Lobby + 75% mechanic working |
+| `phase3-multiplayer` | Lobby + clue sharing working |
 | `phase4-steam` | GodotSteam integrated |
 
 ---
 
-## Coding Conventions
+## Design principles
 
-- Python 3.8+ (server-side)
-- GDScript 2.0 with type annotations (client-side)
-- Claude model: `claude-sonnet-4-6`
-- Mystery parts: `SOURCE(INDEX)` notation — `C(4)`, `F(2)`, `A(6)`
-- Extraction protocols: P1 Skeleton (C1–C6), P2 Architecture (M1–M8), P3 Craft (F1–F8), P4 Texture (F9–F12)
-- All generated mysteries must include a `_provenance` field
-- API auth (server-side only): (1) `ANTHROPIC_API_KEY` env var, (2) Bearer token from
-  `/home/claude/.claude/remote/.session_ingress_token`
+Every new feature should answer at least one:
 
----
+**1. Does it close a feedback loop?** Creator signal is the 1–10 viability rating; player signal is
+accusations, interrogation patterns and time-to-solve; part signal (future) is weighting the
+registry by which parts appear in high-rated mysteries.
 
-## Design Principles
+**2. Does it preserve coherence?** The P1 causal chain must be unbroken: crime → victim → closed
+world → culprit/motive → resolution. Run `check_parts()` before the generation call and
+`check_mystery()` after, attaching the result as `_coherence`. Both are free.
 
-Every new feature must answer at least one of these:
-
-### 1. Does it close a feedback loop?
-- **Creator signal**: viability rating (1–10) on each mystery
-- **Player signal**: accusations, interrogation patterns, time-to-solve
-- **Part signal** (future): which `SOURCE(INDEX)` parts appear in high-rated mysteries → weight registry
-
-### 2. Does it preserve mystery coherence?
-P1 causal chain must be unbroken: crime → victim → closed world → culprit/motive → resolution.
-- Run `coherence_validator.check_parts()` before the Claude generation call
-- Run `coherence_validator.check_mystery()` after — attach result as `_coherence` in the JSON
-
-### 3. Does it drive down cost?
-API calls are the primary cost driver. **Measured economics, levers and the traps are in `docs/AI_COST_PLAYBOOK.md`** (Session 34) — read it before adding a generation-schema field, a play-time API call, or a corpus re-extraction. Headline: output tokens are 95% of a generation call, so prompt caching saves ~5% and is the wrong lever; the right one is writing fixed text at generation time instead of calling per action (10.8× on a four-player game).
+**3. Does it drive down cost?** API calls are the primary cost driver, and **output tokens are ~95%
+of a generation call** — so prompt caching saves ~5% and is the wrong lever. The right one is
+writing fixed text at generation time instead of calling per action, measured at 10.8× on a
+four-player game. Details in `docs/AI_COST_PLAYBOOK.md`.
 
 | Rule | Detail |
 |---|---|
-| Cache localization rulesets | `mystery_database/localization_cache/<era_key>.json` |
+| Cache localization rulesets | `mystery_database/localization_cache/` keyed by era |
 | Skip modern-era localization | `_is_modern(setting)` → no API call |
 | Compact mapping over full rewrite | Claude returns `[{old,new}]` only |
 | Cache extractions | Never re-extract a source already in JSON |
-| Coherence is free | `check_mystery()` / `check_parts()` — zero API calls |
-| Adding one new source | Use `scripts/extract_from_pdfs.py <file-or-dir> --protocol P1` (`python3`, not `python`), not the frozen bulk pipeline |
+| Coherence is free | `coherence_validator.check_parts()` / `check_mystery()` — zero API calls |
+| Adding one new source | `scripts/extract_from_pdfs.py <file-or-dir> --protocol P1`, not the frozen bulk pipeline |
 
 **Active caching inventory:**
 
-| Cache | Location | Key | What it stores |
+| Cache | Location | Key | Stores |
 |---|---|---|---|
-| Localization rulesets | `mystery_database/localization_cache/<era_key>.json` | location+time_period slug | Name conventions, occupation map, forbidden titles |
+| Localization rulesets | `mystery_database/localization_cache/<era_key>.json` | location + time-period slug | Name conventions, occupation map, forbidden titles |
 | Part extractions | `mystery_database/extractions/*.json` | source filename | P1–P4 parts from source texts |
-| Generated mysteries | `mystery_database/generated/*.json` | slug+timestamp | Full mystery dicts with `_coherence` |
+| Generated mysteries | `mystery_database/generated/*.json` | slug + timestamp | Full mystery dicts with `_coherence` |
 
 ---
 
-## Multiplayer Architecture (decided Session 12)
+## Checkers — run these before handing anyone a build
 
-**Jackbox model:**
-- **Godot desktop** = host/TV screen, Steamworks-connected
-- **HTML phone client** = thin browser page served by FastAPI at `/play`, no install
-- **Transport** = FastAPI WebSocket (replaces HTTP polling); room per `game_id`
-- **Room codes** = short alphanumeric, shown on host screen (QR code future)
-- **ENet is desktop-only** — browsers block UDP; use `WebSocketMultiplayerPeer` if Godot web export ever needed
+Zero API cost, no Godot binary needed. Each has already caught a real bug.
 
-**Why keep Godot (not all-Python):**
-GodotSteam is the best Steamworks path; Godot Linux export = Steam Deck support free; host screen can be cinematic while phone UI is minimal.
+| Script | Catches |
+|---|---|
+| `scripts/check_godot_wiring.py` | Broken `$NodePath`s, `@onready` type mismatches, unreferenced interactive controls, autoload calls with the wrong arity, `#` lines in a `.tscn`, an undeclared `theme_type_variation`, Python-style docstrings, and implicit string concatenation. Runs over all scenes, autoloads and scripts. **Necessary, not sufficient** — it reads scene files rather than loading them |
+| `scripts/check_mystery_playable.py` | A `solution.culprit` naming no listed suspect, an empty suspect list, or a blocking coherence failure served anyway |
+| `scripts/check_decisions.py` | An item labelled open that another item says is finished (the item-21 shape), a duplicate or missing item number, and a cited item number that resolves to nothing. Cross-project references that name MYF are left alone |
+| `scripts/check_doc_claims.py` | Documentation that has drifted from the code — a referenced file that does not exist, a *path:line* outside its file, a backticked string absent from every code file |
+| `scripts/build_palette.py --check` | The palette having drifted between `palette.py`, `Palette.gd`, `mobile.html` and the ground clear colour |
+| `scripts/test_palette.py` | Every ink/background pair against its WCAG floor |
+| `scripts/build_icons.py --check` | Generated icon copies drifting from `icons/`. `--report` describes the sources. Refuses a raster embedded in an SVG wrapper, which cannot be recoloured |
+| `scripts/split_icon_sheet.py` | Cuts a sheet of icons into one file each — vector by subpath geometry, raster by column occupancy, dispatching on what the file contains rather than its extension. Reports detached specks; never removes them |
+| `scripts/test_icons.py` | That the icon flatten survives all three export shapes, and that icon assignment is genuinely random |
+| `scripts/test_registry_staleness.py` | That a moved-on corpus rebuilds the registry and an unchanged one does not |
+| `scripts/test_crime_scene_map.py` | Overlapping rooms, off-canvas rooms, a witness outside its stated room, a non-deterministic layout |
+| `scripts/test_background_field.py` | The BACKGROUND layout |
+| `scripts/test_extraction_fatal_errors.py` | That a batch stops on an account-level API failure and continues past a per-source one |
+
+**Two more run INSIDE the engine** — `EditorScript`s, File → Run, free. They are the only checks
+that use Godot's own loader, which is where the undetectable defects live:
+
+| Script | Catches |
+|---|---|
+| `godot/scripts/tools/VerifyScenes.gd` | A node a `.tscn` declares that does not survive loading, a node whose runtime class is not what the scene declares, and a scene root that lost its script |
+| `godot/scripts/tools/ApplyTheme.gd` | A theme item name the engine does not have. Also generates the editor's theme preview, so the design is visible while scenes are edited, and reports whether the fonts resolved |
+
+**Not checkers, but run locally:** `scripts/preview_background_field.py` renders the BACKGROUND
+field to SVG over real screen text (`--sheet` covers the shortest and longest real titles);
+`scripts/compare_extraction_models.py` scores extraction models by parts yielded and axes filled.
 
 ---
 
-## Current To-Do (as of Session 38, August 28, 2026)
+## Open work
 
-Full list in `SESSIONS.md`. **The thing that matters for stage 1 is item 23 — everything above it
-is history, and items 22, 24 and 25 are now done.**
+Everything else is closed — see `docs/DECISIONS.md`.
 
-22. **[DONE, Session 36 — August 26, 2026] The Godot F5 ran.** The client has been launched in the
-    engine, by the owner, on their machine. It reached the main menu with the backend connected,
-    and a saved mystery loaded from the browse list into `CaseDisplay` and rendered. Owner's
-    verdict: *"it ran, it's ugly, but it works."* Ugly is a stage-1 pass — the screens were built
-    to be wired, not styled.
+### 23. Build APF — **START HERE**
 
-    **It found two defects in the first twenty minutes, and the checker had passed both files.**
-    - `case_display.gd:140` — `var relevance_icon := {…}.get(…)` inferred `Variant` from
-      `Dictionary.get()`, which the engine treats as an error. Fatal at *parse* time, so
-      `CaseDisplay.tscn` never loaded at all. Fixed by stating `: String` (`e461ef5`).
-    - `Interrogation.tscn` used `##` section headers. **A `.tscn` comments with `;`; a `#` line is
-      garbage to the scene parser and the node declared immediately after one is dropped when the
-      scene loads.** Five panels and all their children were null at runtime — the survivors were
-      exactly the nodes with no `##` above them (`7cbacd1`).
+The playtest shape is agreed and written down: `docs/PLAYTEST_FLOW.md` → "APF (All Provided For)".
+Findings are **dealt, not gathered**; the only decision is which to share and which to keep, which
+is the mechanic this file's overview calls the point of the product.
 
-    **The lasting finding is the checker's false pass.** `check_godot_wiring.py` reads
-    `[node name=…]` with a regex, so it saw all 21 of that scene's nodes and confirmed every
-    `$NodePath` resolves, while five panels were missing at runtime. **Reading a scene is not the
-    same as loading it.** Both defects lived where the checker's model of the project diverges
-    from the engine's — one in the type system, one in the file format. The checker now fails on
-    `#` in a `.tscn`; there is no equivalent guard for the type system, and short of running Godot
-    there cannot be. Treat "the checkers pass" as *necessary, not sufficient*, and say so when
-    reporting status.
+Build order (`docs/INVESTIGATION_DESIGN.md` §7, already reduced by APF):
 
-    **The free route is now complete.** The accusation dropdown, the result screen, rating
-    persistence, both navigation exits, the Smurf substring regression (both correct answers come
-    back correct) and the repaired interrogation screen have all been walked and pass. A third
-    defect surfaced and was fixed on the way: `result_screen.gd` relied on implicit string
-    concatenation, which GDScript does not have, so the script failed to parse and the screen
-    rendered its static nodes only — no verdict, no solution, no rating buttons, and no runtime
-    error to explain it. The same pattern was found and fixed on the multiplayer share path
-    before it could be hit (`102e2be`).
+1. `exonerates` / `implicates` on evidence + the set-arithmetic solvability check
+2. The constrained deal — pure computation, re-dealable at zero cost
+3. The share decision, the suspect board, the reveal
+4. The paced text opening
 
-    **Still unverified: only the two paid steps** — one interrogation call and one generation.
-    Plus one gap inside a passing step: the Smurf negative case (accusing Smurfodex, which must
-    read *wrong*) was not run. The procedure and its live Status line are `docs/F5_CHECKLIST.md`.
+**Decided (Session 38): no crime-scene picture for the playtest** — a list of named findings. The
+map is deferred, not cancelled.
 
-23. **[START HERE] Build APF.** The playtest shape is agreed and written down:
-    `docs/PLAYTEST_FLOW.md` → "APF (All Provided For)". Findings are **dealt, not gathered**; the
-    only decision is which to share and which to keep, which is the mechanic this file's first
-    paragraph calls the core innovation. It deletes exploration, the block pool, the phase gates
-    and item 21's deadlock outright, and drops play-time API cost to roughly zero.
-    Order (from `docs/INVESTIGATION_DESIGN.md` §7, reduced by APF):
-    1. `exonerates` / `implicates` on evidence + the set-arithmetic solvability check
-    2. the constrained deal — pure computation, re-dealable at zero cost
-    3. the share decision, the suspect board, the reveal
-    4. `cinematic_brief: bool = True` for the paced text opening
-    **[Session 38] One design question remains open, not five** — `docs/INVESTIGATION_DESIGN.md`
-    §6 has been reconciled with APF. Four of the five were closed by APF rather than answered
-    (they assumed traversal, blind exploration, player positions and an investigation budget,
-    all of which APF deletes); the survivor is **titles that spoil** — a player title like
-    *"Why did Hansel Grimm kill Gretel Grimm"* names the culprit, and generation must treat
-    that as premise or as misdirection by decision rather than by accident.
-    Owner also decided the question that was really underneath question 1: **no crime-scene
-    picture for the playtest** — a list of named findings, per §6's option (a). The map is
-    deferred, not cancelled, and the round-robin witness placement stays a real bug regardless.
+### 18. A BLOCKING coherence report does not stop a mystery being served — **OPEN, owner's call**
 
-24. **[DONE, Session 37 — August 26, 2026] One palette, three surfaces.** The client had no
-    styling at all; the phone had a palette it invented; the brand documented a third and was
-    rendered by nothing. Two of those brasses were `#c8a96e` and `#C9A227` — near enough to read
-    as a rounding difference, and in CYM guaranteed to be seen side by side, because the host
-    screen and the phones are in the same room at the same time.
+The engine catches the defect exactly and the pipeline saves and serves the mystery anyway. The
+symptom was fixed at two altitudes in Session 34; the cause is a design decision: should generation
+**refuse** to save a BLOCKING mystery, **retry** it, or keep serving it with a louder warning?
+Retrying costs API calls, which is why it was not settled unilaterally. Worth deciding before
+stage 2 — the coherence engine is a funding pillar, and *"it detects the defect and ships it
+anyway"* is a question someone will ask. Full history: `docs/DECISIONS.md` item 18.
 
-    `palette.py` is now the only place a colour is decided. `scripts/build_palette.py` generates
-    `godot/scripts/theme/Palette.gd` and `mobile.html`'s CSS block from it and `--check` fails on
-    drift; `scripts/test_palette.py` holds 28 ink/background pairs to their WCAG floors.
-    `godot/scripts/autoloads/Style.gd` builds the Theme and puts it on `get_tree().root`, so all
-    eight screens restyle **without one `.tscn` node tree being edited** — which is the point,
-    given where Session 36's defects lived.
+### 17. BACKGROUND — two owner decisions outstanding — **stage 3**
 
-    **What this does not settle, and why the next report on it must say so.** There is no Godot
-    binary in the session environment, so **none of the theme has been rendered.** The checkers
-    establish that every `theme_type_variation` is declared and every path resolves; they cannot
-    establish that a theme item name is one the engine recognises, and a wrong one is a silent
-    no-op rather than an error. **[Session 38] That last gap is closed, but only from inside the
-    engine** — `godot/scripts/tools/ApplyTheme.gd` looks every name up in
-    `ThemeDB.get_default_theme()` and prints the misses. It is one keystroke in the editor and it
-    has not been run yet, so the caveat below still stands until it is. The failure mode is bounded — a control keeps its engine default,
-    nothing crashes — but it needs an F5 to close. Session 36's "necessary, not sufficient" rule
-    applies to this work more than to most.
+The layout is built and tested (`background_field.py`) and wired to nothing, which is the specified
+pre-prompt state. Outstanding: **(a)** whether the field is strewn with the mystery's title, with
+something else, or both — do not assume; **(b)** which brand mark goes on which device, given that
+the host screen and the phones are in the same room at once. (b) also unblocks the window icon,
+which is deliberately unset. Full history: `docs/DECISIONS.md` item 17.
 
-    Three things deliberately left alone, each because deciding them is the owner's:
-    - ~~**Fonts.**~~ **[DECIDED, same session] Nunito Sans**, SIL OFL 1.1, three static
-      instances (400/600/700) in `godot/assets/fonts/` with `OFL.txt` beside them, and the
-      same release self-hosted as WOFF2 for the phone. One family across the whole
-      hierarchy, so there is no fallback chain and no missing-glyph box; Latin-1 accents
-      verified against *Schatten am Checkpoint*. Open at the F5: the room code, since the
-      zero is unslashed.
-    - **`config/icon`** points at `res://assets/ui/icon.png`, which does not exist (nor does
-      `godot/assets/`). Choosing it means answering item 17's open question about which brand mark
-      goes on which device.
-    - **What the BACKGROUND field is strewn with** — item 17 question 2. Nothing here wires the
-      field to a client, so nothing prejudges it.
+### 19. Corpus P1→P1P2P3 upgrade — **ready, blocked on API credits**
 
-25. **[DONE, Session 38 — August 28, 2026] The design is visible in the editor, and two checks
-    moved inside the engine.** Session 37 built the theme and it was invisible while being worked
-    on: `Style.gd` assigns it to `get_tree().root`, and there is no root at *design* time, so the
-    editor canvas showed engine grey.
+`python3 scripts/upgrade_p1_to_p1p2.py` prints the plan and spends nothing; `--go` runs it.
+Idempotent and resumable; replaced extractions are archived, never deleted. `--check-sources`,
+`--find-missing` and `--source-dir` handle PDFs that moved, were renamed, or are gone; `--model`
+overrides the default. Seven stories upgraded
+before credits ran out — check for them before re-running. Buys corpus quality, not anything a
+playtester sees, so it is explicitly not stage 1. Full history: `docs/DECISIONS.md` item 19.
 
-    Two `EditorScript`s, both one keystroke (File → Run) and both free:
-    - **`godot/scripts/tools/ApplyTheme.gd`** calls the same `Style.build_theme()` the game calls,
-      lets `ResourceSaver` serialise it to `res://assets/theme/cym_theme.tres`, and points
-      `gui/theme/custom` at it. **The `.tres` is a generated preview, never a source** —
-      `palette.py` is still the one place a colour is decided. Runtime never reads it: a Control
-      resolves its theme from its ancestors before the project default, so `Style.gd` still wins
-      when the game runs, and a stale preview can mislead the editor but cannot ship a wrong
-      colour. It also prints every theme item name the engine does not have (see item 24).
-    - **`godot/scripts/tools/VerifyScenes.gd`** loads all eight screens through Godot's own loader
-      and compares the nodes each `.tscn` declares against the nodes that survive loading — the
-      comparison `check_godot_wiring.py` structurally cannot make, and the one that would have
-      caught Session 36's five missing `Interrogation.tscn` panels.
+### 7. Corpus growth — **ongoing**
 
-    **The Output panel was cleaned so a real warning stands out**, which matters because
-    `docs/F5_CHECKLIST.md` tells the owner to read it for the font canary. Three Python-style
-    triple-quoted docstrings were sitting in GDScript — two of them in `ApiClient.gd`, an autoload. They
-    are *not* fatal (GDScript does have triple-quoted strings) but each is a standalone expression
-    that logs a warning; converted to `##`. `config/icon` named a file that has never existed and
-    logged a failed-load **error** on every open; now unset.
+Favour anthologies over novels roughly 3–5 to 1: an anthology yields far more sources per legal
+clearance, and P3 field confidence is 81% high for anthology stories against 48% for novels,
+because a novel is sampled and a short story is fed whole. Outstanding: 11 held-back anthology PDFs
+with detection problems, 7 all-null extractions that occupy filenames, and one untriaged Higashino
+novel. Full detail: `docs/DECISIONS.md` item 7.
 
-    `check_godot_wiring.py` gained a docstring check, and its parse-level checks now run over all
-    18 `.gd` files rather than only the 8 a `.tscn` names — the four autoloads had never been
-    checked, which is the worst place to miss a parse error. Its own docstring claimed
-    "none exist in this project today" of triple-quoted blocks; that was false at three call sites.
+### 4, 8. Deferred by stage
 
-    **Also now measured rather than assumed:** there is no route to a Godot binary from a session
-    environment. Outbound is allowlist-only; `godotengine.org` does not resolve and the GitHub
-    releases host returns 403 from the proxy's repo scoping. Previous sessions stated this; it has
-    now been tried.
-
-    **Still nothing rendered.** Both scripts are engine-side and unrun.
-
-Older items, kept for history:
-
-1. **[DONE]** Phase 1 — FastAPI server + Godot project scaffold
-2. **[DONE]** Phase 2 — Single-player Godot prototype (all 5 screens functional)
-3. **[DONE]** Phase 3 — Multiplayer investigation phases + clue sharing
-   - **[DONE]** 3a: Mystery gen updated (investigation_areas + leads in JSON)
-   - **[DONE]** 3b: Game session store + 8 server endpoints
-   - **[DONE]** 3c: WebSocket upgrade + mobile.html phone client + .tscn wiring
-   - **[DONE]** 3d: Lobby flow, room codes, host-screen display (Session 14)
-4. **[DEFERRED — stage 3]** Phase 3e — Avatar pool system + player history tracking. Design is locked and
-   merged (PR #4, Session 17) — full spec in `docs/WIRING.md` under "Avatar system + player
-   profiles (Phase 3e)" (two-layer model: shared era-keyed base looks + persistent per-player
-   signature accessory from a fixed catalog). Nothing is built yet; see that section's
-   "What still needs building" list. Sign off on the proposed 16-item accessory catalog first.
-5. **[DONE]** PR #1 (branch reconciliation) merged into `main` — merge commit `faf52e0`, July 9 2026.
-   `main` is now the source of truth: full Godot migration, `deprecated/` Streamlit archive, and
-   the PDF-ingestion corpus work are all present.
-6. **[DONE]** The five superseded branches were confirmed deleted (owner, July 9 2026):
-   `claude/review-godot-migration-GiLDz`, `claude/fix-godot-performance-QyXLQ`,
-   `claude/start-godot-migration-mNrWD`, `claude/setup-api-and-mysteries-LRLQK`,
-   `claude/mystery-versioning-system-TPblK`
-7. **[ONGOING]** Corpus growth — the anthology (`The_Best_of_Mystery_1980_Anthology`) is **[DONE]**:
-   run for real, all 63/63 stories extracted (Session 21), source_id collision fix confirmed
-   working on the real output. Corpus is larger than this list previously implied — besides the
-   12 PDF-sourced entries via `scripts/extract_from_pdfs.py` (now 12 novels + 63 anthology
-   stories = 75), there are **283 additional `ebook_*` entries** from an earlier bulk-pipeline run
-   (bookrix.com sources, P1+P2 depth) already sitting in `mystery_database/extractions/` —
-   confirmed present, not previously tracked in this file (Session 21).
-   **Sourcing-ratio guideline (Session 21; second justification measured Session 35):** favor
-   short-story anthology PDFs heavily over individual novels for new clearance decisions —
-   roughly 3–5 anthologies cleared per 1 novel.
-
-   **[Session 35] The original argument was cost-per-legal-clearance. There is now a measured
-   QUALITY argument, and it is the stronger one.** After the P1P2P3 upgrade ran on 70 sources,
-   P3 field confidence splits sharply by source type:
-
-   | | high | medium | low | null | P3 fields |
-   |---|---|---|---|---|---|
-   | anthology story | **81%** | 16% | 0% | 3% | 441 |
-   | novel | **48%** | 44% | 4% | 4% | 77 |
-
-   Nearly half of every novel's P3 content is hedged. The cause is sampling, not the model: a
-   short story under 25,000 chars is fed **whole**, while a novel is capped at
-   `--max-text-chars` (24,000 in this run — about 7% of a 350,000-char book, as three
-   disconnected chunks). P3 fields describe whole-book structure, so they are exactly what
-   sampling destroys.
-
-   **Do not measure this with part counts — they saturate and hide it.** Both types land at
-   ~19.5 parts of a possible ~20 mapped keys, so by that metric novels look *better* than
-   stories (4.2x vs 3.5x gain, an artifact of a lower starting point). Confidence is the honest
-   signal. Anything that scores extraction quality should use it.
-
-   **The fix for novels, when there is appetite:** raise `--max-text-chars`. Opus 5's context is
-   1M tokens, so the 24,000-char cap is arbitrary rather than technical — a whole novel is
-   ~87K tokens. Input is the cheap half of a call: ~$0.45/novel at 120K chars, ~$1.30/novel fed
-   whole, against ~$0.09 today. Roughly **$15 buys all 12 novels the quality the stories already
-   have**, as a re-run of the same idempotent command with no new code. Explicitly NOT urgent —
-   it buys corpus quality, not anything a playtester sees (see Delivery Priority).
-
-   The old wording, kept because it is still true of the cost side: an anthology yields 15–63x
-   the source_ids per single legal-clearance decision at currently-identical extraction depth (both the 12 curated novels and the 63 stories are P1-only;
-   novels only earn a depth advantage once `--protocol P1P2`, or P3/P4, actually gets used on them).
-   `mystery_database/new_sources/` still holds: three full novels (Stevenson ×2, Tana French)
-   queued for later one-at-a-time ingestion; one `.html` file (`extract_from_pdfs.py` only reads
-   PDFs — unsupported as-is); and **`The_Devotion_of_Suspect_X` (Higashino) — found untriaged in
-   Session 21**, not one of Session 20's original 9 categorized files, confirmed NOT a duplicate of
-   the existing Higashino extraction (different novel: *Miracles of the Namiya General Store*).
-   Owner ruled out deleting it; still needs an actual triage call (queue / skip / other).
-   **[IN PROGRESS, Session 27]** The 22+-anthology ingestion is underway, not finished. Session 27
-   was almost entirely git housekeeping (see `SESSIONS.md`) plus a duplicate-source triage: cross-
-   referenced the owner's ~26 staged local files against the real corpus and caught two real
-   near-misses — renamed duplicate PDFs of already-extracted books (*Leavenworth Case*, *Red House
-   Mystery*), and, more seriously, the already-fully-extracted 63-story Hitchcock 1980 anthology
-   itself still sitting in `new_sources/` (would have re-spent real API cost re-extracting 63
-   already-owned stories). Owner removed both categories. Confirmed the extraction pipeline still
-   has zero content-based dedup (`_slug()` keys purely off the input PDF's filename) — worth a
-   pre-flight duplicate check on every future batch, not just this one; a standalone checker script
-   was written for this (scratchpad-only, not committed to the repo).
-
-   Remaining 21 anthology PDFs were `--dry-run`'d: **10 came back clean** (full-book page ranges,
-   real per-story detection — the *Best American Mystery Stories* years 2005–2017/215/"4" plus
-   *Years Best Mystery & Suspense 1993*, ~207 stories) and were moved to
-   `mystery_database/new_sources/_anthologies/_ready/` with the real extraction command handed to
-   the owner — **not yet run as of session close.** The other **11 have real detection problems**
-   and are intentionally being held back, uncosted: 5 where the detector only caught back-matter and
-   missed the entire body of stories, 3 where the whole book got detected as a single oversized
-   "story" (459K–533K characters — a full anthology misattributed to one author, not a short story),
-   and 3 broken/wrong-fit (one detected 0 stories; one nonfiction true-crime collection flagged for
-   a separate taxonomy-fit decision). Full per-file breakdown in `SESSIONS.md` Session 27 — don't
-   re-litigate it from scratch, the analysis is already done, just needs someone to act on the
-   11 held-back files whenever there's appetite.
-
-   Also unrun this session: the 4-file `_novels/` batch (*39 Steps*, *Behold Here's Poison*,
-   *Mystery of the Chinese Ring*, *Whose Body?*) — never got even a `--dry-run` yet.
-
-   **[CHECKED, Session 33 — August 20 2026]** That "next session should check" list is now
-   answered, by measurement rather than by asking:
-   - **The extraction runs happened.** `mystery_database/extractions/` holds **570 files**, of
-     which **281 are `pdf_*`** — up from 75. So the `_ready/` anthology batch (and more) was run.
-   - **The registry WAS regenerated — and still lost 13 sources.** Checked-in
-     `part_registry.json` was **4,807 parts / 556 sources** against a fresh build's **4,952 /
-     569**, so 13 sources and 145 parts were extracted, on disk, and never sampled.
-     **Do not read this as "nobody remembered to regenerate" — an earlier draft of this note said
-     that and it was wrong.** `20c3ee3` (owner, August 10) is titled "anthology extractions +
-     regenerated part_registry" and did exactly that. The 20 extraction files missing from the
-     index it produced were added *in that same commit*, and they cluster: ten stories from
-     *Best American 2016 (Elizabeth George)* and three from *2007 (Hiaasen)* — the 13 that yield
-     parts — plus 7 that yield none (see below). That is the signature of a regeneration run while
-     those two books were still extracting, with everything committed together afterwards. Git
-     cannot show the ordering (one commit, no intermediate timestamps), but nothing else explains
-     the clustering.
-     **Why this matters for the fix:** the failure was not neglect, it was a race between a long
-     extraction run and a manual regeneration step. Doing the conscientious thing still silently
-     lost 13 sources, which is precisely what an automatic check fixes and a reminder does not.
-   - **[FIXED, Session 33]** Both halves done, no API calls: the registry is regenerated
-     (4,952 / 569 committed), and `load_registry()` now has a real staleness check — see item 14.
-   - **[OPEN, found in the same pass] 7 anthology extractions are all-null and contribute nothing.**
-     `pdf_the_best_american_mystery_stor__story19_a_quiet_place_to_hide`,
-     `__story21_remembering_the_rain`, `__story21_trip_to_reno_...`, `__story22_doggy_style`,
-     `__story22_the_heroism_of_lieutenant_wills_...`, `__story22_the_women_s_room`,
-     `__story22_these_two_guys_thuglit_november`. Every P1 field is `null` with `confidence: "low"`
-     and **no `_meta.extraction_warnings`**, so by item 13's logic they read as a genuine "nothing
-     found" rather than a caught parse failure — which is implausible for seven mystery short
-     stories. They occupy filenames, so the dedup-by-filename rule means a re-run will skip them
-     unless they are deleted first. Worth a look before the next batch; not diagnosed here.
-8. **[FUTURE]** Phase 4 — Steam integration (GodotSteam plugin)
-9. **[ONGOING]** Repo-wide branch cleanup (Session 18) — 9 fully-merged branches identified as
-   safe to delete, plus a further 21 stale unmerged branches the owner is triaging on their own
-   schedule (see `SESSIONS.md` Session 18). **`dev/mind-your-friends` is a separate, real second
-   project sharing this repo — do not touch it in any cleanup pass.**
-
-   **`dev/cryptic-challenge` is NOT a third project (verified Session 29, August 17 2026).**
-   The name has repeatedly been read — including by a Claude session, which cited it as evidence
-   of a third studio title — as though it were a sibling of CYM and MYF. It is not. Verified
-   against the actual refs, not the name:
-   - It points at commit `ea5af2f`, and **`dev/choose-your-mystery` points at the exact same
-     commit.** Two names, one ref.
-   - That commit is a March 31, 2026 snapshot of the **pre-Godot Streamlit CYM tree** (`app.py`,
-     `cli.py`, `corpus_loader.py`, `run_corpus_pipeline.py` — what now lives in `deprecated/`).
-   - Zero unique commits vs `main`. Everything on it is already here.
-   - Searched every branch's full history: **no file with "cryptic" in its name has ever
-     existed**, and no commit message mentions it.
-
-   So it is a stale duplicate pointer with a misleading name — nothing to archive, nothing to
-   preserve. Owner cleared it for deletion; it needs the GitHub UI, since `git push --delete`
-   hits the same 403 that blocks pushes to `main` and no branch-delete tool is exposed via the
-   GitHub MCP server (a Session 29 attempt was also blocked by the permission classifier).
-   Recreatable with `git branch dev/cryptic-challenge ea5af2f` if ever wanted.
-
-   **Caveat that outlives the branch:** if a real "Cryptic Challenge" project exists, its work is
-   **not in this repo** and deleting this pointer archives nothing. Don't treat the branch as
-   that project's record.
-10. **[DONE, Session 22; extended Session 26]** RAG (retrieval-augmented generation) for mystery
-    best-practices — **wired into generation.** `craft_grounding.py` parses `RESEARCH_FINDINGS.md`,
-    `SCREEN_CRAFT_FINDINGS.md`, and `PARTY_CRAFT_FINDINGS.md` into a retrievable, confidence-tiered
-    index and injects relevant guidance into all five generation call-sites in `server/main.py`
-    (`_generate_mystery_dict`, `_generate_witness_scene`, `_investigate_area_with_ai`,
-    `_follow_lead_with_ai`, and — added Session 26 — `_generate_resolution_narrative`) — full design, rationale table, and extension guide in `docs/WIRING.md`
-    → "Craft-grounding retrieval (RAG layer)". Read that section before touching any of it. Zero
-    added API calls — retrieval is a local index lookup. Auditable by design: every call records
-    which citations it used (routing differs by broadcast scope — see that doc section).
-    Remaining open items, not part of this build:
-    - Finish verifying `PARTY_CRAFT_FINDINGS.md` against full source text (Session 21's partial
-      pass — Jackbox + 3 of 4 Medway posts pasted, findings sorted but not yet written into the
-      doc itself) — the retrieval layer works fine on the doc as it stands today, but the
-      verification pass is still worth finishing for citation accuracy.
-    - True-crime podcast sourcing — the one media type not yet covered; becomes retrievable
-      automatically the moment the doc exists, per `SOURCING_METHODOLOGY.md`'s process.
-    - Human decision on the accumulated "new concepts flagged" candidates across all three docs
-      (e.g. howcatchem structural mode, production-security-as-craft-practice) — whether any
-      warrant a new `extraction_protocols.py` code. Explicitly kept separate from "wiring the
-      retrieval mechanism" as its own decision (see Session 22's chat log) — not required for the
-      RAG layer to work, only for the taxonomy itself to grow.
-11. **[IN PROGRESS, Session 21]** Multiplayer lockstep redesign — a live "Murder on Mars" use-case
-    walkthrough against the actual running code (not this file's aspirational description) found
-    real gaps: the "75%-random-share" mechanic described above doesn't exist in the code (real
-    mechanic: player-choice minimum-share threshold, 50/60/70% by difficulty); interrogation was
-    free text, not a pick-list; and **there is no backend endpoint anywhere for resolving a
-    multiplayer accusation** — the only accusation code (`accusation.gd`) is single-player-era,
-    client-local. Full design in `docs/WIRING.md` → "Multiplayer lockstep round system". Built and
-    verified so far: the lockstep round state machine (`stage`/`round`, additive alongside the
-    legacy per-player `phase` — nothing existing broken), and the witness interrogation redesign
-    (batched, deduped, shared-scene generation replacing N isolated per-question calls). Still
-    open, in dependency order: accusation-resolution backend (independent, also unblocks the
-    end-game resolution/summation scene); crime-scene investigation redesign and the "what I know
-    vs. what's shared" comparison screen (both depend on the lockstep mechanism, now in place);
-    lead-claim reservation + scaling lead count to max players (8, per item 4's Phase 3e decision).
-12. **[PARTIALLY FIXED, Session 22 audit / Session 23 fix]** Extraction-pipeline efficiency gap,
-    found while auditing whether extraction actually supports the coherence engine's dialogue
-    generation — two concrete, code-verified issues:
-    - **[DONE, Session 23]** Even fully P1+P2-depth sources had craft-relevant fields
-      (`clue_fairness`, `media_and_audience`, `investigator_wound`, `victim`, `resolution`,
-      `investigator`) that the registry extracted and then never read, for any source, at any
-      depth — confirmed against a real `ebook_*` extraction (14 populated fields, only 8 ever
-      read). Fixed by extending `part_registry.py`'s `KEY_TO_IDX`; see item 14 below for the full
-      fix (also resolved the pre-existing `evidence_type`/`alibi` axis mislabeling in the same
-      pass). `media_and_audience` remains deliberately unmapped — no honest fit among the 8 axes.
-    - **[FIXED, Session 34]** `_atomize_extraction()` now maps 7 of P3's 8 keys
-      (`setting_as_constraint`→2, `victims_enemies`→3, `suspect_wounds`→4, `false_suspect`→5,
-      `unreliable_frame`/`technical_detail`→6, `moral_ambiguity`→7). `evidence_type` stays
-      unmapped for the same reason as `media_and_audience` — axis 8 was *named* evidence_type
-      until Session 23 renamed it to `alibi` precisely because it held alibi content, and
-      mapping F5 there would recreate that mislabeling. `REGISTRY_SCHEMA_VERSION` bumped to 3.
-      The re-extraction now runs **P1P2P3**, not P1P2: P3 costs ~$2 more in the same pass and
-      ~$8 more as a later one, and P3.F4 "setting as constraint" is the spatial-device field
-      (measured on *The Red House Mystery*: *"an office reachable only through a passage of
-      spring-hinged doors, plus a secret passage… door movements are legible only as shadows
-      on the passage wall"*). Real end-to-end result on that source: **4 parts → 19**.
-    - **[SUPERSEDED]** The old note here said `_atomize_extraction()` has no P3/P4-tier keys
-      to read, so a P1-only source (all 12 novels + all 63 anthology stories) went from populating
-      3 of the registry's 8 sampling axes to 5 of 8 after the Session 23 fix (gained `motive` via
-      `victim`, `reveal_mechanic` via `resolution`, `social_dynamic` via `investigator`) — but
-      `suspect_archetype`, `red_herring`, and `alibi` still require P2-tier fields
-      (`suspect_architecture`, `red_herring`/`clue_fairness`, `alibi`) that a P1-only extraction
-      never produces. Only fix: re-extract the 75 P1-only sources at `--protocol P1P2` (new API
-      cost, backfills the remaining 3 axes specifically). Full detail in `SESSIONS.md` Session 22.
-14. **[DONE, Session 23]** Fixed the `evidence_type`/`alibi` axis mislabeling flagged as a known
-    caveat in `craft_grounding.py`'s docstring (axis 8 was named `"evidence_type"` but actually
-    held alibi content, since the extraction key `"alibi"` mapped there) — renamed the axis itself
-    to `"alibi"` in `part_registry.py`, updated `craft_grounding.py`'s `PART_TYPE_TO_TAXONOMY` and
-    `coherence_validator.py`'s hardcoded `"evidence_type"` string checks (4 call sites) to match.
-    Done together with the item 12 field-mapping fix above, in the same commit, per the caveat's
-    own instruction not to do one without the other. Also found and fixed a second, unrelated
-    staleness bug while regenerating the registry to verify: `mystery_database/part_registry.json`
-    is a checked-in cache with no staleness check (`load_registry()` only rebuilds if the file is
-    *missing*, never if it's stale) — it had been silently frozen since March 11, missing ~75
-    sources' worth of corpus growth (294 → 369 sources after regeneration; 1,469 → 2,833 parts).
-    Regenerated and committed this time, but the root cause is **not** fixed — `load_registry()`
-    still has no staleness check, so the next extraction run will silently go stale again until
-    someone manually deletes `part_registry.json`. Worth a real fix (e.g. mtime comparison against
-    `extractions/`, matching the pattern `craft_grounding.py`'s index cache already uses) as a
-    follow-up, not done this session. Full detail in `SESSIONS.md` Session 23.
-    **[RECURRED AND NOW FIXED, Session 33 — August 20 2026]** It went stale again exactly as
-    predicted — 4,807 parts / 556 sources checked in versus 4,952 / 569 on a fresh build, i.e. 13
-    sources extracted at real API cost and then never sampled. Regenerated, and the root cause is
-    now closed:
-    - **The check is a corpus fingerprint**, written to a sidecar `part_registry.meta.json`: the
-      hashed set of extraction filenames plus a schema version. Filenames are the right unit
-      because `load_extractions()` derives every `source_id` from the filename stem, so a change
-      to that set is exactly a change to the sources covered.
-    - **Not mtime-based, on purpose** — unlike `craft_grounding.py`'s index cache, which this item
-      originally proposed copying. A fresh `git clone` stamps every file with the checkout time,
-      so mtimes here carry no information about what was built when; comparing them would either
-      miss real staleness or rebuild on every clone.
-    - **[Session 35] The fingerprint now hashes file CONTENTS too, not just the name set.** The
-      original filename-only version documented its own blind spot — "an extraction file edited in
-      place under the same name is not detected, pass `force=True`" — and that turned out to be
-      the exact shape of the P1→P1P2P3 upgrade, which rewrites an extraction under its own name
-      and takes it from ~6 parts to ~20. The first 7 upgraded stories landed with
-      `load_registry()` reporting itself fresh and **98 parts unsampled**. The written warning did
-      not save it, which is the argument for checking over reminding. Hashing all 571 files costs
-      ~11 ms and is clone-stable, so there was never a reason to approximate it.
-    - **`REGISTRY_SCHEMA_VERSION` covers the other staleness mode**, which no amount of looking at
-      the corpus can catch: Session 23 changed `KEY_TO_IDX`, so identical files produced different
-      parts and the cache had no way to know. Bump it whenever `_atomize_extraction` / `KEY_TO_IDX`
-      / `PART_TYPES` changes what a given extraction yields.
-    - **`scripts/test_registry_staleness.py`** (new, zero API cost) asserts both halves — a
-      moved-on corpus rebuilds, and an unchanged one does *not*, since the cheap way to pass the
-      first is to rebuild unconditionally. The second is proved by corrupting the cached file and
-      confirming the corruption survives.
-13. **[DONE, Session 23]** Fixed a silent extraction-failure bug found while reviewing anthology
-    output quality: `extract_pdf()`/`extract_pdf_anthology()` used to catch a malformed Claude
-    response and silently save the same null-placeholder shape used for a genuine "nothing found"
-    result — confirmed on `pdf_the_best_of_mystery_1980_antho__story05_pseudo_identity.json`
-    (Lawrence Block's "Pseudo Identity"), which came back all-null with no trace of the failure.
-    Fixed via a shared `_call_claude_for_protocol()` helper (retry once, then save-with-warning in
-    `_meta.extraction_warnings` on parse failure; raise `ExtractionAPIError` and skip-without-saving
-    on a pure API/network failure, preserving the dedup-by-filename retry on next run). Verified
-    against the real failing case, not just stubs — owner re-ran extraction locally, the retry
-    fired and fixed it, and the resulting file now has real high-confidence data across all 6
-    fields. Full detail in `SESSIONS.md` Session 23.
-15. **[DONE, Session 26]** Room-first lobby + prompt suggestions, end-of-game resolution reveal,
-    and post-game voting + same-room replay — three-piece feature set, built and verified
-    incrementally per explicit owner request. `POST /games/create` now opens an empty room;
-    players suggest prompts while waiting; the host's own submission drives generation on
-    `POST /games/{id}/start`. On a win, `GET /games/{id}/result`/`game_won` return `plot_reveal`
-    (the mystery's own solution reformatted) + `winner_findings` (the winner's own findings,
-    shown to the whole room) + `resolution_narrative` (one Claude call, craft-guidance-informed —
-    the RAG layer's fifth call-site, tagged `C5`/`M6`/`"Accusation/Reveal Phase"` — generated once
-    and cached, never regenerated on a later fetch). New `round_type: "prompt_vote"` lets the
-    group pick what to play next from the leftover suggestions; ties go to the game's winner
-    unless they also won the mystery immediately before this one, in which case it's random
-    instead (`game["win_history"]` tracks this). `POST /games/{id}/next-mystery/start` resets the
-    same room in place — same `game_id`, same players, nobody rejoins — which is the actual point:
-    subtly encouraging the same group to keep playing together. Video generation stays explicitly
-    tabled. **[CORRECTED, Session 35] This item used to claim the client "renders a static
-    `Video Scene Will Play Here` placeholder." It does not — that string appears in no `.gd`,
-    `.tscn`, `.html` or `.py` file, and nothing occupies that slot today.** What DOES exist,
-    unused, is `_generate_cinematic_brief()` (`server/main.py:335`), which returns both a
-    player-facing `opening_narration` ("3–5 sentences of atmospheric prose… displayed or read
-    aloud to players") and a hidden `cinematic_brief` shot list for a future video generator. It
-    is gated behind `cinematic_brief: bool = False` and has never run — the one real generated
-    mystery on disk carries neither key. The playtest opening should turn that flag on; see
-    `docs/PLAYTEST_FLOW.md` → "The opening sequence". Full detail,
-    including a real `_craft_guidance` leak this work found and fixed in `winner_findings` (private
-    per-player audit citations were about to broadcast to the whole room), in `SESSIONS.md`
-    Session 26 and `docs/WIRING.md`'s three new sections.
-16. **[DONE, Session 28]** Coherence engine unification — CYM side, first of eventually every
-    title. Owner priority: the "Coherence Engine" pillar in the studio funding pitch needs to be
-    real, not aspirational, and CYM was the safe place to start (same language, same repo, no
-    cross-language bridge — unlike MYF, which is JS today). Brought the `coherence/` package
-    (`Issue`/`CoherenceReport`/`RuleSet` base classes) over to `main` — it previously existed
-    **only** on the stranded `dev/mind-your-friends` branch, despite `docs/WIRING.md`'s prior
-    phrasing implying it was already shared. Refactored `coherence_validator.py`'s two entry
-    points into real `RuleSet` subclasses (`MysteryPartsRuleSet`, `MysteryRuleSet`); `CoherenceReport`
-    here now extends the engine's base class, keeping the inherited `issues` field in sync as the
-    union of CYM's categorized `p1_issues`/`scene_issues`/`part_issues`. `check_parts()`/
-    `check_mystery()` kept as thin wrapper functions with unchanged signatures — zero call-site
-    changes needed in `server/main.py` or `deprecated/cli.py`. Verified both the pass and fail
-    paths against realistic mystery dicts, and confirmed `MysteryRuleSet().run(mystery)` called
-    directly produces identical results to `check_mystery(mystery)`. Full detail in
-    `docs/WIRING.md` → "Coherence validator — what it checks". **MYF's side is deferred until its
-    own Python port lands** (see MYF's `CLAUDE.md` item 31/32) — its `lib/coherence.js` is
-    JavaScript and can't subclass a Python `RuleSet` without a bridge, which is exactly the
-    premature-integration mistake this sequencing avoids. Branch: `claude/coherence-engine-unification`.
-    **[COMPLETED, Session 33 — August 20 2026] MYF's Python side is now wired, so the pillar has
-    two real consumers.** `mind-your-friends/server_py/coherence_rules.py` (renamed from
-    `coherence.py`, which it had to be — a top-level module named `coherence` and the `coherence`
-    package cannot both sit on `sys.path`, and `server_py/` always wins, so the import resolved to
-    MYF's own file) defines `QuestionRuleSet`, a real `coherence.engine.RuleSet` subclass.
-    `mind-your-friends/server_py/test_coherence_engine.py` asserts that both titles use the
-    **identical** `RuleSet` / `CoherenceReport` / `Issue` classes rather than two copies that
-    merely share field names — the check that would actually catch the framework forking. Full
-    detail in MYF's `CLAUDE.md` item 51.
-
-17. **[PARTLY BUILT — designed Session 33, layout written since, wired to nothing] CYM BACKGROUND
-    — the mystery's own title as the page texture.** Owner-initiated: bring MYF's look and feel
-    across to CYM. Two questions are still open (below) and both are the owner's.
-
-    **The "nothing has been written" line this item used to carry is stale, and was already stale
-    when written down.** `background_field.py` exists at root, is tested by
-    `scripts/test_background_field.py`, and computes the whole seeded layout — 294 lines, with its
-    reasoning recorded in place. What does NOT exist is any wiring: no server endpoint returns it,
-    and neither client draws it. So the correct status is *layout built, unrendered*.
-    - **[Session 37] It can now be looked at.** `scripts/preview_background_field.py` renders the
-      field to SVG at the host viewport's own size with a real screen's text over it — prose on
-      the ground (the hard case) and on a panel — which is what this item's own instruction
-      (*"Test on a real screen; do not settle it by argument"*) asks for and what nothing
-      previously made possible.
-    - **[Session 37] The ground is now painted**, as `default_clear_color` in `project.godot`.
-      That is this item's specified pre-prompt state — ground colour alone until a mystery is
-      named — reached without deciding anything about the field itself.
-
-    **Shared vocabulary (owner-defined — use these names).** MYF's `CLAUDE.md` glossary already
-    defines two of the three; BACKGROUND is new and belongs in both files:
-    | Term | MYF today | CYM equivalent |
-    |---|---|---|
-    | **BACKGROUND** | slate ground + strewn faded question marks | slate ground + the strewn mystery TITLE |
-    | **LOGO** | the three-emoji mark, top centre | none yet — not part of this |
-    | **TITLE TREATMENT** | the logotype, top left | none yet — not part of this |
-
-    **What CYM gets, and what it does not.** CYM gets the *system* — a ground colour plus a faded,
-    strewn, rotated, randomly-sized mark tile — **not the motif**. The question marks stay MYF's
-    (owner, explicitly). CYM's marks are the mystery's own title, so the two titles read as
-    siblings rather than as one game reskinned. This **reverses MYF item 39's** "scoped by owner to
-    MYF only, do not generalise into a cross-title design layer" — knowingly, at the owner's
-    direction. MYF item 39 needs that line rewritten when this is built.
-
-    **The state machine.** Ground colour alone until a mystery is named; the field then builds in,
-    and re-skins on same-room replay (`prompt_vote` → `next-mystery/start`), which is a free payoff
-    of the same mechanism.
-
-    **How the title arrives — the owner's answer, and it is the better one.** The first design
-    routed around the fact that `title` does not exist until generation ends (112s–1992s, per the
-    real batch summaries): stream the generation call, parse `title` out early since it is field #1
-    in the schema, add a `short_title` beside it. That works and costs no extra API calls, but it
-    changes the main generation path. **The owner's proposal supersedes it: prompt the player for a
-    title alongside the setting, and use theirs.** No streaming, no schema change, nothing touching
-    `llm()`, and the original spec ("plain until the prompt is entered, field after") becomes
-    literally true. It is also closer to what players already do — `submit_prompt`'s own docstring
-    examples are "Smurf murder mystery" and "Mystery on Mars", i.e. already title-shaped.
-    Keep the streaming approach in the back pocket **only** as the fallback for a blank title.
-    - "Encapsulated" = **as few words as possible** (owner). With a player-supplied title this is
-      enforceable at the input (`maxlength` + placeholder) rather than hoped for from generation —
-      which matters, because the 16 real titles on disk run 8 to 39 characters and a field of
-      "Whiteout" behaves nothing like a field of "Daggers in the Forum: The Ides of March".
-    - Free win: leftover suggestions already drive the post-game `prompt_vote`; if each carries a
-      title, that screen becomes a list of *named* mysteries instead of raw setting text.
-    - The change is small: one field on `SubmitPromptRequest` and on the stored
-      `{name, prompt_text, ts}` dict in `submit_prompt` (`server/main.py`).
-
-    **Architecture (decided): the server computes the layout, both clients render it.** CYM has
-    **two** clients — the Godot host screen and `server/static/mobile.html`, the phone client every
-    player actually looks at. The server emits a seeded layout (`{text, x, y, rotation, size,
-    colour}`); Godot draws it in `_draw()`, the phone as inline SVG. One implementation, two
-    surfaces, and the TV and every phone show the identical field. Shipping an image instead would
-    mean rasterising for Godot and a data-URI for the phone — two renderers and two chances to
-    drift.
-
-    **Risks, in the order they will bite:**
-    - **Moderation is the real one, and it is new.** A player-supplied string rendered large,
-      repeated, on every screen, for a whole game, on a TV, in a Steam title. It is the
-      highest-visibility user-generated content surface in the product. MYF already built
-      `moderateHeckle()` for a far *smaller* surface. It cannot ride along on generation, because
-      the background appears before any Claude call — so it needs handling at submit time, which is
-      its own API call or a local filter.
-      **[DECIDED, Session 34 — August 21 2026] None yet.** No filter and no moderation call: the
-      room is people who chose to play together and can see who typed it. What ships instead is a
-      **visible disclaimer under the prompt entry box — "Not moderated for play testing"** (live in
-      `godot/scenes/ui/MysteryGeneration.tscn` as `VBox/ModerationNoticeLabel`). It does two jobs:
-      it is cover during play testing, and it is a standing reminder that this is unresolved, so
-      the decision cannot quietly become the status quo by being invisible. **It is not a Steam
-      answer** — a TV-sized, whole-game, user-typed string still needs a real one before release.
-      When the phone client finally grows a prompt-suggestion box (Session 26's room-first flow is
-      server-only today — `server/static/mobile.html` has no prompt entry at all), the same line
-      goes under it.
-    - **Legibility.** MYF sits at 10% mark strength for an abstract glyph. Words are read
-      involuntarily, and CYM's screens carry far more text (clues, transcripts, evidence). Expect
-      to need *below* 10%, plus rotation and edge-cropping so most instances are partial. Test on a
-      real screen; do not settle it by argument.
-    - **Fonts:** OFL-licensed only (owner). One existing title is "Schatten am Checkpoint", so
-      localisation means non-English titles and the set needs the glyph coverage. Note MYF draws
-      its marks as **geometry, not font glyphs**, precisely because a background `<text>` renders
-      in whatever font the machine has — that concern returns for the phone client, which needs the
-      faces actually loaded or the two screens will not match.
-
-    **The two open questions — question 1 is answered, question 2 is half-answered:**
-    1. **Moderation** — **answered, Session 34: none yet, disclaimer instead.** See the risk entry
-       above for what shipped and what it does not cover.
-    2. **Does the player's title feed INTO generation, or only decorate?** Owner, Session 34:
-       *"Title is just for generation, but should also be used in a drop down menu of reusable
-       mysteries."* So the title **feeds generation** — it is not decoration-only — and it is the
-       handle the saved-mystery list is browsed by. **Still to pin down before building:** whether
-       "just for generation" also means the BACKGROUND field should be strewn with something other
-       than the title, or with the title as well. Do not assume; ask.
-       The slug wrinkle stands either way: the saved-mystery slug derives from
-       `mystery_dict["title"]` (`server/main.py`), so decide whether the player's title *replaces*
-       Claude's or sits beside it. Recommendation: replace, with Claude's as the blank-field
-       fallback — the dropdown then lists what the player named, which is the point of question 2.
-
-    **Reusable-mystery dropdown — it exists, and Session 34 fixed it.** Owner asked whether it was
-    still in the build. It is, on the Godot host screen only: MainMenu's "Browse Saved Mysteries"
-    → `GET /mysteries` → a popup `ItemList` labelled by each mystery's `title`. **It had been
-    inert since it was written** — `main_menu.gd` connected its four buttons and none of the
-    popup's own signals, so `_on_browse_item_selected` was dead code, clicking a row did nothing,
-    and the window could not even be dismissed (a Godot `Window` does not hide itself on
-    `close_requested`). Now wired. Two things it still is not:
-    - **Single-player only — and that is deliberate, not a gap.** Selecting a saved mystery goes
-      straight to `CaseDisplay.tscn`. The server has supported multiplayer reuse all along
-      (`CreateGameRequest.mystery_slug`, "skip prompt-collection, attach an already-generated
-      mystery immediately"), but no UI reaches it. This was raised as a next step and the owner
-      pointed at the Delivery Priority section above: group replay is a stage-3 feature. The PC
-      playtest needs one person at one machine replaying a saved case, which is exactly what the
-      single-player route already does.
-    - **Absent from the phone client.** `mobile.html` has no mystery list.
-
-    **Brand artwork — where it stands (Session 33).** `brand/` holds four files and a README.
-    `negative_logo.svg` / `organic_logo.svg` were the first pass: raster PNGs in an SVG wrapper,
-    not vector, and `organic_logo.svg` carries an export artifact of 22,445 opaque pixels outside
-    its viewBox. `NEWnegative_CYM.svg` / `NEWorganic_cym.svg` are the owner's re-cut and are
-    **genuine vectors** — 66 and 126 `<path>` elements, zero base64. That was the stated goal and
-    it is met.
-    - **The contrast problem is unchanged, and that is expected** — the re-cut converted format,
-      not values. Measured on the slate ground by `scripts/check_brand_contrast.py`: the negative
-      mark went 49% → 53% of ink at or below 2.5:1, the organic monogram 49% → 73%. The monogram's
-      *outright invisible* band did drop from 22.7% to 0.1%, but it moved into "barely" rather
-      than up the scale.
-    - **Being vector now makes the fix cheap and safe**, which is the real payoff. A value
-      re-pitch is a fill-colour rewrite across the paths, not a pixel filter. Worth knowing why
-      that matters: the pixel filter tried in this session produced rainbow speckle on the
-      negative mark, because its near-black regions have near-zero saturation with tiny hue noise
-      and raising lightness amplified that noise into visible colour. On vector paths there is no
-      noise to amplify.
-    - **Neither mark is wired to any client.** No CYM screen references either file. They are
-      artwork plus a measurement, not implemented chrome.
-    - **The structural question is still open and is the owner's:** these are specified as
-      *different marks per device* — negative mark upper-left on desktop/TV, organic monogram top-
-      centre on phones. Unlike MYF, CYM's Godot host screen and its phone clients are in the same
-      room at the same time, so the room would display two identities simultaneously. That may be
-      wanted (a TV poster and a phone icon); it should be decided rather than arrived at.
-    - Also unresolved: the negative mark reintroduces a question-mark motif to CYM, which item 17
-      otherwise scopes to MYF. A noir question mark is a different object from a strewn field, so
-      this may well be fine — but deliberately, not by drift.
-
-    **Unrelated, noticed while checking and worth one look before building on generation:** an old
-    batch summary in `mystery_database/generated/` shows **13 of 14 generations failing** on JSON
-    parse errors (`Unterminated string`, `Expecting property name`). It is from March and 16
-    mysteries have generated cleanly since, so it is probably long fixed — but a background keyed
-    to the title inherits whatever the current failure rate is. Worth one real generation run to
-    confirm before building on top of it.
-
-21. **[CLOSED BY APF — found Session 35; superseded by item 23. Kept because the diagnosis is
-    the reason APF exists.] The investigation phase can DEADLOCK, and it is
-    not an edge case.** Sharing is the only exit from a phase (`player["phase"]` advances in
-    exactly one place, inside `share_findings`); you cannot share nothing
-    (`if not all_findings: raise HTTPException(400, …)`); and every area can be blocked before you
-    act. A player reaching the investigation phase with all 5 areas already shared gets 409 on
-    every room, 400 on share, and **cannot advance, ever.** Every difficulty at every player count
-    wants more investigations than there are areas — MEDIUM 4-player wants 8 against 5; HARD
-    8-player wants 16. Root cause is the **phase gate** (lines 2076/2130/2363), not the block
-    pool: a player locked into `investigation` cannot do the witness or lead work sitting right
-    there. It **was** a stage-1 playtest-killer — it ends with someone staring at a screen that
-    rejects every button.
-
-    **Do not go and fix this.** APF deals findings instead of letting players gather them, so
-    there is no phase to be trapped in, nothing to block, and every player holds findings by
-    construction. The mechanic that carries the bug is gone (`docs/INVESTIGATION_DESIGN.md` §5,
-    fix 0). The diagnosis stays on the record because the phase gate returns with any future
-    gathering mechanic, and because it is the clearest single argument for APF.
-
-18. **[OPEN — found Session 34, August 21 2026] A BLOCKING coherence report does not stop a
-    mystery being saved, served, or played.** Not a coherence-engine failure — the opposite. The
-    engine catches this exactly: `P1.C4.culprit_not_in_characters`, severity `BLOCKING`, message
-    *"Chain is broken; players can never identify them."* `_run_coherence()` records the verdict
-    into `_coherence` and the pipeline then saves and serves the mystery regardless.
-    Live example on disk: `the_stolen_star_of_smurf_village_1775239921.json` recorded
-    `{"passed": false, "blocking": 1}` and is fully playable — its two-culprit `solution.culprit`
-    is prose, so under `accusation.gd`'s original exact-match every accusation was wrong,
-    including both correct ones. **The game could not be won, and the player was told they were
-    wrong.**
-    Session 34 fixed the *symptom* at two altitudes (substring matching in `accusation.gd` with a
-    short-name guard; an on-screen warning when no suspect can be the answer) and added
-    `scripts/check_mystery_playable.py` to catch it before a playtest. **The cause is untouched
-    and is a design call:** should generation refuse to save a BLOCKING mystery, retry it, or keep
-    serving it with a louder warning? Retrying costs API calls, which is why it was not decided
-    unilaterally. Worth settling before stage 2 — the coherence engine is a funding pillar, and
-    "it detects the defect and ships it anyway" is a question someone will ask.
-
-### Pre-playtest checkers (Session 34) — run these before handing anyone a build
-
-Both are zero-API-cost, need no Godot binary, and each has already caught a real bug:
-
-| Script | Catches |
-|---|---|
-| `scripts/check_godot_wiring.py` | Broken `$NodePath`s, `@onready` type mismatches, interactive controls the script never references, autoload calls that do not exist or take the wrong arity, (Session 36) `#` comment lines in a `.tscn`, which drop the node declared after them, and (Session 37) a `theme_type_variation` no theme declares — Godot falls back to the base type silently, so a typo renders unstyled with no error anywhere. Found `result_screen.gd` reaching for `$MainVBox/…` when the scene nests under `ScrollContainer/MainVBox/…` — the whole end-of-game screen. **Necessary, not sufficient:** it reads scene files rather than loading them, and it passed `Interrogation.tscn` while five of its panels were missing at runtime (item 22). |
-| `scripts/check_mystery_playable.py` | A saved mystery whose `solution.culprit` names no listed suspect, an empty suspect list, or a blocking coherence failure that was served anyway. |
-| `scripts/upgrade_p1_to_p1p2.py` | Plans and runs the P1→P1P2P3 corpus upgrade. Prints the plan and spends nothing by default; `--go` executes. `--check-sources` / `--find-missing` / `--source-dir` handle PDFs that moved, were renamed, or are gone. Errors and recovery: `docs/EXTRACTION_TROUBLESHOOTING.md`. |
-| `scripts/compare_extraction_models.py` | Scores extraction models against `_atomize_extraction` — parts yielded and axes filled, not prose quality. |
-| `scripts/check_doc_claims.py` | Documentation that has drifted from the code. Verifies the **checkable** claims in `CLAUDE.md` and `docs/` — that a referenced file exists, that a *path:line* reference points inside the file, and that a backtick-quoted string is actually in a code file. Deliberately excludes `SESSIONS.md` (a historical record: its claims were true when written). Found 4 stale claims in `docs/WIRING.md` on its first real run, one of them the *same* video-panel sentence corrected in `CLAUDE.md` an hour earlier. |
-| `scripts/test_extraction_fatal_errors.py` | That an extraction batch **stops** on an account-level API failure (no credits, bad key, bad `--model`) instead of walking the rest of the corpus reprinting it, and still **continues** past a per-source one. Runs the real script as a subprocess against a stubbed SDK, so it checks the exit code the wrapper actually reads. |
-| `scripts/build_palette.py --check` | The palette having drifted between `palette.py`, `Palette.gd`, `mobile.html` and `project.godot`'s ground clear colour. Zero cost. Run after touching any colour. |
-| `scripts/test_palette.py` | Every ink/background pair against its WCAG floor, and that the ground still matches the one `brand/` and `background_field.py` were built against. |
-| `scripts/preview_background_field.py` | Not a checker — renders the BACKGROUND field to SVG with a real screen's text over it, so item 17's *"test on a real screen"* instruction can actually be taken. `--sheet` covers the shortest and longest real titles. |
-| `scripts/split_icon_sheet.py` | Cuts a sheet of icons into one file each — vector by subpath geometry, raster by column occupancy, dispatching on what the file contains rather than its extension (the first upload was a `.svg` holding only a PNG). Reports detached specks; never removes them. |
-| `scripts/build_icons.py --check` | The generated icon copies having drifted from `icons/`. `--report` describes what is in the sources. Refuses a raster embedded in an SVG wrapper, which cannot be recoloured. |
-| `scripts/test_icons.py` | That the icon flatten survives all three export shapes (attributes, CSS class, inline style), and that the random icon assignment is actually random — uniform, de-correlated between games, and not an ordered walk. Caught the assignment cycling through the set in order. |
-| `scripts/test_crime_scene_map.py` | The derived crime-scene layout: overlapping rooms, rooms off-canvas, a row that leaves a hole, a witness placed outside the room they are said to be in, or a layout that is not identical run to run. |
-
-Godot reports both classes of failure only at runtime, and the second one not even then — it
-looks like the player guessed wrong.
-
-**Two more run INSIDE the engine (Session 38)** — `EditorScript`s, File → Run in the script
-editor, free, no backend needed. They are the only checks that use Godot's own loader, which
-is where Session 36's and Session 37's undetectable defects lived:
-
-| Script | Catches |
-|---|---|
-| `godot/scripts/tools/VerifyScenes.gd` | A node a `.tscn` declares that does not survive loading, a node whose runtime class is not what the scene declares, and a scene root that lost its script (what a GDScript parse error looks like from outside). |
-| `godot/scripts/tools/ApplyTheme.gd` | A theme item name the engine does not have — a silent no-op with no error anywhere. Also generates the editor's theme preview so the design is visible while scenes are edited, and reports whether the fonts really resolved. |
-
-**Backtick-quoting a string in `CLAUDE.md` or `docs/` is a CLAIM that the product contains it**,
-and `check_doc_claims.py` enforces it. To mention a string without asserting it exists — a retired
-label, an illustrative pattern — use italics, or add it to that script's `ALLOWED_LITERALS` with
-the reason. Five doc-vs-code gaps surfaced in Session 35 alone (the result screen, the
-saved-mystery dropdown, `_slug`, and two in `WIRING.md`); every one was documented as built.
-
-19. **[READY TO RUN — blocked on credits, not code, as of Session 35] The corpus P1→P1P2P3 upgrade.** 75 sources are P1-only (206 of
-    281 `pdf_*` are already P1P2). `python3 scripts/upgrade_p1_to_p1p2.py` prints the plan and
-    spends nothing; `--go` runs it on `claude-opus-5`, ~$0.147/source. Verified end to end on
-    *The Red House Mystery*: **4 parts → 19**. Every failure mode and its fix is in
-    `docs/EXTRACTION_TROUBLESHOOTING.md`; the run is idempotent and resumable, and replaced
-    extractions are archived to `extractions/_superseded/`, never deleted.
-    **Why P1P2P3 rather than P1P2:** P3 costs ~$2 more in the same pass and ~$8 more as a later
-    one, and P3.F4 "setting as constraint" is the spatial-device field the CLOUD idea needs.
-    **[Session 35] The run was attempted and hit an exhausted Anthropic credit balance partway
-    through.** The failed calls cost nothing (400s are rejected before inference) and wrote nothing
-    (the failure path saves no placeholder), but **7 stories of the Hitchcock 1980 anthology
-    upgraded successfully first** — the queue is sorted by extraction count, so the 63-story
-    anthology ran ahead of the novels. Those 7 are real paid-for work; check for them with the
-    two-list pattern in `docs/EXTRACTION_TROUBLESHOOTING.md` and commit before re-running. Top up
-    and re-run the same command for the rest. What Session 35 *did* fix is that the run did not stop on its own: it
-    retried an unretryable billing error, and `upgrade_p1_to_p1p2.py` — which runs the extractor
-    once per source **as a subprocess** — kept going through every remaining PDF because it read
-    only `if rc != 0`. Related, found in the same pass: `extract_from_pdfs.py` exited 0 however
-    many sources failed, so that wrapper's failure tally had never been reachable. Both fixed,
-    with `scripts/test_extraction_fatal_errors.py` covering it end to end.
-
-20. **[SUPERSEDED IN PART, Session 35 — see `docs/INVESTIGATION_DESIGN.md`] CLOUD — a
-    manipulable top-down crime scene.** The design conversation that followed replaced the
-    *top-down* part: a floor plan hard-codes a building (`crime_scene_map._row_rects` packs
-    rectangles; a Black Forest renders as a ravine in a 308×289 box), and the owner's Dick
-    Francis case — racetrack, stables, country estate, lawyer's office — settles it. **A
-    connection map replaces it.** That conversation also turned up three live defects underneath
-    the UI question: fabricated witness placement, a phase-gate deadlock (item 21), and a
-    solvability rule that checks a weaker thing than its own error message claims. Read
-    `docs/INVESTIGATION_DESIGN.md` before touching any of it — the assessment below is still
-    accurate about the corpus and about schematic-vs-photoreal, and is kept for that.
-
-    **Original Session 34 assessment:** After the
-    inciting-incident video the interface becomes a top-down scene players traverse. Assessed
-    against the data, not speculation:
-    - **The corpus holds no spatial structure** — space appears incidentally at 2–14% across 564
-      extractions, never as layout, adjacency or sightline. It does not need to: CLOUD's geometry
-      comes from generation, which already *knows* the spatial facts as prose (evidence E2 is
-      named "…(found in Generator Room)"; `solution.method` is the culprit's route in sentences).
-      **Missing are fields, not knowledge:** `area_id` on evidence, adjacency between areas, and
-      the culprit's path as a sequence — a schema change to a call already being paid for.
-    - **The schematic and the photo-real reference are different kinds of thing.** The schematic
-      is *data rendered* and is nearly buildable now (`crime_scene_map.py` already draws rooms and
-      witnesses). The photo-real image is *presentation*, needs an image model, and is stage-3
-      money. Do not conflate them.
-    - **What transfers between a country house and a Mars dome is the spatial *device*, not the
-      geometry** — and P3.F4 "Setting as Constraint" captures exactly that, as a relation rather
-      than a floor plan. That is why the corpus run is now P1P2P3.
-
-> **DO NOT re-run the frozen bulk corpus pipeline** (`deprecated/run_corpus_pipeline.py`). Expand
-> the corpus only via `scripts/extract_from_pdfs.py`, adding one quality source at a time.
-> **DO NOT touch `deprecated/`** except the one restored exception noted above. It exists for
-> historical reference only.
+Avatar pool + player profiles (item 4, design locked, nothing built) and Steam integration
+(item 8) are both behind stage 3.

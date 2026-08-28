@@ -3105,6 +3105,86 @@ that convert Session 36's and Session 37's open caveats into answers — but onl
 runs them. Seven Python checkers pass, which Session 36's rule still says is necessary and not
 sufficient.
 
+### Second half — the documents, after the owner asked why a design question was unreadable
+
+The owner tried to work `docs/INVESTIGATION_DESIGN.md` §6 and could not tell what question 1 was
+asking. They were right, and the cause was not the question.
+
+**§6 posed a three-way choice and the same document answered it twice, differently.** Line 50 asks
+what a line on the connection map means; line 87 says *"in APF the map is presentation, not
+mechanic"*; line 177 says *"it answers what is a line — provenance."* Two of the three readings had
+lost their mechanic outright: narrative access is traversal, provenance comes only from §3's
+growing pool, and APF deletes both. **Four of the five open questions turned out to be pre-APF** —
+affordance display justified itself by "turning blind exploration into informed allocation",
+player-position visibility presumes players are *at* locations, the budget model presumes an
+investigation budget. Only "titles that spoil" survives.
+
+Root cause: `CLAUDE.md` item 23 had already reduced §7's build order for APF. Nobody did the same
+pass on §6. **The build order knew about APF; the open questions did not.**
+
+Owner's decision on the live question underneath question 1 — whether the playtest draws a crime
+scene at all: **(a), no picture**, a list of named findings, on the grounds that anything more
+costs more for minimal playtest benefit.
+
+### The rewrite the owner then asked for
+
+Owner: *"long documents that often contain contradictions are messy and an unnecessary annoyance."*
+Measured before acting, and the file they named was not the problem:
+
+| Doc | Lines | Staleness markers |
+|---|---:|---:|
+| **CLAUDE.md** | **1,009** | **38** |
+| docs/WIRING.md | 1,042 | 7 |
+| docs/PLAYTEST_FLOW.md | 312 | 2 |
+
+`PLAYTEST_FLOW.md` is one of the healthiest documents in the repo. `CLAUDE.md` had roughly four
+times the contradiction density of anything else **and is auto-loaded into every session**, and 603
+of its 1,009 lines were an archive under "Older items, kept for history". Owner chose a full
+rewrite over a mechanical split.
+
+**Executed as: rewrite the operating instructions, move the history verbatim.** `docs/DECISIONS.md`
+(new) holds all 25 items in numeric order with an index; nothing was summarised away. `CLAUDE.md`
+is now 405 lines of what is true today.
+
+**What the rewrite corrected — these were all live falsehoods in the file every session reads:**
+
+- **The stated core innovation did not exist.** The overview asserted a shared clue "reaches exactly
+  75% of other players (randomly)". No code has ever done that. `server/main.py` has a
+  player-chosen level against a per-difficulty minimum — `share_min` 0.70/0.60/0.50, no randomness.
+  Session 21 found this and recorded it in item 11; the opening paragraph was never fixed, so the
+  false version stayed in the first thing anyone read for seventeen sessions.
+- **The architecture diagram listed 5 endpoints. There are 31.**
+- **Three autoloads listed; there are four** — `Style` was added in Session 37.
+- **`NetworkManager.gd` (ENet) is registered as an autoload and called by nothing** — no `.gd` or
+  `.tscn` outside the file references it. The live transport is the FastAPI WebSocket the phone
+  client uses. The file previously named ENet as *the* multiplayer mechanism in one section and
+  WebSocket in another.
+- **"1,469-part corpus"** — the registry holds **5,990 parts across 573 sources**.
+- **"Current phase: Phase 3d"** — four stages out of date.
+- The checker table, which is operational, sat *between items 18 and 19* in the middle of the
+  history.
+
+**Nothing was dropped by accident, and that was checked rather than asserted.** A coverage script
+compared every backticked literal in the old file against the new pair: 46 were absent on the first
+pass, and the ones with real value were restored — the commit-tag table, the caching inventory, the
+session ingress token path, the icon-sheet splitter, and the `deprecated/` file list, which earns
+its place because `deprecated/requirements.txt` and `mystery_generator.py` look exactly like files
+someone would open by mistake.
+
+**`scripts/check_decisions.py` (new)** stops the specific rot from returning: an item labelled open
+while another item says it is finished (**item 21 was exactly this** — `[OPEN]` and "a stage-1
+playtest-killer" while item 23 said APF deleted it), a duplicate or missing item number, and a
+cited item number resolving to nothing. It found a real dangling reference on its first run
+(`docs/WIRING.md:638`), which turned out to be a legitimate cross-project citation of MYF's item 31
+— so it now leaves MYF-qualified references alone. Negative-tested on all three failure modes.
+
+**The rule now written at the top of `CLAUDE.md`:** a design document states what is true now,
+`SESSIONS.md` states what was decided when, `docs/DECISIONS.md` states why a numbered item exists.
+A "superseded" marker inside `CLAUDE.md` is the signal that the text has become history.
+
+**Files (second half):** `CLAUDE.md` (rewritten, 1,009 → 405), `docs/DECISIONS.md` (new),
+`docs/INVESTIGATION_DESIGN.md`, `scripts/check_decisions.py` (new).
+
 **Files:** `godot/scripts/tools/ApplyTheme.gd` (new), `godot/scripts/tools/VerifyScenes.gd` (new),
 `godot/project.godot`, `godot/scripts/autoloads/ApiClient.gd`, `godot/scripts/ui/interrogation.gd`,
 `scripts/check_godot_wiring.py`, `docs/F5_CHECKLIST.md`, `CLAUDE.md`.
