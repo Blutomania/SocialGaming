@@ -1,0 +1,104 @@
+{
+  "verdict": "FLAWED",
+  "summary": "Every person the solution reasons about exists in the cast and the deduction chain (E1 → elimination → E3/E4/E9 → E2) is followable, so the mystery is winnable. But several labels are false — most seriously the mug staged by the culprit is filed as a red_herring — the alibi-breaking evidence all traces to one interested witness, and the weapon, wound angle and Richter's knowledge of the film's contents have no evidentiary cause.",
+  "findings": [
+    {
+      "code": "delivery.prompt_not_recorded",
+      "severity": "NOTE",
+      "claim": "Delivery cannot be judged because no player request was stored with this scenario; only the setting seed survives.",
+      "citation": "\"_meta\": { \"num_players\": 4, \"setting_input\": \"Cold War East Berlin, 1973, Soviet checkpoint crossing\" }"
+    },
+    {
+      "code": "cast.not_in_characters",
+      "severity": "NOTE",
+      "claim": "Cast audit result: every person named in solution.method, solution.motive and solution.how_to_deduce — Richter, Wolff, Brenner, Sukhov, Metz — appears in \"characters\" under exactly those names; there is no missing interrogable person and no blocking cast fault.",
+      "citation": "\"culprit\": \"Hauptmann Ernst Richter\" ... \"Sukhov (E5) had motive ... Brenner (E7) has a partially corroborated alibi ... E9 (Metz's corroborating verbal testimony)\""
+    },
+    {
+      "code": "cast.not_in_characters",
+      "severity": "WARNING",
+      "claim": "Brenner's secret rests on two unnamed witnesses who are not in the cast and cannot be questioned, in a scenario that insists only four living people are present.",
+      "citation": "\"two witnesses — if pressed — heard raised voices near the document room before the recess began\""
+    },
+    {
+      "code": "label.false",
+      "severity": "WARNING",
+      "claim": "E8 is labelled red_herring, but the act that produced it is not innocent at all — by its own description and by the gameplay notes it is the culprit's staging, i.e. direct evidence of murder and of Richter's intent.",
+      "citation": "\"relevance\": \"red_herring\" ... \"the mug was placed — not knocked — on its side, indicating it was deliberately set there after Wolff fell, possibly to suggest he tripped rather than was struck\" / \"The overturned mug (E8) is a deliberate staging by Richter\""
+    },
+    {
+      "code": "label.false",
+      "severity": "WARNING",
+      "claim": "E4 claims to eliminate suspects by boot size but only measures two of them — Metz's boots are never sized, and the victim's own boots (a print pointing inward into the room he was working in) are never considered.",
+      "citation": "\"Brenner's and Sukhov's footwear measured 39 and 41 respectively, eliminating them as the source.\""
+    },
+    {
+      "code": "label.false",
+      "severity": "WARNING",
+      "claim": "E7 asserts that tyre mud confirms the truck's departure time, which mud cannot do; the stated corroboration of Brenner's alibi window is therefore fictitious, and in any case a departing truck does not prove Brenner stood in the booth until 02:10.",
+      "citation": "\"a mud track from the truck's tires in the outer yard confirms the vehicle did depart at approximately the stated time, weakening but not eliminating her as a suspect\""
+    },
+    {
+      "code": "label.false",
+      "severity": "NOTE",
+      "claim": "E5's own description settles its relevance by authorial fiat — no document examiner exists at a sealed checkpoint with no outside contact, and document analysis cannot establish whether a forgery bears on a killing.",
+      "citation": "\"document analysis confirms it has no direct bearing on Wolff's death, only on an inter-agency deception operation\""
+    },
+    {
+      "code": "label.false",
+      "severity": "NOTE",
+      "claim": "E1 overstates what an empty satchel proves; theft of the canister is equally consistent with a grudge killing dressed up as a theft, or with a thief who is not the killer.",
+      "citation": "\"This immediately establishes that the murder was motivated by theft of the film rather than personal grievance.\""
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "Step 3 presents E3 and E9 as mutually reinforcing, but both originate from Metz alone — a self-written log by a man secretly assigned to monitor Richter — so the alibi collapse rests on a single interested source, and the 01:35 log line does not actually mention Richter.",
+      "citation": "\"The 01:35 AM entry reads 'returned from tool cabinet, east corridor clear' — placing him in visual range of Richter's office window\" ... \"combined with E3 ... and E9 (Metz's corroborating verbal testimony), his alibi collapses entirely\""
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "The murder weapon and the wound-angle finding that converts the death from accident to murder have no evidence entry behind them — the press is wiped clean and no autopsy or examiner exists in the scenario.",
+      "citation": "\"struck Wolff from behind with the base of the iron document stamp press — a heavy desk instrument that was wiped clean and replaced on the desk\" / \"the angle of the wound and a missing microfilm canister reveal it was murder\""
+    },
+    {
+      "code": "clue.uncaused",
+      "severity": "WARNING",
+      "claim": "Several clues require investigative acts no one present can perform or authorize: a sweep of the commander's own office and a post-mortem body search, in a building where the only clearance authority is the suspect and there is no detective character among the four players.",
+      "citation": "\"discovered inside the hollowed spine of a Lenin volume on Richter's office shelf during a sweep of the command room\" / \"the only officer with that authority, Hauptmann Richter, is himself a suspect\""
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "NOTE",
+      "claim": "The solution's motive invokes a refused attempt by Richter to claim the canister during arrival processing, an event that appears nowhere in his character entry, the timeline, or any evidence item.",
+      "citation": "\"the only option remaining after his attempt to claim administrative authority over the canister was refused during arrival processing\""
+    },
+    {
+      "code": "motive.insufficient",
+      "severity": "WARNING",
+      "claim": "Richter's motive depends on his knowing that the sealed film names him, but nothing establishes how he learned the contents — Brenner's route to that knowledge is spelled out while his is not.",
+      "citation": "\"Richter is one of the double agents named on the microfilm. If the canister reached East Berlin HQ, his identity as a BND asset would be exposed\" vs. \"authorized to transport sealed microfilm between regional offices under military escort\""
+    },
+    {
+      "code": "motive.insufficient",
+      "severity": "NOTE",
+      "claim": "The plan is self-defeating in a way the text never addresses: with only four people sealed inside until dawn, killing the courier guarantees an investigation of himself, and he retains the incriminating canister and cipher pad rather than destroying either.",
+      "citation": "\"even if Richter is identified and the primary canister is found in his possession\""
+    },
+    {
+      "code": "method.impossible",
+      "severity": "NOTE",
+      "claim": "Method timing is internally consistent (01:35 departure inside the 01:30–02:00 recess, return before 02:10) with no double-occupancy or locked-door conflict; the only friction is that the wet sleet-mud print requires an outdoor leg of a route described as office side door to document room.",
+      "citation": "\"A single partial boot print in wet sleet-mud was found on the interior threshold of the document-processing room doorway\" / \"entered the document-processing room under the pretense of a routine authorization check\""
+    }
+  ],
+  "_usage": {
+    "input_tokens": 7299,
+    "output_tokens": 7027,
+    "model": "claude-opus-5",
+    "stop_reason": "end_turn",
+    "cost_usd": 0.2122
+  },
+  "_source": "schatten_am_checkpoint_1773338466.json"
+}

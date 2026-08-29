@@ -1,0 +1,134 @@
+{
+  "verdict": "BROKEN",
+  "summary": "Every person the solution reasons about (Dr. Pemberton, Miss Crane) is in the cast, but the central deduction destroys itself: a poison timed to give the killer an alibi cannot be exposed by a clue that merely fixes the time of death, and the key clue that carries the whole case has no cause. Add a motive that the changed will has already nullified, a single effective suspect, and a country-house crime scene pasted into a Tokyo hostess bar, and the player can neither follow nor legitimately win the answer.",
+  "findings": [
+    {
+      "code": "chain.unsupported",
+      "severity": "BLOCKING",
+      "claim": "The key deduction contradicts the stated method: if the poison was slipped into evening tea and deliberately timed so the killer would be elsewhere when death occurred, then fixing death at 11:47 PM cannot contradict any alibi at all.",
+      "citation": "\"method\": \"Poison administered in the evening tea, timed to allow an apparent alibi\""
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "BLOCKING",
+      "claim": "There is no solution.chain at all — the entire reasoning is one compressed paragraph, so there are no intermediate steps for the player to walk from clue to culprit.",
+      "citation": "\"how_to_deduce\": \"The stopped watch (E1) fixes time of death at 11:47 PM, contradicting Pemberton's alibi that he was in the library until midnight."
+    },
+    {
+      "code": "clue.uncaused",
+      "severity": "BLOCKING",
+      "claim": "E1, the load-bearing clue, has no producing act — nothing in the mystery explains how or why a watch stopped, and a death by sedative poisoning in tea involves no impact or struggle that would stop one, so the watch exists only because the plot needs a time.",
+      "citation": "\"description\": \"Found on the victim, stopped at 11:47 PM\""
+    },
+    {
+      "code": "label.false",
+      "severity": "BLOCKING",
+      "claim": "E1's stopped time is treated as proof of time of death, which it is not — a stopped watch shows only when a watch stopped, and this one is doubly unreliable because a poisoning gives no mechanism for stopping it.",
+      "citation": "The stopped watch (E1) fixes time of death at 11:47 PM"
+    },
+    {
+      "code": "label.false",
+      "severity": "WARNING",
+      "claim": "E2 is credited with establishing Pemberton's motive, but its description names no person and no sum — 'a man' could be anyone in the house, so the clue does not point at whom the solution says it points at.",
+      "citation": "\"description\": \"References a sum large enough to ruin a man\""
+    },
+    {
+      "code": "clue.uncaused",
+      "severity": "WARNING",
+      "claim": "E2 has no producing act: nobody is said to have written, sent, received or torn the letter, and it appears in no character's secret or alibi.",
+      "citation": "\"name\": \"Torn letter\""
+    },
+    {
+      "code": "clue.uncaused",
+      "severity": "WARNING",
+      "claim": "E3 has no producing act and no owner, and although labelled 'supporting' it supports no step of the solution, which never mentions boots, mud or anyone going outside.",
+      "citation": "\"description\": \"No one admits to going outside\""
+    },
+    {
+      "code": "label.false",
+      "severity": "WARNING",
+      "claim": "E4's red-herring label rests on a bare assertion — no innocent act is ever shown for Miss Crane holding an unusual sedative, and since the one physician in the house is the culprit, the vial in fact points at him rather than away from anyone.",
+      "citation": "The medicine vial (E4) is a red herring — it belonged to Miss Crane legitimately."
+    },
+    {
+      "code": "label.false",
+      "severity": "NOTE",
+      "claim": "No evidence item carries 'supports', 'exonerates' or 'implicates' fields at all; only a bare 'relevance' word, so the links asserted in how_to_deduce are unverifiable from the evidence records themselves.",
+      "citation": "\"type\": \"physical\",\n      \"relevance\": \"critical\""
+    },
+    {
+      "code": "motive.insufficient",
+      "severity": "BLOCKING",
+      "claim": "The motive is self-cancelling: the will was already rewritten three days before the murder, so killing Lady Hartwell gains Pemberton nothing, and nothing anywhere states he was ignorant of the change or believed he could suppress it.",
+      "citation": "\"motive\": \"Stood to inherit under the old will; new will cuts him out entirely\""
+    },
+    {
+      "code": "motive.insufficient",
+      "severity": "WARNING",
+      "claim": "Miss Crane is given a blackmail motive resting on a 'forgery' that is never described, dated, attributed or evidenced anywhere in the mystery.",
+      "citation": "\"motive\": \"Blackmail — knows about the forgery\""
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "The cast contradicts itself about Miss Crane — she is listed as a suspect with a motive and an unverified alibi, while the twists declare she is not a suspect but an eyewitness, and the player is never told which record to trust.",
+      "citation": "\"Miss Crane is a witness, not a suspect — she saw Pemberton leave the library early\""
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "With only two suspects and one of them reclassified as a witness, the 'closed circle' contains exactly one candidate, so the culprit is obtainable by elimination without using any evidence.",
+      "citation": "\"environment\": \"closed circle of suspects\""
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "The deduction attacks an alibi Pemberton never gave — his recorded alibi has no end time, so the 'until midnight' claim the watch supposedly contradicts is invented by the solution.",
+      "citation": "\"alibi\": \"Claims to be in the library\""
+    },
+    {
+      "code": "method.impossible",
+      "severity": "BLOCKING",
+      "claim": "The locked room is never solved: the door was sealed from within, yet the method describes only poisoned tea and says nothing about how the study came to be locked or how anyone entered or left.",
+      "citation": "\"initial_discovery\": \"The housekeeper raised the alarm when she found the door sealed from within.\""
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "The physical setting cannot host the crime as described — a neon-lit 1980s Tokyo hostess bar has no locked study, no library and no back door, and the declared time period is not even asserted.",
+      "citation": "\"what_happened\": \"A body was discovered in the locked study at midnight.\""
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "The administration window does not fit the crime window: 'evening tea' precedes the stated 11 PM–midnight span, and no timeline places Pemberton near the tea, the study or the victim at any hour.",
+      "citation": "\"when\": \"Between 11 PM and midnight\""
+    },
+    {
+      "code": "cast.not_in_characters",
+      "severity": "NOTE",
+      "claim": "The housekeeper discovers the body but appears in no character record, so the only person who saw the sealed door cannot be questioned; she is a background functionary rather than a figure the solution reasons about, hence a note only.",
+      "citation": "\"The housekeeper raised the alarm when she found the door sealed from within.\""
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "NOTE",
+      "claim": "The coherence block reports a pass while simultaneously recording the unresolved alibi gap that the solution depends on, so its clean bill of health should not be relied upon.",
+      "citation": "\"passed\": true,\n    \"blocking\": 0,\n    \"warnings\": 1"
+    },
+    {
+      "code": "delivery.prompt_not_recorded",
+      "severity": "NOTE",
+      "claim": "Delivery cannot be judged because the requesting prompt was never stored with this scenario; only the setting input survives.",
+      "citation": "\"setting_input\": \"Tokyo, 1980s, neon-lit hostess bar\""
+    }
+  ],
+  "_usage": {
+    "input_tokens": 3073,
+    "output_tokens": 5745,
+    "model": "claude-opus-5",
+    "stop_reason": "end_turn",
+    "cost_usd": 0.159
+  },
+  "_source": "the_murder_at_tokyo_1773338094.json"
+}

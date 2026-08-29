@@ -3000,6 +3000,79 @@ it. Porting the Aug 12 flow and then immediately rewriting it would build the sa
 
 ---
 
+## Session 39 — August 28–29, 2026 (CYM: clues declare their cause; the critic is built, run and graded)
+
+**Branch:** `claude/godot-game-rendering-i29xsh`, restarted from `main` at `e0cf99f` after Session
+38's two PRs merged.
+
+Owner picked up on the coherence primer and marked it up with four questions. All four turned into
+work.
+
+### The causal half — owner's insight again
+
+Owner's framing, from the craft: *"working backward from the detective climax, what clue(s) led to
+this, and then what actions created those clues… then a 2nd vector, from the middle out — for every
+clue, what action created that clue."*
+
+**Two of those three vectors were not critic work at all.** Item 26 gave a clue a `supports` field
+saying what it is *for*; nothing said what it *came from*. One extra hop — `solution.acts` plus
+`evidence[].produced_by` — turns both structural vectors into free graph checks: every clue has a
+cause, every act leaves a trace, every act's performer is in the cast, the culprit has a guilty act,
+and **a red herring is a clue produced by an innocent act**, the first structural definition that
+term has had here.
+
+Act ids are `ACT1`, not `A1` — `investigation_areas` already own that namespace and `how_to_deduce`
+cites *"(E3, Area A1)"*. Collision introduced and caught within the same session.
+
+### The critic — built, run, and graded
+
+`critic.py`, on `claude-opus-5` while generation is Sonnet, so the reviewer is not the author. The
+rubric enumerates rather than asks. **Phase A ran over all 17 mysteries: $4.22, zero failures.**
+
+| | |
+|---|---|
+| Verdicts | **11 BROKEN, 6 FLAWED, 0 SOUND** |
+| At least one BLOCKING finding | 12 of 17 |
+| Agreed with `check_narrative.py` on a phantom person | **7 of 7** |
+| **Missed one the free checker caught** | **0** |
+| Flagged a cast fault the checker could not see | 6 |
+
+**Zero misses was the bar.** And it is not merely echoing the free checker — it found a poisoning
+whose deduction breaks an alibi that poison does not require, a motive voided because the will was
+signed three days *before* the murder, and an elimination invalidated by the scenario's own twist.
+That last one is an *arithmetic* fault found by reading prose.
+
+**The 12-of-17 rate is the OLD pipeline's** — sixteen were written forwards. Phase B, on fresh
+generations, is what measures the current prompt.
+
+### Two corrections made in the open
+
+- **The critic cost estimate was wrong by 4×.** Estimated $0.04/mystery on "reads a lot, writes a
+  little"; measured **$0.28**. Adaptive thinking is billed as output, and a rubric demanding
+  enumeration is what a model thinks hard about — 9,573 output tokens against an estimate of 1,200.
+  A critic costs *twice* a generation, not a fifth of one.
+- **"Rerun all the existing prompts" was impossible** — the prompts were never stored. `_provenance`
+  records which corpus parts were sampled, which is not the same thing. `_meta.user_prompt` now
+  exists; before it, *"did we deliver what the player asked for?"* was permanently unanswerable.
+  Criticising the finished mysteries got the same knowledge without regenerating anything.
+
+### Answered from the primer's margins
+
+- **Can a mystery be narratively sound and arithmetically broken?** Yes, and it is the worse of the
+  two: the story reads perfectly and nobody can win. Recorded in §4.
+- **Are we in a costly loop?** Only partly. Repair is viable when the fault is late — and writing
+  backwards *produces* late faults, so the reorder made repair viable as a side effect nobody
+  planned. The cheap unexplored lever is a worked example in the prompt: input is 5% of a
+  generation's cost, so an 8,000-token exemplar costs ~$0.02 against the $0.14 regeneration it might
+  prevent. Blocked until now on not knowing which mystery was good enough to be the example — the
+  critic run answers that (`dead_water`, 0 blocking / 9 findings).
+
+**Files:** `server/main.py`, `critic.py` (new), `scripts/run_critic.py` (new),
+`scripts/critic_report.py` (new), `scripts/check_narrative.py`, `scripts/test_narrative_checks.py`,
+`docs/WIRING.md`, `docs/DECISIONS.md` (item 27), `CLAUDE.md`, 17 `*.critic.json` reports.
+
+---
+
 ## Session 38 — August 28, 2026 (CYM: the design becomes visible in the editor; two engine-side checks)
 
 **Branch:** `claude/godot-game-rendering-i29xsh`, from `b76a994`. Owner's ask: *"get the game to

@@ -1,0 +1,170 @@
+{
+  "verdict": "BROKEN",
+  "summary": "The accusation of Reiko is reachable from E1/E2/E4, but two load-bearing steps of the stated solution cannot be followed: the only witness to her twenty-minute absence (Mr. Watanabe) is not in the cast and cannot be questioned, and the clue that supposedly clears Yuki (an unopened makeup bag) actually proves the opposite. On top of that the poison's pharmacology, the provenance of the fatal glass, and the legal logic of the motive all contradict themselves.",
+  "findings": [
+    {
+      "code": "cast.not_in_characters",
+      "severity": "BLOCKING",
+      "claim": "Mr. Watanabe, the sole source of the culprit's window of opportunity (Step 4), never appears in \"characters\" and so cannot be met, questioned or challenged by players.",
+      "citation": "Step 4 — Confirm Reiko's window of opportunity: Mr. Watanabe's recollection that Reiko was absent from Booth 3 for at least twenty minutes starting around 22:45 (corroborated by the timeline in E8) places her in the back area during the exact murder window."
+    },
+    {
+      "code": "label.false",
+      "severity": "BLOCKING",
+      "claim": "The 'unopened makeup bag' is treated as exonerating Yuki when the same detail, as written in E8, is affirmative evidence that she was NOT in the lounge doing her makeup — the inference is inverted, so a player following the intended logic reaches the opposite conclusion.",
+      "citation": "Yuki Mori had physical access via the spare key (E5) and emotional motive, but Fumiko's testimony (E8) reveals Yuki's makeup bag was never opened — suggesting Yuki was present in the lounge for most of the window, merely stepping out briefly"
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "E8 is cited as corroborating Reiko's absence from Booth 3, but E8's text concerns only Kenji and Yuki and says nothing about Reiko or Booth 3.",
+      "citation": "she describes seeing Kenji Oda enter the back corridor at 22:50 and return empty-handed at approximately 23:00, looking agitated. She also states that Yuki was absent from the hostess lounge during part of the time she was supposedly there doing her makeup"
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "The final link tying Reiko to the camera tampering rests on a confession that no evidence item can produce and that contradicts Kenji's own stated cover story, so players have no route to it.",
+      "citation": "but Kenji's smear on the housing and his own confession under pressure reveals he turned the camera at Reiko's earlier request that afternoon, believing she simply wanted privacy for a personal conversation with her husband"
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "Reiko's manipulation of Kenji to send the staff home early is asserted in the method but no evidence item, testimony or witness gap points to it.",
+      "citation": "She had previously arranged with Kenji to send regular staff home early — not knowing Reiko's true purpose — by fabricating a story about Tanaka wanting a private evening."
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "NOTE",
+      "claim": "There is no solution.chain field to audit backward; the reasoning exists only as the prose 'how_to_deduce', so step-by-step evidence attachment cannot be verified formally.",
+      "citation": "\"how_to_deduce\": \"Step 1 — Establish the poison's origin: ...\""
+    },
+    {
+      "code": "label.false",
+      "severity": "NOTE",
+      "claim": "No evidence item carries supports/exonerates/implicates fields, so only the 'relevance' label could be judged; the implicating and exonerating functions are asserted inside free-text descriptions instead.",
+      "citation": "\"type\": \"documentary\",\n      \"relevance\": \"critical\""
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "Thallium sulfate kills over days to weeks with delayed onset; it cannot render a man dead and still warm within roughly 35 minutes of dosing, nor does it produce foam at the lips.",
+      "citation": "found dead in his private back office when she brought him his final whisky order at 23:20. He was still warm but unresponsive, with foam at the corner of his lips."
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "The fatal glass has three incompatible origins — poisoned on the desk before 23:15, prepared by Kenji that night, and delivered by Yuki at 23:20 as the 'final whisky order' — so it is unclear which drink killed Tanaka or how the poisoning could work.",
+      "citation": "poured the poison into the glass already set on Tanaka's desk for the evening, and returned to her booth before Yuki delivered the drink"
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "Kenji's secret contradicts the established service routine and thus the poisoning window, since he claims to have prepared the glass himself in place of Yuki delivering a sealed bottle.",
+      "citation": "He also prepared Tanaka's private whisky glass himself that night, deviating from the usual practice of having Yuki deliver a sealed bottle."
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "The hostess-lounge timeline is internally inconsistent: Yuki says she left the lounge at 23:00 while Fumiko has her staying until 23:15 to deliver the whisky.",
+      "citation": "Claims she was at the bar's hostess lounge doing makeup touch-ups with colleague Fumiko Sato between 22:40 and 23:00 before returning to the floor."
+    },
+    {
+      "code": "method.impossible",
+      "severity": "NOTE",
+      "claim": "Fumiko cannot both have been asleep and unable to account for the time and also positively testify that Yuki was absent; the witness statement exceeds what the witness could observe.",
+      "citation": "Admits she fell asleep in her chair for an unknown period — possibly ten to fifteen minutes — and cannot firmly corroborate Yuki's presence the entire time."
+    },
+    {
+      "code": "method.impossible",
+      "severity": "NOTE",
+      "claim": "The lockdown premise is thin: one officer at the ground-floor entrance does not seal sixth-floor fire stairwells, and a 'private typhoon warning' is not a real mechanism.",
+      "citation": "A private typhoon warning has triggered a building-wide lockdown — the sole elevator has been manually shut off by building management, the fire-exit stairwells are sealed by a police officer stationed at the ground-floor entrance"
+    },
+    {
+      "code": "cast.not_in_characters",
+      "severity": "WARNING",
+      "claim": "The authority who controls release from the locked room is an uncast 'police lieutenant', while the only officer present is a Detective Sergeant — players have no one to appeal to or accuse in front of.",
+      "citation": "No one may leave until the police lieutenant clears the floor."
+    },
+    {
+      "code": "cast.not_in_characters",
+      "severity": "NOTE",
+      "claim": "Aiko Tanaka, Harold Bennett, the lawyer's secretary and the 'three bar patrons' are off-stage background figures nobody needs to interrogate — acceptable, not faults, though the patrons imply occupants of the locked floor who are never characterised.",
+      "citation": "Three bar patrons confirm he was visible and stationary from at least 22:30 onward."
+    },
+    {
+      "code": "clue.uncaused",
+      "severity": "WARNING",
+      "claim": "E9's location has no plausible cause: neither Reiko nor the moneylender has a reason to file her private debt document inside the bar's public reservation book.",
+      "citation": "A folded document bearing the insignia of the Ginza moneylending operation under Detective Fujimoto's investigation, found slipped into the pages of the bar's reservation book."
+    },
+    {
+      "code": "clue.uncaused",
+      "severity": "WARNING",
+      "claim": "E6's recovery site contradicts the solution's account of where Kenji destroyed the ledger, leaving the fragment's location unexplained.",
+      "citation": "A torn page from a small notebook recovered from the waste bin under the bar counter, partially burned with a cigarette lighter."
+    },
+    {
+      "code": "clue.uncaused",
+      "severity": "WARNING",
+      "claim": "A poisoner who bribed a secretary and hid the copy under a false bottom would not carry the annotated, expletive-marked will to the murder scene; the clue exists because the plot needs Reiko caught.",
+      "citation": "A folded photocopy of Tanaka's amended will, found hidden beneath the false bottom of Reiko's designer handbag during the lockdown search."
+    },
+    {
+      "code": "clue.uncaused",
+      "severity": "NOTE",
+      "claim": "E1's placement contradicts Reiko's own secret (coat lining versus coat pocket), and retaining the receipt at all is unmotivated for a premeditated poisoner.",
+      "citation": "found tucked inside the inner lining of Reiko Tanaka's fur coat hanging in the VIP cloakroom"
+    },
+    {
+      "code": "label.false",
+      "severity": "WARNING",
+      "claim": "E7's own text is self-contradictory — an unused bucket and a dusty unmoved outline are the same fact, not a 'however' that redirects suspicion — so the red-herring reversal it is supposed to power does not function.",
+      "citation": "However, the bucket's shelf also has a dusty outline showing it was not moved that evening."
+    },
+    {
+      "code": "label.false",
+      "severity": "NOTE",
+      "claim": "E5 is described as contradicting Yuki's alibi when it only contradicts her denial of office access; her stated alibi is unaffected by owning a key.",
+      "citation": "Yuki initially denied having any means of accessing the office independently, making the discovery of this key a significant contradiction of her stated alibi narrative."
+    },
+    {
+      "code": "label.false",
+      "severity": "NOTE",
+      "claim": "E2's description is physically incoherent — a chalky white residue visible above the liquid line would have been seen by the victim, and residue cannot simultaneously be 'dissolved at lethal concentration'.",
+      "citation": "A faint chalky white residue is visible along the inner rim above the liquid line. Forensic testing confirms the residue is thallium sulfate dissolved at lethal concentration"
+    },
+    {
+      "code": "label.false",
+      "severity": "NOTE",
+      "claim": "E10 is correctly labelled a red herring — the producing act (a supplier handing Tanaka a card at a trade expo) is genuinely innocent — but its resolution depends on 'trade expo records' that appear nowhere in the evidence list.",
+      "citation": "thorough checking reveals the card is simply from a whisky supplier Tanaka met at a trade expo the previous week and is completely unrelated to the murder"
+    },
+    {
+      "code": "motive.insufficient",
+      "severity": "WARNING",
+      "claim": "The motive is self-defeating as written: the will was already amended three days earlier, so killing Tanaka locks in Reiko's disinheritance, and the solution's escape clause about the will being unwitnessed and unfiled contradicts both the victim's secret and E4's lawyer-stamped copy.",
+      "citation": "she acted within a narrow window before the will was formally witnessed and filed"
+    },
+    {
+      "code": "motive.insufficient",
+      "severity": "NOTE",
+      "claim": "Aside from the legal contradiction, the stake itself is adequate — 200 million yen lost plus a 15 million yen loan-shark debt with a year-end deadline plausibly drives this specific poisoning by this specific person.",
+      "citation": "She had already borrowed 15 million yen from a loan shark against her expected inheritance and faced violent collection if she could not repay."
+    },
+    {
+      "code": "delivery.prompt_not_recorded",
+      "severity": "NOTE",
+      "claim": "Delivery cannot be judged because the player's original request was not stored with the scenario.",
+      "citation": "\"setting_input\": \"Tokyo, 1980s, neon-lit hostess bar\""
+    }
+  ],
+  "_usage": {
+    "input_tokens": 8045,
+    "output_tokens": 12162,
+    "model": "claude-opus-5",
+    "stop_reason": "end_turn",
+    "cost_usd": 0.3443
+  },
+  "_source": "neon_requiem_at_club_sakura_1773338357.json"
+}

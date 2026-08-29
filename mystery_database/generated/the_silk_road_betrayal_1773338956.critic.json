@@ -1,0 +1,122 @@
+{
+  "verdict": "BROKEN",
+  "summary": "Half of the declared key evidence (E8) depends on interrogating Kasım's scribe, a person who exists nowhere in the cast and therefore cannot be questioned, and the deduction path contradicts the solution's own method regarding Domenico's cellar access. Additional contradictions — Mehmed being both asleep with three witnesses and on the cellar stairs, and a wax seal impression with no act that could have produced it — make the answer unfollowable as written.",
+  "findings": [
+    {
+      "code": "cast.not_in_characters",
+      "severity": "BLOCKING",
+      "claim": "Kasım's personal scribe is the source of one of only two pieces of key evidence and is reasoned about in Step 3 of the deduction, yet he appears nowhere in \"characters\" and so cannot be met, interviewed or pressed by players.",
+      "citation": "\"Step 3 — Break the false alibi: The scribe's revised testimony (E8) destroys Kasım's alibi by confirming he was absent from his office for one hour during the exact pre-dawn window of the murder\""
+    },
+    {
+      "code": "cast.not_in_characters",
+      "severity": "WARNING",
+      "claim": "Fatima, the assistant whose corroboration is the sole thing sustaining Zara's alibi, is not in the cast and cannot be questioned, so players cannot test the one alibi the solution never breaks (she is not named in the solution text, hence a warning rather than blocking).",
+      "citation": "\"States she was in her stall inventory-checking her saffron and pepper stock from midnight until dawn, witnessed by her young female assistant Fatima, who corroborates her account consistently.\""
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "NOTE",
+      "claim": "There is no solution.chain field at all; the backward audit had to be performed against the prose steps in how_to_deduce, which carry no per-step evidence linkage.",
+      "citation": "\"key_evidence\": [ \"E2\", \"E8\" ], \"how_to_deduce\": \"Step 1 — Establish that this is a treason-motivated killing...\""
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "Step 1 clears Zara by asserting she had no connection to naval intelligence, but the presence of treason documents beside the body does not establish that the killer's motive was treason — a debt-driven killer would leave those documents exactly as found, and Zara is separately established as knowing the cellar and its hidden key.",
+      "citation": "\"This rules out Zara Hatun despite her debt motive, because she had no knowledge of or connection to naval intelligence matters.\""
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "BLOCKING",
+      "claim": "Step 2 clears Domenico on the ground that he lacks cellar access, but the solution's own method states Domenico held prior secret meetings in that very cellar and knew it — the exculpatory premise is contradicted by the method paragraph, so the player who reads carefully cannot eliminate him.",
+      "citation": "\"Domenico lacks direct access to the cellar and has a partial alibi for the midnight hour\" versus \"using the hidden key behind the east wall stone — knowledge he had from prior secret meetings with Domenico in that same cellar\""
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "Domenico's \"partial alibi for the midnight hour\" is used as exculpatory although the murder occurred roughly two hours before dawn, a window his alibi explicitly does not cover.",
+      "citation": "\"Claims he spent the entire night in the upper gallery chapel room in private prayer and was observed there by two other Christian merchants at the midnight hour, though neither can confirm he remained until dawn.\""
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "Step 2 infers from the cipher key that Kasım is the chart source, but nothing in E7 or anywhere else links the cipher, the annotations, or the charts to Kasım specifically; the leap from \"Domenico's cipher matches the annotations\" to \"therefore Kasım supplied them\" has no supporting item.",
+      "citation": "\"but the cipher matches chart annotations — meaning Kasım, who provided those charts, is the source and the one most endangered by Halil's evidence\""
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "The whole premise that a ledger was stolen — which is what E2's tube is said to have carried — rests on knowledge no in-game source provides, since Halil's recruitment and ledger are his private secret and no Janissary handler exists in the cast to attest to it.",
+      "citation": "\"These are the copies Halil prepared to demonstrate what he had discovered; the original ledger of payments is missing, stolen by the killer.\""
+    },
+    {
+      "code": "clue.uncaused",
+      "severity": "BLOCKING",
+      "claim": "E2, the primary key evidence, has no act that could have produced it: a wax seal impression is made by deliberately pressing a ring into soft wax, not by dropping a tube, and Kasım's Venetian ring is described as concealed beneath a leather glove — there is no reason a traitor would ever stamp his incriminating Venetian lion into the seal of the document he was stealing.",
+      "citation": "\"Pressed into the soft wax seal of the stolen ledger's carrying tube — which the killer dropped in haste near the cellar drain — is a partial impression of a ring engraved with a Venetian winged lion.\""
+    },
+    {
+      "code": "method.impossible",
+      "severity": "BLOCKING",
+      "claim": "Mehmed cannot both be asleep in the servants' loft with three corroborating witnesses until shortly before dawn and be on the cellar stairs seeing Kasım two hours before the body was found; the witness testimony that places Kasım at the scene destroys itself.",
+      "citation": "\"Was sleeping in the servants' loft until shortly before dawn... Three other han servants confirm he was in the loft until that time.\" versus \"He was seen descending the cellar stairs by Mehmed the water-carrier two hours before the body was found\""
+    },
+    {
+      "code": "label.false",
+      "severity": "WARNING",
+      "claim": "E1 is labelled relevance \"critical\" while the gameplay notes and the deduction path both treat it purely as a misdirection that supports no chain step — a false weighting that will send players down the friar track believing the knife is probative.",
+      "citation": "\"The blade style is distinctly European — a Venetian misericorde ... which initially suggests a foreign hand committed the murder.\", \"type\": \"physical\", \"relevance\": \"critical\""
+    },
+    {
+      "code": "label.false",
+      "severity": "WARNING",
+      "claim": "E7 claims the cipher connects to the \"stolen naval charts\" and explains Kasım's motive, but the charts were not stolen — they were left beside the body — and the cipher key implicates only Domenico, so the label \"explaining why Kasım was motivated\" points at the wrong person.",
+      "citation": "\"The cipher matches the encoding notations found on the margins of the stolen naval charts, directly connecting Domenico to the espionage network and explaining why Kasım was motivated to silence Halil before the charts could be authenticated.\""
+    },
+    {
+      "code": "label.false",
+      "severity": "NOTE",
+      "claim": "E5 is correctly labelled a red herring and the producing act (lodging a notarised grievance three weeks before the death) is genuinely innocent, but it contradicts Zara's motive text, which has her only threatening to go to the Kadı two days before the murder when the document was already stamped by that court weeks earlier.",
+      "citation": "\"She confronted him publicly in the bazaar two days before his death, threatening to take her complaint before the Kadı court.\" versus \"lodged there by Zara herself three weeks prior ... The document is stamped by the Kadı court\""
+    },
+    {
+      "code": "label.false",
+      "severity": "NOTE",
+      "claim": "No evidence item carries \"supports\", \"exonerates\" or \"implicates\" fields, so the forward truth-check of those labels cannot be performed on any of E1–E8; only \"type\" and \"relevance\" were auditable.",
+      "citation": "\"id\": \"E6\", ... \"type\": \"documentary\", \"relevance\": \"critical\""
+    },
+    {
+      "code": "method.impossible",
+      "severity": "NOTE",
+      "claim": "The timeline markers conflict: the murder window is given as bounded by the Fajr call yet also placed two hours before dawn (i.e. before Fajr), and Kasım's alibi is said to run to \"the call to prayer\", leaving it unclear whether his claimed cover even overlaps the killing.",
+      "citation": "\"when\": \"Between the call to Fajr prayer and the opening of the bazaar gates, approximately two hours before dawn\""
+    },
+    {
+      "code": "method.impossible",
+      "severity": "NOTE",
+      "claim": "The cellar is described as locked with a single hidden key, yet Halil, Kasım and the water-carrier all enter it that night without the door state ever being reconciled or used to narrow suspects.",
+      "citation": "\"Halil the silk merchant was found stabbed through the throat with a narrow-bladed knife in the locked storage cellar beneath the han.\""
+    },
+    {
+      "code": "motive.insufficient",
+      "severity": "NOTE",
+      "claim": "Kasım's motive is fully sufficient for this crime — execution for treason is an existential stake — but the solution introduces a \"hidden second household\" that appears in no character entry or evidence item, so players can never learn that part of the motive.",
+      "citation": "\"receiving substantial payments that funded a hidden second household outside the city walls\""
+    },
+    {
+      "code": "delivery.prompt_not_recorded",
+      "severity": "NOTE",
+      "claim": "Delivery cannot be judged because the original player request was not stored with this scenario.",
+      "citation": "\"_meta\": { \"num_players\": 4, \"setting_input\": \"Ottoman Istanbul, 1520, Grand Bazaar and adjacent hans\" }"
+    }
+  ],
+  "_usage": {
+    "input_tokens": 7464,
+    "output_tokens": 8204,
+    "model": "claude-opus-5",
+    "stop_reason": "end_turn",
+    "cost_usd": 0.2424
+  },
+  "_source": "the_silk_road_betrayal_1773338956.json"
+}

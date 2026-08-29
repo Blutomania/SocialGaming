@@ -1,0 +1,92 @@
+{
+  "verdict": "FLAWED",
+  "summary": "Every person the solution reasons about is present in the cast and the culprit is reachable through five independent evidence lines, so the mystery is winnable. But several load-bearing details contradict each other — most damagingly the fingerprint-layering logic on the murder weapon, which reverses the sequence the solution itself describes, and the ownership of the keycard deletions, which is asserted twice with two different actors.",
+  "findings": [
+    {
+      "code": "delivery.prompt_not_recorded",
+      "severity": "NOTE",
+      "claim": "The original player request was not stored with this scenario, so delivery against brief cannot be judged.",
+      "citation": "\"_provenance\": { \"recipe\": \"corpus_5cbea8d3(1) + corpus_d2b807d5(2) + ...\", \"target_setting\": \"A murder aboard a research station on the Antarctic ice shelf, mid-winter\" }"
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "NOTE",
+      "claim": "There is no solution.chain field; the deductive spine exists only as a prose how_to_deduce, so steps cannot be audited against declared per-step evidence and no evidence item declares supports/exonerates/implicates fields at all.",
+      "citation": "\"how_to_deduce\": \"Step 1 — Establish the murder was not an accident: Dr. Asante's witness statement confirms the wounds are inconsistent with a shelving fall...\""
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "Step 4 of the deduction rests on a print order that the solution's own timeline makes impossible: Hale planted the driver in the Generator Room AFTER Larssen's repair, so Hale's prints would lie on top of Larssen's, not beneath them.",
+      "citation": "\"Fingerprint analysis finds two sets of prints: Bjorn Larssen's on the outer surface and Marcus Hale's underneath, consistent with Hale handling the tool first and Larssen using it subsequently for legitimate repair work.\" vs. \"He then returned at 00:31 to adjust the staging, before accessing the Generator Room to replace the torque driver in a location he expected to implicate Larssen.\""
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "Hale cannot plant the weapon in the Generator Room at 00:34 unnoticed if Larssen was there, and nothing in the scenario establishes Larssen was absent at that minute — two people in one place with no resolution.",
+      "citation": "\"Claims he was repairing a heating element in the Generator Room from 23:15 to 01:00, a task that genuinely needed doing.\" / \"his card accessing the Generator Room at 00:34\""
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "The second Cold Storage motion event runs 00:31 to roughly 00:35, overlapping Hale's 00:34 Generator Room swipe — he is logged in two modules at once.",
+      "citation": "\"a second event at 00:31 lasting 4 minutes\" / \"his card accessing the Generator Room at 00:34\""
+    },
+    {
+      "code": "label.false",
+      "severity": "WARNING",
+      "claim": "The keycard deletions are attributed to two mutually exclusive actors: Larssen's secret says he deleted his own records, while E6 and L1 say the only deleted entries were Hale's and that Larssen never touched the log.",
+      "citation": "\"Larssen has administrator-level access to all station systems, including keycard logs, which he used to delete his own movement records for the night of the murder.\" vs. \"questioning Larssen reveals he has no memory of doing this, because he did not\""
+    },
+    {
+      "code": "motive.insufficient",
+      "severity": "WARNING",
+      "claim": "The victim's secret says the accusation email was already sent, which would make killing her pointless; the solution and E1/A5 instead require it to be an unsent draft, and the motive text tries to have it both ways.",
+      "citation": "\"had sent a preliminary accusation email to the Norwegian Polar Institute the evening before her death, naming a specific colleague\" vs. \"He could not allow her to transmit the full audit file.\""
+    },
+    {
+      "code": "clue.uncaused",
+      "severity": "WARNING",
+      "claim": "The Cold Storage blood trail asserts the body was moved after death, but no act in the solution's method moves the body — Hale strikes her and topples shelving over her where she fell.",
+      "citation": "\"There is a faint blood trail leading not from beneath the shelving but from the shelving toward the door — indicating the body was moved after death.\""
+    },
+    {
+      "code": "label.false",
+      "severity": "WARNING",
+      "claim": "E7 is labelled red_herring, but the act that produced it is the culprit's, and the item ultimately implicates Hale by handwriting and ink — it is a clue, not an innocent misdirection.",
+      "citation": "\"The note appears designed to suggest an outside intruder and has no basis in fact — it was placed by Hale to create confusion.\" / \"handwriting comparison places the note's block-capital style within the range of Dr. Marcus Hale's documented writing samples\""
+    },
+    {
+      "code": "label.false",
+      "severity": "NOTE",
+      "claim": "E5's stated purpose is false on its own terms: ordering Caron to sit alone in a lab gives him no alibi, and Caron ignored the instruction and spent the night in the Mess with Osei.",
+      "citation": "\"The note was intended to ensure Caron had an alibi and could not stumble onto the crime\" vs. \"Caron was genuinely in the Station Mess with Priya Osei from 22:45 to roughly 00:20\""
+    },
+    {
+      "code": "label.false",
+      "severity": "NOTE",
+      "claim": "The SENTINEL entry is presented as an impartial machine witness that 'never lies', but the statement is actually narrated by a suspect who alone controls the printout.",
+      "citation": "\"Station Computer — Automated Log (read by Yuki Tanaka)\" ... \"the name chosen, with typical polar-team irony, because it never sleeps and never lies\" ... \"I printed the log. It is on the table in the Atmospheric Lab.\""
+    },
+    {
+      "code": "label.false",
+      "severity": "NOTE",
+      "claim": "Arithmetic slip in Hale's alibi: 22:47 is thirteen minutes before 23:00, not twelve.",
+      "citation": "\"the system logs show the packet was queued at 22:47, twelve minutes before he says he sat down\""
+    },
+    {
+      "code": "label.false",
+      "severity": "NOTE",
+      "claim": "The duration of Hale's consortium relationship is stated three different ways — six years, four years, five years.",
+      "citation": "\"Dr. Hale had spent six years building a lucrative consulting arrangement\" / \"encrypted correspondence with the Boreal Energy Consortium dating back four years\" / \"the company has paid three academic consultants over five years\""
+    }
+  ],
+  "_usage": {
+    "input_tokens": 12680,
+    "output_tokens": 10431,
+    "model": "claude-opus-5",
+    "stop_reason": "end_turn",
+    "cost_usd": 0.3242
+  },
+  "_source": "whiteout_at_shackleton_base_1787332900.json"
+}

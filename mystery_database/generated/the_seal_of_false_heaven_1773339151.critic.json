@@ -1,0 +1,110 @@
+{
+  "verdict": "BROKEN",
+  "summary": "The solution's alibi-destroying step turns on interrogating an attendant, Hideo, who has no entry in \"characters\" and therefore cannot be questioned, and the murder method contradicts the guarded, logged door of the Document Chamber. Beyond that, the staged ronin trail, the erased log line, the two-voice argument and the two-patron conspiracy are all left uncaused, so the chain reads as asserted rather than deduced.",
+  "findings": [
+    {
+      "code": "cast.not_in_characters",
+      "severity": "BLOCKING",
+      "claim": "Hideo, whose confession is Step 4 of the deduction and the whole of E9, is named in the solution but has no entry in \"characters\", so players cannot question or press him.",
+      "citation": "Step 4 — Destroy the alibi and confirm the killer: Hideo's admission (E9) destroys Tanaka's alibi for the murder window."
+    },
+    {
+      "code": "cast.not_in_characters",
+      "severity": "WARNING",
+      "claim": "The night guard whose testimony authenticates E5 (and who would have seen Tanaka enter) is not a cast member and cannot be interviewed.",
+      "citation": "The guard confirms he recorded only three visitors, yet the logbook shows evidence of a fourth erasure occurring between the second and third legitimate entries, during the window when Kenji was killed."
+    },
+    {
+      "code": "cast.not_in_characters",
+      "severity": "NOTE",
+      "claim": "Daimyo Matsunaga Hiroshi, Master Seiko of Echigo and Lord Kitagawa are background figures nobody needs to interrogate; their absence from the cast is acceptable.",
+      "citation": "The coins bear a mint mark belonging to Lord Kitagawa's domain treasury in the northern provinces"
+    },
+    {
+      "code": "method.impossible",
+      "severity": "BLOCKING",
+      "claim": "The Document Chamber door is watched by a night guard who keeps an access log and who states he logged only three visitors, yet the method has Tanaka simply walking in and out during the murder window with no explanation of how he passed or unlogged himself.",
+      "citation": "That night, Tanaka slipped out during his attendant's absence, entered the Document Chamber, and struck Kenji from behind with the ink-stone while the old man was bent over his desk re-examining the scroll."
+    },
+    {
+      "code": "clue.uncaused",
+      "severity": "WARNING",
+      "claim": "E5's erased fourth log line has no author in the solution — Tanaka is never said to have reached the guard's logbook, and the guard denies writing a fourth entry, so the erasure exists only because the plot wanted a hint.",
+      "citation": "a fourth line has been scraped and re-inked with crude strokes inconsistent with the guard's hand, suggesting an entry was erased"
+    },
+    {
+      "code": "clue.uncaused",
+      "severity": "WARNING",
+      "claim": "The ronin prints and rain-cape are declared staged, but no character in the solution is ever said to have planted them, and inward-only prints from a gate bolted on the inside have no innocent origin either — so the red_herring label rests on an act with no actor.",
+      "citation": "However, closer examination reveals the prints lead only inward from the gate and never outward, and the postern's interior bolt was thrown from inside, making an external intruder impossible."
+    },
+    {
+      "code": "label.false",
+      "severity": "WARNING",
+      "claim": "E6 is labelled red_herring, yet gameplay_notes treats it as deliberate misdirection by a guilty hand — an incriminating staged act, not an innocent coincidence, and one the solution never assigns to Tanaka.",
+      "citation": "The planted ronin footprints leading only inward serve as a deliberate false trail suggesting an outside assassin, but the locked postern reveals it as staged misdirection"
+    },
+    {
+      "code": "label.false",
+      "severity": "WARNING",
+      "claim": "E8 is labelled critical evidence against a lone killer, but the words quoted are an instruction given to a second person, which the solution — where Tanaka acts alone and Dogan takes no part in the murder — cannot accommodate.",
+      "citation": "she heard a man's hushed but urgent voice outside the Document Chamber late in the evening saying words to the effect of 'the old scribe must not live to speak in the morning hall.'"
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "Step 3 asserts Dogan's role was merely ceremonial, but his stated motive is to ensure the forged scroll is the one ratified for a different patron than the scroll's beneficiary; the link (or absence of link) between two independent forgery conspiracies is never evidenced.",
+      "citation": "Priest Dogan is a paid agent (E7) operating on behalf of a rival lord — a genuine conspirator in the broader plot, but his role was to legitimize the forged scroll with religious ceremony, not to create it"
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "Lady Shizuka is eliminated on absence of evidence only, while her duplicate key, unlogged archive visit and forty-minute gap — the very facts that match E5's erasure — are left standing and unaddressed.",
+      "citation": "Lady Shizuka had access via her duplicate key but no calligraphy expertise and no recorded contact with Kenji that evening."
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "The crime statement says the whole scroll was swapped for a forged copy while the method and E1 describe three characters altered on the original document; the two accounts of the forgery cannot both be true.",
+      "citation": "the official peace treaty scroll bearing the seal of the Tokugawa representatives had been secretly replaced with a forged copy"
+    },
+    {
+      "code": "method.impossible",
+      "severity": "NOTE",
+      "claim": "The scroll is said to be in the negotiation hall awaiting dawn ratification, yet Kenji is killed while re-examining that same scroll at his desk in the Document Chamber.",
+      "citation": "The forged scroll remains in the negotiation hall, presented the following dawn as authentic."
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "NOTE",
+      "claim": "Lady Shizuka's alibi arithmetic does not resolve: a gap running from 'shortly before' 11 PM to the Hour of the Rat cannot be forty minutes.",
+      "citation": "The three other ladies confirm her presence only until shortly before the Hour of the Boar ends, leaving a gap of approximately forty minutes."
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "NOTE",
+      "claim": "E4's cedar-oil trace, the one clue physically tying the murder weapon to a lacquered box like Tanaka's pigment set, is never used in how_to_deduce or key_evidence and dies unclosed.",
+      "citation": "a faint smear of cedar oil on its underside does not match any product in the Document Chamber — cedar oil is commonly used to condition wooden weapon handles and lacquered boxes"
+    },
+    {
+      "code": "motive.insufficient",
+      "severity": "NOTE",
+      "claim": "The motive is adequate in scale but establishes only clan benefit — no personal stake, reward or instruction from his lord is given to explain why an accredited envoy would personally risk execution for forgery and murder.",
+      "citation": "The forged treaty, if ratified, would secretly restore three contested river provinces to Uesugi territorial influence — a strategic and financial gain worth more than a decade of battle."
+    },
+    {
+      "code": "delivery.prompt_not_recorded",
+      "severity": "NOTE",
+      "claim": "Delivery cannot be judged because the player's original request was not stored with this scenario.",
+      "citation": "\"setting_input\": \"Feudal Japan, 1600, daimyo's castle during peace negotiations\""
+    }
+  ],
+  "_usage": {
+    "input_tokens": 7456,
+    "output_tokens": 7883,
+    "model": "claude-opus-5",
+    "stop_reason": "end_turn",
+    "cost_usd": 0.2344
+  },
+  "_source": "the_seal_of_false_heaven_1773339151.json"
+}

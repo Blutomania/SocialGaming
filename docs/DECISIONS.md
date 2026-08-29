@@ -875,9 +875,40 @@ that the superseded text has become history and belongs here instead.
     one is too lenient to trust on motive and method, which nothing can verify. A critic that only
     agrees with the free checker is not worth $0.28.
 
-    **First result, on `daggers_in_the_forum`:** BROKEN, 5 blocking. It caught the phantom cast
-    member the checker caught, and three things the checker never could — a clue labelled
-    `red_herring` that was produced by the murderer's own act, a motive that contradicts itself
-    (the killer forged the document that ruined the woman he is avenging), and a wound count that
-    disagrees between the crime and the method, seven against three.
+    **Phase A ran over all 17 mysteries. $4.22, $0.248 each, zero failures.**
+
+    | | |
+    |---|---|
+    | Verdicts | **11 BROKEN, 6 FLAWED, 0 SOUND** |
+    | At least one BLOCKING finding | **12 of 17** |
+    | Agreed with `check_narrative.py` on a phantom person | **7 of 7** |
+    | **Missed one the free checker caught** | **0** |
+    | Flagged a cast fault the checker could not see | 6 |
+
+    **Zero misses is the bar it had to clear.** The free checker independently knows which
+    mysteries name a person absent from the cast; a critic that missed one would be too lenient to
+    trust on motive and method, which nothing else can verify. It missed none.
+
+    **And it is not merely agreeing with the free checker**, which would make it not worth $0.25.
+    Spot-checked findings no structural check could reach:
+
+    - *ancient_athens* — the murder is poison in the evening tea, so the killer need not be present
+      when the victim dies; the deduction nonetheless breaks his alibi with a stopped watch. And the
+      will cutting him out **was already signed three days before the murder**, so the motive is
+      self-defeating.
+    - *levels_of_betrayal* — step 1 eliminates Kwame for lack of opportunity, but the scenario's own
+      twist shows his tag was spoofed. **The elimination is invalid because of a clue elsewhere in
+      the same mystery**: an arithmetic fault, found by reading the prose.
+    - *daggers_in_the_forum* — a clue labelled `red_herring` produced by the murderer's own forged
+      lure; a motive where the killer forged the document that ruined the woman he is avenging; a
+      wound count of seven in the crime against three in the method.
+
+    **The 12-of-17 rate is the OLD pipeline's rate and must not be read as the new one's.** Sixteen
+    of these were written forwards, and the seventeenth predates `acts`/`produced_by`. Measuring how
+    often the critic fires on the current prompt is Phase B and needs fresh generations.
+
+    **Exemplar candidate, for the worked-example lever:** `dead_water` scores best (0 blocking, 9
+    findings), `whiteout_at_shackleton_base` next (0 blocking, 13) and it is also the newest and the
+    only one generated under the four-suspect rule. Neither is SOUND, which is itself worth knowing
+    before either is held up as a model.
 

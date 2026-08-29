@@ -1,0 +1,116 @@
+{
+  "verdict": "FLAWED",
+  "summary": "The Handy–Vanity conspiracy is deducible from E1, E2, E3 and E6, so the case is winnable, but the mystery is riddled with continuity faults: every suspect is reasoned about under a nickname that appears in no \"name\" field, E2's handwriting attribution is stated two contradictory ways, and the assault on the victim, the missing letter and Brainy's 3:30 AM door are all left without evidence or explanation. Nothing is strictly unsolvable, but several labels are false and the physical method contradicts itself.",
+  "findings": [
+    {
+      "code": "cast.not_in_characters",
+      "severity": "WARNING",
+      "claim": "Every person the solution reasons about is named by a nickname (\"Handy\", \"Vanity\", \"Brainy\", \"Clumsy\") that appears in no character's \"name\" field — identity is only recoverable via the \"culprit\" line, so it is confusing rather than fatal.",
+      "citation": "Handy used his precision glass-cutting knife to shatter the display case and slice the iron lock bar cleanly — a technique only a skilled engineer could execute quietly and efficiently."
+    },
+    {
+      "code": "cast.not_in_characters",
+      "severity": "NOTE",
+      "claim": "Gargamel and his messenger are active agents in the method and motive but are not in the cast; as deliberately off-stage figures outside the fog this is acceptable, though it means the handoff plan can never be tested by players.",
+      "citation": "The Star was to be handed to Gargamel's messenger at the fog boundary at dawn in exchange for clearing Handy's debt."
+    },
+    {
+      "code": "cast.not_in_characters",
+      "severity": "WARNING",
+      "claim": "Harmony Smurf discovers the crime scene and is inside the sealed village, yet he is not in \"characters\" and so cannot be questioned about what he found or where he was overnight.",
+      "citation": "Harmony Smurf arrived at the Village Hall at dawn to rehearse his trumpet fanfare for the festival and found the broken case, the scattered relics, and the Star missing."
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "NOTE",
+      "claim": "There is no \"solution.chain\" field at all; the backward audit had to be performed against the six numbered steps of \"how_to_deduce\" instead.",
+      "citation": "Step 1: Examine E1 — the blade cut on the display case lock matches Handy's precision glass-cutting knife (with a fresh nick), immediately placing Handy's specialized tools at the center of the crime."
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "The assault on Smurfeline is attributed to Handy with a specific weapon, but no item in \"evidence\" concerns a mallet, a blunt weapon, or the blow at all — this step is a leap no player can make.",
+      "citation": "Handy — already inside staging the diversion damage — struck her with a wooden mallet to silence her before fleeing."
+    },
+    {
+      "code": "label.false",
+      "severity": "WARNING",
+      "claim": "E2's attribution of handwriting is the exact reverse of Vanity's secret — one says the annotations are Handy's, the other says the base plan is Handy's and the annotations Vanity's, wrecking the reliability of the \"pivotal\" step 2.",
+      "citation": "Vanity also possesses a hand-drawn copy of an old engineering diagram of the Village Hall's interior — with unauthorized annotations in a different handwriting that scholars would recognize as Handy's."
+    },
+    {
+      "code": "clue.uncaused",
+      "severity": "WARNING",
+      "claim": "No act in the method abrades or damages the Star's gem, so nothing explains how sapphire micro-fragments came to be inside the scarf; the case that was shattered was glass, and glass dust — not sapphire dust — is what wrapping a stolen medallion would produce.",
+      "citation": "Laboratory analysis by Grand Elder Smurfagar the Wise confirms the powder is sapphire micro-fragments — the same type of gemstone that forms the Star's centerpiece."
+    },
+    {
+      "code": "clue.uncaused",
+      "severity": "WARNING",
+      "claim": "The theft of Smurfeline's letter has no author anywhere in the solution — neither Handy nor Vanity is said to know of the letter or the map, so the evidence exists only because the plot wanted a map subplot.",
+      "citation": "The empty desk slot and a torn corner of parchment left behind suggest it was deliberately taken, implicating someone who knew the letter's contents and wanted to suppress the information about the hidden map."
+    },
+    {
+      "code": "label.false",
+      "severity": "WARNING",
+      "claim": "E8 is labelled \"supporting\" but supports no step of the deduction and in fact points at the map-seeker, Brainy, whom the solution explicitly exonerates — the label misdirects toward the wrong person while being presented as corroboration.",
+      "citation": "Step 5: Eliminate Brainy — E4 (the wax key impression) initially implicates him, but the theft used a blade-cut method, not a copied key; Brainy never cast a working key, and his alibi with Grand Elder Smurfagar the Wise for part of the night holds."
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "Brainy is cleared without ever accounting for the 3:30 AM door — a movement inside the theft window that the solution simply ignores, leaving the elimination incomplete.",
+      "citation": "His cottage neighbor, Smurfumbles the Trip-Footed, claims he heard Brainy's door open and close again around 3:30 AM but assumed Brainy was visiting the outhouse."
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "Handy is placed in two locations at once: he is said to be sustaining a workshop alibi while simultaneously being inside the Village Hall cutting the case and striking the victim.",
+      "citation": "retrieved the Star, wrapped it in his scarf, and exited while Handy maintained the appearance of working in his workshop as a passive alibi. When Smurfeline, Tender of Blossoms unexpectedly arrived and interrupted the act, Handy — already inside staging the diversion damage — struck her with a wooden mallet"
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "A glass-cutting knife cannot slice a hardened iron locking bar cleanly through; E1 asserts the match and then concedes the blade was damaged doing it, which undercuts the \"single clean cut\" it is built on.",
+      "citation": "The cut angle and depth match Smurfwick the Craftsmurf's glass-cutting knife, found in his workshop, which has a fresh nick on its edge consistent with cutting hardened iron."
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "The setting seals the village so completely that no one can leave, yet the plan depends on an outside messenger arriving at the boundary and on prior visits by a traveling merchant and note-traffic with Gargamel.",
+      "citation": "an impenetrable magical fog that Grand Elder Smurfagar the Wise accidentally triggered while testing a new spell. The fog disorients anyone who tries to wander beyond the village boundary, forcing all residents to remain inside until it lifts — trapping every suspect on the scene."
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "The discovery scene omits the unconscious victim entirely, so players are never told how or when the assault was found — the crime as narrated is a theft only.",
+      "citation": "N/A — she was found unconscious near the broken display case, having been struck on the head by a blunt object when she apparently interrupted the thief mid-act"
+    },
+    {
+      "code": "motive.insufficient",
+      "severity": "WARNING",
+      "claim": "Handy's stake — clearing a debt and protecting his good name — is adequate for the theft but not for clubbing a fellow villager unconscious, an escalation nothing in his characterisation prepares.",
+      "citation": "Handing it over would clear his debt and protect his reputation as the village's most trusted craftsman."
+    },
+    {
+      "code": "motive.insufficient",
+      "severity": "NOTE",
+      "claim": "Vanity is given two different reasons for the same act — independent resale of the sapphire in his character entry, recruitment for a cut of Gargamel's payment in the solution — leaving his actual stake unsettled.",
+      "citation": "Vanity was recruited by Handy with promises of a share of Gargamel's payment, enough to fund Vanity's dream journey to the City of Mirrors."
+    },
+    {
+      "code": "delivery.prompt_not_recorded",
+      "severity": "NOTE",
+      "claim": "Delivery cannot be judged because the originating prompt was not stored with this mystery.",
+      "citation": "\"target_setting\": \"Someone stole something from the Smurfs\""
+    }
+  ],
+  "_usage": {
+    "input_tokens": 7510,
+    "output_tokens": 9623,
+    "model": "claude-opus-5",
+    "stop_reason": "end_turn",
+    "cost_usd": 0.2781
+  },
+  "_source": "the_stolen_star_of_smurf_village_1775239921.json"
+}

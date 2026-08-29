@@ -1,0 +1,146 @@
+{
+  "verdict": "BROKEN",
+  "summary": "The mystery is playable in outline and its two key clues (scarf, spare key) do point at Rosita, but the solution reasons repeatedly about Alan — a lender who holds the loan paperwork, knows the vault combination and profits from the collection vanishing — and he is not in the cast, so the claim that the evidence 'uniquely' points to Rosita cannot be tested or closed. Several exonerating documents the solution relies on (the bag-loan form, the Count's bat receipt) exist only in prose and not in the evidence list, and E1's provenance flatly contradicts solution.method.",
+  "findings": [
+    {
+      "code": "cast.not_in_characters",
+      "severity": "BLOCKING",
+      "claim": "Alan is reasoned about throughout the solution as the collateral-holder whose claim drives the motive, yet he appears in no character entry — and because the loan agreement he co-signed 'lists the vault combination in plain text', he is an uninterrogatable person with both means and motive, which destroys the solution's uniqueness claim.",
+      "citation": "she stole the collection herself, planning to hide it briefly and then 'find' it heroically in time to run the auction before Alan could exercise his collateral claim, resolving both problems at once."
+    },
+    {
+      "code": "cast.not_in_characters",
+      "severity": "WARNING",
+      "claim": "The step that clears Grover depends on corroboration from an unnamed dispatcher who is not a character and cannot be questioned by players.",
+      "citation": "a detail Grover's dispatcher corroborates, as Rosita signed a bag-loan form"
+    },
+    {
+      "code": "cast.not_in_characters",
+      "severity": "NOTE",
+      "claim": "Igor supplies the Count's entire alibi but is not in the cast; as a purely off-stage corroborator this is tolerable, though it means players cannot break or confirm the alibi by interview.",
+      "citation": "his manservant Igor confirms this, but Igor is notoriously loyal and has covered for the Count before"
+    },
+    {
+      "code": "cast.not_in_characters",
+      "severity": "NOTE",
+      "claim": "Mr. Noodle provides the only independent sighting near the community centre but is not a character; he is background-only, so no player can press him on whether the figure was Rosita.",
+      "citation": "a neighbour, Mr. Noodle, says he saw a figure carrying a large cloth bag near the community centre around 11:30 p.m. but cannot confirm it was Rosita"
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "NOTE",
+      "claim": "There is no solution.chain field at all; the backward audit had to be run against how_to_deduce, which is prose rather than discrete linked steps with declared evidence per step.",
+      "citation": "\"how_to_deduce\": \"Step 1 — Establish that no outsider could have committed the theft."
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "Step 2's inference that the thief must have had a key is contradicted by Elmo's own account that the front door was unlocked, which means keyless entry was available to any resident all night.",
+      "citation": "woke to the 5 a.m. wail and immediately entered Cookie Monster's apartment (the front door was unlocked) to find him in the empty kitchen"
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "The final uniqueness claim is false as written: the combination was printed in a loan document held by a second signatory, and the unlocked door removes key-exclusivity, so key + scarf + ledger narrow the field but do not isolate Rosita.",
+      "citation": "The combination of the spare key, the scarf fragment, and the motive ledger uniquely points to Rosita as the sole culprit."
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "Grover's exoneration hinges on a bag-loan form that appears nowhere in the evidence array, so players have no artefact to find that would let them make this step.",
+      "citation": "Rosita's own testimony, once confronted with E2 and E5 together, confirms she borrowed the bags from Grover's supply cupboard at the community centre — a detail Grover's dispatcher corroborates, as Rosita signed a bag-loan form."
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "The Count is cleared by a receipt and a counting log that exist only in gameplay_notes and are not listed as evidence, so the red herring cannot actually be closed in play.",
+      "citation": "his manservant Igor's alibi, while suspicious, is ultimately corroborated by a time-stamped bat-delivery receipt signed at 11 p.m. and a 4 a.m. counting-completion log"
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "Grover's 90-minute gap and stationary scooter are never explained by the solution, so the primary false suspect is never positively cleared — only out-argued.",
+      "citation": "The dispatcher confirmed the gap is unexplained and Grover filed no note or break request for that window."
+    },
+    {
+      "code": "clue.uncaused",
+      "severity": "WARNING",
+      "claim": "E1's causing act is impossible as described: the notepad is stated to remain in Grover's satchel, yet Rosita is said to have torn a page from it, and nothing anywhere explains how she gained access to it.",
+      "citation": "Grover wrote it on a blue notepad he still carries in his courier satchel, a page of which was found torn out and left near the vault."
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "solution.method and how_to_deduce give two mutually exclusive accounts of how Rosita knew the combination, so the answer cannot be followed coherently.",
+      "citation": "She had learned the vault combination by reading the loan paperwork Cookie Monster carelessly showed her when asking for bake-sale fundraising advice two weeks earlier."
+    },
+    {
+      "code": "label.false",
+      "severity": "WARNING",
+      "claim": "E1 is labelled relevance 'critical' but it implicates an innocent man and functions purely as a red herring; treating it as critical corrupts every downstream weighting.",
+      "citation": "It bears seven hand-written digits — matching Cookie Monster's vault combination exactly — written in Grover's rounded, looping handwriting."
+    },
+    {
+      "code": "label.false",
+      "severity": "WARNING",
+      "claim": "E8's stated relevance is a non sequitur: an undisturbed document inside a re-locked vault cannot confirm that a combination rather than some other means was used, and the same document proves Alan also possessed the combination.",
+      "citation": "Its presence undisturbed inside the re-locked vault confirms that the thief used the combination to open and re-lock the vault — they did not break in"
+    },
+    {
+      "code": "label.false",
+      "severity": "WARNING",
+      "claim": "E8 is said to give Cookie Monster a motive, but his own secret states the theft makes his position worse, not better, so the false-suspect thread it is supposed to create does not logically exist.",
+      "citation": "It also surfaces Cookie Monster's secret financial motive for wanting the collection to 'disappear' before Alan could act"
+    },
+    {
+      "code": "label.false",
+      "severity": "NOTE",
+      "claim": "E2 is described as being found on the letterbox during investigation, while Elmo's secret says he removed and hid it before anyone else arrived; the evidence entry and the reveal mechanic contradict each other on where it is.",
+      "citation": "A short fringe of turquoise wool caught on the sharp inner edge of Cookie Monster's brass letterbox slot, found at the front door."
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "Grover's five hours of courier runs and a scooter parked two blocks away are irreconcilable with a block padlocked at both ends from 9 p.m. to 6 a.m.; either he crossed the barriers repeatedly or the checkpoint log would already settle his movements, and no such log appears in evidence.",
+      "citation": "Claims he was completing NomNom Express delivery runs from 10 p.m. to 3 a.m. and has a digital dispatch log to prove it"
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "Cookie Monster's exonerating alibi is unwitnessable: Elmo is said to have been asleep from 10 p.m. yet also to have heard snoring continuously until 5 a.m.",
+      "citation": "Elmo heard his trademark snoring through the shared wall continuously until the 5 a.m. wail, confirming he did not stir during the night"
+    },
+    {
+      "code": "method.impossible",
+      "severity": "NOTE",
+      "claim": "The only sighting of a figure with a large bag is timed at 11:30 p.m., before the theft window Rosita is said to have used, so the one piece of eyewitness timing does not fit the reconstructed method.",
+      "citation": "Rosita used the spare apartment key she had never returned to enter Cookie Monster's apartment silently after midnight."
+    },
+    {
+      "code": "method.impossible",
+      "severity": "NOTE",
+      "claim": "The emptied, crumb-filled NomNom bags are found dumped in the open behind the bins while the cookies are hidden in the locked room inside — an inexplicable act for a thief whose whole plan depends on the hoard staying unlinked to her until she 'recovers' it.",
+      "citation": "Three oversized canvas tote bags bearing the NomNom Express logo found stuffed behind the recycling bins at the rear of the community centre at 6 a.m. the morning after the theft."
+    },
+    {
+      "code": "motive.insufficient",
+      "severity": "WARNING",
+      "claim": "The plan does not solve Rosita's problem: 'recovering' the cookies restores Alan's collateral claim exactly as it stood, so she would still be unable to auction them, making a $500 roof fund and mild embarrassment an inadequate stake for a 400-item burglary of a friend.",
+      "citation": "planning to hide it briefly and then 'find' it heroically in time to run the auction before Alan could exercise his collateral claim, resolving both problems at once"
+    },
+    {
+      "code": "delivery.prompt_not_recorded",
+      "severity": "NOTE",
+      "claim": "The originating request was not stored with this mystery, so fit-to-brief cannot be assessed.",
+      "citation": "\"setting_input\": \"Sesame Street — Cookie Monster's brownstone apartment and the surrounding neighbourhood\""
+    }
+  ],
+  "_usage": {
+    "input_tokens": 8299,
+    "output_tokens": 10582,
+    "model": "claude-opus-5",
+    "stop_reason": "end_turn",
+    "cost_usd": 0.306
+  },
+  "_source": "the_great_cookie_caper_of_sesame_street_1773894463.json"
+}

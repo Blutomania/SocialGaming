@@ -1,0 +1,104 @@
+{
+  "verdict": "BROKEN",
+  "summary": "The cast is intact, but the solution's core deduction is self-refuting — a poisoned-tea murder does not require the killer's presence, so the stopped watch cannot break his alibi, and the will was already rewritten before the murder, destroying the motive. Add an unrecorded chain, uncaused and anachronistic clues, a red herring that contradicts its own owner's suspect entry, and a setting that shares nothing with the scenario, and the answer cannot be followed or won.",
+  "findings": [
+    {
+      "code": "delivery.prompt_not_recorded",
+      "severity": "NOTE",
+      "claim": "Section D is skipped as instructed: no stored prompt exists, so delivery against player request cannot be judged.",
+      "citation": "\"_meta\": {\n    \"num_players\": 4,\n    \"setting_input\": \"Ancient Athens, agora marketplace, 400 BC\",\n    \"demo\": true\n  }"
+    },
+    {
+      "code": "cast.not_in_characters",
+      "severity": "NOTE",
+      "claim": "Section A enumeration: solution.method names no one; solution.motive names no one; solution.how_to_deduce names \"Pemberton\" (present as \"Dr. Pemberton\") and \"Miss Crane\" (present) — every person the solution reasons about is in the cast, so there is no blocking cast fault; the only unlisted person is the discovering housekeeper, who is referenced outside the solution and cannot be questioned.",
+      "citation": "\"initial_discovery\": \"The housekeeper raised the alarm when she found the door sealed from within.\""
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "BLOCKING",
+      "claim": "Section B cannot be performed step-by-step because solution has no \"chain\" field at all — only a single prose paragraph, so the player is handed a conclusion rather than an ordered inference path.",
+      "citation": "\"how_to_deduce\": \"The stopped watch (E1) fixes time of death at 11:47 PM, contradicting Pemberton's alibi that he was in the library until midnight.\""
+    },
+    {
+      "code": "method.impossible",
+      "severity": "BLOCKING",
+      "claim": "The method and the deduction contradict each other: poison in the evening tea needs no presence at the moment of death, so a time of death of 11:47 PM does not conflict with Pemberton being in the library until midnight — the sole \"critical\" deduction proves nothing.",
+      "citation": "\"method\": \"Poison administered in the evening tea, timed to allow an apparent alibi\""
+    },
+    {
+      "code": "motive.insufficient",
+      "severity": "BLOCKING",
+      "claim": "The motive is self-defeating: the new will cutting Pemberton out was already signed three days before the murder, so killing Lady Hartwell guarantees he inherits nothing, and no text establishes he was ignorant of the change.",
+      "citation": "\"motive\": \"Stood to inherit under the old will; new will cuts him out entirely\""
+    },
+    {
+      "code": "clue.uncaused",
+      "severity": "BLOCKING",
+      "claim": "E1 has no producing act and cannot exist in this setting: no one is said to have stopped, broken or planted the watch, a poisoning does not stop a watch, and pocket watches (and \"PM\" clock time) do not exist in 400 BC Athens.",
+      "citation": "\"name\": \"Stopped pocket watch\",\n      \"description\": \"Found on the victim, stopped at 11:47 PM\""
+    },
+    {
+      "code": "label.false",
+      "severity": "BLOCKING",
+      "claim": "E1's \"critical\" relevance is false — a stopped watch fixes only when a watch stopped, never a time of death, so the label licenses an inference the object cannot support.",
+      "citation": "\"The stopped watch (E1) fixes time of death at 11:47 PM\""
+    },
+    {
+      "code": "label.false",
+      "severity": "BLOCKING",
+      "claim": "E2 is labelled critical and said to establish Pemberton's motive, but nothing in the letter names him or ties the sum to him — it points at no one and implicates \"a man\" generically.",
+      "citation": "\"name\": \"Torn letter\",\n      \"description\": \"References a sum large enough to ruin a man\""
+    },
+    {
+      "code": "clue.uncaused",
+      "severity": "WARNING",
+      "claim": "E2 has no producing act: no writer, no recipient, no explanation of who tore it or why the pieces were left to be found.",
+      "citation": "\"id\": \"E2\",\n      \"name\": \"Torn letter\""
+    },
+    {
+      "code": "clue.uncaused",
+      "severity": "WARNING",
+      "claim": "E3 is caused by nothing and resolved by nothing — the solution never mentions the boots, so a \"supporting\" clue dangles with no act behind it and no chain step in front of it.",
+      "citation": "\"name\": \"Muddy boots by the back door\",\n      \"description\": \"No one admits to going outside\""
+    },
+    {
+      "code": "label.false",
+      "severity": "BLOCKING",
+      "claim": "E4's red_herring label is false as written: the vial is declared innocently Miss Crane's, yet the evidence text says the sedative was not prescribed to the victim and Miss Crane is simultaneously carded as a suspect with a blackmail motive and no alibi, so the \"innocent act\" is asserted, not shown.",
+      "citation": "\"The medicine vial (E4) is a red herring — it belonged to Miss Crane legitimately.\""
+    },
+    {
+      "code": "label.false",
+      "severity": "WARNING",
+      "claim": "Miss Crane's character entry and the twist list contradict each other about her role, so a player working from her card is investigating a person the solution has already exonerated by fiat.",
+      "citation": "\"Miss Crane is a witness, not a suspect — she saw Pemberton leave the library early\""
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "With only two suspects listed and the twist declaring one of them a witness, the culprit is deducible without touching any evidence, so the investigation has no work to do.",
+      "citation": "\"num_players\": 4"
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "The sealed-room premise is never solved: the door is locked from within yet the poisoner supposedly acted elsewhere, and nothing explains how the study came to be sealed.",
+      "citation": "\"what_happened\": \"A body was discovered in the locked study at midnight.\""
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "The physical setting contradicts the crime scene and the whole cast: an open-air agora in 400 BC Athens has no locked study, library, back door, housekeeper, police inspector or English-titled patron.",
+      "citation": "\"location\": \"Ancient Athens, agora marketplace, 400 BC\""
+    }
+  ],
+  "_usage": {
+    "input_tokens": 2859,
+    "output_tokens": 4176,
+    "model": "claude-opus-5",
+    "stop_reason": "end_turn",
+    "cost_usd": 0.1187
+  },
+  "_source": "the_murder_at_ancient_athens_1772914589.json"
+}

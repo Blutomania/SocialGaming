@@ -1,0 +1,110 @@
+{
+  "verdict": "FLAWED",
+  "summary": "The core chain (E2 motive → E4 places Calvin at the door → E3 bribe as consciousness of guilt) is followable and Calvin is a fair answer, but a key corroborating witness (Darnell Pope) exists only in the evidence and not in the cast, and several clues are uncaused, mislabelled, or in conflict with the club's own timeline (police already on premises, Clarence's unbroken bar alibi, the unremarked barrel-bolt). Rosy is never actually eliminated, so a diligent player can build an equally physical case against him.",
+  "findings": [
+    {
+      "code": "cast.not_in_characters",
+      "severity": "BLOCKING",
+      "claim": "Darnell Pope is reasoned about in the solution and is the sole source of a listed evidence item, yet he does not appear in \"characters\" and so cannot be met, questioned or watched collapsing under follow-up.",
+      "citation": "\"Darnell's collapsing alibi corroboration (E10) further undermines Calvin's story rather than Rosy's.\" / \"Darnell Pope, Calvin's subordinate, confirms Calvin was in the back room 'the whole time,' but when asked what they discussed, he gives vague answers ... His corroboration visibly collapses under basic follow-up questions.\""
+    },
+    {
+      "code": "cast.not_in_characters",
+      "severity": "NOTE",
+      "claim": "Several alibi-bearing or document-producing figures are off-stage; they are not named in the solution so they are not blocking, but every alibi in the mystery rests on someone the players cannot interview (Duke Farris, Roy Elkins, the cook, the telephone operator, Mr. Spence, Agent R. H—, Officer Briggs).",
+      "citation": "\"that bandleader Duke Farris saw him there the whole time\" / \"confirmed by head bartender Roy Elkins who was present the entire time except for a brief moment\" / \"The kitchen log kept by the cook shows the boning knife was present at 11:45 PM\""
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "Step 4 never eliminates Rosy Beaumont: he has fifteen unverified minutes inside the murder window, an office adjacent to the storage corridor, and a hand that fits E1 as well as Calvin's does, yet the step dismisses him only by gesturing at Calvin's problems.",
+      "citation": "\"Rosy's ledger (E5) shows he had motive and a recent confrontation, but the earring found in the numbers office (E6) points toward the syndicate's operational space, and Darnell's collapsing alibi corroboration (E10) further undermines Calvin's story rather than Rosy's.\""
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "Step 4 claims Maddie's alibi is corroborated for part of the window, but the text it rests on states her only witness was absent for at least twelve of the twenty minutes — the corroboration covers a single instant of return, not any part of the murder window.",
+      "citation": "\"her alibi for at least part of the window is corroborated\" versus \"Trumpet player Hector Vidal confirms she was there when he returned from the bathroom, but admits he was gone for at least twelve minutes.\""
+    },
+    {
+      "code": "clue.uncaused",
+      "severity": "WARNING",
+      "claim": "E6's earring lies in the back-room numbers office with fresh blood on it, but no act in solution.method carries it there — the method has Calvin returning through the corridor and never mentions the earring at all.",
+      "citation": "\"A garnet earring was found wedged between the floorboards of the back-room numbers office, roughly fifteen feet from the storage room, with a fresh smear of blood on its gold post.\" versus \"He tore the letter from her hand, pocketed it partially ... and locked the storage room from outside using the barrel-bolt before returning through the back corridor.\""
+    },
+    {
+      "code": "clue.uncaused",
+      "severity": "WARNING",
+      "claim": "E9's second half rests on an observation with no observer: no character in the cast is said to have seen Calvin at the kitchen doorway, so the player has no way to obtain this fact.",
+      "citation": "\"after which Calvin was seen passing the kitchen doorway\""
+    },
+    {
+      "code": "label.false",
+      "severity": "WARNING",
+      "claim": "E8's inference depends on Rosy having called the argument 'calm', but his own entry states he never mentioned the confrontation to anyone, so the contradiction the clue advertises does not exist as written.",
+      "citation": "\"suggesting the argument Rosy described as 'calm' was anything but\" versus \"He told no one because admitting the theft would expose the club's illegal revenue to the police.\""
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "Clarence cannot both be behind the bar continuously under Roy Elkins's eye and be in the storage corridor taking a bribe at 12:18; the fudge phrase 'except for a brief moment' is the only thing holding the timeline together.",
+      "citation": "\"Was stacking clean glasses behind the bar from roughly 11:55 PM until he was sent to the storage room for gin at 12:25 AM; confirmed by head bartender Roy Elkins who was present the entire time except for a brief moment.\" versus \"Calvin gave them to him near the storage corridor at 12:18 AM\""
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "The setting places two officers inside the club from just after midnight and says they discovered the corpse, which conflicts with a murder committed at roughly 12:10–12:18 and with Clarence discovering the body at 12:25.",
+      "citation": "\"the single staircase exit blocked by a police raid that arrived just after midnight\" / \"When two plainclothes officers arrived to shake down the owner for back-payments, they found a corpse and locked the club down tight.\" versus \"Barback Clarence Tibbs went to the storage room to fetch a new case of bootleg gin and nearly tripped over Lena's outstretched hand.\""
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "The bolted storage room is a locked-door element that leaves no trace in play: Clarence walks straight in for gin, nobody remarks that a store room was bolted from the corridor side, and the bolt appears in no evidence item.",
+      "citation": "\"locked the storage room from outside using the barrel-bolt before returning through the back corridor\""
+    },
+    {
+      "code": "label.false",
+      "severity": "NOTE",
+      "claim": "E9's 'supporting' weight is overstated: the left-palm pressure mark is given an innocent explanation by the very testimony that indicts Calvin, since E4 has that same left hand clamped on Lena's wrist.",
+      "citation": "\"his left palm has a faint reddish pressure-mark consistent with gripping a narrow handle tightly\" versus \"He states Calvin's left hand was gripping Lena's wrist and she was pulling away.\""
+    },
+    {
+      "code": "label.false",
+      "severity": "NOTE",
+      "claim": "E1 is used to clear Maddie but is never compared against the detained suspects, so a print that could confirm or clear Calvin, Rosy, Hector and Clarence is left permanently unmatched.",
+      "citation": "\"The wooden handle bears a smeared but partial palm print on the bolster that does not match Lena's hand — the size and ridge pattern are consistent with a large adult male hand.\""
+    },
+    {
+      "code": "label.false",
+      "severity": "NOTE",
+      "claim": "E3's headline detail — consecutive serial numbers — proves nothing, since no matching roll of bills is ever recovered from Calvin to link the sequence to him.",
+      "citation": "\"Two consecutively serial-numbered one-dollar bills found in Clarence Tibbs's breast pocket\""
+    },
+    {
+      "code": "label.false",
+      "severity": "NOTE",
+      "claim": "E7's red_herring label is TRUE — Maddie's possession of the slip is an innocent act of interception — but its timing contradicts Maddie's own secret, which places the poisoning call earlier in the day.",
+      "citation": "\"'Miss Dupree called Okeh Records at 9 PM — told Mr. Spence that M. Voss drinks on the job and missed rehearsals.'\" versus \"the same scout Lena had already telephoned earlier in the day to poison Maddie's reputation\""
+    },
+    {
+      "code": "motive.insufficient",
+      "severity": "NOTE",
+      "claim": "Calvin's motive is otherwise ample for an enforcer under standing kill-orders, but the mystery never provides the player any evidence of how the syndicate learned Lena was informing — the trigger for the killing is asserted only in the solution.",
+      "citation": "\"Calvin had been ordered by the Harlem syndicate to permanently silence Lena after intercepting word that she was feeding the club's operational details to a federal Prohibition agent\""
+    },
+    {
+      "code": "delivery.prompt_not_recorded",
+      "severity": "NOTE",
+      "claim": "Delivery cannot be judged: the originating player request was not stored with this scenario, only a bare setting string.",
+      "citation": "\"setting_input\": \"1920s Harlem, jazz club after hours, Prohibition era\""
+    }
+  ],
+  "_usage": {
+    "input_tokens": 7548,
+    "output_tokens": 9855,
+    "model": "claude-opus-5",
+    "stop_reason": "end_turn",
+    "cost_usd": 0.2841
+  },
+  "_source": "the_last_note_at_the_velvet_cage_1773338560.json"
+}

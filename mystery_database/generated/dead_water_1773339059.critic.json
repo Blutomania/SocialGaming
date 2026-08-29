@@ -1,0 +1,68 @@
+{
+  "verdict": "FLAWED",
+  "summary": "The cast is complete — every person the solution reasons about (Marta Voss, Rune Halvorsen, Erik Nansen; plus Marta's mother as an off-rig background figure nobody needs to question) appears in \"characters\" — and the four key clues do converge on Marta, so the mystery is winnable. But several declared labels are false (E4's exoneration of Erik, E3's \"supporting\" tag, E6's attribution of valve-maintenance windows to Marta) and the method contradicts itself on how Marta entered the BCR and how she obtained the weapon.",
+  "findings": [
+    {
+      "code": "delivery.prompt_not_recorded",
+      "severity": "NOTE",
+      "claim": "The originating request was not stored with this scenario, so delivery against player expectations cannot be assessed.",
+      "citation": "\"setting_input\": \"Deep-sea oil platform, North Sea, winter storm\""
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "NOTE",
+      "claim": "There is no solution.chain array; the backward audit had to be performed against the prose steps in how_to_deduce, which carry no per-step evidence field, so evidence attribution is inferred rather than declared.",
+      "citation": "\"how_to_deduce\": \"Step 1 — Eliminate the staged accident: the blunt-force wound on Rune's skull (E5) proves he was incapacitated before drowning\""
+    },
+    {
+      "code": "label.false",
+      "severity": "WARNING",
+      "claim": "E4 exonerates Erik on the basis of physical presence in the Radio Room, but looping a camera is described as a software override issued with credentials, which he could have sent from any terminal — including the Radio Room — so the exclusion is logically void and Step 2 of the deduction rests on it.",
+      "citation": "\"Erik Nansen confirms this is a deliberate software override requiring administrator-level CCTV credentials, which only Marta Voss and Erik himself hold. Erik's presence in the Radio Room is confirmed by uplink telemetry, excluding him as the person who initiated the loop.\""
+    },
+    {
+      "code": "label.false",
+      "severity": "WARNING",
+      "claim": "E3 is labelled relevance \"supporting\" and its description asserts it establishes Dag's means, yet the solution and gameplay notes treat the cloned card as irrelevant to the crime — it is functionally a red herring mislabelled as supporting evidence.",
+      "citation": "\"Its presence establishes that Dag had both the motive and a covert means to access restricted areas under Rune's identity, making him a credible suspect.\" / \"the shadow audit file (E1) shows the door was opened remotely from Marta's terminal — a method that renders the cloned card irrelevant\""
+    },
+    {
+      "code": "label.false",
+      "severity": "WARNING",
+      "claim": "E6, a critical clue, ties the thefts to Marta's \"valve-maintenance windows\" although valve maintenance is explicitly Dag's function, so the document as written points at the wrong suspect for the theft mechanism it is meant to prove.",
+      "citation": "\"matching dates and volumes to Marta Voss's scheduled valve-maintenance windows and signed maintenance authorisations\" vs \"Maintenance Engineer — responsible for mechanical integrity of valves, pumps, and hull fittings\""
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "The method contradicts itself on entry: Marta both remotely unlocks the door and then swipes her own keycard, and she is separately said to hold master-level access, so the remote override she risks logging was unnecessary — and her own swipe should have generated a primary door-log entry that appears nowhere in the evidence.",
+      "citation": "\"She then remotely unlocked the BCR door from the Monitoring Room terminal at 01:08 using her override access. She walked the interior route to the BCR (not covered by any active camera), entered using her own keycard under the false impression the override had erased the entry\""
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "Marta's weapon acquisition is never explained: the scaffold tube came from a rack adjacent to the Workshop, where Dag claims to have been working from 23:50 to 02:00, and no step addresses how she took it unseen.",
+      "citation": "\"The tube belongs to a batch stored in a maintenance rack adjacent to the Workshop — the space where Dag Sørensen spent the early hours of the morning.\""
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "The setting states all inter-module movement is swipe-logged, yet Marta's round trip from the Deck 3 Monitoring Room to the BCR and back leaves no swipe trail in any evidence item, an omission the solution silently relies on.",
+      "citation": "\"every exit to the exterior is sealed against the storm, making movement between modules traceable through electronically logged door-panel swipes\""
+    },
+    {
+      "code": "clue.uncaused",
+      "severity": "NOTE",
+      "claim": "E8's existence has no explaining act — nothing accounts for why a mastermind who deletes door logs and spoofs timestamps printed her coded theft ledger and left it in a shared workspace.",
+      "citation": "\"A printed spreadsheet found folded inside a fire-safety manual in the Monitoring Room — Marta's primary workspace — lists dates, volumes in barrels, and a string of six-digit codes beside each entry.\""
+    }
+  ],
+  "_usage": {
+    "input_tokens": 7694,
+    "output_tokens": 6596,
+    "model": "claude-opus-5",
+    "stop_reason": "end_turn",
+    "cost_usd": 0.2034
+  },
+  "_source": "dead_water_1773339059.json"
+}

@@ -1,0 +1,122 @@
+{
+  "verdict": "BROKEN",
+  "summary": "The solution's own two 'critical' clues contradict each other: Nzekwe's technicians place him in the machine room until 22:15 while the master-key log places him at Adaeze's corridor at 22:09, and the deduction path openly derives an opportunity window (22:15–22:34) that the stated method does not use. Add the unresolved contradiction over whether Kwame was at or away from terminal 34-B-07, a 'four minutes before discovery' timestamp that is actually twenty-eight, and a killer who leaves the audit naming his own company on the desk, and the answer cannot be followed as written.",
+  "findings": [
+    {
+      "code": "method.impossible",
+      "severity": "BLOCKING",
+      "claim": "Nzekwe cannot both be corroborated in the machine room until 22:15 and be scanning into Adaeze's residential corridor at 22:09; the solution relies on both facts and never resolves the conflict.",
+      "citation": "\"The technicians confirm his presence until 22:15, but the machine room is only a four-minute walk from Adaeze's apartment, leaving a window between 22:15 and 22:34.\" vs. \"Nzekwe used his legitimately issued engineering master-key to access Adaeze's residential corridor at 22:09.\""
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "BLOCKING",
+      "claim": "Step 1 eliminates Kwame for lack of opportunity, but E6 — the scenario's own twist — shows his tag was spoofed and he left the hub early, so his whereabouts during the 22:10–22:30 death window are never established or excluded anywhere in the solution.",
+      "citation": "\"meaning Nzekwe had a physical opportunity that the continuously-logged-but-spoofed Kwame appears not to have\""
+    },
+    {
+      "code": "label.false",
+      "severity": "BLOCKING",
+      "claim": "E2 and Kwame's secret assert opposite things about his body: the deactivation command was issued from his own workstation, yet he is said to have been physically absent from the hub at that time, so the player cannot place the second guilty party anywhere.",
+      "citation": "\"the command originated from terminal 34-B-07 in the administrative hub — Kwame's primary workstation\" vs. \"he used those credentials to disable her apartment's security AI from a terminal in the administrative hub, which is why his biometric tag appears on-site while he was physically absent\""
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "The crime summary times the security-AI shutdown at four minutes before discovery, but E2 dates it 22:06 and discovery is 22:34 — twenty-eight minutes.",
+      "citation": "\"her personal security AI was remotely disabled approximately four minutes before her body was discovered\" vs. \"its deactivation at 22:06\" and \"Kwame Asante, arrived at her apartment at 22:34\""
+    },
+    {
+      "code": "label.false",
+      "severity": "WARNING",
+      "claim": "E2's own explanatory sentence is arithmetically meaningless: 22:06 falls inside Kwame's claimed 21:50–22:30 presence, so it is not 'four minutes before' anything he claims.",
+      "citation": "\"The log timestamp is four minutes before Kwame claims he was still passively reviewing maintenance files at that same terminal, meaning he was actively issuing commands, not just present.\""
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "WARNING",
+      "claim": "Step 3, one of the two pillars of the conviction, rests on a fabrication-lab registration record that appears nowhere in the evidence list and therefore cannot be found or presented by players.",
+      "citation": "\"Cross-referencing arcology fabrication-lab records shows that code matches a custom print job registered under the name Emeka Nzekwe eight days before the murder\""
+    },
+    {
+      "code": "clue.uncaused",
+      "severity": "WARNING",
+      "claim": "Nothing in the scenario explains how a four-centimetre shard broke off a blade that cleanly 'pierced her heart', nor what became of the blade itself, which is never recovered.",
+      "citation": "\"A shard of custom-printed ceramic approximately four centimetres long, recovered from beneath Adaeze's body during the initial scene examination.\""
+    },
+    {
+      "code": "clue.uncaused",
+      "severity": "WARNING",
+      "claim": "A premeditating engineer commissioning his murder weapon under his own name and letting it be micro-engraved with his own initials has no stated cause beyond the plot needing an identifier.",
+      "citation": "\"A partial micro-engraving on the shard reads 'EK-NZ', consistent with a personalised fabrication code.\""
+    },
+    {
+      "code": "motive.insufficient",
+      "severity": "WARNING",
+      "claim": "Nzekwe's stated purpose was to destroy the audit, yet the draft naming his shell company survives untouched on the desk, so the killing accomplishes nothing he wanted and the motive does not reach murder.",
+      "citation": "\"intending to retrieve or destroy the audit files\" vs. \"A partially completed data-file recovered from Adaeze's personal work-tablet found on her desk... The draft names the shell company receiving inflated payments and includes a column of transaction IDs.\""
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "Nzekwe's premeditated entry depends entirely on Kwame coincidentally disabling the security AI three minutes earlier; the plan has no stated provision for the AI he could not have known would be off.",
+      "citation": "\"whose security AI had been deactivated by Kwame moments earlier at 22:06, unknowingly creating a window Nzekwe exploited\""
+    },
+    {
+      "code": "method.impossible",
+      "severity": "WARNING",
+      "claim": "Blessing is placed in Bay 34-G for the whole evening yet witnesses the residential corridor at 22:10; if she left the bay, Folake's 'strongest of all' alibi loses one of its two corroborators.",
+      "citation": "\"Was working with Folake in Bay 34-G the entire evening; can confirm Folake's presence but also mentions seeing a man in an engineering vest near the residential corridor around 22:10.\""
+    },
+    {
+      "code": "clue.uncaused",
+      "severity": "WARNING",
+      "claim": "The red-herring card has no reason to exist: Blessing already grants Folake routine access to that same archive room, and Folake's secret describes her cloning a card for Adaeze's external data archive, not the bay-adjacent room.",
+      "citation": "\"The card is encoded with copied credentials matching the archive room adjacent to Hydroponic Bay 34-G.\" vs. \"she feared being questioned about the illegal after-hours access she routinely grants Folake to the archive room adjacent to the bay\""
+    },
+    {
+      "code": "cast.not_in_characters",
+      "severity": "WARNING",
+      "claim": "The two technicians whose testimony sets the entire opportunity window for the culprit are unnamed and absent from the cast, so players cannot interview them to test the timeline contradiction above.",
+      "citation": "\"Step 1 — Eliminate alibis with time-window analysis: Nzekwe's two technician witnesses confirm his presence in the machine room only until 22:15.\""
+    },
+    {
+      "code": "cast.not_in_characters",
+      "severity": "WARNING",
+      "claim": "Tunde Eze is named as one of the two corroborators the solution leans on to clear Folake, but he does not appear in 'characters' and cannot be questioned.",
+      "citation": "\"Was in Hydroponic Bay 34-G with two night-shift technicians, Tunde Eze and Blessing Obi\" / \"her alibi is independently corroborated by two witnesses across the entire murder window\""
+    },
+    {
+      "code": "label.false",
+      "severity": "NOTE",
+      "claim": "No evidence item carries 'supports', 'exonerates' or 'implicates' fields, so the forward truth-check of those labels could only be run against the coarser 'relevance' tag.",
+      "citation": "\"type\": \"documentary\", \"relevance\": \"critical\""
+    },
+    {
+      "code": "label.false",
+      "severity": "NOTE",
+      "claim": "E4 is tagged 'supporting' but supports no step: the solution never matches the size-43 hexagonal tread to Nzekwe's boots or uses it to exclude the other engineering crew it names.",
+      "citation": "\"It initially points investigators toward any engineering personnel on Tier 34 during the lockdown, which includes Nzekwe but also several maintenance crew members.\""
+    },
+    {
+      "code": "chain.unsupported",
+      "severity": "NOTE",
+      "claim": "There is no 'solution.chain' field; the backward audit had to be performed against 'how_to_deduce' instead.",
+      "citation": "\"how_to_deduce\": \"Step 1 — Eliminate alibis with time-window analysis...\""
+    },
+    {
+      "code": "delivery.prompt_not_recorded",
+      "severity": "NOTE",
+      "claim": "The originating player prompt was not stored with this scenario, so delivery against request cannot be judged.",
+      "citation": "\"_meta\": { \"num_players\": 4, \"setting_input\": \"Near-future Lagos, 2047, vertical megastructure arcology\" }"
+    }
+  ],
+  "_usage": {
+    "input_tokens": 7394,
+    "output_tokens": 11241,
+    "model": "claude-opus-5",
+    "stop_reason": "end_turn",
+    "cost_usd": 0.318
+  },
+  "_source": "levels_of_betrayal_1773339243.json"
+}
