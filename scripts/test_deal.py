@@ -207,6 +207,23 @@ def test_constraint_3_redundancy():
     check("and every exoneration really reaches two distinct hands",
           t.ok and all(v >= 2 for v in reach.values()), str(reach))
 
+    # The ceiling, which is arithmetic rather than luck. R=3, P=4, k=3 forces
+    # some hand to hold all three exonerations, which is constraint 2.
+    over = D.deal(solvable_fixture(), player_count=4, seed=1, redundancy=3)
+    check("redundancy above the ceiling is refused as impossible, not merely unlucky",
+          (not over.ok) and any("is impossible at" in i for i in over.issues), str(over.issues))
+    check("and it is refused up front, without burning attempts",
+          over.attempts == 0, str(over.attempts))
+    check("the ceiling is reported, and at APF's shape it is 2",
+          any("Ceiling here is 2" in i for i in over.issues), str(over.issues))
+    check("redundancy 2 is at the ceiling and still deals",
+          D.deal(solvable_fixture(), player_count=4, seed=1, redundancy=2).ok)
+    # A wider table lifts it: R=3, P=5 makes k=3 reachable again.
+    check("a five-player table lifts the ceiling to 3",
+          not any("is impossible at" in i
+                  for i in D.feasibility(solvable_fixture(), 5, redundancy=3)),
+          str(D.feasibility(solvable_fixture(), 5, redundancy=3)))
+
     # _violations() tested directly, on a deal hand-built to break redundancy:
     # both Ortiz carriers in hand 0. Constraints 1 and 2 still hold.
     pool = {f.id: f for f in D.build_pool(tight)}

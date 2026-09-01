@@ -41,6 +41,7 @@ looks like, not whether drift is possible.
 
 from __future__ import annotations
 
+import math
 import random
 from dataclasses import dataclass, field, asdict
 from typing import Dict, List, Optional, Sequence, Set
@@ -71,6 +72,14 @@ _FALLBACK_KIND = "clue"
 # resolution over three items), and named redundancy as difficulty's natural
 # home. EASY puts each exoneration in two hands so somebody will share it; HARD
 # puts it in exactly one so withholding really bites.
+#
+# MEDIUM AND HARD ARE THE SAME VALUE, AND THAT IS FORCED, NOT LAZY. The
+# redundancy ceiling is set by constraint 2 (see feasibility()): at APF's shape
+# -- 4 players, EXACTLY 4 suspects, so 3 required exonerations -- redundancy 3
+# would force some hand to hold all three and solve alone. The ceiling is 2, so
+# only two rungs exist. Difficulty gets a third only from a second dial:
+# suspect count or red-herring density, both named by Session 38. Moving the
+# ladder here fixed EASY-vs-the-rest and did NOT fix MEDIUM-vs-HARD.
 #
 # OWNER'S CALL, NOT SETTLED HERE. docs/INVESTIGATION_DESIGN.md §4 lists three
 # options and this implements two of them: redundancy=1 IS the "accept it"
@@ -293,6 +302,30 @@ def feasibility(mystery: dict, player_count: int,
             "the full finding pool does not solve the mystery -- "
             f"suspects left standing: {standing or ['(none)']}, expected exactly [{cul!r}]"
         )
+
+    # Constraints 2 and 3 pull AGAINST each other, and the ceiling is where
+    # they meet. Each of the R required exonerations sits in >= k hands, so
+    # there are >= R*k (exoneration, hand) incidences over P hands, and by
+    # pigeonhole some hand holds >= ceil(R*k/P) of them. When that reaches R,
+    # that hand holds EVERY exoneration -- and a hand holding every exoneration
+    # solves alone, which is constraint 2. So the deal is not unlucky at that
+    # point, it is impossible, and burning 400 attempts to discover it would
+    # report "no valid deal" for something arithmetic settles up front.
+    #
+    # THIS IS WHY THERE IS NO THREE-RUNG REDUNDANCY LADDER. At APF's specified
+    # shape -- 4 players, EXACTLY 4 suspects, so R = 3 -- the ceiling is 2.
+    # EASY takes it; MEDIUM and HARD both sit at 1. Difficulty needs a second
+    # dial (suspect count or red-herring density, per Session 38) to get a
+    # third rung; redundancy alone cannot provide one.
+    if required and player_count and redundancy > 1:
+        worst_hand = math.ceil(len(required) * redundancy / player_count)
+        if worst_hand >= len(required):
+            issues.append(
+                f"redundancy {redundancy} is impossible at {player_count} players with "
+                f"{len(required)} required exoneration(s): some hand must then hold all "
+                f"{len(required)} and would solve alone (constraint 2). "
+                f"Ceiling here is {max(1, (player_count * (len(required) - 1)) // len(required))}."
+            )
 
     # Constraint 3 must be reachable: an exoneration carried by fewer distinct
     # findings than the redundancy level can never reach that many hands.

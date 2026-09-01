@@ -59,6 +59,11 @@ keep 1", because a percentage has no resolution over three items (Session 38). S
 difficulty to deal redundancy instead: `REDUNDANCY_BY_DIFFICULTY` in `deal.py` puts each
 exoneration in two hands on EASY and one on HARD, which has real resolution at that hand size.
 
+**That buys two rungs, not three, and the ceiling is arithmetic.** Redundancy fights constraint 2:
+push each exoneration into enough hands and some hand holds them all and solves alone. At APF's
+shape — 4 players, exactly 4 suspects, so 3 required exonerations — the ceiling is 2, so MEDIUM and
+HARD are both 1. A third rung needs a second dial: suspect count or red-herring density.
+
 If a random-broadcast mechanic is wanted, it is unbuilt design work, not a regression.
 
 ---
