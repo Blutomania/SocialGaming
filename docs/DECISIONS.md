@@ -867,3 +867,55 @@ that the superseded text has become history and belongs here instead.
     **Untested against a real generation** — that costs credits. The first generation run after
     this is the confirmation.
 
+
+27. **[OPEN — owner wants it, Session 39] Incrimination as well as exculpation: the glove
+    mechanic.** Deduction today is pure subtraction. Every clue clears exactly one suspect, and
+    you win when one name is left. That shape has a cost the owner named: it is arithmetic, not
+    detection. Nothing asks the player to *decide* anything, and nothing gives two players a
+    reason to talk to each other — you read your own list and subtract privately.
+
+    **The owner's example, which is the whole design:** *"A bloody men's glove."* On its own it
+    clears nobody. Hand it to somebody holding *"the CCTV shows Adachi in the control room all
+    night"* and the two together name the killer. **Two findings that individually prove nothing
+    combine into a proof**, which makes sharing the engine of the deduction rather than an
+    obligation, and makes *"has anyone got anything on Adachi?"* a sentence a real player says
+    out loud.
+
+    **It must NEVER be stated as "the culprit is one of these two."** The owner was explicit and
+    was right: the clue says *man's size large*, the player looks at the cast and draws the line
+    themselves. The structured field is hidden bookkeeping so the engine can guarantee the case
+    is solvable; the prose is the game. `investigation_prompt` is the existing precedent — it is
+    already private context the player never sees.
+
+    **The rule that keeps it honest: an assumption the game INVITES must be one that holds.**
+    A men's glove is fun when the culprit is a man. It is a cheat when Solberg wore her husband's
+    — because the player who reasoned exactly as the game taught them then loses, which is the
+    worst outcome a mystery can produce. This is not a new rule: `RESEARCH_FINDINGS.md` already
+    carries it as **M3 Clue Fairness**, sourced to P.D. James (*"the detective can know nothing
+    which the reader isn't also told"*) and Knox's eighth commandment. The corpus has it and
+    generation does not use it.
+
+    That is also how this squares with the owner's "race to proof" (item 23): **certainty in the
+    engine, inference at the table.** The system guarantees a sound chain to exactly one culprit
+    exists and that nobody can withhold it away — checked before anyone sits down. The player
+    experiences a glove, an alibi that does not fit, and a decision.
+
+    **What it needs.** The field already exists: `implicates` is on every evidence item and
+    generation fills it in, but nothing reads it — `check_narrative.py` only asserts that the
+    culprit is implicated by *something*, so the answer does not feel arbitrary, and `deal.py`'s
+    `solves()` uses `exonerates` alone. The change is to give `implicates` the meaning *"only
+    these could have done it"* and have `solves()` intersect those sets as well as subtracting
+    the exonerated, solving when exactly one name survives both.
+
+    **Build the fair-play check in the same change, not after.** A narrowing clue is a strong
+    claim and generation has to mean it: the real culprit must appear in EVERY implicating set,
+    or the mystery contradicts itself and punishes correct reasoning. That is free, structural,
+    and exactly the kind of relationship item 26 established should be declared rather than
+    inferred.
+
+    **Two consequences worth knowing before starting.** It should reduce how many findings a
+    mystery needs — clearing three people currently takes six findings under item 23's two-routes
+    rule, and a glove narrowing to two plus one alibi does the same work with two. And it changes
+    what generation must write, so it wants to land in the same paid round as any other schema
+    change rather than its own.
+

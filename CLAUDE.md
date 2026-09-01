@@ -389,6 +389,23 @@ Build order (`docs/INVESTIGATION_DESIGN.md` §7, already reduced by APF):
 **Decided (Session 38): no crime-scene picture for the playtest** — a list of named findings. The
 map is deferred, not cancelled.
 
+### 27. Incrimination as well as exculpation — the glove mechanic — **OPEN, owner wants it**
+
+Deduction today is pure subtraction: every clue clears one suspect, you win when one name is left.
+The owner's example is the design — *"a bloody men's glove"* clears nobody alone, but combined with
+*"the CCTV shows Adachi in the control room all night"* it names the killer. **Two findings that
+individually prove nothing combine into a proof**, which turns sharing into the engine of the
+deduction rather than an obligation.
+
+**Never stated as "the culprit is one of these two."** The clue says *man's size large*; the player
+looks at the cast and draws the line. Hidden field, oblique prose — `investigation_prompt` is the
+existing precedent. The rule that keeps it honest is already in the corpus as **M3 Clue Fairness**
+(`RESEARCH_FINDINGS.md`): an assumption the game invites must be one that holds, or a player who
+reasons correctly loses.
+
+`implicates` already exists on every evidence item and nothing reads it. Full design, and the
+fair-play check to build alongside it: `docs/DECISIONS.md` item 27.
+
 ### 18. A BLOCKING coherence report does not stop a mystery being served — **OPEN, owner's call**
 
 The engine catches the defect exactly and the pipeline saves and serves the mystery anyway. The
