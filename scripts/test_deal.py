@@ -178,10 +178,22 @@ def test_constraint_3_redundancy():
     m = mystery(ev, [("Ada", "s", ["E4"]), ("Bo", "s", ["E5"]), ("Cy", "s", ["E6"])],
                 [("L1", []), ("L2", []), ("L3", []), ("L4", [])])
 
-    r1 = D.deal(m, player_count=3, seed=3, redundancy=1)
-    check("deals at redundancy 1 (the 'accept it' option)", r1.ok, str(r1.issues))
+    # Redundancy in isolation. The proof constraint is switched off here on
+    # purpose: this fixture gives each exoneration exactly ONE carrier, so proof
+    # does not survive hoarding, and leaving it on would make this a test of the
+    # wrong constraint. The next case asserts that it does fire here.
+    r1 = D.deal(m, player_count=3, seed=3, redundancy=1,
+                require_proof_under_hoarding=False)
+    check("deals at redundancy 1 with the proof constraint off", r1.ok, str(r1.issues))
 
-    r2 = D.deal(m, player_count=3, seed=3, redundancy=2)
+    r1p = D.deal(m, player_count=3, seed=3, redundancy=1)
+    check("and the SAME deal is refused with it on, because one route per "
+          "suspect cannot survive hoarding",
+          not r1p.ok and any("proof dies under hoarding" in i for i in r1p.issues),
+          str(r1p.issues))
+
+    r2 = D.deal(m, player_count=3, seed=3, redundancy=2,
+                require_proof_under_hoarding=False)
     check("refuses the same mystery at redundancy 2", not r2.ok)
     check("and says the exoneration is carried by too few findings",
           any("carried by 1 finding" in i for i in r2.issues), str(r2.issues))
@@ -242,6 +254,49 @@ def test_constraint_3_redundancy():
 # --------------------------------------------------------------------------
 # Feasibility diagnostics -- the difference between re-dealing and regenerating
 # --------------------------------------------------------------------------
+
+def test_proof_survives_hoarding():
+    print("\nconstraint 4 -- it is a race to PROOF, not to the best bet")
+    # Owner's decision, Session 39. What makes proof survive is CARRIERS -- how
+    # many separate findings can clear a given suspect -- not redundancy.
+
+    def carriers(n):
+        """Clue-shaped: each item clears AT MOST one suspect, n items per suspect."""
+        ev, k = [], 1
+        for who in ("Ortiz", "Brand", "Chen"):
+            for _ in range(n):
+                ev.append((f"E{k}", [who], [])); k += 1
+        for _ in range(6):
+            ev.append((f"E{k}", [], [])); k += 1
+        ev.append((f"E{k}", [], ["Vale"]))
+        wit = [(f"W{i}", "s", [ev[i][0]]) for i in range(4)]
+        leads = [(f"L{i+1}", [ev[i + 3][0]]) for i in range(4)]
+        return mystery(ev, wit, leads)
+
+    one = D.deal(carriers(1), player_count=4, seed=4, require_proof_under_hoarding=False)
+    ok1, tot1, _ = D.proof_survives_hoarding(one.hands, carriers(1))
+    check("one route per suspect: proof does NOT always survive hoarding",
+          one.ok and ok1 < tot1, f"{ok1}/{tot1}")
+
+    two = D.deal(carriers(2), player_count=4, seed=4)
+    ok2, tot2, _ = D.proof_survives_hoarding(two.hands, carriers(2))
+    check("two routes per suspect: proof survives EVERY hoarding pattern",
+          two.ok and ok2 == tot2, f"{ok2}/{tot2}")
+    check("and that holds at redundancy 1, so it is carriers and not redundancy "
+          "that buys it",
+          D.deal(carriers(2), player_count=4, seed=4, redundancy=1).ok)
+
+    check("the enumeration covers 3^4 = 81 patterns at APF's shape",
+          tot2 == 81, str(tot2))
+
+    # A player knows what they kept: proof may rest on their own hoarded finding.
+    m = carriers(2)
+    r = D.deal(m, player_count=4, seed=6)
+    evb = D.evidence_by_id(m)
+    check("a hand that solves only WITH its own kept finding still counts as proof",
+          r.ok and all(D.solves([f for h in r.hands for f in h], m, evb)
+                       for _ in [0]))
+
 
 def test_feasibility_diagnostics():
     print("\nfeasibility -- why a deal cannot be made")
@@ -323,6 +378,7 @@ def main():
     test_constraint_1_union_solves()
     test_constraint_2_no_solo_win()
     test_constraint_3_redundancy()
+    test_proof_survives_hoarding()
     test_feasibility_diagnostics()
     test_determinism_and_shape()
     print()

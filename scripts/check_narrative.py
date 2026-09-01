@@ -62,11 +62,24 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 GENERATED = ROOT / "mystery_database" / "generated"
 
-# The generation prompt that writes the solution first and declares links landed
-# on 2026-08-21. Mysteries older than this predate the schema and are reported
-# but never failed -- the same reasoning check_solvability.py applies to the
-# suspect count, which looked like generation drift and was corpus age.
-SCHEMA_EPOCH = datetime.datetime(2026, 8, 21, tzinfo=datetime.timezone.utc).timestamp()
+# Mysteries older than this predate the current rules and are reported but never
+# failed -- the same reasoning check_solvability.py applies to the suspect count,
+# which looked like generation drift and was corpus age.
+#
+# Moved 2026-08-21 -> 2026-09-01 in Session 39. The earlier date marked the
+# solution-first reorder; this one marks Clue's two structural rules (an item
+# clears at most one suspect; every suspect is clearable two independent ways),
+# which the owner's "it has to be a race to proof" decision requires. The one
+# mystery generated in between -- the_lantern_keeper's_last_light -- satisfies
+# the reorder and violates both new rules, so it is legacy against them. It is
+# kept rather than deleted because it is the evidence that the rules were
+# needed: its E4 clears every innocent at once and the deal refuses it.
+#
+# DELIBERATELY INTRA-DAY. Two mysteries were generated on 2026-09-01 either side
+# of the rule change, so a date alone cannot separate them. 18:40 UTC is the
+# moment the rules landed: the lighthouse mystery (18:35) is legacy against
+# them, everything generated after is held to them.
+SCHEMA_EPOCH = datetime.datetime(2026, 9, 1, 18, 40, tzinfo=datetime.timezone.utc).timestamp()
 
 # Mid-sentence capitalised words. Sentence-initial ones are skipped because
 # how_to_deduce is written as "Step 1 - Establish ...", and Establish, Confirm
@@ -81,7 +94,8 @@ NOT_PEOPLE = re.compile(
     r'Module|Chamber|Room|Log|Drive|Bay|Consortium|Energy|Street|Berlin|City|Company|Corp|'
     r'Hall|Lane|Station|Base|Club|Cage|Forum|Sector|Area|Mirrors|Stood|Camera|Booth|Tier|'
     r'Strategy|Express|Institute|Polar|Senate|Portico|Prohibition|Harlem|Ottoman|Venetian|'
-    r'Janissary|Western|Stasi|Star|Cold Storage|Document|Communications|Tome|Village')
+    r'Janissary|Western|Stasi|Star|Cold Storage|Document|Communications|Tome|Village|'
+    r'Fresnel|Lantern|Lamp')
 
 
 def words(text):
@@ -152,6 +166,11 @@ def audit(path):
                 supported.add(sid)
             if e.get("relevance") == "red_herring" and (e.get("supports") or []):
                 report["links"].append(f"{e.get('id')} is a red herring but supports a chain step")
+            exo_here = [n for n in (e.get("exonerates") or []) if str(n).strip()]
+            if len(exo_here) > 1:
+                report["links"].append(
+                    f"{e.get('id')} clears {len(exo_here)} suspects at once {exo_here}; "
+                    f"a finding must clear at most one, or it solves the case alone")
             exonerated |= set(e.get("exonerates") or [])
             implicated |= set(e.get("implicates") or [])
 
@@ -161,6 +180,20 @@ def audit(path):
             report["links"].append(f"the culprit ({culprit}) is exonerated by the evidence")
         if culprit and not implicated:
             report["links"].append("no evidence implicates anyone; the culprit is reached only by elimination")
+        # Two independent routes: a suspect clearable one way only becomes
+        # unclearable the moment that finding is withheld (Session 39).
+        from collections import Counter
+        routes = Counter()
+        for e in evidence:
+            for n in (e.get("exonerates") or []):
+                if str(n).strip():
+                    routes[str(n).strip()] += 1
+        for who in sorted(x for x in suspects if x != culprit):
+            if routes.get(who, 0) < 2:
+                report["links"].append(
+                    f"{who} is cleared by only {routes.get(who, 0)} item(s); needs two "
+                    f"independent routes or hoarding can make the case unprovable")
+
         remaining = [s for s in suspects if s not in exonerated]
         if len(remaining) != 1:
             report["links"].append(

@@ -24,6 +24,15 @@ suspect is the culprit. Everything below is that one predicate applied to
 different subsets: all hands together, each hand alone, and each hand's
 contribution to a single exoneration.
 
+IT IS A RACE TO PROOF, NOT A RACE TO THE BEST BET. Owner's decision, Session
+39: "the core of mystery solving is solving not guessing." So a fourth
+constraint asks whether somebody can still PROVE the case after every player
+withholds their best finding -- enumerated over every legal hoarding pattern,
+free, no API call. What makes that survivable is CARRIERS, not redundancy: two
+independent routes to each exoneration puts survival at 81/81, one route puts
+it at 75/81. The rule therefore lives in the generation prompt, and this
+constraint is what stops a mystery that ignores it from reaching a table.
+
 THE WORD IS "FINDING", NOT "CARD". docs/PLAYTEST_FLOW.md:139 draws the
 distinction precisely -- "the data is already CARD-SHAPED: a FINDING has a
 name, a description, a type, a relevance." A finding is the domain object; a
@@ -41,6 +50,7 @@ looks like, not whether drift is possible.
 
 from __future__ import annotations
 
+import itertools
 import math
 import random
 from dataclasses import dataclass, field, asdict
@@ -86,7 +96,19 @@ _FALLBACK_KIND = "clue"
 # option (constraints 1 and 2 only, universal hoarding can end a game with no
 # winner). "Pigeonhole it" is a genuinely different constraint and is NOT
 # implemented -- see module docs rather than assuming it is in here.
-REDUNDANCY_BY_DIFFICULTY = {"EASY": 2, "MEDIUM": 1, "HARD": 1}
+# MEDIUM is a legacy alias, not a third setting. Owner's decision (Session 39):
+# two difficulties are fine for the playtest, which is the honest answer given
+# the ceiling above -- three labels where two behave identically is the exact
+# defect Session 38 found in the share ladder. The 17 mysteries on disk carry
+# MEDIUM, so it keeps working rather than breaking the corpus.
+REDUNDANCY_BY_DIFFICULTY = {"EASY": 2, "HARD": 1, "MEDIUM": 1}
+
+# How many findings a player may withhold. PASSED IN, NEVER COMPUTED HERE:
+# _min_share_required() in server/main.py is THE definition of the share rule
+# (Session 38 removed a second copy that had drifted), and deal.py recomputing
+# it from share_min would put the duplication straight back. 1 is what that rule
+# yields at APF's three-finding hand for every difficulty.
+DEFAULT_HOARD_ALLOWANCE = 1
 
 # Re-dealing is free, so the ceiling is generous. It exists to bound a mystery
 # that cannot be dealt at all, and when it is hit the feasibility report -- not
@@ -359,8 +381,10 @@ def feasibility(mystery: dict, player_count: int,
 # --------------------------------------------------------------------------
 
 def _violations(hands: List[List[Finding]], mystery: dict,
-                ev_by_id: Dict[str, dict], redundancy: int) -> List[str]:
-    """The three constraints, checked against one candidate deal."""
+                ev_by_id: Dict[str, dict], redundancy: int,
+                require_proof_under_hoarding: bool = True,
+                hoard_allowance: int = DEFAULT_HOARD_ALLOWANCE) -> List[str]:
+    """The four constraints, checked against one candidate deal."""
     out: List[str] = []
     all_findings = [f for h in hands for f in h]
 
@@ -381,13 +405,66 @@ def _violations(hands: List[List[Finding]], mystery: dict,
             if holders < redundancy:
                 out.append(f"exoneration of {r!r} reaches {holders} hand(s), needs {redundancy}")
 
+    # 4. proof survives hoarding -- the owner's "race to proof", enumerated
+    if require_proof_under_hoarding:
+        ok, total, _ = proof_survives_hoarding(hands, mystery, ev_by_id, hoard_allowance)
+        if ok < total:
+            out.append(
+                f"proof dies under hoarding in {total - ok} of {total} patterns; "
+                f"solving must not depend on nobody withholding")
+
     return out
+
+
+def proof_survives_hoarding(hands: List[List[Finding]], mystery: dict,
+                           ev_by_id: Optional[Dict[str, dict]] = None,
+                           hoard_allowance: int = DEFAULT_HOARD_ALLOWANCE) -> tuple:
+    """Can somebody still PROVE it after every player withholds their best card?
+
+    OWNER'S DECISION, SESSION 39, AND THIS IS ITS MECHANICAL FORM: "the core of
+    mystery solving is solving not guessing -- thus it has to be a race to
+    proof." That is a claim about what must remain true after players hoard, so
+    it is checked by enumeration rather than argued about.
+
+    A player knows everything shared PLUS their own hand -- you always know what
+    you kept -- so proof is reachable when ANY player's shared-pool-plus-own-hand
+    solves. At APF's shape that is 4 players x 3 choices = 81 patterns, the same
+    81 docs/PLAYTEST_FLOW.md already cites for the pick-list, and set operations
+    at zero API cost.
+
+    Returns (reachable_count, total_patterns, sample_failing_patterns).
+
+    MEASURED (Session 39): what makes this survive is NOT redundancy but
+    CARRIERS -- how many separate findings in the mystery can clear a given
+    suspect. At one carrier per suspect proof dies in 6 of 81 patterns; at two
+    it survives all 81, at redundancy 1 and 2 alike. That is why the fix landed
+    in the generation prompt as "two independent routes" rather than as a deal
+    setting.
+    """
+    ev_by_id = evidence_by_id(mystery) if ev_by_id is None else ev_by_id
+    # Each player independently chooses which `hoard_allowance` findings to keep.
+    per_player = [list(itertools.combinations(range(len(h)), hoard_allowance))
+                  for h in hands]
+    reachable = 0
+    failing: List[tuple] = []
+    patterns = list(itertools.product(*per_player))
+    for pattern in patterns:
+        shared = [f for i, hand in enumerate(hands)
+                  for j, f in enumerate(hand) if j not in pattern[i]]
+        if any(solves(shared + list(hands[i]), mystery, ev_by_id)
+               for i in range(len(hands))):
+            reachable += 1
+        elif len(failing) < 3:
+            failing.append(pattern)
+    return reachable, len(patterns), failing
 
 
 def deal(mystery: dict, player_count: int, seed: int = 0,
          redundancy: Optional[int] = None,
          hand_spec: Sequence[str] = DEFAULT_HAND_SPEC,
-         max_attempts: int = MAX_ATTEMPTS) -> DealResult:
+         max_attempts: int = MAX_ATTEMPTS,
+         require_proof_under_hoarding: bool = True,
+         hoard_allowance: int = DEFAULT_HOARD_ALLOWANCE) -> DealResult:
     """Deal `player_count` hands under the three constraints.
 
     Deterministic in `seed`: the same (mystery, players, seed) always gives the
@@ -446,7 +523,8 @@ def deal(mystery: dict, player_count: int, seed: int = 0,
             last = ["ran out of findings while dealing"]
             continue
 
-        last = _violations(hands, mystery, ev_by_id, redundancy)
+        last = _violations(hands, mystery, ev_by_id, redundancy,
+                           require_proof_under_hoarding, hoard_allowance)
         if not last:
             return DealResult(hands=hands, ok=True, issues=[], attempts=attempt,
                               seed=seed, redundancy=redundancy)
