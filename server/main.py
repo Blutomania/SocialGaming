@@ -207,6 +207,11 @@ DECLARE THE LINKS. Do not leave the connection between a clue and the solution i
 state it in fields, so it can be checked without re-reading the story. Each evidence item says
 which step of the chain it supports, who it clears, and who it points at.
 
+  ELIMINATION DATA LIVES ONLY ON EVIDENCE. A witness statement, a lead and an investigation area
+  do NOT repeat exonerates/implicates -- they carry "reveals", the list of evidence ids they
+  surface. Everything a player learns is therefore traceable to an evidence item, and one
+  exoneration can never be stated two ways that disagree.
+
 QUALITY REQUIREMENTS — every generated mystery MUST satisfy these:
 
 SETTING:
@@ -225,6 +230,10 @@ CHARACTERS (include 1 victim, EXACTLY 4 suspects, and 3–4 witnesses):
     off: a player cannot otherwise tell "this mystery is incoherent" from "this witness lied".
     Across the witnesses as a group, at least one statement must point toward the culprit, and at
     least one must point at something that turns out to be innocent.
+  - reveals (WITNESSES ONLY): the ids of the evidence items this statement surfaces, e.g. ["E3"].
+    EVERY witness must reveal at least one. The statement must actually be about that evidence --
+    if a witness saw the bolted door, they reveal the evidence item about the bolted door.
+    A witness who reveals nothing is dealt to a player as a finding that cannot be reasoned from.
 
 EVIDENCE (include at least 6 items total — planted to serve the chain, written AFTER it):
   - At least 2 items with type "physical".
@@ -240,6 +249,11 @@ EVIDENCE (include at least 6 items total — planted to serve the chain, written
   - Across all items, the suspects exonerated must be every suspect EXCEPT the culprit, so that
     eliminating them leaves exactly one person. Never exonerate the culprit.
   - Every chain step must appear in at least one item's "supports".
+  - REACHABLE: every evidence item that exonerates somebody must be named in the "reveals" of at
+    least one witness, lead or investigation area. Not "or found as a clue" -- a clue is always
+    available, so that escape clause would make this rule ask for nothing. If every exoneration
+    sits on clues alone, witness statements and lead results are decorative and the game has one
+    kind of finding wearing three costumes.
 
 SOLUTION (write this FIRST — everything below is derived from it):
   - key_evidence must list at least 2 evidence IDs.
@@ -270,12 +284,17 @@ INVESTIGATION AREAS (exactly 5):
     stated alibi. It must reference a NAMED character, time or place — not "someone was here".
   - At least 2 areas must yield a discovery+analysis pair that genuinely narrows the suspect list,
     and at least 1 must be a red herring that looks incriminating and is innocently explained.
+  - reveals: the ids of the evidence items found here, e.g. ["E1","E7"]. EVERY area must reveal at
+    least one, and its discovery/analysis must describe that evidence rather than something else.
 
 LEADS (exactly 4):
   - Pre-existing tips, rumours, or documents that can be followed up on.
   - Each lead must be specific and actionable (not generic like "investigate the crime").
   - investigation_prompt: 1–2 sentences of private context Claude will use to resolve the lead.
     NOT shown to players. At least 1 lead should point toward the culprit; at least 1 is a red herring.
+  - reveals: the ids of the evidence items following this lead turns up, e.g. ["E5"]. EVERY lead
+    must reveal at least one. The red-herring lead reveals the red-herring evidence item -- that is
+    how a dud finding is represented, not by revealing nothing.
 
 Generate a complete mystery JSON with this exact structure:
 {{
@@ -310,7 +329,8 @@ Generate a complete mystery JSON with this exact structure:
       "motive": "string",
       "alibi": "string",
       "secret": "string",
-      "statement": "witnesses only — what they tell an investigator; true, actionable"
+      "statement": "witnesses only — what they tell an investigator; true, actionable",
+      "reveals": ["witnesses only — evidence ids this statement surfaces, e.g. E3"]
     }}
   ],
   "evidence": [
@@ -332,7 +352,8 @@ Generate a complete mystery JSON with this exact structure:
       "description": "1–2 sentence atmospheric description of the location visible to players",
       "investigation_prompt": "private context for AI — what is here, what could be found",
       "discovery": "what a player who searches here finds — concrete, physical",
-      "analysis": "what testing or research on that discovery reveals — names a character, time or place"
+      "analysis": "what testing or research on that discovery reveals — names a character, time or place",
+      "reveals": ["E1"]
     }}
   ],
   "leads": [
@@ -340,7 +361,8 @@ Generate a complete mystery JSON with this exact structure:
       "id": "L1",
       "title": "string",
       "brief": "1 sentence visible to players describing the tip or document",
-      "investigation_prompt": "private context for AI — what this lead reveals when followed"
+      "investigation_prompt": "private context for AI — what this lead reveals when followed",
+      "reveals": ["E5"]
     }}
   ],
   "gameplay_notes": {{
