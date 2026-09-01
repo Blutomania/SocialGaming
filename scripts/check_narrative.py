@@ -62,11 +62,21 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 GENERATED = ROOT / "mystery_database" / "generated"
 
-# The generation prompt that writes the solution first and declares links landed
-# on 2026-08-21. Mysteries older than this predate the schema and are reported
-# but never failed -- the same reasoning check_solvability.py applies to the
-# suspect count, which looked like generation drift and was corpus age.
-SCHEMA_EPOCH = datetime.datetime(2026, 8, 21, tzinfo=datetime.timezone.utc).timestamp()
+# Mysteries older than this predate the current rules and are reported but never
+# failed -- the same reasoning check_solvability.py applies to the suspect count,
+# which looked like generation drift and was corpus age.
+#
+# Moved 2026-08-21 -> 2026-09-01 in Session 39. The earlier date marked the
+# solution-first reorder; this one marks Clue's two structural rules (an item
+# clears at most one suspect; every suspect is clearable two independent ways),
+# which the owner's "it has to be a race to proof" decision requires.
+#
+# An intra-day epoch was tried first, to exempt one mystery generated hours
+# before the rules landed. That was the wrong instrument: mystery_database/
+# generated/ is SERVED to players, so a mystery the deal refuses cannot sit
+# there whatever the checker says about it. Both Session 39 mysteries moved to
+# mystery_database/rejected/ instead, and the epoch went back to a plain date.
+SCHEMA_EPOCH = datetime.datetime(2026, 9, 1, tzinfo=datetime.timezone.utc).timestamp()
 
 # Mid-sentence capitalised words. Sentence-initial ones are skipped because
 # how_to_deduce is written as "Step 1 - Establish ...", and Establish, Confirm
@@ -81,7 +91,8 @@ NOT_PEOPLE = re.compile(
     r'Module|Chamber|Room|Log|Drive|Bay|Consortium|Energy|Street|Berlin|City|Company|Corp|'
     r'Hall|Lane|Station|Base|Club|Cage|Forum|Sector|Area|Mirrors|Stood|Camera|Booth|Tier|'
     r'Strategy|Express|Institute|Polar|Senate|Portico|Prohibition|Harlem|Ottoman|Venetian|'
-    r'Janissary|Western|Stasi|Star|Cold Storage|Document|Communications|Tome|Village')
+    r'Janissary|Western|Stasi|Star|Cold Storage|Document|Communications|Tome|Village|'
+    r'Fresnel|Lantern|Lamp')
 
 
 def words(text):
@@ -135,6 +146,17 @@ def audit(path):
             continue
         report["orphans"].append(cand)
 
+    # Built before LINKS because the two-routes check counts dealable findings,
+    # and a witness or lead pointing at an evidence item is one of them.
+    witnesses = [c for c in characters if (c.get("role") or "").lower() == "witness"]
+    leads = [l for l in (data.get("leads") or []) if isinstance(l, dict)]
+    areas = [a for a in (data.get("investigation_areas") or []) if isinstance(a, dict)]
+    pointer_sources = (
+        [(f"witness {c.get('name', '?')}", c) for c in witnesses]
+        + [(f"lead {l.get('id', '?')}", l) for l in leads]
+        + [(f"area {a.get('id', '?')}", a) for a in areas]
+    )
+
     # --- LINKS (only where the schema provides them) ---
     chain = solution.get("chain") or []
     evidence = [e for e in (data.get("evidence") or []) if isinstance(e, dict)]
@@ -152,6 +174,11 @@ def audit(path):
                 supported.add(sid)
             if e.get("relevance") == "red_herring" and (e.get("supports") or []):
                 report["links"].append(f"{e.get('id')} is a red herring but supports a chain step")
+            exo_here = [n for n in (e.get("exonerates") or []) if str(n).strip()]
+            if len(exo_here) > 1:
+                report["links"].append(
+                    f"{e.get('id')} clears {len(exo_here)} suspects at once {exo_here}; "
+                    f"a finding must clear at most one, or it solves the case alone")
             exonerated |= set(e.get("exonerates") or [])
             implicated |= set(e.get("implicates") or [])
 
@@ -161,20 +188,40 @@ def audit(path):
             report["links"].append(f"the culprit ({culprit}) is exonerated by the evidence")
         if culprit and not implicated:
             report["links"].append("no evidence implicates anyone; the culprit is reached only by elimination")
+        # Two independent routes: a suspect clearable one way only becomes
+        # unclearable the moment that finding is withheld (Session 39).
+        #
+        # COUNTED OVER DEALABLE FINDINGS, NOT EVIDENCE ITEMS. An earlier version
+        # counted entries in evidence[] and was wrong: a witness whose `reveals`
+        # names E1 is a SEPARATE finding, dealt to a different player and
+        # hoarded independently, so it is a genuine second route to the same
+        # exoneration. One evidence item plus one witness pointing at it
+        # satisfies this; two evidence items nobody reveals does not, because
+        # the second is only reachable by drawing the clue.
+        from collections import Counter
+        routes = Counter()
+        for e in evidence:
+            eid = e.get("id")
+            names = [str(n).strip() for n in (e.get("exonerates") or []) if str(n).strip()]
+            if not names:
+                continue
+            for n in names:
+                routes[n] += 1                      # the clue itself
+                for _, obj in pointer_sources:
+                    if eid in (obj.get("reveals") or []):
+                        routes[n] += 1              # each witness/lead/area too
+        for who in sorted(x for x in suspects if x != culprit):
+            if routes.get(who, 0) < 2:
+                report["links"].append(
+                    f"{who} is cleared by only {routes.get(who, 0)} finding(s); needs two "
+                    f"independent routes or hoarding can make the case unprovable")
+
         remaining = [s for s in suspects if s not in exonerated]
         if len(remaining) != 1:
             report["links"].append(
                 f"eliminating the exonerated leaves {len(remaining)} suspect(s), not 1: {remaining}")
 
     # --- REVEALS (only where the schema provides them) ---
-    witnesses = [c for c in characters if (c.get("role") or "").lower() == "witness"]
-    leads = [l for l in (data.get("leads") or []) if isinstance(l, dict)]
-    areas = [a for a in (data.get("investigation_areas") or []) if isinstance(a, dict)]
-    pointer_sources = (
-        [(f"witness {c.get('name', '?')}", c) for c in witnesses]
-        + [(f"lead {l.get('id', '?')}", l) for l in leads]
-        + [(f"area {a.get('id', '?')}", a) for a in areas]
-    )
     has_reveals = any("reveals" in obj for _, obj in pointer_sources)
     report["has_reveals"] = has_reveals
     if has_reveals:

@@ -33,12 +33,24 @@ def mystery(**over):
             {"name": "Dev Ortiz", "role": "suspect"},
             {"name": "Vic Tim", "role": "victim"},
         ],
+        # CLUE-SHAPED (Session 39): each item clears AT MOST ONE suspect, and
+        # every suspect is cleared TWO independent ways. One item clearing
+        # several solves the case alone; one route per suspect makes the case
+        # unprovable the moment that finding is withheld.
         "evidence": [
             {"id": "E1", "relevance": "critical", "supports": ["S1"],
              "exonerates": ["Boris Kell"], "implicates": ["Ada Vance"]},
-            {"id": "E2", "relevance": "supporting", "supports": ["S2"],
-             "exonerates": ["Cora Innes", "Dev Ortiz"], "implicates": []},
-            {"id": "E3", "relevance": "red_herring", "supports": [],
+            {"id": "E2", "relevance": "supporting", "supports": ["S1"],
+             "exonerates": ["Boris Kell"], "implicates": []},
+            {"id": "E3", "relevance": "supporting", "supports": ["S2"],
+             "exonerates": ["Cora Innes"], "implicates": []},
+            {"id": "E4", "relevance": "supporting", "supports": ["S2"],
+             "exonerates": ["Cora Innes"], "implicates": []},
+            {"id": "E5", "relevance": "supporting", "supports": ["S2"],
+             "exonerates": ["Dev Ortiz"], "implicates": []},
+            {"id": "E6", "relevance": "supporting", "supports": ["S2"],
+             "exonerates": ["Dev Ortiz"], "implicates": []},
+            {"id": "E7", "relevance": "red_herring", "supports": [],
              "exonerates": [], "implicates": []},
         ],
         "solution": {
@@ -63,19 +75,20 @@ def pointered(**over):
     That is deliberate -- it is how a pre-pointer mystery must behave, and the
     clean-fixture case above proves the branch does not fire on one.
 
-    E1 exonerates Boris Kell and E2 exonerates the other two, so between them a
-    witness and a lead must reach both for the pointered fixture to be clean.
+    Six items exonerate somebody (two routes each for three suspects), and the
+    REVEALS rule requires every one of them to be reachable other than as a
+    clue -- so the pointers below cover E1 through E6 between them.
     """
     base = mystery()
     base["characters"] = base["characters"] + [
         {"name": "Wilma Reed", "role": "witness",
          "statement": "The log was on the desk.", "reveals": ["E1"]},
         {"name": "Xan Pike", "role": "witness",
-         "statement": "I saw the mud by the door.", "reveals": ["E3"]},
+         "statement": "I saw the mud by the door.", "reveals": ["E3", "E7"]},
     ]
     base["leads"] = [
-        {"id": "L1", "title": "The key register", "brief": "b", "reveals": ["E2"]},
-        {"id": "L2", "title": "The muddy boot", "brief": "b", "reveals": ["E3"]},
+        {"id": "L1", "title": "The key register", "brief": "b", "reveals": ["E2", "E4"]},
+        {"id": "L2", "title": "The muddy boot", "brief": "b", "reveals": ["E5", "E6"]},
     ]
     for k, v in over.items():
         base[k] = v
@@ -127,6 +140,29 @@ CASES = [
                        "how_to_deduce": "The ledger shows that Apolonios forged the seal."}),
      ["Apolonios"]),
 
+    # --- Clue's two structural rules (Session 39) ---
+
+    ("one finding that clears several suspects at once",
+     mystery(evidence=[{"id": "E1", "relevance": "critical", "supports": ["S1", "S2"],
+                        "exonerates": ["Boris Kell", "Cora Innes", "Dev Ortiz"],
+                        "implicates": ["Ada Vance"]},
+                       {"id": "E2", "relevance": "supporting", "supports": ["S1"],
+                        "exonerates": ["Boris Kell"], "implicates": []}]),
+     ["E1 clears 3 suspects at once"]),
+
+    ("a suspect with only one route to clearing them",
+     mystery(evidence=[{"id": "E1", "relevance": "critical", "supports": ["S1"],
+                        "exonerates": ["Boris Kell"], "implicates": ["Ada Vance"]},
+                       {"id": "E2", "relevance": "supporting", "supports": ["S1"],
+                        "exonerates": ["Boris Kell"], "implicates": []},
+                       {"id": "E3", "relevance": "supporting", "supports": ["S2"],
+                        "exonerates": ["Cora Innes"], "implicates": []},
+                       {"id": "E4", "relevance": "supporting", "supports": ["S2"],
+                        "exonerates": ["Cora Innes"], "implicates": []},
+                       {"id": "E5", "relevance": "supporting", "supports": ["S2"],
+                        "exonerates": ["Dev Ortiz"], "implicates": []}]),
+     ["Dev Ortiz is cleared by only 1 finding(s)"]),
+
     # --- REVEALS: the pointer that lets a witness or lead carry elimination ---
 
     ("a fixture with no witnesses or leads does not fire the REVEALS branch",
@@ -151,15 +187,19 @@ CASES = [
                       {"id": "L2", "title": "t", "brief": "b", "reveals": []}]),
      ["lead L2 reveals nothing"]),
 
+    # L1 stops revealing E2, and nothing else does -- E2 is then reachable only
+    # by drawing the clue itself, which is what makes witness and lead findings
+    # decorative. The other pointers still cover E4-E6 so this case isolates it.
     ("an exoneration reachable only as a crime-scene clue",
-     pointered(leads=[{"id": "L1", "title": "t", "brief": "b", "reveals": ["E3"]},
-                      {"id": "L2", "title": "t", "brief": "b", "reveals": ["E3"]}]),
-     ["E2 exonerates ['Cora Innes', 'Dev Ortiz'] but no witness, lead or area reveals it"]),
+     pointered(leads=[{"id": "L1", "title": "t", "brief": "b", "reveals": ["E4"]},
+                      {"id": "L2", "title": "t", "brief": "b", "reveals": ["E5", "E6"]}]),
+     ["E2 exonerates ['Boris Kell'] but no witness, lead or area reveals it"]),
 
     ("an area pointer is checked the same way as a witness or lead",
      pointered(investigation_areas=[
-         {"id": "A1", "name": "Pantry", "discovery": "d", "analysis": "a", "reveals": ["E7"]}]),
-     ["area A1 reveals 'E7', which is not in evidence[]"]),
+         {"id": "A1", "name": "Pantry", "discovery": "d", "analysis": "a",
+          "reveals": ["E99"]}]),
+     ["area A1 reveals 'E99', which is not in evidence[]"]),
 ]
 
 

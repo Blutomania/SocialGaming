@@ -24,6 +24,15 @@ suspect is the culprit. Everything below is that one predicate applied to
 different subsets: all hands together, each hand alone, and each hand's
 contribution to a single exoneration.
 
+IT IS A RACE TO PROOF, NOT A RACE TO THE BEST BET. Owner's decision, Session
+39: "the core of mystery solving is solving not guessing." So a fourth
+constraint asks whether somebody can still PROVE the case after every player
+withholds their best finding -- enumerated over every legal hoarding pattern,
+free, no API call. What makes that survivable is CARRIERS, not redundancy: two
+independent routes to each exoneration puts survival at 81/81, one route puts
+it at 75/81. The rule therefore lives in the generation prompt, and this
+constraint is what stops a mystery that ignores it from reaching a table.
+
 THE WORD IS "FINDING", NOT "CARD". docs/PLAYTEST_FLOW.md:139 draws the
 distinction precisely -- "the data is already CARD-SHAPED: a FINDING has a
 name, a description, a type, a relevance." A finding is the domain object; a
@@ -41,6 +50,8 @@ looks like, not whether drift is possible.
 
 from __future__ import annotations
 
+import itertools
+import math
 import random
 from dataclasses import dataclass, field, asdict
 from typing import Dict, List, Optional, Sequence, Set
@@ -72,12 +83,32 @@ _FALLBACK_KIND = "clue"
 # home. EASY puts each exoneration in two hands so somebody will share it; HARD
 # puts it in exactly one so withholding really bites.
 #
+# MEDIUM AND HARD ARE THE SAME VALUE, AND THAT IS FORCED, NOT LAZY. The
+# redundancy ceiling is set by constraint 2 (see feasibility()): at APF's shape
+# -- 4 players, EXACTLY 4 suspects, so 3 required exonerations -- redundancy 3
+# would force some hand to hold all three and solve alone. The ceiling is 2, so
+# only two rungs exist. Difficulty gets a third only from a second dial:
+# suspect count or red-herring density, both named by Session 38. Moving the
+# ladder here fixed EASY-vs-the-rest and did NOT fix MEDIUM-vs-HARD.
+#
 # OWNER'S CALL, NOT SETTLED HERE. docs/INVESTIGATION_DESIGN.md §4 lists three
 # options and this implements two of them: redundancy=1 IS the "accept it"
 # option (constraints 1 and 2 only, universal hoarding can end a game with no
 # winner). "Pigeonhole it" is a genuinely different constraint and is NOT
 # implemented -- see module docs rather than assuming it is in here.
-REDUNDANCY_BY_DIFFICULTY = {"EASY": 2, "MEDIUM": 1, "HARD": 1}
+# MEDIUM is a legacy alias, not a third setting. Owner's decision (Session 39):
+# two difficulties are fine for the playtest, which is the honest answer given
+# the ceiling above -- three labels where two behave identically is the exact
+# defect Session 38 found in the share ladder. The 17 mysteries on disk carry
+# MEDIUM, so it keeps working rather than breaking the corpus.
+REDUNDANCY_BY_DIFFICULTY = {"EASY": 2, "HARD": 1, "MEDIUM": 1}
+
+# How many findings a player may withhold. PASSED IN, NEVER COMPUTED HERE:
+# _min_share_required() in server/main.py is THE definition of the share rule
+# (Session 38 removed a second copy that had drifted), and deal.py recomputing
+# it from share_min would put the duplication straight back. 1 is what that rule
+# yields at APF's three-finding hand for every difficulty.
+DEFAULT_HOARD_ALLOWANCE = 1
 
 # Re-dealing is free, so the ceiling is generous. It exists to bound a mystery
 # that cannot be dealt at all, and when it is hit the feasibility report -- not
@@ -294,6 +325,30 @@ def feasibility(mystery: dict, player_count: int,
             f"suspects left standing: {standing or ['(none)']}, expected exactly [{cul!r}]"
         )
 
+    # Constraints 2 and 3 pull AGAINST each other, and the ceiling is where
+    # they meet. Each of the R required exonerations sits in >= k hands, so
+    # there are >= R*k (exoneration, hand) incidences over P hands, and by
+    # pigeonhole some hand holds >= ceil(R*k/P) of them. When that reaches R,
+    # that hand holds EVERY exoneration -- and a hand holding every exoneration
+    # solves alone, which is constraint 2. So the deal is not unlucky at that
+    # point, it is impossible, and burning 400 attempts to discover it would
+    # report "no valid deal" for something arithmetic settles up front.
+    #
+    # THIS IS WHY THERE IS NO THREE-RUNG REDUNDANCY LADDER. At APF's specified
+    # shape -- 4 players, EXACTLY 4 suspects, so R = 3 -- the ceiling is 2.
+    # EASY takes it; MEDIUM and HARD both sit at 1. Difficulty needs a second
+    # dial (suspect count or red-herring density, per Session 38) to get a
+    # third rung; redundancy alone cannot provide one.
+    if required and player_count and redundancy > 1:
+        worst_hand = math.ceil(len(required) * redundancy / player_count)
+        if worst_hand >= len(required):
+            issues.append(
+                f"redundancy {redundancy} is impossible at {player_count} players with "
+                f"{len(required)} required exoneration(s): some hand must then hold all "
+                f"{len(required)} and would solve alone (constraint 2). "
+                f"Ceiling here is {max(1, (player_count * (len(required) - 1)) // len(required))}."
+            )
+
     # Constraint 3 must be reachable: an exoneration carried by fewer distinct
     # findings than the redundancy level can never reach that many hands.
     if redundancy > 1:
@@ -326,8 +381,11 @@ def feasibility(mystery: dict, player_count: int,
 # --------------------------------------------------------------------------
 
 def _violations(hands: List[List[Finding]], mystery: dict,
-                ev_by_id: Dict[str, dict], redundancy: int) -> List[str]:
-    """The three constraints, checked against one candidate deal."""
+                ev_by_id: Dict[str, dict], redundancy: int,
+                require_proof_under_hoarding: bool = True,
+                hoard_allowance: int = DEFAULT_HOARD_ALLOWANCE,
+                forbid_prover_monopoly: bool = False) -> List[str]:
+    """The constraints, checked against one candidate deal."""
     out: List[str] = []
     all_findings = [f for h in hands for f in h]
 
@@ -348,13 +406,119 @@ def _violations(hands: List[List[Finding]], mystery: dict,
             if holders < redundancy:
                 out.append(f"exoneration of {r!r} reaches {holders} hand(s), needs {redundancy}")
 
+    # SHORT-CIRCUIT. Constraints 4 and 5 each enumerate every hoarding pattern
+    # -- 81 at APF's shape, each running solves() once per player -- so they are
+    # roughly three orders of magnitude more expensive than the three above. A
+    # deal that already fails a cheap constraint is going to be rejected either
+    # way, so spending that on it is pure waste: with a 400-attempt ceiling it
+    # was ~130,000 needless set operations per refused deal.
+    if out:
+        return out
+
+    # 4. proof survives hoarding -- the owner's "race to proof", enumerated
+    if require_proof_under_hoarding:
+        ok, total, _ = proof_survives_hoarding(hands, mystery, ev_by_id, hoard_allowance)
+        if ok < total:
+            out.append(
+                f"proof dies under hoarding in {total - ok} of {total} patterns; "
+                f"solving must not depend on nobody withholding")
+
+    # 5. a race needs at least two runners -- no single player may hold a
+    #    monopoly on reaching proof. OFF BY DEFAULT: it is a stricter reading of
+    #    the owner's "race to proof" than the words strictly require, it costs
+    #    deals, and it is theirs to turn on.
+    if forbid_prover_monopoly:
+        counts = prover_counts(hands, mystery, ev_by_id, hoard_allowance)
+        mono = counts.get(1, 0)
+        if mono:
+            total = sum(counts.values())
+            out.append(
+                f"one player has a monopoly on proof in {mono} of {total} patterns; "
+                f"a race needs at least two who can get there")
+
     return out
+
+
+def proof_survives_hoarding(hands: List[List[Finding]], mystery: dict,
+                           ev_by_id: Optional[Dict[str, dict]] = None,
+                           hoard_allowance: int = DEFAULT_HOARD_ALLOWANCE) -> tuple:
+    """Can somebody still PROVE it after every player withholds their best card?
+
+    OWNER'S DECISION, SESSION 39, AND THIS IS ITS MECHANICAL FORM: "the core of
+    mystery solving is solving not guessing -- thus it has to be a race to
+    proof." That is a claim about what must remain true after players hoard, so
+    it is checked by enumeration rather than argued about.
+
+    A player knows everything shared PLUS their own hand -- you always know what
+    you kept -- so proof is reachable when ANY player's shared-pool-plus-own-hand
+    solves. At APF's shape that is 4 players x 3 choices = 81 patterns, the same
+    81 docs/PLAYTEST_FLOW.md already cites for the pick-list, and set operations
+    at zero API cost.
+
+    Returns (reachable_count, total_patterns, sample_failing_patterns).
+
+    MEASURED (Session 39): what makes this survive is NOT redundancy but
+    CARRIERS -- how many separate findings in the mystery can clear a given
+    suspect. At one carrier per suspect proof dies in 6 of 81 patterns; at two
+    it survives all 81, at redundancy 1 and 2 alike. That is why the fix landed
+    in the generation prompt as "two independent routes" rather than as a deal
+    setting.
+    """
+    ev_by_id = evidence_by_id(mystery) if ev_by_id is None else ev_by_id
+    # Each player independently chooses which `hoard_allowance` findings to keep.
+    per_player = [list(itertools.combinations(range(len(h)), hoard_allowance))
+                  for h in hands]
+    reachable = 0
+    failing: List[tuple] = []
+    patterns = list(itertools.product(*per_player))
+    for pattern in patterns:
+        shared = [f for i, hand in enumerate(hands)
+                  for j, f in enumerate(hand) if j not in pattern[i]]
+        provers = sum(1 for i in range(len(hands))
+                      if solves(shared + list(hands[i]), mystery, ev_by_id))
+        if provers:
+            reachable += 1
+        elif len(failing) < 3:
+            failing.append(pattern)
+    return reachable, len(patterns), failing
+
+
+def prover_counts(hands: List[List[Finding]], mystery: dict,
+                  ev_by_id: Optional[Dict[str, dict]] = None,
+                  hoard_allowance: int = DEFAULT_HOARD_ALLOWANCE) -> Dict[int, int]:
+    """{how many players could prove it: in how many hoarding patterns}.
+
+    WHY THIS IS SEPARATE FROM proof_survives_hoarding. Proof EXISTING and the
+    game being FAIR are different properties, and the second real generation
+    showed the gap: on a mystery where two suspects had only one route each,
+    proof was reachable in 81 of 81 patterns and in 54 of them exactly ONE
+    player could reach it -- always the same player, the one holding the
+    single-route finding, because a hoarder still knows what they kept. That
+    passes "race to proof" and is not a race. Two routes cuts the monopoly to
+    27 of 81, and a monopoly-free deal exists at other seeds, so it is a
+    property the dealer can search for rather than one the writing must
+    guarantee.
+    """
+    ev_by_id = evidence_by_id(mystery) if ev_by_id is None else ev_by_id
+    per_player = [list(itertools.combinations(range(len(h)), hoard_allowance))
+                  for h in hands]
+    counts: Dict[int, int] = {}
+    for pattern in itertools.product(*per_player):
+        shared = [f for i, hand in enumerate(hands)
+                  for j, f in enumerate(hand) if j not in pattern[i]]
+        n = sum(1 for i in range(len(hands))
+                if solves(shared + list(hands[i]), mystery, ev_by_id))
+        counts[n] = counts.get(n, 0) + 1
+    return counts
 
 
 def deal(mystery: dict, player_count: int, seed: int = 0,
          redundancy: Optional[int] = None,
          hand_spec: Sequence[str] = DEFAULT_HAND_SPEC,
-         max_attempts: int = MAX_ATTEMPTS) -> DealResult:
+         max_attempts: int = MAX_ATTEMPTS,
+         require_proof_under_hoarding: bool = True,
+         hoard_allowance: int = DEFAULT_HOARD_ALLOWANCE,
+         forbid_prover_monopoly: bool = False) -> DealResult:
     """Deal `player_count` hands under the three constraints.
 
     Deterministic in `seed`: the same (mystery, players, seed) always gives the
@@ -381,6 +545,9 @@ def deal(mystery: dict, player_count: int, seed: int = 0,
     rng = random.Random(seed)
     last: List[str] = []
 
+    hand_size = len(hand_spec)
+    required = sorted(required_exonerations(mystery))
+
     for attempt in range(1, max_attempts + 1):
         by_kind: Dict[str, List[Finding]] = {}
         for finding in pool:
@@ -389,6 +556,48 @@ def deal(mystery: dict, player_count: int, seed: int = 0,
             rng.shuffle(bucket)
 
         hands: List[List[Finding]] = [[] for _ in range(player_count)]
+        used: Set[str] = set()
+        # Kinds each hand still wants, so the seeding pass below can consume a
+        # slot and the fill pass knows what is left.
+        wanted: List[List[str]] = [list(hand_spec) for _ in range(player_count)]
+
+        # SEEDING PASS -- place the findings that DECIDE the case first.
+        #
+        # WHY THIS EXISTS. The first version dealt purely by kind and let the
+        # constraints reject bad deals. That works while the pool is small, and
+        # stops working the moment it is not: the second real generation
+        # returned 21 findings of which only 4 carried any exoneration, so a
+        # 12-of-21 deal chosen by KIND had to catch all three eliminations by
+        # luck, and 400 attempts did not. Raising the evidence floor to 9 made
+        # the pool bigger and the luck worse. Constraint 1 is a COVERING
+        # requirement, and a covering requirement should be constructed, not
+        # sampled for.
+        short = False
+        for r in required:
+            carriers = [f for f in pool
+                        if f.id not in used and r in exonerated_by([f], ev_by_id)]
+            rng.shuffle(carriers)
+            # Spread across distinct hands, which is also what redundancy wants;
+            # prefer hands with room, in a rotated order so hand 0 is not always
+            # the one that gets the decisive finding.
+            order = list(range(player_count))
+            rng.shuffle(order)
+            placed = 0
+            for hand_idx in order:
+                if placed >= max(1, redundancy) or not carriers:
+                    break
+                if len(hands[hand_idx]) >= hand_size:
+                    continue
+                finding = carriers.pop()
+                hands[hand_idx].append(finding)
+                used.add(finding.id)
+                if finding.kind in wanted[hand_idx]:
+                    wanted[hand_idx].remove(finding.kind)
+                elif wanted[hand_idx]:
+                    wanted[hand_idx].pop()
+                placed += 1
+
+        # FILL PASS -- slot-major over what each hand still wants.
         # Slot-major, not player-major. MEASURED, NOT ASSUMED: with one slot per
         # kind and a single shared fallback pool, the two orders produce the
         # SAME distribution -- an earlier version of this comment claimed
@@ -397,23 +606,31 @@ def deal(mystery: dict, player_count: int, seed: int = 0,
         # it stays correct if hand_spec ever takes two slots of one kind, where
         # player-major would let an early hand take both copies of a scarce kind
         # before any later hand takes one.
-        short = False
-        for slot in hand_spec:
-            for hand in hands:
-                src = by_kind.get(slot) or []
+        for _ in range(hand_size):
+            for hand_idx, hand in enumerate(hands):
+                if len(hand) >= hand_size:
+                    continue
+                slot = wanted[hand_idx].pop(0) if wanted[hand_idx] else _FALLBACK_KIND
+                src = [f for f in by_kind.get(slot, []) if f.id not in used]
                 if not src:
-                    src = by_kind.get(_FALLBACK_KIND) or []
+                    src = [f for f in by_kind.get(_FALLBACK_KIND, []) if f.id not in used]
+                if not src:
+                    src = [f for f in pool if f.id not in used]
                 if not src:
                     short = True
                     break
-                hand.append(src.pop())
+                finding = src[0]
+                hand.append(finding)
+                used.add(finding.id)
             if short:
                 break
-        if short:
+        if short or any(len(h) < hand_size for h in hands):
             last = ["ran out of findings while dealing"]
             continue
 
-        last = _violations(hands, mystery, ev_by_id, redundancy)
+        last = _violations(hands, mystery, ev_by_id, redundancy,
+                           require_proof_under_hoarding, hoard_allowance,
+                           forbid_prover_monopoly)
         if not last:
             return DealResult(hands=hands, ok=True, issues=[], attempts=attempt,
                               seed=seed, redundancy=redundancy)

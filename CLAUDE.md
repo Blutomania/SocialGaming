@@ -59,6 +59,11 @@ keep 1", because a percentage has no resolution over three items (Session 38). S
 difficulty to deal redundancy instead: `REDUNDANCY_BY_DIFFICULTY` in `deal.py` puts each
 exoneration in two hands on EASY and one on HARD, which has real resolution at that hand size.
 
+**That buys two rungs, not three, and the ceiling is arithmetic.** Redundancy fights constraint 2:
+push each exoneration into enough hands and some hand holds them all and solves alone. At APF's
+shape — 4 players, exactly 4 suspects, so 3 required exonerations — the ceiling is 2, so MEDIUM and
+HARD are both 1. A third rung needs a second dial: suspect count or red-herring density.
+
 If a random-broadcast mechanic is wanted, it is unbuilt design work, not a regression.
 
 ---
@@ -383,6 +388,23 @@ Build order (`docs/INVESTIGATION_DESIGN.md` §7, already reduced by APF):
 
 **Decided (Session 38): no crime-scene picture for the playtest** — a list of named findings. The
 map is deferred, not cancelled.
+
+### 27. Incrimination as well as exculpation — the glove mechanic — **OPEN, owner wants it**
+
+Deduction today is pure subtraction: every clue clears one suspect, you win when one name is left.
+The owner's example is the design — *"a bloody men's glove"* clears nobody alone, but combined with
+*"the CCTV shows Adachi in the control room all night"* it names the killer. **Two findings that
+individually prove nothing combine into a proof**, which turns sharing into the engine of the
+deduction rather than an obligation.
+
+**Never stated as "the culprit is one of these two."** The clue says *man's size large*; the player
+looks at the cast and draws the line. Hidden field, oblique prose — `investigation_prompt` is the
+existing precedent. The rule that keeps it honest is already in the corpus as **M3 Clue Fairness**
+(`RESEARCH_FINDINGS.md`): an assumption the game invites must be one that holds, or a player who
+reasons correctly loses.
+
+`implicates` already exists on every evidence item and nothing reads it. Full design, and the
+fair-play check to build alongside it: `docs/DECISIONS.md` item 27.
 
 ### 18. A BLOCKING coherence report does not stop a mystery being served — **OPEN, owner's call**
 

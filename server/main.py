@@ -235,19 +235,29 @@ CHARACTERS (include 1 victim, EXACTLY 4 suspects, and 3–4 witnesses):
     if a witness saw the bolted door, they reveal the evidence item about the bolted door.
     A witness who reveals nothing is dealt to a player as a finding that cannot be reasoned from.
 
-EVIDENCE (include at least 6 items total — planted to serve the chain, written AFTER it):
+EVIDENCE (include at least 9 items total — planted to serve the chain, written AFTER it):
   - At least 2 items with type "physical".
   - At least 1 item with relevance "red_herring" and type "physical" or "documentary".
   - At least 2 items with relevance "critical".
   - description: ≥ 2 sentences; state what the item is, where found, and what it suggests.
   - supports: the chain step ids this item is evidence FOR, e.g. ["S2"]. A red herring supports
     nothing and must use [] — it is the only kind of item that may.
-  - exonerates: names of suspects this item clears, e.g. ["Tanaka"]. Use the exact character name.
+  - exonerates: names of suspects this item clears. Use the exact character name.
+    AT MOST ONE NAME. This is the Clue rule: a card removes exactly one possibility, never
+    several at once. An item clearing two or three suspects is a solved case in a single object
+    — whoever finds it wins without anyone sharing anything, which deletes the game. Write the
+    alibi evidence one person at a time.
   - implicates: names of suspects this item points AT. The culprit must be implicated by at least
     one item — a culprit arrived at only by elimination, with nothing positively pointing at them,
     reads as arbitrary.
   - Across all items, the suspects exonerated must be every suspect EXCEPT the culprit, so that
     eliminating them leaves exactly one person. Never exonerate the culprit.
+  - TWO INDEPENDENT ROUTES: every non-culprit suspect must be cleared by AT LEAST TWO separate
+    evidence items, each a genuinely different kind of proof — a witness who saw them elsewhere
+    AND a physical trace, not the same fact written twice. Players may withhold what they hold,
+    and a suspect clearable only one way becomes unclearable the moment that one item is kept
+    back. Two routes is what keeps the mystery provable rather than merely usually provable.
+    With 4 suspects that is 3 x 2 = 6 exonerating items before red herrings.
   - Every chain step must appear in at least one item's "supports".
   - REACHABLE: every evidence item that exonerates somebody must be named in the "reveals" of at
     least one witness, lead or investigation area. Not "or found as a clue" -- a clue is always
@@ -265,7 +275,9 @@ SOLUTION (write this FIRST — everything below is derived from it):
   - The culprit named here must appear in "characters" with role "suspect".
 
 GAMEPLAY NOTES:
-  - estimated_playtime: must reflect difficulty — EASY: 30–45 min, MEDIUM: 45–60 min, HARD: 60–75 min.
+  - difficulty: EASY or HARD. There is no MEDIUM — it existed as a third label with no third
+    behaviour behind it, which is worse than two honest settings.
+  - estimated_playtime: must reflect difficulty — EASY: 30–45 min, HARD: 60–75 min.
     Do not exceed 75 minutes. This is a digital party game, not a dinner-event experience.
 
 INVESTIGATION AREAS (exactly 5):
@@ -366,7 +378,7 @@ Generate a complete mystery JSON with this exact structure:
     }}
   ],
   "gameplay_notes": {{
-    "difficulty": "EASY | MEDIUM | HARD",
+    "difficulty": "EASY | HARD",
     "estimated_playtime": "string",
     "key_twists": ["string"]
   }}

@@ -371,6 +371,15 @@ reach. That single parameter covers two of the three rows above: **redundancy 1 
 implemented** — it is not reachable by setting the parameter, and the module says so rather than
 letting a reader assume otherwise.
 
+**[Session 39, second pass] Redundancy buys two rungs, not three, and the ceiling is provable.**
+It fights constraint 2 directly: each of the R required exonerations sits in at least k hands, so
+some hand holds at least ceil(R·k/P) of them, and when that reaches R that hand holds every
+exoneration and solves alone. At APF's specified shape — 4 players, exactly 4 suspects, R = 3 —
+**the ceiling is 2**, so EASY takes it and MEDIUM and HARD are both 1. `feasibility()` reports this
+up front rather than failing 400 attempts. **Moving difficulty here fixed EASY-vs-the-rest and did
+not fix MEDIUM-vs-HARD**; a third rung needs a second dial, and Session 38 already named the two
+candidates — suspect count and red-herring density.
+
 Redundancy is the default because it does double duty. The difficulty ladder is inert at a
 three-finding hand, and this is the home with real resolution at that size:
 `REDUNDANCY_BY_DIFFICULTY` puts each exoneration in two hands on EASY so somebody will share it,

@@ -1,0 +1,511 @@
+{
+  "title": "The Vanishing at Altheim Peak",
+  "setting": {
+    "location": "Altheim Peak Observatory, Austrian Alps",
+    "time_period": "Present day, late November",
+    "environment": "A remote high-altitude astronomical research station perched at 3,200 metres, accessible only by a single mountain road",
+    "description": "The Altheim Peak Observatory is a cluster of concrete and steel buildings clinging to a windswept ridge, its dome housing one of Central Europe's most powerful research telescopes. Three days ago a catastrophic avalanche buried the access road under twelve metres of snow and severed the landline; the satellite uplink transmits data but cannot support voice calls, and the helicopter pad is encased in ice. The four researchers stranded here cannot leave until a snowcat rescue team \u2014 now two days away \u2014 breaks through, making every person on the mountain both suspect and prisoner."
+  },
+  "solution": {
+    "culprit": "Dr. Felix Brandt",
+    "motive": "Dr. Brandt had been systematically falsifying telescope calibration data for three years to secure a prestigious European Research Council grant worth \u20ac2.4 million. Victim Dr. Marta Vogel had discovered the fraud while cross-checking archived datasets the night before she died and confronted Brandt privately. Facing career destruction and potential criminal fraud charges, Brandt killed her to bury the evidence.",
+    "method": "Brandt lured Marta to the outer equipment catwalk under the pretence of an urgent calibration emergency, struck her from behind with a heavy torque wrench, and staged the scene to look like she slipped on the icy catwalk and struck her head on the railing. He then relocked the catwalk hatch with her own keycard \u2014 which he replaced on her body \u2014 and returned to the server room, establishing a false digital alibi by remotely triggering a routine calibration script that logged activity under his credentials.",
+    "chain": [
+      {
+        "id": "S1",
+        "claim": "Marta Vogel did not die from an accidental fall: the wound pattern on her skull is inconsistent with the railing edge and consistent with a flat-faced tool strike from behind."
+      },
+      {
+        "id": "S2",
+        "claim": "Marta had discovered and printed evidence of falsified calibration data the night before she died, giving someone a powerful motive to silence her."
+      },
+      {
+        "id": "S3",
+        "claim": "The remote calibration script that logs Dr. Brandt's workstation activity during the murder window was triggered manually at an unusual hour, not by the automated scheduler, meaning it was used to fabricate an alibi."
+      },
+      {
+        "id": "S4",
+        "claim": "A torque wrench from the equipment locker is missing and traces of blood and hair matching Marta are found on a wrench recovered from the catwalk drain grate \u2014 establishing the actual murder weapon."
+      },
+      {
+        "id": "S5",
+        "claim": "Dr. Brandt's fingerprints are the only prints on the catwalk hatch locking wheel, and his keycard log shows he accessed the catwalk two minutes before Marta's keycard registered entry, placing him at the scene before the victim."
+      }
+    ],
+    "key_evidence": [
+      "E1",
+      "E4",
+      "E6",
+      "E9"
+    ],
+    "how_to_deduce": "The first thing to establish is that this was not an accident: the forensic description of Marta's head wound does not match the curved railing she supposedly struck \u2014 it matches a flat-faced impact from behind, suggesting she was struck with a tool before she fell. This opens a murder investigation. Next, searching Marta's personal quarters turns up a printout of archived telescope data with anomalies circled and a handwritten note reading 'Felix \u2014 the 2021\u20132023 calibration runs are fabricated. We need to talk.' This gives Dr. Felix Brandt a concrete, career-ending motive: Marta had proof he falsified the data underpinning his \u20ac2.4 million ERC grant. Brandt's alibi rests entirely on workstation logs showing him running a calibration script during the murder window, but examining the server logs reveals that script was triggered by a manual command at 02:14 \u2014 well outside the automated scheduler's 06:00 window \u2014 meaning the log entry was manufactured. The murder weapon is recovered from the catwalk drain grate: a torque wrench from the equipment locker, bearing blood and hair. Brandt's fingerprints are on the wrench, and the catwalk hatch locking wheel carries only his prints, with his keycard registering entry two minutes before Marta's. Every other suspect can be cleared by independent physical and testimonial evidence. The chain ends with Brandt: motive established by the falsified-data printout, alibi demolished by the server log anomaly, and physical presence confirmed by the wrench prints and keycard sequence."
+  },
+  "crime": {
+    "type": "Murder staged as accidental fall",
+    "what_happened": "Dr. Marta Vogel, the observatory's lead astronomer, was found dead on the outer equipment catwalk at approximately 02:30. She is lying at the base of the railing with a severe head wound. The official initial assessment is that she slipped on the icy catwalk and struck her head, but the station's emergency medic notes the wound is unusual.",
+    "when": "02:30, Tuesday night into Wednesday morning",
+    "initial_discovery": "Telescope technician Oskar Huber went to the catwalk at 06:00 to perform a routine antenna check and found Marta's body. He raised the alarm and locked the catwalk hatch."
+  },
+  "characters": [
+    {
+      "name": "Dr. Marta Vogel",
+      "role": "victim",
+      "occupation": "Lead Astronomer, Altheim Peak Observatory",
+      "motive": "N/A",
+      "alibi": "N/A",
+      "secret": "On the night of her death Marta had spent several hours in the archive room cross-checking the observatory's 2021\u20132023 calibration datasets against published star-position references. She had produced a printed summary proving the data had been systematically altered and written a confrontation note addressed to Dr. Felix Brandt, which she intended to deliver in the morning."
+    },
+    {
+      "name": "Dr. Felix Brandt",
+      "role": "suspect",
+      "occupation": "Senior Astrophysicist and ERC Grant Principal Investigator",
+      "motive": "Brandt falsified three years of telescope calibration data to secure a \u20ac2.4 million European Research Council grant. Marta had discovered the fraud and confronted him the previous afternoon; her printed evidence would have ended his career and exposed him to criminal fraud charges.",
+      "alibi": "Claims he was alone in the server room from 01:00 to 03:00 running a calibration maintenance script, citing workstation log timestamps as proof. In fact the script was triggered manually at 02:14 to manufacture an alibi.",
+      "secret": "Brandt has been paying a data-analysis contractor in Vienna under a pseudonym to help generate plausible-looking but fabricated calibration outputs. He wired the final payment three weeks ago. He has also been in secret negotiations with a private satellite company to commercialise the observatory's telescope time, which would only be possible if his grant-funded research appeared productive."
+    },
+    {
+      "name": "Dr. Ingrid Solberg",
+      "role": "suspect",
+      "occupation": "Atmospheric Physicist, visiting researcher from Oslo",
+      "motive": "Ingrid is Brandt's former romantic partner. She came to Altheim under the cover of a collaborative research visit but in reality she came to warn Brandt that a colleague in Oslo had begun asking questions about the calibration data \u2014 she is implicated in covering for him, not in murder, but this creates apparent motive.",
+      "alibi": "Was in the dormitory common room from 22:00 to 00:30 playing chess with Oskar Huber, then returned to her bunk room where the motion-sensor log shows her door did not open again until 07:15.",
+      "secret": "Ingrid received an encrypted email from a colleague two weeks ago warning that inconsistencies in Brandt's published data had been noticed by a reviewer. Rather than report this, she forwarded it to Brandt and deleted her copy, making her a knowing accessory to concealment of the fraud."
+    },
+    {
+      "name": "Tom\u00e1\u0161 Nov\u00e1k",
+      "role": "suspect",
+      "occupation": "Observatory Systems Engineer and Station Manager",
+      "motive": "Tom\u00e1\u0161 has been embezzling small amounts from the station's equipment maintenance budget for eighteen months, routing funds to a personal account. Marta had recently queried an anomalous invoice he submitted and he feared she was closing in. However, she had not yet raised this formally.",
+      "alibi": "Tom\u00e1\u0161 was in the generator room performing a scheduled battery-bank inspection from 01:30 to 03:15, a task recorded in the maintenance log with timestamped sensor readings that confirm active work on the equipment throughout.",
+      "secret": "Tom\u00e1\u0161 has rerouted approximately \u20ac18,000 in false maintenance invoices over eighteen months. The invoices reference a fictitious supplier registered to a shell address in Brno. He is terrified that Marta's invoice query will be investigated and has drafted a confession letter he has not yet sent, hidden in his bunk drawer."
+    },
+    {
+      "name": "Dr. Yuki Adachi",
+      "role": "suspect",
+      "occupation": "Postdoctoral Researcher in Stellar Spectroscopy",
+      "motive": "Yuki had submitted a competing grant application to the same ERC funding panel as Brandt. If Brandt's grant were revoked for fraud, Yuki's application \u2014 ranked second \u2014 would almost certainly receive funding. This gives her an apparent motive to expose Brandt, not to protect him, but investigators might initially suspect she silenced Marta to preserve a blackmail opportunity.",
+      "alibi": "Yuki was running an automated spectroscopy observation sequence from the telescope control room from 23:00 to 04:00; the observation log records continuous instrument commands under her login, and the observatory's internal CCTV shows her at the control console at 01:47 and again at 03:02.",
+      "secret": "Yuki secretly obtained an early draft of Brandt's ERC application through a contact on the review panel \u2014 an act of academic misconduct in its own right \u2014 and used it to sharpen her competing proposal. She has been terrified this will be discovered and has been uncharacteristically cooperative with Brandt to keep him from suspecting her."
+    },
+    {
+      "name": "Oskar Huber",
+      "role": "witness",
+      "occupation": "Telescope Technician and Emergency Medic",
+      "alibi": "Was in the dormitory common room with Dr. Ingrid Solberg until 00:30, then in his bunk room; found the body at 06:00 on his way to the antenna check.",
+      "secret": "Oskar noticed that the catwalk hatch locking wheel felt unusually clean and dry when he found Marta \u2014 odd given the frost that had formed on every other exterior surface overnight. He did not mention this to anyone, assuming it was unimportant.",
+      "statement": "I found Dr. Vogel just inside the catwalk hatch at 06:00. What struck me immediately as her medic was the shape of the wound \u2014 it was flat and deep, not the curved laceration you would expect from that railing. I also noticed the locking wheel on the hatch was completely dry and clean, while the rest of the ironwork was frosted over. I had been playing chess with Dr. Solberg in the common room until about half past midnight, and she went to bed before I did.",
+      "reveals": [
+        "E1",
+        "E7"
+      ]
+    },
+    {
+      "name": "Professor Anka Reiss",
+      "role": "witness",
+      "occupation": "Observatory Director (overwintering on station)",
+      "alibi": "In her private office from 22:00 onwards, reviewing grant documentation; her office sensor log confirms the door was opened only once, at 07:30, when she emerged after hearing Oskar's alarm.",
+      "secret": "Anka has been aware for some months that the ERC reviewers have informally flagged Brandt's calibration methodology as unusually clean but has not yet acted on it, partly because she does not want scandal to shut down the observatory's funding.",
+      "statement": "At approximately 21:45 the night before her death, I heard raised voices from the direction of the archive room \u2014 I recognised Dr. Vogel's voice and Dr. Brandt's. I could not make out words but the tone was unmistakably confrontational. Dr. Brandt came past my office door perhaps ten minutes later and looked extremely shaken. I assumed it was a professional disagreement and did not intervene.",
+      "reveals": [
+        "E3"
+      ]
+    },
+    {
+      "name": "Liesel Fuchs",
+      "role": "witness",
+      "occupation": "Station Cook and Supply Coordinator",
+      "alibi": "In the kitchen from 05:00 preparing breakfast; was asleep in her quarters from 22:00 to 05:00, corroborated by the dormitory hallway motion sensor which did not register her door.",
+      "secret": "Liesel has been noting down odd late-night movements in a personal journal because she finds the isolation unsettling and it helps her feel in control. Her journal contains an entry for the night of the murder noting that she heard footsteps in the corridor outside her room at approximately 02:05.",
+      "statement": "I keep a personal log of anything unusual because being snowbound makes me anxious. My entry for Tuesday night records that I heard deliberate, unhurried footsteps passing my door toward the exterior stairwell at approximately 02:05 \u2014 I noted it because it was an odd hour. I also want you to know that Dr. Brandt came to collect a second dinner from the kitchen at around 21:30 \u2014 he said he had a long night of maintenance work ahead, which I thought was odd because that is usually Tom\u00e1\u0161's job.",
+      "reveals": [
+        "E5",
+        "E8"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "Wound Pattern Analysis",
+      "description": "Oskar Huber's emergency medic notes, formalised into a written assessment, record that the fatal wound on Dr. Vogel's skull is a single flat-edged impact approximately 4 cm wide, consistent with a tool or instrument with a flat striking face. The wound is located on the posterior left cranium, inconsistent with a forward fall onto the curved pipe railing, which would produce a curved laceration on the frontal or lateral skull. This finding directly challenges the accidental-fall hypothesis.",
+      "type": "physical",
+      "relevance": "critical",
+      "supports": [
+        "S1"
+      ],
+      "exonerates": [],
+      "implicates": []
+    },
+    {
+      "id": "E2",
+      "name": "Dormitory Motion Sensor Log \u2014 Solberg",
+      "description": "The station's internal motion-sensor network logs every door opening in the dormitory wing with a timestamp accurate to the minute. The log for Dr. Ingrid Solberg's bunk room shows the door closing at 00:38 and not opening again until 07:15, a span that entirely covers the murder window of approximately 02:00\u201302:30. The log is stored on the station's independent security server and cannot be edited without Tom\u00e1\u0161 Nov\u00e1k's admin credentials.",
+      "type": "documentary",
+      "relevance": "supporting",
+      "supports": [],
+      "exonerates": [
+        "Dr. Ingrid Solberg"
+      ],
+      "implicates": []
+    },
+    {
+      "id": "E3",
+      "name": "Confrontation Overheard by Director Reiss",
+      "description": "Professor Anka Reiss provides a witness account of an audible confrontation between Dr. Marta Vogel and Dr. Felix Brandt in the archive room at approximately 21:45 the night before the murder. Reiss describes Brandt emerging shortly afterwards looking visibly distressed. This places Brandt in a state of alarm after the victim confronted him and establishes that he had knowledge of her accusations before she died.",
+      "type": "testimonial",
+      "relevance": "supporting",
+      "supports": [
+        "S2"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Dr. Felix Brandt"
+      ]
+    },
+    {
+      "id": "E4",
+      "name": "Marta's Printed Data Anomaly Report",
+      "description": "Found in a sealed envelope in Dr. Marta Vogel's bunk room desk drawer, this is a six-page printout of archived 2021\u20132023 telescope calibration datasets with multiple anomalies circled in red pen, accompanied by a handwritten note reading: 'Felix \u2014 the 2021\u20132023 calibration runs are fabricated. The star-position deviations are identical across 47 nights \u2014 statistically impossible without manual adjustment. We need to talk before I go to Anka.' The printout is dated the evening before Marta's death and establishes both her discovery and the direct threat it posed to Brandt.",
+      "type": "documentary",
+      "relevance": "critical",
+      "supports": [
+        "S2"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Dr. Felix Brandt"
+      ]
+    },
+    {
+      "id": "E5",
+      "name": "Liesel's Journal Entry \u2014 02:05 Footsteps",
+      "description": "Liesel Fuchs's personal journal, a spiral-bound notebook kept in her nightstand, contains an entry for Tuesday night noting footsteps passing her door toward the exterior stairwell at approximately 02:05. The exterior stairwell is the only internal route to the catwalk hatch. Liesel's room is between the server room and the stairwell, making anyone walking that route pass her door. The entry is in consistent handwriting and ink with surrounding entries, showing no signs of later addition.",
+      "type": "documentary",
+      "relevance": "supporting",
+      "supports": [
+        "S5"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Dr. Felix Brandt"
+      ]
+    },
+    {
+      "id": "E6",
+      "name": "Server Log \u2014 Manual Script Trigger at 02:14",
+      "description": "The observatory's Linux server log, accessible from the archive terminal, shows that the calibration maintenance script cited as Brandt's alibi was launched via a direct manual command typed at the keyboard at 02:14 \u2014 not by the automated cron scheduler which runs at 06:00. The session was authenticated with Brandt's credentials but the manual invocation means Brandt would have needed to physically type the command before leaving for the catwalk, not remain at the workstation. The log timestamp is cryptographically signed by the server and cannot be altered without corrupting the chain-of-custody hash.",
+      "type": "documentary",
+      "relevance": "critical",
+      "supports": [
+        "S3"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Dr. Felix Brandt"
+      ]
+    },
+    {
+      "id": "E7",
+      "name": "Frosted Ironwork Pattern \u2014 Catwalk Hatch Wheel",
+      "description": "Oskar Huber noted in his statement that the catwalk hatch locking wheel was completely dry and free of frost at 06:00, while all surrounding ironwork including hinges and railings were coated in a uniform frost layer consistent with overnight temperatures of minus fourteen Celsius. This indicates the locking wheel was handled with bare hands after the frost formed, meaning someone touched it during the murder window and cleaned or warmed it with their grip. No maintenance task was scheduled for the catwalk that night.",
+      "type": "physical",
+      "relevance": "supporting",
+      "supports": [
+        "S5"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Dr. Felix Brandt"
+      ]
+    },
+    {
+      "id": "E8",
+      "name": "Brandt's Unusual Kitchen Request \u2014 21:30",
+      "description": "Liesel Fuchs's statement records that Dr. Brandt visited the kitchen at approximately 21:30 to request a second dinner, claiming he had a long night of maintenance work ahead. Scheduled maintenance that night was Tom\u00e1\u0161 Nov\u00e1k's battery-bank inspection, not any task assigned to Brandt. Brandt's claim of maintenance work at that hour is unsupported by the station duty roster and conflicts with his later claim that he went to the server room spontaneously after midnight.",
+      "type": "testimonial",
+      "relevance": "supporting",
+      "supports": [
+        "S3"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Dr. Felix Brandt"
+      ]
+    },
+    {
+      "id": "E9",
+      "name": "Torque Wrench with Blood and Hair",
+      "description": "A 45 cm torque wrench from the equipment locker \u2014 logged out to Dr. Brandt two days before the murder for a telescope mount adjustment task and never returned \u2014 was recovered from the catwalk drain grate beneath a thin layer of ice. Forensic swabbing of the striking face shows traces of blood and a single dark hair caught in the head seam. The blood type matches Dr. Marta Vogel's recorded type on her station medical form. Dr. Brandt's right thumb and index fingerprints are identifiable on the handle in a grip pattern consistent with an overhand swinging motion.",
+      "type": "physical",
+      "relevance": "critical",
+      "supports": [
+        "S4"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Dr. Felix Brandt"
+      ]
+    },
+    {
+      "id": "E10",
+      "name": "Generator Room Maintenance Log \u2014 Nov\u00e1k",
+      "description": "The generator room's automated monitoring system produces a timestamped log of every circuit test and battery-voltage reading. The log for Tuesday night shows continuous sequential sensor interactions consistent with a person actively working the inspection checklist from 01:32 to 03:18. The log entries require manual confirmation at each step and cannot be triggered remotely or pre-programmed, placing Tom\u00e1\u0161 Nov\u00e1k physically in the generator room throughout the murder window.",
+      "type": "documentary",
+      "relevance": "supporting",
+      "supports": [],
+      "exonerates": [
+        "Tom\u00e1\u0161 Nov\u00e1k"
+      ],
+      "implicates": []
+    },
+    {
+      "id": "E11",
+      "name": "Telescope Control Room CCTV \u2014 Adachi",
+      "description": "The telescope control room is covered by a fixed internal security camera that records continuously to a local drive. Review of the footage for Tuesday night shows Dr. Yuki Adachi seated at the control console at 01:47, at 02:12, and at 03:02, with no gap in her presence long enough to reach the catwalk and return. The camera timestamp is synchronised to the station's GPS clock and cannot be altered without physically accessing the camera unit, which is bolted to the ceiling.",
+      "type": "physical",
+      "relevance": "supporting",
+      "supports": [],
+      "exonerates": [
+        "Dr. Yuki Adachi"
+      ],
+      "implicates": []
+    },
+    {
+      "id": "E12",
+      "name": "Nov\u00e1k's Embezzlement Invoices",
+      "description": "A folder of maintenance invoices found in Tom\u00e1\u0161 Nov\u00e1k's office desk references a supplier \u2014 'Alpentech Service GmbH' \u2014 at a Brno address. A commercial register search via the satellite data uplink shows no company by that name at the listed address; the registration number is invalid. The invoices total \u20ac18,200 over eighteen months, all countersigned by Nov\u00e1k as both requester and approver. This establishes Nov\u00e1k's separate secret but also demonstrates his vulnerability to discovery \u2014 by Marta or anyone reviewing station finances.",
+      "type": "documentary",
+      "relevance": "red_herring",
+      "supports": [],
+      "exonerates": [],
+      "implicates": [
+        "Tom\u00e1\u0161 Nov\u00e1k"
+      ]
+    },
+    {
+      "id": "E13",
+      "name": "Catwalk Hatch Keycard Sequence Log",
+      "description": "The catwalk hatch is controlled by a magnetic keycard reader that logs every entry and exit with cardholder ID and timestamp. The log shows Dr. Brandt's card used at 02:07 and again at 02:31, and Dr. Marta Vogel's card used at 02:09. No other cards were used that night. Brandt's card appears before Marta's, meaning he was on the catwalk before she arrived, and his second entry at 02:31 corresponds to re-locking the hatch from the inside after placing Marta's body.",
+      "type": "documentary",
+      "relevance": "critical",
+      "supports": [
+        "S5"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Dr. Felix Brandt"
+      ]
+    },
+    {
+      "id": "E14",
+      "name": "Chess Game Corroboration \u2014 Solberg and Huber",
+      "description": "Both Oskar Huber and Dr. Ingrid Solberg independently confirm playing chess in the dormitory common room from approximately 22:00 to 00:30. The common room's motion sensor log confirms continuous occupancy of that room during that period. Huber's testimony and the sensor data together place Solberg outside her room \u2014 and away from the catwalk \u2014 until 00:38, well before the murder window, and the dormitory door log confirms she did not leave after that.",
+      "type": "testimonial",
+      "relevance": "supporting",
+      "supports": [],
+      "exonerates": [
+        "Dr. Ingrid Solberg"
+      ],
+      "implicates": []
+    }
+  ],
+  "investigation_areas": [
+    {
+      "id": "A1",
+      "name": "Outer Equipment Catwalk",
+      "description": "A narrow steel catwalk bolted to the observatory's exterior wall, exposed to the open mountain air. Ice coats the railings and mesh flooring; the wind cuts across it even in calm weather. This is where Marta's body was found.",
+      "investigation_prompt": "The torque wrench is hidden in the drain grate beneath a thin ice skin. The catwalk hatch locking wheel is conspicuously frost-free. The railing Marta supposedly hit shows no blood transfer consistent with the wound shape.",
+      "discovery": "You find a torque wrench wedged into the catwalk drain grate beneath a thin sheet of overnight ice, and you notice the hatch locking wheel is entirely frost-free while every surrounding surface is glazed.",
+      "analysis": "Forensic swabbing of the wrench's striking face identifies blood and a hair matching Marta Vogel's medical records; Dr. Brandt's fingerprints are on the handle. The keycard reader log for this hatch shows Brandt's card used at 02:07 \u2014 two minutes before Marta's card at 02:09.",
+      "reveals": [
+        "E9",
+        "E13"
+      ]
+    },
+    {
+      "id": "A2",
+      "name": "Server Room",
+      "description": "A climate-controlled room humming with rack servers and blinking status lights, smelling of recycled cool air. This is where Dr. Brandt claims to have spent the night running a maintenance script.",
+      "investigation_prompt": "The server log is accessible from the terminal here. It shows the alibi script was triggered manually at 02:14, not by the scheduler. The room's own motion sensor shows a brief gap in occupancy between 02:05 and 02:38.",
+      "discovery": "You access the server terminal and pull up the session log for Tuesday night, finding a manually typed script-launch command timestamped 02:14 alongside a motion-sensor gap in this room from 02:05 to 02:38.",
+      "analysis": "The server's cryptographically signed log confirms the script was launched by manual keyboard command, not the automated scheduler \u2014 meaning Brandt typed it before leaving, not while sitting here as his alibi claims. The motion-sensor gap precisely covers the murder window.",
+      "reveals": [
+        "E6"
+      ]
+    },
+    {
+      "id": "A3",
+      "name": "Dr. Marta Vogel's Bunk Room",
+      "description": "A spare, tidy room with a narrow bunk, a small desk, and a shelf of star atlases. Her laptop is open on the desk, its screen dark.",
+      "investigation_prompt": "The sealed envelope in the desk drawer contains Marta's printed anomaly report and handwritten note to Brandt. The laptop shows the archive database was accessed for several hours the previous evening.",
+      "discovery": "In the desk drawer you find a sealed envelope addressed to 'Felix' containing a six-page printout of calibration data covered in red-pen annotations and a handwritten confrontation note.",
+      "analysis": "The note reads: 'Felix \u2014 the 2021\u20132023 calibration runs are fabricated. The star-position deviations are identical across 47 nights \u2014 statistically impossible without manual adjustment. We need to talk before I go to Anka.' The printout is dated the evening before Marta's death and establishes her discovery of Brandt's data fraud.",
+      "reveals": [
+        "E4"
+      ]
+    },
+    {
+      "id": "A4",
+      "name": "Tom\u00e1\u0161 Nov\u00e1k's Office",
+      "description": "A cluttered workspace wallpapered with equipment schematics and maintenance schedules. A locked filing cabinet stands in the corner, its key left in the lock \u2014 an oversight of a man in a hurry.",
+      "investigation_prompt": "The false invoices are in a folder in the filing cabinet. They look suspicious and implicate Nov\u00e1k in financial wrongdoing, but his generator-room alibi is airtight and this is a red herring for the murder. The generator room maintenance log is also accessible from the terminal here.",
+      "discovery": "In the filing cabinet you find a folder of maintenance invoices referencing a supplier called 'Alpentech Service GmbH' alongside printouts of the generator room's automated inspection log for Tuesday night.",
+      "analysis": "A commercial register search shows Alpentech Service GmbH does not exist at the listed address \u2014 the invoices appear fraudulent, totalling \u20ac18,200 signed off by Nov\u00e1k alone. However, the generator log shows continuous manual sensor confirmations from 01:32 to 03:18, placing Nov\u00e1k in the generator room throughout the murder window.",
+      "reveals": [
+        "E12",
+        "E10"
+      ]
+    },
+    {
+      "id": "A5",
+      "name": "Dormitory Common Room",
+      "description": "A low-ceilinged lounge with mismatched armchairs, a folding card table, and a half-finished chess game still set up on the table. The overhead strip-light flickers slightly in the wind.",
+      "investigation_prompt": "The motion sensor log for this room and the dormitory corridor is accessible via the wall panel. It corroborates Solberg and Huber's chess game and confirms Solberg's return to her room. Liesel's journal is not here \u2014 it is in her room \u2014 but her statement about the journal can be followed up.",
+      "discovery": "You access the dormitory motion-sensor panel and retrieve the corridor and common-room logs for Tuesday night, and you find Liesel Fuchs's personal journal left on an armchair with Tuesday's entry open.",
+      "analysis": "The sensor logs confirm Ingrid Solberg's bunk-room door closed at 00:38 and did not open until 07:15, entirely covering the murder window. Liesel's journal entry for Tuesday night records unhurried footsteps passing her door toward the exterior stairwell at 02:05 \u2014 the only route to the catwalk.",
+      "reveals": [
+        "E2",
+        "E5",
+        "E14"
+      ]
+    }
+  ],
+  "leads": [
+    {
+      "id": "L1",
+      "title": "The ERC Grant Anomaly Report",
+      "brief": "Professor Reiss mentions that the European Research Council sent an informal query two months ago about the statistical regularity of Brandt's calibration data \u2014 a query she filed without acting on.",
+      "investigation_prompt": "Following this lead turns up the ERC correspondence in Reiss's email archive and the archived calibration datasets, which together confirm the falsification Marta discovered. This corroborates E4 and points firmly at Brandt's motive.",
+      "reveals": [
+        "E4"
+      ]
+    },
+    {
+      "id": "L2",
+      "title": "The Missing Torque Wrench",
+      "brief": "The equipment locker inventory sheet shows a 45 cm torque wrench signed out to Dr. Brandt two days ago and never returned to the locker.",
+      "investigation_prompt": "Following this lead traces the wrench to the catwalk drain grate. Combined with the catwalk search it confirms the murder weapon and Brandt's possession of it. Supports E9.",
+      "reveals": [
+        "E9"
+      ]
+    },
+    {
+      "id": "L3",
+      "title": "Liesel's Midnight Journal",
+      "brief": "Liesel Fuchs mentions she keeps a journal of unusual events during the snowbound period \u2014 she says her Tuesday entry might be relevant.",
+      "investigation_prompt": "The journal entry records footsteps at 02:05 heading toward the exterior stairwell, the only route to the catwalk. This narrows the movement evidence against Brandt. Supports E5.",
+      "reveals": [
+        "E5",
+        "E8"
+      ]
+    },
+    {
+      "id": "L4",
+      "title": "The Suspicious Maintenance Invoices",
+      "brief": "A station audit flag from six weeks ago notes that three recent maintenance invoices from an unfamiliar supplier have not been verified against delivery receipts.",
+      "investigation_prompt": "This lead turns up Nov\u00e1k's embezzlement scheme \u2014 a genuine financial fraud but entirely unrelated to the murder. The generator log alibi completely clears him. This is the red herring lead: it looks like motive but the physical alibi is unbreakable.",
+      "reveals": [
+        "E12"
+      ]
+    }
+  ],
+  "gameplay_notes": {
+    "difficulty": "HARD",
+    "estimated_playtime": "60\u201375 minutes",
+    "key_twists": [
+      "The alibi that appears to clear Brandt \u2014 the server log timestamps \u2014 is itself the manufactured evidence, and recognising the manual trigger is the pivot of the mystery.",
+      "Tom\u00e1\u0161 Nov\u00e1k's embezzlement creates a loud, convincing red herring motive that can consume investigation time before his airtight generator-room alibi collapses it.",
+      "The murder weapon was hidden in plain sight on the catwalk the entire time, but requires visiting the correct area to recover \u2014 players who skip the catwalk miss the most direct physical proof.",
+      "Ingrid Solberg's romantic history with Brandt and her concealment of the Oslo warning make her seem deeply suspicious until two independent lines of evidence \u2014 the door sensor and the chess corroboration \u2014 clear her completely."
+    ]
+  },
+  "_provenance": {
+    "recipe": "corpus_4a6a19e7(1) + corpus_296be49c(2) + corpus_7305e36e(3) + corpus_94e6ff3e(4) + corpus_14735651(5) + corpus_80f25898(6) + corpus_cfbfdfb2(7) + corpus_bf0ef17c(8)",
+    "slots": [
+      {
+        "source_id": "corpus_4a6a19e7",
+        "part_index": 1,
+        "part_type": "crime_type"
+      },
+      {
+        "source_id": "corpus_296be49c",
+        "part_index": 2,
+        "part_type": "setting_element"
+      },
+      {
+        "source_id": "corpus_7305e36e",
+        "part_index": 3,
+        "part_type": "motive"
+      },
+      {
+        "source_id": "corpus_94e6ff3e",
+        "part_index": 4,
+        "part_type": "suspect_archetype"
+      },
+      {
+        "source_id": "corpus_14735651",
+        "part_index": 5,
+        "part_type": "red_herring"
+      },
+      {
+        "source_id": "corpus_80f25898",
+        "part_index": 6,
+        "part_type": "reveal_mechanic"
+      },
+      {
+        "source_id": "corpus_cfbfdfb2",
+        "part_index": 7,
+        "part_type": "social_dynamic"
+      },
+      {
+        "source_id": "corpus_bf0ef17c",
+        "part_index": 8,
+        "part_type": "alibi"
+      }
+    ],
+    "target_setting": "A death at a remote alpine observatory cut off by avalanche",
+    "generated_title": "",
+    "craft_guidance": [
+      {
+        "concept": "The Closed World",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "COARSE PARTS (C1\u2013C6) \u2014 Structural Skeleton",
+        "confidence": "canonical",
+        "source": "James: \"closed circle of suspects\"; Rankin: Edinburgh as character; French: location as first decision"
+      },
+      {
+        "concept": "The Crime",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "COARSE PARTS (C1\u2013C6) \u2014 Structural Skeleton",
+        "confidence": "canonical",
+        "source": "Christie (start with method), P.D. James (central mysterious crime), Knox (rule 4: method must be plausible)"
+      },
+      {
+        "concept": "The Culprit + Motive",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "COARSE PARTS (C1\u2013C6) \u2014 Structural Skeleton",
+        "confidence": "canonical",
+        "source": "Christie: start with murderer and motive, then build outward; worked backward from the solution"
+      },
+      {
+        "concept": "Suspect Architecture",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "MEDIUM-FINE PARTS (M1\u2013M8) \u2014 Tactical Construction Elements",
+        "confidence": "canonical",
+        "source": "James: \"each with motive, means and opportunity\"; Knox: criminal must appear early"
+      },
+      {
+        "concept": "The Alibi",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "MEDIUM-FINE PARTS (M1\u2013M8) \u2014 Tactical Construction Elements",
+        "confidence": "canonical",
+        "source": "Christie notebooks: alibi construction is explicit planning step"
+      }
+    ]
+  },
+  "_coherence": {
+    "passed": true,
+    "blocking": 0,
+    "warnings": 0
+  }
+}

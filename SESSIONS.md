@@ -5,6 +5,52 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session — September 01, 2026 at 18:53
+**Branch:** `claude/repo-sync-bjb77q`
+**Latest commit:** `540d5d5`
+
+### Files changed this session
+- `mystery_database/generated/the_vanishing_at_altheim_peak_1788288787.json` — Untracked
+
+### Commits this session
+```
+540d5d5 Race to proof: Clue's two structural rules, and a fourth deal constraint
+b737a84 First real generation under the new schema, and the deal refuses it
+ea0ccd8 chore: auto-update SESSIONS.md with session summary [7612dab]
+7612dab The redundancy ladder has an arithmetic ceiling, and at APF's shape it is 2
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
+## Session — September 01, 2026 at 18:42
+**Branch:** `claude/repo-sync-bjb77q`
+**Latest commit:** `7612dab`
+
+### Files changed this session
+- `.venv-gen/` — Untracked
+- `mystery_database/generated/the_lantern_keeper's_last_light_1788287720.json` — Untracked
+
+### Commits this session
+```
+7612dab The redundancy ladder has an arithmetic ceiling, and at APF's shape it is 2
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
 > **Merge note (August 7, 2026):** this log has two entry styles that grew on separate
 > branches and were joined when the Mind Your Friends Godot port merged to `main` (PR #15).
 > Auto-generated `## Session — <date>` blocks come from `scripts/session_summary.py --auto`
@@ -3131,7 +3177,96 @@ draws the distinction — *"the data is already CARD-SHAPED: a FINDING has a nam
 — so a finding is the domain object and a card is one way a client draws it. Recorded in the module
 header so it does not get re-litigated.
 
-**Next: item 23 step 3** — the share decision, the suspect board, the reveal.
+### Second half — the owner's two decisions, and what measuring them cost
+
+**Decision 1: "the core of mystery solving is solving not guessing. Thus, it has to be a race to
+proof."** That is a claim about what survives when players withhold, so it was measured rather than
+agreed with. A three-finding hand resolves to "share 2, keep 1" at every difficulty, so each player
+withholds exactly one: 3^4 = 81 patterns, the same 81 `docs/PLAYTEST_FLOW.md` already cites.
+
+**Decision 2: two difficulty settings are fine for now.** EASY and HARD. MEDIUM stays as a legacy
+alias so the 17 mysteries on disk keep working, but it is not offered.
+
+**Clue's two structural rules came out of the first real generation.** `the_lantern_keeper's_last_light`
+scored `passed=True, blocking=0, warnings=0` — a clean sweep of all 26 coherence rules — and its
+`E4` "Bloody Palm Print" cleared **all three** innocents at once. Whoever drew it won alone without
+anyone sharing anything. The prompt had required every non-culprit be exonerated somewhere and
+never said the exonerations must be spread. So: **an item clears at most one suspect**, and
+**every suspect is clearable two independent ways**, which is the owner's "we may need more clues
+that lead to solving" in enforceable form. Evidence floor 6 → 9.
+
+**The measurement behind the two-routes rule was wrong the first time, and the correction matters.**
+The fixture pointed its witnesses AT the exonerating items, so a `reveals` pointer was silently
+creating extra carriers and "n=2" really meant four; it was also measured on one unsearched deal
+rather than on whether a good deal is findable. The fixture existed in **two copies that had
+drifted**, which is what let it through — it is now defined once. Redone, 20 seeds each, dealer
+searching:
+
+| carriers | proof-safe deal found | also monopoly-free |
+|---:|---:|---:|
+| 1 | 0/20 | 0/20 |
+| 2 | **20/20** | 8/20 |
+| 3 | 20/20 | 17/20 |
+| 5 | 20/20 | 19/20 |
+
+**Two is exactly the threshold**, so the rule is right — the first table pointed at it by luck.
+
+**Constraint 5, opt-in: a race needs at least two runners.** Proof *existing* and the game being a
+*race* are different. On the alpine generation proof was reachable in 81 of 81 patterns and in 54
+of them exactly ONE player could reach it — always the same one, because a hoarder still knows what
+they kept. **Qualifier the owner drew out and it is important:** that 54 counts every possible
+combination of what people keep, including ones where everybody happens to keep exactly the right
+thing. A player can read that a clue matters; **they cannot know they are the only one holding
+it** — no scarcity label, no count. So the worst case is real and rarer than the number implies.
+
+**The dealer was sampling for a covering it should have been constructing.** The alpine mystery had
+21 findings of which only 4 carried any exoneration; dealing 12 of 21 by KIND had to catch all
+three eliminations by luck, and 400 attempts did not. `deal()` now seeds the decisive findings into
+distinct hands first. Same mystery: 136 attempts; a compliant version: attempt 1.
+
+**`mystery_database/rejected/` (new).** `/mysteries` globs `generated/` and serves it straight to
+players, so a mystery the deal refuses cannot sit there. Both Session 39 generations moved, with a
+README saying why each failed. Moved, not deleted — each cost an API call and each is the
+counter-example that justifies a rule. **Both passed all 26 coherence rules**, which is the point
+worth keeping: neither failure is a story problem, and that is why they needed their own checks.
+This retired an intra-day `SCHEMA_EPOCH` added an hour earlier to exempt one of them — the wrong
+instrument, since the question was never whether to fail a checker on it but whether to serve it.
+
+**Performance:** constraints 4 and 5 enumerate every hoarding pattern and are ~3 orders of
+magnitude dearer than the three above them, so `_violations()` returns early when a cheap
+constraint has already failed — ~130,000 needless set operations per refused deal at a
+400-attempt ceiling.
+
+### The vocabulary correction, owner's
+
+The dealt object is a **finding**, not a "card". The first draft of `deal.py` used `Card`, borrowed
+from MYF's `GameCard.jsx`. `docs/PLAYTEST_FLOW.md:139` already draws the distinction — *"the data is
+already CARD-SHAPED: a FINDING has a name, a description…"* — so a finding is the domain object and
+a card is one way a client draws it. Recorded in the module header.
+
+The owner also pushed back on the explanation itself: *"there are too many metaphors… we seem to be
+talking about this like a card game, and not as a fun social deduction game."* They were right. The
+arithmetic had been described in its own terms rather than as four people in a room, and the
+re-explanation using the real alpine deal — Sarah holding the only proof of two people's innocence —
+did more in one page than the preceding three had.
+
+### New: item 27, the glove mechanic — the owner wants it built
+
+Deduction today is pure subtraction and the owner named the cost: it is arithmetic, not detection.
+Their example is the design — *"a bloody men's glove"* clears nobody alone, but with *"the CCTV
+shows Adachi in the control room all night"* it names the killer. Two findings that individually
+prove nothing combine into a proof.
+
+**Explicitly NOT "the culprit is one of these two."** Owner: *"we cannot be (nor ever should be) so
+explicit… Sure a female could have worn it, but certainty isn't always fun. You have to have some
+assumptions in building a case."* Hidden field, oblique prose. The constraint that keeps it honest
+is already in the corpus as **M3 Clue Fairness** (P.D. James, Knox 8): an assumption the game
+invites must be one that holds. Full design in `docs/DECISIONS.md` item 27, including the fair-play
+check to build in the same change.
+
+**Next: item 23 step 3** — the share decision, the suspect board, the reveal. Item 27 is the owner's
+stated want and changes what generation writes, so it should share a paid round with any other
+schema change rather than taking its own.
 
 **Files:** `deal.py` (new), `scripts/test_deal.py` (new), `server/main.py`,
 `scripts/check_narrative.py`, `scripts/test_narrative_checks.py`, `scripts/check_decisions.py`,
