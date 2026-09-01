@@ -92,8 +92,15 @@ def check_open_but_closed(items, fails):
             if other == num:
                 continue
             # "...deletes ... item 21's deadlock" / "supersedes item 20"
+            # "(?<!by )" is load-bearing and was added in Session 39 after a real
+            # false positive. "item 21 ... superseded BY item 23" closes item 21
+            # and says nothing about item 23 -- but the closing verb and the
+            # number 23 are both present, so without this the successor gets
+            # reported as finished the moment it is labelled anything open.
+            # Direction is what the phrase "by item N" carries: N is the agent
+            # there, not the patient.
             near = re.search(
-                rf"{CLOSED}\w*\b[^.]{{0,80}}\bitem {num}\b"
+                rf"{CLOSED}\w*\b[^.]{{0,80}}(?<!by )\bitem {num}\b"
                 rf"|\bitem {num}\b[^.]{{0,80}}\b{CLOSED}\w*",
                 body, re.I)
             if near:

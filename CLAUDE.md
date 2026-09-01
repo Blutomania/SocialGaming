@@ -54,6 +54,11 @@ false version stayed in the first thing every session read. What `server/main.py
 | MEDIUM | 0.60 |
 | HARD | 0.50 |
 
+**At APF's three-finding hand that ladder is inert** — all three difficulties resolve to "share 2,
+keep 1", because a percentage has no resolution over three items (Session 38). Session 39 moved
+difficulty to deal redundancy instead: `REDUNDANCY_BY_DIFFICULTY` in `deal.py` puts each
+exoneration in two hands on EASY and one on HARD, which has real resolution at that hand size.
+
 If a random-broadcast mechanic is wanted, it is unbuilt design work, not a regression.
 
 ---
@@ -163,6 +168,7 @@ game lifecycle (`/games/create`, `/join`, `/start`), play (`/interrogate-witness
 | `coherence/` | The shared engine (`Issue`, `CoherenceReport`, `RuleSet`). Used by both CYM and Mind Your Friends — item 16 |
 | `craft_grounding.py` | Retrieval layer over the craft-grounding docs; feeds guidance into all five generation call sites. Zero added API calls |
 | `localization.py` | Era-appropriate name/occupation localization, 3-tier disk cache |
+| `deal.py` | APF's constrained deal (item 23). Deals findings under set arithmetic over `evidence[]`, reached through the `reveals` pointer. Pure computation, deterministic from a seed, re-dealable free. Computed, tested, **wired to no client** |
 | `background_field.py` | The BACKGROUND layout (item 17). Computed, tested, **wired to no client** |
 | `extraction_protocols.py` | P1–P4 taxonomy definitions. Live dependency of the extractor |
 | `scripts/extract_from_pdfs.py` | The sanctioned way to add **one** new source. `--anthology` for a collection; always `--dry-run` an anthology first |
@@ -333,6 +339,7 @@ Zero API cost, no Godot binary needed. Each has already caught a real bug.
 | `scripts/test_share_rule.py` | The share minimum being defined twice. It was — server `round()` against client `ceili()`, disagreeing in 6 of 18 realistic cases with the client always stricter, so it refused shares the server would accept |
 | `scripts/test_registry_staleness.py` | That a moved-on corpus rebuilds the registry and an unchanged one does not |
 | `scripts/test_crime_scene_map.py` | Overlapping rooms, off-canvas rooms, a witness outside its stated room, a non-deterministic layout |
+| `scripts/test_deal.py` | The three deal constraints, and that each refuses a mystery violating it. Fixtures, because no mystery on disk carries `reveals` yet |
 | `scripts/test_background_field.py` | The BACKGROUND layout |
 | `scripts/test_extraction_fatal_errors.py` | That a batch stops on an account-level API failure and continues past a per-source one |
 
@@ -354,7 +361,7 @@ field to SVG over real screen text (`--sheet` covers the shortest and longest re
 
 Everything else is closed — see `docs/DECISIONS.md`.
 
-### 23. Build APF — **START HERE**
+### 23. Build APF — **START HERE** (now at step 3)
 
 The playtest shape is agreed and written down: `docs/PLAYTEST_FLOW.md` → "APF (All Provided For)".
 Findings are **dealt, not gathered**; the only decision is which to share and which to keep, which
@@ -365,10 +372,13 @@ Build order (`docs/INVESTIGATION_DESIGN.md` §7, already reduced by APF):
 1. ~~`exonerates` / `implicates` on evidence + the set-arithmetic solvability check~~ —
    **the schema half landed in Session 38** with the backwards-writing reorder (item 26).
    Untested against a real generation; that costs credits and is the next paid step.
-2. The constrained deal — pure computation, re-dealable at zero cost. **Blocked on one thing
-   nobody had listed: a finding carries no evidence ID**, so the deal has no join key to the
-   evidence the arithmetic is defined over. Fix that first.
-3. The share decision, the suspect board, the reveal
+2. ~~The constrained deal~~ — **built in Session 39** as `deal.py`, with `scripts/test_deal.py`.
+   The blocker (a finding carrying no evidence ID) was real but pointed at the gather routes APF
+   deletes. The gap that actually bit: APF's hand is one witness statement, one crime-scene clue,
+   one lead result, and **only `evidence[]` carries `exonerates`** — so two of the three kinds
+   could not participate in the arithmetic at all. Closed with a `reveals` pointer on witnesses,
+   leads and areas, which keeps elimination data in one place. Untested against a real generation.
+3. The share decision, the suspect board, the reveal — **START HERE**
 4. The paced text opening
 
 **Decided (Session 38): no crime-scene picture for the playtest** — a list of named findings. The

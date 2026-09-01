@@ -62,7 +62,11 @@ pure computation, deterministic, and a failed deal is simply re-dealt at zero co
 |---|---|
 | the union of all dealt findings eliminates all but one suspect | otherwise nobody can win |
 | no single player's hand does that alone | otherwise it is a lottery |
-| it becomes solvable once the minimum share threshold is met | otherwise sharing is pointless |
+| ~~it becomes solvable once the minimum share threshold is met~~ | **not well-formed — replaced.** `share_min` is a fraction of a player's *own* findings and the player picks which, so meeting it does not determine what reaches the pool. Session 39 uses **redundancy** instead: each exoneration must reach at least N distinct hands. See `docs/INVESTIGATION_DESIGN.md` §4 |
+
+**Built in Session 39 as `deal.py`**, with `scripts/test_deal.py`. Findings reach the evidence the
+arithmetic is defined over through a `reveals` pointer on witnesses, leads and areas — without it
+two of the three kinds in every hand carry no elimination data and cannot be reasoned from.
 
 This is a stronger guarantee than anything the engine does today, and it costs nothing. See
 `docs/INVESTIGATION_DESIGN.md` §4 for the `exonerates` / `implicates` fields it needs.

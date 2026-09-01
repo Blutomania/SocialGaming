@@ -682,16 +682,58 @@ that the superseded text has become history and belongs here instead.
     Plus one gap inside a passing step: the Smurf negative case (accusing Smurfodex, which must
     read *wrong*) was not run. The procedure and its live Status line are `docs/F5_CHECKLIST.md`.
 
-23. **[START HERE] Build APF.** The playtest shape is agreed and written down:
+23. **[IN PROGRESS — at step 3] Build APF.** The playtest shape is agreed and written down:
     `docs/PLAYTEST_FLOW.md` → "APF (All Provided For)". Findings are **dealt, not gathered**; the
     only decision is which to share and which to keep, which is the mechanic this file's first
     paragraph calls the core innovation. It deletes exploration, the block pool, the phase gates
     and item 21's deadlock outright, and drops play-time API cost to roughly zero.
     Order (from `docs/INVESTIGATION_DESIGN.md` §7, reduced by APF):
-    1. `exonerates` / `implicates` on evidence + the set-arithmetic solvability check
-    2. the constrained deal — pure computation, re-dealable at zero cost
-    3. the share decision, the suspect board, the reveal
+    1. ~~`exonerates` / `implicates` on evidence + the set-arithmetic solvability check~~ —
+       schema half landed Session 38 with the backwards-writing reorder (item 26).
+    2. ~~the constrained deal — pure computation, re-dealable at zero cost~~ — **[Session 39]
+       built as `deal.py`.** See below.
+    3. the share decision, the suspect board, the reveal — **now the start point**
     4. `cinematic_brief: bool = True` for the paced text opening
+
+    **[Session 39] Step 2's blocker was real and pointed at the wrong code.** Session 38 recorded
+    it as *"a finding carries no evidence ID"* in the three finding constructors — but those are
+    the **gather** routes (`/investigate-area`, `/follow-lead`, `/interrogate-witness`), and APF
+    deletes gathering. A dealt clue **is** an evidence item and carries its own id, so there is
+    nothing to join.
+
+    **The gap that actually blocked the deal is larger and was not listed anywhere.** APF's hand
+    is one witness statement, one crime-scene clue, one lead result, and `exonerates` /
+    `implicates` live **only** on `evidence[]`. Witness statements, leads and area discoveries
+    carried no elimination data at all, so **two of the three kinds in every hand were
+    structurally inert** — they could not participate in the set arithmetic that all three deal
+    constraints are defined over. A deal cannot guarantee "the union eliminates all but one
+    suspect" when two thirds of what it deals eliminates nobody by construction.
+
+    **Closed with a `reveals` pointer**, on witnesses, leads and investigation areas, naming the
+    evidence ids they surface. Elimination data therefore lives in exactly **one** place, and a
+    witness's exoneration cannot drift out of agreement with the evidence item's. The considered
+    alternative — copying `supports` / `exonerates` / `implicates` onto every kind — was rejected
+    for precisely that reason: two authored copies of the same fact can disagree, and no
+    structural check could catch it. Areas carry the field but are **not dealt**, because APF has
+    no traversal; they have it so the deferred map does not cost a second paid generation round.
+
+    **The third deal constraint was replaced, not implemented.** `docs/PLAYTEST_FLOW.md` required
+    that a deal *"becomes solvable once the minimum share threshold is met"*, which Session 38
+    measured as not well-formed. `deal.py` takes a `redundancy` parameter instead — how many
+    distinct hands each required exoneration must reach. Redundancy 1 is §4's "accept it" option;
+    redundancy 2 is its "deal for redundancy" option; **"pigeonhole it" is not implemented** and
+    the module says so. Redundancy is also where **difficulty now lives**, because the share-rule
+    ladder is inert at a three-finding hand (Session 38): `REDUNDANCY_BY_DIFFICULTY` puts each
+    exoneration in two hands on EASY and one on HARD.
+
+    **Untested against a real generation.** That costs credits and is the next paid step — one
+    round now validates both Session 38's reorder and this pointer. `scripts/test_deal.py` and
+    `scripts/test_narrative_checks.py` carry fixtures because no mystery on disk has either
+    field, and both suites were negative-tested by injecting each defect. **That pass found two
+    of the first-draft deal tests vacuous** — one was refused by the feasibility pre-check so the
+    enforcing branch could be deleted with the suite still green, and one asserted a property
+    that held by construction — and corrected a code comment claiming a dealing-order benefit
+    that measurement showed does not exist.
     **[Session 38] One design question remains open, not five** — `docs/INVESTIGATION_DESIGN.md`
     §6 has been reconciled with APF. Four of the five were closed by APF rather than answered
     (they assumed traversal, blind exploration, player positions and an investigation budget,

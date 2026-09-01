@@ -362,6 +362,21 @@ reach the pool is a finding nobody may keep.
 None of these needs an API call; all three are constraints on the deal, which is already specified
 as pure computation and re-dealable at zero cost.
 
+#### [Session 39] Two of the three are implemented; redundancy is the default
+
+`deal.py` takes `redundancy` — the number of **distinct hands** each required exoneration must
+reach. That single parameter covers two of the three rows above: **redundancy 1 is "accept it"**
+(constraints 1 and 2 only, universal hoarding can end a game with no winner) and **redundancy 2 is
+"deal for redundancy"**. **"Pigeonhole it" is a genuinely different constraint and is NOT
+implemented** — it is not reachable by setting the parameter, and the module says so rather than
+letting a reader assume otherwise.
+
+Redundancy is the default because it does double duty. The difficulty ladder is inert at a
+three-finding hand, and this is the home with real resolution at that size:
+`REDUNDANCY_BY_DIFFICULTY` puts each exoneration in two hands on EASY so somebody will share it,
+and one on HARD so withholding really bites. **Still the owner's call** — the parameter is where
+it is decided, not a value baked into the algorithm.
+
 #### [Session 38] A prerequisite nobody has listed: findings carry no evidence ID
 
 The three finding constructors in `server/main.py` produce `{id, where it came from, prose}` and
@@ -370,6 +385,30 @@ nothing else. **There is no reference to the `evidence[]` array**, so the solvab
 models with no join key. **The constrained deal cannot be built until a finding carries the
 evidence ID it came from**, because otherwise the deal is distributing opaque prose and cannot
 reason about which exoneration landed in which hand. This is not on §7's build order and should be.
+
+##### [Session 39] Closed — and the blocker as written pointed at the wrong code
+
+The three constructors it names are the **gather** routes (`/investigate-area`, `/follow-lead`,
+`/interrogate-witness`). APF's premise is that findings are dealt, not gathered, so a join key
+bolted onto them would have fixed the path being replaced. Under APF a dealt clue **is** an
+evidence item and carries its own id — there is nothing to join.
+
+**The gap that actually blocks the deal is larger.** APF's hand is one witness statement, one
+crime-scene clue, one lead result, and `exonerates` / `implicates` live **only** on `evidence[]`.
+Witness statements sit on `characters[].statement`, lead results on `leads[]`, area findings on
+`investigation_areas[].discovery`. None carried elimination data, so **two of the three kinds in
+every hand were structurally inert** — they could not participate in the set arithmetic all three
+deal constraints are defined over.
+
+**Fixed with a pointer, not by duplicating the fields.** Witnesses, leads and areas carry
+`reveals` — the evidence ids they surface. Elimination data therefore lives in exactly one place,
+and a witness's exoneration cannot drift out of agreement with the evidence item's, which is a
+defect no structural check could have caught. Copying `supports` / `exonerates` / `implicates`
+onto every kind was the considered alternative and was rejected for exactly that reason.
+
+`deal.py` reads a hand's eliminating power through the pointer; `scripts/check_narrative.py` gained
+a REVEALS branch for dangling pointers, findings that reveal nothing, and exonerations reachable
+only as a clue. Both are fixture-tested, because no mystery on disk carries the field.
 
 #### [Session 38] And at APF's hand size the difficulty ladder does not exist
 

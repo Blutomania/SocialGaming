@@ -30,6 +30,15 @@ Three things are checked here, in ascending strictness:
             the evidence, the areas or the leads. The player cannot encounter it
             by any route.
 
+  REVEALS   APF deals findings rather than letting players gather them, and only
+            evidence[] carries elimination data. A witness statement and a lead
+            result reach it through a `reveals` pointer naming the evidence they
+            surface (see deal.py). Checked here: a pointer resolving to no
+            evidence item, a witness or lead carrying no pointer at all, and an
+            exoneration reachable ONLY as a crime-scene clue -- which would make
+            witness and lead findings decorative, since a clue is always
+            available anyway.
+
 ON FALSE POSITIVES, HONESTLY. Extracting people from prose is a heuristic. A
 mystery may legitimately name someone who is not a character -- Pompey in a
 Roman setting, a courier nobody questions. NOT_PEOPLE below is a curated
@@ -100,7 +109,8 @@ def audit(path):
     outside = json.dumps({k: v for k, v in data.items()
                           if k not in ("solution", "_provenance", "_coherence", "_meta")})
 
-    report = {"file": path.name, "legacy": None, "cast": [], "orphans": [], "links": []}
+    report = {"file": path.name, "legacy": None, "cast": [], "orphans": [],
+              "links": [], "reveals": []}
 
     try:
         stamp = int(path.stem.rsplit("_", 1)[1])
@@ -155,6 +165,38 @@ def audit(path):
         if len(remaining) != 1:
             report["links"].append(
                 f"eliminating the exonerated leaves {len(remaining)} suspect(s), not 1: {remaining}")
+
+    # --- REVEALS (only where the schema provides them) ---
+    witnesses = [c for c in characters if (c.get("role") or "").lower() == "witness"]
+    leads = [l for l in (data.get("leads") or []) if isinstance(l, dict)]
+    areas = [a for a in (data.get("investigation_areas") or []) if isinstance(a, dict)]
+    pointer_sources = (
+        [(f"witness {c.get('name', '?')}", c) for c in witnesses]
+        + [(f"lead {l.get('id', '?')}", l) for l in leads]
+        + [(f"area {a.get('id', '?')}", a) for a in areas]
+    )
+    has_reveals = any("reveals" in obj for _, obj in pointer_sources)
+    report["has_reveals"] = has_reveals
+    if has_reveals:
+        ev_ids = {e.get("id") for e in evidence if e.get("id")}
+        reached = set()
+        for label, obj in pointer_sources:
+            pointers = obj.get("reveals") or []
+            if not pointers:
+                report["reveals"].append(f"{label} reveals nothing; it cannot be reasoned from")
+            for eid in pointers:
+                if eid not in ev_ids:
+                    report["reveals"].append(f"{label} reveals '{eid}', which is not in evidence[]")
+                else:
+                    reached.add(eid)
+
+        # An exoneration reachable only as a clue makes the other two kinds
+        # decorative -- the inertness this pointer exists to fix.
+        for e in evidence:
+            if (e.get("exonerates") or []) and e.get("id") not in reached:
+                report["reveals"].append(
+                    f"{e.get('id')} exonerates {list(e.get('exonerates'))} but no witness, "
+                    f"lead or area reveals it")
     return report
 
 
@@ -174,7 +216,7 @@ def main():
     fail = 0
 
     for r in reports:
-        problems = r["cast"] or r["orphans"] or r["links"]
+        problems = r["cast"] or r["orphans"] or r["links"] or r["reveals"]
         if not problems:
             continue
         tag = "legacy" if r["legacy"] else "CURRENT"
@@ -185,16 +227,19 @@ def main():
             print(f"     ORPHAN  '{name}' appears only inside the solution")
         for msg in r["links"]:
             print(f"     LINKS   {msg}")
+        for msg in r["reveals"]:
+            print(f"     REVEALS {msg}")
         if not r["legacy"] or args.strict:
             fail += 1
 
     legacy = sum(1 for r in reports if r["legacy"])
     linked = sum(1 for r in reports if r.get("has_links"))
+    pointed = sum(1 for r in reports if r.get("has_reveals"))
     cast_hits = sum(1 for r in reports if r["cast"])
 
     print(f"\n{'-' * 78}")
     print(f"  {len(reports)} mysteries: {legacy} predate the current schema, "
-          f"{linked} declare chain links.")
+          f"{linked} declare chain links, {pointed} declare reveals pointers.")
     print(f"  {cast_hits} reason about a person absent from characters[].")
     if not args.strict and legacy:
         print(f"  Legacy mysteries are reported, not failed. Use --strict to fail on them too.")
