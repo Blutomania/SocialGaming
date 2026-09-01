@@ -161,7 +161,7 @@ CASES = [
                         "exonerates": ["Cora Innes"], "implicates": []},
                        {"id": "E5", "relevance": "supporting", "supports": ["S2"],
                         "exonerates": ["Dev Ortiz"], "implicates": []}]),
-     ["Dev Ortiz is cleared by only 1 item(s)"]),
+     ["Dev Ortiz is cleared by only 1 finding(s)"]),
 
     # --- REVEALS: the pointer that lets a witness or lead carry elimination ---
 

@@ -89,6 +89,34 @@ def tight_redundancy_fixture():
     return mystery(ev, wit, leads)
 
 
+def carriers(n):
+    """A mystery where exactly n DEALABLE FINDINGS can clear each suspect.
+
+    Counted over the pool, not over evidence[]: a witness whose `reveals` names
+    E1 is a separate finding, dealt to a different player and hoarded
+    independently, so it is a genuine second route to the same exoneration.
+
+    THIS WAS DEFINED TWICE AND THE COPIES DRIFTED. One pointed its witnesses at
+    the exonerating items, so at n=1 it really had TWO carriers and the whole
+    monopoly section tested the wrong thing while passing. The witnesses and
+    leads below point only at neutral evidence, so n really is the carrier
+    count -- and there is now one definition, which is why the drift cannot
+    come back.
+    """
+    ev, k = [], 1
+    for who in ("Ortiz", "Brand", "Chen"):
+        for _ in range(n):
+            ev.append((f"E{k}", [who], [])); k += 1
+    neutral_start = k
+    for _ in range(6):
+        ev.append((f"E{k}", [], [])); k += 1
+    ev.append((f"E{k}", [], ["Vale"]))
+    neutral = [f"E{i}" for i in range(neutral_start, neutral_start + 6)]
+    wit = [(f"W{i}", "s", [neutral[i]]) for i in range(3)]
+    leads = [(f"L{i+1}", [neutral[i + 3]]) for i in range(3)]
+    return mystery(ev, wit, leads)
+
+
 FAILURES = []
 
 
@@ -260,18 +288,6 @@ def test_proof_survives_hoarding():
     # Owner's decision, Session 39. What makes proof survive is CARRIERS -- how
     # many separate findings can clear a given suspect -- not redundancy.
 
-    def carriers(n):
-        """Clue-shaped: each item clears AT MOST one suspect, n items per suspect."""
-        ev, k = [], 1
-        for who in ("Ortiz", "Brand", "Chen"):
-            for _ in range(n):
-                ev.append((f"E{k}", [who], [])); k += 1
-        for _ in range(6):
-            ev.append((f"E{k}", [], [])); k += 1
-        ev.append((f"E{k}", [], ["Vale"]))
-        wit = [(f"W{i}", "s", [ev[i][0]]) for i in range(4)]
-        leads = [(f"L{i+1}", [ev[i + 3][0]]) for i in range(4)]
-        return mystery(ev, wit, leads)
 
     one = D.deal(carriers(1), player_count=4, seed=4, require_proof_under_hoarding=False)
     ok1, tot1, _ = D.proof_survives_hoarding(one.hands, carriers(1))
@@ -296,6 +312,53 @@ def test_proof_survives_hoarding():
     check("a hand that solves only WITH its own kept finding still counts as proof",
           r.ok and all(D.solves([f for h in r.hands for f in h], m, evb)
                        for _ in [0]))
+
+
+def test_no_prover_monopoly():
+    print("\nconstraint 5 -- a race needs at least two runners (opt-in)")
+
+
+    check("it is OFF by default, so a monopoly deal is still legal",
+          D.deal(carriers(1), player_count=4, seed=4,
+                 require_proof_under_hoarding=False).ok)
+
+    one = carriers(1)
+    r = D.deal(one, player_count=4, seed=4, require_proof_under_hoarding=False,
+               forbid_prover_monopoly=True)
+    check("one route per suspect can never be monopoly-free", not r.ok)
+    check("and the refusal says so", any("monopoly" in i for i in r.issues), str(r.issues))
+
+    # MEASURED over 20 seeds each, with the constraint ON so the dealer is
+    # actually searching:
+    #
+    #   carriers   proof-safe deal found   also monopoly-free
+    #      1            0/20                    0/20
+    #      2           20/20                    8/20
+    #      3           20/20                   17/20
+    #      5           20/20                   19/20
+    #
+    # Two carriers is exactly the threshold for PROOF, which is the owner's
+    # rule. Monopoly-freedom is a strictly harder ask and only becomes reliable
+    # at three, which is why constraint 5 is opt-in and why this asserts it at
+    # three rather than two.
+    three = carriers(3)
+    t = D.deal(three, player_count=4, seed=4, forbid_prover_monopoly=True)
+    check("three carriers: a monopoly-free deal is found by re-dealing",
+          t.ok, str(t.issues))
+    if t.ok:
+        counts = D.prover_counts(t.hands, three)
+        check("and no pattern leaves exactly one player able to prove it",
+              counts.get(1, 0) == 0, str(counts))
+
+    two = carriers(2)
+    check("two carriers still always yields a PROOF-safe deal, which is the "
+          "rule the owner actually set",
+          all(D.deal(two, player_count=4, seed=s).ok for s in range(5)))
+
+    # prover_counts must actually count, not just report presence.
+    check("prover_counts totals every hoarding pattern",
+          t.ok and sum(D.prover_counts(t.hands, three).values()) == 81,
+          str(sum(D.prover_counts(t.hands, three).values()) if t.ok else "n/a"))
 
 
 def test_feasibility_diagnostics():
@@ -379,6 +442,7 @@ def main():
     test_constraint_2_no_solo_win()
     test_constraint_3_redundancy()
     test_proof_survives_hoarding()
+    test_no_prover_monopoly()
     test_feasibility_diagnostics()
     test_determinism_and_shape()
     print()

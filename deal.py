@@ -383,8 +383,9 @@ def feasibility(mystery: dict, player_count: int,
 def _violations(hands: List[List[Finding]], mystery: dict,
                 ev_by_id: Dict[str, dict], redundancy: int,
                 require_proof_under_hoarding: bool = True,
-                hoard_allowance: int = DEFAULT_HOARD_ALLOWANCE) -> List[str]:
-    """The four constraints, checked against one candidate deal."""
+                hoard_allowance: int = DEFAULT_HOARD_ALLOWANCE,
+                forbid_prover_monopoly: bool = False) -> List[str]:
+    """The constraints, checked against one candidate deal."""
     out: List[str] = []
     all_findings = [f for h in hands for f in h]
 
@@ -405,6 +406,15 @@ def _violations(hands: List[List[Finding]], mystery: dict,
             if holders < redundancy:
                 out.append(f"exoneration of {r!r} reaches {holders} hand(s), needs {redundancy}")
 
+    # SHORT-CIRCUIT. Constraints 4 and 5 each enumerate every hoarding pattern
+    # -- 81 at APF's shape, each running solves() once per player -- so they are
+    # roughly three orders of magnitude more expensive than the three above. A
+    # deal that already fails a cheap constraint is going to be rejected either
+    # way, so spending that on it is pure waste: with a 400-attempt ceiling it
+    # was ~130,000 needless set operations per refused deal.
+    if out:
+        return out
+
     # 4. proof survives hoarding -- the owner's "race to proof", enumerated
     if require_proof_under_hoarding:
         ok, total, _ = proof_survives_hoarding(hands, mystery, ev_by_id, hoard_allowance)
@@ -412,6 +422,19 @@ def _violations(hands: List[List[Finding]], mystery: dict,
             out.append(
                 f"proof dies under hoarding in {total - ok} of {total} patterns; "
                 f"solving must not depend on nobody withholding")
+
+    # 5. a race needs at least two runners -- no single player may hold a
+    #    monopoly on reaching proof. OFF BY DEFAULT: it is a stricter reading of
+    #    the owner's "race to proof" than the words strictly require, it costs
+    #    deals, and it is theirs to turn on.
+    if forbid_prover_monopoly:
+        counts = prover_counts(hands, mystery, ev_by_id, hoard_allowance)
+        mono = counts.get(1, 0)
+        if mono:
+            total = sum(counts.values())
+            out.append(
+                f"one player has a monopoly on proof in {mono} of {total} patterns; "
+                f"a race needs at least two who can get there")
 
     return out
 
@@ -451,12 +474,42 @@ def proof_survives_hoarding(hands: List[List[Finding]], mystery: dict,
     for pattern in patterns:
         shared = [f for i, hand in enumerate(hands)
                   for j, f in enumerate(hand) if j not in pattern[i]]
-        if any(solves(shared + list(hands[i]), mystery, ev_by_id)
-               for i in range(len(hands))):
+        provers = sum(1 for i in range(len(hands))
+                      if solves(shared + list(hands[i]), mystery, ev_by_id))
+        if provers:
             reachable += 1
         elif len(failing) < 3:
             failing.append(pattern)
     return reachable, len(patterns), failing
+
+
+def prover_counts(hands: List[List[Finding]], mystery: dict,
+                  ev_by_id: Optional[Dict[str, dict]] = None,
+                  hoard_allowance: int = DEFAULT_HOARD_ALLOWANCE) -> Dict[int, int]:
+    """{how many players could prove it: in how many hoarding patterns}.
+
+    WHY THIS IS SEPARATE FROM proof_survives_hoarding. Proof EXISTING and the
+    game being FAIR are different properties, and the second real generation
+    showed the gap: on a mystery where two suspects had only one route each,
+    proof was reachable in 81 of 81 patterns and in 54 of them exactly ONE
+    player could reach it -- always the same player, the one holding the
+    single-route finding, because a hoarder still knows what they kept. That
+    passes "race to proof" and is not a race. Two routes cuts the monopoly to
+    27 of 81, and a monopoly-free deal exists at other seeds, so it is a
+    property the dealer can search for rather than one the writing must
+    guarantee.
+    """
+    ev_by_id = evidence_by_id(mystery) if ev_by_id is None else ev_by_id
+    per_player = [list(itertools.combinations(range(len(h)), hoard_allowance))
+                  for h in hands]
+    counts: Dict[int, int] = {}
+    for pattern in itertools.product(*per_player):
+        shared = [f for i, hand in enumerate(hands)
+                  for j, f in enumerate(hand) if j not in pattern[i]]
+        n = sum(1 for i in range(len(hands))
+                if solves(shared + list(hands[i]), mystery, ev_by_id))
+        counts[n] = counts.get(n, 0) + 1
+    return counts
 
 
 def deal(mystery: dict, player_count: int, seed: int = 0,
@@ -464,7 +517,8 @@ def deal(mystery: dict, player_count: int, seed: int = 0,
          hand_spec: Sequence[str] = DEFAULT_HAND_SPEC,
          max_attempts: int = MAX_ATTEMPTS,
          require_proof_under_hoarding: bool = True,
-         hoard_allowance: int = DEFAULT_HOARD_ALLOWANCE) -> DealResult:
+         hoard_allowance: int = DEFAULT_HOARD_ALLOWANCE,
+         forbid_prover_monopoly: bool = False) -> DealResult:
     """Deal `player_count` hands under the three constraints.
 
     Deterministic in `seed`: the same (mystery, players, seed) always gives the
@@ -575,7 +629,8 @@ def deal(mystery: dict, player_count: int, seed: int = 0,
             continue
 
         last = _violations(hands, mystery, ev_by_id, redundancy,
-                           require_proof_under_hoarding, hoard_allowance)
+                           require_proof_under_hoarding, hoard_allowance,
+                           forbid_prover_monopoly)
         if not last:
             return DealResult(hands=hands, ok=True, issues=[], attempts=attempt,
                               seed=seed, redundancy=redundancy)
