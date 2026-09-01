@@ -491,6 +491,9 @@ def deal(mystery: dict, player_count: int, seed: int = 0,
     rng = random.Random(seed)
     last: List[str] = []
 
+    hand_size = len(hand_spec)
+    required = sorted(required_exonerations(mystery))
+
     for attempt in range(1, max_attempts + 1):
         by_kind: Dict[str, List[Finding]] = {}
         for finding in pool:
@@ -499,6 +502,48 @@ def deal(mystery: dict, player_count: int, seed: int = 0,
             rng.shuffle(bucket)
 
         hands: List[List[Finding]] = [[] for _ in range(player_count)]
+        used: Set[str] = set()
+        # Kinds each hand still wants, so the seeding pass below can consume a
+        # slot and the fill pass knows what is left.
+        wanted: List[List[str]] = [list(hand_spec) for _ in range(player_count)]
+
+        # SEEDING PASS -- place the findings that DECIDE the case first.
+        #
+        # WHY THIS EXISTS. The first version dealt purely by kind and let the
+        # constraints reject bad deals. That works while the pool is small, and
+        # stops working the moment it is not: the second real generation
+        # returned 21 findings of which only 4 carried any exoneration, so a
+        # 12-of-21 deal chosen by KIND had to catch all three eliminations by
+        # luck, and 400 attempts did not. Raising the evidence floor to 9 made
+        # the pool bigger and the luck worse. Constraint 1 is a COVERING
+        # requirement, and a covering requirement should be constructed, not
+        # sampled for.
+        short = False
+        for r in required:
+            carriers = [f for f in pool
+                        if f.id not in used and r in exonerated_by([f], ev_by_id)]
+            rng.shuffle(carriers)
+            # Spread across distinct hands, which is also what redundancy wants;
+            # prefer hands with room, in a rotated order so hand 0 is not always
+            # the one that gets the decisive finding.
+            order = list(range(player_count))
+            rng.shuffle(order)
+            placed = 0
+            for hand_idx in order:
+                if placed >= max(1, redundancy) or not carriers:
+                    break
+                if len(hands[hand_idx]) >= hand_size:
+                    continue
+                finding = carriers.pop()
+                hands[hand_idx].append(finding)
+                used.add(finding.id)
+                if finding.kind in wanted[hand_idx]:
+                    wanted[hand_idx].remove(finding.kind)
+                elif wanted[hand_idx]:
+                    wanted[hand_idx].pop()
+                placed += 1
+
+        # FILL PASS -- slot-major over what each hand still wants.
         # Slot-major, not player-major. MEASURED, NOT ASSUMED: with one slot per
         # kind and a single shared fallback pool, the two orders produce the
         # SAME distribution -- an earlier version of this comment claimed
@@ -507,19 +552,25 @@ def deal(mystery: dict, player_count: int, seed: int = 0,
         # it stays correct if hand_spec ever takes two slots of one kind, where
         # player-major would let an early hand take both copies of a scarce kind
         # before any later hand takes one.
-        short = False
-        for slot in hand_spec:
-            for hand in hands:
-                src = by_kind.get(slot) or []
+        for _ in range(hand_size):
+            for hand_idx, hand in enumerate(hands):
+                if len(hand) >= hand_size:
+                    continue
+                slot = wanted[hand_idx].pop(0) if wanted[hand_idx] else _FALLBACK_KIND
+                src = [f for f in by_kind.get(slot, []) if f.id not in used]
                 if not src:
-                    src = by_kind.get(_FALLBACK_KIND) or []
+                    src = [f for f in by_kind.get(_FALLBACK_KIND, []) if f.id not in used]
+                if not src:
+                    src = [f for f in pool if f.id not in used]
                 if not src:
                     short = True
                     break
-                hand.append(src.pop())
+                finding = src[0]
+                hand.append(finding)
+                used.add(finding.id)
             if short:
                 break
-        if short:
+        if short or any(len(h) < hand_size for h in hands):
             last = ["ran out of findings while dealing"]
             continue
 
