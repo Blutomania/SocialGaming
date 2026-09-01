@@ -3000,6 +3000,146 @@ it. Porting the Aug 12 flow and then immediately rewriting it would build the sa
 
 ---
 
+## Session 39 — September 1, 2026 (CYM: findings reach their evidence, and the deal can be constrained)
+
+**Branch:** `claude/repo-sync-bjb77q`, from `main` at `e0cf99f`. Owner arrived with a summary that
+turned out to be **Session 37's close-out** — it named `b76a994` as the head, thirteen commits
+behind, so several things it listed as open (the editor rendering nothing, ten unverifiable theme
+item names, the missing-icon noise) had already been answered by Session 38. Establishing that was
+the first useful thing this session did.
+
+Owner's ask: *"let's deal with evidence"*, and a direct question — is that the same as item 23
+step 2? **No: it is the blocker sitting inside step 2**, which is the constrained deal.
+
+### The blocker was real and pointed at the wrong code
+
+Session 38 recorded it as *"a finding carries no evidence ID"* in the three finding constructors in
+`server/main.py`. Those are the **gather** routes — `/investigate-area`, `/follow-lead`,
+`/interrogate-witness` — and APF's whole premise is that findings are dealt, not gathered. A join
+key bolted onto them would have fixed the path being replaced. Under APF a dealt clue **is** an
+evidence item and carries its own id; there is nothing to join.
+
+### The gap that actually blocked the deal, which was not listed anywhere
+
+APF's hand is one witness statement, one crime-scene clue, one lead result. `exonerates` and
+`implicates` live **only** on `evidence[]`.
+
+| Kind | Lives on | Carried elimination data |
+|---|---|---|
+| Crime-scene clue | `evidence[]` | yes, since Session 38 |
+| Witness statement | `characters[].statement` | **no** |
+| Lead result | `leads[]` | **no** |
+| Area discovery | `investigation_areas[].discovery` | **no** |
+
+**Two of the three kinds in every hand were structurally inert.** A deal cannot guarantee "the
+union eliminates all but one suspect" when two thirds of what it deals eliminates nobody by
+construction.
+
+Two corpus measurements taken before deciding anything: **0 of 17** generated mysteries carry
+Session 38's new fields (expected — untested), and **16 of 17 have no leads and no investigation
+areas at all**. Only `whiteout_at_shackleton_base` was generated under the current prompt.
+
+### The fix: a pointer, not duplicated fields
+
+Witnesses, leads and areas carry `reveals` — the evidence ids they surface. Elimination data
+therefore lives in exactly **one** place, and a witness's exoneration cannot drift out of agreement
+with the evidence item's. Copying `supports` / `exonerates` / `implicates` onto every kind was the
+considered alternative and was **rejected for that reason**: two authored copies of one fact can
+disagree, and no structural check could catch it. Owner chose the pointer from three options.
+
+It is also the same move Session 38 made for `supports` — stop asking a checker to infer a
+relationship, make generation declare one.
+
+**Areas carry the field but are not dealt**, because APF has no traversal. They have it so the
+deferred map does not cost a second paid generation round.
+
+### `deal.py` — the constrained deal
+
+Pure computation, deterministic from a seed (a reconnecting player gets the hand they left, the
+same property `background_field.py` needs), re-dealable free. Enforces the union solving, no hand
+solving alone, and redundancy.
+
+`feasibility()` is the part worth keeping: without it an undealable mystery looks exactly like an
+unlucky one — 400 failed attempts and no explanation. It turns that into a sentence naming the
+defect, which is the difference between re-dealing and regenerating. It reports a dangling pointer,
+an `exonerates` name matching no suspect (**reported, not fuzzy-matched** — "Dr. Ortiz" against a
+suspect named "Ortiz" is a real generation defect and quietly repairing it would hide it), evidence
+clearing the culprit, a pool too small for the table, and a single finding that solves outright.
+
+**The third deal constraint was replaced, not implemented.** `docs/PLAYTEST_FLOW.md` required a
+deal that *"becomes solvable once the minimum share threshold is met"*, which Session 38 measured
+as not well-formed. `deal.py` takes a `redundancy` parameter instead — how many distinct hands each
+required exoneration must reach. Redundancy 1 **is** §4's "accept it" option; redundancy 2 is
+"deal for redundancy"; **"pigeonhole it" is not implemented and the module says so** rather than
+letting a reader assume the parameter covers all three.
+
+Redundancy is also where **difficulty now lives**. Session 38 found the share-rule ladder inert at
+a three-finding hand — EASY, MEDIUM and HARD all resolve to "share 2, keep 1", because a percentage
+has no resolution over three items. `REDUNDANCY_BY_DIFFICULTY` puts each exoneration in two hands
+on EASY and one on HARD, which has real resolution at that size. Still the owner's call; the
+parameter is where it is decided.
+
+### The negative pass found two of its own tests vacuous
+
+Both suites were negative-tested by injecting each defect and confirming a non-zero exit. **Two
+first-draft tests survived defects they were written to catch:**
+
+- **The redundancy test was refused by the feasibility pre-check**, so the `_violations` branch that
+  actually enforces redundancy could be deleted with the suite still green. Fixed with a fixture
+  where redundancy 2 is *feasible but tight* — each exoneration carried by exactly two findings, so
+  the deal must actively place them in different hands — plus a direct test of `_violations` on a
+  hand-built deal that stacks both carriers of one exoneration into one hand.
+- **A hand-shape assertion could not fail.** It asserted no hand stacks two witnesses; with one
+  witness *slot* per hand that holds by construction. Replaced with the real property: two
+  witnesses and four players must put a witness in exactly two hands — not zero (over-eager
+  fallback) and not one (a witness left undealt).
+
+**And it caught a false claim in a code comment.** The dealing loop said slot-major ordering
+"degrades fairly instead of giving player 0 the full spec and player 3 three fallbacks."
+Measured, the two orders produce the **same distribution** when there is one slot per kind and a
+single shared fallback pool. The comment now says that, and says why slot-major is kept anyway
+(it stays correct if `hand_spec` ever takes two slots of one kind).
+
+### `check_decisions.py` was direction-blind, and it fired on this session
+
+Labelling item 23 `[IN PROGRESS]` made the checker report *"item 23 is labelled open but item 21
+says it is finished."* Item 21's text is *"superseded **by** item 23"* — which closes item **21**
+and says nothing about 23. The pattern matched the closing verb and the number without being able
+to tell agent from patient.
+
+**Fixed in the checker rather than worked around in the label**, with a `(?<!by )` guard. Verified
+surgical: the item-21 shape the checker was built for still fires when 21 is relabelled open, and a
+genuine *"this deletes item 23"* claim still fires. Only the "by item N" direction is exempt.
+
+### Status
+
+**Untested against a real generation**, which is the honest headline. That costs credits and is the
+next paid step — and one round now validates Session 38's reorder *and* this pointer together,
+which is why they were bundled. Ten free checkers pass, including two new fixture suites, because
+no mystery on disk carries either field and a branch with no input is a branch nobody ran.
+
+Also fixed while writing the schema: a **REACHABLE rule that asked for nothing**. First draft said
+every exonerating item must be revealed by a witness, lead or area *"OR be dealt directly as a
+crime-scene clue"* — but every evidence item is always dealt as a clue, so the escape clause made
+it vacuously true. It now has no escape clause, and the checker enforces it: an exoneration
+reachable only as a clue makes witness and lead findings decorative, which is the inertness the
+pointer exists to delete.
+
+**Vocabulary decision, owner's:** the dealt object is a **finding**, not a "card". The first draft
+of `deal.py` used `Card`, borrowed from MYF's `GameCard.jsx`. `docs/PLAYTEST_FLOW.md:139` already
+draws the distinction — *"the data is already CARD-SHAPED: a FINDING has a name, a description…"*
+— so a finding is the domain object and a card is one way a client draws it. Recorded in the module
+header so it does not get re-litigated.
+
+**Next: item 23 step 3** — the share decision, the suspect board, the reveal.
+
+**Files:** `deal.py` (new), `scripts/test_deal.py` (new), `server/main.py`,
+`scripts/check_narrative.py`, `scripts/test_narrative_checks.py`, `scripts/check_decisions.py`,
+`CLAUDE.md`, `docs/DECISIONS.md` (item 23), `docs/INVESTIGATION_DESIGN.md`,
+`docs/PLAYTEST_FLOW.md`.
+
+---
+
 ## Session 38 — August 28, 2026 (CYM: the design becomes visible in the editor; two engine-side checks)
 
 **Branch:** `claude/godot-game-rendering-i29xsh`, from `b76a994`. Owner's ask: *"get the game to
