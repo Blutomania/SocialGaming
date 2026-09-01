@@ -51,3 +51,7 @@ Thumbs.db
 .idea/
 .vscode/
 *.swp
+
+# Throwaway venv for running real generation in a session (Session 39).
+# Never committed: it is ~50MB of installed packages, not source.
+.venv-gen/

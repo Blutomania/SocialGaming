@@ -1,0 +1,429 @@
+{
+  "title": "The Lantern Keeper's Last Light",
+  "setting": {
+    "location": "Harrow Point Lighthouse, a remote promontory on the northern coast",
+    "time_period": "Present day, late December",
+    "environment": "A lighthouse complex comprising the tower, keeper's cottage, and a small boat shed, surrounded by ocean on three sides and dense coastal forest on the fourth",
+    "description": "A catastrophic winter storm has severed the single access road with a landslide and driven thirty-foot swells against the rocks below, making boat departure suicidal. The lighthouse's emergency radio was found smashed before the body was discovered, and cell signals have been dead since the storm front hit at 9 PM \u2014 every person on the promontory is locked in with the killer until the Coast Guard arrives at dawn."
+  },
+  "solution": {
+    "culprit": "Declan Marsh",
+    "motive": "Declan ran a high-stakes illegal poker operation out of the lighthouse's boat shed, using the keeper's isolation as cover. The victim, Rowan Aldiss, had discovered the operation's ledger and was planning to expose it to authorities \u2014 which would have destroyed Declan's network and sent him to prison.",
+    "method": "Declan lured Rowan to the lamp room under the pretense of a mechanical problem with the light. During the confrontation, he stabbed Rowan with a shard of the Fresnel lens housing he had pre-broken, then staged the scene to look like Rowan fell and was cut by the broken glass. He slipped back down the spiral stairs and returned to the cottage kitchen before the body was found.",
+    "chain": [
+      {
+        "id": "S1",
+        "claim": "The Fresnel lens housing was deliberately broken before Rowan's death, not shattered by a fall, because glass fragments were found distributed upward against the wall \u2014 a fall produces downward scatter."
+      },
+      {
+        "id": "S2",
+        "claim": "A poker ledger hidden in the boat shed names Declan Marsh as the operator of an illegal gambling ring, giving him a powerful motive to silence Rowan Aldiss."
+      },
+      {
+        "id": "S3",
+        "claim": "Declan's stated alibi \u2014 that he was in the kitchen the entire evening \u2014 is undermined by the kitchen door's self-locking latch, which requires deliberate effort to open from outside, and witness testimony places him absent from the kitchen for at least fifteen minutes around the time of death."
+      },
+      {
+        "id": "S4",
+        "claim": "A bloody partial palm print on the lamp room's iron railing matches Declan's right hand, placing him at the scene of the murder despite his denial."
+      }
+    ],
+    "key_evidence": [
+      "E1",
+      "E4"
+    ],
+    "how_to_deduce": "The first crack in the official story is the glass scatter pattern: forensic examination of the lamp room shows fragments embedded in the wall at chest height and above, which is physically inconsistent with Rowan falling into the lens housing \u2014 a fall would drive glass downward and outward, not upward. Someone broke the housing with force applied from standing height before or during a struggle. This tells us the scene was staged. The motive emerges from the boat shed: a ledger concealed beneath a false floor records years of illegal poker games, with Declan Marsh listed as the house operator controlling bets and outcomes. Rowan, who had unrestricted access to the shed as lighthouse co-inspector, had found this ledger \u2014 confirmed by the torn page found in Rowan's coat pocket matching the ledger's paper and ink. Declan's alibi then falls apart: the kitchen's self-latching door means anyone re-entering from outside must push hard enough to be heard, yet witness Petra Vane heard no such sound during the window she was in the adjacent pantry \u2014 meaning Declan either never left or returned before Petra entered. The margin disappears entirely when the iron railing yields a bloody partial palm print consistent with Declan's hand geometry, placing him physically in the lamp room. Taken together, staged scene plus demonstrated motive plus alibi gap plus physical trace at the scene leads to one person: Declan Marsh."
+  },
+  "crime": {
+    "type": "Murder by stabbing",
+    "what_happened": "Rowan Aldiss, the lighthouse's visiting co-inspector, was found dead in the lamp room at approximately 10:40 PM. The body was surrounded by shattered glass from the Fresnel lens housing, and there is a deep laceration to the neck consistent with a glass shard. The scene has the appearance of an accidental fall, but the lighthouse's acting keeper reported the victim had seemed frightened earlier in the evening.",
+    "when": "Approximately 10:15\u201310:30 PM, during the height of the storm",
+    "initial_discovery": "Witness Marta Holt climbed to the lamp room to check why the light had gone dark and found Rowan's body amid the broken glass. She raised the alarm by shouting down the stairwell."
+  },
+  "characters": [
+    {
+      "name": "Rowan Aldiss",
+      "role": "victim",
+      "occupation": "Maritime Heritage Inspector, conducting a biennial inspection of Harrow Point Lighthouse",
+      "motive": "N/A",
+      "alibi": "N/A \u2014 deceased",
+      "secret": "Rowan had discovered the false floor in the boat shed three hours before death and photographed the ledger with a phone that has since gone missing. Rowan confided in no one but left a torn page from the ledger folded inside a coat pocket.",
+      "statement": null,
+      "reveals": null
+    },
+    {
+      "name": "Declan Marsh",
+      "role": "suspect",
+      "occupation": "Acting Lighthouse Keeper, stationed at Harrow Point for the past two years",
+      "motive": "Rowan had found evidence of Declan's illegal poker operation and would have reported it at dawn; exposure meant criminal prosecution and the loss of his entire income stream.",
+      "alibi": "Claims he was in the cottage kitchen from 9:30 PM onward, preparing a late meal, and never went up the tower.",
+      "secret": "Declan has been running a rotating high-stakes poker game in the boat shed for eighteen months, using the lighthouse's isolation and his control over visitor access to keep it secret. He keeps the financial ledger in a waterproof case beneath a false floor panel he installed himself."
+    },
+    {
+      "name": "Sylvie Crane",
+      "role": "suspect",
+      "occupation": "Maritime Heritage Board Administrator, accompanying Rowan on the inspection as official liaison",
+      "motive": "Sylvie had been falsifying inspection reports for three years, approving Harrow Point despite deferred maintenance, in exchange for undisclosed cash payments whose source \u2014 if Rowan filed a full report \u2014 would be traceable back to her.",
+      "alibi": "Claims she was in the guest bedroom on the second floor of the cottage, reviewing inspection documents on her laptop from 9:00 PM until Marta raised the alarm.",
+      "secret": "Sylvie received four cash payments over three years routed through a shell account; her laptop contains a deleted folder of amended inspection reports that forensic recovery can surface. She was aware Rowan had become suspicious of the previous reports but did not know about the poker ledger."
+    },
+    {
+      "name": "Fletcher Doone",
+      "role": "suspect",
+      "occupation": "Marine Engineer, contracted to assess the lighthouse mechanism \u2014 arrived the same day as the storm",
+      "motive": "Fletcher owed Declan a significant gambling debt from the boat shed games and feared that any official investigation of Declan's operation would expose his own participation as a repeat player, costing him his engineering licence.",
+      "alibi": "Claims he was in the engine room below the tower from 9:45 PM, running diagnostic tests on the fog-horn compressor, and heard nothing unusual.",
+      "secret": "Fletcher is documented in Declan's ledger as a regular player who ran up debts. He also brought a personal tool kit to the lighthouse that contains a glass-cutting tool he uses professionally \u2014 its presence looks suspicious but is legitimately occupational."
+    },
+    {
+      "name": "Nora Vex",
+      "role": "suspect",
+      "occupation": "Storm-stranded journalist, had been researching illegal gambling along the northern coast and booked a lighthouse tour as cover",
+      "motive": "Nora wanted Rowan's cooperation as a source for her expos\u00e9; when Rowan refused to go on record earlier in the evening, she feared Rowan would tip off subjects of the story before it published.",
+      "alibi": "Claims she was in the sitting room writing notes on her recorder from 9:00 PM until the alarm, and that she saw no one enter or leave the tower door from her vantage point.",
+      "secret": "Nora has a voice-recorder file from earlier in the evening capturing Rowan saying 'I found what I needed in the shed \u2014 I'm reporting everything tomorrow.' She has not disclosed this recording because it would reveal the extent of her own prior knowledge of the gambling ring, potentially implicating her as an accessory for not reporting sooner."
+    },
+    {
+      "name": "Marta Holt",
+      "role": "witness",
+      "occupation": "Relief Lighthouse Assistant, assigned to Harrow Point for the inspection week",
+      "alibi": "Was in the watch room directly below the lamp room from 10:00 PM, monitoring storm instruments, until she climbed to the lamp room and discovered the body at 10:40 PM.",
+      "secret": "Marta heard what she thought was a brief argument \u2014 two voices, one of them Rowan's \u2014 from above at approximately 10:15 PM, but dismissed it as the wind until she found the body.",
+      "statement": "I heard raised voices from the lamp room at around quarter past ten \u2014 one was definitely Rowan, the other was lower, male I think, but the storm made it hard to be sure. It lasted maybe two minutes and then went quiet. When I climbed up twenty minutes later the light was dark and Rowan was on the floor in all that glass. I also noticed the railing near the lens pedestal had something dark and wet on it \u2014 I thought it was oil at first.",
+      "reveals": [
+        "E1",
+        "E4"
+      ]
+    },
+    {
+      "name": "Petra Vane",
+      "role": "witness",
+      "occupation": "Retired Coast Guard Officer, visiting the lighthouse as a personal historical interest trip, trapped by the storm",
+      "alibi": "Was in the cottage pantry adjacent to the kitchen from approximately 10:00 PM to 10:35 PM, retrieving tinned goods by lamplight.",
+      "secret": "Petra noticed that Declan was not in the kitchen when she first entered the pantry at 10:00 PM, though the stove was lit with a pot on it. She assumed he had stepped out briefly but did not see him return \u2014 she only heard him moving around at approximately 10:30 PM when she was still in the pantry.",
+      "statement": "When I went into the pantry at ten o'clock Declan was not in the kitchen \u2014 the stove was on and the pot was there, but he was gone. The outside kitchen door has a very stiff latch that clacks loud when it opens, and I did not hear it once while I was in the pantry. I heard him moving around in the kitchen again at about half past ten. I cannot account for where he was in between.",
+      "reveals": [
+        "E3",
+        "E5"
+      ]
+    },
+    {
+      "name": "Gil Tanzer",
+      "role": "witness",
+      "occupation": "Supply boat captain, sheltering at the lighthouse after being driven off course by the storm",
+      "alibi": "Was in the boat shed from 8:00 PM to 9:45 PM securing his lines and equipment, then moved to the cottage sitting room.",
+      "secret": "Gil saw Declan enter the boat shed alone at around 7:30 PM \u2014 well before Gil himself arrived \u2014 and exit carrying what looked like a small waterproof case. Gil recognized the shed's false floor panel because he had helped Declan install it eighteen months ago, though he claimed not to know what was kept there.",
+      "statement": "I saw Declan come out of the boat shed at half seven carrying a flat waterproof case, the grey kind with the foam lining. He looked startled to see me and made up something about checking the outboard. Earlier when I was securing lines inside the shed I noticed the false floor panel in the northeast corner was slightly open \u2014 I put it down to the damp warping the wood, but now I think someone had been in there.",
+      "reveals": [
+        "E2",
+        "E6"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "Anomalous Glass Scatter Pattern",
+      "description": "Forensic examination of the lamp room floor and walls reveals that multiple glass fragments from the shattered Fresnel lens housing are embedded in the plaster wall at heights between four and six feet, with the highest concentration at chest level. A genuine fall into the housing would scatter glass downward and radially outward from the point of impact; this upward and wall-directed pattern is consistent with a standing blow delivered against the housing, pre-breaking it as a weapon.",
+      "type": "physical",
+      "relevance": "critical",
+      "supports": [
+        "S1"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Declan Marsh"
+      ]
+    },
+    {
+      "id": "E2",
+      "name": "Poker Ledger from Boat Shed",
+      "description": "A waterproof case concealed beneath a false floor panel in the boat shed's northeast corner contains a handwritten ledger recording eighteen months of high-stakes poker games. The ledger lists player names, buy-ins, and outcomes, with 'D. Marsh \u2014 House' written at the top of each page. Fletcher Doone appears as a recurring player with an outstanding debt of several thousand dollars marked in red. The final entry is dated two weeks before the murder.",
+      "type": "documentary",
+      "relevance": "critical",
+      "supports": [
+        "S2"
+      ],
+      "exonerates": [
+        "Sylvie Crane",
+        "Nora Vex"
+      ],
+      "implicates": [
+        "Declan Marsh",
+        "Fletcher Doone"
+      ]
+    },
+    {
+      "id": "E3",
+      "name": "Kitchen Door Latch Testimony and Physical Test",
+      "description": "The cottage's exterior kitchen door is fitted with a heavy iron self-latching mechanism that produces an audible metallic clack when opened or closed from outside; testing by investigators confirms the sound carries clearly into the adjacent pantry even during high wind. Petra Vane was in the pantry from 10:00 PM to 10:35 PM and heard no such sound, yet Declan was absent at 10:00 PM and present again by 10:30 PM \u2014 meaning he could not have used the exterior door during that window without being heard.",
+      "type": "circumstantial",
+      "relevance": "supporting",
+      "supports": [
+        "S3"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Declan Marsh"
+      ]
+    },
+    {
+      "id": "E4",
+      "name": "Bloody Palm Print on Lamp Room Railing",
+      "description": "The iron safety railing adjacent to the Fresnel lens pedestal bears a partial palm print in blood, discovered on the inner face of the railing where a person steadying themselves during a struggle would naturally place their hand. Biometric analysis of the print's ridge geometry and palm width is consistent with Declan Marsh's right hand, which is significantly broader than those of the other adults present. The print is inconsistent with Rowan Aldiss's hands, whose dimensions are known from the body.",
+      "type": "physical",
+      "relevance": "critical",
+      "supports": [
+        "S4"
+      ],
+      "exonerates": [
+        "Sylvie Crane",
+        "Nora Vex",
+        "Fletcher Doone"
+      ],
+      "implicates": [
+        "Declan Marsh"
+      ]
+    },
+    {
+      "id": "E5",
+      "name": "Declan's Unexplained Absence Window",
+      "description": "Cross-referencing Petra Vane's pantry testimony with Nora Vex's sitting room statement reveals a fifteen-minute gap: Nora confirms Declan did not pass through the sitting room during the evening, the exterior door was silent throughout Petra's pantry watch, and yet Declan was absent from the kitchen from 10:00 to 10:30 PM. The only unmonitored route during this window is the internal tower staircase accessed via the cottage's interior hallway \u2014 a route Declan, as keeper, knew intimately.",
+      "type": "circumstantial",
+      "relevance": "supporting",
+      "supports": [
+        "S3"
+      ],
+      "exonerates": [
+        "Sylvie Crane"
+      ],
+      "implicates": [
+        "Declan Marsh"
+      ]
+    },
+    {
+      "id": "E6",
+      "name": "Torn Ledger Page in Victim's Coat",
+      "description": "A single page torn from the poker ledger was found folded inside the inner pocket of Rowan Aldiss's coat. The page's paper stock, ink colour, and handwriting match the ledger recovered from the boat shed, and the torn edge aligns precisely with the missing page between the seventh and eighth entries. The page records three specific sessions, including one attended by a named official, and carries a marginal note in different handwriting \u2014 Rowan's, confirmed by comparison \u2014 reading 'photograph taken, page kept as backup.'",
+      "type": "documentary",
+      "relevance": "supporting",
+      "supports": [
+        "S2"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Declan Marsh"
+      ]
+    },
+    {
+      "id": "E7",
+      "name": "Fletcher Doone's Glass-Cutting Tool",
+      "description": "Fletcher Doone's personal tool kit, found in the engine room, contains a professional tungsten-carbide glass-cutting wheel of the type used in marine instrument repair. The tool's blade edge tests clean under luminol with no biological trace, and its dimensions do not match the profile of the wound on Rowan Aldiss's neck. The tool is a standard item in any marine engineer's kit and its presence at the lighthouse is entirely consistent with Fletcher's contracted work on the fog-horn mechanism.",
+      "type": "physical",
+      "relevance": "red_herring",
+      "supports": [],
+      "exonerates": [
+        "Fletcher Doone"
+      ],
+      "implicates": []
+    }
+  ],
+  "investigation_areas": [
+    {
+      "id": "A1",
+      "name": "The Lamp Room",
+      "description": "The lighthouse's topmost chamber, housing the shattered remains of the Fresnel lens. Blood and broken glass cover the iron floor grating, and the storm howls through a cracked window pane.",
+      "investigation_prompt": "The glass scatter pattern is the key find here \u2014 fragments are in the walls at chest height, not on the floor as a fall would produce. The bloody palm print is on the inner railing face. No fingerprints on the lens mechanism itself.",
+      "discovery": "You find glass fragments embedded in the plaster wall at chest height and a dark partial handprint on the inner face of the iron safety railing near the ruined lens pedestal.",
+      "analysis": "Testing reveals the wall-embedded glass is inconsistent with a fall \u2014 the pattern indicates a standing blow. Biometric analysis of the railing print matches the hand geometry of Declan Marsh.",
+      "reveals": [
+        "E1",
+        "E4"
+      ]
+    },
+    {
+      "id": "A2",
+      "name": "The Boat Shed",
+      "description": "A salt-weathered timber shed hugging the cliff edge, reeking of diesel and brine. Coils of rope and a dry-docked dinghy crowd the space, and the floor planks are uneven from years of coastal damp.",
+      "investigation_prompt": "The false floor panel in the northeast corner conceals the waterproof case with the poker ledger. Gil Tanzer noticed the panel was slightly open \u2014 investigating it opens the case. The shed also shows evidence of regular swept-clean use inconsistent with purely maritime storage.",
+      "discovery": "In the northeast corner you find a floor panel that lifts to reveal a waterproof foam-lined case. Inside is a handwritten ledger with 'D. Marsh \u2014 House' on every page, recording eighteen months of poker sessions.",
+      "analysis": "Cross-referencing the ledger against personnel records confirms Declan Marsh operated the games and that Fletcher Doone is listed with a substantial outstanding debt. A torn edge inside the case corresponds to a missing page.",
+      "reveals": [
+        "E2",
+        "E6"
+      ]
+    },
+    {
+      "id": "A3",
+      "name": "The Cottage Kitchen",
+      "description": "A low-ceilinged working kitchen smelling of burnt soup, with a cast-iron range still warm. The exterior door faces the courtyard, and the internal hallway door leads toward the tower staircase.",
+      "investigation_prompt": "The key physical feature is the exterior door's heavy self-latching iron mechanism. Testing it reveals the audible clack. The hallway door to the tower has no such latch and opens silently. The stove pot contains overcooked food suggesting Declan left it unattended for more than ten minutes.",
+      "discovery": "You test the exterior kitchen door and find it produces a loud metallic clack on every opening and closing. The internal hallway door to the tower staircase opens silently on well-oiled hinges.",
+      "analysis": "Timing analysis shows the pot on the stove reduced to a near-burnt state consistent with being left unattended for fifteen or more minutes \u2014 corroborating Petra Vane's account that Declan was absent from the kitchen between 10:00 and 10:30 PM.",
+      "reveals": [
+        "E3",
+        "E5"
+      ]
+    },
+    {
+      "id": "A4",
+      "name": "The Engine Room",
+      "description": "A cramped belowground chamber beneath the tower base, filled with the fog-horn compressor, diesel tanks, and Fletcher Doone's spread tool kit. Water seeps through the stone walls with every wave impact.",
+      "investigation_prompt": "Fletcher's tool kit is here and contains the glass-cutting tool. It tests clean \u2014 no blood, no matching wound profile. This is the red herring area. Fletcher's diagnostic log is also here, time-stamped and consistent with his stated alibi.",
+      "discovery": "You find Fletcher Doone's open tool kit containing, among standard marine instruments, a tungsten-carbide glass-cutting wheel. A paper diagnostic log beside it records engine checks time-stamped between 9:45 PM and 10:45 PM.",
+      "analysis": "Luminol testing of the glass cutter shows no biological trace, and its blade profile does not match the wound dimensions on the victim. The diagnostic log timestamps are consistent with continuous engine-room work, corroborating Fletcher's alibi.",
+      "reveals": [
+        "E7"
+      ]
+    },
+    {
+      "id": "A5",
+      "name": "The Victim's Guest Room",
+      "description": "A sparse whitewashed room containing Rowan Aldiss's inspection bag, an open laptop, and a coat hung on the back of the door. Papers are spread across the narrow bed.",
+      "investigation_prompt": "Rowan's coat pocket contains the torn ledger page. The laptop shows a draft inspection report with a note 'addendum: financial irregularity observed \u2014 see attached photograph' but no photograph file exists, suggesting Rowan's phone \u2014 which is missing \u2014 held the image.",
+      "discovery": "In the pocket of Rowan's coat you find a single page torn from a ledger, with handwriting matching the poker ledger from the boat shed. A marginal note in different ink reads 'photograph taken, page kept as backup.'",
+      "analysis": "Paper-stock and ink analysis confirms the page is torn from the ledger recovered in the boat shed, matching the missing entry between pages seven and eight. The note confirms Rowan knew the shed's secret and intended to report it.",
+      "reveals": [
+        "E6"
+      ]
+    }
+  ],
+  "leads": [
+    {
+      "id": "L1",
+      "title": "The Keeper's Unscheduled Supply Run",
+      "brief": "The supply manifest shows Declan requested a delivery of waterproofing materials three days ago \u2014 items that were never used on any visible lighthouse maintenance.",
+      "investigation_prompt": "Following up reveals the waterproofing materials were used to line the false floor compartment in the boat shed \u2014 Declan was reinforcing the hidden storage for the poker ledger. This points directly to the boat shed and the ledger.",
+      "reveals": [
+        "E2"
+      ]
+    },
+    {
+      "id": "L2",
+      "title": "Nora Vex's Voice Recorder",
+      "brief": "Nora Vex was seen earlier in the evening speaking privately with Rowan Aldiss and is known to have been recording throughout the night.",
+      "investigation_prompt": "The recorder contains Rowan saying 'I found what I needed in the shed \u2014 I'm reporting everything tomorrow,' recorded at 8:55 PM. This confirms Rowan knew about the gambling operation and intended to report it, establishing the motive window for the killer.",
+      "reveals": [
+        "E6"
+      ]
+    },
+    {
+      "id": "L3",
+      "title": "Fletcher Doone's Financial Records",
+      "brief": "Fletcher Doone became visibly agitated when the body was found and was overheard asking Declan Marsh 'how bad is it' \u2014 a witness has flagged this exchange.",
+      "investigation_prompt": "Following up on Fletcher's finances shows a pattern of unexplained cash withdrawals consistent with gambling losses. However the ledger shows these are poker debts to Declan, not a motive for killing Rowan. This is a red herring lead pointing at Fletcher.",
+      "reveals": [
+        "E7"
+      ]
+    },
+    {
+      "id": "L4",
+      "title": "The Missing Inspection Phone",
+      "brief": "Rowan Aldiss's mobile phone is not with the body or in the guest room, despite being logged on the visitor sign-in as carried in.",
+      "investigation_prompt": "Tracing where the phone might be leads to the tower staircase where it was found wedged behind a pipe bracket on the third landing \u2014 smashed, with only the SIM intact. The SIM contains a thumbnail reference to a deleted photo file. This corroborates that Rowan photographed the ledger and that someone removed and destroyed the phone after the murder.",
+      "reveals": [
+        "E5",
+        "E4"
+      ]
+    }
+  ],
+  "gameplay_notes": {
+    "difficulty": "MEDIUM",
+    "estimated_playtime": "50\u201360 minutes",
+    "key_twists": [
+      "The staged accident is exposed by physics: the glass scatter pattern inverts the official story before any suspect is questioned.",
+      "Fletcher Doone's glass-cutting tool looks like the murder weapon but is forensically clean \u2014 players who fixate on him waste their investigation window.",
+      "Declan's alibi appears solid until the kitchen door test proves he could not have re-entered from outside without being heard, forcing investigators to the only other route: the interior tower staircase.",
+      "Rowan's phone is missing and was destroyed, but the torn ledger page in the victim's coat independently corroborates everything the phone would have shown."
+    ]
+  },
+  "_provenance": {
+    "recipe": "corpus_7df15d5a(1) + corpus_4acc4e83(2) + corpus_d16153b5(3) + corpus_244ce603(4) + corpus_1bb0bb06(5) + corpus_336c09ed(6) + corpus_fb40bf66(7) + corpus_734b3b4c(8)",
+    "slots": [
+      {
+        "source_id": "corpus_7df15d5a",
+        "part_index": 1,
+        "part_type": "crime_type"
+      },
+      {
+        "source_id": "corpus_4acc4e83",
+        "part_index": 2,
+        "part_type": "setting_element"
+      },
+      {
+        "source_id": "corpus_d16153b5",
+        "part_index": 3,
+        "part_type": "motive"
+      },
+      {
+        "source_id": "corpus_244ce603",
+        "part_index": 4,
+        "part_type": "suspect_archetype"
+      },
+      {
+        "source_id": "corpus_1bb0bb06",
+        "part_index": 5,
+        "part_type": "red_herring"
+      },
+      {
+        "source_id": "corpus_336c09ed",
+        "part_index": 6,
+        "part_type": "reveal_mechanic"
+      },
+      {
+        "source_id": "corpus_fb40bf66",
+        "part_index": 7,
+        "part_type": "social_dynamic"
+      },
+      {
+        "source_id": "corpus_734b3b4c",
+        "part_index": 8,
+        "part_type": "alibi"
+      }
+    ],
+    "target_setting": "A murder at a remote lighthouse during a winter storm",
+    "generated_title": "",
+    "craft_guidance": [
+      {
+        "concept": "The Closed World",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "COARSE PARTS (C1\u2013C6) \u2014 Structural Skeleton",
+        "confidence": "canonical",
+        "source": "James: \"closed circle of suspects\"; Rankin: Edinburgh as character; French: location as first decision"
+      },
+      {
+        "concept": "The Crime",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "COARSE PARTS (C1\u2013C6) \u2014 Structural Skeleton",
+        "confidence": "canonical",
+        "source": "Christie (start with method), P.D. James (central mysterious crime), Knox (rule 4: method must be plausible)"
+      },
+      {
+        "concept": "The Culprit + Motive",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "COARSE PARTS (C1\u2013C6) \u2014 Structural Skeleton",
+        "confidence": "canonical",
+        "source": "Christie: start with murderer and motive, then build outward; worked backward from the solution"
+      },
+      {
+        "concept": "Suspect Architecture",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "MEDIUM-FINE PARTS (M1\u2013M8) \u2014 Tactical Construction Elements",
+        "confidence": "canonical",
+        "source": "James: \"each with motive, means and opportunity\"; Knox: criminal must appear early"
+      },
+      {
+        "concept": "The Alibi",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "MEDIUM-FINE PARTS (M1\u2013M8) \u2014 Tactical Construction Elements",
+        "confidence": "canonical",
+        "source": "Christie notebooks: alibi construction is explicit planning step"
+      }
+    ]
+  },
+  "_coherence": {
+    "passed": true,
+    "blocking": 0,
+    "warnings": 0
+  }
+}
