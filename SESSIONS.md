@@ -5,6 +5,28 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session — September 01, 2026 at 18:42
+**Branch:** `claude/repo-sync-bjb77q`
+**Latest commit:** `7612dab`
+
+### Files changed this session
+- `.venv-gen/` — Untracked
+- `mystery_database/generated/the_lantern_keeper's_last_light_1788287720.json` — Untracked
+
+### Commits this session
+```
+7612dab The redundancy ladder has an arithmetic ceiling, and at APF's shape it is 2
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
 > **Merge note (August 7, 2026):** this log has two entry styles that grew on separate
 > branches and were joined when the Mind Your Friends Godot port merged to `main` (PR #15).
 > Auto-generated `## Session — <date>` blocks come from `scripts/session_summary.py --auto`
