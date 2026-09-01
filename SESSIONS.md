@@ -5,6 +5,30 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session — September 01, 2026 at 18:53
+**Branch:** `claude/repo-sync-bjb77q`
+**Latest commit:** `540d5d5`
+
+### Files changed this session
+- `mystery_database/generated/the_vanishing_at_altheim_peak_1788288787.json` — Untracked
+
+### Commits this session
+```
+540d5d5 Race to proof: Clue's two structural rules, and a fourth deal constraint
+b737a84 First real generation under the new schema, and the deal refuses it
+ea0ccd8 chore: auto-update SESSIONS.md with session summary [7612dab]
+7612dab The redundancy ladder has an arithmetic ceiling, and at APF's shape it is 2
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
 ## Session — September 01, 2026 at 18:42
 **Branch:** `claude/repo-sync-bjb77q`
 **Latest commit:** `7612dab`
