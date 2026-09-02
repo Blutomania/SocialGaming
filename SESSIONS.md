@@ -5,6 +5,33 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session — September 02, 2026 at 19:27
+**Branch:** `claude/repo-sync-bjb77q`
+**Latest commit:** `3dfe62f`
+
+### Files changed this session
+- `eal.py` — Modified
+- `scripts/check_narrative.py` — Modified
+- `scripts/test_deal.py` — Modified
+- `scripts/test_narrative_checks.py` — Modified
+- `server/main.py` — Modified
+- `mystery_database/generated/totality_1788377053.json` — Untracked
+
+### Commits this session
+```
+3dfe62f Generation writes who people are; and the deck vocabulary goes at its source
+028826f Item 27: clues that incriminate, alongside clues that exculpate
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
 ## Session — September 01, 2026 at 18:53
 **Branch:** `claude/repo-sync-bjb77q`
 **Latest commit:** `540d5d5`
