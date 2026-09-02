@@ -179,7 +179,12 @@ committed. **Run** fails on it with *"Can't run project: Assets need to be impor
 
 Click **Edit** and let the initial import finish. The fonts and eight SVG icons are imported here.
 
-Then check **Project → Project Settings → Autoload**. **Expect four entries**, in this order:
+Then check **Project → Project Settings → Globals**. **Expect four entries**, in this order:
+
+> **The tab is called Autoload in Godot 4.6 and earlier, and Globals from 4.7.** Same panel, same
+> contents; 4.7 renamed it. Verified on 4.7.2 (Session 40) after the owner went looking for an
+> Autoload tab that no longer exists. If you cannot find either, type `autoload` into the
+> **Filter Settings** box at the top of the dialog.
 
 | | |
 |---|---|
