@@ -247,9 +247,30 @@ EVIDENCE (include at least 9 items total — planted to serve the chain, written
     several at once. An item clearing two or three suspects is a solved case in a single object
     — whoever finds it wins without anyone sharing anything, which deletes the game. Write the
     alibi evidence one person at a time.
-  - implicates: names of suspects this item points AT. The culprit must be implicated by at least
-    one item — a culprit arrived at only by elimination, with nothing positively pointing at them,
-    reads as arbitrary.
+  - implicates: names of suspects this item points AT — SUSPICION, not proof. The culprit must be
+    implicated by at least one item; a culprit arrived at only by elimination, with nothing
+    positively pointing at them, reads as arbitrary. This is flavour and does not constrain the
+    deduction. Do NOT confuse it with "narrows" below.
+  - narrows: OPTIONAL, and the most interesting field here. A physical fact that rules people OUT
+    without clearing anyone in particular — a bloody MAN'S glove, a boot print in a size only two
+    people take, a keycard only the night staff carry. List every suspect who could still be
+    responsible given that fact. AT LEAST TWO NAMES, always including the culprit.
+      * Two or three items should carry it. Most items should not.
+      * WRITE THE FACT, NEVER THE INFERENCE. The description says "a bloody glove, man's size
+        large, wedged behind the generator housing". It must NEVER say "so it was one of the men",
+        never name the people it narrows to, and never hint that a list exists. The player looks
+        at the cast and draws the line themselves — that is the entire pleasure of the mechanic,
+        and stating it destroys it.
+      * IT MUST BE TRUE. If the glove is a man's, the culprit is a man, and no woman wore it. A
+        player who reasons exactly as the clue invites must not lose for it — that is the worst
+        outcome a mystery can produce, and this rule is M3 Clue Fairness in the craft corpus
+        (P.D. James: "the detective can know nothing which the reader isn't also told").
+      * The fact must be checkable against the cast: gender, height, build, profession, access,
+        handedness — something the character list already tells the player. A narrowing on a fact
+        players cannot see is not a clue, it is a coin flip.
+      * These are IN ADDITION to the alibi evidence, not instead of it. The case must still be
+        solvable by alibis alone, so that withholding a narrowing finding can never make it
+        unprovable.
   - Across all items, the suspects exonerated must be every suspect EXCEPT the culprit, so that
     eliminating them leaves exactly one person. Never exonerate the culprit.
   - TWO INDEPENDENT ROUTES: every non-culprit suspect must be cleared by AT LEAST TWO separate
@@ -354,7 +375,8 @@ Generate a complete mystery JSON with this exact structure:
       "relevance": "critical | supporting | red_herring",
       "supports": ["S2"],
       "exonerates": ["exact character name"],
-      "implicates": ["exact character name"]
+      "implicates": ["exact character name"],
+      "narrows": ["optional — 2+ suspects still possible given a physical fact; omit on most items"]
     }}
   ],
   "investigation_areas": [

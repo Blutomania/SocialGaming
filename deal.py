@@ -257,16 +257,77 @@ def exonerated_by(findings: Sequence[Finding], ev_by_id: Dict[str, dict]) -> Set
     return cleared
 
 
+def narrowed_by(findings: Sequence[Finding], mystery: dict,
+                ev_by_id: Dict[str, dict]) -> Set[str]:
+    """Who is still possible after every NARROWING finding in this set (item 27).
+
+    THE GLOVE. A finding whose evidence carries a non-empty `narrows` says "only
+    these could have done it" -- the owner's bloody men's glove, which clears
+    nobody on its own and rules out the women. Several such findings INTERSECT:
+    a glove narrowing to the men and a boot-print narrowing to the tall people
+    leave whoever is both.
+
+    WHY A NEW FIELD RATHER THAN REUSING `implicates`. The two mean different
+    things and overloading one broke 22 tests before this comment existed.
+    `implicates` is SUSPICION -- "this points at Brandt" -- and the prompt
+    requires the culprit be implicated by something so the answer does not read
+    as arbitrary, which makes single-name lists normal and correct. Read as a
+    narrowing constraint, a single-name list says "only Brandt could have done
+    it", i.e. it is the answer printed on one card: whoever draws it wins alone
+    without anyone sharing anything, which is the exact failure the lighthouse
+    mystery was rejected for. `narrows` is a CONSTRAINT over a set and must name
+    at least two people; `implicates` keeps its old meaning untouched.
+
+    Findings that implicate nobody narrow nothing and are skipped, so a set with
+    no narrowing findings returns the full suspect list and this function has no
+    effect -- which is what keeps every pre-item-27 mystery behaving exactly as
+    it did.
+
+    NOT A LABEL THE PLAYER EVER SEES. `implicates` is hidden bookkeeping so the
+    engine can guarantee the case is solvable; the prose says "man's size large"
+    and the player looks at the cast and draws the line. The precedent is
+    `investigation_prompt`, already private context. Item 27 is explicit that
+    this must never surface as "the culprit is one of these two".
+    """
+    possible = set(suspects(mystery))
+    for finding in findings:
+        for eid in finding.reveals:
+            item = ev_by_id.get(eid)
+            if not item:
+                continue
+            named = {str(n).strip() for n in (item.get("narrows") or []) if str(n).strip()}
+            if named:
+                possible &= named
+    return possible
+
+
 def solves(findings: Sequence[Finding], mystery: dict,
            ev_by_id: Optional[Dict[str, dict]] = None) -> bool:
-    """True when this finding set eliminates every suspect but the culprit.
+    """True when this finding set leaves exactly the culprit standing.
 
-    Note it is not enough to clear |S|-1 people: the ONE left standing must be
-    the culprit. A set that exonerates the culprit and leaves an innocent
-    standing has the right cardinality and the wrong answer.
+    Two routes, and a set may use either or both:
+
+      SUBTRACTION   clear everybody else -- the original mechanic (`exonerates`).
+      NARROWING     rule out everybody a narrowing finding excludes (`narrows`).
+
+    They compose, which is the whole point of the glove: narrowing to two and
+    then clearing one of those two reaches the answer in TWO findings where
+    subtraction alone needs one per innocent. Two findings that individually
+    prove nothing combine into a proof.
+
+    ELIMINATION REMAINS THE GUARANTEED FLOOR AND NARROWING IS A FASTER ROUTE
+    ON TOP -- a deliberate choice, not an accident of implementation. If
+    narrowing were load-bearing, withholding the one glove could make a case
+    unprovable, which is exactly what the owner's "it has to be a race to
+    proof" rules out. Keeping subtraction sufficient on its own means the
+    glove rewards insight with SPEED, and speed is what a race should reward.
+
+    Note it is not enough to leave one name: the ONE left standing must be the
+    culprit. A set that exonerates the culprit and leaves an innocent standing
+    has the right cardinality and the wrong answer.
     """
     ev_by_id = evidence_by_id(mystery) if ev_by_id is None else ev_by_id
-    standing = set(suspects(mystery)) - exonerated_by(findings, ev_by_id)
+    standing = narrowed_by(findings, mystery, ev_by_id) - exonerated_by(findings, ev_by_id)
     return standing == {culprit(mystery)}
 
 
@@ -315,6 +376,45 @@ def feasibility(mystery: dict, player_count: int,
                 issues.append(f"evidence {eid} exonerates {str(n).strip()!r}, who is not a suspect")
     if cul and cul in exonerated_by(pool, ev_by_id):
         issues.append(f"the culprit {cul!r} is exonerated by the evidence; nobody can be accused")
+
+    # FAIR PLAY, item 27. A narrowing clue is a strong claim and generation has
+    # to mean it. "A bloody man's glove" invites the player to rule out the
+    # women; if the culprit is a woman who wore her husband's glove, the player
+    # who reasoned exactly as the game taught them LOSES. That is the worst
+    # outcome a mystery can produce, and it is the one thing the corpus already
+    # forbids -- RESEARCH_FINDINGS.md M3 Clue Fairness, P.D. James and Knox 8.
+    #
+    # Structurally it is simple: the culprit must survive every narrowing, so
+    # the culprit must appear in EVERY `narrows` list. A list that excludes them
+    # is the mystery contradicting its own solution.
+    for eid, item in ev_by_id.items():
+        named = [str(n).strip() for n in (item.get("narrows") or []) if str(n).strip()]
+        if not named:
+            continue
+        if len(named) < 2:
+            issues.append(
+                f"evidence {eid} narrows to {named}, a single suspect -- that is the answer "
+                f"printed on one finding, and whoever draws it wins without sharing")
+        unknown = [n for n in named if n not in known]
+        if unknown:
+            issues.append(f"evidence {eid} narrows to {unknown}, who are not suspects")
+        if cul and cul not in named:
+            issues.append(
+                f"evidence {eid} narrows to {named}, which excludes the culprit {cul!r} -- "
+                f"the mystery contradicts its own solution and punishes correct reasoning")
+
+    # ELIMINATION MUST STAY SUFFICIENT ON ITS OWN. Narrowing is a faster route,
+    # never the only one (see solves()). If the case can only be cracked with a
+    # glove, withholding that one glove makes it unprovable -- which is what the
+    # owner's "it has to be a race to proof" rules out. Checked by asking
+    # whether subtraction alone still reaches the culprit.
+    if sus and cul:
+        standing_by_subtraction = set(sus) - exonerated_by(pool, ev_by_id)
+        if standing_by_subtraction != {cul}:
+            issues.append(
+                "elimination alone does not reach the culprit -- narrowing has become "
+                f"load-bearing, so withholding one narrowing finding could make the case "
+                f"unprovable. Standing after exonerations: {sorted(standing_by_subtraction)}")
 
     # Constraint 1 must be reachable at all: if the WHOLE pool cannot solve,
     # no subset of it can.

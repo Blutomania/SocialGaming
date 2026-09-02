@@ -30,6 +30,17 @@ Three things are checked here, in ascending strictness:
             the evidence, the areas or the leads. The player cannot encounter it
             by any route.
 
+  NARROWS   Item 27's glove. An evidence item may carry `narrows` -- the suspects
+            still possible given a physical fact ("a bloody man's glove"). It is
+            hidden bookkeeping; the prose states the fact and the player draws
+            the line. Checked here: a narrowing that excludes the culprit (the
+            mystery contradicting its own solution and punishing correct
+            reasoning -- M3 Clue Fairness), a narrowing naming one suspect (the
+            answer printed on a finding), a narrowing naming somebody who is not
+            a suspect, prose that gives the inference away instead of stating
+            the fact, and narrowing that has become load-bearing so a withheld
+            glove could make the case unprovable.
+
   REVEALS   APF deals findings rather than letting players gather them, and only
             evidence[] carries elimination data. A witness statement and a lead
             result reach it through a `reveals` pointer naming the evidence they
@@ -215,6 +226,41 @@ def audit(path):
                 report["links"].append(
                     f"{who} is cleared by only {routes.get(who, 0)} finding(s); needs two "
                     f"independent routes or hoarding can make the case unprovable")
+
+        # --- NARROWS (item 27) ---
+        narrowing = [e for e in evidence
+                     if [str(n).strip() for n in (e.get("narrows") or []) if str(n).strip()]]
+        for e in narrowing:
+            named = [str(n).strip() for n in (e.get("narrows") or []) if str(n).strip()]
+            if len(named) < 2:
+                report["links"].append(
+                    f"{e.get('id')} narrows to a single suspect {named}; that is the answer "
+                    f"printed on one finding, and whoever draws it wins without sharing")
+            stranger = [n for n in named if n not in suspects]
+            if stranger:
+                report["links"].append(f"{e.get('id')} narrows to {stranger}, who are not suspects")
+            if culprit and culprit not in named:
+                report["links"].append(
+                    f"{e.get('id')} narrows to {named}, excluding the culprit ({culprit}) -- "
+                    f"the mystery contradicts its own solution and punishes correct reasoning")
+            # The prose must state the FACT, never the inference. Naming a
+            # suspect in a narrowing clue's own description hands the player the
+            # conclusion they were supposed to reach.
+            blurb = f"{e.get('name', '')} {e.get('description', '')}"
+            spoiled = [n for n in named if n and n in blurb]
+            if spoiled:
+                report["links"].append(
+                    f"{e.get('id')} is a narrowing clue whose own text names {spoiled}; it must "
+                    f"state the fact and let the player draw the line")
+
+        # Narrowing must never be load-bearing: elimination alone has to reach
+        # the culprit, or withholding one glove makes the case unprovable.
+        if narrowing:
+            standing_no_glove = [s for s in suspects if s not in exonerated]
+            if standing_no_glove != [culprit]:
+                report["links"].append(
+                    f"narrowing is load-bearing: elimination alone leaves {standing_no_glove}, "
+                    f"so withholding a narrowing finding could make the case unprovable")
 
         remaining = [s for s in suspects if s not in exonerated]
         if len(remaining) != 1:

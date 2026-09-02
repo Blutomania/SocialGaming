@@ -42,9 +42,12 @@ def mystery(evidence, witnesses=(), leads=(), culprit="Vale",
         "solution": {"culprit": culprit},
         "characters": chars,
         "evidence": [
-            {"id": eid, "name": f"item {eid}", "description": "...",
-             "exonerates": list(exo), "implicates": list(imp)}
-            for eid, exo, imp in evidence
+            {"id": e[0], "name": f"item {e[0]}", "description": "...",
+             "exonerates": list(e[1]), "implicates": list(e[2]),
+             # 4th element is the item-27 narrowing set, optional so every
+             # pre-item-27 fixture above is untouched.
+             **({"narrows": list(e[3])} if len(e) > 3 else {})}
+            for e in evidence
         ],
         "leads": [{"id": lid, "title": f"lead {lid}", "brief": "...", "reveals": list(rv)}
                   for lid, rv in leads],
@@ -283,6 +286,91 @@ def test_constraint_3_redundancy():
 # Feasibility diagnostics -- the difference between re-dealing and regenerating
 # --------------------------------------------------------------------------
 
+def test_the_glove():
+    print("\nitem 27 -- the glove: incrimination alongside exculpation")
+    # The owner's scenario, literally. Four suspects; Vale did it. A bloody
+    # man's glove rules out the women. An alibi clears the other man.
+    ev = [
+        ("G1", [], [], ["Vale", "Ortiz"]),   # the glove: only the men could have worn it
+        ("E1", ["Ortiz"], []),               # CCTV clears Ortiz
+        ("E2", ["Brand"], []), ("E3", ["Chen"], []),
+        ("E4", ["Brand"], []), ("E5", ["Chen"], []),
+        ("E6", ["Ortiz"], []), ("E7", [], ["Vale"]),
+    ]
+    m = mystery(ev, [("Ada", "s", ["E2"]), ("Bo", "s", ["E3"]), ("Cy", "s", ["E7"])],
+                [("L1", ["E4"]), ("L2", ["E5"]), ("L3", ["E6"])])
+    evb = D.evidence_by_id(m)
+    pool = {f.id: f for f in D.build_pool(m)}
+    glove, cctv = pool["E:G1"], pool["E:E1"]
+
+    check("the glove alone clears nobody",
+          D.exonerated_by([glove], evb) == set())
+    check("and the glove alone does not solve", not D.solves([glove], m, evb))
+    check("the alibi alone does not solve", not D.solves([cctv], m, evb))
+    check("but the two TOGETHER name the culprit -- two findings that "
+          "individually prove nothing combine into a proof",
+          D.solves([glove, cctv], m, evb))
+
+    check("the glove narrows to the men it names",
+          D.narrowed_by([glove], m, evb) == {"Vale", "Ortiz"})
+    check("a finding with no narrowing narrows nothing",
+          D.narrowed_by([cctv], m, evb) == set(D.suspects(m)))
+
+    # Two narrowing findings intersect.
+    ev2 = list(ev) + [("G2", [], [], ["Vale", "Brand"])]
+    m2 = mystery(ev2, [("Ada", "s", ["E2"]), ("Bo", "s", ["E3"]), ("Cy", "s", ["E7"])],
+                 [("L1", ["E4"]), ("L2", ["E5"]), ("L3", ["E6"])])
+    evb2 = D.evidence_by_id(m2)
+    p2 = {f.id: f for f in D.build_pool(m2)}
+    check("two narrowing findings INTERSECT rather than accumulate",
+          D.narrowed_by([p2["E:G1"], p2["E:G2"]], m2, evb2) == {"Vale"})
+
+    check("subtraction still reaches the culprit without the glove at all, so "
+          "narrowing is a faster route and never the only one",
+          D.solves([f for f in D.build_pool(m) if f.id != "E:G1"], m, evb))
+
+    # --- fair play: the culprit must survive every narrowing ---
+    lying = mystery([("G1", [], [], ["Ortiz", "Brand"]),
+                     ("E1", ["Ortiz"], []), ("E2", ["Brand"], []), ("E3", ["Chen"], []),
+                     ("E4", ["Ortiz"], []), ("E5", ["Brand"], []), ("E6", ["Chen"], [])])
+    issues = D.feasibility(lying, 4)
+    check("a narrowing that excludes the culprit is refused",
+          any("excludes the culprit" in i for i in issues), str(issues))
+
+    single = mystery([("G1", [], [], ["Vale"]),
+                      ("E1", ["Ortiz"], []), ("E2", ["Brand"], []), ("E3", ["Chen"], []),
+                      ("E4", ["Ortiz"], []), ("E5", ["Brand"], []), ("E6", ["Chen"], [])])
+    check("a narrowing naming ONE suspect is refused -- it is the answer on a finding",
+          any("single suspect" in i for i in D.feasibility(single, 4)),
+          str(D.feasibility(single, 4)))
+
+    ghost = mystery([("G1", [], [], ["Vale", "Nobody"]),
+                     ("E1", ["Ortiz"], []), ("E2", ["Brand"], []), ("E3", ["Chen"], []),
+                     ("E4", ["Ortiz"], []), ("E5", ["Brand"], []), ("E6", ["Chen"], [])])
+    check("a narrowing naming a non-suspect is refused",
+          any("not suspects" in i for i in D.feasibility(ghost, 4)),
+          str(D.feasibility(ghost, 4)))
+
+    # --- elimination must stay sufficient without any narrowing ---
+    load_bearing = mystery([("G1", [], [], ["Vale", "Ortiz"]),
+                            ("E1", ["Ortiz"], []), ("E2", [], []), ("E3", [], []),
+                            ("E4", [], []), ("E5", [], []), ("E6", [], [])])
+    check("a mystery solvable ONLY with the glove is refused, because withholding "
+          "it would make the case unprovable",
+          any("load-bearing" in i for i in D.feasibility(load_bearing, 4)),
+          str(D.feasibility(load_bearing, 4)))
+
+    check("a well-formed glove mystery has no feasibility issues",
+          D.feasibility(m, 4) == [], str(D.feasibility(m, 4)))
+
+    # --- and the deal must not hand one player both halves ---
+    r = D.deal(m, player_count=4, seed=3)
+    check("it still deals", r.ok, str(r.issues))
+    if r.ok:
+        check("and no hand holds a glove-plus-alibi pair that solves alone",
+              not any(D.solves(h, m, evb) for h in r.hands))
+
+
 def test_proof_survives_hoarding():
     print("\nconstraint 4 -- it is a race to PROOF, not to the best bet")
     # Owner's decision, Session 39. What makes proof survive is CARRIERS -- how
@@ -438,6 +526,7 @@ def test_determinism_and_shape():
 def main():
     print("deal.py -- constrained deal fixtures")
     test_arithmetic()
+    test_the_glove()
     test_constraint_1_union_solves()
     test_constraint_2_no_solo_win()
     test_constraint_3_redundancy()
