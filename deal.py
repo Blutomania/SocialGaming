@@ -393,8 +393,18 @@ def feasibility(mystery: dict, player_count: int,
             continue
         if len(named) < 2:
             issues.append(
-                f"evidence {eid} narrows to {named}, a single suspect -- that is the answer "
-                f"printed on one finding, and whoever draws it wins without sharing")
+                f"evidence {eid} narrows to {named}, a single suspect -- that is the whole "
+                f"answer in one finding, and whoever is dealt it wins without sharing")
+        # A narrowing naming EVERY suspect rules nobody out. The first real
+        # generation to write a narrowing clue produced exactly this -- a rifle
+        # casing "consistent with" all four suspects -- and it passed, because
+        # the only rule was "at least two names". The clue reads like evidence
+        # and does nothing, which is worse than no clue: a player who works out
+        # what it implies has been sent down a corridor with no door.
+        elif len(named) >= len(sus) and sus:
+            issues.append(
+                f"evidence {eid} narrows to all {len(named)} suspects, so it rules nobody out; "
+                f"a narrowing must exclude at least one person to be worth reading")
         unknown = [n for n in named if n not in known]
         if unknown:
             issues.append(f"evidence {eid} narrows to {unknown}, who are not suspects")

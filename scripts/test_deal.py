@@ -344,6 +344,13 @@ def test_the_glove():
           any("single suspect" in i for i in D.feasibility(single, 4)),
           str(D.feasibility(single, 4)))
 
+    everyone = mystery([("G1", [], [], ["Vale", "Ortiz", "Brand", "Chen"]),
+                        ("E1", ["Ortiz"], []), ("E2", ["Brand"], []), ("E3", ["Chen"], []),
+                        ("E4", ["Ortiz"], []), ("E5", ["Brand"], []), ("E6", ["Chen"], [])])
+    check("a narrowing naming EVERY suspect is refused -- it rules nobody out",
+          any("rules nobody out" in i for i in D.feasibility(everyone, 4)),
+          str(D.feasibility(everyone, 4)))
+
     ghost = mystery([("G1", [], [], ["Vale", "Nobody"]),
                      ("E1", ["Ortiz"], []), ("E2", ["Brand"], []), ("E3", ["Chen"], []),
                      ("E4", ["Ortiz"], []), ("E5", ["Brand"], []), ("E6", ["Chen"], [])])

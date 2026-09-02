@@ -15,6 +15,12 @@ rule nobody can argue with later.
 |---|---|---|
 | `the_lantern_keeper's_last_light` | passed, 0 blocking, 0 warnings | `E4` "Bloody Palm Print" clears **all three** innocents at once, so whoever drew it won alone without anyone sharing. `deal.py` refuses it. This is why the prompt now carries Clue's rule that an item clears at most one suspect. |
 | `the_vanishing_at_altheim_peak` | passed, 0 blocking, 0 warnings | Two suspects are clearable only **one** way, so a single player withholding one finding can make the case unprovable — and in 54 of 81 hoarding patterns only that one player could ever prove it. This is why the prompt now requires two independent routes. |
+| `totality` | passed, 0 blocking, 1 warning | **Playable, but below standard — a different category from the two above.** Its deal is clean, it deals on the first attempt, and proof survives all 81 hoarding patterns. What it fails is quality: one innocent (Luz Fontaine) is clearable only one way, which leaves a monopoly on proof in 27 of 81 patterns; two exonerations are reachable only by drawing the clue itself; and its one narrowing finding — a rifle casing "consistent with" a bolt-action — names **all four** suspects, so it rules nobody out. That last one is why `narrows` must now exclude at least one person. |
+
+**The two categories are worth keeping apart.** The first two here are *unplayable*: `deal.py`
+refuses them outright. `totality` is *playable and not good enough*, which is progress — it is the
+first mystery whose deal came out clean on the first attempt. `generated/` means fit to serve, and
+a monopoly in a third of hoarding patterns is not.
 
 **Both passed all 26 coherence rules.** That is the point worth keeping: the
 coherence engine checks whether the story hangs together, and neither of these

@@ -1,0 +1,580 @@
+{
+  "title": "Totality",
+  "setting": {
+    "location": "Arrojo Basin Radio Telescope Complex, Sonoran Desert, Arizona",
+    "time_period": "Present day, during a total solar eclipse",
+    "environment": "A cluster of white concrete buildings \u2014 control room, equipment barn, dormitory block, and a satellite dish array \u2014 surrounded by fifty miles of roadless desert scrubland",
+    "description": "The Arrojo Basin complex sits at the dead center of a restricted military survey corridor; the single access road washed out in flash flooding two nights before the eclipse, and all four satellite uplinks were sacrificed for the eclipse observation window, leaving the site completely off-grid. During totality \u2014 a window of four minutes and eleven seconds \u2014 every automated instrument in the complex pointed skyward and every person on site had reason to be watching the darkness above. When the corona faded and the lights came back, Dr. Renata Voss was found dead on the catwalk above the main dish array, and no one is going anywhere until a rescue helicopter can reach the basin."
+  },
+  "solution": {
+    "culprit": "Declan Marsh",
+    "motive": "Declan secretly submitted Renata's unpublished eclipse-alignment data as his own grant application to the Caldwell Foundation three weeks before the eclipse. Renata had discovered the plagiarism the morning of the event and told Declan she would expose him publicly the moment communication was restored \u2014 ending his career and triggering fraud clawback on a prior $200,000 grant he had already spent.",
+    "method": "During the four-minute totality blackout, Declan followed Renata onto the catwalk above the main dish on the pretense of checking a receiver mount. He shot her once with a .30-caliber rifle he had smuggled in disassembled inside a hard-sided equipment case, then descended, hid the disassembled rifle in the equipment barn's generator housing, and returned to the control room before the lights came back. He constructed casual contact with witness Priya Okafor in the doorway of the control room at the start of totality \u2014 appearing to step inside \u2014 before doubling back undetected in the darkness.",
+    "chain": [
+      {
+        "id": "S1",
+        "claim": "Renata was shot with a .30-caliber rifle, meaning the killer brought a firearm onto the site deliberately \u2014 this was premeditated, not opportunistic."
+      },
+      {
+        "id": "S2",
+        "claim": "A disassembled .30-caliber rifle hidden inside a Pelican equipment case in the barn's generator housing identifies the weapon and its hiding place."
+      },
+      {
+        "id": "S3",
+        "claim": "Declan's fingerprints on the rifle barrel and receiver establish that he handled the weapon."
+      },
+      {
+        "id": "S4",
+        "claim": "Declan's grant application to the Caldwell Foundation, filed three weeks before the eclipse, contains Renata's unpublished alignment data verbatim \u2014 establishing a motive strong enough to require her silencing."
+      },
+      {
+        "id": "S5",
+        "claim": "Declan was seen stepping into the control room doorway at the start of totality but was NOT seen at any fixed position inside it for the full four-minute window, meaning his alibi is false and he had opportunity."
+      },
+      {
+        "id": "S6",
+        "claim": "The other three suspects can each be placed at a fixed verifiable location for the entire totality window, leaving Declan as the only person with means, motive, and unaccounted opportunity."
+      }
+    ],
+    "key_evidence": [
+      "E2",
+      "E3",
+      "E4"
+    ],
+    "how_to_deduce": "The wound tells investigators immediately that a firearm was used \u2014 unusual at a remote research station where no one was expected to carry weapons. Searching the equipment barn turns up a disassembled .30-caliber rifle hidden inside a Pelican case near the generator housing; forensic analysis places Declan Marsh's fingerprints on the barrel and receiver. That physical link puts the gun in his hands, but motive is supplied by the Caldwell Foundation documents: Declan's grant application filed three weeks earlier reproduces Renata's proprietary eclipse-alignment data word for word, a fraud Renata had discovered and threatened to report the morning of the eclipse. The alibi sweep eliminates the other three suspects: Fenwick Haas was locked in the instrument vault with witness Priya Okafor for the full totality window; Sable Cress was visible on the exterior security camera footage at the dormitory annex throughout; and Luz Fontaine was pinned at the dish-array console by a live calibration alarm that logged her keycard continuously. Declan, by contrast, was seen only at the control room threshold at the start of totality \u2014 a moment Priya can confirm \u2014 but nobody can account for his whereabouts for the remaining four minutes. The casual doorway encounter was constructed to seed an alibi he could not maintain."
+  },
+  "crime": {
+    "type": "Shooting homicide",
+    "what_happened": "Dr. Renata Voss, lead astronomer of the Arrojo Basin eclipse observation team, was found shot dead on the elevated catwalk above the main radio dish array. The body was discovered by technician Luz Fontaine at the end of totality when automated catwalk safety lights restored. The single gunshot wound suggests a high-powered rifle. No weapon was found near the body.",
+    "when": "During the four-minute eleven-second totality window, approximately 10:17\u201310:21 AM",
+    "initial_discovery": "Luz Fontaine climbed the catwalk stairs to re-seat a loose receiver coupling and found Dr. Voss face-down on the grating. She immediately raised the alarm over the site's internal radio."
+  },
+  "characters": [
+    {
+      "name": "Dr. Renata Voss",
+      "role": "victim",
+      "occupation": "Lead Observational Astronomer, Arrojo Basin Research Institute",
+      "motive": "N/A",
+      "alibi": "N/A \u2014 deceased",
+      "secret": "Renata had discovered three weeks before the eclipse that a colleague had submitted her unpublished alignment-formula dataset to an external funding body under his own name. She had documented the theft privately and was waiting for the communication blackout to end before making a formal complaint, but confronted the individual directly on the morning of the eclipse.",
+      "bio": "Renata Voss spent twenty years building the Arrojo Basin array into a world-class eclipse-observation facility, mortgaging her personal finances and two sabbatical years to secure the land lease. She was methodical, famously private about unpublished work, and had a reputation for quiet fury when crossed \u2014 colleagues said she never raised her voice and never forgot an offense."
+    },
+    {
+      "name": "Declan Marsh",
+      "role": "suspect",
+      "occupation": "Visiting Research Fellow, University of Tucson Astrophysics Department",
+      "motive": "Declan plagiarized Renata's unpublished eclipse-alignment data in a $340,000 grant application filed three weeks before the eclipse. Renata confronted him the morning of the event and told him she would report the fraud the moment communication was restored, which would end his career and trigger clawback of a prior $200,000 grant already spent.",
+      "alibi": "Claims he was inside the main control room for the entire totality window, watching the eclipse feed on the monitor bank alongside the rest of the team. Witness Priya Okafor can confirm he was at the control room doorway at the start of totality but cannot confirm he remained inside.",
+      "secret": "Declan's published career trajectory has a two-year gap he covers with a story about caring for a sick parent; in reality he resigned under pressure from a previous institution after a graduate student accused him of taking credit for her simulation models. The complaint was settled quietly with a non-disclosure agreement.",
+      "bio": "Declan Marsh is the kind of person who fills a room with confident energy \u2014 quick with a reference, generous with praise for other people's minor work, and always somehow steering the conversation back to his own projects. He joined the Arrojo team as a visiting fellow six months ago, bringing a reputation as a gifted theorist and a fund-raiser who could charm any grant committee. He is forty-one, athletic, and almost never visibly rattled."
+    },
+    {
+      "name": "Fenwick Haas",
+      "role": "suspect",
+      "occupation": "Senior Instrument Engineer, Arrojo Basin Research Institute",
+      "motive": "Fenwick believed Renata was planning to recommend against renewing his staff contract after a hardware failure he caused last spring damaged a $90,000 receiver array; termination would forfeit his pension at the five-year threshold, which is eight months away.",
+      "alibi": "Locked inside the instrument vault with Priya Okafor from 10:14 AM (vault keycard log entry) to 10:24 AM (exit log entry), performing a pre-totality receiver calibration. Priya Okafor can confirm his continuous presence.",
+      "secret": "The hardware failure last spring that Fenwick attributed to a manufacturing defect was actually caused by his decision to skip a mandated inspection to meet a deadline he had promised Renata. He falsified the inspection sign-off and has lived in terror of the truth emerging during any insurance review.",
+      "bio": "Fenwick Haas has worked at Arrojo Basin for four and a half years, arriving mid-career after a stint at a private satellite contractor. He is methodical and careful in ways that sometimes read as slow, and his colleagues respect his technical skill even as they find him difficult to read socially. He keeps to himself, eats lunch at the same picnic table every day, and has a photograph of his teenage daughter taped to his workstation."
+    },
+    {
+      "name": "Sable Cress",
+      "role": "suspect",
+      "occupation": "Science Journalist and Embedded Documentary Filmmaker",
+      "motive": "Renata had revoked Sable's permission to film inside the control room and threatened to void her press credential entirely after Sable recorded a private argument between Renata and a visiting researcher that Sable planned to use in her documentary. Losing the credential meant losing a network contract worth $85,000.",
+      "alibi": "Standing outside the dormitory annex filming totality on a personal camera for B-roll footage, visible on the exterior security camera throughout the window. The security camera timestamp places her there from 10:14 AM to 10:23 AM.",
+      "secret": "The argument Sable secretly recorded was not just professional friction \u2014 it contained Renata accusing Declan of data theft by name, and Sable has the footage on a hidden memory card sewn into her jacket lining. She has not disclosed it because she intends to use it as the centerpiece of her documentary rather than as evidence.",
+      "bio": "Sable Cress made her name profiling eccentric figures at the edges of institutional science, and her last documentary won a regional Emmy. She is thirty-four, fast-talking, and operates with the cheerful conviction that every story wants to be told and that permission is a formality. People either find her magnetic or exhausting; there is rarely a middle ground."
+    },
+    {
+      "name": "Luz Fontaine",
+      "role": "suspect",
+      "occupation": "Dish Array Systems Technician, Arrojo Basin Research Institute",
+      "motive": "Renata had submitted a formal complaint to the institute board alleging that Luz had been leaking proprietary dish-alignment parameters to a competing research group in exchange for a job offer \u2014 a charge that, if proven, would result in criminal charges for trade-secret theft.",
+      "alibi": "Pinned at the dish-array console by a live calibration alarm that triggered at 10:15 AM; the console's automated log records her keycard inserted and the acknowledgment commands she entered at 10:15, 10:17, 10:19, and 10:21 AM, accounting for the full totality window.",
+      "secret": "The leak allegation is partially true: Luz did share general methodology notes with a contact at the rival group, but not the specific parameters Renata alleged. She accepted the job offer and was planning to resign after the eclipse. She has not told anyone because she believes even the partial truth would be treated as full guilt.",
+      "bio": "Luz Fontaine is twenty-nine and grew up outside Tucson, the first person in her family to hold a research-institution position. She is precise, fast on her feet technically, and carries a quiet chip on her shoulder about the credentialed researchers who treat her as support staff rather than a peer. She was the first person to find the body and has not stopped shaking since."
+    },
+    {
+      "name": "Priya Okafor",
+      "role": "witness",
+      "occupation": "Postdoctoral Research Associate, Arrojo Basin Research Institute",
+      "motive": "N/A",
+      "alibi": "Inside the instrument vault with Fenwick Haas for the duration of totality, confirmed by the vault keycard log.",
+      "secret": "Priya overheard Renata tell Declan early that morning, in the equipment staging area, that she had 'documentation that would end him.' Priya did not know what it referred to and has said nothing because she did not want to be drawn into a professional dispute between senior researchers.",
+      "bio": "Priya Okafor arrived at Arrojo Basin eight months ago on a two-year postdoc, eager and professionally cautious in equal measure. She is meticulous about staying on good terms with everyone, which sometimes makes her seem evasive. She has a gift for instrument calibration and a habit of arriving an hour early to every shift.",
+      "statement": "I can confirm Fenwick was with me in the instrument vault from the pre-totality check until we heard the alarm over the radio \u2014 that was the whole window, we never left. I also need to say: I saw Dr. Voss and Declan talking near the equipment staging area around seven-thirty this morning. I did not hear everything, but I clearly heard her say she had documentation that would end him. Declan walked away without responding.",
+      "reveals": [
+        "E4",
+        "E7"
+      ]
+    },
+    {
+      "name": "Oscar Brinn",
+      "role": "witness",
+      "occupation": "Site Security and Facilities Manager, Arrojo Basin Research Institute",
+      "motive": "N/A",
+      "alibi": "In the security monitoring room watching the exterior camera feeds during totality.",
+      "secret": "Oscar ran an unofficial background check on Sable Cress when she arrived on site and discovered she had been barred from one previous research facility for recording without consent. He told Renata privately but did not escalate it formally because Renata said she would handle it herself.",
+      "bio": "Oscar Brinn is fifty-five, a former county sheriff's deputy who took the Arrojo Basin posting for the quiet. He runs a tight facility \u2014 access logs, keycard audits, the camera system he installed himself \u2014 and has an unhurried, methodical way of speaking that makes people underestimate how much he notices. He is the kind of man who remembers what car you drove the first time you visited.",
+      "statement": "The exterior security camera at the dormitory annex has a continuous timestamp record. I pulled the footage after the alarm: Sable Cress is on camera the entire totality window, filming with her personal rig. She never moved toward the dish array. I also want to flag: the equipment barn keypad log shows a code entry at 10:09 AM, eleven minutes before totality, for a door that should have been sealed. That code belongs to Declan Marsh.",
+      "reveals": [
+        "E6",
+        "E8"
+      ]
+    },
+    {
+      "name": "Dr. Yusuf Adeyemi",
+      "role": "witness",
+      "occupation": "Visiting Theoretical Physicist, currently consulting on the eclipse observation project",
+      "motive": "N/A",
+      "alibi": "Standing at the outdoor observation platform on the east side of the complex with a personal telescope during totality.",
+      "secret": "Yusuf is aware that Declan cited one of Yusuf's own working papers in the Caldwell Foundation application without permission and with distorted conclusions. He has not pursued it because the citation was superficial and he did not want the conflict, but it contributed to a cool relationship between them.",
+      "bio": "Yusuf Adeyemi is a compact, precise man of sixty who has attended eleven total solar eclipses across four continents and still becomes visibly moved by them. He has no institutional loyalty to Arrojo Basin \u2014 he was invited by Renata specifically for this event \u2014 and as an outsider he has no skin in the facility's politics, which makes him unusually willing to say what he observed.",
+      "statement": "I was on the east platform for the entire totality. At the start of the window I noticed Declan standing in the control room doorway \u2014 the door was propped and the light inside was visible. But perhaps ninety seconds into totality I glanced back toward the building and the doorway was empty and the door had swung closed. I thought nothing of it at the time. I did not see him again until after the alarm was raised.",
+      "reveals": [
+        "E5",
+        "E9"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "Single .30-Caliber Rifle Casing",
+      "description": "A spent .30-caliber rifle casing found on the catwalk grating approximately two meters from Renata Voss's body, lodged against the safety railing. The casing is consistent with a bolt-action rifle rather than a semi-automatic, suggesting a deliberate single shot. Its presence on the catwalk confirms the shooter fired from the elevated platform, not from below.",
+      "type": "physical",
+      "relevance": "critical",
+      "supports": [
+        "S1"
+      ],
+      "exonerates": [],
+      "implicates": [],
+      "narrows": [
+        "Declan Marsh",
+        "Fenwick Haas",
+        "Sable Cress",
+        "Luz Fontaine"
+      ]
+    },
+    {
+      "id": "E2",
+      "name": "Disassembled .30-Caliber Rifle in Pelican Case",
+      "description": "A hard-sided Pelican equipment case found wedged behind the generator housing in the equipment barn, containing a .30-caliber bolt-action rifle broken down into barrel, receiver, stock, and bolt assembly. The case's foam interior has been custom-cut to hold the components flush. A gun-cleaning rod and three unfired cartridges are also present. The case exterior bears no identifying label, but the locking latch has a faint partial thumbprint.",
+      "type": "physical",
+      "relevance": "critical",
+      "supports": [
+        "S2",
+        "S3"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Declan Marsh"
+      ]
+    },
+    {
+      "id": "E3",
+      "name": "Fingerprint Analysis \u2014 Rifle Barrel and Receiver",
+      "description": "Forensic analysis of the rifle barrel and receiver from the Pelican case returns a clear partial fingerprint on the barrel and a smudged but identifiable palm print on the receiver. Both prints are matched to Declan Marsh via the institute's contractor ID system, which requires fingerprint enrollment for equipment-room access. No other prints were recovered from the weapon components.",
+      "type": "physical",
+      "relevance": "critical",
+      "supports": [
+        "S3"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Declan Marsh"
+      ]
+    },
+    {
+      "id": "E4",
+      "name": "Caldwell Foundation Grant Application \u2014 Declan Marsh",
+      "description": "A PDF of Declan Marsh's grant application to the Caldwell Foundation, retrieved from the institute's shared server cache, dated three weeks before the eclipse. Pages 14 through 22 contain an eclipse-alignment methodology section that is verbatim identical to an unpublished working document found in Renata Voss's password-protected research folder, including a unique variable-naming convention that Renata used nowhere else in her published work. The application was submitted under Declan's name and institute affiliation alone.",
+      "type": "documentary",
+      "relevance": "critical",
+      "supports": [
+        "S4"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Declan Marsh"
+      ]
+    },
+    {
+      "id": "E5",
+      "name": "Yusuf's Account of the Empty Doorway",
+      "description": "Dr. Yusuf Adeyemi's formal statement to investigators, taken after the alarm, attesting that he saw Declan Marsh standing in the lit doorway of the control room at the start of totality and that approximately ninety seconds later the doorway was empty and the door had swung closed. Yusuf did not see Declan again until after the alarm. The control room door is a self-closing fire door, so it closes on its own when released \u2014 meaning Declan exited rather than someone closing it on him from inside.",
+      "type": "testimonial",
+      "relevance": "supporting",
+      "supports": [
+        "S5"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Declan Marsh"
+      ]
+    },
+    {
+      "id": "E6",
+      "name": "Dormitory Annex Security Camera Footage",
+      "description": "Continuous timestamp video from the exterior camera at the dormitory annex, covering 10:12 AM to 10:25 AM. Sable Cress is visible in the frame from 10:14 AM onward, operating a handheld camera pointed at the sky. She does not move more than three meters from the annex wall during the entire window. The footage was pulled by Oscar Brinn immediately after the alarm and the timestamp chain is unbroken.",
+      "type": "physical",
+      "relevance": "supporting",
+      "supports": [
+        "S6"
+      ],
+      "exonerates": [
+        "Sable Cress"
+      ],
+      "implicates": []
+    },
+    {
+      "id": "E7",
+      "name": "Instrument Vault Keycard Log",
+      "description": "The digital access log for the instrument vault, extracted from the site security system by Oscar Brinn. The log records Fenwick Haas's keycard entry at 10:14 AM and Priya Okafor's entry at 10:14 AM, followed by a single exit event for both cards at 10:24 AM. The vault is a single-entry room with no other exit; both were inside for the entire totality window.",
+      "type": "documentary",
+      "relevance": "supporting",
+      "supports": [
+        "S6"
+      ],
+      "exonerates": [
+        "Fenwick Haas"
+      ],
+      "implicates": []
+    },
+    {
+      "id": "E8",
+      "name": "Equipment Barn Keypad Log \u2014 10:09 AM Entry",
+      "description": "The keypad access log for the equipment barn shows a valid code entry at 10:09 AM \u2014 eleven minutes before totality began \u2014 for the barn's side door, which is supposed to be sealed during observation windows. The code entered is assigned exclusively to Declan Marsh according to the institute's access-control register. No other entries to the barn are recorded between 9:45 AM and 10:31 AM.",
+      "type": "documentary",
+      "relevance": "supporting",
+      "supports": [
+        "S2",
+        "S5"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Declan Marsh"
+      ]
+    },
+    {
+      "id": "E9",
+      "name": "Control Room Monitor Log \u2014 No Interaction Recorded",
+      "description": "The main control room's monitor-interaction log, a routine data file recording any keyboard or console input during the observation window, shows zero input events attributed to Declan Marsh's login credential between 10:15 AM and 10:22 AM. Every other team member present in the room generated at least one logged interaction during this window. The absence of interaction is consistent with Declan not being physically present at any console.",
+      "type": "documentary",
+      "relevance": "supporting",
+      "supports": [
+        "S5"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Declan Marsh"
+      ]
+    },
+    {
+      "id": "E10",
+      "name": "Dish Array Console Keycard Log \u2014 Luz Fontaine",
+      "description": "The automated log from the dish-array console records Luz Fontaine's keycard as continuously inserted from 10:15 AM onward, with acknowledgment commands entered at 10:15, 10:17, 10:19, and 10:21 AM in response to a live calibration alarm. The console is located in a separate outdoor instrument shed at the base of the main array, physically separated from the catwalk by a locked access gate that requires a second keycard. Luz's keycard was never used on that gate.",
+      "type": "documentary",
+      "relevance": "supporting",
+      "supports": [
+        "S6"
+      ],
+      "exonerates": [
+        "Luz Fontaine"
+      ],
+      "implicates": []
+    },
+    {
+      "id": "E11",
+      "name": "Sable Cress's Hidden Memory Card",
+      "description": "A micro-SD memory card discovered sewn into the lining of Sable Cress's field jacket during a voluntary property search. The card contains video recorded covertly in the equipment staging area at approximately 7:28 AM on the morning of the eclipse. The footage shows Renata Voss telling Declan Marsh, audibly and clearly, 'I have printed copies, a server backup, and a comparison table \u2014 the moment that uplink restores you are finished.' Declan's response is inaudible but his expression is visible.",
+      "type": "physical",
+      "relevance": "supporting",
+      "supports": [
+        "S4"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Declan Marsh"
+      ]
+    },
+    {
+      "id": "E12",
+      "name": "Antenna Alignment Folklore Pamphlet",
+      "description": "A laminated pamphlet found pinned to the dormitory common-room corkboard, produced by a local Tohono O'odham cultural group, describing traditional beliefs about solar eclipses and the desert landscape \u2014 including a passage about the basin being a place where 'those who listen too long to the sky voices are sometimes taken by the desert itself.' The pamphlet has been on the board for at least three months according to staff. It is unconnected to the crime but was briefly cited by Declan Marsh when initially questioned, as he suggested Renata may have been disoriented by 'eclipse psychology' and fallen.",
+      "type": "physical",
+      "relevance": "red_herring",
+      "supports": [],
+      "exonerates": [],
+      "implicates": []
+    },
+    {
+      "id": "E13",
+      "name": "Second Sable Cress Alibi \u2014 Oscar Brinn's Direct Observation",
+      "description": "Oscar Brinn's written statement confirms he personally observed Sable Cress setting up her filming position outside the dormitory annex at approximately 10:10 AM and watched her remain there from the security monitoring room window until he heard the alarm. His direct line of sight to that position is unobstructed. This provides an independent, non-camera-based confirmation of Sable's location during the full window.",
+      "type": "testimonial",
+      "relevance": "supporting",
+      "supports": [
+        "S6"
+      ],
+      "exonerates": [
+        "Sable Cress"
+      ],
+      "implicates": []
+    },
+    {
+      "id": "E14",
+      "name": "Prior Complaint Record \u2014 Fenwick Haas Hardware Incident",
+      "description": "A formal incident report filed in the institute HR system documents Renata Voss's complaint against Fenwick Haas following the spring receiver array failure, including her recommendation that his contract renewal be reviewed rather than automatically approved. The report references a pending insurance review. Cross-referencing the inspection sign-off log shows Fenwick's initials on a sign-off dated the day before the failure \u2014 establishing the falsification motive investigators initially assign to Fenwick.",
+      "type": "documentary",
+      "relevance": "supporting",
+      "supports": [
+        "S6"
+      ],
+      "exonerates": [
+        "Fenwick Haas"
+      ],
+      "implicates": [
+        "Fenwick Haas"
+      ]
+    }
+  ],
+  "investigation_areas": [
+    {
+      "id": "A1",
+      "name": "Main Dish Catwalk",
+      "description": "A narrow steel grating walkway thirty feet above the desert floor, running the length of the primary radio dish. The railing is chest-high and the metal surface still holds the warmth of the morning sun. This is where the body was found.",
+      "investigation_prompt": "The catwalk holds the spent casing, a faint smear of boot rubber on the grating near the top of the access stairs, and the body's final position. The rifle casing is the key physical find. The boot smear is from standard-issue work boots, size 11, consistent with Declan Marsh's footwear.",
+      "discovery": "A spent .30-caliber rifle casing lodged against the catwalk safety railing, approximately two meters from where the body was found.",
+      "analysis": "Ballistics confirm the casing is consistent with a bolt-action .30-caliber rifle. The ejection pattern places the shooter within one meter of the railing, facing south \u2014 the direction of the access staircase.",
+      "reveals": [
+        "E1"
+      ]
+    },
+    {
+      "id": "A2",
+      "name": "Equipment Barn",
+      "description": "A long corrugated-metal building housing spare receiver components, tools, and the site's backup generator. The interior smells of machine oil and is lit by a single row of fluorescent fixtures. Most equipment is stored in labeled wall racks, but the area around the generator housing is cluttered.",
+      "investigation_prompt": "Behind the generator housing is the hidden Pelican case with the disassembled rifle. The keypad log is accessible on a mounted panel near the entrance. Both are key finds.",
+      "discovery": "A hard-sided Pelican case wedged behind the generator housing, containing a disassembled .30-caliber rifle broken down into its components, with three unfired cartridges.",
+      "analysis": "Fingerprint analysis of the rifle barrel and receiver matches Declan Marsh's enrolled prints from the institute's contractor ID system. The keypad entry log for the barn's side door shows Declan's access code used at 10:09 AM.",
+      "reveals": [
+        "E2",
+        "E3",
+        "E8"
+      ]
+    },
+    {
+      "id": "A3",
+      "name": "Main Control Room",
+      "description": "The nerve center of the observation complex \u2014 a wall of monitor screens, two curved console banks, and a coffee station that has been running continuously for sixteen hours. It smells of burned coffee and thermal printer paper. The self-closing fire door is propped open with a folded equipment manual.",
+      "investigation_prompt": "The control room monitor log shows no console interactions from Declan's credential during the totality window. The self-closing fire door is significant \u2014 it confirms that anyone who left would cause the door to close behind them. The log is retrievable from the main server terminal.",
+      "discovery": "The control room's automated monitor-interaction log, printed from the server terminal, showing all user credential activity during the totality window.",
+      "analysis": "Every team member present in the control room registered at least one console interaction during the window \u2014 except Declan Marsh, whose credential shows no activity from 10:15 AM to 10:22 AM, consistent with him not being physically present.",
+      "reveals": [
+        "E9"
+      ]
+    },
+    {
+      "id": "A4",
+      "name": "Dormitory Common Room",
+      "description": "A spare institutional space with folding chairs, a long communal table, and a corkboard thick with notices, rosters, and printed ephemeris tables. The windows face the dormitory annex exterior camera. This is where staff eat meals and wait out the desert afternoons.",
+      "investigation_prompt": "The cultural pamphlet is pinned to the corkboard \u2014 a red herring about eclipse folklore. The window gives a clear line of sight to the dormitory annex exterior, relevant to Oscar Brinn's observation of Sable Cress. The pamphlet was briefly cited by Declan as a misdirection.",
+      "discovery": "A laminated cultural pamphlet about solar eclipse folklore pinned to the corkboard, describing traditional beliefs that the basin is a place where those who listen too long to the sky are 'taken by the desert itself.'",
+      "analysis": "The pamphlet has been on the corkboard for at least three months according to staff sign-in logs \u2014 it predates the eclipse event entirely and has no connection to the crime.",
+      "reveals": [
+        "E12"
+      ]
+    },
+    {
+      "id": "A5",
+      "name": "Renata Voss's Research Office",
+      "description": "A compact room lined with printed star charts and manila folders, with a standing desk crowded by two monitors. A half-drunk mug of tea has gone cold. The office has a combination lock and was opened by Oscar Brinn using the master override after the alarm.",
+      "investigation_prompt": "The office contains Renata's research files including the unpublished working document whose methodology was plagiarized in Declan's grant application. The server cache copy of Declan's Caldwell Foundation application is accessible by comparing file metadata. Both are key documentary finds.",
+      "discovery": "Renata Voss's password-protected research folder, now accessible via the master override, containing an unpublished working document on eclipse-alignment methodology with unique variable-naming conventions.",
+      "analysis": "Comparing the document against Declan Marsh's Caldwell Foundation grant application, retrieved from the institute's shared server cache, reveals verbatim reproduction of pages 14 through 22 of Renata's unpublished work under Declan's name alone.",
+      "reveals": [
+        "E4"
+      ]
+    }
+  ],
+  "leads": [
+    {
+      "id": "L1",
+      "title": "The Overheard Argument",
+      "brief": "Priya Okafor mentioned to Oscar Brinn that she heard something in the equipment staging area early this morning \u2014 something about 'documentation.'",
+      "investigation_prompt": "Following this lead by questioning Priya surfaces her full account of hearing Renata tell Declan she had documentation that would end him, and also confirms Fenwick Haas's alibi by Priya's testimony.",
+      "reveals": [
+        "E4",
+        "E7"
+      ]
+    },
+    {
+      "id": "L2",
+      "title": "The Barn Door Entry at 10:09",
+      "brief": "Oscar Brinn's security log shows an access-code entry to the equipment barn eleven minutes before totality, for a door that should have been sealed during the observation window.",
+      "investigation_prompt": "Following this lead into the access-control register identifies the code as Declan Marsh's and leads directly to the equipment barn where the rifle is hidden.",
+      "reveals": [
+        "E8",
+        "E2"
+      ]
+    },
+    {
+      "id": "L3",
+      "title": "Sable Cress's Confiscated Footage",
+      "brief": "Sable Cress is known to carry hidden recording equipment; Renata had revoked her filming credential after a prior incident. It is worth asking what Sable may have recorded on the morning of the eclipse.",
+      "investigation_prompt": "Following this lead involves a voluntary property search of Sable's jacket, which turns up the hidden memory card with the covertly filmed confrontation between Renata and Declan at 7:28 AM.",
+      "reveals": [
+        "E11",
+        "E13"
+      ]
+    },
+    {
+      "id": "L4",
+      "title": "The Eclipse Disappearance Folklore",
+      "brief": "A staff member mentioned that a local cultural pamphlet in the common room describes the basin as a place where people are 'taken by the desert' during eclipses \u2014 Declan Marsh suggested this might explain what happened to Renata.",
+      "investigation_prompt": "This is a red herring. Following it up produces the pamphlet, which has been on the corkboard for months and has no evidentiary value. It surfaces the pamphlet as a physical item and establishes that Declan was actively trying to seed a supernatural explanation \u2014 which is itself mildly incriminating as behavior.",
+      "reveals": [
+        "E12"
+      ]
+    }
+  ],
+  "gameplay_notes": {
+    "difficulty": "HARD",
+    "estimated_playtime": "60\u201375 minutes",
+    "key_twists": [
+      "Declan's alibi appears solid because witness Priya Okafor genuinely saw him at the control room doorway \u2014 the deception lies in the gap between 'seen at the threshold' and 'present throughout,' a distinction players must draw themselves from Yusuf's separate testimony and the monitor log.",
+      "Sable Cress looks guilty because she had motive, was secretly recording, and actively concealed footage \u2014 but the dormitory annex camera footage and Oscar Brinn's direct observation provide two independent routes to clearing her, and her hidden footage actually incriminates Declan.",
+      "The eclipse folklore pamphlet and Declan's casual suggestion of 'eclipse psychology' function as an in-world supernatural red herring \u2014 the killer trying to seed a non-human explanation for the death, echoing the classic device of exploiting local legend to obscure a human crime.",
+      "Fenwick Haas has the most classic-looking motive (threatened livelihood, falsified records, antagonistic boss) and players will pursue him hard \u2014 his alibi requires both Priya's testimony AND the vault keycard log, delivered through separate routes, before he can be fully cleared."
+    ]
+  },
+  "_provenance": {
+    "recipe": "corpus_6bd4289d(1) + corpus_d95b584c(2) + corpus_71af6b54(3) + corpus_11e5a64a(4) + D(5) + corpus_b0fcbcc5(6) + corpus_19b8d739(7) + corpus_58d8f2c7(8)",
+    "slots": [
+      {
+        "source_id": "corpus_6bd4289d",
+        "part_index": 1,
+        "part_type": "crime_type"
+      },
+      {
+        "source_id": "corpus_d95b584c",
+        "part_index": 2,
+        "part_type": "setting_element"
+      },
+      {
+        "source_id": "corpus_71af6b54",
+        "part_index": 3,
+        "part_type": "motive"
+      },
+      {
+        "source_id": "corpus_11e5a64a",
+        "part_index": 4,
+        "part_type": "suspect_archetype"
+      },
+      {
+        "source_id": "D",
+        "part_index": 5,
+        "part_type": "red_herring"
+      },
+      {
+        "source_id": "corpus_b0fcbcc5",
+        "part_index": 6,
+        "part_type": "reveal_mechanic"
+      },
+      {
+        "source_id": "corpus_19b8d739",
+        "part_index": 7,
+        "part_type": "social_dynamic"
+      },
+      {
+        "source_id": "corpus_58d8f2c7",
+        "part_index": 8,
+        "part_type": "alibi"
+      }
+    ],
+    "target_setting": "A death during a total solar eclipse at a remote desert radio telescope",
+    "generated_title": "",
+    "craft_guidance": [
+      {
+        "concept": "The Closed World",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "COARSE PARTS (C1\u2013C6) \u2014 Structural Skeleton",
+        "confidence": "canonical",
+        "source": "James: \"closed circle of suspects\"; Rankin: Edinburgh as character; French: location as first decision"
+      },
+      {
+        "concept": "The Crime",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "COARSE PARTS (C1\u2013C6) \u2014 Structural Skeleton",
+        "confidence": "canonical",
+        "source": "Christie (start with method), P.D. James (central mysterious crime), Knox (rule 4: method must be plausible)"
+      },
+      {
+        "concept": "The Culprit + Motive",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "COARSE PARTS (C1\u2013C6) \u2014 Structural Skeleton",
+        "confidence": "canonical",
+        "source": "Christie: start with murderer and motive, then build outward; worked backward from the solution"
+      },
+      {
+        "concept": "Suspect Architecture",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "MEDIUM-FINE PARTS (M1\u2013M8) \u2014 Tactical Construction Elements",
+        "confidence": "canonical",
+        "source": "James: \"each with motive, means and opportunity\"; Knox: criminal must appear early"
+      },
+      {
+        "concept": "The Alibi",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "MEDIUM-FINE PARTS (M1\u2013M8) \u2014 Tactical Construction Elements",
+        "confidence": "canonical",
+        "source": "Christie notebooks: alibi construction is explicit planning step"
+      }
+    ]
+  },
+  "opening_narration": "The Sonoran Desert does not forgive isolation \u2014 and tonight, the Arrojo Basin Radio Telescope Complex is more isolated than it has ever been. For four minutes and eleven seconds, the moon swallowed the sun whole, and every scientist, engineer, and visitor on this remote plateau had their eyes locked on the darkness overhead, instruments humming, the corona blazing in a sky that forgot it was daytime. When the light returned, it found something wrong on the catwalk above the great dish: Dr. Renata Voss, the woman who made this observation possible, was dead. The access road is gone, the satellite links are dark, and the helicopter is hours away. Until it arrives, the answer to what happened during totality is somewhere among the people standing on this plateau \u2014 and nowhere else.",
+  "cinematic_brief": {
+    "logline": "During a four-minute solar eclipse, a scientist is shot dead at a remote desert telescope, and no one can leave.",
+    "opening_shot": "Extreme wide aerial drone descending slowly toward the Arrojo Basin complex at the moment of first contact \u2014 the moon's shadow visibly racing across the Sonoran Desert floor like a bruise spreading over pale skin. The dish array dominates the frame below, steel and concrete bleached bone-white by pre-eclipse sun before being swallowed into total shadow. Lighting shifts from harsh afternoon gold to an otherworldly blue-grey twilight as the corona ignites at frame edges.",
+    "crime_reveal_shot": "Low angle looking up through steel catwalk grating as automated safety lights flicker back on in sequence \u2014 each amber bulb popping to life one by one down the length of the walkway, revealing work boots and motionless legs in the foreground. Camera rises slowly past the grating to find Luz Fontaine frozen mid-step, her flashlight beam catching the still figure of Dr. Voss face-down on the metal, the vast dish array a ghostly concave bowl receding into darkness below them both.",
+    "atmosphere_tags": [
+      "arid desolation",
+      "coronacore",
+      "forensic amber",
+      "industrial sublime",
+      "eclipse chiaroscuro",
+      "high-desert noir"
+    ],
+    "sound_design": "A low subsonic telescope dish hum underlays absolute desert silence, punctuated by the sharp metallic click of catwalk safety lights restoring one by one, before a handheld radio crackles and Luz Fontaine's voice \u2014 barely controlled \u2014 breaks the dark.",
+    "cast_visuals": [
+      {
+        "name": "Declan Marsh",
+        "appearance": "Mid-thirties, compact and carefully put together \u2014 fleece vest over a collared shirt, hair slightly too neat for fieldwork, the practiced ease of someone who has rehearsed looking at home in rooms he is not sure he belongs in.",
+        "first_seen_doing": "Standing apart from the cluster of staff near the control building, binoculars still raised toward where the corona was, lowering them just a beat too late when the alarm comes over the radio."
+      },
+      {
+        "name": "Fenwick Haas",
+        "appearance": "Late fifties, broad-shouldered and oil-stained at the cuffs, wearing a site-issue hard hat pushed back on a head of coarse silver hair, with reading glasses on a lanyard around his neck and the weathered permanence of a man who has outlasted several institutional reorganizations.",
+        "first_seen_doing": "Crouched beside an open instrument panel at the base of the dish array support column, a tablet and a crescent wrench beside him, looking up from his work with an expression that is unreadable \u2014 neither surprised nor unsurprised."
+      },
+      {
+        "name": "Sable Cress",
+        "appearance": "Early forties, lean and deliberate in her movements, dressed in photojournalist layers \u2014 a vest with too many pockets, a compact camera already at her side, dark hair pulled back \u2014 with the particular stillness of someone professionally trained to observe before being observed.",
+        "first_seen_doing": "Already filming when the first shout comes \u2014 camera pointed not at the sky but at the faces of the research team, as though she has been waiting for this specific kind of moment."
+      },
+      {
+        "name": "Luz Fontaine",
+        "appearance": "Late twenties, in full Arrojo Basin technician kit \u2014 reflective-striped jacket, site ID clipped at the chest, a tool roll belted at her hip \u2014 with the posture of someone younger than her expertise and fully aware of the gap.",
+        "first_seen_doing": "Visible at the top of the catwalk stairs, one hand gripping the railing, the other pressing a radio to her mouth, her flashlight still pointed at the figure behind her and her gaze pointed everywhere but."
+      }
+    ],
+    "title_card": "TOTALITY"
+  },
+  "_coherence": {
+    "passed": true,
+    "blocking": 0,
+    "warnings": 1
+  }
+}

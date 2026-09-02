@@ -259,7 +259,13 @@ EVIDENCE (include at least 9 items total — planted to serve the chain, written
   - narrows: OPTIONAL, and the most interesting field here. A physical fact that rules people OUT
     without clearing anyone in particular — a bloody MAN'S glove, a boot print in a size only two
     people take, a keycard only the night staff carry. List every suspect who could still be
-    responsible given that fact. AT LEAST TWO NAMES, always including the culprit.
+    responsible given that fact. AT LEAST TWO NAMES, and ALWAYS FEWER THAN THE FULL SUSPECT LIST,
+    always including the culprit. With 4 suspects that means 2 or 3 names — never 4. A fact
+    consistent with everybody rules nobody out and is not a narrowing clue at all: it reads like
+    evidence and does nothing, which is worse than no clue, because a player who works out what it
+    implies has been sent down a corridor with no door. If the fact you have written could apply to
+    every suspect, sharpen it until it cannot — a rifle is not a narrowing; a LEFT-HANDED shooter
+    is — or drop "narrows" from that item.
       * Two or three items should carry it. Most items should not.
       * WRITE THE FACT, NEVER THE INFERENCE. The description says "a bloody glove, man's size
         large, wedged behind the generator housing". It must NEVER say "so it was one of the men",

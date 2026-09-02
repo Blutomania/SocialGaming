@@ -195,6 +195,10 @@ CASES = [
      with_glove(["Ada Vance"]),
      ["G1 narrows to a single suspect"]),
 
+    ("a narrowing naming EVERY suspect, which rules nobody out",
+     with_glove(["Ada Vance", "Boris Kell", "Cora Innes", "Dev Ortiz"]),
+     ["narrows to all 4 suspects, so it rules nobody out"]),
+
     ("a narrowing naming somebody who is not a suspect",
      with_glove(["Ada Vance", "Hercule Poirot"]),
      ["who are not suspects"]),

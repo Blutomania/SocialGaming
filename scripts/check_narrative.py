@@ -103,7 +103,7 @@ NOT_PEOPLE = re.compile(
     r'Hall|Lane|Station|Base|Club|Cage|Forum|Sector|Area|Mirrors|Stood|Camera|Booth|Tier|'
     r'Strategy|Express|Institute|Polar|Senate|Portico|Prohibition|Harlem|Ottoman|Venetian|'
     r'Janissary|Western|Stasi|Star|Cold Storage|Document|Communications|Tome|Village|'
-    r'Fresnel|Lantern|Lamp')
+    r'Fresnel|Lantern|Lamp|Foundation|Pelican|Basin|Array|Totality|Corona')
 
 
 def words(text):
@@ -234,8 +234,12 @@ def audit(path):
             named = [str(n).strip() for n in (e.get("narrows") or []) if str(n).strip()]
             if len(named) < 2:
                 report["links"].append(
-                    f"{e.get('id')} narrows to a single suspect {named}; that is the answer "
-                    f"printed on one finding, and whoever draws it wins without sharing")
+                    f"{e.get('id')} narrows to a single suspect {named}; that is the whole "
+                    f"answer in one finding, and whoever is dealt it wins without sharing")
+            elif suspects and len(named) >= len(suspects):
+                report["links"].append(
+                    f"{e.get('id')} narrows to all {len(named)} suspects, so it rules nobody "
+                    f"out; a narrowing must exclude at least one person to be worth reading")
             stranger = [n for n in named if n not in suspects]
             if stranger:
                 report["links"].append(f"{e.get('id')} narrows to {stranger}, who are not suspects")
