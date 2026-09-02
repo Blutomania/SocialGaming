@@ -47,9 +47,9 @@ theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
 theme_override_font_sizes/font_size = 12
 text = "Not moderated for play testing"
 
-[node name="CinematicCheckbox" type="CheckBox" parent="VBox"]
+[node name="NarrationCheckbox" type="CheckBox" parent="VBox"]
 layout_mode = 2
-text = "Generate cinematic brief (adds one extra AI call)"
+text = "Write the opening narration (one extra AI call)"
 
 [node name="MultiplayerSection" type="VBoxContainer" parent="VBox"]
 layout_mode = 2

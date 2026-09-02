@@ -20,7 +20,7 @@ Run locally:
 SESSION ANNOTATION — Phase 1 complete when:
   curl -X POST localhost:8000/generate \
        -H "Content-Type: application/json" \
-       -d '{"prompt":"a murder on a train","cinematic_brief":false}'
+       -d '{"prompt":"a murder on a train","opening_narration":true}'
   returns a valid mystery JSON with _provenance and _coherence fields.
 """
 
@@ -284,12 +284,24 @@ EVIDENCE (include at least 9 items total — planted to serve the chain, written
         unprovable.
   - Across all items, the suspects exonerated must be every suspect EXCEPT the culprit, so that
     eliminating them leaves exactly one person. Never exonerate the culprit.
-  - TWO INDEPENDENT ROUTES: every non-culprit suspect must be cleared by AT LEAST TWO separate
-    evidence items, each a genuinely different kind of proof — a witness who saw them elsewhere
-    AND a physical trace, not the same fact written twice. Players may withhold what they hold,
-    and a suspect clearable only one way becomes unclearable the moment that one item is kept
-    back. Two routes is what keeps the mystery provable rather than merely usually provable.
-    With 4 suspects that is 3 x 2 = 6 exonerating items before red herrings.
+  - TWO INDEPENDENT ROUTES, AND WRITE THEM FIRST. Every non-culprit suspect must be cleared by
+    AT LEAST TWO separate evidence items, each a genuinely different kind of proof — a witness who
+    saw them elsewhere AND a physical trace, not the same fact written twice. A suspect clearable
+    only one way becomes unclearable the moment that one item is withheld, and players withhold.
+
+    BUILD THE ARRAY IN THIS ORDER, and do not start the red herrings until the alibi pairs are
+    written. With 3 innocents that is six items, and they are the first six:
+
+        E1, E2   both clear <first non-culprit>, by two different kinds of proof
+        E3, E4   both clear <second non-culprit>, by two different kinds of proof
+        E5, E6   both clear <third non-culprit>, by two different kinds of proof
+        E7 …     everything else — red herrings, narrowing facts, items implicating the culprit
+
+    Name the suspect in each of the first six items' "exonerates" before writing its description,
+    so the pairing is decided rather than discovered. This ordering is not presentational: it is
+    the same reason "solution" is written before the clues. Whatever is emitted first conditions
+    everything after, and an alibi structure improvised alongside atmosphere is an alibi structure
+    with a gap in it — the last two generations each left exactly one suspect with a single route.
   - Every chain step must appear in at least one item's "supports".
   - REACHABLE: every evidence item that exonerates somebody must be named in the "reveals" of at
     least one witness, lead or investigation area. Not "or found as a clue" -- a clue is always
@@ -444,51 +456,66 @@ def _run_coherence(mystery_dict: dict) -> dict:
     return mystery_dict
 
 
-def _generate_cinematic_brief(mystery_dict: dict) -> dict:
+def _generate_opening_narration(mystery_dict: dict) -> dict:
+    """The paced text opening (docs/PLAYTEST_FLOW.md, item 23 step 4).
+
+    WAS _generate_cinematic_brief(), AND WROTE TWO THINGS. It returned the
+    player-facing narration AND a video shot list -- logline, lighting, sound
+    design, cast appearance -- in one response, behind one boolean. Measured on
+    the first run that ever executed it, 82% of the output was the video half.
+    The owner is deferring video and avatars to stage 3, so the playtest was
+    paying for shot direction nobody will read for a year.
+
+    THE VIDEO HALF IS DELETED, NOT PARKED, and the reasoning matters because the
+    obvious worry was that tuning this prompt for prose would leave it useless
+    for video later. It cannot, because the two never shared anything: the video
+    brief was built from the mystery -- title, setting, crime, cast -- never
+    from the narration. They were siblings, not a pipeline, so a video brief can
+    be written fresh from the mystery dict whenever stage 3 arrives.
+
+    Two more reasons it is a deletion. The old prompt contradicted itself,
+    asking for narration with "no camera direction" and, in the same response, a
+    brief that is entirely camera direction. And shot-list conventions written
+    today are written for today's video models; by stage 3 they are stale, which
+    makes writing them now speculative work with a shelf life.
+
+    Returns {"opening_narration": str}. One call, at generation time, which is
+    the right place to spend it -- pacing the beats afterwards is client-side
+    and free.
+    """
     m = mystery_dict
     s = m.get("setting", {})
     c = m.get("crime", {})
     chars = m.get("characters", [])
     suspects = [ch for ch in chars if ch.get("role") == "suspect"]
     cast_lines = "\n".join(
-        f"  - {ch['name']} ({ch.get('occupation', '')}): {ch.get('secret', '')[:80]}"
-        for ch in suspects
+        f"  - {ch['name']} ({ch.get('occupation', '')})" for ch in suspects
     )
     prompt = f"""\
-You are writing the opening sequence material for a mystery party game, in two forms:
-
-1. A short narration meant to be displayed or read aloud to players at the start of the
-   game — atmospheric prose, no spoilers, no camera/shot direction, just the scene.
-2. A cinematic brief for an AI video generator (e.g. Sora, Runway Gen-3) covering the same
-   15–30 second opening — technical shot/lighting/sound direction, not meant for players to
-   see directly. This is prepared for future video generation and stays hidden from players.
+Write the opening narration for a mystery party game: the text shown on a shared screen and read
+aloud to the room before play begins. This is the moment that sets the scene, and it is the only
+thing the players have before they start suspecting each other.
 
 MYSTERY TITLE: {m.get('title', '')}
 SETTING: {s.get('location', '')} — {s.get('time_period', '')}
 ATMOSPHERE: {s.get('description', '')}
 CRIME: {c.get('what_happened', '')}
 DISCOVERED BY: {c.get('initial_discovery', '')}
-SUSPECTS (do NOT show guilt or motive — only appearance and first moment):
+PRESENT THAT NIGHT (name them only if it serves the scene; never hint at guilt):
 {cast_lines}
 
+REQUIREMENTS:
+  - 3–5 sentences. Written for the ear: it will be spoken out loud to a room.
+  - Atmospheric and specific. One concrete physical detail beats three adjectives.
+  - NO SPOILERS. Never name or hint at the culprit, the method, or the motive.
+  - No camera, shot or lighting direction. This is prose, not a screenplay.
+  - End on the situation, not a question. Do not ask the players anything; do not
+    say "who did it?" or "can you solve it?" — the game asks that, not the narrator.
+
 Return ONLY valid JSON:
-{{
-  "opening_narration": "3-5 sentences of atmospheric prose, written to be displayed or read aloud to players. No spoilers, no camera direction — just the scene.",
-  "cinematic_brief": {{
-    "logline": "One sentence. Visual, urgent, present tense. Under 20 words.",
-    "opening_shot": "Establishing shot description. 2–3 sentences.",
-    "crime_reveal_shot": "The discovery moment. 2–3 sentences.",
-    "atmosphere_tags": ["3–6 mood/texture/palette words"],
-    "sound_design": "What the audience hears before dialogue. One sentence.",
-    "cast_visuals": [
-      {{"name": "character name", "appearance": "one sentence", "first_seen_doing": "one sentence"}}
-    ],
-    "title_card": "Short evocative text overlay."
-  }}
-}}"""
+{{"opening_narration": "the 3–5 sentences"}}"""
     raw = llm(prompt, system="You are a mystery game's opening-sequence writer. Return only valid JSON.")
     return _parse_json(raw)
-
 
 def _save_mystery(mystery_dict: dict) -> str:
     """Persist mystery to disk. Returns slug."""
@@ -556,8 +583,8 @@ def _evict_old_jobs() -> None:
             del _jobs[k]
 
 
-def _run_generation_pipeline(job_id: str, prompt: str, cinematic_brief: bool) -> dict:
-    """Runs generation + localization + coherence + optional cinematic brief +
+def _run_generation_pipeline(job_id: str, prompt: str, opening_narration: bool) -> dict:
+    """Runs generation + localization + coherence + optional opening narration +
     save, updating job progress as it goes. Returns the final mystery dict
     (with "_slug" set). Raises on failure -- callers own their own
     _job_fail/cleanup, since that differs between a plain /generate/async job
@@ -571,11 +598,10 @@ def _run_generation_pipeline(job_id: str, prompt: str, cinematic_brief: bool) ->
     _job_update(job_id, "running", "Checking coherence…")
     mystery_dict = _run_coherence(mystery_dict)
 
-    if cinematic_brief:
-        _job_update(job_id, "running", "Writing cinematic brief…")
-        opening = _generate_cinematic_brief(mystery_dict)
-        mystery_dict["opening_narration"] = opening["opening_narration"]
-        mystery_dict["cinematic_brief"] = opening["cinematic_brief"]
+    if opening_narration:
+        _job_update(job_id, "running", "Writing the opening…")
+        mystery_dict["opening_narration"] = _generate_opening_narration(
+            mystery_dict).get("opening_narration", "")
 
     _job_update(job_id, "running", "Saving…")
     slug = _save_mystery(mystery_dict)
@@ -583,23 +609,23 @@ def _run_generation_pipeline(job_id: str, prompt: str, cinematic_brief: bool) ->
     return mystery_dict
 
 
-def _run_generation_job(job_id: str, prompt: str, cinematic_brief: bool) -> None:
+def _run_generation_job(job_id: str, prompt: str, opening_narration: bool) -> None:
     """Background thread: runs the full generation pipeline and updates job state."""
     try:
-        mystery_dict = _run_generation_pipeline(job_id, prompt, cinematic_brief)
+        mystery_dict = _run_generation_pipeline(job_id, prompt, opening_narration)
         _job_finish(job_id, mystery_dict)
         _evict_old_jobs()
     except Exception as exc:
         _job_fail(job_id, str(exc))
 
 
-def _run_game_generation_job(game_id: str, job_id: str, prompt: str, cinematic_brief: bool) -> None:
+def _run_game_generation_job(game_id: str, job_id: str, prompt: str, opening_narration: bool) -> None:
     """Background thread: generates a mystery for a specific game room (the
     room-first lobby flow -- POST /games/create with no mystery_slug, then
     POST /games/{id}/start), attaches it to the session once done, and
     broadcasts so connected clients stop waiting on the lobby screen."""
     try:
-        mystery_dict = _run_generation_pipeline(job_id, prompt, cinematic_brief)
+        mystery_dict = _run_generation_pipeline(job_id, prompt, opening_narration)
         _job_finish(job_id, mystery_dict)
         _evict_old_jobs()
         game = _get_game(game_id)
@@ -1454,7 +1480,7 @@ app.mount("/static", StaticFiles(directory=str(_static_dir)), name="static")
 # ---------------------------------------------------------------------------
 class GenerateRequest(BaseModel):
     prompt: str
-    cinematic_brief: bool = False
+    opening_narration: bool = True
 
 class InterrogateRequest(BaseModel):
     mystery: dict                  # full mystery dict (sent by client)
@@ -1467,7 +1493,7 @@ class RateRequest(BaseModel):
 
 class AsyncGenerateRequest(BaseModel):
     prompt: str
-    cinematic_brief: bool = False
+    opening_narration: bool = True
 
 class CreateGameRequest(BaseModel):
     host_name: str
@@ -1540,7 +1566,7 @@ def generate(req: GenerateRequest):
       2. Claude call: generate mystery JSON
       3. Localization pass (Claude call, or free if modern era)
       4. Coherence check (free)
-      5. Optional: cinematic brief (Claude call)
+      5. Optional: opening narration (Claude call)
       6. Save to disk
       7. Return full mystery dict
 
@@ -1554,10 +1580,9 @@ def generate(req: GenerateRequest):
     mystery_dict = _run_localization(mystery_dict)
     mystery_dict = _run_coherence(mystery_dict)
 
-    if req.cinematic_brief:
-        opening = _generate_cinematic_brief(mystery_dict)
-        mystery_dict["opening_narration"] = opening["opening_narration"]
-        mystery_dict["cinematic_brief"] = opening["cinematic_brief"]
+    if req.opening_narration:
+        mystery_dict["opening_narration"] = _generate_opening_narration(
+            mystery_dict).get("opening_narration", "")
 
     slug = _save_mystery(mystery_dict)
     mystery_dict["_slug"] = slug
@@ -1572,7 +1597,7 @@ def generate_async(req: AsyncGenerateRequest):
 
     Stages returned in "stage":
       "Queued" → "Generating mystery…" → "Localizing characters…"
-      → "Checking coherence…" → ["Writing cinematic brief…"] → "Saving…" → "Done"
+      → "Checking coherence…" → ["Writing the opening…"] → "Saving…" → "Done"
 
     Status values: "queued" | "running" | "done" | "error"
     """
@@ -1581,7 +1606,7 @@ def generate_async(req: AsyncGenerateRequest):
     job_id = _job_create()
     thread = threading.Thread(
         target=_run_generation_job,
-        args=(job_id, req.prompt, req.cinematic_brief),
+        args=(job_id, req.prompt, req.opening_narration),
         daemon=True,
     )
     thread.start()
