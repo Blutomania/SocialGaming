@@ -1,35 +1,27 @@
 ; Engine configuration file.
-; Generated for Godot 4.x
-; https://godotengine.org/
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
 
 config_version=5
 
 [application]
 
 config/name="Choose Your Mystery"
-config/description="AI-powered social murder mystery party game.\nInvestigate, interrogate, and compete to solve the case first."
+config/description="AI-powered social murder mystery party game.
+Investigate, interrogate, and compete to solve the case first."
 config/version="0.1.0"
 run/main_scene="res://scenes/ui/MainMenu.tscn"
-config/features=PackedStringArray("4.6", "Forward Plus")
-; config/icon is deliberately UNSET. It used to name
-; res://assets/ui/icon.png, which has never existed — so every editor open
-; and every run logged a failed-load error into the Output panel. That panel
-; is where the Style: font warning has to be readable, so a standing error
-; in it is not cosmetic. Godot falls back to its own icon with no error.
-; Restoring this line is part of CLAUDE.md item 17: which brand mark goes on
-; which device is an open owner decision, and the window icon is one of them.
+config/features=PackedStringArray("4.7", "Forward Plus")
 
 [autoload]
 
-; Singletons — loaded before the first scene.
-; SESSION ANNOTATION: If you add a new autoload, register it here AND
-; verify it appears in Project → Project Settings → Autoload in the editor.
 GameState="*res://scripts/autoloads/GameState.gd"
 ApiClient="*res://scripts/autoloads/ApiClient.gd"
 NetworkManager="*res://scripts/autoloads/NetworkManager.gd"
-; Style builds the global Theme and puts it on get_tree().root, which every
-; Control inherits. It is listed LAST because it reads Palette.gd, and it is
-; an autoload rather than a .tres so the palette lives in exactly one place.
 Style="*res://scripts/autoloads/Style.gd"
 
 [display]
@@ -38,12 +30,10 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 
+[gui]
+
+theme/custom="res://assets/theme/cym_theme.tres"
+
 [rendering]
 
-renderer/rendering_method="forward_plus"
-; The GROUND, slate #2F4459 — see palette.py, which is where it is decided.
-; Set here rather than painted by a node so it is up before the first Control
-; exists: there is no frame of engine grey at startup, and no scene has to
-; own a background. This alone is the "ground colour until a mystery is
-; named" state that CLAUDE.md item 17 specifies.
 environment/defaults/default_clear_color=Color(0.184314, 0.266667, 0.34902, 1)
