@@ -95,6 +95,25 @@ def pointered(**over):
     return base
 
 
+def with_glove(narrows, name="Bloodstained Glove",
+               description="A bloody glove, man's size large, wedged behind the boiler.",
+               evidence=None):
+    """The clean fixture plus one item-27 narrowing clue.
+
+    The default prose states a FACT and names nobody, which is the whole rule:
+    the player reads "man's size large", looks at the cast, and draws the line.
+    A narrowing clue that names the people it narrows to has handed over the
+    conclusion the player was supposed to reach.
+    """
+    base = mystery()
+    item = {"id": "G1", "name": name, "description": description,
+            "relevance": "critical", "supports": ["S1"],
+            "exonerates": [], "implicates": [], "narrows": list(narrows)}
+    base["evidence"] = (list(evidence) if evidence is not None
+                        else list(base["evidence"])) + [item]
+    return base
+
+
 CASES = [
     ("a clean fixture reports nothing", mystery(), []),
 
@@ -162,6 +181,40 @@ CASES = [
                        {"id": "E5", "relevance": "supporting", "supports": ["S2"],
                         "exonerates": ["Dev Ortiz"], "implicates": []}]),
      ["Dev Ortiz is cleared by only 1 finding(s)"]),
+
+    # --- NARROWS: item 27's glove ---
+
+    ("a clean narrowing clue reports nothing",
+     with_glove(["Ada Vance", "Boris Kell"]), []),
+
+    ("a narrowing that excludes the culprit",
+     with_glove(["Boris Kell", "Cora Innes"]),
+     ["excluding the culprit (Ada Vance)"]),
+
+    ("a narrowing naming a single suspect",
+     with_glove(["Ada Vance"]),
+     ["G1 narrows to a single suspect"]),
+
+    ("a narrowing naming EVERY suspect, which rules nobody out",
+     with_glove(["Ada Vance", "Boris Kell", "Cora Innes", "Dev Ortiz"]),
+     ["narrows to all 4 suspects, so it rules nobody out"]),
+
+    ("a narrowing naming somebody who is not a suspect",
+     with_glove(["Ada Vance", "Hercule Poirot"]),
+     ["who are not suspects"]),
+
+    ("a narrowing clue whose own prose gives the inference away",
+     with_glove(["Ada Vance", "Boris Kell"],
+                description="A bloody glove, so it was either Ada Vance or Boris Kell."),
+     ["must state the fact and let the player draw the line"]),
+
+    ("narrowing that has become load-bearing",
+     with_glove(["Ada Vance", "Boris Kell"],
+                evidence=[{"id": "E1", "relevance": "critical", "supports": ["S1"],
+                           "exonerates": ["Boris Kell"], "implicates": ["Ada Vance"]},
+                          {"id": "E2", "relevance": "supporting", "supports": ["S2"],
+                           "exonerates": ["Boris Kell"], "implicates": []}]),
+     ["narrowing is load-bearing"]),
 
     # --- REVEALS: the pointer that lets a witness or lead carry elimination ---
 

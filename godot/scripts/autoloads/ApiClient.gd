@@ -50,13 +50,13 @@ func _process(_delta: float) -> void:
 # ---------------------------------------------------------------------------
 
 ## Synchronous generation (kept for reference; prefer generate_mystery_async).
-func generate_mystery(prompt: String, cinematic_brief: bool, callback: Callable) -> void:
-	var body := JSON.stringify({"prompt": prompt, "cinematic_brief": cinematic_brief})
+func generate_mystery(prompt: String, opening_narration: bool, callback: Callable) -> void:
+	var body := JSON.stringify({"prompt": prompt, "opening_narration": opening_narration})
 	_post("/generate", body, callback)
 
 ## Async generation: returns {job_id} immediately; poll with poll_job().
-func generate_mystery_async(prompt: String, cinematic_brief: bool, callback: Callable) -> void:
-	var body := JSON.stringify({"prompt": prompt, "cinematic_brief": cinematic_brief})
+func generate_mystery_async(prompt: String, opening_narration: bool, callback: Callable) -> void:
+	var body := JSON.stringify({"prompt": prompt, "opening_narration": opening_narration})
 	_post("/generate/async", body, callback)
 
 ## Poll a running job. callback receives (error, {status, stage, result, error}).

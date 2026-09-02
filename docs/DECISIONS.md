@@ -868,7 +868,7 @@ that the superseded text has become history and belongs here instead.
     this is the confirmation.
 
 
-27. **[OPEN — owner wants it, Session 39] Incrimination as well as exculpation: the glove
+27. **[BUILT, Session 40 — untested against a real generation] Incrimination as well as exculpation: the glove
     mechanic.** Deduction today is pure subtraction. Every clue clears exactly one suspect, and
     you win when one name is left. That shape has a cost the owner named: it is arithmetic, not
     detection. Nothing asks the player to *decide* anything, and nothing gives two players a

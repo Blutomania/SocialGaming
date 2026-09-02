@@ -389,7 +389,7 @@ Build order (`docs/INVESTIGATION_DESIGN.md` §7, already reduced by APF):
 **Decided (Session 38): no crime-scene picture for the playtest** — a list of named findings. The
 map is deferred, not cancelled.
 
-### 27. Incrimination as well as exculpation — the glove mechanic — **OPEN, owner wants it**
+### 27. Incrimination as well as exculpation — the glove mechanic — **BUILT, Session 40**
 
 Deduction today is pure subtraction: every clue clears one suspect, you win when one name is left.
 The owner's example is the design — *"a bloody men's glove"* clears nobody alone, but combined with
@@ -403,8 +403,13 @@ existing precedent. The rule that keeps it honest is already in the corpus as **
 (`RESEARCH_FINDINGS.md`): an assumption the game invites must be one that holds, or a player who
 reasons correctly loses.
 
-`implicates` already exists on every evidence item and nothing reads it. Full design, and the
-fair-play check to build alongside it: `docs/DECISIONS.md` item 27.
+**Built as a separate `narrows` field, not by overloading `implicates`** — that field means
+suspicion, and a single-name list read as a constraint is the whole answer in one finding.
+`solves()` intersects narrowings and subtracts exonerations; elimination stays the guaranteed floor
+so a withheld glove can never make a case unprovable. Fair play is enforced: the culprit must
+appear in every `narrows` list, a narrowing must name at least two suspects and fewer than all of
+them, and its prose may not name the people it narrows to. Untested against a real generation.
+Full reasoning: `docs/DECISIONS.md` item 27.
 
 ### 18. A BLOCKING coherence report does not stop a mystery being served — **OPEN, owner's call**
 

@@ -92,17 +92,24 @@ choice and players feel it.
 
 No video for the playtest. The mystery is told.
 
-**`opening_narration` already exists and is one boolean away.**
-`_generate_cinematic_brief()` (`server/main.py:335`) returns two fields, and is gated behind
-`cinematic_brief: bool = False` — off by default, which is why the one real generated mystery on
-disk has neither key:
+**`opening_narration` is now its own call, and it is on by default.**
+`_generate_opening_narration()` in `server/main.py` writes 3–5 sentences for the shared screen.
+One extra call **at generation time**, which is the right place to spend it — the pacing between
+beats afterwards is client-side and free.
 
-| Field | Its own spec | Use |
-|---|---|---|
-| `opening_narration` | *"3–5 sentences of atmospheric prose, written to be displayed or read aloud to players. No spoilers, no camera direction."* | **The playtest opening.** Turn the flag on. |
-| `cinematic_brief` | *"technical shot/lighting/sound direction… prepared for future video generation"* | The eventual video's shot list. Stays hidden. |
-
-One extra call **at generation time**, which is the right place to spend it.
+> **[Session 40] The video half was deleted, not deferred.** The function used to be
+> `_generate_cinematic_brief()` and returned the narration *and* a shot list — logline, lighting,
+> sound design, cast appearance — behind one boolean. The first run that ever executed it measured
+> **82% of the output as the video half**, which the owner is deferring to stage 3.
+>
+> The worry worth recording is the one the owner raised: could tuning this prompt for prose leave
+> it useless for video later? **No — the two never shared anything.** The video brief was built
+> from the mystery (title, setting, crime, cast), never from the narration; they were siblings, not
+> a pipeline, so a video brief can be written fresh from the mystery dict whenever it is wanted.
+> Two more reasons it is a deletion: the old prompt contradicted itself, asking for narration with
+> *"no camera direction"* alongside a brief that is entirely camera direction; and shot-list
+> conventions written now are written for today's video models, which makes them speculative work
+> with a shelf life.
 
 **The beats, measured on the real generation:**
 
@@ -140,12 +147,14 @@ underneath can make the promise explicit without breaking the scene.
 With exploration gone, the **hand** and the **share** are not part of the game — they are the
 game, and they must feel like objects rather than paragraphs.
 
-- **The data is already card-shaped**: a finding has a name, a description, a type, a relevance.
-  Dealt, held, played. MYF has `GameCard.jsx` (155 lines), `CardHand.jsx` (67), `CardPicker.jsx`
-  (104) — not portable to Godot, but straight into `mobile.html`, and the visual language carries
-  either way.
+- **A finding is already an object, not a paragraph**: it has a name, a description, a type and a
+  relevance. It is dealt, held, and shared. MYF has UI components for handling things of that
+  shape — not portable to Godot, but straight into `mobile.html`, and the layout thinking carries
+  either way. *(Vocabulary, owner's instruction, Session 40: describe these as findings. This is a
+  social deduction game, and borrowed game-shop language makes the mechanic read as a deck when it
+  should read as evidence.)*
 - **The suspect board is where deduction becomes visible.** If evidence carries `exonerates`,
-  playing a card **greys a suspect out for everyone, permanently, with your name on it.** Text
+  sharing a finding **greys a suspect out for everyone, permanently, with your name on it.** Text
   cannot do that. It also makes withholding legible without a word of explanation: a face stays
   lit that you could have darkened, and everyone can see you didn't.
 

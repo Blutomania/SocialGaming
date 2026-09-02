@@ -5,6 +5,33 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session — September 02, 2026 at 19:27
+**Branch:** `claude/repo-sync-bjb77q`
+**Latest commit:** `3dfe62f`
+
+### Files changed this session
+- `eal.py` — Modified
+- `scripts/check_narrative.py` — Modified
+- `scripts/test_deal.py` — Modified
+- `scripts/test_narrative_checks.py` — Modified
+- `server/main.py` — Modified
+- `mystery_database/generated/totality_1788377053.json` — Untracked
+
+### Commits this session
+```
+3dfe62f Generation writes who people are; and the deck vocabulary goes at its source
+028826f Item 27: clues that incriminate, alongside clues that exculpate
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
 ## Session — September 01, 2026 at 18:53
 **Branch:** `claude/repo-sync-bjb77q`
 **Latest commit:** `540d5d5`
@@ -3043,6 +3070,146 @@ it. Porting the Aug 12 flow and then immediately rewriting it would build the sa
    mixed into the port.
 4. Owner action, one click: delete `dev/cryptic-challenge` (and optionally `dev/mind-your-friends`)
    via the GitHub UI — both are stale pointers with zero unique commits.
+
+---
+
+## Session 40 — September 2, 2026 (CYM: clues that incriminate, and generation writes a story)
+
+**Branch:** `claude/repo-sync-bjb77q`, from `main` at `6c9a155`. Owner: *"I would like to implement
+the glove mechanic (the idea of incrimination in addition to exculpation)."*
+
+### Item 27 — the glove
+
+Deduction was pure subtraction: every clue cleared one suspect, you won when one name was left. The
+owner named the cost — arithmetic, not detection. A clue can now rule people **out** without
+clearing anyone. `solves()` takes two routes that compose:
+
+| | Field | What it does |
+|---|---|---|
+| Subtraction | `exonerates` | clear everybody else — the original |
+| Narrowing | `narrows` | rule out everyone a physical fact excludes |
+
+They intersect, so two narrowing findings narrow further than one. Narrowing to two people and then
+clearing one of them reaches the answer in **two findings** where subtraction needs one per
+innocent.
+
+**The glove needed its own field, and finding that out cost 22 test failures.** The obvious move
+was to give `implicates` the meaning *"only these could have done it"*. It cannot have it.
+`implicates` is **suspicion** — "this points at Brandt" — and the prompt requires the culprit be
+implicated by something so the answer does not read as arbitrary, which makes single-name lists
+normal and correct. Read as a narrowing constraint, a single-name list says *"only Brandt could
+have done it"*: one finding that is the whole answer, and whoever is dealt it wins alone. That is
+exactly why the lighthouse mystery was rejected in Session 39. `narrows` is a new field,
+`implicates` is untouched, and a `narrows` list naming fewer than two suspects is refused.
+
+**Elimination stays the guaranteed floor; narrowing is a faster route on top.** Deliberate: if
+narrowing were load-bearing, withholding the one glove could make a case unprovable, which is what
+the owner's "race to proof" rules out. Both `deal.py` and `check_narrative.py` refuse a mystery
+where alibis alone no longer reach the culprit. The glove therefore rewards insight with **speed**,
+and speed is what a race should reward.
+
+**Fair play, built in the same change** as item 27 required. The culprit must appear in every
+`narrows` list — a list excluding them is the mystery contradicting its own solution and punishing
+a player who reasoned exactly as the clue invited. Already in the corpus as **M3 Clue Fairness**
+(P.D. James, Knox 8). Also refused: a narrowing naming a non-suspect, and one whose own prose names
+the people it narrows to. The owner was explicit that it must never read as *"the culprit is one of
+these two"* — *"certainty isn't always fun. You have to have some assumptions in building a case."*
+
+### The third real generation, and the hole it found
+
+*"A death during a total solar eclipse at a remote desert radio telescope."* Both calls succeeded,
+185s + 26s. Coherence passed, 0 blocking, 1 warning. 4 suspects, 14 evidence, ~9,800 output tokens
+against a 16,000 cap.
+
+**First mystery ever to clear the deal:** feasibility clean, dealt on attempt 1, proof surviving
+**81 of 81** hoarding patterns. Atomised alibis held. The added prose — 521 words of bios plus a
+133-word opening — did **not** degrade structure, which was the open question when it was added.
+
+**It found a hole in the checker, not in itself.** The one narrowing finding it wrote — a
+.30-caliber casing *"consistent with a bolt-action"* — narrows to **all four** suspects. It rules
+nobody out. The check allowed it because the only rule was "at least two names". A vacuous
+narrowing is worse than no narrowing: it reads like evidence and does nothing, so a player who
+works out what it implies has been sent down a corridor with no door — the same fair-play failure
+as a lying clue wearing a friendlier face. `narrows` must now name at least two suspects **and
+fewer than all of them**. The prompt says it concretely: *a rifle is not a narrowing; a LEFT-HANDED
+shooter is.*
+
+`totality` moved to `mystery_database/rejected/`, and the README now separates two categories that
+were being conflated: the first two rejects are **unplayable** (`deal.py` refuses them), `totality`
+is **playable and not good enough** — one innocent clearable only one way, leaving a monopoly on
+proof in 27 of 81 patterns. `generated/` means fit to serve.
+
+### What else must come out of generation — the owner's four things
+
+Measured on a real generation rather than assumed. Culprit, clues and red herrings are complete;
+**narrative existed only as a side-effect** of fields that happened to need prose.
+
+**The architecture answer: generation invents once, the game arranges for free.** Invention is what
+only a model can make — a bio, the atmosphere of a room, the wording of a clue. Arrangement is
+pacing the opening beats, deciding who receives which finding, assembling the reveal from parts
+already written. `docs/AI_COST_PLAYBOOK.md` settles the invention half: fixed text at generation
+time beat per-action calls by 10.8× on a four-player game. And a second invention pass does not
+know what the first one meant.
+
+**`characters[].bio` (new).** A character had an occupation, a motive, an alibi and a secret: four
+*functions* and no person. Owner: *"we can explore and debate if a character Bio is necessary… this
+opens the door for poor generative AI performance."* Measured, it did not — 521 words inside
+existing headroom and structure improved. Owner's decision: **keep it. "It will be fun."**
+
+### The opening became a narrative call
+
+`_generate_cinematic_brief()` returned the player-facing narration **and** a video shot list behind
+one boolean. The first run that ever executed it measured **82% of the output as the video half**,
+which the owner is deferring to stage 3 along with avatars.
+
+**Deleted, not parked**, and the owner asked the right question: could tuning this prompt for prose
+leave it useless for video later? **No — the two never shared anything.** The video brief was built
+from the mystery (title, setting, crime, cast), never from the narration; siblings, not a pipeline.
+The old prompt also contradicted itself, asking for narration with *"no camera direction"* alongside
+a brief that is entirely camera direction. And shot-list conventions written now are written for
+today's video models — speculative work with a shelf life.
+
+`_generate_opening_narration()` is narration only, **on by default**. Its prompt gained two
+requirements the old one lacked: written for the ear, since it is read aloud to a room, and ending
+on the situation rather than a question — the game asks *who did it*, the narrator should not.
+Renamed through the Godot client: node, script references, request body, and the label.
+
+Owner also decided the video slot for the playtest: **text opening with an FPO caption**. That is
+compatible with what `PLAYTEST_FLOW` already said — do not ship a grey box *instead of* content;
+a caption underneath makes the promise explicit without breaking the scene.
+
+### Two routes, restated as a construction order
+
+The rule missed **exactly one suspect in each of the last two generations** — reliable enough to be
+a prompt problem, not noise. It was written as a constraint to satisfy across the whole evidence
+array, which needs the model to tally as it goes, and it does not.
+
+Session 38 already proved the fix for this shape: whatever a model emits first conditions
+everything after. The six alibi items are now specified as the **first six**, in named pairs, with
+each suspect's `exonerates` decided before its description is written. Red herrings and atmosphere
+follow. **Untested — that is the next paid step.**
+
+### Vocabulary, owner's instruction, twice
+
+The dealt object is a **finding**. The deck metaphor was removed from `deal.py`, the generation
+prompt, and `docs/PLAYTEST_FLOW.md` — which is where it kept coming back from, in the single
+cross-project line referencing MYF's UI components. The point those lines made survives: a finding
+is an object, not a paragraph. What is gone is describing a social deduction game in the language
+of a deck.
+
+Owner also pushed back on the *explanations*: *"there are too many metaphors… we seem to be talking
+about this like a card game, and not as a fun social deduction game."* Correct, and the
+re-explanation using the real alpine deal — Sarah holding the only proof of two people's innocence,
+and what happens when she keeps it — did more in one page than three preceding ones had.
+
+**Next: item 23 step 3** — the share decision, the suspect board, the reveal. One generation would
+tell us whether the construction-order rewrite lands.
+
+**Files:** `deal.py`, `server/main.py`, `scripts/check_narrative.py`, `scripts/test_deal.py`,
+`scripts/test_narrative_checks.py`, `docs/PLAYTEST_FLOW.md`, `docs/DECISIONS.md` (item 27),
+`CLAUDE.md`, `mystery_database/rejected/README.md`,
+`godot/scripts/ui/mystery_generation.gd`, `godot/scripts/autoloads/ApiClient.gd`,
+`godot/scenes/ui/MysteryGeneration.tscn`.
 
 ---
 

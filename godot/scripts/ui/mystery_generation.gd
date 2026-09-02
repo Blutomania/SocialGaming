@@ -24,7 +24,7 @@ const POLL_INTERVAL: float = 2.0   ## seconds between job status polls
 # Node references (wire these in the .tscn)
 # ---------------------------------------------------------------------------
 @onready var prompt_input: LineEdit = $VBox/PromptInput
-@onready var cinematic_checkbox: CheckBox = $VBox/CinematicCheckbox
+@onready var narration_checkbox: CheckBox = $VBox/NarrationCheckbox
 @onready var generate_button: Button = $VBox/GenerateButton
 @onready var back_button: Button = $VBox/BackButton
 @onready var status_label: Label = $VBox/StatusLabel
@@ -75,7 +75,7 @@ func _on_generate() -> void:
 	status_label.text = "Contacting server…"
 	ApiClient.generate_mystery_async(
 		prompt,
-		cinematic_checkbox.button_pressed,
+		narration_checkbox.button_pressed,
 		_on_job_created
 	)
 
