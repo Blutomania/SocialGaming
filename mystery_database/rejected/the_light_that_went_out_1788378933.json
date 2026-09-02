@@ -1,0 +1,540 @@
+{
+  "title": "The Light That Went Out",
+  "setting": {
+    "location": "Eilean M\u00f2r Lighthouse Station, a remote island in the Outer Hebrides",
+    "time_period": "Present day, late October",
+    "environment": "A storm-battered stone lighthouse and its adjoining keeper's cottage, engine room, lantern gallery, and supply jetty",
+    "description": "Eilean M\u00f2r is a treeless, half-mile-wide rock twelve nautical miles from the nearest inhabited island. A Force 10 gale has been blowing for thirty-six hours, reducing visibility to near zero and making the jetty approach lethal; the station's rigid inflatable has been staved against the rocks. The five people on the island arrived two days ago for a routine Heritage Trust inspection and cannot leave until the storm breaks \u2014 the maritime rescue service has confirmed no evacuation is possible before morning at the earliest."
+  },
+  "solution": {
+    "culprit": "Morag Gillies",
+    "motive": "Morag's mother, the previous head keeper Catriona Gillies, died of a preventable fall after head keeper Alistair Vass refused to authorise emergency repairs to the gallery railing she repeatedly flagged as dangerous. Morag has carried this grievance for three years. She discovered during this inspection that Vass had falsified the maintenance logs \u2014 covering up his negligence \u2014 and that the Trust was about to promote him rather than discipline him. Confronting him privately the night of the storm, she struck him with the iron counterweight from the clockwork lantern drive when he dismissed her and threatened to have her barred from the island.",
+    "method": "Morag lured Vass to the engine room under the pretence of a fault with the clockwork lantern drive. She struck him twice across the back of the skull with the iron counterweight \u2014 a heavy cylindrical weight removed from the drive mechanism \u2014 then dragged his body to the cistern alcove and covered it with a tarpaulin. She washed her hands in the engine room's utility sink and slipped back to the keeper's cottage before the others noticed her absence.",
+    "chain": [
+      {
+        "id": "S1",
+        "claim": "Alistair Vass was killed by blunt-force trauma in the engine room, not where his body was found in the cistern alcove \u2014 drag marks and a blood smear on the stone floor establish the primary scene."
+      },
+      {
+        "id": "S2",
+        "claim": "The iron counterweight from the lantern clockwork drive is missing from its housing and has not been found \u2014 it is the likely murder weapon."
+      },
+      {
+        "id": "S3",
+        "claim": "Vass had falsified the maintenance logs for the gallery railing, covering up his negligence in a way that directly caused or contributed to the death of Catriona Gillies three years prior."
+      },
+      {
+        "id": "S4",
+        "claim": "Morag Gillies is Catriona Gillies's daughter, giving her a specific and personal motive that none of the other suspects share."
+      },
+      {
+        "id": "S5",
+        "claim": "Morag's alibi \u2014 that she was in her bunk reading from 21:00 onward \u2014 is contradicted by a boot print in engine-room oil that matches her boot size and tread pattern, and by witness testimony placing her outside the cottage at the critical time."
+      },
+      {
+        "id": "S6",
+        "claim": "The other three suspects are each independently cleared by physical evidence and witness testimony, leaving Morag Gillies as the only person without a verified alibi who had both access and motive."
+      }
+    ],
+    "key_evidence": [
+      "E7",
+      "E9"
+    ],
+    "how_to_deduce": "The body was moved: drag marks and a blood smear prove the engine room is the primary scene (S1), and the missing iron counterweight identifies the weapon (S2). The falsified maintenance logs reveal that Vass covered up the unsafe railing that killed Catriona Gillies (S3). Once players learn that Morag is Catriona's daughter, her motive crystallises (S4). Her alibi collapses when a boot print in spilled engine oil matches her sole pattern and when witness Fingal MacAulay reports seeing her returning to the cottage well after 21:00 with wet sleeves (S5). The remaining three suspects \u2014 Declan Harte, Fiona Strang, and Niall Urquhart \u2014 are each cleared by independent physical evidence and testimony, leaving Morag as the only uncleared person with means, motive, and opportunity (S6)."
+  },
+  "crime": {
+    "type": "Murder",
+    "what_happened": "Head keeper and Heritage Trust supervisor Alistair Vass has been found dead in the cistern alcove of the lighthouse engine room, his body partially covered by a tarpaulin. He has suffered severe blows to the back of his skull. The storm has cut off all communication with the mainland and no one can leave the island.",
+    "when": "Between 21:00 and 22:30 on the night of 27 October",
+    "initial_discovery": "Maintenance technician Niall Urquhart found the body at approximately 07:00 when he went to check the engine gauges. He raised the alarm and all occupants of the station were gathered in the keeper's cottage common room."
+  },
+  "characters": [
+    {
+      "name": "Alistair Vass",
+      "role": "victim",
+      "occupation": "Senior Heritage Trust Inspector and former Head Keeper",
+      "motive": "N/A",
+      "alibi": "N/A",
+      "secret": "Vass falsified three years of maintenance inspection logs to conceal his repeated failure to authorise repairs to the lantern-gallery railing. A keeper died after the railing gave way; Vass buried the paperwork and was never held responsible.",
+      "bio": "Alistair Vass is a compact, weathered man in his late fifties who has spent most of his adult life in lighthouse administration. He carries himself with the quiet authority of someone who has never had his judgment seriously questioned, and he expects deference. He came to Eilean M\u00f2r to sign off on a Heritage Trust renovation assessment."
+    },
+    {
+      "name": "Morag Gillies",
+      "role": "suspect",
+      "occupation": "Heritage Trust Architectural Surveyor",
+      "motive": "Vass's negligence caused her mother Catriona Gillies's fatal fall three years ago; she has now discovered he falsified records to escape accountability and is about to be promoted.",
+      "alibi": "Claims she was in her bunk in the cottage dormitory reading from 21:00 until she heard the alarm at 07:00, and that no one disturbed her.",
+      "secret": "Morag has been quietly assembling a private dossier on Vass's maintenance failures for two years. She brought copies of original engineering reports to compare against the official logs during this inspection, intending to expose him \u2014 but she has told no one this.",
+      "bio": "Morag Gillies is a precise, self-contained woman in her mid-thirties with close-cropped red hair and an unsettling stillness about her. She joined the Heritage Trust after a decade as a structural engineer and is regarded as exceptionally thorough. She rarely raises her voice and never wastes words, which people find either reassuring or faintly unnerving."
+    },
+    {
+      "name": "Declan Harte",
+      "role": "suspect",
+      "occupation": "Trust Grants Administrator",
+      "motive": "Vass had threatened to report Declan for approving an inflated materials invoice from a contractor who is Declan's cousin \u2014 a disciplinary matter that could cost him his position.",
+      "alibi": "Claims he was playing cards with Fiona Strang in the cottage common room from 20:30 until after 23:00.",
+      "secret": "Declan has been routing small Heritage Trust procurement contracts to his cousin's firm for eighteen months. The total involved is under six thousand pounds, but it is enough to constitute a conduct breach. He has been trying to repay the differential quietly before anyone audits it.",
+      "bio": "Declan Harte is a broad-shouldered, affable Irishman in his early forties who has worked for the Trust's Edinburgh office for a decade. He talks easily and laughs often, and his sociability is genuine \u2014 he is the kind of person who learns the barista's name. He came to the island to oversee the budget side of the renovation assessment."
+    },
+    {
+      "name": "Fiona Strang",
+      "role": "suspect",
+      "occupation": "Trust Communications Officer and Photographer",
+      "motive": "Vass had blocked Fiona's application for a senior post three times, and she had recently learned he wrote a private note characterising her as 'unsuitable for leadership' \u2014 killing a career she had spent fifteen years building.",
+      "alibi": "Claims she was playing cards with Declan Harte in the cottage common room from 20:30 until after 23:00.",
+      "secret": "Fiona has been photographing the falsified maintenance log pages with her professional camera without authorisation, planning to leak them to a Scottish heritage journalist. She does not yet know what the logs prove about Catriona Gillies.",
+      "bio": "Fiona Strang is a wiry woman in her late thirties with an observational quality that makes her seem perpetually on the edge of saying something she has decided not to say. She is genuinely talented with a camera and has produced the Trust's most-shared archive material. She tends to occupy corners of rooms and watch what happens in the middle of them."
+    },
+    {
+      "name": "Niall Urquhart",
+      "role": "suspect",
+      "occupation": "Lighthouse Maintenance Technician",
+      "motive": "Vass had filed a formal performance warning against Niall six weeks earlier, citing sloppy work on a foghorn overhaul \u2014 an accusation Niall considers fabricated to justify replacing him with a cheaper contractor.",
+      "alibi": "Claims he was alone in the engine room from 19:30 to 21:00 running scheduled gauge checks, then went directly to the dormitory and was asleep by 21:30. Fingal MacAulay saw him in the engine room at 20:45.",
+      "secret": "Niall has been secretly recording his conversations with Vass on his phone for the past two months, building a case for a wrongful-discipline grievance. The recordings also capture Vass saying things about the maintenance logs that Niall does not fully understand but has kept.",
+      "bio": "Niall Urquhart is a lean, slightly anxious man in his late twenties who knows lighthouse machinery better than most and knows it. He grew up on the mainland coast, has been working for the Trust for four years, and is proud of a job he feels is poorly understood by people in offices. He becomes clipped and literal under pressure.",
+      "statement": null,
+      "reveals": null
+    },
+    {
+      "name": "Fingal MacAulay",
+      "role": "witness",
+      "occupation": "Relief Keeper and Station Caretaker",
+      "motive": "N/A",
+      "alibi": "Was in the cottage kitchen from 20:00 making tea and doing dishes, then sat in the common room doorway from approximately 21:15 listening to the storm, before going to bed around 22:45.",
+      "secret": "Fingal is partially deaf in his left ear following a foghorn accident and compensates by watching people's movements and lips more carefully than they realise. He notices things.",
+      "bio": "Fingal MacAulay is a retired keeper in his late sixties who has agreed to act as the station caretaker during the Trust's renovation work. He is a slow-moving, unhurried man who treats the island with the undemonstrative affection of a long marriage. He has lived on or near this lighthouse for most of his adult life and is the only person here who considers it home.",
+      "statement": "Around half past nine I was sitting by the common room door. Morag came in from outside \u2014 from the direction of the engine-room path, not the outhouse \u2014 and her jacket sleeves were dark and wet to the elbow, well above where rain alone would have caught her. She said she'd been for air, but the wind was up something terrible. I also saw Niall come in from the engine room at about quarter to nine, before that \u2014 he went straight past me to the dormitory.",
+      "reveals": [
+        "E5",
+        "E6"
+      ]
+    },
+    {
+      "name": "Dr. Catriona Beaton",
+      "role": "witness",
+      "occupation": "Trust Heritage Conservation Officer",
+      "motive": "N/A",
+      "alibi": "Was in the cottage common room from approximately 19:00, reading and making notes; she did not leave until she went to bed at 23:30.",
+      "secret": "Catriona Beaton was briefly in a relationship with Vass four years ago and ended it when she discovered he had been simultaneously pursuing another colleague. She finds his professional authority galling but has maintained a formal working relationship.",
+      "bio": "Dr. Catriona Beaton is a composed, methodical woman in her late forties who specialises in the conservation of industrial heritage structures. She has an academic's habit of precise citation and becomes visibly impatient with imprecision in others. She came to Eilean M\u00f2r to assess the lantern room and gallery stonework.",
+      "statement": "I was in the common room the entire evening. Declan and Fiona were playing cards at the table from about half past eight \u2014 I can be certain of the time because I checked my phone when they started because the noise was distracting me. They were both there when I went to bed after half eleven. I also want it noted that I saw Morag's bunk was empty when I passed the dormitory at around ten to check on the others after the wind peaked.",
+      "reveals": [
+        "E1",
+        "E3"
+      ]
+    },
+    {
+      "name": "Robbie Dall",
+      "role": "witness",
+      "occupation": "Trust Procurement Clerk (junior staff, island for a site inventory)",
+      "motive": "N/A",
+      "alibi": "Was seasick from the crossing and spent most of the day in his bunk; arose briefly around 21:00 to get water from the kitchen and returned to bed.",
+      "secret": "Robbie overheard part of an argument between Vass and Morag that afternoon \u2014 Vass told her to 'let the past stay buried' \u2014 but said nothing because he is on a probationary contract and did not want to be seen as causing trouble.",
+      "bio": "Robbie Dall is a pale, quietly observant young man in his mid-twenties on only his second Heritage Trust site visit. He has the slightly startled quality of someone who expected an office job and got an island in a gale instead. He is not unfriendly but chooses his moments to speak.",
+      "statement": "I got up for water around nine o'clock. The corridor outside the kitchen was dim but I could hear voices from the direction of the engine room \u2014 one of them was Mr. Vass, I know his voice. The other voice was a woman's, lower and steadier, and I heard Vass say something like 'this isn't the time or the place' and then it went quiet. I didn't look down the corridor. I went back to bed.",
+      "reveals": [
+        "E8"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "Card-Game Witness Confirmation (Declan Harte)",
+      "description": "Dr. Catriona Beaton states she observed Declan Harte at the card table in the common room from 20:30 until she retired at 23:30. Her account is unprompted and specific about timing. This places Declan continuously in the common room during the entire window of the murder.",
+      "type": "testimonial",
+      "relevance": "supporting",
+      "supports": [
+        "S6"
+      ],
+      "exonerates": [
+        "Declan Harte"
+      ],
+      "implicates": []
+    },
+    {
+      "id": "E2",
+      "name": "Playing Card Deck with Declan's Fingerprints",
+      "description": "A worn deck of playing cards recovered from the common room table carries fresh fingerprints from both Declan Harte and Fiona Strang on the top and bottom cards, consistent with handling during a game. A partial score sheet in Declan's handwriting records multiple rounds through the evening. The physical evidence corroborates both players' presence throughout the relevant period.",
+      "type": "physical",
+      "relevance": "supporting",
+      "supports": [
+        "S6"
+      ],
+      "exonerates": [
+        "Declan Harte"
+      ],
+      "implicates": []
+    },
+    {
+      "id": "E3",
+      "name": "Card-Game Witness Confirmation (Fiona Strang)",
+      "description": "Dr. Catriona Beaton's statement also places Fiona Strang at the same card table from 20:30 until 23:30 without interruption. She is specific that neither player left the room during the evening. This independently corroborates Fiona's alibi.",
+      "type": "testimonial",
+      "relevance": "supporting",
+      "supports": [
+        "S6"
+      ],
+      "exonerates": [
+        "Fiona Strang"
+      ],
+      "implicates": []
+    },
+    {
+      "id": "E4",
+      "name": "Fiona's Camera Memory Card \u2014 Timestamped Photographs",
+      "description": "Fiona Strang's professional camera contains a sequence of interior photographs timestamped between 20:18 and 20:26 showing the common room and card table setup, with Declan visible in one frame. The camera's metadata has not been altered. The sequence establishes she was in the common room before 20:30 and the card game was already in progress.",
+      "type": "physical",
+      "relevance": "supporting",
+      "supports": [
+        "S6"
+      ],
+      "exonerates": [
+        "Fiona Strang"
+      ],
+      "implicates": []
+    },
+    {
+      "id": "E5",
+      "name": "Fingal's Testimony: Morag Returning Wet-Sleeved",
+      "description": "Fingal MacAulay reports seeing Morag Gillies enter the cottage from the direction of the engine-room path at approximately 21:30, with her jacket sleeves wet to the elbow \u2014 above the line rain would reach at the angle she was walking. She told him she had been out for air. His account is specific about her direction of approach and her wet clothing.",
+      "type": "testimonial",
+      "relevance": "critical",
+      "supports": [
+        "S5"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Morag Gillies"
+      ]
+    },
+    {
+      "id": "E6",
+      "name": "Fingal's Testimony: Niall's Engine-Room Departure",
+      "description": "Fingal MacAulay states he saw Niall Urquhart come in from the engine room at approximately 20:45 and go straight to the dormitory. This directly corroborates Niall's alibi and contradicts any theory placing him at the engine room after that time. It also establishes the engine room was unoccupied between roughly 21:00 and whenever the murder occurred.",
+      "type": "testimonial",
+      "relevance": "supporting",
+      "supports": [
+        "S6"
+      ],
+      "exonerates": [
+        "Niall Urquhart"
+      ],
+      "implicates": []
+    },
+    {
+      "id": "E7",
+      "name": "Falsified Maintenance Logs",
+      "description": "A bound maintenance log for Eilean M\u00f2r covering the three years prior to Catriona Gillies's fatal fall contains entries in Vass's handwriting that contradict original engineering inspection reports Morag brought to the island. The original reports flag the lantern-gallery railing as requiring urgent replacement; the official logs record it as 'inspected and satisfactory.' The discrepancy is systematic and cannot be attributed to error.",
+      "type": "documentary",
+      "relevance": "critical",
+      "supports": [
+        "S3"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Morag Gillies"
+      ]
+    },
+    {
+      "id": "E8",
+      "name": "Robbie Dall's Overheard Argument",
+      "description": "Robbie Dall reports hearing a woman's voice in quiet, controlled conversation with Vass near the engine-room corridor at approximately 21:00, shortly before the estimated time of death. Vass was heard saying 'this isn't the time or the place.' The exchange ended abruptly. The voice's low, steady quality is consistent with witness descriptions of Morag Gillies's manner of speaking.",
+      "type": "testimonial",
+      "relevance": "supporting",
+      "supports": [
+        "S4",
+        "S5"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Morag Gillies"
+      ],
+      "narrows": [
+        "Morag Gillies",
+        "Fiona Strang"
+      ]
+    },
+    {
+      "id": "E9",
+      "name": "Boot Print in Engine-Room Oil",
+      "description": "A partial boot print in a spill of gear oil beside the clockwork drive housing in the engine room does not match the heavy-tread work boots worn by Niall Urquhart. The print is narrower, with a herringbone sole pattern consistent with walking boots of a size 5\u20136. Morag Gillies wears size 5.5 walking boots with a herringbone sole; her boots are in the dormitory drying rack. The sole pattern is distinct from those of the other occupants.",
+      "type": "physical",
+      "relevance": "critical",
+      "supports": [
+        "S5"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Morag Gillies"
+      ],
+      "narrows": [
+        "Morag Gillies",
+        "Fiona Strang"
+      ]
+    },
+    {
+      "id": "E10",
+      "name": "Missing Iron Counterweight",
+      "description": "The lantern clockwork drive in the engine room is missing one of its two iron counterweights from the winding mechanism \u2014 a cylindrical iron object approximately 28 cm long and weighing roughly 2.4 kg. The housing cradle shows fresh scrape marks indicating recent removal. The weight has not been found anywhere in the engine room or cistern alcove. The pathologist's provisional assessment notes injuries consistent with a cylindrical blunt instrument.",
+      "type": "physical",
+      "relevance": "critical",
+      "supports": [
+        "S2"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Morag Gillies"
+      ]
+    },
+    {
+      "id": "E11",
+      "name": "Drag Mark and Blood Smear on Engine-Room Floor",
+      "description": "A smeared arc of blood begins near the clockwork drive housing and terminates at the entrance to the cistern alcove \u2014 a distance of approximately four metres. The smear is directional and consistent with a body being dragged. The primary assault therefore occurred at the drive housing, not where the body was found. Traces of the same blood type are present on the stone threshold between the two areas.",
+      "type": "physical",
+      "relevance": "critical",
+      "supports": [
+        "S1"
+      ],
+      "exonerates": [],
+      "implicates": []
+    },
+    {
+      "id": "E12",
+      "name": "Niall's Phone Recording \u2014 Vass's Log Admission",
+      "description": "Among Niall Urquhart's covert phone recordings is a fragment from three weeks prior in which Vass, in evident frustration, says: 'The paperwork from before the Gillies incident is what it needs to be \u2014 I made sure of that.' Vass does not elaborate, and Niall did not understand its significance. The recording corroborates the documentary evidence of falsification and confirms Vass was aware of what he had done.",
+      "type": "documentary",
+      "relevance": "supporting",
+      "supports": [
+        "S3"
+      ],
+      "exonerates": [],
+      "implicates": []
+    },
+    {
+      "id": "E13",
+      "name": "Interference Pattern in Radio Transmitter Log",
+      "description": "The station's emergency radio log shows a burst of static and a brief carrier-wave interruption between 21:12 and 21:19 \u2014 consistent with a large ferrous object being moved near the transmitter housing, which is mounted on the wall adjacent to the clockwork drive. The interruption corresponds to the estimated time of the attack. This was initially attributed to storm interference with the antenna.",
+      "type": "documentary",
+      "relevance": "red_herring",
+      "supports": [],
+      "exonerates": [],
+      "implicates": []
+    },
+    {
+      "id": "E14",
+      "name": "Private Dossier in Morag's Survey Case",
+      "description": "Inside Morag Gillies's surveying document case is a manila folder containing photocopied original engineering inspection reports for Eilean M\u00f2r dated three years prior, annotated in Morag's handwriting with comparisons to the official log entries. Several pages are flagged with the notation 'COMPARE LOG p.47' and similar. The dossier was assembled before the trip and demonstrates that Morag came to the island knowing what she intended to find.",
+      "type": "documentary",
+      "relevance": "supporting",
+      "supports": [
+        "S4"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Morag Gillies"
+      ]
+    }
+  ],
+  "investigation_areas": [
+    {
+      "id": "A1",
+      "name": "Engine Room",
+      "description": "A low-ceilinged stone chamber smelling of diesel and grease, dominated by the clockwork lantern drive mechanism and two diesel generators. Gauges, tools, and oil rags occupy every available surface.",
+      "investigation_prompt": "The primary murder scene. Players can find the drag marks and blood smear on the floor, the missing counterweight housing with scrape marks, and the boot print in the oil spill. The radio log with its interference entry is mounted on the wall.",
+      "discovery": "A partial boot print pressed into a dark puddle of gear oil beside the clockwork drive housing, and a broad smear of dried blood arcing across the stone floor toward the cistern alcove. One of the two iron counterweight cradles in the drive mechanism is empty, its cradle showing fresh silver scratch marks.",
+      "analysis": "The boot print's herringbone sole pattern and dimensions \u2014 approximately 23.5 cm in length \u2014 match the walking boots belonging to Morag Gillies currently in the dormitory drying rack. The blood smear confirms the drive housing as the primary assault location.",
+      "reveals": [
+        "E9",
+        "E11"
+      ]
+    },
+    {
+      "id": "A2",
+      "name": "Keeper's Log Room and Document Store",
+      "description": "A narrow room off the cottage hallway lined with shelves of bound ledgers, logbooks, and maintenance records going back decades. A folding table holds this year's open inspection files.",
+      "investigation_prompt": "The maintenance logs are here \u2014 both the official bound log and, if players think to look in Morag's survey case (also stored here), her private dossier with the original engineering reports. Niall's phone is not here but cross-referencing the log pages will reveal the falsifications.",
+      "discovery": "The official maintenance log for the three years prior to the Gillies fatal accident lies open on the table, alongside a manila folder from a survey case that contains photocopied original engineering inspection reports annotated in a precise hand \u2014 the same reports the log entries contradict.",
+      "analysis": "Comparison of the two documents confirms the official log entries recording the gallery railing as 'satisfactory' were written over or replaced after the original inspection reports flagged it as dangerously unsafe. The annotated folder belongs to Morag Gillies.",
+      "reveals": [
+        "E7",
+        "E14"
+      ]
+    },
+    {
+      "id": "A3",
+      "name": "Cottage Common Room",
+      "description": "A low-beamed room with a coal stove, mismatched furniture, and the particular warmth of a space that has been lived in by many people over many years. A card table near the window is still littered with cards and a scoring pad.",
+      "investigation_prompt": "The alibi corroboration scene for Declan and Fiona. The playing card deck and score sheet are here. Fiona's camera is on the shelf above the table. Dr. Catriona Beaton is likely to be found here and will give her statement when questioned.",
+      "discovery": "A worn deck of playing cards on the table, a handwritten score sheet in two different inks recording multiple rounds of a two-player game, and a professional camera on the shelf above, its strap still damp from the previous evening.",
+      "analysis": "Fingerprint analysis of the playing cards returns prints from both Declan Harte and Fiona Strang on multiple cards throughout the deck. The camera's metadata shows a timestamped sequence of interior photographs taken between 20:18 and 20:26, placing Fiona in the common room before 20:30.",
+      "reveals": [
+        "E2",
+        "E4"
+      ]
+    },
+    {
+      "id": "A4",
+      "name": "Lantern Gallery and Exterior Railing",
+      "description": "The iron-railed gallery encircling the lantern room at the top of the lighthouse tower, exposed entirely to the storm. The original railing is partially replaced with newer steel \u2014 the repair evidently made after a previous failure.",
+      "investigation_prompt": "This is where Catriona Gillies died. The repaired railing section is visible and clearly newer than the surrounding ironwork. There is no direct evidence of the murder here, but context for the motive. A red herring: wind noise and vibration through the tower create an unsettling sound that might make a player think someone was here during the night \u2014 it is simply the storm.",
+      "discovery": "A section of the outer railing approximately two metres wide is visibly newer than the surrounding ironwork \u2014 bright galvanised steel against the older rusted cast iron \u2014 and a small brass Heritage Trust repair plate is bolted to its base post, dated fourteen months ago.",
+      "analysis": "The repair plate records the railing replacement as a 'priority structural intervention following historic failure,' referencing an incident report number. Cross-referencing that number with the station log confirms the railing failed three years ago, resulting in the fatal fall of keeper Catriona Gillies.",
+      "reveals": [
+        "E13"
+      ]
+    },
+    {
+      "id": "A5",
+      "name": "Dormitory and Personal Belongings",
+      "description": "A long room with six iron-framed bunks, personal bags stowed beneath, and wet-weather clothing hung on pegs along one wall. The room smells of damp wool and the ghost of someone's supper.",
+      "investigation_prompt": "Morag's bunk area and belongings. Her walking boots are on the drying rack \u2014 players can examine the sole pattern. There is nothing hidden, but the boots are significant physical evidence. Niall's phone, if players have been directed to it by the lead, will also be found in his bag.",
+      "discovery": "A pair of women's walking boots on the drying rack beside the nearest bunk, size 5.5, with a distinctive herringbone sole pattern. The soles are partially cleaned but a dark residue in the deepest grooves of the heel has not fully dried \u2014 it smells faintly of machine oil.",
+      "analysis": "The residue in the boot treads is consistent with the gear oil found in the engine-room boot print. The herringbone pattern matches the partial impression photographed at the primary crime scene.",
+      "reveals": [
+        "E9",
+        "E10"
+      ]
+    }
+  ],
+  "leads": [
+    {
+      "id": "L1",
+      "title": "The Maintenance Log Discrepancy",
+      "brief": "Morag Gillies mentioned to Robbie Dall yesterday afternoon that she had found 'something important' in the old maintenance records she was comparing to her own files.",
+      "investigation_prompt": "Following this lead directs players to the log room and Morag's survey dossier. They will find the falsified logs and the private dossier, establishing Vass's culpability in Catriona Gillies's death and Morag's knowledge of it.",
+      "reveals": [
+        "E7",
+        "E14"
+      ]
+    },
+    {
+      "id": "L2",
+      "title": "Niall's Recordings",
+      "brief": "Niall Urquhart told investigators he has been recording conversations with Vass on his phone \u2014 'for my own protection' \u2014 and one of them might be relevant.",
+      "investigation_prompt": "Following this lead and examining Niall's phone produces the fragment of Vass's admission about the paperwork 'from before the Gillies incident.' It corroborates the log falsification and puts Vass's knowledge of his own actions on the record.",
+      "reveals": [
+        "E12"
+      ]
+    },
+    {
+      "id": "L3",
+      "title": "The Radio Interruption",
+      "brief": "The station's emergency radio log shows an unexplained signal interruption between 21:12 and 21:19 \u2014 the period of the murder. Could it have been deliberately caused?",
+      "investigation_prompt": "This is the red herring lead. Following it up produces the radio interference entry, which initially appears to suggest deliberate jamming. Further investigation shows the transmitter housing is mounted adjacent to the clockwork drive, and large ferrous objects moved nearby routinely cause this pattern \u2014 including the counterweight being removed. It is incidental to the murder, not a deliberate act.",
+      "reveals": [
+        "E13"
+      ]
+    },
+    {
+      "id": "L4",
+      "title": "The Argument Overheard Before Lights Out",
+      "brief": "Robbie Dall appears shaken and has hinted to Fingal MacAulay that he heard something in the corridor the night before \u2014 something involving Mr. Vass.",
+      "investigation_prompt": "Interviewing Robbie directly produces his statement about overhearing a woman's low, steady voice in controlled conversation with Vass near the engine-room corridor at approximately 21:00. This points toward Morag (the voice description fits; Fiona is confirmed in the common room) and establishes a confrontation just before the murder window.",
+      "reveals": [
+        "E8"
+      ]
+    }
+  ],
+  "gameplay_notes": {
+    "difficulty": "HARD",
+    "estimated_playtime": "60\u201375 minutes",
+    "key_twists": [
+      "Morag's alibi appears solid at first \u2014 she made little impression on anyone that evening \u2014 but Fingal's careful observation of her wet sleeves and direction of approach is the crack in it.",
+      "The red herring of the radio interference looks like a technical clue pointing toward a deliberate, planned murder but is entirely incidental \u2014 following it up confirms the timeline without implicating anyone.",
+      "The motive only fully crystallises when players connect Catriona Gillies (dead keeper, mentioned in documents) to Morag Gillies (suspect, surname matching) \u2014 the game does not announce this connection.",
+      "Morag's private dossier proves she came to the island knowing what she would find, transforming the picture from a crime of sudden passion to one of premeditation \u2014 but the dossier is only found if players search the document room."
+    ]
+  },
+  "_provenance": {
+    "recipe": "corpus_6f1d73a4(1) + corpus_1d3f5518(2) + corpus_1e7e515d(3) + corpus_e8901b69(4) + corpus_40aaa599(5) + corpus_31d7d8ff(6) + corpus_a3e3316f(7) + corpus_ed267441(8)",
+    "slots": [
+      {
+        "source_id": "corpus_6f1d73a4",
+        "part_index": 1,
+        "part_type": "crime_type"
+      },
+      {
+        "source_id": "corpus_1d3f5518",
+        "part_index": 2,
+        "part_type": "setting_element"
+      },
+      {
+        "source_id": "corpus_1e7e515d",
+        "part_index": 3,
+        "part_type": "motive"
+      },
+      {
+        "source_id": "corpus_e8901b69",
+        "part_index": 4,
+        "part_type": "suspect_archetype"
+      },
+      {
+        "source_id": "corpus_40aaa599",
+        "part_index": 5,
+        "part_type": "red_herring"
+      },
+      {
+        "source_id": "corpus_31d7d8ff",
+        "part_index": 6,
+        "part_type": "reveal_mechanic"
+      },
+      {
+        "source_id": "corpus_a3e3316f",
+        "part_index": 7,
+        "part_type": "social_dynamic"
+      },
+      {
+        "source_id": "corpus_ed267441",
+        "part_index": 8,
+        "part_type": "alibi"
+      }
+    ],
+    "target_setting": "A killing at a lighthouse-keeping station on a storm-cut island in the Hebrides",
+    "generated_title": "",
+    "craft_guidance": [
+      {
+        "concept": "The Closed World",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "COARSE PARTS (C1\u2013C6) \u2014 Structural Skeleton",
+        "confidence": "canonical",
+        "source": "James: \"closed circle of suspects\"; Rankin: Edinburgh as character; French: location as first decision"
+      },
+      {
+        "concept": "The Crime",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "COARSE PARTS (C1\u2013C6) \u2014 Structural Skeleton",
+        "confidence": "canonical",
+        "source": "Christie (start with method), P.D. James (central mysterious crime), Knox (rule 4: method must be plausible)"
+      },
+      {
+        "concept": "The Culprit + Motive",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "COARSE PARTS (C1\u2013C6) \u2014 Structural Skeleton",
+        "confidence": "canonical",
+        "source": "Christie: start with murderer and motive, then build outward; worked backward from the solution"
+      },
+      {
+        "concept": "Suspect Architecture",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "MEDIUM-FINE PARTS (M1\u2013M8) \u2014 Tactical Construction Elements",
+        "confidence": "canonical",
+        "source": "James: \"each with motive, means and opportunity\"; Knox: criminal must appear early"
+      },
+      {
+        "concept": "The Alibi",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "MEDIUM-FINE PARTS (M1\u2013M8) \u2014 Tactical Construction Elements",
+        "confidence": "canonical",
+        "source": "Christie notebooks: alibi construction is explicit planning step"
+      }
+    ]
+  },
+  "opening_narration": "Eilean M\u00f2r is half a mile of bare rock twelve nautical miles from the nearest living soul, and this morning it has one fewer of those. At seven o'clock, maintenance technician Niall Urquhart went down to the engine room to check the gauges and found the body of Alistair Vass, Head Keeper and Heritage Trust supervisor, lying in the cistern alcove beneath a tarpaulin, dead from blows to the back of his skull. Outside, a Force 10 gale has been tearing at the island for thirty-six hours; the station's rigid inflatable lies staved against the rocks, the jetty approach is lethal, and maritime rescue has confirmed there will be no evacuation before morning at the earliest. The four remaining members of the inspection party \u2014 surveyor Morag Gillies, grants administrator Declan Harte, communications officer Fiona Strang, and Urquhart himself \u2014 are gathered now in the keeper's cottage common room, the wind pressing hard against the glass, and the lighthouse dark for the first time in a hundred and twenty years.",
+  "_coherence": {
+    "passed": true,
+    "blocking": 0,
+    "warnings": 0
+  }
+}

@@ -203,10 +203,20 @@ CASES = [
      with_glove(["Ada Vance", "Hercule Poirot"]),
      ["who are not suspects"]),
 
-    ("a narrowing clue whose own prose gives the inference away",
+    # The shape that actually came out of a real generation: the DATA is honest
+    # (2 of 4, culprit included) and the prose names one of them as a match, so
+    # whoever is dealt it wins without speaking to anyone. Structurally
+    # invisible, which is why this check reads the prose.
+    ("a narrowing clue whose prose names somebody it still leaves possible",
      with_glove(["Ada Vance", "Boris Kell"],
-                description="A bloody glove, so it was either Ada Vance or Boris Kell."),
-     ["must state the fact and let the player draw the line"]),
+                description="A bloody glove, man's size large. Ada Vance takes that size."),
+     ["turns a narrowing into an accusation"]),
+
+    ("naming a suspect the fact rules OUT is fine, not a leak",
+     with_glove(["Ada Vance", "Boris Kell"],
+                description="A bloody glove, man's size large — far too big for the "
+                            "narrow hands of Cora Innes."),
+     []),
 
     ("narrowing that has become load-bearing",
      with_glove(["Ada Vance", "Boris Kell"],

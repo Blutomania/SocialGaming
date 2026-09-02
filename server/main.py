@@ -267,11 +267,29 @@ EVIDENCE (include at least 9 items total — planted to serve the chain, written
     every suspect, sharpen it until it cannot — a rifle is not a narrowing; a LEFT-HANDED shooter
     is — or drop "narrows" from that item.
       * Two or three items should carry it. Most items should not.
-      * WRITE THE FACT, NEVER THE INFERENCE. The description says "a bloody glove, man's size
-        large, wedged behind the generator housing". It must NEVER say "so it was one of the men",
-        never name the people it narrows to, and never hint that a list exists. The player looks
-        at the cast and draws the line themselves — that is the entire pleasure of the mechanic,
-        and stating it destroys it.
+      * WRITE THE FACT. NAME NOBODY IT POINTS TO. The description gives the physical detail and
+        stops. It must never say "so it was one of the men", never hint a list exists, and — this
+        is the one that actually goes wrong — never say that the fact MATCHES a particular person.
+        The player looks at the cast and draws the line; that is the whole pleasure, and one name
+        destroys it.
+
+        THIS IS THE REAL FAILURE, TAKEN FROM A GENERATION THAT MADE IT. A boot print narrowing to
+        two people was written as:
+
+            WRONG: "A partial print, herringbone sole, size 5-6. Morag Gillies wears size 5.5
+                    walking boots with a herringbone sole."
+            RIGHT: "A partial print in the gear oil, narrower than a work boot — a herringbone
+                    walking sole, no bigger than a size 6."
+
+        The wrong one is not a narrowing clue at all. It is an accusation, and whoever is dealt it
+        wins without speaking to anyone. Same failure, second example:
+
+            WRONG: "...a woman's voice, low and steady, consistent with how Morag Gillies speaks."
+            RIGHT: "...a woman's voice, low and steady, too quiet to place."
+
+        You MAY name a suspect the fact rules OUT — "the print does not match the heavy work boots
+        Niall Urquhart wears" is good writing and good play. What you may never do is name anyone
+        the fact still leaves possible.
       * IT MUST BE TRUE. If the glove is a man's, the culprit is a man, and no woman wore it. A
         player who reasons exactly as the clue invites must not lose for it — that is the worst
         outcome a mystery can produce, and this rule is M3 Clue Fairness in the craft corpus

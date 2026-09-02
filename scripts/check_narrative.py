@@ -254,8 +254,10 @@ def audit(path):
             spoiled = [n for n in named if n and n in blurb]
             if spoiled:
                 report["links"].append(
-                    f"{e.get('id')} is a narrowing clue whose own text names {spoiled}; it must "
-                    f"state the fact and let the player draw the line")
+                    f"{e.get('id')} is a narrowing clue whose own text names {spoiled}, somebody "
+                    f"it still leaves possible -- that turns a narrowing into an accusation and "
+                    f"whoever is dealt it wins without speaking to anyone. Naming a suspect the "
+                    f"fact rules OUT is fine; naming one it does not is not")
 
         # Narrowing must never be load-bearing: elimination alone has to reach
         # the culprit, or withholding one glove makes the case unprovable.

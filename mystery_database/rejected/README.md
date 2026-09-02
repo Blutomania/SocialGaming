@@ -22,7 +22,9 @@ refuses them outright. `totality` is *playable and not good enough*, which is pr
 first mystery whose deal came out clean on the first attempt. `generated/` means fit to serve, and
 a monopoly in a third of hoarding patterns is not.
 
-**Both passed all 26 coherence rules.** That is the point worth keeping: the
+| `the_light_that_went_out` | passed, 0 blocking, **0 warnings** | **Playable and spoiled in prose.** Mechanically the best generation to date — feasibility clean, proof surviving 81/81 hoarding patterns, a monopoly on proof in 0 of 81. Both narrowing clues carry honest data (2 of 4 suspects, culprit included) and then **name the culprit in their own description**: *"Morag Gillies wears size 5.5 walking boots with a herringbone sole"*. Whoever is dealt it wins without speaking to anyone. Nothing structural can see this — the fields are correct and the prose betrays them — which is why `check_narrative.py` reads the description as well as the links. |
+
+**All of these passed the coherence rules.** That is the point worth keeping: the
 coherence engine checks whether the story hangs together, and neither of these
 failures is a story problem. They are game-structure problems, and they needed
 their own checks.
