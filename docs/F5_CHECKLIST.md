@@ -388,6 +388,21 @@ is from March and 16 have generated cleanly since, but this run is the confirmat
 
 - **Godot 4.7 modifying files.** Opening a 4.6 project in 4.7 re-saves `godot/project.godot` and
   `godot/scenes/ui/MainMenu.tscn`, which then show as modified in `git status`.
+
+  > **It also DELETES every `;` comment in `project.godot` — 21 lines of them.** Verified on a real
+  > 4.7 open, Session 40. The engine rewrites the file from its own in-memory config and comments
+  > are not part of that, so they do not survive. It also bumps `config/features` to `"4.7"` and
+  > drops the `[rendering]` section.
+  >
+  > **Discard that diff; do not commit it.** `git checkout -- godot/project.godot`. Committing it
+  > deletes the notes explaining why `config/icon` is unset, why `Style` must be the last autoload,
+  > and why the ground colour is set there rather than painted by a node — and it restores an
+  > `config/icon` pointing at a file that has never existed, which puts a load error back into the
+  > Output panel on every open.
+  >
+  > **Those comments are a convenience, not the only copy.** The icon decision is `CLAUDE.md`
+  > item 17, the autoload ordering rule is in `CLAUDE.md`'s Godot notes, and the ground colour is
+  > decided in `palette.py`. Treat `project.godot` as a file that cannot hold documentation.
 - **Untracked `.uid` files.** Godot generates these sidecars for scripts and assets that lack them.
   They are meant to be committed — Godot 4.4+ expects it.
 - **A default window and taskbar icon.** `config/icon` is deliberately unset. It used to name a

@@ -248,6 +248,10 @@ before trusting it — this has happened before and cost a reconciliation (items
 - **Testing single-player:** run the server (`cd server && uvicorn main:app --port 8000`), then F5.
 - **A fresh clone must be opened with Edit, not Run** — `.godot/` is a generated import cache and is
   not committed. `.uid` files *are* committed; Godot 4.4+ expects them.
+- **`project.godot` cannot hold documentation.** Opening the project in Godot 4.7 rewrites the file
+  from the engine's own config and **deletes all 21 `;` comment lines**, bumps `config/features` to
+  `"4.7"`, and drops `[rendering]`. Discard that diff rather than committing it — see
+  `docs/F5_CHECKLIST.md`. Every fact those comments carry has a durable home elsewhere.
 
 ### Three failure modes Godot will not tell you about
 
