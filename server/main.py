@@ -222,6 +222,11 @@ CHARACTERS (include 1 victim, EXACTLY 4 suspects, and 3–4 witnesses):
   - secret: CONCRETE FACT (≥ 2 sentences) anchoring interrogation questions.
   - motive (suspects): specific stake — financial, relational, reputational, or political. Never "—".
   - occupation: always present; must logically place the character in the closed world.
+  - bio: 2–3 sentences on WHO THIS PERSON IS, shown to players. Not their function in the puzzle —
+    their history, temperament, what they are like to be in a room with, how they came to be here.
+    Motive, alibi and secret already carry the mechanics; this is the part that makes a name into a
+    person somebody can suspect and feel bad about suspecting. No spoilers: never hint at guilt,
+    never restate the secret.
   - statement (WITNESSES ONLY): what this witness tells an investigator who questions them.
     2–4 sentences. It must be ACTIONABLE — it names a person, a place, a time or an object the
     player can do something with. Never atmosphere alone, never "I didn't see anything".
@@ -243,10 +248,10 @@ EVIDENCE (include at least 9 items total — planted to serve the chain, written
   - supports: the chain step ids this item is evidence FOR, e.g. ["S2"]. A red herring supports
     nothing and must use [] — it is the only kind of item that may.
   - exonerates: names of suspects this item clears. Use the exact character name.
-    AT MOST ONE NAME. This is the Clue rule: a card removes exactly one possibility, never
-    several at once. An item clearing two or three suspects is a solved case in a single object
-    — whoever finds it wins without anyone sharing anything, which deletes the game. Write the
-    alibi evidence one person at a time.
+    AT MOST ONE NAME. One piece of evidence rules out one person, never several at once. An
+    item clearing two or three suspects is a solved case in a single object — whoever is dealt it
+    wins without anyone sharing anything, which deletes the game. Write the alibi evidence one
+    person at a time: each alibi is its own document, witness or trace.
   - implicates: names of suspects this item points AT — SUSPICION, not proof. The culprit must be
     implicated by at least one item; a culprit arrived at only by elimination, with nothing
     positively pointing at them, reads as arbitrary. This is flavour and does not constrain the
@@ -362,6 +367,7 @@ Generate a complete mystery JSON with this exact structure:
       "motive": "string",
       "alibi": "string",
       "secret": "string",
+      "bio": "2–3 sentences: who this person is. Shown to players. No spoilers",
       "statement": "witnesses only — what they tell an investigator; true, actionable",
       "reveals": ["witnesses only — evidence ids this statement surfaces, e.g. E3"]
     }}

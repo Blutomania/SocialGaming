@@ -33,13 +33,13 @@ independent routes to each exoneration puts survival at 81/81, one route puts
 it at 75/81. The rule therefore lives in the generation prompt, and this
 constraint is what stops a mystery that ignores it from reaching a table.
 
-THE WORD IS "FINDING", NOT "CARD". docs/PLAYTEST_FLOW.md:139 draws the
-distinction precisely -- "the data is already CARD-SHAPED: a FINDING has a
-name, a description, a type, a relevance." A finding is the domain object; a
-card is one way a client might draw it. MYF's vocabulary (GameCard.jsx,
-CardHand.jsx) is about its UI, and borrowing it here would take the word from
-the layer that should own it. server/main.py already agrees: witness_findings,
-investigation_findings, lead_findings.
+THE WORD IS "FINDING", EVERYWHERE. Owner's instruction, twice. The domain
+object is a finding -- it has a name, a description, a type and a relevance,
+and server/main.py already agrees (witness_findings, investigation_findings,
+lead_findings). Borrowed game-shop vocabulary is not a synonym for it: this is
+a social deduction game, and describing the mechanic in the language of a deck
+makes it read as one. If a client one day draws a finding as a rectangle, that
+is that client's business and its word to choose.
 
 WHAT THIS DOES NOT DO. It does not judge whether a clue's prose actually
 supports the link it declares. A model can emit reveals: ["E3"] on a statement
@@ -273,9 +273,9 @@ def narrowed_by(findings: Sequence[Finding], mystery: dict,
     requires the culprit be implicated by something so the answer does not read
     as arbitrary, which makes single-name lists normal and correct. Read as a
     narrowing constraint, a single-name list says "only Brandt could have done
-    it", i.e. it is the answer printed on one card: whoever draws it wins alone
-    without anyone sharing anything, which is the exact failure the lighthouse
-    mystery was rejected for. `narrows` is a CONSTRAINT over a set and must name
+    it", i.e. one finding that is the whole answer: whoever is dealt it wins
+    alone without anyone sharing anything, which is the exact failure the
+    lighthouse mystery was rejected for. `narrows` is a CONSTRAINT over a set and must name
     at least two people; `implicates` keeps its old meaning untouched.
 
     Findings that implicate nobody narrow nothing and are skipped, so a set with
@@ -542,7 +542,7 @@ def _violations(hands: List[List[Finding]], mystery: dict,
 def proof_survives_hoarding(hands: List[List[Finding]], mystery: dict,
                            ev_by_id: Optional[Dict[str, dict]] = None,
                            hoard_allowance: int = DEFAULT_HOARD_ALLOWANCE) -> tuple:
-    """Can somebody still PROVE it after every player withholds their best card?
+    """Can somebody still PROVE it after every player withholds their best finding?
 
     OWNER'S DECISION, SESSION 39, AND THIS IS ITS MECHANICAL FORM: "the core of
     mystery solving is solving not guessing -- thus it has to be a race to
