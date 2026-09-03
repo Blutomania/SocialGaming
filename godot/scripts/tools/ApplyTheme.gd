@@ -41,8 +41,36 @@ const THEME_PATH: String = "res://assets/theme/cym_theme.tres"
 const SETTING: String = "gui/theme/custom"
 
 
+## Collected output. The Output panel scrolls and cannot be copied out of easily
+## — the owner ran this once, read it, and could not get the MISSES line back
+## (Session 40). So every line also goes to a file the terminal can read:
+##
+##     cat godot/apply_theme_report.txt
+##
+## The file is regenerated on every run and is gitignored; it is a transcript,
+## not a record.
+const REPORT_PATH: String = "res://apply_theme_report.txt"
+
+var _lines: PackedStringArray = []
+
+
+func _say(line: String) -> void:
+	print(line)
+	_lines.append(line)
+
+
+func _write_report() -> void:
+	var f := FileAccess.open(REPORT_PATH, FileAccess.WRITE)
+	if f == null:
+		print("  report  could not write %s" % REPORT_PATH)
+		return
+	f.store_string("\n".join(_lines) + "\n")
+	f.close()
+	print("  report  %s" % REPORT_PATH)
+
+
 func _run() -> void:
-	print("\n=== ApplyTheme ===")
+	_say("\n=== ApplyTheme ===")
 
 	var theme: Theme = _build()
 	if theme == null:
@@ -79,10 +107,10 @@ func _build() -> Theme:
 ## usually just "the editor has not finished its first scan", not a real fault.
 func _report_fonts(theme: Theme) -> void:
 	if theme.default_font == null:
-		print("  fonts   NOT loaded — every label will wear Godot's default face.")
-		print("          If this is a fresh checkout, let the import finish and re-run.")
+		_say("  fonts   NOT loaded — every label will wear Godot's default face.")
+		_say("          If this is a fresh checkout, let the import finish and re-run.")
 	else:
-		print("  fonts   Nunito Sans loaded (default_font_size %d)." % theme.default_font_size)
+		_say("  fonts   Nunito Sans loaded (default_font_size %d)." % theme.default_font_size)
 
 
 ## Every item Style.gd sets, looked up in the engine's own default theme.
@@ -118,7 +146,7 @@ func _validate(theme: Theme) -> PackedStringArray:
 			if not engine.has_stylebox(item, probe):
 				misses.append("stylebox  %s/%s" % [type_name, item])
 
-	print("  items   %d checked across %d theme types." % [checked, theme.get_type_list().size()])
+	_say("  items   %d checked across %d theme types." % [checked, theme.get_type_list().size()])
 	return misses
 
 
@@ -130,7 +158,7 @@ func _write(theme: Theme) -> void:
 	if err != OK:
 		push_error("ApplyTheme: could not write %s (error %d)." % [THEME_PATH, err])
 		return
-	print("  wrote   %s" % THEME_PATH)
+	_say("  wrote   %s" % THEME_PATH)
 
 	if String(ProjectSettings.get_setting(SETTING, "")) != THEME_PATH:
 		ProjectSettings.set_setting(SETTING, THEME_PATH)
@@ -138,21 +166,27 @@ func _write(theme: Theme) -> void:
 		if saved != OK:
 			push_error("ApplyTheme: could not save project.godot (error %d)." % saved)
 			return
-		print("  set     %s = %s" % [SETTING, THEME_PATH])
+		_say("  set     %s = %s" % [SETTING, THEME_PATH])
 	else:
-		print("  set     %s was already pointed here." % SETTING)
+		_say("  set     %s was already pointed here." % SETTING)
 
 	EditorInterface.get_resource_filesystem().scan()
 
 
 func _summarise(misses: PackedStringArray) -> void:
 	if misses.is_empty():
-		print("\n  MISSES  none — every theme item name is one the engine has.")
+		_say("\n  MISSES  none — every theme item name is one the engine has.")
 	else:
-		print("\n  MISSES  %d item(s) the engine does not have. Each is a line of" % misses.size())
-		print("          Style.gd doing nothing, and would have gone unnoticed:")
+		_say("\n  MISSES  %d item(s) the engine does not have. Each is a line of" % misses.size())
+		_say("          Style.gd doing nothing, and would have gone unnoticed:")
 		for miss: String in misses:
-			print("            %s" % miss)
+			_say("            %s" % miss)
 
-	print("\n  Reopen a scene to see the editor canvas pick the theme up.")
-	print("  Commit both %s and project.godot.\n" % THEME_PATH)
+	_say("")
+	_say("  To see it: click the 2D tab, then Scene -> Reload Saved Scene.")
+	_say("  An already-open scene keeps the theme it loaded until it is reloaded.")
+	_say("  Runtime does not read this file — Style.gd puts the theme on the")
+	_say("  scene-tree root and wins there — so a grey canvas is a preview")
+	_say("  problem, never a game problem. Press F5 to judge the real thing.")
+	_say("  Commit both %s and project.godot." % THEME_PATH)
+	_write_report()

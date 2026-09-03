@@ -216,7 +216,14 @@ editor canvas shows engine grey however much styling exists. This script calls t
 `Style.build_theme()` the game calls, saves the result to `res://assets/theme/cym_theme.tres`, and
 points the project's default theme at it.
 
-**Read three things in the Output panel:**
+**It also writes `godot/apply_theme_report.txt`** — the same output, in a file, because the Output
+panel scrolls and cannot be copied out of easily. Read it from the terminal:
+
+```bash
+cat godot/apply_theme_report.txt
+```
+
+**Read three things, in the panel or the file:**
 
 | Line | What it means |
 |---|---|
