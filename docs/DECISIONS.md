@@ -559,7 +559,7 @@ that the superseded text has become history and belongs here instead.
     to the title inherits whatever the current failure rate is. Worth one real generation run to
     confirm before building on top of it.
 
-18. **[OPEN — found Session 34, August 21 2026] A BLOCKING coherence report does not stop a
+18. **[CLOSED, Session 41 — September 3 2026] A BLOCKING coherence report does not stop a
     mystery being saved, served, or played.** Not a coherence-engine failure — the opposite. The
     engine catches this exactly: `P1.C4.culprit_not_in_characters`, severity `BLOCKING`, message
     *"Chain is broken; players can never identify them."* `_run_coherence()` records the verdict
@@ -571,11 +571,53 @@ that the superseded text has become history and belongs here instead.
     wrong.**
     Session 34 fixed the *symptom* at two altitudes (substring matching in `accusation.gd` with a
     short-name guard; an on-screen warning when no suspect can be the answer) and added
-    `scripts/check_mystery_playable.py` to catch it before a playtest. **The cause is untouched
-    and is a design call:** should generation refuse to save a BLOCKING mystery, retry it, or keep
-    serving it with a louder warning? Retrying costs API calls, which is why it was not decided
-    unilaterally. Worth settling before stage 2 — the coherence engine is a funding pillar, and
-    "it detects the defect and ships it anyway" is a question someone will ask.
+    `scripts/check_mystery_playable.py` to catch it before a playtest. The cause stayed open as a
+    design call: refuse to save, retry, or serve with a louder warning? Retrying costs API calls,
+    which is why it was not decided unilaterally.
+
+    **[Session 41] The data reframed the item before it was answered.** Asked whether "poor" meant
+    "fails coherence", the disk said no, and said it backwards: **all four mysteries in
+    `rejected/` PASSED coherence with 0 blocking**, and the one file that FAILED it was sitting in
+    `generated/`, servable. So the gap was never only "BLOCKING mysteries get served" — it was that
+    **nothing routed anything**. Every one of those four rejections had been carried out by hand.
+
+    Four kinds of bad generation, and coherence catches the rarest:
+
+    | Class | Means | The case that named it |
+    |---|---|---|
+    | *incoherent* | the story does not hang together | `the_stolen_star_of_smurf_village` |
+    | *unplayable* | the story is fine, the game cannot be dealt or won | `the_lantern_keeper's_last_light` |
+    | *spoiled_prose* | every field correct, the text gives the answer away | `the_light_that_went_out` |
+    | *below_standard* | playable, winnable, not good enough to serve | `totality` |
+
+    **Owner's decision: option (c) — auto-route on ANY failing check**, coherence and structural
+    alike, because the checks are free (no API call, so no cost argument against them) and because
+    the sentence worth having is not *"our engine detects incoherence"* but *"nothing reaches a
+    player that our checks cannot prove is solvable, and here are five we caught, with reasons."*
+    Built as `gate.py`: `generated/` now means *no check we own can prove this is broken*.
+
+    **A fourth option nobody had in August: quarantine.** `rejected/` did not exist when this item
+    was written. It costs no API call — which is what killed *retry* — and it keeps the mystery,
+    because each one is paid-for evidence that a rule was needed.
+
+    **Auto-reject, never auto-repair.** A gate can only be conservative: it can wrongly refuse a
+    good mystery (annoying, recoverable, nothing is deleted) but it cannot manufacture a bad one
+    that looks good. A repair loop iterating a model against these checks until they go green would
+    stop selecting for good mysteries and start selecting for mysteries *shaped like the checks* —
+    Goodhart, and `the_light_that_went_out` is the standing proof, since it passed every structural
+    rule and gave its answer away in prose.
+
+    **Three judgement calls inside the build, each deliberate.** CAST/ORPHAN findings are recorded
+    but never blocking, because `check_narrative.py`'s own header documents them as
+    false-positive-prone and *"a list to triage, not a verdict"*. Legacy mysteries are `unjudged`
+    rather than accepted or rejected — all 17 in `generated/` predate the Session 38 schema, so
+    rules defined over `exonerates` / `narrows` / `reveals` fire trivially on every one, and gating
+    them would have emptied the served library over rules that did not exist when they were
+    written. Coherence is the exception, because it never depended on those fields — so exactly one
+    file on disk moved, and it was this item's original case.
+
+    **The other half: the ledger.** See item 28 — the same change records what each attempt cost,
+    because the routing decision and the failure corpus are one write.
 
 19. **[READY TO RUN — blocked on credits, not code, as of Session 35] The corpus P1→P1P2P3 upgrade.** 75 sources are P1-only (206 of
     281 `pdf_*` are already P1P2). `python3 scripts/upgrade_p1_to_p1p2.py` prints the plan and
@@ -927,3 +969,41 @@ that the superseded text has become history and belongs here instead.
     what generation must write, so it wants to land in the same paid round as any other schema
     change rather than its own.
 
+
+28. **[BUILT, Session 41 — September 3 2026] The generation ledger, and cost per accepted mystery.**
+    Asked to "start recording CPAM" and "start amassing failures with structured data", the honest
+    answer was that these are one artifact, not two: a row per generation attempt saying **what it
+    cost, what happened to it, and why**. CPAM falls out as `sum(cost) / count(accepted)`; the
+    failure corpus is the rejected rows.
+
+    **What was thrown away, and cannot be recovered.** There is exactly one Claude call site in the
+    server — `llm()` in `server/main.py` — and nothing read `response.usage`. Every token count the
+    API handed back was discarded, so the project's only cost figure was a hand measurement of one
+    August generation in `docs/AI_COST_PLAYBOOK.md`. **What the four rejected mysteries cost is
+    unrecoverable.** They are backfilled with `cost_usd: null`; an estimate there would silently
+    become the denominator of a number that may end up in front of an investor.
+
+    **Why CPAM and not cost per call.** Cost per call is the easy number and it answers the wrong
+    question: a model at a third the price with a third the pass rate is a wash, and one with a
+    worse pass rate is a loss disguised as a saving. This matters directly to the owner's Mistral
+    question — the workload is output-heavy (8,667 output against 2,457 input, output is 95% of the
+    call), which is the profile where self-hosting *can* win, but the hard thing this product asks
+    of a model is satisfying six simultaneous global constraints across ~10k tokens, which is
+    exactly where smaller models degrade. So the deciding number is cost per *accepted* mystery,
+    and it cannot be computed retroactively. It starts being recorded now, not when the question
+    is asked.
+
+    **Stable rule ids, which is what makes it a dataset rather than an archive.**
+    `check_narrative.py` and `deal.py` emitted prose only — good for a person triaging a queue,
+    useless for counting. Both now name every rule they fire, the subject it fired on, and a
+    failure class. Prose output is byte-identical; the structured form is additional. The two files
+    independently implement five of the same fair-play rules, so their ids are shared deliberately
+    and `gate.py` deduplicates on (rule, subject).
+
+    **Pass rate is computed over judged rows only.** The 16 legacy mysteries were never put to the
+    gate, so counting them as failures would report 0% for a pipeline that has simply not been
+    measured — a denominator that quietly includes unmeasured rows is how a metric starts lying
+    before anyone reads it twice.
+
+    `python3 scripts/cpam.py` reads it; `scripts/backfill_ledger.py` seeded it from disk and is
+    idempotent. Covered by `scripts/test_gate_and_ledger.py`.
