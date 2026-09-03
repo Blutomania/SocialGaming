@@ -179,7 +179,12 @@ committed. **Run** fails on it with *"Can't run project: Assets need to be impor
 
 Click **Edit** and let the initial import finish. The fonts and eight SVG icons are imported here.
 
-Then check **Project → Project Settings → Autoload**. **Expect four entries**, in this order:
+Then check **Project → Project Settings → Globals**. **Expect four entries**, in this order:
+
+> **The tab is called Autoload in Godot 4.6 and earlier, and Globals from 4.7.** Same panel, same
+> contents; 4.7 renamed it. Verified on 4.7.2 (Session 40) after the owner went looking for an
+> Autoload tab that no longer exists. If you cannot find either, type `autoload` into the
+> **Filter Settings** box at the top of the dialog.
 
 | | |
 |---|---|
@@ -211,7 +216,14 @@ editor canvas shows engine grey however much styling exists. This script calls t
 `Style.build_theme()` the game calls, saves the result to `res://assets/theme/cym_theme.tres`, and
 points the project's default theme at it.
 
-**Read three things in the Output panel:**
+**It also writes `godot/apply_theme_report.txt`** — the same output, in a file, because the Output
+panel scrolls and cannot be copied out of easily. Read it from the terminal:
+
+```bash
+cat godot/apply_theme_report.txt
+```
+
+**Read three things, in the panel or the file:**
 
 | Line | What it means |
 |---|---|
@@ -219,7 +231,15 @@ points the project's default theme at it.
 | `MISSES` | Every theme item name the engine does not have. Each is a line of `Style.gd` silently doing nothing. **`none` is the good answer** |
 | `wrote` / `set` | The `.tres` was written and the project setting points at it |
 
-Then **reopen a scene** — the editor canvas should now be slate, not grey.
+Then look at a scene on the canvas. **Two moves, and the first is easy to miss:**
+
+1. **Click the `2D` tab** in the top bar. Running an `EditorScript` leaves you in `Script`, where
+   there is no canvas to judge — the instruction below is meaningless until you switch.
+2. **Scene → Reload Saved Scene.** An already-open scene keeps rendering with the theme it loaded,
+   so it will not pick up the `.tres` this script just wrote until it is reloaded. Closing the
+   scene tab and double-clicking the `.tscn` in FileSystem does the same job.
+
+**The canvas should now be slate (`#2F4459`), not Godot grey**, with the title at 44px brass.
 
 Afterwards, in the terminal:
 

@@ -240,7 +240,8 @@ before trusting it — this has happened before and cost a reconciliation (items
 - **Godot 4.x, GDScript 2.0** — typed, `class_name` declarations. `project.godot` declares 4.6.
 - **Four autoloads**, in order: `GameState`, `ApiClient`, `NetworkManager`, `Style`. `Style` is last
   because it reads `Palette.gd`. If you add one, register it in `project.godot` **and** confirm it
-  appears in Project → Project Settings → Autoload.
+  appears in Project → Project Settings → **Globals** (the tab is called *Autoload* on Godot 4.6
+  and earlier; 4.7 renamed it).
 - **No Godot binary in the repo, and none reachable from a session environment** — outbound is
   allowlist-only and the engine's hosts are not on it (tested, Session 38). Rendering can only be
   verified on the owner's machine.
