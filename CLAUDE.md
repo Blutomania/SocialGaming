@@ -371,7 +371,7 @@ field to SVG over real screen text (`--sheet` covers the shortest and longest re
 
 Everything else is closed — see `docs/DECISIONS.md`.
 
-### 23. Build APF — **START HERE** (now at step 3)
+### 23. Build APF — **START HERE** (step 2 done; step 3 next, after one generation)
 
 The playtest shape is agreed and written down: `docs/PLAYTEST_FLOW.md` → "APF (All Provided For)".
 Findings are **dealt, not gathered**; the only decision is which to share and which to keep, which
@@ -388,8 +388,16 @@ Build order (`docs/INVESTIGATION_DESIGN.md` §7, already reduced by APF):
    one lead result, and **only `evidence[]` carries `exonerates`** — so two of the three kinds
    could not participate in the arithmetic at all. Closed with a `reveals` pointer on witnesses,
    leads and areas, which keeps elimination data in one place. Untested against a real generation.
-3. The share decision, the suspect board, the reveal — **START HERE**
-4. The paced text opening
+3. The share decision, the suspect board, the reveal — **START HERE, but see below**
+4. ~~The paced text opening~~ — `_generate_opening_narration()` writes it, on by default
+   (Session 40). Pacing the five beats is client-side and free; the screen is unbuilt.
+
+**Before step 3, spend one generation.** Four have now been generated and all four are in
+`mystery_database/rejected/`. The fourth passed every structural rule — atomised alibis, two routes,
+0 blocking, 0 warnings, a clean deal with proof surviving 81/81 hoarding patterns and a monopoly in
+0/81 — and was rejected for one prose habit: its narrowing clues named the culprit outright. That
+is fixed in the prompt and untested. **A mystery that passes everything is the thing step 3 needs to
+be built against**, and it is one call away.
 
 **Decided (Session 38): no crime-scene picture for the playtest** — a list of named findings. The
 map is deferred, not cancelled.
