@@ -224,7 +224,15 @@ points the project's default theme at it.
 | `MISSES` | Every theme item name the engine does not have. Each is a line of `Style.gd` silently doing nothing. **`none` is the good answer** |
 | `wrote` / `set` | The `.tres` was written and the project setting points at it |
 
-Then **reopen a scene** — the editor canvas should now be slate, not grey.
+Then look at a scene on the canvas. **Two moves, and the first is easy to miss:**
+
+1. **Click the `2D` tab** in the top bar. Running an `EditorScript` leaves you in `Script`, where
+   there is no canvas to judge — the instruction below is meaningless until you switch.
+2. **Scene → Reload Saved Scene.** An already-open scene keeps rendering with the theme it loaded,
+   so it will not pick up the `.tres` this script just wrote until it is reloaded. Closing the
+   scene tab and double-clicking the `.tscn` in FileSystem does the same job.
+
+**The canvas should now be slate (`#2F4459`), not Godot grey**, with the title at 44px brass.
 
 Afterwards, in the terminal:
 
