@@ -272,6 +272,17 @@ CHARACTERS (include 1 victim, EXACTLY 4 suspects, and 3–4 witnesses):
     off: a player cannot otherwise tell "this mystery is incoherent" from "this witness lied".
     Across the witnesses as a group, at least one statement must point toward the culprit, and at
     least one must point at something that turns out to be innocent.
+
+    ASSIGN EACH WITNESS A SUSPECT BEFORE WRITING THEIR STATEMENT, and cover every one of the
+    four. Write the assignment first -- "this witness is the one who speaks to <suspect>" --
+    then write the statement about that person. If there are three witnesses and four suspects,
+    one witness covers two; nobody may be left with no one who mentions them.
+    THIS IS THE RULE THE LAST THREE GENERATIONS BROKE, and it broke the same way each time: three
+    suspects got a witness and a location, and the fourth got a document nobody talks about. That
+    fourth suspect then had exactly one route to being cleared -- Adachi, Luz Fontaine, Nadege
+    Fontenot -- while the others had four to ten, and each mystery was refused for it. The one
+    generation where every suspect had a witness passed this rule outright.
+    A suspect nobody mentions is not a lighter workload. It is the defect.
   - reveals (WITNESSES ONLY): the ids of the evidence items this statement surfaces, e.g. ["E3"].
     EVERY witness must reveal at least one. The statement must actually be about that evidence --
     if a witness saw the bolted door, they reveal the evidence item about the bolted door.

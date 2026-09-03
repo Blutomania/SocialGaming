@@ -1007,3 +1007,75 @@ that the superseded text has become history and belongs here instead.
 
     `python3 scripts/cpam.py` reads it; `scripts/backfill_ledger.py` seeded it from disk and is
     idempotent. Covered by `scripts/test_gate_and_ledger.py`.
+
+29. **[BUILT, Session 41 — September 3 2026] The arrangement pass: wire the pointer, never rewrite
+    the clue.** Owner, on the two-routes rule failing three generations running: *"I wonder if
+    there's a RAG or RAG-adjacent solution… ways to augment clues to clear more than one suspect
+    (changing from the specific to a more general noun)."*
+
+    **The corrected diagnosis came first, and it was not a distribution problem.** Counting ROUTES
+    rather than evidence items — a route being the clue itself plus any witness, lead or area whose
+    `reveals` names it — the picture is not 3/2/1 but this:
+
+    | Mystery | Routes per innocent |
+    |---|---|
+    | `the_last_night_of_delacroix_&_sons` | Nadège **1**, Rémy 10, Sylvain 5 |
+    | `the_vanishing_at_altheim_peak` | Adachi **1**, Solberg 4, Novák 2 |
+    | `totality` | Luz **1**, Fenwick 4, Sable 4 |
+
+    Nobody is short of clues. **Exactly one person has exactly one, every time, and it is always the
+    person whose exonerating clue nothing points at.** So `NARR.SINGLE_ROUTE` and
+    `REVEAL.UNREACHED_EXONERATION` are one defect seen from two sides.
+
+    **Two corrections to the owner's proposal, both worth keeping.** First, RAG is already here —
+    `craft_grounding.py` retrieves into all five generation call sites at zero added cost — and it
+    cannot fix this, because this is not a knowledge failure: the model writes six good alibi clues
+    and then fails at bookkeeping. Retrieval adds knowledge, not arithmetic. Second, and more
+    important: **a clue that clears more than one suspect is already forbidden.**
+    `NARR.CLEARS_MULTIPLE` is the rule `the_lantern_keeper's_last_light` earned, where one clue
+    cleared three innocents and whoever drew it won alone. Generalising a noun pushes toward
+    solo-solve, trading a *below_standard* failure for an *unplayable* one. The wanted property is
+    **redundancy** — two different findings clearing the same one person — not generality.
+
+    **What was built is the tool the owner asked for, made deterministic rather than retrieval.**
+    `arrangement.py` finds orphaned exonerations and wires a carrier that has earned it. The line
+    it holds: **repair the arrangement, never the evidence.** Adding a pointer completes something
+    the schema requires and the model forgot, and a person can read the statement and check it;
+    rewriting prose until a leak detector stops firing is optimising against the checker, which is
+    what `the_light_that_went_out` proves you cannot do.
+
+    **It refuses far more than it acts, and its own first run is why.** Scoring on shared vocabulary
+    proposed wiring Nadège's audience sign-in sheet to a witness discussing somebody else buying
+    taffy (shared words: *else, entire, general, show*). Document-frequency rarity does not rescue
+    that — in that mystery *"else"* is exactly as rare as *"corroboration"*, because rarity measures
+    oddness, not aboutness. The test is domain-shaped instead: these pointers only ever attach to
+    exonerating evidence and alibi testimony names its subject, so **the carrier must name the
+    person the clue clears**, plus a distinctive shared term that is *not* the name. That second
+    clause was also learned the hard way — letting the name corroborate itself proposed wiring the
+    same alibi to the area holding her **marriage certificate**.
+
+    **Every wiring is then re-verified against the full gate, on severity rather than count.** A
+    carrier that gains one exoneration too many starts solving the case alone; the test caught a
+    wiring that took a mystery from three violations to two while turning *below_standard* into
+    *unplayable*.
+
+    **Result on the five current-schema mysteries: 0 wirable, 4 gaps.** A negative result, and the
+    right one — the tool declines to manufacture a lie and instead names the targeted ask, which is
+    a few hundred output tokens against $0.20 for a regeneration.
+
+    **The finding that matters more than the tool is `--coverage`.** The suspect with one route is
+    the suspect nobody talks about:
+
+    | Mystery | Suspect with no witness | Suspect with 1 route |
+    |---|---|---|
+    | `the_vanishing_at_altheim_peak` | Adachi (no witness, no area) | Adachi |
+    | `totality` | Luz Fontaine (no witness, no area) | Luz Fontaine |
+    | `the_last_night_of_delacroix_&_sons` | Nadège (no witness) | Nadège |
+    | `the_light_that_went_out` | *none — all four have one* | *none* |
+
+    Generation builds the world around the people it is thinking about, and one suspect ends up with
+    less world than the others. **That is a prompt fix, not a tool fix**, and the prompt now says it
+    where witnesses are actually written: assign each witness a suspect BEFORE writing the
+    statement, and cover all four. The existing REACHABLE rule failed for the same reason the
+    two-routes rule did — both were stated in the EVIDENCE section as properties of a section the
+    model writes later. **Untested against a real generation.**

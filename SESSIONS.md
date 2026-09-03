@@ -3173,10 +3173,44 @@ original's cost.
 **pass rate 0% of 6 judged; CPAM undefined; measured spend $0.2027.** That is the honest headline
 and it is the first time the project could state one. 18 free checks pass.
 
+### The two-routes rule, diagnosed properly (item 29)
+
+Owner asked whether a RAG-adjacent tool could *"augment clues to clear more than one suspect"*. Two
+corrections, then the tool.
+
+**It was never a distribution problem, and my earlier 3/2/1 reading was wrong** — it counted
+evidence items rather than ROUTES (the clue plus anything whose `reveals` names it). Counted
+properly: Nadège 1 / Rémy 10 / Sylvain 5; Adachi 1 / Solberg 4 / Novák 2; Luz 1 / Fenwick 4 /
+Sable 4. **Nobody is short of clues. Exactly one person has exactly one, every time, and it is
+always the person whose clue nothing points at.** `NARR.SINGLE_ROUTE` and
+`REVEAL.UNREACHED_EXONERATION` are one defect from two sides.
+
+**RAG is already here** (`craft_grounding.py`, five call sites, zero added cost) and cannot fix
+this: the model writes six good alibi clues and then fails at bookkeeping. Retrieval adds knowledge,
+not arithmetic. **And the proposed mechanism inverts an existing rule** — a clue clearing more than
+one suspect is `NARR.CLEARS_MULTIPLE`, the lantern-keeper rule. Generalising nouns trades a
+*below_standard* failure for an *unplayable* one. The wanted property is redundancy, not generality.
+
+`arrangement.py` + `scripts/wire_pointers.py` do the arrangement half deterministically. **Repair
+the arrangement, never the evidence.** It refused both false positives it made on its first run —
+wiring Nadège's sign-in sheet to a witness discussing taffy (shared: *else, entire, general, show*),
+then to the area holding her **marriage certificate**. Rarity does not separate those: in that
+mystery *"else"* is as rare as *"corroboration"*. The rule is domain-shaped instead — the carrier
+must name the person the clue clears, plus a distinctive term that is not the name.
+
+**Result: 0 wirable, 4 gaps.** The right answer. It names the targeted ask instead of inventing a
+pointer.
+
+**The `--coverage` finding is worth more than the tool.** The one-route suspect is the suspect
+nobody talks about — Adachi, Luz and Nadège each have no witness; `the_light_that_went_out`, where
+all four do, passed the rule. Generation builds the world around the people it is thinking about.
+The prompt now says so where witnesses are actually written (assign each witness a suspect first,
+cover all four) — the old REACHABLE rule failed for the same reason two-routes did: both stated in
+the EVIDENCE section as properties of a section written later. **Untested.**
+
 **Next: item 23 step 3** is still blocked on a mystery that passes everything — five generations,
-five rejects. The named next lever is the two-routes distribution, which is now the highest-value
-prompt change on the board: it has failed three times in a row and it is the only rule blocking an
-otherwise-clean generation.
+five rejects. The next generation tests three untested prompt/rule changes at once: the per-suspect
+witness rule, the suspect-counting narrowing fix, and the word-level prose leak check.
 
 **Files:** `gate.py`, `generation_ledger.py`, `deal.py`, `server/main.py`,
 `scripts/check_narrative.py`, `scripts/cpam.py`, `scripts/backfill_ledger.py`,
