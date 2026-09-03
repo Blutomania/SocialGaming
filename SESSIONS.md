@@ -3431,9 +3431,123 @@ is already in the corpus as **M3 Clue Fairness** (P.D. James, Knox 8): an assump
 invites must be one that holds. Full design in `docs/DECISIONS.md` item 27, including the fair-play
 check to build in the same change.
 
-**Next: item 23 step 3** — the share decision, the suspect board, the reveal. Item 27 is the owner's
-stated want and changes what generation writes, so it should share a paid round with any other
-schema change rather than taking its own.
+### The fourth generation — the construction-order rewrite lands
+
+*"A killing at a lighthouse-keeping station on a storm-cut island in the Hebrides."* 171s + 6s.
+
+**Two routes per innocent passed for the first time** — 4, 4 and 2 — against a rule that had missed
+exactly one suspect in each of the two previous generations. The fix was Session 38's insight
+applied again: the rule had been written as a constraint to satisfy *across* the evidence array,
+which needs the model to tally as it goes, and it does not. Restated as a **construction order** —
+the six alibi items are the first six, in named pairs, before red herrings and atmosphere — it
+held. Coherence also returned 0 blocking and **0 warnings**, a first.
+
+**The deal was the best yet:** feasibility clean, proof surviving 81 of 81 hoarding patterns, and a
+monopoly on proof in **0 of 81** — every hoarding pattern leaving more than one player able to
+reach the answer, which is the "race needs two runners" property arriving without the opt-in
+constraint switched on. The glove worked in play: three of four hands held a narrowing finding, and
+one hand cleared nobody by subtraction and stayed in the game entirely through narrowing.
+
+**And it was rejected, for something nothing structural could see.** Both narrowing clues carried
+honest data — 2 of 4 suspects, culprit included — and then named the culprit in their own prose:
+*"Morag Gillies wears size 5.5 walking boots with a herringbone sole."* That is an accusation, not
+a narrowing, and whoever is dealt it wins without speaking to anyone. Every structured check
+passed; the **prose** check caught it. The same limitation Session 38 recorded for `supports`.
+
+The prompt rule had said *"never name the people it narrows to"*, which was not enough — the model
+did not read naming one of them as a **match** as naming them. It now carries both real failures
+verbatim as wrong/right pairs, plus the distinction that makes it usable: naming a suspect the fact
+rules **out** is good writing and good play; naming one it still leaves possible is not.
+
+**A second hole, also found by the run:** `totality`'s narrowing clue named **all four** suspects,
+ruling nobody out. The check allowed it because the only rule was "at least two names". A vacuous
+narrowing is worse than none — a player who works out what it implies has been sent down a corridor
+with no door. `narrows` must now name at least two and **fewer than all**.
+
+### The Godot walkthrough — the engine finally answered
+
+The owner walked `docs/F5_CHECKLIST.md` on a real machine, Godot 4.7.2. **The first time either
+engine-side script has ever run.**
+
+| | Result |
+|---|---|
+| `VerifyScenes.gd` | **eight `ok` lines** — every screen survives Godot's own loader |
+| `ApplyTheme.gd` | **168 items across 36 theme types, `MISSES none`** |
+| Fonts | Nunito Sans resolved at default_font_size 16 |
+| Editor canvas | slate ground, brass wordmark, one filled button, three outlined |
+
+**Two caveats closed that nothing else could reach.** A theme item name the engine does not have is
+a *silent* no-op — no error, no warning, the control keeps its default — so Session 37 could only
+record ten control types and 13 variations as unverifiable, and Session 38 could only build the
+script. And reading a `.tscn` is not loading it, which is how Session 36 shipped
+`Interrogation.tscn` with five panels the static checker saw and the engine did not.
+
+### Four checklist defects, each found by a person following it
+
+The document was written by sessions that could not run the engine. Every one of these read fine
+until somebody did.
+
+- **`Project Settings → Autoload` does not exist on 4.7** — renamed to **Globals**. Both docs now
+  name both versions, since the project still declares 4.6.
+- **Godot 4.7 deletes every `;` comment in `project.godot`** — all 21 lines, plus a
+  `config/features` bump. Recorded as a flat rule: *`project.godot` cannot hold documentation.*
+- **Step 8 said to commit `project.godot`**, immediately after Godot had rewritten it. The owner
+  followed it and the comment loss went into a commit; salvaged by hand (PR #43). The step now says
+  to commit the `.tres` and the `.uid` files and explicitly **not** `project.godot`. `ApplyTheme`'s
+  own closing line said the same thing and was corrected in the same pass.
+- **"Reopen a scene" assumed a canvas** the reader could not be looking at — running an
+  `EditorScript` leaves you in the Script tab. Now: click `2D`, then Scene → Reload Saved Scene.
+
+**`.uid` versus `.import`:** they look alike and are not. A `.uid` is a stable identity Godot 4.4+
+expects in version control — 8 loose ones are now committed. A `.import` is per-machine settings
+pointing into the ignored `.godot/` cache, and is now ignored; untracked *and* un-ignored, they had
+sat in `git status` permanently, which is how people learn to stop reading `git status`.
+
+**`ApplyTheme.gd` now writes `godot/apply_theme_report.txt`** as well as printing, because the
+owner read the output once and could not get the `MISSES` line back — the single most valuable line
+the script produces.
+
+### The generation architecture question, answered from measurement
+
+Owner asked whether generation should produce everything, or a skeleton the game fattens. Measured
+on a real generation: culprit, clues and red herrings were complete; **narrative existed only as a
+side-effect** of fields that happened to need prose.
+
+**Generation invents once; the game arranges for free.** Invention is what only a model can make —
+a bio, the atmosphere of a room, the wording of a clue. Arrangement is pacing the opening beats,
+dealing findings, assembling the reveal. `docs/AI_COST_PLAYBOOK.md` settles the invention half at
+10.8×, and a second invention pass does not know what the first one meant. The real limit is
+headroom: ~9,300 output tokens against a 16,000 cap.
+
+**`characters[].bio` added** — a character had an occupation, a motive, an alibi and a secret: four
+*functions* and no person. Owner weighed the risk of unconstrained prose and decided to keep it:
+*"It will be fun."* Measured, structure did not degrade.
+
+**The opening became a narrative call.** `_generate_cinematic_brief()` returned the narration *and*
+a video shot list behind one boolean; **82% of its output was the video half**, which the owner is
+deferring to stage 3 along with avatars. Deleted rather than parked, because the two never shared
+an artifact — the video brief was built from the mystery, never from the narration — so tuning the
+prose cannot damage a future video call, and shot-list conventions written today are written for
+today's video models.
+
+### Where it leaves the corpus
+
+Four generations, four in `mystery_database/rejected/`, and the README names three distinct
+reasons: **unplayable** (the deal refuses it), **playable but not good enough** (a monopoly on
+proof), and **playable and spoiled in prose**. Each one bought a rule that did not exist before it.
+
+**Next: one generation to see whether the prose fix lands.** The fourth was a single prose habit
+away from passing everything. If it passes, item 23 step 3 — the share decision, the suspect board,
+the reveal — has a real mystery to be built against.
+
+**Files:** `deal.py`, `server/main.py`, `scripts/check_narrative.py`, `scripts/test_deal.py`,
+`scripts/test_narrative_checks.py`, `godot/scripts/tools/ApplyTheme.gd`,
+`godot/assets/theme/cym_theme.tres` (generated, committed), 8 `.uid` sidecars, `godot/project.godot`,
+`.gitignore`, `docs/F5_CHECKLIST.md`, `docs/PLAYTEST_FLOW.md`, `docs/DECISIONS.md` (items 24, 27),
+`CLAUDE.md`, `mystery_database/rejected/README.md`.
+
+**Superseded by the section above** — item 27 was built the same day, and the next step is now one
+generation to test the prose fix.
 
 **Files:** `deal.py` (new), `scripts/test_deal.py` (new), `server/main.py`,
 `scripts/check_narrative.py`, `scripts/test_narrative_checks.py`, `scripts/check_decisions.py`,
