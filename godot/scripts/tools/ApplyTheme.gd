@@ -188,5 +188,7 @@ func _summarise(misses: PackedStringArray) -> void:
 	_say("  Runtime does not read this file — Style.gd puts the theme on the")
 	_say("  scene-tree root and wins there — so a grey canvas is a preview")
 	_say("  problem, never a game problem. Press F5 to judge the real thing.")
-	_say("  Commit both %s and project.godot." % THEME_PATH)
+	_say("  Commit %s — and NOT project.godot: Godot has rewritten it by" % THEME_PATH)
+	_say("  now, and on 4.7 that deletes every comment in the file. The one")
+	_say("  line it adds here is already committed. git checkout -- it.")
 	_write_report()
