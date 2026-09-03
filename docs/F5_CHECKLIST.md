@@ -245,9 +245,22 @@ Afterwards, in the terminal:
 
 ```bash
 git status --short
-git add godot/assets/theme/cym_theme.tres godot/project.godot
+git add godot/assets/theme/cym_theme.tres
+git add godot/scripts/**/*.uid          # if Godot generated any; they belong in git
 git commit -m "Generated editor theme preview"
 ```
+
+> **Do NOT `git add godot/project.godot` here, however tempting.** By this point Godot has rewritten
+> it, and on 4.7 that means **21 comment lines deleted** and `config/features` bumped. This exact
+> instruction used to say to add it, and the owner followed it — the comment loss went into a
+> commit (Session 40, salvaged by hand).
+>
+> The engine writes one useful line, `theme/custom=` under `[gui]`, and it is **already committed**;
+> ApplyTheme setting it again is a no-op you can discard along with everything else:
+>
+> ```bash
+> git checkout -- godot/project.godot
+> ```
 
 **The `.tres` is a generated preview, never a source.** `palette.py` is still the one place a
 colour is decided. Re-run this after changing `palette.py` or `Style.gd`. Runtime never reads it —
