@@ -283,6 +283,16 @@ CHARACTERS (include 1 victim, EXACTLY 4 suspects, and 3–4 witnesses):
     Fontenot -- while the others had four to ten, and each mystery was refused for it. The one
     generation where every suspect had a witness passed this rule outright.
     A suspect nobody mentions is not a lighter workload. It is the defect.
+
+    AND NO SINGLE WITNESS, LEAD OR AREA MAY CARRY A WHOLE PROOF. One finding is dealt to one
+    player, so if its "reveals" list adds up to the answer, that player wins without speaking to
+    anyone and the sharing decision -- the point of the game -- never happens. Concretely: do not
+    let one witness reveal BOTH a narrowing item and the exoneration that completes it. A
+    narrowing that leaves two suspects, plus the clue clearing one of them, IS the answer.
+    That is how the last generation failed, and it failed while everything else was right:
+    one witness revealed the six-foot-shelf narrowing and the barometric log clearing the shorter
+    man, and so solved the case single-handed. Split the two halves across different witnesses,
+    or put one of them on a lead or an area instead.
   - reveals (WITNESSES ONLY): the ids of the evidence items this statement surfaces, e.g. ["E3"].
     EVERY witness must reveal at least one. The statement must actually be about that evidence --
     if a witness saw the bolted door, they reveal the evidence item about the bolted door.

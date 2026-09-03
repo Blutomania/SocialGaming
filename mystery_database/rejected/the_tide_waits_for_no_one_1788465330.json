@@ -1,0 +1,529 @@
+{
+  "title": "The Tide Waits for No One",
+  "setting": {
+    "location": "Carraig M\u00f2r Hotel, Isle of Carraig, Scottish Highlands",
+    "time_period": "January 1954",
+    "environment": "A small tidal island accessible only via a causeway that floods twice daily; currently cut off by storm surge and a North Sea winter gale",
+    "description": "Carraig M\u00f2r Hotel clings to a granite outcrop a quarter-mile off the Highland coast, reachable only when the causeway surfaces between tides \u2014 and in the January gale that has pinned the last four guests here, the causeway has not cleared in thirty-six hours and shows no sign of doing so. The telephone line went down yesterday morning, the hotel's wireless set is smashed, and the single rowing boat is staved in against the sea-steps. There is nowhere to go, no one to summon, and the mainland cannot even see the island through the storm."
+  },
+  "solution": {
+    "culprit": "Alasdair Dunbar",
+    "motive": "Dunbar discovered that the victim, Reginald Foss, had stolen the design patents for Dunbar's late father's textile loom improvements and sold them to a Manchester firm in 1938, pocketing the proceeds and leaving the Dunbar family destitute. Foss was about to finalise a lucrative sale of those same patents again and Dunbar had documentary proof \u2014 but knew that confronting Foss publicly would only produce a lawsuit he could not afford. Killing Foss was the only way to stop the sale and recover the papers.",
+    "method": "Dunbar lured Foss to the lamp room of the hotel's disused signal tower on the pretence of showing him proof of the stolen patents, then struck him twice with the heavy iron counterweight from the tower's lamp mechanism. He staged the scene to look like Foss had climbed to retrieve a brandy bottle left on the high shelf of the lamp room cabinet \u2014 knocking the counterweight onto himself \u2014 using the same misdirection the fishing community calls 'looking out to sea while the catch comes in behind you'. He then locked the tower door from the outside with a skeleton key taken from the hotel's key board.",
+    "chain": [
+      {
+        "id": "S1",
+        "claim": "Foss did not fall by accident: the counterweight shows two distinct impact faces and blood on its upper surface, inconsistent with a downward fall onto a stationary object."
+      },
+      {
+        "id": "S2",
+        "claim": "The tower door was locked from the outside \u2014 the key was found on the key board in the lobby, not on Foss's person or inside the room \u2014 meaning someone locked him in after the assault."
+      },
+      {
+        "id": "S3",
+        "claim": "The staged scene required someone tall enough to place the brandy bottle on the top shelf of the cabinet without a stool, because no stool was present and the shelf is six feet high."
+      },
+      {
+        "id": "S4",
+        "claim": "Dunbar possesses the stolen patent documents hidden in his luggage, giving him the only specific financial motive to want Foss dead before morning."
+      },
+      {
+        "id": "S5",
+        "claim": "Dunbar's claimed alibi \u2014 playing patience alone in the smoking room \u2014 is contradicted by the smoking-room fire being cold ash by the time the body was found, despite his claim he had fed it all evening."
+      }
+    ],
+    "key_evidence": [
+      "E8",
+      "E4"
+    ],
+    "how_to_deduce": "The investigation begins when the counterweight is examined closely: blood appears on two faces at different angles, and both impact faces are distinct in shape, proving Foss was struck at least twice rather than falling onto the object. This rules out accident. The locked door then raises the crucial question \u2014 the tower key returned to the lobby board means someone locked the door from outside after the assault, which is only possible if the killer left the tower alive. The high shelf of the lamp-room cabinet bears a freshly placed brandy bottle, but there is no stool and the shelf sits six feet off the ground, meaning the person who staged the scene was tall enough to reach it unaided. Cross-referencing the four suspects eliminates Vera Strachan, whose documented bad wrist makes the two-handed overhead swing physically impossible, and Margaret Osei, who was visibly with witness Agnes Wachlie in the dining room throughout the window when death occurred. Cecil Pryce is cleared by his own alibi being independently corroborated by the barometric log he was publicly maintaining in the drawing room. That leaves Dunbar \u2014 and searching his Gladstone bag reveals folded patent documents in his father's name, annotated in a second hand that matches the handwriting on Foss's own business correspondence found in the victim's room. Dunbar had the motive, the height, the opportunity, and the stolen documents he could not afford to let Foss transfer again."
+  },
+  "crime": {
+    "type": "Murder",
+    "what_happened": "Reginald Foss, a retired patent broker from Edinburgh, was found dead in the disused signal tower at the north end of the hotel grounds at approximately eleven o'clock on the night of 14 January. He had suffered severe blunt-force injuries to the head. The tower door was found locked, with the key hanging in its usual place in the lobby.",
+    "when": "Between 9:15 PM and 10:50 PM on 14 January 1954",
+    "initial_discovery": "Agnes Wachlie, the hotel's elderly housekeeper, noticed the tower light flickering \u2014 an impossibility, as the lamp has been decommissioned for years \u2014 and sent the night porter to investigate. He found the door locked, retrieved the skeleton key from the lobby board, and discovered Foss lying beneath the lamp mechanism."
+  },
+  "characters": [
+    {
+      "name": "Reginald Foss",
+      "role": "victim",
+      "occupation": "Retired patent broker, currently acting as commercial agent for a Manchester textile firm",
+      "motive": "N/A",
+      "alibi": "N/A",
+      "secret": "Foss has spent thirty years brokering patents of questionable provenance, including designs he knew were stolen from smaller inventors. He was at Carraig M\u00f2r to conclude a private sale, staying on after the other guests departed when the storm stranded everyone.",
+      "bio": "Reginald Foss is a compact, well-dressed man of sixty-two with silver hair and the easy confidence of someone accustomed to making other people feel they are lucky to be in the room with him. He arrived at the hotel three days ago for what he described as a restorative winter break, though he has spent most of his stay in quiet, purposeful conversation. He is polite in a way that never quite becomes warm."
+    },
+    {
+      "name": "Alasdair Dunbar",
+      "role": "suspect",
+      "occupation": "Freelance draughtsman, formerly apprenticed in the Dundee jute trade",
+      "motive": "Foss stole patent designs belonging to Dunbar's late father in 1938, sold them to a Manchester firm, and was preparing to sell them again; Dunbar had discovered documentary proof and knew Foss would outspend him in court. Killing Foss before the sale completed was the only relief available to him.",
+      "alibi": "Claims to have spent the entire evening alone in the smoking room playing patience and tending the fire \u2014 but the fire was cold ash when examined, undermining this account.",
+      "secret": "Hidden in Dunbar's Gladstone bag are folded patent documents bearing his father's original name and annotated in a second hand that matches Foss's business correspondence. Dunbar has been planning this confrontation for months, arranging to be at the same hotel as Foss under the pretence of a landscape survey commission.",
+      "bio": "Alasdair Dunbar is a lean, angular man of forty-one, well over six feet tall, who carries himself with the careful quietness of someone who has learned that drawing attention rarely serves him. He speaks in precise, considered sentences and has a draughtsman's habit of measuring rooms with his eyes. He told the other guests he was in the area to survey the coastal topography for a private client, which is true enough to pass a casual question."
+    },
+    {
+      "name": "Vera Strachan",
+      "role": "suspect",
+      "occupation": "Retired dominee (schoolmistress), amateur ornithologist",
+      "motive": "Foss was the agent who sold the island's development rights to a mainland hotelier in 1946, destroying the traditional crofting access that Vera's extended family depended on; she has harboured a documented grievance against him for eight years.",
+      "alibi": "Vera was in her room on the first floor from nine o'clock onward, where she had retired early with a hot-water bottle after complaining of her wrist; the night porter saw her light under her door at ten-fifteen when he did his rounds.",
+      "secret": "Vera's right wrist was badly broken in a fall three years ago and has never properly healed \u2014 she cannot grip firmly with that hand or deliver a powerful overhead strike. She has concealed the extent of the injury because she fears it will make her appear incapable and invite pity. Her ornithology notebooks are written entirely in her left hand.",
+      "bio": "Vera Strachan is a stout, sharp-eyed woman of sixty-seven who arrived at the hotel with two pairs of binoculars and a canvas bag of field notebooks. She spent her career teaching geography and natural history in Inverness and retired to the coast two years ago. She is formidably opinionated about the natural world, courteous to people she respects, and makes no effort to disguise her feelings about people she does not."
+    },
+    {
+      "name": "Cecil Pryce",
+      "role": "suspect",
+      "occupation": "Retired civil servant, formerly of the Board of Trade, amateur weather observer",
+      "motive": "Foss owed Pryce a substantial personal loan from 1950 \u2014 three hundred pounds, secured against a verbal agreement \u2014 which Foss had been avoiding repaying for four years, and which Pryce cannot pursue legally without the written agreement he no longer possesses.",
+      "alibi": "Pryce was in the drawing room throughout the evening maintaining his barometric log, a nightly ritual witnessed by Margaret Osei who passed through at nine-thirty and again at ten-forty, and confirmed by the completed log entries in his own hand.",
+      "secret": "The loan to Foss was made from funds Pryce had quietly diverted from a dormant Board of Trade petty-cash account before his retirement \u2014 recovering it privately was essential because surfacing the debt publicly would expose the original misappropriation. He has told no one the money's origin.",
+      "bio": "Cecil Pryce is a fussy, meticulous man of fifty-eight who travels with a barometer, a tide-table, and a leather-bound log that he updates at the same time every night without fail. He is genuinely fascinated by weather and will explain a pressure system to anyone who pauses near him. He was stranded at the hotel after missing the last causeway crossing due to a particularly engrossing evening's readings."
+    },
+    {
+      "name": "Margaret Osei",
+      "role": "suspect",
+      "occupation": "Press correspondent, currently writing a travel piece for a Glasgow weekly paper",
+      "motive": "Foss had threatened to expose Margaret's fabrication of a key interview in a 1952 investigative piece \u2014 he possessed a letter she had written that proved the source was invented. Exposure would end her career.",
+      "alibi": "Margaret was in the dining room from nine o'clock eating a late supper and then talking with Agnes Wachlie about the hotel's history; Agnes can account for her presence throughout the relevant window.",
+      "secret": "The fabricated interview that Foss threatened to expose concerned a housing scandal story that won Margaret a minor press award. She has spent two years making quiet payments to Foss through an intermediary to keep him silent. She is at the hotel because she followed Foss here, intending to retrieve the letter \u2014 by persuasion if possible.",
+      "bio": "Margaret Osei is a composed, watchful woman of thirty-four who notices what other people say and rarely volunteers what she thinks about it. She arrived at the hotel presenting herself as a writer working on a piece about winter tourism in the Highlands, which is the cover she uses often enough that she half believes it herself. She is quick with a smile and keeps her notebook close."
+    },
+    {
+      "name": "Agnes Wachlie",
+      "role": "witness",
+      "occupation": "Hotel housekeeper, employed at Carraig M\u00f2r Hotel for twenty-two years",
+      "motive": "N/A",
+      "alibi": "Agnes was in the dining room and kitchen from seven o'clock until the night porter raised the alarm, as is her habit when the hotel has guests staying late.",
+      "secret": "Agnes noticed Dunbar and Foss speaking in low, heated voices in the corridor outside the tower staircase at around nine o'clock, though she thought nothing of it at the time and has mentioned it to nobody, not wishing to make trouble.",
+      "bio": "Agnes Wachlie is a small, iron-haired woman of sixty-three who has kept this hotel running through five different owners and has a housekeeper's instinct for everything that goes on under the roof she tends. She is not unkind, but she is direct, and she does not embroider. She knows this island in every season and treats the winter storms as a personal inconvenience rather than a crisis.",
+      "statement": "I saw Mr Dunbar and Mr Foss together in the north corridor \u2014 that's the passage to the tower stair \u2014 at around nine o'clock, near enough. They were speaking very quietly, too quietly for a casual conversation, and Mr Foss had his hand out as though he was refusing something. I saw Mr Dunbar go toward the tower door and Mr Foss follow him. I thought nothing of it at the time \u2014 guests go up there to look at the view. I wish I had thought more of it.",
+      "reveals": [
+        "E7",
+        "E9"
+      ]
+    },
+    {
+      "name": "D\u00f2mhnall Luirg",
+      "role": "witness",
+      "occupation": "Night porter, employed at Carraig M\u00f2r Hotel",
+      "motive": "N/A",
+      "alibi": "Donald was on his porter's rounds from nine o'clock, moving between the lobby, the first-floor corridor, and the exterior steps at regular intervals, as logged in the porter's book.",
+      "secret": "Donald noticed that the skeleton key for the tower \u2014 which normally hangs on the lobby board \u2014 was missing for approximately forty minutes on the evening in question, between around nine o'clock and nine-forty, before it reappeared. He assumed he had miscounted the hooks and thought no more of it until now.",
+      "bio": "D\u00f2mhnall Luirg is a young man of twenty-six from the mainland village opposite, who took the posting because it came with a small cottage. He is conscientious, slightly nervous in the presence of guests he considers socially above him, and keeps a meticulous porter's log partly out of duty and partly out of a private satisfaction in orderliness. He is the one who found the body.",
+      "statement": "I do my corridor check at a quarter past ten every night and I noted Miss Strachan's light under her door on the first floor \u2014 she'd gone up early. When I came through the lobby at half nine I noticed the tower skeleton key was back on the board. I was almost certain it hadn't been there at nine o'clock \u2014 I check the board when I come on at eight \u2014 but I put it down to my own mistake. I found Mr Foss when Agnes sent me to look, around eleven.",
+      "reveals": [
+        "E2",
+        "E6"
+      ]
+    },
+    {
+      "name": "Dr. Ishbel Marra",
+      "role": "witness",
+      "occupation": "General practitioner, stranded guest returning from a medical conference in Stornoway",
+      "motive": "N/A",
+      "alibi": "Dr. Marra was in the drawing room reading from eight o'clock until she was asked to examine the body at eleven. Cecil Pryce was present throughout and both can account for the other.",
+      "secret": "Dr. Marra examined Vera Strachan's wrist at Vera's request earlier in the day and noted severe residual damage from a poorly healed fracture \u2014 she gave a private opinion that Vera could not grip or swing a heavy implement without risking re-fracture. She has not mentioned this to anyone, respecting patient confidentiality.",
+      "bio": "Dr. Ishbel Marra is a brisk, capable woman of forty-five who was stranded on her way back from a GP conference on the island of Lewis. She is the kind of person who fills a room with competence rather than personality, and she has spent the storm days reading medical journals and being quietly relieved not to be driving home in the weather. She conducted the preliminary examination of Foss's body when asked.",
+      "statement": "I examined Mr Foss at the request of the night porter. The injuries were to the upper and back portion of the skull \u2014 two distinct impacts, in my opinion, not one. The lower impact point is consistent with the upper rim of the counterweight as it sat, but the second, higher impact is not consistent with a fall onto a stationary object. I also noted that the brandy bottle on the top shelf of that cabinet would have required a very tall person to place it there \u2014 the shelf is a full six feet, and there was no stool in the room. Mr Pryce was reading in the drawing room beside me all evening until we were called.",
+      "reveals": [
+        "E1",
+        "E3",
+        "E5"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "Counterweight Impact Analysis",
+      "description": "The iron counterweight from the tower lamp mechanism, a fourteen-pound cylinder with two distinct blood-marked faces at different angles. Dr. Marra's preliminary examination identifies two separate impact patterns \u2014 one consistent with a downward blow to a man bending forward, one consistent with a second strike to the back of a crouching figure \u2014 which cannot both result from a single fall onto a stationary object. The object is found beside the body on the tower floor.",
+      "type": "physical",
+      "relevance": "critical",
+      "supports": [
+        "S1"
+      ],
+      "exonerates": [],
+      "implicates": [],
+      "narrows": []
+    },
+    {
+      "id": "E2",
+      "name": "Tower Skeleton Key \u2014 Porter's Log",
+      "description": "The skeleton key for the signal tower door, normally kept on the lobby key board, was noted absent from the board during D\u00f2mhnall Luirg's nine o'clock lobby check and was back in place by his nine-forty check. The key was found hanging on the board \u2014 not on Foss's person, and not inside the locked tower room \u2014 when the body was discovered. This means whoever locked the tower door from the outside returned the key to the board afterward.",
+      "type": "physical",
+      "relevance": "critical",
+      "supports": [
+        "S2"
+      ],
+      "exonerates": [],
+      "implicates": [],
+      "narrows": []
+    },
+    {
+      "id": "E3",
+      "name": "Unstooled High Shelf",
+      "description": "The lamp-room cabinet's top shelf, six feet from the floor, holds a brandy bottle that has been recently dusted \u2014 the surrounding shelf surface shows fresh disturbance consistent with an item being placed rather than knocked \u2014 yet no stool, stepladder, or climbing aid of any kind is present in the tower room. The floor is stone and shows no drag marks that would indicate a stool was removed.",
+      "type": "physical",
+      "relevance": "supporting",
+      "supports": [
+        "S3"
+      ],
+      "exonerates": [],
+      "implicates": [],
+      "narrows": [
+        "Alasdair Dunbar",
+        "Cecil Pryce"
+      ]
+    },
+    {
+      "id": "E4",
+      "name": "Patent Documents in Dunbar's Gladstone Bag",
+      "description": "A folded set of loom-mechanism patent documents discovered inside Alasdair Dunbar's Gladstone bag, found under his bed in Room 4. The documents bear the name 'Robert Dunbar, Dundee, 1936' as inventor, and are annotated throughout in a second, smaller hand. Comparison with Foss's own business correspondence, found in the victim's room, shows the annotating hand matches Foss's exactly. The documents establish that Dunbar knew of Foss's role in the original theft of his father's work.",
+      "type": "documentary",
+      "relevance": "critical",
+      "supports": [
+        "S4"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Alasdair Dunbar"
+      ],
+      "narrows": []
+    },
+    {
+      "id": "E5",
+      "name": "Pryce's Barometric Log \u2014 Completed Entries",
+      "description": "Cecil Pryce's leather-bound barometric log shows entries at nine o'clock, nine-thirty, ten o'clock, and ten-thirty on the night of the murder, each in Pryce's own hand. The handwriting is consistent and unrushed; the ten-thirty entry includes a footnote about the wind veering north, a detail that would require the recorder to be at the drawing-room window. Dr. Marra independently confirms Pryce was present throughout.",
+      "type": "documentary",
+      "relevance": "supporting",
+      "supports": [],
+      "exonerates": [
+        "Cecil Pryce"
+      ],
+      "implicates": [],
+      "narrows": []
+    },
+    {
+      "id": "E6",
+      "name": "Night Porter's Observation \u2014 Vera Strachan's Light",
+      "description": "D\u00f2mhnall Luirg's written porter's log, completed at the time, records a light visible under the door of Room 2 \u2014 Vera Strachan's room \u2014 at ten-fifteen. Rae notes she had told him at nine o'clock she was going up early on account of her wrist. The timing places Strachan in her room during the window when the assault must have occurred.",
+      "type": "testimonial",
+      "relevance": "supporting",
+      "supports": [],
+      "exonerates": [
+        "Vera Strachan"
+      ],
+      "implicates": [],
+      "narrows": []
+    },
+    {
+      "id": "E7",
+      "name": "Housekeeper's Account of the North Corridor",
+      "description": "Agnes Wachlie's statement, given to investigators, records seeing Alasdair Dunbar and Reginald Foss together in the north corridor \u2014 the passage leading to the tower stair \u2014 at approximately nine o'clock on the evening of the murder. She describes Foss with his hand raised in a refusing gesture and Dunbar leading the way toward the tower door. This places both men at the tower entrance at the start of the window in which death occurred.",
+      "type": "testimonial",
+      "relevance": "supporting",
+      "supports": [
+        "S4",
+        "S5"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Alasdair Dunbar"
+      ],
+      "narrows": []
+    },
+    {
+      "id": "E8",
+      "name": "Cold Ash in the Smoking-Room Grate",
+      "description": "The smoking-room fireplace, where Dunbar claims to have spent the entire evening tending a fire, contains ash that is completely cold to the touch \u2014 not warm or even faintly warm \u2014 when examined at eleven o'clock. A fire last fed two hours ago would retain appreciable heat in the grate bed; cold ash of this kind is consistent with a fire that burned out in the afternoon and was never rekindled that evening. Dunbar's alibi requires a fire he was feeding all night.",
+      "type": "physical",
+      "relevance": "critical",
+      "supports": [
+        "S5"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Alasdair Dunbar"
+      ],
+      "narrows": []
+    },
+    {
+      "id": "E9",
+      "name": "Margaret Osei's Dining-Room Presence",
+      "description": "Agnes Wachlie's statement directly accounts for Margaret Osei's whereabouts: Osei was eating a late supper in the dining room and then engaged Agnes in a prolonged conversation about the hotel's history beginning around nine o'clock. Agnes did not leave the dining room and kitchen area during this time. Osei was therefore continuously in Agnes's sight throughout the window in which Foss was killed.",
+      "type": "testimonial",
+      "relevance": "supporting",
+      "supports": [],
+      "exonerates": [
+        "Margaret Osei"
+      ],
+      "implicates": [],
+      "narrows": []
+    },
+    {
+      "id": "E10",
+      "name": "Vera Strachan's Wrist \u2014 Medical Finding",
+      "description": "A brief handwritten note from Dr. Marra, given at the investigators' request, confirms she examined Vera Strachan's right wrist earlier on the day of the murder at Vera's own request. Marra's note describes severe residual damage from a previously fractured carpus and states in clinical terms that a firm bilateral grip or forceful overhead swing would risk acute re-fracture. The note is marked 'patient consultation' and was not intended for general circulation.",
+      "type": "documentary",
+      "relevance": "supporting",
+      "supports": [],
+      "exonerates": [
+        "Vera Strachan"
+      ],
+      "implicates": [],
+      "narrows": []
+    },
+    {
+      "id": "E11",
+      "name": "Brandy Bottle \u2014 Wiped Clean",
+      "description": "The brandy bottle on the tower cabinet's top shelf bears no fingerprints whatsoever, though the bottle itself is one-quarter full and shows condensation suggesting it was handled recently. A bottle left by a guest who planned to return to collect it would ordinarily bear prints; a bottle placed as a prop by someone wearing gloves, or wiped clean afterward, would not. The bottle is of a brand not stocked by the hotel bar.",
+      "type": "physical",
+      "relevance": "red_herring",
+      "supports": [],
+      "exonerates": [],
+      "implicates": [],
+      "narrows": []
+    }
+  ],
+  "investigation_areas": [
+    {
+      "id": "A1",
+      "name": "The Signal Tower",
+      "description": "A squat granite tower at the island's north tip, decommissioned in 1931 and used since only as a store. The lamp room at its top smells of rust, lamp oil, and something sharper. The door at the base shows a fresh scratch around the lock.",
+      "investigation_prompt": "The lamp room contains the body, the counterweight, the cabinet with the high shelf and the wiped brandy bottle, and the iron lamp mechanism itself. The floor is bare stone with no stool present. The scratch on the outer lock is from the skeleton key being used in haste.",
+      "discovery": "You find the iron counterweight beside the body, its upper and lower faces showing two distinct patterns of dried blood at different angles. On the cabinet's top shelf, six feet off the ground, sits a brandy bottle \u2014 wiped clean of prints. There is no stool anywhere in the room.",
+      "analysis": "Dr. Marra confirms the two impact faces cannot result from a single fall: the victim was struck at least twice. The brandy bottle is not a brand stocked by the hotel bar, and its placement on a six-foot shelf without a climbing aid requires a very tall person to have put it there.",
+      "reveals": [
+        "E1",
+        "E3",
+        "E11"
+      ]
+    },
+    {
+      "id": "A2",
+      "name": "The Lobby Key Board",
+      "description": "A wooden panel behind the front desk holding brass hooks for each room key and the two skeleton keys \u2014 one for the cellar, one for the tower. Hand-lettered labels in faded ink identify each hook. The board is visible from the entrance and from the porter's station.",
+      "investigation_prompt": "The tower skeleton key is hanging here. D\u00f2mhnall Luirg's porter's log, kept in a ledger under the desk, records his nine o'clock and nine-forty checks. The log shows the key was absent at nine and present at nine-forty, which Rae noted with a question mark and then dismissed.",
+      "discovery": "The porter's log under the desk records a question mark next to the tower key entry at nine o'clock, with the notation 'back by 9:40 \u2014 miscounted?' written in pencil. The tower skeleton key is currently hanging in its place.",
+      "analysis": "Cross-referencing the log with Agnes Wachlie's account confirms the key was absent during the window when Dunbar and Foss were seen entering the tower passage \u2014 and returned to the board while Agnes was still in the dining room with Margaret Osei.",
+      "reveals": [
+        "E2",
+        "E9"
+      ]
+    },
+    {
+      "id": "A3",
+      "name": "The Smoking Room",
+      "description": "A low-ceilinged room furnished with leather armchairs and a card table, smelling of old pipe tobacco. A stone fireplace occupies the far wall. The room is cold.",
+      "investigation_prompt": "The fireplace contains cold ash \u2014 a fire that burned out in the afternoon, not one tended all evening. A half-finished patience layout is on the card table, but the cards are cold and slightly damp from the room's chill, suggesting they have been there since well before the evening. Dunbar's claims about this room are false.",
+      "discovery": "The fireplace ash is cold throughout \u2014 no warmth anywhere in the grate \u2014 and the half-finished patience game on the card table has slightly curled edges from the room's damp chill, as though it has been sitting there for hours in an unheated space.",
+      "analysis": "A fire tended throughout the evening would retain heat for at least two hours after last being fed. Cold ash at eleven o'clock is consistent with a fire that went out in the afternoon. Dunbar's alibi requires a continuously tended fire.",
+      "reveals": [
+        "E8"
+      ]
+    },
+    {
+      "id": "A4",
+      "name": "Reginald Foss's Room",
+      "description": "Room 7, at the end of the first-floor corridor, neat and impersonal in the way of a man accustomed to hotel rooms. A leather briefcase sits open on the writing desk. The window overlooks the mainland \u2014 invisible tonight behind the storm.",
+      "investigation_prompt": "The briefcase contains business correspondence, including letters to a Manchester textile firm. The handwriting on these letters can be compared with the annotations on the patent documents in Dunbar's bag. There is also a sealed envelope addressed to a solicitor in Edinburgh, which the investigators may open \u2014 it contains a draft contract for a patent assignment, dated for the following week.",
+      "discovery": "The open briefcase on the desk contains business correspondence in a distinctive small, slanted hand, and a sealed envelope addressed to a solicitor in Edinburgh. Opening the envelope reveals a draft patent assignment contract dated for next week, awaiting signature.",
+      "analysis": "The handwriting in Foss's correspondence matches exactly the annotations on the patent documents found in Alasdair Dunbar's Gladstone bag \u2014 confirming Foss's direct role in the original transaction Dunbar's father was cheated in.",
+      "reveals": [
+        "E4"
+      ]
+    },
+    {
+      "id": "A5",
+      "name": "The Drawing Room",
+      "description": "The hotel's largest common room, with a bay window facing the mainland and a writing desk where a leather-bound log sits open. A pair of wing chairs face the window. The barometer on the wall shows a reading someone has recently pencilled in the margin beneath.",
+      "investigation_prompt": "Cecil Pryce's barometric log is here, with entries every thirty minutes throughout the evening in consistent, unhurried handwriting. The ten-thirty entry includes a note about a wind shift visible from the window. Dr. Marra's armchair still has a medical journal open on the seat. Both alibis are genuine.",
+      "discovery": "Cecil Pryce's barometric log lies open on the writing desk, showing neat entries at nine, nine-thirty, ten, and ten-thirty, each with detailed notations. An armchair beside the window holds an open medical journal, a bookmark placed near the middle.",
+      "analysis": "The ten-thirty log entry references a specific wind veer only observable from the drawing-room window, confirming Pryce was physically present at that time. Dr. Marra independently confirms Pryce did not leave the room all evening.",
+      "reveals": [
+        "E5"
+      ]
+    }
+  ],
+  "leads": [
+    {
+      "id": "L1",
+      "title": "The Victim's Business Appointment",
+      "brief": "Foss told the hotel keeper on arrival that he was here to conclude 'a private matter of business' with a party he was expecting \u2014 but no visitor ever came across the causeway before the storm closed it.",
+      "investigation_prompt": "Following this lead surfaces the draft patent assignment in Foss's briefcase and the correspondence that connects Foss to the Dunbar family patents. The 'party he was expecting' was a solicitor's representative from Edinburgh who never arrived because the causeway flooded. The business was the patent sale.",
+      "reveals": [
+        "E4"
+      ]
+    },
+    {
+      "id": "L2",
+      "title": "The Missing Skeleton Key",
+      "brief": "D\u00f2mhnall Luirg mentioned, when questioned informally, that he had a nagging sense the tower key was not on the board when he checked at nine o'clock \u2014 but he put it down to his own error and wrote nothing official.",
+      "investigation_prompt": "Following this lead prompts Donald to show investigators his porter's log with the question-mark entry. This surfaces E2, establishing the key was removed and returned during the murder window.",
+      "reveals": [
+        "E2"
+      ]
+    },
+    {
+      "id": "L3",
+      "title": "Vera Strachan's Long Grudge",
+      "brief": "It is known among the guests that Vera Strachan reacted with visible distress when she first encountered Foss in the hotel dining room \u2014 several people noticed, and she left the table abruptly.",
+      "investigation_prompt": "This lead looks like motive evidence pointing at Strachan but is a red herring. Following it surfaces Strachan's land-rights grievance against Foss, which is real but leads into her wrist injury as the medical evidence that clears her. The lead reveals E10.",
+      "reveals": [
+        "E10"
+      ]
+    },
+    {
+      "id": "L4",
+      "title": "The Strange Brandy Bottle",
+      "brief": "The brandy bottle found on the tower cabinet's high shelf is not a brand the hotel stocks \u2014 the hotel keeper is certain of this, and finds it peculiar that it was up there at all.",
+      "investigation_prompt": "This is a red herring lead. The bottle was placed by Dunbar to suggest Foss had climbed to retrieve it. It has been wiped clean of prints. Following this lead produces E11, which looks suspicious but proves only that the staging was deliberate \u2014 it does not identify who staged it on its own.",
+      "reveals": [
+        "E11"
+      ]
+    }
+  ],
+  "gameplay_notes": {
+    "difficulty": "HARD",
+    "estimated_playtime": "60\u201375 minutes",
+    "key_twists": [
+      "The locked-room element is not a locked room: the killer locked the door from outside and returned the key to the public board, hiding in plain sight.",
+      "The staged scene \u2014 a tall man's reach disguised as an accident victim climbing for a bottle \u2014 requires players to reason about physical height before they know who is tall enough.",
+      "The most emotionally obvious suspect, Vera Strachan, has a genuine grievance and genuine motive but is exonerated by a private medical fact the investigators must actively uncover.",
+      "Margaret Osei is the most evasive character in conversation, but her alibi is the most solid \u2014 her visible nervousness is about the fabricated article, not the murder.",
+      "The cold ash in the smoking room is the single most decisive physical clue against Dunbar's alibi, but it requires players to ask a question about the fire rather than about the body."
+    ]
+  },
+  "_provenance": {
+    "recipe": "corpus_3fb72d1d(1) + corpus_9e746437(2) + corpus_0cbc029f(3) + corpus_3bb51375(4) + corpus_f22719dc(5) + corpus_a09ad080(6) + corpus_6a872cd1(7) + corpus_d35a1f6a(8)",
+    "slots": [
+      {
+        "source_id": "corpus_3fb72d1d",
+        "part_index": 1,
+        "part_type": "crime_type"
+      },
+      {
+        "source_id": "corpus_9e746437",
+        "part_index": 2,
+        "part_type": "setting_element"
+      },
+      {
+        "source_id": "corpus_0cbc029f",
+        "part_index": 3,
+        "part_type": "motive"
+      },
+      {
+        "source_id": "corpus_3bb51375",
+        "part_index": 4,
+        "part_type": "suspect_archetype"
+      },
+      {
+        "source_id": "corpus_f22719dc",
+        "part_index": 5,
+        "part_type": "red_herring"
+      },
+      {
+        "source_id": "corpus_a09ad080",
+        "part_index": 6,
+        "part_type": "reveal_mechanic"
+      },
+      {
+        "source_id": "corpus_6a872cd1",
+        "part_index": 7,
+        "part_type": "social_dynamic"
+      },
+      {
+        "source_id": "corpus_d35a1f6a",
+        "part_index": 8,
+        "part_type": "alibi"
+      }
+    ],
+    "target_setting": "A death at a remote Scottish tidal-island hotel cut off by the sea twice a day, during a winter storm that has stranded the last four guests, 1954.",
+    "generated_title": "",
+    "craft_guidance": [
+      {
+        "concept": "The Closed World",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "COARSE PARTS (C1\u2013C6) \u2014 Structural Skeleton",
+        "confidence": "canonical",
+        "source": "James: \"closed circle of suspects\"; Rankin: Edinburgh as character; French: location as first decision"
+      },
+      {
+        "concept": "The Crime",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "COARSE PARTS (C1\u2013C6) \u2014 Structural Skeleton",
+        "confidence": "canonical",
+        "source": "Christie (start with method), P.D. James (central mysterious crime), Knox (rule 4: method must be plausible)"
+      },
+      {
+        "concept": "The Culprit + Motive",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "COARSE PARTS (C1\u2013C6) \u2014 Structural Skeleton",
+        "confidence": "canonical",
+        "source": "Christie: start with murderer and motive, then build outward; worked backward from the solution"
+      },
+      {
+        "concept": "Suspect Architecture",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "MEDIUM-FINE PARTS (M1\u2013M8) \u2014 Tactical Construction Elements",
+        "confidence": "canonical",
+        "source": "James: \"each with motive, means and opportunity\"; Knox: criminal must appear early"
+      },
+      {
+        "concept": "The Alibi",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "MEDIUM-FINE PARTS (M1\u2013M8) \u2014 Tactical Construction Elements",
+        "confidence": "canonical",
+        "source": "Christie notebooks: alibi construction is explicit planning step"
+      }
+    ]
+  },
+  "_coherence": {
+    "passed": true,
+    "blocking": 0,
+    "warnings": 0
+  },
+  "opening_narration": "The Carraig M\u00f2r Hotel has stood on its granite outcrop for a hundred and twelve years, and in all that time the January tides have never once waited for human convenience \u2014 nor have they waited now, trapping the hotel's last four guests on an island the mainland cannot see through the storm, with the causeway drowned and the telephone dead since yesterday morning. Sometime in the small hours of the fourteenth, the housekeeper, Agnes Wachlie, noticed a light moving inside the old signal tower at the north end of the grounds \u2014 the tower whose lamp has not turned since 1931. The night porter unlocked the tower door with the skeleton key from the lobby board and found Reginald Foss, a retired patent broker from Edinburgh, lying beneath the lamp mechanism with fatal injuries to his head. In this hotel there are four remaining guests: Alasdair Dunbar, a draughtsman; Vera Strachan, a retired schoolmistress; Cecil Pryce, a former civil servant; and Margaret Osei, a press correspondent \u2014 and between them, every door to the outside world is locked, staved in, or swallowed by the sea.",
+  "_verdict": {
+    "verdict": "rejected",
+    "failure_class": "unplayable",
+    "violations": [
+      {
+        "rule_id": "DEAL.SOLO_SOLVE",
+        "failure_class": "unplayable",
+        "subject_ids": [
+          "W:Dr. Ishbel Marra"
+        ],
+        "message": "finding W:Dr. Ishbel Marra solves the mystery by itself; no deal can be fair"
+      }
+    ],
+    "advisory": [
+      {
+        "rule_id": "CAST.UNKNOWN_PERSON",
+        "failure_class": "incoherent",
+        "subject_ids": [
+          "Foss"
+        ],
+        "message": "reasons about 'Foss', who is not in characters[]"
+      },
+      {
+        "rule_id": "CAST.UNKNOWN_PERSON",
+        "failure_class": "incoherent",
+        "subject_ids": [
+          "Gladstone"
+        ],
+        "message": "reasons about 'Gladstone', who is not in characters[]"
+      },
+      {
+        "rule_id": "CAST.ORPHAN",
+        "failure_class": "incoherent",
+        "subject_ids": [
+          "Foss"
+        ],
+        "message": "'Foss' appears only inside the solution"
+      }
+    ]
+  }
+}

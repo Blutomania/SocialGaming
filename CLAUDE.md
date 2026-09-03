@@ -405,11 +405,18 @@ living possibility; and the prose-leak check compared full names, so *"the inven
 **Celestine** herself made"* was invisible. Session 40's prose fix had therefore not landed — it had
 only stopped being detectable.
 
-**The highest-value prompt change on the board is the two-routes distribution.** Three generations
-running have cleared exactly one suspect by exactly one finding (here: 3/2/1 across three
-innocents). Session 40 rewrote the construction order to fix it and it did not land. It is now the
-only rule standing between an otherwise-clean generation and step 3, so it is worth attacking
-directly rather than spending another call and hoping.
+**[Session 41, sixth generation] The two-routes problem is solved.** It was never a distribution
+problem — counted over routes rather than evidence items, exactly one suspect had exactly one route
+every time, and it was always the suspect whose clue nothing pointed at and whom no witness
+mentioned (item 29). The prompt now assigns each witness a suspect before writing the statement.
+`the_tide_waits_for_no_one` is the result: **0 blocking, 0 warnings, no single-route suspect, every
+exoneration wired, no prose leak** — the cleanest generation to date.
+
+**It fails on one rule, and that rule is item 27 working.** A narrowing (two men tall enough to
+reach a six-foot shelf) plus the exoneration clearing one of them names the culprit in two findings
+— the glove, exactly as specified. But both halves landed on the same witness, so one dealt finding
+carries the whole proof. **No single witness, lead or area may reveal both a narrowing and the
+exoneration that completes it.** In the prompt, untested. One generation should confirm it.
 
 **Decided (Session 38): no crime-scene picture for the playtest** — a list of named findings. The
 map is deferred, not cancelled.

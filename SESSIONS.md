@@ -3208,9 +3208,38 @@ The prompt now says so where witnesses are actually written (assign each witness
 cover all four) — the old REACHABLE rule failed for the same reason two-routes did: both stated in
 the EVIDENCE section as properties of a section written later. **Untested.**
 
-**Next: item 23 step 3** is still blocked on a mystery that passes everything — five generations,
-five rejects. The next generation tests three untested prompt/rule changes at once: the per-suspect
-witness rule, the suspect-counting narrowing fix, and the word-level prose leak check.
+### The sixth generation — all three changes landed, and the glove bit
+
+*A death at a remote Scottish tidal-island hotel, 1954.* 216s, **$0.1768**. Coherence passed,
+0 blocking and — for the first time in this project — **0 warnings**. 4 suspects, 11 evidence,
+3 witnesses.
+
+| Change | Result |
+|---|---|
+| Per-suspect witness rule | **`NARR.SINGLE_ROUTE` and `REVEAL.UNREACHED_EXONERATION` both gone** — first time in four generations |
+| Word-level prose leak check | No leak. `E3` narrows to two men and names neither |
+| Narrowing counts suspects | `E3` narrows to 2 of 4 real suspects, correctly |
+
+**One violation, and it is not a regression — it is item 27 working.** `E3` narrows to Alasdair and
+Cecil (a brandy bottle on a six-foot shelf: someone tall enough to reach it, naming nobody). `E5`
+clears Cecil. Intersect, subtract, and the culprit is named. Two findings that individually prove
+nothing combining into a proof, exactly as the owner specified the glove.
+
+**Both halves landed on the same witness.** Dr. Ishbel Marra reveals E1, E3 *and* E5, so she is one
+dealt finding carrying the whole proof, and whoever draws her wins without speaking to anyone —
+`DEAL.SOLO_SOLVE`. The new mechanic meeting the old constraint.
+
+**Partly caused by this session's own prompt rule**, which said three witnesses covering four
+suspects means one witness covers two, and did not say what a witness may not carry. The rule it
+earned: **no single witness, lead or area may reveal both a narrowing and the exoneration that
+completes it.** Added to the prompt, untested.
+
+**Trajectory across the two paid generations this session:** delacroix fired 5 violations across
+3 rules; `the_tide_waits_for_no_one` fires 1. Both cost real money and both are in the ledger.
+
+**Next: item 23 step 3** is still blocked on a mystery that passes everything — six generations,
+six rejects — but the sixth is one rule away, and the rule is written. Worth one generation to
+confirm before building the share screen against it.
 
 **Files:** `gate.py`, `generation_ledger.py`, `deal.py`, `server/main.py`,
 `scripts/check_narrative.py`, `scripts/cpam.py`, `scripts/backfill_ledger.py`,
