@@ -424,7 +424,12 @@ is from March and 16 have generated cleanly since, but this run is the confirmat
   > item 17, the autoload ordering rule is in `CLAUDE.md`'s Godot notes, and the ground colour is
   > decided in `palette.py`. Treat `project.godot` as a file that cannot hold documentation.
 - **Untracked `.uid` files.** Godot generates these sidecars for scripts and assets that lack them.
-  They are meant to be committed — Godot 4.4+ expects it.
+  **They are meant to be committed** — Godot 4.4+ expects it — so `git add` them rather than
+  leaving them sitting in `git status`. Without them Godot regenerates fresh ones on every clone
+  and the references churn.
+- **`.import` files are ignored**, and the difference from `.uid` matters because they look alike:
+  a `.uid` is a stable identity that belongs in version control, a `.import` is per-machine import
+  settings pointing into the ignored `.godot/` cache.
 - **A default window and taskbar icon.** `config/icon` is deliberately unset. It used to name a
   file that has never existed, which put a failed-load error in the Output panel on every open.
 

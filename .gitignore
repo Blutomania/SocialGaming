@@ -28,6 +28,14 @@ mystery_database/raw_texts/
 # Godot editor import cache (CYM's client at the repo root — the MYF client has
 # its own rule in mind-your-friends/.gitignore). Regenerated on open.
 # .uid files are deliberately NOT ignored: Godot 4.4+ expects them committed.
+
+# .import sidecars ARE ignored, and the distinction from .uid is worth stating
+# because they look alike. A .uid is a stable identity Godot expects to find in
+# version control. A .import is per-machine import settings pointing into
+# .godot/, which is itself ignored — committing them shares paths that only
+# resolve on the machine that wrote them. Untracked and un-ignored, they sat in
+# git status forever, which is how people learn to stop reading git status.
+*.import
 godot/.godot/
 
 # HuggingFace / model caches
