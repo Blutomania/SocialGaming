@@ -116,8 +116,94 @@ def deduction_text(solution):
     return f"{solution.get('how_to_deduce', '')} {steps}"
 
 
+# ---------------------------------------------------------------------------
+# Rule registry (Session 41)
+# ---------------------------------------------------------------------------
+# Every finding this file reports carries a stable ID and a failure class.
+#
+# WHY IDS. The prose messages below are written for a person triaging a queue
+# and they are good at that job -- they name the defect, the evidence item and
+# the consequence. They are useless to anything else: you cannot count them,
+# group them, or ask "which rule has cost us the most generations". Sorting that
+# out is the difference between mystery_database/rejected/ being an archive and
+# being a dataset, which is what generation_ledger.py exists to accumulate.
+#
+# WHY THE CLASS LIVES HERE AND NOT IN gate.py. Whoever adds a rule knows what
+# kind of broken it detects; the gate only decides what to DO about a class.
+# Putting the class next to the rule keeps that judgement with the evidence for
+# it, and means a new rule cannot be added without saying what it means.
+#
+#   incoherent      the story does not hang together -- it reasons about people
+#                   who do not exist, or its own chain contradicts itself
+#   unplayable      the story is fine and the GAME is broken: it cannot be dealt,
+#                   or it cannot be won
+#   spoiled_prose   every field is correct and the text gives the answer away.
+#                   the_light_that_went_out is the case that named this one
+#   below_standard  playable, winnable, and not good enough to serve
+#
+# The coherence engine's own IDs (P1.C4.culprit_not_in_characters and friends)
+# are already structured and are recorded alongside these, unchanged.
+RULES = {
+    # --- cast and orphans: heuristic, advisory only. See gate.ADVISORY_RULES ---
+    "CAST.UNKNOWN_PERSON":        "incoherent",
+    "CAST.ORPHAN":                "incoherent",
+    # --- links ---
+    "NARR.SUPPORTS_UNKNOWN_STEP": "incoherent",
+    "NARR.STEP_UNSUPPORTED":      "incoherent",
+    "NARR.RED_HERRING_SUPPORTS":  "incoherent",
+    "NARR.CULPRIT_EXONERATED":    "unplayable",
+    "NARR.CLEARS_MULTIPLE":       "unplayable",
+    "NARR.ELIMINATION_NOT_ONE":   "unplayable",
+    "NARR.NARROWING_LOAD_BEARING": "unplayable",
+    "NARR.NARROWS_EXCLUDES_CULPRIT": "unplayable",
+    "NARR.NARROWS_SINGLE":        "spoiled_prose",
+    "NARR.NARROWS_PROSE_NAMES":   "spoiled_prose",
+    "NARR.NARROWS_ALL":           "below_standard",
+    "NARR.NARROWS_STRANGER":      "below_standard",
+    "NARR.NOBODY_IMPLICATED":     "below_standard",
+    "NARR.SINGLE_ROUTE":          "below_standard",
+    # --- reveals ---
+    "REVEAL.DANGLING":            "incoherent",
+    "REVEAL.NO_POINTER":          "below_standard",
+    "REVEAL.UNREACHED_EXONERATION": "below_standard",
+}
+
+
+def _flag(report, bucket, rule_id, message, subjects=()):
+    """Record one finding twice: as prose for a reader, as data for the ledger.
+
+    The prose lists (report["links"], report["reveals"], ...) keep their exact
+    previous contents so main() and test_narrative_checks.py are untouched;
+    report["violations"] gains the structured form.
+    """
+    report[bucket].append(message)
+    report["violations"].append({
+        "rule_id": rule_id,
+        "failure_class": RULES.get(rule_id, "below_standard"),
+        "subject_ids": [str(s) for s in subjects],
+        "message": message,
+    })
+
+
 def audit(path):
+    """Audit a mystery on disk. Legacy status is read from the filename stamp."""
     data = json.loads(path.read_text(encoding="utf-8"))
+    try:
+        stamp = int(path.stem.rsplit("_", 1)[1])
+        legacy = stamp < SCHEMA_EPOCH
+    except (IndexError, ValueError):
+        legacy = True
+    return audit_data(data, path.name, legacy=legacy)
+
+
+def audit_data(data, name="<memory>", legacy=False):
+    """The audit itself, over a mystery dict.
+
+    SPLIT OUT FROM audit() in Session 41 so the gate can gate a mystery that is
+    still in memory. Writing a candidate to disk in order to find out whether it
+    should be written to disk is the kind of ordering that eventually leaves a
+    rejected mystery sitting in generated/ because a later step raised.
+    """
     solution = data.get("solution") or {}
     characters = [c for c in (data.get("characters") or []) if isinstance(c, dict)]
     suspects = [c.get("name", "") for c in characters if c.get("role") == "suspect"]
@@ -131,14 +217,8 @@ def audit(path):
     outside = json.dumps({k: v for k, v in data.items()
                           if k not in ("solution", "_provenance", "_coherence", "_meta")})
 
-    report = {"file": path.name, "legacy": None, "cast": [], "orphans": [],
-              "links": [], "reveals": []}
-
-    try:
-        stamp = int(path.stem.rsplit("_", 1)[1])
-        report["legacy"] = stamp < SCHEMA_EPOCH
-    except (IndexError, ValueError):
-        report["legacy"] = True
+    report = {"file": name, "legacy": legacy, "cast": [], "orphans": [],
+              "links": [], "reveals": [], "violations": []}
 
     # --- CAST ---
     for cand in sorted({m.strip() for m in NAME.findall(deduction_text(solution))}):
@@ -147,6 +227,12 @@ def audit(path):
         if words(cand) & cast_words:
             continue
         report["cast"].append(cand)
+        report["violations"].append({
+            "rule_id": "CAST.UNKNOWN_PERSON",
+            "failure_class": RULES["CAST.UNKNOWN_PERSON"],
+            "subject_ids": [cand],
+            "message": f"reasons about '{cand}', who is not in characters[]",
+        })
 
     # --- ORPHAN ---
     prose = " ".join(str(solution.get(k, "")) for k in ("method", "motive", "how_to_deduce"))
@@ -156,6 +242,12 @@ def audit(path):
         if any(w in outside for w in words(cand)):
             continue
         report["orphans"].append(cand)
+        report["violations"].append({
+            "rule_id": "CAST.ORPHAN",
+            "failure_class": RULES["CAST.ORPHAN"],
+            "subject_ids": [cand],
+            "message": f"'{cand}' appears only inside the solution",
+        })
 
     # Built before LINKS because the two-routes check counts dealable findings,
     # and a witness or lead pointing at an evidence item is one of them.
@@ -181,24 +273,32 @@ def audit(path):
         for e in evidence:
             for sid in e.get("supports") or []:
                 if sid not in step_ids:
-                    report["links"].append(f"{e.get('id')} supports {sid}, which is not a chain step")
+                    _flag(report, "links", "NARR.SUPPORTS_UNKNOWN_STEP",
+                          f"{e.get('id')} supports {sid}, which is not a chain step",
+                          [e.get("id"), sid])
                 supported.add(sid)
             if e.get("relevance") == "red_herring" and (e.get("supports") or []):
-                report["links"].append(f"{e.get('id')} is a red herring but supports a chain step")
+                _flag(report, "links", "NARR.RED_HERRING_SUPPORTS",
+                      f"{e.get('id')} is a red herring but supports a chain step",
+                      [e.get("id")])
             exo_here = [n for n in (e.get("exonerates") or []) if str(n).strip()]
             if len(exo_here) > 1:
-                report["links"].append(
-                    f"{e.get('id')} clears {len(exo_here)} suspects at once {exo_here}; "
-                    f"a finding must clear at most one, or it solves the case alone")
+                _flag(report, "links", "NARR.CLEARS_MULTIPLE",
+                      f"{e.get('id')} clears {len(exo_here)} suspects at once {exo_here}; "
+                      f"a finding must clear at most one, or it solves the case alone",
+                      [e.get("id")])
             exonerated |= set(e.get("exonerates") or [])
             implicated |= set(e.get("implicates") or [])
 
         for sid in sorted(step_ids - supported):
-            report["links"].append(f"chain step {sid} is supported by no evidence")
+            _flag(report, "links", "NARR.STEP_UNSUPPORTED",
+                  f"chain step {sid} is supported by no evidence", [sid])
         if culprit and any(w in exonerated for w in [culprit] + list(words(culprit))):
-            report["links"].append(f"the culprit ({culprit}) is exonerated by the evidence")
+            _flag(report, "links", "NARR.CULPRIT_EXONERATED",
+                  f"the culprit ({culprit}) is exonerated by the evidence", [culprit])
         if culprit and not implicated:
-            report["links"].append("no evidence implicates anyone; the culprit is reached only by elimination")
+            _flag(report, "links", "NARR.NOBODY_IMPLICATED",
+                  "no evidence implicates anyone; the culprit is reached only by elimination")
         # Two independent routes: a suspect clearable one way only becomes
         # unclearable the moment that finding is withheld (Session 39).
         #
@@ -223,9 +323,9 @@ def audit(path):
                         routes[n] += 1              # each witness/lead/area too
         for who in sorted(x for x in suspects if x != culprit):
             if routes.get(who, 0) < 2:
-                report["links"].append(
-                    f"{who} is cleared by only {routes.get(who, 0)} finding(s); needs two "
-                    f"independent routes or hoarding can make the case unprovable")
+                _flag(report, "links", "NARR.SINGLE_ROUTE",
+                      f"{who} is cleared by only {routes.get(who, 0)} finding(s); needs two "
+                      f"independent routes or hoarding can make the case unprovable", [who])
 
         # --- NARROWS (item 27) ---
         narrowing = [e for e in evidence
@@ -233,45 +333,51 @@ def audit(path):
         for e in narrowing:
             named = [str(n).strip() for n in (e.get("narrows") or []) if str(n).strip()]
             if len(named) < 2:
-                report["links"].append(
-                    f"{e.get('id')} narrows to a single suspect {named}; that is the whole "
-                    f"answer in one finding, and whoever is dealt it wins without sharing")
+                _flag(report, "links", "NARR.NARROWS_SINGLE",
+                      f"{e.get('id')} narrows to a single suspect {named}; that is the whole "
+                      f"answer in one finding, and whoever is dealt it wins without sharing",
+                      [e.get("id")])
             elif suspects and len(named) >= len(suspects):
-                report["links"].append(
-                    f"{e.get('id')} narrows to all {len(named)} suspects, so it rules nobody "
-                    f"out; a narrowing must exclude at least one person to be worth reading")
+                _flag(report, "links", "NARR.NARROWS_ALL",
+                      f"{e.get('id')} narrows to all {len(named)} suspects, so it rules nobody "
+                      f"out; a narrowing must exclude at least one person to be worth reading",
+                      [e.get("id")])
             stranger = [n for n in named if n not in suspects]
             if stranger:
-                report["links"].append(f"{e.get('id')} narrows to {stranger}, who are not suspects")
+                _flag(report, "links", "NARR.NARROWS_STRANGER",
+                      f"{e.get('id')} narrows to {stranger}, who are not suspects",
+                      [e.get("id")])
             if culprit and culprit not in named:
-                report["links"].append(
-                    f"{e.get('id')} narrows to {named}, excluding the culprit ({culprit}) -- "
-                    f"the mystery contradicts its own solution and punishes correct reasoning")
+                _flag(report, "links", "NARR.NARROWS_EXCLUDES_CULPRIT",
+                      f"{e.get('id')} narrows to {named}, excluding the culprit ({culprit}) -- "
+                      f"the mystery contradicts its own solution and punishes correct reasoning",
+                      [e.get("id")])
             # The prose must state the FACT, never the inference. Naming a
             # suspect in a narrowing clue's own description hands the player the
             # conclusion they were supposed to reach.
             blurb = f"{e.get('name', '')} {e.get('description', '')}"
             spoiled = [n for n in named if n and n in blurb]
             if spoiled:
-                report["links"].append(
-                    f"{e.get('id')} is a narrowing clue whose own text names {spoiled}, somebody "
-                    f"it still leaves possible -- that turns a narrowing into an accusation and "
-                    f"whoever is dealt it wins without speaking to anyone. Naming a suspect the "
-                    f"fact rules OUT is fine; naming one it does not is not")
+                _flag(report, "links", "NARR.NARROWS_PROSE_NAMES",
+                      f"{e.get('id')} is a narrowing clue whose own text names {spoiled}, somebody "
+                      f"it still leaves possible -- that turns a narrowing into an accusation and "
+                      f"whoever is dealt it wins without speaking to anyone. Naming a suspect the "
+                      f"fact rules OUT is fine; naming one it does not is not",
+                      [e.get("id")])
 
         # Narrowing must never be load-bearing: elimination alone has to reach
         # the culprit, or withholding one glove makes the case unprovable.
         if narrowing:
             standing_no_glove = [s for s in suspects if s not in exonerated]
             if standing_no_glove != [culprit]:
-                report["links"].append(
-                    f"narrowing is load-bearing: elimination alone leaves {standing_no_glove}, "
-                    f"so withholding a narrowing finding could make the case unprovable")
+                _flag(report, "links", "NARR.NARROWING_LOAD_BEARING",
+                      f"narrowing is load-bearing: elimination alone leaves {standing_no_glove}, "
+                      f"so withholding a narrowing finding could make the case unprovable")
 
         remaining = [s for s in suspects if s not in exonerated]
         if len(remaining) != 1:
-            report["links"].append(
-                f"eliminating the exonerated leaves {len(remaining)} suspect(s), not 1: {remaining}")
+            _flag(report, "links", "NARR.ELIMINATION_NOT_ONE",
+                  f"eliminating the exonerated leaves {len(remaining)} suspect(s), not 1: {remaining}")
 
     # --- REVEALS (only where the schema provides them) ---
     has_reveals = any("reveals" in obj for _, obj in pointer_sources)
@@ -282,10 +388,12 @@ def audit(path):
         for label, obj in pointer_sources:
             pointers = obj.get("reveals") or []
             if not pointers:
-                report["reveals"].append(f"{label} reveals nothing; it cannot be reasoned from")
+                _flag(report, "reveals", "REVEAL.NO_POINTER",
+                      f"{label} reveals nothing; it cannot be reasoned from", [label])
             for eid in pointers:
                 if eid not in ev_ids:
-                    report["reveals"].append(f"{label} reveals '{eid}', which is not in evidence[]")
+                    _flag(report, "reveals", "REVEAL.DANGLING",
+                          f"{label} reveals '{eid}', which is not in evidence[]", [label, eid])
                 else:
                     reached.add(eid)
 
@@ -293,9 +401,9 @@ def audit(path):
         # decorative -- the inertness this pointer exists to fix.
         for e in evidence:
             if (e.get("exonerates") or []) and e.get("id") not in reached:
-                report["reveals"].append(
-                    f"{e.get('id')} exonerates {list(e.get('exonerates'))} but no witness, "
-                    f"lead or area reveals it")
+                _flag(report, "reveals", "REVEAL.UNREACHED_EXONERATION",
+                      f"{e.get('id')} exonerates {list(e.get('exonerates'))} but no witness, "
+                      f"lead or area reveals it", [e.get("id")])
     return report
 
 

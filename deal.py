@@ -335,9 +335,62 @@ def solves(findings: Sequence[Finding], mystery: dict,
 # Feasibility — why a deal cannot be made, before trying 400 times
 # --------------------------------------------------------------------------
 
+# Every reason feasibility() can refuse a mystery, and what kind of broken each
+# one is. Added Session 41 so gate.py and the ledger can count rules rather than
+# match prose. Classes are the same four used everywhere: incoherent, unplayable,
+# spoiled_prose, below_standard (see check_narrative.RULES).
+#
+# SEVERAL IDS ARE DELIBERATELY SHARED WITH check_narrative.RULES. The two files
+# independently implement the same fair-play rules -- narrowing to one suspect,
+# narrowing to everybody, a narrowing that excludes the culprit, load-bearing
+# narrowing, an exonerated culprit. That duplication is real and predates this
+# change; naming them identically means the gate deduplicates them instead of
+# counting one defect twice.
+FEASIBILITY_RULES = {
+    "DEAL.NO_SUSPECTS":              "incoherent",
+    "DEAL.NO_CULPRIT":               "incoherent",
+    "DEAL.CULPRIT_NOT_SUSPECT":      "incoherent",
+    "REVEAL.DANGLING":               "incoherent",
+    "DEAL.EXONERATES_STRANGER":      "below_standard",
+    "NARR.CULPRIT_EXONERATED":       "unplayable",
+    "NARR.NARROWS_SINGLE":           "spoiled_prose",
+    "NARR.NARROWS_ALL":              "below_standard",
+    "NARR.NARROWS_STRANGER":         "below_standard",
+    "NARR.NARROWS_EXCLUDES_CULPRIT": "unplayable",
+    "NARR.NARROWING_LOAD_BEARING":   "unplayable",
+    "DEAL.POOL_UNSOLVABLE":          "unplayable",
+    "DEAL.REDUNDANCY_CEILING":       "unplayable",
+    "DEAL.REDUNDANCY_UNREACHABLE":   "unplayable",
+    "DEAL.SOLO_SOLVE":               "unplayable",
+    "DEAL.POOL_TOO_SMALL":           "unplayable",
+}
+
+
+def _add(issues: List[dict], rule_id: str, message: str, subjects=()) -> None:
+    """Record one refusal. `subjects` names the evidence item, finding or person
+    the rule fired on -- it is what lets gate.py deduplicate this against the
+    same rule reported by check_narrative.py, and what a later pass would need
+    in order to know WHAT to repair rather than only that something is wrong."""
+    issues.append({
+        "rule_id": rule_id,
+        "failure_class": FEASIBILITY_RULES.get(rule_id, "unplayable"),
+        "subject_ids": [str(x) for x in subjects],
+        "message": message,
+    })
+
+
 def feasibility(mystery: dict, player_count: int,
                 redundancy: int = 1,
                 hand_spec: Sequence[str] = DEFAULT_HAND_SPEC) -> List[str]:
+    """The reasons, as prose. Unchanged public behaviour — every existing caller
+    and scripts/test_deal.py read this list of strings."""
+    return [i["message"] for i in
+            feasibility_issues(mystery, player_count, redundancy, hand_spec)]
+
+
+def feasibility_issues(mystery: dict, player_count: int,
+                       redundancy: int = 1,
+                       hand_spec: Sequence[str] = DEFAULT_HAND_SPEC) -> List[dict]:
     """Cheap structural reasons this mystery can never be dealt.
 
     WHY THIS EXISTS. Without it, an undealable mystery looks exactly like an
@@ -345,7 +398,7 @@ def feasibility(mystery: dict, player_count: int,
     turns "the deal failed" into a sentence naming the mystery's defect, which
     is the difference between re-dealing and regenerating.
     """
-    issues: List[str] = []
+    issues: List[dict] = []
     ev_by_id = evidence_by_id(mystery)
     pool = build_pool(mystery)
     sus = suspects(mystery)
@@ -353,18 +406,18 @@ def feasibility(mystery: dict, player_count: int,
     required = required_exonerations(mystery)
 
     if not sus:
-        issues.append("no suspects: characters[] has nobody with role 'suspect'")
+        _add(issues, "DEAL.NO_SUSPECTS", "no suspects: characters[] has nobody with role 'suspect'")
     if not cul:
-        issues.append("no culprit: solution.culprit is empty")
+        _add(issues, "DEAL.NO_CULPRIT", "no culprit: solution.culprit is empty")
     elif cul not in sus:
-        issues.append(f"culprit {cul!r} is not among the suspects {sorted(sus)}")
+        _add(issues, "DEAL.CULPRIT_NOT_SUSPECT", f"culprit {cul!r} is not among the suspects {sorted(sus)}", [cul])
 
     # Dangling pointers. A reveals id naming no evidence item is silently
     # inert in exonerated_by(), so it must be loud here.
     for finding in pool:
         for eid in finding.reveals:
             if eid not in ev_by_id:
-                issues.append(f"finding {finding.id} reveals {eid!r}, which is not in evidence[]")
+                _add(issues, "REVEAL.DANGLING", f"finding {finding.id} reveals {eid!r}, which is not in evidence[]", [finding.id, eid])
 
     # An exonerates name matching no suspect eliminates nobody. Reported rather
     # than normalised away: "Dr. Tanaka" against a suspect named "Tanaka" is a
@@ -373,9 +426,9 @@ def feasibility(mystery: dict, player_count: int,
     for eid, item in ev_by_id.items():
         for n in (item.get("exonerates") or []):
             if str(n).strip() and str(n).strip() not in known:
-                issues.append(f"evidence {eid} exonerates {str(n).strip()!r}, who is not a suspect")
+                _add(issues, "DEAL.EXONERATES_STRANGER", f"evidence {eid} exonerates {str(n).strip()!r}, who is not a suspect", [eid])
     if cul and cul in exonerated_by(pool, ev_by_id):
-        issues.append(f"the culprit {cul!r} is exonerated by the evidence; nobody can be accused")
+        _add(issues, "NARR.CULPRIT_EXONERATED", f"the culprit {cul!r} is exonerated by the evidence; nobody can be accused", [cul])
 
     # FAIR PLAY, item 27. A narrowing clue is a strong claim and generation has
     # to mean it. "A bloody man's glove" invites the player to rule out the
@@ -392,9 +445,9 @@ def feasibility(mystery: dict, player_count: int,
         if not named:
             continue
         if len(named) < 2:
-            issues.append(
+            _add(issues, "NARR.NARROWS_SINGLE", 
                 f"evidence {eid} narrows to {named}, a single suspect -- that is the whole "
-                f"answer in one finding, and whoever is dealt it wins without sharing")
+                f"answer in one finding, and whoever is dealt it wins without sharing", [eid])
         # A narrowing naming EVERY suspect rules nobody out. The first real
         # generation to write a narrowing clue produced exactly this -- a rifle
         # casing "consistent with" all four suspects -- and it passed, because
@@ -402,16 +455,16 @@ def feasibility(mystery: dict, player_count: int,
         # and does nothing, which is worse than no clue: a player who works out
         # what it implies has been sent down a corridor with no door.
         elif len(named) >= len(sus) and sus:
-            issues.append(
+            _add(issues, "NARR.NARROWS_ALL", 
                 f"evidence {eid} narrows to all {len(named)} suspects, so it rules nobody out; "
-                f"a narrowing must exclude at least one person to be worth reading")
+                f"a narrowing must exclude at least one person to be worth reading", [eid])
         unknown = [n for n in named if n not in known]
         if unknown:
-            issues.append(f"evidence {eid} narrows to {unknown}, who are not suspects")
+            _add(issues, "NARR.NARROWS_STRANGER", f"evidence {eid} narrows to {unknown}, who are not suspects", [eid])
         if cul and cul not in named:
-            issues.append(
+            _add(issues, "NARR.NARROWS_EXCLUDES_CULPRIT", 
                 f"evidence {eid} narrows to {named}, which excludes the culprit {cul!r} -- "
-                f"the mystery contradicts its own solution and punishes correct reasoning")
+                f"the mystery contradicts its own solution and punishes correct reasoning", [eid])
 
     # ELIMINATION MUST STAY SUFFICIENT ON ITS OWN. Narrowing is a faster route,
     # never the only one (see solves()). If the case can only be cracked with a
@@ -421,7 +474,7 @@ def feasibility(mystery: dict, player_count: int,
     if sus and cul:
         standing_by_subtraction = set(sus) - exonerated_by(pool, ev_by_id)
         if standing_by_subtraction != {cul}:
-            issues.append(
+            _add(issues, "NARR.NARROWING_LOAD_BEARING", 
                 "elimination alone does not reach the culprit -- narrowing has become "
                 f"load-bearing, so withholding one narrowing finding could make the case "
                 f"unprovable. Standing after exonerations: {sorted(standing_by_subtraction)}")
@@ -430,7 +483,7 @@ def feasibility(mystery: dict, player_count: int,
     # no subset of it can.
     if sus and cul and not solves(pool, mystery, ev_by_id):
         standing = sorted(set(sus) - exonerated_by(pool, ev_by_id))
-        issues.append(
+        _add(issues, "DEAL.POOL_UNSOLVABLE", 
             "the full finding pool does not solve the mystery -- "
             f"suspects left standing: {standing or ['(none)']}, expected exactly [{cul!r}]"
         )
@@ -452,7 +505,7 @@ def feasibility(mystery: dict, player_count: int,
     if required and player_count and redundancy > 1:
         worst_hand = math.ceil(len(required) * redundancy / player_count)
         if worst_hand >= len(required):
-            issues.append(
+            _add(issues, "DEAL.REDUNDANCY_CEILING", 
                 f"redundancy {redundancy} is impossible at {player_count} players with "
                 f"{len(required)} required exoneration(s): some hand must then hold all "
                 f"{len(required)} and would solve alone (constraint 2). "
@@ -465,20 +518,20 @@ def feasibility(mystery: dict, player_count: int,
         for r in sorted(required):
             carriers = [c for c in pool if r in exonerated_by([c], ev_by_id)]
             if len(carriers) < redundancy:
-                issues.append(
+                _add(issues, "DEAL.REDUNDANCY_UNREACHABLE", 
                     f"exoneration of {r!r} is carried by {len(carriers)} finding(s) "
                     f"but redundancy {redundancy} needs {redundancy} distinct hands"
-                )
+                , [r])
 
     # Constraint 2 must be reachable: if one finding solves outright, whoever gets
     # it wins alone and the deal is a lottery by construction.
     for finding in pool:
         if sus and cul and solves([finding], mystery, ev_by_id):
-            issues.append(f"finding {finding.id} solves the mystery by itself; no deal can be fair")
+            _add(issues, "DEAL.SOLO_SOLVE", f"finding {finding.id} solves the mystery by itself; no deal can be fair", [finding.id])
 
     hand_size = len(hand_spec)
     if len(pool) < player_count * hand_size:
-        issues.append(
+        _add(issues, "DEAL.POOL_TOO_SMALL", 
             f"pool has {len(pool)} findings, short of {player_count} players x {hand_size} = "
             f"{player_count * hand_size}"
         )
