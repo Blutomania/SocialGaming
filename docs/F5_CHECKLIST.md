@@ -225,6 +225,14 @@ cat godot/apply_theme_report.txt
 
 **Read three things, in the panel or the file:**
 
+> **[Session 40] RUN, AND IT CAME BACK CLEAN.** On Godot 4.7.2, a real machine, the first time
+> this script has ever executed: `fonts Nunito Sans loaded (default_font_size 16)`,
+> `items 168 checked across 36 theme types`, and **`MISSES none — every theme item name is one the
+> engine has`**. That closes the caveat Session 37 left open on ten control types and the 13 theme
+> variations, which could not be checked any other way: a wrong name is a silent no-op, so the
+> failure has no symptom except one control looking unthemed. `VerifyScenes.gd` reported eight
+> `ok` lines in the same sitting.
+
 | Line | What it means |
 |---|---|
 | `fonts` | Whether Nunito Sans actually resolved. On a fresh checkout, if it says the fonts are missing, let the import finish and run it again |

@@ -763,8 +763,16 @@ that the superseded text has become history and belongs here instead.
     establish that a theme item name is one the engine recognises, and a wrong one is a silent
     no-op rather than an error. **[Session 38] That last gap is closed, but only from inside the
     engine** — `godot/scripts/tools/ApplyTheme.gd` looks every name up in
-    `ThemeDB.get_default_theme()` and prints the misses. It is one keystroke in the editor and it
-    has not been run yet, so the caveat below still stands until it is. The failure mode is bounded — a control keeps its engine default,
+    `ThemeDB.get_default_theme()` and prints the misses.
+
+    **[Session 40] IT WAS RUN, AND IT CAME BACK CLEAN.** Godot 4.7.2, the owner's machine, the
+    first execution of either engine-side script: `168 items checked across 36 theme types`,
+    **`MISSES none`**, and Nunito Sans resolved at default_font_size 16. `VerifyScenes.gd`
+    reported eight `ok` lines in the same sitting. So the caveat below is now history rather than
+    a live risk: every theme item name and all 13 variations are names the engine really has, and
+    every one of the eight screens survives Godot's own loader. Neither could be established any
+    other way — a wrong theme name is a silent no-op with no symptom but one control looking
+    unthemed, and reading a `.tscn` is not loading it. The failure mode is bounded — a control keeps its engine default,
     nothing crashes — but it needs an F5 to close. Session 36's "necessary, not sufficient" rule
     applies to this work more than to most.
 
