@@ -332,12 +332,22 @@ def audit_data(data, name="<memory>", legacy=False):
                      if [str(n).strip() for n in (e.get("narrows") or []) if str(n).strip()]]
         for e in narrowing:
             named = [str(n).strip() for n in (e.get("narrows") or []) if str(n).strip()]
-            if len(named) < 2:
+            # COUNTED OVER SUSPECTS, NOT NAMES (Session 41). The first version
+            # counted entries and `the_last_night_of_delacroix_&_sons` walked
+            # straight through it: E9 narrowed to [the culprit, THE VICTIM] --
+            # two names, one living suspect, so it is a single-suspect narrowing
+            # wearing a disguise, and whoever drew it won without speaking to
+            # anyone. deal.py caught the consequence (E9 solved outright) but
+            # this rule reported only "narrows to somebody who is not a suspect",
+            # which reads like a typo rather than the whole answer on one card.
+            live = [n for n in named if n in suspects]
+            if len(live) < 2:
                 _flag(report, "links", "NARR.NARROWS_SINGLE",
-                      f"{e.get('id')} narrows to a single suspect {named}; that is the whole "
-                      f"answer in one finding, and whoever is dealt it wins without sharing",
+                      f"{e.get('id')} narrows to {named}, which is {len(live)} actual suspect(s) "
+                      f"-- that is the whole answer in one finding, and whoever is dealt it wins "
+                      f"without sharing. Naming a non-suspect alongside does not widen it",
                       [e.get("id")])
-            elif suspects and len(named) >= len(suspects):
+            elif suspects and len(live) >= len(suspects):
                 _flag(report, "links", "NARR.NARROWS_ALL",
                       f"{e.get('id')} narrows to all {len(named)} suspects, so it rules nobody "
                       f"out; a narrowing must exclude at least one person to be worth reading",
@@ -356,7 +366,15 @@ def audit_data(data, name="<memory>", legacy=False):
             # suspect in a narrowing clue's own description hands the player the
             # conclusion they were supposed to reach.
             blurb = f"{e.get('name', '')} {e.get('description', '')}"
-            spoiled = [n for n in named if n and n in blurb]
+            # MATCHED ON NAME WORDS, NOT THE WHOLE STRING (Session 41). The
+            # first version asked `"Celestine Vautrain" in blurb` and the very
+            # next generation evaded it by writing "the inventory entry
+            # Celestine herself made" -- first name only, same leak, invisible.
+            # words() is the same tokeniser the CAST check uses, and it already
+            # drops particles under three characters so "de" and "van" cannot
+            # match half the cast.
+            blurb_words = words(blurb)
+            spoiled = [n for n in named if n and (words(n) & blurb_words)]
             if spoiled:
                 _flag(report, "links", "NARR.NARROWS_PROSE_NAMES",
                       f"{e.get('id')} is a narrowing clue whose own text names {spoiled}, somebody "

@@ -151,6 +151,41 @@ def load(path: Path = LEDGER_PATH) -> List[dict]:
     return rows
 
 
+def collapse(rows: Sequence[dict]) -> List[dict]:
+    """One row per mystery for counting, newest verdict wins, cost carried forward.
+
+    WHY THIS EXISTS. Rules in this project are earned one rejected mystery at a
+    time, so re-running the gate over disk after a rule lands is routine. Each
+    re-verdict appends a row (the file is append-only and the original stays
+    exactly as written) -- but a re-verdict is NOT a second attempt, and counting
+    it as one would inflate the pass-rate denominator with the same mystery
+    twice, which is precisely the kind of quiet double-count this data exists to
+    avoid.
+
+    So: group by slug, take the LATEST verdict and violations (the current rules
+    are the ones worth counting), and carry the cost from whichever row in the
+    group actually has one -- the original attempt, since a re-verdict spends
+    nothing. Rows with no slug stand alone.
+    """
+    by_slug: Dict[str, dict] = {}
+    out: List[dict] = []
+    for r in rows:
+        slug = r.get("slug")
+        if not slug:
+            out.append(r)
+            continue
+        prior = by_slug.get(slug)
+        if prior is None:
+            by_slug[slug] = dict(r)
+            continue
+        merged = dict(r)
+        if merged.get("cost_usd") is None and prior.get("cost_usd") is not None:
+            merged["cost_usd"] = prior["cost_usd"]
+            merged["calls"] = prior.get("calls") or []
+        by_slug[slug] = merged
+    return out + list(by_slug.values())
+
+
 def summarise(rows: Sequence[dict]) -> dict:
     """CPAM and the numbers around it.
 
@@ -158,6 +193,7 @@ def summarise(rows: Sequence[dict]) -> dict:
     the whole point: rejected generations are a real cost of every accepted one,
     and a metric that hides them makes a cheap unreliable model look good.
     """
+    rows = collapse(rows)
     accepted = [r for r in rows if r.get("verdict") == "accepted"]
     rejected = [r for r in rows if r.get("verdict") == "rejected"]
     unjudged = [r for r in rows if r.get("verdict") == "unjudged"]

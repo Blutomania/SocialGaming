@@ -444,17 +444,23 @@ def feasibility_issues(mystery: dict, player_count: int,
         named = [str(n).strip() for n in (item.get("narrows") or []) if str(n).strip()]
         if not named:
             continue
-        if len(named) < 2:
-            _add(issues, "NARR.NARROWS_SINGLE", 
-                f"evidence {eid} narrows to {named}, a single suspect -- that is the whole "
-                f"answer in one finding, and whoever is dealt it wins without sharing", [eid])
+        # COUNTED OVER SUSPECTS, NOT LIST ENTRIES (Session 41). E9 of
+        # `the_last_night_of_delacroix_&_sons` narrowed to [the culprit, THE
+        # VICTIM]: two entries, one living possibility. A dead man does not
+        # widen a narrowing, and the finding solved the case outright.
+        live = [n for n in named if n in known]
+        if len(live) < 2:
+            _add(issues, "NARR.NARROWS_SINGLE",
+                f"evidence {eid} narrows to {named}, which is {len(live)} actual suspect(s) -- "
+                f"that is the whole answer in one finding, and whoever is dealt it wins "
+                f"without sharing", [eid])
         # A narrowing naming EVERY suspect rules nobody out. The first real
         # generation to write a narrowing clue produced exactly this -- a rifle
         # casing "consistent with" all four suspects -- and it passed, because
         # the only rule was "at least two names". The clue reads like evidence
         # and does nothing, which is worse than no clue: a player who works out
         # what it implies has been sent down a corridor with no door.
-        elif len(named) >= len(sus) and sus:
+        elif len(live) >= len(sus) and sus:
             _add(issues, "NARR.NARROWS_ALL", 
                 f"evidence {eid} narrows to all {len(named)} suspects, so it rules nobody out; "
                 f"a narrowing must exclude at least one person to be worth reading", [eid])

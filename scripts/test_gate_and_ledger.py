@@ -124,6 +124,36 @@ def test_ledger_io():
           GL.load(Path(d) / "gone.jsonl") == [])
 
 
+def test_collapse():
+    print("\nre-verdicts")
+    # Rules here are earned one rejected mystery at a time, so re-running the
+    # gate over disk after a rule lands is routine. The re-verdict appends a row
+    # and must NOT read as a second attempt -- that would count one mystery
+    # twice in the pass rate, and it did on the first run of this session.
+    rows = [
+        {"slug": "m1", "verdict": "rejected", "cost_usd": 0.20,
+         "failure_class": "below_standard", "violations": [{"rule_id": "NARR.SINGLE_ROUTE"}]},
+        {"slug": "m1", "verdict": "rejected", "cost_usd": None,
+         "failure_class": "unplayable", "violations": [{"rule_id": "DEAL.SOLO_SOLVE"}],
+         "supersedes": "m1-original"},
+    ]
+    c = GL.collapse(rows)
+    check("two rows for one mystery collapse to one attempt", len(c) == 1, str(c))
+    check("the cost survives the collapse, though the re-verdict spent nothing",
+          c[0]["cost_usd"] == 0.20, str(c[0].get("cost_usd")))
+    check("the NEWEST verdict wins, because the current rules are the real ones",
+          c[0]["failure_class"] == "unplayable", str(c[0].get("failure_class")))
+
+    s = GL.summarise(rows)
+    check("so the pass-rate denominator counts the mystery once, not twice",
+          s["attempts"] == 1 and s["rejected"] == 1, str(s))
+    check("and its cost is not counted twice either",
+          abs(s["total_cost_usd"] - 0.20) < 1e-9, str(s["total_cost_usd"]))
+
+    check("a row with no slug is never merged into another",
+          len(GL.collapse([{"verdict": "accepted"}, {"verdict": "rejected"}])) == 2)
+
+
 def test_summarise():
     print("\nCPAM arithmetic")
     rows = [
@@ -262,6 +292,7 @@ def test_verdict_is_json_safe():
 if __name__ == "__main__":
     test_cost()
     test_ledger_io()
+    test_collapse()
     test_summarise()
     test_gate_accepts_clean()
     test_gate_refuses()

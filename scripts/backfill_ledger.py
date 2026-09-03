@@ -73,18 +73,39 @@ def main():
     ap.add_argument("--go", action="store_true", help="actually write the rows")
     args = ap.parse_args()
 
-    already = {r.get("slug") for r in generation_ledger.load()}
+    # Latest verdict per slug, so a re-verdict compares against the current one
+    # rather than the original.
+    latest = {}
+    for r in generation_ledger.load():
+        if r.get("slug"):
+            latest[r["slug"]] = r
     written = 0
     skipped = 0
 
     for sub, path, data in _mysteries():
         slug = path.stem
-        if slug in already:
-            skipped += 1
-            continue
+        prior = latest.get(slug)
 
         legacy = _is_legacy(path)
         verdict = gate.evaluate(data, path.name, legacy=legacy)
+
+        if prior is not None:
+            # RULES CHANGE, AND THE LEDGER MUST NOT QUIETLY GO STALE. Every one
+            # of these mysteries taught the checkers a rule, so re-running the
+            # gate over disk after a rule lands is normal, not exceptional. The
+            # file is append-only: a changed verdict appends a NEW row naming
+            # the one it supersedes, and the original stays exactly as written.
+            # An unchanged verdict writes nothing at all, so this stays cheap to
+            # run after any rule change.
+            same = (prior.get("verdict") == verdict.verdict
+                    and {(v["rule_id"], tuple(v.get("subject_ids") or ()))
+                         for v in (prior.get("violations") or [])}
+                    == {(v["rule_id"], tuple(v.get("subject_ids") or ()))
+                        for v in verdict.violations})
+            if same:
+                skipped += 1
+                continue
+            print(f"  [RE-VERDICT] {slug[:44]:<44} {prior.get('verdict')} -> {verdict.summary()[:50]}")
 
         try:
             timestamp = int(path.stem.rsplit("_", 1)[1])
@@ -92,7 +113,8 @@ def main():
             timestamp = int(path.stat().st_mtime)
 
         row = {
-            "attempt_id": f"backfill-{slug[:40]}",
+            "attempt_id": f"backfill-{slug[:40]}" if prior is None
+                          else f"reverdict-{slug[:38]}-{int(__import__('time').time())}",
             "timestamp": timestamp,
             "elapsed_s": None,
             # The originating prompt was never stored on the mystery, so it
@@ -111,6 +133,14 @@ def main():
             "backfilled": True,
             "backfill_note": "generated before the ledger existed; cost unrecoverable",
         }
+        if prior is not None:
+            # A re-verdict is not a second attempt. It carries cost_usd null
+            # because it spent nothing, and generation_ledger.collapse() folds
+            # it onto the original by slug -- newest verdict, original's cost --
+            # so it never doubles the pass-rate denominator.
+            row["supersedes"] = prior.get("attempt_id")
+            row["reverdict_of"] = prior.get("verdict")
+            row["backfill_note"] = "re-verdict after a rule change; not a new attempt"
 
         moved = ""
         if verdict.destination != sub:

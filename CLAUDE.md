@@ -395,12 +395,19 @@ Build order (`docs/INVESTIGATION_DESIGN.md` §7, already reduced by APF):
 4. ~~The paced text opening~~ — `_generate_opening_narration()` writes it, on by default
    (Session 40). Pacing the five beats is client-side and free; the screen is unbuilt.
 
-**Before step 3, spend one generation.** Four have now been generated and all four are in
-`mystery_database/rejected/`. The fourth passed every structural rule — atomised alibis, two routes,
-0 blocking, 0 warnings, a clean deal with proof surviving 81/81 hoarding patterns and a monopoly in
-0/81 — and was rejected for one prose habit: its narrowing clues named the culprit outright. That
-is fixed in the prompt and untested. **A mystery that passes everything is the thing step 3 needs to
-be built against**, and it is one call away.
+**Step 3 is still blocked on a mystery that passes everything — five generated, five rejected.**
+The fifth (Session 41, `the_last_night_of_delacroix_&_sons`, $0.2027 measured) found two holes in
+the rules rather than in itself, both now closed: a narrowing counted list entries rather than
+suspects, so naming the **victim** alongside the culprit passed a "two names" test while leaving one
+living possibility; and the prose-leak check compared full names, so *"the inventory entry
+**Celestine** herself made"* was invisible. Session 40's prose fix had therefore not landed — it had
+only stopped being detectable.
+
+**The highest-value prompt change on the board is the two-routes distribution.** Three generations
+running have cleared exactly one suspect by exactly one finding (here: 3/2/1 across three
+innocents). Session 40 rewrote the construction order to fix it and it did not land. It is now the
+only rule standing between an otherwise-clean generation and step 3, so it is worth attacking
+directly rather than spending another call and hoping.
 
 **Decided (Session 38): no crime-scene picture for the playtest** — a list of named findings. The
 map is deferred, not cancelled.

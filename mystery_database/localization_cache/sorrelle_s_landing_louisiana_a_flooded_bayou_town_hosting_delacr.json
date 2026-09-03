@@ -1,0 +1,59 @@
+{
+  "name_examples": {
+    "male": [
+      "\u00c9mile",
+      "R\u00e9my",
+      "Sylvain",
+      "Marcel",
+      "Clovis",
+      "Tomas",
+      "Alcide",
+      "Narcisse",
+      "Ovide",
+      "Th\u00e9odule",
+      "Placide",
+      "Z\u00e9phirin"
+    ],
+    "female": [
+      "Celestine",
+      "Nad\u00e8ge",
+      "Josie",
+      "Eulalie",
+      "Cl\u00e9mence",
+      "Marguerite",
+      "Odette",
+      "Rosalie",
+      "F\u00e9licit\u00e9",
+      "Toinette"
+    ]
+  },
+  "occupation_map": {
+    "circus owner": "proprietor and ringmaster",
+    "bookkeeper": "ledger-keeper and business agent",
+    "aerialist": "aerial artiste and fil-de-fer walker",
+    "operations manager": "lot superintendent",
+    "physician": "company physician and mentalist",
+    "wagon-hand": "roustabout and body-servant",
+    "concession operator": "confection-stand keeper",
+    "sideshow barker": "talker and outside lecturer",
+    "stablehand": "hostler and bull-hand",
+    "elephant keeper": "bull-hand"
+  },
+  "forbidden_titles": [
+    "Mr.",
+    "Ms.",
+    "Mrs.",
+    "Miss",
+    "Sir",
+    "Lord",
+    "Lady",
+    "Dr."
+  ],
+  "allowed_titles": [
+    "Doc (informal, spoken only)",
+    "Monsieur (French address, period-authentic for Cajun Louisiana)",
+    "Madame (same caveat)"
+  ],
+  "pun_style": "Cajun-inflected bayou wordplay embedded in a surname or nickname \u2014 one witness gets a French-flavored name meaning 'saw everything' or similar; one gets a confection-trade pun. Keep subtle and pronounceable.",
+  "notes": "November 1931 Depression-era Louisiana: Cajun and Creole naming conventions dominate. Surnames are French or French-corrupted (Delacroix, Fontenot, Tureaud, Arcand). Given names lean heavily Catholic-saint or French-provincial. Traveling mud-show circus slang of the era: 'lot' for grounds, 'bull-hand' for elephant keeper, 'talker' not 'barker' (barker was considered an insult in the trade), 'fil-de-fer' for wire-walker (French circus term), 'roustabout' for general labor. Honorific 'Doc' is permissible only in casual spoken dialogue, never formal address. The Great Depression context means the circus is struggling financially \u2014 relevant to character motivations. Flood-season bayou setting adds isolation; the town is semi-submerged, so the circus lot is on elevated shell road or levee ground."
+}

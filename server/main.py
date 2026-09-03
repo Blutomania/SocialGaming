@@ -616,6 +616,14 @@ def _save_mystery(mystery_dict: dict) -> str:
     # /generate and the async job path call this and neither's return type can
     # change without touching the client.
     mystery_dict["_verdict"]["destination"] = verdict.destination
+    # THE LEDGER KEYS ON THE FILE STEM, NOT THE TITLE SLUG. Two mysteries can
+    # share a title (there are two `the_great_cookie_caper_of_sesame_street` and
+    # two `the_murder_at_tokyo` on disk already), and the timestamped stem is the
+    # only identity that is actually unique. It also has to match what
+    # scripts/backfill_ledger.py derives from the filename, or a re-verdict can
+    # never find the attempt it supersedes -- which is exactly what happened the
+    # first time this ran, and it double-counted the mystery.
+    mystery_dict["_verdict"]["file_stem"] = out_path.stem
     return slug
 
 
@@ -641,7 +649,8 @@ def _ledger_attempt(prompt: str):
         mystery = state.get("mystery") or {}
         recorded = mystery.get("_verdict") or {}
         row = attempt.row(
-            slug=state.get("slug", ""),
+            # The file stem, so the ledger and the backfill agree on identity.
+            slug=recorded.get("file_stem") or state.get("slug", ""),
             verdict=recorded.get("verdict") or ("error" if state["error"] else "unknown"),
             failure_class=recorded.get("failure_class"),
             violations=recorded.get("violations") or [],

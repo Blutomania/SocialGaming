@@ -3073,6 +3073,119 @@ it. Porting the Aug 12 flow and then immediately rewriting it would build the sa
 
 ---
 
+## Session 41 — September 3, 2026 (CYM: the pipeline stops serving what it knows is broken, and starts counting what it costs)
+
+**Branch:** `claude/mystery-generation-narrowing-ad2xh8`, from `main` at `c296227`. Owner opened on
+the last line of the Session 40 summary — item 18 and the funding meeting — and said *"all we care
+about is funding."*
+
+### The question that reframed item 18
+
+Owner: *"the issue is how we deal with poor generations. Poor is defined as those who fail the
+coherence engine's test?"* **No, and the disk says it backwards.**
+
+| | Coherence | Where it was |
+|---|---|---|
+| all four in `rejected/` | passed, 0 blocking | quarantined **by hand** |
+| `the_stolen_star_of_smurf_village` | **failed, 1 blocking** | `generated/`, servable |
+
+So 100% of the coherence failures were being served and 0% of the quarantined ones had failed
+coherence. The gap was never "BLOCKING mysteries get served" — **nothing routed anything.** Four
+kinds of poor exist and coherence catches the rarest: *incoherent*, *unplayable*, *spoiled_prose*,
+*below_standard*. Running the current `check_narrative.py` over the four rejects (free) showed every
+rule they earned still fires — the learning loop works, it just runs on a human.
+
+**Owner's decision: option (c), route on ANY failing check.** The checks are free, so there is no
+cost argument, and the sentence worth having in a funding room is not *"our engine detects
+incoherence"* but *"nothing reaches a player that our checks cannot prove is solvable."*
+
+### The forward question: Mistral, and a model that "learns"
+
+Owner asked whether post-funding a custom model could **correct** flawed mysteries. Three answers,
+because it bundles three things. **The learning loop already exists and runs on the owner** — four
+rejections, four prompt rules. **Repair splits on invention vs arrangement**, the same axis Session
+40 found for generation: deciding a second route is needed is arithmetic; only the sentence needs a
+model. **Fine-tuning is 2–3 orders of magnitude short on data** and would move the pass rate, not
+remove the gate.
+
+**Repair-to-green is the trap, and `the_light_that_went_out` is the proof** — it passed every
+structural rule and gave its answer away in prose, so a loop optimising to green ships it
+confidently. Owner agreed immediately. **Auto-reject is safe; auto-repair is not.** A gate can only
+be conservative.
+
+On Mistral: the workload is output-heavy (output is 95% of a call), which favours self-hosting, but
+the hard thing here is six simultaneous global constraints across ~10k tokens, which is where
+smaller models fall off. **The deciding number is cost per ACCEPTED mystery, and it was unmeasurable.**
+
+### Cost was being thrown away
+
+`llm()` in `server/main.py` is the only Claude call site in the server, and **nothing read
+`response.usage`.** The project's one cost figure was a hand measurement from August. What the four
+rejected mysteries cost is unrecoverable; they carry `cost_usd: null` rather than an estimate.
+
+**The two things the owner greenlit are one thing:** a row per attempt saying what it cost, what
+happened to it, and why. CPAM falls out; the failure corpus is the rejected rows.
+
+`gate.py`, `generation_ledger.py`, `scripts/cpam.py`, `scripts/backfill_ledger.py`,
+`scripts/test_gate_and_ledger.py`. `check_narrative.py` and `deal.py` now name every rule they fire
+and the subject it fired on; prose output is byte-identical.
+
+**Three judgement calls, each deliberate.** CAST/ORPHAN stay advisory — the checker's own header
+calls them false-positive-prone. Legacy mysteries are `unjudged`, because all 17 predate the schema
+and gating them would have emptied the served library over rules that did not exist. Coherence is
+the exception, so **exactly one file moved**: the Smurf mystery, on
+`P1.C4.culprit_not_in_characters`. Item 18's original case.
+
+### The generation — rejected, and it earned two rules
+
+*A death during the final night of a travelling circus wintering in a flooded Louisiana bayou town,
+1931.* 239s, three calls, **$0.2027 — the first generation this project has ever measured.**
+Coherence passed, 0 blocking, 1 warning. 4 suspects, 12 evidence.
+
+**Two holes, both in the rules rather than the mystery:**
+
+- **A narrowing counted names, not suspects.** E9 narrowed to *[Celestine Vautrain, Émile
+  Delacroix]* — and Émile is the **victim**. Two entries, one living possibility, so it was a
+  single-suspect narrowing in disguise and it solved the case outright. `deal.py` caught the
+  consequence; the narrowing rule reported only "narrows to a non-suspect", which reads like a typo
+  rather than the whole answer on one finding.
+- **The prose leak check compared full names.** E9 said *"the inventory entry **Celestine** herself
+  made"*. First name only, identical leak, invisible. It now matches on name words via the same
+  tokeniser the CAST check already used. **So Session 40's prose fix had NOT landed** — it had only
+  stopped being detectable.
+
+**And the two-routes rule missed exactly one suspect for the third generation running.** Nadège
+Fontenot is cleared by E6 alone (Rémy has three routes, Sylvain two, Nadège one). Session 40 rewrote
+the prompt to specify the six alibi items as the first six in named pairs; the model wrote six
+alibis and distributed them 3/2/1. **The construction-order fix did not land, and this is now a
+three-for-three pattern, not noise.**
+
+### One bug this session found in its own work
+
+The live ledger row keyed on the title slug and the backfill keyed on the file stem, so a re-verdict
+could never find the attempt it superseded and the mystery was counted twice in the pass rate. Both
+now key on the file stem — which is also the only unique identity, since two titles already repeat
+on disk. `generation_ledger.collapse()` folds a re-verdict onto its original: newest verdict,
+original's cost.
+
+### State
+
+**pass rate 0% of 6 judged; CPAM undefined; measured spend $0.2027.** That is the honest headline
+and it is the first time the project could state one. 18 free checks pass.
+
+**Next: item 23 step 3** is still blocked on a mystery that passes everything — five generations,
+five rejects. The named next lever is the two-routes distribution, which is now the highest-value
+prompt change on the board: it has failed three times in a row and it is the only rule blocking an
+otherwise-clean generation.
+
+**Files:** `gate.py`, `generation_ledger.py`, `deal.py`, `server/main.py`,
+`scripts/check_narrative.py`, `scripts/cpam.py`, `scripts/backfill_ledger.py`,
+`scripts/test_gate_and_ledger.py`, `scripts/test_narrative_checks.py`, `scripts/test_deal.py`,
+`CLAUDE.md`, `docs/DECISIONS.md` (items 18, 28), `docs/AI_COST_PLAYBOOK.md`,
+`mystery_database/rejected/README.md`, `mystery_database/ledger.jsonl`.
+
+---
+
 ## Session 40 — September 2, 2026 (CYM: clues that incriminate, and generation writes a story)
 
 **Branch:** `claude/repo-sync-bjb77q`, from `main` at `6c9a155`. Owner: *"I would like to implement

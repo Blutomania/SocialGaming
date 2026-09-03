@@ -341,8 +341,19 @@ def test_the_glove():
                       ("E1", ["Ortiz"], []), ("E2", ["Brand"], []), ("E3", ["Chen"], []),
                       ("E4", ["Ortiz"], []), ("E5", ["Brand"], []), ("E6", ["Chen"], [])])
     check("a narrowing naming ONE suspect is refused -- it is the answer on a finding",
-          any("single suspect" in i for i in D.feasibility(single, 4)),
+          any("1 actual suspect" in i for i in D.feasibility(single, 4)),
           str(D.feasibility(single, 4)))
+
+    # Session 41, earned by `the_last_night_of_delacroix_&_sons`: its E9 narrowed
+    # to [the culprit, THE VICTIM]. Two entries passed the old "at least two"
+    # test, but a dead man is not a living possibility -- so it was a
+    # single-suspect narrowing, and the finding solved the case on its own.
+    padded = mystery([("G1", [], [], ["Vale", "The Victim"]),
+                      ("E1", ["Ortiz"], []), ("E2", ["Brand"], []), ("E3", ["Chen"], []),
+                      ("E4", ["Ortiz"], []), ("E5", ["Brand"], []), ("E6", ["Chen"], [])])
+    check("padding a narrowing with a non-suspect does not widen it",
+          any("1 actual suspect" in i for i in D.feasibility(padded, 4)),
+          str(D.feasibility(padded, 4)))
 
     everyone = mystery([("G1", [], [], ["Vale", "Ortiz", "Brand", "Chen"]),
                         ("E1", ["Ortiz"], []), ("E2", ["Brand"], []), ("E3", ["Chen"], []),
