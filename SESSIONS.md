@@ -3238,6 +3238,52 @@ The prompt now says so where witnesses are actually written (assign each witness
 cover all four) — the old REACHABLE rule failed for the same reason two-routes did: both stated in
 the EVIDENCE section as properties of a section written later. **Untested.**
 
+### The rhythm, and two decisions that came out of talking rather than building
+
+Owner stopped the item-23 step-3 build to define terms first, which was right — two different games
+were in the repo and only one of them ran.
+
+**What was live:** free choice among interrogate / search / follow-lead, budget-limited, with the
+`INVESTIGATION_DESIGN` §5 deadlock intact (sharing is the only exit from a phase, you cannot share
+nothing, every area can be blocked first). **What APF specifies:** findings dealt, one decision.
+**What was built:** `deal.py`, wired to nothing. So APF was a design plus a module, and the running
+game was the old one, deadlock included.
+
+**The cadence changed, and the arithmetic drove it.** A single deal gives each player exactly one
+share decision all game — one read of a person. A rhythm gives a *pattern*, and *"she's held back
+twice now"* is an accusation forming. Round 1 has no checkpoint because
+`_min_share_required()` is `max(1, ...)`: at a hand of one you must share it, so there is no
+decision, only a tax.
+
+**Owner's metaphor settled the hardest sub-question.** *"In the metaphor of the player being an
+investigator it fails if the investigator is forced to 'forget' something."* So shared findings
+stay — and that clarifies the currency: **you spend exclusivity, not possession.** The server
+already worked this way; `share_findings` copies and removes nothing. The share requirement
+therefore becomes cumulative.
+
+**Which revives the dead difficulty ladder for free.** Inert at a fixed three-finding hand (Session
+38) and worked around via redundancy (Session 39, two rungs not three). Under a rhythm the private
+stash separates on its own: by round 8, EASY 2 / MEDIUM 3 / HARD 4. No second dial needed.
+
+**Rounds = findings ÷ players**, announced before play (owner: *"it creates tension and sets
+expectations"*). Fewer players means a longer investigation, which falls out rather than being
+designed. Four bounds were computed and all converge on **4** for a four-player game on an
+18-finding mystery — and 4 is also today's pool ceiling.
+
+**Player count is not hardwired** — `deal.py` takes it as a parameter and deals at 2–6; only
+`gate.GATE_PLAYER_COUNT` assumes four, in one line. **Suspect count is**, deliberately: each extra
+suspect locks two more findings as alibis out of a pool that does not grow, and coherence barely
+scales with cast size while game structure does. "Minimum 4" was rejected because it hands the
+model a structural parameter to choose, which is exactly what produced `snow_on_the_engawa`.
+
+**Two decisions recorded:** full disclosure closes the game (item 32) — the reward for having
+chosen the mystery, and what finally makes withholding accountable; and five suspects unlocking the
+third difficulty rung (item 33), deferred until findings-per-mystery grows, with the trigger
+written down as a number rather than a judgement call.
+
+**Nothing was built for step 3.** Deliberate: the share screens should be built against the rhythm,
+not against the single-deal model the docs described until now.
+
 ### The rule audit, and the deal learning to choose (items 30, 31)
 
 Owner, after a run of *"a rule nobody was enforcing"* findings: *"Is it worth our while to do a top

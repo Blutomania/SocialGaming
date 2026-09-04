@@ -38,13 +38,101 @@ Exploration was cut for three reasons, in the owner's order:
 1. Player types a **title + setting** prompt.
 2. Generation runs once. Coherence checks it.
 3. The **opening sequence** plays (below) — the crime, told.
-4. Each player is **dealt** their findings — ideally one witness statement, one crime-scene clue,
-   one lead result. They do not go and get them.
-5. Each player **chooses which to share and which to keep.** That is the whole decision, and it
-   is the 75% mechanic with nothing in front of it.
-6. Deduce. Accuse. Reveal.
-7. **Full disclosure.** When the last round closes, everything every player still holds becomes
+4. The game announces **how many rounds this mystery has**, and play begins.
+5. Each round, every player is **dealt one finding.** They do not go and get them.
+6. From round 2 onward, each round ends in a **share checkpoint**: each player chooses which of
+   their findings to make public and which to keep. That is the whole decision.
+7. Deduce. Accuse. Reveal.
+8. **Full disclosure.** When the last round closes, everything every player still holds becomes
    public, with the holder's name on it.
+
+### The rhythm — dealt over rounds, not all at once (owner, Session 41)
+
+**This supersedes the single-deal reading of steps 4–5 above.** APF's argument for dealing is
+untouched; what changed is the *cadence*, and it changed because the arithmetic of a single deal
+does not support the decision the game is built on.
+
+Owner: *"rhythms and rituals are great for this."*
+
+**Why not one deal of three.** With a hand dealt once, every player makes exactly one share
+decision all game. One decision yields one read of a person. **A rhythm yields a pattern** — and
+a pattern is what lets somebody say *"she's held back twice now"*, which is an accusation forming.
+A single round cannot produce that sentence.
+
+**Round 1 never has a checkpoint, and the reason is arithmetic.** `_min_share_required()` in
+`server/main.py` is `max(1, round(n × share_min))`, so a player holding one finding must share it
+whatever the difficulty. There is no decision at a hand of one, only a tax. The first checkpoint
+therefore falls at round 2, where holding two means choosing *which*.
+
+**A shared finding STAYS in the holder's hand.** Owner: *"in the metaphor of the player being an
+investigator it fails if the investigator is forced to 'forget' something."* Correct, and it
+clarifies what the game's currency actually is: **you spend exclusivity, not possession.** A
+detective's advantage was never holding the file, it was being the only one who had read it. The
+server already works this way — `share_findings` copies into the shared pool and removes nothing.
+
+**So the share requirement is CUMULATIVE**: *shared ≥ required(total held)*, not
+*shared-this-round ≥ required(dealt-this-round)*. Without that, round 4 would demand three new
+findings when only one was dealt.
+
+**And that revives the difficulty ladder, which a fixed three-finding hand had killed.** Session 38
+measured EASY/MEDIUM/HARD all resolving to "share 2, keep 1" at a hand of three, and Session 39
+worked around it by moving difficulty onto deal redundancy. Under a rhythm the ladder separates on
+its own, with no second dial: what differs is **how much a player is permitted to sit on**.
+
+| After round | EASY | MEDIUM | HARD |
+|---|---|---|---|
+| 4 | 1 | 2 | 2 |
+| 6 | 2 | 2 | 3 |
+| 8 | 2 | 3 | 4 |
+
+*(Private stash — the maximum withheld. It is a floor on sharing, not a cap, so this is the size of
+the decision space rather than a prediction. HARD permits the largest stash, so least reaches the
+table, so the case is hardest to crack collectively — consistent with `deal.py` putting each
+exoneration in exactly one hand at HARD.)*
+
+### How many rounds, and why the game says so up front
+
+**Rounds = findings ÷ players.** No finding is dealt twice, so the pool sets the ceiling directly.
+`build_pool()` counts witnesses, clues and leads; the first accepted mystery has 18.
+
+| Players | Rounds on an 18-finding mystery |
+|---|---|
+| 2 | 9 |
+| 3 | 6 |
+| **4** | **4** |
+| 5 | 3 |
+| 6 | 3 |
+
+**Fewer players means a longer investigation.** That falls out of the arithmetic rather than being
+designed, and it is worth keeping.
+
+**The count is announced before play.** Owner: *"the game TELLS the users. This mystery has a
+maximum of X rounds. It creates tension and sets expectations."* Investigations are not infinite,
+and a known horizon makes withholding a decision with a deadline attached.
+
+**Four rounds is both the floor and today's ceiling**, which is either satisfying or suspicious.
+Four bounds were computed, not argued:
+
+| Bound | Value | Basis |
+|---|---|---|
+| Solvability | 2 | measured — `proof_survives_hoarding()` returns 16/16 at two rounds |
+| A decision exists | 2 | a hand of one forces a share |
+| Rhythm (two checkpoints, so a pattern) | 3 | design |
+| Difficulty separates at all | 4 | EASY parts from MEDIUM/HARD |
+| **Pool ceiling today** | **4** | 18 findings ÷ 4 players |
+
+Going beyond four rounds means growing the pool — roughly 24 findings for six rounds — which is
+output tokens, and output is 95% of a generation call. **Not worth buying until a playtest says the
+rhythm earns it.**
+
+**Implementation note.** `deal.py` already expresses hand size as `DEFAULT_HAND_SPEC`, whose length
+is the number of findings per player. Under the rhythm that length *is* the round count, so the
+existing deal machinery covers this without new constraint code — `best_deal()`, feasibility and
+the hoarding analysis all work unchanged at four.
+
+> **On the "75% mechanic".** The line that used to sit at step 5 called this *the 75% mechanic*.
+> There has never been one — see `CLAUDE.md`, item 11. What exists is a player-chosen share level
+> against a per-difficulty minimum, with no randomness anywhere.
 
 ### Full disclosure closes the game (owner, Session 41)
 

@@ -66,6 +66,14 @@ HARD are both 1. A third rung needs a second dial: suspect count or red-herring 
 
 If a random-broadcast mechanic is wanted, it is unbuilt design work, not a regression.
 
+**[Session 41] The decision is a RHYTHM, not a single moment.** Findings are dealt one per player
+per round, with a share checkpoint at every round from the second (a hand of one forces a share, so
+round 1 deals only). A shared finding **stays in its holder's hand** — an investigator cannot be
+made to forget, so what a player spends is *exclusivity*, not possession — which makes the share
+requirement cumulative. Rounds = findings ÷ players, announced before play. This revives the
+difficulty ladder that was inert at a fixed hand: what differs between EASY and HARD is how much a
+player may sit on. Full spec and the arithmetic: `docs/PLAYTEST_FLOW.md` → "The rhythm".
+
 ---
 
 ## Where the project is now
@@ -480,6 +488,21 @@ against these checks until they go green selects for mysteries *shaped like the 
 
 Run `python3 scripts/cpam.py` for cost per accepted mystery, pass rate and rejections by rule.
 Full reasoning: `docs/DECISIONS.md` items 18 and 28.
+
+### 33. Five suspects would unlock the third difficulty rung — **deferred, owner wants to revisit**
+
+The redundancy ladder has two rungs, not three, and the ceiling is arithmetic: at four suspects
+(three required exonerations) over four players it is **2**, so MEDIUM and HARD are forced to the
+same value. **A fifth suspect raises it to 3** — a real third rung with no new mechanism.
+
+Blocked only by pool size. A fifth suspect locks two more findings as alibis out of the 18 a
+mystery currently carries, and it competes with round count (findings ÷ players) for the same
+findings. Both wants are answered by more findings per mystery, which is output tokens.
+
+**The trigger is a number, not a decision:** revisit once a mystery reliably carries enough
+findings to feed both. Until then `APF_SUSPECT_COUNT` stays 4 and is enforced by
+`DEAL.SUSPECT_COUNT`. Full reasoning, including why "minimum 4" was rejected: `docs/DECISIONS.md`
+item 33.
 
 ### 17. BACKGROUND — two owner decisions outstanding — **stage 3**
 

@@ -1157,3 +1157,43 @@ that the superseded text has become history and belongs here instead.
     **Explicitly NOT a remedy for an unsolved case.** Whether a mystery that nobody cracked should
     end unsolved, or be resolved some other way, is a separate design question and is left open on
     purpose. Full disclosure happens either way — after a correct accusation or after none.
+
+33. **[OPEN — deferred by the pool, owner wants to revisit] Five suspects would unlock the third
+    difficulty rung.** Recorded because it is the first thing found that would fix a problem two
+    earlier sessions could not, and because the only reason to wait is a constraint that will lift
+    on its own.
+
+    **The problem it solves.** Session 38 measured the share ladder as inert at APF's hand size —
+    EASY, MEDIUM and HARD all resolve to the same requirement — and Session 39 moved difficulty
+    onto deal redundancy instead, only to find that ladder has **two rungs, not three**:
+    `REDUNDANCY_BY_DIFFICULTY` puts MEDIUM and HARD at the same value because the ceiling forbids
+    a third. That ceiling is arithmetic, from `feasibility()`: with R required exonerations over P
+    players, redundancy r forces some hand to hold `ceil(R × r / P)`, and when that reaches R the
+    hand solves alone. At four suspects (R = 3) over four players the ceiling is **2**.
+
+    **Add one suspect and the ceiling rises.** R = 4 gives a ceiling of 3 — a genuine third rung,
+    with no new mechanism:
+
+    | Suspects | Required exonerations | Alibi findings needed | Pool left over | Redundancy ceiling |
+    |---|---|---|---|---|
+    | 4 | 3 | 6 | 12 | 2 |
+    | **5** | **4** | **8** | **10** | **3** |
+    | 6 | 5 | 10 | 8 | 3 |
+
+    **Why not now: the pool cannot feed it.** Every innocent needs clearing and every clearing
+    needs two independent routes, so a fifth suspect locks two more findings as alibis out of a
+    pool that does not grow — 18 findings on the first accepted mystery. It also competes directly
+    with the round count, which is findings ÷ players, so buying a difficulty rung would cost
+    investigation length. Both wants are answered by the same thing: **more findings per mystery**,
+    which is output tokens, which is 95% of a generation call.
+
+    **Also weighed and rejected: making four a MINIMUM rather than fixed.** More suspects is more
+    constrained, not less — each one adds required exonerations, routes and witness coverage. And
+    coherence barely scales with cast size (a six-suspect story hangs together as readily as a
+    four-suspect one); what scales is game structure, which is exactly where every recent failure
+    has been. A minimum also hands the model a structural parameter to choose, which is precisely
+    what produced `snow_on_the_engawa`'s three-suspect cast and the unfair deal that followed.
+
+    **The trigger for revisiting is therefore not a decision, it is a number:** once a mystery
+    reliably carries enough findings to support both a longer rhythm and a fifth suspect's alibi
+    load, this becomes free. Until then `APF_SUSPECT_COUNT` stays at 4 and is enforced.
