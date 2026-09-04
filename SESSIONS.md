@@ -5,6 +5,36 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session — September 04, 2026 at 03:22
+**Branch:** `claude/mystery-generation-narrowing-ad2xh8`
+**Latest commit:** `05fb3ad`
+
+### Files changed this session
+- `eal.py` — Modified
+- `mystery_database/ledger.jsonl` — Modified
+- `scripts/test_gate_and_ledger.py` — Modified
+- `server/main.py` — Modified
+- `mystery_database/localization_cache/tsurugiya_ryokan_kurama_mountain_road_kyoto_prefecture_december_.json` — Untracked
+- `mystery_database/rejected/snow_on_the_engawa_1788492006.json` — Untracked
+
+### Commits this session
+```
+05fb3ad The sixth generation: all three changes landed, and the glove bit
+12d7ae7 The arrangement pass: wire the pointer, never rewrite the clue (item 29)
+a3fec8c The fifth generation: $0.2027 measured, rejected, and it earned two rules
+0f20e39 Docs: item 18 closed, item 28 added, and the rejected README gains a third category
+8f3cad7 Item 18, settled: the pipeline routes bad generations, and records what they cost
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
 ## Session — September 02, 2026 at 19:27
 **Branch:** `claude/repo-sync-bjb77q`
 **Latest commit:** `3dfe62f`
