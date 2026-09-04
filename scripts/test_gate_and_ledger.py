@@ -212,6 +212,21 @@ def test_gate_refuses():
           v.failure_class == "spoiled_prose", str(v.failure_class))
 
 
+def test_suspect_count():
+    # snow_on_the_engawa came back with THREE suspects against a prompt that says
+    # exactly four, and nothing caught it. Three is not a smaller version of the
+    # same game: two required exonerations means one finding carrying both solves
+    # outright, which is why that mystery could not be dealt.
+    m = coherent(mystery([("E1", ["Ortiz"], []), ("E2", ["Brand"], []), ("E3", [], ["Vale"])],
+                         suspects=("Vale", "Ortiz", "Brand")))
+    v = gate.evaluate(m, "three.json")
+    check("a three-suspect mystery is refused",
+          "DEAL.SUSPECT_COUNT" in {x["rule_id"] for x in v.violations}, v.summary())
+    check("and four suspects do not trip it",
+          "DEAL.SUSPECT_COUNT" not in
+          {x["rule_id"] for x in gate.evaluate(coherent(solvable_fixture()), "four.json").violations})
+
+
 def test_gate_worst_class_wins():
     # Trips both an incoherent rule and a below_standard one. The row must be
     # named by the worse of the two, or triage reads it as nearly-good.
@@ -296,6 +311,7 @@ if __name__ == "__main__":
     test_summarise()
     test_gate_accepts_clean()
     test_gate_refuses()
+    test_suspect_count()
     test_gate_worst_class_wins()
     test_cast_is_advisory()
     test_legacy_is_unjudged()

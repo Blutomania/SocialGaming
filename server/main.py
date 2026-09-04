@@ -255,6 +255,10 @@ SETTING:
   - description must explicitly explain why suspects cannot simply leave (isolation mechanic).
 
 CHARACTERS (include 1 victim, EXACTLY 4 suspects, and 3–4 witnesses):
+  - FOUR SUSPECTS, COUNTED. Not three, not five. The whole deal is sized for it: four suspects
+    means three people to clear, and with only two the single finding that clears both IS the
+    answer, so no deal can be fair however well the mystery is written. A three-suspect mystery
+    is refused outright -- count the list before writing anything else.
   - alibi: SPECIFIC — state where the person was, with whom or doing what. Never "—" or vague.
   - secret: CONCRETE FACT (≥ 2 sentences) anchoring interrogation questions.
   - motive (suspects): specific stake — financial, relational, reputational, or political. Never "—".
@@ -293,6 +297,15 @@ CHARACTERS (include 1 victim, EXACTLY 4 suspects, and 3–4 witnesses):
     one witness revealed the six-foot-shelf narrowing and the barometric log clearing the shorter
     man, and so solved the case single-handed. Split the two halves across different witnesses,
     or put one of them on a lead or an area instead.
+
+    A NARROWING MUST BE A CLASS OF PERSON, NEVER SOMEBODY'S BELONGINGS. Three generations have
+    now leaked the answer in a narrowing clue's own prose, and the last one shows why: the clue
+    was a vial "in Aoyama's cramped script, found in his entomology kit". Once the object BELONGS
+    to one of the people it leaves possible, naming him is unavoidable and the clue has become an
+    accusation. Anchor the fact to a physical class instead -- a reach, a handedness, a shoe size,
+    a strength, a language read -- so it describes a KIND of person and the player looks at the
+    cast and draws the line themselves. A six-foot shelf is a narrowing. A vial in Aoyama's own
+    kit is not: it is his name with extra steps.
   - reveals (WITNESSES ONLY): the ids of the evidence items this statement surfaces, e.g. ["E3"].
     EVERY witness must reveal at least one. The statement must actually be about that evidence --
     if a witness saw the bolted door, they reveal the evidence item about the bolted door.

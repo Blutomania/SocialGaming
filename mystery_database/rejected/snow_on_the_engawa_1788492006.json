@@ -1,0 +1,498 @@
+{
+  "title": "Snow on the Engawa",
+  "setting": {
+    "location": "Tsurugiya Ryokan, Kurama mountain road, Kyoto Prefecture",
+    "time_period": "December 1963, first heavy snowfall of winter",
+    "environment": "A traditional wooden inn of six rooms clinging to the mountainside above a gorge; paper screens, a cedar-scented bathhouse, a single central hearth room where guests take meals",
+    "description": "A metre of overnight snow has sealed the only road down to Kurama village \u2014 the innkeeper's truck sits buried to its axles and the wooden bridge over the gorge is judged impassable by the inn's elderly porter. The telephone line snapped under the ice at dawn and will not be repaired until the prefectural crew comes up from the valley, which will be no earlier than the following morning. Four guests who arrived the previous evening are alone with the body and with each other."
+  },
+  "solution": {
+    "culprit": "Aoyama Kenji",
+    "motive": "Aoyama discovered that Hatta Ryunosuke had finally secured the documentation needed to expose Aoyama's wartime medical experiments conducted under a false identity \u2014 experiments for which Hatta had spent twenty years searching for proof. Aoyama stood to lose his academic position, his freedom, and the respectability he had carefully rebuilt since 1945.",
+    "method": "Aoyama added a lethal dose of barbiturate powder \u2014 carried in a hand-labelled specimen vial he keeps in his entomology kit \u2014 to Hatta's bedtime cup of amazake served in the guest room. The barbiturate induced deep sedation; Aoyama then opened the guest room's outer shutter and the engawa sliding door, leaving Hatta exposed to the freezing mountain air throughout the night. Death was from respiratory depression combined with hypothermia, allowing the murder to appear as an elderly man who drank, left the door open by accident, and simply went to sleep in the cold.",
+    "chain": [
+      {
+        "id": "S1",
+        "claim": "Hatta's death is not accidental: the amazake cup found at his bedside contains barbiturate residue, ruling out simple hypothermia."
+      },
+      {
+        "id": "S2",
+        "claim": "The barbiturate is pharmaceutical-grade powder, not a common sleeping tablet \u2014 it came from a labelled specimen vial of the kind used in field entomology kits."
+      },
+      {
+        "id": "S3",
+        "claim": "Only Aoyama Kenji's entomology kit contains specimen vials with powdered compounds; none of the other guests carried such materials to the ryokan."
+      },
+      {
+        "id": "S4",
+        "claim": "Aoyama's alibi \u2014 that he was in the bathhouse from nine o'clock until he retired \u2014 collapses: the bathhouse register shows he signed out at 8:47 PM, a full forty minutes before he claims to have left, placing him free and unaccounted for when Hatta's amazake was served."
+      },
+      {
+        "id": "S5",
+        "claim": "Hatta's research folio, found hidden beneath the floor matting of his room, documents Aoyama's wartime identity and the experiments \u2014 establishing the motive that makes Aoyama the only suspect with cause to kill."
+      }
+    ],
+    "key_evidence": [
+      "E2",
+      "E7"
+    ],
+    "how_to_deduce": "The investigation begins with the amazake cup: residue testing confirms barbiturate contamination, so the death was not accidental exposure. The powder's pharmaceutical grade and physical form \u2014 not a crushed tablet but a weighed compound \u2014 point to someone carrying a specialist kit. Only Aoyama brought an entomology kit containing labelled vials of powdered compounds; no other guest had access to such materials. His alibi then falls: the bathhouse sign-out register records his departure at 8:47 PM, not after nine as he claims, and no one can place him for the forty minutes between sign-out and when he says he retired. Finally, the hidden folio in Hatta's room reveals that Hatta was not merely a retired civil servant on a leisure trip \u2014 he was close to proving that Aoyama had conducted lethal wartime experiments under a false name. With the powder sourced to Aoyama's kit, his alibi broken, and his exposure imminent, the conclusion is unavoidable: Aoyama dosed the amazake, opened the shutter, and let the mountain cold complete the work."
+  },
+  "crime": {
+    "type": "Murder disguised as accidental death",
+    "what_happened": "Hatta Ryunosuke, a retired civil servant of seventy-one, was found dead on the engawa of his guest room at dawn by the inn's maid. The outer shutter stood open and the sliding door was ajar; Hatta lay in his yukata on the engawa boards, exposed to the freezing air. The inn's porter initially ruled it a sad accident \u2014 an old man who drank his evening amazake, felt the night air on the engawa, and fell asleep in the cold.",
+    "when": "Body discovered at approximately 6:15 AM; death estimated between 10 PM and midnight the previous evening",
+    "initial_discovery": "Maid Ota Fumiko found Hatta's body while bringing the morning charcoal. She noticed the open shutter from the corridor, slid it wider, and found him lying face-up on the engawa boards, frost on his yukata collar, the amazake cup overturned beside his hand."
+  },
+  "characters": [
+    {
+      "name": "Hatta Ryunosuke",
+      "role": "victim",
+      "occupation": "Retired Kokoseisho (Ministry of Health and Welfare) Kanryo \u2014 senior ministry official, now deceased",
+      "motive": "N/A",
+      "alibi": "N/A",
+      "secret": "Hatta had spent twenty years assembling evidence that a celebrated academic conducted lethal medical experiments on prisoners during the war under a false name. He came to Tsurugiya specifically because his informant told him the man in question would be among the guests; the folio of documents he carried was the culmination of two decades of work.",
+      "bio": "A slight, courteous man with a white goatee and the unhurried manner of someone who has learned patience the hard way. He arrived alone with a single old-fashioned travelling bag and asked for the room furthest from the bathhouse. Other guests found him pleasant at dinner \u2014 he spoke knowledgeably about the Kurama mountain trails \u2014 but he retired early each evening and seemed to be listening to something the others could not hear."
+    },
+    {
+      "name": "Aoyama Kenji",
+      "role": "suspect",
+      "occupation": "Professor of entomology, Kyoto Imperial University (now Kyoto University)",
+      "motive": "Hatta was on the verge of exposing Aoyama's wartime identity and his lethal medical experiments conducted on prisoners; exposure would end his academic career and likely result in criminal prosecution.",
+      "alibi": "Claims to have been in the ryokan's cedar bathhouse continuously from nine o'clock in the evening until he retired at approximately ten, and therefore could not have entered Hatta's room.",
+      "secret": "Aoyama is not who his postwar academic record claims. Born Kenji Murota, he assumed a cousin's identity in late 1945 to escape investigation into wartime medical experiments he performed at a military facility in Manchuria. His entomology career is genuine \u2014 but built on a stolen name and a buried past that Hatta had been excavating for two decades.",
+      "bio": "A lean, fastidious man in his mid-fifties with round tortoiseshell spectacles and the slightly pedantic warmth of a professor who genuinely loves his subject. He carries a worn leather entomology kit everywhere, even on leisure trips, and over dinner he charmed the table with an account of a rare longhorn beetle found only above eight hundred metres. He seems pleased by his own company and mildly delighted by most things, which makes him easy to like and harder to watch carefully."
+    },
+    {
+      "name": "Saegusa Michiko",
+      "role": "suspect",
+      "occupation": "Yamome \u2014 widow; former concert pianist (klassikku piano) trained in pre-war conservatory tradition",
+      "motive": "Hatta, in his earlier role as a Ministry auditor, signed the report that stripped her late husband's pharmaceutical company of its government licence in 1958, bankrupting the family and leading directly to her husband's suicide. She recognised Hatta at dinner.",
+      "alibi": "Spent the evening in the common hearth room writing letters, visible to the inn's porter Mori Takeo from at least eight o'clock until just before ten, when she says she went directly to her own room.",
+      "secret": "Michiko has been quietly liquidating her late husband's hidden overseas accounts \u2014 accounts the Ministry audit missed entirely \u2014 and is terrified that Hatta, who she believes may have been watching the family finances for years, had finally found them. Her trip to the ryokan was not leisure: she came to meet a courier who never arrived.",
+      "bio": "A composed, elegantly dressed woman in her late forties whose stillness reads as either great discipline or great grief, depending on which moment you catch her. Her hands are remarkable \u2014 long-fingered and controlled \u2014 and she tends to hold them folded in her lap even when she speaks. She tells people her husband died of a heart condition and changes the subject with the practiced ease of someone who has done it many times."
+    },
+    {
+      "name": "Okumura Tadashi",
+      "role": "suspect",
+      "occupation": "Hoken Chosain, Daiichi Seimei Hoken Sogo Kaisha \u2014 claims investigator, Daiichi Mutual Life Insurance",
+      "motive": "Hatta had submitted a formal complaint to the Insurance Bureau three weeks before his death alleging that Okumura had suppressed a fraudulent claim investigation \u2014 a complaint that, if pursued, would end Okumura's career and expose a pattern of paid-for inaction going back six years.",
+      "alibi": "Says he retired to his room after dinner at around eight and read until he fell asleep, waking only when he heard Ota Fumiko cry out at dawn. He has no witness to this and no verifiable evidence of it.",
+      "secret": "Okumura is at the ryokan because his supervisor quietly told him to 'find a resolution' with Hatta before the complaint reached the Bureau's inspector general. He had planned to offer Hatta money in exchange for withdrawing the complaint and came prepared with a cash envelope. He did not know Hatta was already dead when he finally knocked on the old man's door that morning.",
+      "bio": "A compact, watchful man in his early forties who wears the expression of someone perpetually calculating risk. He is not unfriendly but he answers questions with questions, and he has the salesman's habit of using your name slightly too often. He told the other guests he was at the ryokan for a walking holiday, which no one entirely believed \u2014 he arrived in a business suit and owns no visible walking equipment."
+    },
+    {
+      "name": "Ota Fumiko",
+      "role": "witness",
+      "occupation": "Nakai \u2014 serving maid, Tsurugiya Ryokan (pun: 'Fumiko' \u2014 \u6587\u5b50 \u2014 carries the reading 'fumi' meaning 'letter/writing/testimony'; she is, fittingly, the one who writes things down and notices all)",
+      "motive": "N/A",
+      "alibi": "Was asleep in the staff quarters from approximately nine-thirty PM until she rose at six to begin morning duties.",
+      "secret": "Fumiko privately noted that when she brought the evening amazake to the guests' corridor at nine PM, Aoyama's room was dark and his door was fully closed \u2014 but she also saw that the communal corridor near Hatta's room smelled faintly of camphor, the same smell she associates with Dr. Aoyama's leather kit bag, which she had seen open on the desk during afternoon room-cleaning.",
+      "bio": "A precise, conscientious young woman of twenty-three who has worked at the ryokan for four years and knows its rhythms the way a musician knows a score. She speaks carefully and only when she is sure of what she is saying. Guests tend to forget she is in the room, which means she remembers far more about them than they would prefer.",
+      "statement": "I brought the amazake tray to the guests' corridor at nine o'clock exactly as I do every evening. When I passed Dr. Aoyama's room, his light was already off and his door was shut \u2014 this was unusual because he had told me at supper he intended to stay in the bath late. I also noticed a faint camphor smell near Mr. Hatta's door, the same smell that comes from the leather bag Dr. Aoyama keeps his collecting equipment in.",
+      "reveals": [
+        "E4",
+        "E7"
+      ]
+    },
+    {
+      "name": "Mori Takeo",
+      "role": "witness",
+      "occupation": "Betto-gakari / Niwakata \u2014 porter and groundskeeper, Tsurugiya Ryokan",
+      "motive": "N/A",
+      "alibi": "Was tending the hearth room fire and performing evening security checks from seven PM until midnight.",
+      "secret": "Takeo knows the mountain road is not as impassable as he told the guests \u2014 a fit person who knew the path could reach the village in two hours even in snow. He exaggerated the danger because the owner instructed him to discourage guests from leaving in bad weather after a liability incident two years prior. He feels guilty about it now that a man is dead.",
+      "bio": "A weathered, barrel-chested man in his sixties who has worked this mountain property for thirty years and regards its eccentricities \u2014 the guests, the snow, the occasional small disaster \u2014 with the equanimity of someone who has outlasted most things. He is the kind of person you trust automatically without knowing exactly why, and he has strong opinions about weather that are almost always correct.",
+      "statement": "Mrs. Saegusa was in the hearth room all evening writing at the low table \u2014 I brought her extra charcoal at half past eight and she was still there, and again when I made my last check around ten and she had just gone. Mr. Okumura I never saw after dinner; his room light was on until at least eleven because I saw it under his door during my rounds.",
+      "reveals": [
+        "E1",
+        "E3"
+      ]
+    },
+    {
+      "name": "Sendo Mitsumi",
+      "role": "witness",
+      "occupation": "Sumi Gyoshonin \u2014 itinerant ink merchant, en route to Kyoto (pun: 'Mitsumi' \u2014 \u898b\u901a\u307f \u2014 evokes 'mitsumi', a colloquial compression of 'mite shimau', to see everything through; he witnessed the comings and goings on the snow-blocked mountain road)",
+      "motive": "N/A",
+      "alibi": "Spent the evening in his room cataloguing order forms, which he continues to work on by lamplight; heard nothing unusual until the maid's cry in the morning.",
+      "secret": "Sendo had a brief but agitated conversation with Hatta at the inn's entrance the previous afternoon, before the snow closed the road. Hatta showed him a photograph and asked whether Sendo recognised the man; Sendo did not then, but on reflection he believes the man in the photograph was Dr. Aoyama taken perhaps twenty years younger and under a different name \u2014 a customer his father's firm had supplied during the war.",
+      "bio": "A round-faced, cheerful man of fifty who sells calligraphy and woodblock inks from a sample case and has an inexhaustible fund of regional gossip acquired across thirty years of travelling the same mountain routes. He is the sort of person who makes friends in waiting rooms and remembers their children's names the following year. He was clearly delighted to be snowed in with company, at least until the body was found.",
+      "statement": "Yesterday afternoon Mr. Hatta stopped me in the entrance hall and showed me an old photograph \u2014 a man in military dress, perhaps forty years old in the picture. He asked if I knew the face. I couldn't place it then, but I've been thinking since: the jaw and brow look very much like Dr. Aoyama, only younger, and my father's records listed a customer named Murota at a military address in Manchuria during the war.",
+      "reveals": [
+        "E5",
+        "E8"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "Hearth Room Letter Portfolio",
+      "description": "A leather-bound writing portfolio containing four partly finished letters in Saegusa Michiko's hand, found on the low table in the hearth room. The paper shows ink dried at varying intervals across the evening, consistent with hours of continuous writing rather than a brief appearance.",
+      "type": "physical",
+      "relevance": "supporting",
+      "supports": [],
+      "exonerates": [
+        "Saegusa Michiko"
+      ],
+      "implicates": [],
+      "narrows": []
+    },
+    {
+      "id": "E2",
+      "name": "Amazake Cup Residue Analysis",
+      "description": "The ceramic amazake cup found overturned beside Hatta's body, collected from the engawa. Laboratory analysis of residue dried on the interior surface confirms the presence of phenobarbital in a quantity sufficient to cause deep sedation in an elderly person within twenty to thirty minutes of ingestion.",
+      "type": "physical",
+      "relevance": "critical",
+      "supports": [
+        "S1"
+      ],
+      "exonerates": [],
+      "implicates": [],
+      "narrows": []
+    },
+    {
+      "id": "E3",
+      "name": "Okumura's Room Light Log",
+      "description": "Porter Mori Takeo's testimony, corroborated by his habit of noting unusual fuel consumption in the maintenance ledger, indicates that Okumura's room lamp was observed burning under the door gap at 11:10 PM during the final rounds check. This places Okumura in his room well after the estimated window of death.",
+      "type": "testimonial",
+      "relevance": "supporting",
+      "supports": [],
+      "exonerates": [
+        "Okumura Tadashi"
+      ],
+      "implicates": [],
+      "narrows": []
+    },
+    {
+      "id": "E4",
+      "name": "Bathhouse Sign-Out Register",
+      "description": "A small wooden board hung at the bathhouse entrance where guests mark their entry and exit times as a courtesy to others waiting. Dr. Aoyama's entry is logged at 8:05 PM in his own hand; his exit is logged at 8:47 PM. He told investigators he was in the bath until after nine o'clock.",
+      "type": "documentary",
+      "relevance": "critical",
+      "supports": [
+        "S4"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Aoyama Kenji"
+      ],
+      "narrows": []
+    },
+    {
+      "id": "E5",
+      "name": "Wartime Photograph in Hatta's Folio",
+      "description": "A black-and-white photograph found inside Hatta's hidden research folio showing a uniformed military physician identified on the reverse as 'Lt. K. Murota, Unit 831 Medical Detachment, 1943.' The facial features bear a strong resemblance to Aoyama Kenji as he appears today.",
+      "type": "documentary",
+      "relevance": "supporting",
+      "supports": [
+        "S5"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Aoyama Kenji"
+      ],
+      "narrows": []
+    },
+    {
+      "id": "E6",
+      "name": "Saegusa Financial Letter",
+      "description": "One of the letters found in Saegusa Michiko's portfolio, addressed to a bank in Macao, references 'the arrangements concluded in September' and asks for confirmation of a wire transfer. The letter is not incriminating on its face; when the Macao bank is contacted, the account is confirmed as belonging to Saegusa's late husband's estate and the transaction is legal, if undisclosed.",
+      "type": "documentary",
+      "relevance": "red_herring",
+      "supports": [],
+      "exonerates": [],
+      "implicates": [
+        "Saegusa Michiko"
+      ],
+      "narrows": []
+    },
+    {
+      "id": "E7",
+      "name": "Empty Specimen Vial in Aoyama's Kit",
+      "description": "A small glass vial, hand-labelled 'PB \u2014 calibration standard' in Aoyama's cramped script, found in the interior tray of his entomology kit during a consensual search. The vial is empty and retains a white powder residue along its inner walls; the label abbreviation PB corresponds to phenobarbital, a compound sometimes used in the mid-century as a field-preservation agent for insect specimens.",
+      "type": "physical",
+      "relevance": "critical",
+      "supports": [
+        "S2",
+        "S3"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Aoyama Kenji"
+      ],
+      "narrows": [
+        "Aoyama Kenji",
+        "Okumura Tadashi"
+      ]
+    },
+    {
+      "id": "E8",
+      "name": "Hatta's Research Folio",
+      "description": "A water-resistant document folio found wrapped in oilcloth and tucked beneath the tatami edge mat of Hatta's room. It contains twenty-two years of accumulated documentation: wartime unit records, survivor testimony, identity registry cross-references, and a three-page summary concluding that 'Professor Kenji Aoyama of Kyoto University is in fact Kenji Murota, formerly Lieutenant of Unit 831.' The final page is dated one week before Hatta's arrival at the ryokan.",
+      "type": "documentary",
+      "relevance": "critical",
+      "supports": [
+        "S5"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Aoyama Kenji"
+      ],
+      "narrows": []
+    },
+    {
+      "id": "E9",
+      "name": "Camphor Trace on Hatta's Doorframe",
+      "description": "A faint oily smear at handle height on the outside of Hatta's sliding door, identified by its sharp medicinal scent as camphor-based wood oil \u2014 a compound used to condition entomology kit leather and to preserve certain insect specimens. The smear is consistent with a kit bag being set down or brushed against the frame.",
+      "type": "physical",
+      "relevance": "supporting",
+      "supports": [
+        "S3"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Aoyama Kenji"
+      ],
+      "narrows": [
+        "Aoyama Kenji",
+        "Saegusa Michiko"
+      ]
+    },
+    {
+      "id": "E10",
+      "name": "Okumura's Cash Envelope",
+      "description": "Found in the inner pocket of Okumura's suit jacket during a consensual search: a sealed white envelope containing one hundred and fifty thousand yen in mixed notes, with a handwritten slip reading 'For settlement \u2014 H.' When confronted, Okumura confirms he brought it to bribe Hatta into withdrawing the Bureau complaint. He did not deliver it: Hatta was dead when he finally approached the room at dawn.",
+      "type": "physical",
+      "relevance": "supporting",
+      "supports": [],
+      "exonerates": [
+        "Okumura Tadashi"
+      ],
+      "implicates": [
+        "Okumura Tadashi"
+      ],
+      "narrows": []
+    }
+  ],
+  "investigation_areas": [
+    {
+      "id": "A1",
+      "name": "Hatta's Guest Room",
+      "description": "A traditional eight-mat room with a tokonoma alcove, a low lacquered table, and an engawa porch looking out over the snow-buried garden. The outer shutter still stands ajar and frost has crept across the engawa boards.",
+      "investigation_prompt": "The room yields the overturned amazake cup with residue; the tatami edge hides the research folio. A faint camphor smell persists near the door. The body has been moved to the corridor.",
+      "discovery": "Beneath the outermost edge of the tatami mat, tucked against the wall, you find a flat oilcloth bundle tied with cord. Inside is a dense folio of documents in an old man's careful hand.",
+      "analysis": "The folio's final summary page names Professor Kenji Aoyama as the wartime physician Lieutenant Kenji Murota of Unit 831 \u2014 and is dated exactly one week before Hatta checked into the ryokan.",
+      "reveals": [
+        "E8"
+      ]
+    },
+    {
+      "id": "A2",
+      "name": "The Cedar Bathhouse",
+      "description": "A low-ceilinged annexe of cedar and river stone, smelling of mineral water and damp wood. A lantern hangs above the entry where a small wooden board records guest times.",
+      "investigation_prompt": "The sign-out board is the key find here. Entry and exit times are written by guests themselves; Aoyama's are still legible and the exit time of 8:47 contradicts his stated alibi.",
+      "discovery": "The guest time-board beside the bathhouse entry still shows yesterday's entries in chalk. Dr. Aoyama's line reads 'In: 8:05 / Out: 8:47' in his own small hand.",
+      "analysis": "Aoyama told investigators he was in the bath until after nine o'clock. The board, written by the guests themselves as courtesy, shows he left at 8:47 PM \u2014 leaving forty minutes unaccounted for.",
+      "reveals": [
+        "E4"
+      ]
+    },
+    {
+      "id": "A3",
+      "name": "Aoyama's Guest Room",
+      "description": "A tidy, almost impersonal room \u2014 the futon is folded with military precision and the only personal items on the desk are a magnifying loupe and an open leather kit bag arranged like a field station.",
+      "investigation_prompt": "The entomology kit is the main find: the inner tray holds specimen vials including one conspicuously empty vial labelled 'PB \u2014 calibration standard' with white powder residue.",
+      "discovery": "Inside the inner tray of Aoyama's leather entomology kit you find a row of labelled glass vials. One is empty, its hand-written label reading 'PB \u2014 calibration standard'; a white powder clings to the interior walls.",
+      "analysis": "A residue test on the vial confirms phenobarbital \u2014 the same compound identified in the amazake cup from Hatta's room. The vial matches the quantity that would produce the cup's concentration.",
+      "reveals": [
+        "E7"
+      ]
+    },
+    {
+      "id": "A4",
+      "name": "The Common Hearth Room",
+      "description": "The inn's central gathering space, with a square sunken hearth, cushioned benches, and a low writing table near the window. Ash still glows faintly in the hearth grate.",
+      "investigation_prompt": "The writing portfolio with Michiko's letters is the main find. One letter references a Macao bank transfer and looks incriminating but is innocently explained on investigation. The porter's maintenance ledger is also here, showing his rounds times.",
+      "discovery": "On the low writing table you find Saegusa Michiko's leather portfolio, still open to a half-finished letter addressed to a bank in Macao referencing 'the arrangements concluded in September.'",
+      "analysis": "When the Macao bank is contacted by the prefectural investigators, the account is confirmed as belonging to her late husband's legal estate; the transfer is legitimate, if privately managed \u2014 no connection to Hatta's death.",
+      "reveals": [
+        "E6",
+        "E1"
+      ]
+    },
+    {
+      "id": "A5",
+      "name": "The Engawa Corridor Outside Hatta's Room",
+      "description": "A narrow covered walkway connecting the guest rooms, open on one side to the garden through wooden lattice screens now glazed with ice. The boards creak with every step.",
+      "investigation_prompt": "The camphor smear on Hatta's doorframe can be found here. The trace is oily and faintly medicinal \u2014 consistent with leather treated with camphor oil such as an entomology kit bag. Also discoverable: Okumura's cash envelope if he has not been searched, but the doorframe is the key physical find.",
+      "discovery": "At handle height on the outer face of Hatta's sliding door you find a faint oily smear that carries a sharp medicinal scent \u2014 camphor, the kind used to condition old leather.",
+      "analysis": "Camphor wood oil of this type is used to preserve entomology kit leather; the only guest who carries such a kit is Dr. Aoyama. The smear is consistent with a bag set down or brushed against the door at night.",
+      "reveals": [
+        "E9"
+      ]
+    }
+  ],
+  "leads": [
+    {
+      "id": "L1",
+      "title": "The Merchant's Recollection",
+      "brief": "Ink merchant Sendo Mitsumi says Hatta showed him a photograph the afternoon before his death and asked if he recognised the man.",
+      "investigation_prompt": "Following up with Sendo produces his full recollection: the photograph showed a man in military uniform named Murota, and the jaw and brow reminded him of Aoyama. His father's firm supplied a Murota at a Manchurian military address during the war. This surfaces E5 (the photograph) and points toward E8.",
+      "reveals": [
+        "E5"
+      ]
+    },
+    {
+      "id": "L2",
+      "title": "Okumura's Business in the Mountains",
+      "brief": "Okumura arrived at the ryokan in a business suit with no walking equipment despite claiming a leisure trip \u2014 other guests noticed the incongruity.",
+      "investigation_prompt": "Pressing Okumura about his real purpose here eventually yields a confession that he came to negotiate with Hatta over a Bureau complaint. He produces the cash envelope voluntarily to demonstrate he never delivered it and had no reason to kill a man he was trying to pay off. This surfaces E10.",
+      "reveals": [
+        "E10"
+      ]
+    },
+    {
+      "id": "L3",
+      "title": "The Camphor Smell",
+      "brief": "Maid Ota Fumiko mentioned a medicinal smell near Hatta's door when she brought the evening amazake.",
+      "investigation_prompt": "Following up with Fumiko and then checking the corridor surfaces the camphor smear on the doorframe. She identifies the smell as the same one she noticed from Aoyama's open kit bag during afternoon cleaning. This surfaces E9.",
+      "reveals": [
+        "E9"
+      ]
+    },
+    {
+      "id": "L4",
+      "title": "Saegusa's Missing Courier",
+      "brief": "A message found in Saegusa Michiko's coat pocket refers to a meeting at the ryokan with someone who apparently never arrived.",
+      "investigation_prompt": "This lead looks promising \u2014 a secret meeting, a missing person, financial implications. Investigation reveals the courier was bringing a document related to her husband's Macao accounts, entirely unrelated to Hatta. The letter in the portfolio (E6) explains and closes the thread. This is the red herring lead.",
+      "reveals": [
+        "E6"
+      ]
+    }
+  ],
+  "gameplay_notes": {
+    "difficulty": "HARD",
+    "estimated_playtime": "60\u201375 minutes",
+    "key_twists": [
+      "The death looks like hypothermia from an open shutter \u2014 the barbiturate in the amazake is not obvious until the cup is tested, and players may initially accept the accidental explanation.",
+      "Saegusa Michiko has genuine motive and a suspicious financial letter that makes her look guilty while her alibi is ironclad \u2014 she is the designed false lead.",
+      "Okumura's cash envelope makes him look like the obvious mercenary killer, but it is actually the evidence that clears him: a man who brought money to buy silence had no reason to commit murder.",
+      "Aoyama's alibi sounds airtight until the bathhouse sign-out board is found \u2014 the forty-minute gap is the mechanical heart of the case.",
+      "Hatta was not a random victim: he was the hunter who finally cornered his quarry, and the ryokan's snowbound isolation was the circumstance Aoyama decided to exploit rather than endure."
+    ]
+  },
+  "_provenance": {
+    "recipe": "corpus_e2d25759(1) + corpus_386fcfb3(2) + corpus_e8901b69(3) + corpus_0e2268a1(4) + corpus_6773090f(5) + corpus_d2df0daa(6) + corpus_f3f87c25(7) + corpus_a94d2e56(8)",
+    "slots": [
+      {
+        "source_id": "corpus_e2d25759",
+        "part_index": 1,
+        "part_type": "crime_type"
+      },
+      {
+        "source_id": "corpus_386fcfb3",
+        "part_index": 2,
+        "part_type": "setting_element"
+      },
+      {
+        "source_id": "corpus_e8901b69",
+        "part_index": 3,
+        "part_type": "motive"
+      },
+      {
+        "source_id": "corpus_0e2268a1",
+        "part_index": 4,
+        "part_type": "suspect_archetype"
+      },
+      {
+        "source_id": "corpus_6773090f",
+        "part_index": 5,
+        "part_type": "red_herring"
+      },
+      {
+        "source_id": "corpus_d2df0daa",
+        "part_index": 6,
+        "part_type": "reveal_mechanic"
+      },
+      {
+        "source_id": "corpus_f3f87c25",
+        "part_index": 7,
+        "part_type": "social_dynamic"
+      },
+      {
+        "source_id": "corpus_a94d2e56",
+        "part_index": 8,
+        "part_type": "alibi"
+      }
+    ],
+    "target_setting": "A death in a Kyoto ryokan during the first heavy snow of 1963, with the mountain road closed and the last four guests unable to leave.",
+    "generated_title": "",
+    "craft_guidance": [
+      {
+        "concept": "The Closed World",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "COARSE PARTS (C1\u2013C6) \u2014 Structural Skeleton",
+        "confidence": "canonical",
+        "source": "James: \"closed circle of suspects\"; Rankin: Edinburgh as character; French: location as first decision"
+      },
+      {
+        "concept": "The Crime",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "COARSE PARTS (C1\u2013C6) \u2014 Structural Skeleton",
+        "confidence": "canonical",
+        "source": "Christie (start with method), P.D. James (central mysterious crime), Knox (rule 4: method must be plausible)"
+      },
+      {
+        "concept": "The Culprit + Motive",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "COARSE PARTS (C1\u2013C6) \u2014 Structural Skeleton",
+        "confidence": "canonical",
+        "source": "Christie: start with murderer and motive, then build outward; worked backward from the solution"
+      },
+      {
+        "concept": "Suspect Architecture",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "MEDIUM-FINE PARTS (M1\u2013M8) \u2014 Tactical Construction Elements",
+        "confidence": "canonical",
+        "source": "James: \"each with motive, means and opportunity\"; Knox: criminal must appear early"
+      },
+      {
+        "concept": "The Alibi",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "MEDIUM-FINE PARTS (M1\u2013M8) \u2014 Tactical Construction Elements",
+        "confidence": "canonical",
+        "source": "Christie notebooks: alibi construction is explicit planning step"
+      }
+    ]
+  },
+  "_coherence": {
+    "passed": true,
+    "blocking": 0,
+    "warnings": 0
+  },
+  "opening_narration": "Tsurugiya Ryokan sits high on the Kurama mountain road, and this morning it is buried \u2014 a full metre of overnight snow has swallowed the innkeeper's truck to its axles and brought the telephone line down before dawn. The only road to the valley is impassable, the wooden bridge over the gorge is judged too dangerous to cross, and the prefectural repair crew will not reach the inn until tomorrow at the earliest. Maid Ota Fumiko discovered the body when she came to deliver the morning charcoal: Hatta Ryunosuke, a retired civil servant of seventy-one, lying face-up on the engawa boards outside his guest room, his yukata collar rimed with frost, the overturned amazake cup still beside his open hand. The outer shutter had been standing wide to the freezing air, and the sliding door behind him was left ajar. The inn's porter called it a sad accident \u2014 an old man, a cold night, a moment of carelessness \u2014 but the porter has since gone quiet, and the four guests who arrived yesterday evening are not going anywhere.",
+  "_verdict": {
+    "verdict": "rejected",
+    "failure_class": "unplayable",
+    "violations": [
+      {
+        "rule_id": "NARR.NARROWS_PROSE_NAMES",
+        "failure_class": "spoiled_prose",
+        "subject_ids": [
+          "E7"
+        ],
+        "message": "E7 is a narrowing clue whose own text names ['Aoyama Kenji'], somebody it still leaves possible -- that turns a narrowing into an accusation and whoever is dealt it wins without speaking to anyone. Naming a suspect the fact rules OUT is fine; naming one it does not is not"
+      },
+      {
+        "rule_id": "DEAL.SOLO_SOLVE",
+        "failure_class": "unplayable",
+        "subject_ids": [
+          "W:Mori Takeo"
+        ],
+        "message": "finding W:Mori Takeo solves the mystery by itself; no deal can be fair"
+      }
+    ],
+    "advisory": []
+  }
+}

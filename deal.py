@@ -110,6 +110,13 @@ REDUNDANCY_BY_DIFFICULTY = {"EASY": 2, "HARD": 1, "MEDIUM": 1}
 # yields at APF's three-finding hand for every difficulty.
 DEFAULT_HOARD_ALLOWANCE = 1
 
+# APF's specified cast (docs/PLAYTEST_FLOW.md, and the generation prompt's
+# "EXACTLY 4 suspects"). Named here because the constraint arithmetic throughout
+# this file is derived from it -- three required exonerations, a redundancy
+# ceiling of 2 -- and a mystery that arrives with a different number is not a
+# harder or easier version of the same game, it is a different one.
+APF_SUSPECT_COUNT = 4
+
 # Re-dealing is free, so the ceiling is generous. It exists to bound a mystery
 # that cannot be dealt at all, and when it is hit the feasibility report -- not
 # the attempt count -- is what says why.
@@ -348,6 +355,7 @@ def solves(findings: Sequence[Finding], mystery: dict,
 # counting one defect twice.
 FEASIBILITY_RULES = {
     "DEAL.NO_SUSPECTS":              "incoherent",
+    "DEAL.SUSPECT_COUNT":            "unplayable",
     "DEAL.NO_CULPRIT":               "incoherent",
     "DEAL.CULPRIT_NOT_SUSPECT":      "incoherent",
     "REVEAL.DANGLING":               "incoherent",
@@ -407,6 +415,19 @@ def feasibility_issues(mystery: dict, player_count: int,
 
     if not sus:
         _add(issues, "DEAL.NO_SUSPECTS", "no suspects: characters[] has nobody with role 'suspect'")
+    elif len(sus) != APF_SUSPECT_COUNT:
+        # APF'S ARITHMETIC IS SIZED FOR FOUR, and asserting it in the prompt was
+        # not enough -- `snow_on_the_engawa` came back with three and nothing
+        # caught it. THREE IS NOT MERELY SMALLER, IT IS A DIFFERENT GAME: two
+        # required exonerations instead of three means any single finding
+        # carrying both clears everybody and solves outright, so the deal cannot
+        # be fair no matter how well the mystery is written. The redundancy
+        # ceiling reasoning below assumes 4 as well.
+        _add(issues, "DEAL.SUSPECT_COUNT",
+             f"{len(sus)} suspects, not {APF_SUSPECT_COUNT}: at {len(sus)} there are only "
+             f"{max(0, len(sus) - 1)} required exoneration(s), so one finding carrying them all "
+             f"solves the case and no deal can be fair",
+             sorted(sus))
     if not cul:
         _add(issues, "DEAL.NO_CULPRIT", "no culprit: solution.culprit is empty")
     elif cul not in sus:
