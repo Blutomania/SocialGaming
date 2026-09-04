@@ -1133,3 +1133,27 @@ that the superseded text has become history and belongs here instead.
 
     Determinism survives, which matters because a reconnecting player must get their own hand back:
     the winning seed is returned in the result and reproduces the same hands through plain `deal()`.
+
+32. **[DECIDED, Session 41 — owner] The game ends in full disclosure.** When the final round
+    closes, every finding still held by every player becomes public, each shown with the name of
+    whoever was holding it.
+
+    **The reason is the product's own name.** Owner: *"So much of the fun of this game is the Choose
+    aspect of it. Choosing the kind of mystery you are trying to solve, seeing the full disclosure
+    is necessary to reward that choice."* A player picked the setting and the generation was paid
+    for; showing them only the fraction that happened to get shared sells them a part of what they
+    bought.
+
+    **It also makes withholding accountable, which nothing before the end can do.** During play,
+    keeping a finding costs you nothing visible — the whole point is that others cannot see what
+    you hold. Disclosure settles that at the table's own pace: everyone finds out precisely what
+    each player sat on, and whether it would have changed anything. The sentence the mechanic
+    exists to produce — *"she was holding that the whole time"* — is only sayable afterwards.
+
+    **Cheap, because it is not new machinery.** Disclosure is the ordinary share step with the
+    minimum set to everything, applied once to every player simultaneously. The reveal screen
+    already exists. No new state, no new route shape, no new screen.
+
+    **Explicitly NOT a remedy for an unsolved case.** Whether a mystery that nobody cracked should
+    end unsolved, or be resolved some other way, is a separate design question and is left open on
+    purpose. Full disclosure happens either way — after a correct accusation or after none.

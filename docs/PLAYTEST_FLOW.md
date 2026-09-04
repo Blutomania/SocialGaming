@@ -43,6 +43,29 @@ Exploration was cut for three reasons, in the owner's order:
 5. Each player **chooses which to share and which to keep.** That is the whole decision, and it
    is the 75% mechanic with nothing in front of it.
 6. Deduce. Accuse. Reveal.
+7. **Full disclosure.** When the last round closes, everything every player still holds becomes
+   public, with the holder's name on it.
+
+### Full disclosure closes the game (owner, Session 41)
+
+**Not a tie-breaker and not a rescue — the reward for having chosen this mystery.** Owner: *"So
+much of the fun of this game is the Choose aspect of it. Choosing the kind of mystery you are
+trying to solve, seeing the full disclosure is necessary to reward that choice."* You picked the
+setting and paid for the generation; you are owed the whole of it, not the fraction that happened
+to be shared.
+
+It does a second job for free. Every finding a player sat on is shown **with their name against
+it**, which is what makes withholding a real decision rather than a costless one: the table finds
+out afterwards exactly what you kept, and whether it would have mattered. *"She was holding the
+ledger page the whole time"* is the sentence the mechanic exists to produce, and nothing before
+the end can produce it.
+
+**It reuses the rules already there.** Disclosure is the ordinary share step with the minimum set
+to everything, applied once, to every player at once. No new state and no new screen — the reveal
+already exists.
+
+**It is NOT a fix for nobody having solved the case.** That is a separate question and is
+deliberately left open.
 
 ### What this deletes outright
 
