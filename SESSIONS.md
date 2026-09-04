@@ -3238,6 +3238,35 @@ The prompt now says so where witnesses are actually written (assign each witness
 cover all four) — the old REACHABLE rule failed for the same reason two-routes did: both stated in
 the EVIDENCE section as properties of a section written later. **Untested.**
 
+### The rule audit, and the deal learning to choose (items 30, 31)
+
+Owner, after a run of *"a rule nobody was enforcing"* findings: *"Is it worth our while to do a top
+down code review predicated on rules?"*
+
+**Tested the specific worry first, and it was clean.** 55 declared rule ids; **every one reachable
+from a live code path. No dead rules.** 39 have never fired and are not named in a test, which
+sounds bad and mostly is not — `P1.C2.no_victim` never firing means generation reliably writes a
+victim. Cheap insurance working.
+
+**But there are three shapes of broken rule, and this session produced all three:** *inert* (none,
+checked), *unenforced* (the prompt asserts it, nothing checks — "EXACTLY 4 suspects", a paid
+generation), and *wrongly measured* (runs, passes, measures the wrong thing — the narrowing
+counting entries, the prose leak matching full names). The third is the dangerous one because it
+sits there **green**.
+
+`scripts/check_rule_coverage.py` attacks the second: 36 prompt assertions inventoried against
+enforcing rule ids, failing on an untriaged imperative, a dead rule id, or a deleted assertion.
+**It found one on its first run** — *"At least 2 areas must yield a discovery+analysis pair that
+genuinely narrows the suspect list"*, which nothing counts. 11 assertions stand UNENFORCED,
+listed deliberately; one is *unenforceable* by construction.
+
+**And the deal now chooses.** `best_deal()` tries seeds and keeps the fairest, because seed 7 on the
+accepted mystery gave a monopoly in 27 of 81 patterns while 13 of 20 seeds gave **zero** — same
+mystery, same rules. Selection rather than prohibition: `forbid_prover_monopoly` already existed as
+a hard constraint and is off by default because a mystery where no dealing avoids monopoly would
+return no hands at all. Selecting always returns the least-bad dealing and says how good it is.
+Determinism survives — the winning seed reproduces its hands through plain `deal()`.
+
 ### Generations seven and eight — and the first accepted mystery
 
 **Seventh, `snow_on_the_engawa` (Kyoto ryokan, 1963).** Rejected, and it found a rule nobody was

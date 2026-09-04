@@ -173,7 +173,7 @@ game lifecycle (`/games/create`, `/join`, `/start`), play (`/interrogate-witness
 | `coherence/` | The shared engine (`Issue`, `CoherenceReport`, `RuleSet`). Used by both CYM and Mind Your Friends — item 16 |
 | `craft_grounding.py` | Retrieval layer over the craft-grounding docs; feeds guidance into all five generation call sites. Zero added API calls |
 | `localization.py` | Era-appropriate name/occupation localization, 3-tier disk cache |
-| `deal.py` | APF's constrained deal (item 23). Deals findings under set arithmetic over `evidence[]`, reached through the `reveals` pointer. Pure computation, deterministic from a seed, re-dealable free. Computed, tested, **wired to no client** |
+| `deal.py` | APF's constrained deal (item 23). `best_deal()` picks the fairest of several dealings. Deals findings under set arithmetic over `evidence[]`, reached through the `reveals` pointer. Pure computation, deterministic from a seed, re-dealable free. Computed, tested, **wired to no client** |
 | `gate.py` | Decides whether a generated mystery may be served, and routes it to `generated/` or `rejected/`. Runs coherence, `check_narrative` and `deal.feasibility`; free, no API call. Item 18 |
 | `arrangement.py` | The pointer-wiring pass: finds exonerations no witness, lead or area reveals, and wires the ones a finding can honestly carry. Free, deterministic. Repairs the arrangement, never the evidence — see item 29 |
 | `generation_ledger.py` | One append-only JSONL row per generation attempt — cost, verdict, failure class, rule ids. The only record of what generation costs; see item 28 |
@@ -355,6 +355,8 @@ Zero API cost, no Godot binary needed. Each has already caught a real bug.
 | `scripts/test_deal.py` | The three deal constraints, and that each refuses a mystery violating it. Fixtures, because no mystery on disk carries `reveals` yet |
 | `scripts/test_gate_and_ledger.py` | The gate's refusals and the ledger's arithmetic: that a clean mystery is accepted, that each failure class is refused and correctly named, that CAST findings stay advisory, that a legacy mystery is `unjudged` rather than rejected, and that CPAM divides by accepted rather than by attempts |
 | `scripts/test_arrangement.py` | That the wiring pass refuses a false positive — both of the two it actually made on real mysteries — that a genuine carrier is wired, and that a wiring making the mystery worse is withheld even when it lowers the violation count |
+| `scripts/check_rule_coverage.py` | Every hard assertion in the generation prompt against the rule that enforces it. Fails if the prompt gains an assertion nobody has triaged, if an inventory entry names a rule id that no longer exists, or if an inventoried assertion has been deleted. The standing UNENFORCED list is its real output |
+| `scripts/test_rule_coverage.py` | That the coverage checker actually fails — an untriaged assertion, a dead rule id, a stale entry. A coverage checker that cannot fail is worse than none |
 | `scripts/test_background_field.py` | The BACKGROUND layout |
 | `scripts/test_extraction_fatal_errors.py` | That a batch stops on an account-level API failure and continues past a per-source one |
 

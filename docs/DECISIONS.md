@@ -1079,3 +1079,57 @@ that the superseded text has become history and belongs here instead.
     statement, and cover all four. The existing REACHABLE rule failed for the same reason the
     two-routes rule did — both were stated in the EVIDENCE section as properties of a section the
     model writes later. **Untested against a real generation.**
+
+30. **[BUILT, Session 41 — September 3 2026] Two things the session kept finding by accident, made
+    into checks.** Owner, after a run of *"a rule nobody was enforcing"* findings: *"Is it worth our
+    while to do a top down code review predicated on rules to make sure we don't have a lot of
+    superfluous or inactive ones?"*
+
+    **The specific worry was tested first, and it was clean.** 55 rule ids are declared across
+    `check_narrative.RULES`, `deal.FEASIBILITY_RULES` and `coherence_validator`. **Every one is
+    reachable from a live code path — there are no dead rules.** 39 have never fired and are not
+    named in a test, which sounds alarming and mostly is not: `P1.C2.no_victim` never firing means
+    generation reliably writes a victim. That is cheap insurance working. What is new is that the
+    ledger now records firing, so "never fired in N generations" is becoming evidence rather than a
+    guess.
+
+    **Three shapes of broken rule exist, and this session produced one of each:**
+
+    | Shape | This session's example | Findable mechanically? |
+    |---|---|---|
+    | *inert* — declared, unreachable | none in the rule system | yes — checked, clean |
+    | *unenforced* — the prompt asserts it, nothing checks | *"EXACTLY 4 suspects"*, which cost a paid generation | **yes** |
+    | *wrongly measured* — runs, passes, measures the wrong thing | narrowing counted list entries not suspects; prose leak compared full names | no — only reading finds these |
+
+    The third is the dangerous one, because a wrong rule sits there **green** and looks like
+    coverage. Both instances cost a generation to expose.
+
+    `scripts/check_rule_coverage.py` attacks the second. It inventories all 36 hard assertions in
+    the generation prompt against the rule ids enforcing them, and fails on three conditions: an
+    imperative the inventory does not cover, a claimed rule id that is not live, or an inventoried
+    assertion deleted from the prompt. **You cannot quietly add an unenforced rule to the prompt.**
+    It found one on its first run — *"At least 2 areas must yield a discovery+analysis pair that
+    genuinely narrows the suspect list"*, which nothing counts. 11 assertions stand UNENFORCED and
+    are listed deliberately; one is marked *unenforceable* (whether a witness statement is TRUE is
+    not a structural question, which is why deception is switched off rather than checked).
+
+31. **[BUILT, Session 41] The deal chooses a dealing instead of taking the first legal one.**
+    `deal()` stopped at the first shuffle satisfying the constraints. It asked *is this legal* and
+    never *is this good*, and the first accepted mystery showed how much that costs: at seed 7,
+    exactly one player could prove the case in **27 of 81** hoarding patterns — the same figure
+    `totality` was rejected for — while **13 of 20 seeds gave zero**, and proof survived 81/81 on
+    every seed tried. Same mystery, same rules, same constraints met. The only difference was which
+    findings landed in which hands.
+
+    **So monopoly on proof is a property of the DEALING, not the story.** `best_deal()` tries seeds,
+    scores each by monopoly count and keeps the best, stopping early on a perfect one — usually one
+    or two deals rather than twenty.
+
+    **Selection, not prohibition,** and that is the design choice. `deal()` already had
+    `forbid_prover_monopoly`, off by default because it costs deals: as a hard constraint a mystery
+    where no dealing avoids a monopoly returns no hands at all, and a table gets nothing. Selecting
+    always returns a dealing — the least bad available — and reports how good it managed to be.
+    Degrading beats refusing when the alternative is an empty table.
+
+    Determinism survives, which matters because a reconnecting player must get their own hand back:
+    the winning seed is returned in the result and reproduces the same hands through plain `deal()`.

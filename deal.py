@@ -144,6 +144,10 @@ class DealResult:
     attempts: int = 0
     seed: int = 0
     redundancy: int = 1
+    # Quality of the dealing, not of the mystery -- see best_deal().
+    monopoly: int = 0            # hoarding patterns where exactly one player can prove it
+    patterns: int = 0            # hoarding patterns examined
+    seeds_tried: int = 1
 
     def to_dict(self) -> dict:
         return {
@@ -153,6 +157,9 @@ class DealResult:
             "attempts": self.attempts,
             "seed": self.seed,
             "redundancy": self.redundancy,
+            "monopoly": self.monopoly,
+            "patterns": self.patterns,
+            "seeds_tried": self.seeds_tried,
         }
 
 
@@ -830,3 +837,76 @@ def deal(mystery: dict, player_count: int, seed: int = 0,
         issues=[f"no valid deal in {max_attempts} attempts; last: " + "; ".join(last)],
         attempts=max_attempts, seed=seed, redundancy=redundancy,
     )
+
+
+# --------------------------------------------------------------------------
+# Choosing a dealing, not just finding a legal one
+# --------------------------------------------------------------------------
+
+DEFAULT_SEED_SEARCH = 20
+
+
+def best_deal(mystery: dict, player_count: int,
+              seeds: int = DEFAULT_SEED_SEARCH,
+              **kwargs) -> DealResult:
+    """Deal several times and keep the fairest dealing. Free — pure computation.
+
+    WHY THIS IS NOT deal() WITH A BETTER DEFAULT. `deal()` stops at the first
+    dealing that is LEGAL. It never asks whether it is GOOD, and those are
+    different questions with different answers: on the first accepted mystery,
+    `the_neriin_in_the_pilchard_barrel`, seed 7 left exactly one player able to
+    prove the case in 27 of 81 hoarding patterns -- the very figure `totality`
+    was rejected for -- while 13 of 20 seeds gave ZERO, and proof survived 81/81
+    on every seed tried. Same mystery, same rules, same constraints satisfied.
+    The difference was entirely which findings landed in which hands.
+
+    So monopoly on proof is a property of the DEALING, not of the story, and it
+    is worth choosing rather than accepting. Re-dealing costs nothing (this
+    module's whole premise), which makes taking the first legal shuffle a
+    strange thing to have been doing.
+
+    SELECTION, NOT PROHIBITION, and that distinction is the design. deal() takes
+    `forbid_prover_monopoly` and makes it a hard constraint -- which means a
+    mystery where NO dealing avoids a monopoly returns no hands at all, and a
+    table gets nothing. Selecting instead always returns a dealing, the least
+    bad one available, and reports how good it managed to be. Degrading is
+    better than refusing when the alternative is an empty table.
+
+    DETERMINISM SURVIVES. deal() promises the same (mystery, players, seed)
+    always gives the same hands, because a reconnecting player must get their
+    own hand back. That still holds: this searches seeds and returns the
+    winner with `seed` set to it, so the chosen dealing is reproducible by
+    calling deal() with that seed directly.
+
+    Stops early on a perfect dealing, so the common case costs one or two
+    deals rather than `seeds` of them.
+    """
+    ev_by_id = evidence_by_id(mystery)
+    best: Optional[DealResult] = None
+
+    for n, seed in enumerate(range(seeds), start=1):
+        result = deal(mystery, player_count, seed=seed, **kwargs)
+        if not result.ok:
+            # A feasibility refusal is about the mystery and will repeat for
+            # every seed, so there is nothing to search. An unlucky deal might
+            # not repeat, so keep going.
+            if result.attempts == 0:
+                result.seeds_tried = n
+                return result
+            best = best or result
+            continue
+
+        counts = prover_counts(result.hands, mystery, ev_by_id)
+        result.monopoly = counts.get(1, 0)
+        result.patterns = sum(counts.values())
+        result.seeds_tried = n
+
+        if best is None or not best.ok or result.monopoly < best.monopoly:
+            best = result
+        if best.monopoly == 0:
+            break
+
+    if best is not None:
+        best.seeds_tried = n
+    return best if best is not None else DealResult(hands=[], ok=False,
+                                                    issues=["no seeds tried"])
