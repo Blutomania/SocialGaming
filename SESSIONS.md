@@ -5,6 +5,36 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session — September 04, 2026 at 03:22
+**Branch:** `claude/mystery-generation-narrowing-ad2xh8`
+**Latest commit:** `05fb3ad`
+
+### Files changed this session
+- `eal.py` — Modified
+- `mystery_database/ledger.jsonl` — Modified
+- `scripts/test_gate_and_ledger.py` — Modified
+- `server/main.py` — Modified
+- `mystery_database/localization_cache/tsurugiya_ryokan_kurama_mountain_road_kyoto_prefecture_december_.json` — Untracked
+- `mystery_database/rejected/snow_on_the_engawa_1788492006.json` — Untracked
+
+### Commits this session
+```
+05fb3ad The sixth generation: all three changes landed, and the glove bit
+12d7ae7 The arrangement pass: wire the pointer, never rewrite the clue (item 29)
+a3fec8c The fifth generation: $0.2027 measured, rejected, and it earned two rules
+0f20e39 Docs: item 18 closed, item 28 added, and the rejected README gains a third category
+8f3cad7 Item 18, settled: the pipeline routes bad generations, and records what they cost
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
 ## Session — September 02, 2026 at 19:27
 **Branch:** `claude/repo-sync-bjb77q`
 **Latest commit:** `3dfe62f`
@@ -3070,6 +3100,246 @@ it. Porting the Aug 12 flow and then immediately rewriting it would build the sa
    mixed into the port.
 4. Owner action, one click: delete `dev/cryptic-challenge` (and optionally `dev/mind-your-friends`)
    via the GitHub UI — both are stale pointers with zero unique commits.
+
+---
+
+## Session 41 — September 3, 2026 (CYM: the pipeline stops serving what it knows is broken, and starts counting what it costs)
+
+**Branch:** `claude/mystery-generation-narrowing-ad2xh8`, from `main` at `c296227`. Owner opened on
+the last line of the Session 40 summary — item 18 and the funding meeting — and said *"all we care
+about is funding."*
+
+### The question that reframed item 18
+
+Owner: *"the issue is how we deal with poor generations. Poor is defined as those who fail the
+coherence engine's test?"* **No, and the disk says it backwards.**
+
+| | Coherence | Where it was |
+|---|---|---|
+| all four in `rejected/` | passed, 0 blocking | quarantined **by hand** |
+| `the_stolen_star_of_smurf_village` | **failed, 1 blocking** | `generated/`, servable |
+
+So 100% of the coherence failures were being served and 0% of the quarantined ones had failed
+coherence. The gap was never "BLOCKING mysteries get served" — **nothing routed anything.** Four
+kinds of poor exist and coherence catches the rarest: *incoherent*, *unplayable*, *spoiled_prose*,
+*below_standard*. Running the current `check_narrative.py` over the four rejects (free) showed every
+rule they earned still fires — the learning loop works, it just runs on a human.
+
+**Owner's decision: option (c), route on ANY failing check.** The checks are free, so there is no
+cost argument, and the sentence worth having in a funding room is not *"our engine detects
+incoherence"* but *"nothing reaches a player that our checks cannot prove is solvable."*
+
+### The forward question: Mistral, and a model that "learns"
+
+Owner asked whether post-funding a custom model could **correct** flawed mysteries. Three answers,
+because it bundles three things. **The learning loop already exists and runs on the owner** — four
+rejections, four prompt rules. **Repair splits on invention vs arrangement**, the same axis Session
+40 found for generation: deciding a second route is needed is arithmetic; only the sentence needs a
+model. **Fine-tuning is 2–3 orders of magnitude short on data** and would move the pass rate, not
+remove the gate.
+
+**Repair-to-green is the trap, and `the_light_that_went_out` is the proof** — it passed every
+structural rule and gave its answer away in prose, so a loop optimising to green ships it
+confidently. Owner agreed immediately. **Auto-reject is safe; auto-repair is not.** A gate can only
+be conservative.
+
+On Mistral: the workload is output-heavy (output is 95% of a call), which favours self-hosting, but
+the hard thing here is six simultaneous global constraints across ~10k tokens, which is where
+smaller models fall off. **The deciding number is cost per ACCEPTED mystery, and it was unmeasurable.**
+
+### Cost was being thrown away
+
+`llm()` in `server/main.py` is the only Claude call site in the server, and **nothing read
+`response.usage`.** The project's one cost figure was a hand measurement from August. What the four
+rejected mysteries cost is unrecoverable; they carry `cost_usd: null` rather than an estimate.
+
+**The two things the owner greenlit are one thing:** a row per attempt saying what it cost, what
+happened to it, and why. CPAM falls out; the failure corpus is the rejected rows.
+
+`gate.py`, `generation_ledger.py`, `scripts/cpam.py`, `scripts/backfill_ledger.py`,
+`scripts/test_gate_and_ledger.py`. `check_narrative.py` and `deal.py` now name every rule they fire
+and the subject it fired on; prose output is byte-identical.
+
+**Three judgement calls, each deliberate.** CAST/ORPHAN stay advisory — the checker's own header
+calls them false-positive-prone. Legacy mysteries are `unjudged`, because all 17 predate the schema
+and gating them would have emptied the served library over rules that did not exist. Coherence is
+the exception, so **exactly one file moved**: the Smurf mystery, on
+`P1.C4.culprit_not_in_characters`. Item 18's original case.
+
+### The generation — rejected, and it earned two rules
+
+*A death during the final night of a travelling circus wintering in a flooded Louisiana bayou town,
+1931.* 239s, three calls, **$0.2027 — the first generation this project has ever measured.**
+Coherence passed, 0 blocking, 1 warning. 4 suspects, 12 evidence.
+
+**Two holes, both in the rules rather than the mystery:**
+
+- **A narrowing counted names, not suspects.** E9 narrowed to *[Celestine Vautrain, Émile
+  Delacroix]* — and Émile is the **victim**. Two entries, one living possibility, so it was a
+  single-suspect narrowing in disguise and it solved the case outright. `deal.py` caught the
+  consequence; the narrowing rule reported only "narrows to a non-suspect", which reads like a typo
+  rather than the whole answer on one finding.
+- **The prose leak check compared full names.** E9 said *"the inventory entry **Celestine** herself
+  made"*. First name only, identical leak, invisible. It now matches on name words via the same
+  tokeniser the CAST check already used. **So Session 40's prose fix had NOT landed** — it had only
+  stopped being detectable.
+
+**And the two-routes rule missed exactly one suspect for the third generation running.** Nadège
+Fontenot is cleared by E6 alone (Rémy has three routes, Sylvain two, Nadège one). Session 40 rewrote
+the prompt to specify the six alibi items as the first six in named pairs; the model wrote six
+alibis and distributed them 3/2/1. **The construction-order fix did not land, and this is now a
+three-for-three pattern, not noise.**
+
+### One bug this session found in its own work
+
+The live ledger row keyed on the title slug and the backfill keyed on the file stem, so a re-verdict
+could never find the attempt it superseded and the mystery was counted twice in the pass rate. Both
+now key on the file stem — which is also the only unique identity, since two titles already repeat
+on disk. `generation_ledger.collapse()` folds a re-verdict onto its original: newest verdict,
+original's cost.
+
+### State
+
+**pass rate 0% of 6 judged; CPAM undefined; measured spend $0.2027.** That is the honest headline
+and it is the first time the project could state one. 18 free checks pass.
+
+### The two-routes rule, diagnosed properly (item 29)
+
+Owner asked whether a RAG-adjacent tool could *"augment clues to clear more than one suspect"*. Two
+corrections, then the tool.
+
+**It was never a distribution problem, and my earlier 3/2/1 reading was wrong** — it counted
+evidence items rather than ROUTES (the clue plus anything whose `reveals` names it). Counted
+properly: Nadège 1 / Rémy 10 / Sylvain 5; Adachi 1 / Solberg 4 / Novák 2; Luz 1 / Fenwick 4 /
+Sable 4. **Nobody is short of clues. Exactly one person has exactly one, every time, and it is
+always the person whose clue nothing points at.** `NARR.SINGLE_ROUTE` and
+`REVEAL.UNREACHED_EXONERATION` are one defect from two sides.
+
+**RAG is already here** (`craft_grounding.py`, five call sites, zero added cost) and cannot fix
+this: the model writes six good alibi clues and then fails at bookkeeping. Retrieval adds knowledge,
+not arithmetic. **And the proposed mechanism inverts an existing rule** — a clue clearing more than
+one suspect is `NARR.CLEARS_MULTIPLE`, the lantern-keeper rule. Generalising nouns trades a
+*below_standard* failure for an *unplayable* one. The wanted property is redundancy, not generality.
+
+`arrangement.py` + `scripts/wire_pointers.py` do the arrangement half deterministically. **Repair
+the arrangement, never the evidence.** It refused both false positives it made on its first run —
+wiring Nadège's sign-in sheet to a witness discussing taffy (shared: *else, entire, general, show*),
+then to the area holding her **marriage certificate**. Rarity does not separate those: in that
+mystery *"else"* is as rare as *"corroboration"*. The rule is domain-shaped instead — the carrier
+must name the person the clue clears, plus a distinctive term that is not the name.
+
+**Result: 0 wirable, 4 gaps.** The right answer. It names the targeted ask instead of inventing a
+pointer.
+
+**The `--coverage` finding is worth more than the tool.** The one-route suspect is the suspect
+nobody talks about — Adachi, Luz and Nadège each have no witness; `the_light_that_went_out`, where
+all four do, passed the rule. Generation builds the world around the people it is thinking about.
+The prompt now says so where witnesses are actually written (assign each witness a suspect first,
+cover all four) — the old REACHABLE rule failed for the same reason two-routes did: both stated in
+the EVIDENCE section as properties of a section written later. **Untested.**
+
+### The rule audit, and the deal learning to choose (items 30, 31)
+
+Owner, after a run of *"a rule nobody was enforcing"* findings: *"Is it worth our while to do a top
+down code review predicated on rules?"*
+
+**Tested the specific worry first, and it was clean.** 55 declared rule ids; **every one reachable
+from a live code path. No dead rules.** 39 have never fired and are not named in a test, which
+sounds bad and mostly is not — `P1.C2.no_victim` never firing means generation reliably writes a
+victim. Cheap insurance working.
+
+**But there are three shapes of broken rule, and this session produced all three:** *inert* (none,
+checked), *unenforced* (the prompt asserts it, nothing checks — "EXACTLY 4 suspects", a paid
+generation), and *wrongly measured* (runs, passes, measures the wrong thing — the narrowing
+counting entries, the prose leak matching full names). The third is the dangerous one because it
+sits there **green**.
+
+`scripts/check_rule_coverage.py` attacks the second: 36 prompt assertions inventoried against
+enforcing rule ids, failing on an untriaged imperative, a dead rule id, or a deleted assertion.
+**It found one on its first run** — *"At least 2 areas must yield a discovery+analysis pair that
+genuinely narrows the suspect list"*, which nothing counts. 11 assertions stand UNENFORCED,
+listed deliberately; one is *unenforceable* by construction.
+
+**And the deal now chooses.** `best_deal()` tries seeds and keeps the fairest, because seed 7 on the
+accepted mystery gave a monopoly in 27 of 81 patterns while 13 of 20 seeds gave **zero** — same
+mystery, same rules. Selection rather than prohibition: `forbid_prover_monopoly` already existed as
+a hard constraint and is off by default because a mystery where no dealing avoids monopoly would
+return no hands at all. Selecting always returns the least-bad dealing and says how good it is.
+Determinism survives — the winning seed reproduces its hands through plain `deal()`.
+
+### Generations seven and eight — and the first accepted mystery
+
+**Seventh, `snow_on_the_engawa` (Kyoto ryokan, 1963).** Rejected, and it found a rule nobody was
+enforcing: **it came back with three suspects.** The prompt has said "EXACTLY 4" since it was
+written and `deal.py`'s whole arithmetic derives from four — and nothing checked it. That is the
+root cause of its `DEAL.SOLO_SOLVE` rather than a second fault: three suspects means only two
+required exonerations, so any witness revealing both exonerating clues clears everybody. Mori Takeo
+did exactly that. Now refused by `DEAL.SUSPECT_COUNT`, with `APF_SUSPECT_COUNT` a named constant.
+
+It also leaked a narrowing in prose for the third generation running — and showed the *cause*.
+`E7` was a vial *"in **Aoyama's** cramped script, found in his entomology kit"*. Once the object
+**belongs to** somebody the clue leaves possible, naming them is unavoidable; no instruction about
+wording saves it. The prompt now asks for a class of person — a reach, a handedness, a shoe size —
+never a possession.
+
+**Eighth, `the_neriin_in_the_pilchard_barrel` (Cornish tin-mine counting house, 1907). ACCEPTED.**
+Every new rule held: 4 suspects, no prose leak, no solo-solve, no single-route suspect, coherence
+0 blocking and 0 warnings. One violation — `REVEAL.UNREACHED_EXONERATION` on E4 — which is exactly
+what `arrangement.py` was built for.
+
+**And the wiring tool acted for the first time, honestly.** It proposed E4 → witness Tomas Blewett
+on *cliff, organising, path* plus the name of the man E4 clears. Checked by hand before applying:
+E4 is the pilchard women's account of Dreckly Bolitho on the cliff path organising barrels, and it
+**names Tomas in its own text** (*"consistent with Tomas Blewett's statement"*); Tomas says
+*"Bolitho was out on the cliff path organising the barrels… I passed him three times."* Same person,
+place, activity, window. The pointer generation forgot. Gate after wiring: **accepted**.
+
+**First CPAM: $0.7169** over four measured generations, 1 accepted of 9 judged.
+
+**A finding worth more than the acceptance: monopoly on proof is a property of the DEAL, not the
+mystery.** At seed 7 exactly one player could prove it in 27 of 81 hoarding patterns — the same
+figure `totality` was hand-rejected for. Across 20 seeds **13 give 0/81**, and proof survives 81/81
+on every single one. Re-dealing is free and documented as such, so the deal should pick a seed by
+monopoly count instead of taking the first that works. Unbuilt; the cheapest quality win available.
+
+### The sixth generation — all three changes landed, and the glove bit
+
+*A death at a remote Scottish tidal-island hotel, 1954.* 216s, **$0.1768**. Coherence passed,
+0 blocking and — for the first time in this project — **0 warnings**. 4 suspects, 11 evidence,
+3 witnesses.
+
+| Change | Result |
+|---|---|
+| Per-suspect witness rule | **`NARR.SINGLE_ROUTE` and `REVEAL.UNREACHED_EXONERATION` both gone** — first time in four generations |
+| Word-level prose leak check | No leak. `E3` narrows to two men and names neither |
+| Narrowing counts suspects | `E3` narrows to 2 of 4 real suspects, correctly |
+
+**One violation, and it is not a regression — it is item 27 working.** `E3` narrows to Alasdair and
+Cecil (a brandy bottle on a six-foot shelf: someone tall enough to reach it, naming nobody). `E5`
+clears Cecil. Intersect, subtract, and the culprit is named. Two findings that individually prove
+nothing combining into a proof, exactly as the owner specified the glove.
+
+**Both halves landed on the same witness.** Dr. Ishbel Marra reveals E1, E3 *and* E5, so she is one
+dealt finding carrying the whole proof, and whoever draws her wins without speaking to anyone —
+`DEAL.SOLO_SOLVE`. The new mechanic meeting the old constraint.
+
+**Partly caused by this session's own prompt rule**, which said three witnesses covering four
+suspects means one witness covers two, and did not say what a witness may not carry. The rule it
+earned: **no single witness, lead or area may reveal both a narrowing and the exoneration that
+completes it.** Added to the prompt, untested.
+
+**Trajectory across the two paid generations this session:** delacroix fired 5 violations across
+3 rules; `the_tide_waits_for_no_one` fires 1. Both cost real money and both are in the ledger.
+
+**Next: item 23 step 3** is still blocked on a mystery that passes everything — six generations,
+six rejects — but the sixth is one rule away, and the rule is written. Worth one generation to
+confirm before building the share screen against it.
+
+**Files:** `gate.py`, `generation_ledger.py`, `deal.py`, `server/main.py`,
+`scripts/check_narrative.py`, `scripts/cpam.py`, `scripts/backfill_ledger.py`,
+`scripts/test_gate_and_ledger.py`, `scripts/test_narrative_checks.py`, `scripts/test_deal.py`,
+`CLAUDE.md`, `docs/DECISIONS.md` (items 18, 28), `docs/AI_COST_PLAYBOOK.md`,
+`mystery_database/rejected/README.md`, `mystery_database/ledger.jsonl`.
 
 ---
 

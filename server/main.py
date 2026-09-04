@@ -25,6 +25,7 @@ SESSION ANNOTATION — Phase 1 complete when:
 """
 
 import asyncio
+import contextlib
 import json
 import os
 import random
@@ -60,6 +61,8 @@ from localization import (                                  # noqa: E402
     _load_era_rules,
 )
 import craft_grounding                                       # noqa: E402
+import gate                                                  # noqa: E402
+import generation_ledger                                     # noqa: E402
 
 # ---------------------------------------------------------------------------
 # API client — auth priority: env var → session ingress token
@@ -118,13 +121,47 @@ def get_registry():
 _MAX_TOKENS = 16000
 
 
-def llm(prompt: str, system: str = "You are a creative mystery game engine.") -> str:
+# The attempt currently being generated, per thread. THREAD-LOCAL because
+# /generate/async runs generation in a background thread (see _run_generation_job)
+# and a module-level global would let two concurrent jobs bill each other's
+# tokens to the wrong mystery.
+_current_attempt = threading.local()
+
+
+def _record_usage(purpose: str, model: str, response) -> None:
+    """Bank one call's tokens against the attempt in flight, if there is one.
+
+    Silent no-op outside a generation -- play-time calls (interrogation, area
+    investigation) are real spend but they are not part of any mystery's
+    creation cost, and folding them into CPAM would make the metric answer a
+    different question than the one it is for.
+    """
+    attempt = getattr(_current_attempt, "attempt", None)
+    if attempt is None:
+        return
+    usage = getattr(response, "usage", None)
+    if usage is None:
+        return
+    attempt.record_call(purpose, model,
+                        getattr(usage, "input_tokens", 0) or 0,
+                        getattr(usage, "output_tokens", 0) or 0)
+
+
+def llm(prompt: str, system: str = "You are a creative mystery game engine.",
+        purpose: str = "other") -> str:
+    model = "claude-sonnet-4-6"
     response = get_client().messages.create(
-        model="claude-sonnet-4-6",
+        model=model,
         max_tokens=_MAX_TOKENS,
         system=system,
         messages=[{"role": "user", "content": prompt}],
     )
+    # Recorded HERE because this is the only call site in the server, so there
+    # is exactly one place a token count can go missing. Until Session 41 it
+    # went missing here: response.usage was handed to us on every call and read
+    # by nothing, which is why the four rejected mysteries have no recoverable
+    # cost. See generation_ledger.py.
+    _record_usage(purpose, model, response)
     # Not content[0]: a model running adaptive thinking puts a ThinkingBlock
     # first. Sonnet 4.6 does not think unless asked, so this is safe today and
     # would break the day the model line changes -- which is exactly the kind of
@@ -218,6 +255,10 @@ SETTING:
   - description must explicitly explain why suspects cannot simply leave (isolation mechanic).
 
 CHARACTERS (include 1 victim, EXACTLY 4 suspects, and 3–4 witnesses):
+  - FOUR SUSPECTS, COUNTED. Not three, not five. The whole deal is sized for it: four suspects
+    means three people to clear, and with only two the single finding that clears both IS the
+    answer, so no deal can be fair however well the mystery is written. A three-suspect mystery
+    is refused outright -- count the list before writing anything else.
   - alibi: SPECIFIC — state where the person was, with whom or doing what. Never "—" or vague.
   - secret: CONCRETE FACT (≥ 2 sentences) anchoring interrogation questions.
   - motive (suspects): specific stake — financial, relational, reputational, or political. Never "—".
@@ -235,6 +276,36 @@ CHARACTERS (include 1 victim, EXACTLY 4 suspects, and 3–4 witnesses):
     off: a player cannot otherwise tell "this mystery is incoherent" from "this witness lied".
     Across the witnesses as a group, at least one statement must point toward the culprit, and at
     least one must point at something that turns out to be innocent.
+
+    ASSIGN EACH WITNESS A SUSPECT BEFORE WRITING THEIR STATEMENT, and cover every one of the
+    four. Write the assignment first -- "this witness is the one who speaks to <suspect>" --
+    then write the statement about that person. If there are three witnesses and four suspects,
+    one witness covers two; nobody may be left with no one who mentions them.
+    THIS IS THE RULE THE LAST THREE GENERATIONS BROKE, and it broke the same way each time: three
+    suspects got a witness and a location, and the fourth got a document nobody talks about. That
+    fourth suspect then had exactly one route to being cleared -- Adachi, Luz Fontaine, Nadege
+    Fontenot -- while the others had four to ten, and each mystery was refused for it. The one
+    generation where every suspect had a witness passed this rule outright.
+    A suspect nobody mentions is not a lighter workload. It is the defect.
+
+    AND NO SINGLE WITNESS, LEAD OR AREA MAY CARRY A WHOLE PROOF. One finding is dealt to one
+    player, so if its "reveals" list adds up to the answer, that player wins without speaking to
+    anyone and the sharing decision -- the point of the game -- never happens. Concretely: do not
+    let one witness reveal BOTH a narrowing item and the exoneration that completes it. A
+    narrowing that leaves two suspects, plus the clue clearing one of them, IS the answer.
+    That is how the last generation failed, and it failed while everything else was right:
+    one witness revealed the six-foot-shelf narrowing and the barometric log clearing the shorter
+    man, and so solved the case single-handed. Split the two halves across different witnesses,
+    or put one of them on a lead or an area instead.
+
+    A NARROWING MUST BE A CLASS OF PERSON, NEVER SOMEBODY'S BELONGINGS. Three generations have
+    now leaked the answer in a narrowing clue's own prose, and the last one shows why: the clue
+    was a vial "in Aoyama's cramped script, found in his entomology kit". Once the object BELONGS
+    to one of the people it leaves possible, naming him is unavoidable and the clue has become an
+    accusation. Anchor the fact to a physical class instead -- a reach, a handedness, a shoe size,
+    a strength, a language read -- so it describes a KIND of person and the player looks at the
+    cast and draws the line themselves. A six-foot shelf is a narrowing. A vial in Aoyama's own
+    kit is not: it is his name with extra steps.
   - reveals (WITNESSES ONLY): the ids of the evidence items this statement surfaces, e.g. ["E3"].
     EVERY witness must reveal at least one. The statement must actually be about that evidence --
     if a witness saw the bolted door, they reveal the evidence item about the bolted door.
@@ -450,7 +521,8 @@ Generate a complete mystery JSON with this exact structure:
 
 Return only valid JSON. No commentary outside the JSON block."""
 
-    raw = llm(prompt, system="You are a mystery game engine. Return only valid JSON.")
+    raw = llm(prompt, system="You are a mystery game engine. Return only valid JSON.",
+              purpose="generation")
     mystery_dict = _parse_json(raw)
     mystery_dict["_provenance"] = recipe.to_dict()
     mystery_dict["_provenance"]["craft_guidance"] = craft_grounding.guidance_provenance(guidance_entries)
@@ -461,7 +533,12 @@ def _run_localization(mystery_dict: dict) -> dict:
     setting = mystery_dict.get("setting", {})
     if _is_modern(setting):
         return mystery_dict
-    return _localize_mystery(mystery_dict, llm)
+    # Wrapped rather than passed bare so the ledger can tell a localization call
+    # apart from the generation call. A modern setting skips this entirely, so
+    # the call list genuinely varies per mystery and cannot be assumed.
+    return _localize_mystery(
+        mystery_dict,
+        lambda prompt, **kw: llm(prompt, purpose="localization", **kw))
 
 
 def _run_coherence(mystery_dict: dict) -> dict:
@@ -532,20 +609,97 @@ REQUIREMENTS:
 
 Return ONLY valid JSON:
 {{"opening_narration": "the 3–5 sentences"}}"""
-    raw = llm(prompt, system="You are a mystery game's opening-sequence writer. Return only valid JSON.")
+    raw = llm(prompt, system="You are a mystery game's opening-sequence writer. Return only valid JSON.",
+              purpose="opening_narration")
     return _parse_json(raw)
 
 def _save_mystery(mystery_dict: dict) -> str:
-    """Persist mystery to disk. Returns slug."""
+    """Persist mystery to disk, to the directory its verdict earns. Returns slug.
+
+    ITEM 18, SETTLED (Session 41, owner's choice (c)). This used to write every
+    generation to generated/ regardless of what the checks said -- which is how
+    a mystery carrying {"passed": false, "blocking": 1} came to be servable, and
+    why all four hand-rejected mysteries had to be carried out by hand.
+
+    generated/ now means "no check we own can prove this is broken".
+    rejected/  means one can, and mystery_database/ledger.jsonl says which.
+
+    THE VERDICT IS RECORDED EITHER WAY. A rejected mystery is still written to
+    disk, still costs what it cost, and is still the evidence that a rule was
+    needed -- gate.py refuses it, it does not delete it.
+    """
     title = mystery_dict.get("title", "mystery")
     slug = title.lower().replace(" ", "_")[:40]
     timestamp = int(time.time())
     filename = f"{slug}_{timestamp}.json"
-    out_path = _DB_PATH / "generated" / filename
+
+    verdict = gate.evaluate(mystery_dict, filename)
+    mystery_dict["_verdict"] = {
+        "verdict": verdict.verdict,
+        "failure_class": verdict.failure_class,
+        "violations": verdict.violations,
+        "advisory": verdict.advisory,
+    }
+
+    out_path = _DB_PATH / verdict.destination / filename
     out_path.parent.mkdir(parents=True, exist_ok=True)
     with open(out_path, "w") as f:
         json.dump(mystery_dict, f, indent=2)
+
+    # Stashed for the caller's ledger row rather than returned, because both
+    # /generate and the async job path call this and neither's return type can
+    # change without touching the client.
+    mystery_dict["_verdict"]["destination"] = verdict.destination
+    # THE LEDGER KEYS ON THE FILE STEM, NOT THE TITLE SLUG. Two mysteries can
+    # share a title (there are two `the_great_cookie_caper_of_sesame_street` and
+    # two `the_murder_at_tokyo` on disk already), and the timestamped stem is the
+    # only identity that is actually unique. It also has to match what
+    # scripts/backfill_ledger.py derives from the filename, or a re-verdict can
+    # never find the attempt it supersedes -- which is exactly what happened the
+    # first time this ran, and it double-counted the mystery.
+    mystery_dict["_verdict"]["file_stem"] = out_path.stem
     return slug
+
+
+@contextlib.contextmanager
+def _ledger_attempt(prompt: str):
+    """Bracket one generation so every call inside it bills to the same row.
+
+    The attempt is written to the ledger on the way out WHATEVER HAPPENS --
+    including when generation raises halfway through. A crashed generation still
+    spent the tokens it spent, and a ledger that only records successes would
+    make CPAM optimistic by exactly the amount that matters most.
+    """
+    attempt = generation_ledger.Attempt(prompt)
+    _current_attempt.attempt = attempt
+    state = {"slug": "", "mystery": None, "error": ""}
+    try:
+        yield attempt, state
+    except Exception as exc:                                  # noqa: BLE001
+        state["error"] = f"{type(exc).__name__}: {exc}"
+        raise
+    finally:
+        _current_attempt.attempt = None
+        mystery = state.get("mystery") or {}
+        recorded = mystery.get("_verdict") or {}
+        row = attempt.row(
+            # The file stem, so the ledger and the backfill agree on identity.
+            slug=recorded.get("file_stem") or state.get("slug", ""),
+            verdict=recorded.get("verdict") or ("error" if state["error"] else "unknown"),
+            failure_class=recorded.get("failure_class"),
+            violations=recorded.get("violations") or [],
+            coherence=mystery.get("_coherence"),
+            destination=recorded.get("destination", ""),
+        )
+        if state["error"]:
+            row["error"] = state["error"]
+        row["advisory"] = recorded.get("advisory") or []
+        try:
+            generation_ledger.append(row)
+        except OSError:
+            # A ledger write must never be the reason a generated mystery is
+            # lost -- the mystery is already safely on disk by this point.
+            pass
 
 # ---------------------------------------------------------------------------
 # Async job store
@@ -607,24 +761,30 @@ def _run_generation_pipeline(job_id: str, prompt: str, opening_narration: bool) 
     (with "_slug" set). Raises on failure -- callers own their own
     _job_fail/cleanup, since that differs between a plain /generate/async job
     and a game-attached one (the latter also needs to notify the room)."""
-    _job_update(job_id, "running", "Generating mystery…")
-    mystery_dict, recipe = _generate_mystery_dict(prompt)
+    # Wrapped here rather than in the two callers: /generate/async and the
+    # room-first game flow both come through this function, and a ledger row
+    # opened in only one of them would silently under-count the other's spend.
+    with _ledger_attempt(prompt) as (_attempt, _state):
+        _job_update(job_id, "running", "Generating mystery…")
+        mystery_dict, recipe = _generate_mystery_dict(prompt)
 
-    _job_update(job_id, "running", "Localizing characters…")
-    mystery_dict = _run_localization(mystery_dict)
+        _job_update(job_id, "running", "Localizing characters…")
+        mystery_dict = _run_localization(mystery_dict)
 
-    _job_update(job_id, "running", "Checking coherence…")
-    mystery_dict = _run_coherence(mystery_dict)
+        _job_update(job_id, "running", "Checking coherence…")
+        mystery_dict = _run_coherence(mystery_dict)
 
-    if opening_narration:
-        _job_update(job_id, "running", "Writing the opening…")
-        mystery_dict["opening_narration"] = _generate_opening_narration(
-            mystery_dict).get("opening_narration", "")
+        if opening_narration:
+            _job_update(job_id, "running", "Writing the opening…")
+            mystery_dict["opening_narration"] = _generate_opening_narration(
+                mystery_dict).get("opening_narration", "")
 
-    _job_update(job_id, "running", "Saving…")
-    slug = _save_mystery(mystery_dict)
-    mystery_dict["_slug"] = slug
-    return mystery_dict
+        _job_update(job_id, "running", "Saving…")
+        slug = _save_mystery(mystery_dict)
+        mystery_dict["_slug"] = slug
+        _state["slug"] = slug
+        _state["mystery"] = mystery_dict
+        return mystery_dict
 
 
 def _run_generation_job(job_id: str, prompt: str, opening_narration: bool) -> None:
@@ -1585,8 +1745,9 @@ def generate(req: GenerateRequest):
       3. Localization pass (Claude call, or free if modern era)
       4. Coherence check (free)
       5. Optional: opening narration (Claude call)
-      6. Save to disk
-      7. Return full mystery dict
+      6. Gate + save to generated/ or rejected/ (free)
+      7. Append one ledger row (free)
+      8. Return full mystery dict
 
     SESSION ANNOTATION: This is the core endpoint. If this works,
     Phase 1 is functionally complete.
@@ -1594,6 +1755,11 @@ def generate(req: GenerateRequest):
     if not req.prompt.strip():
         raise HTTPException(status_code=400, detail="prompt must not be empty")
 
+    with _ledger_attempt(req.prompt) as (_attempt, _state):
+        return _generate_inner(req, _state)
+
+
+def _generate_inner(req: "GenerateRequest", _state: dict) -> dict:
     mystery_dict, recipe = _generate_mystery_dict(req.prompt)
     mystery_dict = _run_localization(mystery_dict)
     mystery_dict = _run_coherence(mystery_dict)
@@ -1604,6 +1770,8 @@ def generate(req: GenerateRequest):
 
     slug = _save_mystery(mystery_dict)
     mystery_dict["_slug"] = slug
+    _state["slug"] = slug
+    _state["mystery"] = mystery_dict
     return mystery_dict
 
 

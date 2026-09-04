@@ -1,0 +1,48 @@
+{
+  "name_examples": {
+    "male": [
+      "Alasdair",
+      "Coinneach",
+      "D\u00f2mhnall",
+      "Ruaraidh",
+      "Fearchar",
+      "Seumas",
+      "Tormod",
+      "E\u00f2ghan",
+      "Niall",
+      "Cailean"
+    ],
+    "female": [
+      "Ishbel",
+      "M\u00e0iri",
+      "Catr\u00econa",
+      "Se\u00f2naid",
+      "Fionnuala",
+      "M\u00f2rag",
+      "Eilidh",
+      "S\u00ecne",
+      "Beathag",
+      "Iseabail"
+    ]
+  },
+  "occupation_map": {
+    "patent broker / private commercial agent": "commercial agent and patent broker",
+    "freelance industrial draughtsman": "freelance draughtsman, formerly jute trade",
+    "retired schoolmistress": "retired dominee (schoolmistress)",
+    "amateur meteorologist, retired civil servant": "retired civil servant, amateur weather observer",
+    "journalist": "press correspondent",
+    "hotel housekeeper": "hotel housekeeper",
+    "night porter": "night porter",
+    "general practitioner": "general practitioner (GP)"
+  },
+  "forbidden_titles": [],
+  "allowed_titles": [
+    "Dr.",
+    "Rev.",
+    "Mrs.",
+    "Miss",
+    "Mr."
+  ],
+  "pun_style": "Scots Gaelic or Scots-English wordplay embedded in surname or nickname for witnesses and minor roles only; subtly allusive rather than overtly comic \u2014 e.g. a night porter with a surname suggesting watchfulness, or a housekeeper whose name hints at meticulous tidiness. Keep deadpan and period-appropriate.",
+  "notes": "Setting is a remote Scottish island hotel in January 1954. Names should reflect Hebridean and Highland Scots naming conventions: Gaelic given names are appropriate and common, as are anglicised Scots forms. Surnames should be genuine Highland/Hebridean types (Mac-, -son, place-derived). English and Lowland Scots names are plausible for guests and visitors from the mainland. Occupations should reflect post-war austerity Britain: the Board of Trade is period-correct; 'press correspondent for a Glasgow weekly' is preferred over 'journalist'; 'dominee' or 'schoolmistress' is correct for a retired female teacher in a Scottish context. Honorifics Mr., Mrs., Miss, and Dr. are fully appropriate for 1954. Titles such as Dr. for a GP are correct and expected. Agnes and Donald as witness names may carry light Scots puns in their surnames only."
+}

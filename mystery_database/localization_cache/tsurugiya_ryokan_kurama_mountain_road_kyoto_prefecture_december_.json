@@ -1,0 +1,50 @@
+{
+  "name_examples": {
+    "male": [
+      "Ryunosuke",
+      "Kenji",
+      "Tadashi",
+      "Haruki",
+      "Takeo",
+      "Fumio",
+      "Shigeru",
+      "Noboru",
+      "Kazuo",
+      "Isamu"
+    ],
+    "female": [
+      "Michiko",
+      "Fumiko",
+      "Yoshiko",
+      "Kimiko",
+      "Teruko",
+      "Setsuko",
+      "Haruko",
+      "Kazuko"
+    ]
+  },
+  "occupation_map": {
+    "Ministry civil servant": "Kokka Komuin (\u56fd\u5bb6\u516c\u52d9\u54e1) \u2014 retired ministry official",
+    "University professor": "Daigaku Kyoju \u2014 university professor (Kyoto Daigaku, formerly Kyoto Teikoku Daigaku)",
+    "Insurance investigator": "Hoken Chosain \u2014 insurance claims investigator",
+    "Ryokan maid": "Nakai-san \u2014 inn serving maid",
+    "Porter/groundskeeper": "Betto / Niwakata \u2014 porter and groundskeeper",
+    "Travelling merchant": "Gyoshonin \u2014 travelling salesman / itinerant merchant"
+  },
+  "forbidden_titles": [
+    "Mr.",
+    "Ms.",
+    "Mrs.",
+    "Dr.",
+    "Professor (as English prefix)"
+  ],
+  "allowed_titles": [
+    "-san",
+    "-sensei (for academic or doctor in dialogue only)",
+    "-kun",
+    "-chan (informal only)",
+    "Kyoju (academic formal address)"
+  ],
+  "pun_style": "Subtle Japanese wordplay embedded in given names or surnames for minor witness characters \u2014 exploit homophones or kanji double-meanings (e.g., a name whose reading evokes 'saw everything' or 'heard it all'). Keep deadpan and plausible as a real Japanese name of the era. Maximum two such puns total.",
+  "notes": "Era is early Showa post-Occupation Japan, 1963. Surnames precede given names in Japanese order. Occupations should reflect mid-century Japanese institutional naming. Kyoto Imperial University had been renamed Kyoto University (Kyoto Daigaku) in 1947 \u2014 the character may nostalgically reference the old name but formal setting uses the current one. Ryokan staff would use occupational terms current to the hospitality trade. Ink merchants (sumi/boku traders) were a real itinerant trade in this period. Snowfall on Kurama road adds plausible isolation. No Western honorifics in narration; -sensei acceptable in dialogue for the professor or doctor."
+}

@@ -110,6 +110,13 @@ REDUNDANCY_BY_DIFFICULTY = {"EASY": 2, "HARD": 1, "MEDIUM": 1}
 # yields at APF's three-finding hand for every difficulty.
 DEFAULT_HOARD_ALLOWANCE = 1
 
+# APF's specified cast (docs/PLAYTEST_FLOW.md, and the generation prompt's
+# "EXACTLY 4 suspects"). Named here because the constraint arithmetic throughout
+# this file is derived from it -- three required exonerations, a redundancy
+# ceiling of 2 -- and a mystery that arrives with a different number is not a
+# harder or easier version of the same game, it is a different one.
+APF_SUSPECT_COUNT = 4
+
 # Re-dealing is free, so the ceiling is generous. It exists to bound a mystery
 # that cannot be dealt at all, and when it is hit the feasibility report -- not
 # the attempt count -- is what says why.
@@ -137,6 +144,10 @@ class DealResult:
     attempts: int = 0
     seed: int = 0
     redundancy: int = 1
+    # Quality of the dealing, not of the mystery -- see best_deal().
+    monopoly: int = 0            # hoarding patterns where exactly one player can prove it
+    patterns: int = 0            # hoarding patterns examined
+    seeds_tried: int = 1
 
     def to_dict(self) -> dict:
         return {
@@ -146,6 +157,9 @@ class DealResult:
             "attempts": self.attempts,
             "seed": self.seed,
             "redundancy": self.redundancy,
+            "monopoly": self.monopoly,
+            "patterns": self.patterns,
+            "seeds_tried": self.seeds_tried,
         }
 
 
@@ -335,9 +349,63 @@ def solves(findings: Sequence[Finding], mystery: dict,
 # Feasibility — why a deal cannot be made, before trying 400 times
 # --------------------------------------------------------------------------
 
+# Every reason feasibility() can refuse a mystery, and what kind of broken each
+# one is. Added Session 41 so gate.py and the ledger can count rules rather than
+# match prose. Classes are the same four used everywhere: incoherent, unplayable,
+# spoiled_prose, below_standard (see check_narrative.RULES).
+#
+# SEVERAL IDS ARE DELIBERATELY SHARED WITH check_narrative.RULES. The two files
+# independently implement the same fair-play rules -- narrowing to one suspect,
+# narrowing to everybody, a narrowing that excludes the culprit, load-bearing
+# narrowing, an exonerated culprit. That duplication is real and predates this
+# change; naming them identically means the gate deduplicates them instead of
+# counting one defect twice.
+FEASIBILITY_RULES = {
+    "DEAL.NO_SUSPECTS":              "incoherent",
+    "DEAL.SUSPECT_COUNT":            "unplayable",
+    "DEAL.NO_CULPRIT":               "incoherent",
+    "DEAL.CULPRIT_NOT_SUSPECT":      "incoherent",
+    "REVEAL.DANGLING":               "incoherent",
+    "DEAL.EXONERATES_STRANGER":      "below_standard",
+    "NARR.CULPRIT_EXONERATED":       "unplayable",
+    "NARR.NARROWS_SINGLE":           "spoiled_prose",
+    "NARR.NARROWS_ALL":              "below_standard",
+    "NARR.NARROWS_STRANGER":         "below_standard",
+    "NARR.NARROWS_EXCLUDES_CULPRIT": "unplayable",
+    "NARR.NARROWING_LOAD_BEARING":   "unplayable",
+    "DEAL.POOL_UNSOLVABLE":          "unplayable",
+    "DEAL.REDUNDANCY_CEILING":       "unplayable",
+    "DEAL.REDUNDANCY_UNREACHABLE":   "unplayable",
+    "DEAL.SOLO_SOLVE":               "unplayable",
+    "DEAL.POOL_TOO_SMALL":           "unplayable",
+}
+
+
+def _add(issues: List[dict], rule_id: str, message: str, subjects=()) -> None:
+    """Record one refusal. `subjects` names the evidence item, finding or person
+    the rule fired on -- it is what lets gate.py deduplicate this against the
+    same rule reported by check_narrative.py, and what a later pass would need
+    in order to know WHAT to repair rather than only that something is wrong."""
+    issues.append({
+        "rule_id": rule_id,
+        "failure_class": FEASIBILITY_RULES.get(rule_id, "unplayable"),
+        "subject_ids": [str(x) for x in subjects],
+        "message": message,
+    })
+
+
 def feasibility(mystery: dict, player_count: int,
                 redundancy: int = 1,
                 hand_spec: Sequence[str] = DEFAULT_HAND_SPEC) -> List[str]:
+    """The reasons, as prose. Unchanged public behaviour — every existing caller
+    and scripts/test_deal.py read this list of strings."""
+    return [i["message"] for i in
+            feasibility_issues(mystery, player_count, redundancy, hand_spec)]
+
+
+def feasibility_issues(mystery: dict, player_count: int,
+                       redundancy: int = 1,
+                       hand_spec: Sequence[str] = DEFAULT_HAND_SPEC) -> List[dict]:
     """Cheap structural reasons this mystery can never be dealt.
 
     WHY THIS EXISTS. Without it, an undealable mystery looks exactly like an
@@ -345,7 +413,7 @@ def feasibility(mystery: dict, player_count: int,
     turns "the deal failed" into a sentence naming the mystery's defect, which
     is the difference between re-dealing and regenerating.
     """
-    issues: List[str] = []
+    issues: List[dict] = []
     ev_by_id = evidence_by_id(mystery)
     pool = build_pool(mystery)
     sus = suspects(mystery)
@@ -353,18 +421,31 @@ def feasibility(mystery: dict, player_count: int,
     required = required_exonerations(mystery)
 
     if not sus:
-        issues.append("no suspects: characters[] has nobody with role 'suspect'")
+        _add(issues, "DEAL.NO_SUSPECTS", "no suspects: characters[] has nobody with role 'suspect'")
+    elif len(sus) != APF_SUSPECT_COUNT:
+        # APF'S ARITHMETIC IS SIZED FOR FOUR, and asserting it in the prompt was
+        # not enough -- `snow_on_the_engawa` came back with three and nothing
+        # caught it. THREE IS NOT MERELY SMALLER, IT IS A DIFFERENT GAME: two
+        # required exonerations instead of three means any single finding
+        # carrying both clears everybody and solves outright, so the deal cannot
+        # be fair no matter how well the mystery is written. The redundancy
+        # ceiling reasoning below assumes 4 as well.
+        _add(issues, "DEAL.SUSPECT_COUNT",
+             f"{len(sus)} suspects, not {APF_SUSPECT_COUNT}: at {len(sus)} there are only "
+             f"{max(0, len(sus) - 1)} required exoneration(s), so one finding carrying them all "
+             f"solves the case and no deal can be fair",
+             sorted(sus))
     if not cul:
-        issues.append("no culprit: solution.culprit is empty")
+        _add(issues, "DEAL.NO_CULPRIT", "no culprit: solution.culprit is empty")
     elif cul not in sus:
-        issues.append(f"culprit {cul!r} is not among the suspects {sorted(sus)}")
+        _add(issues, "DEAL.CULPRIT_NOT_SUSPECT", f"culprit {cul!r} is not among the suspects {sorted(sus)}", [cul])
 
     # Dangling pointers. A reveals id naming no evidence item is silently
     # inert in exonerated_by(), so it must be loud here.
     for finding in pool:
         for eid in finding.reveals:
             if eid not in ev_by_id:
-                issues.append(f"finding {finding.id} reveals {eid!r}, which is not in evidence[]")
+                _add(issues, "REVEAL.DANGLING", f"finding {finding.id} reveals {eid!r}, which is not in evidence[]", [finding.id, eid])
 
     # An exonerates name matching no suspect eliminates nobody. Reported rather
     # than normalised away: "Dr. Tanaka" against a suspect named "Tanaka" is a
@@ -373,9 +454,9 @@ def feasibility(mystery: dict, player_count: int,
     for eid, item in ev_by_id.items():
         for n in (item.get("exonerates") or []):
             if str(n).strip() and str(n).strip() not in known:
-                issues.append(f"evidence {eid} exonerates {str(n).strip()!r}, who is not a suspect")
+                _add(issues, "DEAL.EXONERATES_STRANGER", f"evidence {eid} exonerates {str(n).strip()!r}, who is not a suspect", [eid])
     if cul and cul in exonerated_by(pool, ev_by_id):
-        issues.append(f"the culprit {cul!r} is exonerated by the evidence; nobody can be accused")
+        _add(issues, "NARR.CULPRIT_EXONERATED", f"the culprit {cul!r} is exonerated by the evidence; nobody can be accused", [cul])
 
     # FAIR PLAY, item 27. A narrowing clue is a strong claim and generation has
     # to mean it. "A bloody man's glove" invites the player to rule out the
@@ -391,27 +472,33 @@ def feasibility(mystery: dict, player_count: int,
         named = [str(n).strip() for n in (item.get("narrows") or []) if str(n).strip()]
         if not named:
             continue
-        if len(named) < 2:
-            issues.append(
-                f"evidence {eid} narrows to {named}, a single suspect -- that is the whole "
-                f"answer in one finding, and whoever is dealt it wins without sharing")
+        # COUNTED OVER SUSPECTS, NOT LIST ENTRIES (Session 41). E9 of
+        # `the_last_night_of_delacroix_&_sons` narrowed to [the culprit, THE
+        # VICTIM]: two entries, one living possibility. A dead man does not
+        # widen a narrowing, and the finding solved the case outright.
+        live = [n for n in named if n in known]
+        if len(live) < 2:
+            _add(issues, "NARR.NARROWS_SINGLE",
+                f"evidence {eid} narrows to {named}, which is {len(live)} actual suspect(s) -- "
+                f"that is the whole answer in one finding, and whoever is dealt it wins "
+                f"without sharing", [eid])
         # A narrowing naming EVERY suspect rules nobody out. The first real
         # generation to write a narrowing clue produced exactly this -- a rifle
         # casing "consistent with" all four suspects -- and it passed, because
         # the only rule was "at least two names". The clue reads like evidence
         # and does nothing, which is worse than no clue: a player who works out
         # what it implies has been sent down a corridor with no door.
-        elif len(named) >= len(sus) and sus:
-            issues.append(
+        elif len(live) >= len(sus) and sus:
+            _add(issues, "NARR.NARROWS_ALL", 
                 f"evidence {eid} narrows to all {len(named)} suspects, so it rules nobody out; "
-                f"a narrowing must exclude at least one person to be worth reading")
+                f"a narrowing must exclude at least one person to be worth reading", [eid])
         unknown = [n for n in named if n not in known]
         if unknown:
-            issues.append(f"evidence {eid} narrows to {unknown}, who are not suspects")
+            _add(issues, "NARR.NARROWS_STRANGER", f"evidence {eid} narrows to {unknown}, who are not suspects", [eid])
         if cul and cul not in named:
-            issues.append(
+            _add(issues, "NARR.NARROWS_EXCLUDES_CULPRIT", 
                 f"evidence {eid} narrows to {named}, which excludes the culprit {cul!r} -- "
-                f"the mystery contradicts its own solution and punishes correct reasoning")
+                f"the mystery contradicts its own solution and punishes correct reasoning", [eid])
 
     # ELIMINATION MUST STAY SUFFICIENT ON ITS OWN. Narrowing is a faster route,
     # never the only one (see solves()). If the case can only be cracked with a
@@ -421,7 +508,7 @@ def feasibility(mystery: dict, player_count: int,
     if sus and cul:
         standing_by_subtraction = set(sus) - exonerated_by(pool, ev_by_id)
         if standing_by_subtraction != {cul}:
-            issues.append(
+            _add(issues, "NARR.NARROWING_LOAD_BEARING", 
                 "elimination alone does not reach the culprit -- narrowing has become "
                 f"load-bearing, so withholding one narrowing finding could make the case "
                 f"unprovable. Standing after exonerations: {sorted(standing_by_subtraction)}")
@@ -430,7 +517,7 @@ def feasibility(mystery: dict, player_count: int,
     # no subset of it can.
     if sus and cul and not solves(pool, mystery, ev_by_id):
         standing = sorted(set(sus) - exonerated_by(pool, ev_by_id))
-        issues.append(
+        _add(issues, "DEAL.POOL_UNSOLVABLE", 
             "the full finding pool does not solve the mystery -- "
             f"suspects left standing: {standing or ['(none)']}, expected exactly [{cul!r}]"
         )
@@ -452,7 +539,7 @@ def feasibility(mystery: dict, player_count: int,
     if required and player_count and redundancy > 1:
         worst_hand = math.ceil(len(required) * redundancy / player_count)
         if worst_hand >= len(required):
-            issues.append(
+            _add(issues, "DEAL.REDUNDANCY_CEILING", 
                 f"redundancy {redundancy} is impossible at {player_count} players with "
                 f"{len(required)} required exoneration(s): some hand must then hold all "
                 f"{len(required)} and would solve alone (constraint 2). "
@@ -465,20 +552,20 @@ def feasibility(mystery: dict, player_count: int,
         for r in sorted(required):
             carriers = [c for c in pool if r in exonerated_by([c], ev_by_id)]
             if len(carriers) < redundancy:
-                issues.append(
+                _add(issues, "DEAL.REDUNDANCY_UNREACHABLE", 
                     f"exoneration of {r!r} is carried by {len(carriers)} finding(s) "
                     f"but redundancy {redundancy} needs {redundancy} distinct hands"
-                )
+                , [r])
 
     # Constraint 2 must be reachable: if one finding solves outright, whoever gets
     # it wins alone and the deal is a lottery by construction.
     for finding in pool:
         if sus and cul and solves([finding], mystery, ev_by_id):
-            issues.append(f"finding {finding.id} solves the mystery by itself; no deal can be fair")
+            _add(issues, "DEAL.SOLO_SOLVE", f"finding {finding.id} solves the mystery by itself; no deal can be fair", [finding.id])
 
     hand_size = len(hand_spec)
     if len(pool) < player_count * hand_size:
-        issues.append(
+        _add(issues, "DEAL.POOL_TOO_SMALL", 
             f"pool has {len(pool)} findings, short of {player_count} players x {hand_size} = "
             f"{player_count * hand_size}"
         )
@@ -750,3 +837,76 @@ def deal(mystery: dict, player_count: int, seed: int = 0,
         issues=[f"no valid deal in {max_attempts} attempts; last: " + "; ".join(last)],
         attempts=max_attempts, seed=seed, redundancy=redundancy,
     )
+
+
+# --------------------------------------------------------------------------
+# Choosing a dealing, not just finding a legal one
+# --------------------------------------------------------------------------
+
+DEFAULT_SEED_SEARCH = 20
+
+
+def best_deal(mystery: dict, player_count: int,
+              seeds: int = DEFAULT_SEED_SEARCH,
+              **kwargs) -> DealResult:
+    """Deal several times and keep the fairest dealing. Free — pure computation.
+
+    WHY THIS IS NOT deal() WITH A BETTER DEFAULT. `deal()` stops at the first
+    dealing that is LEGAL. It never asks whether it is GOOD, and those are
+    different questions with different answers: on the first accepted mystery,
+    `the_neriin_in_the_pilchard_barrel`, seed 7 left exactly one player able to
+    prove the case in 27 of 81 hoarding patterns -- the very figure `totality`
+    was rejected for -- while 13 of 20 seeds gave ZERO, and proof survived 81/81
+    on every seed tried. Same mystery, same rules, same constraints satisfied.
+    The difference was entirely which findings landed in which hands.
+
+    So monopoly on proof is a property of the DEALING, not of the story, and it
+    is worth choosing rather than accepting. Re-dealing costs nothing (this
+    module's whole premise), which makes taking the first legal shuffle a
+    strange thing to have been doing.
+
+    SELECTION, NOT PROHIBITION, and that distinction is the design. deal() takes
+    `forbid_prover_monopoly` and makes it a hard constraint -- which means a
+    mystery where NO dealing avoids a monopoly returns no hands at all, and a
+    table gets nothing. Selecting instead always returns a dealing, the least
+    bad one available, and reports how good it managed to be. Degrading is
+    better than refusing when the alternative is an empty table.
+
+    DETERMINISM SURVIVES. deal() promises the same (mystery, players, seed)
+    always gives the same hands, because a reconnecting player must get their
+    own hand back. That still holds: this searches seeds and returns the
+    winner with `seed` set to it, so the chosen dealing is reproducible by
+    calling deal() with that seed directly.
+
+    Stops early on a perfect dealing, so the common case costs one or two
+    deals rather than `seeds` of them.
+    """
+    ev_by_id = evidence_by_id(mystery)
+    best: Optional[DealResult] = None
+
+    for n, seed in enumerate(range(seeds), start=1):
+        result = deal(mystery, player_count, seed=seed, **kwargs)
+        if not result.ok:
+            # A feasibility refusal is about the mystery and will repeat for
+            # every seed, so there is nothing to search. An unlucky deal might
+            # not repeat, so keep going.
+            if result.attempts == 0:
+                result.seeds_tried = n
+                return result
+            best = best or result
+            continue
+
+        counts = prover_counts(result.hands, mystery, ev_by_id)
+        result.monopoly = counts.get(1, 0)
+        result.patterns = sum(counts.values())
+        result.seeds_tried = n
+
+        if best is None or not best.ok or result.monopoly < best.monopoly:
+            best = result
+        if best.monopoly == 0:
+            break
+
+    if best is not None:
+        best.seeds_tried = n
+    return best if best is not None else DealResult(hands=[], ok=False,
+                                                    issues=["no seeds tried"])

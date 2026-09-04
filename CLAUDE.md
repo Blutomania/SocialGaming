@@ -173,7 +173,10 @@ game lifecycle (`/games/create`, `/join`, `/start`), play (`/interrogate-witness
 | `coherence/` | The shared engine (`Issue`, `CoherenceReport`, `RuleSet`). Used by both CYM and Mind Your Friends — item 16 |
 | `craft_grounding.py` | Retrieval layer over the craft-grounding docs; feeds guidance into all five generation call sites. Zero added API calls |
 | `localization.py` | Era-appropriate name/occupation localization, 3-tier disk cache |
-| `deal.py` | APF's constrained deal (item 23). Deals findings under set arithmetic over `evidence[]`, reached through the `reveals` pointer. Pure computation, deterministic from a seed, re-dealable free. Computed, tested, **wired to no client** |
+| `deal.py` | APF's constrained deal (item 23). `best_deal()` picks the fairest of several dealings. Deals findings under set arithmetic over `evidence[]`, reached through the `reveals` pointer. Pure computation, deterministic from a seed, re-dealable free. Computed, tested, **wired to no client** |
+| `gate.py` | Decides whether a generated mystery may be served, and routes it to `generated/` or `rejected/`. Runs coherence, `check_narrative` and `deal.feasibility`; free, no API call. Item 18 |
+| `arrangement.py` | The pointer-wiring pass: finds exonerations no witness, lead or area reveals, and wires the ones a finding can honestly carry. Free, deterministic. Repairs the arrangement, never the evidence — see item 29 |
+| `generation_ledger.py` | One append-only JSONL row per generation attempt — cost, verdict, failure class, rule ids. The only record of what generation costs; see item 28 |
 | `background_field.py` | The BACKGROUND layout (item 17). Computed, tested, **wired to no client** |
 | `extraction_protocols.py` | P1–P4 taxonomy definitions. Live dependency of the extractor |
 | `scripts/extract_from_pdfs.py` | The sanctioned way to add **one** new source. `--anthology` for a collection; always `--dry-run` an anthology first |
@@ -350,6 +353,10 @@ Zero API cost, no Godot binary needed. Each has already caught a real bug.
 | `scripts/test_registry_staleness.py` | That a moved-on corpus rebuilds the registry and an unchanged one does not |
 | `scripts/test_crime_scene_map.py` | Overlapping rooms, off-canvas rooms, a witness outside its stated room, a non-deterministic layout |
 | `scripts/test_deal.py` | The three deal constraints, and that each refuses a mystery violating it. Fixtures, because no mystery on disk carries `reveals` yet |
+| `scripts/test_gate_and_ledger.py` | The gate's refusals and the ledger's arithmetic: that a clean mystery is accepted, that each failure class is refused and correctly named, that CAST findings stay advisory, that a legacy mystery is `unjudged` rather than rejected, and that CPAM divides by accepted rather than by attempts |
+| `scripts/test_arrangement.py` | That the wiring pass refuses a false positive — both of the two it actually made on real mysteries — that a genuine carrier is wired, and that a wiring making the mystery worse is withheld even when it lowers the violation count |
+| `scripts/check_rule_coverage.py` | Every hard assertion in the generation prompt against the rule that enforces it. Fails if the prompt gains an assertion nobody has triaged, if an inventory entry names a rule id that no longer exists, or if an inventoried assertion has been deleted. The standing UNENFORCED list is its real output |
+| `scripts/test_rule_coverage.py` | That the coverage checker actually fails — an untriaged assertion, a dead rule id, a stale entry. A coverage checker that cannot fail is worse than none |
 | `scripts/test_background_field.py` | The BACKGROUND layout |
 | `scripts/test_extraction_fatal_errors.py` | That a batch stops on an account-level API failure and continues past a per-source one |
 
@@ -361,7 +368,7 @@ that use Godot's own loader, which is where the undetectable defects live:
 | `godot/scripts/tools/VerifyScenes.gd` | A node a `.tscn` declares that does not survive loading, a node whose runtime class is not what the scene declares, and a scene root that lost its script. **Run on 4.7.2 in Session 40: eight `ok` lines** |
 | `godot/scripts/tools/ApplyTheme.gd` | A theme item name the engine does not have. Also generates the editor's theme preview, so the design is visible while scenes are edited, and reports whether the fonts resolved. **Run on 4.7.2 in Session 40: 168 items across 36 types, `MISSES none`, fonts resolved** |
 
-**Not checkers, but run locally:** `scripts/preview_background_field.py` renders the BACKGROUND
+**Not checkers, but run locally:** `scripts/wire_pointers.py` reports exonerations nothing reveals and which suspects have no witness at all (`--coverage`), wiring only what a finding can honestly carry; `scripts/cpam.py` reports cost per accepted mystery, pass rate and rejections by rule from `mystery_database/ledger.jsonl`; `scripts/backfill_ledger.py` seeds that ledger from the mysteries already on disk (idempotent, `--go` to write); `scripts/preview_background_field.py` renders the BACKGROUND
 field to SVG over real screen text (`--sheet` covers the shortest and longest real titles);
 `scripts/compare_extraction_models.py` scores extraction models by parts yielded and axes filled.
 
@@ -392,12 +399,41 @@ Build order (`docs/INVESTIGATION_DESIGN.md` §7, already reduced by APF):
 4. ~~The paced text opening~~ — `_generate_opening_narration()` writes it, on by default
    (Session 40). Pacing the five beats is client-side and free; the screen is unbuilt.
 
-**Before step 3, spend one generation.** Four have now been generated and all four are in
-`mystery_database/rejected/`. The fourth passed every structural rule — atomised alibis, two routes,
-0 blocking, 0 warnings, a clean deal with proof surviving 81/81 hoarding patterns and a monopoly in
-0/81 — and was rejected for one prose habit: its narrowing clues named the culprit outright. That
-is fixed in the prompt and untested. **A mystery that passes everything is the thing step 3 needs to
-be built against**, and it is one call away.
+**Step 3 is still blocked on a mystery that passes everything — five generated, five rejected.**
+The fifth (Session 41, `the_last_night_of_delacroix_&_sons`, $0.2027 measured) found two holes in
+the rules rather than in itself, both now closed: a narrowing counted list entries rather than
+suspects, so naming the **victim** alongside the culprit passed a "two names" test while leaving one
+living possibility; and the prose-leak check compared full names, so *"the inventory entry
+**Celestine** herself made"* was invisible. Session 40's prose fix had therefore not landed — it had
+only stopped being detectable.
+
+**[Session 41, eighth generation] THE FIRST ACCEPTED MYSTERY.**
+`the_neriin_in_the_pilchard_barrel` (Cornish tin-mine counting house, 1907) is in `generated/`:
+coherence 0 blocking 0 warnings, 4 suspects, routes 3/3/4, feasibility clean, deals on attempt 1,
+**proof surviving 81 of 81 hoarding patterns**. It generated with one violation — an exoneration
+nothing revealed — and `scripts/wire_pointers.py` closed it by wiring E4 to the witness whose
+statement already described the same man on the same cliff path (the evidence item itself said
+*"consistent with Tomas Blewett's statement"*). **First CPAM: $0.7169**, over four measured
+generations.
+
+**One thing it exposed: monopoly on proof is a property of the DEAL, not the mystery.** At seed 7
+exactly one player could prove it in 27 of 81 patterns — the same figure `totality` was hand-
+rejected for. Across 20 seeds, 13 give **0/81** and proof survives 81/81 on every one. Re-dealing
+is free, so the deal should choose a seed by monopoly count rather than take the first that works.
+Unbuilt, and the cheapest quality win on the board.
+
+**[Session 41, sixth generation] The two-routes problem is solved.** It was never a distribution
+problem — counted over routes rather than evidence items, exactly one suspect had exactly one route
+every time, and it was always the suspect whose clue nothing pointed at and whom no witness
+mentioned (item 29). The prompt now assigns each witness a suspect before writing the statement.
+`the_tide_waits_for_no_one` is the result: **0 blocking, 0 warnings, no single-route suspect, every
+exoneration wired, no prose leak** — the cleanest generation to date.
+
+**It fails on one rule, and that rule is item 27 working.** A narrowing (two men tall enough to
+reach a six-foot shelf) plus the exoneration clearing one of them names the culprit in two findings
+— the glove, exactly as specified. But both halves landed on the same witness, so one dealt finding
+carries the whole proof. **No single witness, lead or area may reveal both a narrowing and the
+exoneration that completes it.** In the prompt, untested. One generation should confirm it.
 
 **Decided (Session 38): no crime-scene picture for the playtest** — a list of named findings. The
 map is deferred, not cancelled.
@@ -424,14 +460,26 @@ appear in every `narrows` list, a narrowing must name at least two suspects and 
 them, and its prose may not name the people it narrows to. Untested against a real generation.
 Full reasoning: `docs/DECISIONS.md` item 27.
 
-### 18. A BLOCKING coherence report does not stop a mystery being served — **OPEN, owner's call**
+### 18, 28. The gate and the ledger — **CLOSED, Session 41**
 
-The engine catches the defect exactly and the pipeline saves and serves the mystery anyway. The
-symptom was fixed at two altitudes in Session 34; the cause is a design decision: should generation
-**refuse** to save a BLOCKING mystery, **retry** it, or keep serving it with a louder warning?
-Retrying costs API calls, which is why it was not settled unilaterally. Worth deciding before
-stage 2 — the coherence engine is a funding pillar, and *"it detects the defect and ships it
-anyway"* is a question someone will ask. Full history: `docs/DECISIONS.md` item 18.
+Item 18 is settled (owner's choice: route on **any** failing check, not only coherence) and item 28
+is the other half of the same write. `gate.py` decides where a generation is saved; every attempt
+appends a row to `mystery_database/ledger.jsonl`.
+
+**`generated/` now means: no check we own can prove this is broken.** `/mysteries` globs that
+directory, so what sits there is what a real table can play.
+
+The data is worth carrying forward, because it inverts the obvious assumption: **all four mysteries
+in `rejected/` PASSED coherence with 0 blocking**, and the one file that FAILED it was in
+`generated/`, servable. Coherence is not the thing that catches bad generations — it caught 1 of 21.
+The game-structure checks caught the rest.
+
+**Auto-reject, never auto-repair.** A gate can only be conservative. A repair loop iterating a model
+against these checks until they go green selects for mysteries *shaped like the checks*;
+`the_light_that_went_out` passed every structural rule and gave its answer away in prose.
+
+Run `python3 scripts/cpam.py` for cost per accepted mystery, pass rate and rejections by rule.
+Full reasoning: `docs/DECISIONS.md` items 18 and 28.
 
 ### 17. BACKGROUND — two owner decisions outstanding — **stage 3**
 

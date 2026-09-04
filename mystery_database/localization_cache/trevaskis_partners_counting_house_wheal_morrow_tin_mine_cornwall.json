@@ -1,0 +1,66 @@
+{
+  "name_examples": {
+    "male": [
+      "Edmund",
+      "Jory",
+      "Cadan",
+      "Merryn",
+      "Dreckly",
+      "Tomas",
+      "Pascoe",
+      "Nancarrow",
+      "Polglase",
+      "Bolitho",
+      "Blewett",
+      "Penrose",
+      "Trewin",
+      "Carbis",
+      "Trevithick",
+      "Olver",
+      "Angove",
+      "Chenoweth"
+    ],
+    "female": [
+      "Rosalind",
+      "Lowena",
+      "Merryn",
+      "Tegen",
+      "Senara",
+      "Demelza",
+      "Jenefer",
+      "Morwenna",
+      "Kerenza",
+      "Loveday",
+      "Wenna",
+      "Tamsin"
+    ]
+  },
+  "occupation_map": {
+    "Senior partner / mine manager": "Purser and Senior Adventurer",
+    "Junior partner / assayer": "Assayer and Adventurer",
+    "Minority partner / household accounts": "Minority Adventurer and Household Ledger-Keeper",
+    "Mine captain": "Mine Captain (Cap'n)",
+    "Counting house clerk / minority partner": "Counting House Clerk and Minority Adventurer",
+    "Sleeping partner / festival steward": "Sleeping Adventurer and Feast-Day Steward",
+    "Counting house housekeeper / cook's assistant": "Counting House Chare-Woman and Larder-Maid",
+    "Surface worker / festival hand": "Bal-Worker and Festival Hand",
+    "Travelling physician": "Travelling Surgeon-Apothecary"
+  },
+  "forbidden_titles": [
+    "Mr.",
+    "Mrs.",
+    "Ms.",
+    "Miss",
+    "Dr.",
+    "Sir (formal address)",
+    "Esquire"
+  ],
+  "allowed_titles": [
+    "Cap'n (mine captain by custom)",
+    "Reverend (clergy only)",
+    "'andsome (colloquial Cornish address)",
+    "the elder / the younger (family disambiguation)"
+  ],
+  "pun_style": "Cornish dialect wordplay or occupation-winking surnames; 'dreckly' (Cornish for 'sometime soon / vaguely later') is already a canonical Cornish folk-word usable as a given name pun; witness puns should echo Cornish mining or fishing vocabulary with a gentle double meaning (e.g. a surface worker who 'surfaces' information, a housekeeper who 'keeps' secrets)",
+  "notes": "Cornwall 1907 sits within the Edwardian era. Mine ownership used the 'Cost Book' system: partners were called 'Adventurers'; the working manager/accountant was the 'Purser'; the underground foreman was 'Cap'n'. Surnames are authentically Cornish (Pol-, Tre-, Nan-, Ros-, Pen-, Bos- prefixes common). The pilchard festival (seine-fishing celebration) ran late summer in coastal and near-coastal parishes. A stranded outsider physician would plausibly be German or Central European given Edwardian medical tourism and spa culture. Keep authentic Cornish surnames; do not anglicise or modernise. 'Wheal' (meaning 'mine workings') in the mine name is correct period Cornish usage."
+}

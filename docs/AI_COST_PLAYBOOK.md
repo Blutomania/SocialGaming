@@ -8,6 +8,24 @@ Shareable version: published as an artifact ("The Cost of a Mystery").
 
 ---
 
+## Since Session 41, these figures are no longer the only ones
+
+Every number below was measured **by hand, once**, on 21 August 2026. That was the only way to get
+one: `llm()` in `server/main.py` is the single Claude call site in the server, and nothing read
+`response.usage` — every token count the API returned was discarded. Four mysteries were generated
+after this measurement and **what they cost is unrecoverable.**
+
+`mystery_database/ledger.jsonl` now records one row per generation attempt, and
+`python3 scripts/cpam.py` reports **cost per accepted mystery** — total spend over mysteries that
+actually passed the gate, so rejected attempts are carried rather than hidden. That is the metric
+that decides a model switch; cost per call answers a different question. See `docs/DECISIONS.md`
+item 28.
+
+The hand measurement below stays because it is what the architecture arguments were built on, and
+because it is still the cleanest single-generation breakdown on record.
+
+---
+
 ## The one number that reorders everything
 
 | | |

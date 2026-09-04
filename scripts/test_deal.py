@@ -341,8 +341,19 @@ def test_the_glove():
                       ("E1", ["Ortiz"], []), ("E2", ["Brand"], []), ("E3", ["Chen"], []),
                       ("E4", ["Ortiz"], []), ("E5", ["Brand"], []), ("E6", ["Chen"], [])])
     check("a narrowing naming ONE suspect is refused -- it is the answer on a finding",
-          any("single suspect" in i for i in D.feasibility(single, 4)),
+          any("1 actual suspect" in i for i in D.feasibility(single, 4)),
           str(D.feasibility(single, 4)))
+
+    # Session 41, earned by `the_last_night_of_delacroix_&_sons`: its E9 narrowed
+    # to [the culprit, THE VICTIM]. Two entries passed the old "at least two"
+    # test, but a dead man is not a living possibility -- so it was a
+    # single-suspect narrowing, and the finding solved the case on its own.
+    padded = mystery([("G1", [], [], ["Vale", "The Victim"]),
+                      ("E1", ["Ortiz"], []), ("E2", ["Brand"], []), ("E3", ["Chen"], []),
+                      ("E4", ["Ortiz"], []), ("E5", ["Brand"], []), ("E6", ["Chen"], [])])
+    check("padding a narrowing with a non-suspect does not widen it",
+          any("1 actual suspect" in i for i in D.feasibility(padded, 4)),
+          str(D.feasibility(padded, 4)))
 
     everyone = mystery([("G1", [], [], ["Vale", "Ortiz", "Brand", "Chen"]),
                         ("E1", ["Ortiz"], []), ("E2", ["Brand"], []), ("E3", ["Chen"], []),
@@ -533,6 +544,7 @@ def test_determinism_and_shape():
 def main():
     print("deal.py -- constrained deal fixtures")
     test_arithmetic()
+    test_best_deal()
     test_the_glove()
     test_constraint_1_union_solves()
     test_constraint_2_no_solo_win()
@@ -548,6 +560,46 @@ def main():
     print("All deal constraints hold, and each refuses a mystery that violates it.")
     return 0
 
+
+
+def test_best_deal():
+    """Choosing a dealing rather than accepting the first legal one.
+
+    From the real measurement on the first accepted mystery: seed 7 left one
+    player able to prove the case in 27 of 81 hoarding patterns, 13 of 20 seeds
+    gave zero, and proof survived 81/81 on every seed. Same mystery, same rules.
+    """
+    print("\nchoosing a dealing (best_deal)")
+    m = solvable_fixture()
+
+    r = D.best_deal(m, player_count=4)
+    check("best_deal returns a usable deal", r.ok, str(r.issues))
+    check("it reports the dealing's quality, not just legality",
+          r.patterns > 0, f"patterns={r.patterns}")
+    check("it stops early once a dealing has no monopoly",
+          r.monopoly > 0 or r.seeds_tried <= 20, f"seeds_tried={r.seeds_tried}")
+
+    # Determinism survives: the winning seed reproduces the winning hands.
+    again = D.deal(m, player_count=4, seed=r.seed)
+    check("the winning seed reproduces the same hands exactly",
+          [[f.id for f in h] for h in again.hands]
+          == [[f.id for f in h] for h in r.hands],
+          f"seed {r.seed} did not reproduce")
+
+    # It must never be WORSE than taking the first seed, which is the whole point.
+    first = D.deal(m, player_count=4, seed=0)
+    if first.ok:
+        ev = D.evidence_by_id(m)
+        first_mono = D.prover_counts(first.hands, m, ev).get(1, 0)
+        check("and it is never worse than the first legal dealing",
+              r.monopoly <= first_mono, f"best {r.monopoly} vs first {first_mono}")
+
+    # A mystery the FEASIBILITY check refuses fails identically for every seed,
+    # so searching must not burn 20 deals discovering that.
+    bad = mystery([("E1", ["Ortiz", "Brand", "Chen"], []), ("E2", [], ["Vale"])])
+    rb = D.best_deal(bad, player_count=4)
+    check("an infeasible mystery is refused after ONE seed, not twenty",
+          (not rb.ok) and rb.seeds_tried == 1, f"ok={rb.ok} seeds={rb.seeds_tried}")
 
 if __name__ == "__main__":
     sys.exit(main())

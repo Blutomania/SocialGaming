@@ -193,7 +193,24 @@ CASES = [
 
     ("a narrowing naming a single suspect",
      with_glove(["Ada Vance"]),
-     ["G1 narrows to a single suspect"]),
+     ["which is 1 actual suspect(s)"]),
+
+    # Session 41, earned by `the_last_night_of_delacroix_&_sons`: E9 narrowed to
+    # [the culprit, THE VICTIM]. Two entries, so the old "at least two names"
+    # test passed it -- but a dead man is not a live possibility, so it is a
+    # single-suspect narrowing and whoever drew it won without speaking to
+    # anyone. The count has to be over suspects, not over list entries.
+    ("a narrowing padded with a non-suspect is still a single-suspect narrowing",
+     with_glove(["Ada Vance", "Iris Halloway"]),
+     ["which is 1 actual suspect(s)"]),
+
+    # Same generation, second hole. The prose rule asked whether the FULL name
+    # appeared, and the model wrote "the inventory entry Celestine herself made"
+    # -- first name only, identical leak, invisible to the check.
+    ("a narrowing clue whose prose leaks only the FIRST name still counts",
+     with_glove(["Ada Vance", "Boris Kell"],
+                description="The ledger entry Ada wrote herself, six days prior."),
+     ["whose own text names"]),
 
     ("a narrowing naming EVERY suspect, which rules nobody out",
      with_glove(["Ada Vance", "Boris Kell", "Cora Innes", "Dev Ortiz"]),

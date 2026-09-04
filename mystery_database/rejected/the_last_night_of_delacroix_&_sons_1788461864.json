@@ -1,0 +1,570 @@
+{
+  "title": "The Last Night of Delacroix & Sons",
+  "setting": {
+    "location": "Sorrelle's Landing, Louisiana \u2014 a flooded bayou town hosting Delacroix & Sons Travelling Circus on its final winter night",
+    "time_period": "November 1931",
+    "environment": "The circus has pitched its tents on the only dry ground in Sorrelle's Landing: a raised levee road and the adjacent fairground. A week of record rain has swollen the bayou until the single plank bridge out of town is submerged under two feet of black water. The nearest telephone exchange washed out three days ago.",
+    "description": "Kerosene lanterns sway on guy-wires between the Big Top and the midway stalls, casting amber pools over mud that swallows ankles whole. The smell of sawdust, animals, and mildew is everywhere. Every road in and out of Sorrelle's Landing is impassable \u2014 the bridge is under two feet of floodwater, the bayou has spread into the cane fields, and no one is going anywhere until the water drops, which the old-timers say will be at least two more days."
+  },
+  "solution": {
+    "culprit": "Celestine Vautrain",
+    "motive": "Celestine, the circus owner's bookkeeper and common-law wife of ten years, discovered that \u00c9mile Delacroix had secretly obtained a legal marriage certificate to a younger woman, Nad\u00e8ge Fontenot, the aerialist \u2014 making Celestine's own long partnership legally worthless and cutting her entirely from the circus inheritance she had kept solvent for a decade.",
+    "method": "Celestine used her master key to the circus wagon that served as the administrative office to enter during the late show while all other suspects were visibly occupied. She retrieved the arsenic-based rat poison stored in the office supply cabinet \u2014 to which only she and \u00c9mile had access \u2014 and stirred a lethal dose into the private whiskey decanter kept in \u00c9mile's wagon. She re-locked the office, returned the key to her chatelaine, and was seen at the candy-pull booth by the time \u00c9mile drank from the decanter between acts. By the time \u00c9mile collapsed, she was surrounded by witnesses at the midway.",
+    "chain": [
+      {
+        "id": "S1",
+        "claim": "\u00c9mile Delacroix was poisoned with arsenic, not killed by a sudden illness, meaning his death was deliberate murder."
+      },
+      {
+        "id": "S2",
+        "claim": "The arsenic came from the rat-poison tin kept in the locked circus office, accessible only to whoever held a master key to that wagon."
+      },
+      {
+        "id": "S3",
+        "claim": "Only two people held a master key to the office wagon: \u00c9mile himself and Celestine Vautrain, his bookkeeper \u2014 eliminating all other suspects on access alone."
+      },
+      {
+        "id": "S4",
+        "claim": "Celestine had recently discovered the secret marriage certificate that legally disinherited her, giving her a direct motive to kill \u00c9mile before the marriage became publicly known."
+      },
+      {
+        "id": "S5",
+        "claim": "Celestine's alibi \u2014 standing at the candy-pull booth \u2014 covers only the time after the poison was already administered; the office was entered during the first half of the late show, when Celestine is unaccounted for."
+      }
+    ],
+    "key_evidence": [
+      "E7",
+      "E9"
+    ],
+    "how_to_deduce": "The autopsy evidence and the arsenic residue in \u00c9mile's decanter establish that this was a deliberate poisoning, not a natural death. The rat-poison tin in the locked office is the source: its level has dropped and it carries traces matching what killed \u00c9mile. The office wagon could only be entered with a master key, and only two people possessed one \u2014 \u00c9mile and Celestine. The other three suspects can each be cleared by independent evidence placing them elsewhere or denying them access. That leaves Celestine as the only person with both the means and the access. Her motive is sealed by the marriage certificate found hidden in \u00c9mile's strongbox: Nad\u00e8ge Fontenot is legally \u00c9mile's wife, meaning Celestine \u2014 his common-law partner of ten years and the woman who kept the circus solvent \u2014 stood to inherit nothing. Celestine's candy-booth alibi only covers the period after the poison was already in the decanter; the gap during the first half of the late show is when she slipped into the office unseen."
+  },
+  "crime": {
+    "type": "Poisoning murder",
+    "what_happened": "\u00c9mile Delacroix, owner and ringmaster of Delacroix & Sons Travelling Circus, collapsed and died in his private wagon between the first and second halves of the late-night closing show. He was found by his wagon-hand clutching his stomach, the whiskey decanter open beside him. A travelling physician declared the death suspicious before dawn.",
+    "when": "Approximately 10:45 PM on the final night of the circus's winter run, November 1931",
+    "initial_discovery": "Tomas Pichon, \u00c9mile's wagon-hand, found the ringmaster slumped against his cot during the intermission. He called for help and the camp physician, Dr. Arceneaux, arrived within minutes. The doctor noted the smell of almonds and bitter residue in the decanter and refused to sign a natural-death certificate."
+  },
+  "characters": [
+    {
+      "name": "\u00c9mile Delacroix",
+      "role": "victim",
+      "occupation": "Proprietor and ringmaster, Delacroix & Sons Mud-Show Circus",
+      "motive": "N/A",
+      "alibi": "N/A \u2014 deceased",
+      "secret": "\u00c9mile secretly married aerialist Nad\u00e8ge Fontenot six weeks ago in Baton Rouge, obtaining a legal marriage certificate without dissolving his long common-law arrangement with Celestine Vautrain. He hid the certificate in a locked strongbox in his wagon.",
+      "bio": "\u00c9mile Delacroix is a broad-shouldered man of fifty-two who inherited the circus from his father and ran it for twenty years through drought, Depression, and disaster. He is charming in the ring and ruthless in contracts, with an orator's voice and a gambler's instinct for knowing when to fold. He has a weakness for younger company and a talent for making everyone feel like his confidant."
+    },
+    {
+      "name": "Celestine Vautrain",
+      "role": "suspect",
+      "occupation": "Ledger-keeper and business agent, common-law wife of \u00c9mile Delacroix",
+      "motive": "Discovered that \u00c9mile had legally married Nad\u00e8ge Fontenot, rendering Celestine's ten-year partnership legally void and cutting her out of the circus estate she had personally kept solvent through the Depression.",
+      "alibi": "Claims she was at the midway candy-pull booth from 9:30 PM onward, confirmed by booth operator Josie Voit-Tout \u2014 but this covers only the second half of the evening; her whereabouts during the first half of the late show, roughly 8:45 to 9:25 PM, are unconfirmed.",
+      "secret": "Celestine found \u00c9mile's Baton Rouge marriage certificate three days ago when she was reconciling travel receipts and noticed an unexplained expenditure. She has told no one. She keeps her master key to the office wagon on a brass chatelaine she wears at all times.",
+      "bio": "Celestine Vautrain is a precise, self-contained woman of forty-four who came to the circus as a runaway ledger-clerk from Shreveport and never left. She keeps the accounts in a copper-plate hand, negotiates supply contracts with local merchants, and has a memory for numbers that the other performers find slightly unnerving. She is not warm, but she is unfailingly fair, and the circus would have folded in 1929 without her."
+    },
+    {
+      "name": "Nad\u00e8ge Fontenot",
+      "role": "suspect",
+      "occupation": "Aerial artiste and fil-de-fer walker, Delacroix & Sons Mud-Show Circus",
+      "motive": "As \u00c9mile's secret legal wife, Nad\u00e8ge stood to inherit the circus \u2014 but if \u00c9mile had decided to dissolve the marriage or rewrite his will before it became public knowledge, she would have lost everything. She had overheard \u00c9mile arguing with his attorney in Baton Rouge.",
+      "alibi": "Nad\u00e8ge was performing the wire-walk act from 9:00 PM to 9:40 PM in the Big Top in front of an audience of approximately eighty townspeople and the entire circus staff \u2014 confirmed by multiple witnesses and the show program. She could not have entered the office or the private wagon during that window.",
+      "secret": "Nad\u00e8ge is secretly six weeks pregnant. She married \u00c9mile partly to secure the child's legitimacy and partly because she genuinely feared what Celestine would do if she found out about the relationship. She has not told \u00c9mile about the pregnancy.",
+      "bio": "Nad\u00e8ge Fontenot is twenty-three, from a Cajun fishing family, and has been with the circus for three seasons. On the wire she is perfectly still and perfectly fearless; on the ground she is quick to laugh and quicker to deflect. She has the kind of beauty that makes people underestimate how carefully she watches them."
+    },
+    {
+      "name": "R\u00e9my Delacroix",
+      "role": "suspect",
+      "occupation": "Lot superintendent and \u00c9mile's nephew",
+      "motive": "R\u00e9my stood to inherit the circus if \u00c9mile died intestate and unmarried \u2014 a reasonable assumption before the secret marriage came to light. He had also been secretly skimming ticket receipts for two seasons and feared Celestine was close to discovering the discrepancy.",
+      "alibi": "R\u00e9my was overseeing the elephant pen and loading equipment on the far side of the fairground from 8:30 PM through 10:30 PM, assisted throughout by stablehand Clovis Arcand dit Pachyderme, who confirms he never left the area.",
+      "secret": "R\u00e9my has been systematically undercounting ticket stubs and pocketing the difference \u2014 approximately forty dollars a week \u2014 for the past two seasons. He keeps a second ledger hidden in his bunk that records the true figures. He believes Celestine has been growing suspicious of the receipts.",
+      "bio": "R\u00e9my Delacroix is thirty-one, lean and nervous, with the fidgety energy of a man who is always running three calculations at once. He joined the circus at seventeen when his mother \u2014 \u00c9mile's sister \u2014 died, and has been indispensable and quietly resentful ever since. He is good at logistics, bad at cards, and has a smile that arrives a half-second too late to be convincing."
+    },
+    {
+      "name": "Sylvain Beaumont",
+      "role": "suspect",
+      "occupation": "Company physician and thought-reader act",
+      "motive": "Dr. Beaumont owed \u00c9mile a substantial personal debt \u2014 nearly three hundred dollars \u2014 and had recently been threatened with dismissal after a complaint from a performer he treated. Dismissal would destroy the only steady income keeping him from destitution.",
+      "alibi": "Dr. Beaumont performed his mentalist act \u2014 'The Great Sylvain, Reader of Minds' \u2014 in the sideshow tent from 9:05 PM to 10:10 PM, witnessed by the sideshow barker Marcel Tureaud and at least a dozen paying audience members. The sideshow tent is on the opposite end of the fairground from \u00c9mile's wagon.",
+      "secret": "Dr. Beaumont's medical licence was revoked in 1928 following a malpractice finding in Baton Rouge. He has been practising without a valid licence under a forged credential, which \u00c9mile knew about and had been using as leverage to keep Beaumont's wages low and his complaints quiet.",
+      "bio": "Sylvain Beaumont is fifty-seven, silver-haired, and carries himself with the residual dignity of a man who was once genuinely respected. He patches up the performers' injuries without complaint, mixes a good cough tonic, and tells fortunes with enough theatrical flair that the rubes line up two deep. He drinks more than he should and speaks less than he could."
+    },
+    {
+      "name": "Tomas Pichon",
+      "role": "witness",
+      "occupation": "Roustabout and body-servant to \u00c9mile Delacroix",
+      "motive": "N/A",
+      "alibi": "Tomas was carrying water from the pump to the animal pens from 9:00 PM until he went to check on \u00c9mile at 10:40 PM, as was his nightly routine.",
+      "secret": "Tomas saw Celestine walking back from the direction of the office wagon at approximately 9:20 PM \u2014 he thought nothing of it at the time, as she often worked late \u2014 but he has been afraid to mention it to anyone because Celestine controls the payroll.",
+      "bio": "Tomas Pichon is seventeen, gap-toothed, and has worked for Delacroix & Sons since he was twelve. He is devoted to the circus the way stray dogs are devoted to anyone who feeds them regularly. He is not clever but he is honest, and he notices things.",
+      "statement": "Around nine o'clock or just after, when I was hauling the second water can past the office wagon, I saw Miss Celestine coming away from the office steps. She had her key chatelaine in her hand \u2014 I heard it jingle. She went toward the midway. I didn't think anything of it because she's always in that office.",
+      "reveals": [
+        "E8"
+      ]
+    },
+    {
+      "name": "Josie Voit-Tout",
+      "role": "witness",
+      "occupation": "Praline-pull and confection-stand keeper",
+      "motive": "N/A",
+      "alibi": "Josie was at her booth the entire evening from 7:00 PM onward.",
+      "secret": "Josie knows that R\u00e9my Delacroix has been giving her inflated supply invoices and splitting the overcharge with her \u2014 a small graft she is terrified of being caught in.",
+      "bio": "Josie Voit-Tout is forty, stout, and runs her candy booth with the precision of a field general. She has worked the Louisiana circuit for fifteen years and knows every grift and side-angle in the carnival world. She is loyal to people who are useful to her and vague about everyone else.",
+      "statement": "Celestine came to my booth at half-past nine, maybe a few minutes after. She bought a paper cone of taffy and stayed to chat until the big crash from \u00c9mile's wagon. I'd swear to it \u2014 she was right here with me. But I can tell you I did not see her before half-past nine. The first half of the show she wasn't around my end of the midway.",
+      "reveals": [
+        "E10"
+      ]
+    },
+    {
+      "name": "Marcel Tureaud",
+      "role": "witness",
+      "occupation": "Sideshow talker and outside lecturer",
+      "motive": "N/A",
+      "alibi": "Marcel was barking the sideshow entrance and working the crowd from 8:00 PM until after the alarm was raised.",
+      "secret": "Marcel witnessed a heated argument between \u00c9mile and R\u00e9my Delacroix two days ago about money, but has been telling people he heard nothing because he fears R\u00e9my.",
+      "bio": "Marcel Tureaud is forty-five, raspy-voiced from twenty years of outdoor barking, and possessed of the sideshow man's gift for making everything sound more important than it is. He sees everything that happens on the midway and forgets very little of it. He has a soft spot for Dr. Beaumont, with whom he shares a tent.",
+      "statement": "Dr. Beaumont was in my sideshow tent from five past nine until at least ten past ten \u2014 I introduced his act myself and I watched from the back the whole time. Couldn't have left; I'd have seen him go past me. Also, two days back I heard Monsieur R\u00e9my shouting at \u00c9mile about the books \u2014 something about R\u00e9my saying \u00c9mile had no right to audit him. \u00c9mile shouted back that he'd found the second ledger.",
+      "reveals": [
+        "E3",
+        "E5"
+      ]
+    },
+    {
+      "name": "Clovis Arcand dit Pachyderme",
+      "role": "witness",
+      "occupation": "Hostler and bull-hand",
+      "motive": "N/A",
+      "alibi": "Clovis was at the elephant pen from late afternoon until after the body was found.",
+      "secret": "Clovis knows R\u00e9my Delacroix paid him two dollars last week to say R\u00e9my was with him all evening if anyone asked \u2014 Clovis took the money but is now frightened enough to tell the truth if pressed carefully.",
+      "bio": "Clovis Arcand dit Pachyderme is sixty-one, a former sugar-mill worker who came to the circus when the mill closed. He is slow-spoken and deliberate, fond of the animals in his care, and not particularly interested in what the humans around him are doing. He is easy to overlook and difficult to rattle.",
+      "statement": "Monsieur R\u00e9my was with me at the elephant pen most of the night, yes. He helped with the loading chains. He left for maybe fifteen, twenty minutes around nine o'clock to fetch a tool from the equipment wagon \u2014 I don't know exactly where he went. He came back with the chain-tensioner and that was that. He did not go near the main wagons, far as I know.",
+      "reveals": [
+        "E1",
+        "E2"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "Clovis Arcand dit Pachyderme's Eyewitness Account of R\u00e9my's Location",
+      "description": "Clovis Arcand dit Pachyderme confirms that R\u00e9my Delacroix was present at the elephant pen for the entire critical window except a short errand to the equipment wagon. The equipment wagon is on the opposite side of the fairground from \u00c9mile's private wagon and the circus office, a distance confirmed by the site map posted at the front gate. The gap in R\u00e9my's presence is too brief and misdirected to allow access to the poison or the victim.",
+      "type": "testimonial",
+      "relevance": "supporting",
+      "supports": [],
+      "exonerates": [
+        "R\u00e9my Delacroix"
+      ],
+      "implicates": [],
+      "narrows": []
+    },
+    {
+      "id": "E2",
+      "name": "R\u00e9my's Second Ledger (Incriminating Accounts Book)",
+      "description": "A small cloth-bound ledger found hidden in a rolled canvas beneath R\u00e9my's bunk records actual ticket receipts alongside the falsified figures submitted to Celestine \u2014 a clear record of systematic embezzlement over two seasons. This ledger demonstrates that R\u00e9my's principal fear was exposure of his theft, not \u00c9mile's death. Its existence and the associated argument with \u00c9mile (about the audit, not a murder plot) account for all of R\u00e9my's suspicious behaviour and give him a powerful reason to want \u00c9mile alive long enough to be bargained with.",
+      "type": "documentary",
+      "relevance": "supporting",
+      "supports": [],
+      "exonerates": [
+        "R\u00e9my Delacroix"
+      ],
+      "implicates": [
+        "R\u00e9my Delacroix"
+      ],
+      "narrows": []
+    },
+    {
+      "id": "E3",
+      "name": "Sideshow Performance Register",
+      "description": "A handwritten nightly register kept by Marcel Tureaud logs every act's start and end time in the sideshow tent. The entry for 'Le Grand Sylvain' reads '9:05 in \u2014 10:12 out,' initialled by Tureaud and countersigned by two audience volunteers whose names are recorded. The sideshow tent is at the far north end of the fairground; \u00c9mile's wagon is at the south end, at least four minutes' walk away even without mud.",
+      "type": "documentary",
+      "relevance": "supporting",
+      "supports": [],
+      "exonerates": [
+        "Sylvain Beaumont"
+      ],
+      "implicates": [],
+      "narrows": []
+    },
+    {
+      "id": "E4",
+      "name": "Audience Ticket Stubs \u2014 Sideshow Tent",
+      "description": "A rubber-banded packet of twelve ticket stubs from the sideshow tent on the night of the murder, collected by Marcel Tureaud at the door. On the back of two stubs, audience members wrote their names and the comment 'Sylvain \u2014 magnificent!' as a souvenir. One stub bears a timestamp of 9:15 PM in pencilled notation. These corroborate Tureaud's register and independently confirm Dr. Beaumont's physical presence in the sideshow tent well into the window when \u00c9mile was poisoned.",
+      "type": "physical",
+      "relevance": "supporting",
+      "supports": [],
+      "exonerates": [
+        "Sylvain Beaumont"
+      ],
+      "implicates": [],
+      "narrows": []
+    },
+    {
+      "id": "E5",
+      "name": "Witness Account of R\u00e9my\u2013\u00c9mile Argument Over the Books",
+      "description": "Marcel Tureaud's statement describes a loud argument two days before the murder in which \u00c9mile told R\u00e9my he had found 'the second ledger,' and R\u00e9my insisted \u00c9mile had no right to audit his operations. This establishes that \u00c9mile had already discovered the embezzlement, that R\u00e9my's secret was exposed to \u00c9mile before the murder, and \u2014 crucially \u2014 that R\u00e9my needed \u00c9mile alive to negotiate. A dead \u00c9mile means the ledger goes to Celestine and then to a court, which is far worse for R\u00e9my than a private settlement.",
+      "type": "testimonial",
+      "relevance": "supporting",
+      "supports": [],
+      "exonerates": [
+        "R\u00e9my Delacroix"
+      ],
+      "implicates": [
+        "R\u00e9my Delacroix"
+      ],
+      "narrows": []
+    },
+    {
+      "id": "E6",
+      "name": "Wire-Walk Performance Corroboration \u2014 Audience Sign-In Sheet",
+      "description": "The Big Top entry book for the closing show lists eighty-one paying audience members for the 9:00 PM performance. The advance-publicity bill posted at the town's general store names Nad\u00e8ge Fontenot as the headline act performing from 9:00 to 9:40 PM. Three townspeople who signed the entry book can be identified by name and confirmed by the show program. Nad\u00e8ge was the sole aerial performer and was visible to the entire audience throughout her slot \u2014 she could not have been anywhere else.",
+      "type": "documentary",
+      "relevance": "supporting",
+      "supports": [],
+      "exonerates": [
+        "Nad\u00e8ge Fontenot"
+      ],
+      "implicates": [],
+      "narrows": []
+    },
+    {
+      "id": "E7",
+      "name": "Arsenic Residue in \u00c9mile's Whiskey Decanter",
+      "description": "The crystal decanter found open beside \u00c9mile's body contains a pale crystalline residue settled at the bottom. The travelling physician Dr. Arceneaux, summoned from the town, identified the almond-bitter odour and the characteristic appearance as consistent with arsenic trioxide \u2014 the active ingredient in the rat-poison tins used throughout the circus wagons. The dose dissolved in the whiskey would have caused severe gastric distress and death within thirty to sixty minutes of ingestion, matching \u00c9mile's collapse timeline exactly.",
+      "type": "physical",
+      "relevance": "critical",
+      "supports": [
+        "S1"
+      ],
+      "exonerates": [],
+      "implicates": [],
+      "narrows": []
+    },
+    {
+      "id": "E8",
+      "name": "Tomas Pichon's Sighting of Celestine Near the Office Wagon",
+      "description": "Tomas Pichon witnessed Celestine Vautrain walking away from the office wagon steps at approximately 9:20 PM, with her brass key chatelaine audibly jingling in her hand. This places Celestine at the office wagon during the unaccounted window before her confirmed 9:30 PM arrival at Josie Voit-Tout's booth \u2014 the precise window in which the arsenic would have been retrieved from the office supply cabinet and administered to the decanter.",
+      "type": "testimonial",
+      "relevance": "critical",
+      "supports": [
+        "S5"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Celestine Vautrain"
+      ],
+      "narrows": []
+    },
+    {
+      "id": "E9",
+      "name": "Rat-Poison Tin with Disturbed Level and Key-Access Record",
+      "description": "The arsenic-based rat-poison tin stored in the circus office supply cabinet shows a measurably lower fill level compared to the inventory entry Celestine herself made six days prior. The cabinet lock shows no sign of forced entry, and the only recorded keys to the office wagon are the two master keys: one retained by \u00c9mile (found on his person at death) and one held on Celestine's brass chatelaine. No other key exists \u2014 the lock was replaced with a new tumbler in September 1931 on Celestine's own maintenance order, which is noted in the supply ledger.",
+      "type": "physical",
+      "relevance": "critical",
+      "supports": [
+        "S2",
+        "S3"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Celestine Vautrain"
+      ],
+      "narrows": [
+        "Celestine Vautrain",
+        "\u00c9mile Delacroix"
+      ]
+    },
+    {
+      "id": "E10",
+      "name": "Josie Voit-Tout's Testimony on Celestine's Arrival Time",
+      "description": "Josie Voit-Tout's statement confirms that Celestine arrived at the candy-pull booth at approximately 9:30 PM \u2014 not earlier. This testimony, while it corroborates Celestine's alibi for the second half of the evening, simultaneously exposes the unaccounted gap from the start of the late show to 9:30 PM, during which Celestine has no witness. Combined with Tomas's sighting at 9:20 PM, the gap is now bracketed and explained.",
+      "type": "testimonial",
+      "relevance": "supporting",
+      "supports": [
+        "S5"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Celestine Vautrain"
+      ],
+      "narrows": []
+    },
+    {
+      "id": "E11",
+      "name": "\u00c9mile's Secret Marriage Certificate",
+      "description": "A folded legal document found in the iron strongbox beneath \u00c9mile's bunk, beneath a false bottom: a marriage certificate issued by the parish of East Baton Rouge on September 14, 1931, naming \u00c9mile Delacroix and Nad\u00e8ge Fontenot as husband and wife. The document is legally valid. A separate handwritten note in \u00c9mile's hand, clipped to the certificate, reads: 'Must speak to Ma\u00eetre Crochet before Sorrelle's about C. \u2014 settle the accounts question before winter is out.' This note indicates \u00c9mile intended to formalise Celestine's financial exclusion with his attorney.",
+      "type": "documentary",
+      "relevance": "critical",
+      "supports": [
+        "S4"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Celestine Vautrain",
+        "Nad\u00e8ge Fontenot"
+      ],
+      "narrows": []
+    },
+    {
+      "id": "E12",
+      "name": "Forged Medical Licence \u2014 Dr. Beaumont's Credential",
+      "description": "Among Dr. Beaumont's personal documents in the medicine wagon is a medical licence certificate from the Louisiana State Board, dated 1929. A close comparison with the State Board's published registry \u2014 a copy of which \u00c9mile kept in his own files, apparently as leverage \u2014 shows that Dr. Beaumont's licence was revoked in 1928 and the 1929 certificate is a forgery. This explains the financial control \u00c9mile held over Beaumont but has no bearing on the poisoning itself; Beaumont was publicly performing during the critical window.",
+      "type": "documentary",
+      "relevance": "red_herring",
+      "supports": [],
+      "exonerates": [],
+      "implicates": [
+        "Sylvain Beaumont"
+      ],
+      "narrows": []
+    }
+  ],
+  "investigation_areas": [
+    {
+      "id": "A1",
+      "name": "\u00c9mile's Private Wagon",
+      "description": "The ringmaster's personal wagon: red lacquer faded to rust, gold lettering reading 'E. DELACROIX \u2014 PROP.' above the door. Inside, the smell of whiskey and something acrid still hangs in the air. A cot, a campaign trunk, and a small writing table are crammed in beside the strongbox bolted to the floor.",
+      "investigation_prompt": "The decanter with arsenic residue is on the table. The strongbox under the false bottom holds the marriage certificate and \u00c9mile's note about 'settling accounts' with Celestine. The decanter is the primary physical evidence; the strongbox requires something to open it (a key on \u00c9mile's person) or force.",
+      "discovery": "On the writing table sits a crystal whiskey decanter, stopper out, with a pale crystalline sediment settled at the bottom. Beneath a false bottom in the strongbox you find a folded legal document and a handwritten note clipped to it.",
+      "analysis": "The sediment in the decanter matches arsenic trioxide \u2014 rat poison \u2014 consistent with a lethal dissolved dose. The legal document is a marriage certificate: \u00c9mile Delacroix wed Nad\u00e8ge Fontenot in Baton Rouge on September 14, 1931. The attached note in \u00c9mile's hand reads: 'Must speak to Ma\u00eetre Crochet before Sorrelle's about C. \u2014 settle the accounts question before winter is out.'",
+      "reveals": [
+        "E7",
+        "E11"
+      ]
+    },
+    {
+      "id": "A2",
+      "name": "Circus Office Wagon",
+      "description": "A plain black wagon with a single padlocked door that serves as the administrative heart of Delacroix & Sons: ledgers, supply records, payroll envelopes, and a locked cabinet of chemicals used for maintenance and pest control. The door lock gleams \u2014 newer than the wagon.",
+      "investigation_prompt": "The rat-poison tin in the supply cabinet is the key finding. The inventory log shows a recent drop in the tin's level. The lock replacement order in September is in the maintenance ledger, signed by Celestine. The cabinet shows no forced entry. Only two master keys exist.",
+      "discovery": "In the locked supply cabinet, behind the maintenance records, sits an open tin of Fowler's Rodent Powder. The inventory ledger beside it shows the tin's weight recorded six days ago in Celestine Vautrain's handwriting. Compared to today, the tin is measurably lighter.",
+      "analysis": "Fowler's Rodent Powder contains arsenic trioxide as its active agent \u2014 the same compound found in \u00c9mile's decanter. The maintenance ledger for September 1931, signed by Celestine Vautrain, records the installation of a new tumbler lock on this wagon with only two master keys issued: one to \u00c9mile, one to Celestine.",
+      "reveals": [
+        "E9"
+      ]
+    },
+    {
+      "id": "A3",
+      "name": "R\u00e9my Delacroix's Sleeping Quarters (Crew Wagon)",
+      "description": "A narrow wooden bunk in the shared crew wagon, R\u00e9my's territory marked by a locked canvas roll and a cluster of supply manifests pinned to the wall above the mattress. It smells of axle grease and cheap tobacco.",
+      "investigation_prompt": "The second ledger is hidden inside the rolled canvas under the bunk. It shows actual versus falsified ticket receipts over two seasons. This is the embezzlement evidence \u2014 damning for R\u00e9my's character, but it ultimately exonerates him by explaining his motive to keep \u00c9mile alive.",
+      "discovery": "Inside a rolled canvas lashed beneath the bunk, wrapped in oilcloth, you find a small cloth-bound ledger. Its pages record two columns of numbers side by side \u2014 one column consistently higher than the other \u2014 under dates stretching back two seasons.",
+      "analysis": "Cross-referencing the ledger against the official receipt book in the office wagon confirms the lower column matches Celestine's records while the higher column represents actual ticket sales \u2014 a systematic shortfall of roughly forty dollars per week, totalling over three thousand dollars. The ledger is in R\u00e9my Delacroix's handwriting.",
+      "reveals": [
+        "E2",
+        "E5"
+      ]
+    },
+    {
+      "id": "A4",
+      "name": "Sideshow Tent and Barker's Station",
+      "description": "The striped canvas sideshow tent at the north end of the fairground, reeking of torch-oil and sawdust. Marcel Tureaud's barker station by the entrance holds a wooden ticket box, a nightly register, and a rubber-banded packet of used stubs from the evening's shows.",
+      "investigation_prompt": "Marcel's nightly register is here, showing Dr. Beaumont's act times. The rubber-banded ticket stubs from the night include two with audience members' handwritten notes corroborating Beaumont's presence. This is the double alibi for Beaumont.",
+      "discovery": "In the ticket box you find a cloth-bound nightly register open to last night's page, and a rubber-banded packet of twelve used ticket stubs from the sideshow tent. Two stubs have handwriting on their backs.",
+      "analysis": "The register entry for 'Le Grand Sylvain' reads '9:05 in \u2014 10:12 out,' initialled by Marcel Tureaud. The two annotated ticket stubs read 'Sylvain \u2014 magnificent!' with one bearing the pencilled time '9:15 PM.' Dr. Beaumont was in this tent, at the opposite end of the fairground from \u00c9mile's wagon, throughout the murder window.",
+      "reveals": [
+        "E3",
+        "E4"
+      ]
+    },
+    {
+      "id": "A5",
+      "name": "Dr. Beaumont's Medicine Wagon",
+      "description": "A cramped wagon doubling as examination room and sleeping quarters, lined with labelled medicine bottles, a folding cot, and a battered leather physician's bag. A certificate in a cheap frame hangs above the cot alongside a faded photograph of a younger Beaumont in a hospital coat.",
+      "investigation_prompt": "The forged medical licence is here, framed on the wall. \u00c9mile's copy of the State Board registry (kept as leverage) is in the office wagon \u2014 a player who checks both can see the discrepancy. This is the red herring: Beaumont had motive (debt and leverage) and a damning secret, but an ironclad alibi.",
+      "discovery": "Framed above the cot is a Louisiana State Board of Medical Examiners licence certificate, dated 1929, bearing Sylvain Beaumont's name. In \u00c9mile's office files you also find a copy of the State Board's published registry of active licences.",
+      "analysis": "Comparing the framed certificate against the State Board registry reveals that Dr. Beaumont's licence was revoked in 1928 following a malpractice finding. The 1929 certificate is a forgery. \u00c9mile's copy of the registry has 'BEAUMONT \u2014 SEE FILE' written in the margin in \u00c9mile's hand \u2014 he knew, and was using it as leverage.",
+      "reveals": [
+        "E12"
+      ]
+    }
+  ],
+  "leads": [
+    {
+      "id": "L1",
+      "title": "The Chatelaine of Keys",
+      "brief": "Several circus workers have mentioned that Celestine Vautrain is never seen without a brass chatelaine hung with keys \u2014 and that one of those keys opens the office wagon where the chemicals are stored.",
+      "investigation_prompt": "Following this lead means asking about the key access system for the office wagon. It leads to the maintenance ledger in the office wagon showing the September lock replacement, confirming only two master keys exist and both went to \u00c9mile and Celestine.",
+      "reveals": [
+        "E9"
+      ]
+    },
+    {
+      "id": "L2",
+      "title": "The Baton Rouge Receipt",
+      "brief": "Among the travel expense records in the circus office, there is an unexplained receipt from a Baton Rouge notary dated six weeks ago \u2014 the same week \u00c9mile made an unscheduled trip alone.",
+      "investigation_prompt": "Following this lead means examining the travel receipts and tracing the notary receipt. It leads to the discovery of the marriage certificate in the strongbox (or confirms its significance once found), establishing when and where \u00c9mile married Nad\u00e8ge.",
+      "reveals": [
+        "E11"
+      ]
+    },
+    {
+      "id": "L3",
+      "title": "The Argument Behind the Animal Pens",
+      "brief": "Word around the midway is that R\u00e9my Delacroix and his uncle were heard shouting at each other two nights ago \u2014 something about ledgers and audits.",
+      "investigation_prompt": "Following this lead means talking to Marcel Tureaud, who witnessed the argument. The lead surfaces Tureaud's account of the argument content \u2014 \u00c9mile had found the second ledger \u2014 and points investigators toward R\u00e9my's bunk where the ledger is hidden.",
+      "reveals": [
+        "E5",
+        "E2"
+      ]
+    },
+    {
+      "id": "L4",
+      "title": "Dr. Beaumont's Missing Credentials",
+      "brief": "One of the local townspeople, a former hospital orderly, says he recognised Dr. Beaumont and is certain the man's licence was pulled years ago after a patient died.",
+      "investigation_prompt": "This is the red herring lead. Following it surfaces the forged licence in Beaumont's wagon and \u00c9mile's State Board registry notation. It makes Beaumont look deeply suspicious \u2014 motive (debt plus leverage), opportunity (medical knowledge), secret (false credentials) \u2014 but his alibi in the sideshow tent is ironclad and pre-dates this discovery.",
+      "reveals": [
+        "E12"
+      ]
+    }
+  ],
+  "gameplay_notes": {
+    "difficulty": "HARD",
+    "estimated_playtime": "60\u201375 minutes",
+    "key_twists": [
+      "Celestine's alibi is real but incomplete \u2014 she genuinely was at Josie's booth from 9:30 PM, but the poison was administered before 9:30 PM, making her alibi a confirmation of the murder window rather than an exoneration.",
+      "The secret marriage certificate implicates Nad\u00e8ge Fontenot as a prime suspect before her wire-walk alibi is discovered \u2014 players must actively find the Big Top corroboration to clear her.",
+      "Dr. Beaumont is designed to look maximally guilty: a forged licence, a debt to the victim, medical knowledge of poisons, and a motive involving being held under \u00c9mile's thumb \u2014 but he has the strongest alibi in the case.",
+      "R\u00e9my Delacroix's embezzlement ledger makes him look like a killer but actually proves he needed \u00c9mile alive \u2014 his secret is self-exonerating once its logic is followed.",
+      "The only person who could physically access the poison source is also the only person with a confirmed gap in her alibi, making the locked-room logic of the key access the decisive chain."
+    ]
+  },
+  "_provenance": {
+    "recipe": "corpus_e8901b69(1) + corpus_ac9e39d9(2) + corpus_ded1f07d(3) + corpus_76b1634f(4) + corpus_1e64fa3a(5) + corpus_8476f7e7(6) + corpus_0cbc029f(7) + corpus_1d907912(8)",
+    "slots": [
+      {
+        "source_id": "corpus_e8901b69",
+        "part_index": 1,
+        "part_type": "crime_type"
+      },
+      {
+        "source_id": "corpus_ac9e39d9",
+        "part_index": 2,
+        "part_type": "setting_element"
+      },
+      {
+        "source_id": "corpus_ded1f07d",
+        "part_index": 3,
+        "part_type": "motive"
+      },
+      {
+        "source_id": "corpus_76b1634f",
+        "part_index": 4,
+        "part_type": "suspect_archetype"
+      },
+      {
+        "source_id": "corpus_1e64fa3a",
+        "part_index": 5,
+        "part_type": "red_herring"
+      },
+      {
+        "source_id": "corpus_8476f7e7",
+        "part_index": 6,
+        "part_type": "reveal_mechanic"
+      },
+      {
+        "source_id": "corpus_0cbc029f",
+        "part_index": 7,
+        "part_type": "social_dynamic"
+      },
+      {
+        "source_id": "corpus_1d907912",
+        "part_index": 8,
+        "part_type": "alibi"
+      }
+    ],
+    "target_setting": "A death during the final night of a travelling circus wintering in a flooded Louisiana bayou town, 1931.",
+    "generated_title": "",
+    "craft_guidance": [
+      {
+        "concept": "The Closed World",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "COARSE PARTS (C1\u2013C6) \u2014 Structural Skeleton",
+        "confidence": "canonical",
+        "source": "James: \"closed circle of suspects\"; Rankin: Edinburgh as character; French: location as first decision"
+      },
+      {
+        "concept": "The Crime",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "COARSE PARTS (C1\u2013C6) \u2014 Structural Skeleton",
+        "confidence": "canonical",
+        "source": "Christie (start with method), P.D. James (central mysterious crime), Knox (rule 4: method must be plausible)"
+      },
+      {
+        "concept": "The Culprit + Motive",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "COARSE PARTS (C1\u2013C6) \u2014 Structural Skeleton",
+        "confidence": "canonical",
+        "source": "Christie: start with murderer and motive, then build outward; worked backward from the solution"
+      },
+      {
+        "concept": "Suspect Architecture",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "MEDIUM-FINE PARTS (M1\u2013M8) \u2014 Tactical Construction Elements",
+        "confidence": "canonical",
+        "source": "James: \"each with motive, means and opportunity\"; Knox: criminal must appear early"
+      },
+      {
+        "concept": "The Alibi",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "MEDIUM-FINE PARTS (M1\u2013M8) \u2014 Tactical Construction Elements",
+        "confidence": "canonical",
+        "source": "Christie notebooks: alibi construction is explicit planning step"
+      }
+    ]
+  },
+  "_coherence": {
+    "passed": true,
+    "blocking": 0,
+    "warnings": 1
+  },
+  "opening_narration": "Sorrelle's Landing is a town that the bayou is slowly eating, and tonight the bayou is winning \u2014 the cane fields have gone to black water, the bridge is buried under two feet of flood, and the only dry ground for miles is the lot where Delacroix and Sons Travelling Circus has put up its last show of the season. Kerosene lanterns strung between the Big Top and the midway stalls throw amber light over mud that grabs at your boots and won't let go, and somewhere under the sawdust and the animal smell there is the thick sweetness of mildew that this part of Louisiana never quite loses. An hour ago, between the first and second halves of the closing-night performance, a wagon-hand named Tomas Pichon pushed open the ringmaster's door and found \u00c9mile Delacroix slumped against his cot, a whiskey decanter open on the table beside him. The camp physician, Dr. Arceneaux, arrived within minutes, bent close to the decanter, and stood back up with a look on his face that ended any talk of a natural death. Every road out of Sorrelle's Landing is gone under water, morning is still hours away, and the people who were closest to \u00c9mile Delacroix are all still here on this lot \u2014 and none of them are going anywhere.",
+  "_verdict": {
+    "verdict": "rejected",
+    "failure_class": "unplayable",
+    "violations": [
+      {
+        "rule_id": "NARR.SINGLE_ROUTE",
+        "failure_class": "below_standard",
+        "subject_ids": [
+          "Nad\u00e8ge Fontenot"
+        ],
+        "message": "Nad\u00e8ge Fontenot is cleared by only 1 finding(s); needs two independent routes or hoarding can make the case unprovable"
+      },
+      {
+        "rule_id": "NARR.NARROWS_STRANGER",
+        "failure_class": "below_standard",
+        "subject_ids": [
+          "E9"
+        ],
+        "message": "E9 narrows to ['\u00c9mile Delacroix'], who are not suspects"
+      },
+      {
+        "rule_id": "REVEAL.UNREACHED_EXONERATION",
+        "failure_class": "below_standard",
+        "subject_ids": [
+          "E6"
+        ],
+        "message": "E6 exonerates ['Nad\u00e8ge Fontenot'] but no witness, lead or area reveals it"
+      },
+      {
+        "rule_id": "DEAL.SOLO_SOLVE",
+        "failure_class": "unplayable",
+        "subject_ids": [
+          "E:E9"
+        ],
+        "message": "finding E:E9 solves the mystery by itself; no deal can be fair"
+      },
+      {
+        "rule_id": "DEAL.SOLO_SOLVE",
+        "failure_class": "unplayable",
+        "subject_ids": [
+          "L:L1"
+        ],
+        "message": "finding L:L1 solves the mystery by itself; no deal can be fair"
+      }
+    ],
+    "advisory": []
+  }
+}

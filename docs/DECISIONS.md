@@ -559,7 +559,7 @@ that the superseded text has become history and belongs here instead.
     to the title inherits whatever the current failure rate is. Worth one real generation run to
     confirm before building on top of it.
 
-18. **[OPEN — found Session 34, August 21 2026] A BLOCKING coherence report does not stop a
+18. **[CLOSED, Session 41 — September 3 2026] A BLOCKING coherence report does not stop a
     mystery being saved, served, or played.** Not a coherence-engine failure — the opposite. The
     engine catches this exactly: `P1.C4.culprit_not_in_characters`, severity `BLOCKING`, message
     *"Chain is broken; players can never identify them."* `_run_coherence()` records the verdict
@@ -571,11 +571,53 @@ that the superseded text has become history and belongs here instead.
     wrong.**
     Session 34 fixed the *symptom* at two altitudes (substring matching in `accusation.gd` with a
     short-name guard; an on-screen warning when no suspect can be the answer) and added
-    `scripts/check_mystery_playable.py` to catch it before a playtest. **The cause is untouched
-    and is a design call:** should generation refuse to save a BLOCKING mystery, retry it, or keep
-    serving it with a louder warning? Retrying costs API calls, which is why it was not decided
-    unilaterally. Worth settling before stage 2 — the coherence engine is a funding pillar, and
-    "it detects the defect and ships it anyway" is a question someone will ask.
+    `scripts/check_mystery_playable.py` to catch it before a playtest. The cause stayed open as a
+    design call: refuse to save, retry, or serve with a louder warning? Retrying costs API calls,
+    which is why it was not decided unilaterally.
+
+    **[Session 41] The data reframed the item before it was answered.** Asked whether "poor" meant
+    "fails coherence", the disk said no, and said it backwards: **all four mysteries in
+    `rejected/` PASSED coherence with 0 blocking**, and the one file that FAILED it was sitting in
+    `generated/`, servable. So the gap was never only "BLOCKING mysteries get served" — it was that
+    **nothing routed anything**. Every one of those four rejections had been carried out by hand.
+
+    Four kinds of bad generation, and coherence catches the rarest:
+
+    | Class | Means | The case that named it |
+    |---|---|---|
+    | *incoherent* | the story does not hang together | `the_stolen_star_of_smurf_village` |
+    | *unplayable* | the story is fine, the game cannot be dealt or won | `the_lantern_keeper's_last_light` |
+    | *spoiled_prose* | every field correct, the text gives the answer away | `the_light_that_went_out` |
+    | *below_standard* | playable, winnable, not good enough to serve | `totality` |
+
+    **Owner's decision: option (c) — auto-route on ANY failing check**, coherence and structural
+    alike, because the checks are free (no API call, so no cost argument against them) and because
+    the sentence worth having is not *"our engine detects incoherence"* but *"nothing reaches a
+    player that our checks cannot prove is solvable, and here are five we caught, with reasons."*
+    Built as `gate.py`: `generated/` now means *no check we own can prove this is broken*.
+
+    **A fourth option nobody had in August: quarantine.** `rejected/` did not exist when this item
+    was written. It costs no API call — which is what killed *retry* — and it keeps the mystery,
+    because each one is paid-for evidence that a rule was needed.
+
+    **Auto-reject, never auto-repair.** A gate can only be conservative: it can wrongly refuse a
+    good mystery (annoying, recoverable, nothing is deleted) but it cannot manufacture a bad one
+    that looks good. A repair loop iterating a model against these checks until they go green would
+    stop selecting for good mysteries and start selecting for mysteries *shaped like the checks* —
+    Goodhart, and `the_light_that_went_out` is the standing proof, since it passed every structural
+    rule and gave its answer away in prose.
+
+    **Three judgement calls inside the build, each deliberate.** CAST/ORPHAN findings are recorded
+    but never blocking, because `check_narrative.py`'s own header documents them as
+    false-positive-prone and *"a list to triage, not a verdict"*. Legacy mysteries are `unjudged`
+    rather than accepted or rejected — all 17 in `generated/` predate the Session 38 schema, so
+    rules defined over `exonerates` / `narrows` / `reveals` fire trivially on every one, and gating
+    them would have emptied the served library over rules that did not exist when they were
+    written. Coherence is the exception, because it never depended on those fields — so exactly one
+    file on disk moved, and it was this item's original case.
+
+    **The other half: the ledger.** See item 28 — the same change records what each attempt cost,
+    because the routing decision and the failure corpus are one write.
 
 19. **[READY TO RUN — blocked on credits, not code, as of Session 35] The corpus P1→P1P2P3 upgrade.** 75 sources are P1-only (206 of
     281 `pdf_*` are already P1P2). `python3 scripts/upgrade_p1_to_p1p2.py` prints the plan and
@@ -927,3 +969,191 @@ that the superseded text has become history and belongs here instead.
     what generation must write, so it wants to land in the same paid round as any other schema
     change rather than its own.
 
+
+28. **[BUILT, Session 41 — September 3 2026] The generation ledger, and cost per accepted mystery.**
+    Asked to "start recording CPAM" and "start amassing failures with structured data", the honest
+    answer was that these are one artifact, not two: a row per generation attempt saying **what it
+    cost, what happened to it, and why**. CPAM falls out as `sum(cost) / count(accepted)`; the
+    failure corpus is the rejected rows.
+
+    **What was thrown away, and cannot be recovered.** There is exactly one Claude call site in the
+    server — `llm()` in `server/main.py` — and nothing read `response.usage`. Every token count the
+    API handed back was discarded, so the project's only cost figure was a hand measurement of one
+    August generation in `docs/AI_COST_PLAYBOOK.md`. **What the four rejected mysteries cost is
+    unrecoverable.** They are backfilled with `cost_usd: null`; an estimate there would silently
+    become the denominator of a number that may end up in front of an investor.
+
+    **Why CPAM and not cost per call.** Cost per call is the easy number and it answers the wrong
+    question: a model at a third the price with a third the pass rate is a wash, and one with a
+    worse pass rate is a loss disguised as a saving. This matters directly to the owner's Mistral
+    question — the workload is output-heavy (8,667 output against 2,457 input, output is 95% of the
+    call), which is the profile where self-hosting *can* win, but the hard thing this product asks
+    of a model is satisfying six simultaneous global constraints across ~10k tokens, which is
+    exactly where smaller models degrade. So the deciding number is cost per *accepted* mystery,
+    and it cannot be computed retroactively. It starts being recorded now, not when the question
+    is asked.
+
+    **Stable rule ids, which is what makes it a dataset rather than an archive.**
+    `check_narrative.py` and `deal.py` emitted prose only — good for a person triaging a queue,
+    useless for counting. Both now name every rule they fire, the subject it fired on, and a
+    failure class. Prose output is byte-identical; the structured form is additional. The two files
+    independently implement five of the same fair-play rules, so their ids are shared deliberately
+    and `gate.py` deduplicates on (rule, subject).
+
+    **Pass rate is computed over judged rows only.** The 16 legacy mysteries were never put to the
+    gate, so counting them as failures would report 0% for a pipeline that has simply not been
+    measured — a denominator that quietly includes unmeasured rows is how a metric starts lying
+    before anyone reads it twice.
+
+    `python3 scripts/cpam.py` reads it; `scripts/backfill_ledger.py` seeded it from disk and is
+    idempotent. Covered by `scripts/test_gate_and_ledger.py`.
+
+29. **[BUILT, Session 41 — September 3 2026] The arrangement pass: wire the pointer, never rewrite
+    the clue.** Owner, on the two-routes rule failing three generations running: *"I wonder if
+    there's a RAG or RAG-adjacent solution… ways to augment clues to clear more than one suspect
+    (changing from the specific to a more general noun)."*
+
+    **The corrected diagnosis came first, and it was not a distribution problem.** Counting ROUTES
+    rather than evidence items — a route being the clue itself plus any witness, lead or area whose
+    `reveals` names it — the picture is not 3/2/1 but this:
+
+    | Mystery | Routes per innocent |
+    |---|---|
+    | `the_last_night_of_delacroix_&_sons` | Nadège **1**, Rémy 10, Sylvain 5 |
+    | `the_vanishing_at_altheim_peak` | Adachi **1**, Solberg 4, Novák 2 |
+    | `totality` | Luz **1**, Fenwick 4, Sable 4 |
+
+    Nobody is short of clues. **Exactly one person has exactly one, every time, and it is always the
+    person whose exonerating clue nothing points at.** So `NARR.SINGLE_ROUTE` and
+    `REVEAL.UNREACHED_EXONERATION` are one defect seen from two sides.
+
+    **Two corrections to the owner's proposal, both worth keeping.** First, RAG is already here —
+    `craft_grounding.py` retrieves into all five generation call sites at zero added cost — and it
+    cannot fix this, because this is not a knowledge failure: the model writes six good alibi clues
+    and then fails at bookkeeping. Retrieval adds knowledge, not arithmetic. Second, and more
+    important: **a clue that clears more than one suspect is already forbidden.**
+    `NARR.CLEARS_MULTIPLE` is the rule `the_lantern_keeper's_last_light` earned, where one clue
+    cleared three innocents and whoever drew it won alone. Generalising a noun pushes toward
+    solo-solve, trading a *below_standard* failure for an *unplayable* one. The wanted property is
+    **redundancy** — two different findings clearing the same one person — not generality.
+
+    **What was built is the tool the owner asked for, made deterministic rather than retrieval.**
+    `arrangement.py` finds orphaned exonerations and wires a carrier that has earned it. The line
+    it holds: **repair the arrangement, never the evidence.** Adding a pointer completes something
+    the schema requires and the model forgot, and a person can read the statement and check it;
+    rewriting prose until a leak detector stops firing is optimising against the checker, which is
+    what `the_light_that_went_out` proves you cannot do.
+
+    **It refuses far more than it acts, and its own first run is why.** Scoring on shared vocabulary
+    proposed wiring Nadège's audience sign-in sheet to a witness discussing somebody else buying
+    taffy (shared words: *else, entire, general, show*). Document-frequency rarity does not rescue
+    that — in that mystery *"else"* is exactly as rare as *"corroboration"*, because rarity measures
+    oddness, not aboutness. The test is domain-shaped instead: these pointers only ever attach to
+    exonerating evidence and alibi testimony names its subject, so **the carrier must name the
+    person the clue clears**, plus a distinctive shared term that is *not* the name. That second
+    clause was also learned the hard way — letting the name corroborate itself proposed wiring the
+    same alibi to the area holding her **marriage certificate**.
+
+    **Every wiring is then re-verified against the full gate, on severity rather than count.** A
+    carrier that gains one exoneration too many starts solving the case alone; the test caught a
+    wiring that took a mystery from three violations to two while turning *below_standard* into
+    *unplayable*.
+
+    **Result on the five current-schema mysteries: 0 wirable, 4 gaps.** A negative result, and the
+    right one — the tool declines to manufacture a lie and instead names the targeted ask, which is
+    a few hundred output tokens against $0.20 for a regeneration.
+
+    **The finding that matters more than the tool is `--coverage`.** The suspect with one route is
+    the suspect nobody talks about:
+
+    | Mystery | Suspect with no witness | Suspect with 1 route |
+    |---|---|---|
+    | `the_vanishing_at_altheim_peak` | Adachi (no witness, no area) | Adachi |
+    | `totality` | Luz Fontaine (no witness, no area) | Luz Fontaine |
+    | `the_last_night_of_delacroix_&_sons` | Nadège (no witness) | Nadège |
+    | `the_light_that_went_out` | *none — all four have one* | *none* |
+
+    Generation builds the world around the people it is thinking about, and one suspect ends up with
+    less world than the others. **That is a prompt fix, not a tool fix**, and the prompt now says it
+    where witnesses are actually written: assign each witness a suspect BEFORE writing the
+    statement, and cover all four. The existing REACHABLE rule failed for the same reason the
+    two-routes rule did — both were stated in the EVIDENCE section as properties of a section the
+    model writes later. **Untested against a real generation.**
+
+30. **[BUILT, Session 41 — September 3 2026] Two things the session kept finding by accident, made
+    into checks.** Owner, after a run of *"a rule nobody was enforcing"* findings: *"Is it worth our
+    while to do a top down code review predicated on rules to make sure we don't have a lot of
+    superfluous or inactive ones?"*
+
+    **The specific worry was tested first, and it was clean.** 55 rule ids are declared across
+    `check_narrative.RULES`, `deal.FEASIBILITY_RULES` and `coherence_validator`. **Every one is
+    reachable from a live code path — there are no dead rules.** 39 have never fired and are not
+    named in a test, which sounds alarming and mostly is not: `P1.C2.no_victim` never firing means
+    generation reliably writes a victim. That is cheap insurance working. What is new is that the
+    ledger now records firing, so "never fired in N generations" is becoming evidence rather than a
+    guess.
+
+    **Three shapes of broken rule exist, and this session produced one of each:**
+
+    | Shape | This session's example | Findable mechanically? |
+    |---|---|---|
+    | *inert* — declared, unreachable | none in the rule system | yes — checked, clean |
+    | *unenforced* — the prompt asserts it, nothing checks | *"EXACTLY 4 suspects"*, which cost a paid generation | **yes** |
+    | *wrongly measured* — runs, passes, measures the wrong thing | narrowing counted list entries not suspects; prose leak compared full names | no — only reading finds these |
+
+    The third is the dangerous one, because a wrong rule sits there **green** and looks like
+    coverage. Both instances cost a generation to expose.
+
+    `scripts/check_rule_coverage.py` attacks the second. It inventories all 36 hard assertions in
+    the generation prompt against the rule ids enforcing them, and fails on three conditions: an
+    imperative the inventory does not cover, a claimed rule id that is not live, or an inventoried
+    assertion deleted from the prompt. **You cannot quietly add an unenforced rule to the prompt.**
+    It found one on its first run — *"At least 2 areas must yield a discovery+analysis pair that
+    genuinely narrows the suspect list"*, which nothing counts. 11 assertions stand UNENFORCED and
+    are listed deliberately; one is marked *unenforceable* (whether a witness statement is TRUE is
+    not a structural question, which is why deception is switched off rather than checked).
+
+31. **[BUILT, Session 41] The deal chooses a dealing instead of taking the first legal one.**
+    `deal()` stopped at the first shuffle satisfying the constraints. It asked *is this legal* and
+    never *is this good*, and the first accepted mystery showed how much that costs: at seed 7,
+    exactly one player could prove the case in **27 of 81** hoarding patterns — the same figure
+    `totality` was rejected for — while **13 of 20 seeds gave zero**, and proof survived 81/81 on
+    every seed tried. Same mystery, same rules, same constraints met. The only difference was which
+    findings landed in which hands.
+
+    **So monopoly on proof is a property of the DEALING, not the story.** `best_deal()` tries seeds,
+    scores each by monopoly count and keeps the best, stopping early on a perfect one — usually one
+    or two deals rather than twenty.
+
+    **Selection, not prohibition,** and that is the design choice. `deal()` already had
+    `forbid_prover_monopoly`, off by default because it costs deals: as a hard constraint a mystery
+    where no dealing avoids a monopoly returns no hands at all, and a table gets nothing. Selecting
+    always returns a dealing — the least bad available — and reports how good it managed to be.
+    Degrading beats refusing when the alternative is an empty table.
+
+    Determinism survives, which matters because a reconnecting player must get their own hand back:
+    the winning seed is returned in the result and reproduces the same hands through plain `deal()`.
+
+32. **[DECIDED, Session 41 — owner] The game ends in full disclosure.** When the final round
+    closes, every finding still held by every player becomes public, each shown with the name of
+    whoever was holding it.
+
+    **The reason is the product's own name.** Owner: *"So much of the fun of this game is the Choose
+    aspect of it. Choosing the kind of mystery you are trying to solve, seeing the full disclosure
+    is necessary to reward that choice."* A player picked the setting and the generation was paid
+    for; showing them only the fraction that happened to get shared sells them a part of what they
+    bought.
+
+    **It also makes withholding accountable, which nothing before the end can do.** During play,
+    keeping a finding costs you nothing visible — the whole point is that others cannot see what
+    you hold. Disclosure settles that at the table's own pace: everyone finds out precisely what
+    each player sat on, and whether it would have changed anything. The sentence the mechanic
+    exists to produce — *"she was holding that the whole time"* — is only sayable afterwards.
+
+    **Cheap, because it is not new machinery.** Disclosure is the ordinary share step with the
+    minimum set to everything, applied once to every player simultaneously. The reveal screen
+    already exists. No new state, no new route shape, no new screen.
+
+    **Explicitly NOT a remedy for an unsolved case.** Whether a mystery that nobody cracked should
+    end unsolved, or be resolved some other way, is a separate design question and is left open on
+    purpose. Full disclosure happens either way — after a correct accusation or after none.
