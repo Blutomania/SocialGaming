@@ -3238,6 +3238,41 @@ The prompt now says so where witnesses are actually written (assign each witness
 cover all four) — the old REACHABLE rule failed for the same reason two-routes did: both stated in
 the EVIDENCE section as properties of a section written later. **Untested.**
 
+### Generations seven and eight — and the first accepted mystery
+
+**Seventh, `snow_on_the_engawa` (Kyoto ryokan, 1963).** Rejected, and it found a rule nobody was
+enforcing: **it came back with three suspects.** The prompt has said "EXACTLY 4" since it was
+written and `deal.py`'s whole arithmetic derives from four — and nothing checked it. That is the
+root cause of its `DEAL.SOLO_SOLVE` rather than a second fault: three suspects means only two
+required exonerations, so any witness revealing both exonerating clues clears everybody. Mori Takeo
+did exactly that. Now refused by `DEAL.SUSPECT_COUNT`, with `APF_SUSPECT_COUNT` a named constant.
+
+It also leaked a narrowing in prose for the third generation running — and showed the *cause*.
+`E7` was a vial *"in **Aoyama's** cramped script, found in his entomology kit"*. Once the object
+**belongs to** somebody the clue leaves possible, naming them is unavoidable; no instruction about
+wording saves it. The prompt now asks for a class of person — a reach, a handedness, a shoe size —
+never a possession.
+
+**Eighth, `the_neriin_in_the_pilchard_barrel` (Cornish tin-mine counting house, 1907). ACCEPTED.**
+Every new rule held: 4 suspects, no prose leak, no solo-solve, no single-route suspect, coherence
+0 blocking and 0 warnings. One violation — `REVEAL.UNREACHED_EXONERATION` on E4 — which is exactly
+what `arrangement.py` was built for.
+
+**And the wiring tool acted for the first time, honestly.** It proposed E4 → witness Tomas Blewett
+on *cliff, organising, path* plus the name of the man E4 clears. Checked by hand before applying:
+E4 is the pilchard women's account of Dreckly Bolitho on the cliff path organising barrels, and it
+**names Tomas in its own text** (*"consistent with Tomas Blewett's statement"*); Tomas says
+*"Bolitho was out on the cliff path organising the barrels… I passed him three times."* Same person,
+place, activity, window. The pointer generation forgot. Gate after wiring: **accepted**.
+
+**First CPAM: $0.7169** over four measured generations, 1 accepted of 9 judged.
+
+**A finding worth more than the acceptance: monopoly on proof is a property of the DEAL, not the
+mystery.** At seed 7 exactly one player could prove it in 27 of 81 hoarding patterns — the same
+figure `totality` was hand-rejected for. Across 20 seeds **13 give 0/81**, and proof survives 81/81
+on every single one. Re-dealing is free and documented as such, so the deal should pick a seed by
+monopoly count instead of taking the first that works. Unbuilt; the cheapest quality win available.
+
 ### The sixth generation — all three changes landed, and the glove bit
 
 *A death at a remote Scottish tidal-island hotel, 1954.* 216s, **$0.1768**. Coherence passed,

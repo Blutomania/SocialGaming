@@ -405,6 +405,21 @@ living possibility; and the prose-leak check compared full names, so *"the inven
 **Celestine** herself made"* was invisible. Session 40's prose fix had therefore not landed — it had
 only stopped being detectable.
 
+**[Session 41, eighth generation] THE FIRST ACCEPTED MYSTERY.**
+`the_neriin_in_the_pilchard_barrel` (Cornish tin-mine counting house, 1907) is in `generated/`:
+coherence 0 blocking 0 warnings, 4 suspects, routes 3/3/4, feasibility clean, deals on attempt 1,
+**proof surviving 81 of 81 hoarding patterns**. It generated with one violation — an exoneration
+nothing revealed — and `scripts/wire_pointers.py` closed it by wiring E4 to the witness whose
+statement already described the same man on the same cliff path (the evidence item itself said
+*"consistent with Tomas Blewett's statement"*). **First CPAM: $0.7169**, over four measured
+generations.
+
+**One thing it exposed: monopoly on proof is a property of the DEAL, not the mystery.** At seed 7
+exactly one player could prove it in 27 of 81 patterns — the same figure `totality` was hand-
+rejected for. Across 20 seeds, 13 give **0/81** and proof survives 81/81 on every one. Re-dealing
+is free, so the deal should choose a seed by monopoly count rather than take the first that works.
+Unbuilt, and the cheapest quality win on the board.
+
 **[Session 41, sixth generation] The two-routes problem is solved.** It was never a distribution
 problem — counted over routes rather than evidence items, exactly one suspect had exactly one route
 every time, and it was always the suspect whose clue nothing pointed at and whom no witness
