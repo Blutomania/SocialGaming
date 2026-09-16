@@ -5,6 +5,36 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session — September 16, 2026 at 23:48
+**Branch:** `claude/serene-ramanujan-f5svcd`
+**Latest commit:** `697db84`
+
+### Files changed this session
+- `docs/F5_CHECKLIST.md` — Modified
+- `godot/scenes/ui/MysteryGeneration.tscn` — Modified
+- `godot/scripts/autoloads/Style.gd` — Modified
+
+### Commits this session
+```
+697db84 Suspect icons: 5 new feminine SVGs tagged in, closing most of the gender gap
+ff1d460 Item 35: character pronouns + presentation, and suspect-icon tagging
+5ca0d0c Suspect icons: legal clears the demo license, and a real quantified skew review
+46388e6 chore: auto-update SESSIONS.md with session summary [beb58c9]
+beb58c9 Fix five stale references in WIRING.md found during a real read-through
+e5edc44 Log the branch-hygiene pass: 22 confirmed safe, 3 real findings left open
+0ee31bb Trim CLAUDE.md's bloat back down: items 23 and 17 to status + pointer
+d708924 Suspect icons: add the one usable file from the gender-skew batch, flag Twemoji CC-BY on the rest
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
 ## Session — September 16, 2026 at 21:45
 **Branch:** `claude/serene-ramanujan-f5svcd`
 **Latest commit:** `beb58c9`
