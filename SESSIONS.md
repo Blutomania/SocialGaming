@@ -152,24 +152,64 @@ pass. `server/main.py` compiles. Not run against a real generation (costs credit
 through the Godot engine (none reachable from a session) — both flagged explicitly in item 35
 rather than claimed as done.
 
+### Addendum, same day: the owner ran F5 and a real generation, for real this time
+
+The owner walked `docs/F5_CHECKLIST.md` live, on their own machine, while this session watched via
+pasted terminal/screenshot output — the actual thing "no engine reachable from a session" has
+caveated all session for.
+
+**`ApplyTheme.gd` ran clean:** `fonts` both loaded (Nunito Sans at `default_font_size 18`, Cinzel
+Decorative Bold on both display labels), `193 items checked across 41 theme types`, `MISSES none`.
+The 168/36 numbers `docs/F5_CHECKLIST.md` had recorded from Session 40 were stale, not wrong when
+written — real growth since (`SuspectCardButton`, `BrowseRowButton`, `PlatePanel`, the base-body
+16→18px bump, `DisplayLabel` Black→Bold), not a regression. `VerifyScenes.gd` confirmed separately
+(eight `ok` lines, matching the standing record).
+
+**A small live UI request, done while waiting on the generation call:** `MysteryGeneration.tscn`'s
+"Set Your Mystery" now wears Cinzel Decorative — a deliberate, named exception to the rule
+`Style.gd` already documented (that exact label was the rule's own cited example of what should
+stay Nunito Sans, decided at playtest SolvedSept7). Owner's explicit call to reverse it, this
+session, for this one label only — given its own new `GenerationTitleLabel` variation rather than
+repointing the shared `TitleLabel` five other screens use, so nothing else changed. Caught and fixed
+along the way: `docs/F5_CHECKLIST.md`'s "13 theme type variations" line was already stale before
+this change (missing `VerdictLabel`, `CodeLabel`, `PlayerNameLabel`, `BrowseRowButton`,
+`SuspectCardButton`) — corrected to the real, current list of 19 read straight from `Style.gd`.
+
+**Then the real generation — prompt *"A Stolen necklace in a world like Neuromancer"*.** Took
+186.8s, cost $0.166272 (`claude-sonnet-4-6` generation + localization), and landed in `rejected/`
+as `ghost_protocol:_the_tessier-ashpool_neck_1789602264.json` — `gate.py` correctly refusing it for
+reasons unrelated to this session's work: two suspects clearable by zero findings, three narrowing
+clues leaking the answer in their own prose (`NARR.NARROWS_PROSE_NAMES`, item 27), elimination
+stalling at 3 suspects. A genuinely broken mystery, caught before anyone sat down to it — item 18
+working as designed. **What it confirmed for item 35: all 8 characters carried non-blank
+`pronouns` and `presentation`, sensible values, and one witness came back `they/them` unprompted**
+— see item 35's update in `docs/DECISIONS.md` for the full account, including the incidental data
+point against item 27. One process note: the first two attempts to find "the new file" both grabbed
+the wrong one (an old `generated/` file, twice, by an alphabetical-vs-mtime sort bug in the very
+first script handed over) — the real file was in `rejected/`, a directory that first script never
+looked in at all. Worth remembering next time: check `rejected/` too, not just `generated/`.
+
 ### Next session
 
-1. Everything from Session 45's closing list minus what item 35 touched: F5 pass, item 7 corpus
-   work, the 3 branch-hygiene findings, `owner/godot-sidecars`'s merge decision, undeclared
-   `pillow` dependency.
-2. The owner is sourcing 10–13 new feminine-presenting suspect SVGs (flat, race-neutral, matching
-   the existing style — see the quantified review). When they land: add `tags.json` entries
-   (`["feminine", "human"]`) or `build_icons.py` will refuse the build — that's the system working,
-   not a bug to route around.
-3. Item 35's real generation test is the next paid step that would actually validate the whole
-   build — same shape as several other "untested against a real generation" caveats already on the
-   books (item 23 step 1/2, item 27).
-4. `coherence_validator.py` doesn't enforce `pronouns`/`presentation` non-blank yet — flagged as
-   the natural next addition in both `docs/WIRING.md` and item 35, not built this pass.
-5. No further doc-optimization work identified as urgent from the audit above. If it comes up
-   again: `CLAUDE.md` and `SESSIONS.md`'s startup cost are both already fine; anything else worth
-   auditing (`docs/PLAYTEST_FLOW.md`, `docs/INVESTIGATION_DESIGN.md`, etc.) is read conditionally,
-   not automatically, so the payoff is smaller than `WIRING.md`'s was.
+1. Everything from Session 45's closing list minus what item 35 touched: item 7 corpus work, the
+   3 branch-hygiene findings, `owner/godot-sidecars`'s merge decision, undeclared `pillow`
+   dependency. **F5 is no longer on this list** — walked for real, today.
+2. `coherence_validator.py` doesn't enforce `pronouns`/`presentation` non-blank yet — flagged
+   twice now (`docs/WIRING.md`, item 35) as the natural next addition, still not built.
+3. Item 27's narrowing-prose-leak rule got one real, unfavorable data point tonight (3 leaks in one
+   generation) — worth another real generation or two before concluding anything, but worth
+   watching rather than assuming the prompt rule holds.
+4. The stray untracked root files flagged all the way back (`SocialGaming/` nested folder,
+   `backfill_collided_stories.py`, `compare_models.py`, `compare_output/`, `package-lock.json`) are
+   now confirmed to actually exist on the owner's machine (seen in a real `git status` this
+   session) — still not inspected, still not urgent.
+5. Suspect-icon feminine pool is at 6 now (up from 1), short of the 10–13 parity target — and the
+   new batch's license/source is a real open question, not just an unverified formality (see
+   `icons/suspect/README.md`).
+6. No further doc-optimization work identified as urgent from the earlier audit this session. If
+   it comes up again: `CLAUDE.md` and `SESSIONS.md`'s startup cost are both already fine; anything
+   else worth auditing is read conditionally, not automatically, so the payoff is smaller than
+   `WIRING.md`'s was.
 
 ---
 

@@ -502,7 +502,7 @@ against these checks until they go green selects for mysteries *shaped like the 
 Run `python3 scripts/cpam.py` for cost per accepted mystery, pass rate and rejections by rule.
 Full reasoning: `docs/DECISIONS.md` items 18 and 28.
 
-### 35. Character pronouns + presentation, suspect-icon tagging — **built, untested against a real generation**
+### 35. Character pronouns + presentation, suspect-icon tagging — **built and confirmed against a real generation**
 
 `characters[]` now carries `pronouns` (free text — "she/her", "xe/xem", ...) and `presentation`
 ("human" or a species string). `pronouns` feeds dialogue consistency — threaded into
@@ -516,10 +516,14 @@ to build an untagged suspect icon. A real substring-matching bug in the pronoun-
 logic (`"he"` inside `"they/them"`) was caught by `scripts/test_icons.py`'s new fallback-chain
 tests, not by inspection — fixed in both the GDScript and its Python test-reimplementation.
 
-Not yet enforced: `coherence_validator.py` doesn't check `pronouns`/`presentation` non-blank (same
-shape as the existing alibi/motive/secret rules — a natural next addition). Not run against a real
-generation, and not run through `VerifyScenes.gd`/`ApplyTheme.gd` — standing caveats, same as most
-of item 23. Full reasoning: `docs/DECISIONS.md` item 35.
+**Confirmed same day, on a real generation on the owner's machine** (F5 + New Game Solo): all 8
+characters carried both fields, non-blank, and one came back `they/them` unprompted — the exact
+case the substring bug above would have mis-sorted. `ApplyTheme.gd`/`VerifyScenes.gd` also ran for
+real this session (`MISSES none`, eight `ok` lines) — the "no engine reachable" caveat no longer
+applies to this session's changes. Not yet enforced: `coherence_validator.py` doesn't check
+`pronouns`/`presentation` non-blank structurally (this generation happening to write both isn't a
+guarantee). Full reasoning, including why the generation itself was rejected (unrelated to this
+item) and what that incidentally showed about item 27: `docs/DECISIONS.md` item 35.
 
 ### 33. Five suspects would unlock the third difficulty rung — **deferred, owner wants to revisit**
 
