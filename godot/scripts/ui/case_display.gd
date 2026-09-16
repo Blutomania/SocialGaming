@@ -112,7 +112,8 @@ func _populate() -> void:
 		## No `.id` field on CharacterData -- `.name` is the stable, unique-
 		## per-mystery key the server side already treats it as, so it is the
 		## right seed for Icons.suspect() too.
-		var suspect_icon: String = Icons.suspect(suspects[i].name, GameState.game_id)
+		var suspect_icon: String = Icons.suspect(
+			suspects[i].name, GameState.game_id, suspects[i].pronouns, suspects[i].presentation)
 		_add_cast_row("Suspect %d:" % (i + 1), suspects[i].name, suspects[i].occupation, Palette.BRASS, suspect_icon)
 
 	var witnesses := _mystery.characters.filter(func(c): return c.role == "witness")

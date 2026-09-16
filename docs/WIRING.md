@@ -119,7 +119,11 @@ mystery_dict  saved to  mystery_database/generated/<slug>_<timestamp>.json
 > invented people, which nothing structural can see. A visible failure mode replaces an invisible
 > one.
 
-Every generated mystery is a dict with these top-level keys, **in this order**:
+Every generated mystery is a dict with these top-level keys, **in this order**. **[UPDATED, this
+pass] The copy below had drifted from the real prompt (`server/main.py`, `_generate_mystery_dict`)
+— missing `bio`/`statement`/`reveals` on characters, `narrows` on evidence, and the
+`investigation_areas`/`leads` arrays entirely. Transcribed fresh from the live prompt, not
+remembered:**
 
 ```json
 {
@@ -155,9 +159,24 @@ Every generated mystery is a dict with these top-level keys, **in this order**:
       "name": "string",
       "role": "victim | suspect | detective | witness",
       "occupation": "string  — explains their presence in the closed world",
+      "pronouns": "string  — e.g. \"she/her\"; ALWAYS present, used consistently in this
+                    character's own bio/statement/secret/alibi. Free text, not a closed
+                    enum — an invented culture can write its own convention. Read by
+                    _generate_witness_scene() and _generate_resolution_narrative() so
+                    later dialogue stays consistent with what generation wrote here",
+      "presentation": "string  — \"human\", or a species name (\"martian\", \"non-human\", ...)
+                        for anything else. ALWAYS present, free text like occupation. Drives
+                        which suspect portrait Icons.suspect() picks — see \"Suspect icon
+                        tagging\" below",
       "motive": "string  — specific stake; never blank for suspects",
       "alibi": "string  — specific location, activity, and corroborating detail",
-      "secret": "string  — 2-sentence concrete fact anchoring interrogation"
+      "secret": "string  — 2-sentence concrete fact anchoring interrogation",
+      "bio": "string  — 2–3 sentences, WHO this person is (temperament, history), shown to
+               players. No spoilers — never hints at guilt",
+      "statement": "string, WITNESSES ONLY — what they tell an investigator. True, actionable,
+                     2–4 sentences. Deception is off in this build: witnesses may be mistaken
+                     about what something meant, never invent or conceal what they saw",
+      "reveals": ["WITNESSES ONLY — evidence ids this statement surfaces, e.g. [\"E3\"]"]
     }
   ],
 
@@ -169,13 +188,43 @@ Every generated mystery is a dict with these top-level keys, **in this order**:
       "type": "physical | testimonial | circumstantial | documentary",
       "relevance": "critical | supporting | red_herring",
       "supports":   ["S2"],  // chain step ids. A red herring supports [] and only it may
-      "exonerates": ["exact character name"],  // never the culprit
-      "implicates": ["exact character name"]   // culprit needs at least one
+      "exonerates": ["exact character name"],  // AT MOST ONE name; never the culprit
+      "implicates": ["exact character name"],  // suspicion, not proof; culprit needs ≥1
+      "narrows": ["optional — see item 27. A class-of-person fact (never a possession), naming
+                   every suspect it leaves possible: ≥2 names, always < the full suspect list,
+                   always including the culprit. Most items omit this entirely"]
+    }
+  ],
+
+  "investigation_areas": [
+    {
+      "id": "A1",
+      "name": "string",
+      "description": "string  — 1–2 sentences, atmospheric, visible to players",
+      "investigation_prompt": "private context for AI — what could be found here",
+      "discovery": "string  — 1–2 sentences, what a search here finds. Shown verbatim",
+      "analysis": "string  — 1–2 sentences, what testing/research on the discovery reveals.
+                    Must name a character, time or place — not \"someone was here\"",
+      "reveals": ["E1"]  // every area must reveal at least one evidence id
+    }
+  ],
+
+  "leads": [
+    {
+      "id": "L1",
+      "title": "string",
+      "brief": "string  — 1 sentence visible to players",
+      "investigation_prompt": "private context for AI — what following this up reveals",
+      "reveals": ["E5"]  // every lead must reveal at least one evidence id
     }
   ],
 
   "gameplay_notes": {
-    "difficulty": "EASY | MEDIUM | HARD",
+    "difficulty": "EASY | HARD",  // no MEDIUM — see the prompt's own note: a third label
+                                   // with no third behaviour behind it is worse than two
+                                   // honest settings. (Not the same "difficulty" as APF's
+                                   // EASY/MEDIUM/HARD redundancy ladder in casefiles.py —
+                                   // that's a separate, assignment-time knob, not this field.)
     "estimated_playtime": "string",
     "key_twists": ["string"]
   },
@@ -205,6 +254,30 @@ Every generated mystery is a dict with these top-level keys, **in this order**:
 - `solution.key_evidence` must reference ≥ 2 evidence IDs
 - `solution.how_to_deduce` must contain ≥ 3 reasoning steps
 - `setting.description` must explain the isolation mechanic
+- **Not yet enforced here:** `pronouns`/`presentation` non-blank. The prompt instructs it; nothing
+  structural checks it yet, unlike everything else in this list. A natural next addition, same
+  shape as the existing alibi/motive/secret rules — not added this pass to keep the change scoped
+  to the field actually landing.
+
+### Suspect icon tagging (new this pass)
+
+`Icons.suspect(key, salt, pronouns, presentation)` — `godot/scripts/theme/Icons.gd` — is the one
+place a character trait is allowed to influence which icon a screen draws, and it's a deliberate,
+narrow exception to this file's own "the icon means nothing" rule (see that file's header for why
+gender-accuracy isn't the same kind of signal as a narrative tell).
+
+`icons/suspect/tags.json` tags each suspect icon (`["masculine", "human"]`,
+`["feminine", "human"]`, `["neutral", "human"]`, ...) — the only tagged icon set; `clue/` and
+`witness/` stay untagged on purpose, since their whole point is carrying no information at all.
+`scripts/build_icons.py` **refuses to build** if any file in `icons/suspect/` lacks a tag entry,
+or if the manifest names a file that's gone — same "auto-reject, never auto-repair" posture as
+`gate.py`. Emits `IconSet.SUSPECT_TAGS: Dictionary` (path → tags); `Icons.gd` does the filtering.
+
+**Fallback chain, most to least specific, each step falling through rather than erroring:**
+non-human character's exact species tag → the generic `"non-human"` tag → `[gender_bucket,
+"human"]` → the full unfiltered `SUSPECT` pool. No non-human art is tagged yet, so step 3 is where
+every mystery resolves today — that's expected, not a bug, and adding a tagged non-human icon
+later needs zero code changes to start being picked.
 
 ---
 

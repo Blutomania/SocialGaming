@@ -271,6 +271,15 @@ CHARACTERS (include 1 victim, EXACTLY 4 suspects, and 3–4 witnesses):
   - secret: CONCRETE FACT (≥ 2 sentences) anchoring interrogation questions.
   - motive (suspects): specific stake — financial, relational, reputational, or political. Never "—".
   - occupation: always present; must logically place the character in the closed world.
+  - pronouns: ALWAYS present, and used CONSISTENTLY everywhere this character is referred to in
+    third person — their own bio, statement, secret, alibi, and everywhere else. e.g. "she/her",
+    "he/him", "they/them". If the setting or character calls for something else (an invented
+    culture, a non-standard convention), write it — this is not a closed list.
+  - presentation: ALWAYS present. "human" for an ordinary human character. For anything else —
+    an alien, a folkloric creature, an invented species — name what it actually is (e.g.
+    "martian", "non-human"), plainly, the same way occupation is free text. This drives which
+    portrait art the character gets; a human default costs nothing and a wrong default (forcing
+    a non-human character to read as human) is a worse failure than an honest label.
   - bio: 2–3 sentences on WHO THIS PERSON IS, shown to players. Not their function in the puzzle —
     their history, temperament, what they are like to be in a room with, how they came to be here.
     Motive, alibi and secret already carry the mechanics; this is the part that makes a name into a
@@ -479,6 +488,8 @@ Generate a complete mystery JSON with this exact structure:
       "name": "string",
       "role": "victim | suspect | detective | witness",
       "occupation": "string",
+      "pronouns": "she/her | he/him | they/them | ... — always present, used consistently",
+      "presentation": "human | martian | non-human | ... — always present, free text like occupation",
       "motive": "string",
       "alibi": "string",
       "secret": "string",
@@ -950,8 +961,18 @@ def _format_plot_reveal(mystery: dict) -> dict:
         for eid in solution.get("key_evidence", [])
         if eid in evidence_by_id
     ]
+    culprit_char = next(
+        (ch for ch in mystery.get("characters", []) if ch.get("name") == solution.get("culprit")),
+        {},
+    )
     return {
         "culprit": solution.get("culprit", ""),
+        # For ResultScreen's icon pick (Icons.suspect()) -- same fields the
+        # cast list already carries per character, resolved here once so the
+        # client doesn't need the whole characters[] array just to draw one
+        # portrait. Zero API cost, same as the rest of this function.
+        "culprit_pronouns": culprit_char.get("pronouns", ""),
+        "culprit_presentation": culprit_char.get("presentation", ""),
         "method": solution.get("method", ""),
         "motive": solution.get("motive", ""),
         "how_to_deduce": solution.get("how_to_deduce", ""),
@@ -1033,6 +1054,11 @@ def _generate_resolution_narrative(game: dict, plot_reveal: dict, winner_finding
     s = mystery.get("setting", {})
     c = mystery.get("crime", {})
     winner_name = game["players"].get(game["winner"], {}).get("name", "the winner")
+    culprit_char = next(
+        (ch for ch in mystery.get("characters", []) if ch.get("name") == plot_reveal.get("culprit")),
+        {},
+    )
+    culprit_pronouns = culprit_char.get("pronouns", "they/them")
 
     all_findings = (
         [f'"{f.get("question", "")}" -> {f.get("response", "")}' for f in winner_findings.get("witness_findings", [])]
@@ -1055,7 +1081,7 @@ SETTING: {s.get('location', '')}, {s.get('time_period', '')}
 CRIME: {c.get('what_happened', '')}
 
 THE SOLUTION (already determined -- do not change or contradict any fact here):
-  Culprit: {plot_reveal.get('culprit', '')}
+  Culprit: {plot_reveal.get('culprit', '')} (pronouns: {culprit_pronouns} -- use consistently)
   Method: {plot_reveal.get('method', '')}
   Motive: {plot_reveal.get('motive', '')}
   How it was deduced: {plot_reveal.get('how_to_deduce', '')}
@@ -1500,6 +1526,7 @@ def _generate_witness_scene(game: dict, round_: dict) -> dict:
     )
     char_context = (
         f"Role: {char_data.get('role', 'suspect')}\n"
+        f"Pronouns (use consistently): {char_data.get('pronouns', 'they/them')}\n"
         f"Occupation: {char_data.get('occupation', '')}\n"
         f"Alibi: {char_data.get('alibi', '')}\n"
         f"Secret: {char_data.get('secret', '')}\n"
@@ -2997,6 +3024,7 @@ def interrogate(req: InterrogateRequest):
 
     char_context = (
         f"Role: {char_data.get('role', 'suspect')}\n"
+        f"Pronouns (use consistently): {char_data.get('pronouns', 'they/them')}\n"
         f"Occupation: {char_data.get('occupation', '')}\n"
         f"Alibi: {char_data.get('alibi', '')}\n"
         f"Secret: {char_data.get('secret', '')}\n"
@@ -3098,6 +3126,7 @@ def game_interrogate_witness(game_id: str, req: GameInterrogateRequest):
     )
     char_context = (
         f"Role: {char_data.get('role', 'suspect')}\n"
+        f"Pronouns (use consistently): {char_data.get('pronouns', 'they/them')}\n"
         f"Occupation: {char_data.get('occupation', '')}\n"
         f"Alibi: {char_data.get('alibi', '')}\n"
         f"Secret: {char_data.get('secret', '')}\n"

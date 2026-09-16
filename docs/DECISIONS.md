@@ -62,6 +62,7 @@ that the superseded text has become history and belongs here instead.
 | 24 | One palette, three surfaces | `DONE` |
 | 25 | The design becomes visible in the editor; two engine-side checks | `DONE` |
 | 26 | Generation writes backwards; clues declare what they serve | `DONE` |
+| 35 | Character pronouns + presentation; suspect-icon tagging and fallback chain | `BUILT, Sept 16 — untested against a real generation` |
 
 ---
 
@@ -1449,3 +1450,64 @@ that the superseded text has become history and belongs here instead.
     **The standing rule for future sessions:** if a word would be at home on a box that says
     "2–6 players, ages 10+", it is the wrong word. Reach for the investigation instead — findings,
     casefiles, statements, the record, what reached the table.
+
+35. **[BUILT, Sept 16 2026 — untested against a real generation] Character pronouns +
+    presentation, and suspect-icon tagging with a fallback chain that reaches past humans.**
+    Grew out of two separate asks in the same conversation: the suspect-icon gender-skew review
+    (icons/suspect/README.md's "Quantified skew review") found that icon assignment is completely
+    uncorrelated with a character's actual gender — the pool composition matters, but so does the
+    fact that nothing reads it. Separately, the owner named the real driver: *"when we get to Gen
+    AI calls for the mystery, for interrogations gender accuracy will be a must"* — dialogue
+    consistency during play, which icon-matching is only a visible side-effect of. Then, thinking
+    ahead: *"Scandal in Smurfland" / "My blackmailer is an alien"* — whatever schema shape handles
+    this can't assume every character is human.
+
+    **Two fields on every `characters[]` entry, not one.** `pronouns` (free text — "she/her",
+    "xe/xem", whatever a setting invents) answers what generation's own dialogue needs: consistent
+    third-person reference in `bio`/`statement`/`secret`, and in the two runtime call-sites that
+    write character voice during play — `_generate_witness_scene()` and
+    `_generate_resolution_narrative()`, both now threading it into their prompts.
+    `presentation` ("human", or a species string) answers a different question — which portrait
+    pool a suspect draws from — and deliberately isn't derived from `pronouns`, because the two
+    can diverge (a masculine-presenting character can use `they/them`) and because collapsing them
+    would make the martian/Smurf case impossible to express. Both fields are new; neither costs an
+    extra API call — they ride the existing generation call the same way `narrows` (item 27) did.
+
+    **The icon half: `icons/suspect/tags.json`, and `Icons.gd`'s new exception to its own rule.**
+    Only the suspect set is tagged — `clue/` and `witness/` stay untagged, since "the icon means
+    nothing" is still their whole contract. `Icons.gd`'s header is explicit that matching a
+    portrait's presented gender to a character's actual gender is accuracy, not the narrative
+    signal that rule forbids, and says so in writing so a future reviser doesn't read the two as
+    the same thing. `scripts/build_icons.py` now refuses to build if any suspect icon lacks a tag
+    entry, or if the manifest names a file that's gone — same posture as `gate.py`: a manifest that
+    can be silently wrong is worse than one that refuses to build.
+
+    **Fallback chain, most to least specific, each step falling through rather than erroring:**
+    exact species tag → generic `"non-human"` tag → `[gender_bucket, "human"]` → the full
+    unfiltered pool. No non-human art exists yet, so every mystery resolves at step 3 today — by
+    design, not as a gap: adding one tagged martian SVG later needs zero code changes to start
+    being picked, the same "extend by content, not code" shape `craft_grounding.py`'s retrieval
+    layer already uses. `woman-svgrepo-com.svg` (the file added in the gender-skew follow-up,
+    found this same review to actually be a 9-color illustration, not the flat silhouette it was
+    reported as) was pulled back out rather than tagged — it fails the manifest's own style rule
+    on the grounds three other files were already excluded for.
+
+    **A real bug, caught by the test that was written to prove the design, not by inspection.**
+    `_gender_bucket()`'s first draft matched pronoun tokens by raw substring — and `"he"` is a
+    substring of `"they"` and `"them"`, so `they/them` (the default fallback in every call site
+    that builds character context) bucketed as masculine. `scripts/test_icons.py`'s new fallback-
+    chain section is a Python reimplementation of the same logic (same pattern the file already
+    uses for the hash/uniformity tests — GDScript has no engine here to run it against), and it
+    failed on exactly that case before either copy was fixed to tokenize instead. Fixed in both
+    places; the test would catch a regression in either.
+
+    **What's still open.** Untested against a real generation — costs credits, same caveat as most
+    of item 23. `coherence_validator.py` doesn't enforce `pronouns`/`presentation` non-blank yet
+    (`docs/WIRING.md`'s schema section flags this explicitly as the natural next addition, same
+    shape as the existing alibi/motive/secret rules — not added this pass to keep the change scoped
+    to the field actually landing). Not run through `VerifyScenes.gd`/`ApplyTheme.gd` — no engine
+    reachable from a session, same standing caveat as everything else in this project. The owner is
+    sourcing new feminine-presenting suspect SVGs separately (target: 10–13, flat, race-neutral,
+    same style as the existing set — see icons/suspect/README.md's quantified review for why);
+    they'll need tags.json entries when they land, and `build_icons.py` will refuse the build until
+    they get them, which is the system working as intended, not a blocker to route around.

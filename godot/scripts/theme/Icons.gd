@@ -55,14 +55,109 @@ static func witness(key: String, salt: String = "") -> String:
 	return _pick(IconSet.WITNESS, key, salt)
 
 
-## Pick a suspect icon. Same contract as clue(). Was inert -- IconSet.SUSPECT
-## shipped empty while the owner sourced artwork separately (playtest
-## StartPageSept7) -- until playtest FindingsSept8, when three PNGs landed in
-## icons/suspect/ and scripts/build_icons.py ran. No code change was needed
-## to activate it: _pick()/texture()'s empty-set handling is exactly what made
-## that possible, and it is what a FOURTH suspect icon would still need today.
-static func suspect(key: String, salt: String = "") -> String:
-	return _pick(IconSet.SUSPECT, key, salt)
+## Pick a suspect icon. Same key/salt contract as clue(), PLUS two optional
+## trait filters that the clue/witness sets deliberately have no equivalent
+## of: `pronouns` and `presentation`, straight from CharacterData (generation
+## writes both -- see server/main.py's characters[] schema). Passing "" for
+## either (an older mystery, a field generation omitted) falls back to the
+## full unfiltered pool -- was inert until three PNGs landed in icons/suspect/
+## and scripts/build_icons.py ran (playtest FindingsSept8); no code change was
+## needed to activate it then, and none is needed to keep serving an
+## unfiltered pick now, for the same reason: _pick()'s empty-set handling.
+##
+## THIS IS A DELIBERATE EXCEPTION TO "THE ICON MEANS NOTHING" AT THE TOP OF
+## THIS FILE, NOT A VIOLATION OF IT. That rule is about NARRATIVE signal --
+## an icon must never hint who did it. Matching a portrait's presented gender
+## to a character's actual gender is accuracy, not a tell; it carries no more
+## story information than getting a name's spelling right does. Keep that
+## distinction if this file's top comment ever gets revised.
+static func suspect(key: String, salt: String = "", pronouns: String = "", presentation: String = "") -> String:
+	var candidates := _suspect_candidates(pronouns, presentation)
+	return _pick(candidates, key, salt)
+
+
+## she/her -> "feminine", he/him/his -> "masculine", anything else (they/them,
+## an invented convention, empty) -> "neutral". Tokenized, not raw substring
+## matching -- "he" IS a substring of "they" and "them", so a naive
+## `.contains("he")` buckets "they/them" as masculine, which a test caught.
+## Split on non-letters first so "they" and "he" are never the same token.
+## Loose token matching rather than exact-string comparison for the same
+## reason localization's name-map matching uses word-boundary regex: nothing
+## enforces the prompt's exact casing or punctuation. "Neutral" is always a
+## safe fallback -- an unrecognised pronoun string should degrade gracefully,
+## not break icon assignment for a mystery that invented its own convention.
+static func _gender_bucket(pronouns: String) -> String:
+	var tokens := _words_only(pronouns.to_lower())
+	if tokens.has("she") or tokens.has("her") or tokens.has("hers"):
+		return "feminine"
+	if tokens.has("he") or tokens.has("him") or tokens.has("his"):
+		return "masculine"
+	return "neutral"
+
+
+## Split into lowercase letter-only tokens on every run of non-letter
+## characters -- "she/her" -> ["she", "her"], "they/them" -> ["they", "them"].
+static func _words_only(text: String) -> PackedStringArray:
+	var regex := RegEx.new()
+	regex.compile("[a-z]+")
+	var out := PackedStringArray()
+	for m in regex.search_all(text):
+		out.append(m.get_string())
+	return out
+
+
+## The candidate pool for suspect(), before _pick() hashes into it.
+##
+## FALLBACK CHAIN, most to least specific -- each step is allowed to come up
+## empty and falls through to the next rather than erroring, which is the
+## whole point: a species with no dedicated art yet still resolves to
+## SOMETHING today, and automatically gets more precise the day someone tags
+## an SVG for it. No code change either way. Same "degrade gracefully, extend
+## by content not code" shape as craft_grounding.get_craft_guidance()'s
+## confidence-tier filtering -- deliberately, not by coincidence.
+##
+##   1. presentation != "human": try that exact species tag (e.g. "martian").
+##   2. still nothing: try the generic "non-human" tag.
+##   3. (human, or no non-human art exists yet): try [gender_bucket, "human"].
+##   4. still nothing: the full, unfiltered SUSPECT pool -- always non-empty
+##      once any suspect icon exists, so this step is the true floor.
+static func _suspect_candidates(pronouns: String, presentation: String) -> Array[String]:
+	var pres := presentation.to_lower().strip_edges()
+
+	if not pres.is_empty() and pres != "human":
+		var species_specific := _suspect_by_tags([pres])
+		if not species_specific.is_empty():
+			return species_specific
+		var generic_nonhuman := _suspect_by_tags(["non-human"])
+		if not generic_nonhuman.is_empty():
+			return generic_nonhuman
+		# No non-human art tagged yet at all -- fall through to the human
+		# pool below rather than return empty. A wrong-but-present icon beats
+		# a blank slot; see texture()'s own reasoning for the same trade-off
+		# made the other direction (empty set -> draw nothing, not a fault).
+
+	var bucket := _gender_bucket(pronouns)
+	var gender_matched := _suspect_by_tags([bucket, "human"])
+	if not gender_matched.is_empty():
+		return gender_matched
+
+	return IconSet.SUSPECT
+
+
+## Every SUSPECT path whose IconSet.SUSPECT_TAGS entry contains every tag in
+## `required` (AND-match -- two tags per icon today, gender + presentation).
+static func _suspect_by_tags(required: Array[String]) -> Array[String]:
+	var out: Array[String] = []
+	for path in IconSet.SUSPECT_TAGS.keys():
+		var tags: Array = IconSet.SUSPECT_TAGS[path]
+		var has_all := true
+		for t in required:
+			if not tags.has(t):
+				has_all = false
+				break
+		if has_all:
+			out.append(path)
+	return out
 
 
 ## Load a picked icon as a texture, or null when there is nothing to load.

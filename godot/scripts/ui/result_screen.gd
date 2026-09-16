@@ -96,7 +96,9 @@ func _populate() -> void:
 	## stable decorative silhouette for this culprit in this game. Icons.gd
 	## returns null on an empty set on purpose, so this correctly draws
 	## nothing rather than a placeholder box when no suspect icon exists yet.
-	var culprit_icon: String = Icons.suspect(str(plot.get("culprit", culprit)), GameState.game_id)
+	var culprit_icon: String = Icons.suspect(
+		str(plot.get("culprit", culprit)), GameState.game_id,
+		str(plot.get("culprit_pronouns", "")), str(plot.get("culprit_presentation", "")))
 	portrait_rect.texture = Icons.texture(culprit_icon)
 	portrait_rect.modulate = Icons.tint()
 

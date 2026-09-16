@@ -170,7 +170,7 @@ func _build_suspect_grid() -> void:
 		card.add_child(box)
 
 		var icon_path: String = (
-			Icons.suspect(ch.name, GameState.game_id) if ch.role == "suspect"
+			Icons.suspect(ch.name, GameState.game_id, ch.pronouns, ch.presentation) if ch.role == "suspect"
 			else Icons.witness(ch.name, GameState.game_id)
 		)
 		var icon_tex: Texture2D = Icons.texture(icon_path)

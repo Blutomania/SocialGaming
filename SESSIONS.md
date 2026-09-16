@@ -70,16 +70,76 @@ net, from the corrections themselves, not from padding.
 `_get_credentials()` reference resolves to a real function before committing, same standard the
 checker itself enforces for every other backticked reference in these docs.
 
+### Addendum, same day: legal clears the demo license, a real quantified skew review, and item 35
+
+The rest of the day's work, same branch, continuing straight from the audit above rather than a
+separate session.
+
+**License item closed.** Legal independently confirmed the original 15 SVG Repo suspect icons for
+the demo — recorded in `icons/suspect/README.md`, scoped explicitly to "for the demo," not asserted
+as a permanent clearance.
+
+**A real quantified skew review, not a re-statement of the earlier flag.** Rendered all 19 suspect
+icons (16 SVGs to PNG via `cairosvg`, plus the 3 existing PNGs) and actually looked at them, rather
+than trusting filenames. Found a genuine mistake from Session 45: `woman-svgrepo-com.svg` was
+recorded there as "a flat single-fill silhouette" — it's actually a 9-color illustration (skin
+tone, hair color, blazer, tie). Session 45's color-complexity check only matched `fill="#..."`
+attribute syntax; this file paints via `style="fill:#...;"`, which slipped past. (Worth noting for
+the record: `build_icons.py`'s real flattening pipeline was never fooled by this — `recolour()`
+already handles both syntaxes correctly, per `test_icons.py`'s own CSS-class/inline-style test
+cases. Only the informal manual classification was wrong.) Quantified breakdown across gender
+presentation, age, race/skin-tone visibility, disability signals and religious/cultural dress —
+full table in `icons/suspect/README.md`'s "Quantified skew review" section. Net: 68% masculine / 11%
+feminine / 21% neutral, and the one file meant to help feminine representation was also the only
+one that assigned a specific race — the fix for one axis made another worse. Recommended pulling
+that file back out; acted on later the same day (see item 35, below).
+
+**Item 7 corpus status re-confirmed, nothing new run.** Same state as Session 45 left it — the 11
+held-back anthology PDFs and the 4-file `_novels/` batch still don't exist in any session's reach;
+the 10 files in `mystery_database/new_sources/` are present and runnable but untouched, pending an
+explicit go-ahead on the API cost.
+
+**Item 35 built: character `pronouns`/`presentation`, and suspect-icon tagging.** Grew directly out
+of the skew review plus the owner naming the real driver — dialogue accuracy during interrogation,
+not just icon art — and then a forward-looking question about non-human settings ("Scandal in
+Smurfland", "my blackmailer is an alien"). Full build reasoning, the fallback-chain design, and the
+real substring-matching bug `test_icons.py` caught (`"he"` inside `"they/them"`) are in
+`docs/DECISIONS.md` item 35 — not repeated here. Touched: `server/main.py` (schema + prompt +
+`_generate_witness_scene()`/`_generate_resolution_narrative()`/`_format_plot_reveal()`),
+`godot/scripts/data/MysteryData.gd`, `godot/scripts/theme/Icons.gd` (new, and the bug fix),
+`scripts/build_icons.py` (manifest loading + enforcement), `icons/suspect/tags.json` (new),
+`docs/WIRING.md` (schema section brought fully current — it had already drifted from the real
+prompt before this session touched it, missing `bio`/`statement`/`reveals`/`narrows`/
+`investigation_areas`/`leads` entirely), three Godot call sites (`case_display.gd`,
+`result_screen.gd`, `interrogation.gd`), and two new test files
+(`scripts/test_localization_preserves_traits.py`, plus a large new section in
+`scripts/test_icons.py`). `woman-svgrepo-com.svg` removed for real this time (git rm, all three
+generated copies) rather than just recommended for removal.
+
+**Verification:** `check_godot_wiring.py`, `check_doc_claims.py`, `check_decisions.py`,
+`build_icons.py --check`, `test_icons.py`, and the new `test_localization_preserves_traits.py` all
+pass. `server/main.py` compiles. Not run against a real generation (costs credits) and not run
+through the Godot engine (none reachable from a session) — both flagged explicitly in item 35
+rather than claimed as done.
+
 ### Next session
 
-1. Everything from Session 45's closing list is still open (F5 pass, gender skew, item 7 corpus
+1. Everything from Session 45's closing list minus what item 35 touched: F5 pass, item 7 corpus
    work, the 3 branch-hygiene findings, `owner/godot-sidecars`'s merge decision, undeclared
-   `pillow` dependency) — none of it touched this session.
-2. No further doc-optimization work identified as urgent. If it comes up again, the honest note to
-   start from is: `CLAUDE.md` and `SESSIONS.md`'s startup cost are both already fine; anything else
-   worth auditing (`docs/PLAYTEST_FLOW.md`, `docs/INVESTIGATION_DESIGN.md`, etc.) is read
-   conditionally, not automatically, so the payoff of auditing them is smaller than `WIRING.md`'s
-   was.
+   `pillow` dependency.
+2. The owner is sourcing 10–13 new feminine-presenting suspect SVGs (flat, race-neutral, matching
+   the existing style — see the quantified review). When they land: add `tags.json` entries
+   (`["feminine", "human"]`) or `build_icons.py` will refuse the build — that's the system working,
+   not a bug to route around.
+3. Item 35's real generation test is the next paid step that would actually validate the whole
+   build — same shape as several other "untested against a real generation" caveats already on the
+   books (item 23 step 1/2, item 27).
+4. `coherence_validator.py` doesn't enforce `pronouns`/`presentation` non-blank yet — flagged as
+   the natural next addition in both `docs/WIRING.md` and item 35, not built this pass.
+5. No further doc-optimization work identified as urgent from the audit above. If it comes up
+   again: `CLAUDE.md` and `SESSIONS.md`'s startup cost are both already fine; anything else worth
+   auditing (`docs/PLAYTEST_FLOW.md`, `docs/INVESTIGATION_DESIGN.md`, etc.) is read conditionally,
+   not automatically, so the payoff is smaller than `WIRING.md`'s was.
 
 ---
 

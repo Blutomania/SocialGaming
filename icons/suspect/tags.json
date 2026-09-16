@@ -1,0 +1,25 @@
+{
+  "_comment": "scripts/build_icons.py reads this -- do not hand-edit IconSet.gd's SUSPECT_TAGS. See icons/suspect/README.md for what the tags mean and how they were assigned (rendered and looked at, not guessed from filenames). Every file in this folder must have an entry here, or build_icons.py refuses to build -- an untagged suspect icon is exactly the kind of silent gap this system exists to prevent.",
+  "gender_tags": ["masculine", "feminine", "neutral"],
+  "presentation_tags": ["human", "non-human"],
+  "tags": {
+    "Suspect2.png": ["masculine", "human"],
+    "businessman-person-2-svgrepo-com.svg": ["masculine", "human"],
+    "detective-face-svgrepo-com.svg": ["masculine", "human"],
+    "detective-svgrepo-com.svg": ["masculine", "human"],
+    "dictator-svgrepo-com.svg": ["masculine", "human"],
+    "evil-combatant-svgrepo-com.svg": ["neutral", "human"],
+    "gentleman-person-svgrepo-com.svg": ["masculine", "human"],
+    "m-i-b-svgrepo-com.svg": ["masculine", "human"],
+    "male-person-2-svgrepo-com.svg": ["masculine", "human"],
+    "male-student-1-svgrepo-com.svg": ["masculine", "human"],
+    "masquerade-gentleman-svgrepo-com.svg": ["masculine", "human"],
+    "mug-shot-svgrepo-com.svg": ["neutral", "human"],
+    "person-silhouette-svgrepo-com.svg": ["neutral", "human"],
+    "policeman-svgrepo-com.svg": ["masculine", "human"],
+    "suspect1.png": ["masculine", "human"],
+    "suspect3.png": ["masculine", "human"],
+    "thief-svgrepo-com.svg": ["neutral", "human"],
+    "woman-silhouette-svgrepo-com.svg": ["feminine", "human"]
+  }
+}

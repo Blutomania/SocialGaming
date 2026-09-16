@@ -385,7 +385,8 @@ Zero API cost, no Godot binary needed. Each has already caught a real bug.
 | `scripts/build_icons.py --check` | Generated icon copies drifting from `icons/`. `--report` describes the sources. Refuses a raster embedded in an SVG wrapper, which cannot be recoloured |
 | `scripts/build_brand.py --check` | The Godot copies of the brand marks (`godot/assets/brand/`) drifting from `brand/NEWnegative_CYM.svg` / `NEWorganic_cym.svg`. Byte-exact mirror, no recolouring — a brand mark is a fixed identity, not a retintable icon |
 | `scripts/split_icon_sheet.py` | Cuts a sheet of icons into one file each — vector by subpath geometry, raster by column occupancy, dispatching on what the file contains rather than its extension. Reports detached specks; never removes them |
-| `scripts/test_icons.py` | That the icon flatten survives all three export shapes, and that icon assignment is genuinely random |
+| `scripts/test_icons.py` | That the icon flatten survives all three export shapes, that icon assignment is genuinely random, that the suspect tag fallback chain resolves in the right order (species → generic non-human → gender-matched human → full pool), and that `icons/suspect/tags.json` is refused, not silently accepted, when it drifts from what's on disk |
+| `scripts/test_localization_preserves_traits.py` | That `pronouns`/`presentation` survive `localize_mystery()`'s name/occupation rewrite untouched |
 | `scripts/test_apf.py` | The rhythm: that round 1 asks nothing, that sharing is cumulative and monotone, that the difficulty ladder separates, that the board never greys a face on a narrowing, that disclosure names whoever sat on it, and that a client is sent only its own half. Fixtures plus one pass over the accepted mystery |
 | `scripts/test_share_rule.py` | The share minimum being defined twice. It was — server `round()` against client `ceili()`, disagreeing in 6 of 18 realistic cases with the client always stricter, so it refused shares the server would accept |
 | `scripts/test_registry_staleness.py` | That a moved-on corpus rebuilds the registry and an unchanged one does not |
@@ -500,6 +501,25 @@ against these checks until they go green selects for mysteries *shaped like the 
 
 Run `python3 scripts/cpam.py` for cost per accepted mystery, pass rate and rejections by rule.
 Full reasoning: `docs/DECISIONS.md` items 18 and 28.
+
+### 35. Character pronouns + presentation, suspect-icon tagging — **built, untested against a real generation**
+
+`characters[]` now carries `pronouns` (free text — "she/her", "xe/xem", ...) and `presentation`
+("human" or a species string). `pronouns` feeds dialogue consistency — threaded into
+`_generate_witness_scene()` and `_generate_resolution_narrative()`'s prompts, and preserved
+untouched through `localize_mystery()` by construction (verified,
+`scripts/test_localization_preserves_traits.py`). `presentation` drives which suspect portrait
+`Icons.suspect()` picks, via a new `icons/suspect/tags.json` manifest and a fallback chain (species
+tag → generic `"non-human"` tag → gender-matched human → full pool) that resolves at step 3 today
+since no non-human art exists yet — adding one later needs no code change. `build_icons.py` refuses
+to build an untagged suspect icon. A real substring-matching bug in the pronoun-to-icon-bucket
+logic (`"he"` inside `"they/them"`) was caught by `scripts/test_icons.py`'s new fallback-chain
+tests, not by inspection — fixed in both the GDScript and its Python test-reimplementation.
+
+Not yet enforced: `coherence_validator.py` doesn't check `pronouns`/`presentation` non-blank (same
+shape as the existing alibi/motive/secret rules — a natural next addition). Not run against a real
+generation, and not run through `VerifyScenes.gd`/`ApplyTheme.gd` — standing caveats, same as most
+of item 23. Full reasoning: `docs/DECISIONS.md` item 35.
 
 ### 33. Five suspects would unlock the third difficulty rung — **deferred, owner wants to revisit**
 
