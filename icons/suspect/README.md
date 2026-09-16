@@ -152,3 +152,43 @@ and it's the one file actively making the race axis worse, not better. That reve
 closing the skew still needs new sourcing: flat, race-neutral, non-costumed feminine-presenting
 silhouettes, specifically — not filtered from a general-purpose icon pack, which is what produced
 both failed attempts so far.
+
+**[Acted on, same day, as part of item 35]** `woman-svgrepo-com.svg` removed for real, and the
+tagging system built (`docs/DECISIONS.md` item 35) — icons are no longer picked at random for a
+suspect regardless of gender; `Icons.suspect()` now filters by tag, with `["feminine", "human"]`
+as its own real bucket for the first time. This is what makes pool composition matter more, not
+less, going forward: a thin feminine bucket now means real, visible repetition for female
+characters specifically, not just an abstract skew number.
+
+## The second sourcing batch (Sept 16) — 5 of 8 added, license status unconfirmed
+
+The owner sent 8 SVGs (`females.zip`) sourced separately from the SVG Repo batch above — **no
+embedded attribution, generator comment, or license marker of any kind in any of the 8 files**,
+unlike the first batch's "Uploaded to SVG Repo" banner. Rendered and inspected all 8:
+
+**Added — flat, single-fill, race-neutral, same visual language as the existing set:**
+- `business-woman-with-tie-icon.svg`
+- `business-women-silhouette-icon.svg`
+- `businesswoman-icon.svg`
+- `woman-female-icon.svg`
+- `woman-volunteer-icon.svg` (a badge/lanyard detail, still single-tone — closer kin to `mug-shot`'s
+  white-line-on-black treatment than to a portrait)
+
+**Excluded — multi-color circular avatar icons, visible skin tone, same failure shape as the
+`woman-svgrepo-com.svg` mistake this session already corrected once:**
+- `woman-icon-original.svg` (12 distinct fill colors)
+- `woman-user-circle-icon.svg` (7 distinct fill colors)
+- `woman-user-color-icon.svg` (6 distinct fill colors — the filename says "color" outright)
+
+**License status: genuinely unknown, not just unverified.** The first batch at least had SVG Repo's
+own CC0 claim as a starting point (later independently confirmed by legal, for the demo). This
+batch has no comparable claim attached anywhere — the source wasn't stated. Integrated anyway,
+under the same FPO/playtest precedent the first batch was integrated under before legal ever looked
+at it, but **this is a real open item, not a formality**: get the source and license confirmed
+before this goes anywhere near the demo the way the first batch's clearance was scoped.
+
+**New pool composition:** 13 masculine-coded, 6 feminine-coded, 4 neutral (23 human-tagged icons
+total, plus 0 non-human — see `docs/DECISIONS.md` item 35 for that half). 26% feminine, up from 5%
+after the `woman-svgrepo-com.svg` removal. Real progress, short of the 10–13 target that would
+match repeat-rate parity with the masculine pool — more sourcing still closes the gap further, same
+brief as before: flat, race-neutral, non-costumed.

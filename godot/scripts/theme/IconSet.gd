@@ -26,7 +26,10 @@ const WITNESS: Array[String] = [
 
 const SUSPECT: Array[String] = [
 	"res://assets/icons/suspect/Suspect2.png",
+	"res://assets/icons/suspect/business-woman-with-tie-icon.svg",
+	"res://assets/icons/suspect/business-women-silhouette-icon.svg",
 	"res://assets/icons/suspect/businessman-person-2-svgrepo-com.svg",
+	"res://assets/icons/suspect/businesswoman-icon.svg",
 	"res://assets/icons/suspect/detective-face-svgrepo-com.svg",
 	"res://assets/icons/suspect/detective-svgrepo-com.svg",
 	"res://assets/icons/suspect/dictator-svgrepo-com.svg",
@@ -42,7 +45,9 @@ const SUSPECT: Array[String] = [
 	"res://assets/icons/suspect/suspect1.png",
 	"res://assets/icons/suspect/suspect3.png",
 	"res://assets/icons/suspect/thief-svgrepo-com.svg",
+	"res://assets/icons/suspect/woman-female-icon.svg",
 	"res://assets/icons/suspect/woman-silhouette-svgrepo-com.svg",
+	"res://assets/icons/suspect/woman-volunteer-icon.svg",
 ]
 
 ## path -> tags, from icons/suspect/tags.json. Every SUSPECT path has an
@@ -50,7 +55,10 @@ const SUSPECT: Array[String] = [
 ## Filtering by tag is Icons.gd's job, not data held here.
 const SUSPECT_TAGS: Dictionary = {
 	"res://assets/icons/suspect/Suspect2.png": ["masculine", "human"],
+	"res://assets/icons/suspect/business-woman-with-tie-icon.svg": ["feminine", "human"],
+	"res://assets/icons/suspect/business-women-silhouette-icon.svg": ["feminine", "human"],
 	"res://assets/icons/suspect/businessman-person-2-svgrepo-com.svg": ["masculine", "human"],
+	"res://assets/icons/suspect/businesswoman-icon.svg": ["feminine", "human"],
 	"res://assets/icons/suspect/detective-face-svgrepo-com.svg": ["masculine", "human"],
 	"res://assets/icons/suspect/detective-svgrepo-com.svg": ["masculine", "human"],
 	"res://assets/icons/suspect/dictator-svgrepo-com.svg": ["masculine", "human"],
@@ -66,5 +74,7 @@ const SUSPECT_TAGS: Dictionary = {
 	"res://assets/icons/suspect/suspect1.png": ["masculine", "human"],
 	"res://assets/icons/suspect/suspect3.png": ["masculine", "human"],
 	"res://assets/icons/suspect/thief-svgrepo-com.svg": ["neutral", "human"],
+	"res://assets/icons/suspect/woman-female-icon.svg": ["feminine", "human"],
 	"res://assets/icons/suspect/woman-silhouette-svgrepo-com.svg": ["feminine", "human"],
+	"res://assets/icons/suspect/woman-volunteer-icon.svg": ["feminine", "human"],
 }
