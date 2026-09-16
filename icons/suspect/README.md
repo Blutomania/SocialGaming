@@ -6,10 +6,13 @@ Source: SVG Repo (svgrepo.com), pulled by the owner and handed over as a zip —
 this sandbox's network policy blocks svgrepo.com directly, so these were never
 fetched or license-checked from inside a session. SVG Repo's own claim is CC0
 (public domain) per upload, checked at the page for each icon at the time it
-was pulled. **That claim has not been independently re-verified from this
-repo** — SVG Repo is an aggregator of many uploaders' work, not a single
-rights-holder, so before this ships anywhere public, re-check each icon's own
-license tag at its SVG Repo page one more time:
+was pulled.
+
+**[CONFIRMED, Sept 16] Cleared by legal for the demo.** The owner had legal
+independently verify this license claim; it holds for these 15 files, for the
+demo. That clearance is scoped to the demo specifically, not asserted here as
+a permanent, ships-on-Steam-forever clearance — if that broader question ever
+comes up, it's a fresh check, not an inference from this one.
 
 - businessman-person-2-svgrepo-com.svg
 - detective-face-svgrepo-com.svg
@@ -62,9 +65,18 @@ matters before this goes further than FPO.
 ## The gender-skew follow-up batch (18 files, not added except one)
 
 The owner sent a second SVG Repo zip aimed at the skew flagged above. Of 18 files, only one was
-added: `woman-svgrepo-com.svg`, a flat single-fill (`#000000`-equivalent, one `<style>` block)
-full-body silhouette in the same visual language as the existing set. `woman-silhouette-svgrepo-com.svg`
-in this batch is **byte-identical** to the file already in this folder — not a new asset, skipped.
+added: `woman-svgrepo-com.svg`. `woman-silhouette-svgrepo-com.svg` in this batch is
+**byte-identical** to the file already in this folder — not a new asset, skipped.
+
+**[CORRECTED, Sept 16] `woman-svgrepo-com.svg` was described here as "a flat single-fill
+silhouette in the same visual language as the existing set." That was wrong, and the mistake is
+worth naming precisely: it was checked for color complexity with a regex that only matches
+`fill="#..."` attribute syntax, and this file paints entirely via `style="fill:#...;"` — a
+different syntax the check silently missed.** Rendered, it's a 9-distinct-color illustration:
+blonde hair, light/tan skin tone, white shirt, red tie, tan blazer — stylistically identical to
+the "detailed, upper-body, closer to a portrait than a placeholder" shape that got the
+female-lawyer/programmer/worker trio excluded above, on the same grounds. See "Quantified skew
+review" below for what this means for the set as a whole, and the recommendation.
 
 **The other 16 were not added, on both the style ground this folder already applies and a license
 ground this session's re-check turned up:**
@@ -111,3 +123,32 @@ properly likely means sourcing flat, CC0-or-clearly-permissive, non-costumed bod
 silhouettes specifically — the same brief as the original set, filtered by gender presentation —
 rather than an emoji character pack, which is a different asset class (see the "upper-body"
 exclusions above) independent of its license.
+
+## Quantified skew review (Sept 16) — all 19 current entries, actually rendered and looked at
+
+Not inferred from filenames. Every SVG was rasterized and viewed alongside the three existing
+PNGs. `Icons.gd` picks by hash of name + game id, uncorrelated with any trait of the character —
+so every axis below is about the *pool's composition*, not about any single generated mystery.
+
+| Axis | Breakdown |
+|---|---|
+| **Gender presentation** | 13 of 19 (68%) masculine-coded (`businessman-person-2`, `detective-face`, `detective`, `dictator`, `gentleman-person`, `m-i-b`, `male-person-2`, `male-student-1`, `masquerade-gentleman`, `policeman`, `Suspect2`, `suspect1`, `suspect3`) · 2 of 19 (11%) feminine-coded (`woman-silhouette`, `woman`) · 4 of 19 (21%) gender-neutral by construction — masked or featureless (`evil-combatant`, `mug-shot`, `person-silhouette`, `thief`) |
+| **Apparent age** | 18 of 19 read as adults. 1 (`male-student-1`, a collared-shirt schoolboy look) reads distinctly younger — worth its own flag below, separate from gender. |
+| **Race / skin tone** | 18 of 19 carry **no** race or skin-tone signal at all — flat black silhouettes or line art, race-neutral by construction, which is arguably the right property for an anonymous placeholder set. Exactly 1 (`woman`, the file added this batch) shows an explicit light/tan skin tone and blonde hair. That is the *only* racially-specific entry in the whole pool, and it lands on the one slot meant to broaden feminine representation — so the fix for one axis quietly created a problem on another: a feminine-presenting suspect has a real chance of always reading as a specific (light-skinned) ethnicity, where a masculine-presenting one never does. |
+| **Disability / visible ability signals** | 0 of 19. No representation either way — an absence, not a skew, but worth naming since it was asked for. |
+| **Religious / cultural dress** | 0 of 19 in the live set. The Sept batch's turban and veil variants existed in the source zip but were excluded for the Twemoji/CC-BY reason above, not for their content — so this axis is untested by choice, not by design. |
+
+**What this means for actual play:** generation assigns each suspect a name and a described
+gender/identity independent of which icon they draw. With the pool at 68% masculine / 11%
+feminine / 21% neutral, a female character in the cast has roughly a 7-in-8 chance of being drawn
+with a masculine-coded or neutral icon — a visible mismatch — and on the ~1-in-19 draw where the
+pool's only feminine *portrait* (not silhouette) comes up, it also silently assigns a specific
+race the character's own text may not describe at all.
+
+**Recommendation:** pull `woman-svgrepo-com.svg` back out. It fails this set's own style rule
+(flat, single-tone, race-neutral) on the same grounds three other files were already excluded for,
+and it's the one file actively making the race axis worse, not better. That reverts the pool to
+18 (69% masc / 5% fem / 26% neutral) — a smaller, less misleading number, not a fixed one. Actually
+closing the skew still needs new sourcing: flat, race-neutral, non-costumed feminine-presenting
+silhouettes, specifically — not filtered from a general-purpose icon pack, which is what produced
+both failed attempts so far.
