@@ -736,7 +736,8 @@ sequencing decision are in the session history around this change.
 
 ## Part registry — how parts are sampled
 
-`part_registry.py` holds 1,469 atomized parts extracted from public-domain mystery fiction.
+`part_registry.py` holds 5,990 atomized parts across 573 sources, extracted from public-domain
+mystery fiction.
 
 Each part has:
 - `part_type` — one of the P1–P4 taxonomy types (crime_type, victim_profile, motive, etc.)
@@ -765,9 +766,13 @@ which parts were used. Stored at `mystery_dict["_provenance"]["recipe"]`.
 Run P1 first. Only escalate to P2/P3 if P1 quality is high. P4 is for corpus enrichment,
 not for generation gating.
 
+**The command below used to reference `cli.py`** — the retired Streamlit-era CLI, now in
+`deprecated/`, nothing should call it. The live tool is `scripts/extract_from_pdfs.py`, one
+source or directory at a time:
+
 ```bash
-python cli.py extract --protocol P1      # cheapest, run first
-python cli.py extract --protocol P1P2    # full corpus run (~359 books)
+python3 scripts/extract_from_pdfs.py <file-or-dir> --protocol P1       # cheapest, run first
+python3 scripts/extract_from_pdfs.py <file-or-dir> --protocol P1P2 --upgrade  # deeper pass
 ```
 
 ---
@@ -965,8 +970,8 @@ whatever it produced — no separate logging system needed.
 
 ### Extending this system
 
-- **Adding a new craft-grounding doc** (e.g. the still-open true-crime-podcast sourcing from
-  `CLAUDE.md`'s to-do): write it as `SOMETHING_CRAFT_FINDINGS.md` at the repo root, following the
+- **Adding a new craft-grounding doc** (e.g. the still-open true-crime-podcast sourcing —
+  `docs/DECISIONS.md` item 7): write it as `SOMETHING_CRAFT_FINDINGS.md` at the repo root, following the
   `Concept | Insight | Maps to taxonomy` (or `Maps to game system`) table convention already used
   by `SCREEN_CRAFT_FINDINGS.md` / `PARTY_CRAFT_FINDINGS.md`. Nothing else to do — the glob in
   `craft_grounding._SOURCE_DOC_GLOBS` picks it up automatically, and the index rebuilds itself on
@@ -1004,12 +1009,11 @@ above), never the source of truth.
 
 ## Avatar system + player profiles (Phase 3e)
 
-**Status: DEFERRED — stage 3. None of this exists.** The design is locked and merged
-(`docs/DECISIONS.md` item 4) and no code implements any of it. Read it as a specification to
-build from, never as a description of behaviour. The proposed 16-item accessory catalog below
-still needs an owner sign-off before anyone builds against it.
-
-**Status:** Design locked (Session 16). Not yet implemented — see "What still needs building" below.
+**Status: DEFERRED — stage 3, design locked (Session 16), none of it implemented.** Locked and
+merged (`docs/DECISIONS.md` item 4), but no code implements any of it — read what follows as a
+specification to build from, never as a description of behaviour. The proposed 16-item accessory
+catalog below still needs an owner sign-off before anyone builds against it; see "What still needs
+building" below for the actual gap.
 
 ### Two-layer avatar model
 
@@ -1128,7 +1132,7 @@ Priority order:
 1. `ANTHROPIC_API_KEY` environment variable (local dev, HuggingFace Secrets)
 2. Bearer token from `/home/claude/.claude/remote/.session_ingress_token` (CI / hosted runner)
 
-See `extract_test_mysteries.py:_get_token()` for the reference implementation.
+See `server/main.py`'s `_get_credentials()` for the reference implementation.
 
 ---
 

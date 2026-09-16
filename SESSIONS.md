@@ -5,6 +5,60 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 46 — September 16, 2026 (CYM: session-startup cost audit, and WIRING.md gets a real read-through)
+
+**Branch:** `claude/serene-ramanujan-f5svcd`. Picked up the owner's "quicken the initial moments of
+a new session" thread from last week. `CLAUDE.md` was already confirmed stable at 556 lines since
+Session 45's trim — nothing to redo there. `SESSIONS.md`'s real per-session cost is just its most
+recent block (this file is never read wholesale by the protocol), which is small; its 6,700-line
+total doesn't cost a session that isn't searching across all of it. So this session's actual work
+was `docs/WIRING.md` — the one other doc the session protocol names explicitly (read it if touching
+generation/localization/coherence) — read start to finish rather than just measured.
+
+**Five real staleness bugs found, not narrative bloat — fixed:**
+1. "Part registry" section claimed 1,469 parts with no source count; the file's own Data-flow
+   section (and `CLAUDE.md`) says 5,990 across 573 sources. Checked the live registry directly
+   (`part_registry.load_registry()`) — 5,990/573 is current. The 1,469 figure was corpus-growth
+   history that never got updated in this one spot.
+2. "Extraction protocols" showed `python cli.py extract --protocol P1` as the way to run
+   extraction. `cli.py` only exists under `deprecated/` — it's the retired Streamlit CLI. Replaced
+   with the real, live command (`scripts/extract_from_pdfs.py <file-or-dir> --protocol P1`,
+   confirmed against its actual argparse definition).
+3. "API authentication" pointed to `extract_test_mysteries.py:_get_token()` as the reference
+   implementation — that file is also `deprecated/`-only. The real, live implementation is
+   `server/main.py`'s `_get_credentials()`; repointed there.
+4. "Extending this system" referenced "the still-open true-crime-podcast sourcing from
+   `CLAUDE.md`'s to-do" — checked, and it's not in `CLAUDE.md` anymore (item 7's write-up doesn't
+   name it, though the underlying work is still real per `docs/DECISIONS.md` item 7 and several
+   `SESSIONS.md` entries). Repointed the citation to `docs/DECISIONS.md` item 7 instead of the
+   file that no longer says it.
+5. The Avatar system section carried two separate, slightly inconsistent `**Status:**` lines back
+   to back (`DEFERRED — stage 3` and, two paragraphs later, `Design locked (Session 16)`). Merged
+   into one.
+
+**What this wasn't:** a trim. `WIRING.md` doesn't have `CLAUDE.md`'s old problem — only 12
+session-tagged asides across 1,143 lines, and the ones that exist are load-bearing rationale (why a
+design choice was made, so nobody "simplifies" it back to a bug that was already fixed), not
+duplicated play-by-play. Length here is doing its job; accuracy was the actual gap. Grew by 4 lines
+net, from the corrections themselves, not from padding.
+
+**Verification:** `check_doc_claims.py` and `check_decisions.py` both pass — confirmed the new
+`_get_credentials()` reference resolves to a real function before committing, same standard the
+checker itself enforces for every other backticked reference in these docs.
+
+### Next session
+
+1. Everything from Session 45's closing list is still open (F5 pass, gender skew, item 7 corpus
+   work, the 3 branch-hygiene findings, `owner/godot-sidecars`'s merge decision, undeclared
+   `pillow` dependency) — none of it touched this session.
+2. No further doc-optimization work identified as urgent. If it comes up again, the honest note to
+   start from is: `CLAUDE.md` and `SESSIONS.md`'s startup cost are both already fine; anything else
+   worth auditing (`docs/PLAYTEST_FLOW.md`, `docs/INVESTIGATION_DESIGN.md`, etc.) is read
+   conditionally, not automatically, so the payoff of auditing them is smaller than `WIRING.md`'s
+   was.
+
+---
+
 ## Session 45 — September 10, 2026 (CYM: the gender-skew follow-up batch turns out to be one file, not eighteen, and a real license flag with it)
 
 **Branch:** `claude/serene-ramanujan-f5svcd`, off `main` at `befe02f` (local `main` was 45 commits
