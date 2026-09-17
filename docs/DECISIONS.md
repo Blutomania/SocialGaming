@@ -1451,7 +1451,7 @@ that the superseded text has become history and belongs here instead.
     "2–6 players, ages 10+", it is the wrong word. Reach for the investigation instead — findings,
     casefiles, statements, the record, what reached the table.
 
-35. **[BUILT, Sept 16 2026 — untested against a real generation] Character pronouns +
+35. **[BUILT AND CONFIRMED AGAINST A REAL GENERATION, Sept 16 2026] Character pronouns +
     presentation, and suspect-icon tagging with a fallback chain that reaches past humans.**
     Grew out of two separate asks in the same conversation: the suspect-icon gender-skew review
     (icons/suspect/README.md's "Quantified skew review") found that icon assignment is completely
@@ -1501,13 +1501,33 @@ that the superseded text has become history and belongs here instead.
     failed on exactly that case before either copy was fixed to tokenize instead. Fixed in both
     places; the test would catch a regression in either.
 
-    **What's still open.** Untested against a real generation — costs credits, same caveat as most
-    of item 23. `coherence_validator.py` doesn't enforce `pronouns`/`presentation` non-blank yet
-    (`docs/WIRING.md`'s schema section flags this explicitly as the natural next addition, same
-    shape as the existing alibi/motive/secret rules — not added this pass to keep the change scoped
-    to the field actually landing). Not run through `VerifyScenes.gd`/`ApplyTheme.gd` — no engine
-    reachable from a session, same standing caveat as everything else in this project. The owner is
-    sourcing new feminine-presenting suspect SVGs separately (target: 10–13, flat, race-neutral,
-    same style as the existing set — see icons/suspect/README.md's quantified review for why);
-    they'll need tags.json entries when they land, and `build_icons.py` will refuse the build until
-    they get them, which is the system working as intended, not a blocker to route around.
+    **[Confirmed, same day] The owner ran a real generation on their own machine** — `python3 -m
+    uvicorn` + F5 + New Game (Solo), prompt *"A Stolen necklace in a world like Neuromancer"*. The
+    result, `ghost_protocol:_the_tessier-ashpool_neck_1789602264.json` ($0.166, `claude-sonnet-4-6`,
+    186.8s), landed in `rejected/` — `gate.py` correctly refused it, for reasons entirely unrelated
+    to this item: two suspects (`Sera Okafor`, `Tomás Vey`) cleared by zero findings each, three
+    narrowing clues leaking the answer in their own prose (`NARR.NARROWS_PROSE_NAMES`, item 27),
+    elimination stalling at 3 suspects instead of 1. Not this item's fault, and not nothing either —
+    see the note on item 27 below. **What this item actually needed to prove: all 8 characters
+    carried both `pronouns` and `presentation`, non-blank, sensible, and varied** — five `he/him`,
+    two `she/her`, and `Brin Uptime` came back `they/them` unprompted, the value nothing in the
+    prompt forced and the exact case `_gender_bucket()`'s bug (above) would have mis-sorted had it
+    shipped. Every character read `presentation: human`, correctly, for a human cast in a cyberpunk
+    setting that could plausibly have confused a less careful prompt. `ApplyTheme.gd` and
+    `VerifyScenes.gd` were also run for real this same session (`docs/F5_CHECKLIST.md`, `MISSES
+    none`, eight `ok` lines) — not specific to this item, but the standing "no engine reachable"
+    caveat is gone for this session's changes as a whole.
+
+    **What's still open.** `coherence_validator.py` doesn't enforce `pronouns`/`presentation`
+    non-blank yet (`docs/WIRING.md`'s schema section flags this as the natural next addition, same
+    shape as the existing alibi/motive/secret rules) — this generation happened to write both for
+    every character, which is a sample of one, not a guarantee. The feminine-icon sourcing that
+    prompted this item is no longer "separate" — 5 flat, race-neutral SVGs landed the same day
+    (`icons/suspect/README.md`, pool now 13 masculine / 6 feminine / 4 neutral), short of the 10–13
+    parity target but real progress, with an open license-source question of its own.
+
+    **Incidental, but worth recording against item 27 specifically:** three `NARR.NARROWS_PROSE_NAMES`
+    violations in one generation is the first real data point on how often the "name nobody it
+    points to" rule (item 27) actually holds under real generation — not favorable, on this one
+    sample. Worth watching across more generations before concluding anything, but worth noting now
+    rather than only when a pattern is undeniable.

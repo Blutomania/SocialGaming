@@ -508,11 +508,15 @@ is from March and 16 have generated cleanly since, but this run is the confirmat
 its engine default. So the symptom is not a crash; it is one control type looking unthemed while
 everything around it looks right. Step 8's `MISSES` block is the guard.
 
-The 13 theme type variations (`DisplayLabel`, `TitleLabel`, `MysteryTitleLabel`, `HeadingLabel`,
-`MutedLabel`, `FaintLabel`, `CautionLabel`, `ErrorLabel`, `PositiveLabel`, `PrimaryButton`,
-`QuietButton`, `DangerButton`, `WellPanel`) fail the same way — an unrecognised variation falls back
-to the base type. Quick tell: if the main menu title is not 44px brass, variations are not applying
-at all.
+The theme type variations — 19 as of this pass, not the 13 this line used to list; `VerdictLabel`,
+`CodeLabel`, `PlayerNameLabel`, `BrowseRowButton`, `SuspectCardButton` and `GenerationTitleLabel`
+had all landed since without this count being updated — fail the same way — an unrecognised
+variation falls back to the base type. Full current list, read straight from `Style.gd` rather than
+retyped by hand: `DisplayLabel`, `TitleLabel`, `MysteryTitleLabel`, `GenerationTitleLabel`,
+`HeadingLabel`, `MutedLabel`, `FaintLabel`, `CautionLabel`, `ErrorLabel`, `PositiveLabel`,
+`VerdictLabel`, `CodeLabel`, `PlayerNameLabel`, `PrimaryButton`, `QuietButton`, `DangerButton`,
+`WellPanel`, `BrowseRowButton`, `SuspectCardButton`. Quick tell: if the main menu title is not 44px
+brass, variations are not applying at all.
 
 **Scrollbars are the loudest tell.** Unthemed they are bright grey, which on this ground would make
 them the brightest thing on the case screen.
