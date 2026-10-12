@@ -104,6 +104,7 @@ def render_gdscript() -> str:
     lines += [
         "",
         f"const BORDER_WIDTH: int = {palette.BORDER_WIDTH}",
+        f"const RULE_WIDTH: int = {palette.RULE_WIDTH}",
         "",
     ]
     return "\n".join(lines)

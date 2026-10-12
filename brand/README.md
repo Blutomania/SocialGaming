@@ -16,9 +16,11 @@ Prefer PNG with real transparency or SVG. Keep the filename descriptive.
 
 ## The one rule these assets must satisfy
 
-**CYM's ground is slate `#2F4459`.** Anything drawn against white will lose its
-dark half: near-black lands at ~1.9:1 on this ground and is effectively
-invisible, which is exactly what happened to MYF's retired metallic title
-treatment (see MYF `CLAUDE.md` item 48). Check a new mark's values against the
-ground before assuming it reads — `background_field.py` documents the same
-constraint for the background marks.
+**CYM's ground is Night `#0C1118`.** It was slate `#2F4459` until Session 45,
+and slate is still MYF's ground, so a mark shared by both titles has to read on
+both. On Night it is a mark's dark half that disappears: anything below about
+mid-grey sinks into the ground. On slate, near-black lands at ~1.9:1 and is
+effectively invisible, which is exactly what happened to MYF's retired metallic
+title treatment (see MYF `CLAUDE.md` item 48). Measure a new mark before
+assuming it reads: `scripts/check_brand_contrast.py` grades against Night, and
+`--myf` grades against slate.

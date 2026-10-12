@@ -5,6 +5,73 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 45 — October 12, 2026 (CYM: Night File — a style guide from the owner's Red Flags markups, landed at theme level)
+
+**Branch:** `claude/jolly-rubin-avt94y`, started identical to `main` at `befe02f`. First session in
+five weeks; recap given from Session 44's block and the open-work list.
+
+### Housekeeping
+
+- `CLAUDE.md` still said `whiteout_at_shackleton_base` was rated 10; the owner revised it to 8 in
+  `8011fed`. Fixed (`1ab471a`).
+- `origin/owner/godot-sidecars` (two commits, Sept 2) is **fully superseded**: its eight `.uid`
+  files are on `main` byte-identical, `cym_theme.tres` was salvaged in `4a85dad`, and its
+  `project.godot` diff is the 4.7 rewrite `CLAUDE.md` says to discard. Safe to delete; left for
+  the owner, since it is their branch.
+
+### The style guide
+
+The owner pointed at two sites (predictredflags.xyz, mobscene.xyz). **Neither could be reached**:
+the container's proxy refuses both, and WebFetch fails DNS on both (`ENOTFOUND`) — so it is not
+only policy, the names do not resolve publicly. The owner sent screenshots instead, then
+annotated two of them. Item 35 in `docs/DECISIONS.md` has the whole reasoning; the short version:
+
+- **Arithmetic first.** Slate on a near-black ground is 1.89:1, a tint not a signal. The same
+  hue lifted to `#46678A` matches the reference red's own ratios (3.22 vs 3.36 on the ground,
+  4.92 vs 4.96 under ink). That one finding shaped the whole palette.
+- **Draft 1 proposed League Gothic over Cinzel Decorative; the owner declined.** Draft 2 kept
+  Cinzel for every title, including screen titles (`TitleLabel`), per the markup.
+- **The owner's markup turned the reference's three options into Interrogate / Follow / Examine.**
+  Those are the gather loop's verbs, not APF's. Flagged rather than built; the owner confirmed it
+  was an example, and the hub follows APF (casefile rows, round progress), with the gather
+  reading kept as an alternative the same parts serve.
+- **Decided:** Night ground, brass keeps the primary action (steel takes "chosen"), Archivo
+  Narrow added.
+
+### What landed
+
+`palette.py` (Night ground, `SLATE` kept as a token, re-pitched surfaces/lines/ink/steel, radii
+to 0, `BORDER_WIDTH` 2, new `RULE_WIDTH` 1, five new contract pairs); `Palette.gd` and
+`mobile.html` regenerated, so **the phone goes Night too**; the clear colour in `project.godot`;
+`check_brand_contrast.py` grades against Night by default and `--myf` against slate;
+`brand/README.md` and `test_palette.py` updated so the move is asserted, not silent;
+Archivo Narrow SemiBold/Bold + OFL in `godot/assets/fonts/`; `Style.gd` — steel "chosen" boxes
+with a shadow glow, focus ring to `STEEL_BRIGHT`, Archivo Narrow on buttons/headers/labels/rows,
+Cinzel on `TitleLabel`, `PrimaryButton` one size up. `docs/STYLE_GUIDE.md` written.
+
+**Brand marks measured against Night** (`check_brand_contrast.py`, cairosvg installed to rasterise):
+organic monogram 73% → **0%** of ink at or below 2.5:1; negative mark 7% → 6%; temp logo 66% → 52%.
+
+A visual version (clickable components, five mocked screens using the Neriin mystery) is an
+artifact: *CYM Night File*.
+
+### Verification
+
+`check_godot_wiring.py`, `build_palette.py --check`, `test_palette.py` (33 pairs),
+`check_doc_claims.py`, `check_decisions.py` (1..35) all pass. **Nothing rendered** — no engine
+reaches a session.
+
+### Next session
+
+1. **F5 on the owner's machine, and run `ApplyTheme.gd` + `VerifyScenes.gd`.** Confirms
+   `hover_pressed` and the other new theme items, and regenerates the editor preview (still slate).
+2. **Screen by screen**, in the Sept8 rhythm: the ID column, result bars, stamp and ledger, and
+   the five hard-coded colours listed at the end of `docs/STYLE_GUIDE.md`. ApfRound first — it is
+   the hub the owner's markup redrew.
+3. Delete `origin/owner/godot-sidecars` if the owner agrees.
+
+---
+
 ## Session 44 — September 9, 2026 (CYM: PR #49 merged, the Sept8 playtest walked screen by screen, and the first real suspect icon set)
 
 **Branch:** `claude/compassionate-johnson-jye9vd`. Two threads: closing out Session 42/43's still-open

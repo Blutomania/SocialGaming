@@ -213,6 +213,7 @@ and the WebSocket.
 | `icons/` | Source artwork for the clue and witness icon sets, one folder per set. `godot/scripts/theme/Icons.gd` decides which icon a thing gets, and its header explains why that must carry no information |
 | **Documents** | |
 | `docs/PLAYTEST_FLOW.md` | **APF and the playtest screens.** Read before touching any playtest-path screen |
+| `docs/STYLE_GUIDE.md` | **Night File — what each colour, face and part is FOR.** Read before styling any screen. Values live in `palette.py`, not here |
 | `docs/INVESTIGATION_DESIGN.md` | The investigation model, solvability as set arithmetic, and the one remaining open design question |
 | `docs/WIRING.md` | Canonical generation architecture — read before touching generation |
 | `docs/F5_CHECKLIST.md` | The hand-walk procedure for the Godot client, and which steps have actually been walked |
@@ -531,6 +532,23 @@ CC0-claimed silhouettes landed alongside the existing 3 PNGs (18 total); provena
 a licensing re-check caveat are in `icons/suspect/README.md`, not repeated here. PR #49 (Session
 42+43's whole branch) was still unmerged into `main` at this session's start — merged now; the
 branch-tip-vs-`main` mismatch is worth checking early in future sessions rather than assumed clean.
+
+### 35. Night File — the host screen's look — **THEME LANDED, Session 45; screen pass next**
+
+The owner's annotated *Red Flags* screenshots became `docs/STYLE_GUIDE.md`: emulate the structure
+(outlined = available, filled = chosen, square, heavy outlines), not the identity. **Ground is now
+Night `#0C1118`**; slate survives as `SLATE`, the brand hue, used as a tint. **Steel says "chosen",
+brass says "act"** — brass keeps the primary button by the owner's call. **Cinzel Decorative stays
+and now sets `TitleLabel` too**; Archivo Narrow joins for buttons, headers, labels and list rows;
+Nunito Sans keeps prose. MYF keeps slate, so the two titles no longer share a ground — accepted.
+
+Landed at theme level only, so all nine screens restyle with no `.tscn` edited. **Not rendered:**
+re-run `ApplyTheme.gd` and `VerifyScenes.gd` on the owner's machine — the first confirms the new
+theme items exist and regenerates the editor preview, which shows slate until it is re-run.
+**Next is screen by screen:** the ID column, result bars, stamp and ledger need scene work, and
+five hard-coded colours bypass the theme (listed at the end of the style guide). The investigation
+hub follows APF — casefile rows plus a round-progress bar. Full reasoning: `docs/DECISIONS.md`
+item 35.
 
 ### 27. Incrimination as well as exculpation — the glove mechanic — **BUILT, Session 40**
 

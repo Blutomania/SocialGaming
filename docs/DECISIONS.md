@@ -1415,3 +1415,45 @@ that the superseded text has become history and belongs here instead.
     **The standing rule for future sessions:** if a word would be at home on a box that says
     "2–6 players, ages 10+", it is the wrong word. Reach for the investigation instead — findings,
     casefiles, statements, the record, what reached the table.
+
+35. **[ADOPTED, Session 45 — October 12, 2026 — owner] Night File: the host screen's look.**
+    The owner brought annotated screenshots of *Red Flags* (predictredflags.xyz) and asked for a
+    style guide that **emulates it without copying it**, in CYM's slate blue. What that look does
+    is make one decision legible from a sofa: outlined means "you could choose this", filled means
+    "chosen", on square, heavily outlined tiles over a near-black ground. Full guide:
+    `docs/STYLE_GUIDE.md`.
+
+    **The question the arithmetic answered first: slate cannot do red's job as it stands.** An
+    accent works there because it is bright against near-black — the reference red sits at 3.36:1
+    against its ground and 4.96:1 under cream ink. Slate `#2F4459` on a near-black ground is
+    1.89:1, a tint rather than a signal. The same hue lifted to `#46678A` lands at 3.22 and 4.92 —
+    the reference's own ratios, in our colour. So slate stayed the brand hue (`SLATE`, now the tint
+    behind result bars) and its lifted self became the selection accent (`STEEL`, re-pitched).
+
+    Owner's calls, all Session 45:
+    - **The ground moves from slate to Night `#0C1118`.** It overturns item 24's "panels go deeper
+      than the ground" — that rule existed because slate was a mid-tone, and it was rewritten in
+      `palette.py` with the reason rather than just the value. MYF keeps slate, so the two titles
+      no longer share a ground; accepted. **Every brand mark reads better on Night**: the organic
+      monogram goes from 73% of its ink at or below 2.5:1 to 0%, the negative mark 7% to 6%, the
+      temporary lobby logo 66% to 52%.
+    - **Brass keeps the primary action.** Steel takes every "chosen" state: toggled buttons,
+      list selection, suspect cards, focus, progress. One meaning per colour.
+    - **Cinzel Decorative stays** — the first draft proposed replacing it with League Gothic and
+      the owner declined — **and gains `TitleLabel`**, on the owner's markup that a screen's title
+      belongs in the decorative face. This reverses a Session 43 scope call; the reason for that
+      call (fast reading during play) is answered by moving the fast-read text to the next face.
+    - **Archivo Narrow is added** (OFL 1.1, static SemiBold/Bold from Omnibus-Type's own repo)
+      for buttons, headers, field labels and list rows. Nunito Sans keeps prose.
+    - **The investigation hub serves APF.** The owner's markup turned the reference's three
+      options into *Interrogate Witnesses / Follow Leads / Examine Evidence* and its confidence
+      slider into investigation progress; the owner then confirmed it was "an example, not a
+      directive" and that APF's reading is right — the rows are the three kinds of finding in a
+      casefile, the bar is rounds. The gather loop can reuse the same parts.
+
+    **What landed is theme-level only**, which is the point of `Style.gd` (item 24): `palette.py`,
+    the generated `Palette.gd` and `mobile.html` block, the clear colour, two fonts and the
+    Theme — all nine screens restyle with no `.tscn` edited. **Not rendered** — no engine reaches a
+    session; `ApplyTheme.gd` has to confirm the new theme items (`hover_pressed` among them) on the
+    owner's machine. The scene-level parts (the ID column, the result bar, the stamp, the ledger)
+    and five hard-coded colours that bypass the theme are the screen-by-screen pass that follows.
