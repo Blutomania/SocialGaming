@@ -5,12 +5,511 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 47 — October 12, 2026 (CYM: Night File — a style guide from the owner's Red Flags markups, landed at theme level)
+
+**Branch:** `claude/jolly-rubin-avt94y`, started identical to `main` at `befe02f`. First session in
+five weeks; recap given from Session 44's block and the open-work list — **which was wrong about
+where the project stood**: Sessions 45 and 46 (Sept 10–16) sat unmerged on
+`claude/serene-ramanujan-f5svcd`, with no PR ever opened, and this session first numbered itself 45
+and its decision item 35, colliding with both. Found during branch cleanup; merged in and
+renumbered — this is Session 47 and its decision is item 36. The PR #49 lesson, again: check every
+branch's tip against `main` at session start, not only the assigned branch's.
+
+### Housekeeping
+
+- `CLAUDE.md` still said `whiteout_at_shackleton_base` was rated 10; the owner revised it to 8 in
+  `8011fed`. Fixed (`1ab471a`).
+- `origin/owner/godot-sidecars` (two commits, Sept 2) is **fully superseded**: its eight `.uid`
+  files are on `main` byte-identical, `cym_theme.tres` was salvaged in `4a85dad`, and its
+  `project.godot` diff is the 4.7 rewrite `CLAUDE.md` says to discard. Safe to delete; left for
+  the owner, since it is their branch.
+
+### The style guide
+
+The owner pointed at two sites (predictredflags.xyz, mobscene.xyz). **Neither could be reached**:
+the container's proxy refuses both, and WebFetch fails DNS on both (`ENOTFOUND`) — so it is not
+only policy, the names do not resolve publicly. The owner sent screenshots instead, then
+annotated two of them. Item 36 in `docs/DECISIONS.md` has the whole reasoning; the short version:
+
+- **Arithmetic first.** Slate on a near-black ground is 1.89:1, a tint not a signal. The same
+  hue lifted to `#46678A` matches the reference red's own ratios (3.22 vs 3.36 on the ground,
+  4.92 vs 4.96 under ink). That one finding shaped the whole palette.
+- **Draft 1 proposed League Gothic over Cinzel Decorative; the owner declined.** Draft 2 kept
+  Cinzel for every title, including screen titles (`TitleLabel`), per the markup.
+- **The owner's markup turned the reference's three options into Interrogate / Follow / Examine.**
+  Those are the gather loop's verbs, not APF's. Flagged rather than built; the owner confirmed it
+  was an example, and the hub follows APF (casefile rows, round progress), with the gather
+  reading kept as an alternative the same parts serve.
+- **Decided:** Night ground, brass keeps the primary action (steel takes "chosen"), Archivo
+  Narrow added.
+
+### What landed
+
+`palette.py` (Night ground, `SLATE` kept as a token, re-pitched surfaces/lines/ink/steel, radii
+to 0, `BORDER_WIDTH` 2, new `RULE_WIDTH` 1, five new contract pairs); `Palette.gd` and
+`mobile.html` regenerated, so **the phone goes Night too**; the clear colour in `project.godot`;
+`check_brand_contrast.py` grades against Night by default and `--myf` against slate;
+`brand/README.md` and `test_palette.py` updated so the move is asserted, not silent;
+Archivo Narrow SemiBold/Bold + OFL in `godot/assets/fonts/`; `Style.gd` — steel "chosen" boxes
+with a shadow glow, focus ring to `STEEL_BRIGHT`, Archivo Narrow on buttons/headers/labels/rows,
+Cinzel on `TitleLabel`, `PrimaryButton` one size up. `docs/STYLE_GUIDE.md` written.
+
+**Brand marks measured against Night** (`check_brand_contrast.py`, cairosvg installed to rasterise):
+organic monogram 73% → **0%** of ink at or below 2.5:1; negative mark 7% → 6%; temp logo 66% → 52%.
+
+A visual version (clickable components, five mocked screens using the Neriin mystery) is an
+artifact: *CYM Night File*.
+
+### The screen pass (owner: "keep adding")
+
+- **ApfRound** (`1cab1be`): finding rows replace checkboxes — ID column | rule | finding |
+  SHARING/KEEPING toggle, whole row clickable; a chosen row gets a steel edge and glow but keeps
+  its panel fill, because the row carries prose and ink on steel (4.92:1) is for a word, not a
+  paragraph. Round-progress bar with a deadpan caption (*Cold trail* → *Closing in* → *Last
+  round*) — the owner's markup turning the reference's slider into investigation progress.
+- **ResultScreen** (`364aae7`): the verdict names the person (*Not Cadan Polglase.* / *Rosalind
+  Trevaskis did it.*) in the same two labels and sizes the owner set on ResultSept8; the steel
+  stamp under it names who sat on a finding; a ledger replaces the stats text and adds this
+  player's own shared/kept-back counts from the server's `by_player`; rating buttons become a
+  ButtonGroup of choice tiles. **Not built: the "who the room accused" bars** — accusations are
+  stored but no route sends them here, and a game ends at the first correct accusation.
+- **MainMenu** (`d692b66`): the owner's markup — *Play a mystery / Create a mystery* × *Solo /
+  With friends* + a brass *Begin the investigation*, with a sentence saying where it goes. Every
+  destination is one the old three buttons reached. `F5_CHECKLIST.md` updated so the next walk
+  does not go wrong at step 9.
+- **Lobby**: the roster as finding-style rows with a seat number in the ID column (names stay as
+  big as the room code, per WaitingSept7); a seat count and a caption that a shared case needs two
+  or more; the status box becomes a steel stamp; *Start Game* → *Open the case*.
+- **Result bars: cut** (owner). Accusations would have needed a server route, and a game ends at
+  the first correct accusation.
+- **Five hard-coded colours** fixed. One was hiding a real regression: the moderation notice
+  carried a pre-palette grey override that masked the caution colour Session 37 gave it, so item
+  17's *visible* notice was rendering as a footnote.
+
+**A new check, used all session:** `gdtoolkit`'s `gdparse` (pip-installable; PyPI is reachable)
+parses GDScript 4. It accepts all 20 scripts in the repo and rejects a deliberately broken
+control, so it catches the "parse error → screen renders, nothing responds" failure that
+`check_godot_wiring.py` reads past. Not yet wired into the checker table.
+
+### Branch cleanup (owner: "I don't like leaving old branches")
+
+Every remote branch was audited by **content**, not by commit message — `main`'s early history was
+rewritten, so even work that plainly landed (`coherence_validator.py`, `WIRING.md`) shows up as
+"absent" by subject. The test used: for each file at a branch's tip, has that exact blob ever existed
+anywhere in `main`'s history; for the ones that have not, which of their lines appear nowhere in
+`main`'s current copy; and for anything left, whether the *idea* reached `main` under another name.
+
+**Nothing is lost by deleting.** Every branch below is tagged `archive/<branch-name>` before
+deletion: a tag keeps every commit (and the LFS parquet) retrievable forever without appearing as a
+branch. `git checkout archive/<name>` brings any of it back.
+
+| Branch | Verdict | What only it has |
+|---|---|---|
+| `claude/serene-ramanujan-f5svcd` | **Merged** (this session) | — Sessions 45–46 |
+| `owner/godot-sidecars` | Superseded | Only Godot 4.7's `project.godot` rewrite, which CLAUDE.md says to discard |
+| `claude/verify-root-path-JyDSP` | Superseded | Phase 1/2 Godot scaffold. Session 44 already judged it; its deletion never took |
+| `claude/upload-corpus-extraction-3uTq5` | Superseded | Streamlit era. The 14.6 MB parquet is an LFS object; the tag keeps it reachable |
+| `claude/myf-lobby-progress-state-zc3myh` | Superseded | Aug 12 MYF work — every idea is on `main`; its open-answering code was replaced by Flow B |
+| `claude/continuation-r0mhfq` | Superseded | An ancestor of `dev/mind-your-friends` |
+| `claude/awesome-hopper-eb06zt`, `confident-franklin-250vxg`, `compassionate-cray-pu5ieu`, `inspiring-newton-luip6g` | Superseded | MYF side branches (forked Mar 31); their design sections landed on `main` by another route |
+| `dev/mind-your-friends` | Superseded — **owner to confirm** | A July 22 snapshot; `main`'s `mind-your-friends/` carries MYF to Aug 20. DECISIONS item 9 says never touch it, a rule that predates the Aug 6 import |
+| `claude/connection-check-lum47r` | **Unmerged work** | A parallel July 22 session: coherence rule-hit telemetry, `rule_telemetry.py`, `coherence_benchmark.py`, `TAXONOMY_EXPANSION_CANDIDATES.md`, studio-thesis docs |
+| `claude/pdf-ingestion-checkpoint-71qwb3` | **Partly unmerged** | The anthology filename-collision fix (renames outputs, so existing extractions would be re-run at API cost), `--model-for`, S.S. Van Dine's 20 rules |
+| `claude/brave-bohr-45istr` | **Unmerged MYF design** | DM-based answers, the "Every Game Is Complete" principle, Player Memory (tentative) + a `playerProfile.js` stub |
+
+The three **unmerged** rows are recorded as open work in `CLAUDE.md` so deleting the branches does
+not delete the knowledge that the ideas exist. **Deletion itself needs the owner**: this session's
+permissions refuse `git push --delete` (as Session 18 found with the same 403), so it is done from
+GitHub's branch list or by approving the command.
+
+### Verification
+
+`check_godot_wiring.py`, `build_palette.py --check`, `test_palette.py` (33 pairs),
+`check_doc_claims.py`, `check_decisions.py` (1..35), `test_apf.py` all pass; `gdparse` accepts
+every changed script. **Nothing rendered** — no engine reaches a session.
+
+### Next session
+
+1. **F5 on the owner's machine, and run `ApplyTheme.gd` + `VerifyScenes.gd`.** Confirms
+   `hover_pressed` and the other new theme items, and regenerates the editor preview (still slate).
+   Walk MainMenu → a room → ApfRound → ResultScreen and screenshot each, Sept8-style.
+2. Remaining screens have the theme but no screen-specific pass: CaseDisplay,
+   MysteryGeneration, Interrogation, Accusation, ShareSelection.
+3. *(Decided: no result bars — owner, same session.)*
+4. Consider adding `gdparse` to the checker table.
+5. Delete `origin/owner/godot-sidecars` if the owner agrees.
+## Session — September 16, 2026 at 23:48
+**Branch:** `claude/serene-ramanujan-f5svcd`
+**Latest commit:** `697db84`
+
+### Files changed this session
+- `docs/F5_CHECKLIST.md` — Modified
+- `godot/scenes/ui/MysteryGeneration.tscn` — Modified
+- `godot/scripts/autoloads/Style.gd` — Modified
+
+### Commits this session
+```
+697db84 Suspect icons: 5 new feminine SVGs tagged in, closing most of the gender gap
+ff1d460 Item 35: character pronouns + presentation, and suspect-icon tagging
+5ca0d0c Suspect icons: legal clears the demo license, and a real quantified skew review
+46388e6 chore: auto-update SESSIONS.md with session summary [beb58c9]
+beb58c9 Fix five stale references in WIRING.md found during a real read-through
+e5edc44 Log the branch-hygiene pass: 22 confirmed safe, 3 real findings left open
+0ee31bb Trim CLAUDE.md's bloat back down: items 23 and 17 to status + pointer
+d708924 Suspect icons: add the one usable file from the gender-skew batch, flag Twemoji CC-BY on the rest
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
+## Session — September 16, 2026 at 21:45
+**Branch:** `claude/serene-ramanujan-f5svcd`
+**Latest commit:** `beb58c9`
+
+### Files changed this session
+- `cons/suspect/README.md` — Modified
+
+### Commits this session
+```
+beb58c9 Fix five stale references in WIRING.md found during a real read-through
+e5edc44 Log the branch-hygiene pass: 22 confirmed safe, 3 real findings left open
+0ee31bb Trim CLAUDE.md's bloat back down: items 23 and 17 to status + pointer
+d708924 Suspect icons: add the one usable file from the gender-skew batch, flag Twemoji CC-BY on the rest
+```
+
+### Session notes
+_No additional notes recorded_
+
+### Resume from here
+See **Consolidated To-Do List** above for next steps.
+Check `CLAUDE.md` for project conventions and current priorities.
+
+---
+
+## Session 46 — September 16, 2026 (CYM: session-startup cost audit, and WIRING.md gets a real read-through)
+
+**Branch:** `claude/serene-ramanujan-f5svcd`. Picked up the owner's "quicken the initial moments of
+a new session" thread from last week. `CLAUDE.md` was already confirmed stable at 556 lines since
+Session 45's trim — nothing to redo there. `SESSIONS.md`'s real per-session cost is just its most
+recent block (this file is never read wholesale by the protocol), which is small; its 6,700-line
+total doesn't cost a session that isn't searching across all of it. So this session's actual work
+was `docs/WIRING.md` — the one other doc the session protocol names explicitly (read it if touching
+generation/localization/coherence) — read start to finish rather than just measured.
+
+**Five real staleness bugs found, not narrative bloat — fixed:**
+1. "Part registry" section claimed 1,469 parts with no source count; the file's own Data-flow
+   section (and `CLAUDE.md`) says 5,990 across 573 sources. Checked the live registry directly
+   (`part_registry.load_registry()`) — 5,990/573 is current. The 1,469 figure was corpus-growth
+   history that never got updated in this one spot.
+2. "Extraction protocols" showed `python cli.py extract --protocol P1` as the way to run
+   extraction. `cli.py` only exists under `deprecated/` — it's the retired Streamlit CLI. Replaced
+   with the real, live command (`scripts/extract_from_pdfs.py <file-or-dir> --protocol P1`,
+   confirmed against its actual argparse definition).
+3. "API authentication" pointed to `extract_test_mysteries.py:_get_token()` as the reference
+   implementation — that file is also `deprecated/`-only. The real, live implementation is
+   `server/main.py`'s `_get_credentials()`; repointed there.
+4. "Extending this system" referenced "the still-open true-crime-podcast sourcing from
+   `CLAUDE.md`'s to-do" — checked, and it's not in `CLAUDE.md` anymore (item 7's write-up doesn't
+   name it, though the underlying work is still real per `docs/DECISIONS.md` item 7 and several
+   `SESSIONS.md` entries). Repointed the citation to `docs/DECISIONS.md` item 7 instead of the
+   file that no longer says it.
+5. The Avatar system section carried two separate, slightly inconsistent `**Status:**` lines back
+   to back (`DEFERRED — stage 3` and, two paragraphs later, `Design locked (Session 16)`). Merged
+   into one.
+
+**What this wasn't:** a trim. `WIRING.md` doesn't have `CLAUDE.md`'s old problem — only 12
+session-tagged asides across 1,143 lines, and the ones that exist are load-bearing rationale (why a
+design choice was made, so nobody "simplifies" it back to a bug that was already fixed), not
+duplicated play-by-play. Length here is doing its job; accuracy was the actual gap. Grew by 4 lines
+net, from the corrections themselves, not from padding.
+
+**Verification:** `check_doc_claims.py` and `check_decisions.py` both pass — confirmed the new
+`_get_credentials()` reference resolves to a real function before committing, same standard the
+checker itself enforces for every other backticked reference in these docs.
+
+### Addendum, same day: legal clears the demo license, a real quantified skew review, and item 35
+
+The rest of the day's work, same branch, continuing straight from the audit above rather than a
+separate session.
+
+**License item closed.** Legal independently confirmed the original 15 SVG Repo suspect icons for
+the demo — recorded in `icons/suspect/README.md`, scoped explicitly to "for the demo," not asserted
+as a permanent clearance.
+
+**A real quantified skew review, not a re-statement of the earlier flag.** Rendered all 19 suspect
+icons (16 SVGs to PNG via `cairosvg`, plus the 3 existing PNGs) and actually looked at them, rather
+than trusting filenames. Found a genuine mistake from Session 45: `woman-svgrepo-com.svg` was
+recorded there as "a flat single-fill silhouette" — it's actually a 9-color illustration (skin
+tone, hair color, blazer, tie). Session 45's color-complexity check only matched `fill="#..."`
+attribute syntax; this file paints via `style="fill:#...;"`, which slipped past. (Worth noting for
+the record: `build_icons.py`'s real flattening pipeline was never fooled by this — `recolour()`
+already handles both syntaxes correctly, per `test_icons.py`'s own CSS-class/inline-style test
+cases. Only the informal manual classification was wrong.) Quantified breakdown across gender
+presentation, age, race/skin-tone visibility, disability signals and religious/cultural dress —
+full table in `icons/suspect/README.md`'s "Quantified skew review" section. Net: 68% masculine / 11%
+feminine / 21% neutral, and the one file meant to help feminine representation was also the only
+one that assigned a specific race — the fix for one axis made another worse. Recommended pulling
+that file back out; acted on later the same day (see item 35, below).
+
+**Item 7 corpus status re-confirmed, nothing new run.** Same state as Session 45 left it — the 11
+held-back anthology PDFs and the 4-file `_novels/` batch still don't exist in any session's reach;
+the 10 files in `mystery_database/new_sources/` are present and runnable but untouched, pending an
+explicit go-ahead on the API cost.
+
+**Item 35 built: character `pronouns`/`presentation`, and suspect-icon tagging.** Grew directly out
+of the skew review plus the owner naming the real driver — dialogue accuracy during interrogation,
+not just icon art — and then a forward-looking question about non-human settings ("Scandal in
+Smurfland", "my blackmailer is an alien"). Full build reasoning, the fallback-chain design, and the
+real substring-matching bug `test_icons.py` caught (`"he"` inside `"they/them"`) are in
+`docs/DECISIONS.md` item 35 — not repeated here. Touched: `server/main.py` (schema + prompt +
+`_generate_witness_scene()`/`_generate_resolution_narrative()`/`_format_plot_reveal()`),
+`godot/scripts/data/MysteryData.gd`, `godot/scripts/theme/Icons.gd` (new, and the bug fix),
+`scripts/build_icons.py` (manifest loading + enforcement), `icons/suspect/tags.json` (new),
+`docs/WIRING.md` (schema section brought fully current — it had already drifted from the real
+prompt before this session touched it, missing `bio`/`statement`/`reveals`/`narrows`/
+`investigation_areas`/`leads` entirely), three Godot call sites (`case_display.gd`,
+`result_screen.gd`, `interrogation.gd`), and two new test files
+(`scripts/test_localization_preserves_traits.py`, plus a large new section in
+`scripts/test_icons.py`). `woman-svgrepo-com.svg` removed for real this time (git rm, all three
+generated copies) rather than just recommended for removal.
+
+**Verification:** `check_godot_wiring.py`, `check_doc_claims.py`, `check_decisions.py`,
+`build_icons.py --check`, `test_icons.py`, and the new `test_localization_preserves_traits.py` all
+pass. `server/main.py` compiles. Not run against a real generation (costs credits) and not run
+through the Godot engine (none reachable from a session) — both flagged explicitly in item 35
+rather than claimed as done.
+
+### Addendum, same day: the owner ran F5 and a real generation, for real this time
+
+The owner walked `docs/F5_CHECKLIST.md` live, on their own machine, while this session watched via
+pasted terminal/screenshot output — the actual thing "no engine reachable from a session" has
+caveated all session for.
+
+**`ApplyTheme.gd` ran clean:** `fonts` both loaded (Nunito Sans at `default_font_size 18`, Cinzel
+Decorative Bold on both display labels), `193 items checked across 41 theme types`, `MISSES none`.
+The 168/36 numbers `docs/F5_CHECKLIST.md` had recorded from Session 40 were stale, not wrong when
+written — real growth since (`SuspectCardButton`, `BrowseRowButton`, `PlatePanel`, the base-body
+16→18px bump, `DisplayLabel` Black→Bold), not a regression. `VerifyScenes.gd` confirmed separately
+(eight `ok` lines, matching the standing record).
+
+**A small live UI request, done while waiting on the generation call:** `MysteryGeneration.tscn`'s
+"Set Your Mystery" now wears Cinzel Decorative — a deliberate, named exception to the rule
+`Style.gd` already documented (that exact label was the rule's own cited example of what should
+stay Nunito Sans, decided at playtest SolvedSept7). Owner's explicit call to reverse it, this
+session, for this one label only — given its own new `GenerationTitleLabel` variation rather than
+repointing the shared `TitleLabel` five other screens use, so nothing else changed. Caught and fixed
+along the way: `docs/F5_CHECKLIST.md`'s "13 theme type variations" line was already stale before
+this change (missing `VerdictLabel`, `CodeLabel`, `PlayerNameLabel`, `BrowseRowButton`,
+`SuspectCardButton`) — corrected to the real, current list of 19 read straight from `Style.gd`.
+
+**Then the real generation — prompt *"A Stolen necklace in a world like Neuromancer"*.** Took
+186.8s, cost $0.166272 (`claude-sonnet-4-6` generation + localization), and landed in `rejected/`
+as `ghost_protocol:_the_tessier-ashpool_neck_1789602264.json` — `gate.py` correctly refusing it for
+reasons unrelated to this session's work: two suspects clearable by zero findings, three narrowing
+clues leaking the answer in their own prose (`NARR.NARROWS_PROSE_NAMES`, item 27), elimination
+stalling at 3 suspects. A genuinely broken mystery, caught before anyone sat down to it — item 18
+working as designed. **What it confirmed for item 35: all 8 characters carried non-blank
+`pronouns` and `presentation`, sensible values, and one witness came back `they/them` unprompted**
+— see item 35's update in `docs/DECISIONS.md` for the full account, including the incidental data
+point against item 27. One process note: the first two attempts to find "the new file" both grabbed
+the wrong one (an old `generated/` file, twice, by an alphabetical-vs-mtime sort bug in the very
+first script handed over) — the real file was in `rejected/`, a directory that first script never
+looked in at all. Worth remembering next time: check `rejected/` too, not just `generated/`.
+
+### Next session
+
+1. Everything from Session 45's closing list minus what item 35 touched: item 7 corpus work, the
+   3 branch-hygiene findings, `owner/godot-sidecars`'s merge decision, undeclared `pillow`
+   dependency. **F5 is no longer on this list** — walked for real, today.
+2. `coherence_validator.py` doesn't enforce `pronouns`/`presentation` non-blank yet — flagged
+   twice now (`docs/WIRING.md`, item 35) as the natural next addition, still not built.
+3. Item 27's narrowing-prose-leak rule got one real, unfavorable data point tonight (3 leaks in one
+   generation) — worth another real generation or two before concluding anything, but worth
+   watching rather than assuming the prompt rule holds.
+4. The stray untracked root files flagged all the way back (`SocialGaming/` nested folder,
+   `backfill_collided_stories.py`, `compare_models.py`, `compare_output/`, `package-lock.json`) are
+   now confirmed to actually exist on the owner's machine (seen in a real `git status` this
+   session) — still not inspected, still not urgent.
+5. Suspect-icon feminine pool is at 6 now (up from 1), short of the 10–13 parity target — and the
+   new batch's license/source is a real open question, not just an unverified formality (see
+   `icons/suspect/README.md`).
+6. No further doc-optimization work identified as urgent from the earlier audit this session. If
+   it comes up again: `CLAUDE.md` and `SESSIONS.md`'s startup cost are both already fine; anything
+   else worth auditing is read conditionally, not automatically, so the payoff is smaller than
+   `WIRING.md`'s was.
+
+---
+
+## Session 45 — September 10, 2026 (CYM: the gender-skew follow-up batch turns out to be one file, not eighteen, and a real license flag with it)
+
+**Branch:** `claude/serene-ramanujan-f5svcd`, off `main` at `befe02f` (local `main` was 45 commits
+stale before this session fetched and fast-forwarded it — no drift on this session's own branch,
+but worth flagging per the standing-habit ask below). Picked up from the prior session's close-of-
+night to-do, working the items that didn't need the Godot engine or the owner's local machine.
+
+### The 18-file SVG batch meant to fix the suspect-icon gender skew — only 1 file added
+
+The owner pulled a second SVG Repo zip (network-blocked from this sandbox, same as before) aimed at
+Session 44's flagged skew. Inspection found:
+
+- `woman-silhouette-svgrepo-com.svg` in the batch is **byte-identical** to the file already in
+  `icons/suspect/` — not new, skipped.
+- 16 of the remaining 17 carry `class="iconify iconify--twemoji"` and 4–12 distinct fill colours —
+  **Twemoji**, Twitter/X's emoji artwork, licensed **CC-BY 4.0, not CC0**. This set's whole
+  provenance assumption (SVG Repo's CC0 tag, zero attribution) does not hold for these; SVG Repo
+  re-hosting someone else's CC-BY work under its own badge doesn't change the original terms. This
+  is also stylistically the same "detailed, multi-colour, portrait-like" shape Session 44 already
+  excluded three similar files for. None of the original 15 files carry this marker (spot-checked
+  this session — all read `Generator: SVG Repo Mixer Tools`, no `iconify`/`twemoji` string in any of
+  them), so this issue is specific to the new batch, not a retroactive problem with what shipped.
+- One file, `woman-svgrepo-com.svg`, is a genuine match: flat single-fill, no Twemoji marker, a new
+  full-body silhouette in the same visual language as the rest of the set. **Added.**
+  `icons/suspect/README.md` now documents the whole batch — what was added, what was excluded and
+  why, and the license flag — the same way Session 44 documented its own exclusions.
+
+Net effect on the skew: 2 of 19 icons are now feminine-presenting silhouettes, not the larger
+rebalance the batch was hoping for. **Still open** — closing it for real likely needs sourcing more
+flat, clearly-licensed, non-costumed silhouettes specifically, not an emoji character pack.
+
+Rebuilt via `scripts/build_icons.py` (needed `pip install pillow` first — the script's raster path
+imports `PIL` and nothing in the repo declares it as a dependency; not fixed here, flagging it since
+it'll bite the next fresh environment too) and reverified: `build_icons.py --check` in sync,
+`test_icons.py` all passed.
+
+### The rest of last night's to-do
+
+- **F5 pass (item 1):** still blocked, same reason as every prior session — no Godot binary
+  reachable from here. Top priority for whoever next has the owner's machine.
+- **Backup branches (item 5):** `backup-old-local-main` and `backup-old-local-main-2` do not exist
+  on `origin` — checked both via `git ls-remote` and the GitHub API directly. They're local-only
+  branches on the owner's machine; the "via the GitHub UI" framing in last night's note doesn't
+  apply to them. Nothing to delete from here.
+- **Stray untracked root files (item 6):** same story — `git status` on this fresh clone shows none
+  of the named files (`SocialGaming/` nested folder, `backfill_collided_stories.py`,
+  `compare_models.py`, `compare_output/`, `package-lock.json`). They were untracked on the owner's
+  machine, so they only exist there.
+- **Item 7 / corpus (item 4):** genuinely untouched, but worth a note — `mystery_database/new_sources/`
+  is `.gitignore`d yet **is** tracked in git (`git ls-files` lists all 10 files in it), holding the
+  three-novel-plus-Higashino-plus-one-`.html` set from `docs/DECISIONS.md` item 7 (not the 11
+  held-back anthology PDFs or the 4-file `_novels/` batch, which aren't present here). Didn't run
+  extraction against any of it — that spends API credits and item 7 is explicitly ongoing corpus
+  work, not a stage-1 blocker, so it stays for an explicit go-ahead rather than started speculatively.
+- **Standing habit (item 7 of the to-do, the `git log` one):** followed it this session — caught
+  local `main` 45 commits behind `origin/main` before doing anything else, fast-forwarded it. No
+  actual work was affected (this session's branch already matched `origin/main`'s tip), but the habit
+  paid for itself in confidence, not just this time's outcome.
+
+### Also fixed in passing
+
+`CLAUDE.md`'s Session 43 note still said Ezra rated `whiteout_at_shackleton_base` a 10 — true when
+written, stale since `fix/whiteout-rating` (merged, PR #51) revised it to 8 the next day. Updated the
+sentence to say both numbers and when the revision happened, rather than deleting the history.
+
+### Verification
+
+`check_doc_claims.py`, `check_godot_wiring.py`, `check_decisions.py`, `test_icons.py`,
+`build_icons.py --check` all pass. Nothing here touches Godot scenes or scripts directly (only the
+generated `IconSet.gd`, which the wiring checker also covers), so no new engine-side risk was added,
+but nothing was engine-verified either — same standing gap as every session before this one.
+
+### Next session
+
+1. F5 pass, still first — nothing since Session 40 has been seen by the actual engine loader.
+2. Suspect-icon gender skew is still open; the fix needs new sourcing, not just filtering what was
+   already sent.
+3. Item 7's 11 held-back anthology PDFs, 7 all-null extractions, and the 4-file `_novels/` batch are
+   still nowhere in this repo or this session — they need to come from the owner's machine before
+   any of that work can start.
+4. Consider declaring `pillow` as a dependency somewhere (`server/requirements.txt` or a new
+   dev-tools one) — three scripts (`build_icons.py`, `check_brand_contrast.py`,
+   `split_icon_sheet.py`) import `PIL` and nothing in the repo says so.
+
+### Branch pruning, and a near-miss
+
+The owner bulk-deleted merged branches from the GitHub UI (the 26 identified above, plus the
+`dev/cryptic-challenge` / `dev/choose-your-mystery` duplicate pair — confirmed safe the same way
+Session 29 already had: `git log origin/main..origin/<branch>`, not the name). **Two branches that
+were explicitly flagged as not-safe got swept up in the same pass anyway: `dev/mind-your-friends`
+(45 real MYF commits) and `owner/godot-sidecars` (the owner's own 2-commit branch).** Both fully
+recovered — the commit objects were still cached in this session's local git store from having been
+inspected minutes earlier, so `git branch <name> origin/<name>` + `git push origin <name>` restored
+both at byte-identical SHAs, confirmed against the GitHub API afterward. **Nothing was lost, but it
+was luck that this session happened to have just fetched them** — a session that hadn't would have
+needed to hope GitHub's own dangling-commit retention window (unreachable commits aren't GC'd
+immediately) still covered it. Worth remembering: a bulk branch-delete UI does not ask "are you
+sure" per branch, so anything flagged as "leave alone" in a pruning pass is safer confirmed deleted-or-not
+immediately after, not assumed correct.
+
+### CLAUDE.md trim
+
+This file had crept back to 643 lines (~11.9K tokens) — the exact bloat Session 38 already cut once,
+paid by every session regardless of task. Items 23 and 17 in Open Work carried session-by-session
+play-by-play that either duplicated `docs/DECISIONS.md` or existed only here. Compared line-by-line
+before cutting anything: migrated what was unique to `CLAUDE.md` (the accepted-mystery/CPAM story,
+the seed-search monopoly fix, the two-routes-problem resolution and its item-27 interaction) into
+`docs/DECISIONS.md`'s existing item 23 as a dated append; confirmed item 17's Godot-chrome history
+was already fully covered in `DECISIONS.md` item 17 with nothing to migrate. Both sections in
+`CLAUDE.md` now state current status plus a pointer. Items 27 and 18/28 were checked too but left
+alone — already a tight status-plus-pointer, not narrative duplication, so cutting them further
+would have cost accuracy for little size. Result: 643 → 556 lines, ~11.9K → ~10.2K tokens.
+`check_doc_claims.py` and `check_decisions.py` both still pass.
+
+---
+
 ## Session 44 — September 9, 2026 (CYM: PR #49 merged, the Sept8 playtest walked screen by screen, and the first real suspect icon set)
 
 **Branch:** `claude/compassionate-johnson-jye9vd`. Two threads: closing out Session 42/43's still-open
 PR, and a fresh playtest walkthrough (owner's screenshots tagged `*Sept8`) in the same rhythm Session
 43 established — one screen at a time, feedback implemented, checkers run, committed, reported back
 before moving on.
+
+### Addendum, same evening: the 34 still-unmerged branches, examined not elided
+
+After the merged-branch prune (above) and the CLAUDE.md trim, went back through every branch left
+that wasn't merged into `main` — 34 of them, beyond `dev/mind-your-friends` and `owner/godot-sidecars`
+which were already known-good. Session 18 (July 22) had already cleared 7 of these as zero-unique-
+commits-vs-`main`; the other 27 (plus godot-game-rendering-i29xsh, not seen by Session 18) got a real
+pass this time — not just name-pattern-matching, but checking whether each branch's distinctive commit
+messages survive anywhere in `main`'s actual log (they often do, under a different hash, when history
+was rewritten — same shape as the `dev/cryptic-challenge` case) and, for anything ambiguous, checking
+the current file content directly.
+
+**22 confirmed safe and deleted** (owner, via GitHub UI): the 7 from Session 18, 13 pre-Godot
+Streamlit-era planning/schema branches (Feb–Mar 2026, fully superseded by the Godot rebuild, zero
+trace in `main` under any hash, predecessor preserved in `deprecated/`), `godot-game-rendering-i29xsh`
+(confirmed landed under rewritten hashes — both its commit messages appear verbatim in `main`'s log),
+and `claude/verify-root-path-JyDSP` (found after the initial pass — early Phase 1/2 Godot scaffold
+work using manual `BgTexture`/`LogoTexture` scene nodes, an approach `main` has since replaced with
+the `Style.gd`/`Palette.gd`/`Chrome.gd` autoload theming system; no trace of either under any hash).
+Verified clean afterward: `git fetch --prune` + a fresh branch listing showed exactly those 22 gone
+and everything flagged to keep still present — no repeat of the `mind-your-friends` near-miss.
+
+**7 left alone on purpose** — `awesome-hopper-eb06zt`, `brave-bohr-45istr`, `compassionate-cray-pu5ieu`,
+`confident-franklin-250vxg`, `connection-check-lum47r`, `continuation-r0mhfq`, `inspiring-newton-luip6g`.
+All branch off the same MYF development line `dev/mind-your-friends` already carries forward to its
+July 22 tip (`continuation-r0mhfq` confirmed as a direct ancestor). Probably redundant, but Session 18
+ruled MYF branch hygiene out of scope for CYM cleanup entirely — that ruling should extend to its
+checkpoints, not just its main branch. Not cleared here.
+
+**3 genuine findings, not deleted, need the owner's call:**
+- **`claude/pdf-ingestion-checkpoint-71qwb3`** claims three fixes to `scripts/extract_from_pdfs.py`.
+  Checked the live file: the `max_tokens` fix landed (refactored into `EXTRACTION_MAX_TOKENS`), but
+  the anthology filename-collision fix and a `--model-for` per-protocol flag are **genuinely absent**
+  — `book_slug[:30]` is still truncating exactly the way this branch's commit says it shouldn't.
+- **`claude/upload-corpus-extraction-3uTq5`** — the owner's own branch (not a Claude session), added
+  a 14MB corpus parquet file. No `.parquet` file exists anywhere in `main`'s history; the corpus
+  pipeline clearly moved to the JSON-based `part_registry.py` approach instead, but nothing confirms
+  the parquet itself is safe to lose.
+- **`claude/myf-lobby-progress-state-zc3myh`** — Aug 12 MYF playtest work (brand bar, Rebus round
+  rule, Whoa Nellie chain spec), three weeks *after* `dev/mind-your-friends`'s own July 22 tip, with
+  zero commit-message overlap against it. Reads as real MYF progress that never got folded back into
+  the main MYF line — possibly the most current MYF checkpoint that exists, not a stale one.
 
 ### PR #49 was never merged
 

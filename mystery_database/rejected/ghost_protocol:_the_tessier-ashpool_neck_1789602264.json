@@ -1,0 +1,596 @@
+{
+  "title": "Ghost Protocol: The Tessier-Ashpool Necklace",
+  "setting": {
+    "location": "The Capsule Hotel Zion, a vertical stack of sleeping pods and neon-lit corridors buried inside a decommissioned orbital relay station, currently docked at the Freeside ring",
+    "time_period": "2058, three days into a mandatory lockdown following a cyberattack that severed the station's docking clamps",
+    "environment": "Recycled air, flickering matrix-jacks along every corridor wall, the low hum of cooling fans, and the constant glow of corporate dataspheres bleeding through cracked partition screens",
+    "description": "The Capsule Hotel Zion is a maze of stacked sleeping pods, a black-market data lounge, a zero-g commissary, and corridors strung with bootleg ICE-breakers and counterfeit ident chips. Three days ago a cyberattack locked every airlock and docking clamp with military-grade encryption, trapping all guests and staff aboard until a repair crew arrives \u2014 no one can jack out of the physical space, and the station's external comms are jammed. The necklace \u2014 a string of Tessier-Ashpool biocrystal chips encoded with a nine-figure line of credit \u2014 was locked in the hotel safe and is now gone, leaving four suspects with nowhere to run and nothing to do but lie."
+  },
+  "solution": {
+    "culprit": "Rhea Solis",
+    "motive": "Rhea's estranged husband Dav Solis controls the only legitimate copy of their joint financial construct; the Tessier-Ashpool necklace, once fenced through a Freeside broker, would give her enough credit to buy a new identity and disappear before Dav's lawyers can freeze her assets in the upcoming divorce proceeding.",
+    "method": "Rhea used her occupation as a licensed bioware technician to clone the safe's biometric lock signature during a routine maintenance call two days before the theft. On the night of the theft she waited until the night clerk, Piotr Voss, was occupied with a false system alert she triggered remotely via a phantom ICE routine she had pre-loaded into the hotel's maintenance node. She then entered the back office, opened the safe with the cloned signature, removed the necklace, and concealed it inside a hollowed cortical-jack housing she carries as standard equipment. She returned to her pod before the alert cleared.",
+    "chain": [
+      {
+        "id": "S1",
+        "claim": "The safe was opened with a valid biometric clone, not forced \u2014 meaning the thief had legitimate technical access to the safe's lock system before the theft."
+      },
+      {
+        "id": "S2",
+        "claim": "Hotel maintenance logs show only one person performed a sanctioned maintenance call on the safe's biometric lock in the 72 hours before the theft: Rhea Solis."
+      },
+      {
+        "id": "S3",
+        "claim": "The false system alert that distracted night clerk Piotr Voss originated from the hotel's maintenance node, and a phantom ICE routine registered to Rhea Solis's maintenance ident was found still cached there."
+      },
+      {
+        "id": "S4",
+        "claim": "The necklace was discovered concealed inside a hollowed cortical-jack housing found in Rhea Solis's equipment bag, confirming she is the thief."
+      }
+    ],
+    "key_evidence": [
+      "E7",
+      "E9"
+    ],
+    "how_to_deduce": "The safe showed no sign of forced entry, meaning the thief used a cloned biometric signature rather than brute force \u2014 so the culprit had prior hands-on access to the lock mechanism. Maintenance logs confirm that Rhea Solis was the only person who performed a sanctioned call on the safe's lock in the days before the theft, giving her the opportunity and the technical means to clone the signature. The distraction that kept night clerk Piotr Voss away from the office was not a genuine fault: it was a phantom ICE routine, and the routine was still cached in the maintenance node under Rhea's ident. Finally, a search of her equipment bag produced the necklace itself, hidden inside a hollowed cortical-jack housing \u2014 standard gear for a bioware technician, and exactly the kind of container nobody would question her carrying."
+  },
+  "crime": {
+    "type": "Theft",
+    "what_happened": "The Tessier-Ashpool biocrystal necklace \u2014 a string of chips encoding a nine-figure line of credit, checked into the hotel safe by a guest \u2014 was found missing at 06:00 station time. The safe door was closed and showed no damage. Night clerk Piotr Voss reported being drawn away from the back office by a system alert between 02:15 and 02:50, and the safe was empty when he next opened it at the owner's request at 06:00.",
+    "when": "Sometime between 02:15 and 02:50, station time, during the lockdown's third night",
+    "initial_discovery": "Guest Maddox Crane demanded access to the hotel safe at 06:00 to retrieve the necklace before a scheduled remote business call; night clerk Piotr Voss opened the safe and found it empty. Crane immediately triggered the in-house dispute protocol, locking all pod doors and alerting all guests."
+  },
+  "characters": [
+    {
+      "name": "Maddox Crane",
+      "role": "victim",
+      "occupation": "Freelance packet runner and courier",
+      "pronouns": "he/him",
+      "presentation": "human",
+      "motive": "N/A \u2014 victim",
+      "alibi": "Maddox was logged into a private matrix node in pod 7 from 22:00 to 05:45, corroborated by the pod's jack-in/jack-out timestamp record and by fellow guest Sera Okafor, who heard him muttering deal figures through the partition wall all night.",
+      "secret": "The necklace does not belong to Maddox. He is transporting it as a bonded courier for a Freeside syndicate called the Spindle, and if it is not delivered he will owe the Spindle a debt he cannot repay. He has not disclosed this to anyone because bonded couriers are forbidden from acknowledging the Spindle's existence.",
+      "bio": "Maddox Crane is a lean, careful man in his forties who speaks in the clipped shorthand of someone who bills by the minute. He has worked Freeside's data corridors for two decades without leaving a trail anyone could follow, and his reputation for discretion is the only currency he actually trusts. He keeps his pod meticulously ordered and his face professionally neutral, but three days of lockdown have worn both thin."
+    },
+    {
+      "name": "Rhea Solis",
+      "role": "suspect",
+      "occupation": "Licensed wetware tech, contracted to Capsule Hotel Zion for systems maintenance",
+      "pronouns": "she/her",
+      "presentation": "human",
+      "motive": "Rhea's estranged husband Dav Solis controls their joint financial construct; the necklace's black-market value would fund a new identity and let her vanish before Dav's lawyers freeze her assets in their upcoming divorce.",
+      "alibi": "Rhea claims she was in the hotel's maintenance bay from 01:30 to 04:00, running a scheduled coolant diagnostic on the pod-stack ventilation system. She says she worked alone and no one can directly confirm she stayed there the whole time.",
+      "secret": "Rhea has been secretly copying fragments of guests' biometric data during routine maintenance calls for six months \u2014 not to steal identities, but to build a dossier she planned to sell to a Freeside ID forger who would cut her a new life in exchange. The safe's biometric lock was one of her targets. She has not yet sold anything, but the copied data is stored on a chip concealed in her tool belt.",
+      "bio": "Rhea Solis is a compact, competent woman in her mid-thirties who moves through technical spaces with the quiet authority of someone who knows exactly which panel to open and which wire not to touch. She came aboard Zion six months ago on a rolling maintenance contract and has kept to herself, eating in the commissary at off-hours and deflecting personal questions with practiced efficiency. There is a coiled tension about her that most people mistake for professionalism."
+    },
+    {
+      "name": "Kael Brandt",
+      "role": "suspect",
+      "occupation": "Retired cognition compliance auditor, travelling on a personal pension stipend",
+      "pronouns": "he/him",
+      "presentation": "human",
+      "motive": "Kael was quietly blackmailing Maddox Crane, having identified the necklace as Spindle property from his Turing days; stealing it outright would eliminate the risk of Maddox calling the Spindle's enforcers on him and give him the same nine-figure payout without the ongoing exposure.",
+      "alibi": "Kael states he spent the night in the data lounge on level three, playing a slow-burn strategy simulation with two other guests until approximately 03:30, then returned to his pod. The data lounge's session log confirms he was logged into the simulation terminal until 03:28.",
+      "secret": "Kael is not retired by choice. He was quietly forced out of the Turing Registry after he was caught suppressing an audit that would have implicated a corporate client he was being paid under the table to protect. He has been living off that client's hush money ever since, and he is terrified the Registry is still building a case against him. He keeps a scrambled comms device hidden under his mattress for contact with his former client.",
+      "bio": "Kael Brandt is a heavyset man in his early sixties with the deliberate manner of someone who once had institutional authority and has not entirely let go of it. He dresses in the understated corporate-casual of a certain kind of mid-level professional, favours expensive but not flashy implants, and has an unnerving habit of listening to a conversation a full beat longer than necessary before responding. He gives the impression of a man who is always tallying something."
+    },
+    {
+      "name": "Sera Okafor",
+      "role": "suspect",
+      "occupation": "Freelance intrusion countermeasure designer and threat surface auditor",
+      "pronouns": "she/her",
+      "presentation": "human",
+      "motive": "Sera was hired by a rival syndicate to intercept the necklace before Maddox could deliver it to the Spindle; stealing it during the lockdown was an opportunity of convenience she had been preparing to exploit.",
+      "alibi": "Sera says she was in her pod, pod 12, from 21:00 onward, working on a client ICE architecture remotely. The pod's internal sensor log shows motion inside pod 12 until 02:00, but the log goes dark after that due to what she calls a routine privacy screen she engaged.",
+      "secret": "Sera is the person who triggered the lockdown cyberattack \u2014 not to steal the necklace, which was a secondary opportunity, but to trap a different target aboard the station long enough for her employer to arrange a physical extraction. She used a disposable intrusion kit she has since partially disassembled, and she is now terrified the investigation will surface the attack's origin before she can destroy the remaining components.",
+      "bio": "Sera Okafor is tall and angular, with the kind of unhurried precision in her movements that comes from years spent navigating hostile matrix environments where a flinch costs you your mind. She is warm in conversation \u2014 quick to laugh, genuinely curious about people \u2014 and that warmth is entirely real, which makes her genuinely dangerous. She has been on Freeside for three months on what she describes as a long-overdue working holiday."
+    },
+    {
+      "name": "Tom\u00e1s Vey",
+      "role": "suspect",
+      "occupation": "Grey-market mod vendor and part-time fixer, posing as a circuit merchant",
+      "pronouns": "he/him",
+      "presentation": "human",
+      "motive": "Tom\u00e1s owed the Spindle a significant debt for a shipment of military-grade augments that went missing under his watch; stealing the necklace and returning it to the Spindle directly was his plan to clear that debt without paying cash he no longer has.",
+      "alibi": "Tom\u00e1s claims he was in the commissary from midnight to 03:00, eating and talking with night-shift kitchen assistant Brin Uptime, who has confirmed he was present until at least 02:30 but cannot account for the full period.",
+      "secret": "Tom\u00e1s is currently carrying four unlicensed military-grade combat augments concealed in a false-bottomed luggage case \u2014 the same shipment type he lost for the Spindle, sourced through a different channel. If station security scans his luggage he faces a mandatory twenty-year sentence under Freeside's weapons ordinance. He has been engineering reasons to keep luggage checks off the agenda since the lockdown began.",
+      "bio": "Tom\u00e1s Vey is a broad-shouldered, gregarious man in his late forties who appears to be everyone's favourite distraction \u2014 he tells long stories, buys rounds of synthetic coffee, and always seems to know something useful about whoever he is talking to. His cover as a travelling medical-supply salesman is convincing because half of what he sells genuinely is medical. He has a scar along his left jaw that he explains differently every time someone asks."
+    },
+    {
+      "name": "Piotr Voss",
+      "role": "witness",
+      "occupation": "Night-shift pod warden, Capsule Hotel Zion",
+      "pronouns": "he/him",
+      "presentation": "human",
+      "motive": "N/A \u2014 witness",
+      "alibi": "N/A \u2014 witness",
+      "secret": "N/A \u2014 witness",
+      "bio": "Piotr Voss has worked the night desk at Zion for two years without incident, and the theft on his watch has him frightened and cooperative to a fault. He is young, meticulous, and constitutionally unable to lie, which makes him an excellent witness and a terrible poker player.",
+      "statement": "At 02:15 a system alert flagged a pressure fault in the pod-stack ventilation node \u2014 I checked the board and it looked serious, so I left the desk to inspect the secondary panel in corridor B3. When I got there the pressure readings were completely normal. I was gone from the desk for about thirty-five minutes. I did not see anyone in corridor B3 or near the back office when I returned. The alert came from the maintenance subsystem, not from external sensors.",
+      "reveals": [
+        "E8"
+      ]
+    },
+    {
+      "name": "Brin Uptime",
+      "role": "witness",
+      "occupation": "Commissary hand, Capsule Hotel Zion \u2014 known for always being on shift, no matter the hour",
+      "pronouns": "they/them",
+      "presentation": "human",
+      "motive": "N/A \u2014 witness",
+      "alibi": "N/A \u2014 witness",
+      "secret": "N/A \u2014 witness",
+      "bio": "Brin Uptime is a quiet, observant person in their mid-twenties who has worked the late commissary shift at Zion for eight months and has developed a habit of noticing things other people miss, mostly out of boredom. They are straightforward, a little shy, and deeply uncomfortable being involved in anything that might require them to repeat it later.",
+      "statement": "Tom\u00e1s Vey was in the commissary from around midnight. He left once, maybe around 02:10, said he needed to use the pod-level facilities rather than the commissary restroom. He was back about twenty-five minutes later \u2014 I noticed because he had been in the middle of a story and just picked it back up. Also, earlier that evening, around 19:00, I saw Rhea Solis at the commissary counter asking me whether the safe in the back office used a biometric lock or a keypad. I thought it was an odd question for a maintenance tech.",
+      "reveals": [
+        "E5",
+        "E6"
+      ]
+    },
+    {
+      "name": "Dex Clearpacket",
+      "role": "witness",
+      "occupation": "Lounge jack, Capsule Hotel Zion \u2014 prides himself on having nothing to hide and saying so constantly",
+      "pronouns": "he/him",
+      "presentation": "human",
+      "motive": "N/A \u2014 witness",
+      "alibi": "N/A \u2014 witness",
+      "secret": "N/A \u2014 witness",
+      "bio": "Dex Clearpacket runs the hotel's third-floor data lounge with the efficiency of someone who has memorised every terminal's quirks and every regular's habits. He is laconic and precise, and he keeps a mental log of who was at which terminal and for how long because the billing system once failed and he had to reconstruct three hours of session charges from memory.",
+      "statement": "Kael Brandt was in the data lounge at terminal six from about 20:30 until 03:28 \u2014 I can see the session timestamps right here in the log. He did not leave the lounge during that time; I was on the desk the whole shift and the lounge only has one exit. Sera Okafor came in briefly around 21:45, used a public jack-in port for maybe fifteen minutes, and then left. She did not come back.",
+      "reveals": [
+        "E3",
+        "E4"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E1",
+      "name": "Pod 7 Jack-In Timestamp Record",
+      "description": "The digital access log for pod 7 shows a continuous jack-in session from 22:03 to 05:47, with biometric confirmation at both endpoints. The record is stored in the hotel's unmodified session archive and shows no gap or interruption during the window of the theft.",
+      "type": "documentary",
+      "relevance": "supporting",
+      "supports": [],
+      "exonerates": [
+        "Kael Brandt"
+      ],
+      "implicates": [],
+      "narrows": []
+    },
+    {
+      "id": "E2",
+      "name": "Commissary Surveillance Clip: Kael at the Lounge Door",
+      "description": "A corridor camera outside the data lounge captured Kael Brandt entering at 20:28 and exiting at 03:31, with no intermediate exit recorded. The camera's timestamp is synced to station-master time and the footage is unedited according to integrity hash verification.",
+      "type": "physical",
+      "relevance": "supporting",
+      "supports": [],
+      "exonerates": [
+        "Kael Brandt"
+      ],
+      "implicates": [],
+      "narrows": []
+    },
+    {
+      "id": "E3",
+      "name": "Data Lounge Session Log \u2014 Terminal Six",
+      "description": "The official session log for data lounge terminal six shows Kael Brandt's biometric ident continuously active from 20:30 to 03:28 on the night of the theft. The log is countersigned by the lounge attendant Dex Clearpacket, who confirmed verbally that Brandt was present and that the lounge has only one exit.",
+      "type": "documentary",
+      "relevance": "supporting",
+      "supports": [],
+      "exonerates": [
+        "Kael Brandt"
+      ],
+      "implicates": [],
+      "narrows": []
+    },
+    {
+      "id": "E4",
+      "name": "Commissary Entry Log \u2014 Tom\u00e1s Vey Gap",
+      "description": "The commissary's automated entry sensor logged Tom\u00e1s Vey entering at 00:03 and recorded a twenty-four-minute gap in his presence between 02:09 and 02:33 \u2014 precisely overlapping the window of the theft. Kitchen assistant Brin Uptime's account confirms the gap and places his return at approximately 02:35.",
+      "type": "documentary",
+      "relevance": "supporting",
+      "supports": [],
+      "exonerates": [],
+      "implicates": [
+        "Tom\u00e1s Vey"
+      ],
+      "narrows": [
+        "Rhea Solis",
+        "Tom\u00e1s Vey"
+      ]
+    },
+    {
+      "id": "E5",
+      "name": "Brin Uptime's Account of Rhea's Question",
+      "description": "Kitchen assistant Brin Uptime reported that on the evening before the theft, at approximately 19:00, Rhea Solis approached the commissary counter and asked whether the hotel safe used a biometric lock or a keypad. Yasa found the question unusual for someone whose job already includes maintaining the safe's hardware.",
+      "type": "testimonial",
+      "relevance": "supporting",
+      "supports": [
+        "S1"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Rhea Solis"
+      ],
+      "narrows": []
+    },
+    {
+      "id": "E6",
+      "name": "Commissary Restroom Redirect \u2014 Tom\u00e1s's Twenty-Five-Minute Absence",
+      "description": "Brin Uptime confirmed that Tom\u00e1s Vey left the commissary at roughly 02:10, citing a preference for the pod-level restroom over the commissary facilities, and returned approximately twenty-five minutes later. The pod-level restroom is a two-minute walk from the commissary, leaving at least twenty minutes of Tom\u00e1s's whereabouts unaccounted for.",
+      "type": "testimonial",
+      "relevance": "supporting",
+      "supports": [],
+      "exonerates": [],
+      "implicates": [
+        "Tom\u00e1s Vey"
+      ],
+      "narrows": [
+        "Rhea Solis",
+        "Tom\u00e1s Vey"
+      ]
+    },
+    {
+      "id": "E7",
+      "name": "Hotel Maintenance Log \u2014 Safe Lock Service Call",
+      "description": "The hotel's maintenance management system contains a service entry dated two days before the theft, logging a biometric-lock inspection on the back-office safe. The entry is signed with Rhea Solis's contractor ident. No other technician accessed the safe lock in the preceding 72 hours, and no subsequent call was logged.",
+      "type": "documentary",
+      "relevance": "critical",
+      "supports": [
+        "S1",
+        "S2"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Rhea Solis"
+      ],
+      "narrows": []
+    },
+    {
+      "id": "E8",
+      "name": "Phantom ICE Routine in Maintenance Node",
+      "description": "A forensic scan of the hotel's maintenance subsystem, conducted after Piotr Voss reported the false pressure alert, found a dormant ICE routine pre-loaded into the maintenance node's alert queue. The routine was designed to trigger a convincing but non-critical pressure fault at a scheduled time and then self-delete \u2014 it failed to fully delete and its authorship header still carries a contractor ident registered to Rhea Solis.",
+      "type": "physical",
+      "relevance": "critical",
+      "supports": [
+        "S3"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Rhea Solis"
+      ],
+      "narrows": []
+    },
+    {
+      "id": "E9",
+      "name": "Hollowed Cortical-Jack Housing Containing the Necklace",
+      "description": "A search of Rhea Solis's equipment bag produced a standard cortical-jack housing unit that felt heavier than its size warranted. The casing had been hollowed and re-sealed with micro-bond adhesive. Inside, wrapped in conductive foam, was the Tessier-Ashpool biocrystal necklace, intact and matching Maddox Crane's item description exactly.",
+      "type": "physical",
+      "relevance": "critical",
+      "supports": [
+        "S4"
+      ],
+      "exonerates": [],
+      "implicates": [
+        "Rhea Solis"
+      ],
+      "narrows": []
+    },
+    {
+      "id": "E10",
+      "name": "Sera Okafor's Intrusion Kit Components",
+      "description": "A partial disassembly of a bootleg intrusion kit was found tucked behind the climate panel in Sera Okafor's pod. The kit's signature matches the cyberattack that triggered the station lockdown. While this confirms Sera engineered the lockdown, it has no connection to the safe or the necklace theft \u2014 she was exploiting the lockdown for an entirely separate contract.",
+      "type": "physical",
+      "relevance": "red_herring",
+      "supports": [],
+      "exonerates": [],
+      "implicates": [
+        "Sera Okafor"
+      ],
+      "narrows": []
+    },
+    {
+      "id": "E11",
+      "name": "Pod 12 Sensor Blackout \u2014 Privacy Screen Log",
+      "description": "Sera Okafor's pod sensor log shows normal occupancy motion until 02:00, at which point a privacy screen was engaged, blacking out the remaining record. Privacy screens are standard guest features, but the timing coincides with the theft window. Station policy records when screens are engaged but not what occurs behind them.",
+      "type": "documentary",
+      "relevance": "supporting",
+      "supports": [],
+      "exonerates": [],
+      "implicates": [
+        "Sera Okafor"
+      ],
+      "narrows": [
+        "Rhea Solis",
+        "Sera Okafor"
+      ]
+    },
+    {
+      "id": "E12",
+      "name": "Scrambled Comms Device Under Kael Brandt's Mattress",
+      "description": "A sweep of Kael Brandt's pod turned up a scrambled long-range comms device hidden beneath his mattress padding. The device is tuned to a frequency associated with mid-level corporate channels, and its recent call log \u2014 partially recoverable \u2014 shows contact with a Turing Registry\u2013adjacent account. This suggested Kael had external communications, but investigation confirmed its last transmission was four days before the theft, unrelated to the necklace.",
+      "type": "physical",
+      "relevance": "red_herring",
+      "supports": [],
+      "exonerates": [
+        "Kael Brandt"
+      ],
+      "implicates": [],
+      "narrows": []
+    }
+  ],
+  "investigation_areas": [
+    {
+      "id": "A1",
+      "name": "Back Office and Hotel Safe",
+      "description": "A small, climate-controlled room behind the front desk housing the hotel's guest-valuables safe, a rack of server blades, and a single monitoring terminal. The safe door stands closed but the room smells faintly of ozone.",
+      "investigation_prompt": "The safe was opened by biometric clone. Searching here reveals that no physical damage was done to the lock \u2014 it accepted a valid signature. The maintenance log on the server rack is accessible and shows who touched the lock hardware in the past 72 hours.",
+      "discovery": "The safe lock shows no scratching or forced entry. A maintenance log terminal mounted to the server rack is still active, displaying a service record.",
+      "analysis": "The service record shows a biometric-lock inspection signed by contractor ident RS-7741 \u2014 registered to Rhea Solis \u2014 performed two days before the theft. No other technician accessed the lock hardware in that period.",
+      "reveals": [
+        "E7"
+      ]
+    },
+    {
+      "id": "A2",
+      "name": "Hotel Maintenance Node \u2014 Corridor B3",
+      "description": "A recessed utility alcove in corridor B3, accessible via a keyed panel, housing the maintenance subsystem terminals, pressure sensors, and alert-routing hardware for the entire pod stack. It smells of cooling fluid and burnt solder.",
+      "investigation_prompt": "The false alert that drew Piotr Voss away from the desk originated here. A forensic scan of the node's alert queue will surface the phantom ICE routine, still partially intact, with Rhea Solis's contractor ident in its authorship header.",
+      "discovery": "The maintenance node's alert queue contains a dormant routine that failed to fully self-delete \u2014 its code structure is intact enough to read.",
+      "analysis": "Forensic analysis confirms the routine was designed to simulate a pressure fault at a scheduled time. Its authorship header identifies contractor ident RS-7741, registered to Rhea Solis.",
+      "reveals": [
+        "E8"
+      ]
+    },
+    {
+      "id": "A3",
+      "name": "Rhea Solis's Equipment Bay",
+      "description": "A narrow maintenance locker assigned to the hotel's contracted technician, adjacent to the maintenance node alcove. It contains a tool rack, a sealed equipment bag, and several open cortical-jack housings in various states of repair.",
+      "investigation_prompt": "The necklace is hidden inside a hollowed cortical-jack housing in the equipment bag. Searching here and testing the housings by weight will surface it. The biometric data chip on the tool belt is also here but is a secondary discovery.",
+      "discovery": "One cortical-jack housing in the equipment bag is noticeably heavier than the others of the same model. The casing shows faint micro-bond adhesive traces along its seam.",
+      "analysis": "Opening the casing reveals the Tessier-Ashpool biocrystal necklace, wrapped in conductive foam \u2014 a perfect match for Maddox Crane's item description.",
+      "reveals": [
+        "E9"
+      ]
+    },
+    {
+      "id": "A4",
+      "name": "Sera Okafor's Pod \u2014 Pod 12",
+      "description": "A standard sleeping pod with a personal work terminal, its walls strung with portable ICE architecture tools. The privacy screen is still engaged, casting the interior in amber standby light.",
+      "investigation_prompt": "Behind the climate panel is a partially disassembled intrusion kit matching the lockdown cyberattack signature. This looks deeply incriminating but has nothing to do with the necklace theft \u2014 Sera was using the lockdown for a separate corporate contract. The pod sensor log showing the privacy-screen engagement is also retrievable here.",
+      "discovery": "Tucked behind the climate panel is a disassembled bootleg intrusion kit and a salvaged pod sensor log showing a privacy screen engaged at exactly 02:00.",
+      "analysis": "The intrusion kit's signal signature matches the cyberattack that caused the station lockdown \u2014 but cross-referencing its internal clock confirms its last active transmission was at 23:45, over two hours before the theft window.",
+      "reveals": [
+        "E10",
+        "E11"
+      ]
+    },
+    {
+      "id": "A5",
+      "name": "Data Lounge \u2014 Level Three",
+      "description": "A low-lit room of private matrix-jack booths and shared terminals, perpetually busy with guests who have nothing else to do during lockdown. An attendant's desk faces the only entrance and exit.",
+      "investigation_prompt": "The data lounge session log for terminal six shows Kael Brandt's unbroken presence. The corridor camera footage outside the lounge further corroborates his alibi. This area fully clears Kael. The lounge attendant Dex Clearpacket is the source of witness testimony about both Kael and Sera.",
+      "discovery": "The data lounge session log at the attendant's desk is unlocked and shows terminal assignments and biometric timestamps for the full prior night.",
+      "analysis": "Terminal six shows Kael Brandt's biometric ident continuously logged from 20:30 to 03:28, with no session interruption. The corridor camera's integrity hash confirms the footage is unedited.",
+      "reveals": [
+        "E2",
+        "E3"
+      ]
+    }
+  ],
+  "leads": [
+    {
+      "id": "L1",
+      "title": "The False Pressure Alert",
+      "brief": "Night clerk Piotr Voss says the alert that pulled him from the desk came from the maintenance subsystem \u2014 not from the physical sensors it claimed to represent.",
+      "investigation_prompt": "Following this lead sends a player to the maintenance node in corridor B3, where the phantom ICE routine is cached. It directly surfaces the evidence of Rhea's pre-loaded distraction tool and her contractor ident on the authorship header.",
+      "reveals": [
+        "E8"
+      ]
+    },
+    {
+      "id": "L2",
+      "title": "Tom\u00e1s Vey's Unexplained Gap",
+      "brief": "The commissary entry sensor shows Tom\u00e1s Vey left the commissary for twenty-five minutes right in the middle of the theft window \u2014 and the pod-level restroom he claims to have visited is a two-minute walk away.",
+      "investigation_prompt": "Following this lead surfaces the commissary entry log gap and cross-references it with Brin Uptime's account, implicating Tom\u00e1s but ultimately finding no evidence placing him near the safe. His alibi is thin but the physical evidence does not support him as the thief.",
+      "reveals": [
+        "E6",
+        "E4"
+      ]
+    },
+    {
+      "id": "L3",
+      "title": "Rhea's Odd Question About the Safe",
+      "brief": "A commissary staff member mentioned that Rhea Solis asked about the safe's lock type the evening before the theft \u2014 a strange question for the person contracted to maintain it.",
+      "investigation_prompt": "Following this lead surfaces Brin Uptime's account of Rhea's inquiry, pointing investigators toward the maintenance log and the question of why a contracted technician would need to ask about the lock type she services.",
+      "reveals": [
+        "E5"
+      ]
+    },
+    {
+      "id": "L4",
+      "title": "Sera Okafor's Lockdown Angle",
+      "brief": "Sera Okafor's professional background in ICE architecture and the suspicious timing of her privacy screen has other guests wondering if she engineered the lockdown itself \u2014 and whether the theft was part of it.",
+      "investigation_prompt": "This is the red-herring lead. Following it surfaces the intrusion kit in Sera's pod and the sensor blackout log, both of which look incriminating. But analysis confirms the kit's last transmission predates the theft by hours, and Sera's motive for the lockdown was a separate contract unconnected to the necklace.",
+      "reveals": [
+        "E10",
+        "E11"
+      ]
+    }
+  ],
+  "gameplay_notes": {
+    "difficulty": "HARD",
+    "estimated_playtime": "60\u201375 min",
+    "key_twists": [
+      "Sera Okafor engineered the lockdown cyberattack \u2014 an enormously incriminating discovery that turns out to be entirely unrelated to the necklace theft, functioning as the mystery's primary red herring.",
+      "Tom\u00e1s Vey's commissary gap places him in the theft window with no alibi, making him the most obvious suspect \u2014 but no physical evidence connects him to the safe, and the necklace is found on Rhea.",
+      "The theft required no brute force at all: Rhea cloned the biometric signature during a legitimate maintenance call, meaning the crime was committed two days before anyone knew a crime was coming.",
+      "The phantom ICE routine that created the distraction is the technical smoking gun \u2014 it self-deleted imperfectly, leaving Rhea's contractor ident in its authorship header for forensic recovery."
+    ]
+  },
+  "_provenance": {
+    "recipe": "corpus_d16153b5(1) + corpus_9fc47f07(2) + corpus_405bab0f(3) + corpus_ac9e39d9(4) + corpus_7849cc93(5) + corpus_ee9e932b(6) + corpus_cda030ef(7) + corpus_d067e56d(8)",
+    "slots": [
+      {
+        "source_id": "corpus_d16153b5",
+        "part_index": 1,
+        "part_type": "crime_type"
+      },
+      {
+        "source_id": "corpus_9fc47f07",
+        "part_index": 2,
+        "part_type": "setting_element"
+      },
+      {
+        "source_id": "corpus_405bab0f",
+        "part_index": 3,
+        "part_type": "motive"
+      },
+      {
+        "source_id": "corpus_ac9e39d9",
+        "part_index": 4,
+        "part_type": "suspect_archetype"
+      },
+      {
+        "source_id": "corpus_7849cc93",
+        "part_index": 5,
+        "part_type": "red_herring"
+      },
+      {
+        "source_id": "corpus_ee9e932b",
+        "part_index": 6,
+        "part_type": "reveal_mechanic"
+      },
+      {
+        "source_id": "corpus_cda030ef",
+        "part_index": 7,
+        "part_type": "social_dynamic"
+      },
+      {
+        "source_id": "corpus_d067e56d",
+        "part_index": 8,
+        "part_type": "alibi"
+      }
+    ],
+    "target_setting": "A Stolen necklace in a world like Neuromancer",
+    "generated_title": "",
+    "craft_guidance": [
+      {
+        "concept": "The Closed World",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "COARSE PARTS (C1\u2013C6) \u2014 Structural Skeleton",
+        "confidence": "canonical",
+        "source": "James: \"closed circle of suspects\"; Rankin: Edinburgh as character; French: location as first decision"
+      },
+      {
+        "concept": "The Crime",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "COARSE PARTS (C1\u2013C6) \u2014 Structural Skeleton",
+        "confidence": "canonical",
+        "source": "Christie (start with method), P.D. James (central mysterious crime), Knox (rule 4: method must be plausible)"
+      },
+      {
+        "concept": "The Culprit + Motive",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "COARSE PARTS (C1\u2013C6) \u2014 Structural Skeleton",
+        "confidence": "canonical",
+        "source": "Christie: start with murderer and motive, then build outward; worked backward from the solution"
+      },
+      {
+        "concept": "Suspect Architecture",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "MEDIUM-FINE PARTS (M1\u2013M8) \u2014 Tactical Construction Elements",
+        "confidence": "canonical",
+        "source": "James: \"each with motive, means and opportunity\"; Knox: criminal must appear early"
+      },
+      {
+        "concept": "The Alibi",
+        "doc": "RESEARCH_FINDINGS.md",
+        "section": "MEDIUM-FINE PARTS (M1\u2013M8) \u2014 Tactical Construction Elements",
+        "confidence": "canonical",
+        "source": "Christie notebooks: alibi construction is explicit planning step"
+      }
+    ]
+  },
+  "_coherence": {
+    "passed": true,
+    "blocking": 0,
+    "warnings": 0
+  },
+  "_verdict": {
+    "verdict": "rejected",
+    "failure_class": "unplayable",
+    "violations": [
+      {
+        "rule_id": "NARR.SINGLE_ROUTE",
+        "failure_class": "below_standard",
+        "subject_ids": [
+          "Sera Okafor"
+        ],
+        "message": "Sera Okafor is cleared by only 0 finding(s); needs two independent routes or hoarding can make the case unprovable"
+      },
+      {
+        "rule_id": "NARR.SINGLE_ROUTE",
+        "failure_class": "below_standard",
+        "subject_ids": [
+          "Tom\u00e1s Vey"
+        ],
+        "message": "Tom\u00e1s Vey is cleared by only 0 finding(s); needs two independent routes or hoarding can make the case unprovable"
+      },
+      {
+        "rule_id": "NARR.NARROWS_PROSE_NAMES",
+        "failure_class": "spoiled_prose",
+        "subject_ids": [
+          "E4"
+        ],
+        "message": "E4 is a narrowing clue whose own text names ['Tom\u00e1s Vey'], somebody it still leaves possible -- that turns a narrowing into an accusation and whoever is assigned it wins without speaking to anyone. Naming a suspect the fact rules OUT is fine; naming one it does not is not"
+      },
+      {
+        "rule_id": "NARR.NARROWS_PROSE_NAMES",
+        "failure_class": "spoiled_prose",
+        "subject_ids": [
+          "E6"
+        ],
+        "message": "E6 is a narrowing clue whose own text names ['Tom\u00e1s Vey'], somebody it still leaves possible -- that turns a narrowing into an accusation and whoever is assigned it wins without speaking to anyone. Naming a suspect the fact rules OUT is fine; naming one it does not is not"
+      },
+      {
+        "rule_id": "NARR.NARROWS_PROSE_NAMES",
+        "failure_class": "spoiled_prose",
+        "subject_ids": [
+          "E11"
+        ],
+        "message": "E11 is a narrowing clue whose own text names ['Sera Okafor'], somebody it still leaves possible -- that turns a narrowing into an accusation and whoever is assigned it wins without speaking to anyone. Naming a suspect the fact rules OUT is fine; naming one it does not is not"
+      },
+      {
+        "rule_id": "NARR.NARROWING_LOAD_BEARING",
+        "failure_class": "unplayable",
+        "subject_ids": [],
+        "message": "narrowing is load-bearing: elimination alone leaves ['Rhea Solis', 'Sera Okafor', 'Tom\u00e1s Vey'], so withholding a narrowing finding could make the case unprovable"
+      },
+      {
+        "rule_id": "NARR.ELIMINATION_NOT_ONE",
+        "failure_class": "unplayable",
+        "subject_ids": [],
+        "message": "eliminating the exonerated leaves 3 suspect(s), not 1: ['Rhea Solis', 'Sera Okafor', 'Tom\u00e1s Vey']"
+      },
+      {
+        "rule_id": "REVEAL.UNREACHED_EXONERATION",
+        "failure_class": "below_standard",
+        "subject_ids": [
+          "E1"
+        ],
+        "message": "E1 exonerates ['Kael Brandt'] but no witness, lead or area reveals it"
+      },
+      {
+        "rule_id": "REVEAL.UNREACHED_EXONERATION",
+        "failure_class": "below_standard",
+        "subject_ids": [
+          "E12"
+        ],
+        "message": "E12 exonerates ['Kael Brandt'] but no witness, lead or area reveals it"
+      }
+    ],
+    "advisory": []
+  }
+}

@@ -44,14 +44,20 @@ print("\n--- the ground is the one the rest of the product already assumes ---")
 # brand/README.md calls this "the one rule these assets must satisfy", and
 # scripts/check_brand_contrast.py measures every mark against it. If the two
 # ever disagree, the contrast script is grading artwork against a ground no
-# client paints.
+# client paints. Session 47 moved the ground from slate to Night; these
+# assertions are what made that move visible rather than silent.
 brand_checker = (Path(__file__).resolve().parent / "check_brand_contrast.py").read_text()
-check("GROUND = (0x2F, 0x44, 0x59)" in brand_checker,
-      "check_brand_contrast.py measures against the same slate")
-check(palette.GROUND == "#2F4459", "palette.GROUND is that slate")
-check("**CYM's ground is slate `#2F4459`.**" in (Path(__file__).resolve().parent.parent
+check("CYM_GROUND = (0x0C, 0x11, 0x18)" in brand_checker,
+      "check_brand_contrast.py measures against the same Night ground")
+check(palette.GROUND == "#0C1118", "palette.GROUND is Night")
+check("**CYM's ground is Night `#0C1118`.**" in (Path(__file__).resolve().parent.parent
                                                  / "brand" / "README.md").read_text(),
-      "brand/README.md documents that slate")
+      "brand/README.md documents that ground")
+# Slate stops being the ground, not the brand. If it vanished from the palette
+# the product would have quietly lost its own hue.
+check(palette.SLATE == "#2F4459", "slate survives as palette.SLATE, the brand hue")
+check("MYF_GROUND = (0x2F, 0x44, 0x59)" in brand_checker,
+      "the brand checker can still grade against MYF's slate ground")
 
 print("\n--- brass is ONE colour ---")
 # The drift this palette exists to end: mobile.html shipped #c8a96e while the

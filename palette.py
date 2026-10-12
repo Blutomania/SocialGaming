@@ -39,36 +39,44 @@ from typing import Dict, Tuple
 # The ground
 # ---------------------------------------------------------------------------
 
-# Slate. NOT a fresh choice — this is the value brand/README.md already binds
-# the artwork to, that scripts/check_brand_contrast.py already measures ink
-# against, and that MYF uses as its own ground so the two titles read as
-# siblings. background_field.py's five mark colours were pitched against it.
-# Changing it invalidates all of that, so it changes here and nowhere else.
-GROUND = "#2F4459"
+# Night — a blue-black in slate's own hue (210°). Owner's call, Session 47,
+# taking the "Night File" direction (docs/STYLE_GUIDE.md): a loud, square,
+# high-contrast party-game look in which ONE saturated accent does the work of
+# selection, and an accent can only do that on a near-black ground.
+#
+# It REPLACES slate #2F4459 as the ground; slate itself survives as SLATE
+# below, the brand hue, now used as a tint. What moved with it, so nothing is
+# graded against a ground no client paints: brand/README.md's rule and
+# scripts/check_brand_contrast.py's default both name this value. What did NOT
+# move: MYF keeps slate as its ground, so the two titles no longer share one
+# (accepted, Session 47), and background_field.py's five marks were pitched for
+# slate and are untuned against this — item 17, stage 3, wired to nothing yet.
+GROUND = "#0C1118"
+
+# Slate, the brand hue. Lifted as a fill it is STEEL (the accent); at its own
+# value it is the tint — result bars, the wash behind a chosen row. As a
+# background on Night it reads at only 1.89:1, which is the point: a tint
+# should be felt, not read.
+SLATE = "#2F4459"
 
 
 # ---------------------------------------------------------------------------
 # The surface ramp
 # ---------------------------------------------------------------------------
 #
-# Panels go DEEPER than the ground, not lighter, and this is the one place the
-# palette departs from what a designer would reach for first. Two reasons, both
-# structural rather than aesthetic:
+# Panels sit one step LIGHTER than the ground. On slate they had to sink,
+# because slate was a mid-tone and ink on it tired the eye over a transcript
+# (8.5:1); on Night ink is already 15.8:1, so that reason is gone and the
+# conventional order returns. The steps are deliberately small: in this look a
+# row is told apart by its 2px outline, not by its fill.
 #
-#   1. The BACKGROUND field is painted on the ground. If panels sat lighter,
-#      the strewn title would be the darkest thing on screen and would read as
-#      foreground. Sinking the panels puts the texture behind everything, which
-#      is the only place a texture belongs.
-#   2. CYM's screens are text-dense in a way MYF's are not — clue lists,
-#      interrogation transcripts, evidence tables. Slate is a mid-tone; #E8EDF2
-#      on it is 8.5:1, fine for a heading and tiring for a transcript. On
-#      SURFACE the same ink is 10.7:1 and on SURFACE_DEEP 12.9:1.
-#
-# So: read the ground as the room and the panels as the paper on the desk.
+# Wells (transcripts, feeds) still sit BELOW the panel they are inset in, so
+# the eye has an edge to hold — the one part of the old reasoning that was
+# about reading, not about slate.
 
-SURFACE = "#243545"        # cards, panels — the default place text sits
-SURFACE_DEEP = "#1B2733"   # inset wells: transcripts, feeds, evidence lists
-SURFACE_RAISED = "#3A5269"  # hover, selection, the row under the cursor
+SURFACE = "#131B25"        # rows, panels — the default place text sits
+SURFACE_DEEP = "#0F151D"   # inset wells: transcripts, feeds, evidence lists
+SURFACE_RAISED = "#1E2B3A"  # hover, the row under the cursor
 
 # Two border weights, and the split is a contrast requirement rather than a
 # taste one. WCAG 1.4.11 asks 3:1 of anything that is the ONLY thing marking a
@@ -78,8 +86,8 @@ SURFACE_RAISED = "#3A5269"  # hover, selection, the row under the cursor
 # traced instead of reading past; holding neither to it made text fields
 # invisible. So LINE is for controls and is measured; LINE_SOFT is decorative
 # and deliberately carries no floor.
-LINE = "#7090AD"       # control boundaries: inputs, outlined buttons, focus
-LINE_SOFT = "#38506A"  # decorative panel edges only — no contrast contract
+LINE = "#56789C"       # control boundaries: inputs, outlined buttons, focus
+LINE_SOFT = "#3B5068"  # row and panel outlines, dividers — no contrast contract
 
 
 # ---------------------------------------------------------------------------
@@ -90,14 +98,17 @@ LINE_SOFT = "#38506A"  # decorative panel edges only — no contrast contract
 # at every label, and the ones below are already separated by enough contrast
 # to be told apart at a glance.
 
-INK = "#E8EDF2"        # body and headings
-INK_MUTED = "#B8C4CF"  # secondary — supporting prose, inactive tabs
-INK_FAINT = "#8FA3B5"  # tertiary — field labels, timestamps, attribution
+INK = "#F0EADF"        # body and headings — warm paper against the cold blue
+INK_MUTED = "#A9B6C3"  # secondary — supporting prose, inactive tabs
+INK_FAINT = "#7D8B99"  # tertiary — field labels, timestamps, attribution
 #
-# INK_FAINT is 3.86:1 on the ground and 4.83:1 on SURFACE. That is below the
-# 4.5:1 body-text bar on the ground, which is deliberate and is why it is
-# named "faint": it is for 13px-and-up labels on panels, never for prose on
-# the ground. contrast_report() below prints the whole matrix so this stays a
+# INK is WARM on purpose: a case file's paper, and the one place the warm side
+# of the palette shows outside brass. The two lower tiers stay cool so they
+# recede into the blue rather than competing with the ink.
+#
+# On Night all three clear 4.5:1 on the ground itself, which on slate INK_FAINT
+# could not (3.86:1). It stays "faint" by role, not by necessity: labels,
+# never prose. contrast_report() below prints the whole matrix so this stays a
 # measured decision rather than a remembered one.
 
 
@@ -116,10 +127,16 @@ BRASS = "#C9A227"
 BRASS_BRIGHT = "#E3BC42"  # hover/focus only
 BRASS_DIM = "#8A6F1B"     # pressed, and disabled-but-still-primary
 
-# Steel — the cool counterpart, for secondary actions that should read as
-# available without competing with the primary one.
-STEEL = "#4E6E90"     # a FILL, so it is pitched dark enough for INK to sit on it
-STEEL_BRIGHT = "#759BC8"  # hover only
+# Steel — the selection accent, and the colour that does what red does in the
+# look this palette borrows from. Brass says "act"; steel says "chosen": a
+# filled choice tile, a toggled row, a stamp, the investigation's progress.
+# Owner, Session 47: brass KEEPS the primary action, so the two never compete
+# for one meaning.
+#
+# It is slate lifted to the reference accent's own contrast: 3.22:1 against
+# Night (that red: 3.36) and 4.92:1 for ink on top of it (that red: 4.96).
+STEEL = "#46678A"     # a FILL, so it is pitched dark enough for INK to sit on it
+STEEL_BRIGHT = "#759BC8"  # the accent as TEXT and small marks; hover on fills
 
 
 # ---------------------------------------------------------------------------
@@ -131,13 +148,12 @@ STEEL_BRIGHT = "#759BC8"  # hover only
 # stickers on the design rather than parts of it, because their saturation is
 # far above anything else on screen.
 
-# These are LIGHTER than a semantic colour usually looks, and that is forced
-# rather than chosen. Slate is a mid-tone ground, so a saturated red simply
-# cannot reach 4.5:1 on it — Material's own dark-theme error #CF6679 manages
-# only 3.49:1 on SURFACE here. The choice is between a red that reads and a red
-# that looks like a red, and text you cannot read is not worth the saturation.
-# Each was tuned by walking lightness at fixed hue until the floor was met, so
-# they stay in family rather than becoming three unrelated stickers.
+# These are LIGHTER than a semantic colour usually looks. That was forced on
+# the slate ground, where a saturated red could not reach 4.5:1 at all; on
+# Night it no longer is (each clears 6:1 on every surface), and they were KEPT
+# rather than re-saturated so that the phone and the host, and every screenshot
+# from the slate era, read as one product. Each was tuned by walking lightness
+# at fixed hue, so they stay in family rather than becoming three stickers.
 POSITIVE = "#64AA7B"  # a clue that reached you, a connected socket
 NEGATIVE = "#D58689"  # an error, a wrong accusation, a duplicate
 CAUTION = "#CB8F44"   # a budget running out, an unmoderated-input notice
@@ -184,13 +200,19 @@ SPACE: Dict[str, int] = {
     "screen": 32,
 }
 
+# Square, everywhere (Session 47, Night File). Kept as a scale rather than
+# deleted so Style.gd's call sites, and any return to rounding, stay one edit.
 RADIUS: Dict[str, int] = {
-    "small": 4,   # badges, inline chips
-    "base": 8,    # buttons, inputs
-    "card": 14,   # panels
+    "small": 0,   # badges, inline chips
+    "base": 0,    # buttons, inputs
+    "card": 0,    # panels
 }
 
-BORDER_WIDTH = 1
+# Two widths. Outlines are the affordance in this look — outlined means "you
+# could choose this", filled means "chosen" — so they are 2px and read from a
+# sofa. Dividers are 1px: a rule the eye should read PAST, not trace.
+BORDER_WIDTH = 2
+RULE_WIDTH = 1
 
 
 # ---------------------------------------------------------------------------
@@ -265,7 +287,15 @@ CONTRAST_CONTRACT: Tuple[Tuple[str, str, float, str], ...] = (
     # Filled buttons: the pairing that matters is the LABEL against the fill.
     (SURFACE_DEEP, BRASS, 4.5, "the label on a primary button"),
     (SURFACE_DEEP, BRASS_BRIGHT, 4.5, "the label on a hovered primary button"),
-    (INK, STEEL, 4.5, "the label on a secondary button"),
+    (INK, STEEL, 4.5, "the label on a chosen tile or toggled row"),
+    # Steel as the selection signal. A chosen tile's fill against the ground is
+    # the whole of its boundary when nothing else outlines it.
+    (STEEL, GROUND, 3.0, "a chosen tile's fill against the ground"),
+    (STEEL_BRIGHT, GROUND, 4.5, "accent text on the ground: counts, IDs"),
+    (STEEL_BRIGHT, SURFACE, 4.5, "accent text on a row: a 'Sharing' state"),
+    # Text that sits on a slate tint — a name inside a result bar.
+    (INK, SLATE, 4.5, "ink over a result bar"),
+    (INK_MUTED, SLATE, 4.5, "a sub-label over a result bar"),
 )
 
 
@@ -283,6 +313,7 @@ def contrast_report() -> str:
 # read top-to-bottom the way this one does, rather than alphabetically.
 COLOURS: Dict[str, str] = {
     "ground": GROUND,
+    "slate": SLATE,
     "surface": SURFACE,
     "surface_deep": SURFACE_DEEP,
     "surface_raised": SURFACE_RAISED,

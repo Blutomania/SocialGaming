@@ -57,9 +57,9 @@ theme/custom="res://assets/theme/cym_theme.tres"
 [rendering]
 
 renderer/rendering_method="forward_plus"
-; The GROUND, slate #2F4459 — see palette.py, which is where it is decided.
+; The GROUND, Night #0C1118 — see palette.py, which is where it is decided.
 ; Set here rather than painted by a node so it is up before the first Control
 ; exists: there is no frame of engine grey at startup, and no scene has to
 ; own a background. This alone is the "ground colour until a mystery is
 ; named" state that CLAUDE.md item 17 specifies.
-environment/defaults/default_clear_color=Color(0.184314, 0.266667, 0.34902, 1)
+environment/defaults/default_clear_color=Color(0.0470588, 0.0666667, 0.0941176, 1)

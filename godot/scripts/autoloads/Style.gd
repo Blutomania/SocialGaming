@@ -90,15 +90,31 @@ func _control_box(fill: Color, border: Color) -> StyleBoxFlat:
 	return box
 
 
+## "Chosen" — the Night File selection state (Session 47, docs/STYLE_GUIDE.md).
+## Filled with steel and given a soft steel glow, so a chosen tile reads from a
+## sofa by THREE signals at once: fill, border, and halo. Never by hue alone.
+##
+## The glow is StyleBoxFlat's own shadow, not a shader: one draw call per box,
+## no per-frame work, nothing to animate. Cheap enough to sit on every toggle.
+func _chosen_box(fill: Color = Palette.STEEL) -> StyleBoxFlat:
+	var box: StyleBoxFlat = _control_box(fill, fill)
+	box.shadow_color = Color(Palette.STEEL, 0.45)
+	box.shadow_size = 12
+	return box
+
+
 ## The focus ring. Drawn as a border with no fill so it sits ON TOP of whatever
 ## state box is underneath instead of replacing it — a focused-and-hovered
-## button should still look hovered. Brass because focus is the one thing on
-## screen that should be impossible to lose track of.
+## button should still look hovered. STEEL_BRIGHT, not brass: focus is a STATE
+## (where you are), and Night File gives state to steel and action to brass.
+## Grown outward by its own width so it never sits on a chosen tile's fill,
+## where the two would merge.
 func _focus_ring() -> StyleBoxFlat:
 	var box: StyleBoxFlat = StyleBoxFlat.new()
 	box.draw_center = false
-	box.border_color = Palette.BRASS_BRIGHT
+	box.border_color = Palette.STEEL_BRIGHT
 	box.set_border_width_all(2)
+	box.set_expand_margin_all(3.0)
 	box.set_corner_radius_all(Palette.RADIUS_BASE)
 	return box
 
@@ -171,22 +187,71 @@ func _style_fonts(t: Theme) -> void:
 	## DRAMATIC-MOMENT text -- the game's own name on MainMenu/Lobby, a
 	## generated mystery's own title on CaseDisplay, and the win/lose banner
 	## on ResultScreen -- not functional screen headers. Cinzel Decorative
-	## there; NunitoSans everywhere else. Deliberately NOT applied to
-	## TitleLabel, which is used broadly for workaday status headers
-	## ("Round 2 of 4", "Set Your Mystery") that are read fast during play --
-	## a heavy decorative serif risks looking overwrought there, and this was
-	## a scope call flagged to the owner rather than assumed (font upload,
-	## playtest SolvedSept7).
+	## there; NunitoSans everywhere else. Originally deliberately NOT applied
+	## to TitleLabel, which is used broadly for workaday status headers
+	## ("Round 2 of 4", "Set Your Mystery") read fast during play -- a heavy
+	## decorative serif risks looking overwrought there, and that was a scope
+	## call flagged to the owner rather than assumed (font upload, playtest
+	## SolvedSept7).
 	##
-	## All three share Bold. DisplayLabel wore Black through playtest
+	## GenerationTitleLabel REVERSES that call for exactly one label: "Set
+	## Your Mystery" specifically (owner, this session) -- everything else
+	## TitleLabel covers (Accusation, ApfRound, Interrogation, Lobby,
+	## ShareSelection) is untouched and still NunitoSans. Not a re-opening of
+	## the general rule, a named exception to it.
+	##
+	## All four share Bold. DisplayLabel wore Black through playtest
 	## SolvedSept7/WaitingSept7; owner called it too heavy on startSept8 and
 	## dropped it a tier, so there is no longer a weight distinction between
-	## the brand name and the other two dramatic-moment labels.
+	## the brand name and the other dramatic-moment labels.
+	##
+	## [Session 47] TitleLabel JOINS them. Owner's markup on the Night File
+	## reference: a screen's title ("Pick the biggest red flag" in the
+	## reference) "would be in our Decorative font". That reverses the scope
+	## call above for screen titles; the reason it was held back -- fast
+	## reading during play -- is answered by Night File putting the fast-read
+	## text (choices, counts, labels) in Archivo Narrow instead. That also
+	## covers GenerationTitleLabel's one-label exception above (Session 46),
+	## which is kept as declared so its scene reference stays valid, but no
+	## longer differs from TitleLabel in face.
 	var display_bold: Font = _font("CinzelDecorative-Bold.ttf")
 	if display_bold:
 		t.set_font("font", "DisplayLabel", display_bold)
 		t.set_font("font", "MysteryTitleLabel", display_bold)
 		t.set_font("font", "VerdictLabel", display_bold)
+		t.set_font("font", "GenerationTitleLabel", display_bold)
+		t.set_font("font", "TitleLabel", display_bold)
+
+	## Archivo Narrow -- OFL 1.1, static SemiBold/Bold from the designers' own
+	## repo (Omnibus-Type), added Session 47. The condensed face is where the
+	## borrowed look gets its punch: choices, buttons, section headers and
+	## field labels, i.e. the text a player reads in a glance, not a paragraph.
+	## Prose stays Nunito Sans, because a witness statement set condensed is a
+	## chore to read from across a room. Same defensive load as above: a
+	## missing file leaves the NunitoSans assignment in place.
+	var narrow_semibold: Font = _font("ArchivoNarrow-SemiBold.ttf")
+	var narrow_bold: Font = _font("ArchivoNarrow-Bold.ttf")
+	if narrow_bold:
+		t.set_font("font", "Button", narrow_bold)
+		t.set_font("font", "OptionButton", narrow_bold)
+		t.set_font("font", "PrimaryButton", narrow_bold)
+		t.set_font("font", "DangerButton", narrow_bold)
+		t.set_font("font", "HeadingLabel", narrow_bold)
+		t.set_font("font", "FaintLabel", narrow_bold)
+		t.set_font("font", "CautionLabel", narrow_bold)
+	if narrow_semibold:
+		## Rows of a list: a mystery title in the browser, a suspect's name
+		## under a portrait. Glance-read, so condensed, but one weight down so
+		## a full list does not shout.
+		t.set_font("font", "BrowseRowButton", narrow_semibold)
+		t.set_font("font", "SuspectCardButton", narrow_semibold)
+	if narrow_bold:
+		t.set_font("font", "FindingIdLabel", narrow_bold)
+		t.set_font("font", "StampTextLabel", narrow_bold)
+		t.set_font("font", "LedgerValueLabel", narrow_bold)
+		t.set_font("font", "ChoiceTileButton", narrow_bold)
+	if display_bold:
+		t.set_font("font", "StampKeyLabel", display_bold)
 
 
 func _font(file_name: String) -> Font:
@@ -215,13 +280,13 @@ func _style_labels(t: Theme) -> void:
 
 	var rule: StyleBoxLine = StyleBoxLine.new()
 	rule.color = Palette.LINE_SOFT
-	rule.thickness = Palette.BORDER_WIDTH
+	rule.thickness = Palette.RULE_WIDTH
 	t.set_stylebox("separator", "HSeparator", rule)
 	t.set_constant("separation", "HSeparator", Palette.SPACE_SECTION)
 
 	var v_rule: StyleBoxLine = StyleBoxLine.new()
 	v_rule.color = Palette.LINE_SOFT
-	v_rule.thickness = Palette.BORDER_WIDTH
+	v_rule.thickness = Palette.RULE_WIDTH
 	v_rule.vertical = true
 	t.set_stylebox("separator", "VSeparator", v_rule)
 	t.set_constant("separation", "VSeparator", Palette.SPACE_SECTION)
@@ -233,9 +298,23 @@ func _style_buttons(t: Theme) -> void:
 	## interrogate, share, accuse, back), and if the default were the loud
 	## brass one every screen would be shouting and nothing would read as the
 	## next step. Brass is opted into, via the PrimaryButton variation.
+	##
+	## Night File: outlined means "you could choose this", filled means
+	## "chosen". Godot draws a toggle_mode button that is ON with its "pressed"
+	## box, so that one stylebox is both the click flash and the chosen state --
+	## which is what makes a ButtonGroup of plain Buttons a set of choice tiles
+	## with no scene work. Hover pre-lights the border in steel, so the eye
+	## sees which tile is about to be chosen before it is.
 	t.set_stylebox("normal", "Button", _control_box(Palette.SURFACE, Palette.LINE))
-	t.set_stylebox("hover", "Button", _control_box(Palette.SURFACE_RAISED, Palette.LINE))
-	t.set_stylebox("pressed", "Button", _control_box(Palette.SURFACE_DEEP, Palette.LINE))
+	t.set_stylebox("hover", "Button", _control_box(Palette.SURFACE_RAISED, Palette.STEEL_BRIGHT))
+	t.set_stylebox("pressed", "Button", _chosen_box())
+	## Chosen AND under the cursor: same steel fill, brighter border. Not a
+	## lighter fill -- ink holds 4.5:1 on STEEL itself and on nothing lighter
+	## in its family (a 25%-darkened STEEL_BRIGHT measured 4.04), so the hover
+	## is carried by the edge and the text never pays for it.
+	var chosen_hover: StyleBoxFlat = _chosen_box()
+	chosen_hover.border_color = Palette.STEEL_BRIGHT
+	t.set_stylebox("hover_pressed", "Button", chosen_hover)
 	t.set_stylebox("focus", "Button", _focus_ring())
 
 	var off: StyleBoxFlat = _control_box(Palette.SURFACE_DEEP, Palette.LINE_SOFT)
@@ -243,7 +322,8 @@ func _style_buttons(t: Theme) -> void:
 
 	t.set_color("font_color", "Button", Palette.INK)
 	t.set_color("font_hover_color", "Button", Palette.INK)
-	t.set_color("font_pressed_color", "Button", Palette.BRASS)
+	t.set_color("font_pressed_color", "Button", Palette.INK)
+	t.set_color("font_hover_pressed_color", "Button", Palette.INK)
 	t.set_color("font_focus_color", "Button", Palette.INK)
 	## Disabled is INK_FAINT rather than a transparency, because CYM disables
 	## buttons to mean "already used this round" — a state a player has to be
@@ -255,7 +335,7 @@ func _style_buttons(t: Theme) -> void:
 
 	t.set_color("font_color", "CheckBox", Palette.INK)
 	t.set_color("font_hover_color", "CheckBox", Palette.INK)
-	t.set_color("font_pressed_color", "CheckBox", Palette.BRASS)
+	t.set_color("font_pressed_color", "CheckBox", Palette.INK)
 	t.set_color("font_disabled_color", "CheckBox", Palette.INK_FAINT)
 	t.set_font_size("font_size", "CheckBox", Palette.TYPE_BODY)
 	t.set_stylebox("focus", "CheckBox", _focus_ring())
@@ -264,14 +344,13 @@ func _style_buttons(t: Theme) -> void:
 
 func _style_inputs(t: Theme) -> void:
 	t.set_stylebox("normal", "LineEdit", _control_box(Palette.SURFACE_DEEP, Palette.LINE))
-	var focused: StyleBoxFlat = _control_box(Palette.SURFACE_DEEP, Palette.BRASS)
-	focused.set_border_width_all(2)
+	var focused: StyleBoxFlat = _control_box(Palette.SURFACE_DEEP, Palette.STEEL_BRIGHT)
 	t.set_stylebox("focus", "LineEdit", focused)
 	t.set_stylebox("read_only", "LineEdit", _control_box(Palette.SURFACE, Palette.LINE_SOFT))
 	t.set_color("font_color", "LineEdit", Palette.INK)
 	t.set_color("font_placeholder_color", "LineEdit", Palette.INK_FAINT)
 	t.set_color("font_uneditable_color", "LineEdit", Palette.INK_MUTED)
-	t.set_color("caret_color", "LineEdit", Palette.BRASS)
+	t.set_color("caret_color", "LineEdit", Palette.STEEL_BRIGHT)
 	t.set_color("selection_color", "LineEdit", Palette.STEEL)
 	t.set_font_size("font_size", "LineEdit", Palette.TYPE_BODY)
 
@@ -279,7 +358,7 @@ func _style_inputs(t: Theme) -> void:
 	t.set_stylebox("focus", "TextEdit", focused)
 	t.set_color("font_color", "TextEdit", Palette.INK)
 	t.set_color("font_placeholder_color", "TextEdit", Palette.INK_FAINT)
-	t.set_color("caret_color", "TextEdit", Palette.BRASS)
+	t.set_color("caret_color", "TextEdit", Palette.STEEL_BRIGHT)
 	t.set_color("selection_color", "TextEdit", Palette.STEEL)
 	t.set_font_size("font_size", "TextEdit", Palette.TYPE_BODY)
 
@@ -288,12 +367,12 @@ func _style_inputs(t: Theme) -> void:
 	## the quiet button.
 	t.set_stylebox("normal", "OptionButton", _control_box(Palette.SURFACE_DEEP, Palette.LINE))
 	t.set_stylebox("hover", "OptionButton", _control_box(Palette.SURFACE, Palette.LINE))
-	t.set_stylebox("pressed", "OptionButton", _control_box(Palette.SURFACE_DEEP, Palette.BRASS))
+	t.set_stylebox("pressed", "OptionButton", _control_box(Palette.SURFACE_DEEP, Palette.STEEL))
 	t.set_stylebox("focus", "OptionButton", _focus_ring())
 	t.set_stylebox("disabled", "OptionButton", _control_box(Palette.SURFACE_DEEP, Palette.LINE_SOFT))
 	t.set_color("font_color", "OptionButton", Palette.INK)
 	t.set_color("font_hover_color", "OptionButton", Palette.INK)
-	t.set_color("font_pressed_color", "OptionButton", Palette.BRASS)
+	t.set_color("font_pressed_color", "OptionButton", Palette.INK)
 	t.set_color("font_disabled_color", "OptionButton", Palette.INK_FAINT)
 	t.set_font_size("font_size", "OptionButton", Palette.TYPE_BODY)
 
@@ -314,7 +393,7 @@ func _style_lists(t: Theme) -> void:
 	t.set_stylebox("panel", "ItemList", _panel(Palette.SURFACE_DEEP, Palette.RADIUS_CARD))
 	t.set_stylebox("focus", "ItemList", _focus_ring())
 	t.set_stylebox("hovered", "ItemList", _panel(Palette.SURFACE, Palette.RADIUS_SMALL, Palette.SURFACE))
-	var chosen: StyleBoxFlat = _panel(Palette.SURFACE_RAISED, Palette.RADIUS_SMALL, Palette.BRASS)
+	var chosen: StyleBoxFlat = _panel(Palette.STEEL, Palette.RADIUS_SMALL, Palette.STEEL)
 	t.set_stylebox("selected", "ItemList", chosen)
 	t.set_stylebox("selected_focus", "ItemList", chosen)
 	t.set_color("font_color", "ItemList", Palette.INK)
@@ -360,17 +439,20 @@ func _style_containers(t: Theme) -> void:
 
 
 func _style_progress(t: Theme) -> void:
-	## ProgressBar is the interrogation budget — how many questions are left.
-	## Brass, because it is the resource the whole round is spent against.
+	## ProgressBar is how far the investigation has come -- rounds in APF, the
+	## question budget in the gather loop (owner's markup, Session 47: the
+	## reference's slider "reappropriated to show how far in the
+	## investigation"). Steel, because it reports a STATE; brass stays for the
+	## action a screen wants taken.
 	var trough: StyleBoxFlat = StyleBoxFlat.new()
 	trough.bg_color = Palette.SURFACE_DEEP
 	trough.border_color = Palette.LINE_SOFT
-	trough.set_border_width_all(Palette.BORDER_WIDTH)
+	trough.set_border_width_all(Palette.RULE_WIDTH)
 	trough.set_corner_radius_all(Palette.RADIUS_SMALL)
 	t.set_stylebox("background", "ProgressBar", trough)
 
 	var fill: StyleBoxFlat = StyleBoxFlat.new()
-	fill.bg_color = Palette.BRASS
+	fill.bg_color = Palette.STEEL
 	fill.set_corner_radius_all(Palette.RADIUS_SMALL)
 	t.set_stylebox("fill", "ProgressBar", fill)
 	t.set_color("font_color", "ProgressBar", Palette.INK)
@@ -426,6 +508,17 @@ func _declare_variations(t: Theme) -> void:
 	t.set_type_variation("TitleLabel", "Label")
 	t.set_color("font_color", "TitleLabel", Palette.INK)
 	t.set_font_size("font_size", "TitleLabel", Palette.TYPE_TITLE)
+
+	## MysteryGeneration's "Set Your Mystery" only -- owner's explicit call
+	## (this session) to reverse the scope decision two paragraphs below,
+	## which named this exact label as the example of what should stay
+	## NunitoSans. A NEW variation rather than repointing "TitleLabel" itself,
+	## because TitleLabel is shared by five other screens (Accusation,
+	## ApfRound, Interrogation, Lobby, ShareSelection) that were not asked
+	## for and should not silently change with it.
+	t.set_type_variation("GenerationTitleLabel", "Label")
+	t.set_color("font_color", "GenerationTitleLabel", Palette.INK)
+	t.set_font_size("font_size", "GenerationTitleLabel", Palette.TYPE_TITLE)
 
 	## The MYSTERY's own name, wherever it is shown. Brass, because item 17
 	## makes the title the thing the whole screen is themed around.
@@ -503,12 +596,23 @@ func _declare_variations(t: Theme) -> void:
 	t.set_stylebox("pressed", "PrimaryButton", _control_box(Palette.BRASS_DIM, Palette.BRASS_DIM))
 	t.set_stylebox("disabled", "PrimaryButton", _control_box(Palette.SURFACE_DEEP, Palette.LINE_SOFT))
 	t.set_stylebox("focus", "PrimaryButton", _focus_ring())
+	## One tier up from body, condensed: the reference's full-width call to
+	## action, still brass because owner kept brass for the act (Session 47).
+	t.set_font_size("font_size", "PrimaryButton", Palette.TYPE_HEADING)
 	## The label on brass is the DEEP tier, not ink: dark text on a light fill.
 	t.set_color("font_color", "PrimaryButton", Palette.SURFACE_DEEP)
 	t.set_color("font_hover_color", "PrimaryButton", Palette.SURFACE_DEEP)
 	t.set_color("font_pressed_color", "PrimaryButton", Palette.INK)
 	t.set_color("font_focus_color", "PrimaryButton", Palette.SURFACE_DEEP)
 	t.set_color("font_disabled_color", "PrimaryButton", Palette.INK_FAINT)
+
+	## A choice tile (Night File, owner's main-menu markup): one of a small set
+	## -- Play / Create, Solo / With friends -- drawn large, condensed and in
+	## caps. Every state box is inherited from Button, which already reads as
+	## outlined at rest and filled steel when chosen; this variation only
+	## changes the type, so the tile and every other choice share one look.
+	t.set_type_variation("ChoiceTileButton", "Button")
+	t.set_font_size("font_size", "ChoiceTileButton", Palette.TYPE_TITLE)
 
 	## A step sideways rather than forward: Back, Cancel, Skip. Text only, so
 	## it reads as available without occupying the weight a bordered button does.
@@ -536,7 +640,7 @@ func _declare_variations(t: Theme) -> void:
 	row_normal.set_border_width_all(0)
 	t.set_stylebox("normal", "BrowseRowButton", row_normal)
 	t.set_stylebox("hover", "BrowseRowButton", _panel(Palette.SURFACE, Palette.RADIUS_SMALL, Palette.SURFACE))
-	t.set_stylebox("pressed", "BrowseRowButton", _panel(Palette.SURFACE_RAISED, Palette.RADIUS_SMALL, Palette.BRASS))
+	t.set_stylebox("pressed", "BrowseRowButton", _chosen_box())
 	t.set_stylebox("focus", "BrowseRowButton", _focus_ring())
 	t.set_color("font_color", "BrowseRowButton", Palette.INK)
 	t.set_color("font_hover_color", "BrowseRowButton", Palette.INK)
@@ -555,11 +659,15 @@ func _declare_variations(t: Theme) -> void:
 	card_normal.set_border_width_all(0)
 	t.set_stylebox("normal", "SuspectCardButton", card_normal)
 	t.set_stylebox("hover", "SuspectCardButton", _panel(Palette.SURFACE, Palette.RADIUS_SMALL, Palette.SURFACE))
-	t.set_stylebox("pressed", "SuspectCardButton", _panel(Palette.SURFACE_RAISED, Palette.RADIUS_SMALL, Palette.BRASS))
+	t.set_stylebox("pressed", "SuspectCardButton", _chosen_box())
+	var card_chosen_hover: StyleBoxFlat = _chosen_box()
+	card_chosen_hover.border_color = Palette.STEEL_BRIGHT
+	t.set_stylebox("hover_pressed", "SuspectCardButton", card_chosen_hover)
 	t.set_stylebox("focus", "SuspectCardButton", _focus_ring())
 	t.set_color("font_color", "SuspectCardButton", Palette.INK)
 	t.set_color("font_hover_color", "SuspectCardButton", Palette.INK)
-	t.set_color("font_pressed_color", "SuspectCardButton", Palette.BRASS)
+	t.set_color("font_pressed_color", "SuspectCardButton", Palette.INK)
+	t.set_color("font_hover_pressed_color", "SuspectCardButton", Palette.INK)
 	t.set_font_size("font_size", "SuspectCardButton", Palette.TYPE_BODY)
 
 	## Irreversible and consequential: the accusation. CYM has exactly one
@@ -574,6 +682,59 @@ func _declare_variations(t: Theme) -> void:
 	t.set_color("font_hover_color", "DangerButton", Palette.NEGATIVE)
 	t.set_color("font_pressed_color", "DangerButton", Palette.INK)
 	t.set_color("font_disabled_color", "DangerButton", Palette.INK_FAINT)
+
+	## Night File's finding row (docs/STYLE_GUIDE.md): one finding in a
+	## casefile, outlined at rest, steel-outlined and glowing once chosen to
+	## share. Three variations rather than per-node overrides so ApfRound
+	## swaps a NAME on toggle and never builds a StyleBox of its own -- every
+	## colour on that screen still traces to this file.
+	##
+	## The chosen row keeps its SURFACE fill and changes only its edge: the
+	## row carries a paragraph of prose, and ink on a steel fill (4.92:1) is
+	## fine for a word on a tile and tiring for a witness statement. The fill
+	## is spent on the row's small SHARING toggle instead, which is a word.
+	t.set_type_variation("FindingRow", "PanelContainer")
+	t.set_stylebox("panel", "FindingRow", _panel(Palette.SURFACE, Palette.RADIUS_CARD, Palette.LINE_SOFT))
+	t.set_type_variation("FindingRowChosen", "PanelContainer")
+	var row_chosen: StyleBoxFlat = _panel(Palette.SURFACE, Palette.RADIUS_CARD, Palette.STEEL)
+	row_chosen.shadow_color = Color(Palette.STEEL, 0.35)
+	row_chosen.shadow_size = 10
+	t.set_stylebox("panel", "FindingRowChosen", row_chosen)
+	## Already shared: still yours (an investigator cannot be made to forget),
+	## no longer only yours. Sunk to the well tier, nothing left to decide.
+	t.set_type_variation("FindingRowShared", "PanelContainer")
+	t.set_stylebox("panel", "FindingRowShared", _panel(Palette.SURFACE_DEEP, Palette.RADIUS_CARD, Palette.LINE_SOFT))
+
+	## The ID column of a finding row: E3, L1, W. Condensed and one size up,
+	## so the column reads as an index the eye can run down.
+	t.set_type_variation("FindingIdLabel", "Label")
+	t.set_color("font_color", "FindingIdLabel", Palette.INK_MUTED)
+	t.set_font_size("font_size", "FindingIdLabel", Palette.TYPE_HEADING)
+
+	## The stamp (Night File): a steel block under the verdict that says who
+	## held a finding back. Filled, not outlined, because it is a statement of
+	## record rather than a choice -- and steel, not brass, because it reports
+	## a state and asks nobody to act. Its key word is in the display face so
+	## it reads as part of the verdict above it; the sentence is condensed.
+	t.set_type_variation("StampPanel", "PanelContainer")
+	var stamp: StyleBoxFlat = _panel(Palette.STEEL, Palette.RADIUS_SMALL, Palette.STEEL)
+	stamp.content_margin_left = float(Palette.SPACE_WIDE)
+	stamp.content_margin_right = float(Palette.SPACE_WIDE)
+	stamp.content_margin_top = float(Palette.SPACE_SMALL)
+	stamp.content_margin_bottom = float(Palette.SPACE_SMALL)
+	t.set_stylebox("panel", "StampPanel", stamp)
+	t.set_type_variation("StampKeyLabel", "Label")
+	t.set_color("font_color", "StampKeyLabel", Palette.INK)
+	t.set_font_size("font_size", "StampKeyLabel", Palette.TYPE_HEADING)
+	t.set_type_variation("StampTextLabel", "Label")
+	t.set_color("font_color", "StampTextLabel", Palette.INK)
+	t.set_font_size("font_size", "StampTextLabel", Palette.TYPE_BODY)
+
+	## The value half of a ledger row (label on the left in FaintLabel, value
+	## on the right in this): "Your accusation ..... Cadan Polglase".
+	t.set_type_variation("LedgerValueLabel", "Label")
+	t.set_color("font_color", "LedgerValueLabel", Palette.INK)
+	t.set_font_size("font_size", "LedgerValueLabel", Palette.TYPE_HEADING)
 
 	## A panel that should read as sunk into the page: transcripts, feeds,
 	## evidence lists. The well tier, as a container.

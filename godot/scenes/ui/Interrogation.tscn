@@ -89,7 +89,6 @@ layout_mode = 2
 theme_type_variation = &"HeadingLabel"
 layout_mode = 2
 text = "Shared Intel"
-modulate = Color(0.565, 0.933, 0.565, 1)
 
 [node name="SharedContainer" type="VBoxContainer" parent="VBox/SharedPanel"]
 layout_mode = 2

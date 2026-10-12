@@ -62,6 +62,7 @@ that the superseded text has become history and belongs here instead.
 | 24 | One palette, three surfaces | `DONE` |
 | 25 | The design becomes visible in the editor; two engine-side checks | `DONE` |
 | 26 | Generation writes backwards; clues declare what they serve | `DONE` |
+| 35 | Character pronouns + presentation; suspect-icon tagging and fallback chain | `BUILT, Sept 16 — untested against a real generation` |
 
 ---
 
@@ -201,6 +202,15 @@ that the superseded text has become history and belongs here instead.
    safe to delete, plus a further 21 stale unmerged branches the owner is triaging on their own
    schedule (see `SESSIONS.md` Session 18). **`dev/mind-your-friends` is a separate, real second
    project sharing this repo — do not touch it in any cleanup pass.**
+
+   **[Session 47, October 12 2026] Every remaining branch audited by content and archived.** Each
+   is tagged `archive/<branch-name>` (commits and the LFS parquet stay retrievable) and listed for
+   deletion with a verdict in `SESSIONS.md` Session 47. Three hold work `main` lacks — a July 22
+   coherence-telemetry session, two extractor changes plus Van Dine's 20 rules, and three MYF
+   design ideas — and are carried as open work in `CLAUDE.md`. **The "do not touch
+   `dev/mind-your-friends`" rule above predates MYF's import into `main` (Aug 6)**; the branch is
+   now a July 22 snapshot of a line `main` carries to Aug 20, and its deletion is put to the owner
+   explicitly rather than assumed.
 
    **`dev/cryptic-challenge` is NOT a third project (verified Session 29, August 17 2026).**
    The name has repeatedly been read — including by a Claude session, which cited it as evidence
@@ -953,6 +963,40 @@ that the superseded text has become history and belongs here instead.
     `scripts/test_apf.py` and `scripts/check_godot_wiring.py` still pass; not run in Godot, same
     caveat as everything else in this item.
 
+    **[Session 41, eighth generation] The first accepted mystery.**
+    `the_neriin_in_the_pilchard_barrel` (Cornish tin-mine counting house, 1907) is in `generated/`:
+    coherence 0 blocking 0 warnings, 4 suspects, routes 3/3/4, feasibility clean, assigns on attempt
+    1, proof surviving 81 of 81 hoarding patterns. It generated with one violation — an exoneration
+    nothing revealed — closed by `scripts/wire_pointers.py` wiring E4 to the witness whose statement
+    already described the same man on the same cliff path. First CPAM: $0.7169, over four measured
+    generations.
+
+    **What it exposed: monopoly on proof is a property of the assignment, not the mystery.** At seed
+    7 exactly one player could prove it in 27 of 81 patterns — the same figure `totality` was
+    casefile-rejected for. Across 20 seeds, 13 give 0/81 and proof survives 81/81 on every one.
+    Re-running the assignment is free, so `best_assignment()` searches seeds and keeps the fairest
+    one rather than the first legal one — this is what the "two defects found by running it" note
+    above refers to.
+
+    **[Session 41, sixth generation] The two-routes problem is solved.** It was never a distribution
+    problem — counted over routes rather than evidence items, exactly one suspect had exactly one
+    route every time, and it was always the suspect whose clue nothing pointed at and whom no
+    witness mentioned. The prompt now assigns each witness a suspect before writing the statement.
+    `the_tide_waits_for_no_one` is the result: 0 blocking, 0 warnings, no single-route suspect, every
+    exoneration wired, no prose leak.
+
+    **It fails on one rule, and that rule is item 27 working.** A narrowing (two men tall enough to
+    reach a six-foot shelf) plus the exoneration clearing one of them names the culprit in two
+    findings — the glove, exactly as specified. But both halves landed on the same witness, so one
+    assigned finding carries the whole proof. No single witness, lead or area may reveal both a
+    narrowing and the exoneration that completes it — in the prompt, untested; one generation should
+    confirm it.
+
+    **[Session 44] The Sept8 playtest continued screen by screen** — MainMenu, Browse Saved
+    Mysteries, CaseDisplay, ResultScreen, Interrogation. Owner-driven UI fixes, no mechanic changes.
+    Full account in `SESSIONS.md` Session 44; not repeated here since none of it changed APF's
+    design. Headline result: `IconSet.SUSPECT` went from effectively empty of real art to 18 entries.
+
 24. **[DONE, Session 37 — August 26, 2026] One palette, three surfaces.** The client had no
     styling at all; the phone had a palette it invented; the brand documented a third and was
     rendered by nothing. Two of those brasses were `#c8a96e` and `#C9A227` — near enough to read
@@ -1415,3 +1459,126 @@ that the superseded text has become history and belongs here instead.
     **The standing rule for future sessions:** if a word would be at home on a box that says
     "2–6 players, ages 10+", it is the wrong word. Reach for the investigation instead — findings,
     casefiles, statements, the record, what reached the table.
+
+35. **[BUILT AND CONFIRMED AGAINST A REAL GENERATION, Sept 16 2026] Character pronouns +
+    presentation, and suspect-icon tagging with a fallback chain that reaches past humans.**
+    Grew out of two separate asks in the same conversation: the suspect-icon gender-skew review
+    (icons/suspect/README.md's "Quantified skew review") found that icon assignment is completely
+    uncorrelated with a character's actual gender — the pool composition matters, but so does the
+    fact that nothing reads it. Separately, the owner named the real driver: *"when we get to Gen
+    AI calls for the mystery, for interrogations gender accuracy will be a must"* — dialogue
+    consistency during play, which icon-matching is only a visible side-effect of. Then, thinking
+    ahead: *"Scandal in Smurfland" / "My blackmailer is an alien"* — whatever schema shape handles
+    this can't assume every character is human.
+
+    **Two fields on every `characters[]` entry, not one.** `pronouns` (free text — "she/her",
+    "xe/xem", whatever a setting invents) answers what generation's own dialogue needs: consistent
+    third-person reference in `bio`/`statement`/`secret`, and in the two runtime call-sites that
+    write character voice during play — `_generate_witness_scene()` and
+    `_generate_resolution_narrative()`, both now threading it into their prompts.
+    `presentation` ("human", or a species string) answers a different question — which portrait
+    pool a suspect draws from — and deliberately isn't derived from `pronouns`, because the two
+    can diverge (a masculine-presenting character can use `they/them`) and because collapsing them
+    would make the martian/Smurf case impossible to express. Both fields are new; neither costs an
+    extra API call — they ride the existing generation call the same way `narrows` (item 27) did.
+
+    **The icon half: `icons/suspect/tags.json`, and `Icons.gd`'s new exception to its own rule.**
+    Only the suspect set is tagged — `clue/` and `witness/` stay untagged, since "the icon means
+    nothing" is still their whole contract. `Icons.gd`'s header is explicit that matching a
+    portrait's presented gender to a character's actual gender is accuracy, not the narrative
+    signal that rule forbids, and says so in writing so a future reviser doesn't read the two as
+    the same thing. `scripts/build_icons.py` now refuses to build if any suspect icon lacks a tag
+    entry, or if the manifest names a file that's gone — same posture as `gate.py`: a manifest that
+    can be silently wrong is worse than one that refuses to build.
+
+    **Fallback chain, most to least specific, each step falling through rather than erroring:**
+    exact species tag → generic `"non-human"` tag → `[gender_bucket, "human"]` → the full
+    unfiltered pool. No non-human art exists yet, so every mystery resolves at step 3 today — by
+    design, not as a gap: adding one tagged martian SVG later needs zero code changes to start
+    being picked, the same "extend by content, not code" shape `craft_grounding.py`'s retrieval
+    layer already uses. `woman-svgrepo-com.svg` (the file added in the gender-skew follow-up,
+    found this same review to actually be a 9-color illustration, not the flat silhouette it was
+    reported as) was pulled back out rather than tagged — it fails the manifest's own style rule
+    on the grounds three other files were already excluded for.
+
+    **A real bug, caught by the test that was written to prove the design, not by inspection.**
+    `_gender_bucket()`'s first draft matched pronoun tokens by raw substring — and `"he"` is a
+    substring of `"they"` and `"them"`, so `they/them` (the default fallback in every call site
+    that builds character context) bucketed as masculine. `scripts/test_icons.py`'s new fallback-
+    chain section is a Python reimplementation of the same logic (same pattern the file already
+    uses for the hash/uniformity tests — GDScript has no engine here to run it against), and it
+    failed on exactly that case before either copy was fixed to tokenize instead. Fixed in both
+    places; the test would catch a regression in either.
+
+    **[Confirmed, same day] The owner ran a real generation on their own machine** — `python3 -m
+    uvicorn` + F5 + New Game (Solo), prompt *"A Stolen necklace in a world like Neuromancer"*. The
+    result, `ghost_protocol:_the_tessier-ashpool_neck_1789602264.json` ($0.166, `claude-sonnet-4-6`,
+    186.8s), landed in `rejected/` — `gate.py` correctly refused it, for reasons entirely unrelated
+    to this item: two suspects (`Sera Okafor`, `Tomás Vey`) cleared by zero findings each, three
+    narrowing clues leaking the answer in their own prose (`NARR.NARROWS_PROSE_NAMES`, item 27),
+    elimination stalling at 3 suspects instead of 1. Not this item's fault, and not nothing either —
+    see the note on item 27 below. **What this item actually needed to prove: all 8 characters
+    carried both `pronouns` and `presentation`, non-blank, sensible, and varied** — five `he/him`,
+    two `she/her`, and `Brin Uptime` came back `they/them` unprompted, the value nothing in the
+    prompt forced and the exact case `_gender_bucket()`'s bug (above) would have mis-sorted had it
+    shipped. Every character read `presentation: human`, correctly, for a human cast in a cyberpunk
+    setting that could plausibly have confused a less careful prompt. `ApplyTheme.gd` and
+    `VerifyScenes.gd` were also run for real this same session (`docs/F5_CHECKLIST.md`, `MISSES
+    none`, eight `ok` lines) — not specific to this item, but the standing "no engine reachable"
+    caveat is gone for this session's changes as a whole.
+
+    **What's still open.** `coherence_validator.py` doesn't enforce `pronouns`/`presentation`
+    non-blank yet (`docs/WIRING.md`'s schema section flags this as the natural next addition, same
+    shape as the existing alibi/motive/secret rules) — this generation happened to write both for
+    every character, which is a sample of one, not a guarantee. The feminine-icon sourcing that
+    prompted this item is no longer "separate" — 5 flat, race-neutral SVGs landed the same day
+    (`icons/suspect/README.md`, pool now 13 masculine / 6 feminine / 4 neutral), short of the 10–13
+    parity target but real progress, with an open license-source question of its own.
+
+    **Incidental, but worth recording against item 27 specifically:** three `NARR.NARROWS_PROSE_NAMES`
+    violations in one generation is the first real data point on how often the "name nobody it
+    points to" rule (item 27) actually holds under real generation — not favorable, on this one
+    sample. Worth watching across more generations before concluding anything, but worth noting now
+    rather than only when a pattern is undeniable.
+
+36. **[ADOPTED, Session 47 — October 12, 2026 — owner] Night File: the host screen's look.**
+    The owner brought annotated screenshots of *Red Flags* (predictredflags.xyz) and asked for a
+    style guide that **emulates it without copying it**, in CYM's slate blue. What that look does
+    is make one decision legible from a sofa: outlined means "you could choose this", filled means
+    "chosen", on square, heavily outlined tiles over a near-black ground. Full guide:
+    `docs/STYLE_GUIDE.md`.
+
+    **The question the arithmetic answered first: slate cannot do red's job as it stands.** An
+    accent works there because it is bright against near-black — the reference red sits at 3.36:1
+    against its ground and 4.96:1 under cream ink. Slate `#2F4459` on a near-black ground is
+    1.89:1, a tint rather than a signal. The same hue lifted to `#46678A` lands at 3.22 and 4.92 —
+    the reference's own ratios, in our colour. So slate stayed the brand hue (`SLATE`, now the tint
+    behind result bars) and its lifted self became the selection accent (`STEEL`, re-pitched).
+
+    Owner's calls, all Session 47:
+    - **The ground moves from slate to Night `#0C1118`.** It overturns item 24's "panels go deeper
+      than the ground" — that rule existed because slate was a mid-tone, and it was rewritten in
+      `palette.py` with the reason rather than just the value. MYF keeps slate, so the two titles
+      no longer share a ground; accepted. **Every brand mark reads better on Night**: the organic
+      monogram goes from 73% of its ink at or below 2.5:1 to 0%, the negative mark 7% to 6%, the
+      temporary lobby logo 66% to 52%.
+    - **Brass keeps the primary action.** Steel takes every "chosen" state: toggled buttons,
+      list selection, suspect cards, focus, progress. One meaning per colour.
+    - **Cinzel Decorative stays** — the first draft proposed replacing it with League Gothic and
+      the owner declined — **and gains `TitleLabel`**, on the owner's markup that a screen's title
+      belongs in the decorative face. This reverses a Session 43 scope call; the reason for that
+      call (fast reading during play) is answered by moving the fast-read text to the next face.
+    - **Archivo Narrow is added** (OFL 1.1, static SemiBold/Bold from Omnibus-Type's own repo)
+      for buttons, headers, field labels and list rows. Nunito Sans keeps prose.
+    - **The investigation hub serves APF.** The owner's markup turned the reference's three
+      options into *Interrogate Witnesses / Follow Leads / Examine Evidence* and its confidence
+      slider into investigation progress; the owner then confirmed it was "an example, not a
+      directive" and that APF's reading is right — the rows are the three kinds of finding in a
+      casefile, the bar is rounds. The gather loop can reuse the same parts.
+
+    **What landed is theme-level only**, which is the point of `Style.gd` (item 24): `palette.py`,
+    the generated `Palette.gd` and `mobile.html` block, the clear colour, two fonts and the
+    Theme — all nine screens restyle with no `.tscn` edited. **Not rendered** — no engine reaches a
+    session; `ApplyTheme.gd` has to confirm the new theme items (`hover_pressed` among them) on the
+    owner's machine. The scene-level parts (the ID column, the result bar, the stamp, the ledger)
+    and five hard-coded colours that bypass the theme are the screen-by-screen pass that follows.

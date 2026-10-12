@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-"""Measure a brand asset's ink against CYM's slate ground. Zero API cost.
+"""Measure a brand asset's ink against CYM's ground. Zero API cost.
 
     python3 scripts/check_brand_contrast.py brand/organic_logo.svg [...]
+    python3 scripts/check_brand_contrast.py --myf [...]   # MYF's slate instead
 
-WHY. CYM's ground is slate #2F4459, and artwork drawn against white loses its
+WHY. CYM's ground is Night #0C1118 (slate #2F4459 until Session 47, and
+still MYF's), and on Night it is the DARK half of a mark that vanishes. On
+slate, artwork drawn against white loses its
 dark half on it — near-black lands around 1.9:1. That is not a hypothetical:
 it is what happened to MYF's metallic title treatment, which shipped looking
 "dim" because roughly two thirds of it was below 3.5:1 and simply was not
@@ -36,7 +39,13 @@ try:
 except ImportError:
     sys.exit("needs pillow:  pip install pillow")
 
-GROUND = (0x2F, 0x44, 0x59)  # CYM/MYF slate
+# Two grounds since Session 47: CYM moved to Night, MYF kept slate. A brand
+# mark shared by both titles has to be measured against both — pass --myf to
+# grade against slate. Default is CYM's, because that is what this repo paints.
+CYM_GROUND = (0x0C, 0x11, 0x18)  # Night — palette.GROUND
+MYF_GROUND = (0x2F, 0x44, 0x59)  # slate — palette.SLATE, still MYF's ground
+GROUND = MYF_GROUND if "--myf" in sys.argv else CYM_GROUND
+GROUND_NAME = "MYF slate" if GROUND == MYF_GROUND else "CYM Night"
 
 BANDS = [
     (1.5, "invisible", "below 1.5:1 — not perceptible as a shape"),
@@ -116,7 +125,7 @@ def report(path: Path) -> None:
             darker += 1
 
     total = len(ink)
-    print(f"  {total:,} opaque pixels, against the slate ground")
+    print(f"  {total:,} opaque pixels, against the {GROUND_NAME} ground")
     for _, name, blurb in BANDS:
         share = counts[name] / total
         print(f"    {name:10s} {share:6.1%}  {'#' * int(share * 34):34s} {blurb}")
@@ -130,6 +139,6 @@ def report(path: Path) -> None:
 
 
 if __name__ == "__main__":
-    targets = sys.argv[1:] or sorted(str(p) for p in Path("brand").glob("*.svg"))
+    targets = [a for a in sys.argv[1:] if not a.startswith("--")] or sorted(str(p) for p in Path("brand").glob("*.svg"))
     for t in targets:
         report(Path(t))

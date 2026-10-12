@@ -1,5 +1,16 @@
 ## MainMenu — entry point scene script.
-## Buttons: New Game, Browse Saved Mysteries, Settings, Quit.
+##
+## [Session 47] Two questions instead of three buttons (owner's markup on the
+## Night File reference: the reference's two-way switch becomes "Create
+## Mystery or Play a Mystery"). Play/Create x Solo/With friends, then one
+## primary action. Every destination is one the old buttons already reached --
+## this changes the front door, not anything behind it:
+##
+##   Play   + Solo     -> the saved-mystery browser, then CaseDisplay
+##   Play   + Friends  -> MysteryGeneration's room setup (opens a room from a
+##                        saved mystery, which is why stage 1 built it)
+##   Create + Solo     -> MysteryGeneration, generating alone
+##   Create + Friends  -> MysteryGeneration's room setup, generating for it
 ##
 ## SESSION ANNOTATION — Phase 2:
 ## The "Browse Saved" button calls ApiClient.list_mysteries() and shows a
@@ -11,9 +22,12 @@ extends Control
 # ---------------------------------------------------------------------------
 # Node references (set these in the .tscn file)
 # ---------------------------------------------------------------------------
-@onready var new_game_button: Button = $VBox/NewGameButton
-@onready var multiplayer_button: Button = $VBox/MultiplayerButton
-@onready var browse_button: Button = $VBox/BrowseSavedButton
+@onready var play_tile: Button = $VBox/ModeRow/PlayTile
+@onready var create_tile: Button = $VBox/ModeRow/CreateTile
+@onready var solo_tile: Button = $VBox/WhoRow/SoloTile
+@onready var friends_tile: Button = $VBox/WhoRow/FriendsTile
+@onready var hint_label: Label = $VBox/HintLabel
+@onready var begin_button: Button = $VBox/BeginButton
 @onready var quit_button: Button = $VBox/QuitButton
 @onready var status_label: Label = $StatusLabel
 @onready var browse_popup: Window = $BrowsePopup          ## Created in scene
@@ -27,9 +41,21 @@ var _saved_mysteries: Array = []
 # ---------------------------------------------------------------------------
 func _ready() -> void:
 	GameState.reset()
-	new_game_button.pressed.connect(_on_new_game)
-	multiplayer_button.pressed.connect(_on_multiplayer)
-	browse_button.pressed.connect(_on_browse)
+	## Two ButtonGroups make each pair a radio choice with no bookkeeping here:
+	## the group un-presses the other tile, and the theme draws the pressed one
+	## filled. Defaults (Play, With friends) are set in the scene -- the party
+	## game at a table is the case this menu exists for.
+	var mode_group := ButtonGroup.new()
+	play_tile.button_group = mode_group
+	create_tile.button_group = mode_group
+	var who_group := ButtonGroup.new()
+	solo_tile.button_group = who_group
+	friends_tile.button_group = who_group
+	for tile: Button in [play_tile, create_tile, solo_tile, friends_tile]:
+		tile.toggled.connect(func(_on: bool) -> void: _update_hint())
+	_update_hint()
+
+	begin_button.pressed.connect(_on_begin)
 	quit_button.pressed.connect(get_tree().quit)
 
 	# The browse popup's own signals. None of these were connected before, so the
@@ -54,21 +80,33 @@ func _on_health_check(error: String, _data: Dictionary) -> void:
 		status_label.text = "Backend connected."
 		status_label.add_theme_color_override("font_color", Palette.POSITIVE)
 
-func _on_new_game() -> void:
-	GameState.is_multiplayer = false
-	get_tree().change_scene_to_file("res://scenes/ui/MysteryGeneration.tscn")
+## Says where the button will take you BEFORE you press it. Four
+## combinations reach three places, and two of them land on the same screen;
+## a sentence is cheaper than a player discovering that by pressing.
+func _update_hint() -> void:
+	var solo: bool = solo_tile.button_pressed
+	if play_tile.button_pressed:
+		hint_label.text = ("Pick a saved case and work it alone." if solo
+			else "Open a room from a saved case. Everyone joins from their phone.")
+	else:
+		hint_label.text = ("Write a new case from your own prompt." if solo
+			else "Write a new case for the room. Everyone joins from their phone.")
 
-func _on_multiplayer() -> void:
-	GameState.is_multiplayer = true
+func _on_begin() -> void:
+	var solo: bool = solo_tile.button_pressed
+	if play_tile.button_pressed and solo:
+		_on_browse()
+		return
+	GameState.is_multiplayer = not solo
 	get_tree().change_scene_to_file("res://scenes/ui/MysteryGeneration.tscn")
 
 func _on_browse() -> void:
-	browse_button.disabled = true
+	begin_button.disabled = true
 	status_label.text = "Loading saved mysteries…"
 	ApiClient.list_mysteries(_on_mysteries_listed)
 
 func _on_mysteries_listed(error: String, data) -> void:
-	browse_button.disabled = false
+	begin_button.disabled = false
 	if error:
 		status_label.text = "Error: " + error
 		return

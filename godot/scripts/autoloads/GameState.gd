@@ -140,6 +140,18 @@ func apf_casefile() -> Array:
 func apf_board() -> Array:
 	return apf_state.get("board", [])
 
+## What a finding's ID column shows (Night File, docs/STYLE_GUIDE.md): the
+## part after the colon casefiles.py prefixes -- "E:E3" -> "E3", "L:L1" ->
+## "L1". A witness shows a plain "W": its title is already the witness's
+## name, and initials would be a code nobody was taught. Here rather than in
+## one screen because ApfRound and ResultScreen both draw finding rows, and
+## two copies of a display rule are how two screens come to disagree.
+func finding_display_id(raw_id: String) -> String:
+	if raw_id.begins_with("W:"):
+		return "W"
+	var colon: int = raw_id.find(":")
+	return raw_id.substr(colon + 1) if colon != -1 else raw_id
+
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------

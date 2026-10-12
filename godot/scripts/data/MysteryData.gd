@@ -16,6 +16,8 @@ class CharacterData:
 	var name: String = ""
 	var role: String = ""       # victim | suspect | detective | witness
 	var occupation: String = ""
+	var pronouns: String = ""       # e.g. "she/her" -- generation-provided, free text
+	var presentation: String = ""   # "human" or a species string, e.g. "martian" -- drives icon pick
 	var motive: String = ""
 	var alibi: String = ""
 	var secret: String = ""
@@ -25,6 +27,8 @@ class CharacterData:
 		c.name = d.get("name", "")
 		c.role = d.get("role", "")
 		c.occupation = d.get("occupation", "")
+		c.pronouns = d.get("pronouns", "")
+		c.presentation = d.get("presentation", "")
 		c.motive = d.get("motive", "")
 		c.alibi = d.get("alibi", "")
 		c.secret = d.get("secret", "")

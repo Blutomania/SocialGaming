@@ -45,6 +45,27 @@ autowrap_mode = 0
 text_overrun_behavior = 3
 theme_override_font_sizes/font_size = 28
 
+[node name="Stamp" type="PanelContainer" parent="ScrollContainer/MainVBox"]
+theme_type_variation = &"StampPanel"
+layout_mode = 2
+size_flags_horizontal = 4
+visible = false
+
+[node name="StampRow" type="HBoxContainer" parent="ScrollContainer/MainVBox/Stamp"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="StampKey" type="Label" parent="ScrollContainer/MainVBox/Stamp/StampRow"]
+theme_type_variation = &"StampKeyLabel"
+layout_mode = 2
+text = "Kept back"
+
+[node name="StampText" type="Label" parent="ScrollContainer/MainVBox/Stamp/StampRow"]
+theme_type_variation = &"StampTextLabel"
+layout_mode = 2
+size_flags_vertical = 4
+text = ""
+
 [node name="SolutionRow" type="HBoxContainer" parent="ScrollContainer/MainVBox"]
 layout_mode = 2
 theme_override_constants/separation = 12
@@ -64,12 +85,11 @@ bbcode_enabled = true
 fit_content = true
 text = ""
 
-[node name="StatsLabel" type="RichTextLabel" parent="ScrollContainer/MainVBox"]
+[node name="Ledger" type="VBoxContainer" parent="ScrollContainer/MainVBox"]
+custom_minimum_size = Vector2(640, 0)
 layout_mode = 2
-bbcode_enabled = true
-fit_content = true
-text = ""
-visible = false
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
 
 [node name="Separator1" type="HSeparator" parent="ScrollContainer/MainVBox"]
 layout_mode = 2

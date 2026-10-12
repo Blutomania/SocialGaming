@@ -112,8 +112,13 @@ func _populate() -> void:
 		## No `.id` field on CharacterData -- `.name` is the stable, unique-
 		## per-mystery key the server side already treats it as, so it is the
 		## right seed for Icons.suspect() too.
-		var suspect_icon: String = Icons.suspect(suspects[i].name, GameState.game_id)
-		_add_cast_row("Suspect %d:" % (i + 1), suspects[i].name, suspects[i].occupation, Palette.BRASS, suspect_icon)
+		var suspect_icon: String = Icons.suspect(
+			suspects[i].name, GameState.game_id, suspects[i].pronouns, suspects[i].presentation)
+		## INK, not brass, since Session 47: Night File keeps brass for the
+		## action and the mystery's own name, and the role word already says
+		## "Suspect". Victim stays NEGATIVE and witnesses STEEL_BRIGHT, so the
+		## three roles still differ by more than their label.
+		_add_cast_row("Suspect %d:" % (i + 1), suspects[i].name, suspects[i].occupation, Palette.INK, suspect_icon)
 
 	var witnesses := _mystery.characters.filter(func(c): return c.role == "witness")
 	for i in range(witnesses.size()):
@@ -310,7 +315,7 @@ func _populate_areas() -> void:
 		return
 	var header := Label.new()
 	header.text = "Investigation Areas"
-	header.add_theme_color_override("font_color", Palette.STEEL_BRIGHT)
+	header.theme_type_variation = &"HeadingLabel"
 	areas_container.add_child(header)
 	for area in _mystery.investigation_areas:
 		var lbl := Label.new()
@@ -329,7 +334,7 @@ func _populate_leads() -> void:
 		return
 	var header := Label.new()
 	header.text = "Leads"
-	header.add_theme_color_override("font_color", Palette.BRASS)
+	header.theme_type_variation = &"HeadingLabel"
 	leads_container.add_child(header)
 	for lead in _mystery.leads:
 		var lbl := Label.new()

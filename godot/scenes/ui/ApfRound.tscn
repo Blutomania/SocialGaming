@@ -41,6 +41,32 @@ layout_mode = 2
 text = ""
 horizontal_alignment = 2
 
+[node name="Progress" type="VBoxContainer" parent="Margin/MainVBox"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="RoundBar" type="ProgressBar" parent="Margin/MainVBox/Progress"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+max_value = 4.0
+step = 1.0
+show_percentage = false
+
+[node name="Caption" type="HBoxContainer" parent="Margin/MainVBox/Progress"]
+layout_mode = 2
+
+[node name="PhaseLabel" type="Label" parent="Margin/MainVBox/Progress/Caption"]
+theme_type_variation = &"HeadingLabel"
+layout_mode = 2
+size_flags_horizontal = 3
+text = ""
+
+[node name="QuipLabel" type="Label" parent="Margin/MainVBox/Progress/Caption"]
+theme_type_variation = &"FaintLabel"
+layout_mode = 2
+text = ""
+horizontal_alignment = 2
+
 [node name="Columns" type="HBoxContainer" parent="Margin/MainVBox"]
 layout_mode = 2
 size_flags_vertical = 3
