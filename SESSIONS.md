@@ -109,13 +109,23 @@ branch. `git checkout archive/<name>` brings any of it back.
 | `owner/godot-sidecars` | Superseded | Only Godot 4.7's `project.godot` rewrite, which CLAUDE.md says to discard |
 | `claude/verify-root-path-JyDSP` | Superseded | Phase 1/2 Godot scaffold. Session 44 already judged it; its deletion never took |
 | `claude/upload-corpus-extraction-3uTq5` | Superseded | Streamlit era. The 14.6 MB parquet is an LFS object; the tag keeps it reachable |
-| `claude/myf-lobby-progress-state-zc3myh` | Superseded | Aug 12 MYF work — every idea is on `main`; its open-answering code was replaced by Flow B |
-| `claude/continuation-r0mhfq` | Superseded | An ancestor of `dev/mind-your-friends` |
-| `claude/awesome-hopper-eb06zt`, `confident-franklin-250vxg`, `compassionate-cray-pu5ieu`, `inspiring-newton-luip6g` | Superseded | MYF side branches (forked Mar 31); their design sections landed on `main` by another route |
-| `dev/mind-your-friends` | Superseded — **owner to confirm** | A July 22 snapshot; `main`'s `mind-your-friends/` carries MYF to Aug 20. DECISIONS item 9 says never touch it, a rule that predates the Aug 6 import |
+| `claude/myf-lobby-progress-state-zc3myh` | **MYF — archived, branch deleted** (see below) | Aug 12 MYF work — every idea is on `main`; its open-answering code was replaced by Flow B |
+| `claude/continuation-r0mhfq` | **MYF — archived, branch deleted** (see below) | An ancestor of `dev/mind-your-friends` |
+| `claude/awesome-hopper-eb06zt`, `confident-franklin-250vxg`, `compassionate-cray-pu5ieu`, `inspiring-newton-luip6g` | **MYF — archived, branch deleted** (see below) | MYF side branches (forked Mar 31); their design sections landed on `main` by another route |
+| `dev/mind-your-friends` | **Kept — owner confirmed item 9** | A July 22 snapshot; `main`'s `mind-your-friends/` carries MYF to Aug 20. DECISIONS item 9 says never touch it, a rule that predates the Aug 6 import |
 | `claude/connection-check-lum47r` | **Unmerged work** | A parallel July 22 session: coherence rule-hit telemetry, `rule_telemetry.py`, `coherence_benchmark.py`, `TAXONOMY_EXPANSION_CANDIDATES.md`, studio-thesis docs |
 | `claude/pdf-ingestion-checkpoint-71qwb3` | **Partly unmerged** | The anthology filename-collision fix (renames outputs, so existing extractions would be re-run at API cost), `--model-for`, S.S. Van Dine's 20 rules |
-| `claude/brave-bohr-45istr` | **Unmerged MYF design** | DM-based answers, the "Every Game Is Complete" principle, Player Memory (tentative) + a `playerProfile.js` stub |
+| `claude/brave-bohr-45istr` | **MYF — archived, branch deleted; holds unmerged MYF design** | DM-based answers, the "Every Game Is Complete" principle, Player Memory (tentative) + a `playerProfile.js` stub |
+
+**Owner, same session: "Definitely not deleting Mind Your Friends. Item 9 is correct."**
+`dev/mind-your-friends` stays — it was never deleted. **What actually happened, in order:** the owner
+ran the archive-and-delete commands before that clarification, so the seven MYF *checkpoint*
+branches were deleted along with the CYM ones. Nothing was lost: all 13 `archive/*` tags were
+verified on the remote, each pointing at exactly the commit its branch held, and any one restores
+as a branch with `git push origin archive/<name>:refs/heads/<name>`. Whether to restore them is
+the owner's call — item 9 names only `dev/mind-your-friends`, and Session 44 had argued it should
+extend to the checkpoints. After cleanup the remote holds `main`, `dev/mind-your-friends` and this
+session's branch.
 
 The three **unmerged** rows are recorded as open work in `CLAUDE.md` so deleting the branches does
 not delete the knowledge that the ideas exist. **Deletion itself needs the owner**: this session's

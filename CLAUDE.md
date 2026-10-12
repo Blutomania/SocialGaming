@@ -597,9 +597,11 @@ novel. Full detail: `docs/DECISIONS.md` item 7.
 
 ### Archived branches — work that never reached `main`
 
-Branch cleanup, Session 47: every old branch is tagged *archive/<branch-name>* before deletion, so
-nothing below is lost — *git checkout archive/<name>* restores it. These three hold ideas `main`
-does not have; each is a decision, not a bug:
+Branch cleanup, Session 47: every old branch was tagged *archive/<branch-name>* and then deleted,
+so nothing below is lost — *git checkout archive/<name>* restores it. `dev/mind-your-friends` was
+not touched (item 9, owner-confirmed); MYF's checkpoint branches went before that was clarified and
+can be restored from their tags. These three hold ideas `main` does not have; each is a decision,
+not a bug:
 
 - **archive/claude/connection-check-lum47r** (July 22) — coherence rule-hit telemetry
   (*rule_telemetry.py* correlates rule firings with viability ratings; two ratings now exist),
