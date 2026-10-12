@@ -151,6 +151,15 @@ through Godot's loader, and the report's "All 8 screens" read as complete. It no
 `scenes/ui/` itself. A missing font is also now `push_error` rather than `push_warning`, so it
 shows red in Output on any F5 (owner agreed).
 
+### First renders (owner's F5, Godot 4.7.2)
+
+MainMenu, MysteryGeneration and the Lobby's stamp and seat rows rendered as intended — the first
+time any Night File screen was seen. **The Lobby did not:** the temporary logo printed over the
+mystery title. The content column was centred and grew both ways, and the new seat rows are tall
+enough that two players pushed the title up into the logo; four would have pushed it off screen.
+Fixed: the column is pinned under the logo and grows down only, seats sit in a two-column grid,
+and the roster scrolls in whatever height is left so Open the case stays on screen.
+
 ### Verification
 
 `check_godot_wiring.py`, `build_palette.py --check`, `test_palette.py` (33 pairs),

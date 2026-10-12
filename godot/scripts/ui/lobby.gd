@@ -19,7 +19,13 @@ extends Control
 @onready var room_code_label: Label = $VBox/RoomCodeLabel
 @onready var join_url_label: Label = $VBox/JoinUrlLabel
 @onready var mystery_title_label: Label = $VBox/MysteryTitleLabel
-@onready var player_list: VBoxContainer = $VBox/PlayerList
+## A two-column grid inside a scroll (Session 47, after the owner's first
+## render): one roster row per player in a single column pushed a centred
+## layout up into the logo at only two seats. Two columns seat four in two
+## rows, the column is now pinned under the logo and grows downward only, and
+## the scroll takes whatever height is left, so a bigger table scrolls rather
+## than pushing Open the case off the screen.
+@onready var player_list: GridContainer = $VBox/PlayerScroll/PlayerList
 @onready var start_button: Button = $VBox/StartButton
 @onready var back_button: Button = $VBox/BackButton
 @onready var status_label: Label = $StatusBox/StatusLabel
@@ -88,6 +94,7 @@ func _add_player_row(display_name: String, tag: String = "") -> void:
 	var seat: int = player_list.get_child_count() + 1
 	var row := PanelContainer.new()
 	row.theme_type_variation = &"FindingRow"
+	row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	var line := HBoxContainer.new()
 	line.add_theme_constant_override("separation", Palette.SPACE_WIDE)
 	row.add_child(line)
@@ -125,10 +132,10 @@ func _add_player_row(display_name: String, tag: String = "") -> void:
 func _update_seat_count() -> void:
 	var seats: int = player_list.get_child_count()
 	players_header.text = "At the table · %d" % seats
-	if seats < 2:
-		seat_hint.text = "SEATS FILL AS PHONES JOIN. A SHARED CASE NEEDS TWO OR MORE."
-	else:
-		seat_hint.text = ""
+	## Hidden, not just emptied: an empty Label still takes a line of height,
+	## and this column has none to spare.
+	seat_hint.visible = seats < 2
+	seat_hint.text = "SEATS FILL AS PHONES JOIN. A SHARED CASE NEEDS TWO OR MORE."
 
 func _go_to_game() -> void:
 	GameState.game_phase = GameState.Phase.CASE_DISPLAY
