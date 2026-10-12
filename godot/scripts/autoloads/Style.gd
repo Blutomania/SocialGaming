@@ -239,6 +239,7 @@ func _style_fonts(t: Theme) -> void:
 		t.set_font("font", "FindingIdLabel", narrow_bold)
 		t.set_font("font", "StampTextLabel", narrow_bold)
 		t.set_font("font", "LedgerValueLabel", narrow_bold)
+		t.set_font("font", "ChoiceTileButton", narrow_bold)
 	if display_bold:
 		t.set_font("font", "StampKeyLabel", display_bold)
 
@@ -583,6 +584,14 @@ func _declare_variations(t: Theme) -> void:
 	t.set_color("font_pressed_color", "PrimaryButton", Palette.INK)
 	t.set_color("font_focus_color", "PrimaryButton", Palette.SURFACE_DEEP)
 	t.set_color("font_disabled_color", "PrimaryButton", Palette.INK_FAINT)
+
+	## A choice tile (Night File, owner's main-menu markup): one of a small set
+	## -- Play / Create, Solo / With friends -- drawn large, condensed and in
+	## caps. Every state box is inherited from Button, which already reads as
+	## outlined at rest and filled steel when chosen; this variation only
+	## changes the type, so the tile and every other choice share one look.
+	t.set_type_variation("ChoiceTileButton", "Button")
+	t.set_font_size("font_size", "ChoiceTileButton", Palette.TYPE_TITLE)
 
 	## A step sideways rather than forward: Back, Cancel, Skip. Text only, so
 	## it reads as available without occupying the weight a bordered button does.

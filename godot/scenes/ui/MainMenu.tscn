@@ -18,12 +18,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -180.0
-offset_right = 200.0
-offset_bottom = 180.0
+offset_left = -360.0
+offset_top = -270.0
+offset_right = 360.0
+offset_bottom = 270.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 14
 
 [node name="TitleLabel" type="Label" parent="VBox"]
 theme_type_variation = &"DisplayLabel"
@@ -39,20 +40,72 @@ horizontal_alignment = 1
 
 [node name="Spacer" type="Control" parent="VBox"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 12)
 
-[node name="NewGameButton" type="Button" parent="VBox"]
+[node name="ModeLabel" type="Label" parent="VBox"]
+theme_type_variation = &"FaintLabel"
+layout_mode = 2
+text = "WHAT ARE WE DOING TONIGHT?"
+
+[node name="ModeRow" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="PlayTile" type="Button" parent="VBox/ModeRow"]
+theme_type_variation = &"ChoiceTileButton"
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 76)
+toggle_mode = true
+button_pressed = true
+text = "PLAY A MYSTERY"
+
+[node name="CreateTile" type="Button" parent="VBox/ModeRow"]
+theme_type_variation = &"ChoiceTileButton"
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 76)
+toggle_mode = true
+text = "CREATE A MYSTERY"
+
+[node name="WhoLabel" type="Label" parent="VBox"]
+theme_type_variation = &"FaintLabel"
+layout_mode = 2
+text = "WHO'S PLAYING?"
+
+[node name="WhoRow" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="SoloTile" type="Button" parent="VBox/WhoRow"]
+theme_type_variation = &"ChoiceTileButton"
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 60)
+toggle_mode = true
+text = "SOLO"
+
+[node name="FriendsTile" type="Button" parent="VBox/WhoRow"]
+theme_type_variation = &"ChoiceTileButton"
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 60)
+toggle_mode = true
+button_pressed = true
+text = "WITH FRIENDS"
+
+[node name="HintLabel" type="Label" parent="VBox"]
+theme_type_variation = &"MutedLabel"
+layout_mode = 2
+autowrap_mode = 3
+text = ""
+horizontal_alignment = 1
+
+[node name="BeginButton" type="Button" parent="VBox"]
 theme_type_variation = &"PrimaryButton"
 layout_mode = 2
-text = "New Game (Solo)"
-
-[node name="MultiplayerButton" type="Button" parent="VBox"]
-layout_mode = 2
-text = "Multiplayer"
-
-[node name="BrowseSavedButton" type="Button" parent="VBox"]
-layout_mode = 2
-text = "Browse Saved Mysteries"
+custom_minimum_size = Vector2(0, 60)
+text = "BEGIN THE INVESTIGATION"
 
 [node name="QuitButton" type="Button" parent="VBox"]
 theme_type_variation = &"QuietButton"
