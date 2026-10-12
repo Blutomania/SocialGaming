@@ -109,13 +109,20 @@ branch. `git checkout archive/<name>` brings any of it back.
 | `owner/godot-sidecars` | Superseded | Only Godot 4.7's `project.godot` rewrite, which CLAUDE.md says to discard |
 | `claude/verify-root-path-JyDSP` | Superseded | Phase 1/2 Godot scaffold. Session 44 already judged it; its deletion never took |
 | `claude/upload-corpus-extraction-3uTq5` | Superseded | Streamlit era. The 14.6 MB parquet is an LFS object; the tag keeps it reachable |
-| `claude/myf-lobby-progress-state-zc3myh` | Superseded | Aug 12 MYF work — every idea is on `main`; its open-answering code was replaced by Flow B |
-| `claude/continuation-r0mhfq` | Superseded | An ancestor of `dev/mind-your-friends` |
-| `claude/awesome-hopper-eb06zt`, `confident-franklin-250vxg`, `compassionate-cray-pu5ieu`, `inspiring-newton-luip6g` | Superseded | MYF side branches (forked Mar 31); their design sections landed on `main` by another route |
-| `dev/mind-your-friends` | Superseded — **owner to confirm** | A July 22 snapshot; `main`'s `mind-your-friends/` carries MYF to Aug 20. DECISIONS item 9 says never touch it, a rule that predates the Aug 6 import |
+| `claude/myf-lobby-progress-state-zc3myh` | **Kept — MYF (item 9)** | Aug 12 MYF work — every idea is on `main`; its open-answering code was replaced by Flow B |
+| `claude/continuation-r0mhfq` | **Kept — MYF (item 9)** | An ancestor of `dev/mind-your-friends` |
+| `claude/awesome-hopper-eb06zt`, `confident-franklin-250vxg`, `compassionate-cray-pu5ieu`, `inspiring-newton-luip6g` | **Kept — MYF (item 9)** | MYF side branches (forked Mar 31); their design sections landed on `main` by another route |
+| `dev/mind-your-friends` | **Kept — owner confirmed item 9** | A July 22 snapshot; `main`'s `mind-your-friends/` carries MYF to Aug 20. DECISIONS item 9 says never touch it, a rule that predates the Aug 6 import |
 | `claude/connection-check-lum47r` | **Unmerged work** | A parallel July 22 session: coherence rule-hit telemetry, `rule_telemetry.py`, `coherence_benchmark.py`, `TAXONOMY_EXPANSION_CANDIDATES.md`, studio-thesis docs |
 | `claude/pdf-ingestion-checkpoint-71qwb3` | **Partly unmerged** | The anthology filename-collision fix (renames outputs, so existing extractions would be re-run at API cost), `--model-for`, S.S. Van Dine's 20 rules |
-| `claude/brave-bohr-45istr` | **Unmerged MYF design** | DM-based answers, the "Every Game Is Complete" principle, Player Memory (tentative) + a `playerProfile.js` stub |
+| `claude/brave-bohr-45istr` | **Kept — MYF (item 9); holds unmerged MYF design** | DM-based answers, the "Every Game Is Complete" principle, Player Memory (tentative) + a `playerProfile.js` stub |
+
+**Owner, same session: "Definitely not deleting Mind Your Friends. Item 9 is correct."** So every
+MYF branch stays — `dev/mind-your-friends` by item 9's own words, and its seven checkpoints because
+they are the same project (Session 44 had already argued the rule should cover them). The audit
+above still stands as a description of what those branches hold; it is MYF's to act on, not CYM's.
+Only the five CYM branches are archived and deleted, plus this session's and the September one,
+both now inside `main`.
 
 The three **unmerged** rows are recorded as open work in `CLAUDE.md` so deleting the branches does
 not delete the knowledge that the ideas exist. **Deletion itself needs the owner**: this session's
