@@ -235,6 +235,8 @@ func _style_fonts(t: Theme) -> void:
 		## a full list does not shout.
 		t.set_font("font", "BrowseRowButton", narrow_semibold)
 		t.set_font("font", "SuspectCardButton", narrow_semibold)
+	if narrow_bold:
+		t.set_font("font", "FindingIdLabel", narrow_bold)
 
 
 func _font(file_name: String) -> Font:
@@ -646,6 +648,34 @@ func _declare_variations(t: Theme) -> void:
 	t.set_color("font_hover_color", "DangerButton", Palette.NEGATIVE)
 	t.set_color("font_pressed_color", "DangerButton", Palette.INK)
 	t.set_color("font_disabled_color", "DangerButton", Palette.INK_FAINT)
+
+	## Night File's finding row (docs/STYLE_GUIDE.md): one finding in a
+	## casefile, outlined at rest, steel-outlined and glowing once chosen to
+	## share. Three variations rather than per-node overrides so ApfRound
+	## swaps a NAME on toggle and never builds a StyleBox of its own -- every
+	## colour on that screen still traces to this file.
+	##
+	## The chosen row keeps its SURFACE fill and changes only its edge: the
+	## row carries a paragraph of prose, and ink on a steel fill (4.92:1) is
+	## fine for a word on a tile and tiring for a witness statement. The fill
+	## is spent on the row's small SHARING toggle instead, which is a word.
+	t.set_type_variation("FindingRow", "PanelContainer")
+	t.set_stylebox("panel", "FindingRow", _panel(Palette.SURFACE, Palette.RADIUS_CARD, Palette.LINE_SOFT))
+	t.set_type_variation("FindingRowChosen", "PanelContainer")
+	var row_chosen: StyleBoxFlat = _panel(Palette.SURFACE, Palette.RADIUS_CARD, Palette.STEEL)
+	row_chosen.shadow_color = Color(Palette.STEEL, 0.35)
+	row_chosen.shadow_size = 10
+	t.set_stylebox("panel", "FindingRowChosen", row_chosen)
+	## Already shared: still yours (an investigator cannot be made to forget),
+	## no longer only yours. Sunk to the well tier, nothing left to decide.
+	t.set_type_variation("FindingRowShared", "PanelContainer")
+	t.set_stylebox("panel", "FindingRowShared", _panel(Palette.SURFACE_DEEP, Palette.RADIUS_CARD, Palette.LINE_SOFT))
+
+	## The ID column of a finding row: E3, L1, W. Condensed and one size up,
+	## so the column reads as an index the eye can run down.
+	t.set_type_variation("FindingIdLabel", "Label")
+	t.set_color("font_color", "FindingIdLabel", Palette.INK_MUTED)
+	t.set_font_size("font_size", "FindingIdLabel", Palette.TYPE_HEADING)
 
 	## A panel that should read as sunk into the page: transcripts, feeds,
 	## evidence lists. The well tier, as a container.
