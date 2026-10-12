@@ -547,9 +547,10 @@ re-run `ApplyTheme.gd` and `VerifyScenes.gd` on the owner's machine — the firs
 theme items exist and regenerates the editor preview, which shows slate until it is re-run.
 **Screens done in Session 45:** ApfRound (finding rows, round progress), ResultScreen (verdict
 voice, stamp, ledger, rating tiles), MainMenu (*Play / Create* × *Solo / With friends*, the
-owner's markup), and the five hard-coded colours. **Open:** the "who the room accused" result
-bars need a server route and an owner call; Lobby, CaseDisplay, MysteryGeneration, Interrogation,
-Accusation and ShareSelection have the theme but no screen pass. Full reasoning:
+owner's markup), and the five hard-coded colours. Then Lobby (roster rows with seat numbers,
+status box as a steel stamp). **Decided against:** the "who the room accused" result bars (owner).
+**Open:** CaseDisplay, MysteryGeneration, Interrogation, Accusation and ShareSelection have the
+theme but no screen pass. Full reasoning:
 `docs/DECISIONS.md` item 35.
 
 ### 27. Incrimination as well as exculpation — the glove mechanic — **BUILT, Session 40**

@@ -27,6 +27,7 @@ stretch_mode = 5
 mouse_filter = 2
 
 [node name="StatusBox" type="PanelContainer" parent="."]
+theme_type_variation = &"StampPanel"
 layout_mode = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -73,7 +74,7 @@ custom_minimum_size = Vector2(0, 12)
 [node name="CodeHeader" type="Label" parent="VBox"]
 theme_type_variation = &"FaintLabel"
 layout_mode = 2
-text = "Room Code"
+text = "ROOM CODE"
 horizontal_alignment = 1
 
 [node name="RoomCodeLabel" type="Label" parent="VBox"]
@@ -89,7 +90,7 @@ custom_minimum_size = Vector2(0, 8)
 [node name="JoinHeader" type="Label" parent="VBox"]
 theme_type_variation = &"FaintLabel"
 layout_mode = 2
-text = "Players join at:"
+text = "PLAYERS JOIN AT"
 horizontal_alignment = 1
 
 [node name="JoinUrlLabel" type="Label" parent="VBox"]
@@ -106,10 +107,17 @@ custom_minimum_size = Vector2(0, 16)
 [node name="PlayersHeader" type="Label" parent="VBox"]
 theme_type_variation = &"HeadingLabel"
 layout_mode = 2
-text = "Players in lobby:"
+text = "At the table"
 
 [node name="PlayerList" type="VBoxContainer" parent="VBox"]
 layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="SeatHint" type="Label" parent="VBox"]
+theme_type_variation = &"FaintLabel"
+layout_mode = 2
+autowrap_mode = 3
+text = ""
 
 [node name="Spacer4" type="Control" parent="VBox"]
 layout_mode = 2
@@ -118,7 +126,8 @@ custom_minimum_size = Vector2(0, 16)
 [node name="StartButton" type="Button" parent="VBox"]
 theme_type_variation = &"PrimaryButton"
 layout_mode = 2
-text = "Start Game"
+custom_minimum_size = Vector2(0, 56)
+text = "OPEN THE CASE"
 
 [node name="BackButton" type="Button" parent="VBox"]
 theme_type_variation = &"QuietButton"

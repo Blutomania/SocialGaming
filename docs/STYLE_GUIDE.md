@@ -98,12 +98,13 @@ Scene-level (built on the screens named; each is drawn in that screen's script):
 | *Stamp* | A steel block under the verdict: *Kept back — Sam sat on …*, or *Nothing kept back*. `StampPanel` | ResultScreen |
 | *Ledger* | Label-and-value rows with hairlines: accusation, culprit, rounds, time, what you shared and kept back | ResultScreen |
 | *Choice tiles* | `ChoiceTileButton`: Play / Create, Solo / With friends | MainMenu |
+| *Roster rows* | A player as a finding row: seat number in the ID column, name as big as the room code | Lobby |
 
-Not built:
+Decided against (owner, Session 45):
 
-| Part | Why not yet |
+| Part | Why not |
 |---|---|
-| *Result bar* | A slate fill inside a row, as wide as the share of the room that accused that suspect. The server keeps every accusation, but no route sends them to the result screen, and a game ends at the first correct accusation, so most tables would see one or two bars. Needs a small server change and an owner call on whether it earns its place |
+| *Result bar* | A slate fill inside a row, as wide as the share of the room that accused each suspect. Cut: it needed a server route, and a game ends at the first correct accusation, so most tables would have seen one or two bars |
 
 ---
 

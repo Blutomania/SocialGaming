@@ -72,6 +72,11 @@ artifact: *CYM Night File*.
   With friends* + a brass *Begin the investigation*, with a sentence saying where it goes. Every
   destination is one the old three buttons reached. `F5_CHECKLIST.md` updated so the next walk
   does not go wrong at step 9.
+- **Lobby**: the roster as finding-style rows with a seat number in the ID column (names stay as
+  big as the room code, per WaitingSept7); a seat count and a caption that a shared case needs two
+  or more; the status box becomes a steel stamp; *Start Game* → *Open the case*.
+- **Result bars: cut** (owner). Accusations would have needed a server route, and a game ends at
+  the first correct accusation.
 - **Five hard-coded colours** fixed. One was hiding a real regression: the moderation notice
   carried a pre-palette grey override that masked the caution colour Session 37 gave it, so item
   17's *visible* notice was rendering as a footnote.
@@ -92,9 +97,9 @@ every changed script. **Nothing rendered** — no engine reaches a session.
 1. **F5 on the owner's machine, and run `ApplyTheme.gd` + `VerifyScenes.gd`.** Confirms
    `hover_pressed` and the other new theme items, and regenerates the editor preview (still slate).
    Walk MainMenu → a room → ApfRound → ResultScreen and screenshot each, Sept8-style.
-2. **Owner call: the result bars.** Worth a small server change, or cut?
-3. Remaining screens have the theme but no screen-specific pass: Lobby, CaseDisplay,
+2. Remaining screens have the theme but no screen-specific pass: CaseDisplay,
    MysteryGeneration, Interrogation, Accusation, ShareSelection.
+3. *(Decided: no result bars — owner, same session.)*
 4. Consider adding `gdparse` to the checker table.
 5. Delete `origin/owner/godot-sidecars` if the owner agrees.
 
