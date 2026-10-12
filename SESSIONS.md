@@ -55,20 +55,48 @@ organic monogram 73% → **0%** of ink at or below 2.5:1; negative mark 7% → 6
 A visual version (clickable components, five mocked screens using the Neriin mystery) is an
 artifact: *CYM Night File*.
 
+### The screen pass (owner: "keep adding")
+
+- **ApfRound** (`1cab1be`): finding rows replace checkboxes — ID column | rule | finding |
+  SHARING/KEEPING toggle, whole row clickable; a chosen row gets a steel edge and glow but keeps
+  its panel fill, because the row carries prose and ink on steel (4.92:1) is for a word, not a
+  paragraph. Round-progress bar with a deadpan caption (*Cold trail* → *Closing in* → *Last
+  round*) — the owner's markup turning the reference's slider into investigation progress.
+- **ResultScreen** (`364aae7`): the verdict names the person (*Not Cadan Polglase.* / *Rosalind
+  Trevaskis did it.*) in the same two labels and sizes the owner set on ResultSept8; the steel
+  stamp under it names who sat on a finding; a ledger replaces the stats text and adds this
+  player's own shared/kept-back counts from the server's `by_player`; rating buttons become a
+  ButtonGroup of choice tiles. **Not built: the "who the room accused" bars** — accusations are
+  stored but no route sends them here, and a game ends at the first correct accusation.
+- **MainMenu** (`d692b66`): the owner's markup — *Play a mystery / Create a mystery* × *Solo /
+  With friends* + a brass *Begin the investigation*, with a sentence saying where it goes. Every
+  destination is one the old three buttons reached. `F5_CHECKLIST.md` updated so the next walk
+  does not go wrong at step 9.
+- **Five hard-coded colours** fixed. One was hiding a real regression: the moderation notice
+  carried a pre-palette grey override that masked the caution colour Session 37 gave it, so item
+  17's *visible* notice was rendering as a footnote.
+
+**A new check, used all session:** `gdtoolkit`'s `gdparse` (pip-installable; PyPI is reachable)
+parses GDScript 4. It accepts all 20 scripts in the repo and rejects a deliberately broken
+control, so it catches the "parse error → screen renders, nothing responds" failure that
+`check_godot_wiring.py` reads past. Not yet wired into the checker table.
+
 ### Verification
 
 `check_godot_wiring.py`, `build_palette.py --check`, `test_palette.py` (33 pairs),
-`check_doc_claims.py`, `check_decisions.py` (1..35) all pass. **Nothing rendered** — no engine
-reaches a session.
+`check_doc_claims.py`, `check_decisions.py` (1..35), `test_apf.py` all pass; `gdparse` accepts
+every changed script. **Nothing rendered** — no engine reaches a session.
 
 ### Next session
 
 1. **F5 on the owner's machine, and run `ApplyTheme.gd` + `VerifyScenes.gd`.** Confirms
    `hover_pressed` and the other new theme items, and regenerates the editor preview (still slate).
-2. **Screen by screen**, in the Sept8 rhythm: the ID column, result bars, stamp and ledger, and
-   the five hard-coded colours listed at the end of `docs/STYLE_GUIDE.md`. ApfRound first — it is
-   the hub the owner's markup redrew.
-3. Delete `origin/owner/godot-sidecars` if the owner agrees.
+   Walk MainMenu → a room → ApfRound → ResultScreen and screenshot each, Sept8-style.
+2. **Owner call: the result bars.** Worth a small server change, or cut?
+3. Remaining screens have the theme but no screen-specific pass: Lobby, CaseDisplay,
+   MysteryGeneration, Interrogation, Accusation, ShareSelection.
+4. Consider adding `gdparse` to the checker table.
+5. Delete `origin/owner/godot-sidecars` if the owner agrees.
 
 ---
 

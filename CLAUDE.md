@@ -533,7 +533,7 @@ a licensing re-check caveat are in `icons/suspect/README.md`, not repeated here.
 42+43's whole branch) was still unmerged into `main` at this session's start — merged now; the
 branch-tip-vs-`main` mismatch is worth checking early in future sessions rather than assumed clean.
 
-### 35. Night File — the host screen's look — **THEME LANDED, Session 45; screen pass next**
+### 35. Night File — the host screen's look — **THEME + THREE SCREENS LANDED, Session 45**
 
 The owner's annotated *Red Flags* screenshots became `docs/STYLE_GUIDE.md`: emulate the structure
 (outlined = available, filled = chosen, square, heavy outlines), not the identity. **Ground is now
@@ -545,10 +545,12 @@ Nunito Sans keeps prose. MYF keeps slate, so the two titles no longer share a gr
 Landed at theme level only, so all nine screens restyle with no `.tscn` edited. **Not rendered:**
 re-run `ApplyTheme.gd` and `VerifyScenes.gd` on the owner's machine — the first confirms the new
 theme items exist and regenerates the editor preview, which shows slate until it is re-run.
-**Next is screen by screen:** the ID column, result bars, stamp and ledger need scene work, and
-five hard-coded colours bypass the theme (listed at the end of the style guide). The investigation
-hub follows APF — casefile rows plus a round-progress bar. Full reasoning: `docs/DECISIONS.md`
-item 35.
+**Screens done in Session 45:** ApfRound (finding rows, round progress), ResultScreen (verdict
+voice, stamp, ledger, rating tiles), MainMenu (*Play / Create* × *Solo / With friends*, the
+owner's markup), and the five hard-coded colours. **Open:** the "who the room accused" result
+bars need a server route and an owner call; Lobby, CaseDisplay, MysteryGeneration, Interrogation,
+Accusation and ShareSelection have the theme but no screen pass. Full reasoning:
+`docs/DECISIONS.md` item 35.
 
 ### 27. Incrimination as well as exculpation — the glove mechanic — **BUILT, Session 40**
 

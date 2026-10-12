@@ -88,14 +88,22 @@ Theme-level (done — every screen gets these with no `.tscn` edited):
 | **Progress** | `ProgressBar`: steel over a deep trough. Rounds in APF, the question budget in the gather loop |
 | **List row, suspect card** | `BrowseRowButton`, `SuspectCardButton`: condensed, and chosen means steel |
 
-Scene-level (not built — each needs a screen's own scene work):
+Scene-level (built on the screens named; each is drawn in that screen's script):
 
-| Part | What it is |
+| Part | What it is | Where |
+|---|---|---|
+| *ID column* | A finding's ID (E3, L1, W) left of its text, split by a vertical rule. One rule for the ID, in `GameState.finding_display_id()` | ApfRound, ResultScreen |
+| *Finding row* | ID column, the finding, and a SHARING / KEEPING toggle; the whole row is the hit target. `FindingRow`, `FindingRowChosen`, `FindingRowShared` | ApfRound; ResultScreen for findings kept back |
+| *Progress* | Round progress with a deadpan caption: *Cold trail*, *Closing in*, *Last round* | ApfRound |
+| *Stamp* | A steel block under the verdict: *Kept back — Sam sat on …*, or *Nothing kept back*. `StampPanel` | ResultScreen |
+| *Ledger* | Label-and-value rows with hairlines: accusation, culprit, rounds, time, what you shared and kept back | ResultScreen |
+| *Choice tiles* | `ChoiceTileButton`: Play / Create, Solo / With friends | MainMenu |
+
+Not built:
+
+| Part | Why not yet |
 |---|---|
-| *ID column* | A finding's ID (E3, L1) to the left of its text, split by a vertical rule |
-| *Result bar* | A slate fill inside a row, as wide as the share of the room that accused that suspect. Real data: the server keeps every accusation |
-| *Stamp* | A steel block under the verdict naming who held a finding back: *Kept back — Sam sat on E3 for two rounds* |
-| *Ledger* | Label-and-value rows with hairline dividers: your accusation, the culprit, what you kept |
+| *Result bar* | A slate fill inside a row, as wide as the share of the room that accused that suspect. The server keeps every accusation, but no route sends them to the result screen, and a game ends at the first correct accusation, so most tables would see one or two bars. Needs a small server change and an owner call on whether it earns its place |
 
 ---
 
@@ -126,9 +134,10 @@ secret.*). And the vocabulary rule in `CLAUDE.md` holds here too: no cards, no d
   `VerifyScenes.gd` on the owner's machine: the first confirms `hover_pressed` and the other new
   theme items are names the engine has; it also regenerates the editor preview, which still
   shows slate until it is re-run.
-- **Hard-coded colours that bypass the theme**, each a per-screen call for the screen pass:
-  rating buttons and the disclosure name in brass (`result_screen.gd`, `apf_round.gd`), cast
-  markers in `case_display.gd`, a grey literal in `MysteryGeneration.tscn`.
+- **Hard-coded colours that bypassed the theme** — all five fixed in Session 45. One deserves a
+  note: the moderation notice carried a grey override from before the palette existed (Session 34)
+  that masked the caution colour Session 37 gave it on purpose, so item 17's "visible" notice was
+  rendering as a footnote. The override is gone; it is amber now.
 - **MYF no longer shares CYM's ground.** Accepted. `scripts/check_brand_contrast.py --myf` still
   grades a shared mark against slate.
 - **The BACKGROUND field (item 17)** was pitched for slate and is untuned against Night. It is

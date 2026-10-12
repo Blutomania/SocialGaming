@@ -389,7 +389,9 @@ func _add_history_entry(character: String, question: String, response: String) -
 	var vbox := VBoxContainer.new()
 	var q_label := Label.new()
 	q_label.text = "[%s] %s" % [character, question]
-	q_label.add_theme_color_override("font_color", Palette.BRASS)
+	## Steel since Session 45 (Night File): the question is a line of the
+	## record, a state; brass is kept for the action a screen wants taken.
+	q_label.add_theme_color_override("font_color", Palette.STEEL_BRIGHT)
 	var r_label := Label.new()
 	r_label.text = response
 	r_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
