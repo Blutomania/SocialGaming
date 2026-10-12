@@ -250,6 +250,7 @@ func _style_fonts(t: Theme) -> void:
 		t.set_font("font", "StampTextLabel", narrow_bold)
 		t.set_font("font", "LedgerValueLabel", narrow_bold)
 		t.set_font("font", "ChoiceTileButton", narrow_bold)
+		t.set_font("font", "FieldLabel", narrow_bold)
 	if display_bold:
 		t.set_font("font", "StampKeyLabel", display_bold)
 
@@ -568,6 +569,16 @@ func _declare_variations(t: Theme) -> void:
 	t.set_type_variation("MutedLabel", "Label")
 	t.set_color("font_color", "MutedLabel", Palette.INK_MUTED)
 	t.set_font_size("font_size", "MutedLabel", Palette.TYPE_BODY)
+
+	## The label over a form field ("DESCRIBE THE SCENARIO") -- owner's
+	## markup on SetMysterySept12: white and all-caps, not faint. FaintLabel
+	## reads as a footnote, and on a form the label is the instruction, so it
+	## gets INK. Caps come from each Label's own `uppercase` flag, not from the
+	## text, so a label whose text a script sets ("Loading saved mysteries…")
+	## stays in caps too.
+	t.set_type_variation("FieldLabel", "Label")
+	t.set_color("font_color", "FieldLabel", Palette.INK)
+	t.set_font_size("font_size", "FieldLabel", Palette.TYPE_LABEL)
 
 	## Field labels, attribution, timestamps, status lines.
 	t.set_type_variation("FaintLabel", "Label")

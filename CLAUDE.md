@@ -477,8 +477,9 @@ both removed; re-run to confirm clean, which also checks Archivo Narrow now. **S
 voice, stamp, ledger, rating tiles), MainMenu (*Play / Create* × *Solo / With friends*, the
 owner's markup), and the five hard-coded colours. Then Lobby (roster rows with seat numbers,
 status box as a steel stamp). **Decided against:** the "who the room accused" result bars (owner).
-**Open:** CaseDisplay, MysteryGeneration, Interrogation, Accusation and ShareSelection have the
-theme but no screen pass. Full reasoning:
+Then MysteryGeneration (white caps form labels, difficulty tiles, the free *Host* path made
+primary). **Open:** CaseDisplay, Interrogation, Accusation and ShareSelection have the theme but no
+screen pass. Full reasoning:
 `docs/DECISIONS.md` item 36.
 
 ### 27. Incrimination as well as exculpation — the glove mechanic — **BUILT, Session 40**

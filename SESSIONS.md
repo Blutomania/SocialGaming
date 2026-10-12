@@ -160,6 +160,16 @@ enough that two players pushed the title up into the logo; four would have pushe
 Fixed: the column is pinned under the logo and grows down only, seats sit in a two-column grid,
 and the roster scrolls in whatever height is left so Open the case stays on screen.
 
+### MysteryGeneration (owner's markup, SetMysterySept12)
+
+- **Form labels white and all-caps** — a new `FieldLabel` variation (INK, condensed), caps from each
+  Label's `uppercase` flag so a script-set text stays in caps. Includes *Not moderated for play
+  testing*, which goes from amber to white: an owner call, and still item 17's *visible* — 15.8:1.
+- **Difficulty dropdown → three choice tiles** (Easy / Medium / Hard, one ButtonGroup, Medium
+  default). Read in one place, `_chosen_difficulty()`.
+- **The free path is primary** (owner, "yes"): with a room to open, *Host this saved mystery* is the
+  brass button and *Generate Mystery* steps down to outlined. Solo keeps Generate primary.
+
 ### Verification
 
 `check_godot_wiring.py`, `build_palette.py --check`, `test_palette.py` (33 pairs),
