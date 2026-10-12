@@ -257,7 +257,11 @@ func _style_fonts(t: Theme) -> void:
 func _font(file_name: String) -> Font:
 	var path: String = "res://assets/fonts/" + file_name
 	if not ResourceLoader.exists(path):
-		push_warning("Style: %s is missing — falling back to Godot's default face." % path)
+		## push_error, not push_warning (Session 47): red in the Output panel on
+		## every F5, so a missing face is noticed by whoever runs the game, not
+		## only by whoever thinks to run ApplyTheme. Still not a crash -- the
+		## fallback keeps every other font and colour in the theme working.
+		push_error("Style: %s is missing — falling back to the previous face." % path)
 		return null
 	return load(path) as Font
 
@@ -308,13 +312,11 @@ func _style_buttons(t: Theme) -> void:
 	t.set_stylebox("normal", "Button", _control_box(Palette.SURFACE, Palette.LINE))
 	t.set_stylebox("hover", "Button", _control_box(Palette.SURFACE_RAISED, Palette.STEEL_BRIGHT))
 	t.set_stylebox("pressed", "Button", _chosen_box())
-	## Chosen AND under the cursor: same steel fill, brighter border. Not a
-	## lighter fill -- ink holds 4.5:1 on STEEL itself and on nothing lighter
-	## in its family (a 25%-darkened STEEL_BRIGHT measured 4.04), so the hover
-	## is carried by the edge and the text never pays for it.
-	var chosen_hover: StyleBoxFlat = _chosen_box()
-	chosen_hover.border_color = Palette.STEEL_BRIGHT
-	t.set_stylebox("hover_pressed", "Button", chosen_hover)
+	## NO "hover_pressed" stylebox: Godot 4.7's Button has no such item, so a
+	## chosen tile under the cursor draws "pressed" and stays plainly chosen.
+	## Session 47 set one (steel fill, brighter edge) and ApplyTheme.gd caught
+	## it on the owner's machine as a line doing nothing. Its FONT colour
+	## counterpart below does exist, and stays.
 	t.set_stylebox("focus", "Button", _focus_ring())
 
 	var off: StyleBoxFlat = _control_box(Palette.SURFACE_DEEP, Palette.LINE_SOFT)
@@ -660,9 +662,6 @@ func _declare_variations(t: Theme) -> void:
 	t.set_stylebox("normal", "SuspectCardButton", card_normal)
 	t.set_stylebox("hover", "SuspectCardButton", _panel(Palette.SURFACE, Palette.RADIUS_SMALL, Palette.SURFACE))
 	t.set_stylebox("pressed", "SuspectCardButton", _chosen_box())
-	var card_chosen_hover: StyleBoxFlat = _chosen_box()
-	card_chosen_hover.border_color = Palette.STEEL_BRIGHT
-	t.set_stylebox("hover_pressed", "SuspectCardButton", card_chosen_hover)
 	t.set_stylebox("focus", "SuspectCardButton", _focus_ring())
 	t.set_color("font_color", "SuspectCardButton", Palette.INK)
 	t.set_color("font_hover_color", "SuspectCardButton", Palette.INK)

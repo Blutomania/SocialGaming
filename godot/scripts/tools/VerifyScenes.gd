@@ -25,31 +25,39 @@ extends EditorScript
 ## node to enter a tree, and nothing is added to one — so no scene fetches, no
 ## API calls, and no state is touched by running this.
 
-const SCENES: Array[String] = [
-	"res://scenes/ui/MainMenu.tscn",
-	"res://scenes/ui/MysteryGeneration.tscn",
-	"res://scenes/ui/Lobby.tscn",
-	"res://scenes/ui/CaseDisplay.tscn",
-	"res://scenes/ui/Interrogation.tscn",
-	"res://scenes/ui/ShareSelection.tscn",
-	"res://scenes/ui/Accusation.tscn",
-	"res://scenes/ui/ResultScreen.tscn",
-]
+## Read from the folder, not typed out. Until Session 47 this was a
+## hand-kept list of eight paths, written before ApfRound existed -- so the
+## ninth screen, the one the whole mechanic lives on, was never checked and
+## the report still said "All 8 screens load". A list nobody remembers to
+## extend is a check that quietly shrinks; the folder cannot fall behind.
+const SCENE_DIR: String = "res://scenes/ui"
+
+
+func _scenes() -> Array[String]:
+	var found: Array[String] = []
+	for file_name: String in DirAccess.get_files_at(SCENE_DIR):
+		if file_name.ends_with(".tscn"):
+			found.append(SCENE_DIR + "/" + file_name)
+	found.sort()
+	return found
 
 
 func _run() -> void:
 	print("\n=== VerifyScenes ===")
+	var scenes: Array[String] = _scenes()
 	var failed: int = 0
-	for path: String in SCENES:
+	for path: String in scenes:
 		if not _check(path):
 			failed += 1
 
 	print("")
-	if failed == 0:
-		print("  All %d screens load with every declared node present." % SCENES.size())
+	if scenes.is_empty():
+		print("  No .tscn found under %s -- nothing was checked." % SCENE_DIR)
+	elif failed == 0:
+		print("  All %d screens load with every declared node present." % scenes.size())
 		print("  This is the check check_godot_wiring.py cannot make.")
 	else:
-		print("  %d of %d screens did not survive loading — see above." % [failed, SCENES.size()])
+		print("  %d of %d screens did not survive loading — see above." % [failed, scenes.size()])
 	print("")
 
 
