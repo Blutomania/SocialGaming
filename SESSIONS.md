@@ -91,6 +91,37 @@ parses GDScript 4. It accepts all 20 scripts in the repo and rejects a deliberat
 control, so it catches the "parse error → screen renders, nothing responds" failure that
 `check_godot_wiring.py` reads past. Not yet wired into the checker table.
 
+### Branch cleanup (owner: "I don't like leaving old branches")
+
+Every remote branch was audited by **content**, not by commit message — `main`'s early history was
+rewritten, so even work that plainly landed (`coherence_validator.py`, `WIRING.md`) shows up as
+"absent" by subject. The test used: for each file at a branch's tip, has that exact blob ever existed
+anywhere in `main`'s history; for the ones that have not, which of their lines appear nowhere in
+`main`'s current copy; and for anything left, whether the *idea* reached `main` under another name.
+
+**Nothing is lost by deleting.** Every branch below is tagged `archive/<branch-name>` before
+deletion: a tag keeps every commit (and the LFS parquet) retrievable forever without appearing as a
+branch. `git checkout archive/<name>` brings any of it back.
+
+| Branch | Verdict | What only it has |
+|---|---|---|
+| `claude/serene-ramanujan-f5svcd` | **Merged** (this session) | — Sessions 45–46 |
+| `owner/godot-sidecars` | Superseded | Only Godot 4.7's `project.godot` rewrite, which CLAUDE.md says to discard |
+| `claude/verify-root-path-JyDSP` | Superseded | Phase 1/2 Godot scaffold. Session 44 already judged it; its deletion never took |
+| `claude/upload-corpus-extraction-3uTq5` | Superseded | Streamlit era. The 14.6 MB parquet is an LFS object; the tag keeps it reachable |
+| `claude/myf-lobby-progress-state-zc3myh` | Superseded | Aug 12 MYF work — every idea is on `main`; its open-answering code was replaced by Flow B |
+| `claude/continuation-r0mhfq` | Superseded | An ancestor of `dev/mind-your-friends` |
+| `claude/awesome-hopper-eb06zt`, `confident-franklin-250vxg`, `compassionate-cray-pu5ieu`, `inspiring-newton-luip6g` | Superseded | MYF side branches (forked Mar 31); their design sections landed on `main` by another route |
+| `dev/mind-your-friends` | Superseded — **owner to confirm** | A July 22 snapshot; `main`'s `mind-your-friends/` carries MYF to Aug 20. DECISIONS item 9 says never touch it, a rule that predates the Aug 6 import |
+| `claude/connection-check-lum47r` | **Unmerged work** | A parallel July 22 session: coherence rule-hit telemetry, `rule_telemetry.py`, `coherence_benchmark.py`, `TAXONOMY_EXPANSION_CANDIDATES.md`, studio-thesis docs |
+| `claude/pdf-ingestion-checkpoint-71qwb3` | **Partly unmerged** | The anthology filename-collision fix (renames outputs, so existing extractions would be re-run at API cost), `--model-for`, S.S. Van Dine's 20 rules |
+| `claude/brave-bohr-45istr` | **Unmerged MYF design** | DM-based answers, the "Every Game Is Complete" principle, Player Memory (tentative) + a `playerProfile.js` stub |
+
+The three **unmerged** rows are recorded as open work in `CLAUDE.md` so deleting the branches does
+not delete the knowledge that the ideas exist. **Deletion itself needs the owner**: this session's
+permissions refuse `git push --delete` (as Session 18 found with the same 403), so it is done from
+GitHub's branch list or by approving the command.
+
 ### Verification
 
 `check_godot_wiring.py`, `build_palette.py --check`, `test_palette.py` (33 pairs),

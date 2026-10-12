@@ -203,6 +203,15 @@ that the superseded text has become history and belongs here instead.
    schedule (see `SESSIONS.md` Session 18). **`dev/mind-your-friends` is a separate, real second
    project sharing this repo — do not touch it in any cleanup pass.**
 
+   **[Session 47, October 12 2026] Every remaining branch audited by content and archived.** Each
+   is tagged `archive/<branch-name>` (commits and the LFS parquet stay retrievable) and listed for
+   deletion with a verdict in `SESSIONS.md` Session 47. Three hold work `main` lacks — a July 22
+   coherence-telemetry session, two extractor changes plus Van Dine's 20 rules, and three MYF
+   design ideas — and are carried as open work in `CLAUDE.md`. **The "do not touch
+   `dev/mind-your-friends`" rule above predates MYF's import into `main` (Aug 6)**; the branch is
+   now a July 22 snapshot of a line `main` carries to Aug 20, and its deletion is put to the owner
+   explicitly rather than assumed.
+
    **`dev/cryptic-challenge` is NOT a third project (verified Session 29, August 17 2026).**
    The name has repeatedly been read — including by a Claude session, which cited it as evidence
    of a third studio title — as though it were a sibling of CYM and MYF. It is not. Verified

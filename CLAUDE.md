@@ -595,6 +595,25 @@ because a novel is sampled and a short story is fed whole. Outstanding: 11 held-
 with detection problems, 7 all-null extractions that occupy filenames, and one untriaged Higashino
 novel. Full detail: `docs/DECISIONS.md` item 7.
 
+### Archived branches — work that never reached `main`
+
+Branch cleanup, Session 47: every old branch is tagged *archive/<branch-name>* before deletion, so
+nothing below is lost — *git checkout archive/<name>* restores it. These three hold ideas `main`
+does not have; each is a decision, not a bug:
+
+- **archive/claude/connection-check-lum47r** (July 22) — coherence rule-hit telemetry
+  (*rule_telemetry.py* correlates rule firings with viability ratings; two ratings now exist),
+  *coherence_benchmark.py*, and *TAXONOMY_EXPANSION_CANDIDATES.md*, a confidence-rated research
+  pool for the craft taxonomy.
+- **archive/claude/pdf-ingestion-checkpoint-71qwb3** (Aug 5) — the anthology filename-collision
+  fix (`book_slug[:30]` still truncates on `main`; the fix renames outputs, so existing extractions
+  would be re-run at API cost — port it with a rename step, not as-is), `--model-for`, and S.S.
+  Van Dine's 20 rules for `RESEARCH_FINDINGS.md`. Item 7.
+- **archive/claude/brave-bohr-45istr** (June 25, MYF) — DM-based answers, the "Every Game Is
+  Complete" principle, and Player Memory (tentative). MYF's call, not CYM's.
+
+Full verdict table for every branch: `SESSIONS.md` Session 47.
+
 ### 4, 8. Deferred by stage
 
 Avatar pool + player profiles (item 4, design locked, nothing built) and Steam integration
