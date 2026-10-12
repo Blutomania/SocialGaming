@@ -132,6 +132,16 @@ not delete the knowledge that the ideas exist. **Deletion itself needs the owner
 permissions refuse `git push --delete` (as Session 18 found with the same 403), so it is done from
 GitHub's branch list or by approving the command.
 
+### ApplyTheme, on the owner's machine
+
+`223 checked across 51 theme types`, fonts loaded, **two MISSES**: `Button/hover_pressed` and
+`SuspectCardButton/hover_pressed` — a stylebox Godot 4.7's Button does not have, so both lines did
+nothing (a chosen tile under the cursor just stays chosen). Removed. The checker caught exactly the
+failure it exists for: nothing on the session side could, since `check_godot_wiring.py` reads names
+and `gdparse` only parses. ApplyTheme also now reports Archivo Narrow, which it did not know to look
+for; it needed the font's file path, since `has_font()` is always true once NunitoSans is the
+fallback.
+
 ### Verification
 
 `check_godot_wiring.py`, `build_palette.py --check`, `test_palette.py` (33 pairs),

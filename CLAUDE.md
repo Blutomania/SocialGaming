@@ -406,7 +406,7 @@ that use Godot's own loader, which is where the undetectable defects live:
 | Script | Catches |
 |---|---|
 | `godot/scripts/tools/VerifyScenes.gd` | A node a `.tscn` declares that does not survive loading, a node whose runtime class is not what the scene declares, and a scene root that lost its script. **Run on 4.7.2 in Session 40: eight `ok` lines** |
-| `godot/scripts/tools/ApplyTheme.gd` | A theme item name the engine does not have. Also generates the editor's theme preview, so the design is visible while scenes are edited, and reports whether the fonts resolved. **Run on 4.7.2 in Session 40: 168 items across 36 types, `MISSES none`, fonts resolved** |
+| `godot/scripts/tools/ApplyTheme.gd` | A theme item name the engine does not have. Also generates the editor's theme preview, so the design is visible while scenes are edited, and reports whether the fonts resolved. **Run on 4.7.2 in Session 47 (owner's machine): 223 items across 51 types, 2 misses** — both a `hover_pressed` stylebox the 4.7 Button lacks, removed in the same session. Re-run to confirm `MISSES none` |
 
 **One fills the other seats so a person can walk it alone:** `scripts/seat_players.py <ROOM>` joins
 three players to a room and pays each share checkpoint with the bare minimum. It is **not** a bot
@@ -469,9 +469,10 @@ brass says "act"** — brass keeps the primary button by the owner's call. **Cin
 and now sets `TitleLabel` too**; Archivo Narrow joins for buttons, headers, labels and list rows;
 Nunito Sans keeps prose. MYF keeps slate, so the two titles no longer share a ground — accepted.
 
-Landed at theme level only, so all nine screens restyle with no `.tscn` edited. **Not rendered:**
-re-run `ApplyTheme.gd` and `VerifyScenes.gd` on the owner's machine — the first confirms the new
-theme items exist and regenerates the editor preview, which shows slate until it is re-run.
+Landed at theme level, so all nine screens restyle with no `.tscn` edited. **ApplyTheme ran on the
+owner's machine:** 223 items, two misses (a `hover_pressed` stylebox Godot 4.7's Button lacks),
+both removed; re-run to confirm clean, which also checks Archivo Narrow now. **Still to come:**
+`VerifyScenes.gd` and the F5 walk.
 **Screens done in Session 47:** ApfRound (finding rows, round progress), ResultScreen (verdict
 voice, stamp, ledger, rating tiles), MainMenu (*Play / Create* × *Solo / With friends*, the
 owner's markup), and the five hard-coded colours. Then Lobby (roster rows with seat numbers,

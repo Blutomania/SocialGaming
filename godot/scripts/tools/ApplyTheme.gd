@@ -127,6 +127,20 @@ func _report_fonts(theme: Theme) -> void:
 		_say("  fonts   Cinzel Decorative NOT loaded -- DisplayLabel and MysteryTitleLabel")
 		_say("          are wearing NunitoSans-Regular instead, with no error anywhere.")
 
+	## Archivo Narrow (Night File, Session 47). has_font() cannot tell here:
+	## Button is given NunitoSans first and Archivo only replaces it when the
+	## .ttf loads, so a font is ALWAYS present. Which FILE it came from is the
+	## question, so the canary reads the resource path.
+	var button_font: Font = theme.get_font("font", "Button")
+	var row_font: Font = theme.get_font("font", "BrowseRowButton")
+	var bold_ok: bool = button_font != null and button_font.resource_path.ends_with("ArchivoNarrow-Bold.ttf")
+	var semibold_ok: bool = row_font != null and row_font.resource_path.ends_with("ArchivoNarrow-SemiBold.ttf")
+	if bold_ok and semibold_ok:
+		_say("  fonts   Archivo Narrow loaded (Button: Bold, BrowseRowButton: SemiBold).")
+	else:
+		_say("  fonts   Archivo Narrow NOT fully loaded (Bold: %s, SemiBold: %s) -- buttons," % [bold_ok, semibold_ok])
+		_say("          labels and rows are wearing NunitoSans instead, with no error anywhere.")
+
 
 ## Every item Style.gd sets, looked up in the engine's own default theme.
 ## A type variation is checked against its BASE type, because that is what the

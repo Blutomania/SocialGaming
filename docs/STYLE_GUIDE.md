@@ -131,10 +131,12 @@ secret.*). And the vocabulary rule in `CLAUDE.md` holds here too: no cards, no d
 
 ## Still to do, and known gaps
 
-- **Not rendered.** No Godot binary reaches a session. Re-run `ApplyTheme.gd` and
-  `VerifyScenes.gd` on the owner's machine: the first confirms `hover_pressed` and the other new
-  theme items are names the engine has; it also regenerates the editor preview, which still
-  shows slate until it is re-run.
+- **ApplyTheme ran on the owner's machine (Session 47): 223 items across 51 types, two misses.**
+  Both were a `hover_pressed` stylebox (on `Button` and `SuspectCardButton`), an item Godot 4.7's
+  Button does not have — removed, so a chosen tile under the cursor simply stays chosen. Fonts:
+  Nunito Sans and Cinzel Decorative reported loaded; the report now also checks Archivo Narrow,
+  which it did not know about. Re-run after pulling to confirm `MISSES none`. `VerifyScenes.gd`
+  and a full F5 walk are still to come.
 - **Hard-coded colours that bypassed the theme** — all five fixed in Session 47. One deserves a
   note: the moderation notice carried a grey override from before the palette existed (Session 34)
   that masked the caution colour Session 37 gave it on purpose, so item 17's "visible" notice was
