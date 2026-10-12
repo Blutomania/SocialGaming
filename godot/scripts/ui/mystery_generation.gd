@@ -34,7 +34,13 @@ const POLL_INTERVAL: float = 2.0   ## seconds between job status polls
 @onready var saved_option: OptionButton = $VBox/MultiplayerSection/SavedOption
 @onready var host_saved_button: Button = $VBox/MultiplayerSection/HostSavedButton
 @onready var host_name_input: LineEdit = $VBox/MultiplayerSection/HostNameInput
-@onready var difficulty_option: OptionButton = $VBox/MultiplayerSection/DifficultyOption
+## Three choice tiles in one ButtonGroup instead of a dropdown (owner's markup
+## on SetMysterySept12: "hoverable select boxes"). With three options a menu
+## hides two of them behind a click; tiles show all three and which is chosen,
+## in the same filled-is-chosen language as the main menu.
+@onready var easy_tile: Button = $VBox/MultiplayerSection/DifficultyRow/EasyTile
+@onready var medium_tile: Button = $VBox/MultiplayerSection/DifficultyRow/MediumTile
+@onready var hard_tile: Button = $VBox/MultiplayerSection/DifficultyRow/HardTile
 
 var _job_id: String = ""
 var _poll_timer: float = 0.0
@@ -55,13 +61,20 @@ func _ready() -> void:
 	prompt_input.text_submitted.connect(func(_t): _on_generate())
 	multiplayer_section.visible = GameState.is_multiplayer
 	if GameState.is_multiplayer:
-		difficulty_option.add_item("Easy")
-		difficulty_option.add_item("Medium")
-		difficulty_option.add_item("Hard")
-		difficulty_option.selected = 1   ## Medium default
+		var difficulty_group := ButtonGroup.new()
+		for tile: Button in [easy_tile, medium_tile, hard_tile]:
+			tile.button_group = difficulty_group   ## Medium is pressed in the scene
 		if GameState.player_name != "Detective":
 			host_name_input.text = GameState.player_name
 		host_saved_button.pressed.connect(_on_host_saved)
+		## The free path is the primary one when there is a room to open (owner,
+		## Session 47). Generating costs a call (~$0.72) and one in eight passes
+		## the gate; hosting a saved mystery costs nothing and is how stage 1 is
+		## played. So brass goes to Host, and Generate steps down to the plain
+		## outlined button -- still one PrimaryButton per screen. Solo keeps
+		## Generate as primary: with no room, it is the only way forward.
+		host_saved_button.theme_type_variation = &"PrimaryButton"
+		generate_button.theme_type_variation = &""
 		_load_saved_mysteries()
 	_set_loading(false)
 
@@ -231,7 +244,7 @@ func _create_multiplayer_game(slug: String) -> void:
 	if host_name.is_empty():
 		host_name = "Host"
 	GameState.player_name = host_name
-	var difficulty := difficulty_option.get_item_text(difficulty_option.selected).to_upper()
+	var difficulty: String = _chosen_difficulty()
 	status_label.text = "Creating game session…"
 	_set_loading(true)
 	ApiClient.create_game(slug, host_name, difficulty, _on_game_created)
@@ -268,3 +281,13 @@ func _set_loading(loading: bool) -> void:
 	## section and its button do not exist as far as the player is concerned.
 	if GameState.is_multiplayer:
 		host_saved_button.disabled = loading or saved_option.item_count == 0
+
+## The server's own spelling. Medium when nothing reads as pressed, which a
+## ButtonGroup should never allow -- but a missing default is how a room
+## silently ends up on the wrong ladder, so it is stated rather than assumed.
+func _chosen_difficulty() -> String:
+	if easy_tile.button_pressed:
+		return "EASY"
+	if hard_tile.button_pressed:
+		return "HARD"
+	return "MEDIUM"

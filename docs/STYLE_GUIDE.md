@@ -97,7 +97,8 @@ Scene-level (built on the screens named; each is drawn in that screen's script):
 | *Progress* | Round progress with a deadpan caption: *Cold trail*, *Closing in*, *Last round* | ApfRound |
 | *Stamp* | A steel block under the verdict: *Kept back — Sam sat on …*, or *Nothing kept back*. `StampPanel` | ResultScreen |
 | *Ledger* | Label-and-value rows with hairlines: accusation, culprit, rounds, time, what you shared and kept back | ResultScreen |
-| *Choice tiles* | `ChoiceTileButton`: Play / Create, Solo / With friends | MainMenu |
+| *Choice tiles* | `ChoiceTileButton`: Play / Create, Solo / With friends; Easy / Medium / Hard in place of the difficulty dropdown | MainMenu, MysteryGeneration |
+| *Field label* | `FieldLabel`: white, condensed, caps via the Label's own `uppercase` flag — the label over a form field is the instruction, not a footnote | MysteryGeneration |
 | *Roster rows* | A player as a finding row: seat number in the ID column, name as big as the room code | Lobby |
 
 Decided against (owner, Session 47):
@@ -140,7 +141,9 @@ secret.*). And the vocabulary rule in `CLAUDE.md` holds here too: no cards, no d
 - **Hard-coded colours that bypassed the theme** — all five fixed in Session 47. One deserves a
   note: the moderation notice carried a grey override from before the palette existed (Session 34)
   that masked the caution colour Session 37 gave it on purpose, so item 17's "visible" notice was
-  rendering as a footnote. The override is gone; it is amber now.
+  rendering as a footnote. The override is gone. **Later the same session the owner set it white and
+  all-caps** with the other form labels (`FieldLabel`) — 15.8:1 on the ground, so more visible than
+  the amber was, which is what item 17 actually asks of it.
 - **MYF no longer shares CYM's ground.** Accepted. `scripts/check_brand_contrast.py --myf` still
   grades a shared mark against slate.
 - **The BACKGROUND field (item 17)** was pitched for slate and is untuned against Night. It is

@@ -32,18 +32,20 @@ text = "Set Your Mystery"
 horizontal_alignment = 1
 
 [node name="PromptHintLabel" type="Label" parent="VBox"]
-theme_type_variation = &"FaintLabel"
+theme_type_variation = &"FieldLabel"
 layout_mode = 2
 text = "Describe the scenario:"
+uppercase = true
 
 [node name="PromptInput" type="LineEdit" parent="VBox"]
 layout_mode = 2
 placeholder_text = "e.g. \"A murder on a Mars colony\" or \"An art theft in Renaissance Venice\""
 
 [node name="ModerationNoticeLabel" type="Label" parent="VBox"]
-theme_type_variation = &"CautionLabel"
+theme_type_variation = &"FieldLabel"
 layout_mode = 2
 text = "Not moderated for play testing"
+uppercase = true
 
 [node name="NarrationCheckbox" type="CheckBox" parent="VBox"]
 layout_mode = 2
@@ -54,9 +56,10 @@ layout_mode = 2
 visible = false
 
 [node name="HostNameLabel" type="Label" parent="VBox/MultiplayerSection"]
-theme_type_variation = &"FaintLabel"
+theme_type_variation = &"FieldLabel"
 layout_mode = 2
 text = "Your name (host):"
+uppercase = true
 
 [node name="HostNameInput" type="LineEdit" parent="VBox/MultiplayerSection"]
 layout_mode = 2
@@ -64,19 +67,47 @@ placeholder_text = "Enter your name"
 max_length = 24
 
 [node name="DifficultyLabel" type="Label" parent="VBox/MultiplayerSection"]
-theme_type_variation = &"FaintLabel"
+theme_type_variation = &"FieldLabel"
 layout_mode = 2
 text = "Difficulty:"
+uppercase = true
 
-[node name="DifficultyOption" type="OptionButton" parent="VBox/MultiplayerSection"]
+[node name="DifficultyRow" type="HBoxContainer" parent="VBox/MultiplayerSection"]
 layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="EasyTile" type="Button" parent="VBox/MultiplayerSection/DifficultyRow"]
+theme_type_variation = &"ChoiceTileButton"
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 52)
+toggle_mode = true
+text = "EASY"
+
+[node name="MediumTile" type="Button" parent="VBox/MultiplayerSection/DifficultyRow"]
+theme_type_variation = &"ChoiceTileButton"
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 52)
+toggle_mode = true
+button_pressed = true
+text = "MEDIUM"
+
+[node name="HardTile" type="Button" parent="VBox/MultiplayerSection/DifficultyRow"]
+theme_type_variation = &"ChoiceTileButton"
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 52)
+toggle_mode = true
+text = "HARD"
 
 [node name="SavedSeparator" type="HSeparator" parent="VBox/MultiplayerSection"]
 layout_mode = 2
 
 [node name="SavedLabel" type="Label" parent="VBox/MultiplayerSection"]
-theme_type_variation = &"FaintLabel"
+theme_type_variation = &"FieldLabel"
 layout_mode = 2
+uppercase = true
 autowrap_mode = 3
 text = "Or host a mystery you already have — free, no generation:"
 
