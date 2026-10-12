@@ -447,8 +447,10 @@ unbuilt. What has never happened is a person other than the owner sitting down t
 **Not verified** below, and `docs/F5_CHECKLIST.md`.
 
 **Not verified, and the list is shorter than it was.**
-(a) Nothing here has been confirmed run through `VerifyScenes.gd` / `ApplyTheme.gd` — those need the
-owner's machine, and whether they ran during the Session 43 walkthrough is unconfirmed.
+(a) **[Session 47] Both engine checks ran on the owner's machine** — ApplyTheme (two misses, fixed)
+and VerifyScenes (8 of 8 `ok`, but it had never listed ApfRound; it now reads `scenes/ui/` and should
+report nine). **ApfRound itself has still never been rendered or loaded by Godot** — it is the next
+F5's first job.
 (b) **[Session 43] Closed — no longer open.** Ezra Greene played two mysteries through to the result
 screen, rating them 9 (`the_neriin_in_the_pilchard_barrel`) and, initially, 10
 (`whiteout_at_shackleton_base`) — revised to 8 the next day (`fix/whiteout-rating`). Which path each

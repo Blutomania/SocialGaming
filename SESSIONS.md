@@ -176,16 +176,25 @@ and the roster scrolls in whatever height is left so Open the case stays on scre
 `check_doc_claims.py`, `check_decisions.py` (1..35), `test_apf.py` all pass; `gdparse` accepts
 every changed script. **Nothing rendered** — no engine reaches a session.
 
-### Next session
+### Next session — the owner re-runs Godot after lunch
 
-1. **F5 on the owner's machine, and run `ApplyTheme.gd` + `VerifyScenes.gd`.** Confirms
-   `hover_pressed` and the other new theme items, and regenerates the editor preview (still slate).
-   Walk MainMenu → a room → ApfRound → ResultScreen and screenshot each, Sept8-style.
-2. Remaining screens have the theme but no screen-specific pass: CaseDisplay,
-   MysteryGeneration, Interrogation, Accusation, ShareSelection.
-3. *(Decided: no result bars — owner, same session.)*
-4. Consider adding `gdparse` to the checker table.
-5. Delete `origin/owner/godot-sidecars` if the owner agrees.
+1. **Pull `main`, re-run `ApplyTheme.gd` and `VerifyScenes.gd`.** Expect `MISSES none` plus a new
+   *Archivo Narrow loaded* line, and **nine** `ok` lines — the ninth, `ApfRound.tscn`, has never
+   been through Godot's loader. Commit the regenerated `godot/assets/theme/cym_theme.tres`; discard
+   Godot's rewrite of `project.godot`.
+2. **Finish the F5 walk** (the steps are in this session's chat and track `docs/F5_CHECKLIST.md`):
+   MysteryGeneration (white caps labels, difficulty tiles, *Host* now brass) → Lobby with
+   `scripts/seat_players.py` (title clear of the logo, two-column seats) → **ApfRound, never yet
+   rendered** → ResultScreen. Screenshot each, Sept8-style; nothing past the lobby has been seen.
+3. Screens still without a pass: CaseDisplay, Interrogation, Accusation, ShareSelection.
+4. Two small owner calls, unresolved: whether the narration checkbox shows its tick (couldn't tell
+   from the screenshot), and whether to restore any MYF checkpoint branch from its archive tag.
+5. Consider adding `gdparse` (gdtoolkit, pip) to the checker table — it caught nothing this session
+   but is the only session-side check for a GDScript parse error.
+6. `claude/jolly-rubin-avt94y` can be deleted once this session's last PR is merged.
+*(Decided this session and not to revisit: no result bars; MYF branches stay under item 9.)*
+
+---
 ## Session — September 16, 2026 at 23:48
 **Branch:** `claude/serene-ramanujan-f5svcd`
 **Latest commit:** `697db84`
