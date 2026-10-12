@@ -209,8 +209,10 @@ that the superseded text has become history and belongs here instead.
    coherence-telemetry session, two extractor changes plus Van Dine's 20 rules, and three MYF
    design ideas — and are carried as open work in `CLAUDE.md`. **Asked whether the "do not touch
    `dev/mind-your-friends`" rule above still holds now that MYF lives in `main` (since Aug 6), the
-   owner confirmed it: "Definitely not deleting Mind Your Friends. Item 9 is correct."** It is
-   read as covering MYF's checkpoint branches too, so only CYM branches are archived and deleted.
+   owner confirmed it: "Definitely not deleting Mind Your Friends. Item 9 is correct."** The
+   seven MYF checkpoint branches had already been deleted by then (archive tags verified, each
+   restorable with `git push origin archive/<name>:refs/heads/<name>`); restoring them is the
+   owner's call. `dev/mind-your-friends` itself was never touched.
 
    **`dev/cryptic-challenge` is NOT a third project (verified Session 29, August 17 2026).**
    The name has repeatedly been read — including by a Claude session, which cited it as evidence
