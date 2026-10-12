@@ -257,7 +257,11 @@ func _style_fonts(t: Theme) -> void:
 func _font(file_name: String) -> Font:
 	var path: String = "res://assets/fonts/" + file_name
 	if not ResourceLoader.exists(path):
-		push_warning("Style: %s is missing — falling back to Godot's default face." % path)
+		## push_error, not push_warning (Session 47): red in the Output panel on
+		## every F5, so a missing face is noticed by whoever runs the game, not
+		## only by whoever thinks to run ApplyTheme. Still not a crash -- the
+		## fallback keeps every other font and colour in the theme working.
+		push_error("Style: %s is missing — falling back to the previous face." % path)
 		return null
 	return load(path) as Font
 

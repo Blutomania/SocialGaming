@@ -405,7 +405,7 @@ that use Godot's own loader, which is where the undetectable defects live:
 
 | Script | Catches |
 |---|---|
-| `godot/scripts/tools/VerifyScenes.gd` | A node a `.tscn` declares that does not survive loading, a node whose runtime class is not what the scene declares, and a scene root that lost its script. **Run on 4.7.2 in Session 40: eight `ok` lines** |
+| `godot/scripts/tools/VerifyScenes.gd` | A node a `.tscn` declares that does not survive loading, a node whose runtime class is not what the scene declares, and a scene root that lost its script. **Run on 4.7 in Session 47 (owner's machine): 8 of 8 `ok` — but the list was hand-kept and had never included ApfRound. It now reads `scenes/ui/` itself, so expect nine** |
 | `godot/scripts/tools/ApplyTheme.gd` | A theme item name the engine does not have. Also generates the editor's theme preview, so the design is visible while scenes are edited, and reports whether the fonts resolved. **Run on 4.7.2 in Session 47 (owner's machine): 223 items across 51 types, 2 misses** — both a `hover_pressed` stylebox the 4.7 Button lacks, removed in the same session. Re-run to confirm `MISSES none` |
 
 **One fills the other seats so a person can walk it alone:** `scripts/seat_players.py <ROOM>` joins

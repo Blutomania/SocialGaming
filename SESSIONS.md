@@ -142,6 +142,15 @@ and `gdparse` only parses. ApplyTheme also now reports Archivo Narrow, which it 
 for; it needed the font's file path, since `has_font()` is always true once NunitoSans is the
 fallback.
 
+### VerifyScenes, on the owner's machine
+
+8 of 8 `ok`, every declared node present — which covers the Lobby, MainMenu and ResultScreen scene
+edits. **But the run checked eight screens out of nine.** Its list was typed out before ApfRound
+existed (Session 42) and nobody extended it, so the screen the mechanic lives on had never been
+through Godot's loader, and the report's "All 8 screens" read as complete. It now lists
+`scenes/ui/` itself. A missing font is also now `push_error` rather than `push_warning`, so it
+shows red in Output on any F5 (owner agreed).
+
 ### Verification
 
 `check_godot_wiring.py`, `build_palette.py --check`, `test_palette.py` (33 pairs),
