@@ -237,6 +237,10 @@ func _style_fonts(t: Theme) -> void:
 		t.set_font("font", "SuspectCardButton", narrow_semibold)
 	if narrow_bold:
 		t.set_font("font", "FindingIdLabel", narrow_bold)
+		t.set_font("font", "StampTextLabel", narrow_bold)
+		t.set_font("font", "LedgerValueLabel", narrow_bold)
+	if display_bold:
+		t.set_font("font", "StampKeyLabel", display_bold)
 
 
 func _font(file_name: String) -> Font:
@@ -676,6 +680,31 @@ func _declare_variations(t: Theme) -> void:
 	t.set_type_variation("FindingIdLabel", "Label")
 	t.set_color("font_color", "FindingIdLabel", Palette.INK_MUTED)
 	t.set_font_size("font_size", "FindingIdLabel", Palette.TYPE_HEADING)
+
+	## The stamp (Night File): a steel block under the verdict that says who
+	## held a finding back. Filled, not outlined, because it is a statement of
+	## record rather than a choice -- and steel, not brass, because it reports
+	## a state and asks nobody to act. Its key word is in the display face so
+	## it reads as part of the verdict above it; the sentence is condensed.
+	t.set_type_variation("StampPanel", "PanelContainer")
+	var stamp: StyleBoxFlat = _panel(Palette.STEEL, Palette.RADIUS_SMALL, Palette.STEEL)
+	stamp.content_margin_left = float(Palette.SPACE_WIDE)
+	stamp.content_margin_right = float(Palette.SPACE_WIDE)
+	stamp.content_margin_top = float(Palette.SPACE_SMALL)
+	stamp.content_margin_bottom = float(Palette.SPACE_SMALL)
+	t.set_stylebox("panel", "StampPanel", stamp)
+	t.set_type_variation("StampKeyLabel", "Label")
+	t.set_color("font_color", "StampKeyLabel", Palette.INK)
+	t.set_font_size("font_size", "StampKeyLabel", Palette.TYPE_HEADING)
+	t.set_type_variation("StampTextLabel", "Label")
+	t.set_color("font_color", "StampTextLabel", Palette.INK)
+	t.set_font_size("font_size", "StampTextLabel", Palette.TYPE_BODY)
+
+	## The value half of a ledger row (label on the left in FaintLabel, value
+	## on the right in this): "Your accusation ..... Cadan Polglase".
+	t.set_type_variation("LedgerValueLabel", "Label")
+	t.set_color("font_color", "LedgerValueLabel", Palette.INK)
+	t.set_font_size("font_size", "LedgerValueLabel", Palette.TYPE_HEADING)
 
 	## A panel that should read as sunk into the page: transcripts, feeds,
 	## evidence lists. The well tier, as a container.

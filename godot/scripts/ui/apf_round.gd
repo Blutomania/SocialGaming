@@ -374,16 +374,6 @@ func _render_casefile() -> void:
 		var finding: Dictionary = entry
 		casefile_container.add_child(_finding_row(finding))
 
-## The column a finding's ID sits in: "E3", "L1" -- the part after the colon
-## that casefiles.py prefixes. A witness shows a plain "W": its title is
-## already the witness's name, and initials would be a code nobody was taught.
-func _finding_id(finding: Dictionary) -> String:
-	var raw: String = str(finding.get("id", ""))
-	if raw.begins_with("W:"):
-		return "W"
-	var colon: int = raw.find(":")
-	return raw.substr(colon + 1) if colon != -1 else raw
-
 ## Night File's finding row (docs/STYLE_GUIDE.md): ID column | rule | the
 ## finding | its SHARING/KEEPING toggle. The whole row is the hit target, not
 ## just the toggle -- a player reaching for "this one" points at the text,
@@ -399,7 +389,7 @@ func _finding_row(finding: Dictionary) -> Control:
 
 	var id_label := Label.new()
 	id_label.theme_type_variation = &"FindingIdLabel"
-	id_label.text = _finding_id(finding)
+	id_label.text = GameState.finding_display_id(str(finding.get("id", "")))
 	id_label.custom_minimum_size = Vector2(44, 0)
 	id_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	id_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER

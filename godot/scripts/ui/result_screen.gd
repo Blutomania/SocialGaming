@@ -18,7 +18,10 @@ extends Control
 @onready var verdict_rest_label: Label = $ScrollContainer/MainVBox/VerdictRow/VerdictRestLabel
 @onready var portrait_rect: TextureRect = $ScrollContainer/MainVBox/SolutionRow/PortraitRect
 @onready var solution_label: RichTextLabel = $ScrollContainer/MainVBox/SolutionRow/SolutionLabel
-@onready var stats_label: RichTextLabel = $ScrollContainer/MainVBox/StatsLabel
+@onready var stamp: PanelContainer = $ScrollContainer/MainVBox/Stamp
+@onready var stamp_key: Label = $ScrollContainer/MainVBox/Stamp/StampRow/StampKey
+@onready var stamp_text: Label = $ScrollContainer/MainVBox/Stamp/StampRow/StampText
+@onready var ledger: VBoxContainer = $ScrollContainer/MainVBox/Ledger
 @onready var rating_row: HBoxContainer = $ScrollContainer/MainVBox/RatingRow
 @onready var play_again_button: Button = $ScrollContainer/MainVBox/Buttons/PlayAgainButton
 @onready var review_button: Button = $ScrollContainer/MainVBox/Buttons/ReviewButton
@@ -54,13 +57,19 @@ func _populate() -> void:
 	## its own text, so VerdictWordLabel and VerdictRestLabel share the
 	## VerdictLabel variation's colour logic but carry different font sizes
 	## (Style.gd).
+	##
+	## [Session 45] Night File's voice (docs/STYLE_GUIDE.md): a case report,
+	## not a judgement. The big word names the person instead of grading the
+	## player -- "Not Cadan Polglase." says what "Wrong." says and also WHO,
+	## which is the thing a table turns to argue about. Same two labels, same
+	## sizes the owner set on ResultSept8; only the words changed.
 	var verdict_color: Color = Palette.POSITIVE if correct else Palette.NEGATIVE
 	if correct:
-		verdict_word_label.text = "Correct!"
-		verdict_rest_label.text = "%s is the culprit." % culprit
+		verdict_word_label.text = "Solved."
+		verdict_rest_label.text = "%s did it." % culprit
 	else:
-		verdict_word_label.text = "Wrong."
-		verdict_rest_label.text = "You accused %s — the real culprit was %s." % [suspect, culprit]
+		verdict_word_label.text = "Not %s." % suspect
+		verdict_rest_label.text = "%s did it." % culprit
 	verdict_word_label.add_theme_color_override("font_color", verdict_color)
 	verdict_rest_label.add_theme_color_override("font_color", verdict_color)
 
@@ -100,25 +109,45 @@ func _populate() -> void:
 	portrait_rect.texture = Icons.texture(culprit_icon)
 	portrait_rect.modulate = Icons.tint()
 
+	_ledger_row("Your accusation", suspect)
+	_ledger_row("The culprit", culprit)
 	_populate_stats(result.get("gameplay_stats", {}))
+
+## Night File's ledger (docs/STYLE_GUIDE.md): label left, value right, a
+## hairline under each. A table of what happened, read down one column --
+## the shape the reference uses for its own result, and the one place on this
+## screen where facts are listed rather than told.
+func _ledger_row(label_text: String, value_text: String) -> void:
+	var row := HBoxContainer.new()
+	var key := Label.new()
+	key.theme_type_variation = &"FaintLabel"
+	key.text = label_text.to_upper()
+	key.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	key.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	row.add_child(key)
+	var value := Label.new()
+	value.theme_type_variation = &"LedgerValueLabel"
+	value.text = value_text
+	value.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	row.add_child(value)
+	ledger.add_child(row)
+	var rule := HSeparator.new()
+	rule.add_theme_constant_override("separation", Palette.SPACE_BASE)
+	ledger.add_child(rule)
 
 ## Rounds played and elapsed time, in place of "How to deduce" (owner, playtest
 ## SolvedSept7: "remove the how to deduce section, INSTEAD let's surface
 ## gameplay stats"). Empty on the single-player/legacy path -- no APF session
-## ran, so there is nothing true to report, and the block stays hidden rather
-## than showing a guessed zero.
+## ran, so there is nothing true to report, and those rows are left out rather
+## than showing a guessed zero. Ledger rows since Session 45.
 func _populate_stats(stats: Dictionary) -> void:
 	if stats.is_empty():
-		stats_label.visible = false
 		return
-	stats_label.visible = true
 	var rounds_played: int = stats.get("rounds_played", 0)
 	var rounds_total: int = stats.get("rounds_total", 0)
 	var elapsed: int = stats.get("elapsed_seconds", 0)
-	stats_label.text = (
-		"[b]Rounds played:[/b] %d of %d\n"
-		+ "[b]Time played:[/b] %s"
-	) % [rounds_played, rounds_total, _format_duration(elapsed)]
+	_ledger_row("Rounds played", "%d of %d" % [rounds_played, rounds_total])
+	_ledger_row("Time played", _format_duration(elapsed))
 
 ## "127 seconds" means nothing at a table -- minutes and seconds, the way a
 ## player would actually say it back.
@@ -160,6 +189,8 @@ func _on_disclosure(error: String, data: Dictionary) -> void:
 	var withheld: Array = data.get("withheld", [])
 	disclosure_title.visible = true
 	disclosure_note.visible = true
+	_populate_stamp(withheld)
+	_populate_own_record(data.get("by_player", []))
 
 	if withheld.is_empty():
 		disclosure_note.text = "Everything found was shared. Nobody held anything back."
@@ -170,38 +201,107 @@ func _on_disclosure(error: String, data: Dictionary) -> void:
 		% withheld.size()
 	)
 
+	disclosure_container.add_theme_constant_override("separation", Palette.SPACE_BASE)
 	for entry in withheld:
-		var item: Dictionary = entry
-		var box := VBoxContainer.new()
+		disclosure_container.add_child(_withheld_row(entry))
 
-		var who := Label.new()
-		who.text = "%s held this back" % str(item.get("shared_by", "?"))
-		who.add_theme_color_override("font_color", Palette.CAUTION)
-		box.add_child(who)
+## The stamp under the verdict (Night File): the one sentence full disclosure
+## exists to produce, said where the table is already looking. Names the
+## first finding somebody sat on and counts the rest; the full list is below.
+func _populate_stamp(withheld: Array) -> void:
+	stamp.visible = true
+	if withheld.is_empty():
+		stamp_key.text = "Nothing kept back"
+		stamp_text.text = "EVERY FINDING REACHED THE TABLE."
+		return
+	var first: Dictionary = withheld[0]
+	stamp_key.text = "Kept back"
+	var sentence: String = "%s sat on %s." % [str(first.get("shared_by", "Someone")),
+		_clip_words(str(first.get("title", "a finding")), _STAMP_TITLE_CHARS)]
+	if withheld.size() > 1:
+		sentence += "  +%d more." % (withheld.size() - 1)
+	stamp_text.text = sentence.to_upper()
 
-		var title := Label.new()
-		title.text = str(item.get("title", "?"))
-		title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		title.add_theme_color_override("font_color", Palette.INK)
-		box.add_child(title)
+## The stamp is one unwrapped line in caps -- a stamp that wraps stops
+## reading as a stamp -- so a long finding title is cut at a word boundary.
+## The full title is in the list directly below it.
+const _STAMP_TITLE_CHARS: int = 36
 
-		var body := Label.new()
-		body.text = str(item.get("body", ""))
-		body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		body.add_theme_color_override("font_color", Palette.INK_MUTED)
-		box.add_child(body)
+func _clip_words(text: String, limit: int) -> String:
+	if text.length() <= limit:
+		return text
+	var cut: int = text.rfind(" ", limit)
+	if cut <= 0:
+		cut = limit
+	return text.substr(0, cut) + "…"
 
-		disclosure_container.add_child(box)
-		disclosure_container.add_child(HSeparator.new())
+## This player's own line in the record: what they volunteered against what
+## they held, and what disclosure had to prise out of them. Read off
+## by_player, which the server already counts -- the client derives nothing.
+func _populate_own_record(by_player: Array) -> void:
+	for entry in by_player:
+		var p: Dictionary = entry
+		if str(p.get("player_id", "")) != GameState.player_id:
+			continue
+		_ledger_row("Findings you shared",
+			"%d of %d" % [int(p.get("volunteered", 0)), int(p.get("held", 0))])
+		_ledger_row("Findings you kept back", str(int(p.get("withheld", 0))))
+		return
+
+## One finding somebody sat on, drawn as the same finding row ApfRound uses
+## (ID column | rule | finding), so it reads as the same object it was during
+## play -- now with a name against it.
+func _withheld_row(item: Dictionary) -> Control:
+	var row := PanelContainer.new()
+	row.theme_type_variation = &"FindingRow"
+	var line := HBoxContainer.new()
+	line.add_theme_constant_override("separation", Palette.SPACE_WIDE)
+	row.add_child(line)
+
+	var id_label := Label.new()
+	id_label.theme_type_variation = &"FindingIdLabel"
+	id_label.text = GameState.finding_display_id(str(item.get("id", "")))
+	id_label.custom_minimum_size = Vector2(44, 0)
+	id_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	id_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	line.add_child(id_label)
+	line.add_child(VSeparator.new())
+
+	var body := VBoxContainer.new()
+	body.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	body.add_theme_constant_override("separation", Palette.SPACE_TIGHT)
+	var who := Label.new()
+	who.theme_type_variation = &"FaintLabel"
+	who.text = "%s KEPT THIS BACK" % str(item.get("shared_by", "?")).to_upper()
+	who.add_theme_color_override("font_color", Palette.STEEL_BRIGHT)
+	body.add_child(who)
+	var title := Label.new()
+	title.theme_type_variation = &"HeadingLabel"
+	title.text = str(item.get("title", "?"))
+	title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	body.add_child(title)
+	var text := Label.new()
+	text.theme_type_variation = &"MutedLabel"
+	text.text = str(item.get("body", ""))
+	text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	body.add_child(text)
+	line.add_child(body)
+	return row
 
 # ---------------------------------------------------------------------------
 # Rating
 # ---------------------------------------------------------------------------
+## Ten choice tiles in one ButtonGroup (Night File): a rating is a choice,
+## so the theme's steel "chosen" fill marks it -- the same signal as every
+## other choice in the product, instead of this screen inventing its own.
 func _build_rating_buttons() -> void:
+	var group := ButtonGroup.new()
 	for i in range(1, 11):
 		var btn := Button.new()
 		btn.text = str(i)
-		btn.custom_minimum_size = Vector2(36, 36)
+		btn.toggle_mode = true
+		btn.button_group = group
+		btn.custom_minimum_size = Vector2(44, 44)
 		btn.pressed.connect(_on_rate.bind(i))
 		rating_row.add_child(btn)
 
@@ -215,19 +315,14 @@ func _on_rate(rating: int) -> void:
 			if err:
 				push_warning("Rating save failed: " + err)
 		)
-	# Dim all buttons to show rating was recorded. The chosen one keeps full
-	# strength and takes a brass label; the rest recede. modulate is right here
-	# and wrong for a Label: these are whole controls -- box, border and text --
-	# that should step back together.
+	# The chosen tile is already filled -- the ButtonGroup did that. The rest
+	# are disabled so the rating reads as recorded rather than still open: the
+	# theme's disabled box sinks them to the well tier with faint text, which
+	# is the "step back" the old modulate hack was approximating by hand.
 	for child: Node in rating_row.get_children():
 		if child is Button:
 			var btn: Button = child
-			var chosen: bool = btn.text.to_int() == rating
-			btn.modulate = Color.WHITE if chosen else Color(0.55, 0.55, 0.55)
-			if chosen:
-				btn.add_theme_color_override("font_color", Palette.BRASS)
-			else:
-				btn.remove_theme_color_override("font_color")
+			btn.disabled = btn.text.to_int() != rating
 
 # ---------------------------------------------------------------------------
 # Navigation
