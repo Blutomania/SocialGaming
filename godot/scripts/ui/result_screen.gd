@@ -58,7 +58,7 @@ func _populate() -> void:
 	## VerdictLabel variation's colour logic but carry different font sizes
 	## (Style.gd).
 	##
-	## [Session 45] Night File's voice (docs/STYLE_GUIDE.md): a case report,
+	## [Session 47] Night File's voice (docs/STYLE_GUIDE.md): a case report,
 	## not a judgement. The big word names the person instead of grading the
 	## player -- "Not Cadan Polglase." says what "Wrong." says and also WHO,
 	## which is the thing a table turns to argue about. Same two labels, same
@@ -105,7 +105,9 @@ func _populate() -> void:
 	## stable decorative silhouette for this culprit in this game. Icons.gd
 	## returns null on an empty set on purpose, so this correctly draws
 	## nothing rather than a placeholder box when no suspect icon exists yet.
-	var culprit_icon: String = Icons.suspect(str(plot.get("culprit", culprit)), GameState.game_id)
+	var culprit_icon: String = Icons.suspect(
+		str(plot.get("culprit", culprit)), GameState.game_id,
+		str(plot.get("culprit_pronouns", "")), str(plot.get("culprit_presentation", "")))
 	portrait_rect.texture = Icons.texture(culprit_icon)
 	portrait_rect.modulate = Icons.tint()
 
@@ -139,7 +141,7 @@ func _ledger_row(label_text: String, value_text: String) -> void:
 ## SolvedSept7: "remove the how to deduce section, INSTEAD let's surface
 ## gameplay stats"). Empty on the single-player/legacy path -- no APF session
 ## ran, so there is nothing true to report, and those rows are left out rather
-## than showing a guessed zero. Ledger rows since Session 45.
+## than showing a guessed zero. Ledger rows since Session 47.
 func _populate_stats(stats: Dictionary) -> void:
 	if stats.is_empty():
 		return

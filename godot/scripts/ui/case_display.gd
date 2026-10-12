@@ -112,8 +112,9 @@ func _populate() -> void:
 		## No `.id` field on CharacterData -- `.name` is the stable, unique-
 		## per-mystery key the server side already treats it as, so it is the
 		## right seed for Icons.suspect() too.
-		var suspect_icon: String = Icons.suspect(suspects[i].name, GameState.game_id)
-		## INK, not brass, since Session 45: Night File keeps brass for the
+		var suspect_icon: String = Icons.suspect(
+			suspects[i].name, GameState.game_id, suspects[i].pronouns, suspects[i].presentation)
+		## INK, not brass, since Session 47: Night File keeps brass for the
 		## action and the mystery's own name, and the role word already says
 		## "Suspect". Victim stays NEGATIVE and witnesses STEEL_BRIGHT, so the
 		## three roles still differ by more than their label.

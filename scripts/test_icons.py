@@ -21,6 +21,7 @@ to test the RULE rather than the syntax. That is a real limitation and it is
 stated in the file: this proves the design is sound, not that Icons.gd compiles.
 """
 
+import re
 import sys
 from collections import Counter
 from pathlib import Path
@@ -170,6 +171,136 @@ check("_mix32(seed_text.hash())" in gd,
       "Icons.gd avalanches the hash before the modulus")
 check("salt + _SEP + key" in gd, "Icons.gd puts the salt in the seed, not just the key")
 check("set_paths.is_empty()" in gd, "Icons.gd handles the empty set")
+
+
+# ---------------------------------------------------------------------------
+# The suspect tag fallback chain
+# ---------------------------------------------------------------------------
+# Icons.gd's _suspect_candidates() decides WHICH pool _pick() then hashes
+# into; the hash/uniformity tests above already cover the picking itself, so
+# this section is only about that pool-selection logic. Reimplemented in
+# Python for the same reason godot_string_hash() is above: the real thing is
+# GDScript, so this proves the design, and the source-text checks at the end
+# of this section prove Icons.gd actually contains the matching shape.
+
+def suspect_by_tags(tags_by_path: dict, required: list[str]) -> list[str]:
+    return [p for p, tags in tags_by_path.items() if all(t in tags for t in required)]
+
+
+def gender_bucket(pronouns: str) -> str:
+    # Tokenized, not raw substring matching -- "he" is a substring of "they"
+    # and "them", so a naive `"he" in p` buckets "they/them" as masculine.
+    # This mirrors Icons.gd's _gender_bucket()/_words_only() exactly, after
+    # that exact bug was caught here and fixed in both places.
+    tokens = re.findall(r"[a-z]+", pronouns.lower())
+    if any(t in ("she", "her", "hers") for t in tokens):
+        return "feminine"
+    if any(t in ("he", "him", "his") for t in tokens):
+        return "masculine"
+    return "neutral"
+
+
+def suspect_candidates(tags_by_path: dict, all_paths: list[str],
+                        pronouns: str, presentation: str) -> list[str]:
+    pres = presentation.lower().strip()
+    if pres and pres != "human":
+        species = suspect_by_tags(tags_by_path, [pres])
+        if species:
+            return species
+        generic = suspect_by_tags(tags_by_path, ["non-human"])
+        if generic:
+            return generic
+    matched = suspect_by_tags(tags_by_path, [gender_bucket(pronouns), "human"])
+    if matched:
+        return matched
+    return all_paths
+
+
+TAGS = {
+    "m1": ["masculine", "human"], "m2": ["masculine", "human"],
+    "f1": ["feminine", "human"], "n1": ["neutral", "human"],
+}
+ALL_PATHS = list(TAGS.keys())
+
+print("\n--- suspect tag fallback chain ---")
+check(set(suspect_candidates(TAGS, ALL_PATHS, "she/her", "human")) == {"f1"},
+      "an exact gender+human match narrows to just that bucket")
+check(set(suspect_candidates(TAGS, ALL_PATHS, "he/him", "human")) == {"m1", "m2"},
+      "a bucket with more than one icon returns all of them, not just one")
+check(set(suspect_candidates(TAGS, ALL_PATHS, "they/them", "human")) == {"n1"},
+      "an unrecognised pronoun string buckets as neutral, not an error")
+check(set(suspect_candidates(TAGS, ALL_PATHS, "she/her", "martian")) == {"f1"},
+      "a non-human presentation with no matching species OR generic tag "
+      "falls through to the gender-matched human bucket -- not the full "
+      "pool, and not empty -- before the true floor is ever reached")
+NOTHING_MATCHES = {"x1": ["masculine", "human"]}  # she/her+martian matches none of this
+check(set(suspect_candidates(NOTHING_MATCHES, ALL_PATHS, "she/her", "martian"))
+      == set(ALL_PATHS),
+      "only when NO step matches at all -- no species, no generic non-human, "
+      "no gender-matched human -- does it fall to the true floor: the full, "
+      "unfiltered pool")
+TAGS_WITH_NONHUMAN = dict(TAGS, alien1=["non-human"])
+check(suspect_candidates(TAGS_WITH_NONHUMAN, list(TAGS_WITH_NONHUMAN), "", "martian")
+      == ["alien1"],
+      "a non-human presentation with no species-specific tag falls to the "
+      "generic non-human bucket before falling to the human pool")
+TAGS_WITH_SPECIES = dict(TAGS, martian1=["non-human", "martian"])
+check(suspect_candidates(TAGS_WITH_SPECIES, list(TAGS_WITH_SPECIES), "", "martian")
+      == ["martian1"],
+      "an exact species tag beats the generic non-human bucket when both exist")
+check(set(suspect_candidates({}, ALL_PATHS, "she/her", "human")) == set(ALL_PATHS),
+      "an empty tag dict (no tags.json yet) falls through to the full pool")
+
+check("_suspect_by_tags(required)" in gd or "_suspect_by_tags(" in gd,
+      "Icons.gd has a tag-matching helper")
+check('"non-human"' in gd, "Icons.gd's fallback chain names the generic non-human tag")
+check("IconSet.SUSPECT" in gd and "SUSPECT_TAGS" in gd,
+      "Icons.gd's fallback floor is the full, untagged SUSPECT pool")
+
+
+# ---------------------------------------------------------------------------
+# icons/suspect/tags.json is enforced, not advisory
+# ---------------------------------------------------------------------------
+import json
+import tempfile
+from build_icons import UntaggedIcon, load_suspect_tags  # noqa: E402
+
+print("\n--- tags.json is refused, not silently accepted, when it drifts ---")
+with tempfile.TemporaryDirectory() as d:
+    d = Path(d)
+    (d / "a.svg").write_text("<svg/>")
+    (d / "b.svg").write_text("<svg/>")
+    tags_path = d / "tags.json"
+
+    import build_icons
+    old_tags_json = build_icons.TAGS_JSON
+    build_icons.TAGS_JSON = tags_path
+    try:
+        tags_path.write_text(json.dumps({"tags": {"a.svg": ["masculine", "human"]}}))
+        try:
+            load_suspect_tags([d / "a.svg", d / "b.svg"])
+            check(False, "a file with no tag entry is refused")
+        except UntaggedIcon:
+            check(True, "a file with no tag entry is refused")
+
+        tags_path.write_text(json.dumps({"tags": {
+            "a.svg": ["masculine", "human"], "b.svg": ["feminine", "human"],
+            "c.svg": ["neutral", "human"],
+        }}))
+        try:
+            load_suspect_tags([d / "a.svg", d / "b.svg"])
+            check(False, "a tag entry for a file no longer on disk is refused")
+        except UntaggedIcon:
+            check(True, "a tag entry for a file no longer on disk is refused")
+
+        tags_path.write_text(json.dumps({"tags": {
+            "a.svg": ["masculine", "human"], "b.svg": ["feminine", "human"],
+        }}))
+        result = load_suspect_tags([d / "a.svg", d / "b.svg"])
+        check(result == {"a.svg": ["masculine", "human"], "b.svg": ["feminine", "human"]},
+              "a fully-tagged set loads cleanly")
+    finally:
+        build_icons.TAGS_JSON = old_tags_json
 
 print("\n=== ALL PASSED ===" if not failures else f"\n=== {len(failures)} FAILED ===")
 sys.exit(1 if failures else 0)

@@ -285,7 +285,7 @@ Then look at a scene on the canvas. **Two moves, and the first is easy to miss:*
    so it will not pick up the `.tres` this script just wrote until it is reloaded. Closing the
    scene tab and double-clicking the `.tscn` in FileSystem does the same job.
 
-**The canvas should now be near-black Night (`#0C1118`), not Godot grey and not the old slate**, with the title at 44px brass. Slate here means the editor preview predates Session 45: re-run this script.
+**The canvas should now be near-black Night (`#0C1118`), not Godot grey and not the old slate**, with the title at 44px brass. Slate here means the editor preview predates Session 47: re-run this script.
 
 Afterwards, in the terminal:
 
@@ -325,7 +325,7 @@ Either launches `res://scenes/ui/MainMenu.tscn` in a **new window**, separate fr
 F8, or the stop button, ends it.
 
 **Expect:** the title Choose Your Mystery in 44px brass, a muted subtitle, then two questions
-(Session 45, Night File): *Play a mystery / Create a mystery* and *Solo / With friends*, each a
+(Session 47, Night File): *Play a mystery / Create a mystery* and *Solo / With friends*, each a
 pair of square tiles with the chosen one filled steel blue (Play and With friends by default), a
 sentence saying where the brass *Begin the investigation* button will take you, Quit, a faint
 status line at the bottom, and a near-black background. Click each tile: the sentence must
@@ -339,7 +339,7 @@ the last autoload (step 6).
 
 ## 10. Browse Saved Mysteries
 
-Choose **Play a mystery** and **Solo**, then *Begin the investigation*. (Before Session 45 this
+Choose **Play a mystery** and **Solo**, then *Begin the investigation*. (Before Session 47 this
 was its own button.)
 
 **Expect:** a centred window listing **17** rows, each formatted title, difficulty, star rating.
@@ -504,7 +504,7 @@ is from March and 16 have generated cleanly since, but this run is the confirmat
 |---|---|
 | **No icons anywhere** | `Icons.gd` and `IconSet.gd` exist and are tested, but **no screen calls them yet** |
 | **No strewn title in the background** | The BACKGROUND field is layout-only and wired to no client. A flat ground *is* the specified pre-prompt state |
-| **Panels sit only just above the ground** | Deliberate (Session 45, Night File). Rows and tiles are told apart by their 2px outline, not their fill |
+| **Panels sit only just above the ground** | Deliberate (Session 47, Night File). Rows and tiles are told apart by their 2px outline, not their fill |
 | **Semantic colours look pale** | Kept from the slate era on purpose, so the phone, the host and old screenshots read as one product. See `palette.py` |
 | **An unslashed zero in the room code** | Nunito Sans has one. Generate a code and look at it across the room; if `0`/`O` is ambiguous the fix is a mono face for that one label, not a different UI font |
 
@@ -514,11 +514,15 @@ is from March and 16 have generated cleanly since, but this run is the confirmat
 its engine default. So the symptom is not a crash; it is one control type looking unthemed while
 everything around it looks right. Step 8's `MISSES` block is the guard.
 
-The 13 theme type variations (`DisplayLabel`, `TitleLabel`, `MysteryTitleLabel`, `HeadingLabel`,
-`MutedLabel`, `FaintLabel`, `CautionLabel`, `ErrorLabel`, `PositiveLabel`, `PrimaryButton`,
-`QuietButton`, `DangerButton`, `WellPanel`) fail the same way — an unrecognised variation falls back
-to the base type. Quick tell: if the main menu title is not 44px brass, variations are not applying
-at all.
+The theme type variations — 19 as of this pass, not the 13 this line used to list; `VerdictLabel`,
+`CodeLabel`, `PlayerNameLabel`, `BrowseRowButton`, `SuspectCardButton` and `GenerationTitleLabel`
+had all landed since without this count being updated — fail the same way — an unrecognised
+variation falls back to the base type. Full current list, read straight from `Style.gd` rather than
+retyped by hand: `DisplayLabel`, `TitleLabel`, `MysteryTitleLabel`, `GenerationTitleLabel`,
+`HeadingLabel`, `MutedLabel`, `FaintLabel`, `CautionLabel`, `ErrorLabel`, `PositiveLabel`,
+`VerdictLabel`, `CodeLabel`, `PlayerNameLabel`, `PrimaryButton`, `QuietButton`, `DangerButton`,
+`WellPanel`, `BrowseRowButton`, `SuspectCardButton`. Quick tell: if the main menu title is not 44px
+brass, variations are not applying at all.
 
 **Scrollbars are the loudest tell.** Unthemed they are bright grey, which on this ground would make
 them the brightest thing on the case screen.

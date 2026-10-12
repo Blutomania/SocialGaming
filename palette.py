@@ -39,7 +39,7 @@ from typing import Dict, Tuple
 # The ground
 # ---------------------------------------------------------------------------
 
-# Night — a blue-black in slate's own hue (210°). Owner's call, Session 45,
+# Night — a blue-black in slate's own hue (210°). Owner's call, Session 47,
 # taking the "Night File" direction (docs/STYLE_GUIDE.md): a loud, square,
 # high-contrast party-game look in which ONE saturated accent does the work of
 # selection, and an accent can only do that on a near-black ground.
@@ -49,7 +49,7 @@ from typing import Dict, Tuple
 # graded against a ground no client paints: brand/README.md's rule and
 # scripts/check_brand_contrast.py's default both name this value. What did NOT
 # move: MYF keeps slate as its ground, so the two titles no longer share one
-# (accepted, Session 45), and background_field.py's five marks were pitched for
+# (accepted, Session 47), and background_field.py's five marks were pitched for
 # slate and are untuned against this — item 17, stage 3, wired to nothing yet.
 GROUND = "#0C1118"
 
@@ -130,7 +130,7 @@ BRASS_DIM = "#8A6F1B"     # pressed, and disabled-but-still-primary
 # Steel — the selection accent, and the colour that does what red does in the
 # look this palette borrows from. Brass says "act"; steel says "chosen": a
 # filled choice tile, a toggled row, a stamp, the investigation's progress.
-# Owner, Session 45: brass KEEPS the primary action, so the two never compete
+# Owner, Session 47: brass KEEPS the primary action, so the two never compete
 # for one meaning.
 #
 # It is slate lifted to the reference accent's own contrast: 3.22:1 against
@@ -200,7 +200,7 @@ SPACE: Dict[str, int] = {
     "screen": 32,
 }
 
-# Square, everywhere (Session 45, Night File). Kept as a scale rather than
+# Square, everywhere (Session 47, Night File). Kept as a scale rather than
 # deleted so Style.gd's call sites, and any return to rounding, stay one edit.
 RADIUS: Dict[str, int] = {
     "small": 0,   # badges, inline chips

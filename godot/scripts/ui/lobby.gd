@@ -8,7 +8,7 @@
 ## ("Starting…", a start error), rather than that text living in a second,
 ## separate label at the bottom of the main column.
 ##
-## [Session 45] Night File (docs/STYLE_GUIDE.md). StatusBox is a steel stamp
+## [Session 47] Night File (docs/STYLE_GUIDE.md). StatusBox is a steel stamp
 ## now -- "Waiting for Players" is a statement of record, which is the stamp's
 ## job everywhere else. The roster is drawn as rows with a seat number in the
 ## ID column, the same object a finding is drawn as: who is at the table is

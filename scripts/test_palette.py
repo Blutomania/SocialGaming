@@ -44,7 +44,7 @@ print("\n--- the ground is the one the rest of the product already assumes ---")
 # brand/README.md calls this "the one rule these assets must satisfy", and
 # scripts/check_brand_contrast.py measures every mark against it. If the two
 # ever disagree, the contrast script is grading artwork against a ground no
-# client paints. Session 45 moved the ground from slate to Night; these
+# client paints. Session 47 moved the ground from slate to Night; these
 # assertions are what made that move visible rather than silent.
 brand_checker = (Path(__file__).resolve().parent / "check_brand_contrast.py").read_text()
 check("CYM_GROUND = (0x0C, 0x11, 0x18)" in brand_checker,

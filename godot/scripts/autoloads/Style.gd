@@ -90,7 +90,7 @@ func _control_box(fill: Color, border: Color) -> StyleBoxFlat:
 	return box
 
 
-## "Chosen" — the Night File selection state (Session 45, docs/STYLE_GUIDE.md).
+## "Chosen" — the Night File selection state (Session 47, docs/STYLE_GUIDE.md).
 ## Filled with steel and given a soft steel glow, so a chosen tile reads from a
 ## sofa by THREE signals at once: fill, border, and halo. Never by hue alone.
 ##
@@ -187,33 +187,43 @@ func _style_fonts(t: Theme) -> void:
 	## DRAMATIC-MOMENT text -- the game's own name on MainMenu/Lobby, a
 	## generated mystery's own title on CaseDisplay, and the win/lose banner
 	## on ResultScreen -- not functional screen headers. Cinzel Decorative
-	## there; NunitoSans everywhere else. Deliberately NOT applied to
-	## TitleLabel, which is used broadly for workaday status headers
-	## ("Round 2 of 4", "Set Your Mystery") that are read fast during play --
-	## a heavy decorative serif risks looking overwrought there, and this was
-	## a scope call flagged to the owner rather than assumed (font upload,
-	## playtest SolvedSept7).
+	## there; NunitoSans everywhere else. Originally deliberately NOT applied
+	## to TitleLabel, which is used broadly for workaday status headers
+	## ("Round 2 of 4", "Set Your Mystery") read fast during play -- a heavy
+	## decorative serif risks looking overwrought there, and that was a scope
+	## call flagged to the owner rather than assumed (font upload, playtest
+	## SolvedSept7).
 	##
-	## All three share Bold. DisplayLabel wore Black through playtest
+	## GenerationTitleLabel REVERSES that call for exactly one label: "Set
+	## Your Mystery" specifically (owner, this session) -- everything else
+	## TitleLabel covers (Accusation, ApfRound, Interrogation, Lobby,
+	## ShareSelection) is untouched and still NunitoSans. Not a re-opening of
+	## the general rule, a named exception to it.
+	##
+	## All four share Bold. DisplayLabel wore Black through playtest
 	## SolvedSept7/WaitingSept7; owner called it too heavy on startSept8 and
 	## dropped it a tier, so there is no longer a weight distinction between
-	## the brand name and the other two dramatic-moment labels.
+	## the brand name and the other dramatic-moment labels.
 	##
-	## [Session 45] TitleLabel JOINS them. Owner's markup on the Night File
+	## [Session 47] TitleLabel JOINS them. Owner's markup on the Night File
 	## reference: a screen's title ("Pick the biggest red flag" in the
 	## reference) "would be in our Decorative font". That reverses the scope
 	## call above for screen titles; the reason it was held back -- fast
 	## reading during play -- is answered by Night File putting the fast-read
-	## text (choices, counts, labels) in Archivo Narrow instead.
+	## text (choices, counts, labels) in Archivo Narrow instead. That also
+	## covers GenerationTitleLabel's one-label exception above (Session 46),
+	## which is kept as declared so its scene reference stays valid, but no
+	## longer differs from TitleLabel in face.
 	var display_bold: Font = _font("CinzelDecorative-Bold.ttf")
 	if display_bold:
 		t.set_font("font", "DisplayLabel", display_bold)
 		t.set_font("font", "MysteryTitleLabel", display_bold)
 		t.set_font("font", "VerdictLabel", display_bold)
+		t.set_font("font", "GenerationTitleLabel", display_bold)
 		t.set_font("font", "TitleLabel", display_bold)
 
 	## Archivo Narrow -- OFL 1.1, static SemiBold/Bold from the designers' own
-	## repo (Omnibus-Type), added Session 45. The condensed face is where the
+	## repo (Omnibus-Type), added Session 47. The condensed face is where the
 	## borrowed look gets its punch: choices, buttons, section headers and
 	## field labels, i.e. the text a player reads in a glance, not a paragraph.
 	## Prose stays Nunito Sans, because a witness statement set condensed is a
@@ -430,7 +440,7 @@ func _style_containers(t: Theme) -> void:
 
 func _style_progress(t: Theme) -> void:
 	## ProgressBar is how far the investigation has come -- rounds in APF, the
-	## question budget in the gather loop (owner's markup, Session 45: the
+	## question budget in the gather loop (owner's markup, Session 47: the
 	## reference's slider "reappropriated to show how far in the
 	## investigation"). Steel, because it reports a STATE; brass stays for the
 	## action a screen wants taken.
@@ -498,6 +508,17 @@ func _declare_variations(t: Theme) -> void:
 	t.set_type_variation("TitleLabel", "Label")
 	t.set_color("font_color", "TitleLabel", Palette.INK)
 	t.set_font_size("font_size", "TitleLabel", Palette.TYPE_TITLE)
+
+	## MysteryGeneration's "Set Your Mystery" only -- owner's explicit call
+	## (this session) to reverse the scope decision two paragraphs below,
+	## which named this exact label as the example of what should stay
+	## NunitoSans. A NEW variation rather than repointing "TitleLabel" itself,
+	## because TitleLabel is shared by five other screens (Accusation,
+	## ApfRound, Interrogation, Lobby, ShareSelection) that were not asked
+	## for and should not silently change with it.
+	t.set_type_variation("GenerationTitleLabel", "Label")
+	t.set_color("font_color", "GenerationTitleLabel", Palette.INK)
+	t.set_font_size("font_size", "GenerationTitleLabel", Palette.TYPE_TITLE)
 
 	## The MYSTERY's own name, wherever it is shown. Brass, because item 17
 	## makes the title the thing the whole screen is themed around.
@@ -576,7 +597,7 @@ func _declare_variations(t: Theme) -> void:
 	t.set_stylebox("disabled", "PrimaryButton", _control_box(Palette.SURFACE_DEEP, Palette.LINE_SOFT))
 	t.set_stylebox("focus", "PrimaryButton", _focus_ring())
 	## One tier up from body, condensed: the reference's full-width call to
-	## action, still brass because owner kept brass for the act (Session 45).
+	## action, still brass because owner kept brass for the act (Session 47).
 	t.set_font_size("font_size", "PrimaryButton", Palette.TYPE_HEADING)
 	## The label on brass is the DEEP tier, not ink: dark text on a light fill.
 	t.set_color("font_color", "PrimaryButton", Palette.SURFACE_DEEP)

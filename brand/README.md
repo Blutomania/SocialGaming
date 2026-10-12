@@ -16,7 +16,7 @@ Prefer PNG with real transparency or SVG. Keep the filename descriptive.
 
 ## The one rule these assets must satisfy
 
-**CYM's ground is Night `#0C1118`.** It was slate `#2F4459` until Session 45,
+**CYM's ground is Night `#0C1118`.** It was slate `#2F4459` until Session 47,
 and slate is still MYF's ground, so a mark shared by both titles has to read on
 both. On Night it is a mark's dark half that disappears: anything below about
 mid-grey sinks into the ground. On slate, near-black lands at ~1.9:1 and is

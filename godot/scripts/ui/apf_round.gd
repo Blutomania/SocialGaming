@@ -41,7 +41,7 @@ extends Control
 @onready var accuse_button: Button = $Margin/MainVBox/Actions/AccuseButton
 
 ## The SHARING/KEEPING toggles for findings not yet shared, parallel to
-## _selectable. Toggle-mode Buttons rather than CheckBoxes since Session 45
+## _selectable. Toggle-mode Buttons rather than CheckBoxes since Session 47
 ## (Night File): the theme draws a toggled Button as a filled steel tile, so
 ## "chosen to share" reads from across the room with no style built here.
 var _toggles: Array[Button] = []
@@ -107,7 +107,7 @@ func _render() -> void:
 	_render_table(state)
 	_render_actions(state)
 
-## How far the investigation has come (owner's markup, Session 45: the
+## How far the investigation has come (owner's markup, Session 47: the
 ## reference's confidence slider "reappropriated to show how far in the
 ## investigation"). APF announces its round count before play, so this is
 ## rounds, and it is exact rather than an estimate.
@@ -472,7 +472,7 @@ func _render_pool(state: Dictionary) -> void:
 		else:
 			who.text = "%s shared this · round %d" % [
 				str(item.get("shared_by", "?")), int(item.get("shared_round", 0))]
-			## Steel since Session 45: an attribution is a STATE of the record,
+			## Steel since Session 47: an attribution is a STATE of the record,
 			## and Night File keeps brass for the action a screen wants taken.
 			who.add_theme_color_override("font_color", Palette.STEEL_BRIGHT)
 		box.add_child(who)

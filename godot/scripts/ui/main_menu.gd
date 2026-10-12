@@ -1,6 +1,6 @@
 ## MainMenu — entry point scene script.
 ##
-## [Session 45] Two questions instead of three buttons (owner's markup on the
+## [Session 47] Two questions instead of three buttons (owner's markup on the
 ## Night File reference: the reference's two-way switch becomes "Create
 ## Mystery or Play a Mystery"). Play/Create x Solo/With friends, then one
 ## primary action. Every destination is one the old buttons already reached --

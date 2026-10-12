@@ -44,6 +44,7 @@ a failure rather than a warning.
 from __future__ import annotations
 
 import io
+import json
 import re
 import sys
 import xml.etree.ElementTree as ET
@@ -60,6 +61,17 @@ SETS = ("clue", "witness", "suspect")
 GODOT_OUT = ROOT / "godot" / "assets" / "icons"
 PHONE_OUT = ROOT / "server" / "static" / "icons"
 ICONSET_GD = ROOT / "godot" / "scripts" / "theme" / "IconSet.gd"
+
+# Only "suspect" is tagged. clue/ and witness/ are untagged on purpose -- their
+# whole design contract (Icons.gd's own header) is that which one a thing
+# draws carries no information at all. Suspect icons are the one set this
+# project deliberately correlates to a real character trait (presented
+# gender, human-or-not), so it is the one set with a manifest.
+TAGS_JSON = SRC / "suspect" / "tags.json"
+
+
+class UntaggedIcon(Exception):
+    """A suspect icon exists with no entry in tags.json, or vice versa."""
 
 # Godot copies are pure white so modulate can tint them; see the header.
 GODOT_PAINT = "#FFFFFF"
@@ -196,7 +208,46 @@ def flatten_raster(path: Path) -> bytes:
     return buffer.getvalue()
 
 
-def render_iconset_gd(found: dict) -> str:
+def load_suspect_tags(found: list[Path]) -> dict[str, list[str]]:
+    """Load and validate icons/suspect/tags.json against what's actually on disk.
+
+    Both directions of drift are refused, not warned: a suspect icon with no
+    tag entry could silently draw into any pick with an unreviewed gender/
+    presentation, and a tag entry for a file that no longer exists is a
+    manifest that has stopped describing reality. Same "auto-reject, never
+    auto-repair" posture as gate.py -- a manifest that can silently be wrong
+    is worse than one that refuses to build.
+    """
+    if not TAGS_JSON.exists():
+        if found:
+            raise UntaggedIcon(
+                f"{_rel(TAGS_JSON)} does not exist, but icons/suspect/ has "
+                f"{len(found)} file(s). Every suspect icon needs a tag entry."
+            )
+        return {}
+
+    data = json.loads(TAGS_JSON.read_text())
+    tags = data.get("tags", {})
+    on_disk = {p.name for p in found}
+    tagged = set(tags.keys())
+
+    untagged = on_disk - tagged
+    if untagged:
+        raise UntaggedIcon(
+            f"{_rel(TAGS_JSON)} has no entry for: {', '.join(sorted(untagged))}. "
+            f"Add tags (see the file's own gender_tags/presentation_tags for the "
+            f"vocabulary) before building."
+        )
+    stale = tagged - on_disk
+    if stale:
+        raise UntaggedIcon(
+            f"{_rel(TAGS_JSON)} has entries for file(s) no longer in icons/suspect/: "
+            f"{', '.join(sorted(stale))}. Remove the stale entry."
+        )
+    return tags
+
+
+def render_iconset_gd(found: dict, suspect_tags: dict[str, list[str]]) -> str:
     lines = [
         "## " + BANNER,
         "##",
@@ -216,6 +267,19 @@ def render_iconset_gd(found: dict) -> str:
         lines.append(f"const {name.upper()}: Array[String] = [")
         lines += paths if paths else ["\t# none yet -- drop SVGs into icons/%s/" % name]
         lines.append("]")
+
+    lines.append("")
+    lines.append("## path -> tags, from icons/suspect/tags.json. Every SUSPECT path has an")
+    lines.append("## entry -- build_icons.py refuses to build otherwise (see load_suspect_tags).")
+    lines.append("## Filtering by tag is Icons.gd's job, not data held here.")
+    lines.append("const SUSPECT_TAGS: Dictionary = {")
+    for p in found["suspect"]:
+        tag_list = suspect_tags.get(p.name, [])
+        gd_tags = ", ".join(f'"{t}"' for t in tag_list)
+        lines.append(f'\t"res://assets/icons/suspect/{p.name}": [{gd_tags}],')
+    if not found["suspect"]:
+        lines.append("\t# none yet")
+    lines.append("}")
     lines.append("")
     return "\n".join(lines)
 
@@ -266,7 +330,8 @@ def build(check_only: bool = False, report: bool = False) -> int:
                 current = dest.read_text() if dest.exists() else None
                 targets.append((dest, wanted, current))
 
-    gd = render_iconset_gd(found)
+    suspect_tags = load_suspect_tags(found["suspect"])
+    gd = render_iconset_gd(found, suspect_tags)
     targets.append((ICONSET_GD, gd, ICONSET_GD.read_text() if ICONSET_GD.exists() else None))
 
     drifted = [d for d, wanted, current in targets if wanted != current]
@@ -302,6 +367,6 @@ def build(check_only: bool = False, report: bool = False) -> int:
 if __name__ == "__main__":
     try:
         sys.exit(build(check_only="--check" in sys.argv, report="--report" in sys.argv))
-    except NotVector as exc:
+    except (NotVector, UntaggedIcon) as exc:
         print(f"error: {exc}")
         sys.exit(1)

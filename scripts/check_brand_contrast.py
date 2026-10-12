@@ -4,7 +4,7 @@
     python3 scripts/check_brand_contrast.py brand/organic_logo.svg [...]
     python3 scripts/check_brand_contrast.py --myf [...]   # MYF's slate instead
 
-WHY. CYM's ground is Night #0C1118 (slate #2F4459 until Session 45, and
+WHY. CYM's ground is Night #0C1118 (slate #2F4459 until Session 47, and
 still MYF's), and on Night it is the DARK half of a mark that vanishes. On
 slate, artwork drawn against white loses its
 dark half on it — near-black lands around 1.9:1. That is not a hypothetical:
@@ -39,7 +39,7 @@ try:
 except ImportError:
     sys.exit("needs pillow:  pip install pillow")
 
-# Two grounds since Session 45: CYM moved to Night, MYF kept slate. A brand
+# Two grounds since Session 47: CYM moved to Night, MYF kept slate. A brand
 # mark shared by both titles has to be measured against both — pass --myf to
 # grade against slate. Default is CYM's, because that is what this repo paints.
 CYM_GROUND = (0x0C, 0x11, 0x18)  # Night — palette.GROUND
