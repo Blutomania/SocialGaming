@@ -238,12 +238,12 @@ that looks wrong because it drew before the theme it should sit on top of existe
 In the Script editor, open `godot/scripts/tools/VerifyScenes.gd` and press
 **File → Run** (`Ctrl+Shift+X`). It takes no arguments, costs nothing, and needs no backend.
 
-It loads all nine screens through Godot's own loader and compares the nodes each `.tscn`
+It loads every screen through Godot's own loader and compares the nodes each `.tscn`
 *declares* against the nodes that actually exist once loaded. That is the comparison
 `check_godot_wiring.py` cannot make — it reads scene files, and Session 36 proved reading is not
 loading when `Interrogation.tscn` passed the checker with five panels missing at runtime.
 
-**Expect one `ok` line per screen — nine as of Session 47.** The list is read from `scenes/ui/` rather than typed out, so a new screen is checked without anyone remembering to add it; before Session 47 it was a hand-kept list of eight that never gained ApfRound. Anything other than `ok` names the file and the node. Fix it before F5.
+**Expect one `ok` line per screen — ten as of Session 48** (nine `ok` on the owner's machine that session, before CaseBrief was added). The list is read from `scenes/ui/` rather than typed out, so a new screen is checked without anyone remembering to add it; before Session 47 it was a hand-kept list of eight that never gained ApfRound. Anything other than `ok` names the file and the node. Fix it before F5.
 
 ## 8. Run `ApplyTheme.gd` — this is what makes the design visible
 

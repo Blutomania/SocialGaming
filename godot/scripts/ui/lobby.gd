@@ -139,4 +139,6 @@ func _update_seat_count() -> void:
 
 func _go_to_game() -> void:
 	GameState.game_phase = GameState.Phase.CASE_DISPLAY
-	get_tree().change_scene_to_file("res://scenes/ui/CaseDisplay.tscn")
+	## CaseBrief, not CaseDisplay: a room gets the two-page brief, which reads
+	## no evidence and no twists. CaseDisplay is the author's view (Session 48).
+	get_tree().change_scene_to_file("res://scenes/ui/CaseBrief.tscn")

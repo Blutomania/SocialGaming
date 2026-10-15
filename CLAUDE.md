@@ -140,7 +140,7 @@ because it decides what counts as a blocker.
 ┌──────────────────────────────────────────────────────────────┐
 │  Godot 4.x desktop client (godot/)  — the host / TV screen    │
 │  GDScript 2.0. Five autoloads: GameState, ApiClient,          │
-│  NetworkManager, Style, Chrome.  Nine .tscn screens.           │
+│  NetworkManager, Style, Chrome.  Ten .tscn screens.            │
 └───────────────┬──────────────────────────────────────────────┘
                 │ HTTP JSON  (ApiClient.gd)
 ┌───────────────▼──────────────────────────────────────────────┐
@@ -189,11 +189,11 @@ and the WebSocket.
 | `godot/scripts/autoloads/GameState.gd` | Current mystery, phase, history |
 | `godot/scripts/autoloads/ApiClient.gd` | HTTP + WebSocket wrapper for the backend |
 | `godot/scripts/autoloads/NetworkManager.gd` | ENet singleton — present, unwired (see Architecture) |
-| `godot/scripts/autoloads/Style.gd` | Builds the global Theme from `Palette.gd` and puts it on the scene-tree root, so all nine screens restyle with no `.tscn` edited. Hand-written; palette regeneration never touches it |
+| `godot/scripts/autoloads/Style.gd` | Builds the global Theme from `Palette.gd` and puts it on the scene-tree root, so every screen restyles with no `.tscn` edited. Hand-written; palette regeneration never touches it |
 | `godot/scripts/autoloads/Chrome.gd` | The brand mark, upper-left, on every screen — added to `get_tree().root` in `_ready()` for the same "no `.tscn` edited" reason as `Style.gd`. Loads the **generated** copy at `godot/assets/brand/negative_mark.svg`; source is `brand/NEWnegative_CYM.svg`, mirrored by `scripts/build_brand.py` |
 | `godot/scripts/theme/Palette.gd` | **Generated** from `palette.py` — do not hand-edit |
 | `godot/scripts/data/MysteryData.gd` | Typed wrapper for mystery JSON |
-| `godot/scenes/ui/` | The nine screens: MainMenu, MysteryGeneration, Lobby, CaseDisplay, **ApfRound**, Interrogation, ShareSelection, Accusation, ResultScreen |
+| `godot/scenes/ui/` | The ten screens: MainMenu, MysteryGeneration, Lobby, **CaseBrief**, CaseDisplay, **ApfRound**, Interrogation, ShareSelection, Accusation, ResultScreen |
 | `godot/scripts/ui/apf_round.gd` | **The APF play screen, and the only screen the mechanic needs** — casefile, suspect board, shared pool and the share decision on one screen, because the board is what makes withholding legible |
 | `godot/scripts/tools/` | `EditorScript`s — run inside the engine, File → Run. See the checker tables below |
 | `palette.py` | **The one place a colour is decided.** Ground, surface ramp, ink, brass, semantics, type/space/radius scales, and a 28-pair WCAG contrast contract. Read before changing any colour anywhere |
@@ -405,7 +405,7 @@ that use Godot's own loader, which is where the undetectable defects live:
 
 | Script | Catches |
 |---|---|
-| `godot/scripts/tools/VerifyScenes.gd` | A node a `.tscn` declares that does not survive loading, a node whose runtime class is not what the scene declares, and a scene root that lost its script. **Run on 4.7 in Session 47 (owner's machine): 8 of 8 `ok` — but the list was hand-kept and had never included ApfRound. It now reads `scenes/ui/` itself, so expect nine** |
+| `godot/scripts/tools/VerifyScenes.gd` | A node a `.tscn` declares that does not survive loading, a node whose runtime class is not what the scene declares, and a scene root that lost its script. **Run on 4.7 in Session 47 (owner's machine): 8 of 8 `ok` — but the list was hand-kept and had never included ApfRound. It now reads `scenes/ui/` itself. Session 48: 9 of 9 `ok`, ApfRound included. CaseBrief has been added since, so expect ten** |
 | `godot/scripts/tools/ApplyTheme.gd` | A theme item name the engine does not have. Also generates the editor's theme preview, so the design is visible while scenes are edited, and reports whether the fonts resolved. **Run on 4.7.2 in Session 47 (owner's machine): 223 items across 51 types, 2 misses** — both a `hover_pressed` stylebox the 4.7 Button lacks, removed in the same session. Re-run to confirm `MISSES none` |
 
 **One fills the other seats so a person can walk it alone:** `scripts/seat_players.py <ROOM>` joins
@@ -447,10 +447,11 @@ unbuilt. What has never happened is a person other than the owner sitting down t
 **Not verified** below, and `docs/F5_CHECKLIST.md`.
 
 **Not verified, and the list is shorter than it was.**
-(a) **[Session 47] Both engine checks ran on the owner's machine** — ApplyTheme (two misses, fixed)
-and VerifyScenes (8 of 8 `ok`, but it had never listed ApfRound; it now reads `scenes/ui/` and should
-report nine). **ApfRound itself has still never been rendered or loaded by Godot** — it is the next
-F5's first job.
+(a) **[Session 48] Both engine checks are clean on the owner's machine** — ApplyTheme `MISSES none`
+with Archivo Narrow loaded, VerifyScenes 9 of 9 `ok`, so **ApfRound now loads**. It has still never
+been *rendered*: the Session 48 F5 stopped at the room's opening screen, which was overflowing the
+window and printing the mystery's twists. That screen is now **CaseBrief** (item 36). Next F5: walk
+CaseBrief → ApfRound → ResultScreen.
 (b) **[Session 43] Closed — no longer open.** Ezra Greene played two mysteries through to the result
 screen, rating them 9 (`the_neriin_in_the_pilchard_barrel`) and, initially, 10
 (`whiteout_at_shackleton_base`) — revised to 8 the next day (`fix/whiteout-rating`). Which path each
@@ -462,7 +463,7 @@ rating may reflect the pre-APF gather loop, not the rhythm this item is about.
 call now falls back to the mystery's own resolution prose, but build-order step 5 still has to
 remove the call outright.
 
-### 36. Night File — the host screen's look — **THEME + THREE SCREENS LANDED, Session 47**
+### 36. Night File — the host screen's look — **THEME + SIX SCREENS LANDED, Sessions 47–48**
 
 The owner's annotated *Red Flags* screenshots became `docs/STYLE_GUIDE.md`: emulate the structure
 (outlined = available, filled = chosen, square, heavy outlines), not the identity. **Ground is now
@@ -471,17 +472,20 @@ brass says "act"** — brass keeps the primary button by the owner's call. **Cin
 and now sets `TitleLabel` too**; Archivo Narrow joins for buttons, headers, labels and list rows;
 Nunito Sans keeps prose. MYF keeps slate, so the two titles no longer share a ground — accepted.
 
-Landed at theme level, so all nine screens restyle with no `.tscn` edited. **ApplyTheme ran on the
-owner's machine:** 223 items, two misses (a `hover_pressed` stylebox Godot 4.7's Button lacks),
-both removed; re-run to confirm clean, which also checks Archivo Narrow now. **Still to come:**
-`VerifyScenes.gd` and the F5 walk.
+Landed at theme level, so every screen restyles with no `.tscn` edited. **ApplyTheme is clean on the
+owner's machine** (Session 48: `MISSES none`, Archivo Narrow loaded) and VerifyScenes reports every
+screen `ok`.
 **Screens done in Session 47:** ApfRound (finding rows, round progress), ResultScreen (verdict
 voice, stamp, ledger, rating tiles), MainMenu (*Play / Create* × *Solo / With friends*, the
 owner's markup), and the five hard-coded colours. Then Lobby (roster rows with seat numbers,
 status box as a steel stamp). **Decided against:** the "who the room accused" result bars (owner).
 Then MysteryGeneration (white caps form labels, difficulty tiles, the free *Host* path made
-primary). **Open:** CaseDisplay, Interrogation, Accusation and ShareSelection have the theme but no
-screen pass. Full reasoning:
+primary). **Session 48: CaseBrief**, a new screen — the room's opening, two pages behind BACK /
+NEXT (*The case*, *The cast* with suspects 2×2), from the owner's markup over the Red Flags question
+screen. The lobby now goes there instead of CaseDisplay, which **stays the author's view** (twists,
+evidence, coherence) for reading a saved mystery alone, by the owner's call. **Open:** CaseDisplay,
+Interrogation, Accusation and ShareSelection have the theme but no screen pass; MysteryGeneration's
+pass was not visible on the owner's Session 48 run — check the checkout was current before redoing it. Full reasoning:
 `docs/DECISIONS.md` item 36.
 
 ### 27. Incrimination as well as exculpation — the glove mechanic — **BUILT, Session 40**

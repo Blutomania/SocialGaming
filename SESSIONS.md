@@ -5,6 +5,46 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 48 — October 15, 2026 (CYM: the first F5 past the lobby; CaseBrief, the room's opening)
+
+**Branch:** `claude/peaceful-lamport-a408qr`, off `main` at `5e70fb7`.
+
+### What the owner ran
+Steps 1–2 of Session 47's list passed on the owner's machine: ApplyTheme `MISSES none` with Archivo
+Narrow loaded, VerifyScenes nine `ok` — **ApfRound loads.** `walk_apf_game.py` passed in-session too.
+
+### What the F5 found
+1. **CaseDisplay overflowed the window on both edges and nothing wrapped.** Root cause: a dynamic
+   `TextureRect` keeps the default expand mode, which makes the texture's own pixel size its
+   minimum; the suspect SVGs import large, so one portrait set the whole column's width. The
+   earlier SHRINK-flag "fix" could never have held it. Fixed with `EXPAND_IGNORE_SIZE` in
+   `case_display.gd` and `interrogation.gd` (same latent bug on the cast cards).
+2. **The room's opening screen gave the case away** — key twists and the full evidence list,
+   before round 1. Owner's markup over the Red Flags question screen became **CaseBrief**
+   (item 36): header band, the mystery's name at 44, one scrollable box of ID-column rows, BACK /
+   NEXT. Page 1 *The case*, page 2 *The cast* with suspects 2×2 (owner: "start with 2x2 and see how
+   it feels"). On the last page NEXT is the host's brass *Begin the investigation*; everyone else
+   sees it disabled as *Waiting for the host*. The lobby routes there; CaseDisplay stays the
+   author's view (owner).
+3. **MysteryGeneration showed its pre-PR #56 look** (dropdown, grey labels) although `main` has the
+   tiles and caps labels. Most likely the checkout Godot opened was behind; unconfirmed.
+
+### Verification
+`check_godot_wiring.py` (10 scenes, 21 scripts), `gdparse` on every changed script,
+`check_doc_claims.py`, `check_decisions.py`. **CaseBrief has not been rendered.**
+
+### Next session
+1. Owner: confirm the checkout (`git log --oneline -1`), pull this branch's merge, re-run
+   VerifyScenes (expect **ten** `ok`), then F5: Lobby + `seat_players.py` → **CaseBrief** (both
+   pages, 2×2 feel) → **ApfRound** → ResultScreen. Screenshot each.
+2. Still to commit from the owner's machine: the regenerated `cym_theme.tres`.
+3. The suspect board on ApfRound draws FPO squares while CaseBrief shows the portraits — decide
+   whether the board should carry the same faces.
+4. Screens still without a pass: CaseDisplay (author's view), Interrogation, Accusation,
+   ShareSelection.
+
+---
+
 ## Session 47 — October 12, 2026 (CYM: Night File — a style guide from the owner's Red Flags markups, landed at theme level)
 
 **Branch:** `claude/jolly-rubin-avt94y`, started identical to `main` at `befe02f`. First session in
