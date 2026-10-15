@@ -178,6 +178,13 @@ func _build_suspect_grid() -> void:
 			var icon_rect := TextureRect.new()
 			icon_rect.texture = icon_tex
 			icon_rect.custom_minimum_size = Vector2(64, 64)
+			## IGNORE_SIZE is the line that actually holds the icon to the size
+			## above. The default, EXPAND_KEEP_SIZE, makes the texture's own pixel
+			## size the rect's MINIMUM -- and the SVGs import large -- so the row,
+			## the VBox and the ScrollContainer all inherit that width, the screen
+			## overflows both edges, and no label wraps (owner's F5, Session 48).
+			## The SHRINK flags below never could have fixed that alone.
+			icon_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 			icon_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 			icon_rect.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 			icon_rect.size_flags_vertical = Control.SIZE_SHRINK_CENTER

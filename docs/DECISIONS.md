@@ -1584,3 +1584,16 @@ that the superseded text has become history and belongs here instead.
     session; `ApplyTheme.gd` has to confirm the new theme items (`hover_pressed` among them) on the
     owner's machine. The scene-level parts (the ID column, the result bar, the stamp, the ledger)
     and five hard-coded colours that bypass the theme are the screen-by-screen pass that follows.
+
+    **[Session 48 — October 15, 2026 — owner] CaseBrief: the room's opening is its own screen.**
+    The first F5 past the lobby showed the old CaseDisplay overflowing both edges of the window,
+    and — the larger problem — printing the mystery's key twists and every piece of evidence to the
+    whole room before round 1. The overflow was one line: a `TextureRect`'s default expand mode
+    makes the imported SVG's pixel size its minimum, so one suspect portrait widened the column
+    past the window and nothing wrapped (`EXPAND_IGNORE_SIZE`, CaseDisplay and Interrogation). The
+    spoiler was a design fault, not a style one. Owner's calls: the room gets **CaseBrief**, two
+    pages behind BACK / NEXT (*The case*: scene, crime, when, found; *The cast*: victim, suspects
+    **2×2 to start**, witnesses), shaped on the Red Flags question screen — header band, the
+    mystery's name large, one scrollable box of rows, two boxes at the foot. **CaseDisplay stays
+    the author's view**, unchanged, for reading a saved mystery alone. A separate screen rather
+    than a mode, so a room view cannot leak by a visibility flag left on.

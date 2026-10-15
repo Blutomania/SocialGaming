@@ -183,6 +183,13 @@ func _add_cast_row(role_label: String, name: String, occupation: String, color: 
 		var icon_rect := TextureRect.new()
 		icon_rect.texture = icon_tex
 		icon_rect.custom_minimum_size = Vector2(20, 20)
+		## IGNORE_SIZE is the line that actually holds the icon to the size
+		## above. The default, EXPAND_KEEP_SIZE, makes the texture's own pixel
+		## size the rect's MINIMUM -- and the SVGs import large -- so the row,
+		## the VBox and the ScrollContainer all inherit that width, the screen
+		## overflows both edges, and no label wraps (owner's F5, Session 48).
+		## The SHRINK flags below never could have fixed that alone.
+		icon_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		icon_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		## Without this, the HBoxContainer row's default FILL cross-axis sizing
 		## stretches the icon to match a tall wrapped sibling label -- exactly
@@ -224,6 +231,13 @@ func _add_evidence_row(index: int, ev: MysteryData.EvidenceData) -> void:
 		var icon_rect := TextureRect.new()
 		icon_rect.texture = icon_tex
 		icon_rect.custom_minimum_size = Vector2(20, 20)
+		## IGNORE_SIZE is the line that actually holds the icon to the size
+		## above. The default, EXPAND_KEEP_SIZE, makes the texture's own pixel
+		## size the rect's MINIMUM -- and the SVGs import large -- so the row,
+		## the VBox and the ScrollContainer all inherit that width, the screen
+		## overflows both edges, and no label wraps (owner's F5, Session 48).
+		## The SHRINK flags below never could have fixed that alone.
+		icon_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		icon_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		## Without this, the HBoxContainer row's default FILL cross-axis sizing
 		## stretches the icon to match a tall wrapped sibling label -- exactly

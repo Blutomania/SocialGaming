@@ -100,6 +100,7 @@ Scene-level (built on the screens named; each is drawn in that screen's script):
 | *Choice tiles* | `ChoiceTileButton`: Play / Create, Solo / With friends; Easy / Medium / Hard in place of the difficulty dropdown | MainMenu, MysteryGeneration |
 | *Field label* | `FieldLabel`: white, condensed, caps via the Label's own `uppercase` flag — the label over a form field is the instruction, not a footnote | MysteryGeneration |
 | *Roster rows* | A player as a finding row: seat number in the ID column, name as big as the room code | Lobby |
+| *Brief* | Header band (game name, page count), the mystery's name at display size, one scrollable box of ID-column rows, and two boxes at the foot: BACK / NEXT, NEXT turning brass on the host's last page | CaseBrief |
 
 Decided against (owner, Session 47):
 
