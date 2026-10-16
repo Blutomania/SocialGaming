@@ -65,10 +65,25 @@ playtest's symptoms, passes after. `walk_apf_game.py` and `test_apf.py` still pa
 - **Rule, owner:** no label without content (`docs/STYLE_GUIDE.md`).
 
 ### Still open
-- Not rendered: every Godot change above. Next F5: the same walk, through to ResultScreen.
+- **Not rendered: every Godot change above.** Merged as PRs #59, #60, #61; nothing seen on screen.
 - Brand mark upper-left was not visible in any of the owner's screenshots — unconfirmed.
-- ApfRound's board: FPO squares vs CaseBrief's portraits (Session 48 item 3), owner's call.
+- ApfRound's suspect board: FPO squares vs CaseBrief's portraits (Session 48 item 3), owner's call.
 - `cym_theme.tres` still to commit from the owner's machine.
+- Branches `claude/jolly-rubin-avt94y` and `claude/peaceful-lamport-a408qr` are fully merged but
+  could not be deleted from a session (HTTP 403 on anything but the session branch) — the owner
+  can delete them from GitHub's Branches page.
+- A standalone MYF style guide was produced as a downloadable file (not committed): the
+  structural rules from this session, minus CYM's identity and its card-word ban.
+
+### Next session
+1. Owner: `git pull origin main` (expect *Merge PR #61* or later), restart the server, re-run
+   ApplyTheme (two new variations: `NoticePanel`, `StepButton` — expect `MISSES none`) and
+   VerifyScenes (ten `ok`).
+2. F5 with `seat_players.py`: Lobby → CaseBrief (both pages) → ApfRound, all four rounds →
+   close the case → accuse → ResultScreen. **The round-2 stall should be gone** — the seats'
+   shares now reach the host. Copy the Debugger pane before quitting.
+3. Screens still without a pass: ResultScreen's markup, CaseDisplay, Interrogation,
+   Accusation, ShareSelection.
 
 ---
 

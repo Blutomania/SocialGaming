@@ -1599,6 +1599,20 @@ that the superseded text has become history and belongs here instead.
     the author's view**, unchanged, for reading a saved mystery alone. A separate screen rather
     than a mode, so a room view cannot leak by a visibility flag left on.
 
+    **[Session 49 — October 16, 2026 — owner] Three screens from the first walk's markups.**
+    Lobby: a *The case of* lead-in, ROOM CODE / JOIN AT as labelled rows, and *Waiting for
+    Players* as an outlined ink `NoticePanel` with a shimmer that runs only while the room waits
+    (the owner took the steel fill off; white, not brass, because nothing there is pressed).
+    CaseBrief: the graphic logo in the header band; page 1 reordered to CRIME / WHO (victims
+    only) / WHAT (FOUND folded in) / WHERE / WHEN; *More below ↓* only while true. ApfRound: the
+    heading names what the player was handed (*You Found a Clue*), built from the finding's kind —
+    the owner's *You Interviewed a Suspect* was declined because no suspect speaks in any finding
+    (item 37); SHARE | KEEP choice tiles with KEEP the default; kind icons replacing the W/E11 id;
+    quotation marks on statements only; the caption row removed; a `StepButton` pair, brass on
+    hover and unfilled when disabled. **A standing rule came out of it: a label with no content is
+    never drawn** (`docs/STYLE_GUIDE.md`). The confirm step on sharing is kept as a playability
+    question for a real table. None of it rendered yet.
+
 37. **[LOGGED, Session 49 — October 16, 2026 — owner] Suspect interviews: statements in a
     suspect's own voice.** **Stage 3 — not before.**
 
