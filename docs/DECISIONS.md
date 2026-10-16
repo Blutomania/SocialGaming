@@ -63,6 +63,7 @@ that the superseded text has become history and belongs here instead.
 | 25 | The design becomes visible in the editor; two engine-side checks | `DONE` |
 | 26 | Generation writes backwards; clues declare what they serve | `DONE` |
 | 35 | Character pronouns + presentation; suspect-icon tagging and fallback chain | `BUILT, Sept 16 — untested against a real generation` |
+| 37 | Suspect interviews — statements in a suspect's own voice | `LOGGED — stage 3` |
 
 ---
 
@@ -1597,3 +1598,25 @@ that the superseded text has become history and belongs here instead.
     mystery's name large, one scrollable box of rows, two boxes at the foot. **CaseDisplay stays
     the author's view**, unchanged, for reading a saved mystery alone. A separate screen rather
     than a mode, so a room view cannot leak by a visibility flag left on.
+
+37. **[LOGGED, Session 49 — October 16, 2026 — owner] Suspect interviews: statements in a
+    suspect's own voice.** **Stage 3 — not before.**
+
+    Raised during the ApfRound markup. The owner wanted the round heading to read *Round 1 of 4:
+    You Interviewed a Suspect* and the finding to be labelled a suspect statement. It could not
+    be done as a label: of the accepted mystery's 16 findings, the three statements are all from
+    **witnesses** (Blewett, Chegwidden, Voss), and no suspect speaks anywhere. Saying "suspect"
+    would contradict the suspect board on the same screen, and a false label is a false clue —
+    the M3 Clue Fairness rule (`RESEARCH_FINDINGS.md`). **Decided now:** the round heading names
+    what actually happened to that player — *You Interviewed a Witness*, *You Found a Clue*,
+    *You Followed a Lead* — and the label says WITNESS STATEMENT, in quotation marks.
+
+    **What is logged is the real idea underneath:** suspects giving their own account, which may
+    be a lie. That is classic social-deduction material and sits squarely on the sharing
+    decision — a suspect's self-serving statement held back is worth more than a witness's.
+    It is a generation change, not a screen change: a new statement finding authored in a
+    suspect's voice, the rule that the culprit's statement may lie while an innocent suspect's
+    must be checkable against something else in the case (M3 again), the gate's checks extended
+    to cover it, and more output per mystery — which is where the cost is (`docs/AI_COST_PLAYBOOK.md`).
+    The stage-1 test does not need it.
+

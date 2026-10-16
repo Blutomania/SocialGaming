@@ -631,6 +631,15 @@ not a bug:
 
 Full verdict table for every branch: `SESSIONS.md` Session 47.
 
+### 37. Suspect interviews — **logged, stage 3**
+
+Every statement in a mystery today is a **witness's**; suspects never speak. The owner wants
+rounds where a player interviews a suspect, whose account may be a lie. That is a generation
+change (a suspect-voiced statement finding, a fairness rule for the culprit's lie, gate checks),
+not a label — labelling a witness statement "suspect" was declined as a false clue. Until then
+ApfRound's heading names what really happened: *You Interviewed a Witness / Found a Clue /
+Followed a Lead*. Full reasoning: `docs/DECISIONS.md` item 37.
+
 ### 4, 8. Deferred by stage
 
 Avatar pool + player profiles (item 4, design locked, nothing built) and Steam integration
