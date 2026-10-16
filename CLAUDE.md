@@ -459,6 +459,10 @@ with Archivo Narrow loaded, VerifyScenes 9 of 9 `ok`, so **ApfRound now loads**.
 been *rendered*: the Session 48 F5 stopped at the room's opening screen, which was overflowing the
 window and printing the mystery's twists. That screen is now **CaseBrief** (item 36). Next F5: walk
 CaseBrief → ApfRound → ResultScreen.
+**[Session 49] That walk ran — and stalled at round 2**, because no server push from a plain
+`def` route ever reached a client (fixed; `scripts/test_ws_push.py`). CaseBrief, the Lobby and
+ApfRound then had a screen pass from the owner's markups; none of it has been rendered yet. Next
+F5: the same walk, all four rounds, through to ResultScreen.
 (b) **[Session 43] Closed — no longer open.** Ezra Greene played two mysteries through to the result
 screen, rating them 9 (`the_neriin_in_the_pilchard_barrel`) and, initially, 10
 (`whiteout_at_shackleton_base`) — revised to 8 the next day (`fix/whiteout-rating`). Which path each
@@ -470,7 +474,7 @@ rating may reflect the pre-APF gather loop, not the rhythm this item is about.
 call now falls back to the mystery's own resolution prose, but build-order step 5 still has to
 remove the call outright.
 
-### 36. Night File — the host screen's look — **THEME + SIX SCREENS LANDED, Sessions 47–48**
+### 36. Night File — the host screen's look — **THEME + SEVEN SCREENS LANDED, Sessions 47–49**
 
 The owner's annotated *Red Flags* screenshots became `docs/STYLE_GUIDE.md`: emulate the structure
 (outlined = available, filled = chosen, square, heavy outlines), not the identity. **Ground is now
@@ -490,7 +494,11 @@ Then MysteryGeneration (white caps form labels, difficulty tiles, the free *Host
 primary). **Session 48: CaseBrief**, a new screen — the room's opening, two pages behind BACK /
 NEXT (*The case*, *The cast* with suspects 2×2), from the owner's markup over the Red Flags question
 screen. The lobby now goes there instead of CaseDisplay, which **stays the author's view** (twists,
-evidence, coherence) for reading a saved mystery alone, by the owner's call. **Open:** CaseDisplay,
+evidence, coherence) for reading a saved mystery alone, by the owner's call. **Session 49:** Lobby (*The case of* title line,
+labelled code rows, an outlined shimmering `NoticePanel`), CaseBrief (logo band; CRIME / WHO /
+WHAT / WHERE / WHEN; *More below*), ApfRound (truthful round heading, SHARE | KEEP tiles, kind
+icons, a brass-hover `StepButton` pair) — and the rule that a label with no content is never
+drawn. **Open:** CaseDisplay,
 Interrogation, Accusation and ShareSelection have the theme but no screen pass; MysteryGeneration's
 pass was not visible on the owner's Session 48 run — check the checkout was current before redoing it. Full reasoning:
 `docs/DECISIONS.md` item 36.
