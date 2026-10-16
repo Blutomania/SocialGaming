@@ -733,6 +733,18 @@ func _declare_variations(t: Theme) -> void:
 	stamp.content_margin_top = float(Palette.SPACE_SMALL)
 	stamp.content_margin_bottom = float(Palette.SPACE_SMALL)
 	t.set_stylebox("panel", "StampPanel", stamp)
+	## The notice (Session 49, owner's lobby markup): the stamp's outline with
+	## no fill. A stamp is a statement of record; "Waiting for Players" is a
+	## live state that will change, and outlined is what an open state looks
+	## like everywhere else in Night File. Ink outline, not brass -- brass is
+	## for actions, and nothing here is to be pressed (owner: "go with white").
+	t.set_type_variation("NoticePanel", "PanelContainer")
+	var notice: StyleBoxFlat = _panel(Color(0, 0, 0, 0), Palette.RADIUS_SMALL, Palette.INK)
+	notice.content_margin_left = float(Palette.SPACE_WIDE)
+	notice.content_margin_right = float(Palette.SPACE_WIDE)
+	notice.content_margin_top = float(Palette.SPACE_SMALL)
+	notice.content_margin_bottom = float(Palette.SPACE_SMALL)
+	t.set_stylebox("panel", "NoticePanel", notice)
 	t.set_type_variation("StampKeyLabel", "Label")
 	t.set_color("font_color", "StampKeyLabel", Palette.INK)
 	t.set_font_size("font_size", "StampKeyLabel", Palette.TYPE_HEADING)

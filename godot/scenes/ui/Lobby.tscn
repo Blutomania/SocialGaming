@@ -27,7 +27,7 @@ stretch_mode = 5
 mouse_filter = 2
 
 [node name="StatusBox" type="PanelContainer" parent="."]
-theme_type_variation = &"StampPanel"
+theme_type_variation = &"NoticePanel"
 layout_mode = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -52,14 +52,25 @@ layout_mode = 1
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -280.0
+offset_left = -360.0
 offset_top = 100.0
-offset_right = 280.0
+offset_right = 360.0
 offset_bottom = -20.0
 grow_horizontal = 2
 theme_override_constants/separation = 6
 
-[node name="MysteryTitleLabel" type="Label" parent="VBox"]
+[node name="TitleRow" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 12
+
+[node name="CaseOfLabel" type="Label" parent="VBox/TitleRow"]
+theme_type_variation = &"FaintLabel"
+layout_mode = 2
+size_flags_vertical = 4
+text = "THE CASE OF"
+
+[node name="MysteryTitleLabel" type="Label" parent="VBox/TitleRow"]
 theme_type_variation = &"MysteryTitleLabel"
 layout_mode = 2
 text = ""
@@ -69,29 +80,62 @@ horizontal_alignment = 1
 layout_mode = 2
 custom_minimum_size = Vector2(0, 12)
 
-[node name="CodeHeader" type="Label" parent="VBox"]
+[node name="CodeRows" type="VBoxContainer" parent="VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+custom_minimum_size = Vector2(440, 0)
+theme_override_constants/separation = 8
+
+[node name="CodeRow" type="PanelContainer" parent="VBox/CodeRows"]
+theme_type_variation = &"FindingRow"
+layout_mode = 2
+
+[node name="Line" type="HBoxContainer" parent="VBox/CodeRows/CodeRow"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="CodeHeader" type="Label" parent="VBox/CodeRows/CodeRow/Line"]
 theme_type_variation = &"FaintLabel"
 layout_mode = 2
+custom_minimum_size = Vector2(96, 0)
 text = "ROOM CODE"
-horizontal_alignment = 1
+horizontal_alignment = 2
+vertical_alignment = 1
 
-[node name="RoomCodeLabel" type="Label" parent="VBox"]
+[node name="Rule" type="VSeparator" parent="VBox/CodeRows/CodeRow/Line"]
+layout_mode = 2
+
+[node name="RoomCodeLabel" type="Label" parent="VBox/CodeRows/CodeRow/Line"]
 theme_type_variation = &"CodeLabel"
 layout_mode = 2
+size_flags_horizontal = 3
 text = "------"
-horizontal_alignment = 1
 
-[node name="JoinHeader" type="Label" parent="VBox"]
+[node name="JoinRow" type="PanelContainer" parent="VBox/CodeRows"]
+theme_type_variation = &"FindingRow"
+layout_mode = 2
+
+[node name="Line" type="HBoxContainer" parent="VBox/CodeRows/JoinRow"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="JoinHeader" type="Label" parent="VBox/CodeRows/JoinRow/Line"]
 theme_type_variation = &"FaintLabel"
 layout_mode = 2
-text = "PLAYERS JOIN AT"
-horizontal_alignment = 1
+custom_minimum_size = Vector2(96, 0)
+text = "JOIN AT"
+horizontal_alignment = 2
+vertical_alignment = 1
 
-[node name="JoinUrlLabel" type="Label" parent="VBox"]
+[node name="Rule" type="VSeparator" parent="VBox/CodeRows/JoinRow/Line"]
+layout_mode = 2
+
+[node name="JoinUrlLabel" type="Label" parent="VBox/CodeRows/JoinRow/Line"]
 theme_type_variation = &"MutedLabel"
 layout_mode = 2
+size_flags_horizontal = 3
 text = "http://localhost:8000/play"
-horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Spacer3" type="Control" parent="VBox"]
