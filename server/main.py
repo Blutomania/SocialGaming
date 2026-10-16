@@ -1289,8 +1289,14 @@ class ConnectionManager:
         # game_id → list of open WebSocket connections
         self._rooms: dict[str, list[WebSocket]] = {}
         self._lock = asyncio.Lock()
+        # The server's event loop, recorded the first time a client connects.
+        # Plain `def` routes run in a worker thread, which has no loop of its
+        # own, so _broadcast_sync needs this one to hand the send to. Until a
+        # client connects there is nobody to push to, so None is harmless.
+        self.loop: Optional[asyncio.AbstractEventLoop] = None
 
     async def connect(self, game_id: str, ws: WebSocket) -> None:
+        self.loop = asyncio.get_running_loop()
         await ws.accept()
         async with self._lock:
             self._rooms.setdefault(game_id, []).append(ws)
@@ -1319,21 +1325,29 @@ _ws_manager = ConnectionManager()
 
 def _broadcast_sync(game_id: str, event: str, data: dict) -> None:
     """
-    Fire-and-forget WebSocket broadcast from a synchronous context
-    (e.g. inside a regular FastAPI endpoint or thread).
-    Creates a new event loop task if the running loop allows it.
-    Safe to call from non-async code.
+    Fire-and-forget WebSocket broadcast from a synchronous context.
+
+    WHY IT TAKES THE LOOP FROM THE MANAGER. FastAPI runs every plain `def`
+    route in a worker thread, and a worker thread has no event loop, so
+    asyncio.get_event_loop() raises there. This function used to do exactly
+    that and swallow the RuntimeError -- so every push from a sync route
+    (joins, APF shares, rounds) was silently dropped, and the host screen
+    never heard about anything another player did. Found in the Session 49
+    playtest, where it stalled the walk at round 2's checkpoint.
     """
+    loop = _ws_manager.loop
+    if loop is None or loop.is_closed():
+        return  # nobody has ever connected, so there is nobody to tell
+    coro = _ws_manager.broadcast(game_id, event, data)
     try:
-        loop = asyncio.get_event_loop()
-        if loop.is_running():
-            asyncio.run_coroutine_threadsafe(
-                _ws_manager.broadcast(game_id, event, data), loop
-            )
-        else:
-            loop.run_until_complete(_ws_manager.broadcast(game_id, event, data))
+        running = asyncio.get_running_loop()
     except RuntimeError:
-        pass  # No event loop available — server is probably shutting down
+        running = None
+    if running is loop:
+        # Already on the server loop (an async route): schedule, don't block.
+        loop.create_task(coro)
+    else:
+        asyncio.run_coroutine_threadsafe(coro, loop)
 
 
 # ---------------------------------------------------------------------------
@@ -1978,11 +1992,10 @@ async def websocket_endpoint(ws: WebSocket, game_id: str, player_id: str = ""):
         await ws.close(code=4004, reason="game not found")
         return
 
+    # No player_joined here: POST /join already announces the player. Announcing
+    # them again on connect counted every seat twice -- the host saw itself
+    # appear as a second "Host" in the lobby (Session 49 playtest).
     await _ws_manager.connect(game_id, ws)
-    player_name = ""
-    if player_id and player_id in game["players"]:
-        player_name = game["players"][player_id]["name"]
-        await _ws_manager.broadcast(game_id, "player_joined", {"name": player_name})
 
     try:
         while True:

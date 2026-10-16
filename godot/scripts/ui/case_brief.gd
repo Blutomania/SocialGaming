@@ -111,17 +111,23 @@ func _render_page() -> void:
 func _render_case() -> void:
 	var scene_text: String = _mystery.setting_description
 	if not _mystery.location.is_empty():
-		scene_text = "%s — %s\n%s" % [_mystery.location, _mystery.time_period, scene_text]
+		## A blank line, not a bare newline: the place-and-date line ran straight
+		## into the description and read as one paragraph (Session 49 playtest).
+		scene_text = "%s — %s\n\n%s" % [_mystery.location, _mystery.time_period, scene_text]
 	_add_text_row("SCENE", scene_text)
 	_add_text_row("CRIME", _mystery.what_happened)
 	_add_text_row("WHEN", _mystery.when_occurred)
 	_add_text_row("FOUND", _mystery.initial_discovery)
 
 func _render_cast() -> void:
-	var victim: MysteryData.CharacterData = _mystery.get_victim()
-	if not victim.name.is_empty():
-		var row: PanelContainer = _person_row("V", victim.name, victim.occupation, "")
-		brief_list.add_child(row)
+	## Every victim, not just the first: the crime text names both dead men in
+	## the Neriin case, so a cast list with one of them reads as an error.
+	## A lone victim keeps the plain "V"; two or more are numbered like suspects.
+	var victims: Array = _mystery.get_victims()
+	for i in range(victims.size()):
+		var v: MysteryData.CharacterData = victims[i]
+		var vid: String = "V" if victims.size() == 1 else "V%d" % (i + 1)
+		brief_list.add_child(_person_row(vid, v.name, v.occupation, ""))
 
 	## 2×2 to start (owner, Session 48: "start with 2x2 and see how it feels").
 	## The column count is the one knob if it does not.
@@ -269,6 +275,16 @@ func _on_assigned(error: String, data: Dictionary) -> void:
 		status_label.visible = true
 		return
 	GameState.record_apf_open(data)
+	## Straight into round 1. Opening the assignment leaves the server at round
+	## 0 -- every casefile assigned, none turned face up -- and the round screen
+	## showed that as an empty "Round 0 of 4" the host had to click past
+	## (Session 49 playtest). PLAYTEST_FLOW step 4 is "announces how many rounds,
+	## and play begins": the count still shows, on round 1.
+	ApiClient.apf_next_round(GameState.game_id, GameState.player_id, _on_first_round)
+
+## A failure here is not fatal: the round screen opens at round 0 and the
+## host's "Open the next round" makes the same call again.
+func _on_first_round(_error: String, _data: Dictionary) -> void:
 	_go_rounds()
 
 func _go_rounds() -> void:

@@ -421,6 +421,13 @@ four rounds, full disclosure, accusation, result. Zero API cost and **no API key
 the mystery already on disk. Session 42 found two defects with it that every unit test passed
 through. Run the server first, then `python3 scripts/walk_apf_game.py`.
 
+**One listens instead of polling, and is the only check that can:** `scripts/test_ws_push.py`
+starts its own server, connects as the host's socket, and has three players join, open rounds and
+share over plain HTTP. It fails if what they do never reaches the host, or if anyone is announced
+twice. Session 49's walk stalled at round 2 on exactly that: every push from a plain `def` route had
+been silently dropped since the MYF port, and every other check reads state by polling, which was
+never broken. No running server, no API key.
+
 **Not checkers, but run locally:** `scripts/wire_pointers.py` reports exonerations nothing reveals and which suspects have no witness at all (`--coverage`), wiring only what a finding can honestly carry; `scripts/cpam.py` reports cost per accepted mystery, pass rate and rejections by rule from `mystery_database/ledger.jsonl`; `scripts/backfill_ledger.py` seeds that ledger from the mysteries already on disk (idempotent, `--go` to write); `scripts/preview_background_field.py` renders the BACKGROUND
 field to SVG over real screen text (`--sheet` covers the shortest and longest real titles);
 `scripts/compare_extraction_models.py` scores extraction models by parts yielded and axes filled.

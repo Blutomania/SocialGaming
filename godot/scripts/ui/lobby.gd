@@ -86,7 +86,7 @@ func _on_back() -> void:
 # ---------------------------------------------------------------------------
 ## Player names are set as big as the room code (owner, playtest WaitingSept7:
 ## "it's a social game, so who you are playing with is high up in a hierarchy
-## of import"). `tag`, when given, is a small aside next to the name ("you —
+## of import"). `tag`, when given, is a small aside under the name ("you —
 ## host") rather than folded into the big label itself, since that text
 ## growing to match would fight the point of growing the name in the first
 ## place.
@@ -108,19 +108,27 @@ func _add_player_row(display_name: String, tag: String = "") -> void:
 	line.add_child(seat_lbl)
 	line.add_child(VSeparator.new())
 
+	## Name and tag stacked, not side by side. Beside the name, the tag took
+	## the width the name needed and clipped "Host" to "Hos" at two columns
+	## (Session 49 playtest); under it, the name gets the whole row.
+	var stack := VBoxContainer.new()
+	stack.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	stack.alignment = BoxContainer.ALIGNMENT_CENTER
+	stack.add_theme_constant_override("separation", 0)
+	line.add_child(stack)
+
 	var name_lbl := Label.new()
 	name_lbl.theme_type_variation = &"PlayerNameLabel"
 	name_lbl.text = display_name
-	name_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	name_lbl.clip_text = true
-	line.add_child(name_lbl)
+	name_lbl.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	stack.add_child(name_lbl)
 
 	if not tag.is_empty():
 		var tag_lbl := Label.new()
 		tag_lbl.theme_type_variation = &"FaintLabel"
 		tag_lbl.text = tag.to_upper()
-		tag_lbl.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		line.add_child(tag_lbl)
+		stack.add_child(tag_lbl)
 
 	player_list.add_child(row)
 	_update_seat_count()

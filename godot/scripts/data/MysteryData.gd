@@ -204,6 +204,12 @@ func get_victim() -> CharacterData:
 			return ch
 	return CharacterData.new()
 
+## Every victim, in file order. A mystery can have more than one -- the Neriin
+## poisoning kills two -- and get_victim() returns only the first, which is
+## how the cast page dropped Jory Nancarrow (Session 49 playtest).
+func get_victims() -> Array:
+	return characters.filter(func(c): return c.role == "victim")
+
 func get_suspects() -> Array:
 	return characters.filter(func(c): return c.role == "suspect")
 
