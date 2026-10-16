@@ -5,6 +5,48 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 49 — October 16, 2026 (CYM: the first full APF walk; the host screen was deaf)
+
+**Branch:** `claude/exciting-lovelace-6g0xta`, identical to `main` at `abe559c`. No open PRs, no
+unmerged branches.
+
+### What the owner ran
+VerifyScenes **ten `ok`**, ApplyTheme clean. Then the walk: Lobby + `seat_players.py` → CaseBrief
+(both pages) → ApfRound rounds 0, 1, 2. **Stalled at round 2**: the host shared, the three seats
+paid (`seat_players.py`'s terminal shows all three), but the host screen still showed them owing and
+*Open the next round* never enabled. The Godot log was lost when the editor was quit.
+
+### The bug, and why nothing caught it
+`_broadcast_sync` called `asyncio.get_event_loop()` from a FastAPI worker thread, where there is no
+loop, and swallowed the `RuntimeError`. **Every push from a plain `def` route was dropped** —
+joins, `apf_opened`, round changes, shares — since the MYF port (PR #15). The host only ever saw
+its own actions, because it re-reads state after each. Same cause, two more symptoms: the lobby
+never showed the three seats, and the one push that *did* work was the socket announcing the host
+to itself, so the lobby showed "Host" twice. Every existing check reads state by polling, which was
+never broken; nothing listened.
+
+**Fixed:** the connection manager records the server loop on first connect and `_broadcast_sync`
+hands the send to it. The connect-time `player_joined` is gone (`/join` already announces).
+**New check:** `scripts/test_ws_push.py` — fails 4 of 6 against the old server with exactly the
+playtest's symptoms, passes after. `walk_apf_game.py` and `test_apf.py` still pass.
+
+### Screen fixes from the same walk
+- CaseBrief cast page showed one victim; the Neriin case has two. `MysteryData.get_victims()`;
+  two or more are numbered V1, V2.
+- CaseBrief page 1: blank line between place/date and the description.
+- Lobby: the YOU · HOST tag sat beside the name and clipped "Host" to "Hos"; now stacked under it.
+- *Begin the investigation* now opens round 1 straight after the assignment — the empty
+  "Round 0 of 4" screen is gone. PLAYTEST_FLOW step 4 is "announces the round count, and play
+  begins"; the count still shows, on round 1.
+
+### Still open
+- Not rendered: every Godot change above. Next F5: the same walk, through to ResultScreen.
+- Brand mark upper-left was not visible in any of the owner's screenshots — unconfirmed.
+- ApfRound's board: FPO squares vs CaseBrief's portraits (Session 48 item 3), owner's call.
+- `cym_theme.tres` still to commit from the owner's machine.
+
+---
+
 ## Session 48 — October 15, 2026 (CYM: the first F5 past the lobby; CaseBrief, the room's opening)
 
 **Branch:** `claude/peaceful-lamport-a408qr`, off `main` at `5e70fb7`.
