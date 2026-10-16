@@ -96,6 +96,7 @@ Scene-level (built on the screens named; each is drawn in that screen's script):
 | *Finding row* | ID column, the finding, and a SHARING / KEEPING toggle; the whole row is the hit target. `FindingRow`, `FindingRowChosen`, `FindingRowShared` | ApfRound; ResultScreen for findings kept back |
 | *Progress* | Round progress with a deadpan caption: *Cold trail*, *Closing in*, *Last round* | ApfRound |
 | *Stamp* | A steel block under the verdict: *Kept back — Sam sat on …*, or *Nothing kept back*. `StampPanel` | ResultScreen |
+| *Notice* | The stamp's outline with no fill, in ink: a live state that will change, not a statement of record. The words shimmer while the state holds and stop when it changes. `NoticePanel` | Lobby (*Waiting for Players*) |
 | *Ledger* | Label-and-value rows with hairlines: accusation, culprit, rounds, time, what you shared and kept back | ResultScreen |
 | *Choice tiles* | `ChoiceTileButton`: Play / Create, Solo / With friends; Easy / Medium / Hard in place of the difficulty dropdown | MainMenu, MysteryGeneration |
 | *Field label* | `FieldLabel`: white, condensed, caps via the Label's own `uppercase` flag — the label over a form field is the instruction, not a footnote | MysteryGeneration |

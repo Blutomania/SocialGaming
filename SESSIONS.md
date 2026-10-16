@@ -39,6 +39,15 @@ playtest's symptoms, passes after. `walk_apf_game.py` and `test_apf.py` still pa
   "Round 0 of 4" screen is gone. PLAYTEST_FLOW step 4 is "announces the round count, and play
   begins"; the count still shows, on round 1.
 
+### The lobby, from the owner's markup
+- *THE CASE OF* lead-in left of the mystery title; the column widened 560 → 720, and a title too
+  long for one line wraps instead of running under the status box.
+- ROOM CODE and JOIN AT moved to the left of their values, drawn as two finding-shaped rows (label
+  column | rule | value). The owner's boxes were annotation, not frames (owner).
+- *Waiting for Players*: blue fill removed, ink outline kept (owner: white, not brass) — a new
+  `NoticePanel`, recorded in `docs/STYLE_GUIDE.md`. A slow slanted shimmer
+  (`godot/shaders/shimmer.gdshader`) runs only while the room waits and is removed on *Starting…*.
+
 ### Still open
 - Not rendered: every Godot change above. Next F5: the same walk, through to ResultScreen.
 - Brand mark upper-left was not visible in any of the owner's screenshots — unconfirmed.
