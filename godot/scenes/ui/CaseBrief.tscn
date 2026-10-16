@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1brief000001"]
+[gd_scene load_steps=3 format=3 uid="uid://b1brief000001"]
 
 [ext_resource type="Script" path="res://scripts/ui/case_brief.gd" id="1_brief"]
+[ext_resource type="Texture2D" path="res://assets/brand/logo_temp.svg" id="2_logo"]
 
 [node name="CaseBrief" type="Control"]
 script = ExtResource("1_brief")
@@ -35,11 +36,14 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="GameNameLabel" type="Label" parent="Column/VBox/HeaderBand/HeaderText"]
-theme_type_variation = &"HeadingLabel"
+[node name="GameLogo" type="TextureRect" parent="Column/VBox/HeaderBand/HeaderText"]
 layout_mode = 2
-text = "Choose Your Mystery"
-uppercase = true
+custom_minimum_size = Vector2(108, 48)
+size_flags_horizontal = 0
+texture = ExtResource("2_logo")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
 
 [node name="PageLabel" type="Label" parent="Column/VBox/HeaderBand/HeaderText"]
 theme_type_variation = &"FaintLabel"
@@ -63,6 +67,13 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 12
+
+[node name="MoreBelow" type="Label" parent="Column/VBox"]
+theme_type_variation = &"FaintLabel"
+layout_mode = 2
+text = "MORE BELOW ↓"
+horizontal_alignment = 1
+visible = false
 
 [node name="StatusLabel" type="Label" parent="Column/VBox"]
 theme_type_variation = &"ErrorLabel"

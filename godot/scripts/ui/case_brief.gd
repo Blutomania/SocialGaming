@@ -19,10 +19,14 @@ extends Control
 
 @onready var column: MarginContainer = $Column
 @onready var page_label: Label = $Column/VBox/HeaderBand/HeaderText/PageLabel
-@onready var game_name_label: Label = $Column/VBox/HeaderBand/HeaderText/GameNameLabel
 @onready var mystery_title: Label = $Column/VBox/MysteryTitle
 @onready var brief_scroll: ScrollContainer = $Column/VBox/BriefScroll
 @onready var brief_list: VBoxContainer = $Column/VBox/BriefScroll/BriefList
+## "MORE BELOW ↓" at the cut (owner, Session 49). Shown only while there IS
+## more below -- a hint that stays after the reader reaches the end is a hint
+## that lies. Archivo Narrow (FaintLabel) carries the ↓ glyph; the prose
+## faces do not, which is why this is not set in them.
+@onready var more_below: Label = $Column/VBox/MoreBelow
 @onready var status_label: Label = $Column/VBox/StatusLabel
 @onready var back_button: Button = $Column/VBox/Footer/BackButton
 @onready var next_button: Button = $Column/VBox/Footer/NextButton
@@ -52,10 +56,9 @@ var _page: int = _PAGE_CASE
 
 func _ready() -> void:
 	_mystery = MysteryData.from_dict(GameState.current_mystery)
-	## Brass: the game's own name is one of the two things brass may set
-	## (docs/STYLE_GUIDE.md). An override rather than a variation because
-	## DisplayLabel is reserved for the main menu.
-	game_name_label.add_theme_color_override("font_color", Palette.BRASS)
+	## The header band carries the game's graphic mark, not its name typed
+	## out (owner, Session 49) -- the same file the lobby shows, so the
+	## artist's version replaces both at once.
 	## A count is STEEL_BRIGHT in Night File.
 	page_label.add_theme_color_override("font_color", Palette.STEEL_BRIGHT)
 	mystery_title.text = _mystery.title
@@ -63,6 +66,9 @@ func _ready() -> void:
 	back_button.pressed.connect(_on_back)
 	next_button.pressed.connect(_on_next)
 	get_viewport().size_changed.connect(_fit_column)
+	var bar: VScrollBar = brief_scroll.get_v_scroll_bar()
+	bar.changed.connect(_update_more_below)
+	bar.value_changed.connect(func(_v: float) -> void: _update_more_below())
 	_fit_column()
 
 	## The host's Begin moves the whole room at once, whichever page each
@@ -108,16 +114,50 @@ func _render_page() -> void:
 	brief_scroll.scroll_vertical = 0
 	_render_footer()
 
+## CRIME, then WHO / WHAT / WHERE / WHEN (owner, Session 49): open on the
+## crime in a line, then the questions a reader asks of it, instead of opening
+## on a paragraph of weather. Every row is skipped when its source is empty
+## (_add_text_row) -- a label with nothing beside it is never drawn.
 func _render_case() -> void:
-	var scene_text: String = _mystery.setting_description
-	if not _mystery.location.is_empty():
-		## A blank line, not a bare newline: the place-and-date line ran straight
-		## into the description and read as one paragraph (Session 49 playtest).
-		scene_text = "%s — %s\n\n%s" % [_mystery.location, _mystery.time_period, scene_text]
-	_add_text_row("SCENE", scene_text)
-	_add_text_row("CRIME", _mystery.what_happened)
+	_add_text_row("CRIME", _mystery.crime_type)
+	_add_text_row("WHO", _victims_text())
+	## FOUND folded into WHAT (owner): who found them and how is the end of
+	## what happened -- and the bitter-sweet smell in it is the closest thing
+	## the brief has to a clue, so it stays.
+	_add_text_row("WHAT", _paragraphs([_mystery.what_happened, _mystery.initial_discovery]))
+	var place: String = " — ".join(PackedStringArray(
+		[_mystery.location, _mystery.time_period].filter(func(t: String) -> bool: return not t.strip_edges().is_empty())))
+	## A blank line, not a bare newline: the place line ran straight into the
+	## description and read as one paragraph (Session 49 playtest).
+	_add_text_row("WHERE", _paragraphs([place, _mystery.setting_description]))
 	_add_text_row("WHEN", _mystery.when_occurred)
-	_add_text_row("FOUND", _mystery.initial_discovery)
+
+## Victims only (owner): the suspects have page 2 to themselves, and naming
+## them here would spend that page's reveal early.
+func _victims_text() -> String:
+	var lines: PackedStringArray = []
+	for v in _mystery.get_victims():
+		var victim: MysteryData.CharacterData = v
+		if victim.name.strip_edges().is_empty():
+			continue
+		lines.append(victim.name if victim.occupation.is_empty() \
+			else "%s, %s" % [victim.name, victim.occupation])
+	return "\n".join(lines)
+
+## Non-empty parts joined by a blank line, so a missing half leaves no gap.
+func _paragraphs(parts: Array) -> String:
+	var kept: PackedStringArray = []
+	for part in parts:
+		var text: String = str(part).strip_edges()
+		if not text.is_empty():
+			kept.append(text)
+	return "\n\n".join(kept)
+
+## Deferred a frame by the scroll bar's own `changed` signal: the bar's range
+## is only right after the rows have been laid out.
+func _update_more_below() -> void:
+	var bar: VScrollBar = brief_scroll.get_v_scroll_bar()
+	more_below.visible = bar.value + bar.page < bar.max_value - 4.0
 
 func _render_cast() -> void:
 	## Every victim, not just the first: the crime text names both dead men in

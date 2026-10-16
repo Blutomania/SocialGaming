@@ -34,6 +34,7 @@ theme_type_variation = &"TitleLabel"
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Opening the case…"
+autowrap_mode = 3
 
 [node name="RequirementLabel" type="Label" parent="Margin/MainVBox/Header"]
 theme_type_variation = &"MutedLabel"
@@ -51,21 +52,6 @@ layout_mode = 2
 max_value = 4.0
 step = 1.0
 show_percentage = false
-
-[node name="Caption" type="HBoxContainer" parent="Margin/MainVBox/Progress"]
-layout_mode = 2
-
-[node name="PhaseLabel" type="Label" parent="Margin/MainVBox/Progress/Caption"]
-theme_type_variation = &"HeadingLabel"
-layout_mode = 2
-size_flags_horizontal = 3
-text = ""
-
-[node name="QuipLabel" type="Label" parent="Margin/MainVBox/Progress/Caption"]
-theme_type_variation = &"FaintLabel"
-layout_mode = 2
-text = ""
-horizontal_alignment = 2
 
 [node name="Columns" type="HBoxContainer" parent="Margin/MainVBox"]
 layout_mode = 2
@@ -115,7 +101,12 @@ size_flags_horizontal = 3
 [node name="PoolHeading" type="Label" parent="Margin/MainVBox/Columns/PoolColumn"]
 theme_type_variation = &"HeadingLabel"
 layout_mode = 2
-text = "Shared information:"
+text = "Shared information"
+
+[node name="PoolSubheading" type="Label" parent="Margin/MainVBox/Columns/PoolColumn"]
+theme_type_variation = &"FaintLabel"
+layout_mode = 2
+text = "(Everyone can see this)"
 
 [node name="PoolScroll" type="ScrollContainer" parent="Margin/MainVBox/Columns/PoolColumn"]
 layout_mode = 2
@@ -141,23 +132,28 @@ text = ""
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="ShareButton" type="Button" parent="Margin/MainVBox/Actions"]
-theme_type_variation = &"PrimaryButton"
+[node name="StepPair" type="HBoxContainer" parent="Margin/MainVBox/Actions"]
 layout_mode = 2
+custom_minimum_size = Vector2(380, 0)
+theme_override_constants/separation = 0
+
+[node name="ShareButton" type="Button" parent="Margin/MainVBox/Actions/StepPair"]
+theme_type_variation = &"StepButton"
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Share selected"
-custom_minimum_size = Vector2(170, 0)
 
-[node name="NextRoundButton" type="Button" parent="Margin/MainVBox/Actions"]
-theme_type_variation = &"QuietButton"
+[node name="NextRoundButton" type="Button" parent="Margin/MainVBox/Actions/StepPair"]
+theme_type_variation = &"StepButton"
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Open the next round"
-custom_minimum_size = Vector2(170, 0)
 
-[node name="CloseCaseButton" type="Button" parent="Margin/MainVBox/Actions"]
-theme_type_variation = &"QuietButton"
+[node name="CloseCaseButton" type="Button" parent="Margin/MainVBox/Actions/StepPair"]
+theme_type_variation = &"StepButton"
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Close the case"
-custom_minimum_size = Vector2(150, 0)
 
 [node name="Spacer" type="Control" parent="Margin/MainVBox/Actions"]
 layout_mode = 2
