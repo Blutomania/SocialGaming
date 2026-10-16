@@ -48,6 +48,22 @@ playtest's symptoms, passes after. `walk_apf_game.py` and `test_apf.py` still pa
   `NoticePanel`, recorded in `docs/STYLE_GUIDE.md`. A slow slanted shimmer
   (`godot/shaders/shimmer.gdshader`) runs only while the room waits and is removed on *Starting…*.
 
+### CaseBrief and ApfRound, from the owner's markups (built together)
+- **CaseBrief page 1:** the graphic logo replaces the typed game name in the header band. Rows are
+  CRIME (crime type) / WHO (victims only) / WHAT (what happened + who found them — FOUND folded
+  in) / WHERE (place, date, scene) / WHEN. *MORE BELOW ↓* shows only while there is more below.
+- **ApfRound:** the heading names what this player was handed — *Round 2 of 4: You Found a Clue*
+  (owner first asked for "You Interviewed a Suspect"; no suspect speaks in any finding, so it
+  would be a false clue — the real feature is logged as **item 37**, stage 3). Findings grouped
+  newest first under ROUND N; a kind icon replaces the W / E11 id; WITNESS STATEMENT / CLUE / LEAD;
+  statements in quotation marks, nothing else; SHARE | KEEP tiles per finding, KEEP default,
+  shared → locked SHARED stamp; *1 of your 2 findings must be shared* (owner wrote "clues" —
+  changed, since a held finding can be a statement or a lead); the *Cold trail / Warming up*
+  caption row removed; *Shared information* + *(Everyone can see this)*, entries *X shared this*
+  with no round; Share selected + Open the next round as an adjoining `StepButton` pair, brass on
+  hover, disabled unfilled. The confirm step stays — a playability question for a real table.
+- **Rule, owner:** no label without content (`docs/STYLE_GUIDE.md`).
+
 ### Still open
 - Not rendered: every Godot change above. Next F5: the same walk, through to ResultScreen.
 - Brand mark upper-left was not visible in any of the owner's screenshots — unconfirmed.

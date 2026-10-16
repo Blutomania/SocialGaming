@@ -28,22 +28,26 @@ extends Control
 @onready var round_label: Label = $Margin/MainVBox/Header/RoundLabel
 @onready var requirement_label: Label = $Margin/MainVBox/Header/RequirementLabel
 @onready var round_bar: ProgressBar = $Margin/MainVBox/Progress/RoundBar
-@onready var phase_label: Label = $Margin/MainVBox/Progress/Caption/PhaseLabel
-@onready var quip_label: Label = $Margin/MainVBox/Progress/Caption/QuipLabel
 @onready var board_container: VBoxContainer = $Margin/MainVBox/Columns/BoardColumn/BoardScroll/BoardContainer
 @onready var casefile_container: VBoxContainer = $Margin/MainVBox/Columns/CasefileColumn/CasefileScroll/CasefileContainer
 @onready var pool_container: VBoxContainer = $Margin/MainVBox/Columns/PoolColumn/PoolScroll/PoolContainer
 @onready var table_label: Label = $Margin/MainVBox/TableLabel
 @onready var status_label: Label = $Margin/MainVBox/StatusLabel
-@onready var share_button: Button = $Margin/MainVBox/Actions/ShareButton
-@onready var next_round_button: Button = $Margin/MainVBox/Actions/NextRoundButton
-@onready var close_case_button: Button = $Margin/MainVBox/Actions/CloseCaseButton
+## The step pair (owner, Session 49): adjoining boxes, brass on hover. Next
+## round and Close the case are the host's and are never both visible, so the
+## pair is always two boxes for the host and Share alone for everyone else.
+@onready var share_button: Button = $Margin/MainVBox/Actions/StepPair/ShareButton
+@onready var next_round_button: Button = $Margin/MainVBox/Actions/StepPair/NextRoundButton
+@onready var close_case_button: Button = $Margin/MainVBox/Actions/StepPair/CloseCaseButton
 @onready var accuse_button: Button = $Margin/MainVBox/Actions/AccuseButton
 
-## The SHARING/KEEPING toggles for findings not yet shared, parallel to
-## _selectable. Toggle-mode Buttons rather than CheckBoxes since Session 47
-## (Night File): the theme draws a toggled Button as a filled steel tile, so
-## "chosen to share" reads from across the room with no style built here.
+## The SHARE half of each finding's SHARE / KEEP pair, for findings not yet
+## shared, parallel to _selectable. pressed == chosen to share. Toggle-mode
+## Buttons in a ButtonGroup with their KEEP half (Session 49, owner's markup):
+## the theme draws the chosen half as a filled steel tile, so the decision
+## reads from across the room, and naming BOTH options says that clicking
+## changes it -- the old single toggle showed its state as its label and left
+## the player to guess.
 var _toggles: Array[Button] = []
 ## The finding dicts each checkbox stands for. Shared findings are NOT in here:
 ## sharing is monotone, so an already-shared finding has no decision left in it.
@@ -98,6 +102,9 @@ func _render() -> void:
 	var current: int = int(state.get("round", 0))
 	var total: int = int(state.get("rounds", 0))
 	round_label.text = "Round %d of %d" % [current, total]
+	var happened: String = _what_happened_this_round(current)
+	if not happened.is_empty():
+		round_label.text += ": " + happened
 
 	_render_progress(state, current, total)
 	_render_requirement(state)
@@ -110,35 +117,32 @@ func _render() -> void:
 ## How far the investigation has come (owner's markup, Session 47: the
 ## reference's confidence slider "reappropriated to show how far in the
 ## investigation"). APF announces its round count before play, so this is
-## rounds, and it is exact rather than an estimate.
-##
-## The caption REPORTS, it does not taunt: Night File's voice is a deadpan
-## case report (docs/STYLE_GUIDE.md), and the one thing worth saying about a
-## round is how much secrecy it has left in it.
+## rounds, and it is exact rather than an estimate. The caption row under it
+## (Cold trail / Warming up / ...) was removed on the owner's markup, Session
+## 49: it said in words what the bar already shows.
 func _render_progress(state: Dictionary, current: int, total: int) -> void:
 	var disclosed: bool = bool(state.get("disclosed", false))
 	round_bar.max_value = float(maxi(total, 1))
 	round_bar.value = float(total if disclosed else current)
 
-	var phase: String
-	var quip: String
-	if disclosed:
-		phase = "Case closed"
-		quip = "Nothing is held back now."
-	elif current <= 1:
-		phase = "Cold trail"
-		quip = "Read what you were given."
-	elif current >= total:
-		phase = "Last round"
-		quip = "Last chance to keep a secret."
-	elif current == total - 1:
-		phase = "Closing in"
-		quip = "One round left to keep a secret."
-	else:
-		phase = "Warming up"
-		quip = "The table can see who has shared."
-	phase_label.text = phase
-	quip_label.text = quip
+## What THIS player was handed this round, for the heading (owner, Session
+## 49). Truthful by construction: it names the kind of finding actually
+## assigned, never a kind the mystery does not contain -- every statement in
+## a mystery today is a witness's, so "interviewed a suspect" would be a false
+## clue (item 37 logs the real feature). Each player's heading differs,
+## because each casefile does. One finding per round, so slot N-1 is round N's.
+const _HAPPENED_BY_KIND: Dictionary = {
+	"witness": "You Interviewed a Witness",
+	"clue": "You Found a Clue",
+	"lead": "You Followed a Lead",
+}
+
+func _what_happened_this_round(current: int) -> String:
+	var casefile: Array = GameState.apf_casefile()
+	if current < 1 or current > casefile.size():
+		return ""
+	var newest: Dictionary = casefile[current - 1]
+	return str(_HAPPENED_BY_KIND.get(str(newest.get("kind", "")), ""))
 
 ## The requirement is stated as a TOTAL, because that is what it is. Saying
 ## "share 1 more" would hide the shape of the rule — the ladder is cumulative,
@@ -159,7 +163,9 @@ func _render_requirement(state: Dictionary) -> void:
 		requirement_label.remove_theme_color_override("font_color")
 		return
 
-	requirement_label.text = "%d of your %d must be on the table" % [required, held]
+	## "findings", not "clues" (owner's wording, one noun changed): what a
+	## player holds can be a witness statement or a lead as well as a clue.
+	requirement_label.text = "%d of your %d findings must be shared" % [required, held]
 	if owed > 0:
 		requirement_label.text += "  ·  %d still owed" % owed
 		requirement_label.add_theme_color_override("font_color", Palette.CAUTION)
@@ -328,12 +334,16 @@ func _ends_in_title_abbreviation(body: String, period_idx: int) -> bool:
 ## whole body: a link with nothing left to reveal is a dead link, not a
 ## feature. Used by both this column and the shared pool below, so a finding
 ## reads the same way wherever it is shown.
-func _body_block(body: String) -> Control:
+##
+## A STATEMENT is set in quotation marks instead of a bullet (owner, Session
+## 49) -- they are someone's own words. Only statements: a clue or a lead is a
+## description of a thing, and quoting it would put words in nobody's mouth.
+func _body_block(body: String, statement: bool = false) -> Control:
 	var wrap := VBoxContainer.new()
 
 	var excerpt: String = _first_sentence(body)
 	var bullet := Label.new()
-	bullet.text = "•  " + excerpt
+	bullet.text = _quoted(excerpt) if statement else "•  " + excerpt
 	bullet.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	bullet.add_theme_color_override("font_color", Palette.INK_MUTED)
 	wrap.add_child(bullet)
@@ -342,7 +352,7 @@ func _body_block(body: String) -> Control:
 		return wrap
 
 	var full := Label.new()
-	full.text = body
+	full.text = _quoted(body) if statement else body
 	full.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	full.add_theme_color_override("font_color", Palette.INK_MUTED)
 	full.visible = false
@@ -360,6 +370,17 @@ func _body_block(body: String) -> Control:
 
 	return wrap
 
+## Curly quotes around a statement, after stripping any it already carries,
+## so a generator that quotes its own testimony is not double-quoted.
+func _quoted(text: String) -> String:
+	var bare: String = text.strip_edges()
+	for mark in ["\"", "“", "”"]:
+		bare = bare.trim_prefix(mark).trim_suffix(mark)
+	return "“" + bare + "”"
+
+func _is_statement(finding: Dictionary) -> bool:
+	return str(finding.get("kind", "")) == "witness"
+
 ## Your casefile. Findings you have already shared stay in it — an investigator
 ## cannot be made to forget — but they carry no toggle, because there is
 ## nothing left to decide about them. What you spend is exclusivity.
@@ -370,14 +391,35 @@ func _render_casefile() -> void:
 	_selectable.clear()
 
 	casefile_container.add_theme_constant_override("separation", Palette.SPACE_BASE)
-	for entry in GameState.apf_casefile():
-		var finding: Dictionary = entry
+	## Newest first, each under the round it arrived in (owner, Session 49).
+	## A plain heading above, not "Round N findings": a shared finding stays
+	## in the casefile, so by round 3 this list holds rounds 1-3 and a single
+	## round's name over all of it would be wrong. One finding per round, so
+	## slot i arrived in round i + 1.
+	var casefile: Array = GameState.apf_casefile()
+	for i in range(casefile.size() - 1, -1, -1):
+		var finding: Dictionary = casefile[i]
+		var round_tag := Label.new()
+		round_tag.theme_type_variation = &"FaintLabel"
+		round_tag.text = "ROUND %d" % (i + 1)
+		casefile_container.add_child(round_tag)
 		casefile_container.add_child(_finding_row(finding))
 
-## Night File's finding row (docs/STYLE_GUIDE.md): ID column | rule | the
-## finding | its SHARING/KEEPING toggle. The whole row is the hit target, not
-## just the toggle -- a player reaching for "this one" points at the text,
-## and a 110px button is a small thing to have to find from a sofa.
+## Night File's finding row (docs/STYLE_GUIDE.md): icon column | rule | the
+## finding | its SHARE / KEEP pair. The whole row is the hit target, not just
+## the pair -- a player reaching for "this one" points at the text, and a
+## small button is a small thing to have to find from a sofa.
+const _ICON_SIZE: float = 44.0
+
+## What a finding IS, in the words the room uses. The ID column's picture and
+## this label have to agree (owner, Session 49): a witness's portrait over
+## WITNESS STATEMENT, a clue image over CLUE or LEAD.
+const _KIND_LABELS: Dictionary = {
+	"witness": "WITNESS STATEMENT",
+	"clue": "CLUE",
+	"lead": "LEAD",
+}
+
 func _finding_row(finding: Dictionary) -> Control:
 	var shared: bool = bool(finding.get("shared", false))
 	var row := PanelContainer.new()
@@ -387,13 +429,7 @@ func _finding_row(finding: Dictionary) -> Control:
 	line.add_theme_constant_override("separation", Palette.SPACE_WIDE)
 	row.add_child(line)
 
-	var id_label := Label.new()
-	id_label.theme_type_variation = &"FindingIdLabel"
-	id_label.text = GameState.finding_display_id(str(finding.get("id", "")))
-	id_label.custom_minimum_size = Vector2(44, 0)
-	id_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	id_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	line.add_child(id_label)
+	line.add_child(_kind_icon(finding))
 	line.add_child(VSeparator.new())
 
 	var body := VBoxContainer.new()
@@ -404,45 +440,94 @@ func _finding_row(finding: Dictionary) -> Control:
 	title.text = str(finding.get("title", "?"))
 	title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	body.add_child(title)
-	var kind := Label.new()
-	kind.theme_type_variation = &"FaintLabel"
-	kind.text = str(finding.get("kind", "")).to_upper()
-	body.add_child(kind)
-	body.add_child(_body_block(str(finding.get("body", ""))))
+	var kind_text: String = str(_KIND_LABELS.get(str(finding.get("kind", "")), ""))
+	if not kind_text.is_empty():
+		var kind := Label.new()
+		kind.theme_type_variation = &"FaintLabel"
+		kind.text = kind_text
+		body.add_child(kind)
+	body.add_child(_body_block(str(finding.get("body", "")), _is_statement(finding)))
 	line.add_child(body)
 
 	if shared:
-		var state := Label.new()
-		state.theme_type_variation = &"FaintLabel"
-		state.text = "ALREADY SHARED"
-		state.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		line.add_child(state)
+		## One filled, locked box: a share cannot be taken back, so there is no
+		## KEEP beside it to offer. A stamp, not a button -- nothing to press.
+		var stamp := PanelContainer.new()
+		stamp.theme_type_variation = &"StampPanel"
+		stamp.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		var stamp_text := Label.new()
+		stamp_text.theme_type_variation = &"StampTextLabel"
+		stamp_text.text = "SHARED"
+		stamp_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		stamp.add_child(stamp_text)
+		line.add_child(stamp)
 		return row
 
-	var toggle := Button.new()
-	toggle.toggle_mode = true
-	toggle.text = "KEEPING"
-	toggle.custom_minimum_size = Vector2(110, 0)
-	toggle.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	toggle.toggled.connect(func(on: bool) -> void:
-		toggle.text = "SHARING" if on else "KEEPING"
+	## SHARE | KEEP, adjoining. KEEP starts chosen, because keeping is what
+	## happens if a player does nothing. Hover highlights whichever half is
+	## under the cursor (the theme's Button hover).
+	var group := ButtonGroup.new()
+	var pair := HBoxContainer.new()
+	pair.add_theme_constant_override("separation", 0)
+	pair.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	var share_half := _choice_half("SHARE", group)
+	var keep_half := _choice_half("KEEP", group)
+	keep_half.button_pressed = true
+	pair.add_child(share_half)
+	pair.add_child(keep_half)
+	line.add_child(pair)
+
+	share_half.toggled.connect(func(on: bool) -> void:
 		row.theme_type_variation = &"FindingRowChosen" if on else &"FindingRow"
-		id_label.add_theme_color_override("font_color", Palette.STEEL_BRIGHT if on else Palette.INK_MUTED)
 		_on_toggle(on)
 	)
-	line.add_child(toggle)
-	_toggles.append(toggle)
+	_toggles.append(share_half)
 	_selectable.append(finding)
 
-	## A click anywhere on the row that nothing inside it took (the toggle and
-	## the Full Finding link both consume their own) flips the toggle. Labels
+	## A click anywhere on the row that nothing inside it took (the pair and
+	## the Full Finding link both consume their own) flips the choice. Labels
 	## ignore the mouse and containers pass it up, so text clicks arrive here.
+	## Pressing the OTHER half rather than un-pressing this one: a ButtonGroup
+	## owns the exclusivity, and un-pressing its pressed member is refused.
 	row.gui_input.connect(func(event: InputEvent) -> void:
 		var click: InputEventMouseButton = event as InputEventMouseButton
-		if click and click.pressed and click.button_index == MOUSE_BUTTON_LEFT and not toggle.disabled:
-			toggle.button_pressed = not toggle.button_pressed
+		if click and click.pressed and click.button_index == MOUSE_BUTTON_LEFT and not share_half.disabled:
+			if share_half.button_pressed:
+				keep_half.button_pressed = true
+			else:
+				share_half.button_pressed = true
 	)
 	return row
+
+func _choice_half(text: String, group: ButtonGroup) -> Button:
+	var half := Button.new()
+	half.toggle_mode = true
+	half.button_group = group
+	half.text = text
+	half.custom_minimum_size = Vector2(76, 40)
+	return half
+
+## The ID column's picture (owner, Session 49: "replace the single letter
+## with an icon"). The SET says what kind of finding this is -- a portrait for
+## a witness, an object for a clue or lead -- which the label beside it says
+## anyway. Which picture within the set is random (Icons.gd's header): it
+## must never say WHICH finding, or a glance at someone's screen would.
+## The old letter / evidence code (W, E11) is gone: it was an internal id.
+func _kind_icon(finding: Dictionary) -> Control:
+	var key: String = str(finding.get("id", ""))
+	var path: String = Icons.witness(key, GameState.game_id) if _is_statement(finding) \
+		else Icons.clue(key, GameState.game_id)
+	var icon := TextureRect.new()
+	icon.texture = Icons.texture(path)
+	icon.custom_minimum_size = Vector2(_ICON_SIZE, _ICON_SIZE)
+	## IGNORE_SIZE, or the imported SVG's pixel size becomes the minimum and
+	## the column overflows (the CaseDisplay bug, Session 48).
+	icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	icon.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	icon.modulate = Icons.tint()
+	icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	return icon
 
 ## What the room has. Ordered oldest first, with the name of whoever put it
 ## there — the order IS the social record, and it is what "she's held back twice
@@ -465,13 +550,14 @@ func _render_pool(state: Dictionary) -> void:
 
 		var who := Label.new()
 		who.add_theme_font_size_override("font_size", Palette.TYPE_LABEL)
+		## No round number (owner, Session 49). The record is not lost: the pool
+		## is in the order things were shared, oldest first, and that order is
+		## what "she's held back twice now" is read off.
 		if bool(item.get("disclosure", false)):
-			who.text = "%s held this back · round %d" % [
-				str(item.get("shared_by", "?")), int(item.get("shared_round", 0))]
+			who.text = "%s held this back" % str(item.get("shared_by", "?"))
 			who.add_theme_color_override("font_color", Palette.CAUTION)
 		else:
-			who.text = "%s shared this · round %d" % [
-				str(item.get("shared_by", "?")), int(item.get("shared_round", 0))]
+			who.text = "%s shared this" % str(item.get("shared_by", "?"))
 			## Steel since Session 47: an attribution is a STATE of the record,
 			## and Night File keeps brass for the action a screen wants taken.
 			who.add_theme_color_override("font_color", Palette.STEEL_BRIGHT)
@@ -483,7 +569,7 @@ func _render_pool(state: Dictionary) -> void:
 		title.add_theme_color_override("font_color", Palette.INK)
 		box.add_child(title)
 
-		box.add_child(_body_block(str(item.get("body", ""))))
+		box.add_child(_body_block(str(item.get("body", "")), _is_statement(item)))
 
 		pool_container.add_child(box)
 		pool_container.add_child(HSeparator.new())

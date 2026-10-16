@@ -641,6 +641,24 @@ func _declare_variations(t: Theme) -> void:
 	t.set_color("font_color", "QuietButton", Palette.INK_MUTED)
 	t.set_color("font_hover_color", "QuietButton", Palette.INK)
 
+	## The step pair (owner's ApfRound markup, Session 49): two adjoining
+	## outlined boxes -- Share selected, then Open the next round -- that fill
+	## BRASS on hover, because both are actions and brass is the colour of
+	## "act" (steel would read as "chosen"). Disabled stays an unfilled dim
+	## outline: Godot draws `disabled` over `hover`, so a step the table has
+	## not earned yet never lights up under the cursor and looks pressable.
+	t.set_type_variation("StepButton", "Button")
+	t.set_stylebox("normal", "StepButton", _control_box(Palette.SURFACE, Palette.LINE))
+	t.set_stylebox("hover", "StepButton", _control_box(Palette.BRASS_BRIGHT, Palette.BRASS_BRIGHT))
+	t.set_stylebox("pressed", "StepButton", _control_box(Palette.BRASS_DIM, Palette.BRASS_DIM))
+	t.set_stylebox("disabled", "StepButton", _control_box(Palette.SURFACE_DEEP, Palette.LINE_SOFT))
+	t.set_stylebox("focus", "StepButton", _focus_ring())
+	t.set_color("font_color", "StepButton", Palette.INK)
+	t.set_color("font_hover_color", "StepButton", Palette.SURFACE_DEEP)
+	t.set_color("font_pressed_color", "StepButton", Palette.INK)
+	t.set_color("font_focus_color", "StepButton", Palette.INK)
+	t.set_color("font_disabled_color", "StepButton", Palette.INK_FAINT)
+
 	## A row inside a scrollable, multi-column list -- the saved-mystery
 	## browser needs a title column and a right-aligned star-rating column
 	## that line up across rows, which ItemList's one-string-per-item model
