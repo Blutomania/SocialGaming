@@ -91,6 +91,21 @@ PR #63 merged (`4efb1bd`); branch restarted from `main`.
   JS could send `results: null` mid-tally, which renders as "nobody voted". New
   `server_py/test_postgame.py` (58, zero cost, mutation-tested six ways). All other suites pass.
 
+- **One instructions file per game.** The root `CLAUDE.md` was CYM's (~12,000 tokens), so every
+  MYF session loaded it and followed CYM's protocol. Now: the root is a ~740-token router (what
+  both games share); CYM's file moved, unchanged apart from its header and protocol section, to
+  `.claude/rules/cym.md`, a path-scoped rule that loads only when CYM files are touched; MYF's
+  stays `mind-your-friends/CLAUDE.md`. Both doc checkers now read `.claude/rules/` (proved: 393
+  references checked without it, 558 with). **Tested with fresh headless sessions, and the first
+  version failed:** a pattern without a leading `/` matches at any depth, so `docs/**` and `*.py`
+  loaded CYM's rules for MYF's `docs/` and `server_py/`. Every pattern is now root-anchored; 8 of
+  8 files load the right game, and nothing game-specific loads at launch.
+- **Side effect caught before merge:** the repo's Stop hook (`.claude/settings.json` →
+  `scripts/session_summary.py --auto`) appends and commits a `SESSIONS.md` block at the end of
+  EVERY Claude session — including each headless test run, which produced 18 junk blocks (600
+  lines). Dropped by rebuilding the branch as one commit. Anyone testing with `claude -p` in this
+  repo will hit the same thing.
+
 ### Next session
 
 1. **Play it** — still the top of MYF's list since August 17 (PT-4 → PT-8).

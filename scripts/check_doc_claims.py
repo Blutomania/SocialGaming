@@ -44,7 +44,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 
 # Docs that describe the CURRENT state. SESSIONS.md is excluded on purpose.
-DOC_GLOBS = ["CLAUDE.md", "docs/*.md"]
+# .claude/rules/*.md holds CYM's instructions since Session 50 (they were the
+# root CLAUDE.md); leaving it out would stop checking CYM's file without a word.
+DOC_GLOBS = ["CLAUDE.md", ".claude/rules/*.md", "docs/*.md"]
 
 # Referenced-but-absent, each with the reason it is legitimate.
 ALLOWED = {

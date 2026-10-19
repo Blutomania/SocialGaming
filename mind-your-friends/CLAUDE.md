@@ -287,9 +287,6 @@ All zero API cost unless marked.
 
 ## Session protocol
 
-**Start:** `git fetch origin && git checkout main && git pull`; branch off it. If the harness
-hands you a branch, compare it against `main` first (Session 33 was handed a stale one). Read the
-latest MYF block in `SESSIONS.md` and **Open work** above. State branch, commit and plan.
-
-**End:** append a block to `SESSIONS.md`; update **Open work** here and the item in
-`docs/DECISIONS.md`; commit, push the feature branch, open a PR.
+The shared protocol — fetch `main`, branch, read the latest MYF block in `SESSIONS.md`, and at the
+end log the session, push and PR — is in the root `CLAUDE.md`. MYF adds: read **Open work** above
+before starting, and at the end update it and the item in `docs/DECISIONS.md`.
