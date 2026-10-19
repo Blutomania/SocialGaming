@@ -37,14 +37,18 @@ export const TOTAL_QUESTIONS = ROUNDS * QUESTIONS_PER_ROUND; // 24 by default
 // self-describing: the tier IS the picture. Five buttons is also a decision
 // you can make in two seconds and say out loud ("you're getting the whole
 // pie"), which a slider never was.
+// `label` names the pie (its accessible name); `difficultyLabel` is the word on
+// the wager tile (owner, Session 50). It is true rather than decorative: the
+// tier really does set the question's difficulty — lib/coherence.js maps it to
+// DIFFICULTY_BY_TIER, trivial → brutal, one rung per tier.
 export const WAGER_TIERS = [
-  { value: 12, label: 'Sliver', fraction: 1 / 8 },
-  { value: 25, label: 'Slice', fraction: 1 / 4 },
-  { value: 50, label: 'Half', fraction: 1 / 2 },
-  { value: 100, label: 'Whole pie', fraction: 1 },
+  { value: 12, label: 'Sliver', difficultyLabel: 'Easiest', fraction: 1 / 8 },
+  { value: 25, label: 'Slice', difficultyLabel: 'Easy', fraction: 1 / 4 },
+  { value: 50, label: 'Half', difficultyLabel: 'Medium', fraction: 1 / 2 },
+  { value: 100, label: 'Whole pie', difficultyLabel: 'Hard', fraction: 1 },
   // More pie than exists. Drawn as a full, oversized pie — the only tier that
   // breaks the circle's own scale, which is the point of it.
-  { value: 200, label: 'DOUBLE', fraction: 1, super: true },
+  { value: 200, label: 'DOUBLE', difficultyLabel: 'Hardest', fraction: 1, super: true },
 ];
 
 export const WAGER_VALUES = WAGER_TIERS.map((t) => t.value);

@@ -220,15 +220,6 @@ function ScoreStrip({ game, myId, round, questionInRound }) {
 // Laid out beside the selection on desktop and above it on a phone, per the
 // owner's call — the pie is the thing you look at while deciding, so it wants
 // the reading position, not a corner.
-// The ladder's ends, named (owner, August 18 2026). Keyed by value rather
-// than by index so that changing WAGER_TIERS — item 44's tabled "wager tier
-// simplification" is exactly that — moves the labels with it instead of
-// leaving them on whatever now happens to sit first and last.
-const EDGE_LABELS = {
-  [WAGER_TIERS[0].value]: 'Easiest',
-  [WAGER_TIERS[WAGER_TIERS.length - 1].value]: 'Hardest',
-};
-
 function WagerPicker({ game, myId, socket }) {
   const wagerPlayer = game.players[(game.activePlayerIndex + 1) % game.players.length];
   const [picked, setPicked] = useState(null);
@@ -268,34 +259,41 @@ function WagerPicker({ game, myId, socket }) {
           </p>
         )}
 
-        {/* One decision, so one strip of touching boxes with exactly one
-            filled (style guide §2a). It used to be five separate gold-tinted
-            tiles, where "selected" and "hovered" were the same gold at two
-            strengths. 25 starts chosen: it is what gets locked if the setter
-            just taps Lock in. */}
-        <div className="choice-row justify-center" role="radiogroup" aria-label="Wager">
+        {/* Five tiles, one lit (owner, Session 50 — the Mob Rules episode
+            picker): the wager value small on top, the difficulty it buys
+            large beneath. Every tier is named now, not just the two ends — the
+            word is the thing a setter is actually choosing ("give her a Hard
+            one"), and the number is the price of it.
+
+            The words come from WAGER_TIERS, so a ladder change moves them
+            with it. The small pies that used to sit in each tile are gone:
+            the big pie above already draws the chosen stake, and five more
+            pies beside five words was saying it twice.
+
+            Stacked rows on a phone, where five tiles across leave ~50px for
+            a word like HARDEST; five across from sm up. 25 starts chosen: it
+            is what gets locked if the setter just taps Lock in. */}
+        <div
+          className="grid grid-cols-1 gap-2 sm:grid-cols-5"
+          role="radiogroup"
+          aria-label="Wager"
+        >
           {WAGER_TIERS.map((t) => (
             <button
               key={t.value}
               onClick={() => setPicked(t)}
               aria-pressed={t.value === tier.value}
-              className="choice flex flex-col items-center gap-1 px-2 py-2 sm:px-3"
+              className="tile w-full max-sm:flex-row max-sm:items-baseline max-sm:gap-3"
             >
-              <WagerPie tier={t} selected={t.value === tier.value} size={40} />
-              <span className="font-mono text-sm">{t.value}</span>
-              {/* Only the two ends are labelled: the ladder is a scale, and a
-                  scale needs its ends named, not every rung. The empty span on
-                  the middle three keeps all five buttons the same height —
-                  without it the row jumps as the labels appear. */}
-              <span className="h-3 text-[0.65rem] font-semibold uppercase tracking-wide">
-                {EDGE_LABELS[t.value] ?? ''}
+              <span className="tile-num font-mono text-sm">{t.value}</span>
+              <span className="text-sm font-bold uppercase tracking-wide lg:text-[0.8rem]">
+                {t.difficultyLabel}
               </span>
             </button>
           ))}
         </div>
 
-        {/* Smaller than it was, to leave the ladder its Easiest/Hardest line
-            without the column growing (owner, August 18 2026). */}
+        {/* Smaller than it was (owner, August 18 2026). */}
         <button
           className="act py-1.5 text-sm"
           onClick={() => socket.emit('turn:setWager', { amount: tier.value })}

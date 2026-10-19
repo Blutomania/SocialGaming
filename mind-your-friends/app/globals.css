@@ -107,6 +107,34 @@ body {
     @apply cursor-not-allowed border-ui-lineDim bg-ui-surfaceDeep font-normal text-ui-inkDisabled;
   }
 
+  /* TILES (owner, Session 50, from the Mob Rules episode picker). A choice
+     whose selection is a HIGHLIGHTED BORDER rather than a fill: at rest the
+     outline and words are dimmed; chosen, the outline lights in Chosen, the
+     number takes Chosen and the word goes to full ink. No fill either way, so
+     the five read as one set of equals with one lit — the owner's call over
+     the style guide's "filled = chosen" for this control.
+
+     The resting outline is deliberately the dim one, as in the reference.
+     That is under the guide's 3:1 affordance floor; what tells a player the
+     dim tiles are pressable is the lit one beside them and the hover. The
+     border is 2px in both states so selecting never shifts the layout. */
+  .tile {
+    @apply flex flex-col items-start gap-1 border-2 border-ui-lineDim bg-ui-surface px-3 py-2 text-left text-ui-faint transition-colors;
+  }
+  .tile:hover:not(:disabled):not([aria-pressed='true']) {
+    @apply border-ui-line text-ui-ink;
+  }
+  .tile[aria-pressed='true'] {
+    @apply border-ui-chosen text-ui-ink;
+  }
+  .tile[aria-pressed='true'] .tile-num {
+    @apply text-ui-chosen;
+  }
+  .tile:focus-visible {
+    outline: 2px solid theme('colors.ui.ink');
+    outline-offset: 2px;
+  }
+
   /* Adjoining options: one decision drawn as one strip of touching boxes,
      exactly one filled (§2a). The negative margin collapses each shared
      border to a single 2px line instead of a doubled 4px one, and a hovered

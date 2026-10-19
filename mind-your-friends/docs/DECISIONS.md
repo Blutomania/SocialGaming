@@ -101,6 +101,28 @@ table. `scripts/postgame-test.js` (2 real Claude calls) did not run: no API key 
 
 Full list of screen changes: `SESSIONS.md`, Session 50.
 
+### 53a. The wager tile — owner-directed, Session 50
+
+The owner supplied two screenshots of the *Mob Rules* episode picker and asked for the wager
+buttons to work like it: **a highlighted border marks the chosen one**, with the wager value small
+on top and a word large beneath — **Easiest, Easy, Medium, Hard, Hardest**. Built as a reusable
+`.tile` class in `app/globals.css`; the words live on `WAGER_TIERS` (`difficultyLabel`) in both
+`lib/constants.js` and `server_py/constants.py`, so the Godot screen inherits them.
+
+- **This overrides the guide's "filled = chosen" for this control, by the owner's call.** The lobby
+  chips and other choices still fill. Whether tiles replace fills elsewhere is an open question.
+- **The resting outline is the dim one, as in the reference** — under the guide's 3:1 affordance
+  floor. The lit tile beside it and the hover are what say "pressable". Measured in the browser:
+  rest `#5C7389`, lit `#8EC5E8`.
+- **The small pie in each tile is gone** — the big pie above draws the chosen stake, and five
+  pies beside five words said it twice. One line to restore.
+- **Phone: five stacked rows; sm and up: five across.** Five tiles across 390px leave ~50px for
+  HARDEST.
+- **Every rung now has a word**, replacing item 49's "only the two ends are labelled". The words
+  are honest: each tier really does set the question's difficulty (`lib/coherence.js`).
+- Five words means five tiers, so item 44 (1)'s "fewer rungs" reads as declined — **awaiting the
+  owner's explicit confirmation** before it is closed.
+
 ## 52. The title treatment becomes live type — **built, August 20 2026 (Session 33)**
 
 *Written retroactively on October 19 2026: Session 33 built this and referred to it as item 52,

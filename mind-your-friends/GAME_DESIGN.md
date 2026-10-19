@@ -64,6 +64,11 @@ from `scripts/economy-sim.js`:
 | Whole pie | 100 | 200 | 23% | 75 |
 | DOUBLE | 200 | 400 | 47% | 150 |
 
+**Each tile names the difficulty it buys** (owner, Session 50): the wager value small on top,
+*Easiest / Easy / Medium / Hard / Hardest* large beneath, and the chosen tile marked by a lit
+border. The word is what a setter is really choosing — "give her a Hard one" — and the number is
+its price.
+
 Two consequences worth keeping:
 
 - **Five buttons is a decision you can make in two seconds and say out loud**
