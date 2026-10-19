@@ -23,8 +23,10 @@ export default function SuperlativeVoting({ postGame, players, myId, socket }) {
 
   if (!categories || categories.length === 0) {
     return (
-      <div className="rounded bg-game-card p-4 text-center text-sm text-gray-400">
-        Tallying up the awards…
+      <div className="text-center">
+        <span className="live">
+          <span className="live-text text-sm">Tallying up the awards</span>
+        </span>
       </div>
     );
   }
@@ -59,21 +61,27 @@ export default function SuperlativeVoting({ postGame, players, myId, socket }) {
     <div className="space-y-4 text-left">
       <div className="flex items-baseline justify-between">
         <h3 className="text-xl font-semibold">Superlatives</h3>
-        <span className="text-sm text-gray-400">
+        <span className="text-sm text-ui-faint">
           {votedCount}/{totalToVote} finished
         </span>
       </div>
 
-      {error && <p className="text-sm text-red-400">{error}</p>}
+      {error && <p className="text-sm text-ui-negative">{error}</p>}
 
       {done ? (
-        <div className="rounded bg-game-card p-6 text-center">
-          <p className="font-semibold text-game-green">Your ballot is in.</p>
-          <p className="mt-1 text-sm text-gray-400">Waiting on everyone else…</p>
+        // Settled (a stamp), then what is still happening (a live notice),
+        // which goes when the last ballot lands and the results replace it.
+        <div className="space-y-3 bg-ui-surface p-6 text-center">
+          <span className="stamp">Your ballot is in</span>
+          <div>
+            <span className="live">
+              <span className="live-text text-sm">Waiting on everyone else</span>
+            </span>
+          </div>
         </div>
       ) : (
         <>
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-ui-faint">
             Award {index + 1} of {categories.length}
           </p>
 
@@ -81,9 +89,11 @@ export default function SuperlativeVoting({ postGame, players, myId, socket }) {
               and mounts a new one on every vote — which is what makes the CSS
               enter animation replay instead of firing once and never again. */}
           <div className="overflow-hidden">
-            <div key={current.id} className="slide-in-right rounded bg-game-card p-4">
-              <h4 className="text-lg font-semibold text-game-gold">{current.title}</h4>
-              <p className="mb-4 text-sm text-gray-300">{current.description}</p>
+            <div key={current.id} className="slide-in-right bg-ui-surface p-4">
+              <h4 className="text-lg font-semibold">{current.title}</h4>
+              {current.description && (
+                <p className="mb-4 text-sm text-ui-faint">{current.description}</p>
+              )}
 
               <div className="flex flex-wrap gap-2">
                 {players.map((p) => (
@@ -92,7 +102,9 @@ export default function SuperlativeVoting({ postGame, players, myId, socket }) {
                     type="button"
                     disabled={pending !== null}
                     onClick={() => castVote(current.id, p.id)}
-                    className="rounded bg-black/30 px-4 py-2 text-sm transition hover:bg-game-gold hover:text-black disabled:opacity-50"
+                    // One tap casts the vote, so each name is an action, not a
+                    // choice that stays selected: Act fill under the cursor.
+                    className="act text-sm"
                   >
                     {p.name}
                     {p.id === myId && ' (you)'}
@@ -106,7 +118,7 @@ export default function SuperlativeVoting({ postGame, players, myId, socket }) {
             type="button"
             onClick={skipAll}
             disabled={pending !== null}
-            className="w-full rounded border border-gray-700 px-4 py-2 text-sm text-gray-400 transition hover:text-white disabled:opacity-50"
+            className="choice w-full text-sm"
           >
             Skip all
           </button>
@@ -121,7 +133,7 @@ function SuperlativeResults({ results }) {
 
   if (awarded.length === 0) {
     return (
-      <div className="rounded bg-game-card p-4 text-center text-sm text-gray-400">
+      <div className="bg-ui-surface p-4 text-center text-sm text-ui-faint">
         No superlatives this time — nobody voted.
       </div>
     );
@@ -131,16 +143,21 @@ function SuperlativeResults({ results }) {
     <div className="space-y-3 text-left">
       <h3 className="text-xl font-semibold">Superlatives</h3>
       {awarded.map((r) => (
-        <div key={r.id} className="rounded bg-game-card p-4">
-          <h4 className="font-semibold text-game-gold">{r.title}</h4>
+        <div key={r.id} className="bg-ui-surface p-4">
+          <h4 className="font-semibold">{r.title}</h4>
           <p className="text-lg">
-            {r.winnerNames.join(' & ')}
-            <span className="ml-2 text-sm text-gray-400">
+            <span className="stamp text-base normal-case">{r.winnerNames.join(' & ')}</span>
+            <span className="ml-2 text-sm text-ui-faint">
               {r.voteCount} vote{r.voteCount === 1 ? '' : 's'}
               {r.winnerNames.length > 1 && ' — tied'}
             </span>
           </p>
-          {r.quip && <p className="mt-1 text-sm italic text-gray-300">“{r.quip}”</p>}
+          {/* The host's own words, so they earn the quotes (§3c). */}
+          {r.quip?.trim() && (
+            <p className="mt-1 text-sm italic text-ui-faint">
+              “{r.quip.trim().replace(/^["“”]+|["“”]+$/g, '')}”
+            </p>
+          )}
         </div>
       ))}
     </div>

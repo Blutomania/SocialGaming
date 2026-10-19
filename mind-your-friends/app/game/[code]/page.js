@@ -45,7 +45,7 @@ export default function GamePage() {
     return (
       <main className="mx-auto min-h-screen max-w-7xl p-4 md:p-8">
         <BrandBar />
-        <p className="pt-10 text-center text-game-red">{error}</p>
+        <p className="pt-10 text-center text-ui-negative">{error}</p>
       </main>
     );
   }
@@ -54,7 +54,10 @@ export default function GamePage() {
     return (
       <main className="mx-auto min-h-screen max-w-7xl p-4 md:p-8">
         <BrandBar />
-        <p className="pt-10 text-center">Connecting…</p>
+        {/* Live status, not a sentence: it is still happening (§2g). */}
+        <div className="pt-10 text-center">
+          <span className="live"><span className="live-text">Connecting…</span></span>
+        </div>
       </main>
     );
   }

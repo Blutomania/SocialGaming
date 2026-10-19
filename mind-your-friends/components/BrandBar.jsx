@@ -36,7 +36,9 @@ export default function BrandBar({ code }) {
 
       <div className="justify-self-end sm:col-start-3 sm:row-start-1">
         {code && (
-          <span className="rounded bg-game-card px-3 py-1 font-mono text-lg tracking-widest">
+          // A stamp: the room code is settled for the whole game, and it is
+          // not a button. Read off this box across a room, so it is filled.
+          <span className="stamp font-mono text-lg tracking-widest">
             {code}
           </span>
         )}

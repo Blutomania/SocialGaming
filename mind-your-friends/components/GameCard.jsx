@@ -104,9 +104,12 @@ export default function GameCard({
         aspectRatio: CARD_ASPECT,
         backgroundImage: `linear-gradient(160deg, ${art.from}, ${art.to})`,
       }}
+      // A disabled card must not react to the cursor at all — neither lift nor
+      // brighten its border — or it reads as playable (style guide §2c). The
+      // lift was already cancelled; the border brightening was not.
       className={`relative flex flex-col justify-between overflow-hidden rounded-xl border-2 p-2 text-left transition ${
         selected ? 'border-white shadow-lg' : 'border-white/20'
-      } ${interactive ? 'hover:-translate-y-1 hover:border-white/60 disabled:opacity-30 disabled:hover:translate-y-0' : ''} ${className}`}
+      } ${interactive ? 'hover:-translate-y-1 hover:border-white/60 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:translate-y-0 disabled:hover:border-white/20' : ''} ${className}`}
     >
       {/* Name on top, type at the bottom (owner, August 18 2026) — the name is
           what a player is looking for, so it gets the first line and the size.
@@ -145,7 +148,7 @@ export default function GameCard({
       {inHand && (
         <span
           aria-label="in hand"
-          className="absolute right-1 top-1 flex h-5 w-5 items-center justify-center rounded-full bg-white text-xs font-black text-game-dark shadow"
+          className="absolute right-1 top-1 flex h-5 w-5 items-center justify-center rounded-full bg-white text-xs font-black text-ui-inkOnFill shadow"
         >
           ✓
         </span>

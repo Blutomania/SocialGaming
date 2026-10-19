@@ -10,7 +10,7 @@ export default function ScoreBoard({ game, myId, socket }) {
 
   return (
     <div className="mx-auto max-w-xl space-y-6 text-center">
-      <h2 className="text-3xl font-bold text-game-gold">Game Over!</h2>
+      <h2 className="text-3xl font-bold">Game Over!</h2>
       <p className="text-lg">
         {winners.length > 1
           ? `It's a tie! Congrats to ${winners.map((w) => w.name).join(' & ')}!`
@@ -19,10 +19,14 @@ export default function ScoreBoard({ game, myId, socket }) {
 
       <ul className="space-y-2">
         {sorted.map((p) => (
+          // The final standings are settled, so the winner's row is a stamp —
+          // the Chosen fill, not a button and not gold (gold means "do this").
           <li
             key={p.id}
-            className={`flex items-center justify-between rounded px-4 py-2 ${
-              p.score === topScore ? 'bg-game-gold/30' : 'bg-game-card'
+            className={`flex items-center justify-between border-2 px-4 py-2 ${
+              p.score === topScore
+                ? 'border-ui-chosen bg-ui-chosen font-semibold text-ui-inkOnFill'
+                : 'border-transparent bg-ui-surface'
             }`}
           >
             <span>{p.name}{p.id === myId && ' (you)'}</span>
@@ -46,7 +50,7 @@ export default function ScoreBoard({ game, myId, socket }) {
       {game.highlightReel.length > 0 && (
         <div className="text-left">
           <h3 className="mb-2 text-xl font-semibold">Highlight Reel</h3>
-          <ul className="space-y-1 text-sm text-gray-300">
+          <ul className="space-y-1 text-sm text-ui-faint">
             {game.highlightReel.map((moment, i) => (
               <li key={i}>• {moment}</li>
             ))}

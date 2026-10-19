@@ -246,6 +246,14 @@ actually done" during the port.
 
 ## The August 12 playtest changes — what a porter needs to know
 
+> **Status, October 19 2026: this table is ported.** Item 42 (August 17) brought
+> every row below into `server_py`, and Flow B (item 41) superseded the "open
+> answering" row on both backends. The one gap left is `questionLog` /
+> `postGame` (item 46). The "`server_py` today" column describes August 12, and
+> the section is kept for its porting notes — the serialized-evaluation one in
+> particular. The round-type mapping table further up still lists `steal`,
+> which item 37 retired; Rebus took its slot as plain free text.
+
 The owner played the Next.js prototype on August 12, 2026 and returned eleven
 notes. All eleven landed **in the prototype only**. `server_py/` has not been
 updated for any of them, which is the single most important thing to know

@@ -7,6 +7,32 @@ import VoiceInput from './VoiceInput';
 import WagerPie from './WagerPie';
 import { WAGER_TIERS, QUESTIONS_PER_ROUND } from '../lib/constants';
 import { difficultyColor } from '../lib/difficultyColors';
+import { CARD_INFO } from '../lib/cards';
+
+// Still happening (style guide §2g): an outlined notice with a slow shimmer.
+// Rendered only while the status is live, so the motion leaves with it.
+function LiveNotice({ children }) {
+  return (
+    <div className="text-center">
+      <span className="live">
+        <span className="live-text">{children}</span>
+      </span>
+    </div>
+  );
+}
+
+// The answer, only when there is one (§3a) — a bare "Correct answer:" with
+// nothing after it reads as a bug, and some flows (a skipped Lineup) carry none.
+function CorrectAnswer({ answer }) {
+  if (!answer?.toString().trim()) return null;
+  return <p className="text-sm text-ui-faint">Correct answer: {answer}</p>;
+}
+
+// Strip quote marks a player (or the generator) already typed before this
+// screen wraps the text in its own curly pair — or it reads ““like this””.
+function unquote(text) {
+  return String(text ?? '').trim().replace(/^["'“”‘’]+|["'“”‘’]+$/g, '');
+}
 
 export default function GameBoard({ game, myId, socket }) {
   const round = game.roundNumber ?? Math.floor(game.questionIndex / QUESTIONS_PER_ROUND) + 1;
@@ -39,8 +65,8 @@ export default function GameBoard({ game, myId, socket }) {
       {rule && !game.roundAnnouncement && game.phase !== 'ANSWER' && (
         <div className="panel px-4 py-2 text-center">
           <span className="text-lg">{rule.emoji}</span>{' '}
-          <span className="font-semibold text-game-gold">{rule.name}</span>
-          <span className="ml-2 text-sm text-gray-300">{rule.description}</span>
+          <span className="font-semibold">{rule.name}</span>
+          {rule.description && <span className="ml-2 text-sm text-ui-faint">{rule.description}</span>}
         </div>
       )}
 
@@ -48,10 +74,10 @@ export default function GameBoard({ game, myId, socket }) {
         {game.phase === 'CATEGORY' && <CategoryPicker game={game} myId={myId} socket={socket} />}
         {game.phase === 'WAGER' && <WagerPicker game={game} myId={myId} socket={socket} />}
         {game.phase === 'CARD' && <CardPhase game={game} myId={myId} socket={socket} />}
-        {game.phase === 'QUESTION' && <p className="text-center">Generating question…</p>}
+        {game.phase === 'QUESTION' && <LiveNotice>Writing the question</LiveNotice>}
         {game.phase === 'ANSWER' && <AnswerPhase game={game} myId={myId} socket={socket} />}
         {game.phase === 'EVALUATING' && (
-          <p className="text-center">🏆 The host is judging everyone's wrongness…</p>
+          <LiveNotice>The host is judging everyone&apos;s wrongness</LiveNotice>
         )}
         {game.phase === 'RESULT' && <ResultPhase game={game} />}
       </div>
@@ -62,7 +88,7 @@ export default function GameBoard({ game, myId, socket }) {
           section). Surfaced quietly so a slow first question reads as
           "still warming up" rather than "broken" — never as a blocker. */}
       {game.factPrefetch?.active && (
-        <p className="text-center text-xs text-gray-600">
+        <p className="text-center text-xs text-ui-faint">
           Warming up questions… {game.factPrefetch.completed}/{game.factPrefetch.total}
         </p>
       )}
@@ -79,14 +105,14 @@ function RebusPuzzle({ rebus }) {
       <div className="flex flex-wrap items-center justify-center gap-3">
         {rebus.pieces.map((emoji, i) => (
           <span key={i} className="flex items-center gap-3">
-            {i > 0 && <span className="text-2xl text-gray-600">+</span>}
+            {i > 0 && <span className="text-2xl text-ui-faint">+</span>}
             <span className="text-5xl sm:text-6xl">{emoji}</span>
           </span>
         ))}
       </div>
-      <p className="text-lg font-semibold">{rebus.hint}</p>
+      {rebus.hint?.trim() && <p className="text-lg font-semibold">{rebus.hint}</p>}
       {rebus.phonetic && (
-        <p className="text-xs text-gray-500">Say the pictures out loud — this one sounds it out.</p>
+        <p className="text-xs text-ui-faint">Say the pictures out loud — this one sounds it out.</p>
       )}
     </div>
   );
@@ -98,16 +124,16 @@ function RebusPuzzle({ rebus }) {
 function RebusReveal({ rebus, answer }) {
   if (!rebus?.reads) return null;
   return (
-    <div className="flex flex-wrap items-center justify-center gap-2 text-sm text-gray-300">
+    <div className="flex flex-wrap items-center justify-center gap-2 text-sm text-ui-faint">
       {rebus.pieces.map((emoji, i) => (
         <span key={i} className="flex items-center gap-2">
-          {i > 0 && <span className="text-gray-600">+</span>}
+          {i > 0 && <span>+</span>}
           <span className="text-2xl">{emoji}</span>
           <span className="font-mono uppercase">{rebus.reads[i]}</span>
         </span>
       ))}
-      <span className="text-gray-600">=</span>
-      <span className="font-semibold text-white">{answer}</span>
+      <span>=</span>
+      <span className="font-semibold text-ui-ink">{answer}</span>
     </div>
   );
 }
@@ -128,7 +154,7 @@ function RebusReveal({ rebus, answer }) {
 // property of the band, not of which box happens to be first.
 function RoundLine({ round, questionInRound, className = '' }) {
   return (
-    <p className={`text-xs tracking-wide text-slate-muted ${className}`}>
+    <p className={`text-xs tracking-wide text-ui-faint ${className}`}>
       Round {round}: Question {questionInRound} of {QUESTIONS_PER_ROUND}
     </p>
   );
@@ -141,7 +167,7 @@ function RoundAnnouncement({ announcement }) {
       {plain ? (
         <>
           <p className="mt-1 text-2xl font-bold">Straight trivia</p>
-          <p className="mt-1 text-sm text-gray-300">
+          <p className="mt-1 text-sm text-ui-faint">
             No twist this round — get your bearings. Rules start next round.
           </p>
         </>
@@ -150,7 +176,9 @@ function RoundAnnouncement({ announcement }) {
           <p className="mt-1 text-2xl font-bold">
             {announcement.emoji} {announcement.name}
           </p>
-          <p className="mt-1 text-sm text-gray-300">{announcement.description}</p>
+          {announcement.description && (
+            <p className="mt-1 text-sm text-ui-faint">{announcement.description}</p>
+          )}
         </>
       )}
     </div>
@@ -161,8 +189,10 @@ function RoundAnnouncement({ announcement }) {
 // eye decodes separately before it ever reaches the question, and the
 // standings are ambient — they want to read as a single band of chrome.
 //
-// The active player is marked with the accent rather than with a ring, because
-// a ring redraws the box that the plate just dissolved.
+// The active player is marked by colour rather than with a ring, because a
+// ring redraws the box that the plate just dissolved. The colour is Chosen —
+// "this is the one" — not Act: gold means "do this", and whose turn it is is
+// not something to press (item 53).
 function ScoreStrip({ game, myId, round, questionInRound }) {
   return (
     <div className="panel flex flex-wrap items-center justify-center gap-x-6 gap-y-1 px-4 py-2 text-sm sm:justify-between">
@@ -171,9 +201,9 @@ function ScoreStrip({ game, myId, round, questionInRound }) {
         {game.players.map((p, i) => {
           const active = i === game.activePlayerIndex;
           return (
-            <span key={p.id} className={active ? 'text-game-accent' : 'text-slate-muted'}>
+            <span key={p.id} className={active ? 'font-semibold text-ui-chosen' : 'text-ui-faint'}>
               {p.name}{p.id === myId && ' (you)'}{' '}
-              <span className={`font-mono ${active ? '' : 'text-slate-text'}`}>{p.score}</span>
+              <span className={`font-mono ${active ? '' : 'text-ui-ink'}`}>{p.score}</span>
             </span>
           );
         })}
@@ -207,7 +237,7 @@ function WagerPicker({ game, myId, socket }) {
   if (wagerPlayer.id !== myId) {
     return (
       <div className="space-y-3 text-center">
-        <p className="text-slate-muted">{wagerPlayer.name} is deciding how much to put on it…</p>
+        <LiveNotice>{wagerPlayer.name} is deciding how much to put on it</LiveNotice>
         <div className="flex justify-center gap-2 opacity-40">
           {WAGER_TIERS.map((t) => (
             <WagerPie key={t.value} tier={t} size={44} />
@@ -229,25 +259,27 @@ function WagerPicker({ game, myId, socket }) {
 
       <div className="flex-1 space-y-3 text-center">
         <h2 className="text-xl font-semibold">Set {activeName}&apos;s wager</h2>
-        <p className="text-sm text-slate-muted">
+        <p className="text-sm text-ui-faint">
           The bigger the wedge, the harder the question {activeName} gets.
         </p>
         {game.roundRule.wagerMultiplier && (
-          <p className="text-sm text-game-gold">
+          <p className="text-sm text-ui-caution">
             {game.roundRule.name}: this wager will be doubled automatically!
           </p>
         )}
 
-        <div className="flex flex-wrap justify-center gap-2">
+        {/* One decision, so one strip of touching boxes with exactly one
+            filled (style guide §2a). It used to be five separate gold-tinted
+            tiles, where "selected" and "hovered" were the same gold at two
+            strengths. 25 starts chosen: it is what gets locked if the setter
+            just taps Lock in. */}
+        <div className="choice-row justify-center" role="radiogroup" aria-label="Wager">
           {WAGER_TIERS.map((t) => (
             <button
               key={t.value}
               onClick={() => setPicked(t)}
-              className={`flex flex-col items-center gap-1 rounded px-3 py-2 transition ${
-                t.value === tier.value
-                  ? 'bg-game-accent/40 ring-2 ring-game-accent'
-                  : 'bg-game-dark hover:bg-game-accent/20'
-              }`}
+              aria-pressed={t.value === tier.value}
+              className="choice flex flex-col items-center gap-1 px-2 py-2 sm:px-3"
             >
               <WagerPie tier={t} selected={t.value === tier.value} size={40} />
               <span className="font-mono text-sm">{t.value}</span>
@@ -255,7 +287,7 @@ function WagerPicker({ game, myId, socket }) {
                   scale needs its ends named, not every rung. The empty span on
                   the middle three keeps all five buttons the same height —
                   without it the row jumps as the labels appear. */}
-              <span className="h-3 text-[0.65rem] font-semibold uppercase tracking-wide text-slate-muted">
+              <span className="h-3 text-[0.65rem] font-semibold uppercase tracking-wide">
                 {EDGE_LABELS[t.value] ?? ''}
               </span>
             </button>
@@ -265,7 +297,7 @@ function WagerPicker({ game, myId, socket }) {
         {/* Smaller than it was, to leave the ladder its Easiest/Hardest line
             without the column growing (owner, August 18 2026). */}
         <button
-          className="rounded bg-game-accent px-4 py-1.5 text-sm font-semibold text-game-dark hover:opacity-90"
+          className="act py-1.5 text-sm"
           onClick={() => socket.emit('turn:setWager', { amount: tier.value })}
         >
           Lock in {tier.value}
@@ -276,14 +308,22 @@ function WagerPicker({ game, myId, socket }) {
 }
 
 function CardPhase({ game }) {
+  // Name the person and the card (§3f): "a card was played" withheld the only
+  // two facts the room cares about at that moment.
+  const slot = game.cardSlot;
+  const playedBy = slot ? game.players.find((p) => p.id === slot.playerId)?.name : null;
+  const cardName = slot ? CARD_INFO[slot.cardId]?.name : null;
+
   return (
     <div className="text-center">
       <p>
         Wager: <span className="font-mono">{game.currentWager}</span> · Category:{' '}
         <span className="font-semibold">{game.currentCategory}</span>
       </p>
-      <p className="mt-2 text-sm text-gray-400">
-        {game.cardSlot ? 'A card was played!' : 'Anyone may play a card now — first one wins.'}
+      <p className="mt-2 text-sm text-ui-faint">
+        {slot
+          ? [playedBy, cardName && `played ${cardName}`].filter(Boolean).join(' ') || 'A card was played'
+          : 'Anyone may play a card now — first one wins.'}
       </p>
     </div>
   );
@@ -314,11 +354,11 @@ function AnswerPhase({ game, myId, socket }) {
 function RuleChip({ rule }) {
   if (!rule || rule.id === 'none') return null;
   return (
-    <p className="text-xs text-slate-muted">
-      <span className="uppercase tracking-[0.2em] text-game-accent">
+    <p className="text-xs text-ui-faint">
+      <span className="font-semibold uppercase tracking-[0.2em] text-ui-ink">
         {rule.emoji} {rule.name}
       </span>
-      <span className="ml-2">{rule.description}</span>
+      {rule.description && <span className="ml-2">{rule.description}</span>}
     </p>
   );
 }
@@ -337,12 +377,12 @@ function AnswerStatus({ verb, seconds, note }) {
   return (
     <div className="space-y-1">
       <div className="flex items-baseline justify-center gap-3">
-        <span className="text-sm uppercase tracking-[0.25em] text-slate-muted">{verb}</span>
+        <span className="text-sm uppercase tracking-[0.25em] text-ui-faint">{verb}</span>
         {seconds != null && (
-          <span className="font-mono text-3xl tabular-nums text-slate-text">{seconds}</span>
+          <span className="font-mono text-3xl tabular-nums text-ui-ink">{seconds}</span>
         )}
       </div>
-      {note && <p className="text-xs text-slate-muted">{note}</p>}
+      {note && <p className="text-xs text-ui-faint">{note}</p>}
     </div>
   );
 }
@@ -353,11 +393,11 @@ function AnswerStatus({ verb, seconds, note }) {
 // check that they agree with each other.
 function StakeLine({ wager, buzzPoints, isAnswerer, answererName }) {
   return (
-    <p className="text-xs text-slate-muted">
-      <span className="font-mono text-slate-text">{wager}</span> on it for{' '}
+    <p className="text-xs text-ui-faint">
+      <span className="font-mono text-ui-ink">{wager}</span> on it for{' '}
       {isAnswerer ? 'you' : answererName}
       {' · '}
-      <span className="font-mono text-slate-text">{buzzPoints}</span> to whoever takes it
+      <span className="font-mono text-ui-ink">{buzzPoints}</span> to whoever takes it
     </p>
   );
 }
@@ -381,7 +421,7 @@ function AnswerMargin({ lockedCount, spent }) {
     );
   }
   if (bits.length === 0) return null;
-  return <p className="text-xs text-gray-500">{bits.join(' · ')}</p>;
+  return <p className="text-xs text-ui-faint">{bits.join(' · ')}</p>;
 }
 
 // Flow B (GAME_DESIGN.md → "The Round Loop"). Three windows inside one
@@ -512,9 +552,9 @@ function OpenAnswerPhase({ game, myId, socket }) {
           as flavour: one small muted line above the question rather than two
           full-size paragraphs competing with it. */}
       {(game.hostQuip || game.heckleMessage) && (
-        <p className="text-sm text-slate-muted">
+        <p className="text-sm text-ui-faint">
           {game.heckleMessage && (
-            <span className="italic text-game-pink">
+            <span className="italic text-ui-ink">
               Heckle: &ldquo;{game.heckleMessage}&rdquo;{' '}
             </span>
           )}
@@ -545,7 +585,7 @@ function OpenAnswerPhase({ game, myId, socket }) {
       {status ? (
         <AnswerStatus {...status} />
       ) : (
-        <p className="text-sm text-slate-muted">{outMessage}</p>
+        <p className="text-sm text-ui-faint">{outMessage}</p>
       )}
 
       {canType && (
@@ -559,7 +599,7 @@ function OpenAnswerPhase({ game, myId, socket }) {
                 its way out of the squeeze the way "Lock It In" does. */}
             <input
               autoFocus
-              className="min-w-0 flex-1 rounded bg-game-dark px-3 py-2"
+              className="field min-w-0 flex-1"
               placeholder={canLock ? 'Your answer, ready to go…' : 'Your answer…'}
               value={answer}
               onChange={(e) => {
@@ -577,7 +617,8 @@ function OpenAnswerPhase({ game, myId, socket }) {
               }}
             />
             <button
-              className="rounded bg-game-accent px-4 py-2 font-semibold text-game-dark"
+              className="act"
+              disabled={!answer.trim()}
               onClick={() => (canAnswer ? submit() : lockIn())}
             >
               {canAnswer ? 'Submit' : 'Lock It In'}
@@ -588,10 +629,7 @@ function OpenAnswerPhase({ game, myId, socket }) {
               know, handing it to the room is legitimate play, and it's the
               only way out of the wager that costs nothing. */}
           {canAnswer && exclusive && game.iCanPass && (
-            <button
-              className="rounded border border-slate-muted/40 px-4 py-2 text-sm text-slate-muted hover:bg-game-dark"
-              onClick={pass}
-            >
+            <button className="act text-sm" onClick={pass}>
               Pass — throw it to the room
             </button>
           )}
@@ -601,15 +639,15 @@ function OpenAnswerPhase({ game, myId, socket }) {
       {/* One tap, no typing. The decision was made when the answer was locked
           in; this is only about whether you dare play it first. */}
       {canBuzz && (
-        <button
-          className="w-full rounded bg-game-red px-4 py-6 text-2xl font-bold hover:opacity-90"
-          onClick={buzz}
-        >
+        // The biggest action on the screen, and still an action box: gold
+        // outline, Act fill under the finger. It used to be solid red — but
+        // red is "negative", and buzzing is the one thing here worth doing.
+        <button className="act w-full py-6 text-2xl font-bold" onClick={buzz}>
           BUZZ — &ldquo;{game.myLockedAnswer}&rdquo;
         </button>
       )}
 
-      {actionError && <p className="text-sm text-game-red">{actionError}</p>}
+      {actionError && <p className="text-sm text-ui-negative">{actionError}</p>}
 
       <StakeLine
         wager={game.currentWager}
@@ -636,20 +674,28 @@ function SubmissionAnswerPhase({ game, socket }) {
 
   return (
     <div className="space-y-3 text-center">
-      <p className="text-game-gold">{game.hostQuip}</p>
+      {game.hostQuip && <p className="text-sm text-ui-faint">{game.hostQuip}</p>}
       <p className="text-lg font-semibold">{game.question}</p>
-      <p className="text-sm text-gray-400">
-        Wager: {game.currentWager} · {timer}s · Everyone submits an answer that's confidently wrong!
+      <p className="text-sm text-ui-faint">
+        Wager: {game.currentWager} · {timer}s · Everyone submits an answer that&apos;s confidently wrong!
       </p>
 
+      {/* Two states, two shapes: your answer is settled (a stamp), the room is
+          still filling in (a live notice that goes the moment it is full). */}
       {game.mySubmitted ? (
-        <p className="text-gray-400">
-          Answer locked in! Waiting for {remaining} more player{remaining === 1 ? '' : 's'} ({game.submittedCount}/{game.totalToSubmit} in)…
-        </p>
+        <div className="space-y-3">
+          <span className="stamp">Answer locked in</span>
+          {remaining > 0 && (
+            <LiveNotice>
+              Waiting for {remaining} more player{remaining === 1 ? '' : 's'} ({game.submittedCount}/
+              {game.totalToSubmit} in)
+            </LiveNotice>
+          )}
+        </div>
       ) : (
         <div className="flex gap-2">
           <input
-            className="flex-1 rounded bg-game-dark px-3 py-2"
+            className="field min-w-0 flex-1"
             placeholder="Your wonderfully wrong answer…"
             value={answer}
             onChange={(e) => {
@@ -666,7 +712,7 @@ function SubmissionAnswerPhase({ game, socket }) {
               setInputMode('voice');
             }}
           />
-          <button className="rounded bg-game-accent px-4 py-2 font-semibold text-game-dark" onClick={submit}>
+          <button className="act" disabled={!answer.trim()} onClick={submit}>
             Lock In
           </button>
         </div>
@@ -696,9 +742,9 @@ function LineupPhase({ game, socket }) {
 
   return (
     <div className="space-y-3 text-center">
-      <p className="text-game-gold">{game.hostQuip}</p>
+      {game.hostQuip && <p className="text-sm text-ui-faint">{game.hostQuip}</p>}
       <p className="text-lg font-semibold">{game.question}</p>
-      <p className="text-sm text-gray-400">
+      <p className="text-sm text-ui-faint">
         Wager: {game.currentWager} · {timer}s · Anyone can tap — first correct pick wins!
       </p>
 
@@ -707,13 +753,16 @@ function LineupPhase({ game, socket }) {
           <button
             key={opt.id}
             onClick={() => pick(opt.id)}
-            className={`flex w-full items-center gap-3 rounded px-3 py-2 text-left transition ${
-              wrongId === opt.id ? 'ring-2 ring-game-red' : ''
-            } ${isColor ? 'hover:opacity-80' : 'bg-game-dark font-semibold hover:bg-game-accent/40'}`}
+            // Whole row is the hit target (§5). A wrong tap flashes the
+            // negative outline for half a second and nothing else — being
+            // wrong here is the common case, not an error.
+            className={`choice flex w-full items-center gap-3 px-3 py-2 text-left ${
+              wrongId === opt.id ? '!border-ui-negative' : ''
+            }`}
           >
-            <span className="font-mono text-sm text-gray-400">{i + 1}.</span>
+            <span className="font-mono text-sm text-ui-faint">{i + 1}.</span>
             {isColor ? (
-              <span className="h-10 flex-1 rounded" style={{ backgroundColor: opt.hex }} />
+              <span className="h-10 flex-1" style={{ backgroundColor: opt.hex }} />
             ) : (
               <span>{opt.label}</span>
             )}
@@ -726,7 +775,15 @@ function LineupPhase({ game, socket }) {
 
 function ResultPhase({ game }) {
   if (game.skippedTurn) {
-    return <p className="text-center text-xl">Turn skipped!</p>;
+    // Skip is a card, so somebody played it — say who (§3f).
+    const skipper = game.cardSlot
+      ? game.players.find((p) => p.id === game.cardSlot.playerId)?.name
+      : null;
+    return (
+      <p className="text-center text-xl">
+        {skipper ? `${skipper} played Skip — turn skipped` : 'Turn skipped'}
+      </p>
+    );
   }
   const result = game.lastResult;
 
@@ -769,21 +826,21 @@ function ResultPhase({ game }) {
 
   return (
     <div className="space-y-2 text-center">
-      <p className={`text-2xl font-bold ${result.correct ? 'text-game-green' : 'text-game-red'}`}>
+      <p className={`text-2xl font-bold ${result.correct ? 'text-ui-positive' : 'text-ui-negative'}`}>
         {headline}
       </p>
-      {asideForActive && <p className="text-sm text-gray-400">{asideForActive}</p>}
+      {asideForActive && <p className="text-sm text-ui-faint">{asideForActive}</p>}
       {game.rebus ? (
         <RebusReveal rebus={game.rebus} answer={game.answer} />
       ) : (
-        <p className="text-sm text-gray-400">Correct answer: {game.answer}</p>
+        <CorrectAnswer answer={game.answer} />
       )}
       {result.feedback && <p>{result.feedback}</p>}
       {misses.length > 0 && (
-        <div className="pt-2 text-sm text-gray-400">
+        <div className="pt-2 text-sm text-ui-faint">
           {misses.map((a) => (
             <p key={a.playerId}>
-              <span className="text-gray-300">{a.name}</span> played &ldquo;{a.answer}&rdquo;
+              <span className="text-ui-ink">{a.name}</span> played &ldquo;{unquote(a.answer)}&rdquo;
             </p>
           ))}
         </div>
@@ -793,11 +850,11 @@ function ResultPhase({ game }) {
           lock-in mechanic produces — somebody in the room had it and sat on
           it, and only the reveal tells them so. */}
       {(result.unplayedAnswers ?? []).length > 0 && (
-        <div className="pt-2 text-sm text-gray-500">
+        <div className="pt-2 text-sm text-ui-faint">
           <p className="text-xs uppercase tracking-widest">Never played</p>
           {result.unplayedAnswers.map((a) => (
             <p key={a.playerId}>
-              <span className="text-gray-300">{a.name}</span> had &ldquo;{a.answer}&rdquo;
+              <span className="text-ui-ink">{a.name}</span> had &ldquo;{unquote(a.answer)}&rdquo;
             </p>
           ))}
         </div>
@@ -813,15 +870,15 @@ function LineupResults({ game, result }) {
   return (
     <div className="space-y-3 text-center">
       {result.lineupWinner ? (
-        <p className="text-2xl font-bold text-game-green">
+        <p className="text-2xl font-bold text-ui-positive">
           {result.winnerName} spotted it! +{result.wager}
         </p>
       ) : (
-        <p className="text-2xl font-bold text-game-red">
+        <p className="text-2xl font-bold text-ui-negative">
           Nobody spotted it — {result.wager} pts unclaimed!
         </p>
       )}
-      <p className="text-sm text-gray-400">Correct answer: {game.answer}</p>
+      <CorrectAnswer answer={game.answer} />
 
       <div className="space-y-2">
         {game.lineup?.options.map((opt, i) => {
@@ -829,17 +886,17 @@ function LineupResults({ game, result }) {
           return (
             <div
               key={opt.id}
-              className={`flex items-center gap-3 rounded px-3 py-2 ${
-                isCorrect ? 'ring-2 ring-game-gold' : 'bg-game-dark'
+              className={`flex items-center gap-3 border-2 bg-ui-surface px-3 py-2 ${
+                isCorrect ? 'border-ui-positive' : 'border-transparent'
               }`}
             >
-              <span className="font-mono text-sm text-gray-400">{i + 1}.</span>
+              <span className="font-mono text-sm text-ui-faint">{i + 1}.</span>
               {opt.hex ? (
-                <span className="h-10 flex-1 rounded" style={{ backgroundColor: opt.hex }} />
+                <span className="h-10 flex-1" style={{ backgroundColor: opt.hex }} />
               ) : (
                 <span className="flex-1 text-left">{opt.label}</span>
               )}
-              {isCorrect && <span className="text-game-gold">✓</span>}
+              {isCorrect && <span className="font-bold text-ui-positive">✓</span>}
             </div>
           );
         })}
@@ -857,35 +914,43 @@ function WorstAnswerResults({ game, result }) {
 
   return (
     <div className="space-y-3 text-center">
-      <p className="text-2xl font-bold text-game-gold">
-        {winners} nailed it! +{result.wager}
-      </p>
-      <p className="text-sm text-gray-400">
-        Correct answer: {game.answer} · lowest total score wins
-      </p>
+      {winners && (
+        <p className="text-2xl font-bold text-ui-positive">
+          {winners} nailed it! +{result.wager}
+        </p>
+      )}
+      <CorrectAnswer answer={game.answer} />
+      <p className="text-sm text-ui-faint">Lowest total score wins</p>
 
       <div className="space-y-2 text-left">
         {sorted.map((entry) => (
           <div
             key={entry.playerId}
-            className={`rounded p-3 ${
-              entry.isWinner ? 'border border-game-gold bg-game-gold/10' : 'bg-game-dark'
+            className={`border-2 bg-ui-surface p-3 ${
+              entry.isWinner ? 'border-ui-chosen' : 'border-transparent'
             }`}
           >
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-2">
               <span className="font-semibold">
                 {entry.name}
-                {entry.isWinner && ' 🏆'}
+                {entry.isWinner && <span className="stamp ml-2 px-2 py-0 text-xs">Winner</span>}
               </span>
-              <span className="font-mono text-sm text-gray-400">Total: {entry.total}/30</span>
+              <span className="font-mono text-sm text-ui-faint">Total: {entry.total}/30</span>
             </div>
-            <p className="mt-1 italic text-sm text-gray-300">"{entry.answer || '(no answer submitted)'}"</p>
-            <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-400">
+            {/* Quote marks only around words somebody actually said (§3c). The
+                "no answer" placeholder used to sit inside quotes too, which
+                put words in the mouth of a player who said nothing. */}
+            {entry.answer?.trim() ? (
+              <p className="mt-1 text-sm italic">&ldquo;{unquote(entry.answer)}&rdquo;</p>
+            ) : (
+              <p className="mt-1 text-sm text-ui-faint">No answer submitted</p>
+            )}
+            <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-ui-faint">
               <span>Factually wrong: {entry.factuallyWrong}/10</span>
               <span>Creatively wrong: {entry.creativelyWrong}/10</span>
               <span>Plausibility: {entry.plausibility}/10</span>
             </div>
-            <p className="mt-2 text-sm">{entry.feedback}</p>
+            {entry.feedback && <p className="mt-2 text-sm">{entry.feedback}</p>}
           </div>
         ))}
       </div>

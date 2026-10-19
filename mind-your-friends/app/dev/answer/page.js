@@ -142,7 +142,7 @@ function OverflowReport() {
   return (
     <div
       id="overflow-report"
-      className={`px-4 py-1 text-xs ${bad ? 'bg-game-red text-white' : 'text-gray-600'}`}
+      className={`px-4 py-1 text-xs ${bad ? 'bg-ui-negative text-ui-inkOnFill' : 'text-ui-faint'}`}
     >
       <p className={bad ? 'font-bold' : ''}>
         viewport {dims.vw} · document {dims.sw} · {rows.length} overflowing
@@ -184,7 +184,7 @@ export default function AnswerPreview() {
       <OverflowReport />
       {shown.map(([label, game]) => (
         <section key={label}>
-          <h2 className="px-4 pt-8 text-xs uppercase tracking-[0.3em] text-game-accent md:px-8">
+          <h2 className="px-4 pt-8 text-xs uppercase tracking-[0.3em] text-ui-chosen md:px-8">
             {label}
           </h2>
           {/* Mirrors app/game/[code]/page.js's wrapper exactly — the brand bar

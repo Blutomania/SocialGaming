@@ -15,6 +15,9 @@ export default function CardHand({ game, myId, socket }) {
   if (!me) return null;
 
   const slotTaken = !!game.cardSlot;
+  const playedBy = slotTaken
+    ? game.players.find((p) => p.id === game.cardSlot.playerId)?.name
+    : null;
 
   function play(cardId) {
     if (cardId === 'heckle') {
@@ -31,7 +34,7 @@ export default function CardHand({ game, myId, socket }) {
 
   return (
     <div className="space-y-2">
-      <h3 className="text-sm font-semibold text-gray-300">Your hand</h3>
+      <h3 className="text-sm font-semibold text-ui-ink">Your hand</h3>
       {/* Wrap, not fixed columns: the card carries its own width now
           (GameCard.CARD_WIDTH), so every card is the same size by
           construction — which is what the old fixed-column grid was for, and
@@ -40,26 +43,29 @@ export default function CardHand({ game, myId, socket }) {
         {me.hand.map((id) => (
           <GameCard key={id} cardId={id} disabled={slotTaken} onClick={play} />
         ))}
-        {me.hand.length === 0 && <p className="text-sm text-gray-500">No cards left.</p>}
+        {me.hand.length === 0 && <p className="text-sm text-ui-faint">No cards left.</p>}
       </div>
 
       {pendingHeckle && (
         <div className="flex gap-2">
           <input
-            className="flex-1 rounded bg-game-card px-3 py-2"
+            className="field min-w-0 flex-1"
             placeholder="Type your heckle…"
             value={heckleText}
             onChange={(e) => setHeckleText(e.target.value)}
           />
-          <button className="rounded bg-game-accent px-3 py-2 text-game-dark" onClick={playHeckle}>
+          <button className="act" disabled={!heckleText.trim()} onClick={playHeckle}>
             Send
           </button>
         </div>
       )}
 
+      {/* Name the person (§3f). Who played it is the social part — "a card
+          was played" throws away the one fact the room wants to argue about. */}
       {slotTaken && (
-        <p className="text-sm text-gray-400">
-          {CARD_INFO[game.cardSlot.cardId].name} was played — card slot is closed for this question.
+        <p className="text-sm text-ui-faint">
+          {playedBy ? `${playedBy} played ` : ''}
+          {CARD_INFO[game.cardSlot.cardId].name} — the card slot is closed for this question.
         </p>
       )}
     </div>

@@ -14,11 +14,13 @@
    to the page — a texture that scrolls with the content reads as wallpaper
    sliding past, which is exactly what it must not look like. */
 :root {
-  --ground: #2F4459;
+  /* Read from lib/palette.js through the Tailwind theme, so the ground and
+     the plate can never drift from the one place a colour is decided. */
+  --ground: theme('colors.ui.ground');
 }
 
 body {
-  @apply text-white min-h-screen;
+  @apply text-ui-ink min-h-screen;
   background-color: var(--ground);
   background-image: url('/brand/question-field.svg');
   background-size: 600px 600px;
@@ -48,12 +50,141 @@ body {
       empty stripe rather than a deliberate one. Don't tune one without
       re-checking the other.
 
-   Controls are NOT plates. Inputs, buttons and chips stay on `game.card`,
-   which reads as recessed against the plate — item 40's split between what
-   must be read (plates) and what must be grabbed (objects). */
+   Controls are NOT plates. Inputs, buttons and chips are BOXES (below), on
+   the surface colour, which reads as recessed against the plate — item 40's
+   split between what must be read (plates) and what must be grabbed. */
 @layer components {
   .panel {
     background-color: var(--ground);
+  }
+
+  /* BOXES (item 53, docs/STYLE_GUIDE.md §2). Every interactive thing is a
+     square box with a heavy outline, and its FILL is the whole vocabulary:
+
+       outlined, surface fill ......... available
+       outline brightens .............. a choice under the cursor
+       fills with Act ................. an action under the cursor
+       filled with Chosen ............. selected
+       deep fill, dim outline ......... disabled — and it does not react
+       Chosen fill, not a button ...... a stamp: done, cannot change
+       ink outline, no fill, shimmer .. live status: still happening
+
+     Cards are NOT boxes. They stay objects — rounded, saturated, shadowed —
+     because they are the thing you throw at someone (item 40). */
+  .box {
+    @apply border-2 border-ui-line bg-ui-surface px-4 py-2 text-ui-ink transition-colors;
+  }
+
+  /* :not(:disabled) on every hover is the point, not caution: a disabled
+     control that lights up under the cursor looks clickable, and a player
+     who clicks it and gets nothing decides the game is broken (§2c). */
+  .choice {
+    @apply box;
+  }
+  .choice:hover:not(:disabled) {
+    @apply border-ui-ink;
+  }
+  .choice[aria-pressed='true'] {
+    @apply border-ui-chosen bg-ui-chosen font-semibold text-ui-inkOnFill;
+  }
+
+  /* An action fills with ACT on hover, never with Chosen — that would make
+     "click me" read as "already picked" (§2b). The label is gold at rest so
+     an action still reads as one on a phone, where nothing hovers. */
+  .act {
+    @apply box border-ui-act font-semibold text-ui-act;
+  }
+  .act:hover:not(:disabled) {
+    @apply bg-ui-act text-ui-inkOnFill;
+  }
+  .act:active:not(:disabled) {
+    @apply border-ui-actDim bg-ui-actDim text-ui-inkOnFill;
+  }
+
+  .box:disabled,
+  .choice:disabled,
+  .act:disabled {
+    @apply cursor-not-allowed border-ui-lineDim bg-ui-surfaceDeep font-normal text-ui-inkDisabled;
+  }
+
+  /* Adjoining options: one decision drawn as one strip of touching boxes,
+     exactly one filled (§2a). The negative margin collapses each shared
+     border to a single 2px line instead of a doubled 4px one, and a hovered
+     or chosen box is lifted above its neighbours so its whole outline shows. */
+  .choice-row {
+    @apply flex;
+  }
+  .choice-row > * + * {
+    margin-left: -2px;
+  }
+  .choice-row > *:hover,
+  .choice-row > [aria-pressed='true'] {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Text entry. A box too, so it reads as something to grab. */
+  .field {
+    @apply border-2 border-ui-line bg-ui-surface px-3 py-2 text-ui-ink placeholder:text-ui-faint;
+  }
+  .field:disabled {
+    @apply cursor-not-allowed border-ui-lineDim bg-ui-surfaceDeep;
+  }
+
+  /* Done and cannot change: a filled stamp, never a disabled button — a
+     disabled button suggests it might become available again (§2f). */
+  .stamp {
+    @apply inline-block border-2 border-ui-chosen bg-ui-chosen px-3 py-1 text-sm font-semibold uppercase tracking-wide text-ui-inkOnFill;
+  }
+
+  /* Still happening: outlined in ink (nothing here is to be pressed, so not
+     Act), no fill so it reads as open rather than settled (§2g). Render it
+     only while the status is live — when it changes, render something else,
+     and the motion goes with it. */
+  .live {
+    @apply inline-block border-2 border-ui-ink px-4 py-2 text-center;
+  }
+  .live-text {
+    background-image: linear-gradient(
+      110deg,
+      theme('colors.ui.ink') 42%,
+      theme('colors.white') 50%,
+      theme('colors.ui.ink') 58%
+    );
+    background-size: 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: live-shimmer 4s linear infinite;
+  }
+
+  /* Keyboard focus, on every box. Ink rather than Chosen or Act, because a
+     focused control is neither selected nor being asked for. */
+  .box:focus-visible,
+  .choice:focus-visible,
+  .act:focus-visible,
+  .field:focus-visible {
+    outline: 2px solid theme('colors.ui.ink');
+    outline-offset: 2px;
+  }
+}
+
+/* A slanted band of light crossing the words. Slow on purpose: if nothing else
+   on the screen moves, motion stays a signal. */
+@keyframes live-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -150% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-text {
+    animation: none;
+    background-image: none;
+    color: theme('colors.ui.ink');
   }
 }
 

@@ -55,18 +55,18 @@ export default function VoiceInput({ onTranscript, disabled }) {
         type="button"
         disabled={disabled}
         onClick={listening ? stop : start}
-        className={`rounded-full p-3 transition ${
-          listening
-            ? 'bg-game-red animate-pulse'
-            : 'bg-game-card hover:bg-game-accent hover:text-game-dark'
-        } disabled:opacity-40`}
+        aria-label={listening ? 'Stop listening' : 'Answer by voice'}
+        // An action box like any other; while listening it is live, so it
+        // takes the live outline and its motion — the one moving thing on the
+        // answer screen while the mic is open, and only then.
+        className={listening ? 'live animate-pulse px-3 py-2' : 'act px-3 py-2'}
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
           <path d="M12 14a3 3 0 003-3V5a3 3 0 10-6 0v6a3 3 0 003 3zm5-3a5 5 0 01-10 0H5a7 7 0 0014 0h-2zm-5 9a1 1 0 01-1-1v-2h2v2a1 1 0 01-1 1z"/>
         </svg>
       </button>
       {transcript && (
-        <span className="text-sm text-gray-400 italic">{transcript}</span>
+        <span className="text-sm italic text-ui-faint">“{transcript.replace(/^["“”]+|["“”]+$/g, '')}”</span>
       )}
     </div>
   );
