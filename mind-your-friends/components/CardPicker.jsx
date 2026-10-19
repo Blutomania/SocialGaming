@@ -2,7 +2,7 @@
 
 import GameCard from './GameCard';
 import { useState, useEffect, useCallback } from 'react';
-import { CARDS, ALL_CARD_IDS, HALF_OFF } from '../lib/cards';
+import { CARDS, CARD_INFO, ALL_CARD_IDS, HALF_OFF } from '../lib/cards';
 import { CARD_PICK_TIMER_MS } from '../lib/constants';
 
 const TIMER_SECONDS = CARD_PICK_TIMER_MS / 1000;
@@ -10,10 +10,14 @@ const TIMER_SECONDS = CARD_PICK_TIMER_MS / 1000;
 export default function CardPicker({ onPick }) {
   const [selectedId, setSelectedId] = useState(null);
   const [confirmed, setConfirmed] = useState(false);
+  // What was actually confirmed — the timer can auto-pick a card the player
+  // never touched, so `selectedId` is not always the answer.
+  const [pickedId, setPickedId] = useState(null);
   const [secondsLeft, setSecondsLeft] = useState(TIMER_SECONDS);
 
   const confirmPick = useCallback((id) => {
     setConfirmed(true);
+    setPickedId(id);
     onPick(id);
   }, [onPick]);
 
@@ -35,9 +39,16 @@ export default function CardPicker({ onPick }) {
 
   if (confirmed) {
     return (
-      <div className="text-center py-8">
-        <p className="text-game-green text-lg font-semibold">Card selected!</p>
-        <p className="text-gray-400 mt-2">Waiting for other players...</p>
+      // Done and unchangeable, so a stamp; then the live notice for what is
+      // still happening. The card's name rather than "Card selected!" — the
+      // stamp should say what was settled.
+      <div className="space-y-4 py-8 text-center">
+        <span className="stamp">{CARD_INFO[pickedId]?.name ?? 'Card'} is yours</span>
+        <div>
+          <span className="live">
+            <span className="live-text">Waiting for the others to pick</span>
+          </span>
+        </div>
       </div>
     );
   }
@@ -59,11 +70,11 @@ export default function CardPicker({ onPick }) {
     <div className="space-y-4">
       <div className="text-center">
         <h2 className="text-xl font-semibold mb-1">Card Selection</h2>
-        <p className="text-gray-400 text-sm">
+        <p className="text-sm text-ui-faint">
           Please select a card you will have throughout the game.
           You can play your card one time every round.
         </p>
-        <div className={`mt-2 text-2xl font-bold tabular-nums ${urgent ? 'text-game-red animate-pulse' : 'text-game-accent'}`}>
+        <div className={`mt-2 text-2xl font-bold tabular-nums ${urgent ? 'text-ui-caution animate-pulse' : 'text-ui-ink'}`}>
           {secondsLeft}s
         </div>
       </div>
@@ -89,13 +100,13 @@ export default function CardPicker({ onPick }) {
       </div>
 
       {selectedId && (
-        <p className="text-center text-sm text-gray-400">{CARDS[selectedId].description}</p>
+        <p className="text-center text-sm text-ui-faint">{CARDS[selectedId].description}</p>
       )}
 
       <button
         disabled={!selectedId}
         onClick={() => confirmPick(selectedId)}
-        className="w-full rounded bg-game-accent px-4 py-2 font-semibold text-game-dark hover:opacity-90 disabled:opacity-40"
+        className="act w-full"
       >
         {selectedId ? `Pick ${CARDS[selectedId].name}` : 'Tap a card to select'}
       </button>

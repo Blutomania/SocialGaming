@@ -57,7 +57,7 @@ export default function WagerPie({ tier, selected = false, size = 100 }) {
       viewBox={`0 0 ${SIZE} ${SIZE}`}
       width={size * scale}
       height={size * scale}
-      className={selected ? 'text-slate-text' : 'text-slate-muted'}
+      className={selected ? 'text-ui-ink' : 'text-ui-faint'}
       role="img"
       aria-label={`${tier.label}: ${tier.value} points`}
     >

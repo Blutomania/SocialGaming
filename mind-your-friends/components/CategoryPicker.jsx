@@ -5,9 +5,13 @@ export default function CategoryPicker({ game, myId, socket }) {
 
   if (!isActive) {
     return (
-      <p className="text-center text-gray-300">
-        {game.players[game.activePlayerIndex].name} is choosing a category…
-      </p>
+      <div className="text-center">
+        <span className="live">
+          <span className="live-text">
+            {game.players[game.activePlayerIndex].name} is choosing a category
+          </span>
+        </span>
+      </div>
     );
   }
 
@@ -18,11 +22,17 @@ export default function CategoryPicker({ game, myId, socket }) {
         {game.categoryOptions.map((opt) => (
           <button
             key={opt.category}
-            className="rounded bg-game-card px-4 py-3 text-left hover:bg-game-accent/30"
+            // The whole box is the hit target (§5), and it is a choice — one
+            // tap commits it, so it brightens on hover rather than filling.
+            className="choice px-4 py-3 text-left"
             onClick={() => socket.emit('turn:pickCategory', { category: opt.category })}
           >
             <div>{opt.category}</div>
-            <div className="text-xs text-gray-400">via {opt.submittedBy}</div>
+            {/* Attribution is the social beat ("Bob's Divorce"), so it is
+                shown — but only when there is a name to show (§3a). */}
+            {opt.submittedBy?.trim() && (
+              <div className="text-xs text-ui-faint">via {opt.submittedBy}</div>
+            )}
           </button>
         ))}
       </div>

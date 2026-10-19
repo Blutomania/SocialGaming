@@ -5,6 +5,77 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 50 — October 19, 2026 (MYF: back after two months — CLAUDE.md rewritten, the style guide adopted)
+
+**Branch:** `claude/great-curie-ybqupr`, from `main` @ `8bcc70b`. First MYF session since Session 33
+(August 20). The owner supplied `MYF_STYLE_GUIDE.md`, distilled from CYM's October screen work and
+from two reference games (*Mob Rules*, *Predict Red Flags* — neither reachable from the container,
+so the guide is the only description of them used).
+
+### Review — what was found
+
+- **`main`'s `mind-your-friends/` is the live MYF; `dev/mind-your-friends` is stale** (July 22, no
+  Godot client, no common history with `main` after the August squash). Confirmed, as MYF's own
+  notes already said.
+- **MYF's `CLAUDE.md` was 1,487 lines, ~90% history** — the same failure CYM's Session 38 fixed.
+- **Item 52 was never written.** Session 33 built the live-type title treatment and called it item
+  52, but the list stopped at 51 — so `CLAUDE.md` still described the retired metallic SVG as the
+  official mark, and still listed "owner renovating the metallic artwork" as an action item. Moot.
+- `docs/WIRING.md`'s porting table still said `server_py` had none of the August 12 changes;
+  item 42 ported all of them except `questionLog`/`postGame`. Annotated, not rewritten.
+
+### 1. CLAUDE.md rewritten — 1,487 → 289 lines
+
+New shape copied from CYM's: *what is true now* here, *why* in a new `docs/DECISIONS.md` (items
+1–51 moved verbatim, item numbers stable, plus a "what changed since" table so an old item is never
+trusted blind), *when* in this file. Item 52 written retroactively; item 53 is this session.
+
+### 2. The style guide, applied to the Next.js prototype
+
+**Next.js, not Godot**, deliberately: MYF's Godot client is one unstyled lobby, and every screen a
+player has seen — and every aesthetics pass (items 48–50) — is React. Guide copied in as
+`mind-your-friends/docs/STYLE_GUIDE.md`.
+
+- **`lib/palette.js`** — the colour roles, the one place a colour is decided. Tailwind exposes them
+  as `ui-*`; the `game.*`/`slate.*` tokens are deleted, not aliased. Act = the existing gold;
+  **Chosen = steel `#8EC5E8`** (new — before this gold meant both "selected" and "click me");
+  surface is *darker* than the ground, against the guide, because item 50 already decided controls
+  are recessed and the lighter step failed the floors. Provisional until the owner looks.
+- **`scripts/palette-test.mjs`** — 20 contrast pairs, a ban on colour-by-look classes, `ui-*`
+  role names validated. Negative-tested on four planted defects. **It caught two of this
+  session's own bugs** (the `inkFaint`/`faint` mismatch and GameCard's deleted token), both of which
+  a clean build would have shipped. Measuring also found the old red (2.67:1) and green (3.96:1)
+  failing as text on slate.
+- **Box vocabulary in `globals.css`:** `.choice`, `.act`, `.field`, `.stamp`, `.live` (+ shimmer),
+  `.choice-row` (adjoining options). Every hover is `:not(:disabled)`.
+- **Screens:** join, lobby, category pick, card pick, card hand, wager (now one strip of touching
+  boxes), answer (all Flow B states), results, Lineup, Worst Answer Wins, scoreboard, superlatives,
+  share controls, voice button, host slot.
+- **Honesty fixes:** who played a card / a Skip is named; no quote marks around *no answer
+  submitted*; empty hints/quips/answers not drawn; the lobby's waiting line tells the truth once
+  everyone is in.
+- **Left alone on purpose (MYF's decisions win):** borderless plates, cards as objects, fixed card
+  art per id (§4 tension flagged), the frozen share card's image colours.
+
+### Verification
+
+`palette-test` pass; `mechanics-test.js` 105 pass; `wordmark-test.js` pass; `server_py`
+`test_mechanics.py`, `test_turn_timers.py`, `test_coherence_engine.py` pass; `npm run build` clean;
+compiled CSS inspected for the box rules. Real server + headless Chromium at 390 and 1280: join,
+lobby (chosen / available / hovered / disabled / all ready), card pick, wager setter, and all six
+`/dev/answer` states — **no horizontal overflow anywhere**. **Not run:** `postgame-test.js` (needs
+an API key). **Not seen:** result and post-game screens in a real game.
+
+### Next session
+
+1. **Play it** — still the top of MYF's list since August 17 (PT-4 → PT-8).
+2. Owner looks at the new screens and the provisional Chosen / surface values.
+3. Owner decisions in MYF `CLAUDE.md` → Open work 2 (logo purples, Spotlight's 1s window, RoundLine,
+   card-art vs hidden hands).
+4. `server_py` `questionLog` + `postGame` (item 46), then the Godot screens, built to the guide.
+
+---
+
 ## Session 49 — October 16, 2026 (CYM: the first full APF walk; the host screen was deaf)
 
 **Branch:** `claude/exciting-lovelace-6g0xta`, identical to `main` at `abe559c`. No open PRs, no

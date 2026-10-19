@@ -48,7 +48,7 @@ export default function HomePage() {
             the copy worth keeping, because it is the one the sentence is
             walking towards. */}
         <div className="flex flex-col items-center pt-6 text-center">
-          <p className="text-lg leading-relaxed text-gray-300">
+          <p className="text-lg leading-relaxed text-ui-ink">
             Prove Your Knowledge
             <br />
             Play Your Cards
@@ -70,37 +70,36 @@ export default function HomePage() {
           <Wordmark size="hero" className="mt-6" />
         </div>
 
+      {/* Boxes, not rounded pills (docs/STYLE_GUIDE.md §2): square, heavy
+          outline, so the two fields and the two actions read as things to
+          grab against the plate-and-field ground. Both actions are Act —
+          outlined in gold at rest, filled on hover — because both are
+          "do this"; neither is a choice that stays selected. */}
       <input
-        className="w-64 rounded bg-game-card px-4 py-2 text-white placeholder-gray-400"
+        className="field w-64"
         placeholder="Your name"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
 
-      <button
-        className="w-64 rounded bg-game-accent px-4 py-2 font-semibold text-game-dark hover:opacity-90"
-        onClick={createGame}
-      >
+      <button className="act w-64" onClick={createGame}>
         Create Game
       </button>
 
       <div className="flex w-64 gap-2">
         <input
-          className="flex-1 rounded bg-game-card px-4 py-2 text-white placeholder-gray-400 uppercase"
+          className="field min-w-0 flex-1 uppercase"
           placeholder="CODE"
           maxLength={4}
           value={code}
           onChange={(e) => setCode(e.target.value)}
         />
-        <button
-          className="rounded bg-game-blue px-4 py-2 font-semibold hover:opacity-90"
-          onClick={joinGame}
-        >
+        <button className="act" onClick={joinGame}>
           Join
         </button>
       </div>
 
-      {error && <p className="text-game-red">{error}</p>}
+      {error && <p className="text-ui-negative">{error}</p>}
       </div>
     </main>
   );

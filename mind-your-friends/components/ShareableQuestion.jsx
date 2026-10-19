@@ -80,7 +80,7 @@ export default function ShareableQuestion({ questionLog, gameCode }) {
     <div className="space-y-4 text-left">
       <div>
         <h3 className="text-xl font-semibold">Share a question</h3>
-        <p className="text-sm text-gray-400">
+        <p className="text-sm text-ui-faint">
           Pick the one that broke the room. Your followers won&apos;t see the answer.
         </p>
       </div>
@@ -91,14 +91,12 @@ export default function ShareableQuestion({ questionLog, gameCode }) {
             <button
               type="button"
               onClick={() => choose(entry)}
-              className={`w-full rounded p-3 text-left text-sm transition ${
-                selected?.index === entry.index
-                  ? 'bg-game-gold/30 ring-1 ring-game-gold'
-                  : 'bg-game-card hover:bg-black/40'
-              }`}
+              // One question is picked at a time and stays picked: a choice.
+              aria-pressed={selected?.index === entry.index}
+              className="choice w-full p-3 text-left text-sm"
             >
               <span className="block">{entry.question}</span>
-              <span className="mt-1 block text-xs text-gray-400">
+              <span className="mt-1 block text-xs opacity-80">
                 {entry.category}
                 {entry.roomMissedIt && ' — nobody got it'}
               </span>
@@ -114,25 +112,21 @@ export default function ShareableQuestion({ questionLog, gameCode }) {
           ref={canvasRef}
           width={CARD_SIZE}
           height={CARD_SIZE}
-          className="w-full max-w-xs rounded border border-white/10"
+          className="w-full max-w-xs border-2 border-ui-line"
         />
         <div className="flex flex-wrap gap-2">
-          <button
-            type="button"
-            onClick={share}
-            className="rounded bg-game-gold px-4 py-2 font-semibold text-black"
-          >
+          <button type="button" onClick={share} className="act">
             Share
           </button>
           <button
             type="button"
             onClick={toggleAnswer}
-            className="rounded bg-black/30 px-4 py-2 text-sm hover:bg-black/50"
+            className="act text-sm"
           >
             {showingAnswer ? 'Hide answer' : 'Make answer card'}
           </button>
         </div>
-        {status && <p className="text-sm text-gray-400">{status}</p>}
+        {status && <p className="text-sm text-ui-faint">{status}</p>}
       </div>
     </div>
   );
@@ -140,6 +134,11 @@ export default function ShareableQuestion({ questionLog, gameCode }) {
 
 // --- Canvas rendering --------------------------------------------------------
 
+// The exported image keeps its own colours on purpose for now: this card is
+// parked and frozen by owner decision (CLAUDE.md → Parked), and the image is
+// what a sharer's followers see, so changing it is a product call, not a
+// restyle. It predates slate and does not use lib/palette.js — flagged in
+// docs/DECISIONS.md item 53.
 function drawCard(canvas, entry, withAnswer, gameCode) {
   if (!canvas || !entry) return;
   const ctx = canvas.getContext('2d');

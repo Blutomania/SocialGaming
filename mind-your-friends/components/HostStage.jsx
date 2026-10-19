@@ -18,13 +18,15 @@ export default function HostStage() {
     <aside className="hidden lg:block">
       <div className="sticky top-8">
         <div
-          className="flex w-full items-center justify-center rounded-lg border border-dashed border-gray-700 bg-black/30"
+          className="flex w-full items-center justify-center border-2 border-dashed border-ui-lineDim bg-ui-surfaceDeep"
           style={{ aspectRatio: '9 / 16' }}
         >
           <div className="px-4 text-center">
             <p className="text-4xl">🎙️</p>
-            <p className="mt-2 text-sm font-semibold text-gray-500">Your host</p>
-            <p className="mt-1 text-xs text-gray-600">Coming soon</p>
+            <p className="mt-2 text-sm font-semibold text-ui-faint">Your host</p>
+            {/* A placeholder says it is one, so nobody mistakes the empty
+                slot for something that failed to load (§4). */}
+            <p className="mt-1 text-xs uppercase tracking-widest text-ui-faint">FPO</p>
           </div>
         </div>
       </div>
