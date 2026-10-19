@@ -1491,7 +1491,11 @@ export function disconnectPlayer(game, playerId) {
   const player = game.players.find((p) => p.id === playerId);
   if (!player) return game;
   player.connected = false;
-  if (game.phase === 'LOBBY') return game;
+  // After the game ends nobody waits for anybody: people close the tab once
+  // the scores are up. Only `connected` matters then (superlativeVoters reads
+  // it), and a "waiting for reconnect…" line would land in the highlight reel
+  // the scoreboard shows — a claim that is simply false at GAME_OVER.
+  if (game.phase === 'LOBBY' || game.phase === 'GAME_OVER') return game;
   game.disconnectPending = game.disconnectPending || {};
   game.disconnectPending[playerId] = { since: Date.now() };
   logHighlight(game, `${player.name} disconnected — waiting for reconnect…`);
@@ -1944,6 +1948,12 @@ export async function resolveSuperlatives(game) {
     };
   });
 
+  // Set the tallies before the narration await, not after it. The stage has
+  // already flipped to 'results', so any broadcast landing during that await
+  // (another vote, a departure) used to send `results: null` — which the
+  // results screen renders as "nobody voted". The quips mutate these objects.
+  game.postGame.results = results;
+
   const awarded = results.filter((r) => r.winnerNames.length > 0);
   if (awarded.length > 0) {
     try {
@@ -1965,6 +1975,5 @@ export async function resolveSuperlatives(game) {
     }
   }
 
-  game.postGame.results = results;
   return game;
 }

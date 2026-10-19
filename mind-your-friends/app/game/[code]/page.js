@@ -66,14 +66,17 @@ export default function GamePage() {
 
   return (
     <main className="mx-auto min-h-screen max-w-7xl p-4 md:p-8">
-      <BrandBar code={game.code} />
+      {/* Two columns on a desktop, one on a phone (owner's markup, Session
+          50): the game takes two thirds and is centred in them; the host's
+          9:16 stage takes the last third and is the ONLY thing there.
 
-      {/* Two columns on a desktop, one on a phone. The game used to be a
-          single narrow column centred in a sea of empty space on anything
-          wider than a phone (playtest note 6); the host's 9:16 stage is what
-          that space is for. */}
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
+          The brand bar lives INSIDE the game column for that reason. It used
+          to span the whole page, which put the logo on the page's centre line
+          and everything beneath it on the game column's — two centres ~170px
+          apart at 1280 — and parked the room code above the host's slot. */}
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
         <div className="min-w-0">
+          <BrandBar code={game.code} showTitle={false} />
           {game.phase === 'LOBBY' && <Lobby game={game} myId={myId} socket={socket} />}
           {game.phase === 'GAME_OVER' && <ScoreBoard game={game} myId={myId} socket={socket} />}
           {game.phase !== 'LOBBY' && game.phase !== 'GAME_OVER' && (

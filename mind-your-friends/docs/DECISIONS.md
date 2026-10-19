@@ -101,6 +101,47 @@ table. `scripts/postgame-test.js` (2 real Claude calls) did not run: no API key 
 
 Full list of screen changes: `SESSIONS.md`, Session 50.
 
+### 53a. The wager tile — owner-directed, Session 50
+
+The owner supplied two screenshots of the *Mob Rules* episode picker and asked for the wager
+buttons to work like it: **a highlighted border marks the chosen one**, with the wager value small
+on top and a word large beneath — **Easiest, Easy, Medium, Hard, Hardest**. Built as a reusable
+`.tile` class in `app/globals.css`; the words live on `WAGER_TIERS` (`difficultyLabel`) in both
+`lib/constants.js` and `server_py/constants.py`, so the Godot screen inherits them.
+
+- **This overrides the guide's "filled = chosen" for this control, by the owner's call.** The lobby
+  chips and other choices still fill. Whether tiles replace fills elsewhere is an open question.
+- **The resting outline is the dim one, as in the reference** — under the guide's 3:1 affordance
+  floor. The lit tile beside it and the hover are what say "pressable". Measured in the browser:
+  rest `#5C7389`, lit `#8EC5E8`.
+- **The small pie in each tile is gone** — the big pie above draws the chosen stake, and five
+  pies beside five words said it twice. One line to restore.
+- **Phone: five stacked rows; sm and up: five across.** Five tiles across 390px leave ~50px for
+  HARDEST.
+- **Every rung now has a word**, replacing item 49's "only the two ends are labelled". The words
+  are honest: each tier really does set the question's difficulty (`lib/coherence.js`).
+- Five words means five tiers: item 44 (1)'s "fewer rungs" is **declined by the owner** (Session
+  50, confirmed explicitly). The ladder stays `12 / 25 / 50 / 100 / 200`.
+
+### 53b. The in-game layout — owner's markup, Session 50
+
+From the owner's markup of the wager screen ("this alignment is weird"):
+
+- **Two columns, ⅔ : ⅓**, the game centred in the left, the host's FPO slot the ONLY thing in the
+  right. The brand bar moved inside the game column: spanning the page, it centred the logo on
+  the page's centre line while everything below sat on the game column's, ~170px apart at 1280,
+  and it parked the room code above the host slot. Phones are unchanged (one column, no host).
+  `app/dev/answer` mirrors the layout and was updated with it.
+- **No title treatment in game** (`BrandBar showTitle={false}`) — the logo carries the brand
+  alone, which the composition rule allows. The join screen keeps it. Owner confirmed.
+- **The round status sits with the scores**, one centred line, rather than hard left with the
+  scores hard right. This revisits item 40's "round data upper left", by the owner's call.
+- **The wager screen's big pie is gone**; the lit tile is the statement of the stake. The
+  sentence that referred to "the wedge" was rewritten, since there is no wedge to see.
+- **"Lock in" is blue** (`.act-chosen`): an action in the colour of the selection it commits.
+  A deliberate exception to "Act is gold", scoped in its CSS comment to buttons that sit beside
+  the choice they commit — elsewhere blue still means "selected".
+
 ## 52. The title treatment becomes live type — **built, August 20 2026 (Session 33)**
 
 *Written retroactively on October 19 2026: Session 33 built this and referred to it as item 52,
@@ -361,7 +402,10 @@ real API calls, so it isn't part of any routine check.
     - ~~Voice input~~ — `VoiceInput.jsx` component using Web Speech API.
       Server contract already supports `inputMode: 'voice'`. Wire into
       `GameBoard.jsx` answer input when ready for playtest.
-27. **[FUTURE] Group splitting** — when 7+ players want to play together,
+27. **[KILLED by owner, October 19 2026 — Session 50] Group splitting** — *"I no longer think a
+    use case of 7+ players is worth worrying about."* Spec and any plan to build it are dropped;
+    nothing was ever built. The 3–6 hard cap at join (item 11) stays and is the answer. Original
+    entry, kept for the record: when 7+ players want to play together,
     design a splintering mechanic to auto-create balanced sub-games (e.g.
     4+3, 3+3+3). Parked until core game is proven.
 28. ~~**Extended playtest**~~ — ran an automated 3-player Playwright game that
@@ -1093,7 +1137,8 @@ real API calls, so it isn't part of any routine check.
     `readingEndsAt` instead; renaming it to `buzzerOpensAt` would collide with a real field that
     means something else.
 
-44. **[TABLED by owner, August 17 2026 — not started]** Two follow-ups to the wager and
+44. **[Session 50: (1) DECLINED by owner — five tiers stay, each now named on its tile (item
+    53a). (2) still tabled.]** Original entry: **[TABLED by owner, August 17 2026 — not started]** Two follow-ups to the wager and
     difficulty-colour work committed the same day (`f31612f`), recorded in the owner's own words so the intent isn't paraphrased away:
 
     > 1. Wage tier simplification
@@ -1154,7 +1199,19 @@ real API calls, so it isn't part of any routine check.
       payout formula from `constants.js` so that number can't drift, and makes every behavioural
       assumption a named knob. Re-run it after touching the ladder or the share.
 
-46. **[NOT STARTED — the last real gap before Godot post-game work] `server_py` needs
+46. **[DONE, Session 50 — October 19 2026]** Ported: `_log_question()` from `next_turn()`, the
+    superlative functions with `postGame` inside GAME_OVER, `generate_superlatives()` /
+    `narrate_superlative_results()` (prompts verbatim, ids in the prompt), and in `main.py` the
+    post-game kickoff, the 90s vote timer, `POST /games/{code}/postgame/vote` and `/skip`, and a
+    re-check when a departure completes the ballot (handed to a thread — that path is the event
+    loop). Locking follows `resolve_answer_attempt()`: claim under the lock, call Claude without
+    it. Two deliberate differences from the JS, both now fixed in the JS too where they applied:
+    the tallies are published *before* the host's quips arrive (an `on_tallied` callback), and a
+    player leaving after GAME_OVER no longer writes "waiting for reconnect…" into the highlight
+    reel the scoreboard shows. `server_py/test_postgame.py`, 58 assertions, zero API cost,
+    mutation-tested six ways. **Not done:** `ApiClient.gd` calls, and the attrition route to
+    GAME_OVER (no disconnect-vote endpoints exist in `main.py` yet). Original entry:
+    **[NOT STARTED — the last real gap before Godot post-game work] `server_py` needs
     `questionLog` and `postGame`.** The Python backend records nothing about the questions it
     asked and has no post-game stage, so a Godot client physically cannot render any end-of-game
     screen — there is no data to render. The JS prototype has both (item 35): `logQuestion()`

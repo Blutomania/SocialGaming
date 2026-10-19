@@ -16,7 +16,11 @@
 import Logo, { LOGO_HEIGHT } from './Logo';
 import Wordmark from './Wordmark';
 
-export default function BrandBar({ code }) {
+// `showTitle` is false inside a game (owner's markup, Session 50): the room
+// is already in the game, so the logo carries the brand alone — which the
+// composition rule allows; it is the title treatment that may never appear
+// WITHOUT the logo, not the reverse. The empty cell keeps the logo centred.
+export default function BrandBar({ code, showTitle = true }) {
   return (
     // Two shapes, one set of elements — no duplicated markup, because a
     // second copy of the bar is a second copy to forget to update.
@@ -31,7 +35,7 @@ export default function BrandBar({ code }) {
     // leave over — hence explicit column starts rather than justify-between.
     <header className="mb-4 grid grid-cols-[1fr_auto] items-center gap-x-2 gap-y-3 sm:grid-cols-3">
       <div className="justify-self-start sm:col-start-1 sm:row-start-1">
-        <Wordmark code={code} />
+        {showTitle && <Wordmark code={code} />}
       </div>
 
       <div className="justify-self-end sm:col-start-3 sm:row-start-1">

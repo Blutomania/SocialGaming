@@ -11,12 +11,14 @@ TOTAL_QUESTIONS = ROUNDS * QUESTIONS_PER_ROUND  # 24
 # a 500 swung 43%), at a resolution finer than any decision a person can make.
 # See lib/constants.js for the full reasoning and scripts/economy-sim.js for the
 # numbers behind it.
+# difficultyLabel is the word on the wager tile; mirrors lib/constants.js so
+# the Godot wager screen shows the same five words as the prototype.
 WAGER_TIERS = [
-    {"value": 12, "label": "Sliver", "fraction": 1 / 8},
-    {"value": 25, "label": "Slice", "fraction": 1 / 4},
-    {"value": 50, "label": "Half", "fraction": 1 / 2},
-    {"value": 100, "label": "Whole pie", "fraction": 1},
-    {"value": 200, "label": "DOUBLE", "fraction": 1, "super": True},
+    {"value": 12, "label": "Sliver", "difficultyLabel": "Easiest", "fraction": 1 / 8},
+    {"value": 25, "label": "Slice", "difficultyLabel": "Easy", "fraction": 1 / 4},
+    {"value": 50, "label": "Half", "difficultyLabel": "Medium", "fraction": 1 / 2},
+    {"value": 100, "label": "Whole pie", "difficultyLabel": "Hard", "fraction": 1},
+    {"value": 200, "label": "DOUBLE", "difficultyLabel": "Hardest", "fraction": 1, "super": True},
 ]
 WAGER_VALUES = [t["value"] for t in WAGER_TIERS]
 MIN_WAGER = WAGER_VALUES[0]

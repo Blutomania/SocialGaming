@@ -88,7 +88,7 @@ never appear without the logo.
 | | State |
 |---|---|
 | **Next.js prototype** (`app/`, `components/`, `lib/*.js`, `server.js`) | **The playable game, end to end**, Flow B, post-game and all. Every aesthetics pass was made here. It is the behavioural reference — **do not delete it** until Godot reaches parity and is playtested. |
-| **`server_py/`** (FastAPI) | Full port of the game logic, Flow B included (item 42). **Missing `questionLog` and `postGame`** (item 46). |
+| **`server_py/`** (FastAPI) | Full port of the game logic: Flow B (item 42), the question log and superlative voting (item 46). **At parity with the prototype.** |
 | **`godot/`** client | `ApiClient.gd`, `GameState.gd`, and **one screen** — the lobby, unstyled, with stubbed registration (item 34). No round-loop screens. |
 
 **Why Godot at all (item 31):** both titles target Steam and consoles, and a browser app has no
@@ -122,9 +122,11 @@ whether the lock window gives time to commit (PT-7), and whether 0.75× makes bu
 - Item 40's open three: does the shareable standings chart unpark the frozen share card; which cut
   of the chart gets shared; can a player skip a host moment.
 
-**3. `server_py`: `questionLog` + `postGame` (item 46).** The last backend gap; blocks any Godot
-post-game screen. Port `logQuestion()` with its single funnel; ship `questionLog` **only** in the
-`GAME_OVER` branch of `player_view()`; key superlative quips by id, not title.
+**3. ~~`server_py`: `questionLog` + `postGame`~~ — done (item 46, Session 50).** The backend now
+has everything a Godot end-of-game screen needs: `POST /games/{code}/postgame/vote` and `/skip`,
+the question log at GAME_OVER only. Not yet in `ApiClient.gd` — add the two calls with the screen.
+**One route is still missing on both sides of the port:** `main.py` exposes no disconnect-vote
+endpoints, so a game cannot end by attrition there; when it can, call `_start_post_game` on it.
 
 **4. Godot screens** — category picker (3 categories + the curated grid), card pick, then the round
 loop WAGER → CARD → QUESTION → reading → ANSWER → RESULT, then GAME_OVER (after 3). Build them to
@@ -135,13 +137,13 @@ CYM's Session 38 found the engine's hosts blocked.
 **5. Live-test disconnect/reconnect and inactivity auto-advance against `server_py`** — ported,
 never exercised.
 
-**6. Tabled by the owner (item 44):** wager-tier simplification (12 and 25 barely differ —
-`scripts/economy-sim.js`), and widening the difficulty ramp's hue toward blue-green / yellow-green
-(edit `scripts/build-difficulty-colors.mjs`, never the generated hexes).
+**6. Tabled by the owner (item 44):** widening the difficulty ramp's hue toward blue-green /
+yellow-green (edit `scripts/build-difficulty-colors.mjs`, never the generated hexes). The other
+half, fewer wager tiers, was **declined** in Session 50 — five tiers stay, each named on its tile.
 
 **7. Spec'd, not built:** the **Chain** round (`GAME_DESIGN.md`) — needs a call on round-level
-category selection first. **Group splitting** for 7+ players (item 27). **Host video** as a
-centre-screen takeover with pre-packaged attitude clips (item 40; cost estimate deferred).
+category selection first. **Host video** as a centre-screen takeover with pre-packaged attitude
+clips (item 40; cost estimate deferred).
 
 **8. Proposed, not done:** rename "open answering" → "buzz-in" (item 43) as one atomic pass, and
 rename `answerOpensAt` → `readingEndsAt` — **not** `buzzerOpensAt`, which collides with a real field.
@@ -152,6 +154,9 @@ rename `answerOpensAt` → `readingEndsAt` — **not** `buzzerOpensAt`, which co
 |---|---|
 | Voice input | Text-only is fine for now. Keep honouring the `text`/`voice` transform split — voice is the destination. |
 | Shareable Question polish | The canvas card + Web Share is the placeholder, frozen there. Don't extend it; don't rip it out. |
+
+**Killed by owner decision — do not build, do not re-propose:** group splitting for 7+ players
+(item 27). The 3–6 cap at join (item 11) is the whole answer to a big group.
 
 **Known broken:** `scripts/coherence-test.js` imports `POINT_TIERS`, which no longer exists (the
 ladder replaced it). Fixing it needs a call on which wager values to sample, and it spends real
@@ -209,6 +214,9 @@ RESULT; `questionLog` (every correct answer) ships only at `GAME_OVER`.
   disabled look that never reacts to hover; done things are **stamps**, not disabled buttons;
   live status is an outlined notice that shimmers until it stops being true. The classes are in
   `app/globals.css` (`.box`, `.choice`, `.act`, `.stamp`, `.live`).
+- **In game: two columns, ⅔ game : ⅓ host slot**, the brand bar inside the game column and no
+  title treatment there (item 53b). Choices whose selection is a lit border use `.tile`; an
+  action that commits the selection beside it uses `.act-chosen` (blue), not `.act` (gold).
 - **Cards stay objects** — saturated, rounded, shadowed, fixed art per card id.
 - **Every colour is measured, never picked by eye**: `lib/palette.js` (roles,
   `scripts/palette-test.mjs`), the difficulty ramp (`scripts/build-difficulty-colors.mjs` refuses
@@ -233,6 +241,7 @@ All zero API cost unless marked.
 | `cd server_py && python3 test_mechanics.py` | The Python port, incl. the ticket-lock thread race (63) |
 | `python3 server_py/test_turn_timers.py` | Item 47's regression test (12) |
 | `python3 server_py/test_coherence_engine.py` | Both titles share one engine (23) |
+| `cd server_py && python3 test_postgame.py` | The question log, superlative voting, and `main.py` opening and closing it on a short clock (58). Mutation-tested six ways |
 | `/dev/answer` in a browser | Every answer-screen state. **Use Playwright's `viewport`** — headless `--window-size` lays out at 500px |
 
 ---

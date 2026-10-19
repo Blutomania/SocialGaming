@@ -283,8 +283,51 @@ def _schedule_next_turn(code: str, game: dict) -> None:
             if game["phase"] != "RESULT":
                 return  # already advanced by another path
             gs.next_turn(game)
+            over = game["phase"] == "GAME_OVER"
         _broadcast_sync(code, game)
+        # next_turn() is the only route to GAME_OVER this backend has (the JS
+        # also ends games through the disconnect-vote resume, which main.py
+        # does not expose yet — add the same call there when it does).
+        if over:
+            _start_post_game(code, game)
     threading.Timer(RESULT_SCREEN_SECONDS, fire).start()
+
+
+# How long superlative voting stays open before the votes that did arrive are
+# tallied anyway. Matches server.js's POST_GAME_VOTE_MS.
+POST_GAME_VOTE_SECONDS = 90
+
+
+def _start_post_game(code: str, game: dict) -> None:
+    """Opens superlative voting once the game ends (CLAUDE.md items 35, 46).
+    The GAME_OVER screen has already been broadcast, so the scores land
+    instantly and the voting UI follows a moment later, rather than everyone
+    staring at a spinner for the length of a Claude call."""
+    if not gs.begin_superlative_voting(game, lock=_games_lock):
+        # Already running, or nothing to vote on: begin_superlative_voting
+        # cleared postGame, so the plain scoreboard stands on its own.
+        _broadcast_sync(code, game)
+        return
+    _broadcast_sync(code, game)
+
+    def expire():
+        # One slow (or departed) player must not strand the room on the
+        # voting screen — tally whatever came in.
+        _resolve_post_game(code, game)
+    threading.Timer(POST_GAME_VOTE_SECONDS, expire).start()
+
+
+def _resolve_post_game(code: str, game: dict) -> None:
+    """Tally, publish, then publish again once the host's quips arrive.
+    resolve_superlatives() is idempotent — whichever of all-voted, timer
+    expiry or a departure gets here first tallies, the rest no-op."""
+    try:
+        gs.resolve_superlatives(
+            game, lock=_games_lock, on_tallied=lambda: _broadcast_sync(code, game)
+        )
+    except Exception as e:
+        print(f"Superlative tally failed for {code}:", e)
+    _broadcast_sync(code, game)
 
 
 # ---------------------------------------------------------------------------
@@ -559,6 +602,40 @@ def attempt_lineup_endpoint(code: str, body: AttemptLineupBody):
 
 
 # ---------------------------------------------------------------------------
+# Post-game superlative voting. Validation errors are 400s with a message —
+# the client shows them inline on the ballot, as the JS ack callback does.
+# ---------------------------------------------------------------------------
+
+class SuperlativeVoteBody(BaseModel):
+    playerId: str
+    categoryId: str
+    targetPlayerId: str
+
+
+@app.post("/games/{code}/postgame/vote")
+def postgame_vote_endpoint(code: str, body: SuperlativeVoteBody):
+    game = _get_game_or_404(code)
+    _apply_locked(code, game, gs.cast_superlative_vote, body.playerId, body.categoryId, body.targetPlayerId)
+    with _games_lock:
+        done = gs.all_superlative_votes_in(game)
+    if done:
+        _resolve_post_game(code, game)
+    return {"ok": True}
+
+
+@app.post("/games/{code}/postgame/skip")
+def postgame_skip_endpoint(code: str, body: PlayerOnlyBody):
+    """"Skip all": abstain from every remaining award at once."""
+    game = _get_game_or_404(code)
+    _apply_locked(code, game, gs.skip_superlative_voting, body.playerId)
+    with _games_lock:
+        done = gs.all_superlative_votes_in(game)
+    if done:
+        _resolve_post_game(code, game)
+    return {"ok": True}
+
+
+# ---------------------------------------------------------------------------
 # WebSocket — push-only. All actions go through the REST endpoints above;
 # this just delivers game:state / error events, matching ApiClient.gd's
 # ws_event(event_name, data) signal contract from the CYM client.
@@ -578,7 +655,13 @@ async def ws_endpoint(ws: WebSocket, code: str, player_id: str = ""):
         await _ws_manager.disconnect(code, player_id)
         with _games_lock:
             gs.disconnect_player(game, player_id)
+            # Their leaving may be the last thing the tally was waiting on.
+            ballot_complete = game["phase"] == "GAME_OVER" and gs.all_superlative_votes_in(game)
         _broadcast_sync(code, game)
+        if ballot_complete:
+            # The tally makes a Claude call, and this is the event loop: hand
+            # it to a thread, or every socket in every room stalls behind it.
+            threading.Thread(target=_resolve_post_game, args=(code, game), daemon=True).start()
 
 
 @app.get("/health")

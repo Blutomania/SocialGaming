@@ -392,3 +392,86 @@ Set moderated to true only if you had to meaningfully change the intent."""
         model=MODEL, max_tokens=256, messages=[{"role": "user", "content": prompt}]
     )
     return _parse_json(response.content[0].text)
+
+
+def generate_superlatives(*, highlight_reel, question_log, player_names):
+    """The post-game award categories, from what actually happened in the
+    game. One call, not one per category — same batching reason as
+    evaluate_worst_answers: cheaper, and it lets Claude pick a SET of awards
+    that don't all reward the same player.
+
+    Grounded in the highlight reel and the question log rather than invented:
+    an award nobody recognises ("Most Diplomatic") is worse than none, because
+    the room cannot vote on it honestly. Prompt copied from the JS version."""
+    anthropic = _require_client()
+
+    moments = "\n".join(highlight_reel[-40:]) or "(nothing notable was logged)"
+    questions = "\n".join(
+        f'Q{q["index"] + 1} [{q["category"]}] {q["question"]} -> {q["outcomeSummary"]}'
+        for q in question_log
+    ) or "(no questions recorded)"
+
+    prompt = f"""A group of friends just finished a party trivia game. Here are the players:
+{", ".join(player_names)}
+
+Memorable moments logged during the game:
+{moments}
+
+The questions asked and how they went:
+{questions}
+
+Invent 3-4 superlative award categories for the group to vote on, based on what
+ACTUALLY happened above. Rules:
+- Every category must be recognizable to someone who was in this game — reference
+  real events from the log, not generic party-game awards.
+- They should be funny and affectionate, not mean. This is a casual social game.
+- Do NOT decide the winners. The players vote; you only write the categories.
+- Vary them — don't write four awards that would all obviously go to one person.
+
+Respond with ONLY a JSON array, no other text:
+[
+  {{
+    "id": "short_snake_case_id",
+    "title": "The award name",
+    "description": "one line explaining what it's for, referencing what happened"
+  }}
+]"""
+
+    response = anthropic.messages.create(
+        model=MODEL, max_tokens=1024, messages=[{"role": "user", "content": prompt}]
+    )
+    parsed = _parse_json(response.content[0].text)
+    return parsed if isinstance(parsed, list) else []
+
+
+def narrate_superlative_results(*, results):
+    """The host's announcement line for each award once voting closes,
+    batched into one call.
+
+    The id MUST appear in the prompt: without it Claude has no way to echo it
+    back and helpfully returns the title instead, which matched nothing in the
+    JS version and silently dropped every quip (CLAUDE.md item 35)."""
+    anthropic = _require_client()
+
+    summary = "\n".join(
+        f'[{r["id"]}] {r["title"]}: {" & ".join(r["winnerNames"])} ({r["voteCount"]} vote(s))'
+        for r in results
+    )
+
+    prompt = f"""You are the AI host of a party trivia game announcing the final superlative
+awards. Here are the categories and who the group voted for:
+
+{summary}
+
+Write one short, punchy announcement line per award — the kind a game show host
+delivers. Address winners by name. Affectionate teasing is good; meanness is not.
+
+Respond with ONLY a JSON array, in the same order as the awards above. Use the
+exact id shown in [square brackets], not the award title:
+[{{ "id": "the_award_id", "quip": "the host's line" }}]"""
+
+    response = anthropic.messages.create(
+        model=MODEL, max_tokens=768, messages=[{"role": "user", "content": prompt}]
+    )
+    parsed = _parse_json(response.content[0].text)
+    return parsed if isinstance(parsed, list) else []

@@ -192,9 +192,9 @@ export default function AnswerPreview() {
               to share the page with, so a preview without them judges a screen
               nobody ever sees. Keep this in step if that layout changes. */}
           <main className="mx-auto max-w-7xl p-4 md:p-8">
-            <BrandBar code={game.code} />
-            <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
+            <div className="grid gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
               <div className="min-w-0">
+                <BrandBar code={game.code} showTitle={false} />
                 <GameBoard game={game} myId={game.myPlayerId} socket={noopSocket} />
               </div>
               <HostStage />
