@@ -39,4 +39,5 @@ Until Session 50 the root `CLAUDE.md` *was* CYM's file. Code comments and older 
   hands, deal, played). MYF really is a card game and uses it.
 - **All Claude calls are server-side.** Invoke Python as `python3`.
 - **Run the doc checkers after editing any instructions file:** `python3 scripts/check_doc_claims.py`
-  and `python3 scripts/check_decisions.py`. They read this file, `.claude/rules/*.md` and `docs/`.
+  and `python3 scripts/check_decisions.py` (which checks both games' item lists). They read this
+  file, `.claude/rules/*.md` and `docs/`; the second also reads MYF's docs and source comments.
