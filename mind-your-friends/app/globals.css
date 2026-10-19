@@ -101,9 +101,30 @@ body {
     @apply border-ui-actDim bg-ui-actDim text-ui-inkOnFill;
   }
 
+  /* An action that COMMITS a selection, in the selection's colour (owner,
+     Session 50: the wager's "Lock in" — "BLUE outline and text"). It is still
+     an action — outlined at rest, filled under the cursor — but blue, so it
+     visibly belongs to the lit tile it is about to lock. Use it only beside
+     the choice it commits; anywhere else blue still means "selected", and a
+     blue button with nothing selected next to it would say so falsely. */
+  .act-chosen {
+    @apply box border-ui-chosen font-semibold text-ui-chosen;
+  }
+  .act-chosen:hover:not(:disabled) {
+    @apply bg-ui-chosen text-ui-inkOnFill;
+  }
+  .act-chosen:active:not(:disabled) {
+    @apply bg-ui-chosen text-ui-inkOnFill;
+  }
+  .act-chosen:focus-visible {
+    outline: 2px solid theme('colors.ui.ink');
+    outline-offset: 2px;
+  }
+
   .box:disabled,
   .choice:disabled,
-  .act:disabled {
+  .act:disabled,
+  .act-chosen:disabled {
     @apply cursor-not-allowed border-ui-lineDim bg-ui-surfaceDeep font-normal text-ui-inkDisabled;
   }
 

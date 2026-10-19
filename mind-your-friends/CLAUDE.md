@@ -214,6 +214,9 @@ RESULT; `questionLog` (every correct answer) ships only at `GAME_OVER`.
   disabled look that never reacts to hover; done things are **stamps**, not disabled buttons;
   live status is an outlined notice that shimmers until it stops being true. The classes are in
   `app/globals.css` (`.box`, `.choice`, `.act`, `.stamp`, `.live`).
+- **In game: two columns, ⅔ game : ⅓ host slot**, the brand bar inside the game column and no
+  title treatment there (item 53b). Choices whose selection is a lit border use `.tile`; an
+  action that commits the selection beside it uses `.act-chosen` (blue), not `.act` (gold).
 - **Cards stay objects** — saturated, rounded, shadowed, fixed art per card id.
 - **Every colour is measured, never picked by eye**: `lib/palette.js` (roles,
   `scripts/palette-test.mjs`), the difficulty ramp (`scripts/build-difficulty-colors.mjs` refuses

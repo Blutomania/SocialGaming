@@ -123,6 +123,25 @@ on top and a word large beneath — **Easiest, Easy, Medium, Hard, Hardest**. Bu
 - Five words means five tiers, so item 44 (1)'s "fewer rungs" reads as declined — **awaiting the
   owner's explicit confirmation** before it is closed.
 
+### 53b. The in-game layout — owner's markup, Session 50
+
+From the owner's markup of the wager screen ("this alignment is weird"):
+
+- **Two columns, ⅔ : ⅓**, the game centred in the left, the host's FPO slot the ONLY thing in the
+  right. The brand bar moved inside the game column: spanning the page, it centred the logo on
+  the page's centre line while everything below sat on the game column's, ~170px apart at 1280,
+  and it parked the room code above the host slot. Phones are unchanged (one column, no host).
+  `app/dev/answer` mirrors the layout and was updated with it.
+- **No title treatment in game** (`BrandBar showTitle={false}`) — the logo carries the brand
+  alone, which the composition rule allows. The join screen keeps it. Owner confirmed.
+- **The round status sits with the scores**, one centred line, rather than hard left with the
+  scores hard right. This revisits item 40's "round data upper left", by the owner's call.
+- **The wager screen's big pie is gone**; the lit tile is the statement of the stake. The
+  sentence that referred to "the wedge" was rewritten, since there is no wedge to see.
+- **"Lock in" is blue** (`.act-chosen`): an action in the colour of the selection it commits.
+  A deliberate exception to "Act is gold", scoped in its CSS comment to buttons that sit beside
+  the choice they commit — elsewhere blue still means "selected".
+
 ## 52. The title treatment becomes live type — **built, August 20 2026 (Session 33)**
 
 *Written retroactively on October 19 2026: Session 33 built this and referred to it as item 52,

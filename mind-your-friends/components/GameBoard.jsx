@@ -195,7 +195,10 @@ function RoundAnnouncement({ announcement }) {
 // not something to press (item 53).
 function ScoreStrip({ game, myId, round, questionInRound }) {
   return (
-    <div className="panel flex flex-wrap items-center justify-center gap-x-6 gap-y-1 px-4 py-2 text-sm sm:justify-between">
+    // One centred line: where we are in the game, then who is where (owner's
+    // markup, Session 50). The round status used to sit hard left with the
+    // scores hard right, so the strip read as two things with a hole between.
+    <div className="panel flex flex-wrap items-baseline justify-center gap-x-6 gap-y-1 px-4 py-2 text-sm">
       <RoundLine round={round} questionInRound={questionInRound} />
       <div className="flex flex-wrap justify-center gap-x-6 gap-y-1">
         {game.players.map((p, i) => {
@@ -241,66 +244,66 @@ function WagerPicker({ game, myId, socket }) {
   const tier = picked ?? WAGER_TIERS[1];
 
   return (
-    <div className="flex flex-col gap-5 lg:flex-row lg:items-center">
-      {/* The pie: atop on mobile, to the left on desktop. */}
-      <div className="flex shrink-0 flex-col items-center gap-2 lg:w-48">
-        <WagerPie tier={tier} selected size={140} />
-        <p className="text-2xl font-semibold">{tier.value}</p>
-      </div>
-
-      <div className="flex-1 space-y-3 text-center">
+    // One centred column (owner's markup, Session 50). The big pie that sat
+    // to the left is gone: the lit tile already says which stake is chosen,
+    // and the pie beside it pulled the column off the centre line that the
+    // heading, the tiles and the button share.
+    <div className="space-y-3 text-center">
+      <div>
         <h2 className="text-xl font-semibold">Set {activeName}&apos;s wager</h2>
+        {/* Said in the tiles' own terms. It used to read "the bigger the
+            wedge…", which described the pie — and there is no pie here now. */}
         <p className="text-sm text-ui-faint">
-          The bigger the wedge, the harder the question {activeName} gets.
+          The harder the question, the more {activeName} wins — or loses.
         </p>
-        {game.roundRule.wagerMultiplier && (
-          <p className="text-sm text-ui-caution">
-            {game.roundRule.name}: this wager will be doubled automatically!
-          </p>
-        )}
-
-        {/* Five tiles, one lit (owner, Session 50 — the Mob Rules episode
-            picker): the wager value small on top, the difficulty it buys
-            large beneath. Every tier is named now, not just the two ends — the
-            word is the thing a setter is actually choosing ("give her a Hard
-            one"), and the number is the price of it.
-
-            The words come from WAGER_TIERS, so a ladder change moves them
-            with it. The small pies that used to sit in each tile are gone:
-            the big pie above already draws the chosen stake, and five more
-            pies beside five words was saying it twice.
-
-            Stacked rows on a phone, where five tiles across leave ~50px for
-            a word like HARDEST; five across from sm up. 25 starts chosen: it
-            is what gets locked if the setter just taps Lock in. */}
-        <div
-          className="grid grid-cols-1 gap-2 sm:grid-cols-5"
-          role="radiogroup"
-          aria-label="Wager"
-        >
-          {WAGER_TIERS.map((t) => (
-            <button
-              key={t.value}
-              onClick={() => setPicked(t)}
-              aria-pressed={t.value === tier.value}
-              className="tile w-full max-sm:flex-row max-sm:items-baseline max-sm:gap-3"
-            >
-              <span className="tile-num font-mono text-sm">{t.value}</span>
-              <span className="text-sm font-bold uppercase tracking-wide lg:text-[0.8rem]">
-                {t.difficultyLabel}
-              </span>
-            </button>
-          ))}
-        </div>
-
-        {/* Smaller than it was (owner, August 18 2026). */}
-        <button
-          className="act py-1.5 text-sm"
-          onClick={() => socket.emit('turn:setWager', { amount: tier.value })}
-        >
-          Lock in {tier.value}
-        </button>
       </div>
+      {game.roundRule.wagerMultiplier && (
+        <p className="text-sm text-ui-caution">
+          {game.roundRule.name}: this wager will be doubled automatically!
+        </p>
+      )}
+
+      {/* Five tiles, one lit (owner, Session 50 — the Mob Rules episode
+          picker): the wager value small on top, the difficulty it buys
+          large beneath. Every tier is named now, not just the two ends — the
+          word is the thing a setter is actually choosing ("give her a Hard
+          one"), and the number is the price of it.
+
+          The words come from WAGER_TIERS, so a ladder change moves them
+          with it. There are no pies on this screen any more — the lit tile
+          is the whole statement of the stake (owner's markup, Session 50).
+
+          Stacked rows on a phone, where five tiles across leave ~50px for
+          a word like HARDEST; five across from sm up. 25 starts chosen: it
+          is what gets locked if the setter just taps Lock in. */}
+      <div
+        className="grid grid-cols-1 gap-2 sm:grid-cols-5"
+        role="radiogroup"
+        aria-label="Wager"
+      >
+        {WAGER_TIERS.map((t) => (
+          <button
+            key={t.value}
+            onClick={() => setPicked(t)}
+            aria-pressed={t.value === tier.value}
+            className="tile w-full max-sm:flex-row max-sm:items-baseline max-sm:gap-3"
+          >
+            <span className="tile-num font-mono text-sm">{t.value}</span>
+            <span className="text-sm font-bold uppercase tracking-wide lg:text-[0.8rem]">
+              {t.difficultyLabel}
+            </span>
+          </button>
+        ))}
+      </div>
+
+      {/* Blue, not gold (owner, Session 50): it commits the tile that is
+          lit, so it wears the lit tile's colour. See .act-chosen. */}
+      <button
+        className="act-chosen py-1.5 text-sm"
+        onClick={() => socket.emit('turn:setWager', { amount: tier.value })}
+      >
+        Lock in {tier.value}
+      </button>
     </div>
   );
 }
