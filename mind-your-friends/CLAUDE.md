@@ -158,10 +158,6 @@ rename `answerOpensAt` → `readingEndsAt` — **not** `buzzerOpensAt`, which co
 **Killed by owner decision — do not build, do not re-propose:** group splitting for 7+ players
 (item 27). The 3–6 cap at join (item 11) is the whole answer to a big group.
 
-**Known broken:** `scripts/coherence-test.js` imports `POINT_TIERS`, which no longer exists (the
-ladder replaced it). Fixing it needs a call on which wager values to sample, and it spends real
-API calls, so it is in no routine check.
-
 ---
 
 ## Architecture
@@ -236,6 +232,7 @@ All zero API cost unless marked.
 | `node scripts/postgame-test.js` | `questionLog`, superlatives, the answer-leak guard (**2 real Claude calls**) |
 | `node scripts/wordmark-test.js` | The two treatments are 50/50 *and* independent of the logo palette |
 | `node scripts/palette-test.mjs` | Every colour role against its WCAG floor; `--ground` drift |
+| `node scripts/coherence-test.js` | **Spends ~77 real API calls.** Question quality through the real `generateQuestion()`: difficulty across all five rungs, round rules and format cards, repeat resistance. Not routine — run it after changing a prompt or the difficulty mapping. Covers the no-factoid branch only |
 | `node scripts/economy-sim.js` | Not a test — the scoring economy. Re-run after touching the ladder or the buzz share |
 | `npm run build` | Compiles; catches what a test cannot |
 | `cd server_py && python3 test_mechanics.py` | The Python port, incl. the ticket-lock thread race (63) |
