@@ -5,6 +5,78 @@ Use this file to onboard any new session without losing context.
 
 ---
 
+## Session 51 — October 19, 2026 (CYM: the MYF cleanup, done for CYM — instructions ~12,000 → ~5,000 tokens)
+
+**Branch:** `claude/keen-rubin-cejh1g`, identical to `main` at `ea2e8f0`. Done at a quiet point on
+purpose: CYM is mid-playtest, and the next step (the CaseBrief → ApfRound → ResultScreen walk) is
+untouched — a restructure is the wrong thing to be debugging alongside a playtest.
+
+### 1. `cym.md` condensed to what is true now — 49,190 → 17,903 bytes
+
+The file every CYM session loads went from ~12,000 tokens to ~4,400; with the root router, ~5,100.
+Open work is now one short paragraph per live item, with history gone to the decision entries.
+Removed from Open work because it was not open: items 18 and 28 (closed in Session 41), and Ezra
+Greene's ratings (one line kept). The core-mechanic section lost its Session 38–42 narrative and
+states the rhythm as built. The "move superseded text to DECISIONS" rule was reversed, as MYF's was:
+**edit the entry to the current truth, put the history here.**
+
+### 2. Two topics split into path-scoped rules
+
+- **`.claude/rules/cym-godot.md`** (`/godot/**`): autoloads, the engine-side checks with their
+  last run, the three silent Godot failure modes, how to run the client, `seat_players.py`.
+- **`.claude/rules/cym-checkers.md`** (`/scripts/**`): the full checker, test and tool tables.
+  `cym.md` keeps the short "before handing anyone a build" list, because running a script through
+  the shell does not count as touching `scripts/`.
+- **Tested with fresh headless sessions, hooks disabled** (`--settings '{"disableAllHooks":true}'`,
+  so the Stop hook could not commit junk blocks, as it did in Session 50): `godot/project.godot` →
+  root + cym + godot; `scripts/cpam.py` → root + cym + checkers; `server/requirements.txt` → root +
+  cym only; `mind-your-friends/godot/project.godot` → root + MYF only. 4 of 4.
+- Bare `` `cym.md` `` fails `check_doc_claims.py` (its fallback glob skips dot-directories), so the
+  rule files cite each other by full path.
+
+### 3. The decision record cleaned in place — sixteen entries, plus header and index
+
+Not restarted the way MYF's was. Item numbers and reasoning stay; what changed is every place an
+entry's body contradicted its own label or a later truth:
+- **Header and index:** said items 1–25 (there are 37); the index was missing items 27–34 and 36;
+  18 was listed `OPEN` (closed Session 41), 23 `START HERE`, 35 "untested" (confirmed), 17 "two
+  questions open" (one).
+- **7** Session 27's "not yet run" batch, answered by Session 33's measurement. **9** `ONGOING` →
+  done in Session 47; `dev/cryptic-challenge` is gone. **11** `IN PROGRESS` → superseded by APF.
+  **12** `PARTIALLY FIXED` → done; its `[SUPERSEDED]` sub-note deleted. **14** "root cause not fixed",
+  fixed Session 33. **15** cited `_generate_cinematic_brief()` at a line number; the function is now
+  `_generate_opening_narration()`, on by default. **16** "MYF's side deferred", done Session 33.
+- **17** rewritten from ~258 to ~137 lines: slate-ground contrast figures replaced by Night's, the
+  organic-mark/plate/revert history collapsed to the outcome and its lesson, the saved-mystery list
+  updated for Session 42's room path, and the stale March JSON-failure note dropped.
+- **22** "only the two paid steps" (the paid generation has since run). **23** "never run in Godot,
+  nobody has played it" and "untested against a real generation", both overtaken; step 4 named a
+  flag that no longer exists; a current-status paragraph now leads. **24, 25** "nothing rendered",
+  run since Session 40; "eight screens", now ten. **26, 29** "untested", confirmed Session 41.
+  **27** still described the pre-build proposal (overload `implicates`); it now records the built
+  `narrows` field, its five fair-play rules and the mixed evidence. **36** "not rendered", clean in
+  Session 48, with the screen passes listed.
+
+`docs/F5_CHECKLIST.md`'s status said the APF path had never been loaded by the engine; corrected.
+
+### 4. `check_decisions.py` now reads CYM's source comments
+
+As MYF's always did, 13 → 96 files. **The first run found a real dangling citation:**
+`background_field.py` said "item 40's rule" meaning MYF's item 40, with nothing saying so. Fixed to
+*MYF's item 40*. Negative-tested: a planted dead citation in `apf.py` and in `apf_round.gd` both fail.
+
+### Verification
+
+`check_doc_claims.py`: all claims hold. `check_decisions.py`: CYM 37 items, 96 files; MYF 53 items,
+72 files; no failures. No code behaviour changed (one comment in `background_field.py`).
+
+### Next session
+
+Unchanged from Session 49: owner pulls, re-runs ApplyTheme and VerifyScenes, then the F5 walk
+Lobby → CaseBrief → ApfRound (all four rounds) → accuse → ResultScreen with `seat_players.py`.
+
+---
+
 ## Session 50 — October 19, 2026 (MYF: back after two months — CLAUDE.md rewritten, the style guide adopted)
 
 **Branch:** `claude/great-curie-ybqupr`, from `main` @ `8bcc70b`. First MYF session since Session 33

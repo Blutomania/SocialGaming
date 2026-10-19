@@ -24,11 +24,13 @@ during that walk, none of which any checker could see:
 | Interrogation | `#` comment lines in the `.tscn` dropped five panels and every child under them |
 | Result screen | GDScript has no implicit string concatenation, so the script never loaded and only static nodes rendered |
 
-**Still unverified:** steps 20 and 21 (the two paid ones), step 17's negative case, and — added
-Session 42 — **the entire APF path**. `ApfRound.tscn`, the new buttons on `CaseDisplay.tscn` and the
-full-disclosure section of `ResultScreen.tscn` pass `scripts/check_godot_wiring.py` and have never
-been loaded by the engine. That checker reads scene files rather than loading them, and all three
-defects in the table above are exactly the kind it cannot see.
+**The APF path, since.** Every screen loads in the engine (Session 49: VerifyScenes ten `ok`,
+ApplyTheme clean). The owner's Session 49 walk — Lobby with `scripts/seat_players.py`, CaseBrief,
+ApfRound — stalled at round 2 on a server push bug, since fixed (`scripts/test_ws_push.py`). **The
+walk has never reached ResultScreen in Godot**; that is the next F5.
+
+**Still unverified:** steps 20 and 21 (the two paid ones — though a paid generation has since run
+on the owner's machine, item 35) and step 17's negative case.
 
 > **Renumbering note (Session 38).** This document used to open at "sync the repo" and keep its
 > setup instructions in an appendix — including a section headed *Step 0, do this first*, which sat
