@@ -5,7 +5,7 @@ instructions live in their own file and load only when a session touches that ga
 
 | Game | Its instructions | Its code |
 |---|---|---|
-| **Choose Your Mystery** (CYM) — AI murder-mystery party game | `.claude/rules/cym.md` (plus `cym-godot.md` and `cym-checkers.md`, which load only for `godot/` and `scripts/`) | the repo root: `server/`, `godot/`, `scripts/`, `docs/`, the top-level `*.py` |
+| **Choose Your Mystery** (CYM) — AI murder-mystery party game | `.claude/rules/cym.md` (plus `.claude/rules/cym-godot.md` and `.claude/rules/cym-checkers.md`, loaded only for `godot/` and `scripts/`) | the repo root: `server/`, `godot/`, `scripts/`, `docs/`, the top-level `*.py` |
 | **Mind Your Friends** (MYF) — social trivia with sabotage cards | `mind-your-friends/CLAUDE.md` | `mind-your-friends/` |
 
 **Before doing anything else, open the file for the game the task is about** — `.claude/rules/cym.md`
