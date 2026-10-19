@@ -9,7 +9,8 @@ open.
 | Where | Holds |
 |---|---|
 | **`CLAUDE.md`** (here) | What is true now, and what is open. |
-| **`docs/DECISIONS.md`** | Every numbered work item, 1–53, with its full reasoning. *Why is it like that? Has this been tried?* |
+| **`docs/DECISIONS.md`** | One current entry per numbered item, 1–53: what is true, why, and what was tried and rejected. *Why is it like that? Has this been tried?* Starts with an index. |
+| **`docs/archive/`** | The old decision record, word for word as first written. History only — open it for an item's full original reasoning, never for current state. |
 | **`SESSIONS.md`** (repo root) | What was decided when. MYF sessions are 29–33 and 50. Append-only. |
 | **`GAME_DESIGN.md`** | The game's rules, in full. |
 | **`PLAYTEST.md`** | PT-1 → PT-8: the questions only a real table can answer. |
@@ -19,9 +20,11 @@ open.
 **Item numbers are stable.** "Item 41" means Flow B everywhere — here, in `docs/DECISIONS.md`, in
 `GAME_DESIGN.md` and in source comments. Never renumber one.
 
-**When something here needs a "superseded" or "correction" note, it has become history.** Move it
-to `docs/DECISIONS.md` and state the current truth here. This file reached 1,487 lines — about 90%
-archive — because that rule was not followed, and was rewritten on October 19 2026.
+**When something here needs a "superseded" or "correction" note, it has become history.** State
+the current truth here, **edit** the item's entry in `docs/DECISIONS.md` so it stays current too,
+and put the story of the change in `SESSIONS.md`. Never append a correction beneath stale text:
+this file reached 1,487 lines that way, and the decision record became an archive the same way
+(both rewritten, Session 50).
 
 ---
 

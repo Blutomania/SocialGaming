@@ -106,6 +106,18 @@ PR #63 merged (`4efb1bd`); branch restarted from `main`.
   lines). Dropped by rebuilding the branch as one commit. Anyone testing with `claude -p` in this
   repo will hit the same thing.
 
+- **MYF's decision record restarted.** The old file was items 1–51 word for word as first written,
+  so a session landing on an old item could act on a reversal (item 37's flat-100 buzz, item 48's
+  retired logotype, "Godot not started"). It now lives untouched at
+  `mind-your-friends/docs/archive/DECISIONS_to_2026-10.md`; the new `docs/DECISIONS.md` has an
+  index and one current entry per item — what is true, why, what was rejected — same numbers, so
+  every citation still lands (~6,000 tokens, from ~30,000). Statuses checked against code, not
+  memory: the hand is Half-Off + picked + 2 random (item 2's six-card hand is gone), question
+  types and replay moments were never built (14, 15), Spotlight is still the approximation (26).
+  `scripts/check_decisions.py` now checks MYF's list too, against 72 files including source
+  comments; negative-tested four ways, including the item-52 shape that went uncaught for two
+  months. MYF's "move stale notes to DECISIONS" rule reversed: edit the entry, log the history.
+
 ### Next session
 
 1. **Play it** — still the top of MYF's list since August 17 (PT-4 → PT-8).
