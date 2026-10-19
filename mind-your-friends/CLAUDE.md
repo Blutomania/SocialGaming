@@ -140,8 +140,8 @@ never exercised.
 (edit `scripts/build-difficulty-colors.mjs`, never the generated hexes).
 
 **7. Spec'd, not built:** the **Chain** round (`GAME_DESIGN.md`) — needs a call on round-level
-category selection first. **Group splitting** for 7+ players (item 27). **Host video** as a
-centre-screen takeover with pre-packaged attitude clips (item 40; cost estimate deferred).
+category selection first. **Host video** as a centre-screen takeover with pre-packaged attitude
+clips (item 40; cost estimate deferred).
 
 **8. Proposed, not done:** rename "open answering" → "buzz-in" (item 43) as one atomic pass, and
 rename `answerOpensAt` → `readingEndsAt` — **not** `buzzerOpensAt`, which collides with a real field.
@@ -152,6 +152,9 @@ rename `answerOpensAt` → `readingEndsAt` — **not** `buzzerOpensAt`, which co
 |---|---|
 | Voice input | Text-only is fine for now. Keep honouring the `text`/`voice` transform split — voice is the destination. |
 | Shareable Question polish | The canvas card + Web Share is the placeholder, frozen there. Don't extend it; don't rip it out. |
+
+**Killed by owner decision — do not build, do not re-propose:** group splitting for 7+ players
+(item 27). The 3–6 cap at join (item 11) is the whole answer to a big group.
 
 **Known broken:** `scripts/coherence-test.js` imports `POINT_TIERS`, which no longer exists (the
 ladder replaced it). Fixing it needs a call on which wager values to sample, and it spends real

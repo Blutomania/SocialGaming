@@ -361,7 +361,10 @@ real API calls, so it isn't part of any routine check.
     - ~~Voice input~~ — `VoiceInput.jsx` component using Web Speech API.
       Server contract already supports `inputMode: 'voice'`. Wire into
       `GameBoard.jsx` answer input when ready for playtest.
-27. **[FUTURE] Group splitting** — when 7+ players want to play together,
+27. **[KILLED by owner, October 19 2026 — Session 50] Group splitting** — *"I no longer think a
+    use case of 7+ players is worth worrying about."* Spec and any plan to build it are dropped;
+    nothing was ever built. The 3–6 hard cap at join (item 11) stays and is the answer. Original
+    entry, kept for the record: when 7+ players want to play together,
     design a splintering mechanic to auto-create balanced sub-games (e.g.
     4+3, 3+3+3). Parked until core game is proven.
 28. ~~**Extended playtest**~~ — ran an automated 3-player Playwright game that
