@@ -5,7 +5,7 @@ instructions live in their own file and load only when a session touches that ga
 
 | Game | Its instructions | Its code |
 |---|---|---|
-| **Choose Your Mystery** (CYM) — AI murder-mystery party game | `.claude/rules/cym.md` | the repo root: `server/`, `godot/`, `scripts/`, `docs/`, the top-level `*.py` |
+| **Choose Your Mystery** (CYM) — AI murder-mystery party game | `.claude/rules/cym.md` (plus `.claude/rules/cym-godot.md` and `.claude/rules/cym-checkers.md`, loaded only for `godot/` and `scripts/`) | the repo root: `server/`, `godot/`, `scripts/`, `docs/`, the top-level `*.py` |
 | **Mind Your Friends** (MYF) — social trivia with sabotage cards | `mind-your-friends/CLAUDE.md` | `mind-your-friends/` |
 
 **Before doing anything else, open the file for the game the task is about** — `.claude/rules/cym.md`
@@ -40,4 +40,4 @@ Until Session 50 the root `CLAUDE.md` *was* CYM's file. Code comments and older 
 - **All Claude calls are server-side.** Invoke Python as `python3`.
 - **Run the doc checkers after editing any instructions file:** `python3 scripts/check_doc_claims.py`
   and `python3 scripts/check_decisions.py` (which checks both games' item lists). They read this
-  file, `.claude/rules/*.md` and `docs/`; the second also reads MYF's docs and source comments.
+  file, `.claude/rules/*.md` and `docs/`; the second also reads MYF's docs and both games' source comments.

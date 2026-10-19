@@ -1,34 +1,33 @@
 # Choose Your Mystery — Decision record
 
-**What this file is.** Every numbered work item this project has had, items 1–25, in numeric
-order, with the reasoning that produced each. It was carved out of `CLAUDE.md` in Session 38,
-where it had grown to 60% of a file that gets loaded into every session's context whether or not
-any of it is relevant.
+**What this file is.** Every numbered CYM work item, 1–37, in numeric order: what is true of it
+now, why, and what was rejected. Carved out of the old root `CLAUDE.md` in Session 38; CYM's
+instructions now live in `.claude/rules/cym.md`.
 
 **What it is for.** Answering *"why is it like that?"* and *"has this been tried?"* — not for
-planning. `CLAUDE.md` holds what is true now and what is being worked on. If the two disagree,
-`CLAUDE.md` wins and the entry here is stale.
+planning. `.claude/rules/cym.md` holds what is open. If the two disagree, fix whichever is wrong.
 
-**Item numbers are stable and load-bearing.** They are cited from `CLAUDE.md`, from six files
-under `docs/`, and from source comments in `background_field.py`,
-`godot/scripts/autoloads/Style.gd` and `scripts/preview_background_field.py` — "item 17" alone
-appears fifteen times. **Never renumber an item.** A superseded item keeps its number and gains a
-note naming what replaced it.
+**Item numbers are stable and load-bearing.** They are cited from the instructions files, from
+`docs/`, and from source comments (`background_field.py`, `apf.py`, `casefiles.py`, `gate.py`,
+`Style.gd`, `Chrome.gd`, `apf_round.gd` among them) — `scripts/check_decisions.py` reads all of
+them and fails on a citation that lands nowhere. **Never renumber an item.**
+
+**Entries state the current truth.** When an entry stops being true, edit it — the label, the
+sentence, the number — and record the change in `SESSIONS.md`. Do not append a *[superseded]* or
+*[corrected]* note beneath the stale text: Session 51 cleaned sixteen entries whose own bodies
+contradicted their labels that way. Dated *[Session N]* paragraphs are fine where they record when
+a decision was made; they are not a place to leave a false statement standing.
 
 **Status labels**
 
 | Label | Means |
 |---|---|
-| `[DONE]` | Built and verified. |
+| `[DONE]` / `[BUILT]` / `[CLOSED]` | Built and verified, or settled. |
+| `[DECIDED]` / `[ADOPTED]` / `[SETTLED]` | An owner's call that stands. |
 | `[CLOSED BY APF]` | Not fixed — the mechanic that needed it was deleted. The diagnosis is kept because it is usually the argument *for* APF. |
-| `[OPEN]` | Still a live question. `CLAUDE.md` carries the one-paragraph version; the full reasoning is here. |
-| `[DEFERRED]` / `[FUTURE]` | Real, scheduled behind the current delivery stage. |
+| `[OPEN]` / `[ONGOING]` / `[READY TO RUN]` / `[PARTLY BUILT]` | Still live. `.claude/rules/cym.md` → Open work carries the short version. |
+| `[DEFERRED]` / `[FUTURE]` / `[LOGGED]` | Real, scheduled behind the current delivery stage. |
 | `[SUPERSEDED]` | Replaced by a later item or a document, which the entry names. |
-
-**The rule that keeps this file from rotting the way its parent did.** A design document states
-what is true *now*; `SESSIONS.md` states what was decided *when*; this file states why a numbered
-item exists and where it ended up. A "superseded" marker appearing in `CLAUDE.md` is the signal
-that the superseded text has become history and belongs here instead.
 
 ---
 
@@ -37,32 +36,41 @@ that the superseded text has become history and belongs here instead.
 | # | Item | Status |
 |---|---|---|
 | 1 | Phase 1 — FastAPI server + Godot scaffold | `DONE` |
-| 2 | Phase 2 — single-player Godot prototype, all five screens | `DONE` |
+| 2 | Phase 2 — single-player Godot prototype | `DONE` |
 | 3 | Phase 3 — multiplayer investigation phases + clue sharing (3a–3d) | `DONE` |
 | 4 | Phase 3e — avatar pool + player profiles; design locked, nothing built | `DEFERRED — stage 3` |
 | 5 | PR #1 branch reconciliation merged to `main` | `DONE` |
 | 6 | Five superseded branches confirmed deleted | `DONE` |
 | 7 | Corpus growth — anthologies over novels, and why | `ONGOING` |
 | 8 | Phase 4 — Steam / GodotSteam integration | `FUTURE` |
-| 9 | Repo-wide branch cleanup; `dev/cryptic-challenge` is not a third project | `ONGOING` |
-| 10 | Craft-grounding RAG layer wired into all five generation call-sites | `DONE` |
-| 11 | Multiplayer lockstep redesign — the 75% mechanic does not exist in code | `IN PROGRESS` |
-| 12 | Extraction-pipeline efficiency: fields extracted but never sampled | `PARTIALLY FIXED` |
+| 9 | Branch cleanup; every old branch archived as a tag; `dev/mind-your-friends` kept | `DONE` |
+| 10 | Craft-grounding RAG layer wired into all five generation call sites | `DONE` |
+| 11 | Multiplayer lockstep redesign — and the 75% mechanic that never existed | `SUPERSEDED BY APF` |
+| 12 | Extraction fields extracted but never sampled | `DONE` |
 | 13 | Silent extraction failures saved a null placeholder | `DONE` |
 | 14 | `evidence_type`/`alibi` axis mislabel + registry staleness fingerprint | `DONE` |
 | 15 | Room-first lobby, resolution reveal, prompt voting, same-room replay | `DONE` |
 | 16 | Coherence engine unification — CYM and MYF share one `RuleSet` | `DONE` |
-| 17 | BACKGROUND — the mystery's title as page texture; two owner questions open | `PARTLY BUILT` |
-| 18 | A BLOCKING coherence report does not stop a mystery being served | `OPEN` |
+| 17 | BACKGROUND — the mystery's title as page texture; brand marks | `PARTLY BUILT — one owner question` |
+| 18 | The gate: any failing check routes a generation to `rejected/` | `CLOSED` |
 | 19 | Corpus P1→P1P2P3 upgrade — runnable, blocked on API credits | `READY TO RUN` |
 | 20 | CLOUD — manipulable top-down crime scene | `SUPERSEDED IN PART` |
 | 21 | The investigation-phase deadlock | `CLOSED BY APF` |
 | 22 | The first Godot F5 ran — two defects no checker could see | `DONE` |
-| 23 | Build APF — the current work | `START HERE` |
+| 23 | Build APF — the current work | `STEPS 1–4 BUILT` |
 | 24 | One palette, three surfaces | `DONE` |
-| 25 | The design becomes visible in the editor; two engine-side checks | `DONE` |
+| 25 | The design visible in the editor; two engine-side checks | `DONE` |
 | 26 | Generation writes backwards; clues declare what they serve | `DONE` |
-| 35 | Character pronouns + presentation; suspect-icon tagging and fallback chain | `BUILT, Sept 16 — untested against a real generation` |
+| 27 | The glove: `narrows`, incrimination as well as exculpation | `BUILT` |
+| 28 | The generation ledger and cost per accepted mystery | `BUILT` |
+| 29 | The arrangement pass: wire the pointer, never rewrite the clue | `BUILT` |
+| 30 | Rule coverage: the prompt's assertions against the rules enforcing them | `BUILT` |
+| 31 | The assignment chooses the fairest distribution | `BUILT` |
+| 32 | The game ends in full disclosure | `DECIDED` |
+| 33 | Five suspects would unlock a third difficulty rung | `DEFERRED` |
+| 34 | The vocabulary is investigation, not card game | `SETTLED` |
+| 35 | Character pronouns + presentation; suspect-icon fallback chain | `BUILT, confirmed on a real generation` |
+| 36 | Night File — the host screen's look | `ADOPTED` |
 | 37 | Suspect interviews — statements in a suspect's own voice | `LOGGED — stage 3` |
 
 ---
@@ -130,90 +138,58 @@ that the superseded text has become history and belongs here instead.
    have**, as a re-run of the same idempotent command with no new code. Explicitly NOT urgent —
    it buys corpus quality, not anything a playtester sees (see Delivery Priority).
 
-   The old wording, kept because it is still true of the cost side: an anthology yields 15–63x
-   the source_ids per single legal-clearance decision at currently-identical extraction depth (both the 12 curated novels and the 63 stories are P1-only;
-   novels only earn a depth advantage once `--protocol P1P2`, or P3/P4, actually gets used on them).
-   `mystery_database/new_sources/` still holds: three full novels (Stevenson ×2, Tana French)
-   queued for later one-at-a-time ingestion; one `.html` file (`extract_from_pdfs.py` only reads
-   PDFs — unsupported as-is); and **`The_Devotion_of_Suspect_X` (Higashino) — found untriaged in
-   Session 21**, not one of Session 20's original 9 categorized files, confirmed NOT a duplicate of
-   the existing Higashino extraction (different novel: *Miracles of the Namiya General Store*).
-   Owner ruled out deleting it; still needs an actual triage call (queue / skip / other).
-   **[IN PROGRESS, Session 27]** The 22+-anthology ingestion is underway, not finished. Session 27
-   was almost entirely git housekeeping (see `SESSIONS.md`) plus a duplicate-source triage: cross-
-   referenced the owner's ~26 staged local files against the real corpus and caught two real
-   near-misses — renamed duplicate PDFs of already-extracted books (*Leavenworth Case*, *Red House
-   Mystery*), and, more seriously, the already-fully-extracted 63-story Hitchcock 1980 anthology
-   itself still sitting in `new_sources/` (would have re-spent real API cost re-extracting 63
-   already-owned stories). Owner removed both categories. Confirmed the extraction pipeline still
-   has zero content-based dedup (`_slug()` keys purely off the input PDF's filename) — worth a
-   pre-flight duplicate check on every future batch, not just this one; a standalone checker script
-   was written for this (scratchpad-only, not committed to the repo).
+   **The cost side still holds:** an anthology yields 15–63× the source_ids per legal-clearance
+   decision. `mystery_database/new_sources/` still holds three full novels (Stevenson ×2, Tana
+   French) queued for one-at-a-time ingestion, one `.html` file (`extract_from_pdfs.py` reads PDFs
+   only), and **`The_Devotion_of_Suspect_X` (Higashino), untriaged** — not a duplicate of the
+   existing Higashino extraction (that is *Miracles of the Namiya General Store*). The owner ruled
+   out deleting it; it still needs a queue / skip call.
 
-   Remaining 21 anthology PDFs were `--dry-run`'d: **10 came back clean** (full-book page ranges,
-   real per-story detection — the *Best American Mystery Stories* years 2005–2017/215/"4" plus
-   *Years Best Mystery & Suspense 1993*, ~207 stories) and were moved to
-   `mystery_database/new_sources/_anthologies/_ready/` with the real extraction command handed to
-   the owner — **not yet run as of session close.** The other **11 have real detection problems**
-   and are intentionally being held back, uncosted: 5 where the detector only caught back-matter and
-   missed the entire body of stories, 3 where the whole book got detected as a single oversized
-   "story" (459K–533K characters — a full anthology misattributed to one author, not a short story),
-   and 3 broken/wrong-fit (one detected 0 stories; one nonfiction true-crime collection flagged for
-   a separate taxonomy-fit decision). Full per-file breakdown in `SESSIONS.md` Session 27 — don't
-   re-litigate it from scratch, the analysis is already done, just needs someone to act on the
-   11 held-back files whenever there's appetite.
+   **Where the ingestion stands (measured Session 33).** `mystery_database/extractions/` holds 570
+   files, 281 of them `pdf_*` (from 75), so Session 27's batch of ten clean anthologies (*Best
+   American Mystery Stories* 2005–2017 and *Year's Best Mystery & Suspense 1993*, ~207 stories)
+   was run, and more. Session 27's triage also caught renamed duplicate PDFs of books already
+   extracted and the 63-story Hitchcock anthology still sitting in `new_sources/` — re-extracting it
+   would have re-spent real money. **The pipeline has no content-based dedup** (`_slug()` keys off
+   the PDF's filename), so pre-flight every batch for duplicates.
 
-   Also unrun this session: the 4-file `_novels/` batch (*39 Steps*, *Behold Here's Poison*,
-   *Mystery of the Chinese Ring*, *Whose Body?*) — never got even a `--dry-run` yet.
+   **The registry race, and why item 14 checks rather than reminds.** The Session 33 measurement
+   also found the committed registry 13 sources short of a fresh build. The owner *had*
+   regenerated it (`20c3ee3`, August 10); the 20 extractions missing from that index were added in
+   the same commit and cluster in two books, which is the signature of a regeneration run while
+   those books were still extracting. Doing the conscientious thing still lost 13 sources. Item 14
+   closed it with a fingerprint check.
 
-   **[CHECKED, Session 33 — August 20 2026]** That "next session should check" list is now
-   answered, by measurement rather than by asking:
-   - **The extraction runs happened.** `mystery_database/extractions/` holds **570 files**, of
-     which **281 are `pdf_*`** — up from 75. So the `_ready/` anthology batch (and more) was run.
-   - **The registry WAS regenerated — and still lost 13 sources.** Checked-in
-     `part_registry.json` was **4,807 parts / 556 sources** against a fresh build's **4,952 /
-     569**, so 13 sources and 145 parts were extracted, on disk, and never sampled.
-     **Do not read this as "nobody remembered to regenerate" — an earlier draft of this note said
-     that and it was wrong.** `20c3ee3` (owner, August 10) is titled "anthology extractions +
-     regenerated part_registry" and did exactly that. The 20 extraction files missing from the
-     index it produced were added *in that same commit*, and they cluster: ten stories from
-     *Best American 2016 (Elizabeth George)* and three from *2007 (Hiaasen)* — the 13 that yield
-     parts — plus 7 that yield none (see below). That is the signature of a regeneration run while
-     those two books were still extracting, with everything committed together afterwards. Git
-     cannot show the ordering (one commit, no intermediate timestamps), but nothing else explains
-     the clustering.
-     **Why this matters for the fix:** the failure was not neglect, it was a race between a long
-     extraction run and a manual regeneration step. Doing the conscientious thing still silently
-     lost 13 sources, which is precisely what an automatic check fixes and a reminder does not.
-   - **[FIXED, Session 33]** Both halves done, no API calls: the registry is regenerated
-     (4,952 / 569 committed), and `load_registry()` now has a real staleness check — see item 14.
-   - **[OPEN, found in the same pass] 7 anthology extractions are all-null and contribute nothing.**
+   Open:
+   - **11 held-back anthology PDFs with detection problems**, uncosted: 5 where the detector caught
+     only back matter, 3 where the whole book was detected as one 459K–533K-character "story", and
+     3 broken or wrong-fit (one detected 0 stories; one non-fiction true-crime collection needs a
+     taxonomy-fit decision). Per-file breakdown in `SESSIONS.md` Session 27 — the analysis is done.
+   - **The 4-file `_novels/` batch** (*39 Steps*, *Behold Here's Poison*, *Mystery of the Chinese
+     Ring*, *Whose Body?*) had not been dry-run as of Session 27; check before assuming either way.
+   - **7 anthology extractions are all-null and contribute nothing:**
      `pdf_the_best_american_mystery_stor__story19_a_quiet_place_to_hide`,
      `__story21_remembering_the_rain`, `__story21_trip_to_reno_...`, `__story22_doggy_style`,
      `__story22_the_heroism_of_lieutenant_wills_...`, `__story22_the_women_s_room`,
-     `__story22_these_two_guys_thuglit_november`. Every P1 field is `null` with `confidence: "low"`
-     and **no `_meta.extraction_warnings`**, so by item 13's logic they read as a genuine "nothing
-     found" rather than a caught parse failure — which is implausible for seven mystery short
-     stories. They occupy filenames, so the dedup-by-filename rule means a re-run will skip them
-     unless they are deleted first. Worth a look before the next batch; not diagnosed here.
+     `__story22_these_two_guys_thuglit_november`. Every P1 field `null`, `confidence: "low"`, and
+     **no `_meta.extraction_warnings`** — by item 13's logic a genuine "nothing found", which is
+     implausible for seven mystery stories. They occupy filenames, so a re-run skips them unless
+     they are deleted first. Not diagnosed.
 
 8. **[FUTURE]** Phase 4 — Steam integration (GodotSteam plugin)
 
-9. **[ONGOING]** Repo-wide branch cleanup (Session 18) — 9 fully-merged branches identified as
-   safe to delete, plus a further 21 stale unmerged branches the owner is triaging on their own
-   schedule (see `SESSIONS.md` Session 18). **`dev/mind-your-friends` is a separate, real second
-   project sharing this repo — do not touch it in any cleanup pass.**
+9. **[DONE, Session 47 — October 12 2026]** Branch cleanup. **Every old branch was audited by
+   content, tagged `archive/<branch-name>` (commits and the LFS parquet stay retrievable — restore
+   with `git push origin archive/<name>:refs/heads/<name>`) and deleted**, each with a verdict in
+   `SESSIONS.md` Session 47. Three hold work `main` lacks and are carried in `.claude/rules/cym.md`
+   → Open work. **`dev/mind-your-friends` is kept and never touched in a cleanup pass** — asked
+   whether that rule still held once MYF lived in `main` (since August 6), the owner confirmed:
+   *"Definitely not deleting Mind Your Friends. Item 9 is correct."* It is history, not a live line
+   of work; the live MYF is `main`'s `mind-your-friends/`. MYF's seven checkpoint branches went
+   before that was clarified and are restorable from their tags — the owner's call.
 
-   **[Session 47, October 12 2026] Every remaining branch audited by content and archived.** Each
-   is tagged `archive/<branch-name>` (commits and the LFS parquet stay retrievable) and listed for
-   deletion with a verdict in `SESSIONS.md` Session 47. Three hold work `main` lacks — a July 22
-   coherence-telemetry session, two extractor changes plus Van Dine's 20 rules, and three MYF
-   design ideas — and are carried as open work in `CLAUDE.md`. **Asked whether the "do not touch
-   `dev/mind-your-friends`" rule above still holds now that MYF lives in `main` (since Aug 6), the
-   owner confirmed it: "Definitely not deleting Mind Your Friends. Item 9 is correct."** The
-   seven MYF checkpoint branches had already been deleted by then (archive tags verified, each
-   restorable with `git push origin archive/<name>:refs/heads/<name>`); restoring them is the
-   owner's call. `dev/mind-your-friends` itself was never touched.
+   A session can delete only its own branch (anything else is HTTP 403), so fully merged session
+   branches accumulate until the owner deletes them from GitHub's Branches page.
 
    **`dev/cryptic-challenge` is NOT a third project (verified Session 29, August 17 2026).**
    The name has repeatedly been read — including by a Claude session, which cited it as evidence
@@ -227,15 +203,11 @@ that the superseded text has become history and belongs here instead.
    - Searched every branch's full history: **no file with "cryptic" in its name has ever
      existed**, and no commit message mentions it.
 
-   So it is a stale duplicate pointer with a misleading name — nothing to archive, nothing to
-   preserve. Owner cleared it for deletion; it needs the GitHub UI, since `git push --delete`
-   hits the same 403 that blocks pushes to `main` and no branch-delete tool is exposed via the
-   GitHub MCP server (a Session 29 attempt was also blocked by the permission classifier).
-   Recreatable with `git branch dev/cryptic-challenge ea5af2f` if ever wanted.
+   So it was a stale duplicate pointer with a misleading name, and it is gone (deleted in the
+   Session 47 pass). Recreatable with `git branch dev/cryptic-challenge ea5af2f` if ever wanted.
 
    **Caveat that outlives the branch:** if a real "Cryptic Challenge" project exists, its work is
-   **not in this repo** and deleting this pointer archives nothing. Don't treat the branch as
-   that project's record.
+   **not in this repo**.
 
 10. **[DONE, Session 22; extended Session 26]** RAG (retrieval-augmented generation) for mystery
     best-practices — **wired into generation.** `craft_grounding.py` parses `RESEARCH_FINDINGS.md`,
@@ -259,24 +231,30 @@ that the superseded text has become history and belongs here instead.
       retrieval mechanism" as its own decision (see Session 22's chat log) — not required for the
       RAG layer to work, only for the taxonomy itself to grow.
 
-11. **[IN PROGRESS, Session 21]** Multiplayer lockstep redesign — a live "Murder on Mars" use-case
-    walkthrough against the actual running code (not this file's aspirational description) found
-    real gaps: the "75%-random-share" mechanic described above doesn't exist in the code (real
-    mechanic: player-choice minimum-share threshold, 50/60/70% by difficulty); interrogation was
-    free text, not a pick-list; and **there is no backend endpoint anywhere for resolving a
-    multiplayer accusation** — the only accusation code (`accusation.gd`) is single-player-era,
-    client-local. Full design in `docs/WIRING.md` → "Multiplayer lockstep round system". Built and
-    verified so far: the lockstep round state machine (`stage`/`round`, additive alongside the
-    legacy per-player `phase` — nothing existing broken), and the witness interrogation redesign
-    (batched, deduped, shared-scene generation replacing N isolated per-question calls). Still
-    open, in dependency order: accusation-resolution backend (independent, also unblocks the
-    end-game resolution/summation scene); crime-scene investigation redesign and the "what I know
-    vs. what's shared" comparison screen (both depend on the lockstep mechanism, now in place);
-    lead-claim reservation + scaling lead count to max players (8, per item 4's Phase 3e decision).
+11. **[SUPERSEDED BY APF (item 23) — found Session 21] Multiplayer lockstep redesign, and the
+    "75% mechanic" that never existed.** A live "Murder on Mars" walkthrough against the running
+    code, rather than this project's description of it, found that **no code had ever implemented
+    a shared clue reaching "75% of other players, randomly"** — the real mechanic was, and is, a
+    player-chosen share against a per-difficulty minimum (`share_min` 0.70 / 0.60 / 0.50), with no
+    randomness. The old instructions file kept the false version in its opening paragraph for many
+    sessions after this item recorded it; it is the founding example of why entries must state the
+    current truth. A random-broadcast mechanic, if ever wanted, is unbuilt design work.
 
-12. **[PARTIALLY FIXED, Session 22 audit / Session 23 fix]** Extraction-pipeline efficiency gap,
-    found while auditing whether extraction actually supports the coherence engine's dialogue
-    generation — two concrete, code-verified issues:
+    The same walk found interrogation was free text rather than a pick-list, and **no backend route
+    resolved a multiplayer accusation**. Built in Session 21: the lockstep round state machine
+    (`/round/open`, `/round/submit`, `/round/resolve`, `/round/status`, additive beside the legacy
+    per-player `phase`) and batched, shared-scene witness interrogation (`docs/WIRING.md` →
+    "Multiplayer lockstep round system"). Both still exist and serve the gather loop.
+
+    **Why superseded rather than finished:** the remaining plan (crime-scene investigation redesign,
+    a "what I know vs. what's shared" screen, lead-claim reservation) all redesigned *gathering*,
+    and APF deletes gathering from the playtest path. Accusation resolution exists — `/accuse`,
+    which since Session 43 returns the full reveal (item 23). Under APF the share decision is
+    `apf.py`'s rhythm, and the lockstep routes are not on the critical path.
+
+12. **[DONE, Session 23 and Session 34] Extraction fields extracted but never sampled.** Found
+    while auditing whether extraction supports the coherence engine's dialogue generation (Session
+    22) — two code-verified gaps, both closed:
     - **[DONE, Session 23]** Even fully P1+P2-depth sources had craft-relevant fields
       (`clue_fairness`, `media_and_audience`, `investigator_wound`, `victim`, `resolution`,
       `investigator`) that the registry extracted and then never read, for any source, at any
@@ -295,14 +273,8 @@ that the superseded text has become history and belongs here instead.
       (measured on *The Red House Mystery*: *"an office reachable only through a passage of
       spring-hinged doors, plus a secret passage… door movements are legible only as shadows
       on the passage wall"*). Real end-to-end result on that source: **4 parts → 19**.
-    - **[SUPERSEDED]** The old note here said `_atomize_extraction()` has no P3/P4-tier keys
-      to read, so a P1-only source (all 12 novels + all 63 anthology stories) went from populating
-      3 of the registry's 8 sampling axes to 5 of 8 after the Session 23 fix (gained `motive` via
-      `victim`, `reveal_mechanic` via `resolution`, `social_dynamic` via `investigator`) — but
-      `suspect_archetype`, `red_herring`, and `alibi` still require P2-tier fields
-      (`suspect_architecture`, `red_herring`/`clue_fairness`, `alibi`) that a P1-only extraction
-      never produces. Only fix: re-extract the 75 P1-only sources at `--protocol P1P2` (new API
-      cost, backfills the remaining 3 axes specifically). Full detail in `SESSIONS.md` Session 22.
+    - **What a P1-only source still lacks:** `suspect_archetype`, `red_herring` and `alibi` need
+      P2-tier fields a P1-only extraction never produces. The fix is item 19's upgrade run.
 
 13. **[DONE, Session 23]** Fixed a silent extraction-failure bug found while reviewing anthology
     output quality: `extract_pdf()`/`extract_pdf_anthology()` used to catch a malformed Claude
@@ -316,26 +288,20 @@ that the superseded text has become history and belongs here instead.
     fired and fixed it, and the resulting file now has real high-confidence data across all 6
     fields. Full detail in `SESSIONS.md` Session 23.
 
-14. **[DONE, Session 23]** Fixed the `evidence_type`/`alibi` axis mislabeling flagged as a known
+14. **[DONE, Session 23; staleness closed Sessions 33 and 35]** Fixed the `evidence_type`/`alibi` axis mislabeling flagged as a known
     caveat in `craft_grounding.py`'s docstring (axis 8 was named `"evidence_type"` but actually
     held alibi content, since the extraction key `"alibi"` mapped there) — renamed the axis itself
     to `"alibi"` in `part_registry.py`, updated `craft_grounding.py`'s `PART_TYPE_TO_TAXONOMY` and
     `coherence_validator.py`'s hardcoded `"evidence_type"` string checks (4 call sites) to match.
     Done together with the item 12 field-mapping fix above, in the same commit, per the caveat's
-    own instruction not to do one without the other. Also found and fixed a second, unrelated
+    own instruction not to do one without the other. Also found a second, unrelated
     staleness bug while regenerating the registry to verify: `mystery_database/part_registry.json`
     is a checked-in cache with no staleness check (`load_registry()` only rebuilds if the file is
     *missing*, never if it's stale) — it had been silently frozen since March 11, missing ~75
     sources' worth of corpus growth (294 → 369 sources after regeneration; 1,469 → 2,833 parts).
-    Regenerated and committed this time, but the root cause is **not** fixed — `load_registry()`
-    still has no staleness check, so the next extraction run will silently go stale again until
-    someone manually deletes `part_registry.json`. Worth a real fix (e.g. mtime comparison against
-    `extractions/`, matching the pattern `craft_grounding.py`'s index cache already uses) as a
-    follow-up, not done this session. Full detail in `SESSIONS.md` Session 23.
-    **[RECURRED AND NOW FIXED, Session 33 — August 20 2026]** It went stale again exactly as
-    predicted — 4,807 parts / 556 sources checked in versus 4,952 / 569 on a fresh build, i.e. 13
-    sources extracted at real API cost and then never sampled. Regenerated, and the root cause is
-    now closed:
+    Regenerated and committed. **The root cause — no staleness check — recurred exactly as
+    predicted (Session 33: 13 sources extracted at real API cost and never sampled) and is now
+    closed:**
     - **The check is a corpus fingerprint**, written to a sidecar `part_registry.meta.json`: the
       hashed set of extraction filenames plus a schema version. Filenames are the right unit
       because `load_extractions()` derives every `source_id` from the filename stem, so a change
@@ -374,16 +340,11 @@ that the superseded text has become history and belongs here instead.
     unless they also won the mystery immediately before this one, in which case it's random
     instead (`game["win_history"]` tracks this). `POST /games/{id}/next-mystery/start` resets the
     same room in place — same `game_id`, same players, nobody rejoins — which is the actual point:
-    subtly encouraging the same group to keep playing together. Video generation stays explicitly
-    tabled. **[CORRECTED, Session 35] This item used to claim the client "renders a static
-    `Video Scene Will Play Here` placeholder." It does not — that string appears in no `.gd`,
-    `.tscn`, `.html` or `.py` file, and nothing occupies that slot today.** What DOES exist,
-    unused, is `_generate_cinematic_brief()` (`server/main.py:335`), which returns both a
-    player-facing `opening_narration` ("3–5 sentences of atmospheric prose… displayed or read
-    aloud to players") and a hidden `cinematic_brief` shot list for a future video generator. It
-    is gated behind `cinematic_brief: bool = False` and has never run — the one real generated
-    mystery on disk carries neither key. The playtest opening should turn that flag on; see
-    `docs/PLAYTEST_FLOW.md` → "The opening sequence". Full detail,
+    subtly encouraging the same group to keep playing together. **Video generation stays tabled,
+    and nothing occupies a video slot in the client** (an earlier version of this entry claimed a
+    placeholder string that never existed). The player-facing opening is text:
+    `_generate_opening_narration()` writes it during generation, on by default since Session 40
+    (`opening_narration: bool = True`; item 23, step 4). Full detail,
     including a real `_craft_guidance` leak this work found and fixed in `winner_findings` (private
     per-player audit citations were about to broadcast to the whole room), in `SESSIONS.md`
     Session 26 and `docs/WIRING.md`'s three new sections.
@@ -402,43 +363,37 @@ that the superseded text has become history and belongs here instead.
     changes needed in `server/main.py` or `deprecated/cli.py`. Verified both the pass and fail
     paths against realistic mystery dicts, and confirmed `MysteryRuleSet().run(mystery)` called
     directly produces identical results to `check_mystery(mystery)`. Full detail in
-    `docs/WIRING.md` → "Coherence validator — what it checks". **MYF's side is deferred until its
-    own Python port lands** (see MYF's `CLAUDE.md` item 31/32) — its `lib/coherence.js` is
-    JavaScript and can't subclass a Python `RuleSet` without a bridge, which is exactly the
-    premature-integration mistake this sequencing avoids. Branch: `claude/coherence-engine-unification`.
-    **[COMPLETED, Session 33 — August 20 2026] MYF's Python side is now wired, so the pillar has
-    two real consumers.** `mind-your-friends/server_py/coherence_rules.py` (renamed from
-    `coherence.py`, which it had to be — a top-level module named `coherence` and the `coherence`
-    package cannot both sit on `sys.path`, and `server_py/` always wins, so the import resolved to
-    MYF's own file) defines `QuestionRuleSet`, a real `coherence.engine.RuleSet` subclass.
+    `docs/WIRING.md` → "Coherence validator — what it checks". Branch:
+    `claude/coherence-engine-unification`.
+
+    **MYF's side followed in Session 33, so the pillar has two real consumers.** It waited for
+    MYF's Python port, deliberately — a JavaScript `lib/coherence.js` cannot subclass a Python
+    `RuleSet` without a bridge, which would have been premature integration.
+    `mind-your-friends/server_py/coherence_rules.py` (renamed from `coherence.py`, which it had to be
+    — a top-level module named `coherence` shadows the `coherence` package, because `server_py/` wins
+    on `sys.path`) defines `QuestionRuleSet`, a real `coherence.engine.RuleSet` subclass.
     `mind-your-friends/server_py/test_coherence_engine.py` asserts that both titles use the
-    **identical** `RuleSet` / `CoherenceReport` / `Issue` classes rather than two copies that
-    merely share field names — the check that would actually catch the framework forking. Full
-    detail in MYF's `CLAUDE.md` item 51.
+    **identical** `RuleSet` / `CoherenceReport` / `Issue` classes rather than two copies that merely
+    share field names — the check that would catch the framework forking. MYF's side of the record:
+    MYF's item 51.
 
-17. **[PARTLY BUILT — designed Session 33, layout written since, wired to nothing] CYM BACKGROUND
-    — the mystery's own title as the page texture.** Owner-initiated: bring MYF's look and feel
-    across to CYM. Two questions are still open (below) and both are the owner's.
+17. **[PARTLY BUILT — layout written and tested, wired to nothing; one owner question open] CYM
+    BACKGROUND — the mystery's own title as the page texture, and where the brand marks sit.**
+    Owner-initiated: bring MYF's look and feel across to CYM. Stage 3.
 
-    **The "nothing has been written" line this item used to carry is stale, and was already stale
-    when written down.** `background_field.py` exists at root, is tested by
-    `scripts/test_background_field.py`, and computes the whole seeded layout — 294 lines, with its
-    reasoning recorded in place. What does NOT exist is any wiring: no server endpoint returns it,
-    and neither client draws it. So the correct status is *layout built, unrendered*.
-    - **[Session 37] It can now be looked at.** `scripts/preview_background_field.py` renders the
-      field to SVG at the host viewport's own size with a real screen's text over it — prose on
-      the ground (the hard case) and on a panel — which is what this item's own instruction
-      (*"Test on a real screen; do not settle it by argument"*) asks for and what nothing
-      previously made possible.
-    - **[Session 37] The ground is now painted**, as `default_clear_color` in `project.godot`.
-      That is this item's specified pre-prompt state — ground colour alone until a mystery is
-      named — reached without deciding anything about the field itself.
+    **What exists.** `background_field.py` computes the whole seeded layout and is tested by
+    `scripts/test_background_field.py`; no server route returns it and neither client draws it, so
+    the status is *layout built, unrendered*. `scripts/preview_background_field.py` (Session 37)
+    renders it to SVG at the host viewport's size under real screen text — prose on the ground and
+    on a panel — which is this item's own instruction (*"test on a real screen; do not settle it by
+    argument"*) made possible. The ground itself is painted as `default_clear_color` in
+    `project.godot`: the specified pre-prompt state, ground colour alone until a mystery is named.
 
     **Shared vocabulary (owner-defined — use these names).** MYF's `CLAUDE.md` glossary already
     defines two of the three; BACKGROUND is new and belongs in both files:
     | Term | MYF today | CYM equivalent |
     |---|---|---|
-    | **BACKGROUND** | slate ground + strewn faded question marks | slate ground + the strewn mystery TITLE |
+    | **BACKGROUND** | slate ground + strewn faded question marks | Night ground (item 36) + the strewn mystery TITLE |
     | **LOGO** | the three-emoji mark, top centre | none yet — not part of this |
     | **TITLE TREATMENT** | the logotype, top left | none yet — not part of this |
 
@@ -447,7 +402,7 @@ that the superseded text has become history and belongs here instead.
     (owner, explicitly). CYM's marks are the mystery's own title, so the two titles read as
     siblings rather than as one game reskinned. This **reverses MYF item 39's** "scoped by owner to
     MYF only, do not generalise into a cross-title design layer" — knowingly, at the owner's
-    direction. MYF item 39 needs that line rewritten when this is built.
+    direction; MYF's own record notes the reversal under its item 39.
 
     **The state machine.** Ground colour alone until a mystery is named; the field then builds in,
     and re-skins on same-room replay (`prompt_vote` → `next-mystery/start`), which is a free payoff
@@ -507,172 +462,56 @@ that the superseded text has become history and belongs here instead.
       in whatever font the machine has — that concern returns for the phone client, which needs the
       faces actually loaded or the two screens will not match.
 
-    **The two open questions — question 1 is answered, question 2 is half-answered:**
-    1. **Moderation** — **answered, Session 34: none yet, disclaimer instead.** See the risk entry
-       above for what shipped and what it does not cover.
-    2. **Does the player's title feed INTO generation, or only decorate?** Owner, Session 34:
-       *"Title is just for generation, but should also be used in a drop down menu of reusable
-       mysteries."* So the title **feeds generation** — it is not decoration-only — and it is the
-       handle the saved-mystery list is browsed by. **Still to pin down before building:** whether
-       "just for generation" also means the BACKGROUND field should be strewn with something other
-       than the title, or with the title as well. Do not assume; ask.
-       The slug wrinkle stands either way: the saved-mystery slug derives from
-       `mystery_dict["title"]` (`server/main.py`), so decide whether the player's title *replaces*
-       Claude's or sits beside it. Recommendation: replace, with Claude's as the blank-field
-       fallback — the dropdown then lists what the player named, which is the point of question 2.
+    **The open question — one of two.**
+    1. **Moderation — answered, Session 34: none yet, disclaimer instead** (the risk entry above).
+    2. **Does the player's title feed generation, or only decorate?** Owner, Session 34: *"Title is
+       just for generation, but should also be used in a drop down menu of reusable mysteries."* So
+       the title **feeds generation** and is the handle the saved-mystery list is browsed by. **Still
+       to pin down before building:** whether the BACKGROUND field is strewn with the title, with
+       something else, or both. Do not assume; ask. The slug wrinkle stands either way: the
+       saved-mystery slug derives from `mystery_dict["title"]` (`server/main.py`), so decide whether
+       the player's title *replaces* Claude's or sits beside it. Recommendation: replace, with
+       Claude's as the blank-field fallback.
 
-    **Reusable-mystery dropdown — it exists, and Session 34 fixed it.** Owner asked whether it was
-    still in the build. It is, on the Godot host screen only: MainMenu's "Browse Saved Mysteries"
-    → `GET /mysteries` → a popup `ItemList` labelled by each mystery's `title`. **It had been
-    inert since it was written** — `main_menu.gd` connected its four buttons and none of the
-    popup's own signals, so `_on_browse_item_selected` was dead code, clicking a row did nothing,
-    and the window could not even be dismissed (a Godot `Window` does not hide itself on
-    `close_requested`). Now wired. Two things it still is not:
-    - **Single-player only — and that is deliberate, not a gap.** Selecting a saved mystery goes
-      straight to `CaseDisplay.tscn`. The server has supported multiplayer reuse all along
-      (`CreateGameRequest.mystery_slug`, "skip prompt-collection, attach an already-generated
-      mystery immediately"), but no UI reaches it. This was raised as a next step and the owner
-      pointed at the Delivery Priority section above: group replay is a stage-3 feature. The PC
-      playtest needs one person at one machine replaying a saved case, which is exactly what the
-      single-player route already does.
-    - **Absent from the phone client.** `mobile.html` has no mystery list.
+    **The saved-mystery list.** MainMenu → *Browse Saved Mysteries* → `GET /mysteries` → a popup list
+    labelled by title (inert until Session 34 wired its signals). Selecting one opens
+    `CaseDisplay.tscn` for solo reading — the author's view. Since Session 42, `MysteryGeneration`'s
+    multiplayer section can also open a **room** from a saved mystery, through the server's
+    long-standing `CreateGameRequest.mystery_slug`, because stage 1 needed the round screen without
+    paying for a generation each time; `GET /mysteries` reports `apf_ready` per mystery. The phone
+    client has no mystery list (stage 3).
 
-    **Brand artwork — where it stands (Session 33).** `brand/` holds four files and a README.
-    `negative_logo.svg` / `organic_logo.svg` were the first pass: raster PNGs in an SVG wrapper,
-    not vector, and `organic_logo.svg` carries an export artifact of 22,445 opaque pixels outside
-    its viewBox. `NEWnegative_CYM.svg` / `NEWorganic_cym.svg` are the owner's re-cut and are
-    **genuine vectors** — 66 and 126 `<path>` elements, zero base64. That was the stated goal and
-    it is met.
-    - **The contrast problem is unchanged, and that is expected** — the re-cut converted format,
-      not values. Measured on the slate ground by `scripts/check_brand_contrast.py`: the negative
-      mark went 49% → 53% of ink at or below 2.5:1, the organic monogram 49% → 73%. The monogram's
-      *outright invisible* band did drop from 22.7% to 0.1%, but it moved into "barely" rather
-      than up the scale.
-    - **Being vector now makes the fix cheap and safe**, which is the real payoff. A value
-      re-pitch is a fill-colour rewrite across the paths, not a pixel filter. Worth knowing why
-      that matters: the pixel filter tried in this session produced rainbow speckle on the
-      negative mark, because its near-black regions have near-zero saturation with tiny hue noise
-      and raising lightness amplified that noise into visible colour. On vector paths there is no
-      noise to amplify.
-    - **Neither mark is wired to any client.** No CYM screen references either file. They are
-      artwork plus a measurement, not implemented chrome.
-    - **The structural question is still open and is the owner's:** these are specified as
-      *different marks per device* — negative mark upper-left on desktop/TV, organic monogram top-
-      centre on phones. Unlike MYF, CYM's Godot host screen and its phone clients are in the same
-      room at the same time, so the room would display two identities simultaneously. That may be
-      wanted (a TV poster and a phone icon); it should be decided rather than arrived at.
-    - Also unresolved: the negative mark reintroduces a question-mark motif to CYM, which item 17
-      otherwise scopes to MYF. A noir question mark is a different object from a strewn field, so
-      this may well be fine — but deliberately, not by drift.
+    **Brand marks — what is wired.** `brand/` holds the owner's vector re-cuts,
+    `NEWnegative_CYM.svg` and `NEWorganic_cym.svg` (66 and 126 `<path>`s, no embedded raster; the
+    first-pass files were rasters in SVG wrappers).
+    - **The negative mark sits upper-left on every Godot screen** (owner, playtest StartPageSept7),
+      via `godot/scripts/autoloads/Chrome.gd` — an autoload, for the reason `Style.gd` is one:
+      `change_scene_to_file()` rebuilds the scene tree, and the root survives it. The Godot copy is
+      mirrored byte-exact by `scripts/build_brand.py` — no recolouring, because a brand mark is a
+      fixed identity, which is exactly why `build_icons.py` recolours icons and this does not.
+    - **Its one fix:** 53% of its ink sat at or below 2.5:1 on the old slate ground, and it was
+      **one path** — the candle-smoke swirl, a near-black fill at 2.08:1. Re-pitched to `#989898`, a
+      neutral grey rather than the UI's blue `LINE`, since importing the app's accent into the mark
+      would be a bigger, uninvited change. Nothing else in the mark was touched.
+    - **The lobby and CaseBrief header show the owner's temporary logo**, `logo_temp.svg` — a plain
+      swap, deliberately not in the `build_brand.py` mirror, in the owner's words *"I don't love it
+      here either. Need to get an artist on it."* Whatever the artist delivers is measured with
+      `scripts/check_brand_contrast.py` before it is wired in for real.
+    - **The organic monogram is not on any Godot screen.** It was placed on the Lobby in Session 43,
+      failed contrast (73% of its ink at or below 2.5:1 on slate — a whole terracotta gradient, no
+      single offender), and the owner chose a white plate behind it; shown the render, the owner
+      rejected the plate (*"I hate that mockup"*) and replaced the mark with the placeholder above.
+      **The lesson worth keeping: a percentage clearing a floor is not the same claim as "the owner
+      likes how this looks", and only one of them is the bar.**
+    - **On today's Night ground (item 36)** every mark reads better: organic monogram 0% of its ink
+      at or below 2.5:1, negative mark 6%, the temporary logo 52%.
 
-    **[DECIDED, playtest StartPageSept7] The desktop half.** Owner: put the logo upper-left on
-    every screen. That is the negative mark, at the exact placement this item already specified
-    for desktop/TV — so the "different marks per device" question above is now answered for the
-    Godot client specifically, not for the room as a whole. The phone half (organic monogram,
-    top-centre) is untouched and still open; `mobile.html` has no chrome pass of any kind yet, so
-    there is nothing there to place it against. The question-mark-motif point directly above was
-    NOT re-litigated when this was asked — flagged to the owner in the same turn the mark was
-    wired in, not decided unilaterally either way.
-
-    **Built as `godot/scripts/autoloads/Chrome.gd`**, a fifth autoload, for the same reason
-    `Style.gd` is one: `change_scene_to_file()` discards and rebuilds the current-scene tree
-    wholesale, so anything living inside a `.tscn` needs adding nine separate times today and
-    again for every screen this project ever grows. Chrome adds its `CanvasLayer` straight to
-    `get_tree().root` in `_ready()`, which survives every scene swap for free. Also built:
-    `scripts/build_brand.py`, the same "generated, then checked" mirror `palette.py` and `icons/`
-    already use, copying `brand/NEWnegative_CYM.svg` byte-exact into
-    `godot/assets/brand/negative_mark.svg` — no recolouring, because a brand mark is a fixed
-    identity rather than a retintable icon, which is exactly the distinction `build_icons.py`
-    draws for the OTHER direction (why it recolours the clue/witness sets and this script does
-    not).
-
-    **The contrast measurement above is unchanged and was surfaced again before wiring anything
-    in**, not silently inherited: 53% of the negative mark's ink still sits at or below 2.5:1
-    against the slate ground. This is a property of the artwork, not of the wiring, and fixing it
-    means re-pitching fill values on the source SVG — a decision for whoever owns the mark. Flagged
-    to the owner in the same turn rather than left for a screenshot to surface on its own.
-
-    **[FIXED, same playtest — the owner asked for it once shown the rendered mark, not once
-    shown a percentage.]** A rendered preview (this session had no engine, so `cairosvg` stood
-    in) made the 53% figure legible rather than abstract: the candle-smoke/question-mark swirl
-    was nearly invisible against the ground while the candle-and-figure — already white — read
-    fine. Isolating the geometry (`svgelements`, bounding boxes rather than colour alone) found
-    the 53% was **one path**: the smoke, a single near-black (`#010101`) fill sitting entirely
-    above the candle-and-figure region, contrast 2.08:1 against the ground on its own. Every
-    other path in the mark belongs to the figure and was never the problem.
-
-    Re-pitched to `#989898` — a neutral gray, not the interface's `LINE` token (`#7090AD`,
-    which also clears the floor, at exactly 3.00:1): the mark's own black/white/red palette is
-    a standalone identity, not a UI element, and importing the app's blue accent into it would
-    be a bigger, uninvited change than fixing legibility. `#989898` measures 3.48:1 against the
-    ground — above the `(INK_FAINT, GROUND, 3.0, "field labels on the ground (large only)")` /
-    `(LINE, GROUND, 3.0, ...)` floor `palette.py`'s own contract already sets for large graphical
-    content on the raw ground, with real margin rather than sitting exactly on the line.
-
-    **Result: 7% of the mark's ink at or below 2.5:1, down from 53%** — `scripts/check_brand_contrast.py`,
-    re-run rather than estimated. The remainder is edge antialiasing on the now-lighter smoke
-    shape plus a few incidental near-black details on the figure (tie, buttons) that were never
-    part of the 53% and were not touched. One fill value changed; nothing else in the mark did.
-
-    **Unrelated, noticed while checking and worth one look before building on generation:** an old
-    batch summary in `mystery_database/generated/` shows **13 of 14 generations failing** on JSON
-    parse errors (`Unterminated string`, `Expecting property name`). It is from March and 16
-    mysteries have generated cleanly since, so it is probably long fixed — but a background keyed
-    to the title inherits whatever the current failure rate is. Worth one real generation run to
-    confirm before building on top of it.
-
-    **[Session 43] The organic monogram landed on Godot too — one screen, `Lobby.tscn`, top-centre
-    — and its contrast was audited and fixed the same session, not left as a caveat this time.**
-    A first pass spot-checked five fill values by hand and called it "roughly the same shape as the
-    negative mark's old defect" — wrong, and worth recording why: `scripts/check_brand_contrast.py`,
-    actually run rather than sampled, measured **73% of the mark's 309,450 opaque pixels at or below
-    2.5:1** against the ground. That is the same number the 2027 measurement above already reported
-    (49% → 73% after the vector re-cut) — it was never fixed, only the negative mark was. Ten times
-    the negative mark's remaining 7%, and its own worst fill sits at 1.12:1 — genuinely invisible,
-    not merely weak.
-
-    **This is not a one-path fix.** The negative mark's 53% traced to a single near-black fill on
-    one path; the organic mark's palette is 125 distinct fills forming a continuous terracotta
-    gradient with no clean offender to isolate, topping out around 4.3:1 at its lightest. Re-pitching
-    it would mean transforming the whole gradient, not changing one value, and would be editing the
-    owner's actual artwork rather than fixing a wiring defect — the checker's own printed verdict was
-    *"drawn for a light ground — re-pitch the values into the light half of the scale, or give the
-    mark a light plate to sit on."* Put to the owner as that choice, once the plate's own numbers
-    were known rather than assumed: white clears the most of the mark's own fills of every
-    background tried (5 of 125 still under 2.5:1, worst 2.35:1 — against 25 of 125 on `Palette.INK`
-    and 22 of 125 on a warm ivory tried in between). **Owner chose the plate.**
-
-    **Built as `Palette.PLATE` (`#FFFFFF`) in `palette.py`**, regenerated through into
-    `Palette.gd` and `mobile.html` the same "one file decides, two clients are generated from it"
-    way every other colour here does — deliberately NOT added to `CONTRAST_CONTRACT`, because that
-    contract measures flat UI ink against a UI background and this is a raster mark's own many-
-    coloured ink against a card behind it, a different kind of measurement with its own checker
-    already. `Lobby.tscn` gained a `PlatePanel`-styled `Panel` sized slightly larger than the mark
-    and placed immediately before it in node order, so it draws behind. No source SVG was touched.
-
-    **[REVERTED, same session, before it reached a second playtest.]** Rendered and sent for a
-    look, the way the negative-mark fix above was — and this time the answer was not a number, it
-    was *"No, I lied. I hate that mockup. I will come up with something to use instead."* `Palette.PLATE`,
-    the `PlatePanel` variation, and `Lobby.tscn`'s plate node are all gone again; `OrganicMark` sits
-    exactly where it did before the plate, contrast problem and all. **The measurement stands and
-    the problem is real** — 73% of the mark's ink is still at or below 2.5:1 against the ground, and
-    that has not changed — but the remedy is now the owner's own replacement artwork, not a fix
-    applied to `NEWorganic_cym.svg` sight-unseen. Worth carrying forward as the general lesson the
-    negative mark's fix did not teach: a percentage clearing a floor is not the same claim as
-    "the owner likes how this looks," and only one of those two is actually the bar.
-
-    **[Session 43, same conversation] The organic mark is gone from `Lobby.tscn`, replaced by the
-    owner's own placeholder.** `icons/new logo/CYM_temp-removebg-preview.svg`, uploaded to `main`
-    directly, copied to `godot/assets/brand/logo_temp.svg` and wired into the renamed `LogoMark`
-    node — a plain swap, not run through the `build_brand.py` mirror pipeline, because the owner's
-    own words for it were *"I don't love it here either. Need to get an artist on it."* Sizing was
-    recomputed for its actual aspect (747×334, wider than the organic mark's 449×375) rather than
-    reusing the old box, which would have letterboxed it. Measured anyway, so the next person does
-    not have to guess: `scripts/check_brand_contrast.py` puts it at **66% of its ink at or below
-    2.5:1** against `Palette.GROUND` — more of it flatly invisible (52.8%) than the organic mark's
-    own worst band ever was. No fix applied, on purpose, per the lesson two paragraphs up: this is
-    a placeholder, not a decision to hold to a floor. Whatever the artist delivers should be
-    measured before it is wired in for anything but a look.
+    **Still open, both stage 3:** the phone half (organic monogram, top-centre — `mobile.html` has
+    no chrome pass at all), so whether a room should show two identities at once (TV poster, phone
+    icon) is not yet decided; and the window icon (`project.godot`'s `config/icon`, deliberately
+    unset). Flagged and not re-litigated: the negative mark brings a question-mark motif to CYM,
+    which this item otherwise leaves to MYF — a noir question mark is a different object from a
+    strewn field, but it should be fine deliberately, not by drift.
 
 18. **[CLOSED, Session 41 — September 3 2026] A BLOCKING coherence report does not stop a
     mystery being saved, served, or played.** Not a coherence-engine failure — the opposite. The
@@ -835,24 +674,35 @@ that the superseded text has become history and belongs here instead.
     error to explain it. The same pattern was found and fixed on the multiplayer share path
     before it could be hit (`102e2be`).
 
-    **Still unverified: only the two paid steps** — one interrogation call and one generation.
-    Plus one gap inside a passing step: the Smurf negative case (accusing Smurfodex, which must
-    read *wrong*) was not run. The procedure and its live Status line are `docs/F5_CHECKLIST.md`.
+    **Still unverified from that walk:** the paid interrogation call, and the Smurf negative case
+    (accusing Smurfodex, which must read *wrong*). The paid generation step has since run on the
+    owner's machine (item 35, September 16). The procedure and its status are `docs/F5_CHECKLIST.md`.
 
-23. **[STEPS 1-4 BUILT, Session 42 — what is left is a table, not code] Build APF.** The playtest shape is agreed and written down:
+23. **[STEPS 1–4 BUILT — what is left is a table, not code] Build APF.** The playtest shape is
     `docs/PLAYTEST_FLOW.md` → "APF (All Provided For)". Findings are **assigned, not gathered**; the
-    only decision is which to share and which to keep, which is the mechanic this file's first
-    paragraph calls the core innovation. It deletes exploration, the block pool, the phase gates
-    and item 21's deadlock outright, and drops play-time API cost to roughly zero.
+    only decision is which to share and which to keep. It deletes exploration, the block pool, the
+    phase gates and item 21's deadlock outright, and drops play-time API cost to roughly zero.
+
+    **Where it stands (Session 51).** Built and verified over HTTP: the accepted mystery
+    `the_neriin_in_the_pilchard_barrel` plays four rounds end to end at all three difficulties
+    (`scripts/walk_apf_game.py`, `scripts/test_apf.py`). In Godot: every screen loads (Session 49,
+    VerifyScenes ten `ok`); the owner's Session 49 walk reached round 2 of ApfRound and stalled on a
+    server bug — pushes from plain `def` routes were silently dropped — now fixed and guarded by
+    `scripts/test_ws_push.py`. **The walk has never reached ResultScreen in Godot**, and nobody but
+    the owner has played APF cold. Still on the critical path: one play-time Claude call,
+    `_generate_resolution_narrative` (it falls back to the mystery's own prose on failure; build
+    step 5 removes it).
+
     Order (from `docs/INVESTIGATION_DESIGN.md` §7, reduced by APF):
     1. ~~`exonerates` / `implicates` on evidence + the set-arithmetic solvability check~~ —
        schema half landed Session 38 with the backwards-writing reorder (item 26).
     2. ~~the constrained assignment — pure computation, re-runnable at zero cost~~ — **[Session 39]
        built as `casefiles.py`.** See below.
     3. ~~the share decision, the suspect board, the reveal~~ — **[Session 42] built.** See below.
-    4. ~~`cinematic_brief: bool = True` for the paced text opening~~ — **[Session 40]**
-       `_generate_opening_narration()` writes it, on by default. Pacing the beats is client-side
-       and free; that screen is unbuilt.
+    4. ~~the paced text opening~~ — **[Session 40]** `_generate_opening_narration()` writes it, on
+       by default (`opening_narration: bool = True`). The room's opening screen is CaseBrief
+       (Session 48, item 36); it does not yet show the narration — pacing the beats is client-side
+       and free.
 
     **[Session 42] Step 3, and the shape it took.** `apf.py` owns the RHYTHM; `casefiles.py` still owns
     the CASE. That split is the whole design: which findings land in whose casefile is a solvability
@@ -889,10 +739,8 @@ that the superseded text has become history and belongs here instead.
     `scripts/walk_apf_game.py` plays a whole four-round game over real HTTP **with no API key at
     all**, which is how both defects above were found.
 
-    **Not verified: it has never run in Godot, and nobody has played it.** The scene and scripts
-    pass `scripts/check_godot_wiring.py`, which reads scene files rather than loading them —
-    necessary, not sufficient. And every number in the difficulty ladder is arithmetic: whether a
-    two-finding stash at HARD *feels* like a decision is a question only a table answers.
+    **What only a table can answer:** every number in the difficulty ladder is arithmetic. Whether a
+    two-finding stash at HARD *feels* like a decision is not something any check can say.
 
     **[Session 39] Step 2's blocker was real and pointed at the wrong code.** Session 38 recorded
     it as *"a finding carries no evidence ID"* in the three finding constructors — but those are
@@ -925,14 +773,12 @@ that the superseded text has become history and belongs here instead.
     ladder is inert at a three-finding casefile (Session 38): `REDUNDANCY_BY_DIFFICULTY` puts each
     exoneration in two casefiles on EASY and one on HARD.
 
-    **Untested against a real generation.** That costs credits and is the next paid step — one
-    round now validates both Session 38's reorder and this pointer. `scripts/test_casefiles.py` and
-    `scripts/test_narrative_checks.py` carry fixtures because no mystery on disk has either
-    field, and both suites were negative-tested by injecting each defect. **That pass found two
-    of the first-draft assignment tests vacuous** — one was refused by the feasibility pre-check so the
-    enforcing branch could be deleted with the suite still green, and one asserted a property
-    that held by construction — and corrected a code comment claiming an assignment-order benefit
-    that measurement showed does not exist.
+    **Confirmed against real generations in Session 41** — the accepted mystery carries `reveals`
+    and assigns on its first attempt. `scripts/test_casefiles.py` and `scripts/test_narrative_checks.py`
+    keep their fixtures, because a fixture can plant each defect on purpose, and both suites were
+    negative-tested that way. **That pass found two of the first-draft assignment tests vacuous** —
+    one was refused by the feasibility pre-check so the enforcing branch could be deleted with the
+    suite still green, and one asserted a property that held by construction.
     **[Session 38] One design question remains open, not five** — `docs/INVESTIGATION_DESIGN.md`
     §6 has been reconciled with APF. Four of the five were closed by APF rather than answered
     (they assumed traversal, blind exploration, player positions and an investigation budget,
@@ -1009,41 +855,26 @@ that the superseded text has become history and belongs here instead.
     `palette.py` is now the only place a colour is decided. `scripts/build_palette.py` generates
     `godot/scripts/theme/Palette.gd` and `mobile.html`'s CSS block from it and `--check` fails on
     drift; `scripts/test_palette.py` holds 28 ink/background pairs to their WCAG floors.
-    `godot/scripts/autoloads/Style.gd` builds the Theme and puts it on `get_tree().root`, so all
-    eight screens restyle **without one `.tscn` node tree being edited** — which is the point,
+    `godot/scripts/autoloads/Style.gd` builds the Theme and puts it on `get_tree().root`, so every
+    screen restyles **without one `.tscn` node tree being edited** — which is the point,
     given where Session 36's defects lived.
 
-    **What this does not settle, and why the next report on it must say so.** There is no Godot
-    binary in the session environment, so **none of the theme has been rendered.** The checkers
-    establish that every `theme_type_variation` is declared and every path resolves; they cannot
-    establish that a theme item name is one the engine recognises, and a wrong one is a silent
-    no-op rather than an error. **[Session 38] That last gap is closed, but only from inside the
-    engine** — `godot/scripts/tools/ApplyTheme.gd` looks every name up in
-    `ThemeDB.get_default_theme()` and prints the misses.
+    **Verified inside the engine, because reading files cannot do it.** A theme item name the engine
+    does not have is a silent no-op — the control keeps its default and nothing errors — and no
+    checker reading `.gd` files can tell. `godot/scripts/tools/ApplyTheme.gd` looks every name up in
+    `ThemeDB.get_default_theme()` and prints the misses (item 25). First run, Session 40, Godot 4.7.2
+    on the owner's machine: `MISSES none`, and every screen survived `VerifyScenes.gd`. Re-run both
+    after any theme change — item 36 is the latest.
 
-    **[Session 40] IT WAS RUN, AND IT CAME BACK CLEAN.** Godot 4.7.2, the owner's machine, the
-    first execution of either engine-side script: `168 items checked across 36 theme types`,
-    **`MISSES none`**, and Nunito Sans resolved at default_font_size 16. `VerifyScenes.gd`
-    reported eight `ok` lines in the same sitting. So the caveat below is now history rather than
-    a live risk: every theme item name and all 13 variations are names the engine really has, and
-    every one of the eight screens survives Godot's own loader. Neither could be established any
-    other way — a wrong theme name is a silent no-op with no symptom but one control looking
-    unthemed, and reading a `.tscn` is not loading it. The failure mode is bounded — a control keeps its engine default,
-    nothing crashes — but it needs an F5 to close. Session 36's "necessary, not sufficient" rule
-    applies to this work more than to most.
+    **Decided alongside:** **Nunito Sans** for prose — SIL OFL 1.1, static 400/600/700 in
+    `godot/assets/fonts/` with `OFL.txt`, the same release self-hosted as WOFF2 for the phone, one
+    family so no fallback chain; Latin-1 accents verified against *Schatten am Checkpoint*. Item 36
+    later added Archivo Narrow and gave titles to Cinzel Decorative. Left to other items:
+    `config/icon` (unset, item 25; which mark goes on which device is item 17) and what the
+    BACKGROUND field is strewn with (item 17).
 
-    Three things deliberately left alone, each because deciding them is the owner's:
-    - ~~**Fonts.**~~ **[DECIDED, same session] Nunito Sans**, SIL OFL 1.1, three static
-      instances (400/600/700) in `godot/assets/fonts/` with `OFL.txt` beside them, and the
-      same release self-hosted as WOFF2 for the phone. One family across the whole
-      hierarchy, so there is no fallback chain and no missing-glyph box; Latin-1 accents
-      verified against *Schatten am Checkpoint*. Open at the F5: the room code, since the
-      zero is unslashed.
-    - **`config/icon`** points at `res://assets/ui/icon.png`, which does not exist (nor does
-      `godot/assets/`). Choosing it means answering item 17's open question about which brand mark
-      goes on which device.
-    - **What the BACKGROUND field is strewn with** — item 17 question 2. Nothing here wires the
-      field to a client, so nothing prejudges it.
+    **Overturned since:** "panels go deeper than the ground" held while the ground was mid-tone
+    slate; item 36 moved the ground to Night and rewrote that rule in `palette.py` with its reason.
 
 25. **[DONE, Session 38 — August 28, 2026] The design is visible in the editor, and two checks
     moved inside the engine.** Session 37 built the theme and it was invisible while being worked
@@ -1058,7 +889,8 @@ that the superseded text has become history and belongs here instead.
       resolves its theme from its ancestors before the project default, so `Style.gd` still wins
       when the game runs, and a stale preview can mislead the editor but cannot ship a wrong
       colour. It also prints every theme item name the engine does not have (see item 24).
-    - **`godot/scripts/tools/VerifyScenes.gd`** loads all eight screens through Godot's own loader
+    - **`godot/scripts/tools/VerifyScenes.gd`** loads every screen in `scenes/ui/` (it reads the
+      directory itself since Session 47 — the hand-kept list had silently left out ApfRound) through Godot's own loader
       and compares the nodes each `.tscn` declares against the nodes that survive loading — the
       comparison `check_godot_wiring.py` structurally cannot make, and the one that would have
       caught Session 36's five missing `Interrogation.tscn` panels.
@@ -1080,7 +912,8 @@ that the superseded text has become history and belongs here instead.
     releases host returns 403 from the proxy's repo scoping. Previous sessions stated this; it has
     now been tried.
 
-    **Still nothing rendered.** Both scripts are engine-side and unrun.
+    **Both have run on the owner's machine since** — first in Session 40 (item 24), most recently
+    Session 49: VerifyScenes ten of ten `ok`, ApplyTheme clean.
 
 26. **[DONE, Session 38 — August 28, 2026] Generation writes the mystery BACKWARDS, and every
     clue declares what it serves.** Owner's observation, from the craft of the form: a mystery is
@@ -1125,18 +958,17 @@ that the superseded text has become history and belongs here instead.
     `scripts/check_narrative.py` reports CAST (a person in the chain who is not in the cast), LINKS
     (the graph checks above) and ORPHAN (a name appearing only inside the solution). It fails only
     on mysteries generated under the current schema, so the legacy corpus does not hold the suite
-    red. `scripts/test_narrative_checks.py` proves the LINKS branch fires, on fixtures, because no
-    mystery on disk declares links yet and a branch with no input is a branch nobody has run.
+    red. `scripts/test_narrative_checks.py` proves the LINKS branch fires on fixtures, which can plant
+    each defect on purpose.
 
-    **Untested against a real generation** — that costs credits. The first generation run after
-    this is the confirmation.
+    **Confirmed by real generations from Session 41 on**: every generation since declares its links,
+    and the gate (item 18) runs these checks on each one. The accepted mystery passes them all.
 
-
-27. **[BUILT, Session 40 — untested against a real generation] Incrimination as well as exculpation: the glove
-    mechanic.** Deduction today is pure subtraction. Every clue clears exactly one suspect, and
-    you win when one name is left. That shape has a cost the owner named: it is arithmetic, not
-    detection. Nothing asks the player to *decide* anything, and nothing gives two players a
-    reason to talk to each other — you read your own list and subtract privately.
+27. **[BUILT, Session 40 — one real generation's evidence, mixed] Incrimination as well as
+    exculpation: the glove mechanic.** Before this item, deduction was pure subtraction: every clue
+    cleared exactly one suspect, and you won when one name was left. That shape has a cost the owner
+    named: it is arithmetic, not detection. Nothing asks the player to *decide* anything, and nothing
+    gives two players a reason to talk to each other — you read your own list and subtract privately.
 
     **The owner's example, which is the whole design:** *"A bloody men's glove."* On its own it
     clears nobody. Give it to somebody holding *"the CCTV shows Adachi in the control room all
@@ -1164,24 +996,31 @@ that the superseded text has become history and belongs here instead.
     exists and that nobody can withhold it away — checked before anyone sits down. The player
     experiences a glove, an alibi that does not fit, and a decision.
 
-    **What it needs.** The field already exists: `implicates` is on every evidence item and
-    generation fills it in, but nothing reads it — `check_narrative.py` only asserts that the
-    culprit is implicated by *something*, so the answer does not feel arbitrary, and `casefiles.py`'s
-    `solves()` uses `exonerates` alone. The change is to give `implicates` the meaning *"only
-    these could have done it"* and have `solves()` intersect those sets as well as subtracting
-    the exonerated, solving when exactly one name survives both.
+    **What was built: a separate `narrows` field, not a new meaning for `implicates`.** The first
+    proposal was to give `implicates` the meaning *"only these could have done it"*. It was rejected
+    at build time: `implicates` already means *suspicion*, and a single-name list read as a
+    constraint is the whole answer in one finding. So `narrows` is its own field on evidence, and
+    `casefiles.solves()` intersects narrowings as well as subtracting exonerations, solving when
+    exactly one name survives both. **Elimination stays the guaranteed floor**, so a withheld glove
+    can never make a case unprovable.
 
-    **Build the fair-play check in the same change, not after.** A narrowing clue is a strong
-    claim and generation has to mean it: the real culprit must appear in EVERY implicating set,
-    or the mystery contradicts itself and punishes correct reasoning. That is free, structural,
-    and exactly the kind of relationship item 26 established should be declared rather than
-    inferred.
+    **The fair-play rules landed in the same change** (`scripts/check_narrative.py`, shared ids with
+    `casefiles.py`): the culprit appears in every `narrows` list (`NARR.NARROWS_EXCLUDES_CULPRIT`); a
+    narrowing names at least two suspects (`NARR.NARROWS_SINGLE`) and fewer than all of them
+    (`NARR.NARROWS_ALL`), all of them real (`NARR.NARROWS_STRANGER`); and its prose may not name the
+    people it narrows to (`NARR.NARROWS_PROSE_NAMES`). The suspect board greys a face on an
+    exoneration and **never** on a narrowing (item 23).
 
-    **Two consequences worth knowing before starting.** It should reduce how many findings a
-    mystery needs — clearing three people currently takes six findings under item 23's two-routes
-    rule, and a glove narrowing to two plus one alibi does the same work with two. And it changes
-    what generation must write, so it wants to land in the same paid round as any other schema
-    change rather than its own.
+    **A consequence:** it should reduce how many findings a mystery needs — clearing three people
+    under the two-routes rule takes six findings, and a glove narrowing to two plus one alibi does
+    the same work with two.
+
+    **The evidence so far.** Session 41's sixth generation, `the_tide_waits_for_no_one`, produced the
+    glove exactly as specified — a narrowing to two tall men plus the exoneration clearing one — but
+    both halves landed on one witness, so one finding carried the whole proof. The prompt now
+    forbids a single witness, lead or area revealing both; unconfirmed. Item 35's generation
+    (September 16) tripped `NARR.NARROWS_PROSE_NAMES` three times. Watch it across more generations
+    before concluding anything.
 
 
 28. **[BUILT, Session 41 — September 3 2026] The generation ledger, and cost per accepted mystery.**
@@ -1292,7 +1131,8 @@ that the superseded text has become history and belongs here instead.
     where witnesses are actually written: assign each witness a suspect BEFORE writing the
     statement, and cover all four. The existing REACHABLE rule failed for the same reason the
     two-routes rule did — both were stated in the EVIDENCE section as properties of a section the
-    model writes later. **Untested against a real generation.**
+    model writes later. **Confirmed in Session 41's sixth generation:** `the_tide_waits_for_no_one`
+    has no single-route suspect and every exoneration wired (item 23).
 
 30. **[BUILT, Session 41 — September 3 2026] Two things the session kept finding by accident, made
     into checks.** Owner, after a run of *"a rule nobody was enforcing"* findings: *"Is it worth our
@@ -1579,12 +1419,18 @@ that the superseded text has become history and belongs here instead.
       directive" and that APF's reading is right — the rows are the three kinds of finding in a
       casefile, the bar is rounds. The gather loop can reuse the same parts.
 
-    **What landed is theme-level only**, which is the point of `Style.gd` (item 24): `palette.py`,
-    the generated `Palette.gd` and `mobile.html` block, the clear colour, two fonts and the
-    Theme — all nine screens restyle with no `.tscn` edited. **Not rendered** — no engine reaches a
-    session; `ApplyTheme.gd` has to confirm the new theme items (`hover_pressed` among them) on the
-    owner's machine. The scene-level parts (the ID column, the result bar, the stamp, the ledger)
-    and five hard-coded colours that bypass the theme are the screen-by-screen pass that follows.
+    **The theme landed first, and at theme level**, which is the point of `Style.gd` (item 24):
+    `palette.py`, the generated `Palette.gd` and `mobile.html` block, the clear colour, two fonts and
+    the Theme — every screen restyled with no `.tscn` edited. ApplyTheme on the owner's machine:
+    two `hover_pressed` misses in Session 47 (removed the same session), then `MISSES none` with
+    Archivo Narrow loaded in Session 48. **Screen passes followed:** Session 47 — ApfRound (finding
+    rows, round progress), ResultScreen (verdict voice, stamp, ledger, rating tiles), MainMenu
+    (*Play / Create* × *Solo / With friends*), the five hard-coded colours that bypassed the theme,
+    Lobby (roster rows with seat numbers), MysteryGeneration (difficulty tiles, the free *Host* path
+    primary); the owner declined the "who the room accused" result bars. Sessions 48 and 49 below.
+    **No screen pass yet:** CaseDisplay, Interrogation, Accusation, ShareSelection. MysteryGeneration's
+    pass was not visible on the owner's Session 48 run — check the checkout was current before
+    redoing it.
 
     **[Session 48 — October 15, 2026 — owner] CaseBrief: the room's opening is its own screen.**
     The first F5 past the lobby showed the old CaseDisplay overflowing both edges of the window,

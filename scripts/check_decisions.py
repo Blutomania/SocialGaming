@@ -44,8 +44,17 @@ MYF = ROOT / "mind-your-friends"
 # Session 50, so a path-scoped rule loads them only for CYM work. The rules
 # directory is read too, or the move would silently drop CYM's file from this
 # check — which is exactly what checking only "CLAUDE.md" would do.
+#
+# Source comments are read too, since Session 51, as MYF's always were. The
+# first run found background_field.py citing "item 40" — MYF's item 40, with
+# nothing saying so — which every earlier check had passed.
 CYM_CITING = ([ROOT / "CLAUDE.md"] + sorted((ROOT / ".claude" / "rules").glob("*.md"))
-              + sorted((ROOT / "docs").glob("*.md")))
+              + sorted((ROOT / "docs").glob("*.md"))
+              + sorted(p for pattern in ("*.py", "server/**/*.py", "server/**/*.html",
+                                         "scripts/*.py", "godot/**/*.gd", "godot/**/*.tscn")
+                       for p in ROOT.glob(pattern)
+                       # This script names example item numbers in its own comments.
+                       if p.resolve() != Path(__file__).resolve()))
 
 # MYF's source comments cite items constantly ("see MYF CLAUDE.md item 47"),
 # so code is read too — a dead reference in a comment is still a dead end.

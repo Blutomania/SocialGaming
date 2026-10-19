@@ -42,7 +42,7 @@ TILE = 600
 # than MYF's (clue lists, interrogation transcripts, evidence).
 #
 # NOT SETTLED BY ARGUMENT. Item 17 flags this as the thing to check on a real
-# screen, and item 40's rule still applies: if the field needs more presence,
+# screen, and MYF's item 40 rule still applies: if the field needs more presence,
 # add density, not opacity.
 MARK_STRENGTH = 0.07
 
