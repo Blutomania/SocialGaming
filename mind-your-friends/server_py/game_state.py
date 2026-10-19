@@ -95,6 +95,15 @@ def create_game(host_id: str, host_name: str) -> dict:
         # phase. See MYF CLAUDE.md item 47.
         "turnSeq": 0,
         "highlightReel": [],
+        # Structured record of every question asked, appended by
+        # _log_question() as each turn resolves. The highlight reel is prose
+        # meant for reading; this is the data the post-game social layer
+        # (superlatives, the Shareable Question) is built on. Carries every
+        # correct answer, so player_view() ships it ONLY at GAME_OVER.
+        "questionLog": [],
+        # The post-game epilogue, None until GAME_OVER — see the superlative
+        # section at the bottom of this file.
+        "postGame": None,
         # Non-None only while start_game() is building the fact bank. The
         # build takes ~50s even with the batches running concurrently, which
         # is long enough that a lobby showing nothing reads as a hang — this
@@ -1276,8 +1285,81 @@ def expire_lineup(game: dict) -> dict:
     return game
 
 
+def _log_question(game: dict) -> None:
+    """Appends the turn that just resolved to game["questionLog"]. Called from
+    next_turn() rather than from each resolution path (answer, buzz, expiry,
+    group answers, both lineup paths) because next_turn is the single funnel
+    every one of them passes through — logging in six places would mean six
+    places to forget. Port of logQuestion() in lib/gameState.js."""
+    question = game.get("currentQuestion")
+    if not question or game.get("skippedTurn"):
+        return
+
+    index = game.get("answererIndex")
+    answerer = game["players"][index] if index is not None else None
+    answerer_name = answerer["name"] if answerer else None
+    result = game.get("lastResult") or {}
+    rule = game.get("roundRule") or {}
+
+    if rule.get("submissionBased"):
+        outcome = "group"
+        summary = "The whole room answered this one."
+    elif rule.get("lineupBased"):
+        winner = result.get("winnerName") if result.get("lineupWinner") else None
+        outcome = "spotted" if winner else "unclaimed"
+        summary = f"{winner} spotted it first." if winner else "Nobody in the room spotted it."
+    elif result.get("buzzedIn"):
+        # Someone other than the active player took it. `buzzedIn` is only
+        # ever true alongside a winner, so this cannot report a take that
+        # didn't happen. How the answerer lost it matters: a fold and a freeze
+        # look the same from outside, and "hesitated" is true of only one.
+        outcome = "buzzed"
+        gave_it_up = {
+            "passed": "passed and",
+            "wrong": "got it wrong and",
+            "timedOut": "froze and",
+        }.get(result.get("activeOutcome"), "hesitated and")
+        summary = f"{answerer_name or 'The answerer'} {gave_it_up} {result.get('winnerName')} took it."
+    elif result.get("correct"):
+        outcome = "correct"
+        summary = f"{answerer_name or 'The answerer'} got this one."
+    elif result.get("activeOutcome") == "passed":
+        outcome = "passed"
+        summary = f"{answerer_name or 'The answerer'} passed and nobody else got it either."
+    else:
+        outcome = "wrong"
+        # Nobody in the room got it, not just the active player — everyone had
+        # a shot once the buzzer opened.
+        summary = f"Nobody got this one past {answerer_name or 'the answerer'}."
+
+    lineup = question.get("lineup")
+    attribution = game.get("currentCategoryAttribution") or {}
+    game["questionLog"].append({
+        "index": game["questionIndex"],
+        "question": question.get("question"),
+        "answer": question.get("answer"),
+        "category": game.get("currentCategory"),
+        "categoryAttribution": attribution.get("submittedBy"),
+        "roundRuleId": rule.get("id"),
+        "roundRuleName": rule.get("name"),
+        "answererName": answerer_name,
+        "playerAnswer": result.get("playerAnswer"),
+        "wager": game.get("currentWager"),
+        "outcome": outcome,
+        "outcomeSummary": summary,
+        # The room failing a question is the strongest share hook — it turns
+        # the card into a challenge ("nobody here got this").
+        "roomMissedIt": outcome in ("wrong", "unclaimed", "passed"),
+        "lineup": (
+            {"options": lineup["options"], "correctOptionId": lineup["correctOptionId"]}
+            if lineup else None
+        ),
+    })
+
+
 def next_turn(game: dict) -> dict:
     _assert_phase(game, "RESULT")
+    _log_question(game)
     game["skippedTurn"] = False
     # The announcement gets exactly one turn on screen; the rule itself stays
     # visible for the whole round via view["roundRule"].
@@ -1336,7 +1418,10 @@ def disconnect_player(game: dict, player_id: str) -> dict:
     if not player:
         return game
     player["connected"] = False
-    if game["phase"] == "LOBBY":
+    # After the game ends nobody waits for anybody — only `connected` matters
+    # (superlative_voters reads it), and a "waiting for reconnect…" line in the
+    # highlight reel the scoreboard shows would be false.
+    if game["phase"] in ("LOBBY", "GAME_OVER"):
         return game
     game.setdefault("disconnectPending", {})[player_id] = {"since": time.time()}
     _log_highlight(game, f"{player['name']} disconnected — waiting for reconnect…")
@@ -1600,6 +1685,24 @@ def player_view(game: dict, player_id: str) -> dict:
     if phase == "GAME_OVER":
         view["winners"] = [{"id": p["id"], "name": p["name"], "score": p["score"]} for p in get_winners(game)]
 
+        # questionLog carries every correct answer, so it ships ONLY here —
+        # the game is over and there is nothing left to spoil. Never move this
+        # out of the GAME_OVER branch.
+        view["questionLog"] = game["questionLog"]
+
+        post = game.get("postGame")
+        if post:
+            view["postGame"] = {
+                "stage": post["stage"],
+                "categories": post["categories"],
+                # Other players' ballots stay hidden while voting is open, so
+                # nobody can bandwagon; the results stage publishes tallies.
+                "myVotes": post["votes"].get(player_id, {}),
+                "votedCount": len(post["votes"]),
+                "totalToVote": len(superlative_voters(game)),
+                "results": post["results"] if post["stage"] == "results" else None,
+            }
+
     if game.get("disconnectVote"):
         view["disconnectVote"] = {
             "targetName": game["disconnectVote"]["targetName"],
@@ -1610,3 +1713,193 @@ def player_view(game: dict, player_id: str) -> dict:
     view["paused"] = should_pause(game)
 
     return view
+
+
+# ---------------------------------------------------------------------------
+# Post-game social layer — superlative voting (CLAUDE.md items 35, 46).
+#
+# Runs entirely inside the GAME_OVER phase rather than adding phases to the
+# state machine: the game is over, this is an epilogue, and every phase timer
+# in main.py assumes the eight-phase loop. Port of the JS version, with one
+# deliberate difference noted at resolve_superlatives().
+#
+# game["postGame"] = {
+#   "stage": "voting" | "results",
+#   "categories": [{id, title, description}],
+#   "votes": {voterId: {categoryId: targetPlayerId}},
+#   "results": [{id, title, description, winnerNames, voteCount, quip}] | None,
+# }
+#
+# Both Claude calls follow resolve_answer_attempt()'s convention: the caller
+# passes its game lock, which is held only to claim and to apply, never across
+# the API call — holding _games_lock for a generation would freeze every room.
+# ---------------------------------------------------------------------------
+
+# Stored in a ballot slot when a player abstains. Not a player id, so the
+# tally skips it naturally — and it must, or "skipped" wins the award.
+SKIPPED_VOTE = "__skipped__"
+
+
+def begin_superlative_voting(game: dict, lock=None) -> bool:
+    """Generates the award categories and opens voting. Returns True if voting
+    is now open. Safe to call more than once: the slot is claimed under the
+    lock BEFORE the API call, so two callers cannot both generate.
+
+    Failure is deliberately non-fatal and handled here rather than by the
+    caller: an empty set or a failed call both clear postGame, so the plain
+    scoreboard and the Shareable Question stand on their own instead of the
+    room sitting on "Tallying up the awards" for nothing."""
+    lock = lock or _NULL_LOCK
+    with lock:
+        if game["phase"] != "GAME_OVER":
+            raise GameError("Superlative voting only runs after the game is over")
+        if game.get("postGame"):
+            return False  # already started by another caller
+        game["postGame"] = {"stage": "voting", "categories": [], "votes": {}, "results": None}
+        highlight_reel = list(game["highlightReel"])
+        question_log = list(game["questionLog"])
+        player_names = [p["name"] for p in game["players"]]
+
+    try:
+        categories = claude_client.generate_superlatives(
+            highlight_reel=highlight_reel,
+            question_log=question_log,
+            player_names=player_names,
+        )
+    except Exception as e:
+        print("Superlative generation failed:", e)
+        categories = []
+
+    # Keep only categories a vote can name. A category without an id cannot
+    # be voted on, and one without a title would draw an empty heading.
+    categories = [
+        c for c in categories
+        if isinstance(c, dict) and str(c.get("id", "")).strip() and str(c.get("title", "")).strip()
+    ]
+
+    with lock:
+        if not categories:
+            game["postGame"] = None
+            return False
+        game["postGame"]["categories"] = categories
+        return True
+
+
+def _assert_voting_open(game: dict) -> dict:
+    post = game.get("postGame")
+    if game["phase"] != "GAME_OVER" or not post:
+        raise GameError("Voting is not open")
+    if post["stage"] != "voting":
+        raise GameError("Voting has already closed")
+    return post
+
+
+def cast_superlative_vote(game: dict, voter_id: str, category_id: str, target_player_id: str) -> dict:
+    post = _assert_voting_open(game)
+    if not any(c["id"] == category_id for c in post["categories"]):
+        raise GameError(f"Unknown superlative category: {category_id}")
+    if target_player_id != SKIPPED_VOTE and not any(p["id"] == target_player_id for p in game["players"]):
+        raise GameError("You can only vote for a player in this game")
+    # Voting for yourself is allowed on purpose — "Best Sabotage" is a real
+    # thing to be proud of, and policing it invites more argument than it saves.
+    post["votes"].setdefault(voter_id, {})[category_id] = target_player_id
+    return game
+
+
+def skip_superlative_voting(game: dict, voter_id: str) -> dict:
+    """Abstain from every remaining award at once. The post-game screens are
+    optional fun; a player who wants out must not strand the room behind the
+    vote timer. Votes already cast are kept."""
+    post = _assert_voting_open(game)
+    ballot = post["votes"].setdefault(voter_id, {})
+    for category in post["categories"]:
+        ballot.setdefault(category["id"], SKIPPED_VOTE)
+    return game
+
+
+def superlative_voters(game: dict) -> list[dict]:
+    """Who still owes a ballot. Excludes disconnected players as well as
+    dropped-out ones: people close the tab the moment the scores are up, and
+    a player who has left must not hold the room until the timer expires."""
+    return [p for p in game["players"] if not p["droppedOut"] and p["connected"]]
+
+
+def all_superlative_votes_in(game: dict) -> bool:
+    post = game.get("postGame")
+    if not post or post["stage"] != "voting" or not post["categories"]:
+        return False
+    eligible = superlative_voters(game)
+    if not eligible:
+        return False
+    return all(
+        all(c["id"] in post["votes"].get(p["id"], {}) for c in post["categories"])
+        for p in eligible
+    )
+
+
+def resolve_superlatives(game: dict, lock=None, on_tallied=None) -> dict:
+    """Tallies the votes and closes voting. Called when everyone has voted,
+    when the vote timer expires, or when a departure completes the ballot —
+    the stage flips under the lock first, so only one of those can tally.
+
+    One deliberate difference from the JS: `on_tallied` is called as soon as
+    the tallies exist, before the narration call, so the room sees who won
+    straight away and the host's quips follow when they arrive. The JS
+    publishes once, after the quips — a whole Claude call later."""
+    lock = lock or _NULL_LOCK
+    with lock:
+        post = game.get("postGame")
+        if not post or post["stage"] != "voting":
+            return game
+        post["stage"] = "results"
+
+        results = []
+        for category in post["categories"]:
+            tally: dict[str, int] = {}
+            for ballot in post["votes"].values():
+                target = ballot.get(category["id"])
+                if target and target != SKIPPED_VOTE:
+                    tally[target] = tally.get(target, 0) + 1
+            top = max(tally.values(), default=0)
+            winner_ids = [pid for pid, n in tally.items() if n == top]
+            names = {p["id"]: p["name"] for p in game["players"]}
+            results.append({
+                "id": category["id"],
+                "title": category["title"],
+                "description": category.get("description"),
+                # Ties are shared wins — same convention as get_winners().
+                "winnerNames": [names[pid] for pid in winner_ids if pid in names],
+                "voteCount": top,
+                "quip": None,
+            })
+        post["results"] = results
+        awarded = [dict(r) for r in results if r["winnerNames"]]
+
+    if on_tallied:
+        on_tallied()
+    if not awarded:
+        return game
+
+    try:
+        quips = claude_client.narrate_superlative_results(results=awarded)
+    except Exception as e:
+        # The quips are flavour. The awards are already correct and on screen.
+        print("Superlative narration failed:", e)
+        return game
+
+    with lock:
+        for i, entry in enumerate(quips or []):
+            if not isinstance(entry, dict) or not str(entry.get("quip", "")).strip():
+                continue
+            # Prefer the id; fall back to the title, then to position. The JS
+            # once dropped every quip because Claude echoed titles, not ids —
+            # an id mismatch must degrade to "mostly right", not to nothing.
+            match = (
+                next((r for r in results if r["id"] == entry.get("id")), None)
+                or next((r for r in results if r["title"] == entry.get("id")), None)
+                or (next((r for r in results if r["id"] == awarded[i]["id"]), None)
+                    if i < len(awarded) else None)
+            )
+            if match:
+                match["quip"] = entry["quip"].strip()
+    return game

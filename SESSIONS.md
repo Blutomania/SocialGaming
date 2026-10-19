@@ -66,13 +66,30 @@ lobby (chosen / available / hovered / disabled / all ready), card pick, wager se
 `/dev/answer` states — **no horizontal overflow anywhere**. **Not run:** `postgame-test.js` (needs
 an API key). **Not seen:** result and post-game screens in a real game.
 
+### Continued, same session — owner's follow-ups, worked bottom-up
+
+PR #63 merged (`4efb1bd`); branch restarted from `main`.
+
+- **#8, `coherence-test.js`:** explained, not fixed yet. `POINT_TIERS` was MYF's first wager
+  system, replaced twice; the test also still references Hot Take. The fix is now mechanical
+  (loop `WAGER_VALUES`); running it costs API calls.
+- **Group splitting killed** by the owner (item 27) — marked killed, not deleted.
+- **Wager tiles** (item 53a): from the owner's *Mob Rules* screenshots — lit border = chosen,
+  value small on top, *Easiest / Easy / Medium / Hard / Hardest* beneath. Five words, so five
+  tiers; item 44 (1)'s "fewer rungs" awaits the owner's explicit close.
+- **Item 46 done** — `server_py` has `questionLog` and `postGame`, so the backend is at parity
+  with the prototype. Two bugs found on the way and fixed on both backends: a departure after
+  GAME_OVER wrote a false "waiting for reconnect…" into the scoreboard's highlight reel; and the
+  JS could send `results: null` mid-tally, which renders as "nobody voted". New
+  `server_py/test_postgame.py` (58, zero cost, mutation-tested six ways). All other suites pass.
+
 ### Next session
 
 1. **Play it** — still the top of MYF's list since August 17 (PT-4 → PT-8).
 2. Owner looks at the new screens and the provisional Chosen / surface values.
 3. Owner decisions in MYF `CLAUDE.md` → Open work 2 (logo purples, Spotlight's 1s window, RoundLine,
    card-art vs hidden hands).
-4. `server_py` `questionLog` + `postGame` (item 46), then the Godot screens, built to the guide.
+4. The Godot screens, built to the guide — the backend now has everything they need.
 
 ---
 

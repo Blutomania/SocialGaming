@@ -1179,7 +1179,19 @@ real API calls, so it isn't part of any routine check.
       payout formula from `constants.js` so that number can't drift, and makes every behavioural
       assumption a named knob. Re-run it after touching the ladder or the share.
 
-46. **[NOT STARTED — the last real gap before Godot post-game work] `server_py` needs
+46. **[DONE, Session 50 — October 19 2026]** Ported: `_log_question()` from `next_turn()`, the
+    superlative functions with `postGame` inside GAME_OVER, `generate_superlatives()` /
+    `narrate_superlative_results()` (prompts verbatim, ids in the prompt), and in `main.py` the
+    post-game kickoff, the 90s vote timer, `POST /games/{code}/postgame/vote` and `/skip`, and a
+    re-check when a departure completes the ballot (handed to a thread — that path is the event
+    loop). Locking follows `resolve_answer_attempt()`: claim under the lock, call Claude without
+    it. Two deliberate differences from the JS, both now fixed in the JS too where they applied:
+    the tallies are published *before* the host's quips arrive (an `on_tallied` callback), and a
+    player leaving after GAME_OVER no longer writes "waiting for reconnect…" into the highlight
+    reel the scoreboard shows. `server_py/test_postgame.py`, 58 assertions, zero API cost,
+    mutation-tested six ways. **Not done:** `ApiClient.gd` calls, and the attrition route to
+    GAME_OVER (no disconnect-vote endpoints exist in `main.py` yet). Original entry:
+    **[NOT STARTED — the last real gap before Godot post-game work] `server_py` needs
     `questionLog` and `postGame`.** The Python backend records nothing about the questions it
     asked and has no post-game stage, so a Godot client physically cannot render any end-of-game
     screen — there is no data to render. The JS prototype has both (item 35): `logQuestion()`

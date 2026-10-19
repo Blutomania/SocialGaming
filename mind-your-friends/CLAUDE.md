@@ -88,7 +88,7 @@ never appear without the logo.
 | | State |
 |---|---|
 | **Next.js prototype** (`app/`, `components/`, `lib/*.js`, `server.js`) | **The playable game, end to end**, Flow B, post-game and all. Every aesthetics pass was made here. It is the behavioural reference — **do not delete it** until Godot reaches parity and is playtested. |
-| **`server_py/`** (FastAPI) | Full port of the game logic, Flow B included (item 42). **Missing `questionLog` and `postGame`** (item 46). |
+| **`server_py/`** (FastAPI) | Full port of the game logic: Flow B (item 42), the question log and superlative voting (item 46). **At parity with the prototype.** |
 | **`godot/`** client | `ApiClient.gd`, `GameState.gd`, and **one screen** — the lobby, unstyled, with stubbed registration (item 34). No round-loop screens. |
 
 **Why Godot at all (item 31):** both titles target Steam and consoles, and a browser app has no
@@ -122,9 +122,11 @@ whether the lock window gives time to commit (PT-7), and whether 0.75× makes bu
 - Item 40's open three: does the shareable standings chart unpark the frozen share card; which cut
   of the chart gets shared; can a player skip a host moment.
 
-**3. `server_py`: `questionLog` + `postGame` (item 46).** The last backend gap; blocks any Godot
-post-game screen. Port `logQuestion()` with its single funnel; ship `questionLog` **only** in the
-`GAME_OVER` branch of `player_view()`; key superlative quips by id, not title.
+**3. ~~`server_py`: `questionLog` + `postGame`~~ — done (item 46, Session 50).** The backend now
+has everything a Godot end-of-game screen needs: `POST /games/{code}/postgame/vote` and `/skip`,
+the question log at GAME_OVER only. Not yet in `ApiClient.gd` — add the two calls with the screen.
+**One route is still missing on both sides of the port:** `main.py` exposes no disconnect-vote
+endpoints, so a game cannot end by attrition there; when it can, call `_start_post_game` on it.
 
 **4. Godot screens** — category picker (3 categories + the curated grid), card pick, then the round
 loop WAGER → CARD → QUESTION → reading → ANSWER → RESULT, then GAME_OVER (after 3). Build them to
@@ -236,6 +238,7 @@ All zero API cost unless marked.
 | `cd server_py && python3 test_mechanics.py` | The Python port, incl. the ticket-lock thread race (63) |
 | `python3 server_py/test_turn_timers.py` | Item 47's regression test (12) |
 | `python3 server_py/test_coherence_engine.py` | Both titles share one engine (23) |
+| `cd server_py && python3 test_postgame.py` | The question log, superlative voting, and `main.py` opening and closing it on a short clock (58). Mutation-tested six ways |
 | `/dev/answer` in a browser | Every answer-screen state. **Use Playwright's `viewport`** — headless `--window-size` lays out at 500px |
 
 ---

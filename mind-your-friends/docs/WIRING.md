@@ -200,6 +200,9 @@ matches exactly what building both of those in JS this year already showed empir
         calls** (fact-bank build), so it's a separate scene rather than part of the everyday
         test. Covers LOBBY → CATEGORY: `phase_changed` fires, 6 attributed `categoryOptions`
         arrive, hands get dealt, a round rule is assigned.
+- [x] `questionLog` + `postGame` (item 46, Session 50) — the question log, superlative voting,
+      `POST /games/{code}/postgame/vote` and `/skip`. Verified by `server_py/test_postgame.py`
+      in-process; never run against a live game to GAME_OVER (that needs 24 real questions).
 - [ ] Voice input, disconnect/reconnect, inactivity auto-advance — **not started**, will need
       their own pass once the core loop is proven.
 
