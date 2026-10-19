@@ -10,3 +10,7 @@ godot/.godot/
 # Python
 __pycache__/
 *.pyc
+
+# Written by every run of scripts/coherence-test.js — output, not source, and
+# each run costs real API calls to produce.
+scripts/coherence-test-results.json

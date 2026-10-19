@@ -4,11 +4,20 @@
 //
 // Usage: ANTHROPIC_API_KEY=... node scripts/coherence-test.js
 //   or: node scripts/coherence-test.js  (uses session token fallback)
+//
+// SPENDS REAL API CALLS (roughly 90 generations) — not part of any routine
+// check. Questions go through the game's own generateQuestion(), so what is
+// measured is the prompt players actually get. It used to carry a private
+// copy of that prompt, which drifted: it never gained the 8-20 word LENGTH
+// rule (August 12), so its verdicts described a prompt the game had dropped.
+// Covers generateQuestion's no-factoid branch; the fact-bank branch, which
+// most real questions take, is not exercised here.
 
 import Anthropic from '@anthropic-ai/sdk';
 import { readFileSync } from 'fs';
 import { writeFileSync } from 'fs';
-import { POINT_TIERS } from '../lib/constants.js';
+import { WAGER_TIERS } from '../lib/constants.js';
+import { generateQuestion, __setClientForTests } from '../lib/claudeClient.js';
 import { ROUND_RULES } from '../lib/roundRules.js';
 import { CARDS } from '../lib/cards.js';
 import { roundConstraints, turnConstraints, validateQuestion } from '../lib/coherence.js';
@@ -29,6 +38,30 @@ if (!apiKey) {
 const anthropic = new Anthropic({ apiKey });
 const MODEL = 'claude-sonnet-4-6';
 
+// The real generator, wrapped so each call's token usage can be read back:
+// generateQuestion() returns only the parsed question, and the cost numbers
+// are half of what this script reports. Same seam mechanics-test.js uses.
+let lastUsage = null;
+__setClientForTests({
+  messages: {
+    create: async (args) => {
+      const response = await anthropic.messages.create(args);
+      lastUsage = response.usage ?? null;
+      return response;
+    },
+  },
+});
+
+// Every rung of the real wager ladder (item 45), named as the wager tiles name
+// them. A wager also sets the question's difficulty, which is what Test 1 checks.
+const LADDER = WAGER_TIERS.map((t) => ({ value: t.value, label: t.difficultyLabel }));
+
+// The wager the other tests hold steady, so difficulty isn't a variable there.
+// It must be a real rung: an off-ladder value is snapped to the nearest tier,
+// and the 80 this used to pass snapped to 100 — Hard — under a comment saying
+// "medium".
+const MEDIUM_WAGER = WAGER_TIERS.find((t) => t.difficultyLabel === 'Medium').value;
+
 // --- Test categories ---
 
 const CATEGORIES = [
@@ -45,42 +78,28 @@ const CATEGORIES = [
 // --- Format-constraining cards that affect question generation ---
 
 const FORMAT_CARDS = ['boxedIn', 'languageBarrier'];
-const NOTABLE_ROUND_RULES = ['backItUp', 'oneWordOnly', 'eli5', 'hotTake', 'lightningRound'];
+// Hot Take was removed in July (PLAYTEST.md PT-2) and used to sit in this list.
+const NOTABLE_ROUND_RULES = ['backItUp', 'oneWordOnly', 'eli5', 'lightningRound'];
 
 function stripMarkdownFences(text) {
   return text.replace(/^```(?:json)?\s*\n?/i, '').replace(/\n?```\s*$/i, '').trim();
 }
 
-// --- Helper: call Claude for question generation ---
+// --- Helper: generate one question through the game's real generator ---
 
-async function generateTestQuestion(constraints, category) {
-  const instructions = constraints.promptInstructions.join('\n');
-
-  const prompt = `You are the AI host of "Mind Your Friends," a fast-paced multiplayer
-trivia game. Generate one trivia question for TestPlayer.
-
-${instructions}
-
-By default, the correct answer should be a short phrase of MORE than 3 words,
-unless a card or round rule overrides this.
-
-Respond with ONLY a JSON object, no other text:
-{
-  "question": "the trivia question text",
-  "answer": "the correct answer",
-  "hostQuip": "a short game-show-host-style line introducing the question"
-}`;
-
-  const response = await anthropic.messages.create({
-    model: MODEL,
-    max_tokens: 1024,
-    messages: [{ role: 'user', content: prompt }],
+async function generateTestQuestion(constraints) {
+  lastUsage = null;
+  const parsed = await generateQuestion({
+    constraints,
+    factoid: null,
+    activePlayerName: 'TestPlayer',
+    playerNames: ['TestPlayer', 'Sam', 'Alex'],
   });
-
-  const text = response.content[0].text;
-  const inputTokens = response.usage?.input_tokens || 0;
-  const outputTokens = response.usage?.output_tokens || 0;
-  return { parsed: JSON.parse(stripMarkdownFences(text)), inputTokens, outputTokens };
+  return {
+    parsed,
+    inputTokens: lastUsage?.input_tokens || 0,
+    outputTokens: lastUsage?.output_tokens || 0,
+  };
 }
 
 // --- Test 1: Difficulty scaling per category ---
@@ -94,12 +113,8 @@ async function testDifficultyScaling(results) {
     console.log(`\n── ${category} ──`);
     const categoryResults = [];
 
-    for (const tier of POINT_TIERS) {
-      const roundCtx = roundConstraints(ROUND_RULES.hotTake.id === 'hotTake'
-        ? ROUND_RULES.doubleDown  // use a neutral rule so difficulty is isolated
-        : ROUND_RULES.doubleDown);
-
-      // Use a simple neutral round rule
+    for (const { value: tier, label } of LADDER) {
+      // A neutral round rule, so difficulty is the only thing varying.
       const neutralRound = roundConstraints(ROUND_RULES.lightningRound);
       const constraints = turnConstraints(neutralRound, {
         category,
@@ -108,12 +123,13 @@ async function testDifficultyScaling(results) {
       });
 
       try {
-        const { parsed, inputTokens, outputTokens } = await generateTestQuestion(constraints, category);
+        const { parsed, inputTokens, outputTokens } = await generateTestQuestion(constraints);
         const validation = validateQuestion(parsed, constraints);
 
         const entry = {
           category,
           tier,
+          tierLabel: label,
           difficulty: constraints.difficulty,
           question: parsed.question,
           answer: parsed.answer,
@@ -128,12 +144,12 @@ async function testDifficultyScaling(results) {
         const issues = validation.issues.length > 0
           ? ` [${validation.issues.map(i => i.code).join(', ')}]`
           : '';
-        console.log(`  ${tier}pt (${constraints.difficulty}): ${status}${issues}`);
+        console.log(`  ${tier} ${label} (${constraints.difficulty}): ${status}${issues}`);
         console.log(`    Q: ${parsed.question}`);
         console.log(`    A: ${parsed.answer}`);
         console.log(`    Tokens: ${inputTokens}→${outputTokens}`);
       } catch (err) {
-        console.log(`  ${tier}pt: ERROR — ${err.message}`);
+        console.log(`  ${tier} ${label}: ERROR — ${err.message}`);
         categoryResults.push({ category, tier, error: err.message });
       }
     }
@@ -164,12 +180,12 @@ async function testRoundRuleCompatibility(results) {
       const roundCtx = roundConstraints(rule);
       const constraints = turnConstraints(roundCtx, {
         category,
-        wager: 80, // medium
+        wager: MEDIUM_WAGER,
         resolvedCard: null,
       });
 
       try {
-        const { parsed, inputTokens, outputTokens } = await generateTestQuestion(constraints, category);
+        const { parsed, inputTokens, outputTokens } = await generateTestQuestion(constraints);
         const validation = validateQuestion(parsed, constraints);
 
         const status = validation.passed ? '✓' : '✗';
@@ -202,12 +218,12 @@ async function testRoundRuleCompatibility(results) {
       const roundCtx = roundConstraints(ROUND_RULES.doubleDown); // neutral
       const constraints = turnConstraints(roundCtx, {
         category,
-        wager: 80,
+        wager: MEDIUM_WAGER,
         resolvedCard: cardId,
       });
 
       try {
-        const { parsed, inputTokens, outputTokens } = await generateTestQuestion(constraints, category);
+        const { parsed, inputTokens, outputTokens } = await generateTestQuestion(constraints);
         const validation = validateQuestion(parsed, constraints);
 
         const status = validation.passed ? '✓' : '✗';
@@ -256,7 +272,7 @@ async function testCategoryDepth(results) {
     for (let i = 0; i < 10; i++) {
       const constraints = turnConstraints(roundCtx, {
         category,
-        wager: 80,
+        wager: MEDIUM_WAGER,
         resolvedCard: null,
       });
 
@@ -268,7 +284,7 @@ async function testCategoryDepth(results) {
       }
 
       try {
-        const { parsed, inputTokens, outputTokens } = await generateTestQuestion(constraints, category);
+        const { parsed, inputTokens, outputTokens } = await generateTestQuestion(constraints);
         questions.push({
           question: parsed.question,
           answer: parsed.answer,
@@ -378,8 +394,8 @@ async function testPromptEfficiency(results) {
   // Single calls
   let singleTotal = { input: 0, output: 0 };
   for (let i = 0; i < 3; i++) {
-    const constraints = turnConstraints(roundCtx, { category, wager: 80, resolvedCard: null });
-    const { inputTokens, outputTokens } = await generateTestQuestion(constraints, category);
+    const constraints = turnConstraints(roundCtx, { category, wager: MEDIUM_WAGER, resolvedCard: null });
+    const { inputTokens, outputTokens } = await generateTestQuestion(constraints);
     singleTotal.input += inputTokens;
     singleTotal.output += outputTokens;
   }
@@ -421,7 +437,7 @@ async function main() {
   const results = {
     timestamp: new Date().toISOString(),
     categories: CATEGORIES,
-    pointTiers: POINT_TIERS,
+    wagerLadder: LADDER,
     difficultyScaling: [],
     roundRules: [],
     categoryDepth: [],
@@ -431,7 +447,7 @@ async function main() {
 
   console.log('Mind Your Friends — Coherence Test');
   console.log(`Categories: ${CATEGORIES.join(', ')}`);
-  console.log(`Point tiers: ${POINT_TIERS.join(', ')}`);
+  console.log(`Wager ladder: ${LADDER.map((t) => `${t.value} ${t.label}`).join(', ')}`);
   console.log(`Round rules: ${Object.keys(ROUND_RULES).join(', ')}`);
   console.log(`Format cards: ${FORMAT_CARDS.join(', ')}`);
 

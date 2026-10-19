@@ -70,9 +70,13 @@ an API key). **Not seen:** result and post-game screens in a real game.
 
 PR #63 merged (`4efb1bd`); branch restarted from `main`.
 
-- **#8, `coherence-test.js`:** explained, not fixed yet. `POINT_TIERS` was MYF's first wager
-  system, replaced twice; the test also still references Hot Take. The fix is now mechanical
-  (loop `WAGER_VALUES`); running it costs API calls.
+- **#8, `coherence-test.js`: fixed.** Five stale things, not one: `POINT_TIERS` (now the real
+  ladder), Hot Take in two places, `wager: 80` (off-ladder; snapped to *Hard* under a "medium"
+  comment) — and, the one that mattered, a **private copy of the generation prompt** that never
+  gained August's 8-20 word rule, so the test measured a prompt the game had dropped. It now calls
+  the real `generateQuestion()` and reads token usage through the client seam. Verified end to end
+  at zero cost against a local mock API: 77 calls, 75/75 generations carry the length rule, every
+  rung requested. Results file now gitignored.
 - **Group splitting killed** by the owner (item 27) — marked killed, not deleted.
 - **Wager tiles** (item 53a): from the owner's *Mob Rules* screenshots — lit border = chosen,
   value small on top, *Easiest / Easy / Medium / Hard / Hardest* beneath. Five words, so five
