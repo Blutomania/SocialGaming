@@ -76,7 +76,11 @@ PR #63 merged (`4efb1bd`); branch restarted from `main`.
 - **Group splitting killed** by the owner (item 27) — marked killed, not deleted.
 - **Wager tiles** (item 53a): from the owner's *Mob Rules* screenshots — lit border = chosen,
   value small on top, *Easiest / Easy / Medium / Hard / Hardest* beneath. Five words, so five
-  tiers; item 44 (1)'s "fewer rungs" awaits the owner's explicit close.
+  tiers.
+- **In-game layout** (item 53b), from the owner's markup: ⅔ game : ⅓ host slot, brand bar inside
+  the game column with no title treatment, round status beside the scores, no big pie on the
+  wager screen, Lock in blue.
+- **Fewer wager tiers: declined** by the owner, explicitly. Item 44 (1) closed.
 - **Item 46 done** — `server_py` has `questionLog` and `postGame`, so the backend is at parity
   with the prototype. Two bugs found on the way and fixed on both backends: a departure after
   GAME_OVER wrote a false "waiting for reconnect…" into the scoreboard's highlight reel; and the

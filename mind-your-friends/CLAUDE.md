@@ -137,9 +137,9 @@ CYM's Session 38 found the engine's hosts blocked.
 **5. Live-test disconnect/reconnect and inactivity auto-advance against `server_py`** — ported,
 never exercised.
 
-**6. Tabled by the owner (item 44):** wager-tier simplification (12 and 25 barely differ —
-`scripts/economy-sim.js`), and widening the difficulty ramp's hue toward blue-green / yellow-green
-(edit `scripts/build-difficulty-colors.mjs`, never the generated hexes).
+**6. Tabled by the owner (item 44):** widening the difficulty ramp's hue toward blue-green /
+yellow-green (edit `scripts/build-difficulty-colors.mjs`, never the generated hexes). The other
+half, fewer wager tiers, was **declined** in Session 50 — five tiers stay, each named on its tile.
 
 **7. Spec'd, not built:** the **Chain** round (`GAME_DESIGN.md`) — needs a call on round-level
 category selection first. **Host video** as a centre-screen takeover with pre-packaged attitude

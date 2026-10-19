@@ -120,8 +120,8 @@ on top and a word large beneath — **Easiest, Easy, Medium, Hard, Hardest**. Bu
   HARDEST.
 - **Every rung now has a word**, replacing item 49's "only the two ends are labelled". The words
   are honest: each tier really does set the question's difficulty (`lib/coherence.js`).
-- Five words means five tiers, so item 44 (1)'s "fewer rungs" reads as declined — **awaiting the
-  owner's explicit confirmation** before it is closed.
+- Five words means five tiers: item 44 (1)'s "fewer rungs" is **declined by the owner** (Session
+  50, confirmed explicitly). The ladder stays `12 / 25 / 50 / 100 / 200`.
 
 ### 53b. The in-game layout — owner's markup, Session 50
 
@@ -1137,7 +1137,8 @@ real API calls, so it isn't part of any routine check.
     `readingEndsAt` instead; renaming it to `buzzerOpensAt` would collide with a real field that
     means something else.
 
-44. **[TABLED by owner, August 17 2026 — not started]** Two follow-ups to the wager and
+44. **[Session 50: (1) DECLINED by owner — five tiers stay, each now named on its tile (item
+    53a). (2) still tabled.]** Original entry: **[TABLED by owner, August 17 2026 — not started]** Two follow-ups to the wager and
     difficulty-colour work committed the same day (`f31612f`), recorded in the owner's own words so the intent isn't paraphrased away:
 
     > 1. Wage tier simplification
