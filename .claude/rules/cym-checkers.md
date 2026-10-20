@@ -63,4 +63,6 @@ key**. Start the server first. Session 42 found two defects with it that every u
 witness); `scripts/preview_background_field.py` (the BACKGROUND field as SVG over real screen
 text, `--sheet` for title extremes); `scripts/compare_extraction_models.py`;
 `scripts/extract_from_pdfs.py` (one new source; always `--dry-run` an anthology first);
-`scripts/upgrade_p1_to_p1p2.py` (item 19; prints the plan, `--go` spends).
+`scripts/upgrade_p1_to_p1p2.py` (item 19; prints the plan, `--go` spends);
+`scripts/backfill_reveal.py` (item 38: writes `solution.reveal` for an older mystery — one call,
+`--go` to spend, refused unless it names the culprit and a key clue).

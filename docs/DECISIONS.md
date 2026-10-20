@@ -1,6 +1,6 @@
 # Choose Your Mystery — Decision record
 
-**What this file is.** Every numbered CYM work item, 1–37, in numeric order: what is true of it
+**What this file is.** Every numbered CYM work item, 1–38, in numeric order: what is true of it
 now, why, and what was rejected. Carved out of the old root `CLAUDE.md` in Session 38; CYM's
 instructions now live in `.claude/rules/cym.md`.
 
@@ -72,6 +72,7 @@ a decision was made; they are not a place to leave a false statement standing.
 | 35 | Character pronouns + presentation; suspect-icon fallback chain | `BUILT, confirmed on a real generation` |
 | 36 | Night File — the host screen's look | `ADOPTED` |
 | 37 | Suspect interviews — statements in a suspect's own voice | `LOGGED — stage 3` |
+| 38 | The reveal is written at generation time, not when someone wins | `BUILT — untested against a real generation` |
 
 ---
 
@@ -1487,3 +1488,41 @@ a decision was made; they are not a place to leave a false statement standing.
     to cover it, and more output per mystery — which is where the cost is (`docs/AI_COST_PLAYBOOK.md`).
     The stage-1 test does not need it.
 
+38. **[BUILT, Session 51 — October 20, 2026 — owner; untested against a real generation] The
+    reveal is written at generation time, not when someone wins.** The F5 walk's pause after the
+    accusation was a live Claude call writing a reveal narrative on every win — and ResultScreen
+    never displayed it. The call was removed (item 23). The owner then asked whether the reveal
+    could be part of the generation call instead, and it now is.
+
+    **Shape.** `reveal` is the **last** field of the generation template, so it is written after
+    the evidence and can pay off clues that already exist by name — the same conditioning-order
+    argument as item 26, which puts `solution` first. Straight after parsing it is moved under
+    `solution`, because every spoiler guard already protects `solution` and nothing else: the
+    route that serves the mystery to phones strips `solution`, and `check_narrative.py`'s ORPHAN
+    scan treats everything outside it as player-visible. A top-level field would have leaked to
+    every phone. The reveal's craft guidance (C5, M6, the party docs' Accusation/Reveal Phase),
+    which the old call retrieved, now rides the generation prompt: three entries, input tokens
+    only. About 400 output tokens, roughly $0.006 a mystery.
+
+    **What it cannot know, and the answer.** It is written before anyone plays, so it may not say
+    who solved it or who held what. The live half is `winner_line`, assembled from the game for
+    free (*"Merryn closed the case in round 4 of 4."*). ResultScreen shows both under the verdict,
+    and shows the reveal on a loss too: it is the story of the crime, not a prize.
+
+    **Rejected:** a second generation-time call, like the opening narration (5–10× the cost, a
+    second failure point, and its only advantage — a dedicated prompt — is recovered by carrying
+    the craft guidance across); keeping the play-time call (the pause, and the owner's rule:
+    generate off the prompt, never use AI again).
+
+    **Gate rules** (`check_narrative.py`): `NARR.RESOLUTION_NO_CULPRIT` and
+    `NARR.RESOLUTION_NO_CLUE` refuse a reveal that dodges the case; `NARR.RESOLUTION_MISSING` is
+    advisory, because a mystery without one still plays on the fallback. The reveal is kept out of
+    the CAST heuristic, which read *the Pantry Visitors' Log* as a person on the first fixture.
+    Building the clue-name match also found that `words()` strips any leading or trailing "s"
+    ("saffron" becomes "affron"); the new rules lowercase before tokenising, and the tokeniser
+    itself is unchanged.
+
+    **The accepted mystery was backfilled** with `scripts/backfill_reveal.py` — one offline call,
+    $0.033, passed through the same two rules before it was written. Confirming the template
+    itself needs a paid generation; bundle it with item 27's narrowing rule and item 35's
+    pronoun check.

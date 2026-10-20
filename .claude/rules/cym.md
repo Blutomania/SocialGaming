@@ -33,7 +33,7 @@ file. Two topics load only when a session needs them (Session 51):
 | **`.claude/rules/cym.md`** (here) | What is true now, and what is open | any CYM file is touched |
 | **`.claude/rules/cym-godot.md`** | The Godot client: autoloads, engine-side checks, how to run it | `godot/` is touched |
 | **`.claude/rules/cym-checkers.md`** | Every checker, test and tool, with what it catches | `scripts/` is touched |
-| **`docs/DECISIONS.md`** | Every numbered item, 1–37: what is true, why, what was rejected | read on demand |
+| **`docs/DECISIONS.md`** | Every numbered item, 1–38: what is true, why, what was rejected | read on demand |
 | **`SESSIONS.md`** | What was decided when. Append-only; never edited to match a later truth | read on demand |
 
 **Item numbers are stable.** "Item 17" means the same thing here, in `docs/DECISIONS.md`, in
@@ -268,6 +268,9 @@ prints the plan; `--go` runs it. Seven stories are already upgraded. Not stage 1
 **7. Corpus growth — ongoing.** Anthologies over novels, roughly 3–5 to 1. Outstanding: 11
 held-back anthology PDFs with detection problems, 7 all-null extractions occupying filenames, one
 untriaged Higashino novel.
+
+**38. The reveal is written at generation time** — built, and the accepted mystery backfilled.
+Unconfirmed until a paid generation: bundle with items 27 and 35's open checks.
 
 **37. Suspect interviews — stage 3.** Suspects never speak; a suspect-voiced, possibly lying
 statement is a generation change. Until then ApfRound's heading names what really happened.

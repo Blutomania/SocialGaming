@@ -146,6 +146,14 @@ ok("and the board resolves to exactly one name", len(standing) == 1, str(standin
 st, acc = call("POST", f"/games/{gid}/accuse",
                {"player_id": host, "culprit_name": standing[0]})
 ok("accusing the last face standing wins", st == 200 and acc["correct"], f"{st} {acc}")
+# Session 51: the win carries the generated reveal (the accepted mystery has one,
+# backfilled) and a live line naming who closed the case and when -- with no
+# Claude call, so this game still needs no API key.
+culprit_word = standing[0].split()[-1] if standing else "?"
+ok("the win carries the written reveal, naming the culprit",
+   culprit_word in (acc.get("resolution_narrative") or ""), str(acc.get("resolution_narrative"))[:80])
+ok("and a winner line with the round it closed in",
+   " closed the case in round " in (acc.get("winner_line") or ""), str(acc.get("winner_line")))
 
 st, closed = call("POST", f"/games/{gid}/apf/share",
                   {"player_id": host, "finding_ids": []})
