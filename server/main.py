@@ -882,7 +882,7 @@ def _run_game_generation_job(game_id: str, job_id: str, prompt: str, opening_nar
 #                                # investigation/lead content) plugs into this separately.
 #   "winner": player_id | None, # set on the first correct accusation; game is over once set
 #   "accusations": [{player_id, accused_name, correct, ts}],  # full public history
-#   "resolution_narrative": str | None,  # generated once by _generate_resolution_narrative()
+#   "resolution_narrative": str | None,  # set once from the mystery's own text (_fallback_resolution_narrative)
 #                                # on the first game_won/GET-result call after a win, then cached
 #                                # here -- never regenerated, so every viewer sees the same wording.
 #   "_resolution_craft_guidance": list | None,  # citations for the above, server-side audit only
@@ -1166,36 +1166,28 @@ def _build_resolution_reveal(game: dict, winner_id: str) -> dict:
     Shared by the game_won broadcast and GET /result so a client that missed
     the broadcast (late join, reconnect) sees the identical reveal.
 
-    resolution_narrative is generated once -- the first call after the win
-    -- and cached on game["resolution_narrative"]. GET /result never
-    regenerates it: a reconnecting client must see the exact same wording
-    everyone else already saw, not a fresh (and differently-phrased) LLM
-    roll each time it's fetched. Craft-guidance citations are stashed
-    server-side only (game["_resolution_craft_guidance"]) for audit
-    purposes -- same "never player-facing" treatment as every other
-    craft-guidance call-site's provenance.
+    resolution_narrative is set once -- the first call after the win -- from
+    the mystery's own resolution fields (no Claude call; build-order step 5,
+    Session 51), and cached on game["resolution_narrative"], so a reconnecting
+    client sees exactly the wording everyone else saw.
     """
     plot_reveal = _format_plot_reveal(game["mystery"])
     winner_findings = _winner_findings_summary(game, winner_id)
 
     if game.get("resolution_narrative") is None:
-        # THE WIN MUST NOT DEPEND ON A NETWORK CALL. This is the last play-time
-        # Claude call on the critical path, and until build-order step 5 removes
-        # it, a 401 / rate limit / timeout here took the whole win down with a
-        # 500 -- measured, Session 42, driving a full APF game over HTTP. The
-        # stage-1 test is "reach the result screen without an error", so the
-        # reveal degrades to the mystery's OWN already-generated resolution
-        # prose rather than failing. That text was written and paid for at
-        # generation time; it is a plainer reveal, not a missing one.
-        try:
-            narrative, craft_guidance = _generate_resolution_narrative(game, plot_reveal, winner_findings)
-        except Exception as e:  # noqa: BLE001 -- any failure, not a taxonomy of them
-            print(f"[resolution] narrative call failed ({type(e).__name__}); "
-                  f"falling back to the mystery's own resolution text")
-            narrative, craft_guidance = _fallback_resolution_narrative(game, plot_reveal), []
+        # NO CLAUDE CALL AT PLAY TIME -- build-order step 5 (Session 51). This
+        # was the last play-time call on the critical path. Session 42 made a
+        # failed call fall back instead of 500ing; the Session 51 F5 walk then
+        # showed the SUCCESSFUL call was a problem too: a noticeable pause
+        # between the accusation and the result screen, every win. The owner's
+        # rule (docs/PLAYTEST_FLOW.md): "generate off the prompt and never use
+        # AI again." So the reveal is always the mystery's own resolution prose,
+        # written and paid for at generation time. _generate_resolution_narrative
+        # is kept, unwired: if a richer reveal is wanted, it belongs inside the
+        # generation call, not here.
         with _games_lock:
-            game["resolution_narrative"] = narrative
-            game["_resolution_craft_guidance"] = craft_guidance
+            game["resolution_narrative"] = _fallback_resolution_narrative(game, plot_reveal)
+            game["_resolution_craft_guidance"] = []
 
     return {
         "plot_reveal": plot_reveal,
