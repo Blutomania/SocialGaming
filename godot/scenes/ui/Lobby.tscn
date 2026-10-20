@@ -59,18 +59,17 @@ offset_bottom = -20.0
 grow_horizontal = 2
 theme_override_constants/separation = 6
 
-[node name="TitleRow" type="HBoxContainer" parent="VBox"]
+[node name="TitleBlock" type="VBoxContainer" parent="VBox"]
 layout_mode = 2
-alignment = 1
-theme_override_constants/separation = 12
+theme_override_constants/separation = 0
 
-[node name="CaseOfLabel" type="Label" parent="VBox/TitleRow"]
-theme_type_variation = &"FaintLabel"
+[node name="CaseOfLabel" type="Label" parent="VBox/TitleBlock"]
+theme_type_variation = &"HeadingLabel"
 layout_mode = 2
-size_flags_vertical = 4
 text = "THE CASE OF"
+horizontal_alignment = 1
 
-[node name="MysteryTitleLabel" type="Label" parent="VBox/TitleRow"]
+[node name="MysteryTitleLabel" type="Label" parent="VBox/TitleBlock"]
 theme_type_variation = &"MysteryTitleLabel"
 layout_mode = 2
 text = ""
