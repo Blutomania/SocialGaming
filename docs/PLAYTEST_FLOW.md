@@ -312,7 +312,7 @@ and cost stage-3 money to say so.
 > **[Session 42] This table describes the GATHER loop, which APF replaces.** It is kept because
 > its decisions still hold (four suspects, lies off, the one-call shape) and because the screens it
 > names still exist. The APF path is: **Lobby → CaseBrief** (the crime, told, then the cast; the host
-> assigns from here — CaseDisplay until Session 48) **→ ApfRound** (casefile, board, shared pool, the share decision, four rounds) **→ Accusation →
+> assigns from here — CaseDisplay until Session 48) **→ ApfRound** (board; *What You Know* — casefile and what was shared with you, one column since Session 51; the share decision; four rounds) **→ Accusation →
 > ResultScreen** (verdict, solution, full disclosure). Steps 2, 3, 4 and 5 below are not on it.
 
 | # | Screen | What happens | State |

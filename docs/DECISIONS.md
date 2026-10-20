@@ -1467,6 +1467,15 @@ a decision was made; they are not a place to leave a false statement standing.
     never drawn** (`docs/STYLE_GUIDE.md`). The confirm step on sharing is kept as a playability
     question for a real table. None of it rendered yet.
 
+    **[Session 51 — October 20, 2026 — owner] ApfRound: two columns, not three.** *Your findings*
+    and *Shared information* became one column, **What You Know**, because three columns were too
+    busy to digest. Newest round first; under each round, the finding you were handed and then what
+    reached you from the table, stamped **SHARED WITH YOU**, with no name on it: who shared is on the
+    table line and in full disclosure, and the owner judged the finding reads better without it.
+    Your own shares are not repeated (they are already your findings, stamped SHARED). After the
+    case closes, held findings head the list, stamped HELD BACK. The suspect board is unchanged, and
+    still says *cleared by <name>* — left for the owner to decide.
+
 37. **[LOGGED, Session 49 — October 16, 2026 — owner] Suspect interviews: statements in a
     suspect's own voice.** **Stage 3 — not before.**
 

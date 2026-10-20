@@ -42,7 +42,7 @@ its own notes in `mind-your-friends/CLAUDE.md`.
 | `godot/scripts/theme/Palette.gd` | **Generated** from `palette.py` — never hand-edit |
 | `godot/scripts/theme/Icons.gd` | Which icon a thing gets; its header explains why that must carry no information (suspect portraits are the one, deliberate exception — item 35) |
 | `godot/scripts/data/MysteryData.gd` | Typed wrapper for mystery JSON |
-| `godot/scripts/ui/apf_round.gd` | The APF play screen — casefile, suspect board, shared pool and the share decision on one screen, because the board is what makes withholding legible |
+| `godot/scripts/ui/apf_round.gd` | The APF play screen — the suspect board, and *What You Know* (your casefile plus everything shared with you, one column since Session 51) with the share decision, on one screen, because the board is what makes withholding legible |
 | `godot/scripts/tools/` | `EditorScript`s, run inside the engine (below) |
 
 The screens are in `.claude/rules/cym.md` → Key files; their look is `docs/STYLE_GUIDE.md` and item 36.
