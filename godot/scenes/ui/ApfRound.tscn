@@ -79,40 +79,18 @@ size_flags_horizontal = 3
 [node name="CasefileColumn" type="VBoxContainer" parent="Margin/MainVBox/Columns"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 1.2
+size_flags_stretch_ratio = 2.2
 
 [node name="CasefileHeading" type="Label" parent="Margin/MainVBox/Columns/CasefileColumn"]
 theme_type_variation = &"HeadingLabel"
 layout_mode = 2
-text = "Your findings"
+text = "What You Know"
 
 [node name="CasefileScroll" type="ScrollContainer" parent="Margin/MainVBox/Columns/CasefileColumn"]
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="CasefileContainer" type="VBoxContainer" parent="Margin/MainVBox/Columns/CasefileColumn/CasefileScroll"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="PoolColumn" type="VBoxContainer" parent="Margin/MainVBox/Columns"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="PoolHeading" type="Label" parent="Margin/MainVBox/Columns/PoolColumn"]
-theme_type_variation = &"HeadingLabel"
-layout_mode = 2
-text = "Shared information"
-
-[node name="PoolSubheading" type="Label" parent="Margin/MainVBox/Columns/PoolColumn"]
-theme_type_variation = &"FaintLabel"
-layout_mode = 2
-text = "(Everyone can see this)"
-
-[node name="PoolScroll" type="ScrollContainer" parent="Margin/MainVBox/Columns/PoolColumn"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="PoolContainer" type="VBoxContainer" parent="Margin/MainVBox/Columns/PoolColumn/PoolScroll"]
 layout_mode = 2
 size_flags_horizontal = 3
 

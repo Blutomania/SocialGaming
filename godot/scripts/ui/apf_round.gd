@@ -30,7 +30,6 @@ extends Control
 @onready var round_bar: ProgressBar = $Margin/MainVBox/Progress/RoundBar
 @onready var board_container: VBoxContainer = $Margin/MainVBox/Columns/BoardColumn/BoardScroll/BoardContainer
 @onready var casefile_container: VBoxContainer = $Margin/MainVBox/Columns/CasefileColumn/CasefileScroll/CasefileContainer
-@onready var pool_container: VBoxContainer = $Margin/MainVBox/Columns/PoolColumn/PoolScroll/PoolContainer
 @onready var table_label: Label = $Margin/MainVBox/TableLabel
 @onready var status_label: Label = $Margin/MainVBox/StatusLabel
 ## The step pair (owner, Session 49): adjoining boxes, brass on hover. Next
@@ -109,8 +108,7 @@ func _render() -> void:
 	_render_progress(state, current, total)
 	_render_requirement(state)
 	_render_board()
-	_render_casefile()
-	_render_pool(state)
+	_render_casefile(state)
 	_render_table(state)
 	_render_actions(state)
 
@@ -332,8 +330,8 @@ func _ends_in_title_abbreviation(body: String, period_idx: int) -> bool:
 ## a finding can be a witness statement, a clue or a lead, and only the first
 ## of those is testimony. Skipped entirely when the excerpt already IS the
 ## whole body: a link with nothing left to reveal is a dead link, not a
-## feature. Used by both this column and the shared pool below, so a finding
-## reads the same way wherever it is shown.
+## feature. Used for every row in What You Know -- yours and what was shared
+## with you -- so a finding reads the same way whoever it came from.
 ##
 ## A STATEMENT is set in quotation marks instead of a bullet (owner, Session
 ## 49) -- they are someone's own words. Only statements: a clue or a lead is a
@@ -381,29 +379,62 @@ func _quoted(text: String) -> String:
 func _is_statement(finding: Dictionary) -> bool:
 	return str(finding.get("kind", "")) == "witness"
 
-## Your casefile. Findings you have already shared stay in it — an investigator
-## cannot be made to forget — but they carry no toggle, because there is
-## nothing left to decide about them. What you spend is exclusivity.
-func _render_casefile() -> void:
+## WHAT YOU KNOW (owner, Session 51): your casefile and everything shared with
+## you, in ONE column -- before this they were two ("Your findings", "Shared
+## information") and the owner found three columns too busy to digest. Newest
+## round first; under each round, the finding you were handed and then what
+## reached you from the table that round.
+##
+## Your own findings stay even once shared -- an investigator cannot be made to
+## forget -- with a SHARED stamp and no toggle, because nothing is left to
+## decide. What others shared carries SHARED WITH YOU and no name: who shared is
+## on the table line below and in full disclosure at the end, and the owner
+## judged the finding itself reads better without it. Your own shares are not
+## repeated from the pool -- they are already here as your findings.
+func _render_casefile(state: Dictionary) -> void:
 	for child in casefile_container.get_children():
 		child.queue_free()
 	_toggles.clear()
 	_selectable.clear()
 
 	casefile_container.add_theme_constant_override("separation", Palette.SPACE_BASE)
-	## Newest first, each under the round it arrived in (owner, Session 49).
-	## A plain heading above, not "Round N findings": a shared finding stays
-	## in the casefile, so by round 3 this list holds rounds 1-3 and a single
-	## round's name over all of it would be wrong. One finding per round, so
-	## slot i arrived in round i + 1.
+
+	## What reached this player from others, by round. Disclosure entries (the
+	## case closed, everything held went public) are kept apart: they were not
+	## shared, they were revealed, and they head the list once the case closes.
+	var received_by_round: Dictionary = {}
+	var disclosed: Array = []
+	for entry in state.get("shared_pool", []):
+		var item: Dictionary = entry
+		if str(item.get("shared_by_id", "")) == GameState.player_id:
+			continue
+		if bool(item.get("disclosure", false)):
+			disclosed.append(item)
+		else:
+			var r: int = int(item.get("shared_round", 0))
+			if not received_by_round.has(r):
+				received_by_round[r] = []
+			received_by_round[r].append(item)
+
+	if not disclosed.is_empty():
+		casefile_container.add_child(_round_tag("REVEALED WHEN THE CASE CLOSED"))
+		for item in disclosed:
+			casefile_container.add_child(_finding_row(item, "HELD BACK"))
+
+	## One finding per round, so slot i arrived in round i + 1.
 	var casefile: Array = GameState.apf_casefile()
 	for i in range(casefile.size() - 1, -1, -1):
-		var finding: Dictionary = casefile[i]
-		var round_tag := Label.new()
-		round_tag.theme_type_variation = &"FaintLabel"
-		round_tag.text = "ROUND %d" % (i + 1)
-		casefile_container.add_child(round_tag)
-		casefile_container.add_child(_finding_row(finding))
+		var round_no: int = i + 1
+		casefile_container.add_child(_round_tag("ROUND %d" % round_no))
+		casefile_container.add_child(_finding_row(casefile[i]))
+		for item in received_by_round.get(round_no, []):
+			casefile_container.add_child(_finding_row(item, "SHARED WITH YOU"))
+
+func _round_tag(text: String) -> Label:
+	var tag := Label.new()
+	tag.theme_type_variation = &"FaintLabel"
+	tag.text = text
+	return tag
 
 ## Night File's finding row (docs/STYLE_GUIDE.md): icon column | rule | the
 ## finding | its SHARE / KEEP pair. The whole row is the hit target, not just
@@ -420,10 +451,13 @@ const _KIND_LABELS: Dictionary = {
 	"lead": "LEAD",
 }
 
-func _finding_row(finding: Dictionary) -> Control:
+## `received` names a finding that came from someone else -- SHARED WITH YOU,
+## or HELD BACK once disclosure makes it public. It gets that stamp and no
+## toggle: there is nothing for this player to decide about it.
+func _finding_row(finding: Dictionary, received: String = "") -> Control:
 	var shared: bool = bool(finding.get("shared", false))
 	var row := PanelContainer.new()
-	row.theme_type_variation = &"FindingRowShared" if shared else &"FindingRow"
+	row.theme_type_variation = &"FindingRowShared" if shared or not received.is_empty() else &"FindingRow"
 
 	var line := HBoxContainer.new()
 	line.add_theme_constant_override("separation", Palette.SPACE_WIDE)
@@ -449,7 +483,7 @@ func _finding_row(finding: Dictionary) -> Control:
 	body.add_child(_body_block(str(finding.get("body", "")), _is_statement(finding)))
 	line.add_child(body)
 
-	if shared:
+	if shared or not received.is_empty():
 		## One filled, locked box: a share cannot be taken back, so there is no
 		## KEEP beside it to offer. A stamp, not a button -- nothing to press.
 		var stamp := PanelContainer.new()
@@ -457,7 +491,7 @@ func _finding_row(finding: Dictionary) -> Control:
 		stamp.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 		var stamp_text := Label.new()
 		stamp_text.theme_type_variation = &"StampTextLabel"
-		stamp_text.text = "SHARED"
+		stamp_text.text = received if not received.is_empty() else "SHARED"
 		stamp_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		stamp.add_child(stamp_text)
 		line.add_child(stamp)
@@ -528,51 +562,6 @@ func _kind_icon(finding: Dictionary) -> Control:
 	icon.modulate = Icons.tint()
 	icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	return icon
-
-## What the room has. Ordered oldest first, with the name of whoever put it
-## there — the order IS the social record, and it is what "she's held back twice
-## now" is read off.
-func _render_pool(state: Dictionary) -> void:
-	for child in pool_container.get_children():
-		child.queue_free()
-
-	var pool: Array = state.get("shared_pool", [])
-	if pool.is_empty():
-		var empty := Label.new()
-		empty.text = "Nothing yet."
-		empty.add_theme_color_override("font_color", Palette.INK_FAINT)
-		pool_container.add_child(empty)
-		return
-
-	for entry in pool:
-		var item: Dictionary = entry
-		var box := VBoxContainer.new()
-
-		var who := Label.new()
-		who.add_theme_font_size_override("font_size", Palette.TYPE_LABEL)
-		## No round number (owner, Session 49). The record is not lost: the pool
-		## is in the order things were shared, oldest first, and that order is
-		## what "she's held back twice now" is read off.
-		if bool(item.get("disclosure", false)):
-			who.text = "%s held this back" % str(item.get("shared_by", "?"))
-			who.add_theme_color_override("font_color", Palette.CAUTION)
-		else:
-			who.text = "%s shared this" % str(item.get("shared_by", "?"))
-			## Steel since Session 47: an attribution is a STATE of the record,
-			## and Night File keeps brass for the action a screen wants taken.
-			who.add_theme_color_override("font_color", Palette.STEEL_BRIGHT)
-		box.add_child(who)
-
-		var title := Label.new()
-		title.text = str(item.get("title", "?"))
-		title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		title.add_theme_color_override("font_color", Palette.INK)
-		box.add_child(title)
-
-		box.add_child(_body_block(str(item.get("body", "")), _is_statement(item)))
-
-		pool_container.add_child(box)
-		pool_container.add_child(HSeparator.new())
 
 ## Who has paid and who has not. Public on purpose: the pattern across rounds is
 ## the thing the mechanic exists to produce.
