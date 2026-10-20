@@ -214,8 +214,16 @@ func _do_request(path: String, method: int, body: String, callback: Callable) ->
 		req.queue_free()
 		callback.call("HTTP request failed (code %d)" % err, {})
 
+## A reply can outlive the screen that asked for it, because a WebSocket push may
+## move the game on first. Lobby is the case that surfaced it (Session 51): /start
+## broadcasts game_started, the push switches to CaseBrief and frees the Lobby,
+## and the HTTP reply then lands on a freed object. Before Session 49 pushes from
+## plain def routes were dropped, so the reply always won and this never showed.
+## The screen that moved on no longer cares, so the reply is dropped.
 func _on_done(result: int, code: int, _headers: PackedStringArray, body_bytes: PackedByteArray, req: HTTPRequest, callback: Callable) -> void:
 	req.queue_free()
+	if not callback.is_valid():
+		return
 	if result == HTTPRequest.RESULT_TIMEOUT:
 		callback.call("Request timed out after %ds — server may still be generating." % int(REQUEST_TIMEOUT), {})
 		return
