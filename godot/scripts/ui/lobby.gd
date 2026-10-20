@@ -19,10 +19,19 @@ extends Control
 
 @onready var room_code_label: Label = $VBox/CodeRows/CodeRow/Line/RoomCodeLabel
 @onready var join_url_label: Label = $VBox/CodeRows/JoinRow/Line/JoinUrlLabel
-## "The case of" + the title on one line (owner's lobby markup, Session 49):
-## the lobby reads as the cover of a case file, not as a room-code screen.
-@onready var mystery_title_label: Label = $VBox/TitleRow/MysteryTitleLabel
-@onready var case_of_label: Label = $VBox/TitleRow/CaseOfLabel
+## "The case of" over the title (owner's lobby markup, Session 49; moved from
+## beside the title to above it and enlarged, Session 51): the lobby reads as
+## the cover of a case file, not as a room-code screen.
+@onready var mystery_title_label: Label = $VBox/TitleBlock/MysteryTitleLabel
+## The table is always drawn as four seats (owner's markup, Session 51): empty
+## ones are faint outlines, so a room of one still reads as a game for four and
+## the column keeps its shape instead of sitting lopsided. A fifth player gets a
+## fifth row. Real rows come first; placeholders fill the rest.
+const _TABLE_SEATS: int = 4
+## Placeholders are children of the same grid, so the count of real players is
+## kept here rather than read from get_child_count().
+var _seated: int = 0
+
 ## A two-column grid inside a scroll (Session 47, after the owner's first
 ## render): one roster row per player in a single column pushed a centred
 ## layout up into the logo at only two seats. Two columns seat four in two
@@ -98,7 +107,18 @@ func _on_back() -> void:
 ## growing to match would fight the point of growing the name in the first
 ## place.
 func _add_player_row(display_name: String, tag: String = "") -> void:
-	var seat: int = player_list.get_child_count() + 1
+	_seated += 1
+	var row := _build_seat_row(_seated, display_name, tag)
+	player_list.add_child(row)
+	## Ahead of the placeholders, which are rebuilt behind it.
+	player_list.move_child(row, _seated - 1)
+	_fill_empty_seats()
+	_update_seat_count()
+
+## One seat row. A placeholder is the same row built with the same labels, so it
+## is exactly the height of a real one, with the words made transparent rather
+## than removed and the whole row faded: a seat, not an empty box of another size.
+func _build_seat_row(seat: int, display_name: String, tag: String, empty: bool = false) -> PanelContainer:
 	var row := PanelContainer.new()
 	row.theme_type_variation = &"FindingRow"
 	row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -137,15 +157,31 @@ func _add_player_row(display_name: String, tag: String = "") -> void:
 		tag_lbl.text = tag.to_upper()
 		stack.add_child(tag_lbl)
 
-	player_list.add_child(row)
-	_update_seat_count()
+	if empty:
+		for child in stack.get_children():
+			(child as Label).self_modulate.a = 0.0
+		row.modulate.a = 0.3
+		row.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		row.set_meta("empty_seat", true)
+	return row
+
+## Rebuilt whole each time rather than patched: at most three rows, once per
+## join, so there is nothing to optimise and nothing to keep in step.
+func _fill_empty_seats() -> void:
+	for child in player_list.get_children():
+		if child.has_meta("empty_seat"):
+			player_list.remove_child(child)
+			child.queue_free()
+	for seat in range(_seated + 1, _TABLE_SEATS + 1):
+		## Same placeholder words as a real row, so the heights match.
+		player_list.add_child(_build_seat_row(seat, "Open seat", "waiting", true))
 
 ## The count, and the one fact a host needs before pressing Open: APF cannot
 ## assign to a table of one (constraint 2 -- the only casefile would be the
 ## whole case). Said, not enforced: the start route is shared with the gather
 ## loop, and gating it here would be a rule the server does not have.
 func _update_seat_count() -> void:
-	var seats: int = player_list.get_child_count()
+	var seats: int = _seated
 	players_header.text = "At the table · %d" % seats
 	## Hidden, not just emptied: an empty Label still takes a line of height,
 	## and this column has none to spare.
@@ -164,9 +200,8 @@ func _go_to_game() -> void:
 func _fit_title() -> void:
 	## The column's width from its offsets, not size: size is not settled in
 	## _ready(), and the offsets are what the scene fixes it to (720).
-	var column: float = $VBox.offset_right - $VBox.offset_left
-	var room: float = column - case_of_label.get_combined_minimum_size().x \
-		- float($VBox/TitleRow.get_theme_constant("separation"))
+	## "The case of" sits above the title now, so the title has the full width.
+	var room: float = $VBox.offset_right - $VBox.offset_left
 	var font: Font = mystery_title_label.get_theme_font("font")
 	var font_size: int = mystery_title_label.get_theme_font_size("font_size")
 	var wide: float = font.get_string_size(mystery_title_label.text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
