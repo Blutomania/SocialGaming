@@ -213,6 +213,16 @@ def _generate_mystery_dict(user_prompt: str) -> tuple[dict, object]:
     )
 
     guidance_entries = _craft_guidance_for_parts(parts)
+    # The reveal is now written here (Session 51), so the craft guidance the old
+    # play-time reveal call used -- C5 The Resolution, M6 The Reveal Mechanic, the
+    # party docs' Accusation/Reveal Phase -- comes along, three entries at most.
+    # Input tokens are the cheap half of a call; no extra call is made.
+    seen = {(g.doc, g.concept) for g in guidance_entries}
+    for g in craft_grounding.get_craft_guidance(
+            **craft_grounding.CALL_SITE_TAGS["resolution_reveal"], max_items=3):
+        if (g.doc, g.concept) not in seen:
+            guidance_entries.append(g)
+            seen.add((g.doc, g.concept))
     guidance_block = craft_grounding.format_guidance_block(guidance_entries)
 
     prompt = f"""\
@@ -458,6 +468,18 @@ LEADS (exactly 4):
     must reveal at least one. The red-herring lead reveals the red-herring evidence item -- that is
     how a dud finding is represented, not by revealing nothing.
 
+REVEAL (the LAST field — written after everything else, read when the case closes):
+  - The moment the truth comes out, told to the whole table after the accusation. 4–6 sentences of
+    prose, not a list and not a restatement of the solution fields, which the result screen
+    already shows. Make it feel earned, not just correct: the solution was fixed first, so every
+    clue was planted for this moment — now pay them off.
+  - It MUST name the culprit, and it MUST name at least one of the solution's key_evidence items
+    by its exact evidence name, showing how it gave them away.
+  - Written before anyone plays, so it must NOT say who solved it, who held which clue, or how the
+    accusation went — the game adds that when someone wins. Tell the story of the crime and its
+    unravelling, not of the players.
+  - It must not introduce any person, place or fact that is not already in the mystery.
+
 Generate a complete mystery JSON with this exact structure:
 {{
   "title": "string",
@@ -535,7 +557,8 @@ Generate a complete mystery JSON with this exact structure:
     "difficulty": "EASY | HARD",
     "estimated_playtime": "string",
     "key_twists": ["string"]
-  }}
+  }},
+  "reveal": "4–6 sentences: the moment the truth comes out. Names the culprit and at least one key_evidence item by name. Nothing about the players"
 }}
 
 Return only valid JSON. No commentary outside the JSON block."""
@@ -543,6 +566,14 @@ Return only valid JSON. No commentary outside the JSON block."""
     raw = llm(prompt, system="You are a mystery game engine. Return only valid JSON.",
               purpose="generation")
     mystery_dict = _parse_json(raw)
+    # WRITTEN LAST, STORED AS A SPOILER (Session 51). "reveal" is the final field
+    # of the template so it can pay off clues that already exist -- but it gives
+    # the whole case away, and every guard in this file (the client-safe mystery
+    # route, check_narrative's ORPHAN scan) protects "solution" and nothing else.
+    # Moved under solution here, so no new guard is needed anywhere.
+    reveal = mystery_dict.pop("reveal", None)
+    if isinstance(mystery_dict.get("solution"), dict) and isinstance(reveal, str) and reveal.strip():
+        mystery_dict["solution"]["reveal"] = reveal.strip()
     mystery_dict["_provenance"] = recipe.to_dict()
     mystery_dict["_provenance"]["craft_guidance"] = craft_grounding.guidance_provenance(guidance_entries)
     return mystery_dict, recipe
@@ -882,7 +913,7 @@ def _run_game_generation_job(game_id: str, job_id: str, prompt: str, opening_nar
 #                                # investigation/lead content) plugs into this separately.
 #   "winner": player_id | None, # set on the first correct accusation; game is over once set
 #   "accusations": [{player_id, accused_name, correct, ts}],  # full public history
-#   "resolution_narrative": str | None,  # set once from the mystery's own text (_fallback_resolution_narrative)
+#   "resolution_narrative": str | None,  # solution.reveal (written at generation), else _fallback_resolution_narrative
 #                                # on the first game_won/GET-result call after a win, then cached
 #                                # here -- never regenerated, so every viewer sees the same wording.
 #   "_resolution_craft_guidance": list | None,  # citations for the above, server-side audit only
@@ -1167,8 +1198,8 @@ def _build_resolution_reveal(game: dict, winner_id: str) -> dict:
     the broadcast (late join, reconnect) sees the identical reveal.
 
     resolution_narrative is set once -- the first call after the win -- from
-    the mystery's own resolution fields (no Claude call; build-order step 5,
-    Session 51), and cached on game["resolution_narrative"], so a reconnecting
+    solution.reveal, written at generation time, or else the mystery's own
+    resolution fields (no Claude call either way; build-order step 5, Session 51), and cached on game["resolution_narrative"], so a reconnecting
     client sees exactly the wording everyone else saw.
     """
     plot_reveal = _format_plot_reveal(game["mystery"])
@@ -1185,16 +1216,38 @@ def _build_resolution_reveal(game: dict, winner_id: str) -> dict:
         # written and paid for at generation time. _generate_resolution_narrative
         # is kept, unwired: if a richer reveal is wanted, it belongs inside the
         # generation call, not here.
+        #
+        # Since later in Session 51 the generation call writes that reveal itself
+        # (solution.reveal, the last field of the template) -- the story of the
+        # crime, paid for once. A mystery without one gets the plain fallback.
+        written = str((game["mystery"].get("solution") or {}).get("reveal") or "").strip()
         with _games_lock:
-            game["resolution_narrative"] = _fallback_resolution_narrative(game, plot_reveal)
+            game["resolution_narrative"] = written or _fallback_resolution_narrative(game, plot_reveal)
             game["_resolution_craft_guidance"] = []
 
     return {
         "plot_reveal": plot_reveal,
         "winner_findings": winner_findings,
         "resolution_narrative": game["resolution_narrative"],
+        "winner_line": _winner_line(game, winner_id),
         "gameplay_stats": _gameplay_stats(game),
     }
+
+
+def _winner_line(game: dict, winner_id: str) -> str:
+    """The live half of the reveal: who closed the case, and when.
+
+    The reveal is written before anyone plays, so it cannot know this; this
+    sentence is assembled from the game itself, free. Rounds only exist under
+    APF -- without a session it just names the winner.
+    """
+    name = game.get("players", {}).get(winner_id, {}).get("name", "")
+    if not name:
+        return ""
+    stats = _gameplay_stats(game)
+    if stats and stats.get("rounds_total"):
+        return f"{name} closed the case in round {stats['rounds_played']} of {stats['rounds_total']}."
+    return f"{name} closed the case."
 
 
 def _new_game_id() -> str:

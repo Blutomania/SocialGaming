@@ -51,7 +51,10 @@ from coherence_validator import check_mystery  # noqa: E402
 from generation_ledger import FAILURE_CLASSES  # noqa: E402
 
 # Recorded, never blocking. See the module docstring.
-ADVISORY_RULES = {"CAST.UNKNOWN_PERSON", "CAST.ORPHAN"}
+# NARR.RESOLUTION_MISSING (Session 51): a mystery without solution.reveal still
+# plays -- the result screen falls back to its own resolution fields -- so a
+# missing reveal is recorded, never a reason to refuse a paid generation.
+ADVISORY_RULES = {"CAST.UNKNOWN_PERSON", "CAST.ORPHAN", "NARR.RESOLUTION_MISSING"}
 
 # APF's shape (docs/PLAYTEST_FLOW.md): four players, one witness statement, one
 # crime-scene clue and one lead result each. Feasibility is the cheap half of

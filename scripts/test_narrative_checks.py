@@ -95,6 +95,21 @@ def pointered(**over):
     return base
 
 
+def with_reveal(text):
+    """The base fixture with named key evidence and a solution.reveal (Session 51).
+
+    The base has no reveal at all, which is how every mystery before Session 51
+    looks -- and the clean-fixture case proves a missing reveal prints nothing,
+    because it is advisory: the result screen falls back to the plain fields.
+    """
+    base = mystery()
+    base["evidence"] = [dict(e) for e in base["evidence"]]
+    base["evidence"][0]["name"] = "Pantry Visitors' Log"
+    base["evidence"][1]["name"] = "Contaminated Saffron Tin"
+    base["solution"] = dict(base["solution"], key_evidence=["E1", "E2"], reveal=text)
+    return base
+
+
 def with_glove(narrows, name="Bloodstained Glove",
                description="A bloody glove, man's size large, wedged behind the boiler.",
                evidence=None):
@@ -116,6 +131,21 @@ def with_glove(narrows, name="Bloodstained Glove",
 
 CASES = [
     ("a clean fixture reports nothing", mystery(), []),
+
+    # --- RESOLUTION: solution.reveal (Session 51) ---
+    ("a reveal naming the culprit and a key clue passes",
+     with_reveal("It was Ada Vance all along, and the Pantry Visitors' Log proved it."), []),
+
+    ("a key clue named loosely still counts -- two shared name words",
+     with_reveal("Ada Vance never thought anyone would test the saffron tin."), []),
+
+    ("a reveal that never names the culprit is refused",
+     with_reveal("The Pantry Visitors' Log told the whole story in the end."),
+     ["never names the culprit"]),
+
+    ("a reveal that names no key clue is refused",
+     with_reveal("Ada Vance had planned it for years, and in the end it unravelled."),
+     ["names none of the key evidence"]),
 
     ("supports names a step that does not exist",
      mystery(evidence=[{"id": "E1", "relevance": "critical", "supports": ["S9"],
@@ -290,7 +320,7 @@ def run(name, data, expected):
         path.write_text(json.dumps(data), encoding="utf-8")
         report = audit(path)
 
-    found = report["links"] + report["reveals"] \
+    found = report["links"] + report["reveals"] + report["resolution"] \
         + [f"CAST {c}" for c in report["cast"]] \
         + [f"ORPHAN {o}" for o in report["orphans"]]
     blob = " | ".join(found)

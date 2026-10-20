@@ -142,6 +142,17 @@ ASSERTIONS = [
      "nothing checks the lead group's balance"),
     ("lead-reveals", "the ids of the evidence items following this lead turns up", "enforced",
      ["REVEAL.NO_POINTER"]),
+
+    # Session 51: the reveal, written at generation time instead of by a Claude
+    # call when someone wins.
+    ("reveal-names", "It MUST name the culprit", "enforced",
+     ["NARR.RESOLUTION_NO_CULPRIT", "NARR.RESOLUTION_NO_CLUE"]),
+    ("reveal-no-players", "it must NOT say who solved it", "UNENFORCED",
+     "no rule reads the reveal for player references; a fixed reveal that says "
+     "'the youngest player cracked it' would be wrong in most games"),
+    ("reveal-nothing-new", "It must not introduce any person, place or fact", "UNENFORCED",
+     "the CAST heuristic reads title-case clue names as people, so the reveal is "
+     "deliberately kept out of it (check_narrative.deduction_text)"),
 ]
 
 IMPERATIVE = re.compile(

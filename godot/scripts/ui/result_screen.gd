@@ -19,6 +19,11 @@ extends Control
 @onready var portrait_rect: TextureRect = $ScrollContainer/MainVBox/SolutionRow/PortraitRect
 @onready var solution_label: RichTextLabel = $ScrollContainer/MainVBox/SolutionRow/SolutionLabel
 @onready var stamp: PanelContainer = $ScrollContainer/MainVBox/Stamp
+## The reveal (Session 51): the case's closing moment, written at generation
+## time (solution.reveal), under the live line saying who closed it. Until
+## Session 51 the server wrote a narrative on every win and nothing showed it.
+@onready var winner_line_label: Label = $ScrollContainer/MainVBox/WinnerLineLabel
+@onready var reveal_label: Label = $ScrollContainer/MainVBox/RevealLabel
 @onready var stamp_key: Label = $ScrollContainer/MainVBox/Stamp/StampRow/StampKey
 @onready var stamp_text: Label = $ScrollContainer/MainVBox/Stamp/StampRow/StampText
 @onready var ledger: VBoxContainer = $ScrollContainer/MainVBox/Ledger
@@ -72,6 +77,19 @@ func _populate() -> void:
 		verdict_rest_label.text = "%s did it." % culprit
 	verdict_word_label.add_theme_color_override("font_color", verdict_color)
 	verdict_rest_label.add_theme_color_override("font_color", verdict_color)
+
+	## Shown on a loss too: the reveal is the story of the crime, not a prize,
+	## and full disclosure happens either way. The server's text first (a win
+	## carries it, fallback included); otherwise the mystery's own, which the
+	## host already holds. A label with no content is never drawn (STYLE_GUIDE).
+	var reveal: String = str(result.get("resolution_narrative", "")).strip_edges()
+	if reveal.is_empty():
+		reveal = str(result.get("solution", {}).get("reveal", "")).strip_edges()
+	reveal_label.text = reveal
+	reveal_label.visible = not reveal.is_empty()
+	var winner_line: String = str(result.get("winner_line", "")).strip_edges()
+	winner_line_label.text = winner_line
+	winner_line_label.visible = not winner_line.is_empty()
 
 	# Full solution breakdown. plot_reveal.key_evidence entries are already
 	# {id, name, description} -- resolved server-side (_format_plot_reveal(),

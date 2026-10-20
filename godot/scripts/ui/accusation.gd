@@ -128,6 +128,10 @@ func _on_accused(error: String, data: Dictionary) -> void:
 		"solution": solution,
 		"plot_reveal": data.get("plot_reveal", {}),
 		"gameplay_stats": data.get("gameplay_stats", {}),
+		## Session 51: the reveal text and who closed the case. Absent on a
+		## loss; the result screen then reads solution.reveal itself.
+		"resolution_narrative": str(data.get("resolution_narrative", "")),
+		"winner_line": str(data.get("winner_line", "")),
 	}
 	_go_result()
 

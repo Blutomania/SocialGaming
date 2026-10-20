@@ -61,7 +61,7 @@ calls.** Six sites in `server/main.py`:
 | 798 | `_follow_lead_with_ai` | every lead a player follows |
 | 1135 | `_generate_witness_scene` | every witness round |
 | 2306 / 2398 | the two `/interrogate` endpoints | every question asked |
-| — | `_generate_resolution_narrative` | **removed from play, Session 51** — the reveal is the mystery's own text |
+| — | `_generate_resolution_narrative` | **removed from play, Session 51** — the reveal is now `solution.reveal`, ~400 output tokens inside the generation call (item 38) |
 
 These arrived with the Session 21 lockstep redesign and the Session 26 resolution reveal. Nobody
 decided to build a per-action architecture; it accumulated one endpoint at a time. **The

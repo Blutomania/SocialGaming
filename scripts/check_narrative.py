@@ -41,6 +41,14 @@ Three things are checked here, in ascending strictness:
             the fact, and narrowing that has become load-bearing so a withheld
             glove could make the case unprovable.
 
+  RESOLUTION  solution.reveal (Session 51): the case's closing moment, written
+            at generation time instead of by a Claude call when someone wins.
+            It must name the culprit and at least one key clue, so it cannot
+            be a polished paragraph that dodges the case. A mystery without
+            one is recorded, never refused -- the server falls back to the
+            mystery's own resolution fields, and every mystery older than
+            Session 51 lacks it.
+
   REVEALS   APF assigns findings rather than letting players gather them, and only
             evidence[] carries elimination data. A witness statement and a lead
             result reach it through a `reveals` pointer naming the evidence they
@@ -113,7 +121,31 @@ def words(text):
 def deduction_text(solution):
     chain = solution.get("chain") or []
     steps = " ".join(str(s.get("claim", "")) for s in chain if isinstance(s, dict))
+    # solution.reveal is deliberately NOT included. It names clues in title case
+    # ("the Pantry Visitors' Log"), which the CAST heuristic reads as people --
+    # tried in Session 51, and the first fixture came back with "CAST Pantry
+    # Visitors". The reveal has its own checks below.
     return f"{solution.get('how_to_deduce', '')} {steps}"
+
+
+def names_item(text, item_name):
+    """Does `text` refer to the evidence item called `item_name`?
+
+    The prompt asks for the exact name, and the full name is accepted
+    case-insensitively. Short of that, two shared name words count ("the saffron
+    tin" for "Contaminated Saffron Tin"), or the one word of a one-word name --
+    words() drops particles under three letters, so "the" and "of" never match.
+    """
+    if not item_name:
+        return False
+    if item_name.lower() in text.lower():
+        return True
+    # Lowercased BEFORE words(), not after: words() strips any leading or
+    # trailing "s" (meant for possessives), so "saffron" becomes "affron" while
+    # "Saffron" survives. Both sides must go through it in the same case.
+    need = words(item_name.lower())
+    have = words(text.lower())
+    return bool(need) and len(need & have) >= min(2, len(need))
 
 
 # ---------------------------------------------------------------------------
@@ -162,6 +194,10 @@ RULES = {
     "NARR.NARROWS_STRANGER":      "below_standard",
     "NARR.NOBODY_IMPLICATED":     "below_standard",
     "NARR.SINGLE_ROUTE":          "below_standard",
+    # --- resolution: solution.reveal (Session 51) ---
+    "NARR.RESOLUTION_MISSING":    "below_standard",   # advisory -- see gate.ADVISORY_RULES
+    "NARR.RESOLUTION_NO_CULPRIT": "below_standard",
+    "NARR.RESOLUTION_NO_CLUE":    "below_standard",
     # --- reveals ---
     "REVEAL.DANGLING":            "incoherent",
     "REVEAL.NO_POINTER":          "below_standard",
@@ -218,7 +254,7 @@ def audit_data(data, name="<memory>", legacy=False):
                           if k not in ("solution", "_provenance", "_coherence", "_meta")})
 
     report = {"file": name, "legacy": legacy, "cast": [], "orphans": [],
-              "links": [], "reveals": [], "violations": []}
+              "links": [], "reveals": [], "resolution": [], "violations": []}
 
     # --- CAST ---
     for cand in sorted({m.strip() for m in NAME.findall(deduction_text(solution))}):
@@ -422,6 +458,29 @@ def audit_data(data, name="<memory>", legacy=False):
                 _flag(report, "reveals", "REVEAL.UNREACHED_EXONERATION",
                       f"{e.get('id')} exonerates {list(e.get('exonerates'))} but no witness, "
                       f"lead or area reveals it", [e.get("id")])
+
+    # --- RESOLUTION (solution.reveal, Session 51) ---
+    reveal = str(solution.get("reveal") or "").strip()
+    if not reveal:
+        # Recorded for the ledger, not printed and never blocking: the result
+        # screen falls back to the mystery's own fields, so nothing breaks.
+        report["violations"].append({
+            "rule_id": "NARR.RESOLUTION_MISSING",
+            "failure_class": RULES["NARR.RESOLUTION_MISSING"],
+            "subject_ids": [],
+            "message": "no solution.reveal -- the result screen will use the plain fallback",
+        })
+    else:
+        if culprit and not (words(culprit.lower()) & words(reveal.lower())):
+            _flag(report, "resolution", "NARR.RESOLUTION_NO_CULPRIT",
+                  f"solution.reveal never names the culprit ({culprit}) -- a reveal that "
+                  f"does not say who did it is not a reveal")
+        by_id = {e.get("id"): e.get("name", "") for e in evidence}
+        key_names = [by_id.get(k, "") for k in (solution.get("key_evidence") or [])]
+        if key_names and not any(names_item(reveal, n) for n in key_names):
+            _flag(report, "resolution", "NARR.RESOLUTION_NO_CLUE",
+                  f"solution.reveal names none of the key evidence {[n for n in key_names if n]} -- "
+                  f"it has to show how the case was proved, not only that it was")
     return report
 
 
@@ -441,7 +500,7 @@ def main():
     fail = 0
 
     for r in reports:
-        problems = r["cast"] or r["orphans"] or r["links"] or r["reveals"]
+        problems = r["cast"] or r["orphans"] or r["links"] or r["reveals"] or r["resolution"]
         if not problems:
             continue
         tag = "legacy" if r["legacy"] else "CURRENT"
@@ -454,6 +513,8 @@ def main():
             print(f"     LINKS   {msg}")
         for msg in r["reveals"]:
             print(f"     REVEALS {msg}")
+        for msg in r["resolution"]:
+            print(f"     REVEAL  {msg}")
         if not r["legacy"] or args.strict:
             fail += 1
 
