@@ -245,6 +245,9 @@ ResultScreen's newer markup, CaseDisplay, Interrogation, Accusation, ShareSelect
 upper-left was not visible in the owner's Session 49 screenshots — unconfirmed. Session 49's
 Lobby / CaseBrief / ApfRound pass has not been rendered.
 
+**ApfRound's suspect board may do the deduction for the player** — it greys a face as soon as an
+exoneration is shared. Owner's open worry, Session 51; see item 36. Not urgent.
+
 **27. The glove (`narrows`) — built; one real generation's worth of evidence.** The accepted path
 works; the one real generation since (item 35) leaked three narrowings in prose
 (`NARR.NARROWS_PROSE_NAMES`). The rule that one finding may not reveal both a narrowing and the

@@ -241,7 +241,7 @@ func _render_board() -> void:
 		else:
 			## NOT a verdict and not a nudge (owner, playtest FindingsSept7): this
 			## reports only that no shared finding has cleared them yet -- the same
-			## fact "cleared by X in round Y" reports in the other direction. The
+			## fact "cleared by X" reports in the other direction. The
 			## MECHANIC is unchanged (item 27's board still greys a face only on a
 			## shared exoneration); only the wording and visual weight of the
 			## not-yet-cleared state changed, from a phrase that reads as a verdict
@@ -256,13 +256,14 @@ func _render_board() -> void:
 		board_container.add_child(HSeparator.new())
 
 ## Attribution is the point, so the first name is spelled out rather than
-## counted. "Ana cleared them in round 2" is a sentence about a person.
+## counted. "Cleared by Ana" is a sentence about a person. No round since
+## Session 51 (owner): who, not when.
 func _cleared_by_text(sources: Array) -> String:
 	if sources.is_empty():
 		return "cleared"
 	var first: Dictionary = sources[0]
 	var who: String = str(first.get("player_name", "someone"))
-	var text: String = "cleared by %s in round %d" % [who, int(first.get("round", 0))]
+	var text: String = "cleared by %s" % who
 	if bool(first.get("disclosure", false)):
 		text += " (full disclosure)"
 	if sources.size() > 1:
