@@ -98,10 +98,9 @@ gates (`docs/PLAYTEST_FLOW.md`, `docs/INVESTIGATION_DESIGN.md` §5–§7).
 mystery and reach the result screen without a Godot error? Anything that fails that is urgent;
 anything that does not, is not.
 
-**The current step** is the F5 walk **Lobby → CaseBrief → ApfRound, all four rounds → accuse →
-ResultScreen**, with `scripts/seat_players.py` filling the seats (`docs/F5_CHECKLIST.md`). Session
-49's walk stalled at round 2 on a server bug since fixed (`scripts/test_ws_push.py`); the screen
-pass made after it has not been rendered.
+**Session 51: the F5 walk passed** — Lobby → CaseBrief → ApfRound, all four rounds → accuse →
+ResultScreen, on the owner's machine, with `scripts/seat_players.py` filling the seats. **The next
+step is a person other than the owner playing it cold**, and the owner's screen-by-screen markups.
 
 ### Delivery priority (owner, Session 34 — "obviously it can change")
 
@@ -230,10 +229,10 @@ Everything else is closed — see `docs/DECISIONS.md`.
 
 **23. APF — built; what is left is a table.** All four build steps are in, and the accepted mystery
 `the_neriin_in_the_pilchard_barrel` plays end to end over HTTP at all three difficulties. Open:
-- **The F5 walk** above. Both engine checks are clean (Session 49: VerifyScenes ten `ok`,
-  ApplyTheme clean); the walk has never reached ResultScreen in Godot.
-- **One play-time Claude call remains:** `_generate_resolution_narrative`. A failure falls back to
-  the mystery's own resolution prose; build step 5 removes the call.
+- **The F5 walk reached ResultScreen in Godot (Session 51)** — the stage-1 test passed on the
+  owner's machine. Two defects found on the way, both fixed: a crash at OPEN THE CASE (an HTTP
+  reply landing on a freed screen) and a pause after the accusation (the play-time resolution
+  call, now removed — build step 5 for the critical path, so a game makes no Claude call).
 - **Nobody but the owner has played APF cold.** One outside player (Session 43) finished two
   mysteries, possibly on the gather loop.
 - Owner's calls pending from Session 49: ApfRound's suspect board (placeholder squares vs

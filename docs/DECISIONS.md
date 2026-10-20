@@ -689,9 +689,16 @@ a decision was made; they are not a place to leave a false statement standing.
     VerifyScenes ten `ok`); the owner's Session 49 walk reached round 2 of ApfRound and stalled on a
     server bug — pushes from plain `def` routes were silently dropped — now fixed and guarded by
     `scripts/test_ws_push.py`. **The walk has never reached ResultScreen in Godot**, and nobody but
-    the owner has played APF cold. Still on the critical path: one play-time Claude call,
-    `_generate_resolution_narrative` (it falls back to the mystery's own prose on failure; build
-    step 5 removes it).
+    the owner has played APF cold.
+
+    **[Session 51] The walk reached ResultScreen in Godot** — the stage-1 test, passed on the owner's
+    machine. It found two defects: OPEN THE CASE crashed, because the push fix let `game_started`
+    free the Lobby before `/start`'s HTTP reply arrived (`ApiClient` now drops a reply whose screen
+    has gone); and the accusation paused noticeably, because winning still made a live Claude call.
+    **Build step 5, for the critical path: that call is removed.** The reveal is always the
+    mystery's own resolution prose (`_fallback_resolution_narrative`), so an APF game makes no
+    Claude call at all; `_generate_resolution_narrative` is kept, unwired. The gather loop's
+    interrogation calls remain, off the playtest path.
 
     Order (from `docs/INVESTIGATION_DESIGN.md` §7, reduced by APF):
     1. ~~`exonerates` / `implicates` on evidence + the set-arithmetic solvability check~~ —
@@ -730,8 +737,8 @@ a decision was made; they are not a place to leave a false statement standing.
     (b) **Winning the game fired a live Claude call.** `_generate_resolution_narrative` is the last
     play-time call site on the critical path, and a 401 took the whole win down with a 500. The
     stage-1 test is *reach the result screen without an error*, so the reveal now degrades to the
-    mystery's own already-generated resolution prose. Build-order step 5 still has to remove the
-    call; this stops it being fatal. `_winner_findings_summary` was also reading the gather loop's
+    mystery's own already-generated resolution prose. (Session 51 then removed the call outright —
+    see above.) `_winner_findings_summary` was also reading the gather loop's
     phase lists, which under APF are empty — it now reads the assigned casefile.
 
     **Verified two ways, both free.** `scripts/test_apf.py` proves the rules in-process (58

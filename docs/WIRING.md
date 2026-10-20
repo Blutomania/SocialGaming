@@ -702,7 +702,9 @@ AI-authored option over a zero-cost restructuring alternative. Three fields:
   since those calls are private), but this summary broadcasts to the whole room, so it needs
   the same server-side-only treatment `_resolve_round` already gives witness rounds. Found
   and fixed while building the craft-grounded narrative below — piece 2 had been leaking it.
-- **`resolution_narrative`** (`_generate_resolution_narrative()`, **one Claude call**) — a
+- **`resolution_narrative`** — **since Session 51, the mystery's own resolution prose
+  (`_fallback_resolution_narrative()`), with no Claude call.** What follows describes
+  `_generate_resolution_narrative()`, kept but unwired — a
   craft-guidance-informed reveal narrative, not a restatement of the structured fields above.
   Tagged `C5` (The Resolution) + `M6` (The Reveal Mechanic) + `"Accusation/Reveal Phase"` via
   a new `CALL_SITE_TAGS["resolution_reveal"]` entry in `craft_grounding.py` — the fifth
