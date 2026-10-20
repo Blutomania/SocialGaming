@@ -1473,8 +1473,14 @@ a decision was made; they are not a place to leave a false statement standing.
     reached you from the table, stamped **SHARED WITH YOU**, with no name on it: who shared is on the
     table line and in full disclosure, and the owner judged the finding reads better without it.
     Your own shares are not repeated (they are already your findings, stamped SHARED). After the
-    case closes, held findings head the list, stamped HELD BACK. The suspect board is unchanged, and
-    still says *cleared by <name>* — left for the owner to decide.
+    case closes, held findings head the list, stamped HELD BACK. The board keeps the name and drops
+    the round: *cleared by Chen*, not *cleared by Chen in round 2* (owner).
+
+    **Open, owner's worry (Session 51): the board may do the player's work.** Greying a face the
+    moment an exoneration is shared tells the table someone is no longer a suspect, which is a
+    deduction the players could have made themselves. It is the same argument that already keeps the
+    board from greying on a narrowing (item 27). Left for later; options include a board that only
+    lists what was shared against each suspect, or one the players mark themselves.
 
 37. **[LOGGED, Session 49 — October 16, 2026 — owner] Suspect interviews: statements in a
     suspect's own voice.** **Stage 3 — not before.**
