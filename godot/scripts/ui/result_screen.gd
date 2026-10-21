@@ -129,8 +129,8 @@ func _populate() -> void:
 	portrait_rect.texture = Icons.texture(culprit_icon)
 	portrait_rect.modulate = Icons.tint()
 
-	_ledger_row("Your accusation", suspect)
-	_ledger_row("The culprit", culprit)
+	## No "Your accusation" / "The culprit" rows since Session 51 (owner): the
+	## verdict above already says both.
 	_populate_stats(result.get("gameplay_stats", {}))
 
 ## Night File's ledger (docs/STYLE_GUIDE.md): label left, value right, a
@@ -166,8 +166,37 @@ func _populate_stats(stats: Dictionary) -> void:
 	var rounds_played: int = stats.get("rounds_played", 0)
 	var rounds_total: int = stats.get("rounds_total", 0)
 	var elapsed: int = stats.get("elapsed_seconds", 0)
-	_ledger_row("Rounds played", "%d of %d" % [rounds_played, rounds_total])
-	_ledger_row("Time played", _format_duration(elapsed))
+	## Side by side, not stacked (owner, Session 51): two facts about one game.
+	_ledger_pair("Rounds played", "%d of %d" % [rounds_played, rounds_total],
+		"Time played", _format_duration(elapsed))
+
+## Two ledger cells on one line, each its label over its value, split by a rule.
+func _ledger_pair(label_a: String, value_a: String, label_b: String, value_b: String) -> void:
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override("separation", Palette.SPACE_WIDE)
+	row.add_child(_ledger_cell(label_a, value_a))
+	row.add_child(VSeparator.new())
+	row.add_child(_ledger_cell(label_b, value_b))
+	ledger.add_child(row)
+	var rule := HSeparator.new()
+	rule.add_theme_constant_override("separation", Palette.SPACE_BASE)
+	ledger.add_child(rule)
+
+func _ledger_cell(label_text: String, value_text: String) -> VBoxContainer:
+	var cell := VBoxContainer.new()
+	cell.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	cell.add_theme_constant_override("separation", 0)
+	var key := Label.new()
+	key.theme_type_variation = &"FaintLabel"
+	key.text = label_text.to_upper()
+	key.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	cell.add_child(key)
+	var value := Label.new()
+	value.theme_type_variation = &"LedgerValueLabel"
+	value.text = value_text
+	value.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	cell.add_child(value)
+	return cell
 
 ## "127 seconds" means nothing at a table -- minutes and seconds, the way a
 ## player would actually say it back.
