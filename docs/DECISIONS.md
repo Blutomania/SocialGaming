@@ -1483,7 +1483,7 @@ a decision was made; they are not a place to leave a false statement standing.
     lists what was shared against each suspect, or one the players mark themselves.
 
     **[Session 51 — owner] ResultScreen, from the owner's markup.** The verdict word is a third
-    bigger (`VerdictLabel` 35 → 47px; the rest of the sentence keeps 28). The *Your accusation* and
+    bigger (`VerdictLabel` 35 → 48px; the rest of the sentence keeps 28). The *Your accusation* and
     *The culprit* ledger rows are gone, because the verdict already says both. *Rounds played* and
     *Time played* sit side by side as one ledger line.
 
