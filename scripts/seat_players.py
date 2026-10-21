@@ -19,9 +19,11 @@ So what you are walking is the real server, the real rhythm and the real board,
 with the social half stubbed out. That is exactly the half a checker cannot
 test anyway.
 
-Run it while the host is sitting in the LOBBY, before they press "Begin the
-investigation" -- open_session snapshots who is in the room, so anyone who
-arrives after the assignment is not in it.
+Run it while the host is sitting in the LOBBY, and wait for "At the table . 4"
+before pressing OPEN THE CASE -- open_session snapshots who is in the room, so
+anyone who arrives after the assignment is not in it. (This used to say "Begin
+the investigation", the lobby button's old label; that is now the button on
+CaseBrief's last page, which is after the snapshot point.)
 
     python3 scripts/seat_players.py ABCD1234            # 3 extra seats
     python3 scripts/seat_players.py ABCD1234 --seats 1  # just one
@@ -82,7 +84,7 @@ def main() -> int:
         print(f"  seated {name}")
 
     print(f"\n{len(seated)} seat(s) filled in room {room}.")
-    print("Now press \"Begin the investigation\" on the host screen.\n")
+    print("Now press \"OPEN THE CASE\" on the host screen.\n")
     print("Each of these will share the MINIMUM the server asks of them, which is the")
     print("most withholding-heavy legal play -- so the board fills slowly and there is")
     print("something left for full disclosure to reveal.\n")

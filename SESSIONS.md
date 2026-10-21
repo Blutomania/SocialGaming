@@ -70,10 +70,61 @@ As MYF's always did, 13 → 96 files. **The first run found a real dangling cita
 `check_doc_claims.py`: all claims hold. `check_decisions.py`: CYM 37 items, 96 files; MYF 53 items,
 72 files; no failures. No code behaviour changed (one comment in `background_field.py`).
 
-### Next session
+### Continued, October 20–21 — the F5 walk passed; owner's screen markups
 
-Unchanged from Session 49: owner pulls, re-runs ApplyTheme and VerifyScenes, then the F5 walk
-Lobby → CaseBrief → ApfRound (all four rounds) → accuse → ResultScreen with `seat_players.py`.
+PR #68 merged (`85816ac`); every later change went in as its own PR (#69–#76), each merged the
+same turn, with the branch restarted from `main` after each.
+
+**The stage-1 test passed.** The owner walked Lobby → CaseBrief → ApfRound, four rounds → accuse →
+ResultScreen in Godot 4.7.2, with `seat_players.py` filling the seats. VerifyScenes ten of ten `ok`;
+ApplyTheme `MISSES none` over 235 items, so `NoticePanel` and `StepButton` are confirmed in the
+engine. Two defects, both found only by the walk:
+
+- **A crash at OPEN THE CASE** (PR #69): *"Attempt to call function null::_on_started"*. Session
+  49's push fix let `game_started` reach the host before `/start`'s HTTP reply, so the Lobby was freed
+  by the time the reply landed. `ApiClient._on_done` now drops a reply whose screen has gone
+  (`Callable.is_valid()`), which also covers CaseBrief and ApfRound.
+- **A pause after the accusation** (PR #71): `/accuse` waited on a live
+  `_generate_resolution_narrative` call on every win — and **ResultScreen never displayed it**.
+  The call is removed (build step 5, for the critical path): an APF game makes no Claude call, and
+  a whole game over HTTP takes 1.9 s.
+
+**Item 38, the reveal at generation time** (PR #72, owner's idea). `reveal` is the last field of the
+generation template, moved under `solution` after parsing, so the existing spoiler guards cover it
+(a top-level field would have gone to every phone). Gate rules `NARR.RESOLUTION_NO_CULPRIT` /
+`NARR.RESOLUTION_NO_CLUE` (blocking) and `NARR.RESOLUTION_MISSING` (advisory). The server serves it
+with a live `winner_line`, and ResultScreen shows both under the verdict, on a loss too.
+`scripts/backfill_reveal.py` wrote Neriin's: one call, $0.033, passed the rules before it was saved,
+and the data diff is the new field only. Found on the way: `check_narrative.words()` strips any
+leading or trailing "s" ("saffron" → "affron"); worked around, not changed. **Unconfirmed until a
+paid generation** — bundle with items 27 and 35.
+
+**Owner's markups** (item 36), none yet seen in Godot:
+- **Lobby** (PR #70): *The case of* above the title and larger; four seats always drawn, empty ones
+  faded.
+- **ApfRound** (PRs #73, #74): one **What You Know** column instead of findings + shared pool. Newest
+  round first; others' shares stamped SHARED WITH YOU with no name; HELD BACK after the case closes.
+  The board reads *cleared by Chen* (no round). **The owner's open worry, recorded in item 36:** the
+  board greying a face on a shared exoneration may do the player's deduction for them.
+- **ResultScreen** (PRs #75, #76): verdict 35 → 48px; *Your accusation* and *The culprit* rows
+  removed; Rounds played and Time played side by side.
+
+**Housekeeping:** the F5 checklist gained Part 3b, the APF walk as a table, and starts the server
+from the repo root (`cd server` wrote a stray `server/mystery_database/`).
+`seat_players.py`'s timing note said *Begin the investigation*; the lobby button is OPEN THE CASE.
+`walk_apf_game.py` now asserts that the win carries the reveal and the winner line.
+
+**Asked of the owner, not yet answered:** whether *HELD BACK* is the right label; whether
+*Findings you shared* / *kept back* should sit side by side like the stats; whether the reveal
+paragraph and the second half of the verdict (*"… did it."*) appear on the latest build — neither
+was in the last ResultScreen screenshot, which may have been from an older build.
+
+### Next session (CYM)
+
+1. Owner: `git pull origin main`, restart the server, and walk once more (F5 checklist Part 3b) to
+   see the Lobby, ApfRound and ResultScreen changes and the reveal.
+2. Somebody other than the owner plays it cold — the stage-1 test as written.
+3. The next paid generation confirms items 27, 35 and 38 together.
 
 ---
 

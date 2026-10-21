@@ -29,6 +29,10 @@ ApplyTheme clean). The owner's Session 49 walk — Lobby with `scripts/seat_play
 ApfRound — stalled at round 2 on a server push bug, since fixed (`scripts/test_ws_push.py`). **The
 walk has never reached ResultScreen in Godot**; that is the next F5.
 
+**Session 51: it did.** Lobby → CaseBrief → ApfRound, four rounds → accuse → ResultScreen, on the
+owner's machine. Two defects found and fixed on the way: a crash at OPEN THE CASE, and a pause
+after the accusation. The walk is Part 3b below.
+
 **Still unverified:** steps 20 and 21 (the two paid ones — though a paid generation has since run
 on the owner's machine, item 35) and step 17's negative case.
 
@@ -145,9 +149,13 @@ with its terminal.
 
 ```bash
 source .venv/bin/activate          # if this is a new window
-cd server
-python3 -m uvicorn main:app --port 8000
+python3 -m uvicorn server.main:app --port 8000     # from the REPO ROOT, not from server/
 ```
+
+**From the repo root, not `cd server`** (Session 51). Two modules — localization and the part
+registry — write to a folder relative to wherever the server was launched, so starting it inside
+`server/` creates a stray `server/mystery_database/`. Delete that folder if you have one; it holds
+only caches.
 
 **Expect** Uvicorn to print that it is running on `http://127.0.0.1:8000`. Leave it alone.
 
@@ -438,6 +446,32 @@ fixed; this step confirms it.
 
 **Stop here and take stock.** If 1–19 pass, the free route is clear. Everything below spends money
 and can wait.
+
+---
+
+# Part 3b — The APF walk · the stage-1 test · no API spend
+
+**First passed in Session 51**, on the owner's machine. This is the playtest path: one person, one
+PC, a whole mystery to the result screen. It needs the server (step 4), clean engine checks (steps
+7 and 8), and a second terminal for the seats. Before it, `python3 scripts/test_ws_push.py` and
+`python3 scripts/walk_apf_game.py` should both pass: they prove the server half, so anything that
+fails below is the client's.
+
+| # | Screen | Do | Check |
+|---|---|---|---|
+| 1 | **F5 → MainMenu** | PLAY A MYSTERY, WITH FRIENDS, then BEGIN THE INVESTIGATION | |
+| 2 | **Set Your Mystery** | Your name, a difficulty, *The Neriin in the Pilchard Barrel*, then **Host this saved mystery** | The only one not marked *cannot be assigned* |
+| 3 | **Lobby** | Note the ROOM CODE. Terminal 2: `python3 scripts/seat_players.py <ROOM_CODE>` | Wait for **At the table · 4**. "Host" appears once |
+| 4 | | **OPEN THE CASE** | Goes to CaseBrief with no debugger stop (crashed before Session 51) |
+| 5 | **CaseBrief** | NEXT / BACK through both pages, then **BEGIN THE INVESTIGATION** | Two victims, V1 and V2. Suspects 2×2 |
+| 6 | **ApfRound, round 1** | **Open the next round** | Opens on *Round 1 of 4*, not Round 0 |
+| 7 | **Rounds 2–4** | Set the owed findings to SHARE, **Share selected**, then **Open the next round** | Others' shares appear in *What You Know* as SHARED WITH YOU, and the button enables. If it stays grey, that is the Session 49 stall |
+| 8 | **Round 4** | **Close the case** | *"Everything is on the table…"*; held findings head the list as HELD BACK |
+| 9 | **Accuse** | **I've solved it**, pick a suspect, confirm | The culprit is **Rosalind Trevaskis**. No pause before the result (removed Session 51) |
+| 10 | **ResultScreen** | Rate it, then Play Again | Verdict, the written reveal and *"… closed the case in round N of 4"*, clue names (never *E2*), full disclosure |
+
+Copy the Debugger and Output panes before quitting, and `git checkout -- godot/project.godot`
+afterwards.
 
 ---
 
