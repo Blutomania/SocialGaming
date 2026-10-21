@@ -239,11 +239,13 @@ Everything else is closed — see `docs/DECISIONS.md`.
   CaseBrief's portraits); whether the share confirm step survives a real table; commit
   `cym_theme.tres` from the owner's machine.
 
-**36. Night File — the host screen's look.** Theme landed, clean in the engine. Screen passes done:
-MainMenu, MysteryGeneration, Lobby, CaseBrief, ApfRound, ResultScreen (Session 47). **Open:**
-ResultScreen's newer markup, CaseDisplay, Interrogation, Accusation, ShareSelection; the brand mark
-upper-left was not visible in the owner's Session 49 screenshots — unconfirmed. Session 49's
-Lobby / CaseBrief / ApfRound pass has not been rendered.
+**36. Night File — the host screen's look.** Theme clean in the engine (Session 49: ApplyTheme
+`MISSES none` over 235 items). The Session 51 walk rendered the Session 49 passes. **Built in
+Session 51 and not yet seen:** Lobby (*The case of* above the title, four seats always shown),
+ApfRound (one *What You Know* column, SHARED WITH YOU; the board reads *cleared by <name>*),
+ResultScreen (48px verdict, the reveal and winner line, the two stats on one line). **Open:**
+CaseDisplay, Interrogation, Accusation and ShareSelection have no screen pass; the brand mark
+upper-left has not been confirmed visible.
 
 **ApfRound's suspect board may do the deduction for the player** — it greys a face as soon as an
 exoneration is shared. Owner's open worry, Session 51; see item 36. Not urgent.
