@@ -549,7 +549,9 @@ func _declare_variations(t: Theme) -> void:
 	## per the same note) -- because one Label cannot mix two sizes in its own
 	## text. A one-off literal, not TYPE_TITLE, because nothing else uses this
 	## variation's size and it should not silently follow that scale's changes.
-	t.set_font_size("font_size", "VerdictLabel", 35)
+	## 47 since Session 51: the owner asked for the word a third bigger (35 x
+	## 1.33). VerdictRestLabel keeps its own 28.
+	t.set_font_size("font_size", "VerdictLabel", 47)
 
 	## A player's name, wherever roster matters more than anywhere else it
 	## appears in the product: the lobby (owner, playtest WaitingSept7 -- "who
